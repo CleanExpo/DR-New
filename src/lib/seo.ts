@@ -15,7 +15,7 @@ interface SEOConfig {
 }
 
 export function generateSEO(config: SEOConfig): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au'
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://disaster-recovery-seven.vercel.app'
   
   return {
     title: config.title,
@@ -57,18 +57,18 @@ export function generateSEO(config: SEOConfig): Metadata {
 export const generateLocalBusinessSchema = (businessInfo: any) => ({
   '@context': 'https://schema.org',
   '@type': 'DamageRestorationService',
-  '@id': 'https://disasterrecovery.com.au/#organisation',
-  name: 'Disaster Recovery',
-  url: 'https://disasterrecovery.com.au',
+  '@id': 'https://disaster-recovery-seven.vercel.app/#organisation',
+  name: 'Disaster Recovery Australia',
+  url: 'https://disaster-recovery-seven.vercel.app',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://disasterrecovery.com.au/logo.png',
+    url: 'https://disaster-recovery-seven.vercel.app/logos/disaster-recovery-logo.png',
     width: 250,
     height: 60 },
-  image: 'https://disasterrecovery.com.au/hero-image.jpg',
-  description: 'Queensland\'s trusted 24/7 emergency disaster recovery and restoration specialists. Water damage, fire damage, mould remediation, and biohazard cleaning services.',
-  telephone: "",
-  email: 'info@disasterrecovery.com.au',
+  image: 'https://disaster-recovery-seven.vercel.app/images/disaster-recovery-og.jpg',
+  description: 'Australia\'s leading IICRC-certified disaster restoration specialists. 24/7 emergency response for water damage, fire damage, mould remediation across Brisbane, Ipswich, Logan and nationwide.',
+  telephone: "+61-1300-DISASTER",
+  email: 'info@disaster-recovery-seven.vercel.app',
   address: {
     '@type': 'PostalAddress',
     streetAddress: businessInfo.streetAddress,
@@ -83,16 +83,34 @@ export const generateLocalBusinessSchema = (businessInfo: any) => ({
   areaServed: [
     {
       '@type': 'City',
-      name: 'Brisbane' },
+      name: 'Brisbane',
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: -27.4698,
+        longitude: 153.0251
+      }
+    },
+    {
+      '@type': 'City',
+      name: 'Ipswich',
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: -27.6145,
+        longitude: 152.7578
+      }
+    },
+    {
+      '@type': 'City',
+      name: 'Logan',
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: -27.6386,
+        longitude: 153.1055
+      }
+    },
     {
       '@type': 'City',
       name: 'Gold Coast' },
-    {
-      '@type': 'City',
-      name: 'Ipswich' },
-    {
-      '@type': 'City',
-      name: 'Logan City' },
     {
       '@type': 'City',
       name: 'Toowoomba' },
@@ -151,17 +169,17 @@ export const generateServiceSchema = (service: {
   description: service.description,
   provider: service.provider || {
     '@type': 'Organisation',
-    name: 'Disaster Recovery',
-    url: 'https://disasterrecovery.com.au' },
-  areaServed: service.areaServed || ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba'],
+    name: 'Disaster Recovery Australia',
+    url: 'https://disaster-recovery-seven.vercel.app' },
+  areaServed: service.areaServed || ['Brisbane', 'Ipswich', 'Logan', 'Gold Coast', 'Toowoomba'],
   availableChannel: service.availableChannel || {
     '@type': 'ServiceChannel',
-    serviceUrl: 'https://disasterrecovery.com.au/emergency-service',
-    servicePhone: '1300 309 361',
+    serviceUrl: 'https://disaster-recovery-seven.vercel.app/claim',
+    servicePhone: '+61-1300-DISASTER',
     availableLanguage: {
       '@type': 'Language',
       name: 'English' } },
-  termsOfService: 'https://disasterrecovery.com.au/terms',
+  termsOfService: 'https://disaster-recovery-seven.vercel.app/terms',
   image: service.image })
 
 export const generateFAQSchema = (faqs: { question: string; answer: string }[]) => ({
@@ -198,15 +216,15 @@ export const generateArticleSchema = (article: {
   image: article.image,
   author: {
     '@type': 'Person',
-    name: article.author || 'Disaster Recovery Team' },
+    name: article.author || 'Disaster Recovery Australia Team' },
   publisher: {
     '@type': 'Organisation',
-    name: 'Disaster Recovery',
+    name: 'Disaster Recovery Australia',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://disasterrecovery.com.au/logo.png' } },
+      url: 'https://disaster-recovery-seven.vercel.app/logos/disaster-recovery-logo.png' } },
   datePublished: article.datePublished,
   dateModified: article.dateModified || article.datePublished,
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://disasterrecovery.com.au' } })
+    '@id': 'https://disaster-recovery-seven.vercel.app' } })

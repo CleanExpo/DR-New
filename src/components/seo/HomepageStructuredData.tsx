@@ -6,17 +6,17 @@ export function HomepageStructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organisation",
-    "@id": "https://disasterrecovery.com.au/#organisation",
-    "name": "Disaster Recovery",
-    "url": "https://disasterrecovery.com.au",
+    "@id": "https://disaster-recovery-seven.vercel.app/#organisation",
+    "name": "Disaster Recovery Australia",
+    "url": "https://disaster-recovery-seven.vercel.app",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://disasterrecovery.com.au/logo.png",
+      "url": "https://disaster-recovery-seven.vercel.app/logos/disaster-recovery-logo.png",
       "width": 600,
       "height": 60
     },
-    "description": "Premier network of IICRC certified disaster recovery contractors. 24/7 emergency response for water damage, fire restoration, and mould remediation.",
-    "email": "info@disasterrecovery.com.au",
+    "description": "Australia's leading IICRC-certified disaster restoration specialists. 24/7 emergency response for water damage, fire damage, mould remediation across Brisbane, Ipswich, Logan and nationwide. Insurance approved contractors.",
+    "email": "info@disaster-recovery-seven.vercel.app",
     "areaServed": {
       "@type": "Country",
       "name": "Australia"
@@ -38,21 +38,22 @@ export function HomepageStructuredData() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "EmergencyService",
-    "@id": "https://disasterrecovery.com.au/#business",
-    "name": "Disaster Recovery",
-    "image": "https://disasterrecovery.com.au/og-image.jpg",
-    "url": "https://disasterrecovery.com.au",
-    "telephone": "",
-    "priceRange": "$2200+",
+    "@id": "https://disaster-recovery-seven.vercel.app/#business",
+    "name": "Disaster Recovery Australia",
+    "image": "https://disaster-recovery-seven.vercel.app/images/disaster-recovery-og.jpg",
+    "url": "https://disaster-recovery-seven.vercel.app",
+    "telephone": "+61-1300-DISASTER",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "AU",
-      "addressRegion": "Australia"
+      "addressRegion": "QLD",
+      "addressLocality": "Brisbane"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": -25.2744,
-      "longitude": 133.7751
+      "latitude": -27.4698,
+      "longitude": 153.0251
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -65,36 +66,39 @@ export function HomepageStructuredData() {
     },
     "areaServed": [
       {
-        "@type": "State",
-        "name": "New South Wales"
+        "@type": "City",
+        "name": "Brisbane",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -27.4698,
+          "longitude": 153.0251
+        }
       },
       {
-        "@type": "State",
-        "name": "Victoria"
+        "@type": "City",
+        "name": "Ipswich",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -27.6145,
+          "longitude": 152.7578
+        }
+      },
+      {
+        "@type": "City",
+        "name": "Logan",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -27.6386,
+          "longitude": 153.1055
+        }
       },
       {
         "@type": "State",
         "name": "Queensland"
       },
       {
-        "@type": "State",
-        "name": "Western Australia"
-      },
-      {
-        "@type": "State",
-        "name": "South Australia"
-      },
-      {
-        "@type": "State",
-        "name": "Tasmania"
-      },
-      {
-        "@type": "State",
-        "name": "Northern Territory"
-      },
-      {
-        "@type": "State",
-        "name": "Australian Capital Territory"
+        "@type": "Country",
+        "name": "Australia"
       }
     ],
     "hasOfferCatalog": {
@@ -140,18 +144,18 @@ export function HomepageStructuredData() {
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://disasterrecovery.com.au/#website",
-    "url": "https://disasterrecovery.com.au",
-    "name": "Disaster Recovery",
-    "description": "24/7 Emergency Disaster Recovery Services nationwide",
+    "@id": "https://disaster-recovery-seven.vercel.app/#website",
+    "url": "https://disaster-recovery-seven.vercel.app",
+    "name": "Disaster Recovery Australia",
+    "description": "24/7 Emergency Disaster Recovery Services Brisbane, Ipswich, Logan & Nationwide",
     "publisher": {
-      "@id": "https://disasterrecovery.com.au/#organisation"
+      "@id": "https://disaster-recovery-seven.vercel.app/#organisation"
     },
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://disasterrecovery.com.au/search?q={search_term_string}"
+        "urlTemplate": "https://disaster-recovery-seven.vercel.app/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     },
@@ -166,7 +170,7 @@ export function HomepageStructuredData() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://disasterrecovery.com.au"
+        "item": "https://disaster-recovery-seven.vercel.app"
       }
     ]
   };
@@ -213,7 +217,7 @@ export function HomepageStructuredData() {
   const speakableSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Disaster Recovery - 24/7 Online Emergency Response",
+    "name": "Disaster Recovery Australia - 24/7 Emergency Response Brisbane, Ipswich, Logan",
     "speakable": {
       "@type": "SpeakableSpecification",
       "cssSelector": [
@@ -222,7 +226,7 @@ export function HomepageStructuredData() {
         ".emergency-cta"
       ]
     },
-    "url": "https://disasterrecovery.com.au"
+    "url": "https://disaster-recovery-seven.vercel.app"
   };
 
   return (

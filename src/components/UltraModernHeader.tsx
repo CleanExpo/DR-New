@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import SearchBar from '@/components/SearchBar';
+import ResponsiveImage from '@/components/images/ResponsiveImage';
 
 interface SubDropdownItem {
   label: string;
@@ -462,15 +462,17 @@ export default function UltraModernHeader() {
                 transform: isScrolled ? 'scale(0.95)' : 'scale(1)',
                 transition: 'all 0.3s ease' }}>
                 {/* Compressed PNG Logo */}
-                <Image
-                  src="/logos/3D Disaster Recovery Logo Image.png"
-                  alt="Disaster Recovery"
+                <ResponsiveImage
+                  src="/images/logos/disaster-recovery-logo.png"
+                  alt="Disaster Recovery - Professional Property Restoration Services"
+                  title="Disaster Recovery - 24/7 Emergency Response"
                   width={isScrolled ? 50 : 60}
                   height={isScrolled ? 50 : 60}
+                  priority={true}
+                  sizes="(max-width: 640px) 50px, 60px"
                   className="transition-all duration-300 object-contain"
                   style={{
                     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' }}
-                  priority
                 />
               </div>
             </Link>
