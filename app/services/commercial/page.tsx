@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { HeroSection } from '@/components/hero/HeroImage';
+import { getHeroImageById } from '@/components/hero/HeroImageData';
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -18,17 +20,32 @@ export const metadata: Metadata = {
 };
 
 export default function CommercialRestorationPage() {
+  // Get the commercial restoration hero image
+  const commercialHeroImage = getHeroImageById('commercial-restoration');
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-white">
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-r from-blue-600 to-indigo-700">
+      {/* Hero Section with Professional Commercial Image */}
+      {commercialHeroImage && (
+        <HeroSection
+          image={commercialHeroImage}
+          title="Commercial, Strata & Government Restoration Services"
+          subtitle="Specialized disaster recovery for office buildings, strata properties, government facilities, and building management companies. Minimal business disruption, compliance-focused restoration."
+          ctaText="24/7 Commercial Response"
+          ctaLink="/contact"
+          height="h-[650px]"
+        />
+      )}
+
+      {/* Original Hero Section as secondary content */}
+      <section className="relative py-16 px-4 bg-gradient-to-r from-blue-600 to-indigo-700">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Commercial Restoration Services
-            </h1>
-            <p className="text-xl md:text-2xl text-blue-800 max-w-3xl mx-auto">
-              Professional disaster recovery for businesses with minimal downtime. 
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Business Continuity Through Expert Restoration
+            </h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Professional disaster recovery for businesses with minimal downtime.
               Expert office, retail, and industrial restoration available 24/7.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">

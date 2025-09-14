@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { HeroSection } from '@/components/hero/HeroImage'
+import { getHeroImageById } from '@/components/hero/HeroImageData'
 import {  Clock, Shield, AlertOctagon, Droplets, Home, AlertTriangle, CheckCircle, ArrowRight, Truck, Heart, ShieldAlert, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
@@ -79,6 +81,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ])
 
 export default function SewageCleanupPage() {
+  // Get the sewage hero image
+  const sewageHeroImage = getHeroImageById('sewage-remediation');
+
   return (
     <div className="min-h-screen">
       {/* Structured Data for SEO */}
@@ -87,7 +92,7 @@ export default function SewageCleanupPage() {
       <StructuredData data={breadcrumbSchema} />
 
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-yellow-600 to-blue-700 text-white py-3 px-4">
+      <div className="bg-gradient-to-r from-yellow-600 to-blue-700 text-white py-3 px-4 relative z-30">
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertOctagon className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Emergency Sewage Cleanup</span>
@@ -95,7 +100,19 @@ export default function SewageCleanupPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section with Professional Image */}
+      {sewageHeroImage && (
+        <HeroSection
+          image={sewageHeroImage}
+          title="Professional Sewage Cleanup & Category 3 Water Damage Restoration"
+          subtitle="IICRC-certified specialists providing immediate response for sewage backups, black water contamination, and complete sanitization. Health-certified technicians available 24/7."
+          ctaText="Emergency Sewage Response"
+          ctaLink="#contact-form"
+          height="h-[600px]"
+        />
+      )}
+
+      {/* Additional Service Details */}
       <section className="relative bg-gradient-to-b from-yellow-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">

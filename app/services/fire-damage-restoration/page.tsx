@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { HeroSection } from '@/components/hero/HeroImage'
+import { getHeroImageById } from '@/components/hero/HeroImageData'
 import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
@@ -79,6 +81,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ])
 
 export default function FireDamageRestorationPage() {
+  // Get the fire and smoke restoration hero image
+  const fireHeroImage = getHeroImageById('fire-smoke-restoration');
+
   return (
     <div className="min-h-screen">
       {/* Structured Data for SEO */}
@@ -87,7 +92,7 @@ export default function FireDamageRestorationPage() {
       <StructuredData data={breadcrumbSchema} />
 
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-blue-700 to-red-600 text-white py-3 px-4">
+      <div className="bg-gradient-to-r from-blue-700 to-red-600 text-white py-3 px-4 relative z-30">
         <div className="container mx-auto flex items-center justify-center gap-4">
           <Flame className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Fire Damage Emergency Response</span>
@@ -95,7 +100,19 @@ export default function FireDamageRestorationPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section with Professional Fire Restoration Image */}
+      {fireHeroImage && (
+        <HeroSection
+          image={fireHeroImage}
+          title="Fire, Smoke & Odour Damage Restoration"
+          subtitle="Expert residential and commercial fire restoration with complete soot removal, smoke odour elimination, and structural repairs. IICRC-certified technicians available 24/7."
+          ctaText="Emergency Fire Response"
+          ctaLink="#contact-form"
+          height="h-[650px]"
+        />
+      )}
+
+      {/* Additional Service Details */}
       <section className="relative bg-gradient-to-b from-orange-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">

@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { 
+import { HeroSection } from '@/components/hero/HeroImage';
+import { getHeroImageById } from '@/components/hero/HeroImageData';
+import {
   Droplets, Clock, Shield, Award, CheckCircle,
   ArrowRight, AlertTriangle, TrendingUp, Users, MapPin,
   BookOpen, GraduationCap, Building2, Heart, Zap, Globe,
@@ -77,7 +79,10 @@ export default function WaterDamageRestorationPage() {
   const climateData = AUSTRALIAN_DISASTER_STATISTICS.climateImpact.data;
   const buildingResearch = AUSTRALIAN_DISASTER_STATISTICS.buildingDamageResearch.findings;
   const brisbaneFloods = VERIFIED_CASE_STUDIES[0]; // Brisbane 2022 floods
-  
+
+  // Get the multi-peril hero image
+  const multiPerilHeroImage = getHeroImageById('fire-water-damage-restoration');
+
   return (
     <>
       {/* Schema Markup */}
@@ -87,8 +92,20 @@ export default function WaterDamageRestorationPage() {
       />
 
       <main className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-        {/* Hero Section with Real Data */}
-        <section className="relative pt-32 pb-20 overflow-hidden" aria-label="Hero">
+        {/* Hero Section with Comprehensive Multi-Peril Image */}
+        {multiPerilHeroImage && (
+          <HeroSection
+            image={multiPerilHeroImage}
+            title="Fire, Water, Smoke & Mould Restoration Services"
+            subtitle="Complete multi-peril disaster restoration for residential and commercial properties. Expert teams handling complex combined damage scenarios with 24/7 emergency response."
+            ctaText="Get Emergency Multi-Peril Response"
+            ctaLink="#contact"
+            height="h-[700px]"
+          />
+        )}
+
+        {/* Original Hero Section with Real Data */}
+        <section className="relative pt-20 pb-20 overflow-hidden" aria-label="Hero">
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
           
           <div className="container mx-auto px-6 relative z-10">

@@ -3,7 +3,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { 
+import { HeroSection } from '@/components/hero/HeroImage';
+import { getHeroImageById } from '@/components/hero/HeroImageData';
+import {
   HomeIcon,
   FireIcon,
   BeakerIcon,
@@ -182,8 +184,23 @@ export default function UltraModernServicesPage() {
     }
   ];
 
+  // Get the main disaster recovery hero image
+  const disasterRecoveryHeroImage = getHeroImageById('disaster-recovery-main');
+
   return (
     <div ref={containerRef} className="min-h-screen relative overflow-hidden noise-overlay">
+      {/* Hero Section with Comprehensive Services Image */}
+      {disasterRecoveryHeroImage && (
+        <HeroSection
+          image={disasterRecoveryHeroImage}
+          title="Complete Disaster Recovery Services"
+          subtitle="Water • Storm • Flood • Mould • Fire • Biohazard - 24/7 Emergency Response Nationwide"
+          ctaText="Get Emergency Help Now"
+          ctaLink="#contact"
+          height="h-[700px]"
+        />
+      )}
+
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-blue-950 to-purple-950" />

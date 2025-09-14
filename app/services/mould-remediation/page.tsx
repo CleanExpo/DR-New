@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { HeroSection } from '@/components/hero/HeroImage'
+import { getHeroImageById } from '@/components/hero/HeroImageData'
 import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscope, Home, Heart, FileCheck, AlertCircle, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
@@ -85,6 +87,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ])
 
 export default function MouldRemediationPage() {
+  // Get the mould remediation hero image
+  const mouldHeroImage = getHeroImageById('mould-remediation');
+
   return (
     <div className="min-h-screen">
       {/* Structured Data for SEO */}
@@ -93,7 +98,7 @@ export default function MouldRemediationPage() {
       <StructuredData data={breadcrumbSchema} />
 
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-green-700 to-green-600 text-white py-3 px-4">
+      <div className="bg-gradient-to-r from-green-700 to-green-600 text-white py-3 px-4 relative z-30">
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertTriangle className="h-5 w-5 animate-pulse" />
           <span className="font-bold">Professional Mould Remediation Services</span>
@@ -101,7 +106,19 @@ export default function MouldRemediationPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section with Professional Mould Remediation Image */}
+      {mouldHeroImage && (
+        <HeroSection
+          image={mouldHeroImage}
+          title="Professional Mould Remediation Services"
+          subtitle="IICRC AMRT-certified specialists providing complete mould inspection, removal, and prevention. Advanced containment and HEPA filtration ensuring safe, healthy environments."
+          ctaText="Get Mould Assessment Now"
+          ctaLink="#contact-form"
+          height="h-[650px]"
+        />
+      )}
+
+      {/* Additional Service Details */}
       <section className="relative bg-gradient-to-b from-green-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">

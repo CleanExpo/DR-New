@@ -25,33 +25,63 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { 
-    label: 'Services', 
+  {
+    label: 'Services',
     href: '/services',
     dropdown: [
-      { 
-        label: 'Water Damage', 
+      {
+        label: 'Water Damage',
         href: '/services/water-damage',
         description: 'Advanced moisture extraction',
         icon: '💧'
       },
-      { 
-        label: 'Fire & Smoke', 
+      {
+        label: 'Fire & Smoke',
         href: '/services/fire-damage',
         description: 'Complete restoration technology',
         icon: '🔥'
       },
-      { 
-        label: 'Mould Remediation', 
+      {
+        label: 'Mould Remediation',
         href: '/services/mould-remediation',
         description: 'EPA-certified removal',
         icon: '🦠'
       },
-      { 
-        label: 'Commercial', 
+      {
+        label: 'Commercial',
         href: '/services/commercial',
         description: 'Enterprise-grade solutions',
         icon: '🏢'
+      },
+    ]
+  },
+  {
+    label: 'Resources',
+    href: '/resources',
+    dropdown: [
+      {
+        label: 'Case Studies',
+        href: '/case-studies',
+        description: 'Real client success stories',
+        icon: '📊'
+      },
+      {
+        label: 'Top 10 Guides',
+        href: '/listicles',
+        description: 'Expert tips and rankings',
+        icon: '📋'
+      },
+      {
+        label: 'Flood Resources',
+        href: '/resources',
+        description: 'Essential disaster information',
+        icon: '📚'
+      },
+      {
+        label: 'Insurance Help',
+        href: '/resources/2022-floods-ongoing-crisis',
+        description: '45,000 unresolved claims',
+        icon: '⚠️'
       },
     ]
   },

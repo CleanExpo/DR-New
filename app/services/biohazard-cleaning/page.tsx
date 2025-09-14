@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { HeroSection } from '@/components/hero/HeroImage'
+import { getHeroImageById } from '@/components/hero/HeroImageData'
 import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Heart, ShieldAlert, UserX, Siren, Lock, FileText, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
@@ -81,6 +83,9 @@ const breadcrumbSchema = generateBreadcrumbSchema([
 ])
 
 export default function BiohazardCleaningPage() {
+  // Get the biohazard hero image
+  const biohazardHeroImage = getHeroImageById('biohazard-remediation');
+
   return (
     <div className="min-h-screen">
       {/* Structured Data for SEO */}
@@ -89,7 +94,7 @@ export default function BiohazardCleaningPage() {
       <StructuredData data={breadcrumbSchema} />
 
       {/* Discrete Banner */}
-      <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4">
+      <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 relative z-30">
         <div className="container mx-auto flex items-center justify-center gap-4">
           <Heart className="h-5 w-5" />
           <span className="font-medium">Compassionate & Discrete Biohazard Cleaning Services</span>
@@ -97,7 +102,19 @@ export default function BiohazardCleaningPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section with Professional Image */}
+      {biohazardHeroImage && (
+        <HeroSection
+          image={biohazardHeroImage}
+          title="Professional Biohazard & Crime Scene Cleaning in Brisbane"
+          subtitle="Certified biohazard remediation specialists providing discrete, compassionate cleaning for trauma scenes. Available 24/7."
+          ctaText="24/7 Discrete Response"
+          ctaLink="#contact-form"
+          height="h-[600px]"
+        />
+      )}
+
+      {/* Additional Service Details */}
       <section className="relative bg-gradient-to-b from-gray-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
