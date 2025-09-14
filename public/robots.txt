@@ -4,7 +4,19 @@ Disallow: /admin
 Disallow: /api
 Disallow: /_archive
 Allow: /
+Crawl-delay: 0
 Sitemap: https://disaster-recovery-seven.vercel.app/sitemap.xml
+Sitemap: https://disaster-recovery-seven.vercel.app/image-sitemap.xml
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
 
 # AI crawlers
 User-agent: GPTBot
@@ -14,4 +26,21 @@ User-agent: ChatGPT-User
 Allow: /
 
 User-agent: Claude-Web
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# Schema.org crawler
+User-agent: Seznambot
+Allow: /
+
+# Yandex
+User-agent: Yandex
 Allow: /
