@@ -1,0 +1,552 @@
+{
+  "metadata": {
+    "passed": 4,
+    "failed": 0,
+    "details": [
+      {
+        "testCase": {
+          "service": "water-damage-restoration",
+          "location": "Sydney",
+          "imageType": "hero",
+          "expectedPriority": 100
+        },
+        "metadata": {
+          "alt": "Water Damage Restoration in Sydney - Professional hero image showing Disaster Recovery Australia's 24/7 emergency water damage restoration services",
+          "title": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+          "description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate water damage restoration assistance.",
+          "keywords": [
+            "water damage restoration",
+            "Sydney water damage restoration",
+            "water damage restoration Sydney",
+            "disaster recovery",
+            "emergency restoration",
+            "hero image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate water damage restoration assistance.",
+            "keywords": "water damage restoration, Sydney water damage restoration, water damage restoration Sydney, disaster recovery, emergency restoration, hero image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/water-damage-restoration-sydney-hero.webp",
+            "thumbnailUrl": "/images/thumbnails/water-damage-restoration-sydney-hero.webp",
+            "datePublished": "2025-08-31T08:27:43.679Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate water damage restoration assistance.",
+            "XPTitle": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate water damage restoration assistance.",
+            "XPKeywords": "water damage restoration; Sydney water damage restoration; water damage restoration Sydney; disaster recovery; emergency restoration; hero image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "water damage restoration",
+              "Sydney water damage restoration",
+              "water damage restoration Sydney",
+              "disaster recovery",
+              "emergency restoration",
+              "hero image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate water damage restoration assistance.",
+            "og:image": "/images/social/water-damage-restoration-sydney-hero.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Water Damage Restoration in Sydney - Professional hero image showing Disaster Recovery Australia's 24/7 emergency water damage restoration services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Sydney Water Damage Restoration | Hero | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered hero image of water damage restoration services in Sydney, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate water damage restoration assistance.",
+            "twitter:image": "/images/social/water-damage-restoration-sydney-hero.webp",
+            "twitter:image:alt": "Water Damage Restoration in Sydney - Professional hero image showing Disaster Recovery Australia's 24/7 emergency water damage restoration services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
+        },
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "fire-damage-restoration",
+          "location": "Melbourne",
+          "imageType": "equipment",
+          "expectedPriority": 94
+        },
+        "metadata": {
+          "alt": "Fire Damage Restoration in Melbourne - Professional equipment image showing Disaster Recovery Australia's 24/7 emergency fire damage restoration services",
+          "title": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+          "description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate fire damage restoration assistance.",
+          "keywords": [
+            "fire damage restoration",
+            "Melbourne fire damage restoration",
+            "fire damage restoration Melbourne",
+            "disaster recovery",
+            "emergency restoration",
+            "equipment image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate fire damage restoration assistance.",
+            "keywords": "fire damage restoration, Melbourne fire damage restoration, fire damage restoration Melbourne, disaster recovery, emergency restoration, equipment image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/fire-damage-restoration-melbourne-equipment.webp",
+            "thumbnailUrl": "/images/thumbnails/fire-damage-restoration-melbourne-equipment.webp",
+            "datePublished": "2025-08-31T08:27:43.681Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate fire damage restoration assistance.",
+            "XPTitle": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate fire damage restoration assistance.",
+            "XPKeywords": "fire damage restoration; Melbourne fire damage restoration; fire damage restoration Melbourne; disaster recovery; emergency restoration; equipment image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "fire damage restoration",
+              "Melbourne fire damage restoration",
+              "fire damage restoration Melbourne",
+              "disaster recovery",
+              "emergency restoration",
+              "equipment image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate fire damage restoration assistance.",
+            "og:image": "/images/social/fire-damage-restoration-melbourne-equipment.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Fire Damage Restoration in Melbourne - Professional equipment image showing Disaster Recovery Australia's 24/7 emergency fire damage restoration services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Melbourne Fire Damage Restoration | Equipment | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered equipment image of fire damage restoration services in Melbourne, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate fire damage restoration assistance.",
+            "twitter:image": "/images/social/fire-damage-restoration-melbourne-equipment.webp",
+            "twitter:image:alt": "Fire Damage Restoration in Melbourne - Professional equipment image showing Disaster Recovery Australia's 24/7 emergency fire damage restoration services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
+        },
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "mould-remediation",
+          "location": "Brisbane",
+          "imageType": "process",
+          "expectedPriority": 85
+        },
+        "metadata": {
+          "alt": "Mould Remediation in Brisbane - Professional process image showing Disaster Recovery Australia's 24/7 emergency mould remediation services",
+          "title": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+          "description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate mould remediation assistance.",
+          "keywords": [
+            "mould remediation",
+            "Brisbane mould remediation",
+            "mould remediation Brisbane",
+            "disaster recovery",
+            "emergency restoration",
+            "process image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate mould remediation assistance.",
+            "keywords": "mould remediation, Brisbane mould remediation, mould remediation Brisbane, disaster recovery, emergency restoration, process image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/mould-remediation-brisbane-process.webp",
+            "thumbnailUrl": "/images/thumbnails/mould-remediation-brisbane-process.webp",
+            "datePublished": "2025-08-31T08:27:43.681Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate mould remediation assistance.",
+            "XPTitle": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate mould remediation assistance.",
+            "XPKeywords": "mould remediation; Brisbane mould remediation; mould remediation Brisbane; disaster recovery; emergency restoration; process image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "mould remediation",
+              "Brisbane mould remediation",
+              "mould remediation Brisbane",
+              "disaster recovery",
+              "emergency restoration",
+              "process image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate mould remediation assistance.",
+            "og:image": "/images/social/mould-remediation-brisbane-process.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Mould Remediation in Brisbane - Professional process image showing Disaster Recovery Australia's 24/7 emergency mould remediation services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Brisbane Mould Remediation | Process | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered process image of mould remediation services in Brisbane, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate mould remediation assistance.",
+            "twitter:image": "/images/social/mould-remediation-brisbane-process.webp",
+            "twitter:image:alt": "Mould Remediation in Brisbane - Professional process image showing Disaster Recovery Australia's 24/7 emergency mould remediation services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
+        },
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "flood-recovery",
+          "location": "Perth",
+          "imageType": "team",
+          "expectedPriority": 75
+        },
+        "metadata": {
+          "alt": "Flood Recovery in Perth - Professional team image showing Disaster Recovery Australia's 24/7 emergency flood recovery services",
+          "title": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+          "description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate flood recovery assistance.",
+          "keywords": [
+            "flood recovery",
+            "Perth flood recovery",
+            "flood recovery Perth",
+            "disaster recovery",
+            "emergency restoration",
+            "team image",
+            "Australia",
+            "24/7 emergency",
+            "insurance approved",
+            "IICRC certified"
+          ],
+          "schema": {
+            "@context": "https://schema.org",
+            "@type": "ImageObject",
+            "name": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate flood recovery assistance.",
+            "keywords": "flood recovery, Perth flood recovery, flood recovery Perth, disaster recovery, emergency restoration, team image, Australia, 24/7 emergency, insurance approved, IICRC certified",
+            "contentUrl": "/images/flood-recovery-perth-team.webp",
+            "thumbnailUrl": "/images/thumbnails/flood-recovery-perth-team.webp",
+            "datePublished": "2025-08-31T08:27:43.681Z",
+            "copyrightYear": 2025,
+            "creator": {
+              "@type": "Organization",
+              "name": "Disaster Recovery Australia",
+              "url": "https://disaster-recovery.vercel.app"
+            },
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "National Recovery Partners"
+            },
+            "license": "https://disaster-recovery.vercel.app/terms",
+            "acquireLicensePage": "https://disaster-recovery.vercel.app/contact",
+            "creditText": "Disaster Recovery Australia - Professional Emergency Services",
+            "copyrightNotice": "© 2025 Disaster Recovery Australia. All rights reserved."
+          },
+          "exif": {
+            "ImageDescription": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate flood recovery assistance.",
+            "XPTitle": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "XPComment": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate flood recovery assistance.",
+            "XPKeywords": "flood recovery; Perth flood recovery; flood recovery Perth; disaster recovery; emergency restoration; team image; Australia; 24/7 emergency; insurance approved; IICRC certified",
+            "XPAuthor": "Disaster Recovery Australia",
+            "Copyright": "© 2025 Disaster Recovery Australia",
+            "Creator": "Disaster Recovery Australia",
+            "CreatorWorkURL": "https://disaster-recovery.vercel.app",
+            "Rights": "All rights reserved",
+            "Subject": [
+              "flood recovery",
+              "Perth flood recovery",
+              "flood recovery Perth",
+              "disaster recovery",
+              "emergency restoration",
+              "team image",
+              "Australia",
+              "24/7 emergency",
+              "insurance approved",
+              "IICRC certified"
+            ]
+          },
+          "openGraph": {
+            "og:title": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "og:description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate flood recovery assistance.",
+            "og:image": "/images/social/flood-recovery-perth-team.webp",
+            "og:image:width": "1200",
+            "og:image:height": "630",
+            "og:image:alt": "Flood Recovery in Perth - Professional team image showing Disaster Recovery Australia's 24/7 emergency flood recovery services",
+            "og:type": "website",
+            "og:site_name": "Disaster Recovery Australia"
+          },
+          "twitterCard": {
+            "twitter:card": "summary_large_image",
+            "twitter:title": "Perth Flood Recovery | Team | Disaster Recovery Australia",
+            "twitter:description": "Professional 3D rendered team image of flood recovery services in Perth, Australia. 24/7 emergency response, insurance approved, IICRC certified technicians. Call Online Form Available 24/7 for immediate flood recovery assistance.",
+            "twitter:image": "/images/social/flood-recovery-perth-team.webp",
+            "twitter:image:alt": "Flood Recovery in Perth - Professional team image showing Disaster Recovery Australia's 24/7 emergency flood recovery services",
+            "twitter:site": "@DisasterRecoveryAU"
+          }
+        },
+        "checks": {
+          "hasAlt": true,
+          "hasTitle": true,
+          "hasDescription": true,
+          "hasKeywords": true,
+          "hasSchema": true,
+          "hasExif": true,
+          "hasOpenGraph": true,
+          "hasTwitterCard": true
+        },
+        "passed": true
+      }
+    ]
+  },
+  "placement": {
+    "passed": 4,
+    "failed": 0,
+    "paths": [
+      {
+        "testCase": {
+          "service": "water-damage-restoration",
+          "location": "Sydney",
+          "imageType": "hero",
+          "expectedPriority": 100
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\hero\\sydney\\water-damage-restoration",
+          "category": "public\\images\\hero\\sydney",
+          "service": "public\\images\\services\\water-damage-restoration\\sydney",
+          "location": "public\\images\\locations\\sydney\\water-damage-restoration",
+          "thumbnail": "public\\images\\thumbnails\\hero\\sydney",
+          "social": "public\\images\\social\\water-damage-restoration\\sydney",
+          "cdn": "public\\images\\cdn\\sydney-water-damage-restoration-hero"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "fire-damage-restoration",
+          "location": "Melbourne",
+          "imageType": "equipment",
+          "expectedPriority": 94
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\equipment\\melbourne\\fire-damage-restoration",
+          "category": "public\\images\\equipment\\melbourne",
+          "service": "public\\images\\services\\fire-damage-restoration\\melbourne",
+          "location": "public\\images\\locations\\melbourne\\fire-damage-restoration",
+          "thumbnail": "public\\images\\thumbnails\\equipment\\melbourne",
+          "social": "public\\images\\social\\fire-damage-restoration\\melbourne",
+          "cdn": "public\\images\\cdn\\melbourne-fire-damage-restoration-equipment"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "mould-remediation",
+          "location": "Brisbane",
+          "imageType": "process",
+          "expectedPriority": 85
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\process\\brisbane\\mould-remediation",
+          "category": "public\\images\\process\\brisbane",
+          "service": "public\\images\\services\\mould-remediation\\brisbane",
+          "location": "public\\images\\locations\\brisbane\\mould-remediation",
+          "thumbnail": "public\\images\\thumbnails\\process\\brisbane",
+          "social": "public\\images\\social\\mould-remediation\\brisbane",
+          "cdn": "public\\images\\cdn\\brisbane-mould-remediation-process"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      },
+      {
+        "testCase": {
+          "service": "flood-recovery",
+          "location": "Perth",
+          "imageType": "team",
+          "expectedPriority": 75
+        },
+        "placement": {
+          "primary": "public\\images\\optimized\\team\\perth\\flood-recovery",
+          "category": "public\\images\\team\\perth",
+          "service": "public\\images\\services\\flood-recovery\\perth",
+          "location": "public\\images\\locations\\perth\\flood-recovery",
+          "thumbnail": "public\\images\\thumbnails\\team\\perth",
+          "social": "public\\images\\social\\flood-recovery\\perth",
+          "cdn": "public\\images\\cdn\\perth-flood-recovery-team"
+        },
+        "checks": {
+          "primary": true,
+          "category": true,
+          "service": true,
+          "location": true,
+          "thumbnail": true,
+          "social": true,
+          "cdn": true
+        },
+        "passed": true
+      }
+    ]
+  },
+  "compression": {
+    "success": true
+  },
+  "directories": {
+    "created": 13,
+    "existing": 0,
+    "failed": 0
+  },
+  "storage": {
+    "perImage": {
+      "webp": 995,
+      "avif": 797,
+      "jpg": 1495
+    },
+    "total100": {
+      "kb": 328700,
+      "mb": 320.99609375,
+      "gb": 0.3134727478027344
+    },
+    "totalFull": {
+      "kb": 2275968105,
+      "mb": 2222625.1025390625,
+      "gb": 2170.532326698303,
+      "tb": 2.119667
+    }
+  }
+}
