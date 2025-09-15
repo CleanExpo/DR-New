@@ -1,12 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import Card from '../ui/Card';
 
 const services = [
   {
     title: 'Water Damage Restoration',
     description: 'Rapid water extraction, drying, and restoration services for floods, burst pipes, and leaks. Our advanced equipment removes moisture completely to prevent mould growth.',
-    image: '/images/services/water-damage-restoration.webp',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2.1L6.9 8.5c-2.3 2.8-2.3 6.9 0 9.7s6.2 2.8 8.5 0L12 2.1zm0 15.4c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/>
@@ -18,7 +16,6 @@ const services = [
   {
     title: 'Fire Damage Restoration',
     description: 'Complete fire damage restoration including soot removal, smoke damage cleanup, and structural repairs. We work directly with insurance companies.',
-    image: '/images/services/fire-damage-restoration.webp',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
@@ -30,7 +27,6 @@ const services = [
   {
     title: 'Mould Remediation',
     description: 'Professional mould inspection, testing, and complete remediation. We eliminate mould at the source and prevent future growth with proper ventilation solutions.',
-    image: '/images/services/mould-remediation.webp',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -42,7 +38,6 @@ const services = [
   {
     title: 'Storm Damage Repair',
     description: 'Emergency storm damage response including roof repairs, water intrusion cleanup, and structural damage assessment. Fast response to prevent further damage.',
-    image: '/images/optimized/damage/3D Water Damage to a Home.png',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M19 12h-2l1.4-2.1c.8-1.2.4-2.8-.8-3.6s-2.8-.4-3.6.8L12 10.7 10 7.1c-.8-1.2-2.4-1.6-3.6-.8s-1.6 2.4-.8 3.6L7 12H5c-1.1 0-2 .9-2 2s.9 2 2 2h2l-1.4 2.1c-.8 1.2-.4 2.8.8 3.6s2.8.4 3.6-.8L12 17.3l2 3.6c.8 1.2 2.4 1.6 3.6.8s1.6-2.4.8-3.6L17 16h2c1.1 0 2-.9 2-2s-.9-2-2-2z"/>
@@ -54,7 +49,6 @@ const services = [
   {
     title: 'Flood Restoration',
     description: 'Comprehensive flood damage restoration for residential and commercial properties. We handle everything from water extraction to complete reconstruction.',
-    image: '/images/optimized/damage/3D Burst Water Pipe.png',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M6 14c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1s-1-.45-1-1v-3c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1v-1c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1zm4 8c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1s-1-.45-1-1v-3c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1v-1c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1zm4 8c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1s-1-.45-1-1v-3c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1v-1c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1zm4 8c.55 0 1 .45 1 1v3c0 .55-.45 1-1 1s-1-.45-1-1v-3c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1v-1c0-.55.45-1 1-1zm0-4c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1s-1-.45-1-1V7c0-.55.45-1 1-1z"/>
@@ -66,7 +60,6 @@ const services = [
   {
     title: 'Emergency Services',
     description: '24/7 emergency disaster response for immediate damage control. Our rapid response team minimizes damage and begins restoration immediately.',
-    image: '/images/services/sewage-sanitisation.webp',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -104,20 +97,8 @@ export default function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card key={index} hover className="group overflow-hidden">
+            <Card key={index} hover className="group">
               <Link href={service.href} className="block">
-                {/* Service Image */}
-                <div className="relative h-48 mb-6 rounded-lg overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={`${service.title} - Professional disaster recovery services in Brisbane`}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-
                 <div className="flex items-center mb-4">
                   <div className="bg-primary-100 text-primary-600 rounded-lg p-3 mr-4 group-hover:bg-primary-600 group-hover:text-white transition-colors">
                     {service.icon}

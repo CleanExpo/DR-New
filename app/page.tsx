@@ -3,6 +3,8 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
 import Services from '@/components/sections/Services';
 import ServiceAreas from '@/components/sections/ServiceAreas';
+import EquipmentGallery from '@/components/gallery/EquipmentGallery';
+import ProcessShowcase from '@/components/process/ProcessShowcase';
 
 export default function HomePage() {
   return (
@@ -12,6 +14,8 @@ export default function HomePage() {
         <Hero />
         <Services />
         <ServiceAreas />
+        <EquipmentGallery />
+        <ProcessShowcase />
 
         {/* Why Choose Us Section */}
         <section className="section-padding bg-white">

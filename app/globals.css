@@ -111,3 +111,78 @@ html {
 .container-width {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
+
+/* Button styles for emergency */
+.btn-emergency {
+  @apply bg-emergency-600 hover:bg-emergency-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl min-h-[44px] min-w-[44px];
+}
+
+/* Fix for overlapping issues */
+main {
+  @apply relative z-0;
+}
+
+/* Ensure proper stacking context */
+.relative {
+  isolation: isolate;
+}
+
+/* Fix horizontal scroll */
+* {
+  max-width: 100vw;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Prevent container overflow on tablets */
+@media (max-width: 1024px) {
+  .max-w-7xl {
+    @apply px-4;
+  }
+
+  section {
+    overflow-x: hidden;
+  }
+
+  .grid {
+    @apply gap-4;
+  }
+}
+
+/* Minimum touch target sizes */
+button, a, [role="button"] {
+  @apply min-h-[44px];
+}
+
+/* Mobile navigation touch targets */
+@media (max-width: 1024px) {
+  nav a, nav button {
+    @apply min-h-[44px] flex items-center;
+  }
+}
+
+/* Improve text contrast */
+.text-gray-600 {
+  @apply text-gray-700;
+}
+
+.text-gray-500 {
+  @apply text-gray-600;
+}
+
+/* Ensure good contrast on colored backgrounds */
+.bg-primary-50 .text-primary-700 {
+  @apply text-primary-800;
+}
+
+.bg-emergency-50 .text-emergency-600 {
+  @apply text-emergency-700;
+}
+
+/* Hero text shadow for better readability */
+.hero-text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

@@ -6,7 +6,27 @@ interface CardProps {
   hover?: boolean;
 }
 
-export default function Card({ children, className = '', hover = false }: CardProps) {
+interface CardHeaderProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface CardTitleProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface CardDescriptionProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface CardContentProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function Card({ children, className = '', hover = false }: CardProps) {
   const hoverEffect = hover ? 'hover:shadow-xl hover:-translate-y-1 transition-all duration-300' : '';
 
   return (
@@ -15,3 +35,37 @@ export default function Card({ children, className = '', hover = false }: CardPr
     </div>
   );
 }
+
+export function CardHeader({ children, className = '' }: CardHeaderProps) {
+  return (
+    <div className={`p-6 ${className}`.trim()}>
+      {children}
+    </div>
+  );
+}
+
+export function CardTitle({ children, className = '' }: CardTitleProps) {
+  return (
+    <h3 className={`text-lg font-semibold ${className}`.trim()}>
+      {children}
+    </h3>
+  );
+}
+
+export function CardDescription({ children, className = '' }: CardDescriptionProps) {
+  return (
+    <p className={`text-sm text-gray-600 ${className}`.trim()}>
+      {children}
+    </p>
+  );
+}
+
+export function CardContent({ children, className = '' }: CardContentProps) {
+  return (
+    <div className={`p-6 pt-0 ${className}`.trim()}>
+      {children}
+    </div>
+  );
+}
+
+export default Card;

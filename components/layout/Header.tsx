@@ -7,7 +7,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-[100] isolate">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -70,7 +70,8 @@ export default function Header() {
           <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-primary-600 p-2"
+              className="text-gray-700 hover:text-primary-600 p-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -96,12 +97,12 @@ export default function Header() {
                 </a>
               </div>
 
-              <Link href="/" className="block px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">Home</Link>
-              <Link href="/water-damage" className="block px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">Water Damage</Link>
-              <Link href="/fire-damage" className="block px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">Fire Damage</Link>
-              <Link href="/mould-remediation" className="block px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">Mould Remediation</Link>
-              <Link href="/about" className="block px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">About</Link>
-              <Link href="/contact" className="block px-3 py-2 text-gray-700 hover:text-primary-600 font-medium">Contact</Link>
+              <Link href="/" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Home</Link>
+              <Link href="/water-damage" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Water Damage</Link>
+              <Link href="/fire-damage" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Fire Damage</Link>
+              <Link href="/mould-remediation" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Mould Remediation</Link>
+              <Link href="/about" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">About</Link>
+              <Link href="/contact" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Contact</Link>
             </div>
           </div>
         )}
