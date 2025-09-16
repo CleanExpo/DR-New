@@ -5,7 +5,7 @@ import { z } from 'zod';
  */
 export const ValidationPatterns = {
   // Australian Email Address (mobile and landline)
-  PHONE_AU: /^(\+?61|0)[2-478][\d\s-]{8 }$/,
+  PHONE_AU: /^(\+?61|0)[2-478][\d\s-]{8,}$/,
   
   // Australian postcode (4 digits)
   POSTCODE_AU: /^\d{4}$/,
@@ -17,10 +17,10 @@ export const ValidationPatterns = {
   ACN: /^\d{9}$/,
   
   // Email pattern
-  EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2 }$/,
+  EMAIL: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   
   // Strong password pattern
-  STRONG_PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8 }$/,
+  STRONG_PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
   
   // Australian Medicare number
   MEDICARE: /^\d{10}$/,
@@ -28,12 +28,13 @@ export const ValidationPatterns = {
   // Credit card patterns
   VISA: /^4[0-9]{12}(?:[0-9]{3})?$/,
   MASTERCARD: /^5[1-5][0-9]{14}$/,
-  AMEX: /^3[47][0-9]{13}$/ };
+  AMEX: /^3[47][0-9]{13}$/
+};
 
 /**
  * Australian states and territories
  */
-export const AUSTRALIAN_STATES = ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'] as const;'
+export const AUSTRALIAN_STATES = ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'ACT', 'NT'] as const;
 
 /**
  * Common validation schemas
@@ -42,27 +43,27 @@ export const ValidationSchemas = {
   // Contact form validation
   contactForm: z.object({
     name: z.string()
-      .min(2, 'Name must be at least 2 characters')'
-      .max(100, 'Name must be less than 100 characters')'
-      .regex(/^[a-zA-Z\s'-]+$/, 'Name can only contain letters, spaces, hyphens, and apostrophes'),'
+      .min(2, 'Name must be at least 2 characters')
+      .max(100, 'Name must be less than 100 characters')
+      .regex(/^[a-zA-Z\s'-]+$/, 'Name can only contain letters, spaces, hyphens, and apostrophes'),
     
     email: z.string()
-      .email('Please enter a valid email address')'
-      .max(254, 'Email address is too long'),'
+      .email('Please enter a valid email address')
+      .max(254, 'Email address is too long'),
+
+    phone: z.string()
+      .regex(ValidationPatterns.PHONE_AU, 'Please enter a valid Australian Phone Number'),
     
-    
-      .regex(ValidationPatterns.PHONE_AU, 'Please enter a valid Australian Email Address'),'
-    
-    service: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'biohazard', 'other'], {'
-      errorMap: () => ({ message: 'Please select a valid service type' }),'
+    service: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'biohazard', 'other'], {
+      errorMap: () => ({ message: 'Please select a valid service type' })
     }),
     
-    urgency: z.enum(['emergency', 'urgent', 'planning', 'routine'], {'
+    urgency: z.enum(['emergency', 'urgent', 'planning', 'routine'], {
       errorMap: () => ({ message: 'Please select urgency level' }),'
     }),
     
     message: z.string()
-      .min(10, 'Message must be at least 10 characters')'
+      .min(10, 'Message must be at least 10 characters')
       .max(2000, 'Message must be less than 2000 characters'),'
     
     propertyType: z.enum(['residential', 'commercial', 'industrial']).optional(),'
@@ -80,26 +81,26 @@ export const ValidationSchemas = {
     
     // Schedule
     date: z.string()
-      .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format')'
+      .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format')
       .refine((date) => {
         const selectedDate = new Date(date);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         return selectedDate >= today;
-      }, 'Date cannot be in the past'),'
+      },'Date cannot be in the past'),'
     
     time: z.string()
       .regex(/^\d{2}:\d{2}$/, 'Invalid time format'),'
     
     // Contact Information
     firstName: z.string()
-      .min(2, 'First name must be at least 2 characters')'
-      .max(50, 'First name must be less than 50 characters')'
+      .min(2, 'First name must be at least 2 characters')
+      .max(50, 'First name must be less than 50 characters')
       .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),'
     
     lastName: z.string()
-      .min(2, 'Last name must be at least 2 characters')'
-      .max(50, 'Last name must be less than 50 characters')'
+      .min(2, 'Last name must be at least 2 characters')
+      .max(50, 'Last name must be less than 50 characters')
       .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),'
     
     email: z.string().email('Invalid email address'),'
@@ -111,11 +112,11 @@ export const ValidationSchemas = {
     
     // Address
     streetAddress: z.string()
-      .min(5, 'Street address is required')'
+      .min(5, 'Street address is required')
       .max(200, 'Street address is too long'),'
     
     suburb: z.string()
-      .min(2, 'Suburb is required')'
+      .min(2, 'Suburb is required')
       .max(100, 'Suburb name is too long'),'
     
     state: z.enum(AUSTRALIAN_STATES, {
@@ -155,11 +156,11 @@ export const ValidationSchemas = {
     confirmPassword: z.string(),
     
     firstName: z.string()
-      .min(2, 'First name must be at least 2 characters')'
+      .min(2, 'First name must be at least 2 characters')
       .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),'
     
     lastName: z.string()
-      .min(2, 'Last name must be at least 2 characters')'
+      .min(2, 'Last name must be at least 2 characters')
       .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),'
     
     
@@ -168,7 +169,7 @@ export const ValidationSchemas = {
     companyName: z.string().optional(),
     
     abn: z.string()
-      .regex(ValidationPatterns.ABN, 'Invalid ABN format')'
+      .regex(ValidationPatterns.ABN, 'Invalid ABN format')
       .optional(),
     
     acceptTerms: z.boolean()
@@ -181,26 +182,26 @@ export const ValidationSchemas = {
   // Insurance claim validation
   insuranceClaim: z.object({
     policyNumber: z.string()
-      .min(5, 'Policy number is required')'
+      .min(5, 'Policy number is required')
       .max(50, 'Policy number is too long'),'
     
     claimNumber: z.string()
-      .min(5, 'Claim number is required')'
+      .min(5, 'Claim number is required')
       .max(50, 'Claim number is too long'),'
     
     insurer: z.string()
       .min(2, 'Insurance company name is required'),'
     
     dateOfLoss: z.string()
-      .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format')'
+      .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format')
       .refine((date) => {
         const lossDate = new Date(date);
         const today = new Date();
         return lossDate <= today;
-      }, 'Date of loss cannot be in the future'),'
+      },'Date of loss cannot be in the future'),'
     
     excessAmount: z.number()
-      .min(0, 'Excess cannot be negative')'
+      .min(0, 'Excess cannot be negative')
       .max(10000, 'Excess amount seems too high'),'
   }) };
 
@@ -245,7 +246,7 @@ export const CustomValidators = {
     
     // Format the number
     let formatted: string;
-    if (areaCode === '04') {'
+    if (areaCode === '04') {
       // Mobile: 
       formatted = `${normalised.substring(0, 4)} ${normalised.substring(4, 7)} ${normalised.substring(7)}`;
     } else {
@@ -323,7 +324,7 @@ export const CustomValidators = {
       return {
         isValid: false,
         formatted: abn,
-        error: 'Invalid ABN (checksum failed)','
+        error: 'Invalid ABN (checksum failed),'
       };
     }
     
