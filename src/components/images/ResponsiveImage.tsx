@@ -83,7 +83,7 @@ export default function ResponsiveImage({
         width={fill ? undefined : width}
         height={fill ? undefined : height}
         fill={fill}
-        loading={loading}
+        loading={priority ? undefined : loading}
         quality={quality}
         placeholder={placeholder}
         blurDataURL={blurDataURL}

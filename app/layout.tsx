@@ -241,10 +241,8 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <div className="hidden lg:block">
-            <UltraModernHeader />
-          </div>
-          <MobileNav />
+          <UltraModernHeader />
+          {/* <MobileNav /> - Disabled, using UltraModernHeader instead */}
           <Breadcrumb />
           <NavigationIndicator />
           <main id="main-content" className="min-h-screen">
@@ -253,7 +251,7 @@ export default function RootLayout({
           <div className="pb-16 lg:pb-0">
             <UltraModernFooter />
           </div>
-          <MobileFAB />
+          {/* <MobileFAB /> - Disabled, no portal needed */}
           <MobileEmergencyCTA />
           <LoadingIndicator />
           <ProgressSpinner />

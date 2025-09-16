@@ -23,7 +23,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'dehumidifier',
     title: '3D Industrial Dehumidifier',
-    image: '/images/optimized/equipment/3D Dehumidifier.png',
+    image: '/images/optimized/equipment/3D Model Dehumidifier.png',
     category: 'drying',
     description: 'Professional-grade dehumidifiers capable of removing massive amounts of moisture from air and materials.',
     capabilities: ['High-capacity moisture extraction', 'Continuous operation', 'Energy efficient'],
@@ -33,7 +33,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'extraction-unit',
     title: '3D Water Extraction Unit',
-    image: '/images/optimized/equipment/3D Extraction Unit.png',
+    image: '/images/optimized/equipment/3D Professional Water Extractor.png',
     category: 'extraction',
     description: 'Powerful water extraction systems for removing standing water and moisture from carpets and flooring.',
     capabilities: ['Rapid water removal', 'Deep carpet extraction', 'Submersible pump capability'],
@@ -43,7 +43,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'industrial-fan',
     title: '3D Industrial Drying Fan',
-    image: '/images/optimized/equipment/3D Industrial Fan.png',
+    image: '/images/optimized/equipment/3D Air Mover.png',
     category: 'air-treatment',
     description: 'High-velocity air movers designed to accelerate evaporation and drying processes.',
     capabilities: ['Variable speed control', 'Stackable design', 'Low amperage draw'],
@@ -53,7 +53,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'thermal-camera',
     title: '3D Thermal Imaging Camera',
-    image: '/images/optimized/equipment/3D Thermal Camera.png',
+    image: '/images/optimized/equipment/3D Thermal Fogging.png',
     category: 'detection',
     description: 'Advanced thermal imaging technology for detecting hidden moisture and temperature variations.',
     capabilities: ['Non-invasive detection', 'Real-time imaging', 'Documentation capability'],
@@ -63,7 +63,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'moisture-meter',
     title: '3D Moisture Detection Meter',
-    image: '/images/optimized/equipment/3D Moisture Meter.png',
+    image: '/images/optimized/equipment/3D Moisture Meter Reading.png',
     category: 'detection',
     description: 'Precision moisture meters for accurate assessment of material moisture content.',
     capabilities: ['Non-destructive testing', 'Multiple material types', 'Digital display'],

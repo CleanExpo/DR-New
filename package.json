@@ -61,7 +61,12 @@
     "image-worker": "node scripts/image-optimization-worker.js",
     "image-worker:dev": "nodemon --watch public/images --watch public/uploads scripts/image-optimization-worker.js",
     "postinstall": "node scripts/postinstall.js",
-    "check:critical": "node scripts/critical-issues-monitor.js"
+    "check:critical": "node scripts/critical-issues-monitor.js",
+    "mcp:check": "node scripts/mcp-health-monitor.js check",
+    "mcp:backup": "node scripts/mcp-health-monitor.js backup",
+    "mcp:restore": "node scripts/mcp-health-monitor.js restore",
+    "mcp:test": "node scripts/mcp-health-monitor.js test",
+    "mcp:full-check": "node scripts/mcp-health-monitor.js full-check"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.60.0",

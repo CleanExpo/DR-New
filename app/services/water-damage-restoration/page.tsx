@@ -4,6 +4,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { HeroSection } from '@/components/hero/HeroImage';
 import { getHeroImageById } from '@/components/hero/HeroImageData';
+import TriageInfoCard from '@/components/triage/TriageInfoCard';
 import {
   Droplets, Clock, Shield, Award, CheckCircle,
   ArrowRight, AlertTriangle, TrendingUp, Users, MapPin,
@@ -207,6 +208,13 @@ export default function WaterDamageRestorationPage() {
                 </Link>
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Triage System Information */}
+        <section className="py-12 bg-gradient-to-br from-gray-900 to-black">
+          <div className="container mx-auto px-6 max-w-5xl">
+            <TriageInfoCard />
           </div>
         </section>
 

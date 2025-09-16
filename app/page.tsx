@@ -192,7 +192,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="text-center bg-red-600 text-white rounded-2xl p-8 max-w-2xl mx-auto"
             >
-              <AlertTriangle className="w-12 h-12 mx-auto mb-4" />
+              <AlertCircle className="w-12 h-12 mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-4">Emergency Disaster Recovery</h3>
               <p className="text-red-100 mb-6">
                 Water damage? Fire damage? Mould problems? Don't wait - every minute counts!

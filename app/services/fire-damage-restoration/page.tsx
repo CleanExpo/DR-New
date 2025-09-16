@@ -8,6 +8,7 @@ import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { HeroSection } from '@/components/hero/HeroImage'
 import { getHeroImageById } from '@/components/hero/HeroImageData'
+import TriageInfoCard from '@/components/triage/TriageInfoCard'
 import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation
@@ -215,6 +216,13 @@ export default function FireDamageRestorationPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Triage System Information */}
+      <section className="py-12 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <TriageInfoCard />
         </div>
       </section>
 
