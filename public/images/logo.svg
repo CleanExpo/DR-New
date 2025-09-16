@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <!-- Shield background -->
+  <path d="M30 5 L30 35 Q30 45 40 50 Q50 45 50 35 L50 5 Z" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+
+  <!-- House icon inside shield -->
+  <path d="M40 20 L35 25 L35 35 L45 35 L45 25 Z" fill="white" opacity="0.9"/>
+  <path d="M40 18 L33 25 L47 25 Z" fill="white"/>
+
+  <!-- Water droplet -->
+  <path d="M40 28 Q38 30 38 32 Q38 34 40 34 Q42 34 42 32 Q42 30 40 28 Z" fill="#60a5fa"/>
+
+  <!-- Company name -->
+  <text x="60" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1e293b">
+    Disaster Recovery
+  </text>
+  <text x="60" y="45" font-family="Arial, sans-serif" font-size="14" fill="#2563eb">
+    Brisbane
+  </text>
+</svg>

@@ -13,8 +13,8 @@ const securityHeaders = {
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https://fonts.gstatic.com",
-    "connect-src 'self' https://www.google-analytics.com https://analytics.google.com",
-    "media-src 'self'",
+    "connect-src 'self' ws://localhost:* wss://localhost:* https://www.google-analytics.com https://analytics.google.com",
+    "media-src 'self' https://www.w3schools.com",
     "object-src 'none'",
     "child-src 'self'",
     "frame-src 'self'",
@@ -36,7 +36,7 @@ const securityHeaders = {
     'magnetometer=()',
     'gyroscope=()',
     'accelerometer=()',
-    'ambient-light-sensor=()',
+    // 'ambient-light-sensor=()', // Not supported
     'autoplay=()',
     'encrypted-media=()',
     'picture-in-picture=()',
@@ -121,6 +121,11 @@ function checkRateLimit(ip: string, path: string): boolean {
 function validateCsrfToken(request: NextRequest): boolean {
   // Skip CSRF for GET requests
   if (request.method === 'GET' || request.method === 'HEAD') {
+    return true;
+  }
+
+  // Skip CSRF validation in development
+  if (process.env.NODE_ENV === 'development') {
     return true;
   }
 

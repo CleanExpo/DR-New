@@ -21,7 +21,7 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center group" aria-label="Disaster Recovery Brisbane - Home">
               <img
-                src="/images/logo.png"
+                src="/images/logo.svg"
                 alt="Disaster Recovery Brisbane"
                 className="h-12 w-auto mr-3"
                 onError={(e) => {

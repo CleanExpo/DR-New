@@ -8,7 +8,7 @@ const heroSlides = [
   {
     id: 1,
     image: '/images/hero/disaster-recovery-services.jpg',
-    video: 'https://www.w3schools.com/howto/rain.mp4', // Replace with actual video URL
+    // video: 'https://www.w3schools.com/howto/rain.mp4', // Disabled due to CSP
     title: 'Emergency Disaster Recovery',
     subtitle: 'Brisbane\'s Most Trusted Response Team',
     description: '24/7 Emergency Response • Rapid Triage System • IICRC Certified',
@@ -43,7 +43,7 @@ const heroSlides = [
 const stats = [
   { number: '15+', label: 'Years Experience', icon: '⚡' },
   { number: '5000+', label: 'Properties Restored', icon: '🏠' },
-  { number: '60min', label: 'Response Time', icon: '⏱️' },
+  { number: 'Rapid', label: 'Triage System', icon: '⏱️' },
   { number: '24/7', label: 'Emergency Service', icon: '📞' }
 ];
 
@@ -51,8 +51,10 @@ export default function HeroPremium() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 8000);
@@ -82,11 +84,12 @@ export default function HeroPremium() {
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 1.2, ease: 'easeInOut' }}
           className="absolute inset-0"
-          style={{
+          style={isMounted ? {
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
-          }}
+          } : {}}
+          suppressHydrationWarning
         >
-          {currentHero.video && currentSlide === 0 ? (
+          {false && currentHero.video && currentSlide === 0 ? (
             <video
               autoPlay
               muted
