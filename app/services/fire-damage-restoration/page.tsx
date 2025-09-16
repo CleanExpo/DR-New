@@ -358,6 +358,13 @@ export default function FireDamageRestorationPage() {
                   admin@disasterrecovery.com.au
                 </a>
               </div>
+
+              <Link
+                href="/pricing"
+                className="bg-transparent text-white hover:bg-white hover:text-emergency-600 font-semibold py-4 px-8 rounded-xl transition-all duration-200 border-2 border-white"
+              >
+                View Transparent Pricing
+              </Link>
             </div>
 
             <div className="mt-12 pt-8 border-t border-emergency-700 text-emergency-200">

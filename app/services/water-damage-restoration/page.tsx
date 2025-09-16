@@ -294,6 +294,12 @@ export default function WaterDamageRestorationPage() {
             >
               Request Emergency Service
             </Link>
+            <Link
+              href="/pricing"
+              className="inline-flex items-center justify-center px-8 py-4 bg-transparent text-white font-semibold rounded-lg border-2 border-white hover:bg-white hover:text-blue-600 transition-colors"
+            >
+              View Transparent Pricing
+            </Link>
           </div>
         </div>
       </section>

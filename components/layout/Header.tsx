@@ -17,37 +17,47 @@ export default function Header() {
     <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-[100] isolate" role="banner">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+          {/* Logo - Acts as Home Button */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
-              <div className="bg-primary-600 text-white rounded-lg p-2 mr-3">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="Disaster Recovery logo">
-                  <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
-                </svg>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Disaster Recovery</h1>
+            <Link href="/" className="flex items-center group" aria-label="Disaster Recovery Brisbane - Home">
+              <img
+                src="/images/logo.png"
+                alt="Disaster Recovery Brisbane"
+                className="h-12 w-auto mr-3"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                }}
+              />
+              <div className="hidden">
+                <h1 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors">Disaster Recovery</h1>
                 <p className="text-sm text-primary-600 font-semibold">Brisbane</p>
               </div>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
-            <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-              Home
-            </Link>
-            <Link href="/water-damage" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+          {/* Desktop Navigation - Pillar Pages */}
+          <nav className="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
+            <Link href="/services/water-damage-restoration" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Water Damage
             </Link>
-            <Link href="/fire-damage" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-              Fire Damage
+            <Link href="/services/fire-damage-restoration" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              Fire & Smoke
             </Link>
-            <Link href="/mould-remediation" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-              Mould Remediation
+            <Link href="/services/mould-remediation" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              Mould Removal
             </Link>
-            <Link href="/about" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-              About
+            <Link href="/services/storm-damage" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              Storm Damage
+            </Link>
+            <Link href="/services/biohazard-cleaning" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              Biohazard
+            </Link>
+            <Link href="/emergency-services" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              Emergency
+            </Link>
+            <Link href="/pricing" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              Pricing
             </Link>
             <Link href="/contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Contact
@@ -108,11 +118,13 @@ export default function Header() {
                 </a>
               </div>
 
-              <Link href="/" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Home</Link>
-              <Link href="/water-damage" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Water Damage</Link>
-              <Link href="/fire-damage" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Fire Damage</Link>
-              <Link href="/mould-remediation" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Mould Remediation</Link>
-              <Link href="/about" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">About</Link>
+              <Link href="/services/water-damage-restoration" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Water Damage</Link>
+              <Link href="/services/fire-damage-restoration" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Fire & Smoke</Link>
+              <Link href="/services/mould-remediation" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Mould Removal</Link>
+              <Link href="/services/storm-damage" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Storm Damage</Link>
+              <Link href="/services/biohazard-cleaning" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Biohazard</Link>
+              <Link href="/emergency-services" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Emergency</Link>
+              <Link href="/pricing" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Pricing</Link>
               <Link href="/contact" className="block px-3 py-3 text-gray-700 hover:text-primary-600 font-medium min-h-[44px] flex items-center">Contact</Link>
             </nav>
           </div>

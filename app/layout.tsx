@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LocalBusinessSchema, EmergencyServiceSchema, SpeakableSchema } from '@/components/schema/VoiceSearchSchema';
 import SkipLinks from '@/components/accessibility/SkipLinks';
+import { PersonalizationProvider } from '@/lib/personalization/providers/PersonalizationProvider';
+import { ChatProvider } from '@/app/providers/ChatProvider';
+import MasterIntegrationProvider from '@/components/integration/MasterIntegrationProvider';
 
 export const metadata: Metadata = {
   title: "Disaster Recovery Brisbane | Water Fire Damage Restoration | 1300 309 361",
@@ -58,11 +61,21 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="antialiased bg-gray-50 text-gray-900">
-        {/* Accessibility: Skip Navigation Links */}
-        <SkipLinks />
+        <MasterIntegrationProvider>
+          <PersonalizationProvider
+            config={{
+              enableTracking: true,
+              enableEmergencyDetection: true,
+              enableABTesting: true,
+              debugMode: false
+            }}
+          >
+            <ChatProvider enabled={true}>
+              {/* Accessibility: Skip Navigation Links */}
+              <SkipLinks />
 
-        {/* Schema Markup for Voice Search */}
-        <LocalBusinessSchema
+          {/* Schema Markup for Voice Search */}
+          <LocalBusinessSchema
           name="Disaster Recovery Brisbane"
           address={{
             street: "Brisbane Service Area",
@@ -113,7 +126,10 @@ export default function RootLayout({
           ]}
         />
 
-        {children}
+          {children}
+            </ChatProvider>
+          </PersonalizationProvider>
+        </MasterIntegrationProvider>
       </body>
     </html>
   );

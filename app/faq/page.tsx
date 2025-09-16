@@ -14,23 +14,23 @@ const faqCategories = [
     faqs: [
       {
         question: "Who can help with flood damage right now?",
-        answer: "Disaster Recovery Brisbane provides 24/7 emergency flood damage response across Brisbane, Ipswich, and Logan. We guarantee arrival within 1 hour of your call to 1300 309 361. Our certified technicians immediately begin water extraction and damage control.",
-        voiceOptimized: "Call Disaster Recovery Brisbane at 1300 309 361 for immediate flood damage help. We provide 24/7 emergency response within 1 hour across Brisbane, Ipswich, and Logan."
+        answer: "Disaster Recovery Brisbane provides 24/7 emergency flood damage response across Brisbane, Ipswich, and Logan. Our rapid triage system prioritises urgent cases. Our certified technicians immediately begin water extraction and damage control.",
+        voiceOptimised: "Call Disaster Recovery Brisbane at 1300 309 361 for immediate flood damage help. We provide 24/7 emergency response with priority triage across Brisbane, Ipswich, and Logan."
       },
       {
         question: "How quickly can someone fix water damage?",
-        answer: "Water damage repair begins immediately with our 1-hour emergency response. Complete restoration typically takes 3-7 days depending on damage severity. We start water extraction within the first hour to prevent further damage and mould growth.",
-        voiceOptimized: "Water damage repair starts within 1 hour. Complete restoration takes 3 to 7 days depending on damage severity."
+        answer: "Water damage repair begins immediately with our rapid emergency response. Complete restoration typically takes 3-7 days depending on damage severity. We prioritise water extraction to prevent further damage and mould growth.",
+        voiceOptimised: "Water damage repair starts with rapid triage assessment. Complete restoration takes 3 to 7 days depending on damage severity."
       },
       {
         question: "What should I do if my house floods?",
         answer: "If your house floods: 1) Ensure safety first - turn off electricity if safe to do so, 2) Call 1300 309 361 immediately for emergency response, 3) Document damage with photos for insurance, 4) Do not enter standing water, 5) Remove valuables from affected areas if safely accessible.",
-        voiceOptimized: "If your house floods: ensure safety, call 1300 309 361 immediately, document damage, avoid standing water, and remove valuables safely."
+        voiceOptimised: "If your house floods: ensure safety, call 1300 309 361 immediately, document damage, avoid standing water, and remove valuables safely."
       },
       {
         question: "I have water in my house who do I call?",
-        answer: "Call Disaster Recovery Brisbane immediately at 1300 309 361. We provide 24/7 emergency water damage response across Brisbane, Ipswich, and Logan with guaranteed 1-hour arrival time. Our team handles all types of water damage from burst pipes to flooding.",
-        voiceOptimized: "Call 1300 309 361 immediately for water in your house. Disaster Recovery Brisbane provides 24/7 emergency response within 1 hour."
+        answer: "Call Disaster Recovery Brisbane immediately at 1300 309 361. We provide 24/7 emergency water damage response across Brisbane, Ipswich, and Logan with rapid triage assessment. Our team handles all types of water damage from burst pipes to flooding.",
+        voiceOptimised: "Call 1300 309 361 immediately for water in your house. Disaster Recovery Brisbane provides 24/7 emergency response with priority triage."
       }
     ]
   },
@@ -39,23 +39,23 @@ const faqCategories = [
     faqs: [
       {
         question: "How much does emergency water extraction cost?",
-        answer: "Emergency water extraction costs vary based on damage extent and water category. We provide free emergency assessments and work directly with insurance companies. Most residential water extraction ranges from $2,000-$8,000, but we'll give you an exact quote on-site within the hour.",
-        voiceOptimized: "Emergency water extraction costs vary by damage extent. We provide free assessments and work with insurance. Typical residential costs range from $2,000 to $8,000."
+        answer: "Emergency water extraction costs vary based on damage extent and water category. We provide free emergency assessments and work directly with insurance companies. Most residential water extraction ranges from $2,000-$8,000, with exact quotes provided on-site.",
+        voiceOptimised: "Emergency water extraction costs vary by damage extent. We provide free assessments and work with insurance. Typical residential costs range from $2,000 to $8,000."
       },
       {
         question: "Who provides 24 hour disaster recovery in Brisbane?",
-        answer: "Disaster Recovery Brisbane provides 24/7 disaster recovery services across Brisbane, Ipswich, and Logan. We're available 365 days a year with certified IICRC technicians and guarantee 1-hour emergency response for all water, fire, and storm damage situations.",
-        voiceOptimized: "Disaster Recovery Brisbane provides 24/7 disaster recovery across Brisbane, Ipswich, and Logan with 1-hour response guarantee."
+        answer: "Disaster Recovery Brisbane provides 24/7 disaster recovery services across Brisbane, Ipswich, and Logan. We're available 365 days a year with certified IICRC technicians and rapid emergency response for all water, fire, and storm damage situations.",
+        voiceOptimised: "Disaster Recovery Brisbane provides 24/7 disaster recovery across Brisbane, Ipswich, and Logan with priority triage system."
       },
       {
         question: "What is the fastest water damage response time?",
-        answer: "Disaster Recovery Brisbane guarantees the fastest response time in Brisbane - we arrive within 1 hour of your emergency call. Our 24/7 rapid response team begins water extraction and damage control immediately to minimize property damage.",
-        voiceOptimized: "Disaster Recovery Brisbane guarantees 1-hour response time, the fastest in Brisbane for water damage emergencies."
+        answer: "Disaster Recovery Brisbane provides rapid response times in Brisbane with priority triage system. Our 24/7 rapid response team begins water extraction and damage control immediately to minimise property damage.",
+        voiceOptimised: "Disaster Recovery Brisbane provides rapid triage response, prioritising the most urgent water damage emergencies in Brisbane."
       },
       {
         question: "How do I stop water damage from getting worse?",
         answer: "To stop water damage from worsening: 1) Call professionals immediately at 1300 309 361, 2) Turn off water source if accessible, 3) Remove standing water if safe, 4) Move furniture and belongings to dry areas, 5) Ensure good ventilation. Professional extraction within 24 hours prevents mould growth.",
-        voiceOptimized: "To stop water damage worsening: call 1300 309 361 immediately, turn off water source, remove standing water safely, move belongings, and ensure ventilation."
+        voiceOptimised: "To stop water damage worsening: call 1300 309 361 immediately, turn off water source, remove standing water safely, move belongings, and ensure ventilation."
       }
     ]
   },
@@ -64,18 +64,18 @@ const faqCategories = [
     faqs: [
       {
         question: "Best disaster recovery company Brisbane?",
-        answer: "Disaster Recovery Brisbane is the region's most trusted disaster recovery company with 15+ years experience. We're IICRC certified, provide 1-hour emergency response, work directly with insurance, and serve Brisbane, Ipswich, and Logan with 24/7 availability.",
-        voiceOptimized: "Disaster Recovery Brisbane is the region's most trusted company with 15+ years experience, IICRC certification, and 1-hour response guarantee."
+        answer: "Disaster Recovery Brisbane is the region's most trusted disaster recovery company with 15+ years experience. We're IICRC certified, provide rapid emergency response, work directly with insurance, and serve Brisbane, Ipswich, and Logan with 24/7 availability.",
+        voiceOptimised: "Disaster Recovery Brisbane is the region's most trusted company with 15+ years experience, IICRC certification, and rapid emergency response."
       },
       {
         question: "Water damage restoration Ipswich emergency?",
-        answer: "Yes, Disaster Recovery Brisbane provides emergency water damage restoration throughout Ipswich 24/7. We guarantee 1-hour response time and handle all water damage categories from clean water to sewage backups with certified technicians and professional equipment.",
-        voiceOptimized: "Yes, Disaster Recovery Brisbane provides 24/7 emergency water damage restoration in Ipswich with 1-hour response guarantee."
+        answer: "Yes, Disaster Recovery Brisbane provides emergency water damage restoration throughout Ipswich 24/7. We prioritise urgent cases and handle all water damage categories from clean water to sewage backups with certified technicians and professional equipment.",
+        voiceOptimised: "Yes, Disaster Recovery Brisbane provides 24/7 emergency water damage restoration in Ipswich with priority triage system."
       },
       {
         question: "Fire damage repair Logan after hours?",
-        answer: "Disaster Recovery Brisbane provides 24/7 fire damage repair services throughout Logan. Our after-hours emergency team responds within 1 hour for fire damage assessment, smoke removal, and structural repairs. Call 1300 309 361 any time day or night.",
-        voiceOptimized: "Yes, Disaster Recovery Brisbane provides 24/7 fire damage repair in Logan with 1-hour after-hours response."
+        answer: "Disaster Recovery Brisbane provides 24/7 fire damage repair services throughout Logan. Our after-hours emergency team provides rapid response for fire damage assessment, smoke removal, and structural repairs. Call 1300 309 361 any time day or night.",
+        voiceOptimised: "Yes, Disaster Recovery Brisbane provides 24/7 fire damage repair in Logan with rapid after-hours response."
       }
     ]
   }
@@ -122,7 +122,7 @@ export default function FAQPage() {
             </div>
 
             <div className="mt-8 text-primary-200">
-              <p className="font-semibold">Available 24/7/365 • 1 Hour Response Guarantee • Brisbane, Ipswich & Logan</p>
+              <p className="font-semibold">Available 24/7/365 • Priority Triage Response • Brisbane, Ipswich & Logan</p>
             </div>
           </div>
         </section>

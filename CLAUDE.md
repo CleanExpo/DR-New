@@ -17,19 +17,21 @@ npm install                   # Install dependencies
 cp .env.example .env.local    # Copy environment variables
 
 # Development
-npm run dev          # Start Next.js dev server (http://localhost:3000)
+npm run dev                   # Start Next.js dev server (http://localhost:3000)
+npm run build                 # Build for production
+npm run start                 # Start production server
+npm run lint                  # Run ESLint
 
-# Production
-npm run build        # Build for production
-npm run start        # Start production server
+# Performance Testing
+npm run lighthouse            # Run Lighthouse audit with viewer
+npm run performance           # Build and run Lighthouse performance test
+npm run test:performance      # Run custom performance test script
+npm run build:analyze        # Analyze bundle size (ANALYZE=true)
 
-# Code Quality
-npm run lint         # Run ESLint
-
-# MCP Servers (for AI assistance)
-start-all-mcp-servers.bat    # Start Context7, Sequential Thinking, and Playwright
-playwright-with-config.bat    # Start Playwright with Brisbane config
-mcp-troubleshoot.bat         # Diagnose MCP issues
+# MCP Server Management (Windows)
+mcp-auto-start.bat           # Start Claude CLI with automatic health check
+mcp-health-check.bat         # Validate and repair MCP configuration
+verify-mcp-fix.bat           # Quick verification of MCP status
 ```
 
 **Note**: No test framework is currently configured. Tests should be added using Jest or Vitest as needed.
@@ -44,35 +46,37 @@ mcp-troubleshoot.bat         # Diagnose MCP issues
 - **UI Library**: Radix UI primitives
 - **MCP Servers**: Context7, Sequential Thinking, Playwright
 
-### Project Structure
-```
-app/
-├── page.tsx                 # Homepage with Hero, Services, ServiceAreas
-├── layout.tsx              # Root layout with SEO metadata
-├── services/               # Service pillar pages
-│   ├── water-damage-restoration/
-│   └── fire-damage-restoration/
-├── locations/              # Location-specific pages
-│   └── brisbane/
-└── water-damage/          # Legacy pillar page
+### Core Architecture Layers
 
-components/
-├── layout/
-│   ├── Header.tsx         # Navigation with emergency CTA
-│   └── Footer.tsx         # Site footer
-├── sections/
-│   ├── Hero.tsx           # 7-image rotating hero banner
-│   ├── Services.tsx       # Service cards grid
-│   └── ServiceAreas.tsx   # Location coverage
-├── ui/                    # Reusable shadcn/ui components
-│   ├── Card.tsx
-│   ├── Button.tsx
-│   └── OptimizedImage.tsx
-├── gallery/
-│   └── EquipmentGallery.tsx
-└── process/
-    └── ProcessShowcase.tsx
-```
+1. **Frontend Layer** (Next.js App Router)
+   - Server Components by default, Client Components only when needed
+   - Page structure: `app/` for routes, `components/` for reusable UI
+   - Optimized image loading with next/image
+
+2. **Integration Layer** (`lib/integration/master-integration.ts`)
+   - Central orchestration hub connecting all modules
+   - Singleton pattern managing personalization, analytics, chatbot, and conversion
+   - Provides `MasterIntegrationProvider` React context wrapper
+   - Auto-initializes all connected services on app load
+
+3. **Intelligence Systems**
+   - **Personalization** (`lib/personalization/`) - User profiling, emergency detection, content adaptation
+   - **Analytics** (`lib/analytics/`) - Real-time tracking, AI insights, predictive metrics
+   - **Chatbot** (`lib/chatbot/`) - Multi-language support, sentiment analysis, OpenAI integration
+   - **Conversion** (`lib/conversion/`) - A/B testing, funnel optimization, urgency components
+   - **Brand** (`lib/brand/`) - Authority building, social proof amplification
+
+4. **API Layer** (`app/api/`)
+   - `/api/analytics/` - Analytics event tracking and reporting
+   - `/api/chatbot/` - OpenAI-powered chat services (server-side only)
+   - `/api/weather/` - Location-based weather for personalization
+
+### Key Integration Points
+
+- **MasterIntegrationProvider** wraps the app to provide unified context
+- All premium components (HeroPremium, TrustIndicators, etc.) connect to master integration
+- Real-time data flows through WebSocket/Server-Sent Events
+- OpenAI API calls are server-side only (via API routes)
 
 ### Key Patterns
 
@@ -113,24 +117,37 @@ Hero rotation sequence:
 6. sewage-remediation-services.png
 7. biohazard-remediation-services.png
 
-## 🤖 AI Development Tools
+## 🛠️ Common Development Workflows
 
-### Context7 MCP
-- Add "use context7" to prompts for current library docs
-- Example: "Create a Next.js API route with auth. use context7"
+### Fixing Build Errors
+1. Check dev server output: `npm run dev`
+2. Look for import errors, missing exports, case sensitivity issues
+3. Clear Next.js cache if needed: `rm -rf .next` or `del /s /q .next`
+4. Restart dev server after major changes
 
-### Sequential Thinking MCP
-- For complex problem-solving and architecture planning
-- Example: "Plan the booking system architecture using sequential thinking"
+### Working with Premium Components
+- Components ending in "Premium" (HeroPremium, HeroConversion) use advanced features
+- These connect to master integration for AI insights and personalization
+- Always check window availability: `typeof window !== 'undefined'`
 
-### Playwright MCP
-- Browser automation for testing (Brisbane config available)
-- Example: "Test the contact form submission flow"
+### Debugging Import Issues
+- Windows filesystem is case-insensitive but webpack is case-sensitive
+- Common issue: `Card.tsx` vs `card.tsx` imports
+- Fix with: `sed -i "s/from '.*\/card'/from '@\/components\/ui\/Card'/g" filename`
 
-### Auto-invoke Rules
-1. **Always use context7** for code generation and library documentation
-2. **Use sequential thinking** for complex multi-step problems
-3. **Use Playwright** for browser automation and testing
+## 🤖 MCP Server Configuration
+
+### Setup Location
+- Configuration: `.claude/mcp.json`
+- MCP servers need to be enabled in Claude's settings
+- Restart Claude after configuration changes
+
+### Available Servers
+1. **Context7**: Library documentation lookup
+2. **Sequential Thinking**: Complex problem solving
+3. **Playwright**: Browser automation and testing
+
+**Note**: MCP servers may not be available in all Claude environments
 
 ## 🎯 Business Context
 
@@ -185,8 +202,32 @@ Hero rotation sequence:
 - Keep components small and focused
 - Use semantic HTML for accessibility
 - Implement proper error boundaries
+- Avoid using OpenAI client directly in browser - use API routes
+
+### Critical Files & Modules
+- `lib/integration/master-integration.ts` - Central orchestration hub
+- `app/page.tsx` - Homepage with premium components integration
+- `app/layout.tsx` - Root layout with providers and metadata
+- `components/sections/HeroPremium.tsx` - Main hero with AI-powered personalization
+- `components/integration/MasterIntegrationProvider.tsx` - Context provider wrapper
+- `lib/personalization/personalization-engine.ts` - Singleton personalization engine
+- `lib/analytics/realtime.ts` - WebSocket/SSE real-time metrics
+
+### Data Flow Architecture
+1. User visits site → `MasterIntegrationProvider` initializes
+2. Personalization engine profiles user (location, behavior, emergency status)
+3. AI insights analyze patterns and predict needs
+4. Components adapt content based on real-time data
+5. Analytics track engagement and conversions
+6. Chatbot provides proactive assistance when needed
+
+### State Management
+- **Zustand** for global state (if needed for complex features)
+- **React Context** via MasterIntegrationProvider for cross-component data
+- **Server state** via React Query/SWR for API data fetching
+- **Local state** with useState/useReducer for component-specific needs
 
 ---
 
-**Last Updated**: September 2025
+**Last Updated**: December 2024
 **Business Model**: Direct Service Provider (NOT a platform)

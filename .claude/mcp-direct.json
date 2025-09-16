@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "node",
+      "args": [
+        "C:/Users/Disaster Recovery 4/AppData/Roaming/npm/node_modules/@playwright/mcp/dist/index.js"
+      ],
+      "env": {}
+    }
+  }
+}

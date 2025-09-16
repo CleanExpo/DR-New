@@ -1,20 +1,85 @@
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Hero from '@/components/sections/Hero';
+import HeroPremium from '@/components/sections/HeroPremium';
+import ServiceShowcase from '@/components/sections/ServiceShowcase';
+import EmergencyTracker from '@/components/sections/EmergencyTracker';
+import ResponseTimeline from '@/components/sections/ResponseTimeline';
+import TrustIndicators from '@/components/sections/TrustIndicators';
+import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
+import ServiceAreaMap from '@/components/sections/ServiceAreaMap';
 import Services from '@/components/sections/Services';
-import ServiceAreas from '@/components/sections/ServiceAreas';
+import LiveChat from '@/components/chat/LiveChat';
 import EquipmentGallery from '@/components/gallery/EquipmentGallery';
 import ProcessShowcase from '@/components/process/ProcessShowcase';
+
+// Brand Amplification Components
+import BrandAuthority from '@/components/brand/BrandAuthority';
+import BrandStoryVideo from '@/components/brand/BrandStoryVideo';
+import ExecutiveLeadership from '@/components/brand/ExecutiveLeadership';
+import MediaPress from '@/components/brand/MediaPress';
+import PartnershipsAlliances from '@/components/brand/PartnershipsAlliances';
+import SocialProofAmplified from '@/components/brand/SocialProofAmplified';
+import InnovationLeadership from '@/components/brand/InnovationLeadership';
+import CommunityImpact from '@/components/brand/CommunityImpact';
 
 export default function HomePage() {
   return (
     <>
       <Header />
       <main id="main-content" role="main" aria-label="Main content">
-        <Hero />
+        {/* Premium Hero with Video Background */}
+        <HeroPremium />
+
+        {/* Brand Authority & Heritage - Establishes 20+ years of excellence */}
+        <BrandAuthority />
+
+        {/* Real-time Emergency Response Tracker */}
+        <EmergencyTracker />
+
+        {/* Brand Story Video - Emotional connection and heritage */}
+        <BrandStoryVideo />
+
+        {/* Interactive Service Showcase with Before/After */}
+        <ServiceShowcase />
+
+        {/* Executive Leadership - Premium positioning through leadership */}
+        <ExecutiveLeadership />
+
+        {/* Emergency Response Timeline */}
+        <ResponseTimeline />
+
+        {/* Media & Press Features - Third-party validation */}
+        <MediaPress />
+
+        {/* Trust Indicators & Certifications */}
+        <TrustIndicators />
+
+        {/* Industry Partnerships - Premium associations */}
+        <PartnershipsAlliances />
+
+        {/* Original Services Grid */}
         <Services />
-        <ServiceAreas />
+
+        {/* Interactive Service Area Map */}
+        <ServiceAreaMap />
+
+        {/* Amplified Social Proof with Live Stats */}
+        <SocialProofAmplified />
+
+        {/* Innovation & Environmental Leadership */}
+        <InnovationLeadership />
+
+        {/* Testimonials & Case Studies Carousel */}
+        <TestimonialsCarousel />
+
+        {/* Community Impact & Social Responsibility */}
+        <CommunityImpact />
+
+        {/* Equipment Gallery */}
         <EquipmentGallery />
+
+        {/* Process Showcase */}
         <ProcessShowcase />
 
         {/* Voice Search Optimized Quick Answers */}
@@ -33,7 +98,7 @@ export default function HomePage() {
               <div className="bg-white rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Who can help with flood damage right now?</h3>
                 <div className="quick-answer bg-primary-100 p-4 rounded-lg mb-4">
-                  <p className="text-gray-900 font-medium">Disaster Recovery Brisbane provides 24/7 emergency flood damage response with 1-hour arrival guarantee. Call 1300 309 361 immediately.</p>
+                  <p className="text-gray-900 font-medium">Disaster Recovery Brisbane provides 24/7 emergency flood damage response with rapid triage system. Call 1300 309 361 immediately.</p>
                 </div>
                 <p className="text-gray-600 text-sm">Available across Brisbane, Ipswich, and Logan with certified IICRC technicians.</p>
               </div>
@@ -41,7 +106,7 @@ export default function HomePage() {
               <div className="bg-white rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">How quickly can someone fix water damage?</h3>
                 <div className="quick-answer bg-primary-100 p-4 rounded-lg mb-4">
-                  <p className="text-gray-900 font-medium">Water damage repair begins within 1 hour of your call. Complete restoration takes 3-7 days depending on damage severity.</p>
+                  <p className="text-gray-900 font-medium">Water damage repair begins with rapid emergency response. Complete restoration takes 3-7 days depending on damage severity.</p>
                 </div>
                 <p className="text-gray-600 text-sm">Emergency water extraction prevents further damage and mould growth.</p>
               </div>
@@ -75,7 +140,7 @@ export default function HomePage() {
               <div className="quick-answer bg-primary-50 p-6 rounded-lg mb-6 max-w-4xl mx-auto">
                 <p className="text-xl text-gray-900 font-medium">
                   Disaster Recovery Brisbane is Brisbane's fastest emergency response team with certified IICRC technicians,
-                  1-hour response guarantee, and 15+ years experience serving Brisbane, Ipswich, and Logan.
+                  rapid triage system, and 15+ years experience serving Brisbane, Ipswich, and Logan.
                 </p>
               </div>
 
@@ -236,17 +301,27 @@ export default function HomePage() {
                   admin@disasterrecovery.com.au
                 </a>
               </div>
+
+              <Link
+                href="/pricing"
+                className="bg-transparent text-white hover:bg-white hover:text-primary-600 font-semibold py-4 px-8 rounded-xl transition-all duration-200 border-2 border-white"
+              >
+                View Transparent Pricing
+              </Link>
             </div>
 
             <div className="mt-12 pt-8 border-t border-primary-700 text-primary-200">
               <p className="text-lg">
-                <strong>Available 24/7/365</strong> • <strong className="response-time">1 Hour Emergency Response</strong> • <strong className="service-area">Brisbane, Ipswich & Logan</strong>
+                <strong>Available 24/7/365</strong> • <strong className="response-time">Rapid Triage System</strong> • <strong className="service-area">Brisbane, Ipswich & Logan</strong>
               </p>
             </div>
           </div>
         </section>
       </main>
       <Footer />
+
+      {/* Live Chat Widget */}
+      <LiveChat />
     </>
   );
 }
