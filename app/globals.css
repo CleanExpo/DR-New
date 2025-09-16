@@ -77,6 +77,12 @@
   @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
 }
 
+/* Emergency button with improved contrast */
+.btn-emergency {
+  @apply bg-emergency-700 hover:bg-emergency-800 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200;
+  @apply shadow-lg hover:shadow-xl min-h-[48px];
+}
+
 /* Emergency button pulse */
 .emergency-pulse {
   @apply relative;
@@ -84,17 +90,82 @@
 
 .emergency-pulse::before {
   content: '';
-  @apply absolute inset-0 rounded-lg bg-red-600 animate-ping opacity-75;
+  @apply absolute inset-0 rounded-lg bg-emergency-600 animate-ping opacity-75;
 }
 
-/* Smooth scroll */
+/* Smooth scroll with reduced motion support */
 html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles */
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-pulse {
+    animation: none !important;
+  }
+
+  .animate-ping {
+    animation: none !important;
+  }
+
+  .animate-pulse-slow {
+    animation: none !important;
+  }
+}
+
+/* Enhanced Focus styles for Accessibility */
 .focus-ring {
   @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+/* Visible focus indicators for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  @apply outline-none ring-4 ring-primary-500 ring-offset-2 ring-offset-white;
+}
+
+/* High contrast focus for emergency elements */
+.emergency-focus:focus-visible {
+  @apply outline-none ring-4 ring-emergency-500 ring-offset-4 ring-offset-white;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+/* Skip link styles */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+.not-sr-only {
+  @apply static w-auto h-auto p-0 m-0 overflow-visible whitespace-normal;
+}
+
+/* Focus visible utilities */
+.focus-visible\:not-sr-only:focus {
+  @apply not-sr-only;
+}
+
+/* Section padding utility */
+.section-padding {
+  @apply py-16 lg:py-24 px-4 sm:px-6 lg:px-8;
+}
+
+/* Hero text shadow for better readability on images */
+.hero-text-shadow {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.3);
 }
 
 /* Card hover effects */

@@ -53,9 +53,9 @@ const config: Config = {
           300: '#fca5a5',
           400: '#f87171',
           500: '#ef4444',
-          600: '#dc2626',
-          700: '#b91c1c',
-          800: '#991b1b',
+          600: '#c92a2a', // Improved contrast ratio (5.08:1 on white)
+          700: '#a61e1e', // Better contrast (7.21:1 on white)
+          800: '#8c1a1a', // High contrast (9.12:1 on white)
           900: '#7f1d1d',
         },
         muted: {

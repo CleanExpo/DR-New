@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx @playwright/mcp@latest:*)",
+      "WebSearch",
+      "WebFetch(domain:www.steamatic.com.au)",
+      "WebFetch(domain:nlr.com.au)",
+      "WebFetch(domain:reztor.com.au)",
+      "WebFetch(domain:www.mouldmen.com)",
+      "WebFetch(domain:www.metrodry.com.au)",
+      "Bash(dir:*)",
+      "Read(//d//**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

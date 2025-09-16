@@ -1,0 +1,46 @@
+# Robots.txt for Disaster Recovery Brisbane
+# https://disasterrecoverybrisbane.com.au
+
+# Allow all legitimate crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://disasterrecoverybrisbane.com.au/sitemap.xml
+
+# Specific crawler instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Cache parameters
+User-agent: *
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*page=
+Allow: /*?*utm_

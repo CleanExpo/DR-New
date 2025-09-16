@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Button from '../ui/Button';
 
@@ -53,22 +53,38 @@ const heroImages = [
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const liveRegionRef = useRef<HTMLDivElement>(null);
 
-  // Auto-rotate images every 5 seconds
+  // Auto-rotate images every 5 seconds with screen reader announcements
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    return () => clearInterval(interval);
+    if (!prefersReducedMotion) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => {
+          const newIndex = (prev + 1) % heroImages.length;
+          // Announce carousel change to screen readers
+          if (liveRegionRef.current) {
+            liveRegionRef.current.textContent = `Now showing: ${heroImages[newIndex].title}. ${heroImages[newIndex].subtitle}`;
+          }
+          return newIndex;
+        });
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
   }, []);
 
   const currentImage = heroImages[currentImageIndex];
 
   return (
-    <section className="relative min-h-[100vh] bg-gray-900 text-white overflow-hidden isolate">
+    <section className="relative min-h-[100vh] bg-gray-900 text-white overflow-hidden isolate" role="region" aria-label="Emergency services hero banner" aria-roledescription="carousel">
+      {/* Screen Reader Live Region for Carousel Updates */}
+      <div ref={liveRegionRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
       {/* Hero Background Image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" aria-hidden="true">
         <Image
           src={currentImage.src}
           alt={currentImage.alt}
@@ -84,17 +100,26 @@ export default function Hero() {
       </div>
 
       {/* Image Navigation Dots */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20" role="tablist" aria-label="Hero image selector">
         {heroImages.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentImageIndex(index)}
+            onClick={() => {
+              setCurrentImageIndex(index);
+              if (liveRegionRef.current) {
+                liveRegionRef.current.textContent = `Now showing: ${heroImages[index].title}. ${heroImages[index].subtitle}`;
+              }
+            }}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentImageIndex
                 ? 'bg-white scale-125'
                 : 'bg-white/50 hover:bg-white/80'
             }`}
-            aria-label={`View image ${index + 1}`}
+            role="tab"
+            aria-selected={index === currentImageIndex}
+            aria-label={`View ${heroImages[index].title}`}
+            aria-controls={`hero-panel-${index}`}
+            id={`hero-tab-${index}`}
           />
         ))}
       </div>
@@ -105,7 +130,7 @@ export default function Hero() {
           <div className="space-y-8">
             <div className="space-y-6">
               <div className="inline-flex items-center bg-emergency-600 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg">
-                <svg className="w-5 h-5 text-white mr-2" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
                 <span className="text-sm font-bold text-white">24/7 Emergency Response Available</span>
@@ -119,21 +144,25 @@ export default function Hero() {
                 {currentImage.subtitle}
               </p>
 
-              <p className="text-lg text-gray-200 leading-relaxed max-w-2xl drop-shadow-md">
-                Professional water damage, fire damage restoration, and mould remediation services
-                across Brisbane, Ipswich, and Logan. When disaster strikes, we respond immediately
-                to minimize damage and restore your property to its pre-loss condition.
-              </p>
+              {/* Voice Search Optimized Quick Answer */}
+              <div className="quick-answer bg-white/20 backdrop-blur-md rounded-xl p-6 border border-white/30">
+                <p className="text-lg text-white font-medium leading-relaxed">
+                  <strong>Emergency disaster recovery Brisbane:</strong> Professional water damage, fire damage restoration,
+                  and mould remediation services across Brisbane, Ipswich, and Logan. Available 24/7 with 1-hour response guarantee.
+                  Call 1300 309 361 for immediate emergency assistance.
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 variant="emergency"
                 size="lg"
-                className="flex items-center justify-center space-x-3 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-200"
+                className="emergency-phone emergency-focus flex items-center justify-center space-x-3 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-200"
                 onClick={() => window.location.href = 'tel:1300309361'}
+                aria-label="Call emergency line 1300 309 361 for immediate assistance"
               >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
                 <div className="text-left">
@@ -146,6 +175,7 @@ export default function Hero() {
                 variant="outline"
                 size="lg"
                 className="bg-white/20 border-white text-white hover:bg-white hover:text-gray-900 backdrop-blur-md shadow-lg hover:shadow-xl transition-all duration-200"
+                aria-label="Request a free damage assessment"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -155,21 +185,21 @@ export default function Hero() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-8 pt-8 border-t border-white/20">
-              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+            <div className="flex flex-wrap items-center gap-8 pt-8 border-t border-white/20" role="list" aria-label="Our credentials">
+              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2" role="listitem">
+                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
                 <span className="text-white font-semibold">IICRC Certified</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2" role="listitem">
+                <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 <span className="text-white font-semibold">Fully Insured</span>
               </div>
-              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+              <div className="response-time flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2" role="listitem">
+                <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
                 <span className="text-white font-semibold">1 Hour Response</span>

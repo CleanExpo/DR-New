@@ -1,0 +1,189 @@
+{
+  "competitors": [
+    {
+      "name": "Steamatic Brisbane",
+      "website": "https://www.steamatic.com.au",
+      "locations": ["Brisbane", "Gold Coast", "Ipswich"],
+      "services": [
+        "Water damage restoration",
+        "Fire damage restoration",
+        "Mould remediation",
+        "Biohazard cleaning"
+      ],
+      "monitoring": {
+        "priority": "high",
+        "checkFrequency": "daily",
+        "socialMedia": {
+          "facebook": "SteamaticAustralia",
+          "instagram": "steamaticaustralia"
+        }
+      },
+      "keyMetrics": {
+        "responseTime": "24/7 response",
+        "certifications": ["IICRC"],
+        "insuranceApproved": true
+      }
+    },
+    {
+      "name": "NLR Restorations",
+      "website": "https://www.nlrrestorations.com.au",
+      "locations": ["Brisbane", "Logan", "Ipswich", "Gold Coast"],
+      "services": [
+        "Water damage restoration",
+        "Fire and smoke damage",
+        "Mould remediation",
+        "Storm damage",
+        "Biohazard cleaning"
+      ],
+      "monitoring": {
+        "priority": "high",
+        "checkFrequency": "daily",
+        "socialMedia": {
+          "facebook": "NLRRestorations",
+          "instagram": "nlrrestorations"
+        }
+      },
+      "keyMetrics": {
+        "responseTime": "1 hour emergency response",
+        "certifications": ["IICRC", "Restoration Industry Association"],
+        "insuranceApproved": true
+      }
+    },
+    {
+      "name": "Reztor Restoration",
+      "website": "https://www.reztor.com.au",
+      "locations": ["Brisbane", "Logan", "Ipswich"],
+      "services": [
+        "Water damage restoration",
+        "Fire damage restoration",
+        "Mould remediation",
+        "Trauma cleaning"
+      ],
+      "monitoring": {
+        "priority": "high",
+        "checkFrequency": "daily",
+        "socialMedia": {
+          "facebook": "ReztorRestoration"
+        }
+      },
+      "keyMetrics": {
+        "responseTime": "24/7 emergency response",
+        "certifications": ["IICRC"],
+        "insuranceApproved": true
+      }
+    },
+    {
+      "name": "MetroDry Restoration",
+      "website": "https://www.metrodry.com.au",
+      "locations": ["Brisbane", "Logan"],
+      "services": [
+        "Water damage restoration",
+        "Structural drying",
+        "Mould remediation",
+        "Carpet cleaning"
+      ],
+      "monitoring": {
+        "priority": "medium",
+        "checkFrequency": "weekly",
+        "socialMedia": {
+          "facebook": "MetroDryRestoration"
+        }
+      },
+      "keyMetrics": {
+        "responseTime": "24/7 service",
+        "certifications": ["IICRC"],
+        "insuranceApproved": true
+      }
+    },
+    {
+      "name": "MouldMen Brisbane",
+      "website": "https://www.mouldmen.com.au",
+      "locations": ["Brisbane", "Ipswich", "Logan", "Gold Coast"],
+      "services": [
+        "Mould inspection",
+        "Mould remediation",
+        "Air quality testing",
+        "Moisture detection"
+      ],
+      "monitoring": {
+        "priority": "medium",
+        "checkFrequency": "weekly",
+        "socialMedia": {
+          "facebook": "MouldMen"
+        }
+      },
+      "keyMetrics": {
+        "responseTime": "Same day service",
+        "certifications": ["IICRC", "NAMM"],
+        "insuranceApproved": true
+      }
+    },
+    {
+      "name": "Disaster Recovery QLD",
+      "website": "https://www.disasterrecoveryqld.com.au",
+      "locations": ["Brisbane", "Ipswich", "Logan"],
+      "services": [
+        "Water damage restoration",
+        "Fire damage restoration",
+        "Storm damage",
+        "Emergency response"
+      ],
+      "monitoring": {
+        "priority": "high",
+        "checkFrequency": "daily",
+        "socialMedia": {
+          "facebook": "DisasterRecoveryQLD"
+        }
+      },
+      "keyMetrics": {
+        "responseTime": "24/7 emergency",
+        "certifications": ["IICRC"],
+        "insuranceApproved": true
+      }
+    }
+  ],
+  "targetKeywords": [
+    "water damage restoration brisbane",
+    "flood damage brisbane",
+    "fire damage restoration brisbane",
+    "mould removal brisbane",
+    "emergency water damage",
+    "24 hour water damage brisbane",
+    "storm damage restoration brisbane",
+    "sewage cleanup brisbane",
+    "biohazard cleaning brisbane",
+    "disaster recovery services brisbane",
+    "water damage restoration ipswich",
+    "water damage restoration logan",
+    "mould remediation brisbane",
+    "smoke damage restoration brisbane",
+    "burst pipe water damage brisbane"
+  ],
+  "monitoringAreas": {
+    "website": {
+      "homePage": true,
+      "servicePage": true,
+      "pricingPage": true,
+      "blogContent": true,
+      "testimonials": true
+    },
+    "seo": {
+      "rankings": true,
+      "backlinks": true,
+      "contentUpdates": true,
+      "technicalChanges": true
+    },
+    "reputation": {
+      "googleReviews": true,
+      "facebookReviews": true,
+      "responseToReviews": true,
+      "reviewVolume": true
+    },
+    "marketing": {
+      "socialMedia": true,
+      "paidAds": true,
+      "emailCampaigns": false,
+      "partnerships": true
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "dr-new-competitive-intelligence",
+  "version": "1.0.0",
+  "description": "Comprehensive competitive intelligence monitoring system for DR-New disaster recovery services in Brisbane, Ipswich, and Logan",
+  "main": "run-monitoring.js",
+  "scripts": {
+    "start": "node run-monitoring.js daily",
+    "monitor:daily": "node run-monitoring.js daily",
+    "monitor:quick": "node run-monitoring.js quick",
+    "monitor:continuous": "node run-monitoring.js continuous 60",
+    "report:weekly": "node run-monitoring.js report weekly",
+    "report:seo": "node run-monitoring.js report seo",
+    "report:content": "node run-monitoring.js report content",
+    "report:alerts": "node run-monitoring.js report alerts",
+    "report:full": "node run-monitoring.js report comprehensive",
+    "dashboard": "start dashboards/index.html",
+    "help": "node run-monitoring.js help"
+  },
+  "keywords": [
+    "competitive intelligence",
+    "monitoring",
+    "SEO",
+    "content analysis",
+    "disaster recovery",
+    "Brisbane"
+  ],
+  "author": "DR-New",
+  "license": "Private",
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "private": true
+}

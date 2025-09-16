@@ -10,15 +10,55 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content" role="main" aria-label="Main content">
         <Hero />
         <Services />
         <ServiceAreas />
         <EquipmentGallery />
         <ProcessShowcase />
 
+        {/* Voice Search Optimized Quick Answers */}
+        <section className="section-padding bg-primary-50" aria-labelledby="quick-answers-heading">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 id="quick-answers-heading" className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Emergency Disaster Recovery Questions Answered
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Get instant answers to emergency disaster recovery questions for Brisbane, Ipswich, and Logan.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              <div className="bg-white rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Who can help with flood damage right now?</h3>
+                <div className="quick-answer bg-primary-100 p-4 rounded-lg mb-4">
+                  <p className="text-gray-900 font-medium">Disaster Recovery Brisbane provides 24/7 emergency flood damage response with 1-hour arrival guarantee. Call 1300 309 361 immediately.</p>
+                </div>
+                <p className="text-gray-600 text-sm">Available across Brisbane, Ipswich, and Logan with certified IICRC technicians.</p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">How quickly can someone fix water damage?</h3>
+                <div className="quick-answer bg-primary-100 p-4 rounded-lg mb-4">
+                  <p className="text-gray-900 font-medium">Water damage repair begins within 1 hour of your call. Complete restoration takes 3-7 days depending on damage severity.</p>
+                </div>
+                <p className="text-gray-600 text-sm">Emergency water extraction prevents further damage and mould growth.</p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What should I do if my house floods?</h3>
+                <div className="quick-answer bg-primary-100 p-4 rounded-lg mb-4">
+                  <p className="text-gray-900 font-medium">Ensure safety, call 1300 309 361 immediately, document damage, avoid standing water, and remove valuables safely.</p>
+                </div>
+                <p className="text-gray-600 text-sm">Our emergency team provides step-by-step guidance during your call.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Why Choose Us Section */}
-        <section className="section-padding bg-white">
+        <section className="section-padding bg-white" aria-labelledby="why-choose-heading">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <div className="inline-flex items-center bg-primary-50 rounded-full px-6 py-2 mb-4">
@@ -28,9 +68,16 @@ export default function HomePage() {
                 <span className="text-primary-700 font-semibold">Why Choose Us</span>
               </div>
 
-              <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Brisbane's Most Trusted Restoration Specialists
+              <h2 id="why-choose-heading" className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Brisbane's Fastest Emergency Response Team
               </h2>
+
+              <div className="quick-answer bg-primary-50 p-6 rounded-lg mb-6 max-w-4xl mx-auto">
+                <p className="text-xl text-gray-900 font-medium">
+                  Disaster Recovery Brisbane is Brisbane's fastest emergency response team with certified IICRC technicians,
+                  1-hour response guarantee, and 15+ years experience serving Brisbane, Ipswich, and Logan.
+                </p>
+              </div>
 
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 When disaster strikes, you need experienced professionals who understand the urgency
@@ -83,10 +130,10 @@ export default function HomePage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="section-padding bg-gray-50">
+        <section className="section-padding bg-gray-50" aria-labelledby="testimonials-heading">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
+              <h2 id="testimonials-heading" className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 What Our Clients Say
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -156,9 +203,9 @@ export default function HomePage() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="section-padding bg-gradient-to-br from-primary-900 to-primary-800 text-white">
+        <section id="emergency-contact" className="section-padding bg-gradient-to-br from-primary-900 to-primary-800 text-white" aria-labelledby="emergency-cta-heading">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+            <h2 id="emergency-cta-heading" className="text-3xl lg:text-5xl font-bold mb-6">
               Don't Let Disaster Damage Get Worse
             </h2>
             <p className="text-xl text-primary-100 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -169,7 +216,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <a
                 href="tel:1300309361"
-                className="bg-emergency-600 hover:bg-emergency-700 text-white font-bold py-6 px-10 rounded-xl transition-all duration-200 flex items-center space-x-3 text-lg shadow-2xl hover:shadow-3xl"
+                className="emergency-phone bg-emergency-600 hover:bg-emergency-700 text-white font-bold py-6 px-10 rounded-xl transition-all duration-200 flex items-center space-x-3 text-lg shadow-2xl hover:shadow-3xl"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
@@ -193,7 +240,7 @@ export default function HomePage() {
 
             <div className="mt-12 pt-8 border-t border-primary-700 text-primary-200">
               <p className="text-lg">
-                <strong>Available 24/7/365</strong> • <strong>1 Hour Emergency Response</strong> • <strong>Brisbane, Ipswich & Logan</strong>
+                <strong>Available 24/7/365</strong> • <strong className="response-time">1 Hour Emergency Response</strong> • <strong className="service-area">Brisbane, Ipswich & Logan</strong>
               </p>
             </div>
           </div>

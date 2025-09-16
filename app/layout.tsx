@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LocalBusinessSchema, EmergencyServiceSchema, SpeakableSchema } from '@/components/schema/VoiceSearchSchema';
+import SkipLinks from '@/components/accessibility/SkipLinks';
 
 export const metadata: Metadata = {
   title: "Disaster Recovery Brisbane | Water Fire Damage Restoration | 1300 309 361",
   description: "Professional disaster recovery services in Brisbane, Ipswich & Logan. 24/7 emergency water damage, fire damage restoration & mould remediation. Fast response, quality results.",
-  keywords: "disaster recovery brisbane, water damage restoration brisbane, fire damage restoration, mould removal brisbane, emergency restoration, flood damage repair, storm damage brisbane, ipswich disaster recovery, logan disaster recovery",
+  keywords: ["disaster recovery brisbane", "water damage restoration brisbane", "fire damage restoration", "mould removal brisbane", "emergency restoration", "flood damage repair", "storm damage brisbane", "ipswich disaster recovery", "logan disaster recovery"],
   authors: [{ name: "Disaster Recovery Brisbane" }],
   creator: "Disaster Recovery Brisbane",
   publisher: "Disaster Recovery Brisbane",
   robots: "index, follow",
-  viewport: "width=device-width, initial-scale=1",
   openGraph: {
     type: "website",
     locale: "en_AU",
@@ -57,6 +58,61 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="antialiased bg-gray-50 text-gray-900">
+        {/* Accessibility: Skip Navigation Links */}
+        <SkipLinks />
+
+        {/* Schema Markup for Voice Search */}
+        <LocalBusinessSchema
+          name="Disaster Recovery Brisbane"
+          address={{
+            street: "Brisbane Service Area",
+            city: "Brisbane",
+            state: "Queensland",
+            postalCode: "4000",
+            country: "Australia"
+          }}
+          phone="+61 1300 309 361"
+          email="admin@disasterrecovery.com.au"
+          url="https://disasterrecoverybrisbane.com.au"
+          serviceArea={["Brisbane", "Ipswich", "Logan", "Gold Coast", "Sunshine Coast"]}
+          services={[
+            "Water Damage Restoration",
+            "Fire Damage Restoration",
+            "Flood Restoration",
+            "Mould Remediation",
+            "Storm Damage Repair",
+            "Emergency Restoration Services",
+            "Sewage Cleanup",
+            "Smoke Damage Cleanup"
+          ]}
+          openingHours="Mo-Su 00:00-23:59"
+        />
+
+        <EmergencyServiceSchema
+          name="Disaster Recovery Brisbane"
+          description="24/7 emergency disaster recovery and restoration services across Brisbane, Ipswich and Logan with guaranteed 1-hour response time."
+          serviceTypes={[
+            "Emergency Water Damage Response",
+            "Emergency Fire Damage Response",
+            "Emergency Flood Response",
+            "Emergency Storm Damage Response",
+            "Emergency Mould Response"
+          ]}
+          responseTime="1 hour"
+          availability="24/7/365"
+          phone="+61 1300 309 361"
+          serviceArea={["Brisbane", "Ipswich", "Logan"]}
+        />
+
+        <SpeakableSchema
+          content={[
+            ".emergency-phone",
+            ".response-time",
+            ".service-area",
+            ".quick-answer"
+          ]}
+        />
+
         {children}
       </body>
     </html>

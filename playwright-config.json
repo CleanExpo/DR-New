@@ -1,0 +1,17 @@
+{
+  "browser": "chrome",
+  "headless": false,
+  "viewportSize": "1280,720",
+  "timeoutAction": 10000,
+  "timeoutNavigation": 30000,
+  "ignoreHttpsErrors": true,
+  "contextOptions": {
+    "locale": "en-AU",
+    "timezoneId": "Australia/Brisbane",
+    "geolocation": {
+      "latitude": -27.4698,
+      "longitude": 153.0251
+    },
+    "permissions": ["geolocation"]
+  }
+}
