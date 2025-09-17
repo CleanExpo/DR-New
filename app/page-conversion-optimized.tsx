@@ -173,7 +173,7 @@ function DamageCostTicker() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCost(prev => prev + Math.floor(Math.random() * 50) + 25);
+      setCost((prev: number) => prev + Math.floor(Math.random() * 50) + 25);
     }, 3000);
 
     return () => clearInterval(interval);
