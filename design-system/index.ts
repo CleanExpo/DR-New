@@ -18,13 +18,21 @@ import {
   spacing,
   borders,
   shadows,
-  typography
+  typography,
+  motion,
+  layout,
+  accessibility,
+  semanticTokens,
+  mediaQueries
 } from './design-tokens';
 
 import {
   buttonPatterns,
   cardPatterns,
-  feedbackPatterns
+  feedbackPatterns,
+  formPatterns,
+  navigationPatterns,
+  overlayPatterns
 } from './component-patterns';
 
 // Re-export commonly used tokens for convenience
