@@ -42,7 +42,7 @@ class RealtimeAnalytics {
   private metrics: RealtimeMetrics
   private subscribers: Map<string, Set<(data: any) => void>> = new Map()
   private alertQueue: AlertNotification[] = []
-  private isConnected: boolean = false
+  private connected: boolean = false
 
   private constructor() {
     this.metrics = this.initializeMetrics()
@@ -112,12 +112,12 @@ class RealtimeAnalytics {
 
       // Connection status
       this.pusher.connection.bind('connected', () => {
-        this.isConnected = true
+        this.connected = true
         this.notifySubscribers('connection', { status: 'connected' })
       })
 
       this.pusher.connection.bind('disconnected', () => {
-        this.isConnected = false
+        this.connected = false
         this.notifySubscribers('connection', { status: 'disconnected' })
       })
     }
@@ -417,7 +417,7 @@ class RealtimeAnalytics {
   }
 
   public isConnected(): boolean {
-    return this.isConnected
+    return this.connected
   }
 
   public async testAlert(type: AlertNotification['type']): Promise<void> {
