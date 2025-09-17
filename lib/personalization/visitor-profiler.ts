@@ -28,6 +28,7 @@ export class VisitorProfiler {
       segment: VisitorSegment.NEW_VISITOR,
       behavior: {
         entryUrl: '',
+        entryPoint: '',
         referrer: '',
         pagesViewed: [],
         interactions: [],

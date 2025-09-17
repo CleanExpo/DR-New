@@ -73,6 +73,7 @@ export interface DeviceInfo {
 }
 
 export interface BehaviorData {
+  entryUrl: string;
   entryPoint: string;
   referrer: string;
   searchTerms?: string[];
@@ -80,8 +81,9 @@ export interface BehaviorData {
   interactions: UserInteraction[];
   scrollDepth: number;
   timeOnSite: number;
-  bounceRisk: number; // 0-1 probability
-  engagementScore: number; // 0-100
+  bounceRisk: number;
+  engagementScore: number;
+  servicesViewed?: string[];
 }
 
 export interface PageView {
@@ -99,19 +101,6 @@ export interface UserInteraction {
   target: string;
   timestamp: number;
   metadata?: Record<string, any>;
-}
-
-export interface BehaviorData {
-  entryUrl: string;
-  referrer: string;
-  searchTerms?: string[];
-  pagesViewed: PageView[];
-  interactions: UserInteraction[];
-  scrollDepth: number;
-  timeOnSite: number;
-  bounceRisk: number;
-  engagementScore: number;
-  servicesViewed?: string[]; // Add this for content-adapter.ts
 }
 
 export interface VisitHistory {
