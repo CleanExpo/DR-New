@@ -6,8 +6,8 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Water Damage Restoration Brisbane | 1 Hour Response | 1300 309 361",
-  description: "Flooded home? We fix water damage fast in Brisbane, Ipswich & Logan. We extract water, dry homes, stop mould. Call 1300 309 361 for immediate help.",
+  title: "Water Damage Restoration Brisbane | Commercial & Premium Residential | 1300 309 361",
+  description: "Professional water damage restoration for Brisbane's commercial properties and luxury homes. IICRC certified technicians, advanced drying technology, insurance approved. Call 1300 309 361.",
   keywords: ["water damage restoration brisbane", "flood damage repair", "water extraction brisbane", "emergency water damage", "water damage cleanup brisbane", "flood restoration brisbane"],
   openGraph: {
     title: "Water Damage Restoration Brisbane | Emergency Response",
@@ -40,11 +40,11 @@ export default function WaterDamageRestorationPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                  Water Damage? We Fix It Fast.
+                  Professional Water Damage Restoration
                 </h1>
                 <p className="text-xl mb-8 text-blue-100">
-                  Flooded home? Burst pipes? We come to Brisbane homes in 1 hour.
-                  We extract water. We dry everything. We stop mould growth.
+                  Trusted by Brisbane's leading businesses and premium residences.
+                  IICRC certified restoration with advanced drying technology.
                 </p>
 
                 {/* Emergency CTA */}
