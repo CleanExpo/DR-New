@@ -14,16 +14,13 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="Disaster Recovery - Home">
             <Image
-              src="/images/logo.svg"
+              src="/images/logo-full.svg"
               alt="Disaster Recovery"
-              width={40}
-              height={40}
-              className="h-10 w-10"
+              width={180}
+              height={50}
+              className="h-12 w-auto"
               priority
             />
-            <span className="ml-2 text-xl font-semibold text-gray-900 hidden sm:block">
-              Disaster Recovery
-            </span>
           </Link>
 
           {/* Desktop Navigation - Simplified */}
@@ -33,6 +30,9 @@ export default function Header() {
             </Link>
             <Link href="/about" className="text-gray-600 hover:text-gray-900 font-medium">
               About
+            </Link>
+            <Link href="/pricing" className="text-gray-600 hover:text-gray-900 font-medium">
+              Pricing
             </Link>
             <Link href="/contact" className="text-gray-600 hover:text-gray-900 font-medium">
               Contact
@@ -84,6 +84,13 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
+              </Link>
+              <Link
+                href="/pricing"
+                className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Pricing
               </Link>
               <Link
                 href="/contact"

@@ -10,16 +10,12 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center">
               <Image
-                src="/images/logo-compact.svg"
+                src="/images/logo-full.svg"
                 alt="Disaster Recovery Brisbane"
-                width={56}
-                height={56}
-                className="h-14 w-14 mr-3 bg-white rounded-lg p-1"
+                width={200}
+                height={60}
+                className="h-16 w-auto bg-white rounded-lg p-2"
               />
-              <div>
-                <div className="text-lg font-bold">Disaster Recovery</div>
-                <p className="text-primary-400 font-semibold">Brisbane</p>
-              </div>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Professional disaster recovery services across Brisbane, Ipswich, and Logan.
@@ -87,6 +83,16 @@ export default function Footer() {
                 <div>
                   <p className="text-gray-300">Address</p>
                   <p className="text-white">4/17 Tile St<br/>Wacol, QLD 4076</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <svg className="w-5 h-5 text-primary-400 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fillRule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 7a1 1 0 012 0v4a1 1 0 01-1 1H7a1 1 0 010-2h1V7z" clipRule="evenodd"/>
+                </svg>
+                <div>
+                  <p className="text-gray-300">Opening Hours</p>
+                  <p className="text-white">24/7 Emergency<br/>Water Damage Services</p>
                 </div>
               </div>
             </div>
