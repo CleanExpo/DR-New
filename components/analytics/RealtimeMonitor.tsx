@@ -17,7 +17,7 @@ export default function RealtimeMonitor() {
     const unsubscribe = realtimeAnalytics.subscribe('metrics', (data) => {
       setMetrics({
         activeVisitors: data.activeVisitors,
-        pageViews: Array.from(data.currentPageViews?.values() || []).reduce((a, b) => a + b, 0),
+        pageViews: Array.from(data.currentPageViews?.values() || []).reduce((a: number, b: number) => a + b, 0),
         activePages: Array.from(data.currentPageViews?.entries() || [])
           .map(([path, count]) => ({ path, count }))
           .sort((a, b) => b.count - a.count)
