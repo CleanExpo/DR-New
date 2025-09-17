@@ -5,7 +5,6 @@ import { PersonalizationEngine } from '@/lib/personalization/personalization-eng
 import { aiInsights } from '@/lib/analytics/ai-insights'
 import { realtimeAnalytics } from '@/lib/analytics/realtime'
 import { brandAmplification } from '@/lib/brand/amplification'
-import { chatbotService } from '@/lib/chatbot/service'
 import { conversionOptimizer } from '@/lib/conversion/optimizer'
 import { performanceMonitor } from '@/lib/performanceMonitor'
 import securityService from '@/lib/security'
@@ -16,7 +15,6 @@ export interface MasterIntegrationConfig {
   enableRealtime: boolean
   enablePersonalization: boolean
   enableAI: boolean
-  enableChatbot: boolean
   enableSecurity: boolean
   debugMode: boolean
 }
@@ -32,7 +30,6 @@ class MasterIntegration {
       enableRealtime: true,
       enablePersonalization: true,
       enableAI: true,
-      enableChatbot: true,
       enableSecurity: true,
       debugMode: process.env.NODE_ENV === 'development'
     }
@@ -95,11 +92,6 @@ class MasterIntegration {
     if (this.config.enableAI) {
       await this.initializeAI()
     }
-
-    // Initialize Chatbot
-    if (this.config.enableChatbot) {
-      await this.initializeChatbot()
-    }
   }
 
   private async initializeSecurity(): Promise<void> {
@@ -148,16 +140,6 @@ class MasterIntegration {
     }
   }
 
-  private async initializeChatbot(): Promise<void> {
-    try {
-      // Chatbot service initialization
-      this.integrationStatus.set('chatbot', true)
-      console.log('💬 Chatbot Service: Active')
-    } catch (error) {
-      console.error('Chatbot initialization failed:', error)
-      this.integrationStatus.set('chatbot', false)
-    }
-  }
 
   private async connectIntegrations(): Promise<void> {
     // Connect Analytics to AI Insights
@@ -183,11 +165,6 @@ class MasterIntegration {
       })
     }
 
-    // Connect Chatbot to AI Insights
-    if (this.integrationStatus.get('chatbot') && this.integrationStatus.get('ai')) {
-      // Chatbot can query AI insights for intelligent responses
-      this.setupChatbotAI()
-    }
 
     // Connect Brand Amplification to Analytics
     if (this.integrationStatus.get('analytics')) {
@@ -277,9 +254,6 @@ class MasterIntegration {
         case 'ai':
           await this.initializeAI()
           break
-        case 'chatbot':
-          await this.initializeChatbot()
-          break
         case 'security':
           await this.initializeSecurity()
           break
@@ -315,10 +289,6 @@ class MasterIntegration {
     }
   }
 
-  private setupChatbotAI(): void {
-    // Connect chatbot to AI insights
-    console.log('🤖 Chatbot-AI Integration: Active')
-  }
 
   private amplifySuccess(alert: any): void {
     // Amplify success through brand channels
