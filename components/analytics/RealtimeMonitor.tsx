@@ -15,10 +15,15 @@ export default function RealtimeMonitor() {
 
   useEffect(() => {
     const unsubscribe = realtimeAnalytics.subscribe('metrics', (data) => {
+      const pageViewsArray = data.currentPageViews ? Array.from(data.currentPageViews.values()) : []
+      const pageViewsTotal = pageViewsArray.length > 0 ? pageViewsArray.reduce((a, b) => a + b, 0) : 0
+
+      const activePagesArray = data.currentPageViews ? Array.from(data.currentPageViews.entries()) : []
+
       setMetrics({
         activeVisitors: data.activeVisitors,
-        pageViews: Array.from(data.currentPageViews?.values() || []).reduce((a: number, b: number) => a + b, 0),
-        activePages: Array.from(data.currentPageViews?.entries() || [])
+        pageViews: pageViewsTotal,
+        activePages: activePagesArray
           .map(([path, count]) => ({ path, count }))
           .sort((a, b) => b.count - a.count)
           .slice(0, 5),
