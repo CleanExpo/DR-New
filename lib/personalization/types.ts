@@ -93,10 +93,25 @@ export interface PageView {
 }
 
 export interface UserInteraction {
-  type: 'click' | 'form_start' | 'form_submit' | 'call' | 'chat' | 'video_play' | 'download';
+  type: 'click' | 'form_start' | 'form_submit' | 'call' | 'chat' | 'video_play' | 'download' |
+        'rage_click' | 'scroll' | 'exit_intent' | 'form_field_complete' | 'frustration_signal' |
+        'inactivity' | 'visibility' | 'visibility_change';
   target: string;
   timestamp: number;
   metadata?: Record<string, any>;
+}
+
+export interface BehaviorData {
+  entryUrl: string;
+  referrer: string;
+  searchTerms?: string[];
+  pagesViewed: PageView[];
+  interactions: UserInteraction[];
+  scrollDepth: number;
+  timeOnSite: number;
+  bounceRisk: number;
+  engagementScore: number;
+  servicesViewed?: string[]; // Add this for content-adapter.ts
 }
 
 export interface VisitHistory {
@@ -122,6 +137,12 @@ export interface UserPreferences {
   budgetRange?: 'economy' | 'standard' | 'premium';
   propertyType?: 'residential' | 'commercial' | 'industrial';
   insuranceStatus?: 'insured' | 'uninsured' | 'processing_claim';
+  accessibility?: {
+    screenReader?: boolean;
+    highContrast?: boolean;
+    reducedMotion?: boolean;
+  };
+  handedness?: 'left' | 'right';
 }
 
 export interface WeatherData {

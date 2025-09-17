@@ -416,7 +416,7 @@ export class EmergencyDetector {
       return '⚠️ EXTREME WEATHER EMERGENCY - Immediate Response Available';
     }
 
-    if (profile.weatherContext?.alerts.length > 0) {
+    if (profile.weatherContext?.alerts && profile.weatherContext.alerts.length > 0) {
       return `⚠️ ${profile.weatherContext.alerts[0].type} - Emergency Team Standing By`;
     }
 

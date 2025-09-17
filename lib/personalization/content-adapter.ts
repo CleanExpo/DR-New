@@ -422,7 +422,7 @@ export class ContentAdapter {
   }
 
   private generateUrgencyBanner(profile: VisitorProfile): string {
-    if (profile.weatherContext?.alerts.length > 0) {
+    if (profile.weatherContext?.alerts && profile.weatherContext.alerts.length > 0) {
       const alert = profile.weatherContext.alerts[0];
       return `⚠️ ${alert.type}: ${alert.message}`;
     }

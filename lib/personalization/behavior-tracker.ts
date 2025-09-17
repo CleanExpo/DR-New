@@ -1,6 +1,21 @@
 // Behavioral Tracking and Analytics Module
 import { BehaviorData, UserInteraction, PageView, VisitorProfile } from './types';
 
+// Define missing interfaces
+interface HeatmapPoint {
+  x: number;
+  y: number;
+  timestamp: number;
+  intensity: number;
+}
+
+interface FormEngagement {
+  startTime: number;
+  completedFields: string[];
+  abandonedFields: string[];
+  totalTime?: number;
+}
+
 export class BehaviorTracker {
   private sessionStartTime: number;
   private lastActivityTime: number;
@@ -57,16 +72,14 @@ export class BehaviorTracker {
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // TODO: Add 'visibility' to UserInteraction type or create separate visibility tracking
-            // For now, skip visibility tracking as it's not a valid event type
-            // this.trackEvent({
-            //   type: 'visibility',
-            //   target: entry.target.id || entry.target.className,
-            //   metadata: {
-            //     visibilityRatio: entry.intersectionRatio,
-            //     timestamp: Date.now()
-            //   }
-            // });
+            this.trackEvent({
+              type: 'visibility',
+              target: entry.target.id || entry.target.className,
+              metadata: {
+                visibilityRatio: entry.intersectionRatio,
+                timestamp: Date.now()
+              }
+            });
           }
         });
       },
@@ -77,21 +90,19 @@ export class BehaviorTracker {
   }
 
   private handleVisibilityChange(): void {
-    // TODO: Add 'visibility_change' to UserInteraction type
-    // For now, skip visibility change tracking as it's not a valid event type
-    // if (document.hidden) {
-    //   this.trackEvent({
-    //     type: 'visibility_change',
-    //     target: 'tab_hidden',
-    //     metadata: { timeOnPage: Date.now() - this.sessionStartTime }
-    //   });
-    // } else {
-    //   this.trackEvent({
-    //     type: 'visibility_change',
-    //     target: 'tab_visible',
-    //     metadata: { awayTime: Date.now() - this.lastActivityTime }
-    //   });
-    // }
+    if (document.hidden) {
+      this.trackEvent({
+        type: 'visibility_change',
+        target: 'tab_hidden',
+        metadata: { timeOnPage: Date.now() - this.sessionStartTime }
+      });
+    } else {
+      this.trackEvent({
+        type: 'visibility_change',
+        target: 'tab_visible',
+        metadata: { awayTime: Date.now() - this.lastActivityTime }
+      });
+    }
   }
 
   private handleClick(event: MouseEvent): void {

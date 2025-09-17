@@ -5,7 +5,8 @@ import {
   VisitorIntent,
   UrgencyLevel,
   VisitorSegment,
-  CallToAction
+  CallToAction,
+  BehaviorData
 } from './types';
 
 export class RecommendationEngine {
@@ -544,10 +545,10 @@ export class RecommendationEngine {
 
   private determineUrgencyFromBehavior(behavior: BehaviorData): UrgencyLevel {
     const urgencySignals = [
-      behavior.interactions.filter(i => i.type === 'call').length > 0,
+      behavior.interactions.filter((i: any) => i.type === 'call').length > 0,
       behavior.scrollDepth > 0.7 && behavior.timeOnSite < 60,
-      behavior.searchTerms?.some(t => t.includes('emergency')),
-      behavior.entryPoint.includes('emergency')
+      behavior.searchTerms?.some((t: string) => t.includes('emergency')),
+      behavior.entryUrl.includes('emergency')
     ].filter(Boolean).length;
 
     if (urgencySignals >= 3) return UrgencyLevel.CRITICAL;
