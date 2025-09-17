@@ -203,8 +203,8 @@ export default function AccessibilityStatement() {
                   </div>
                   <div className="flex items-center">
                     <span className="font-semibold text-gray-900 mr-2">Email:</span>
-                    <a href="mailto:admin@disasterrecovery.com.au" className="text-primary-600 hover:text-primary-700 font-medium">
-                      admin@disasterrecovery.com.au
+                    <a href="mailto:info@disasterrecovery.com.au" className="text-primary-600 hover:text-primary-700 font-medium">
+                      info@disasterrecovery.com.au
                     </a>
                   </div>
                   <div>

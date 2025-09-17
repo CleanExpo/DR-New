@@ -96,7 +96,7 @@ export default function RootLayout({
             country: "Australia"
           }}
           phone="+61 1300 309 361"
-          email="admin@disasterrecovery.com.au"
+          email="info@disasterrecovery.com.au"
           url="https://disasterrecovery.com.au"
           serviceArea={["Brisbane", "Ipswich", "Logan"]}
           services={[

@@ -71,7 +71,7 @@ export default function Footer() {
                 </svg>
                 <div>
                   <p className="text-gray-300">Email</p>
-                  <a href="mailto:admin@disasterrecovery.com.au" className="text-white hover:text-primary-400 transition-colors" aria-label="Email admin@disasterrecovery.com.au">admin@disasterrecovery.com.au</a>
+                  <a href="mailto:info@disasterrecovery.com.au" className="text-white hover:text-primary-400 transition-colors" aria-label="Email info@disasterrecovery.com.au">info@disasterrecovery.com.au</a>
                 </div>
               </div>
 

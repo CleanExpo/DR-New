@@ -77,15 +77,9 @@ export default function ContactPage() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Email Us</h2>
                 <div className="space-y-3">
                   <div>
-                    <p className="font-semibold text-gray-700">General Enquiries</p>
-                    <a href="mailto:admin@disasterrecovery.com.au" className="text-lg text-blue-600 hover:text-blue-700 break-all">
-                      admin@disasterrecovery.com.au
-                    </a>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-700">Insurance Claims</p>
-                    <a href="mailto:claims@disasterrecovery.com.au" className="text-lg text-blue-600 hover:text-blue-700 break-all">
-                      claims@disasterrecovery.com.au
+                    <p className="font-semibold text-gray-700">Email</p>
+                    <a href="mailto:info@disasterrecovery.com.au" className="text-lg text-blue-600 hover:text-blue-700 break-all">
+                      info@disasterrecovery.com.au
                     </a>
                   </div>
                 </div>

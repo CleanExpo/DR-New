@@ -30,7 +30,7 @@ A modern, premium website for Disaster Recovery services in Brisbane, Ipswich, a
 ## Contact Information
 
 - **Phone:** 1300 309 361 (24/7 Emergency)
-- **Email:** admin@disasterrecovery.com.au
+- **Email:** info@disasterrecovery.com.au
 - **Address:** 4/17 Tile St, Wacol, QLD 4076
 
 ## Getting Started

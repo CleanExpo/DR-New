@@ -73,7 +73,7 @@ export default function FireDamageRestorationPage() {
                   </a>
 
                   <a
-                    href="mailto:admin@disasterrecovery.com.au"
+                    href="mailto:info@disasterrecovery.com.au"
                     className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -352,10 +352,10 @@ export default function FireDamageRestorationPage() {
               <div className="flex flex-col items-center">
                 <div className="text-emergency-200 font-semibold mb-2">Or Email Us</div>
                 <a
-                  href="mailto:admin@disasterrecovery.com.au"
+                  href="mailto:info@disasterrecovery.com.au"
                   className="text-white hover:text-emergency-200 transition-colors font-semibold"
                 >
-                  admin@disasterrecovery.com.au
+                  info@disasterrecovery.com.au
                 </a>
               </div>
 
