@@ -27,7 +27,7 @@ export class VisitorProfiler {
       urgencyLevel: UrgencyLevel.UNKNOWN,
       segment: VisitorSegment.NEW_VISITOR,
       behavior: {
-        entryPoint: '',
+        entryUrl: '',
         referrer: '',
         pagesViewed: [],
         interactions: [],
@@ -247,8 +247,8 @@ export class VisitorProfiler {
 
     // Property manager detection
     const pmIndicators = [
-      behavior?.pagesViewed.filter(p => p.url.includes('commercial')).length > 2,
-      history?.servicesViewed.filter(s => s.includes('commercial')).length > 1,
+      (behavior?.pagesViewed?.filter(p => p.url.includes('commercial')).length ?? 0) > 2,
+      (history?.servicesViewed?.filter(s => s.includes('commercial')).length ?? 0) > 1,
       preferences?.propertyType === 'commercial'
     ].filter(Boolean).length;
 

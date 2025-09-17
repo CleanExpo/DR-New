@@ -273,7 +273,7 @@ export class ContentAdapter {
       return profile.weatherContext?.condition;
     }
 
-    if (profile.behavior?.servicesViewed[0]) {
+    if (profile.behavior?.servicesViewed && profile.behavior.servicesViewed[0]) {
       return profile.behavior.servicesViewed[0];
     }
 
@@ -453,11 +453,11 @@ export class ContentAdapter {
       return '30-60 minutes';
     }
 
-    if (profile.location?.distanceToService < 15) {
+    if (profile.location?.distanceToService && profile.location.distanceToService < 15) {
       return '1-2 hours';
     }
 
-    if (profile.location?.distanceToService < 30) {
+    if (profile.location?.distanceToService && profile.location.distanceToService < 30) {
       return '2-4 hours';
     }
 

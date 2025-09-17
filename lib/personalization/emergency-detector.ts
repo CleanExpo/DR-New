@@ -190,7 +190,7 @@ export class EmergencyDetector {
 
     // Check if visitor is far from service area (desperation)
     const isRemote = !profile.location.isInServiceArea;
-    const isFar = profile.location.distanceToService > 50;
+    const isFar = profile.location?.distanceToService ? profile.location.distanceToService > 50 : false;
 
     let confidence = 0;
     let reason = 'Within service area';
@@ -363,8 +363,8 @@ export class EmergencyDetector {
     // Specific critical combinations
     const hasEmergencyIntent = signals.find(s => s.type === 'intent')?.detected;
     const hasEmergencySearch = signals.find(s => s.type === 'search')?.detected;
-    const hasSevereWeather = signals.find(s => s.type === 'weather')?.confidence > 0.7;
-    const isLateNight = signals.find(s => s.type === 'time')?.confidence > 0.7;
+    const hasSevereWeather = (signals.find(s => s.type === 'weather')?.confidence ?? 0) > 0.7;
+    const isLateNight = (signals.find(s => s.type === 'time')?.confidence ?? 0) > 0.7;
 
     if (hasEmergencyIntent && (hasEmergencySearch || hasSevereWeather || isLateNight)) {
       return true;
