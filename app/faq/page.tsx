@@ -150,7 +150,7 @@ export default function FAQPage() {
                         <div className="bg-primary-50 rounded-lg p-6 mb-4">
                           <div className="text-sm font-semibold text-primary-700 mb-2">Quick Answer:</div>
                           <p className="text-lg text-gray-900 font-medium leading-relaxed">
-                            {faq.voiceOptimized}
+                            {faq.voiceOptimised}
                           </p>
                         </div>
 
