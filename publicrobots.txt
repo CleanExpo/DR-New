@@ -1,0 +1,42 @@
+# Robots.txt for https://disasterrecovery.com.au
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and demo pages
+Disallow: /admin/
+Disallow: /personalization-demo
+Disallow: /analytics
+
+# Sitemap location
+Sitemap: https://disasterrecovery.com.au/sitemap.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
