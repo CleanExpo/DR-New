@@ -14,7 +14,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label="Disaster Recovery - Home">
             <Image
-              src="/images/logo-full.svg"
+              src="/images/logos/disaster-recovery-logo.png"
               alt="Disaster Recovery"
               width={180}
               height={50}

@@ -192,10 +192,10 @@ export default function HomePage() {
             </h2>
             <p className="text-lg text-gray-700 mb-6">
               We help people in Brisbane. We drive to Ipswich. We serve Logan families.
-              Emergency? We come to you in 1 hour.
+              Emergency services available 24/7.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-              {['Brisbane', 'Ipswich', 'Logan', 'Gold Coast', 'Toowoomba', 'Moreton Bay', 'Redcliffe', 'Beaudesert'].map((area) => (
+              {['Brisbane CBD', 'North Brisbane', 'South Brisbane', 'West Brisbane', 'East Brisbane', 'Ipswich', 'Logan'].map((area) => (
                 <div key={area} className="bg-gray-50 rounded-lg py-3 px-4">
                   <span className="text-gray-700">{area}</span>
                 </div>

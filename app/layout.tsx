@@ -98,7 +98,7 @@ export default function RootLayout({
           phone="+61 1300 309 361"
           email="admin@disasterrecovery.com.au"
           url="https://disasterrecovery.com.au"
-          serviceArea={["Brisbane", "Ipswich", "Logan", "Gold Coast", "Sunshine Coast"]}
+          serviceArea={["Brisbane", "Ipswich", "Logan"]}
           services={[
             "Water Damage Restoration",
             "Fire Damage Restoration",

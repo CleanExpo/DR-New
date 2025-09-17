@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center">
               <Image
-                src="/images/logo-full.svg"
+                src="/images/logos/disaster-recovery-logo.png"
                 alt="Disaster Recovery Brisbane"
                 width={200}
                 height={60}
@@ -44,10 +44,9 @@ export default function Footer() {
               <li className="text-gray-300">North Brisbane</li>
               <li className="text-gray-300">South Brisbane</li>
               <li className="text-gray-300">West Brisbane</li>
+              <li className="text-gray-300">East Brisbane</li>
               <li className="text-gray-300">Ipswich</li>
               <li className="text-gray-300">Logan</li>
-              <li className="text-gray-300">Gold Coast (emergency)</li>
-              <li className="text-gray-300">Sunshine Coast (emergency)</li>
             </ul>
           </div>
 
