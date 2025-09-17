@@ -7,7 +7,6 @@ import { RecentActivityNotification, LiveVisitorCounter, RecentlyHelped } from '
 import { UrgencyBar, CountdownTimer, SurgePrice } from '@/components/conversion/UrgencyComponents';
 import { MultiStepQuoteForm } from '@/components/conversion/MultiStepQuoteForm';
 import ServiceShowcase from '@/components/sections/ServiceShowcase';
-import EmergencyTracker from '@/components/sections/EmergencyTracker';
 import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import LiveChat from '@/components/chat/LiveChat';
 
@@ -39,9 +38,6 @@ export default function ConversionOptimizedHomePage() {
             </div>
           </div>
         </section>
-
-        {/* Real-time Emergency Response Tracker */}
-        <EmergencyTracker />
 
         {/* Trust-Building Guarantees */}
         <GuaranteesSection />

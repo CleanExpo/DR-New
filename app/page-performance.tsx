@@ -18,10 +18,7 @@ const ServiceAreas = dynamic(() => import('@/components/sections/ServiceAreas'),
   ssr: true,
 });
 
-const EmergencyContact = dynamic(() => import('@/components/sections/EmergencyContact'), {
-  loading: () => <div className="h-32 bg-red-600 animate-pulse" />,
-  ssr: true,
-});
+// EmergencyContact removed
 
 const Reviews = dynamic(() => import('@/components/sections/TestimonialsCarousel'), {
   loading: () => <div className="h-96 bg-gray-50 animate-pulse" />,
@@ -78,7 +75,7 @@ export default function PerformanceHomePage() {
         <HeroPerformance />
 
         {/* Emergency Contact Bar - High Priority */}
-        <EmergencyContact />
+        {/* EmergencyContact removed */}
 
         {/* Core Services - Above the fold */}
         <Services />
