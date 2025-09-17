@@ -98,8 +98,6 @@ export default function PerformanceHomePage() {
         {/* Reviews - Client side only */}
         <Reviews />
 
-        {/* FAQ Section */}
-        <FAQ />
       </main>
 
       {/* Footer */}
