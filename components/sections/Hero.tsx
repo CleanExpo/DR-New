@@ -1,93 +1,28 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Button from '../ui/Button';
 
-// Hero images with their service focus
-const heroImages = [
-  {
-    src: '/images/hero/disaster-recovery-services.jpg',
-    alt: 'Professional disaster recovery services in Brisbane',
-    title: 'Brisbane\'s Premier Disaster Recovery',
-    subtitle: 'Complete restoration services for all disasters'
-  },
-  {
-    src: '/images/hero/fire-smoke-damage-restoration.jpg',
-    alt: 'Fire and smoke damage restoration Brisbane',
-    title: 'Fire & Smoke Damage Restoration',
-    subtitle: 'Expert fire damage cleanup and restoration'
-  },
-  {
-    src: '/images/hero/fire-water-damage-restoration.jpg',
-    alt: 'Water damage restoration Brisbane',
-    title: 'Emergency Water Damage Response',
-    subtitle: 'Rapid water extraction and structural drying'
-  },
-  {
-    src: '/images/hero/mould-remediation-services.jpg',
-    alt: 'Professional mould remediation Brisbane',
-    title: 'Professional Mould Remediation',
-    subtitle: 'Safe and effective mould removal services'
-  },
-  {
-    src: '/images/hero/commercial-restoration-services.jpg',
-    alt: 'Commercial restoration services Brisbane',
-    title: 'Commercial Property Restoration',
-    subtitle: 'Get your business back to normal quickly'
-  },
-  {
-    src: '/images/hero/sewage-remediation-services.png',
-    alt: 'Sewage cleanup and remediation Brisbane',
-    title: 'Sewage Cleanup & Sanitisation',
-    subtitle: 'Safe biohazard cleaning and restoration'
-  },
-  {
-    src: '/images/hero/biohazard-remediation-services.png',
-    alt: 'Biohazard remediation services Brisbane',
-    title: 'Biohazard Remediation Specialists',
-    subtitle: 'Professional trauma and crime scene cleanup'
-  }
-];
+// Single hero image for cleaner design
+const heroImage = {
+  src: '/images/hero/hero-disaster-tornado.png',
+  alt: 'Emergency disaster recovery services Brisbane - storm and tornado damage',
+  title: 'Emergency Disaster Recovery Brisbane - Ring 1300 309 361',
+  subtitle: '24-hour water damage, fire damage, and flood restoration. IICRC certified. Insurance approved. We can be there within 1 hour.'
+};
 
 export default function Hero() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const liveRegionRef = useRef<HTMLDivElement>(null);
-
-  // Auto-rotate images every 5 seconds with screen reader announcements
-  useEffect(() => {
-    // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (!prefersReducedMotion) {
-      const interval = setInterval(() => {
-        setCurrentImageIndex((prev) => {
-          const newIndex = (prev + 1) % heroImages.length;
-          // Announce carousel change to screen readers
-          if (liveRegionRef.current) {
-            liveRegionRef.current.textContent = `Now showing: ${heroImages[newIndex].title}. ${heroImages[newIndex].subtitle}`;
-          }
-          return newIndex;
-        });
-      }, 5000);
-
-      return () => clearInterval(interval);
-    }
-  }, []);
-
-  const currentImage = heroImages[currentImageIndex];
 
   return (
-    <section className="relative min-h-[100vh] bg-gray-900 text-white overflow-hidden isolate" role="region" aria-label="Emergency services hero banner" aria-roledescription="carousel">
-      {/* Screen Reader Live Region for Carousel Updates */}
-      <div ref={liveRegionRef} className="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+    <section className="relative min-h-[100vh] bg-gray-900 text-white overflow-hidden isolate" role="region" aria-label="Emergency services hero banner">
 
       {/* Hero Background Image */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <Image
-          src={currentImage.src}
-          alt={currentImage.alt}
+          src={heroImage.src}
+          alt={heroImage.alt}
           fill
           priority
           className={`object-cover transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
@@ -97,31 +32,6 @@ export default function Hero() {
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-      </div>
-
-      {/* Image Navigation Dots */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20" role="tablist" aria-label="Hero image selector">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setCurrentImageIndex(index);
-              if (liveRegionRef.current) {
-                liveRegionRef.current.textContent = `Now showing: ${heroImages[index].title}. ${heroImages[index].subtitle}`;
-              }
-            }}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentImageIndex
-                ? 'bg-white scale-125'
-                : 'bg-white/50 hover:bg-white/80'
-            }`}
-            role="tab"
-            aria-selected={index === currentImageIndex}
-            aria-label={`View ${heroImages[index].title}`}
-            aria-controls={`hero-panel-${index}`}
-            id={`hero-tab-${index}`}
-          />
-        ))}
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 section-padding z-10">
@@ -137,11 +47,11 @@ export default function Hero() {
               </div>
 
               <h1 className="text-4xl lg:text-7xl font-bold leading-tight">
-                <span className="block text-white drop-shadow-2xl hero-text-shadow">{currentImage.title}</span>
+                <span className="block text-white drop-shadow-2xl hero-text-shadow">{heroImage.title}</span>
               </h1>
 
               <p className="text-xl lg:text-2xl text-gray-100 leading-relaxed max-w-2xl drop-shadow-lg hero-text-shadow">
-                {currentImage.subtitle}
+                {heroImage.subtitle}
               </p>
 
               {/* Voice Search Optimized Quick Answer */}
