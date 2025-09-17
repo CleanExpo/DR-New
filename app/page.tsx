@@ -33,7 +33,7 @@ const homepageFAQs = [
   },
   {
     question: "How much does flood restoration cost in Queensland?",
-    answer: "Flood restoration costs vary by damage size. Most home insurance covers water damage. We provide free quotes and work directly with insurers. Ring 1300 309 361. Acting fast reduces costs significantly.",
+    answer: "Flood restoration costs vary by damage size. Most home insurance covers water damage. We work directly with all major insurers. Ring 1300 309 361. Acting fast reduces costs significantly.",
     voiceKeywords: ["cost", "flood restoration", "Queensland", "insurance"],
     schema: true
   }
@@ -120,7 +120,7 @@ export default function HomePage() {
                 href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg border-2 border-gray-300 hover:border-gray-400 transition-colors"
               >
-                Get a Quote
+                Emergency Contact
               </Link>
             </div>
 

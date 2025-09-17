@@ -62,7 +62,7 @@ export default function WaterDamageRestorationPage() {
                     href="/contact"
                     className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
                   >
-                    Get Free Quote
+                    Contact Us
                   </Link>
                 </div>
 
@@ -241,7 +241,7 @@ export default function WaterDamageRestorationPage() {
                 href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 bg-red-700 text-white font-semibold rounded-lg hover:bg-red-800 transition-colors border-2 border-red-700"
               >
-                Get Quote Online
+                Emergency Contact
               </Link>
             </div>
           </div>

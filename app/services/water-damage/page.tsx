@@ -50,7 +50,7 @@ const waterDamageFAQs = [
   },
   {
     question: "How much does flood restoration cost in Queensland?",
-    answer: "Water damage restoration costs depend on the size of the damage and how long water has been there. Most home insurance covers water damage. We provide free quotes and work directly with your insurer. Ring 1300 309 361 for an assessment. Acting fast reduces costs.",
+    answer: "Water damage restoration costs depend on the size of the damage and how long water has been there. Most home insurance covers water damage. We work directly with your insurer. Ring 1300 309 361 for an emergency assessment. Acting fast reduces costs.",
     voiceKeywords: ["cost", "price", "flood restoration", "Queensland"],
     schema: true
   },

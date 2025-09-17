@@ -241,7 +241,7 @@ export default function LocalVoiceSearchLanding({
                 },
                 {
                   q: `What's the cost for emergency service in ${suburb}?`,
-                  a: "We provide free quotes. Many services are covered by insurance. Ring 1300 309 361 for pricing."
+                  a: "Many services are covered by insurance. Ring 1300 309 361 to discuss your emergency."
                 },
                 {
                   q: `Are you available on weekends in ${suburb}?`,

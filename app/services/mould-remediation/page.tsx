@@ -259,7 +259,7 @@ export default function MouldRemediationPage() {
                 href="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-500 transition-colors border-2 border-white"
               >
-                Get Professional Quote
+                Emergency Contact
               </Link>
             </div>
           </div>

@@ -79,7 +79,7 @@ export default function FireDamageRestorationPage() {
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586l-8 4.533L5 6.586V4zM3 8.414l8 4.533 8-4.533V18a1 1 0 01-1 1H4a1 1 0 01-1-1V8.414z"/>
                     </svg>
-                    <span>Get Quote</span>
+                    <span>Contact Us</span>
                   </a>
                 </div>
 
