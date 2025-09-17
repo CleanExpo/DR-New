@@ -1,46 +1,61 @@
-# Robots.txt for Disaster Recovery Brisbane
-# https://disasterrecoverybrisbane.com.au
+# Disaster Recovery Brisbane - Robots.txt
+# Professional disaster recovery services in Brisbane, Ipswich & Logan
 
-# Allow all legitimate crawlers
 User-agent: *
 Allow: /
+
+# Important Pages for SEO
+Allow: /services/
+Allow: /locations/
+Allow: /about
+Allow: /contact
+
+# API Routes - No indexing
 Disallow: /api/
-Disallow: /_next/
+
+# Admin Areas - No indexing
 Disallow: /admin/
-Disallow: /private/
+Disallow: /_next/
 
-# Sitemap location
-Sitemap: https://disasterrecoverybrisbane.com.au/sitemap.xml
+# Development Files - No indexing
+Disallow: /*.json$
+Disallow: /*.log$
 
-# Specific crawler instructions
+# Images - Allow indexing for Google Images
+Allow: /images/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.webp
+Allow: /*.svg
+
+# Priority Pages - Allow explicit crawling
+Allow: /services/water-damage-restoration
+Allow: /services/fire-damage-restoration
+Allow: /services/mould-remediation
+Allow: /locations/brisbane
+Allow: /locations/ipswich
+Allow: /locations/logan
+
+# Sitemap Location
+Sitemap: https://disasterrecovery.com.au/sitemap.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-services.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-locations.xml
+
+# Crawl Delay for Respectful Bots
+Crawl-delay: 1
+
+# Special Instructions for Major Search Engines
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 0
+Crawl-delay: 1
 
-User-agent: Slurp
+User-agent: facebookexternalhit
 Allow: /
-Crawl-delay: 0
 
-# Block bad bots
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: SemrushBot
-Crawl-delay: 10
-
-User-agent: DotBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-# Cache parameters
-User-agent: *
-Disallow: /*?*sort=
-Disallow: /*?*filter=
-Disallow: /*?*page=
-Allow: /*?*utm_
+User-agent: Twitterbot
+Allow: /

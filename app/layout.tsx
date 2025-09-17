@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LocalBusinessSchema, EmergencyServiceSchema, SpeakableSchema } from '@/components/schema/VoiceSearchSchema';
 import { AggregateRatingSchema } from '@/components/schema/AggregateRatingSchema';
+import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import SkipLinks from '@/components/accessibility/SkipLinks';
 import { PersonalizationProvider } from '@/lib/personalization/providers/PersonalizationProvider';
 import { ChatProvider } from '@/app/providers/ChatProvider';
 import MasterIntegrationProvider from '@/components/integration/MasterIntegrationProvider';
-import MobileCTABar from '@/components/ui/mobile-cta-bar';
 
 export const metadata: Metadata = {
   title: "Disaster Recovery Brisbane | Water Fire Damage Restoration | 1300 309 361",
@@ -48,17 +48,39 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
+        {/* Performance Optimization - Preconnect to external domains */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://disasterrecovery.com.au" />
+
+        {/* SEO and Identity */}
         <link rel="canonical" href="https://disasterrecovery.com.au" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
         <link rel="icon" type="image/svg+xml" sizes="32x32" href="/images/favicon.svg" />
         <link rel="icon" type="image/svg+xml" sizes="16x16" href="/images/favicon.svg" />
         <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-compact.svg" />
+
+        {/* Local SEO Geo Tags */}
         <meta name="geo.region" content="AU-QLD" />
         <meta name="geo.placename" content="Wacol" />
-        <meta name="geo.position" content="-27.5833;152.9333" />
-        <meta name="ICBM" content="-27.5833, 152.9333" />
+        <meta name="geo.position" content="-27.605;152.943" />
+        <meta name="ICBM" content="-27.605, 152.943" />
+
+        {/* Business Information */}
+        <meta name="business.phone" content="1300309361" />
+        <meta name="business.address" content="4/17 Tile St, Wacol, QLD 4076" />
+        <meta name="business.hours" content="24/7" />
+
+        {/* Theme and PWA */}
         <meta name="theme-color" content="#2563eb" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        {/* Performance Hints */}
+        <link rel="prefetch" href="/services/water-damage-restoration" />
+        <link rel="prefetch" href="/services/fire-damage-restoration" />
+        <link rel="prefetch" href="/contact" />
       </head>
       <body className="antialiased bg-gray-50 text-gray-900">
         <MasterIntegrationProvider>
@@ -128,8 +150,11 @@ export default function RootLayout({
 
         <AggregateRatingSchema />
 
+        {/* Enhanced Schema Markup */}
+        <SchemaMarkup type="LocalBusiness" />
+        <SchemaMarkup type="FAQPage" />
+
           {children}
-          <MobileCTABar />
             </ChatProvider>
           </PersonalizationProvider>
         </MasterIntegrationProvider>

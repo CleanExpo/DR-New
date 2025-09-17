@@ -13,11 +13,11 @@ export default function HomePage() {
         <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-4xl mx-auto px-6 py-16 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Disaster Recovery
+              Brisbane Disaster Recovery Experts
             </h1>
             <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-              Professional restoration services in Brisbane, Ipswich and Logan.
-              Founded in 2011 by Phill and Bronwyn McGurk.
+              We fix water damage fast. We clean fire damage completely. We remove mould safely.
+              Brisbane families trust us. We serve Brisbane, Ipswich and Logan.
             </p>
 
             {/* Clear CTAs */}
@@ -55,33 +55,33 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Water Damage Restoration",
-                  description: "Water extraction, drying, and restoration services.",
+                  title: "Water Damage Restoration Brisbane",
+                  description: "Flooded? We extract water. We dry your home. We stop mould growth.",
                   link: "/services/water-damage-restoration"
                 },
                 {
-                  title: "Fire Damage Restoration",
-                  description: "Smoke and soot removal, structural cleaning and repairs.",
+                  title: "Fire Damage Restoration Brisbane",
+                  description: "Fire destroyed your home? We clean smoke. We remove soot. We restore everything.",
                   link: "/services/fire-damage-restoration"
                 },
                 {
-                  title: "Mould Remediation",
-                  description: "Safe mould removal and prevention services.",
+                  title: "Mould Removal Brisbane",
+                  description: "Mould makes you sick. We remove it safely. We stop it coming back.",
                   link: "/services/mould-remediation"
                 },
                 {
-                  title: "Storm Damage",
-                  description: "Emergency response for storm and flood damage.",
+                  title: "Storm Damage Repair",
+                  description: "Storm hit? We respond in 1 hour. We fix flood damage fast.",
                   link: "/services/storm-damage"
                 },
                 {
-                  title: "Biohazard Cleaning",
-                  description: "Professional biohazard and trauma cleaning services.",
+                  title: "Trauma Scene Cleaning",
+                  description: "We clean dangerous scenes. We work safely. We care about families.",
                   link: "/services/biohazard-cleaning"
                 },
                 {
-                  title: "Commercial Services",
-                  description: "Restoration services for businesses and commercial properties.",
+                  title: "Commercial Restoration",
+                  description: "Business flooded? We get you open fast. Insurance pays.",
                   link: "/services"
                 }
               ].map((service, index) => (
@@ -163,7 +163,8 @@ export default function HomePage() {
               Service Areas
             </h2>
             <p className="text-lg text-gray-700 mb-6">
-              We service Brisbane, Ipswich, Logan and surrounding areas within approximately 50km of our Wacol office.
+              We help people in Brisbane. We drive to Ipswich. We serve Logan families.
+              Emergency? We come to you in 1 hour.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
               {['Brisbane', 'Ipswich', 'Logan', 'Gold Coast', 'Toowoomba', 'Moreton Bay', 'Redcliffe', 'Beaudesert'].map((area) => (
@@ -179,10 +180,10 @@ export default function HomePage() {
         <section className="py-16 bg-blue-600 text-white" aria-labelledby="contact-section-heading">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 id="contact-section-heading" className="text-3xl font-bold mb-4">
-              Need Emergency Restoration?
+              Emergency? Call Now!
             </h2>
             <p className="text-xl mb-8 text-blue-100">
-              Available 24/7 for emergency response
+              Water damage? Fire damage? We answer day and night.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -212,13 +213,12 @@ export default function HomePage() {
             </h2>
             <div className="prose prose-lg mx-auto text-gray-700">
               <p>
-                Founded in July 2011 by Phill and Bronwyn McGurk, Disaster Recovery provides professional
-                restoration services throughout South East Queensland. With over 25 years of industry experience,
-                we specialise in water damage, fire damage, and mould remediation services.
+                Phill and Bronwyn McGurk started our company in 2011. We have fixed thousands of homes.
+                We know how to clean water damage. We know how to remove fire damage.
               </p>
               <p>
-                Our team holds IICRC certifications and works directly with all major insurance companies.
-                We operate from our facility in Wacol and respond to emergencies 24/7.
+                Our team trains hard. We hold IICRC certificates. Insurance companies trust us.
+                We work from Wacol. We answer emergency calls every day.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <Link
