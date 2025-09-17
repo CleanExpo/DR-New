@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import LiveChat from '@/components/chat/LiveChat';
 import VoiceSearchOptimizedFAQ from '@/components/voice/VoiceSearchOptimizedFAQ';
 
 // Homepage FAQs optimized for voice search
@@ -496,9 +495,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      {/* Live Chat */}
-      <LiveChat />
 
       <Footer />
     </>

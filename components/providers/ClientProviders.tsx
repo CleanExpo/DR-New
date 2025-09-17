@@ -1,7 +1,6 @@
 'use client'
 
 import { PersonalizationProvider } from '@/lib/personalization/providers/PersonalizationProvider';
-import { ChatProvider } from '@/app/providers/ChatProvider';
 import MasterIntegrationProvider from '@/components/integration/MasterIntegrationProvider';
 
 export default function ClientProviders({
@@ -19,9 +18,7 @@ export default function ClientProviders({
           debugMode: false
         }}
       >
-        <ChatProvider enabled={true}>
-          {children}
-        </ChatProvider>
+        {children}
       </PersonalizationProvider>
     </MasterIntegrationProvider>
   );

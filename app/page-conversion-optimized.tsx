@@ -8,7 +8,6 @@ import { UrgencyBar, CountdownTimer, SurgePrice } from '@/components/conversion/
 import { MultiStepQuoteForm } from '@/components/conversion/MultiStepQuoteForm';
 import ServiceShowcase from '@/components/sections/ServiceShowcase';
 import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
-import LiveChat from '@/components/chat/LiveChat';
 
 export default function ConversionOptimizedHomePage() {
   return (
@@ -157,7 +156,6 @@ export default function ConversionOptimizedHomePage() {
       </main>
 
       <Footer />
-      <LiveChat />
     </>
   );
 }
