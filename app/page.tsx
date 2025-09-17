@@ -87,7 +87,7 @@ export default function HomePage() {
           {/* Hero Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/hero/hero-disaster-tornado.png"
+              src="/images/hero/disaster-recovery-services.jpg"
               alt="Emergency disaster recovery services Brisbane - storm and tornado damage"
               fill
               className="object-cover"
@@ -97,7 +97,7 @@ export default function HomePage() {
           </div>
           <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl voice-answer">
-              Emergency Disaster Recovery Brisbane - Ring 1300 309 361
+              Water Damage Restoration Brisbane | 24/7 Emergency
             </h1>
             <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto drop-shadow-lg voice-answer">
               24-hour water damage, fire damage, and flood restoration.

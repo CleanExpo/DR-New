@@ -4,6 +4,8 @@ const nextConfig = {
     domains: [],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   compress: true,
   poweredByHeader: false,
@@ -15,6 +17,10 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  // Optimize for production
+  productionBrowserSourceMaps: false,
+  // Enable standalone output for smaller deployments
+  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
   headers: async () => {
     return [
       {

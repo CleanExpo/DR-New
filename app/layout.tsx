@@ -7,7 +7,7 @@ import SkipLinks from '@/components/accessibility/SkipLinks';
 import ClientProviders from '@/components/providers/ClientProviders';
 
 export const metadata: Metadata = {
-  title: "Disaster Recovery Brisbane | Water Fire Damage Restoration | 1300 309 361",
+  title: "Water Damage Restoration Brisbane | 1300 309 361",
   description: "Professional disaster recovery services in Brisbane, Ipswich & Logan. 24/7 emergency water damage, fire damage restoration & mould remediation. Fast response, quality results.",
   keywords: ["disaster recovery brisbane", "water damage restoration brisbane", "fire damage restoration", "mould removal brisbane", "emergency restoration", "flood damage repair", "storm damage brisbane", "ipswich disaster recovery", "logan disaster recovery"],
   authors: [{ name: "Disaster Recovery Brisbane" }],

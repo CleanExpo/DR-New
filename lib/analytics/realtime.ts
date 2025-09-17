@@ -1,7 +1,7 @@
 // Real-time Analytics Engine
 // Provides live data streaming and real-time metrics updates
 
-import Pusher from 'pusher-js'
+// import Pusher from 'pusher-js' // Removed for performance optimization
 import { ANALYTICS_CONFIG } from './config'
 
 export interface RealtimeMetrics {
@@ -38,7 +38,7 @@ export interface AlertNotification {
 
 class RealtimeAnalytics {
   private static instance: RealtimeAnalytics
-  private pusher: Pusher | null = null
+  private pusher: any | null = null // Pusher disabled for performance
   private metrics: RealtimeMetrics
   private subscribers: Map<string, Set<(data: any) => void>> = new Map()
   private alertQueue: AlertNotification[] = []
@@ -83,43 +83,45 @@ class RealtimeAnalytics {
   }
 
   private initializePusher(): void {
-    if (typeof window !== 'undefined' && ANALYTICS_CONFIG.PUSHER.key) {
-      this.pusher = new Pusher(ANALYTICS_CONFIG.PUSHER.key, {
-        cluster: ANALYTICS_CONFIG.PUSHER.cluster,
-        forceTLS: true,
-      })
+    // Pusher disabled for performance optimization
+    // Real-time updates will use polling instead
+    if (false && typeof window !== 'undefined' && ANALYTICS_CONFIG.PUSHER.key) {
+      // this.pusher = new Pusher(ANALYTICS_CONFIG.PUSHER.key, {
+      //   cluster: ANALYTICS_CONFIG.PUSHER.cluster,
+      //   forceTLS: true,
+      // })
 
-      // Subscribe to channels
-      const analyticsChannel = this.pusher.subscribe('analytics')
-      const alertsChannel = this.pusher.subscribe('alerts')
+      // // Subscribe to channels
+      // const analyticsChannel = this.pusher.subscribe('analytics')
+      // const alertsChannel = this.pusher.subscribe('alerts')
 
-      // Bind to events
-      analyticsChannel.bind('visitor-update', (data: any) => {
-        this.updateVisitorMetrics(data)
-      })
+      // // Bind to events
+      // analyticsChannel.bind('visitor-update', (data: any) => {
+      //   this.updateVisitorMetrics(data)
+      // })
 
-      analyticsChannel.bind('conversion', (data: any) => {
-        this.handleConversion(data)
-      })
+      // analyticsChannel.bind('conversion', (data: any) => {
+      //   this.handleConversion(data)
+      // })
 
-      analyticsChannel.bind('page-view', (data: any) => {
-        this.handlePageView(data)
-      })
+      // analyticsChannel.bind('page-view', (data: any) => {
+      //   this.handlePageView(data)
+      // })
 
-      alertsChannel.bind('alert', (data: AlertNotification) => {
-        this.handleAlert(data)
-      })
+      // alertsChannel.bind('alert', (data: AlertNotification) => {
+      //   this.handleAlert(data)
+      // })
 
-      // Connection status
-      this.pusher.connection.bind('connected', () => {
-        this.connected = true
-        this.notifySubscribers('connection', { status: 'connected' })
-      })
+      // // Connection status
+      // this.pusher.connection.bind('connected', () => {
+      //   this.connected = true
+      //   this.notifySubscribers('connection', { status: 'connected' })
+      // })
 
-      this.pusher.connection.bind('disconnected', () => {
-        this.connected = false
-        this.notifySubscribers('connection', { status: 'disconnected' })
-      })
+      // this.pusher.connection.bind('disconnected', () => {
+      //   this.connected = false
+      //   this.notifySubscribers('connection', { status: 'disconnected' })
+      // })
     }
   }
 
