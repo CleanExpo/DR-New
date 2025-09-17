@@ -69,7 +69,8 @@ npm run test:performance      # Run custom performance test script
 npm run build:analyze        # Analyze bundle size (ANALYZE=true)
 
 # Vercel Deployment Monitoring
-# Primary deployment URL: https://dr-kv13xi3us-unite-group.vercel.app
+# Latest deployment URL: https://dr-gyshmkcj0-unite-group.vercel.app
+# Previous deployment URL: https://dr-kv13xi3us-unite-group.vercel.app
 # Use Playwright MCP to monitor build errors after each deployment
 
 # Build Error Detection

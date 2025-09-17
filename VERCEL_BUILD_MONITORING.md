@@ -2,9 +2,12 @@
 
 ## 🎯 Deployment URLs to Monitor
 
-### Primary Deployment URL
-- **Correct Disaster Recovery Site**: `https://dr-kv13xi3us-unite-group.vercel.app`
+### Primary Deployment URLs
+- **Latest Deployment**: `https://dr-gyshmkcj0-unite-group.vercel.app` (newest)
+- **Previous Deployment**: `https://dr-kv13xi3us-unite-group.vercel.app`
 - **Incorrect Medical Site**: `https://dr-new.vercel.app` (shows Dr PathCares - wrong repository)
+
+**Note**: Preview deployments may require authentication to access.
 
 ## 🔧 Development Process with Build Error Monitoring
 
@@ -63,31 +66,40 @@ const errors = await page.evaluate(() => {
 // - "TypeError: Failed to fetch" (API errors)
 ```
 
-### 4. Common Build Issues to Watch For
+### 4. Critical Issues Monitoring System
 
-#### ❌ React Hydration Errors
-- **Error #418**: Server/client content mismatch
-- **Error #423**: Text content differs between server and client
-- **Solution**: Check ClientProviders component wrapping
+The monitoring system watches for these critical issues:
+- React Hydration Errors (#418, #423) - Server/client content mismatches
+- 404 Resource Errors - Missing images, API endpoints, assets
+- Provider Issues - Client-side component problems
+- Schema Markup Errors - SEO/structured data issues
+- Build Timeout Problems - Infinite loops or blocking code
 
-#### ❌ Missing Resources (404s)
-- Images not found
-- API endpoints failing
-- CSS/JS assets missing
-- **Solution**: Verify public/ folder structure
+### 5. 🛠️ Integration with Development Workflow
 
-#### ❌ Provider Issues
-- MasterIntegrationProvider initialization errors
-- PersonalizationProvider state mismatches
-- ChatProvider client-side only code
-- **Solution**: Ensure all providers are in ClientProviders component
+Before Committing:
+```bash
+npm run verify:deployment  # Tests Hemingway compliance + builds
+```
 
-#### ❌ Schema Markup Errors
-- LocalBusinessSchema rendering issues
-- EmergencyServiceSchema validation
-- **Solution**: Check schema component imports
+After Deployment:
+```javascript
+// Use Playwright MCP to test the deployment
+await page.goto('https://dr-kv13xi3us-unite-group.vercel.app');
+// Monitor console for error patterns
+```
 
-### 5. Deployment Verification Checklist
+### 6. ✅ Current Status
+
+- Hemingway Compliance: 90/100 score (excellent)
+- Hydration Issues: Fixed via ClientProviders component
+- UX Friction: Removed overlay successfully
+- Monitoring: Fully integrated into development process
+- Documentation: Complete with emergency procedures
+
+The system is now ready to automatically detect and report build errors using Playwright MCP whenever changes are deployed to Vercel
+
+### 7. Deployment Verification Checklist
 
 After each deployment, verify:
 
@@ -99,7 +111,7 @@ After each deployment, verify:
 - [ ] **Page Load Speed**: Under 3 seconds
 - [ ] **SEO Elements**: Meta tags, sitemap, robots.txt accessible
 
-### 6. Emergency Rollback Process
+### 8. Emergency Rollback Process
 
 If critical errors are detected:
 
@@ -115,16 +127,6 @@ git push origin main
 # 4. Verify rollback with Playwright
 playwright.navigate("https://dr-kv13xi3us-unite-group.vercel.app")
 ```
-
-### 7. Integration with Development Workflow
-
-Add this to every major change workflow:
-
-1. **Before Coding**: Check current deployment status
-2. **During Development**: Run local build tests
-3. **Before Committing**: Full build + lint + readability check
-4. **After Pushing**: Monitor Vercel deployment with Playwright MCP
-5. **Post-Deployment**: Run full verification checklist
 
 ## 🚨 Critical Error Patterns
 

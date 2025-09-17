@@ -12,7 +12,8 @@
     "performance": "npm run build && npm run start & sleep 5 && npx lighthouse http://localhost:3000 --output=json --output-path=./lighthouse-report.json --only-categories=performance",
     "test:performance": "node scripts/performance-test.js",
     "verify:deployment": "node scripts/simple-readability-test.js && npm run build",
-    "monitor:vercel": "echo 'Primary deployment: https://dr-kv13xi3us-unite-group.vercel.app' && echo 'Use Playwright MCP to test for build errors'"
+    "identify:fixes": "node scripts/identify-build-fixes.js",
+    "monitor:vercel": "echo 'Latest deployment: https://dr-gyshmkcj0-unite-group.vercel.app' && echo 'Previous deployment: https://dr-kv13xi3us-unite-group.vercel.app' && echo 'Use Playwright MCP to test for build errors'"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
