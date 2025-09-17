@@ -5,8 +5,8 @@ import { Card } from '@/components/ui/Card'
 import {
   LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie,
   Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  RadarChart, RadarAxis, PolarGrid, Radar, PolarAngleAxis, PolarRadiusAxis,
-  Treemap, Sankey
+  RadarChart, PolarGrid, Radar, PolarAngleAxis, PolarRadiusAxis,
+  Treemap
 } from 'recharts'
 import {
   TrendingUp, Users, MousePointer, Target, DollarSign,
