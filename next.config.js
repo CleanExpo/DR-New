@@ -25,29 +25,41 @@ const nextConfig = {
   // output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
   // Webpack optimizations
   webpack: (config, { isServer }) => {
-    // Optimize chunks
-    config.optimization = {
-      ...config.optimization,
-      splitChunks: {
-        chunks: 'all',
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          lib: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'lib',
-            priority: 10,
-            reuseExistingChunk: true,
-          },
-          commons: {
-            name: 'commons',
-            minChunks: 2,
-            priority: 5,
-            reuseExistingChunk: true,
+    // Only optimize chunks for client-side bundles
+    if (!isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: 'all',
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            lib: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'lib',
+              priority: 10,
+              reuseExistingChunk: true,
+              enforce: true,
+            },
+            commons: {
+              name: 'commons',
+              minChunks: 2,
+              priority: 5,
+              reuseExistingChunk: true,
+            },
           },
         },
-      },
-    };
+      };
+    }
+
+    // Fix for 'self is not defined' error
+    if (isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        self: false,
+      };
+    }
+
     return config;
   },
   headers: async () => {
