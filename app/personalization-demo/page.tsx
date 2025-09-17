@@ -108,7 +108,7 @@ export default function PersonalizationDemoPage() {
                     <Badge
                       variant={
                         profile?.urgencyLevel === 'critical' ? 'destructive' :
-                        profile?.urgencyLevel === 'high' ? 'warning' :
+                        profile?.urgencyLevel === 'high' ? 'default' :
                         'secondary'
                       }
                     >
@@ -252,7 +252,7 @@ export default function PersonalizationDemoPage() {
                             <Badge
                               variant={
                                 rec.urgency === 'critical' ? 'destructive' :
-                                rec.urgency === 'high' ? 'warning' :
+                                rec.urgency === 'high' ? 'default' :
                                 'secondary'
                               }
                             >
