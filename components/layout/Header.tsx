@@ -1,14 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50" role="banner">
+    <header
+      className={`bg-white border-b border-gray-200 sticky top-0 z-50 transition-shadow duration-200 ${
+        hasScrolled ? 'shadow-md' : ''
+      }`}
+      role="banner"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -25,6 +40,12 @@ export default function Header() {
 
           {/* Desktop Navigation - Simplified */}
           <nav className="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
+            <Link href="/" className="text-gray-600 hover:text-gray-900 font-medium flex items-center" aria-label="Home">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+              </svg>
+              <span className="ml-1">Home</span>
+            </Link>
             <Link href="/services" className="text-gray-600 hover:text-gray-900 font-medium">
               Services
             </Link>
@@ -71,6 +92,16 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="space-y-1" role="navigation" aria-label="Mobile navigation">
+              <Link
+                href="/"
+                className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded flex items-center"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                Home
+              </Link>
               <Link
                 href="/services"
                 className="block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-gray-900 rounded"
