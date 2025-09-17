@@ -7,10 +7,8 @@ import Image from 'next/image';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0);
     };
@@ -20,27 +18,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent hydration issues
-  if (!mounted) {
-    return (
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50" role="banner">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center" aria-label="Disaster Recovery - Home">
-              <Image
-                src="/images/logos/disaster-recovery-logo.png"
-                alt="Disaster Recovery"
-                width={180}
-                height={50}
-                className="h-14 w-auto"
-                priority
-              />
-            </Link>
-          </div>
-        </div>
-      </header>
-    );
-  }
 
   return (
     <header
@@ -67,7 +44,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-2 flex-1 justify-center max-w-3xl mx-auto" role="navigation" aria-label="Main navigation">
             <Link
               href="/"
-              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-xl overflow-hidden"
+              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden border border-zinc-400/30"
               aria-label="Home"
             >
               <span className="relative z-10 flex items-center gap-2 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
@@ -81,7 +58,7 @@ export default function Header() {
 
             <Link
               href="/services"
-              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-xl overflow-hidden"
+              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
             >
               <span className="relative z-10 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
                 Services
@@ -91,7 +68,7 @@ export default function Header() {
 
             <Link
               href="/about"
-              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-xl overflow-hidden"
+              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
             >
               <span className="relative z-10 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
                 About
@@ -101,7 +78,7 @@ export default function Header() {
 
             <Link
               href="/pricing"
-              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-xl overflow-hidden"
+              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
             >
               <span className="relative z-10 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
                 Pricing
@@ -111,7 +88,7 @@ export default function Header() {
 
             <Link
               href="/contact"
-              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-xl overflow-hidden"
+              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
             >
               <span className="relative z-10 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
                 Contact
@@ -137,7 +114,7 @@ export default function Header() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-3 rounded-full bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 text-gray-700 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 hover:text-white transition-all duration-300 shadow-md hover:shadow-xl"
+              className="md:hidden p-3 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 text-gray-700 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 hover:text-white transition-all duration-300 shadow-lg hover:shadow-2xl"
               aria-label="Menu"
               aria-expanded={isMenuOpen}
             >
@@ -155,7 +132,7 @@ export default function Header() {
             <nav className="space-y-2" role="navigation" aria-label="Mobile navigation">
               <Link
                 href="/"
-                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-md hover:shadow-xl group overflow-hidden relative"
+                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden relative"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <div className="flex items-center relative z-10">
@@ -169,7 +146,7 @@ export default function Header() {
 
               <Link
                 href="/services"
-                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-md hover:shadow-xl group overflow-hidden relative"
+                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden relative"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative z-10">Services</span>
@@ -178,7 +155,7 @@ export default function Header() {
 
               <Link
                 href="/about"
-                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-md hover:shadow-xl group overflow-hidden relative"
+                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden relative"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative z-10">About</span>
@@ -187,7 +164,7 @@ export default function Header() {
 
               <Link
                 href="/pricing"
-                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-md hover:shadow-xl group overflow-hidden relative"
+                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden relative"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative z-10">Pricing</span>
@@ -196,7 +173,7 @@ export default function Header() {
 
               <Link
                 href="/contact"
-                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-slate-100 via-slate-200 to-slate-300 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-md hover:shadow-xl group overflow-hidden relative"
+                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden relative"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative z-10">Contact</span>
