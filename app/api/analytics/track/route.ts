@@ -182,7 +182,11 @@ async function storeAnalytics(data: any) {
 }
 
 async function triggerRealtimeUpdate(data: any) {
-  // Send to Pusher for real-time updates
+  // Send to real-time updates service when configured
+  // NOTE: Pusher integration disabled until package is installed
+  // To enable: npm install pusher and uncomment the code below
+
+  /*
   if (process.env.PUSHER_APP_ID) {
     try {
       const Pusher = require('pusher')
@@ -219,10 +223,19 @@ async function triggerRealtimeUpdate(data: any) {
       console.error('Pusher update failed:', error)
     }
   }
+  */
+
+  // For now, just log the real-time update
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Real-time update (Pusher disabled):', data.type)
+  }
 }
 
 async function triggerAlert(type: string, data: any) {
   // Send alert notification
+  // NOTE: Pusher integration disabled until package is installed
+
+  /*
   if (process.env.PUSHER_APP_ID) {
     try {
       const Pusher = require('pusher')
@@ -246,6 +259,10 @@ async function triggerAlert(type: string, data: any) {
       console.error('Alert trigger failed:', error)
     }
   }
+  */
+
+  // For now, just log the alert
+  console.log('Alert triggered (Pusher disabled):', type, data)
 }
 
 // GET endpoint for retrieving analytics data

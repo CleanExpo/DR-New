@@ -14,14 +14,15 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  experimental: {
-    optimizeCss: true,
-    webpackBuildWorker: true,
-  },
+  // Removed experimental features causing build issues
+  // experimental: {
+  //   optimizeCss: true,
+  //   webpackBuildWorker: true,
+  // },
   // Optimize for production
   productionBrowserSourceMaps: false,
-  // Enable standalone output for smaller deployments
-  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
+  // Standalone output disabled due to Vercel deployment issues
+  // output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
   // Webpack optimizations
   webpack: (config, { isServer }) => {
     // Optimize chunks
