@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePersonalization } from '@/lib/personalization';
-import { Button } from '../ui/button';
+import { Button } from '../ui';
 import { Phone, AlertCircle, Clock, Shield } from 'lucide-react';
 
 export function PersonalizedHero() {
