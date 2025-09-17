@@ -33,9 +33,27 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-                <div className="space-y-4 text-gray-700">
+
+                {/* Owners' Photo with Border */}
+                <div className="mb-6 relative">
+                  <div className="rounded-lg overflow-hidden shadow-xl border-4 border-blue-600 bg-white p-1">
+                    <Image
+                      src="/images/team/phill-bronwyn-mcgurk.png"
+                      alt="Phill and Bronwyn McGurk - Founders of Disaster Recovery"
+                      width={500}
+                      height={400}
+                      className="rounded-lg w-full h-auto"
+                      priority
+                    />
+                  </div>
+                  <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                    Phill & Bronwyn McGurk - Founders
+                  </div>
+                </div>
+
+                <div className="space-y-4 text-gray-700 mt-8">
                   <p>
-                    Founded in July 2011 by Phill and Bronwyn McGurk, Disaster Recovery emerged from a vision to revolutionize the disaster restoration industry in Queensland. With over 25 years of combined experience, the McGurks recognized the need for a restoration company that combined technical excellence with genuine compassion for families and businesses in crisis.
+                    Founded in July 2011 by Phill and Bronwyn McGurk, Disaster Recovery emerged from a vision to revolutionise the disaster restoration industry in Queensland. With over 25 years of combined experience, the McGurks recognised the need for a restoration company that combined technical excellence with genuine compassion for families and businesses in crisis.
                   </p>
                   <p>
                     Phill McGurk, a Master Restorer and industry pioneer, brought his extensive technical expertise and innovative approach to restoration. His leadership has been instrumental in developing some of the industry's most advanced restoration techniques, including being involved in developing the first ASQA-approved restoration course in Australia.
