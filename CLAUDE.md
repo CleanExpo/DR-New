@@ -20,6 +20,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Production URL**: https://disasterrecovery.com.au
 - **Emergency Hotline**: 1300 309 361
 - **Service Areas**: Brisbane, Ipswich, Logan, Gold Coast, Sunshine Coast
+- **Language**: 100% Australian English (colour, odour, specialised, optimised, etc.)
 
 ## 📊 PROJECT STATUS
 
@@ -292,6 +293,32 @@ cp .env.production .env.local # Use production values for testing
 - Implement proper error boundaries
 - Avoid using OpenAI client directly in browser - use API routes
 
+### Australian English Requirements
+**THIS IS A 100% AUSTRALIAN WEBSITE - ALL CONTENT MUST USE AUSTRALIAN ENGLISH**
+
+Common Australian English spellings to use:
+- **-ise endings**: organise, optimise, specialise, recognise, prioritise, customise, utilise, analyse
+- **-our endings**: colour, odour, honour, favour, labour, behaviour, vapour, neighbour
+- **-re endings**: centre, theatre, metre, fibre, litre
+- **Double l**: modelling, travelling, labelling, signalling
+- **-ogue endings**: catalogue, dialogue, analogue
+- **Other**: mould (not mold), programme (for events), tyre (for vehicles)
+
+Australian terminology:
+- **WHS** (Work Health and Safety) not OSHA
+- **Tradesperson/tradie** not contractor
+- **Suburb** not neighborhood
+- **Mobile** not cell phone
+- **Petrol** not gas/gasoline
+- **Lift** not elevator (though elevator is acceptable)
+- **Car park** not parking lot
+
+Grammar notes:
+- Use British/Australian date format: DD/MM/YYYY
+- Use metric system exclusively (metres, kilometres, litres)
+- Currency: AUD or $ (Australian dollars)
+- Time: 24-hour format acceptable, or AM/PM
+
 ### Critical Files & Modules
 
 #### Core Application
@@ -357,6 +384,11 @@ cp .env.production .env.local # Use production values for testing
 ---
 
 ## 📝 CHANGELOG
+
+### Version 2.0.1 (January 2025)
+- Added comprehensive Australian English requirements and guidelines
+- Enforced 100% Australian English spelling and terminology
+- Added language specification to project identity
 
 ### Version 2.0.0 (January 2025)
 - Updated company branding from "Disaster Recovery QLD" to "Disaster Recovery"

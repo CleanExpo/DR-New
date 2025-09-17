@@ -8,7 +8,7 @@ A modern, premium website for Disaster Recovery services in Brisbane, Ipswich, a
 - **TypeScript** for type safety
 - **Tailwind CSS** for styling
 - **Responsive Design** for all devices
-- **SEO Optimized** with proper meta tags
+- **SEO Optimised** with proper meta tags
 - **Performance Focused** minimal dependencies
 
 ## Services Covered
@@ -71,7 +71,7 @@ npm start
 - **Emergency Focus** - Clear CTAs for 24/7 emergency response
 - **Educational Content** - Detailed information about damage categories
 - **Mobile-First** - Responsive design for all devices
-- **Fast Loading** - Optimized for performance and SEO
+- **Fast Loading** - Optimised for performance and SEO
 
 ## Target Audience
 
