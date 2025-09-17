@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle, AlertCircle, Phone, Shield, Clock, TrendingUp, DollarSign, XCircle } from 'lucide-react';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'Transparent Pricing | Disaster Recovery Brisbane | Service Fees',
@@ -183,6 +185,7 @@ export default function PricingPage() {
 
   return (
     <>
+      <Header />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
@@ -646,6 +649,7 @@ export default function PricingPage() {
         </div>
       </section>
     </main>
+    <Footer />
     </>
   );
 }
