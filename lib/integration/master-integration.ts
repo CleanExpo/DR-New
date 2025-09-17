@@ -351,7 +351,8 @@ class MasterIntegration {
     }
 
     if (this.integrationStatus.get('personalization')) {
-      personalizationEngine.trackEvent('custom_action', data)
+      // TODO: Implement trackEvent method in PersonalizationEngine
+      // personalizationEngine.trackEvent('custom_action', data)
     }
   }
 
