@@ -49,7 +49,6 @@ const stats = [
 
 export default function HeroPremium() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMounted, setIsMounted] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -90,27 +89,14 @@ export default function HeroPremium() {
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
           } : undefined}
         >
-          {false && currentHero.video && currentSlide === 0 ? (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover scale-110"
-              onLoadedData={() => setIsVideoLoaded(true)}
-            >
-              <source src={currentHero.video} type="video/mp4" />
-            </video>
-          ) : (
-            <Image
-              src={currentHero.image}
-              alt={currentHero.title}
-              fill
-              priority={currentSlide === 0}
-              className="object-cover scale-110"
-              sizes="100vw"
-            />
-          )}
+          <Image
+            src={currentHero.image}
+            alt={currentHero.title}
+            fill
+            priority={currentSlide === 0}
+            className="object-cover scale-110"
+            sizes="100vw"
+          />
         </motion.div>
       </AnimatePresence>
 
