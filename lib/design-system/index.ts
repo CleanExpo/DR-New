@@ -18,37 +18,7 @@ export type {
   BreakpointToken
 } from './core/tokens'
 
-// Emergency & Trust Components
-export { EmergencyBar } from './components/emergency-bar'
-export { TrustIndicators } from './components/trust-indicators'
-
-// Mobile & CTA Components
-export { MobileStickyCtaComponent as MobileStickyCTA } from './components/mobile-sticky-cta'
-
-// Hero & Service Components
-export { ServiceHero } from './components/service-hero'
-
-// Location & Trust Components
-export { SuburbTrust, brisbaneSuburbs } from './components/suburb-trust'
-export type { SuburbData } from './components/suburb-trust'
-
-// Gallery & Visual Components
-export { BeforeAfterGallery } from './components/before-after-gallery'
-
-// Information & FAQ Components
-export { VoiceSearchFAQ } from './components/voice-search-faq'
-
-// Process & Insurance Components
-export { InsuranceProcess } from './components/insurance-process'
-
-// Team & Credentials Components
-export { TeamCredentials } from './components/team-credentials'
-
-// Maps & Coverage Components
-export { ResponseTimeMap } from './components/response-time-map'
-
-// Testimonials & Reviews Components
-export { TestimonialCarousel } from './components/testimonial-carousel'
+// Component exports removed - components need to be rebuilt
 
 // Utility Functions
 export const utils = {
