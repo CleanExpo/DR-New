@@ -28,10 +28,6 @@ const Reviews = dynamic(() => import('@/components/sections/TestimonialsCarousel
   ssr: false, // Client-side only for testimonials
 });
 
-const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
-  loading: () => <div className="h-64 bg-white animate-pulse" />,
-  ssr: true,
-});
 
 const Footer = dynamic(() => import('@/components/layout/Footer'), {
   loading: () => <div className="h-64 bg-gray-900 animate-pulse" />,
