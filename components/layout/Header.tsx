@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,13 +21,13 @@ export default function Header() {
           {/* Logo - Acts as Home Button */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center group" aria-label="Disaster Recovery Brisbane - Home">
-              <img
+              <Image
                 src="/images/logo-full.svg"
                 alt="Disaster Recovery Brisbane"
+                width={200}
+                height={64}
                 className="h-16 w-auto"
-                onError={(e) => {
-                  e.currentTarget.src = '/images/logo.svg';
-                }}
+                priority
               />
             </Link>
           </div>

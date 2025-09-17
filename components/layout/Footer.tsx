@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -8,9 +9,11 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <img
+              <Image
                 src="/images/logo-compact.svg"
                 alt="Disaster Recovery Brisbane"
+                width={56}
+                height={56}
                 className="h-14 w-14 mr-3 bg-white rounded-lg p-1"
               />
               <div>

@@ -9,13 +9,24 @@ export default function HomePage() {
     <>
       <Header />
       <main id="main-content" role="main" aria-label="Main content">
-        {/* Simple, Truthful Hero Section */}
-        <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-gray-50 to-white">
-          <div className="max-w-4xl mx-auto px-6 py-16 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        {/* Hero Section with Background Image */}
+        <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+          {/* Hero Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/hero/disaster-recovery-services.jpg"
+              alt="Disaster Recovery Services Brisbane"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60" />
+          </div>
+          <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl">
               Brisbane Disaster Recovery Experts
             </h1>
-            <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto drop-shadow-lg">
               We fix water damage fast. We clean fire damage completely. We remove mould safely.
               Brisbane families trust us. We serve Brisbane, Ipswich and Logan.
             </p>
@@ -40,7 +51,7 @@ export default function HomePage() {
             </div>
 
             {/* Location */}
-            <p className="text-gray-700">
+            <p className="text-gray-200">
               <span className="font-medium">Office:</span> 4/17 Tile St, Wacol, QLD 4076
             </p>
           </div>
@@ -57,50 +68,67 @@ export default function HomePage() {
                 {
                   title: "Water Damage Restoration Brisbane",
                   description: "Flooded? We extract water. We dry your home. We stop mould growth.",
-                  link: "/services/water-damage-restoration"
+                  link: "/services/water-damage-restoration",
+                  image: "/images/services/water-damage-restoration.webp"
                 },
                 {
                   title: "Fire Damage Restoration Brisbane",
                   description: "Fire destroyed your home? We clean smoke. We remove soot. We restore everything.",
-                  link: "/services/fire-damage-restoration"
+                  link: "/services/fire-damage-restoration",
+                  image: "/images/services/fire-damage-restoration.webp"
                 },
                 {
                   title: "Mould Removal Brisbane",
                   description: "Mould makes you sick. We remove it safely. We stop it coming back.",
-                  link: "/services/mould-remediation"
+                  link: "/services/mould-remediation",
+                  image: "/images/services/mould-remediation.webp"
                 },
                 {
                   title: "Storm Damage Repair",
                   description: "Storm hit? We respond in 1 hour. We fix flood damage fast.",
-                  link: "/services/storm-damage"
+                  link: "/services/storm-damage",
+                  image: "/images/hero/disaster-recovery-services.jpg"
                 },
                 {
                   title: "Trauma Scene Cleaning",
                   description: "We clean dangerous scenes. We work safely. We care about families.",
-                  link: "/services/biohazard-cleaning"
+                  link: "/services/biohazard-cleaning",
+                  image: "/images/services/crime-scene-remediation.webp"
                 },
                 {
                   title: "Commercial Restoration",
                   description: "Business flooded? We get you open fast. Insurance pays.",
-                  link: "/services"
+                  link: "/services",
+                  image: "/images/services/commercial-residential.png"
                 }
               ].map((service, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-700 mb-4">
-                    {service.description}
-                  </p>
-                  <Link
-                    href={service.link}
-                    className="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center"
-                  >
-                    Learn more
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
+                <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  {/* Service Image */}
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-700 mb-4">
+                      {service.description}
+                    </p>
+                    <Link
+                      href={service.link}
+                      className="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center group"
+                    >
+                      Learn more
+                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
@@ -205,29 +233,92 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Professional Equipment Gallery */}
+        <section className="py-16 bg-white" aria-labelledby="equipment-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 id="equipment-heading" className="text-3xl font-bold text-gray-900 text-center mb-4">
+              Professional Equipment
+            </h2>
+            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+              We use industry-leading equipment to ensure fast, effective restoration
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                {
+                  title: "Industrial Dehumidifiers",
+                  image: "/images/optimized/equipment/3D LGR Dehumidifier.png",
+                  description: "Powerful moisture extraction"
+                },
+                {
+                  title: "Air Movers",
+                  image: "/images/optimized/equipment/3D Air Mover.png",
+                  description: "Rapid structural drying"
+                },
+                {
+                  title: "HEPA Filters",
+                  image: "/images/optimized/equipment/3D Hepa Filters.png",
+                  description: "Clean air restoration"
+                },
+                {
+                  title: "Thermal Foggers",
+                  image: "/images/optimized/equipment/3D Thermal Fogging.png",
+                  description: "Odour elimination"
+                }
+              ].map((equipment, index) => (
+                <div key={index} className="bg-gray-50 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                  <div className="relative h-32 w-full mb-3">
+                    <Image
+                      src={equipment.image}
+                      alt={equipment.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h3 className="text-sm font-semibold text-gray-900 mb-1">
+                    {equipment.title}
+                  </h3>
+                  <p className="text-xs text-gray-600">
+                    {equipment.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Company Info */}
         <section className="py-16 bg-gray-50" aria-labelledby="company-info-heading">
           <div className="max-w-4xl mx-auto px-6">
             <h2 id="company-info-heading" className="text-3xl font-bold text-gray-900 text-center mb-12">
               About Disaster Recovery
             </h2>
-            <div className="prose prose-lg mx-auto text-gray-700">
-              <p>
-                Phill and Bronwyn McGurk started our company in 2011. We have fixed thousands of homes.
-                We know how to clean water damage. We know how to remove fire damage.
-              </p>
-              <p>
-                Our team trains hard. We hold IICRC certificates. Insurance companies trust us.
-                We work from Wacol. We answer emergency calls every day.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <Link
-                  href="/about"
-                  className="text-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors"
-                >
-                  Learn More About Us
-                </Link>
+            <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+              <div className="relative h-64 rounded-lg overflow-hidden">
+                <Image
+                  src="/images/heroes/vehicles-fleet.jpg"
+                  alt="Disaster Recovery Fleet"
+                  fill
+                  className="object-cover"
+                />
               </div>
+              <div className="prose prose-lg text-gray-700">
+                <p>
+                  Phill and Bronwyn McGurk started our company in 2011. We have fixed thousands of homes.
+                  We know how to clean water damage. We know how to remove fire damage.
+                </p>
+                <p>
+                  Our team trains hard. We hold IICRC certificates. Insurance companies trust us.
+                  We work from Wacol. We answer emergency calls every day.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/about"
+                className="text-center px-6 py-3 bg-white text-blue-600 font-medium rounded-lg border-2 border-blue-600 hover:bg-blue-50 transition-colors"
+              >
+                Learn More About Us
+              </Link>
             </div>
           </div>
         </section>
