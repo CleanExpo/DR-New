@@ -11,6 +11,9 @@ export * from './design-tokens';
 // Export component patterns
 export * from './component-patterns';
 
+// Import getCSSVariables for local use
+import { getCSSVariables } from './design-tokens';
+
 // Re-export commonly used tokens for convenience
 export {
   colors,
