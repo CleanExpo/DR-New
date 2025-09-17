@@ -23,6 +23,7 @@ import {
 
 import {
   buttonPatterns,
+  cardPatterns,
   feedbackPatterns
 } from './component-patterns';
 
