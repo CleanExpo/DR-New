@@ -130,14 +130,16 @@ const PartnershipsAlliances = () => {
                         </div>
                       </div>
                       <div className="text-xs text-gray-500">
-                        {partner.level || partner.role || partner.tech}
+                        {'level' in partner && partner.level}
+                        {'role' in partner && partner.role}
+                        {'tech' in partner && partner.tech}
                       </div>
-                      {partner.since && (
+                      {'since' in partner && partner.since && (
                         <div className="text-xs text-blue-600 font-semibold mt-1">
                           Since {partner.since}
                         </div>
                       )}
-                      {partner.certification && (
+                      {'certification' in partner && partner.certification && (
                         <div className="text-xs text-green-600 font-semibold mt-1">
                           {partner.certification}
                         </div>
