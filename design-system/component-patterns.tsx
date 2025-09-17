@@ -521,13 +521,12 @@ export const navigationPatterns = {
   // Header navigation
   header: {
     base: {
-      backgroundColor: colors.neutral[0],
+      backgroundColor: 'rgba(255, 255, 255, 0.95)',
       borderBottom: `1px solid ${colors.neutral[200]}`,
       position: 'sticky',
       top: 0,
       zIndex: 40,
       backdropFilter: 'blur(10px)',
-      backgroundColor: 'rgba(255, 255, 255, 0.95)',
     },
 
     container: {
