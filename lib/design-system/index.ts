@@ -8,7 +8,8 @@
  */
 
 // Core Design Tokens
-export { designTokens } from './core/tokens'
+import { designTokens } from './core/tokens'
+export { designTokens }
 export type {
   ColorToken,
   SpacingToken,
