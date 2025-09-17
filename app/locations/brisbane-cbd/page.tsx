@@ -4,31 +4,31 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Water Damage Restoration New Farm | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in New Farm Brisbane. Heritage homes, luxury apartments, riverside properties. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["new farm water damage","luxury home restoration","riverside flooding"],
+  title: 'Water Damage Restoration Brisbane CBD | 24/7 Emergency Response',
+  description: 'Professional water damage restoration in Brisbane CBD Brisbane. Office towers, retail spaces, underground parking. IICRC certified, insurance approved. Call 1300 309 361.',
+  keywords: ["cbd water damage","commercial restoration brisbane","office flooding"],
 };
 
-export default function NewFarmPage() {
+export default function BrisbaneCBDPage() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://disasterrecovery.com.au/locations/new-farm",
-    "name": "Disaster Recovery - New Farm",
+    "@id": "https://disasterrecovery.com.au/locations/brisbane-cbd",
+    "name": "Disaster Recovery - Brisbane CBD",
     "image": "https://disasterrecovery.com.au/images/hero/disaster-recovery-services.jpg",
     "telephone": "1300 309 361",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Servicing New Farm",
-      "addressLocality": "New Farm",
+      "streetAddress": "Servicing Brisbane CBD",
+      "addressLocality": "Brisbane CBD",
       "addressRegion": "QLD",
-      "postalCode": "4005",
+      "postalCode": "4000",
       "addressCountry": "AU"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": -27.4705,
-      "longitude": 153.0493
+      "latitude": -27.4698,
+      "longitude": 153.0251
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -36,11 +36,11 @@ export default function NewFarmPage() {
       "opens": "00:00",
       "closes": "23:59"
     },
-    "priceRange": "$$$",
+    "priceRange": "$$",
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "189"
+      "ratingValue": "4.8",
+      "reviewCount": "234"
     }
   };
 
@@ -56,10 +56,10 @@ export default function NewFarmPage() {
         <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Water Damage Restoration New Farm Brisbane
+              Water Damage Restoration Brisbane CBD Brisbane
             </h1>
             <p className="text-xl mb-8">
-              Heritage homes, luxury apartments, riverside properties • 24/7 Emergency Response • Insurance Approved
+              Office towers, retail spaces, underground parking • 24/7 Emergency Response • Insurance Approved
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a
@@ -78,21 +78,21 @@ export default function NewFarmPage() {
             <div className="grid md:grid-cols-2 gap-12">
               <div>
                 <h2 className="text-3xl font-bold mb-6">
-                  New Farm's Trusted Water Damage Specialists
+                  Brisbane CBD's Trusted Water Damage Specialists
                 </h2>
                 <p className="text-lg mb-4">
-                  Our expert team provides rapid water damage restoration services throughout New Farm.
-                  With extensive experience in heritage homes, luxury apartments, riverside properties, we understand the unique challenges
-                  of properties in New Farm 4005.
+                  Our expert team provides rapid water damage restoration services throughout Brisbane CBD.
+                  With extensive experience in office towers, retail spaces, underground parking, we understand the unique challenges
+                  of properties in Brisbane CBD 4000.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">✓</span>
-                    <span>Rapid response to New Farm emergencies</span>
+                    <span>Rapid response to Brisbane CBD emergencies</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">✓</span>
-                    <span>Local knowledge of New Farm property types</span>
+                    <span>Local knowledge of Brisbane CBD property types</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-green-600 mr-2">✓</span>
@@ -106,7 +106,7 @@ export default function NewFarmPage() {
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-4">
-                  Services We Provide in New Farm
+                  Services We Provide in Brisbane CBD
                 </h3>
                 <ul className="space-y-2">
                   <li>• Emergency water extraction and drying</li>
@@ -128,20 +128,20 @@ export default function NewFarmPage() {
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold mb-8 text-center">
-              Why New Farm Properties Choose Disaster Recovery
+              Why Brisbane CBD Properties Choose Disaster Recovery
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <h3 className="text-xl font-bold mb-3">Local Expertise</h3>
                 <p>
-                  Deep understanding of New Farm's unique property characteristics,
-                  from heritage homes, luxury apartments, riverside properties.
+                  Deep understanding of Brisbane CBD's unique property characteristics,
+                  from office towers, retail spaces, underground parking.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <h3 className="text-xl font-bold mb-3">Fast Response</h3>
                 <p>
-                  Our emergency teams can reach New Farm quickly,
+                  Our emergency teams can reach Brisbane CBD quickly,
                   minimizing damage and reducing restoration costs.
                 </p>
               </div>
@@ -160,10 +160,10 @@ export default function NewFarmPage() {
         <section className="py-16 bg-blue-600 text-white">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">
-              New Farm Emergency Water Damage Response
+              Brisbane CBD Emergency Water Damage Response
             </h2>
             <p className="text-xl mb-8">
-              Servicing all of New Farm 4005 with rapid 24/7 emergency response.
+              Servicing all of Brisbane CBD 4000 with rapid 24/7 emergency response.
               Don't let water damage get worse - call our expert team now.
             </p>
             <a
