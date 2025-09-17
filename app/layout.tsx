@@ -5,6 +5,7 @@ import { AggregateRatingSchema } from '@/components/schema/AggregateRatingSchema
 import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import SkipLinks from '@/components/accessibility/SkipLinks';
 import ClientProviders from '@/components/providers/ClientProviders';
+import MobileStickyCAT from '@/components/ui/MobileStickyCAT';
 
 export const metadata: Metadata = {
   title: "Water Damage Restoration Brisbane | 1300 309 361",
@@ -144,6 +145,9 @@ export default function RootLayout({
         <SchemaMarkup type="FAQPage" />
 
           {children}
+
+          {/* Mobile Sticky Call-to-Action */}
+          <MobileStickyCAT />
         </ClientProviders>
       </body>
     </html>
