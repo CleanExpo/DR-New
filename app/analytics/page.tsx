@@ -56,7 +56,7 @@ export default function AnalyticsDashboard() {
               </h1>
               <div className="flex items-center gap-2">
                 <div className={`h-2 w-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'} animate-pulse`} />
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-700">
                   {isConnected ? 'Live' : 'Connecting...'}
                 </span>
               </div>
@@ -65,7 +65,7 @@ export default function AnalyticsDashboard() {
             <div className="flex items-center space-x-4">
               {/* Alert Indicator */}
               <button className="relative p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                <Bell className="h-5 w-5 text-gray-600" />
+                <Bell className="h-5 w-5 text-gray-700" />
                 {alerts.length > 0 && (
                   <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full flex items-center justify-center">
                     <span className="text-xs text-white">{alerts.length}</span>

@@ -63,7 +63,7 @@ export default function ConversionOptimizedHomePage() {
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Get Your Free Quote in 60 Seconds
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-700">
                 No obligations. No hidden fees. Just honest pricing.
               </p>
             </div>

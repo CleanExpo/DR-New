@@ -206,7 +206,7 @@ export default function ChatDashboard() {
         <Card>
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-700">
                 Active Chats
               </CardTitle>
               <MessageSquare className="w-4 h-4 text-blue-600" />
@@ -224,7 +224,7 @@ export default function ChatDashboard() {
         <Card>
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-700">
                 Avg Response Time
               </CardTitle>
               <Clock className="w-4 h-4 text-green-600" />
@@ -242,7 +242,7 @@ export default function ChatDashboard() {
         <Card>
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-700">
                 Escalation Rate
               </CardTitle>
               <AlertTriangle className="w-4 h-4 text-yellow-600" />
@@ -260,7 +260,7 @@ export default function ChatDashboard() {
         <Card>
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-700">
                 Satisfaction
               </CardTitle>
               <Star className="w-4 h-4 text-yellow-500" />
@@ -278,7 +278,7 @@ export default function ChatDashboard() {
         <Card>
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-700">
                 Conversion Rate
               </CardTitle>
               <Target className="w-4 h-4 text-purple-600" />

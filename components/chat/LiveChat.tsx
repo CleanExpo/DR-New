@@ -219,14 +219,21 @@ export default function LiveChat() {
               </span>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            {/* Messages with ARIA live region for screen readers */}
+            <div
+              className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+              role="log"
+              aria-live="polite"
+              aria-label="Chat messages"
+            >
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                  role="article"
+                  aria-label={`${message.type === 'user' ? 'You' : message.name || 'Assistant'}: ${message.text}`}
                 >
                   <div className={`max-w-[80%] ${message.type === 'user' ? 'order-2' : 'order-1'}`}>
                     {message.name && message.type !== 'user' && (
@@ -248,12 +255,15 @@ export default function LiveChat() {
                 </motion.div>
               ))}
 
-              {/* Typing Indicator */}
+              {/* Typing Indicator with ARIA announcement */}
               {isTyping && (
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex justify-start"
+                  role="status"
+                  aria-live="polite"
+                  aria-label="Assistant is typing"
                 >
                   <div className="bg-white text-gray-800 border border-gray-200 px-4 py-3 rounded-2xl rounded-bl-sm">
                     <div className="flex gap-1">
@@ -309,12 +319,14 @@ export default function LiveChat() {
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   placeholder="Type your message..."
+                  aria-label="Type your message"
                   className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 <button
                   type="submit"
                   className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
                   disabled={!inputMessage.trim()}
+                  aria-label="Send message"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

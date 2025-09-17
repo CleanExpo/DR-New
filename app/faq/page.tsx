@@ -194,7 +194,7 @@ export default function FAQPage() {
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
               Still Need Immediate Help?
             </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
               Our emergency response team is available 24/7 to answer questions and provide immediate assistance.
               Don't wait when disaster strikes - every minute counts.
             </p>
@@ -207,7 +207,7 @@ export default function FAQPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Call Immediately</h3>
-                <p className="text-gray-600">24/7 emergency hotline</p>
+                <p className="text-gray-700">24/7 emergency hotline</p>
                 <a href="tel:1300309361" className="text-primary-600 font-bold text-lg">1300 309 361</a>
               </div>
 
@@ -218,7 +218,7 @@ export default function FAQPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">1 Hour Response</h3>
-                <p className="text-gray-600">Guaranteed arrival time</p>
+                <p className="text-gray-700">Guaranteed arrival time</p>
                 <p className="text-primary-600 font-bold">Brisbane, Ipswich, Logan</p>
               </div>
 
@@ -229,7 +229,7 @@ export default function FAQPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">IICRC Certified</h3>
-                <p className="text-gray-600">Professional technicians</p>
+                <p className="text-gray-700">Professional technicians</p>
                 <p className="text-primary-600 font-bold">Insurance approved</p>
               </div>
             </div>

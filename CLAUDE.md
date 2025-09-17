@@ -2,12 +2,52 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+---
+**Version**: 2.0.0
+**Last Updated**: January 2025
+**Maintainer**: Development Team
+**Production Status**: 45% Complete (25/56 checklist items)
+
+---
+
 ## 🎯 PROJECT IDENTITY
-**Disaster Recovery Brisbane - Direct Service Provider**
-- Repository: DR-New (Brisbane/Ipswich/Logan focused)
-- NOT a platform/marketplace - Direct disaster recovery SERVICE PROVIDER
-- Emergency Hotline: 1300 309 361
-- Service Areas: Brisbane, Ipswich, Logan
+
+**Disaster Recovery - Direct Service Provider**
+*(Rebranded from Disaster Recovery QLD)*
+
+- **Repository**: DR-New (Production deployment for disasterrecovery.com.au)
+- **Business Model**: Direct disaster recovery SERVICE PROVIDER (NOT a platform/marketplace)
+- **Production URL**: https://disasterrecovery.com.au
+- **Emergency Hotline**: 1300 309 361
+- **Service Areas**: Brisbane, Ipswich, Logan, Gold Coast, Sunshine Coast
+
+## 📊 PROJECT STATUS
+
+### Production Readiness: 45% Complete
+
+#### ✅ Completed (25 items)
+- Schema Markup (LocalBusiness, EmergencyService)
+- Legal Pages (Privacy Policy, Terms of Service)
+- Core Pages (About, Contact with full business details)
+- Accessibility (Skip navigation, icon system, cookie consent)
+- SEO Foundation (Sitemap, meta tags, OpenGraph)
+- Environment Configuration (.env.production)
+- Security Headers
+- Contact Forms
+- Brand Assets
+- Emergency CTAs
+
+#### ⏳ Remaining Critical Tasks (31 items)
+1. **SSL Certificate Configuration** - Critical for production
+2. **Complete 8 Service Pages** - Core service content
+3. **Location Landing Pages** - Suburb-specific SEO pages
+4. **Performance Optimization** - Target <2s load time
+5. **Google Analytics 4 Integration** - Tracking setup
+6. **Sticky Mobile CTA** - Mobile conversion optimization
+7. **Domain Redirect Setup** - From disasterrecovery.com.au
+8. **CDN Configuration** - Performance enhancement
+9. **Backup Strategy** - Data protection
+10. **Monitoring Setup** - Uptime and error tracking
 
 ## 📦 Development Commands
 
@@ -28,10 +68,11 @@ npm run performance           # Build and run Lighthouse performance test
 npm run test:performance      # Run custom performance test script
 npm run build:analyze        # Analyze bundle size (ANALYZE=true)
 
-# MCP Server Management (Windows)
-mcp-auto-start.bat           # Start Claude CLI with automatic health check
-mcp-health-check.bat         # Validate and repair MCP configuration
-verify-mcp-fix.bat           # Quick verification of MCP status
+# Windows Batch Scripts
+start-all-mcp-servers.bat    # Start Context7, Sequential Thinking, and Playwright
+playwright-with-config.bat    # Start Playwright with Brisbane config
+mcp-troubleshoot.bat         # Diagnose MCP issues
+test-all-mcps.bat            # Test all MCP servers
 ```
 
 **Note**: No test framework is currently configured. Tests should be added using Jest or Vitest as needed.
@@ -151,10 +192,32 @@ Hero rotation sequence:
 
 ## 🎯 Business Context
 
+### Company Information
+- **Business Name**: Disaster Recovery (formerly Disaster Recovery QLD)
+- **Founded**: July 2011
+- **Founders**: Phill & Bronwyn McGurk
+- **Experience**: 25+ years in restoration industry
+- **Office**: 4/17 Tile St, Wacol, QLD 4076
+- **Phone**: 1300 309 361
+- **Email**: info@disasterrecovery.com.au
+- **Website**: disasterrecovery.com.au
+
+### Certifications & Insurance
+- **IICRC Certified**: Water, Fire, Mould, Biohazard
+- **CARSI Member**: Certified Australian Restoration Services Industry
+- **Insurance**: $20 million public liability
+- **Partners**: QBE, IAG, RACQ, Allianz
+
+### Industry Leadership
+- **NRPG Initiative**: National Restoration Professionals Group (Founder)
+- **Education**: Developing industry's first ASQA-approved restoration course
+- **Media**: Professional restoration podcast in development
+
 ### Target Audience
 - **Residential**: High net worth homeowners in Brisbane/Ipswich
-- **Commercial**: Business properties in Brisbane/Ipswich/Logan
-- **Emergency**: Anyone needing immediate disaster recovery assistance
+- **Commercial**: Business properties across Queensland
+- **Insurance**: Direct insurance company partnerships
+- **Emergency**: 24/7 immediate disaster recovery assistance
 
 ### Service Focus
 - Water Damage Restoration
@@ -162,18 +225,23 @@ Hero rotation sequence:
 - Mould Remediation
 - Biohazard & Trauma Cleaning
 - Storm & Natural Disaster Recovery
+- Sewage Cleanup
+- Commercial Restoration
+- Contents Restoration
 
 ### Service Areas
 - **Primary**: Brisbane (all suburbs), Ipswich, Logan
-- **Extended**: Gold Coast & Sunshine Coast (emergency only)
-- **Office**: 4/17 Tile St, Wacol, QLD 4076
+- **Secondary**: Gold Coast, Sunshine Coast
+- **Emergency Coverage**: Southeast Queensland region
 
 ### Key Differentiators
-- IICRC certified technicians
-- 1-hour emergency response
+- IICRC & CARSI certified technicians
+- 1-hour emergency response guarantee
 - Insurance approved processes
-- Local Brisbane team
-- Direct service (no contractors)
+- Local Brisbane team (not franchised)
+- Direct service (no subcontractors)
+- $20M insurance coverage
+- 25+ years industry experience
 
 ## ⚡ Performance Targets
 - Page Load: < 2 seconds
@@ -184,9 +252,20 @@ Hero rotation sequence:
 ## 🔧 Development Guidelines
 
 ### Environment Setup
-- Copy `.env.example` to `.env.local` before development
-- Environment variables include contact info, service areas, and URLs
-- All contact details are configurable via environment variables
+```bash
+# Development
+cp .env.example .env.local    # Local development config
+
+# Production
+cp .env.production .env.local # Use production values for testing
+```
+
+**Key Environment Variables**:
+- `NEXT_PUBLIC_SITE_URL`: https://disasterrecovery.com.au
+- `NEXT_PUBLIC_BUSINESS_NAME`: Disaster Recovery
+- `NEXT_PUBLIC_PHONE`: 1300 309 361
+- `NEXT_PUBLIC_EMAIL`: info@disasterrecovery.com.au
+- `NEXT_PUBLIC_ADDRESS`: 4/17 Tile St, Wacol, QLD 4076
 
 ### When Adding Features
 1. Maintain direct service provider messaging ("We provide", "Our team")
@@ -205,13 +284,30 @@ Hero rotation sequence:
 - Avoid using OpenAI client directly in browser - use API routes
 
 ### Critical Files & Modules
+
+#### Core Application
 - `lib/integration/master-integration.ts` - Central orchestration hub
 - `app/page.tsx` - Homepage with premium components integration
 - `app/layout.tsx` - Root layout with providers and metadata
+- `.env.production` - Production environment configuration
+
+#### Completed Pages
+- `app/about/page.tsx` - Company information and team
+- `app/contact/page.tsx` - Contact forms and business details
+- `app/privacy/page.tsx` - Privacy policy
+- `app/terms/page.tsx` - Terms of service
+
+#### Premium Components
 - `components/sections/HeroPremium.tsx` - Main hero with AI-powered personalization
+- `components/sections/HeroConversion.tsx` - Conversion-optimized hero
+- `components/sections/TrustIndicators.tsx` - Social proof components
 - `components/integration/MasterIntegrationProvider.tsx` - Context provider wrapper
+
+#### Intelligence Systems
 - `lib/personalization/personalization-engine.ts` - Singleton personalization engine
 - `lib/analytics/realtime.ts` - WebSocket/SSE real-time metrics
+- `lib/chatbot/chatbot-engine.ts` - AI-powered chat support
+- `lib/conversion/conversion-optimizer.ts` - A/B testing and funnel optimization
 
 ### Data Flow Architecture
 1. User visits site → `MasterIntegrationProvider` initializes
@@ -227,7 +323,48 @@ Hero rotation sequence:
 - **Server state** via React Query/SWR for API data fetching
 - **Local state** with useState/useReducer for component-specific needs
 
+### Production Deployment Checklist
+
+#### Pre-Launch Requirements
+- [ ] SSL certificate installed and verified
+- [ ] Domain redirect configured (disasterrecovery.com.au)
+- [ ] Google Analytics 4 connected
+- [ ] All 8 service pages completed
+- [ ] Performance <2s load time achieved
+- [ ] Mobile sticky CTA implemented
+- [ ] Location landing pages created
+- [ ] Monitoring and alerting configured
+- [ ] Backup strategy implemented
+- [ ] CDN configured for assets
+
+#### Post-Launch Tasks
+- [ ] Submit sitemap to Google Search Console
+- [ ] Configure Google My Business integration
+- [ ] Set up conversion tracking
+- [ ] Implement review collection system
+- [ ] Configure email automation
+- [ ] Set up performance monitoring
+
 ---
 
-**Last Updated**: December 2024
+## 📝 CHANGELOG
+
+### Version 2.0.0 (January 2025)
+- Updated company branding from "Disaster Recovery QLD" to "Disaster Recovery"
+- Added production deployment status (45% complete)
+- Updated business information with certifications and partnerships
+- Added NRPG initiative and education programs
+- Created production deployment checklist
+- Updated MCP server batch scripts
+- Added completed vs pending task tracking
+
+### Version 1.0.0 (December 2024)
+- Initial CLAUDE.md creation
+- Established project structure and conventions
+- Defined architecture and tech stack
+
+---
+
+**Last Updated**: January 2025
 **Business Model**: Direct Service Provider (NOT a platform)
+**Production Status**: 45% Complete - Ready for SSL and final content

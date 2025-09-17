@@ -174,7 +174,7 @@ export default function WaterDamagePage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Understanding Water Damage Categories
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 The IICRC (Institute of Inspection, Cleaning and Restoration Certification) classifies water damage
                 into three categories based on contamination level. Proper identification is critical for safe and
                 effective restoration.
@@ -240,7 +240,7 @@ export default function WaterDamagePage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Water Damage Classification System
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 Beyond contamination categories, water damage is also classified by the rate of evaporation
                 and materials affected. This determines the drying strategy and timeline for restoration.
               </p>
@@ -292,7 +292,7 @@ export default function WaterDamagePage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Our Professional Water Damage Restoration Process
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 We follow IICRC standards for water damage restoration, ensuring proper assessment,
                 safe remediation, and complete restoration of your property.
               </p>
@@ -304,7 +304,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">1</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Emergency Contact</h3>
-                <p className="text-gray-600">24/7 emergency hotline with 1-hour response guarantee across Brisbane, Ipswich, and Logan.</p>
+                <p className="text-gray-700">24/7 emergency hotline with 1-hour response guarantee across Brisbane, Ipswich, and Logan.</p>
               </div>
 
               <div className="text-center">
@@ -312,7 +312,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">2</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Assessment & Classification</h3>
-                <p className="text-gray-600">Thorough inspection to determine water category, damage class, and develop restoration plan.</p>
+                <p className="text-gray-700">Thorough inspection to determine water category, damage class, and develop restoration plan.</p>
               </div>
 
               <div className="text-center">
@@ -320,7 +320,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">3</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Water Extraction</h3>
-                <p className="text-gray-600">Rapid water removal using industrial-grade extraction equipment and pumps.</p>
+                <p className="text-gray-700">Rapid water removal using industrial-grade extraction equipment and pumps.</p>
               </div>
 
               <div className="text-center">
@@ -328,7 +328,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">4</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Structural Drying</h3>
-                <p className="text-gray-600">Professional drying using dehumidifiers, air movers, and monitoring equipment.</p>
+                <p className="text-gray-700">Professional drying using dehumidifiers, air movers, and monitoring equipment.</p>
               </div>
             </div>
 
@@ -338,7 +338,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">5</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Cleaning & Sanitizing</h3>
-                <p className="text-gray-600">Antimicrobial treatment and cleaning of affected areas to prevent mould growth.</p>
+                <p className="text-gray-700">Antimicrobial treatment and cleaning of affected areas to prevent mould growth.</p>
               </div>
 
               <div className="text-center">
@@ -346,7 +346,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">6</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Monitoring</h3>
-                <p className="text-gray-600">Daily moisture monitoring until industry drying standards are achieved.</p>
+                <p className="text-gray-700">Daily moisture monitoring until industry drying standards are achieved.</p>
               </div>
 
               <div className="text-center">
@@ -354,7 +354,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">7</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Restoration</h3>
-                <p className="text-gray-600">Complete restoration of damaged materials to pre-loss condition.</p>
+                <p className="text-gray-700">Complete restoration of damaged materials to pre-loss condition.</p>
               </div>
 
               <div className="text-center">
@@ -362,7 +362,7 @@ export default function WaterDamagePage() {
                   <span className="font-bold text-xl">8</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Final Inspection</h3>
-                <p className="text-gray-600">Comprehensive quality inspection and customer walkthrough before completion.</p>
+                <p className="text-gray-700">Comprehensive quality inspection and customer walkthrough before completion.</p>
               </div>
             </div>
           </div>

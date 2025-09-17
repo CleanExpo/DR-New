@@ -175,7 +175,7 @@ export default function ResponseTimeline() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Every Second Counts
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Our streamlined emergency response process ensures the fastest possible arrival and immediate damage mitigation
           </p>
         </motion.div>
@@ -264,7 +264,7 @@ export default function ResponseTimeline() {
                         <span className="text-4xl">{step.icon}</span>
                         <div className="flex-1">
                           <h3 className="text-xl font-bold text-gray-900 mb-1">{step.title}</h3>
-                          <p className="text-gray-600">{step.description}</p>
+                          <p className="text-gray-700">{step.description}</p>
                         </div>
                       </div>
 
@@ -281,7 +281,7 @@ export default function ResponseTimeline() {
                                 initial={{ x: -20, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="flex items-center gap-2 text-sm text-gray-600"
+                                className="flex items-center gap-2 text-sm text-gray-700"
                               >
                                 <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />

@@ -37,7 +37,7 @@ export default function PersonalizationDemoPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600">Personalizing your experience...</p>
+          <p className="text-gray-700">Personalizing your experience...</p>
         </div>
       </div>
     );
@@ -63,7 +63,7 @@ export default function PersonalizationDemoPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Personalization Engine Demo
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
               See how our AI-powered personalization adapts to each visitor's unique situation
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function PersonalizationDemoPage() {
                     <Badge variant={profile?.intent === 'emergency' ? 'destructive' : 'default'}>
                       {profile?.intent || 'Unknown'}
                     </Badge>
-                    <p className="text-sm text-gray-600 mt-2">
+                    <p className="text-sm text-gray-700 mt-2">
                       Detected based on entry point, search terms, and behavior
                     </p>
                   </CardContent>
@@ -114,7 +114,7 @@ export default function PersonalizationDemoPage() {
                     >
                       {profile?.urgencyLevel || 'Unknown'}
                     </Badge>
-                    <p className="text-sm text-gray-600 mt-2">
+                    <p className="text-sm text-gray-700 mt-2">
                       {isEmergency() ? 'Emergency mode activated' : 'Standard browsing mode'}
                     </p>
                   </CardContent>
@@ -132,7 +132,7 @@ export default function PersonalizationDemoPage() {
                     <Badge variant="outline">
                       {profile?.segment?.replace(/_/g, ' ').toUpperCase() || 'Unknown'}
                     </Badge>
-                    <p className="text-sm text-gray-600 mt-2">
+                    <p className="text-sm text-gray-700 mt-2">
                       {isReturningVisitor() ? 'Returning visitor' : 'First-time visitor'}
                     </p>
                   </CardContent>
@@ -191,25 +191,25 @@ export default function PersonalizationDemoPage() {
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div>
-                      <p className="text-sm text-gray-600">Time on Site</p>
+                      <p className="text-sm text-gray-700">Time on Site</p>
                       <p className="text-xl font-semibold">
                         {Math.round((profile?.behavior?.timeOnSite || 0) / 1000)}s
                       </p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Scroll Depth</p>
+                      <p className="text-sm text-gray-700">Scroll Depth</p>
                       <p className="text-xl font-semibold">
                         {Math.round((profile?.behavior?.scrollDepth || 0) * 100)}%
                       </p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Engagement Score</p>
+                      <p className="text-sm text-gray-700">Engagement Score</p>
                       <p className="text-xl font-semibold">
                         {profile?.behavior?.engagementScore || 0}/100
                       </p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Bounce Risk</p>
+                      <p className="text-sm text-gray-700">Bounce Risk</p>
                       <p className="text-xl font-semibold">
                         {Math.round((profile?.behavior?.bounceRisk || 0) * 100)}%
                       </p>
@@ -240,13 +240,13 @@ export default function PersonalizationDemoPage() {
                               <span className="text-lg font-semibold">#{index + 1}</span>
                               <div>
                                 <p className="font-medium">{rec.service.replace(/-/g, ' ').toUpperCase()}</p>
-                                <p className="text-sm text-gray-600">{rec.reason}</p>
+                                <p className="text-sm text-gray-700">{rec.reason}</p>
                               </div>
                             </div>
                           </div>
                           <div className="flex items-center gap-4">
                             <div className="text-right">
-                              <p className="text-sm text-gray-600">Relevance</p>
+                              <p className="text-sm text-gray-700">Relevance</p>
                               <p className="font-semibold">{Math.round(rec.relevanceScore * 100)}%</p>
                             </div>
                             <Badge
@@ -278,19 +278,19 @@ export default function PersonalizationDemoPage() {
                         <p className="text-2xl font-bold text-blue-600">
                           {recommendations.length}
                         </p>
-                        <p className="text-sm text-gray-600">Personalized Services</p>
+                        <p className="text-sm text-gray-700">Personalized Services</p>
                       </div>
                       <div className="text-center p-4 bg-green-50 rounded-lg">
                         <p className="text-2xl font-bold text-green-600">
                           {Math.round((recommendations[0]?.relevanceScore || 0) * 100)}%
                         </p>
-                        <p className="text-sm text-gray-600">Top Match Score</p>
+                        <p className="text-sm text-gray-700">Top Match Score</p>
                       </div>
                       <div className="text-center p-4 bg-purple-50 rounded-lg">
                         <p className="text-2xl font-bold text-purple-600">
                           {context?.ui?.layout || 'standard'}
                         </p>
-                        <p className="text-sm text-gray-600">UI Layout</p>
+                        <p className="text-sm text-gray-700">UI Layout</p>
                       </div>
                     </div>
                   </CardContent>

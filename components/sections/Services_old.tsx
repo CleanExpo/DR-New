@@ -87,7 +87,7 @@ export default function Services() {
             Complete Disaster Recovery Solutions
           </h2>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             From emergency response to complete restoration, we provide comprehensive disaster recovery
             services across Brisbane, Ipswich, and Logan. Our certified technicians use advanced equipment
             and proven techniques to restore your property quickly and safely.
@@ -108,13 +108,13 @@ export default function Services() {
                   </h3>
                 </div>
 
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-700 mb-6 leading-relaxed">
                   {service.description}
                 </p>
 
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-gray-600">
+                    <li key={featureIndex} className="flex items-center text-sm text-gray-700">
                       <svg className="w-4 h-4 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                       </svg>

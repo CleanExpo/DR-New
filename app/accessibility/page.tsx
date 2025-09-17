@@ -179,7 +179,7 @@ export default function AccessibilityStatement() {
                     </svg>
                     1300 309 361
                   </a>
-                  <p className="text-gray-600 text-sm mt-3">
+                  <p className="text-gray-700 text-sm mt-3">
                     Available 24/7/365 for emergency disaster recovery services
                   </p>
                 </div>
@@ -231,7 +231,7 @@ export default function AccessibilityStatement() {
 
               {/* Update Date */}
               <section className="mt-12 pt-8 border-t border-gray-200">
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-700 text-sm">
                   This statement was created on {new Date().toLocaleDateString('en-AU', {
                     year: 'numeric',
                     month: 'long',

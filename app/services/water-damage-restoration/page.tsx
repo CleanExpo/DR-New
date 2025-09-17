@@ -109,22 +109,22 @@ export default function WaterDamageRestorationPage() {
             <div>
               <Clock className="h-8 w-8 text-blue-600 mx-auto mb-2" />
               <p className="font-bold text-2xl text-gray-900">1 Hour</p>
-              <p className="text-gray-600">Response Time</p>
+              <p className="text-gray-700">Response Time</p>
             </div>
             <div>
               <Shield className="h-8 w-8 text-blue-600 mx-auto mb-2" />
               <p className="font-bold text-2xl text-gray-900">IICRC</p>
-              <p className="text-gray-600">Certified</p>
+              <p className="text-gray-700">Certified</p>
             </div>
             <div>
               <Droplets className="h-8 w-8 text-blue-600 mx-auto mb-2" />
               <p className="font-bold text-2xl text-gray-900">10,000+</p>
-              <p className="text-gray-600">Properties Restored</p>
+              <p className="text-gray-700">Properties Restored</p>
             </div>
             <div>
               <Phone className="h-8 w-8 text-blue-600 mx-auto mb-2" />
               <p className="font-bold text-2xl text-gray-900">24/7</p>
-              <p className="text-gray-600">Emergency Service</p>
+              <p className="text-gray-700">Emergency Service</p>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function WaterDamageRestorationPage() {
                   {item.step}
                 </div>
                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
+                <p className="text-gray-700">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -165,7 +165,7 @@ export default function WaterDamageRestorationPage() {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
             Understanding Water Damage Categories
           </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+          <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto">
             Different water categories require different restoration approaches. Our IICRC certified technicians
             are trained to safely handle all water damage types.
           </p>
@@ -177,14 +177,14 @@ export default function WaterDamageRestorationPage() {
                   {cat.category}
                 </div>
                 <h3 className="text-xl font-bold mb-2">{cat.name}</h3>
-                <p className="text-gray-600 mb-4">{cat.description}</p>
+                <p className="text-gray-700 mb-4">{cat.description}</p>
                 <div className="mb-4">
                   <p className="font-semibold mb-2">Examples:</p>
                   <ul className="space-y-1">
                     {cat.examples.map((example) => (
                       <li key={example} className="flex items-start">
                         <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-600">{example}</span>
+                        <span className="text-sm text-gray-700">{example}</span>
                       </li>
                     ))}
                   </ul>
@@ -216,7 +216,7 @@ export default function WaterDamageRestorationPage() {
                 <h3 className="font-bold text-lg mb-2 group-hover:text-blue-600 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mb-4">{service.description}</p>
+                <p className="text-gray-700 mb-4">{service.description}</p>
                 <div className="flex items-center text-blue-600 font-semibold">
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4 transform group-hover:translate-x-2 transition-transform" />
@@ -236,7 +236,7 @@ export default function WaterDamageRestorationPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="font-bold text-xl mb-4 text-blue-600">Brisbane</h3>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-700">
                 <li>• Brisbane CBD</li>
                 <li>• Inner Suburbs</li>
                 <li>• Northern Suburbs</li>
@@ -247,7 +247,7 @@ export default function WaterDamageRestorationPage() {
             </div>
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="font-bold text-xl mb-4 text-blue-600">Ipswich</h3>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-700">
                 <li>• Ipswich Central</li>
                 <li>• Springfield Lakes</li>
                 <li>• Forest Lake</li>
@@ -258,7 +258,7 @@ export default function WaterDamageRestorationPage() {
             </div>
             <div className="bg-white rounded-lg p-6 shadow-md">
               <h3 className="font-bold text-xl mb-4 text-blue-600">Logan</h3>
-              <ul className="space-y-2 text-gray-600">
+              <ul className="space-y-2 text-gray-700">
                 <li>• Logan Central</li>
                 <li>• Springwood</li>
                 <li>• Underwood</li>

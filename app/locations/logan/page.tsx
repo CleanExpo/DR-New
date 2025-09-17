@@ -127,7 +127,7 @@ export default function LoganLocationPage() {
                   <span className="animate-pulse">📞</span> 1300 309 361
                 </Button>
               </a>
-              <p className="text-sm mt-3 text-gray-600">
+              <p className="text-sm mt-3 text-gray-700">
                 Serving all Logan City suburbs with rapid emergency response
               </p>
             </div>
@@ -156,7 +156,7 @@ export default function LoganLocationPage() {
               </div>
             ))}
           </div>
-          <p className="text-center mt-8 text-gray-600">
+          <p className="text-center mt-8 text-gray-700">
             Plus all surrounding areas within Logan City Council boundaries
           </p>
         </div>
@@ -168,7 +168,7 @@ export default function LoganLocationPage() {
           <h2 className="text-3xl font-bold text-center mb-4">
             Emergency Restoration Services in Logan
           </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+          <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto">
             Professional disaster recovery services available 24/7. Our Logan team specializes in residential, commercial, and industrial restoration with guaranteed 1-hour response times.
           </p>
 
@@ -179,7 +179,7 @@ export default function LoganLocationPage() {
                   <div className="p-6">
                     <div className="text-4xl mb-4">{service.icon}</div>
                     <h3 className="text-xl font-semibold mb-3">{service.name}</h3>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-gray-700 mb-4">{service.description}</p>
                     <p className="text-blue-600 font-semibold hover:underline">
                       Learn More →
                     </p>
@@ -202,7 +202,7 @@ export default function LoganLocationPage() {
               <div key={highlight.title} className="text-center">
                 <div className="text-5xl mb-4">{highlight.icon}</div>
                 <h3 className="font-semibold mb-2">{highlight.title}</h3>
-                <p className="text-gray-600 text-sm">{highlight.description}</p>
+                <p className="text-gray-700 text-sm">{highlight.description}</p>
               </div>
             ))}
           </div>
@@ -224,7 +224,7 @@ export default function LoganLocationPage() {
                 <p className="text-gray-700 mb-4">{item.description}</p>
                 <div className="bg-green-50 rounded p-4 border-l-4 border-green-500">
                   <p className="text-sm font-semibold text-green-700 mb-1">Prevention Strategy:</p>
-                  <p className="text-sm text-gray-600">{item.preparation}</p>
+                  <p className="text-sm text-gray-700">{item.preparation}</p>
                 </div>
               </div>
             ))}
@@ -245,7 +245,7 @@ export default function LoganLocationPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="p-6">
                 <h3 className="font-semibold mb-3">Commercial Properties</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
+                <ul className="space-y-2 text-sm text-gray-700">
                   <li>• Retail stores and shopping centers</li>
                   <li>• Office buildings and warehouses</li>
                   <li>• Restaurants and food facilities</li>
@@ -254,7 +254,7 @@ export default function LoganLocationPage() {
               </Card>
               <Card className="p-6">
                 <h3 className="font-semibold mb-3">Industrial Facilities</h3>
-                <ul className="space-y-2 text-sm text-gray-600">
+                <ul className="space-y-2 text-sm text-gray-700">
                   <li>• Manufacturing plants</li>
                   <li>• Distribution centers</li>
                   <li>• Chemical spill cleanup</li>
@@ -276,19 +276,19 @@ export default function LoganLocationPage() {
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Springwood</p>
               <p className="font-semibold mb-2">Commercial Water Damage</p>
-              <p className="text-sm text-gray-600">Response time: 40 minutes</p>
+              <p className="text-sm text-gray-700">Response time: 40 minutes</p>
               <p className="text-sm text-green-600 mt-2">✓ Business reopened in 3 days</p>
             </Card>
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Beenleigh</p>
               <p className="font-semibold mb-2">Residential Fire Restoration</p>
-              <p className="text-sm text-gray-600">Response time: 50 minutes</p>
+              <p className="text-sm text-gray-700">Response time: 50 minutes</p>
               <p className="text-sm text-green-600 mt-2">✓ Family back home in 2 weeks</p>
             </Card>
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Browns Plains</p>
               <p className="font-semibold mb-2">Storm & Flood Damage</p>
-              <p className="text-sm text-gray-600">Response time: 30 minutes</p>
+              <p className="text-sm text-gray-700">Response time: 30 minutes</p>
               <p className="text-sm text-green-600 mt-2">✓ Emergency tarping within 2 hours</p>
             </Card>
           </div>

@@ -231,7 +231,7 @@ export default function PricingPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Why Professional Service Matters
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               The true cost of disaster recovery isn't just the upfront fee—it's the long-term outcome
             </p>
           </div>
@@ -243,7 +243,7 @@ export default function PricingPage() {
                 Recommended
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{experienceComparison.experienced.title}</h3>
-              <p className="text-gray-600 mb-6">{experienceComparison.experienced.subtitle}</p>
+              <p className="text-gray-700 mb-6">{experienceComparison.experienced.subtitle}</p>
 
               <div className="space-y-3 mb-8">
                 {experienceComparison.experienced.benefits.map((benefit, index) => (
@@ -260,7 +260,7 @@ export default function PricingPage() {
                   {experienceComparison.experienced.outcomes.map((outcome, index) => (
                     <div key={index}>
                       <div className="text-2xl font-bold text-green-600">{outcome.value}</div>
-                      <div className="text-sm text-gray-600">{outcome.label}</div>
+                      <div className="text-sm text-gray-700">{outcome.label}</div>
                     </div>
                   ))}
                 </div>
@@ -273,7 +273,7 @@ export default function PricingPage() {
                 Hidden Risks
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">{experienceComparison.inexperienced.title}</h3>
-              <p className="text-gray-600 mb-6">{experienceComparison.inexperienced.subtitle}</p>
+              <p className="text-gray-700 mb-6">{experienceComparison.inexperienced.subtitle}</p>
 
               <div className="space-y-3 mb-8">
                 {experienceComparison.inexperienced.risks.map((risk, index) => (
@@ -290,7 +290,7 @@ export default function PricingPage() {
                   {experienceComparison.inexperienced.outcomes.map((outcome, index) => (
                     <div key={index}>
                       <div className="text-2xl font-bold text-red-600">{outcome.value}</div>
-                      <div className="text-sm text-gray-600">{outcome.label}</div>
+                      <div className="text-sm text-gray-700">{outcome.label}</div>
                     </div>
                   ))}
                 </div>
@@ -320,7 +320,7 @@ export default function PricingPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Transparent Service Fees
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               All Initial Call Services require upfront payment to ensure prompt and effective response
               with the right resources and expertise
             </p>
@@ -341,12 +341,12 @@ export default function PricingPage() {
                       {service.price}
                       <span className="text-sm text-gray-500 font-normal ml-2">inc. GST</span>
                     </div>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-gray-700 mb-4">{service.description}</p>
                     <div className="border-t pt-4">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Includes:</p>
                       <ul className="space-y-2">
                         {service.includes.map((item, i) => (
-                          <li key={i} className="flex items-start text-sm text-gray-600">
+                          <li key={i} className="flex items-start text-sm text-gray-700">
                             <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
                             {item}
                           </li>
@@ -382,12 +382,12 @@ export default function PricingPage() {
                       {service.price}
                       <span className="text-sm text-gray-500 font-normal ml-2">inc. GST</span>
                     </div>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-gray-700 mb-4">{service.description}</p>
                     <div className="border-t pt-4">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Includes:</p>
                       <ul className="space-y-2">
                         {service.includes.map((item, i) => (
-                          <li key={i} className="flex items-start text-sm text-gray-600">
+                          <li key={i} className="flex items-start text-sm text-gray-700">
                             <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
                             {item}
                           </li>
@@ -424,14 +424,14 @@ export default function PricingPage() {
                       <span className="text-sm text-gray-500 font-normal ml-2">inc. GST</span>
                     </div>
                     {service.priceNote && (
-                      <p className="text-sm text-gray-600 mb-3">{service.priceNote}</p>
+                      <p className="text-sm text-gray-700 mb-3">{service.priceNote}</p>
                     )}
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-gray-700 mb-4">{service.description}</p>
                     <div className="border-t pt-4">
                       <p className="text-sm font-semibold text-gray-700 mb-2">Includes:</p>
                       <ul className="space-y-2">
                         {service.includes.map((item, i) => (
-                          <li key={i} className="flex items-start text-sm text-gray-600">
+                          <li key={i} className="flex items-start text-sm text-gray-700">
                             <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
                             {item}
                           </li>
@@ -469,14 +469,14 @@ export default function PricingPage() {
                     <TrendingUp className="h-5 w-5 text-primary-600 mr-3 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-gray-900">Scale and Complexity</h4>
-                      <p className="text-sm text-gray-600">Larger properties require more resources and time</p>
+                      <p className="text-sm text-gray-700">Larger properties require more resources and time</p>
                     </div>
                   </div>
                   <div className="flex items-start">
                     <Shield className="h-5 w-5 text-primary-600 mr-3 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-gray-900">Health & Safety Standards</h4>
-                      <p className="text-sm text-gray-600">Commercial properties have stricter compliance requirements</p>
+                      <p className="text-sm text-gray-700">Commercial properties have stricter compliance requirements</p>
                     </div>
                   </div>
                 </div>
@@ -485,14 +485,14 @@ export default function PricingPage() {
                     <Clock className="h-5 w-5 text-primary-600 mr-3 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-gray-900">Equipment & Resources</h4>
-                      <p className="text-sm text-gray-600">Commercial-grade equipment for larger spaces</p>
+                      <p className="text-sm text-gray-700">Commercial-grade equipment for larger spaces</p>
                     </div>
                   </div>
                   <div className="flex items-start">
                     <DollarSign className="h-5 w-5 text-primary-600 mr-3 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold text-gray-900">Specialist Expertise</h4>
-                      <p className="text-sm text-gray-600">Certified professionals for complex environments</p>
+                      <p className="text-sm text-gray-700">Certified professionals for complex environments</p>
                     </div>
                   </div>
                 </div>

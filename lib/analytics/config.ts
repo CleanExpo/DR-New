@@ -15,10 +15,10 @@ export const ANALYTICS_CONFIG = {
 
   // Data refresh intervals (in milliseconds)
   REFRESH_INTERVALS: {
-    REAL_TIME: 1000,      // 1 second for critical metrics
-    NEAR_REAL_TIME: 5000, // 5 seconds for important metrics
-    STANDARD: 30000,      // 30 seconds for standard metrics
-    BACKGROUND: 300000,   // 5 minutes for background data
+    REAL_TIME: 10000,      // 10 seconds for critical metrics (reduced from 1s)
+    NEAR_REAL_TIME: 30000, // 30 seconds for important metrics (reduced from 5s)
+    STANDARD: 120000,      // 2 minutes for standard metrics (reduced from 30s)
+    BACKGROUND: 600000,    // 10 minutes for background data (reduced from 5m)
   },
 
   // Performance thresholds

@@ -56,7 +56,7 @@ export default function ServiceAreas() {
             Rapid Response Across South East Queensland
           </h2>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Our strategically located teams provide fast emergency response across Brisbane, Ipswich, and Logan.
             We understand that every minute counts in disaster recovery, which is why we guarantee rapid response
             times across all service areas.
@@ -75,13 +75,13 @@ export default function ServiceAreas() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{area.city}</h3>
 
                 <div className="flex items-center justify-center space-x-4 mb-4 text-sm">
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-gray-700">
                     <svg className="w-4 h-4 mr-1 text-primary-500" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     {area.responseTime}
                   </div>
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-gray-700">
                     <svg className="w-4 h-4 mr-1 text-primary-500" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20a3 3 0 01-3-3v-2a3 3 0 013-3h3a3 3 0 013 3v2a3 3 0 01-3 3z"/>
                     </svg>
@@ -89,7 +89,7 @@ export default function ServiceAreas() {
                   </div>
                 </div>
 
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <p className="text-gray-700 mb-6 leading-relaxed">
                   {area.description}
                 </p>
 
@@ -97,7 +97,7 @@ export default function ServiceAreas() {
                   <h4 className="font-semibold text-gray-900 mb-3">Key Areas Covered:</h4>
                   <div className="grid grid-cols-2 gap-2">
                     {area.suburbs.map((suburb, suburbIndex) => (
-                      <div key={suburbIndex} className="flex items-center text-sm text-gray-600">
+                      <div key={suburbIndex} className="flex items-center text-sm text-gray-700">
                         <svg className="w-3 h-3 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
@@ -141,7 +141,7 @@ export default function ServiceAreas() {
 
         {/* Coverage Map Note */}
         <div className="mt-12 text-center">
-          <p className="text-gray-600">
+          <p className="text-gray-700">
             <strong>Extended Coverage:</strong> We also provide emergency services to Gold Coast and Sunshine Coast
             for critical situations. Contact us for availability and response times to areas outside our primary service zones.
           </p>

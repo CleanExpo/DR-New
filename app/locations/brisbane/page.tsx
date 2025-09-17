@@ -98,28 +98,28 @@ export default function BrisbanePage() {
                 <Clock className="h-10 w-10 text-blue-600" />
               </div>
               <h3 className="font-bold text-lg mb-2">45-Min Response</h3>
-              <p className="text-gray-600 text-sm">Rapid response across Brisbane metro</p>
+              <p className="text-gray-700 text-sm">Rapid response across Brisbane metro</p>
             </div>
             <div className="text-center">
               <div className="bg-green-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl font-bold text-green-600">24/7</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Always Available</h3>
-              <p className="text-gray-600 text-sm">Emergency service every day</p>
+              <p className="text-gray-700 text-sm">Emergency service every day</p>
             </div>
             <div className="text-center">
               <div className="bg-purple-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                 <span className="text-xl font-bold text-purple-600">15+</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Years Experience</h3>
-              <p className="text-gray-600 text-sm">Serving Brisbane since 2009</p>
+              <p className="text-gray-700 text-sm">Serving Brisbane since 2009</p>
             </div>
             <div className="text-center">
               <div className="bg-orange-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                 <span className="text-xl font-bold text-orange-600">100%</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Insurance Approved</h3>
-              <p className="text-gray-600 text-sm">Direct insurance billing</p>
+              <p className="text-gray-700 text-sm">Direct insurance billing</p>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function BrisbanePage() {
                 <h3 className="font-bold text-lg mb-2 group-hover:text-blue-600 transition-colors">
                   {service.name}
                 </h3>
-                <p className="text-gray-600 text-sm">Professional {service.name.toLowerCase()} services throughout Brisbane</p>
+                <p className="text-gray-700 text-sm">Professional {service.name.toLowerCase()} services throughout Brisbane</p>
               </Link>
             ))}
           </div>
@@ -197,7 +197,7 @@ export default function BrisbanePage() {
               ))}
             </div>
             <div className="mt-6 text-center">
-              <p className="text-gray-600">
+              <p className="text-gray-700">
                 <span className="font-semibold">Plus all surrounding areas within 50km of Brisbane CBD</span>
               </p>
             </div>
@@ -215,19 +215,19 @@ export default function BrisbanePage() {
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="text-3xl mb-4">🏢</div>
               <h3 className="font-bold text-lg mb-2">CBD Office Tower</h3>
-              <p className="text-gray-600 text-sm mb-3">Water damage restoration across 5 floors after pipe burst</p>
+              <p className="text-gray-700 text-sm mb-3">Water damage restoration across 5 floors after pipe burst</p>
               <p className="text-blue-600 font-semibold">Completed in 72 hours</p>
             </div>
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="text-3xl mb-4">🏠</div>
               <h3 className="font-bold text-lg mb-2">Teneriffe Luxury Home</h3>
-              <p className="text-gray-600 text-sm mb-3">Complete fire damage restoration and smoke removal</p>
+              <p className="text-gray-700 text-sm mb-3">Complete fire damage restoration and smoke removal</p>
               <p className="text-blue-600 font-semibold">Full restoration in 2 weeks</p>
             </div>
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="text-3xl mb-4">🏬</div>
               <h3 className="font-bold text-lg mb-2">Fortitude Valley Restaurant</h3>
-              <p className="text-gray-600 text-sm mb-3">Emergency flood damage cleanup and sanitization</p>
+              <p className="text-gray-700 text-sm mb-3">Emergency flood damage cleanup and sanitization</p>
               <p className="text-blue-600 font-semibold">Reopened in 5 days</p>
             </div>
           </div>

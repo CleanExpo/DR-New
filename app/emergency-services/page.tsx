@@ -154,7 +154,7 @@ export default function EmergencyServicesPage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Emergency Response Services Available Now
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 Professional emergency disaster recovery services available 24/7 across Brisbane,
                 Ipswich, and Logan with certified IICRC technicians and guaranteed rapid response.
               </p>
@@ -173,15 +173,15 @@ export default function EmergencyServicesPage() {
 
                       <div className="grid grid-cols-3 gap-4 bg-gray-50 rounded-lg p-4">
                         <div className="text-center">
-                          <div className="text-sm font-semibold text-gray-600">Response Time</div>
+                          <div className="text-sm font-semibold text-gray-700">Response Time</div>
                           <div className="text-lg font-bold text-emergency-600">{service.responseTime}</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-sm font-semibold text-gray-600">Availability</div>
+                          <div className="text-sm font-semibold text-gray-700">Availability</div>
                           <div className="text-lg font-bold text-green-600">{service.available}</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-sm font-semibold text-gray-600">Coverage</div>
+                          <div className="text-sm font-semibold text-gray-700">Coverage</div>
                           <div className="text-sm font-bold text-primary-600">{service.coverage}</div>
                         </div>
                       </div>
@@ -200,7 +200,7 @@ export default function EmergencyServicesPage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Emergency Services "Near Me" - Brisbane Metro
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 Immediate emergency response across all Brisbane metro areas including Ipswich and Logan.
                 When you search for emergency help "near me", we're ready to respond within 1 hour.
               </p>
@@ -258,7 +258,7 @@ export default function EmergencyServicesPage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 What To Do In A Disaster Emergency
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
                 Follow these emergency steps while our team rushes to your location.
                 We provide guidance during your emergency call.
               </p>
@@ -270,7 +270,7 @@ export default function EmergencyServicesPage() {
                   <span className="font-bold text-xl">1</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">SAFETY FIRST</h3>
-                <p className="text-gray-600">Ensure personal safety. Turn off electricity if safe. Evacuate if necessary.</p>
+                <p className="text-gray-700">Ensure personal safety. Turn off electricity if safe. Evacuate if necessary.</p>
               </div>
 
               <div className="text-center">
@@ -278,7 +278,7 @@ export default function EmergencyServicesPage() {
                   <span className="font-bold text-xl">2</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">CALL IMMEDIATELY</h3>
-                <p className="text-gray-600">Call 1300 309 361 now. Our team responds within 1 hour, 24/7.</p>
+                <p className="text-gray-700">Call 1300 309 361 now. Our team responds within 1 hour, 24/7.</p>
               </div>
 
               <div className="text-center">
@@ -286,7 +286,7 @@ export default function EmergencyServicesPage() {
                   <span className="font-bold text-xl">3</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">DOCUMENT DAMAGE</h3>
-                <p className="text-gray-600">Take photos of damage for insurance. Don't move items until documented.</p>
+                <p className="text-gray-700">Take photos of damage for insurance. Don't move items until documented.</p>
               </div>
 
               <div className="text-center">
@@ -294,7 +294,7 @@ export default function EmergencyServicesPage() {
                   <span className="font-bold text-xl">4</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">WAIT FOR HELP</h3>
-                <p className="text-gray-600">Professionals arrive within 1 hour. We handle everything from there.</p>
+                <p className="text-gray-700">Professionals arrive within 1 hour. We handle everything from there.</p>
               </div>
             </div>
           </div>

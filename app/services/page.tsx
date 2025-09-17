@@ -120,7 +120,7 @@ export default function ServicesPage() {
                     <h2 className="text-2xl font-bold text-gray-900 mb-3">
                       {service.title}
                     </h2>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-gray-700 mb-6">
                       {service.description}
                     </p>
                     <ul className="space-y-2 mb-6">
@@ -155,21 +155,21 @@ export default function ServicesPage() {
                 <span className="text-3xl font-bold text-blue-600">1hr</span>
               </div>
               <h3 className="font-bold text-xl mb-2">Rapid Response</h3>
-              <p className="text-gray-600">Guaranteed 1-hour emergency response across Brisbane, Ipswich & Logan</p>
+              <p className="text-gray-700">Guaranteed 1-hour emergency response across Brisbane, Ipswich & Logan</p>
             </div>
             <div className="text-center">
               <div className="bg-green-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                 <span className="text-3xl font-bold text-green-600">24/7</span>
               </div>
               <h3 className="font-bold text-xl mb-2">Always Available</h3>
-              <p className="text-gray-600">Round-the-clock emergency services, 365 days a year</p>
+              <p className="text-gray-700">Round-the-clock emergency services, 365 days a year</p>
             </div>
             <div className="text-center">
               <div className="bg-purple-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl font-bold text-purple-600">IICRC</span>
               </div>
               <h3 className="font-bold text-xl mb-2">Certified Experts</h3>
-              <p className="text-gray-600">IICRC certified technicians with latest restoration technology</p>
+              <p className="text-gray-700">IICRC certified technicians with latest restoration technology</p>
             </div>
           </div>
         </div>

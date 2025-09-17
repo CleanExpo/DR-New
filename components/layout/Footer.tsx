@@ -8,11 +8,11 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <div className="bg-primary-600 text-white rounded-lg p-2 mr-3">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" role="img" aria-label="Disaster Recovery logo">
-                  <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
-                </svg>
-              </div>
+              <img
+                src="/images/logo-compact.svg"
+                alt="Disaster Recovery Brisbane"
+                className="h-14 w-14 mr-3 bg-white rounded-lg p-1"
+              />
               <div>
                 <div className="text-lg font-bold">Disaster Recovery</div>
                 <p className="text-primary-400 font-semibold">Brisbane</p>

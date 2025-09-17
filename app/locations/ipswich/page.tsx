@@ -96,7 +96,7 @@ export default function IpswichLocationPage() {
                   <span className="animate-pulse">📞</span> 1300 309 361
                 </Button>
               </a>
-              <p className="text-sm mt-3 text-gray-600">
+              <p className="text-sm mt-3 text-gray-700">
                 Serving all Ipswich suburbs with rapid emergency response
               </p>
             </div>
@@ -125,7 +125,7 @@ export default function IpswichLocationPage() {
               </div>
             ))}
           </div>
-          <p className="text-center mt-8 text-gray-600">
+          <p className="text-center mt-8 text-gray-700">
             Plus all surrounding areas within the Ipswich region
           </p>
         </div>
@@ -137,7 +137,7 @@ export default function IpswichLocationPage() {
           <h2 className="text-3xl font-bold text-center mb-4">
             Emergency Restoration Services in Ipswich
           </h2>
-          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+          <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto">
             Professional disaster recovery services available 24/7. Our Ipswich team responds within 1 hour to minimize damage and begin immediate restoration.
           </p>
 
@@ -148,7 +148,7 @@ export default function IpswichLocationPage() {
                   <div className="p-6">
                     <div className="text-4xl mb-4">{service.icon}</div>
                     <h3 className="text-xl font-semibold mb-3">{service.name}</h3>
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-gray-700 mb-4">{service.description}</p>
                     <p className="text-blue-600 font-semibold hover:underline">
                       Learn More →
                     </p>
@@ -175,7 +175,7 @@ export default function IpswichLocationPage() {
                 <p className="text-gray-700 mb-3">{item.description}</p>
                 <div className="bg-white rounded p-4">
                   <p className="text-sm font-semibold text-green-700 mb-1">Prevention Tip:</p>
-                  <p className="text-sm text-gray-600">{item.preparation}</p>
+                  <p className="text-sm text-gray-700">{item.preparation}</p>
                 </div>
               </div>
             ))}
@@ -195,21 +195,21 @@ export default function IpswichLocationPage() {
                 1h
               </div>
               <h3 className="font-semibold mb-2">1-Hour Response</h3>
-              <p className="text-gray-600">Fastest emergency response time in Ipswich</p>
+              <p className="text-gray-700">Fastest emergency response time in Ipswich</p>
             </div>
             <div className="text-center">
               <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl">
                 🏠
               </div>
               <h3 className="font-semibold mb-2">Local Team</h3>
-              <p className="text-gray-600">Ipswich-based technicians who know the area</p>
+              <p className="text-gray-700">Ipswich-based technicians who know the area</p>
             </div>
             <div className="text-center">
               <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl">
                 ✓
               </div>
               <h3 className="font-semibold mb-2">Insurance Approved</h3>
-              <p className="text-gray-600">Work with all major insurance companies</p>
+              <p className="text-gray-700">Work with all major insurance companies</p>
             </div>
           </div>
         </div>
@@ -225,19 +225,19 @@ export default function IpswichLocationPage() {
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Brassall</p>
               <p className="font-semibold mb-2">Burst Pipe Water Damage</p>
-              <p className="text-sm text-gray-600">Response time: 45 minutes</p>
+              <p className="text-sm text-gray-700">Response time: 45 minutes</p>
               <p className="text-sm text-green-600 mt-2">✓ Fully restored in 4 days</p>
             </Card>
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Redbank Plains</p>
               <p className="font-semibold mb-2">Storm Damage Restoration</p>
-              <p className="text-sm text-gray-600">Response time: 35 minutes</p>
+              <p className="text-sm text-gray-700">Response time: 35 minutes</p>
               <p className="text-sm text-green-600 mt-2">✓ Emergency tarping same day</p>
             </Card>
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Springfield Lakes</p>
               <p className="font-semibold mb-2">Kitchen Fire Damage</p>
-              <p className="text-sm text-gray-600">Response time: 55 minutes</p>
+              <p className="text-sm text-gray-700">Response time: 55 minutes</p>
               <p className="text-sm text-green-600 mt-2">✓ Complete restoration in 1 week</p>
             </Card>
           </div>

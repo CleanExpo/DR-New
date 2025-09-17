@@ -102,7 +102,7 @@ export default function ServiceShowcase() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
             Restoration Excellence
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             See the dramatic difference our professional restoration services make.
             Drag the slider to reveal our transformative results.
           </p>
@@ -193,7 +193,7 @@ export default function ServiceShowcase() {
                   style={{ left: `${sliderPosition}%` }}
                 >
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-2xl flex items-center justify-center">
-                    <svg className="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
                     </svg>
                   </div>
@@ -220,7 +220,7 @@ export default function ServiceShowcase() {
                 <h3 className="text-3xl font-bold text-gray-900 mb-4">
                   {activeService.title}
                 </h3>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-lg text-gray-700 mb-6">
                   {activeService.description}
                 </p>
               </motion.div>
@@ -261,19 +261,19 @@ export default function ServiceShowcase() {
                   <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                     {activeService.stats.responseTime}
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Response Time</div>
+                  <div className="text-sm text-gray-700 mt-1">Response Time</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
                     {activeService.stats.successRate}
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Success Rate</div>
+                  <div className="text-sm text-gray-700 mt-1">Success Rate</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                     {activeService.stats.projectsCompleted}
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">Projects</div>
+                  <div className="text-sm text-gray-700 mt-1">Projects</div>
                 </div>
               </motion.div>
 

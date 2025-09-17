@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LocalBusinessSchema, EmergencyServiceSchema, SpeakableSchema } from '@/components/schema/VoiceSearchSchema';
+import { AggregateRatingSchema } from '@/components/schema/AggregateRatingSchema';
 import SkipLinks from '@/components/accessibility/SkipLinks';
 import { PersonalizationProvider } from '@/lib/personalization/providers/PersonalizationProvider';
 import { ChatProvider } from '@/app/providers/ChatProvider';
 import MasterIntegrationProvider from '@/components/integration/MasterIntegrationProvider';
+import MobileCTABar from '@/components/ui/mobile-cta-bar';
 
 export const metadata: Metadata = {
   title: "Disaster Recovery Brisbane | Water Fire Damage Restoration | 1300 309 361",
@@ -17,13 +19,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_AU",
-    url: "https://disasterrecoverybrisbane.com.au",
+    url: "https://disasterrecovery.com.au",
     siteName: "Disaster Recovery Brisbane",
     title: "Professional Disaster Recovery Services Brisbane | 24/7 Emergency Response",
     description: "Expert water damage, fire damage restoration & mould remediation services across Brisbane, Ipswich & Logan. Call 1300 309 361 for immediate assistance.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://disasterrecovery.com.au/images/hero/disaster-recovery-services.jpg",
         width: 1200,
         height: 630,
         alt: "Disaster Recovery Brisbane - Professional Emergency Restoration Services",
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Disaster Recovery Brisbane | 24/7 Emergency Response",
     description: "Professional disaster recovery services across Brisbane, Ipswich & Logan. Water damage, fire damage & mould remediation specialists.",
-    images: ["/twitter-image.jpg"],
+    images: ["https://disasterrecovery.com.au/images/hero/disaster-recovery-services.jpg"],
   },
 };
 
@@ -46,19 +48,17 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
-        <link rel="canonical" href="https://disasterrecoverybrisbane.com.au" />
+        <link rel="canonical" href="https://disasterrecovery.com.au" />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="32x32" href="/images/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" sizes="16x16" href="/images/favicon.svg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-compact.svg" />
         <meta name="geo.region" content="AU-QLD" />
-        <meta name="geo.placename" content="Brisbane" />
-        <meta name="geo.position" content="-27.4698;153.0251" />
-        <meta name="ICBM" content="-27.4698, 153.0251" />
+        <meta name="geo.placename" content="Wacol" />
+        <meta name="geo.position" content="-27.5833;152.9333" />
+        <meta name="ICBM" content="-27.5833, 152.9333" />
         <meta name="theme-color" content="#2563eb" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className="antialiased bg-gray-50 text-gray-900">
         <MasterIntegrationProvider>
@@ -76,17 +76,17 @@ export default function RootLayout({
 
           {/* Schema Markup for Voice Search */}
           <LocalBusinessSchema
-          name="Disaster Recovery Brisbane"
+          name="Disaster Recovery"
           address={{
-            street: "Brisbane Service Area",
-            city: "Brisbane",
+            street: "4/17 Tile St",
+            city: "Wacol",
             state: "Queensland",
-            postalCode: "4000",
+            postalCode: "4076",
             country: "Australia"
           }}
           phone="+61 1300 309 361"
-          email="admin@disasterrecovery.com.au"
-          url="https://disasterrecoverybrisbane.com.au"
+          email="info@disasterrecovery.com.au"
+          url="https://disasterrecovery.com.au"
           serviceArea={["Brisbane", "Ipswich", "Logan", "Gold Coast", "Sunshine Coast"]}
           services={[
             "Water Damage Restoration",
@@ -102,7 +102,7 @@ export default function RootLayout({
         />
 
         <EmergencyServiceSchema
-          name="Disaster Recovery Brisbane"
+          name="Disaster Recovery"
           description="24/7 emergency disaster recovery and restoration services across Brisbane, Ipswich and Logan with guaranteed 1-hour response time."
           serviceTypes={[
             "Emergency Water Damage Response",
@@ -126,7 +126,10 @@ export default function RootLayout({
           ]}
         />
 
+        <AggregateRatingSchema />
+
           {children}
+          <MobileCTABar />
             </ChatProvider>
           </PersonalizationProvider>
         </MasterIntegrationProvider>

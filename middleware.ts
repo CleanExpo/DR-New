@@ -161,6 +161,9 @@ export function middleware(request: NextRequest) {
     response.headers.set(key, value);
   });
 
+  // Remove technology disclosure headers
+  response.headers.delete('X-Powered-By');
+
   // Check rate limiting
   if (!checkRateLimit(clientIp, path)) {
     logSecurityEvent('RATE_LIMIT_EXCEEDED', {

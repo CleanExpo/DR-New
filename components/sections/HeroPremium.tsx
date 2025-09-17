@@ -41,7 +41,7 @@ const heroSlides = [
 ];
 
 const stats = [
-  { number: '15+', label: 'Years Experience', icon: '⚡' },
+  { number: '25+', label: 'Years Experience', icon: '⚡' },
   { number: '5000+', label: 'Properties Restored', icon: '🏠' },
   { number: 'Rapid', label: 'Triage System', icon: '⏱️' },
   { number: '24/7', label: 'Emergency Service', icon: '📞' }
@@ -52,14 +52,16 @@ export default function HeroPremium() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMounted, setIsMounted] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
+    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -86,8 +88,7 @@ export default function HeroPremium() {
           className="absolute inset-0"
           style={isMounted ? {
             transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
-          } : {}}
-          suppressHydrationWarning
+          } : undefined}
         >
           {false && currentHero.video && currentSlide === 0 ? (
             <video
@@ -175,7 +176,7 @@ export default function HeroPremium() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight">
               <motion.span
                 className="block"
-                animate={{ opacity: [0.8, 1, 0.8] }}
+                animate={isMounted ? { opacity: [0.8, 1, 0.8] } : {}}
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 {currentHero.title}
@@ -269,20 +270,39 @@ export default function HeroPremium() {
         </div>
       </div>
 
-      {/* Slide Navigation Dots */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
-        {heroSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? 'bg-white w-12'
-                : 'bg-white/40 hover:bg-white/60'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+      {/* Slide Navigation Dots and Pause Button */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-4">
+        <div className="flex gap-2">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? 'bg-white w-12'
+                  : 'bg-white/40 hover:bg-white/60'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Pause/Play Button for Accessibility */}
+        <button
+          onClick={() => setIsPaused(!isPaused)}
+          className="ml-4 p-2 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 transition-all duration-300"
+          aria-label={isPaused ? 'Resume carousel' : 'Pause carousel'}
+        >
+          {isPaused ? (
+            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
+          )}
+        </button>
       </div>
 
       {/* Scroll Indicator */}

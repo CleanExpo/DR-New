@@ -230,14 +230,14 @@ export default function HeroConversion() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   Get Help in <span className="text-red-600">{stats.avgResponse} Minutes</span>
                 </h2>
-                <p className="text-gray-600">No obligation. 100% Free assessment.</p>
+                <p className="text-gray-700">No obligation. 100% Free assessment.</p>
               </div>
 
               {/* Progress Bar */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs text-gray-600">Step {formStep} of 3</span>
-                  <span className="text-xs text-gray-600">{Math.round((formStep / 3) * 100)}% Complete</span>
+                  <span className="text-xs text-gray-700">Step {formStep} of 3</span>
+                  <span className="text-xs text-gray-700">{Math.round((formStep / 3) * 100)}% Complete</span>
                 </div>
                 <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                   <motion.div
@@ -336,7 +336,7 @@ export default function HeroConversion() {
                         >
                           <div className="flex justify-between items-center">
                             <span className="font-medium">{option.label}</span>
-                            <span className="text-sm text-gray-600">{option.price}</span>
+                            <span className="text-sm text-gray-700">{option.price}</span>
                           </div>
                         </button>
                       ))}
@@ -354,7 +354,7 @@ export default function HeroConversion() {
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-600">Estimated callout fee:</p>
+                      <p className="text-sm text-gray-700">Estimated callout fee:</p>
                       <p className="text-2xl font-bold text-gray-900">
                         ${getDynamicPricing()}
                         <span className="text-sm text-gray-500 line-through ml-2">${getDynamicPricing() + 50}</span>
@@ -364,7 +364,7 @@ export default function HeroConversion() {
                       SAVE ${50}
                     </div>
                   </div>
-                  <p className="text-xs text-gray-600 mt-2">
+                  <p className="text-xs text-gray-700 mt-2">
                     * Price locked in for next 10 minutes
                   </p>
                 </motion.div>
@@ -372,7 +372,7 @@ export default function HeroConversion() {
 
               {/* Security & Trust */}
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <div className="flex items-center justify-center gap-4 text-xs text-gray-600">
+                <div className="flex items-center justify-center gap-4 text-xs text-gray-700">
                   <span className="flex items-center gap-1">
                     <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

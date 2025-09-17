@@ -21,18 +21,13 @@ export default function Header() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center group" aria-label="Disaster Recovery Brisbane - Home">
               <img
-                src="/images/logo.svg"
+                src="/images/logo-full.svg"
                 alt="Disaster Recovery Brisbane"
-                className="h-12 w-auto mr-3"
+                className="h-16 w-auto"
                 onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  e.currentTarget.src = '/images/logo.svg';
                 }}
               />
-              <div className="hidden">
-                <h1 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors">Disaster Recovery</h1>
-                <p className="text-sm text-primary-600 font-semibold">Brisbane</p>
-              </div>
             </Link>
           </div>
 
@@ -66,6 +61,9 @@ export default function Header() {
 
           {/* Emergency Contact */}
           <div className="hidden lg:flex items-center space-x-4">
+            <div className="text-right mr-4 border-r pr-4 border-gray-200">
+              <p className="text-xs text-gray-500">4/17 Tile St, Wacol QLD 4076</p>
+            </div>
             <div className="text-right">
               <p className="text-sm font-semibold text-emergency-600">24/7 Emergency</p>
               <a href="tel:1300309361" className="text-lg font-bold text-gray-900 hover:text-primary-600 transition-colors" aria-label="Call emergency number 1300 309 361">

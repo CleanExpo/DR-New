@@ -141,7 +141,7 @@ export default function FireDamageRestorationPage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Complete Fire Damage Solutions
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
                 From minor kitchen fires to major structural damage, we handle all aspects of fire restoration with specialized equipment and proven techniques.
               </p>
             </div>
@@ -154,7 +154,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Smoke Damage Cleanup</h3>
-                <p className="text-gray-600 text-center">Professional smoke damage restoration and complete cleaning of all affected surfaces.</p>
+                <p className="text-gray-700 text-center">Professional smoke damage restoration and complete cleaning of all affected surfaces.</p>
               </Link>
 
               <Link href="/services/fire-damage-restoration/soot-removal" className="card hover:shadow-xl transition-shadow duration-300 group">
@@ -164,7 +164,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Soot Removal</h3>
-                <p className="text-gray-600 text-center">Specialized soot cleaning techniques for all surfaces and HVAC systems.</p>
+                <p className="text-gray-700 text-center">Specialized soot cleaning techniques for all surfaces and HVAC systems.</p>
               </Link>
 
               <Link href="/services/fire-damage-restoration/odor-removal" className="card hover:shadow-xl transition-shadow duration-300 group">
@@ -174,7 +174,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Odor Elimination</h3>
-                <p className="text-gray-600 text-center">Advanced ozone and thermal fogging treatments for complete odor removal.</p>
+                <p className="text-gray-700 text-center">Advanced ozone and thermal fogging treatments for complete odor removal.</p>
               </Link>
 
               <Link href="/services/fire-damage-restoration/structural-repairs" className="card hover:shadow-xl transition-shadow duration-300 group">
@@ -184,7 +184,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Structural Repairs</h3>
-                <p className="text-gray-600 text-center">Complete reconstruction and restoration of fire-damaged structures.</p>
+                <p className="text-gray-700 text-center">Complete reconstruction and restoration of fire-damaged structures.</p>
               </Link>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function FireDamageRestorationPage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Our Fire Damage Restoration Process
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
                 IICRC-certified technicians follow proven protocols to ensure complete fire damage restoration and safety.
               </p>
             </div>
@@ -206,25 +206,25 @@ export default function FireDamageRestorationPage() {
               <div className="text-center">
                 <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Emergency Response</h3>
-                <p className="text-gray-600">Immediate site security, board-up services, and comprehensive damage assessment.</p>
+                <p className="text-gray-700">Immediate site security, board-up services, and comprehensive damage assessment.</p>
               </div>
 
               <div className="text-center">
                 <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Smoke & Soot Removal</h3>
-                <p className="text-gray-600">Professional cleaning of all smoke and soot damage using specialized techniques and equipment.</p>
+                <p className="text-gray-700">Professional cleaning of all smoke and soot damage using specialized techniques and equipment.</p>
               </div>
 
               <div className="text-center">
                 <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Odor Treatment</h3>
-                <p className="text-gray-600">Advanced deodorization using ozone, thermal fogging, and hydroxyl generators.</p>
+                <p className="text-gray-700">Advanced deodorization using ozone, thermal fogging, and hydroxyl generators.</p>
               </div>
 
               <div className="text-center">
                 <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Reconstruction</h3>
-                <p className="text-gray-600">Complete structural repairs and restoration to pre-loss condition.</p>
+                <p className="text-gray-700">Complete structural repairs and restoration to pre-loss condition.</p>
               </div>
             </div>
           </div>
@@ -237,7 +237,7 @@ export default function FireDamageRestorationPage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Why Choose Our Fire Restoration Team
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
                 With specialized training and advanced equipment, we provide comprehensive fire damage restoration services.
               </p>
             </div>
@@ -250,7 +250,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">IICRC Certified Technicians</h3>
-                <p className="text-gray-600">Our team holds advanced certifications in fire and smoke restoration, ensuring professional standards and best practices.</p>
+                <p className="text-gray-700">Our team holds advanced certifications in fire and smoke restoration, ensuring professional standards and best practices.</p>
               </div>
 
               <div className="card text-center">
@@ -260,7 +260,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Advanced Equipment</h3>
-                <p className="text-gray-600">State-of-the-art cleaning equipment, air scrubbers, ozone generators, and thermal fogging systems.</p>
+                <p className="text-gray-700">State-of-the-art cleaning equipment, air scrubbers, ozone generators, and thermal fogging systems.</p>
               </div>
 
               <div className="card text-center">
@@ -270,7 +270,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Insurance Specialists</h3>
-                <p className="text-gray-600">We work directly with insurance companies and provide detailed documentation for faster claim processing.</p>
+                <p className="text-gray-700">We work directly with insurance companies and provide detailed documentation for faster claim processing.</p>
               </div>
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function FireDamageRestorationPage() {
               <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">
                 Fire Damage Restoration Service Areas
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
                 Professional fire damage restoration services across South East Queensland.
               </p>
             </div>
@@ -296,7 +296,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Brisbane Fire Damage</h3>
-                <p className="text-gray-600 mb-4">Complete fire damage restoration across all Brisbane suburbs and commercial districts.</p>
+                <p className="text-gray-700 mb-4">Complete fire damage restoration across all Brisbane suburbs and commercial districts.</p>
                 <div className="text-red-600 font-semibold group-hover:text-red-700">View Brisbane Services →</div>
               </Link>
 
@@ -307,7 +307,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Ipswich Fire Damage</h3>
-                <p className="text-gray-600 mb-4">Expert fire restoration services throughout Ipswich and surrounding communities.</p>
+                <p className="text-gray-700 mb-4">Expert fire restoration services throughout Ipswich and surrounding communities.</p>
                 <div className="text-red-600 font-semibold group-hover:text-red-700">View Ipswich Services →</div>
               </Link>
 
@@ -318,7 +318,7 @@ export default function FireDamageRestorationPage() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">Logan Fire Damage</h3>
-                <p className="text-gray-600 mb-4">Professional fire restoration services across Logan City and surrounding areas.</p>
+                <p className="text-gray-700 mb-4">Professional fire restoration services across Logan City and surrounding areas.</p>
                 <div className="text-red-600 font-semibold group-hover:text-red-700">View Logan Services →</div>
               </Link>
             </div>

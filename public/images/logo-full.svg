@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" width="280" height="80">
+  <!-- Background gradient for premium look -->
+  <defs>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Main Shield -->
+  <g transform="translate(20, 10)">
+    <!-- Shield background with gradient -->
+    <path d="M30 5 L30 40 Q30 50 40 55 Q50 50 50 40 L50 5 Z"
+          fill="url(#shieldGradient)"
+          stroke="#1e40af"
+          stroke-width="2"/>
+
+    <!-- Inner shield highlight -->
+    <path d="M33 8 L33 38 Q33 45 40 49 Q47 45 47 38 L47 8 Z"
+          fill="white"
+          opacity="0.1"/>
+
+    <!-- House structure -->
+    <g transform="translate(40, 30)">
+      <!-- House base -->
+      <rect x="-7" y="-2" width="14" height="10" fill="white" opacity="0.95"/>
+
+      <!-- Roof -->
+      <path d="M0 -8 L-9 -2 L9 -2 Z" fill="white"/>
+
+      <!-- Door -->
+      <rect x="-2" y="2" width="4" height="6" fill="#1d4ed8"/>
+    </g>
+
+    <!-- Water droplet (disaster element) -->
+    <path d="M40 35 Q37 38 37 41 Q37 44 40 44 Q43 44 43 41 Q43 38 40 35 Z"
+          fill="url(#waterGradient)"
+          opacity="0.9"/>
+
+    <!-- Fire element (small flame) -->
+    <path d="M35 20 Q34 22 35 23 Q36 22 35 20 Z"
+          fill="#ef4444"
+          opacity="0.7"/>
+
+    <!-- Plus sign (emergency) -->
+    <g transform="translate(40, 18)">
+      <rect x="-1" y="-4" width="2" height="8" fill="#10b981"/>
+      <rect x="-4" y="-1" width="8" height="2" fill="#10b981"/>
+    </g>
+  </g>
+
+  <!-- Company name -->
+  <g transform="translate(80, 35)">
+    <!-- Main text -->
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#1e293b">
+      Disaster Recovery
+    </text>
+    <!-- Location text -->
+    <text x="0" y="22" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="#2563eb">
+      Brisbane
+    </text>
+    <!-- Tagline -->
+    <text x="0" y="38" font-family="Arial, sans-serif" font-size="11" fill="#64748b">
+      24/7 Emergency Response • IICRC Certified
+    </text>
+  </g>
+
+  <!-- Emergency badge -->
+  <g transform="translate(240, 15)">
+    <circle cx="0" cy="0" r="8" fill="#dc2626"/>
+    <text x="0" y="1" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="white" dy=".3em">24/7</text>
+  </g>
+</svg>
