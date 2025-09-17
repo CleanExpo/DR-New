@@ -86,7 +86,7 @@ class RealtimeAnalytics {
     if (typeof window !== 'undefined' && ANALYTICS_CONFIG.PUSHER.key) {
       this.pusher = new Pusher(ANALYTICS_CONFIG.PUSHER.key, {
         cluster: ANALYTICS_CONFIG.PUSHER.cluster,
-        encrypted: true,
+        forceTLS: true,
       })
 
       // Subscribe to channels
