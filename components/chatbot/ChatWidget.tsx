@@ -292,9 +292,6 @@ export function ChatWidget({
               className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 relative"
             >
               <MessageCircle className="w-8 h-8 text-white" />
-              {messages.filter(m => m.role === 'assistant' && !m.read).length > 0 && (
-                <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
-              )}
               {weatherAlert && (
                 <CloudRain className="absolute -top-2 -right-2 w-6 h-6 text-yellow-500 animate-bounce" />
               )}
