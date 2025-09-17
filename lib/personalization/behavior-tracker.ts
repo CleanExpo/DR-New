@@ -239,7 +239,8 @@ export class BehaviorTracker {
       this.heatmapData.push({
         x: event.clientX,
         y: event.clientY,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        intensity: 1
       });
 
       // Keep heatmap data size manageable
