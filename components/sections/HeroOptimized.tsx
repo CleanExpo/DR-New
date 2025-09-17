@@ -216,8 +216,8 @@ export default function HeroOptimized() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <Button
-              variant="primary"
-              size="large"
+              variant="emergency"
+              size="lg"
               className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 text-lg"
               onClick={() => window.location.href = 'tel:1300309361'}
             >
@@ -228,7 +228,7 @@ export default function HeroOptimized() {
             </Button>
             <Button
               variant="secondary"
-              size="large"
+              size="lg"
               className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-semibold px-8 py-4 text-lg"
             >
               Get Immediate Help
