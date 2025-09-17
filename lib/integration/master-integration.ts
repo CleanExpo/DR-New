@@ -367,7 +367,8 @@ class MasterIntegration {
 
     // Trigger performance optimization
     if (performanceMonitor) {
-      performanceMonitor.optimizePerformance()
+      // TODO: Implement optimizePerformance method in PerformanceMonitor
+      // performanceMonitor.optimizePerformance()
     }
   }
 
