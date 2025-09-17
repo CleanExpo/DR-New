@@ -151,7 +151,7 @@ export default function AlertsPanel({ alerts: initialAlerts }: AlertsPanelProps)
                             key={key}
                             className="text-xs bg-white bg-opacity-60 px-2 py-1 rounded"
                           >
-                            {key}: {value}
+                            {key}: {String(value)}
                           </span>
                         ))}
                       </div>
