@@ -11,8 +11,8 @@ export default function HeroOptimizedFinal() {
     setIsMounted(true);
   }, []);
 
-  // Use smaller, optimized image that already exists
-  const heroImage = '/images/hero/disaster-recovery-services.jpg'; // 288KB instead of 2MB
+  // Use the tornado image with better contrast for text
+  const heroImage = '/images/hero/hero-disaster-tornado.png';
 
   return (
     <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden">
@@ -29,8 +29,8 @@ export default function HeroOptimizedFinal() {
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
-        {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" />
+        {/* Enhanced gradient overlay for better text readability with tornado image */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/60" />
       </div>
 
       {/* Content */}
