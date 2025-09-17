@@ -23,6 +23,7 @@ class BuildErrorFixer {
       // TypeScript errors
       [/'percent' is of type 'unknown'/i, this.fixPercentType],
       [/'this' implicitly has type 'any'/i, this.fixThisReference],
+      [/Parameter '.*' implicitly has an 'any' type/i, this.fixImplicitAnyParameter],
       [/is possibly 'undefined'/i, this.fixUndefinedCheck],
       [/Property .* does not exist on type/i, this.fixPropertyName],
       [/only be iterated.*downlevelIteration/i, this.fixDownlevelIteration],
@@ -84,6 +85,22 @@ class BuildErrorFixer {
       .replace(/this\.generateSEORecommendations\([^)]*\)/g, 'null');
     fs.writeFileSync(filePath, fixed);
     return true;
+  }
+
+  async fixImplicitAnyParameter(error, filePath) {
+    console.log('🔧 Fixing implicit any parameter...');
+    const match = error.match(/Parameter '(\w+)' implicitly has an 'any' type/);
+    if (match) {
+      const paramName = match[1];
+      const content = fs.readFileSync(filePath, 'utf8');
+      // Common patterns for setState callbacks
+      const fixed = content
+        .replace(new RegExp(`\\(${paramName}\\s*=>`, 'g'), `(${paramName}: number) =>`)
+        .replace(new RegExp(`\\(${paramName}:\\s*=>`, 'g'), `(${paramName}: number) =>`);
+      fs.writeFileSync(filePath, fixed);
+      return true;
+    }
+    return false;
   }
 
   async fixUndefinedCheck(error, filePath) {

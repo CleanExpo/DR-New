@@ -23,9 +23,9 @@ const EmergencyContact = dynamic(() => import('@/components/sections/EmergencyCo
   ssr: true,
 });
 
-const Reviews = dynamic(() => import('@/components/sections/Reviews'), {
+const Reviews = dynamic(() => import('@/components/sections/TestimonialsCarousel'), {
   loading: () => <div className="h-96 bg-gray-50 animate-pulse" />,
-  ssr: false, // Client-side only for reviews
+  ssr: false, // Client-side only for testimonials
 });
 
 const FAQ = dynamic(() => import('@/components/sections/FAQ'), {
