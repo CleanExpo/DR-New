@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
+type CategoryType = 'disaster-relief' | 'education' | 'environment';
+
 const CommunityImpact = () => {
-  const [activeCategory, setActiveCategory] = useState('disaster-relief');
+  const [activeCategory, setActiveCategory] = useState<CategoryType>('disaster-relief');
 
   const impactStats = {
     familiesHelped: '10,000+',
@@ -115,7 +117,7 @@ const CommunityImpact = () => {
     }
   ];
 
-  const categories = [
+  const categories: Array<{ id: CategoryType; label: string; icon: string }> = [
     { id: 'disaster-relief', label: 'Disaster Relief', icon: '🆘' },
     { id: 'education', label: 'Education & Training', icon: '📖' },
     { id: 'environment', label: 'Environmental', icon: '🌍' }
