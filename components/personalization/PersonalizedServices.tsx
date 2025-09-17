@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePersonalization } from '@/lib/personalization';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/button';
+import { Button } from '../ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
   Droplets,
