@@ -23,7 +23,7 @@ export default function HeroOptimizedFinal() {
           alt="24/7 Emergency Disaster Recovery Services Brisbane"
           fill
           className="object-cover"
-          priority={false} // Change to lazy loading for better initial load
+          priority={true} // Set to priority to ensure hero image loads immediately
           quality={85} // Optimize quality for web
           sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
           placeholder="blur"
