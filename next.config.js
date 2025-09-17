@@ -4,8 +4,8 @@ const nextConfig = {
     domains: [],
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
   compress: true,
   poweredByHeader: false,
@@ -16,11 +16,39 @@ const nextConfig = {
   },
   experimental: {
     optimizeCss: true,
+    webpackBuildWorker: true,
   },
   // Optimize for production
   productionBrowserSourceMaps: false,
   // Enable standalone output for smaller deployments
   output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
+  // Webpack optimizations
+  webpack: (config, { isServer }) => {
+    // Optimize chunks
+    config.optimization = {
+      ...config.optimization,
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          default: false,
+          vendors: false,
+          lib: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'lib',
+            priority: 10,
+            reuseExistingChunk: true,
+          },
+          commons: {
+            name: 'commons',
+            minChunks: 2,
+            priority: 5,
+            reuseExistingChunk: true,
+          },
+        },
+      },
+    };
+    return config;
+  },
   headers: async () => {
     return [
       {
