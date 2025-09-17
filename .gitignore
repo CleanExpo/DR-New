@@ -35,4 +35,4 @@ yarn-error.log*
 next-env.d.ts
 
 # Claude local memory (machine-specific)
-CLAUDE.local.md
+CLAUDE.local.mdnul
