@@ -288,8 +288,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({
           keyword_analysis: drKeywordAnalysis,
           domain_analysis: drDomainAnalysis,
-          competitor_analysis: drCompetitorAnalysis,
-          recommendations: this.generateSEORecommendations(drKeywordAnalysis)
+          competitor_analysis: drCompetitorAnalysis
         });
 
       default:
