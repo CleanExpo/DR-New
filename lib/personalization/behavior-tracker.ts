@@ -11,9 +11,20 @@ interface HeatmapPoint {
 
 interface FormEngagement {
   startTime: number;
-  completedFields: string[];
-  abandonedFields: string[];
+  fields: Set<string>;
+  completed: boolean;
   totalTime?: number;
+}
+
+interface BehaviorSummary {
+  timeOnSite: number;
+  scrollDepth: number;
+  engagementScore: number;
+  clickCount: number;
+  formsEngaged: number;
+  formsCompleted: number;
+  bounceRisk: number;
+  intentSignals: string[];
 }
 
 export class BehaviorTracker {
@@ -329,6 +340,7 @@ export class BehaviorTracker {
 
     if (engagement) {
       engagement.completed = true;
+      engagement.totalTime = Date.now() - engagement.startTime;
       this.formEngagement.set(formId, engagement);
     }
   }
@@ -537,28 +549,7 @@ export class BehaviorTracker {
   }
 }
 
-interface HeatmapPoint {
-  x: number;
-  y: number;
-  timestamp: number;
-}
-
-interface FormEngagement {
-  startTime: number;
-  fields: Set<string>;
-  completed: boolean;
-}
-
-interface BehaviorSummary {
-  timeOnSite: number;
-  scrollDepth: number;
-  engagementScore: number;
-  clickCount: number;
-  formsEngaged: number;
-  formsCompleted: number;
-  bounceRisk: number;
-  intentSignals: string[];
-}
+// Interfaces moved to top of file to avoid duplication
 
 type EventType =
   | 'visibility'
