@@ -6,8 +6,8 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Water Damage Restoration Brisbane | Commercial & Premium Residential | 1300 309 361",
-  description: "Professional water damage restoration for Brisbane's commercial properties and luxury homes. IICRC certified technicians, advanced drying technology, insurance approved. Call 1300 309 361.",
+  title: "Water Damage Restoration Brisbane | 24/7 Emergency Response | IICRC Certified | 1300 309 361",
+  description: "Professional water damage restoration for Brisbane's commercial properties and luxury homes. IICRC certified technicians, advanced drying technology, insurance approved. Specialising in Queenslander homes, high-rise apartments, and heritage properties. Call 1300 309 361.",
   keywords: ["water damage restoration brisbane", "flood damage repair", "water extraction brisbane", "emergency water damage", "water damage cleanup brisbane", "flood restoration brisbane"],
   openGraph: {
     title: "Water Damage Restoration Brisbane | Emergency Response",
@@ -44,7 +44,7 @@ export default function WaterDamageRestorationPage() {
                 </h1>
                 <p className="text-xl mb-8 text-blue-100">
                   Trusted by Brisbane's leading businesses and premium residences.
-                  IICRC certified restoration with advanced drying technology.
+                  IICRC certified restoration specialising in subtropical climate challenges.
                 </p>
 
                 {/* Emergency CTA */}
@@ -78,7 +78,7 @@ export default function WaterDamageRestorationPage() {
                     <svg className="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    Insurance Works
+                    Insurance Approved
                   </div>
                   <div className="flex items-center">
                     <svg className="w-5 h-5 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20">
@@ -107,7 +107,7 @@ export default function WaterDamageRestorationPage() {
         <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-              Why Brisbane Families Choose Us
+              Why Brisbane Property Owners Choose Us
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
@@ -118,7 +118,7 @@ export default function WaterDamageRestorationPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">We Come Fast</h3>
                 <p className="text-gray-600">
-                  Water spreads quickly. We arrive in 1 hour. We stop damage from getting worse.
+                  Water spreads quickly through Queensland homes. Our Brisbane team responds immediately to minimise damage.
                 </p>
               </div>
 
@@ -130,7 +130,7 @@ export default function WaterDamageRestorationPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">We Do It Right</h3>
                 <p className="text-gray-600">
-                  Our team holds IICRC certificates. We use professional equipment. We follow proper methods.
+                  Our team holds IICRC certificates. We use specialised equipment designed for Brisbane's humidity. We follow Australian standards.
                 </p>
               </div>
 
@@ -142,7 +142,7 @@ export default function WaterDamageRestorationPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Insurance Pays</h3>
                 <p className="text-gray-600">
-                  We work with all insurance companies. We handle the paperwork. You pay nothing extra.
+                  Preferred contractor for QBE, IAG, RACQ, and Allianz. We handle all documentation for your claim.
                 </p>
               </div>
             </div>
@@ -153,29 +153,29 @@ export default function WaterDamageRestorationPage() {
         <section className="py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-              How We Fix Water Damage
+              Our Water Damage Restoration Process
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
                   step: "1",
                   title: "We Inspect",
-                  description: "We find all water. We check for damage. We make a plan."
+                  description: "Complete moisture mapping using thermal imaging. Structural assessment. Customised restoration plan."
                 },
                 {
                   step: "2",
                   title: "We Extract",
-                  description: "We remove all water. We use powerful pumps. We work fast."
+                  description: "Industrial water extraction using truck-mounted equipment. Rapid removal prevents secondary damage."
                 },
                 {
                   step: "3",
                   title: "We Dry",
-                  description: "We dry everything completely. We use fans and dehumidifiers. We check moisture levels."
+                  description: "Structural drying with commercial dehumidifiers. Daily moisture monitoring. Documentation for insurance."
                 },
                 {
                   step: "4",
                   title: "We Restore",
-                  description: "We fix damage. We clean everything. We make it like new."
+                  description: "Complete restoration including repairs, sanitisation, and mould prevention. Full warranty on all work."
                 }
               ].map((process, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
@@ -198,10 +198,10 @@ export default function WaterDamageRestorationPage() {
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              We Help Brisbane Families
+              Servicing Greater Brisbane
             </h2>
             <p className="text-lg text-gray-700 mb-8">
-              Water damage happens fast. We come to you fast. We serve all Brisbane areas.
+              Specialising in Brisbane's premium suburbs and commercial districts. 30-minute response to New Farm, Ascot, Hamilton, and Toowong.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
@@ -225,7 +225,7 @@ export default function WaterDamageRestorationPage() {
               Water Damage Emergency?
             </h2>
             <p className="text-xl mb-8 text-red-100">
-              Every minute counts. Call now. We come fast. We fix it right.
+              Every minute counts in Queensland's humid climate. Call now for immediate response. IICRC certified restoration.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -251,25 +251,25 @@ export default function WaterDamageRestorationPage() {
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-6">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-              Water Damage Questions
+              Frequently Asked Questions - Water Damage Brisbane
             </h2>
             <div className="space-y-8">
               {[
                 {
-                  question: "How fast do you respond to water damage?",
-                  answer: "We respond in 1 hour. Water spreads fast. We come fast to stop damage."
+                  question: "How quickly can you respond to water damage in Brisbane?",
+                  answer: "Immediate response across Brisbane, with 30-minute arrival in CBD and inner suburbs. Our Wacol headquarters allows rapid deployment throughout Brisbane, Ipswich, and Logan."
                 },
                 {
-                  question: "Will insurance pay for water damage repair?",
-                  answer: "Most insurance covers sudden water damage. We work with all insurers. We handle claims."
+                  question: "Will insurance cover water damage restoration in Queensland?",
+                  answer: "Most policies cover sudden water damage. As preferred contractors for major insurers including QBE, IAG, and RACQ, we handle all claim documentation and direct billing."
                 },
                 {
-                  question: "How do you prevent mould after water damage?",
-                  answer: "We dry everything completely. We use dehumidifiers. We check moisture levels. No moisture means no mould."
+                  question: "How do you prevent mould growth in Brisbane's climate?",
+                  answer: "Brisbane's subtropical climate requires specialised drying protocols. We use commercial dehumidifiers, antimicrobial treatments, and monitor moisture levels to Australian Standard AS/NZS 4849.1."
                 },
                 {
                   question: "What areas in Brisbane do you service?",
-                  answer: "We serve all Brisbane, Ipswich, and Logan. We come from our Wacol office in 1 hour."
+                  answer: "Complete coverage of Brisbane, Ipswich, and Logan from our Wacol headquarters. Priority response to commercial properties and premium residential suburbs."
                 }
               ].map((faq, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-sm">

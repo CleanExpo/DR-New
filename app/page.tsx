@@ -3,10 +3,84 @@ import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import LiveChat from '@/components/chat/LiveChat';
+import VoiceSearchOptimizedFAQ from '@/components/voice/VoiceSearchOptimizedFAQ';
+
+// Homepage FAQs optimized for voice search
+const homepageFAQs = [
+  {
+    question: "Hey Google, my house is flooding in Brisbane",
+    answer: "Ring Disaster Recovery straight away on 1300 309 361. Turn off electricity at the main switch. Stop the water source if you can. Move valuables up high. We're in Wacol and can be there within an hour.",
+    voiceKeywords: ["flooding", "emergency", "Brisbane", "help now"],
+    schema: true
+  },
+  {
+    question: "OK Google, emergency water damage Brisbane",
+    answer: "For emergency water damage in Brisbane, ring 1300 309 361. Disaster Recovery provides 24-hour water extraction and drying. We're IICRC certified and insurance approved. Based in Wacol, we respond within 1 hour.",
+    voiceKeywords: ["emergency", "water damage", "Brisbane", "24 hour"],
+    schema: true
+  },
+  {
+    question: "Alexa, find 24 hour flood restoration near me",
+    answer: "Disaster Recovery provides 24-hour flood restoration across Brisbane. Ring 1300 309 361 any time. We have industrial pumps and drying equipment. Located at 4/17 Tile St, Wacol. Emergency response within 1 hour.",
+    voiceKeywords: ["24 hour", "flood restoration", "near me", "Brisbane"],
+    schema: true
+  },
+  {
+    question: "Who is the best water damage company in Brisbane?",
+    answer: "Disaster Recovery is Brisbane's trusted water damage company. IICRC certified since 2011. We work with all insurance companies. $20 million public liability. Ring 1300 309 361 for immediate help.",
+    voiceKeywords: ["best", "water damage company", "Brisbane", "trusted"],
+    schema: true
+  },
+  {
+    question: "How much does flood restoration cost in Queensland?",
+    answer: "Flood restoration costs vary by damage size. Most home insurance covers water damage. We provide free quotes and work directly with insurers. Ring 1300 309 361. Acting fast reduces costs significantly.",
+    voiceKeywords: ["cost", "flood restoration", "Queensland", "insurance"],
+    schema: true
+  }
+];
 
 export default function HomePage() {
+  // Generate Speakable schema for homepage
+  const generateSpeakableSchema = () => {
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Disaster Recovery - 24/7 Emergency Restoration Brisbane",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".voice-answer", "h1", "h2"]
+      },
+      "mainEntity": {
+        "@type": "EmergencyService",
+        "name": "Disaster Recovery",
+        "telephone": "+61 1300 309 361",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "4/17 Tile St",
+          "addressLocality": "Wacol",
+          "addressRegion": "QLD",
+          "postalCode": "4076",
+          "addressCountry": "AU"
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      }
+    };
+
+    return (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+    );
+  };
   return (
     <>
+      {generateSpeakableSchema()}
       <Header />
       <main id="main-content" role="main" aria-label="Main content">
         {/* Hero Section with Background Image */}
@@ -23,12 +97,12 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60" />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl">
-              Premium Disaster Recovery Services
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl voice-answer">
+              Emergency Disaster Recovery Brisbane - Ring 1300 309 361
             </h1>
-            <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto drop-shadow-lg">
-              Trusted by Brisbane's leading businesses and finest homes.
-              IICRC certified restoration for commercial properties and luxury residences.
+            <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto drop-shadow-lg voice-answer">
+              24-hour water damage, fire damage, and flood restoration.
+              IICRC certified. Insurance approved. We can be there within 1 hour.
             </p>
 
             {/* Clear CTAs */}
@@ -377,6 +451,13 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Voice Search Optimized FAQ Section */}
+        <VoiceSearchOptimizedFAQ
+          title="Emergency Questions - Brisbane Residents"
+          faqs={homepageFAQs}
+          emergencyContext={true}
+        />
 
         {/* Company Info */}
         <section className="py-16 bg-gray-50" aria-labelledby="company-info-heading">

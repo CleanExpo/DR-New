@@ -6,9 +6,9 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Mould Remediation Brisbane | IICRC Certified Removal | 1300 309 361",
-  description: "Professional mould removal for commercial properties and luxury homes in Brisbane, Ipswich & Logan. IICRC certified, safe remediation, air quality testing. Call 1300 309 361.",
-  keywords: ["mould remediation brisbane", "mould removal", "black mould removal", "commercial mould remediation", "mould inspection brisbane", "air quality testing", "IICRC mould certification"],
+  title: "Mould Remediation Brisbane | IICRC Certified Specialists | 24/7 Response | 1300 309 361",
+  description: "Professional mould remediation for commercial properties and luxury homes in Brisbane, Ipswich & Logan. IICRC certified specialists, safe removal, air quality testing. Experts in Queensland's subtropical climate challenges. Call 1300 309 361.",
+  keywords: ["mould remediation brisbane", "mould removal brisbane", "black mould removal queensland", "commercial mould remediation", "mould inspection brisbane", "air quality testing", "IICRC mould certification", "queenslander mould removal", "subtropical mould treatment"],
   openGraph: {
     title: "Professional Mould Remediation Brisbane | IICRC Certified",
     description: "Expert mould removal services for commercial and premium residential properties. Safe, thorough remediation with prevention strategies.",
@@ -43,8 +43,8 @@ export default function MouldRemediationPage() {
                   Professional Mould Remediation Services
                 </h1>
                 <p className="text-xl mb-8 text-green-100">
-                  IICRC certified mould removal for commercial facilities and premium residences.
-                  Complete remediation with air quality testing and prevention strategies.
+                  IICRC certified mould remediation specialists for Brisbane's commercial and residential properties.
+                  Expert treatment for Queensland's unique subtropical mould challenges.
                 </p>
 
                 {/* Emergency CTA */}
@@ -95,25 +95,25 @@ export default function MouldRemediationPage() {
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Office buildings & corporate facilities
+                    Brisbane CBD offices & corporate facilities
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Retail & hospitality venues
+                    Retail centres & hospitality venues
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Healthcare & educational facilities
+                    Healthcare centres & educational facilities
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Minimal business disruption
+                    Minimised business disruption
                   </li>
                 </ul>
               </div>
@@ -127,19 +127,19 @@ export default function MouldRemediationPage() {
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Luxury homes in New Farm & Ascot
+                    Luxury homes in New Farm, Ascot & Hamilton
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Heritage property specialists
+                    Queenslander & heritage property specialists
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Discrete, professional service
+                    Discreet, professional service
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -157,7 +157,7 @@ export default function MouldRemediationPage() {
         <section className="py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-              Our IICRC Certified Process
+              Our IICRC Certified Mould Remediation Process
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -167,7 +167,7 @@ export default function MouldRemediationPage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Inspection</h3>
                 <p className="text-gray-600 text-sm">
-                  Comprehensive assessment with moisture mapping and air quality testing
+                  Comprehensive assessment including moisture mapping, air quality testing, and subtropical climate analysis
                 </p>
               </div>
 
@@ -177,7 +177,7 @@ export default function MouldRemediationPage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Containment</h3>
                 <p className="text-gray-600 text-sm">
-                  Professional containment barriers to prevent cross-contamination
+                  Professional containment barriers preventing cross-contamination throughout your property
                 </p>
               </div>
 
@@ -187,7 +187,7 @@ export default function MouldRemediationPage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Remediation</h3>
                 <p className="text-gray-600 text-sm">
-                  HEPA filtration, antimicrobial treatment, and complete removal
+                  HEPA filtration, antimicrobial treatment, and complete mould removal following Australian Standards
                 </p>
               </div>
 
@@ -197,7 +197,7 @@ export default function MouldRemediationPage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Prevention</h3>
                 <p className="text-gray-600 text-sm">
-                  Moisture control solutions and preventive treatments
+                  Moisture control solutions and preventative treatments designed for Brisbane's humidity
                 </p>
               </div>
             </div>
@@ -211,7 +211,7 @@ export default function MouldRemediationPage() {
               Service Areas
             </h2>
             <p className="text-lg text-gray-700 mb-8">
-              Professional mould remediation services across Brisbane's premium residential areas and commercial districts
+              Specialised mould remediation services across Brisbane's premium residential suburbs and commercial districts
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
               <div className="bg-gray-50 rounded-lg py-3 px-4">
@@ -243,7 +243,7 @@ export default function MouldRemediationPage() {
               Professional Mould Remediation Services
             </h2>
             <p className="text-xl mb-8 text-green-100">
-              IICRC certified technicians available 24/7 for emergency response
+              IICRC certified technicians available 24/7 across Brisbane, Ipswich, and Logan
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
