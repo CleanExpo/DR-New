@@ -4,9 +4,7 @@ import { LocalBusinessSchema, EmergencyServiceSchema, SpeakableSchema } from '@/
 import { AggregateRatingSchema } from '@/components/schema/AggregateRatingSchema';
 import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import SkipLinks from '@/components/accessibility/SkipLinks';
-import { PersonalizationProvider } from '@/lib/personalization/providers/PersonalizationProvider';
-import { ChatProvider } from '@/app/providers/ChatProvider';
-import MasterIntegrationProvider from '@/components/integration/MasterIntegrationProvider';
+import ClientProviders from '@/components/providers/ClientProviders';
 
 export const metadata: Metadata = {
   title: "Disaster Recovery Brisbane | Water Fire Damage Restoration | 1300 309 361",
@@ -83,18 +81,9 @@ export default function RootLayout({
         <link rel="prefetch" href="/contact" />
       </head>
       <body className="antialiased bg-gray-50 text-gray-900">
-        <MasterIntegrationProvider>
-          <PersonalizationProvider
-            config={{
-              enableTracking: true,
-              enableEmergencyDetection: true,
-              enableABTesting: true,
-              debugMode: false
-            }}
-          >
-            <ChatProvider enabled={true}>
-              {/* Accessibility: Skip Navigation Links */}
-              <SkipLinks />
+        <ClientProviders>
+          {/* Accessibility: Skip Navigation Links */}
+          <SkipLinks />
 
           {/* Schema Markup for Voice Search */}
           <LocalBusinessSchema
@@ -155,9 +144,7 @@ export default function RootLayout({
         <SchemaMarkup type="FAQPage" />
 
           {children}
-            </ChatProvider>
-          </PersonalizationProvider>
-        </MasterIntegrationProvider>
+        </ClientProviders>
       </body>
     </html>
   );
