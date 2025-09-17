@@ -13,9 +13,9 @@ export default function ClientProviders({
     <MasterIntegrationProvider>
       <PersonalizationProvider
         config={{
-          enableTracking: true,
-          enableEmergencyDetection: true,
-          enableABTesting: true,
+          enableTracking: false,
+          enableEmergencyDetection: false,
+          enableABTesting: false,
           debugMode: false
         }}
       >
