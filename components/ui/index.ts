@@ -1,7 +1,7 @@
 // UI Component index for better imports
 export { Button, buttonVariants } from './Button';
 export { Badge } from './badge';
-export { Card, CardHeader, CardTitle, CardContent, CardFooter } from './Card';
+export { Card, CardHeader, CardTitle, CardContent, CardDescription } from './Card';
 export { Input } from './input';
 export { Textarea } from './textarea';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
