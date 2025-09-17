@@ -172,12 +172,14 @@ class MasterIntegration {
     if (this.integrationStatus.get('personalization') && this.integrationStatus.get('analytics')) {
       realtimeAnalytics.subscribe('pageview', (data) => {
         // Track user behavior for personalization
-        personalizationEngine.trackEvent('page_view', data)
+        // TODO: Implement trackEvent method in PersonalizationEngine
+        // personalizationEngine.trackEvent('page_view', data)
       })
 
       realtimeAnalytics.subscribe('conversion', (data) => {
         // Update personalization based on conversions
-        personalizationEngine.trackEvent('conversion', data)
+        // TODO: Implement trackEvent method in PersonalizationEngine
+        // personalizationEngine.trackEvent('conversion', data)
       })
     }
 
