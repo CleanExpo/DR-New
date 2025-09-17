@@ -24,11 +24,11 @@ export default function HomePage() {
           </div>
           <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl">
-              Brisbane Disaster Recovery Experts
+              Premium Disaster Recovery Services
             </h1>
             <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto drop-shadow-lg">
-              We fix water damage fast. We clean fire damage completely. We remove mould safely.
-              Brisbane families trust us. We serve Brisbane, Ipswich and Logan.
+              Trusted by Brisbane's leading businesses and finest homes.
+              IICRC certified restoration for commercial properties and luxury residences.
             </p>
 
             {/* Clear CTAs */}
@@ -60,44 +60,47 @@ export default function HomePage() {
         {/* Core Services - Simple Grid */}
         <section className="py-16 bg-white" aria-labelledby="services-heading">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 id="services-heading" className="text-3xl font-bold text-gray-900 text-center mb-12">
-              Our Services
+            <h2 id="services-heading" className="text-3xl font-bold text-gray-900 text-center mb-4">
+              Professional Restoration Services
             </h2>
+            <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+              Specialized solutions for commercial facilities and high-value residential properties
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Water Damage Restoration Brisbane",
-                  description: "Flooded? We extract water. We dry your home. We stop mould growth.",
+                  title: "Commercial Water Damage",
+                  description: "Rapid water extraction and structural drying to minimize business interruption.",
                   link: "/services/water-damage-restoration",
                   image: "/images/services/water-damage-restoration.webp"
                 },
                 {
-                  title: "Fire Damage Restoration Brisbane",
-                  description: "Fire destroyed your home? We clean smoke. We remove soot. We restore everything.",
+                  title: "Fire & Smoke Restoration",
+                  description: "Complete restoration services for commercial and high-value residential properties.",
                   link: "/services/fire-damage-restoration",
                   image: "/images/services/fire-damage-restoration.webp"
                 },
                 {
-                  title: "Mould Removal Brisbane",
-                  description: "Mould makes you sick. We remove it safely. We stop it coming back.",
+                  title: "Professional Mould Remediation",
+                  description: "IICRC certified mould removal with air quality testing and prevention strategies.",
                   link: "/services/mould-remediation",
                   image: "/images/services/mould-remediation.webp"
                 },
                 {
-                  title: "Storm Damage Repair",
-                  description: "Storm hit? We respond in 1 hour. We fix flood damage fast.",
+                  title: "Storm & Flood Response",
+                  description: "Priority emergency response for commercial facilities and premium residences.",
                   link: "/services/storm-damage",
                   image: "/images/hero/disaster-recovery-services.jpg"
                 },
                 {
-                  title: "Trauma Scene Cleaning",
-                  description: "We clean dangerous scenes. We work safely. We care about families.",
+                  title: "Biohazard & Trauma Cleaning",
+                  description: "Discrete, professional cleaning services meeting all regulatory requirements.",
                   link: "/services/biohazard-cleaning",
                   image: "/images/services/crime-scene-remediation.webp"
                 },
                 {
-                  title: "Commercial Restoration",
-                  description: "Business flooded? We get you open fast. Insurance pays.",
+                  title: "Business Continuity Solutions",
+                  description: "Comprehensive restoration services designed to minimize operational downtime.",
                   link: "/services",
                   image: "/images/services/commercial-residential.png"
                 }
@@ -131,6 +134,85 @@ export default function HomePage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Commercial & Premium Residential Focus */}
+        <section className="py-16 bg-blue-50" aria-labelledby="commercial-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 id="commercial-heading" className="text-3xl font-bold text-gray-900 text-center mb-12">
+              Trusted by Brisbane's Business Leaders
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="bg-white rounded-lg p-8 shadow-sm">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  Commercial & Industrial
+                </h3>
+                <ul className="space-y-3 text-gray-700 mb-6">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Office Buildings & Corporate Facilities
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Retail & Hospitality Venues
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Manufacturing & Warehousing
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Minimized Business Interruption
+                  </li>
+                </ul>
+                <p className="text-sm text-gray-600">
+                  Priority response for commercial clients to ensure business continuity
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-8 shadow-sm">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                  Premium Residential
+                </h3>
+                <ul className="space-y-3 text-gray-700 mb-6">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Luxury Homes & Estates
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Heritage & Architecturally Significant Properties
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    High-Value Contents Restoration
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Discrete & Professional Service
+                  </li>
+                </ul>
+                <p className="text-sm text-gray-600">
+                  Specialized care for Brisbane's most prestigious properties
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -191,13 +273,23 @@ export default function HomePage() {
               Service Areas
             </h2>
             <p className="text-lg text-gray-700 mb-6">
-              We help people in Brisbane. We drive to Ipswich. We serve Logan families.
-              Emergency services available 24/7.
+              Servicing premium residential areas and commercial districts across Greater Brisbane.
+              24/7 emergency response for business continuity and property protection.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-              {['Brisbane CBD', 'North Brisbane', 'South Brisbane', 'West Brisbane', 'East Brisbane', 'Ipswich', 'Logan'].map((area) => (
-                <div key={area} className="bg-gray-50 rounded-lg py-3 px-4">
-                  <span className="text-gray-700">{area}</span>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+              {[
+                { name: 'Brisbane CBD', type: 'Commercial Hub' },
+                { name: 'New Farm', type: 'Premium Residential' },
+                { name: 'Ascot', type: 'Premium Residential' },
+                { name: 'Hamilton', type: 'Premium Residential' },
+                { name: 'Toowong', type: 'Premium Residential' },
+                { name: 'Ipswich CBD', type: 'Commercial' },
+                { name: 'Logan Central', type: 'Commercial' },
+                { name: 'Industrial Areas', type: 'Commercial' }
+              ].map((area) => (
+                <div key={area.name} className="bg-gray-50 rounded-lg py-3 px-4">
+                  <div className="text-gray-900 font-medium">{area.name}</div>
+                  <div className="text-xs text-gray-500">{area.type}</div>
                 </div>
               ))}
             </div>
