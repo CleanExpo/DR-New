@@ -68,6 +68,14 @@ npm run performance           # Build and run Lighthouse performance test
 npm run test:performance      # Run custom performance test script
 npm run build:analyze        # Analyze bundle size (ANALYZE=true)
 
+# Vercel Deployment Monitoring
+# Primary deployment URL: https://dr-kv13xi3us-unite-group.vercel.app
+# Use Playwright MCP to monitor build errors after each deployment
+
+# Build Error Detection
+node scripts/simple-readability-test.js  # Check Hemingway compliance
+npm run build                            # Verify local build success
+
 # Windows Batch Scripts
 start-all-mcp-servers.bat    # Start Context7, Sequential Thinking, and Playwright
 playwright-with-config.bat    # Start Playwright with Brisbane config
