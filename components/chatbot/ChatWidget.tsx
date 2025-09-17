@@ -80,7 +80,7 @@ export function ChatWidget({
   const [isRecording, setIsRecording] = useState(false);
   const [isSoundEnabled, setIsSoundEnabled] = useState(true);
   const [inputValue, setInputValue] = useState('');
-  const [showEmergencyAlert, setShowEmergencyAlert] = useState(false);
+  // Emergency alert removed
   const [showLocationRequest, setShowLocationRequest] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
@@ -202,7 +202,7 @@ export function ChatWidget({
   useEffect(() => {
     const emergencyKeywords = ['emergency', 'urgent', 'help', 'fire', 'flood'];
     if (emergencyKeywords.some(keyword => inputValue.toLowerCase().includes(keyword))) {
-      setShowEmergencyAlert(true);
+      // Emergency alert removed
       setUrgencyIndicator({
         level: 'critical',
         reason: 'Emergency keywords detected',
@@ -248,33 +248,6 @@ export function ChatWidget({
 
   return (
     <>
-      <AnimatePresence>
-        {/* Emergency Alert */}
-        {showEmergencyAlert && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-4 left-1/2 transform -translate-x-1/2 z-[60]"
-          >
-            <Alert className="bg-red-50 border-red-200">
-              <AlertTriangle className="h-4 w-4 text-red-600" />
-              <AlertTitle className="text-red-800">{t('emergencyDetected')}</AlertTitle>
-              <AlertDescription className="text-red-700">
-                {t('emergency')}
-                <Button
-                  onClick={() => window.location.href = 'tel:1300309361'}
-                  className="ml-2 bg-red-600 hover:bg-red-700"
-                  size="sm"
-                >
-                  <Phone className="w-4 h-4 mr-1" />
-                  {t('callNow')}
-                </Button>
-              </AlertDescription>
-            </Alert>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Main Chat Widget */}
       <div className={widgetClasses}>

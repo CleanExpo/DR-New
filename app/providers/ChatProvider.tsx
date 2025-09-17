@@ -64,11 +64,7 @@ export function ChatProvider({ children, enabled = true }: ChatProviderProps) {
             position="bottom-right"
             theme="auto"
           />
-          <ProactiveEngagement
-            onOpenChat={openChat}
-            currentPage={pathname || '/'}
-            userBehavior={userBehavior}
-          />
+          {/* ProactiveEngagement disabled - remove weather alerts */}
         </>
       )}
     </ChatContext.Provider>
