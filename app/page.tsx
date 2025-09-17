@@ -87,8 +87,8 @@ export default function HomePage() {
           {/* Hero Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/hero/disaster-recovery-services.jpg"
-              alt="Disaster Recovery Services Brisbane"
+              src="/images/hero/hero-disaster-tornado.png"
+              alt="Emergency disaster recovery services Brisbane - storm and tornado damage"
               fill
               className="object-cover"
               priority
