@@ -224,6 +224,69 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Our Services Visual Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                Comprehensive Disaster Recovery Services
+              </h2>
+              <p className="text-xl text-gray-700 mb-8">
+                When disaster strikes, you need a team that can handle every aspect of recovery.
+                Our comprehensive services cover all types of property damage, from initial assessment
+                through complete restoration.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Water Damage</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Fire Restoration</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Mould Remediation</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Bio Hazards</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">Inspection Reports</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0" />
+                  <span className="text-gray-700">2nd Opinions</span>
+                </div>
+              </div>
+              <div className="mt-8">
+                <Link
+                  href="tel:1300309361"
+                  className="inline-flex items-center justify-center bg-primary-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-primary-700 transition-colors"
+                >
+                  <Phone className="h-5 w-5 mr-2" />
+                  Call Now: 1300 309 361
+                </Link>
+              </div>
+            </div>
+            <div className="relative">
+              <Image
+                src="/images/pricing/disaster-response-services.png"
+                alt="Disaster Recovery Services - Water, Fire, Mould, Bio Hazards, Inspection Reports, 2nd Opinions"
+                width={800}
+                height={600}
+                className="rounded-lg shadow-2xl w-full h-auto"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Value Comparison Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
