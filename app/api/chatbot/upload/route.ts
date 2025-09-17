@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       size: file.size,
       type: file.type,
       analysis,
-      estimatedCost: analysis ? {
+      estimatedCost: analysis?.estimatedCost ? {
         min: Math.floor(analysis.estimatedCost * 0.8),
         max: Math.floor(analysis.estimatedCost * 1.2)
       } : undefined
