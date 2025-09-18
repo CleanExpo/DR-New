@@ -251,7 +251,7 @@ export default function TermsOfServicePage() {
                 <p className="font-semibold">Disaster Recovery</p>
                 <p>4/17 Tile St, Wacol, QLD 4076</p>
                 <p>Phone: 1300 309 361</p>
-                <p>Email: <a href="mailto:info@disasterrecovery.com.au" className="text-blue-600 hover:text-blue-700">info@disasterrecovery.com.au</a></p>
+                <p>Email: <a href="mailto:admin@disasterrecovery.com.au" className="text-blue-600 hover:text-blue-700">admin@disasterrecovery.com.au</a></p>
                 <p>ABN: [To be provided]</p>
                 <p>Operating Hours: 24/7 Emergency Service</p>
                 <p>Office Hours: Monday-Friday 7:00 AM - 6:00 PM</p>

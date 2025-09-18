@@ -202,7 +202,7 @@ export default function PrivacyPolicyPage() {
                   <strong>Disaster Recovery</strong><br />
                   Attn: Privacy Officer<br />
                   4/17 Tile St, Wacol, QLD 4076<br />
-                  Email: <a href="mailto:info@disasterrecovery.com.au" className="text-blue-600 hover:underline">info@disasterrecovery.com.au</a><br />
+                  Email: <a href="mailto:admin@disasterrecovery.com.au" className="text-blue-600 hover:underline">admin@disasterrecovery.com.au</a><br />
                   Phone: <a href="tel:1300309361" className="text-blue-600 hover:underline">1300 309 361</a><br />
                   Business Hours: Monday to Friday, 7:00 AM - 5:00 PM AEST
                 </p>

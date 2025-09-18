@@ -78,8 +78,8 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <div>
                     <p className="font-semibold text-gray-700">Email</p>
-                    <a href="mailto:info@disasterrecovery.com.au" className="text-lg text-blue-600 hover:text-blue-700 break-all">
-                      info@disasterrecovery.com.au
+                    <a href="mailto:admin@disasterrecovery.com.au" className="text-lg text-blue-600 hover:text-blue-700 break-all">
+                      admin@disasterrecovery.com.au
                     </a>
                   </div>
                 </div>

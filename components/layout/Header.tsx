@@ -1,12 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+
+  const services = [
+    { name: 'Water Damage Restoration', href: '/services/water-damage' },
+    { name: 'Fire & Smoke Damage', href: '/services/fire-damage' },
+    { name: 'Mould Remediation', href: '/services/mould-remediation' },
+    { name: 'Storm Damage Recovery', href: '/services/storm-damage' },
+    { name: 'Biohazard Cleanup', href: '/services/biohazard' },
+    { name: 'Commercial Restoration', href: '/services/commercial' },
+    { name: 'Sewage Cleanup', href: '/services/sewage' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +28,17 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check initial scroll position
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
+        setIsServicesOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
 
@@ -56,15 +79,43 @@ export default function Header() {
               <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Link>
 
-            <Link
-              href="/services"
-              className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
-            >
-              <span className="relative z-10 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
-                Services
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </Link>
+            {/* Services Dropdown */}
+            <div className="relative" ref={servicesRef}>
+              <button
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden flex items-center gap-1"
+              >
+                <span className="relative z-10 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
+                  Services
+                </span>
+                <svg
+                  className={`relative z-10 w-4 h-4 text-gray-800 group-hover:text-white transition-all duration-300 ${
+                    isServicesOpen ? 'rotate-180' : ''
+                  }`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </button>
+
+              {/* Dropdown Menu */}
+              {isServicesOpen && (
+                <div className="absolute top-full mt-2 left-0 w-64 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                  {services.map((service) => (
+                    <Link
+                      key={service.href}
+                      href={service.href}
+                      className="block px-4 py-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-colors duration-200 border-b border-gray-100 last:border-0"
+                      onClick={() => setIsServicesOpen(false)}
+                    >
+                      <span className="text-gray-700 hover:text-blue-600 font-medium">{service.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <Link
               href="/about"
