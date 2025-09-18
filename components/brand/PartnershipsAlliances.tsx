@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const PartnershipsAlliances = () => {
   const premiumPartners = [
@@ -8,12 +9,14 @@ const PartnershipsAlliances = () => {
       category: 'Insurance Partners',
       description: 'Preferred restoration provider for Australia\'s leading insurers',
       partners: [
-        { name: 'Allianz', level: 'Platinum', since: '2010' },
-        { name: 'Suncorp', level: 'Platinum', since: '2008' },
-        { name: 'QBE Insurance', level: 'Gold', since: '2012' },
-        { name: 'RACQ', level: 'Platinum', since: '2005' },
-        { name: 'IAG', level: 'Gold', since: '2015' },
-        { name: 'Zurich', level: 'Silver', since: '2018' }
+        { name: 'Allianz', level: 'Platinum', since: '2010', link: '/insurance-partners/allianz' },
+        { name: 'Suncorp', level: 'Platinum', since: '2008', link: '/insurance-partners/suncorp' },
+        { name: 'QBE Insurance', level: 'Gold', since: '2012', link: '/insurance-partners/qbe' },
+        { name: 'RACQ', level: 'Platinum', since: '2005', link: '/insurance-partners/racq' },
+        { name: 'IAG', level: 'Gold', since: '2015', link: '/insurance-partners/iag' },
+        { name: 'Zurich', level: 'Silver', since: '2018', link: '/insurance-partners/zurich' },
+        { name: 'Hollards', level: 'Gold', since: '2016', link: '/insurance-partners/hollards' },
+        { name: 'Wesfarmers Insurance', level: 'Silver', since: '2019', link: '/insurance-partners/wesfarmers' }
       ]
     },
     {
@@ -114,15 +117,8 @@ const PartnershipsAlliances = () => {
               <p className="text-gray-600 mb-8">{category.description}</p>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                {category.partners.map((partner, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 group"
-                  >
+                {category.partners.map((partner, index) => {
+                  const content = (
                     <div className="text-center">
                       <div className="h-12 flex items-center justify-center mb-2">
                         <div className="text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
@@ -145,8 +141,32 @@ const PartnershipsAlliances = () => {
                         </div>
                       )}
                     </div>
-                  </motion.div>
-                ))}
+                  );
+
+                  const motionDiv = (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                      className="bg-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 group"
+                    >
+                      {content}
+                    </motion.div>
+                  );
+
+                  // Only wrap insurance partners with links
+                  if ('link' in partner && partner.link) {
+                    return (
+                      <Link key={index} href={partner.link} className="block">
+                        {motionDiv}
+                      </Link>
+                    );
+                  }
+
+                  return motionDiv;
+                })}
               </div>
             </div>
           </motion.div>
