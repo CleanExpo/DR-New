@@ -33,9 +33,7 @@ export default function Header() {
     // Insurance Partners
     { name: 'Our Insurance Partners', href: '/insurance-partners', divider: false },
     { name: 'IAG Insurance', href: '/insurance-partners/iag', divider: false, logo: '/images/insurance-logos/IAG Insurance.png' },
-    { name: 'CGU Insurance', href: '/insurance-partners/iag', divider: false, logo: '/images/insurance-logos/CGU Insurance.png' },
     { name: 'Suncorp Group', href: '/insurance-partners/suncorp', divider: false, logo: '/images/insurance-logos/Suncorp Insurance.png' },
-    { name: 'Vero Insurance', href: '/insurance-partners/suncorp', divider: false, logo: '/images/insurance-logos/VERO Insurance.png' },
     { name: 'QBE Insurance', href: '/insurance-partners/qbe', divider: false, logo: '/images/insurance-logos/QBE Insurance.png' },
     { name: 'RACQ Insurance', href: '/insurance-partners/racq', divider: false, logo: '/images/insurance-logos/RACQ Insurance.png' },
     { name: 'Allianz', href: '/insurance-partners/allianz', divider: false, logo: '/images/insurance-logos/Allianz Insurance.png' },
