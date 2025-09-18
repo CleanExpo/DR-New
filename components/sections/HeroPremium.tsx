@@ -12,7 +12,8 @@ const heroSlides = [
     title: 'Emergency Disaster Recovery',
     subtitle: 'Brisbane\'s Most Trusted Response Team',
     description: '24/7 Emergency Response • Rapid Triage System • IICRC Certified',
-    color: 'from-blue-900/90 to-blue-800/80'
+    color: 'from-blue-900/90 to-blue-800/80',
+    alt: 'Disaster Recovery Brisbane emergency response team providing 24/7 disaster restoration services'
   },
   {
     id: 2,
@@ -20,15 +21,17 @@ const heroSlides = [
     title: 'Fire & Smoke Damage',
     subtitle: 'Complete Restoration Services',
     description: 'Immediate Response • Insurance Approved • Total Recovery',
-    color: 'from-orange-900/90 to-red-800/80'
+    color: 'from-orange-900/90 to-red-800/80',
+    alt: 'Fire and smoke damage restoration services by IICRC certified technicians'
   },
   {
     id: 3,
     image: '/images/hero/mould-remediation-services.jpg',
-    title: 'Mould Remediation',
+    title: 'Mould Remediation Services',
     subtitle: 'Safe & Thorough Removal',
     description: 'Health-First Approach • Prevention Focused • Guaranteed Results',
-    color: 'from-green-900/90 to-teal-800/80'
+    color: 'from-green-900/90 to-teal-800/80',
+    alt: 'Professional mould remediation services showing IICRC certified team removing dangerous mold from residential property with biohazard warning signs'
   },
   {
     id: 4,
@@ -36,7 +39,8 @@ const heroSlides = [
     title: 'Commercial Restoration',
     subtitle: 'Minimize Business Downtime',
     description: 'Priority Response • Weekend Work • Rapid Recovery',
-    color: 'from-purple-900/90 to-indigo-800/80'
+    color: 'from-purple-900/90 to-indigo-800/80',
+    alt: 'Commercial property restoration services minimizing business downtime and interruption'
   }
 ];
 
@@ -91,7 +95,7 @@ export default function HeroPremium() {
         >
           <Image
             src={currentHero.image}
-            alt={currentHero.title}
+            alt={currentHero.alt}
             fill
             priority={currentSlide === 0}
             className="object-cover scale-110"
@@ -134,7 +138,7 @@ export default function HeroPremium() {
       )}
 
       {/* Content Container */}
-      <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-20">
         <div className="max-w-7xl mx-auto w-full">
           {/* Emergency Banner */}
           <motion.div
@@ -159,7 +163,7 @@ export default function HeroPremium() {
             transition={{ duration: 1, delay: 0.4 }}
             className="text-white"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <motion.span
                 className="block"
                 animate={isMounted ? { opacity: [0.8, 1, 0.8] } : {}}
@@ -168,7 +172,7 @@ export default function HeroPremium() {
                 {currentHero.title}
               </motion.span>
               <motion.span
-                className="block text-3xl md:text-5xl lg:text-6xl mt-2 text-white/90"
+                className="block text-2xl md:text-4xl lg:text-5xl mt-2 text-white/90"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
