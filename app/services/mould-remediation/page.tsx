@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://disasterrecovery.com.au/images/services/mould-remediation.jpg',
+        url: 'https://disasterrecovery.com.au/images/services/mould-remediation-new.png',
         width: 1200,
         height: 630,
         alt: 'Mould Remediation Services | Professional Mould Removal',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mould Remediation Services | Professional Mould Removal',
     description: 'Expert mould remediation Brisbane & surrounds. Safe removal, moisture control, prevention strategies. IICRC certified technicians. Health-focused appr...',
-    images: ['https://disasterrecovery.com.au/images/services/mould-remediation.jpg'],
+    images: ['https://disasterrecovery.com.au/images/services/mould-remediation-new.png'],
   },
 };
 
@@ -91,17 +91,14 @@ export default function MouldRemediationPage() {
               </div>
               <div className="relative h-96 rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/images/services/mould-remediation.webp"
+                  src="/images/services/mould-remediation-new.png"
                   alt="Professional mould remediation service"
                   fill
                   className="object-cover"
-                
-            quality={80}
-          
-            loading="lazy"
-          
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+                  quality={90}
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
               </div>
             </div>
           </div>
