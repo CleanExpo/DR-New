@@ -333,11 +333,24 @@ export default function StormDamagePage() {
             </h2>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {['Brisbane CBD', 'Ipswich', 'Logan', 'Fortitude Valley', 'West End', 'New Farm', 'Toowong', 'St Lucia'].map((area) => (
-                <div key={area} className="bg-white p-4 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow">
-                  <div className="font-semibold text-gray-900">{area}</div>
+              {[
+                { name: 'Brisbane CBD', slug: 'brisbane-cbd' },
+                { name: 'Ipswich', slug: 'ipswich' },
+                { name: 'Logan', slug: 'logan' },
+                { name: 'Fortitude Valley', slug: 'fortitude-valley' },
+                { name: 'West End', slug: 'west-end' },
+                { name: 'New Farm', slug: 'new-farm' },
+                { name: 'Toowong', slug: 'toowong' },
+                { name: 'St Lucia', slug: 'st-lucia' }
+              ].map((area) => (
+                <Link
+                  key={area.name}
+                  href={`/locations/${area.slug}`}
+                  className="bg-white p-4 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow block hover:bg-blue-50"
+                >
+                  <div className="font-semibold text-gray-900">{area.name}</div>
                   <div className="text-sm text-gray-600 mt-1">24/7 Response</div>
-                </div>
+                </Link>
               ))}
             </div>
 
