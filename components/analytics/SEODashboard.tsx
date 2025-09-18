@@ -2,9 +2,22 @@
 
 import { Card } from '@/components/ui/Card'
 import {
-  LineChart, Line, AreaChart, Area, BarChart, Bar,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts'
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Area,
+  AreaChart
+} from '@/components/charts/DynamicCharts'
 import { Search, Globe, Link, TrendingUp, FileText, Award } from 'lucide-react'
 
 export default function SEODashboard() {

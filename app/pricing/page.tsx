@@ -284,7 +284,13 @@ export default function PricingPage() {
                 height={600}
                 className="rounded-lg shadow-2xl w-full h-auto"
                 priority
-              />
+              
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
             </div>
           </div>
         </div>
@@ -312,7 +318,13 @@ export default function PricingPage() {
                 height={600}
                 className="rounded-lg shadow-2xl w-full h-auto"
                 priority
-              />
+              
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
               <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
                 Hidden Costs Alert
               </div>

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Clayfield | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Clayfield Brisbane. Heritage estates, prestigious schools, family homes. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["clayfield water damage","heritage flooding","school restoration"],
+export const metadata: Metadata = {
+  title: 'Clayfield Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Clayfield's premier disaster restoration service. Heritage homes, luxury properties, water & fire damage experts. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery clayfield","water damage clayfield 4011","heritage home restoration","luxury property recovery","Eagle Junction area"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/clayfield',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/clayfield',
+    },
+  },
+  openGraph: {
+    title: 'Clayfield Disaster Recovery | Emergency Restoration',
+    description: 'Clayfield's premier disaster restoration service. Heritage homes, luxury properties, water & fire damage experts. Insurance approved. Call 1300 309 36...',
+    url: 'https://disasterrecovery.com.au/locations/clayfield',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function ClayfieldPage() {

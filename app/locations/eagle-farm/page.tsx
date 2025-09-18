@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Eagle Farm | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Eagle Farm Brisbane. Warehouses, industrial facilities, logistics centers. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["eagle farm flooding","warehouse water damage","industrial restoration"],
+export const metadata: Metadata = {
+  title: 'Eagle Farm Disaster Recovery | Industrial Restoration | 24/7',
+  description: 'Eagle Farm industrial & commercial disaster recovery. Warehouse flooding, fire damage specialists. Airport precinct coverage. Insurance experts. Call 1300 309 361.',
+  keywords: ["disaster recovery eagle farm","industrial restoration 4009","warehouse flooding","airport precinct","commercial recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/eagle-farm',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/eagle-farm',
+    },
+  },
+  openGraph: {
+    title: 'Eagle Farm Disaster Recovery | Industrial Restoration',
+    description: 'Eagle Farm industrial & commercial disaster recovery. Warehouse flooding, fire damage specialists. Airport precinct coverage. Insurance experts. Call ...',
+    url: 'https://disasterrecovery.com.au/locations/eagle-farm',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function EagleFarmPage() {

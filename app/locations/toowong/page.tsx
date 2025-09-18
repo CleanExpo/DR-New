@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Toowong | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Toowong Brisbane. Riverside apartments, shopping centers, office parks. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["toowong flood damage","shopping centre water damage","riverside flooding"],
+export const metadata: Metadata = {
+  title: 'Toowong Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Toowong disaster restoration experts. Shopping village area, residential & commercial water, fire & mould recovery. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery toowong","water damage toowong 4066","Toowong Village area","commercial restoration","residential recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/toowong',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/toowong',
+    },
+  },
+  openGraph: {
+    title: 'Toowong Disaster Recovery | Emergency Restoration',
+    description: 'Toowong disaster restoration experts. Shopping village area, residential & commercial water, fire & mould recovery. Insurance approved. Call 1300 309 ...',
+    url: 'https://disasterrecovery.com.au/locations/toowong',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function ToowongPage() {

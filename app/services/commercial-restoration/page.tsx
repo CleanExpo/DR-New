@@ -6,14 +6,37 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Commercial Restoration Brisbane | Office & Business Recovery | 24/7 Response | 1300 309 361",
-  description: "Professional commercial restoration services for Brisbane businesses. Specialising in office buildings, retail spaces, warehouses, and industrial facilities. Minimise downtime with IICRC certified restoration. Insurance approved. Call 1300 309 361.",
-  keywords: ["commercial restoration brisbane", "office water damage", "business fire restoration", "warehouse flood recovery", "retail store restoration", "industrial cleaning brisbane"],
+  title: 'Commercial Restoration Services | 24/7 Business Recovery',
+  description: 'Expert commercial restoration Brisbane metro. Fast business recovery, minimal downtime. Office, retail, hospitality specialists. Insurance approved. Call 1300 309 361.',
+  keywords: ["commercial water damage","business fire restoration","office flood recovery","retail store restoration","restaurant water damage","hotel restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial-restoration',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/commercial-restoration',
+    },
+  },
   openGraph: {
-    title: "Commercial Restoration Brisbane | Business Disaster Recovery",
-    description: "Expert commercial restoration services. Minimise business interruption with our rapid response team. Insurance approved restoration for all commercial properties.",
-    url: "https://disasterrecovery.com.au/services/commercial-restoration",
-  }
+    title: 'Commercial Restoration Services | 24/7 Business Recovery',
+    description: 'Expert commercial restoration Brisbane metro. Fast business recovery, minimal downtime. Office, retail, hospitality specialists. Insurance approved. C...',
+    url: 'https://disasterrecovery.com.au/services/commercial-restoration',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/commercial-restoration.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Commercial Restoration Services | 24/7 Business Recovery',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Commercial Restoration Services | 24/7 Business Recovery',
+    description: 'Expert commercial restoration Brisbane metro. Fast business recovery, minimal downtime. Office, retail, hospitality specialists. Insurance approved. C...',
+    images: ['https://disasterrecovery.com.au/images/services/commercial-restoration.jpg'],
+  },
 };
 
 export default function CommercialRestorationPage() {
@@ -97,7 +120,14 @@ export default function CommercialRestorationPage() {
                   height={400}
                   className="rounded-lg shadow-2xl"
                   priority
-                />
+                
+            quality={85}
+          
+            sizes="100vw"
+          
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
+          />
                 <div className="absolute -bottom-4 -right-4 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg">
                   <p className="font-bold">Trusted by 500+ Brisbane Businesses</p>
                 </div>

@@ -8,18 +8,25 @@ import ClientProviders from '@/components/providers/ClientProviders';
 import MobileStickyCAT from '@/components/ui/MobileStickyCAT';
 
 export const metadata: Metadata = {
-  title: "Water Damage Restoration Brisbane | 1300 309 361",
-  description: "Professional disaster recovery services in Brisbane, Ipswich & Logan. 24/7 emergency water damage, fire damage restoration & mould remediation. Fast response, quality results.",
+  title: "Disaster Recovery Brisbane | 24/7 Emergency Restoration | 1300 309 361",
+  description: "Brisbane's leading disaster recovery specialists. IICRC certified water damage, fire restoration & mould remediation. Servicing Brisbane, Ipswich & Logan. Insurance approved. Call 1300 309 361.",
   keywords: ["disaster recovery brisbane", "water damage restoration brisbane", "fire damage restoration", "mould removal brisbane", "emergency restoration", "flood damage repair", "storm damage brisbane", "ipswich disaster recovery", "logan disaster recovery"],
-  authors: [{ name: "Disaster Recovery Brisbane" }],
-  creator: "Disaster Recovery Brisbane",
-  publisher: "Disaster Recovery Brisbane",
+  authors: [{ name: "Disaster Recovery" }],
+  creator: "Disaster Recovery",
+  publisher: "Disaster Recovery",
   robots: "index, follow",
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au',
+      'en': 'https://disasterrecovery.com.au',
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_AU",
     url: "https://disasterrecovery.com.au",
-    siteName: "Disaster Recovery Brisbane",
+    siteName: "Disaster Recovery",
     title: "Professional Disaster Recovery Services Brisbane | 24/7 Emergency Response",
     description: "Expert water damage, fire damage restoration & mould remediation services across Brisbane, Ipswich & Logan. Call 1300 309 361 for immediate assistance.",
     images: [
@@ -54,6 +61,9 @@ export default function RootLayout({
 
         {/* SEO and Identity */}
         <link rel="canonical" href="https://disasterrecovery.com.au" />
+        <link rel="alternate" hrefLang="en-AU" href="https://disasterrecovery.com.au" />
+        <link rel="alternate" hrefLang="en" href="https://disasterrecovery.com.au" />
+        <link rel="alternate" hrefLang="x-default" href="https://disasterrecovery.com.au" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

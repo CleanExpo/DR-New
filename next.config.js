@@ -3,9 +3,11 @@ const nextConfig = {
   images: {
     domains: [],
     formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    minimumCacheTTL: 60 * 60 * 24 * 365, // 1 year cache
+    deviceSizes: [320, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   compress: true,
   poweredByHeader: false,
@@ -13,43 +15,106 @@ const nextConfig = {
   swcMinify: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+    // Tree-shake unused exports
+    emotion: false,
+    styledComponents: false,
   },
-  // Removed experimental features causing build issues
-  // experimental: {
-  //   optimizeCss: true,
-  //   webpackBuildWorker: true,
-  // },
+  // Modularize imports for optimized tree-shaking
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}',
+    },
+    '@radix-ui': {
+      transform: '@radix-ui/{{member}}',
+    },
+  },
   // Optimize for production
   productionBrowserSourceMaps: false,
-  // Standalone output disabled due to Vercel deployment issues
-  // output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
+  // Experimental optimizations
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-*', 'framer-motion'],
+  },
   // Webpack optimizations
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, dev }) => {
     // Only optimize chunks for client-side bundles
     if (!isServer) {
       config.optimization = {
         ...config.optimization,
+        minimize: !dev,
+        usedExports: true,
+        sideEffects: false,
         splitChunks: {
           chunks: 'all',
+          maxAsyncRequests: 30,
+          maxInitialRequests: 30,
+          minSize: 20000,
           cacheGroups: {
             default: false,
             vendors: false,
-            lib: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'lib',
-              priority: 10,
-              reuseExistingChunk: true,
+            // Split framework code
+            framework: {
+              name: 'framework',
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|next)[\\/]/,
+              priority: 40,
               enforce: true,
             },
+            // Split large libraries
+            lib: {
+              test(module) {
+                return module.size() > 160000 &&
+                  /node_modules[\\/]/.test(module.identifier());
+              },
+              name(module) {
+                const packageName = module.context.match(
+                  /[\\/]node_modules[\\/](.*?)[\\/]/
+                );
+                return packageName ? `lib.${packageName[1].replace('@', '')}` : 'lib';
+              },
+              priority: 30,
+              minChunks: 1,
+              reuseExistingChunk: true,
+            },
+            // Common chunks
             commons: {
               name: 'commons',
+              chunks: 'all',
               minChunks: 2,
-              priority: 5,
+              priority: 20,
+            },
+            // Shared components
+            shared: {
+              name(module, chunks) {
+                return `shared`;
+              },
+              priority: 10,
+              test: /[\\/]components[\\/]|[\\/]lib[\\/]/,
+              minChunks: 3,
               reuseExistingChunk: true,
             },
           },
         },
       };
+
+      // Ignore moment locales (if any dependency uses it)
+      config.plugins.push(
+        new config.optimization.minimizer[0].constructor({
+          parallel: true,
+          terserOptions: {
+            compress: {
+              drop_console: process.env.NODE_ENV === 'production',
+              drop_debugger: true,
+              pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace'],
+              passes: 2,
+            },
+            mangle: true,
+            format: {
+              comments: false,
+            },
+          },
+          extractComments: false,
+        })
+      );
     }
 
     // Fix for 'self is not defined' error

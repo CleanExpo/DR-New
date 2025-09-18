@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Milton | Emergency Response',
-  description: 'Expert water damage restoration in Milton Brisbane. Commercial & residential flood recovery, 24/7 emergency response. Insurance approved. Call 1300 309 361.',
-  keywords: ['water damage milton', 'flood restoration milton brisbane', 'commercial water damage milton', 'milton flood recovery'],
+export const metadata: Metadata = {
+  title: 'Milton Disaster Recovery | Commercial Restoration | 24/7',
+  description: 'Milton disaster restoration experts. Suncorp Stadium area, commercial & residential water, fire & flood specialists. Quick response. Call 1300 309 361.',
+  keywords: ["disaster recovery milton","flood restoration milton 4064","Suncorp Stadium area","commercial water damage","office restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/milton',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/milton',
+    },
+  },
+  openGraph: {
+    title: 'Milton Disaster Recovery | Commercial Restoration',
+    description: 'Milton disaster restoration experts. Suncorp Stadium area, commercial & residential water, fire & flood specialists. Quick response. Call 1300 309 361...',
+    url: 'https://disasterrecovery.com.au/locations/milton',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function MiltonPage() {

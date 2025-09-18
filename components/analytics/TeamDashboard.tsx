@@ -2,10 +2,22 @@
 
 import { Card } from '@/components/ui/Card'
 import {
-  BarChart, Bar, LineChart, Line, RadarChart, Radar,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  PolarGrid, PolarAngleAxis, PolarRadiusAxis
-} from 'recharts'
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Area,
+  AreaChart
+} from '@/components/charts/DynamicCharts'
 import { Users, Trophy, Target, Clock, Star, TrendingUp } from 'lucide-react'
 
 export default function TeamDashboard() {

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Wynnum | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Wynnum Brisbane. Bayside properties, esplanade businesses, family homes. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["wynnum flood damage","bayside water damage","esplanade flooding"],
+export const metadata: Metadata = {
+  title: 'Wynnum Disaster Recovery | Bayside Restoration | 24/7',
+  description: 'Wynnum bayside disaster restoration specialists. Storm surge, tidal flooding, water & salt damage experts. Marina area coverage. Call 1300 309 361.',
+  keywords: ["disaster recovery wynnum","bayside restoration 4178","storm surge damage","tidal flooding","marina restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/wynnum',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/wynnum',
+    },
+  },
+  openGraph: {
+    title: 'Wynnum Disaster Recovery | Bayside Restoration',
+    description: 'Wynnum bayside disaster restoration specialists. Storm surge, tidal flooding, water & salt damage experts. Marina area coverage. Call 1300 309 361....',
+    url: 'https://disasterrecovery.com.au/locations/wynnum',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function WynnumPage() {

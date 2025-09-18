@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Kenmore | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Kenmore Brisbane. Family homes, local shopping village, professional areas. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["kenmore water damage","family home flooding","storm damage kenmore"],
+export const metadata: Metadata = {
+  title: 'Kenmore Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Kenmore disaster restoration specialists. Moggill Creek flooding experts, luxury homes, water & storm damage recovery. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery kenmore","flood restoration kenmore 4069","Moggill Creek flooding","luxury home recovery","storm damage"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/kenmore',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/kenmore',
+    },
+  },
+  openGraph: {
+    title: 'Kenmore Disaster Recovery | Emergency Restoration',
+    description: 'Kenmore disaster restoration specialists. Moggill Creek flooding experts, luxury homes, water & storm damage recovery. Insurance approved. Call 1300 3...',
+    url: 'https://disasterrecovery.com.au/locations/kenmore',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function KenmorePage() {

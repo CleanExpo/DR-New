@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration New Farm | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in New Farm Brisbane. Heritage homes, luxury apartments, riverside properties. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["new farm water damage","luxury home restoration","riverside flooding"],
+export const metadata: Metadata = {
+  title: 'New Farm Disaster Recovery | Heritage Restoration | 24/7',
+  description: 'New Farm's premier disaster restoration service. Heritage homes, riverside properties, water & fire specialists. Insurance experts. Call 1300 309 361.',
+  keywords: ["disaster recovery new farm","heritage restoration 4005","riverside flooding","Brunswick Street area","luxury home recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/new-farm',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/new-farm',
+    },
+  },
+  openGraph: {
+    title: 'New Farm Disaster Recovery | Heritage Restoration',
+    description: 'New Farm's premier disaster restoration service. Heritage homes, riverside properties, water & fire specialists. Insurance experts. Call 1300 309 361....',
+    url: 'https://disasterrecovery.com.au/locations/new-farm',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function NewFarmPage() {

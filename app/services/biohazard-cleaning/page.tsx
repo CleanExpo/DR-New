@@ -6,14 +6,37 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Biohazard & Trauma Cleaning Brisbane | Discrete Professional Service | 1300 309 361",
-  description: "Professional biohazard and trauma cleaning for commercial and residential properties. Discrete, certified service meeting all regulatory requirements. Call 1300 309 361.",
-  keywords: ["biohazard cleaning brisbane", "trauma cleaning", "crime scene cleanup", "sewage cleanup", "commercial biohazard", "discrete cleaning service", "certified biohazard technicians"],
+  title: 'Biohazard & Trauma Cleaning | Certified Specialists',
+  description: 'Certified biohazard cleaning specialists Brisbane metro. Trauma, crime scene, unattended death cleanup. Discreet, professional, compassionate service. Call 1300 309 361.',
+  keywords: ["biohazard cleanup","trauma scene cleaning","unattended death","hoarding cleanup","sharps disposal","contamination control"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/biohazard-cleaning',
+    },
+  },
   openGraph: {
-    title: "Professional Biohazard & Trauma Cleaning Brisbane",
-    description: "Discrete, professional biohazard cleaning services. Certified technicians, regulatory compliance, 24/7 emergency response.",
-    url: "https://disasterrecovery.com.au/services/biohazard-cleaning",
-  }
+    title: 'Biohazard & Trauma Cleaning | Certified Specialists',
+    description: 'Certified biohazard cleaning specialists Brisbane metro. Trauma, crime scene, unattended death cleanup. Discreet, professional, compassionate service....',
+    url: 'https://disasterrecovery.com.au/services/biohazard-cleaning',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/biohazard-cleaning.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Biohazard & Trauma Cleaning | Certified Specialists',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Biohazard & Trauma Cleaning | Certified Specialists',
+    description: 'Certified biohazard cleaning specialists Brisbane metro. Trauma, crime scene, unattended death cleanup. Discreet, professional, compassionate service....',
+    images: ['https://disasterrecovery.com.au/images/services/biohazard-cleaning.jpg'],
+  },
 };
 
 export default function BiohazardCleaningPage() {
@@ -76,7 +99,13 @@ export default function BiohazardCleaningPage() {
                   alt="Professional biohazard cleaning services"
                   fill
                   className="object-cover"
-                />
+                
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
               </div>
             </div>
           </div>

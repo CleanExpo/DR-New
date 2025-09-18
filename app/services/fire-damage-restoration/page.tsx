@@ -4,35 +4,36 @@ import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Fire Damage Restoration Brisbane | Smoke & Soot Removal | 1300 309 361",
-  description: "Professional fire damage restoration services in Brisbane, Ipswich & Logan. Expert smoke damage cleanup, soot removal, odor elimination. 24/7 emergency response.",
-  keywords: "fire damage restoration brisbane, smoke damage cleanup, soot removal, fire restoration, structural repairs, odor removal, emergency fire damage, brisbane fire restoration, ipswich fire damage, logan fire damage",
-  authors: [{ name: "Disaster Recovery Brisbane" }],
-  creator: "Disaster Recovery Brisbane",
-  publisher: "Disaster Recovery Brisbane",
-  robots: "index, follow",
-  viewport: "width=device-width, initial-scale=1",
+  title: 'Fire & Smoke Damage Restoration | 24/7 Emergency Services',
+  description: 'Fire damage restoration specialists Brisbane, Ipswich & Logan. Expert smoke & soot removal, odour elimination, structural repairs. Insurance approved. Call 1300 309 361.',
+  keywords: ["fire damage restoration","smoke odour removal","soot cleaning","content restoration","structural deodorisation","thermal fogging"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage-restoration',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/fire-damage-restoration',
+    },
+  },
   openGraph: {
-    type: "website",
-    locale: "en_AU",
-    url: "https://disasterrecoverybrisbane.com.au/services/fire-damage-restoration",
-    siteName: "Disaster Recovery Brisbane",
-    title: "Professional Fire Damage Restoration Brisbane | 24/7 Emergency Response",
-    description: "Expert fire damage restoration across Brisbane, Ipswich & Logan. Smoke cleanup, soot removal, structural repairs. Call 1300 309 361 for immediate assistance.",
+    title: 'Fire & Smoke Damage Restoration | 24/7 Emergency Services',
+    description: 'Fire damage restoration specialists Brisbane, Ipswich & Logan. Expert smoke & soot removal, odour elimination, structural repairs. Insurance approved....',
+    url: 'https://disasterrecovery.com.au/services/fire-damage-restoration',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
     images: [
       {
-        url: "/og-fire-damage.jpg",
+        url: 'https://disasterrecovery.com.au/images/services/fire-damage-restoration.jpg',
         width: 1200,
         height: 630,
-        alt: "Fire Damage Restoration Brisbane - Professional Emergency Services",
+        alt: 'Fire & Smoke Damage Restoration | 24/7 Emergency Services',
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Fire Damage Restoration Brisbane | 24/7 Emergency Response",
-    description: "Professional fire damage restoration services across Brisbane, Ipswich & Logan. Expert smoke and soot removal specialists.",
-    images: ["/twitter-fire-damage.jpg"],
+    card: 'summary_large_image',
+    title: 'Fire & Smoke Damage Restoration | 24/7 Emergency Services',
+    description: 'Fire damage restoration specialists Brisbane, Ipswich & Logan. Expert smoke & soot removal, odour elimination, structural repairs. Insurance approved....',
+    images: ['https://disasterrecovery.com.au/images/services/fire-damage-restoration.jpg'],
   },
 };
 
@@ -117,7 +118,7 @@ export default function FireDamageRestorationPage() {
                           <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                       </div>
-                      <span>Complete odor elimination</span>
+                      <span>Complete odour elimination</span>
                     </div>
                     <div className="flex items-center">
                       <div className="bg-green-500 rounded-full p-1 mr-3">
@@ -167,14 +168,14 @@ export default function FireDamageRestorationPage() {
                 <p className="text-gray-700 text-center">Specialized soot cleaning techniques for all surfaces and HVAC systems.</p>
               </Link>
 
-              <Link href="/services/fire-damage-restoration/odor-removal" className="card hover:shadow-xl transition-shadow duration-300 group">
+              <Link href="/services/fire-damage-restoration/odour-removal" className="card hover:shadow-xl transition-shadow duration-300 group">
                 <div className="bg-red-100 text-red-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-red-200 transition-colors">
                   <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12,18.5C15.5,18.5 19,16.68 19,14.5V12.5C19,10.32 15.5,8.5 12,8.5C8.5,8.5 5,10.32 5,12.5V14.5C5,16.68 8.5,18.5 12,18.5M12,7C16.42,7 20,8.79 20,11V13C20,15.21 16.42,17 12,17C7.58,17 4,15.21 4,13V11C4,8.79 7.58,7 12,7M12,10C9.24,10 7,10.9 7,12S9.24,14 12,14 17,13.1 17,12 14.76,10 12,10Z"/>
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Odor Elimination</h3>
-                <p className="text-gray-700 text-center">Advanced ozone and thermal fogging treatments for complete odor removal.</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">Odour Elimination</h3>
+                <p className="text-gray-700 text-center">Advanced ozone and thermal fogging treatments for complete odour removal.</p>
               </Link>
 
               <Link href="/services/fire-damage-restoration/structural-repairs" className="card hover:shadow-xl transition-shadow duration-300 group">
@@ -217,7 +218,7 @@ export default function FireDamageRestorationPage() {
 
               <div className="text-center">
                 <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Odor Treatment</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Odour Treatment</h3>
                 <p className="text-gray-700">Advanced deodorization using ozone, thermal fogging, and hydroxyl generators.</p>
               </div>
 

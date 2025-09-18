@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Carindale | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Carindale Brisbane. Major shopping, residential estates, commercial precincts. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["carindale water damage","shopping mall flooding","estate restoration"],
+export const metadata: Metadata = {
+  title: 'Carindale Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Carindale disaster restoration experts. Shopping centre area, residential & commercial water, fire & mould recovery. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery carindale","water damage carindale 4152","Westfield Carindale area","commercial restoration","residential recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/carindale',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/carindale',
+    },
+  },
+  openGraph: {
+    title: 'Carindale Disaster Recovery | Emergency Restoration',
+    description: 'Carindale disaster restoration experts. Shopping centre area, residential & commercial water, fire & mould recovery. Insurance approved. Call 1300 309...',
+    url: 'https://disasterrecovery.com.au/locations/carindale',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function CarindalePage() {

@@ -2,10 +2,22 @@
 
 import { Card } from '@/components/ui/Card'
 import {
-  LineChart, Line, BarChart, Bar, PieChart, Pie,
-  Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  RadialBarChart, RadialBar
-} from 'recharts'
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Area,
+  AreaChart
+} from '@/components/charts/DynamicCharts'
 import { Star, Heart, MessageCircle, TrendingUp, Users, Award } from 'lucide-react'
 
 export default function CustomerDashboard() {

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Paddington | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Paddington Brisbane. Heritage Queenslanders, boutique shops, cafes. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["paddington water damage","heritage home flooding","latrobe terrace businesses"],
+export const metadata: Metadata = {
+  title: 'Paddington Disaster Recovery | Heritage Restoration | 24/7',
+  description: 'Paddington's heritage property disaster restoration experts. Queenslander homes, water damage & storm recovery specialists. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery paddington","heritage restoration 4064","Queenslander restoration","Latrobe Terrace area","storm damage recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/paddington',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/paddington',
+    },
+  },
+  openGraph: {
+    title: 'Paddington Disaster Recovery | Heritage Restoration',
+    description: 'Paddington's heritage property disaster restoration experts. Queenslander homes, water damage & storm recovery specialists. Insurance approved. Call 1...',
+    url: 'https://disasterrecovery.com.au/locations/paddington',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function PaddingtonPage() {

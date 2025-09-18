@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Fortitude Valley | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Fortitude Valley Brisbane. Entertainment venues, restaurants, retail complexes. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["valley flood damage","restaurant water damage","nightclub flooding"],
+export const metadata: Metadata = {
+  title: 'Fortitude Valley Disaster Recovery | Commercial Restoration | 24/7',
+  description: 'Fortitude Valley disaster restoration experts. Nightclub, restaurant & apartment specialists. Water, fire & biohazard recovery. 24/7 response. Call 1300 309 361.',
+  keywords: ["disaster recovery fortitude valley","commercial restoration 4006","restaurant water damage","nightclub restoration","apartment recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/fortitude-valley',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/fortitude-valley',
+    },
+  },
+  openGraph: {
+    title: 'Fortitude Valley Disaster Recovery | Commercial Restoration',
+    description: 'Fortitude Valley disaster restoration experts. Nightclub, restaurant & apartment specialists. Water, fire & biohazard recovery. 24/7 response. Call 13...',
+    url: 'https://disasterrecovery.com.au/locations/fortitude-valley',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function FortitudeValleyPage() {

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Ashgrove | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Ashgrove Brisbane. Character homes, family residences, local shopping. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["ashgrove water damage","character home restoration","storm damage ashgrove"],
+export const metadata: Metadata = {
+  title: 'Ashgrove Disaster Recovery | Emergency Restoration Services | 24/7',
+  description: 'Ashgrove disaster restoration specialists. Water, fire & mould damage recovery for heritage homes & modern properties. IICRC certified. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery ashgrove","water damage ashgrove 4060","fire restoration ashgrove","heritage home restoration","storm damage ashgrove"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/ashgrove',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/ashgrove',
+    },
+  },
+  openGraph: {
+    title: 'Ashgrove Disaster Recovery | Emergency Restoration Services',
+    description: 'Ashgrove disaster restoration specialists. Water, fire & mould damage recovery for heritage homes & modern properties. IICRC certified. Insurance appr...',
+    url: 'https://disasterrecovery.com.au/locations/ashgrove',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function AshgrovePage() {

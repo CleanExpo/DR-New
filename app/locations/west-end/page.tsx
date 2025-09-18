@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration West End | 24/7 Emergency',
-  description: 'Professional water damage restoration in West End Brisbane. Fast 1-hour response, IICRC certified technicians, insurance approved. Call 1300 309 361 now.',
-  keywords: ['water damage west end', 'flood restoration west end', 'emergency plumber west end', 'water extraction west end brisbane'],
+export const metadata: Metadata = {
+  title: 'West End Disaster Recovery | Cultural Precinct Restoration | 24/7',
+  description: 'West End disaster restoration team. Cultural precinct, riverside properties, cafes & apartments. Water, fire & flood specialists. Call 1300 309 361.',
+  keywords: ["disaster recovery west end","flood restoration 4101","Boundary Street area","riverside recovery","commercial restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/west-end',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/west-end',
+    },
+  },
+  openGraph: {
+    title: 'West End Disaster Recovery | Cultural Precinct Restoration',
+    description: 'West End disaster restoration team. Cultural precinct, riverside properties, cafes & apartments. Water, fire & flood specialists. Call 1300 309 361....',
+    url: 'https://disasterrecovery.com.au/locations/west-end',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function WestEndPage() {

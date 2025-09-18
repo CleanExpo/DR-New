@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Chapel Hill | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Chapel Hill Brisbane. Executive homes, hillside properties, family residences. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["chapel hill flooding","executive home water damage","hillside restoration"],
+export const metadata: Metadata = {
+  title: 'Chapel Hill Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Chapel Hill's disaster restoration specialists. Luxury homes, water damage & storm recovery experts. Quick response to elevated properties. Call 1300 309 361.',
+  keywords: ["disaster recovery chapel hill","water damage chapel hill 4069","luxury home restoration","storm damage recovery","hillside properties"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/chapel-hill',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/chapel-hill',
+    },
+  },
+  openGraph: {
+    title: 'Chapel Hill Disaster Recovery | Emergency Restoration',
+    description: 'Chapel Hill's disaster restoration specialists. Luxury homes, water damage & storm recovery experts. Quick response to elevated properties. Call 1300 ...',
+    url: 'https://disasterrecovery.com.au/locations/chapel-hill',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function ChapelHillPage() {

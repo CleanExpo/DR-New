@@ -3,16 +3,40 @@
 import { useState, useEffect } from 'react'
 import { Card } from '@/components/ui/Card'
 import {
-  LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie,
-  Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  RadialBarChart, RadialBar, ComposedChart, Scatter
-} from 'recharts'
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Area,
+  AreaChart
+} from '@/components/charts/DynamicCharts'
 import {
   TrendingUp, TrendingDown, DollarSign, Users, Activity,
   PhoneCall, Clock, Target, AlertCircle, CheckCircle
 } from 'lucide-react'
 import { realtimeAnalytics } from '@/lib/analytics/realtime'
-import { format, subDays, startOfDay, endOfDay } from 'date-fns'
+// Removed date-fns - using native Date functions
+const subDays = (date: Date, days: number) => {
+  const result = new Date(date);
+  result.setDate(result.getDate() - days);
+  return result;
+};
+
+const formatDate = (date: Date, pattern: string) => {
+  if (pattern === 'MMM dd') {
+    return date.toLocaleDateString('en-AU', { month: 'short', day: 'numeric' });
+  }
+  return date.toLocaleDateString('en-AU');
+};
 
 // KPI Card Component
 function KPICard({
@@ -118,7 +142,7 @@ export default function ExecutiveDashboard() {
     const revenue = Array.from({ length: days }, (_, i) => {
       const date = subDays(new Date(), days - i - 1)
       return {
-        date: format(date, 'MMM dd'),
+        date: formatDate(date, 'MMM dd'),
         revenue: Math.floor(Math.random() * 50000) + 30000,
         target: 45000,
         conversions: Math.floor(Math.random() * 50) + 20,

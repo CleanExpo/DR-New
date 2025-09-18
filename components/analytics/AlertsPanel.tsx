@@ -6,7 +6,7 @@ import {
   Bell, AlertTriangle, CheckCircle, Info, X,
   TrendingDown, TrendingUp, Clock, DollarSign
 } from 'lucide-react'
-import { format } from 'date-fns'
+// Removed date-fns import - using native Date formatting
 
 interface Alert {
   id: string
@@ -157,7 +157,7 @@ export default function AlertsPanel({ alerts: initialAlerts }: AlertsPanelProps)
                       </div>
                     )}
                     <p className="text-xs text-gray-500 mt-2">
-                      {format(alert.timestamp, 'h:mm a')}
+                      {new Date(alert.timestamp).toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' })}
                     </p>
                   </div>
                 </div>

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Hawthorne | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Hawthorne Brisbane. Riverside properties, heritage homes, local businesses. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["hawthorne water damage","riverside home flooding","heritage restoration"],
+export const metadata: Metadata = {
+  title: 'Hawthorne Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Hawthorne disaster restoration team. Riverside properties, cinema precinct, water & fire damage specialists. Quick response guaranteed. Call 1300 309 361.',
+  keywords: ["disaster recovery hawthorne","water damage hawthorne 4171","riverside restoration","cinema precinct","flood recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/hawthorne',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/hawthorne',
+    },
+  },
+  openGraph: {
+    title: 'Hawthorne Disaster Recovery | Emergency Restoration',
+    description: 'Hawthorne disaster restoration team. Riverside properties, cinema precinct, water & fire damage specialists. Quick response guaranteed. Call 1300 309 ...',
+    url: 'https://disasterrecovery.com.au/locations/hawthorne',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function HawthornePage() {

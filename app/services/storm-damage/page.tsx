@@ -8,6 +8,41 @@ import Footer from '@/components/layout/Footer';
 import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Phone, Clock, Shield, CheckCircle, AlertCircle, Truck, Home, Building } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Storm Damage Restoration | Emergency Tarping & Repairs',
+  description: 'Storm damage restoration Brisbane region. Emergency roof tarping, water extraction, debris removal, structural repairs. 24/7 rapid response. Insurance experts. Call 1300 309 361.',
+  keywords: ["storm damage restoration","emergency tarping","roof repairs","debris removal","fallen tree removal","storm recovery services"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/storm-damage',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/storm-damage',
+    },
+  },
+  openGraph: {
+    title: 'Storm Damage Restoration | Emergency Tarping & Repairs',
+    description: 'Storm damage restoration Brisbane region. Emergency roof tarping, water extraction, debris removal, structural repairs. 24/7 rapid response. Insurance...',
+    url: 'https://disasterrecovery.com.au/services/storm-damage',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/storm-damage.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Storm Damage Restoration | Emergency Tarping & Repairs',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Storm Damage Restoration | Emergency Tarping & Repairs',
+    description: 'Storm damage restoration Brisbane region. Emergency roof tarping, water extraction, debris removal, structural repairs. 24/7 rapid response. Insurance...',
+    images: ['https://disasterrecovery.com.au/images/services/storm-damage.jpg'],
+  },
+};
 
 export default function StormDamagePage() {
   const [activeTab, setActiveTab] = useState('emergency');
@@ -197,7 +232,14 @@ export default function StormDamagePage() {
                   fill
                   className="object-cover"
                   priority
-                />
+                
+            quality={85}
+          
+            sizes="100vw"
+          
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
+          />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </div>
             </div>

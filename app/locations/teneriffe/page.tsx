@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Teneriffe | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Teneriffe Brisbane. Wool store conversions, luxury apartments, commercial spaces. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["teneriffe flood restoration","woolstore water damage","luxury apartment flooding"],
+export const metadata: Metadata = {
+  title: 'Teneriffe Disaster Recovery | Riverside Restoration | 24/7',
+  description: 'Teneriffe's premier disaster restoration service. Wool stores, luxury apartments, riverside properties. Water, fire & flood specialists. Call 1300 309 361.',
+  keywords: ["disaster recovery teneriffe","riverside restoration 4005","wool store restoration","luxury apartment recovery","flood damage"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/teneriffe',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/teneriffe',
+    },
+  },
+  openGraph: {
+    title: 'Teneriffe Disaster Recovery | Riverside Restoration',
+    description: 'Teneriffe's premier disaster restoration service. Wool stores, luxury apartments, riverside properties. Water, fire & flood specialists. Call 1300 309...',
+    url: 'https://disasterrecovery.com.au/locations/teneriffe',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function TeneriffePage() {

@@ -6,14 +6,37 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Water Damage Restoration Brisbane | 24/7 Emergency Response | IICRC Certified | 1300 309 361",
-  description: "Professional water damage restoration for Brisbane's commercial properties and luxury homes. IICRC certified technicians, advanced drying technology, insurance approved. Specialising in Queenslander homes, high-rise apartments, and heritage properties. Call 1300 309 361.",
-  keywords: ["water damage restoration brisbane", "flood damage repair", "water extraction brisbane", "emergency water damage", "water damage cleanup brisbane", "flood restoration brisbane"],
+  title: 'Water Damage Restoration Brisbane | 24/7 Emergency Response',
+  description: 'Expert water damage restoration Brisbane metro. IICRC certified rapid extraction, advanced drying, mould prevention. Insurance specialists. 24/7 emergency. Call 1300 309 361.',
+  keywords: ["water damage restoration brisbane","flood recovery","burst pipe repair","water extraction","structural drying","dehumidification services"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage-restoration',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/water-damage-restoration',
+    },
+  },
   openGraph: {
-    title: "Water Damage Restoration Brisbane | Emergency Response",
-    description: "Professional water damage restoration in Brisbane. Quick phone response. We extract water, dry your home, and prevent mould growth.",
-    url: "https://disasterrecovery.com.au/services/water-damage-restoration",
-  }
+    title: 'Water Damage Restoration Brisbane | 24/7 Emergency Response',
+    description: 'Expert water damage restoration Brisbane metro. IICRC certified rapid extraction, advanced drying, mould prevention. Insurance specialists. 24/7 emerg...',
+    url: 'https://disasterrecovery.com.au/services/water-damage-restoration',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/water-damage-restoration.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Water Damage Restoration Brisbane | 24/7 Emergency Response',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Water Damage Restoration Brisbane | 24/7 Emergency Response',
+    description: 'Expert water damage restoration Brisbane metro. IICRC certified rapid extraction, advanced drying, mould prevention. Insurance specialists. 24/7 emerg...',
+    images: ['https://disasterrecovery.com.au/images/services/water-damage-restoration.jpg'],
+  },
 };
 
 export default function WaterDamageRestorationPage() {
@@ -97,7 +120,14 @@ export default function WaterDamageRestorationPage() {
                   height={400}
                   className="rounded-lg shadow-2xl"
                   priority
-                />
+                
+            quality={85}
+          
+            sizes="100vw"
+          
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
+          />
               </div>
             </div>
           </div>

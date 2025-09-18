@@ -44,7 +44,13 @@ export default function AboutPage() {
                       height={400}
                       className="rounded-lg w-full h-auto"
                       priority
-                    />
+                    
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
                   </div>
                   <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
                     Phill & Bronwyn McGurk - Founders

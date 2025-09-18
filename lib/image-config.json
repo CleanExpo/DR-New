@@ -1,0 +1,1002 @@
+{
+  "images": {
+    "hero/biohazard-remediation-services.png": {
+      "originalSize": 900671,
+      "sizeInKB": "879.6",
+      "isHero": true,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/commercial-restoration-services.jpg": {
+      "originalSize": 224136,
+      "sizeInKB": "218.9",
+      "isHero": true,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/disaster-recovery-services.jpg": {
+      "originalSize": 288426,
+      "sizeInKB": "281.7",
+      "isHero": true,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/fire-smoke-damage-restoration.jpg": {
+      "originalSize": 288880,
+      "sizeInKB": "282.1",
+      "isHero": true,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/fire-water-damage-restoration.jpg": {
+      "originalSize": 248043,
+      "sizeInKB": "242.2",
+      "isHero": true,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/hero-disaster-tornado.png": {
+      "originalSize": 1994718,
+      "sizeInKB": "1948.0",
+      "isHero": true,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/mould-remediation-services-old.jpg": {
+      "originalSize": 231146,
+      "sizeInKB": "225.7",
+      "isHero": true,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/mould-remediation-services.jpg": {
+      "originalSize": 996655,
+      "sizeInKB": "973.3",
+      "isHero": true,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "hero/sewage-remediation-services.png": {
+      "originalSize": 655142,
+      "sizeInKB": "639.8",
+      "isHero": true,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Use priority loading",
+        "Generate blur placeholder"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": true
+    },
+    "education/understanding-water-categories.png": {
+      "originalSize": 1140682,
+      "sizeInKB": "1113.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "faq/24hr-flood-services.png": {
+      "originalSize": 534891,
+      "sizeInKB": "522.4",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "faq/best-in-brisbane.png": {
+      "originalSize": 509691,
+      "sizeInKB": "497.7",
+      "isHero": false,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "faq/cost-of-restoration.png": {
+      "originalSize": 609989,
+      "sizeInKB": "595.7",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "faq/emergency-water-damage.png": {
+      "originalSize": 439777,
+      "sizeInKB": "429.5",
+      "isHero": false,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "faq/house-flooded-brisbane.png": {
+      "originalSize": 383582,
+      "sizeInKB": "374.6",
+      "isHero": false,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "flooding/lift-valuables-higher.png": {
+      "originalSize": 1363873,
+      "sizeInKB": "1331.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "flooding/turn-off-main-power.png": {
+      "originalSize": 511758,
+      "sizeInKB": "499.8",
+      "isHero": false,
+      "recommendations": [
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "flooding/turn-off-water-supply.png": {
+      "originalSize": 1455167,
+      "sizeInKB": "1421.1",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "heroes/disaster-recovery-hero.webp": {
+      "originalSize": 21314,
+      "sizeInKB": "20.8",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "heroes/mould-banner.jpg": {
+      "originalSize": 72515,
+      "sizeInKB": "70.8",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "heroes/vehicles-fleet.jpg": {
+      "originalSize": 90978,
+      "sizeInKB": "88.8",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "icons/biohazard-sewage-cleanup.png": {
+      "originalSize": 763095,
+      "sizeInKB": "745.2",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "icons/biohazards-allergens.webp": {
+      "originalSize": 11718,
+      "sizeInKB": "11.4",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "icons/fine-particulates.webp": {
+      "originalSize": 10614,
+      "sizeInKB": "10.4",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "icons/inspections.png": {
+      "originalSize": 522188,
+      "sizeInKB": "509.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "icons/structural-weakness.png": {
+      "originalSize": 1488224,
+      "sizeInKB": "1453.3",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "icons/timber-floor-drying.png": {
+      "originalSize": 555164,
+      "sizeInKB": "542.2",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "icons/toxic-smoke-residue.webp": {
+      "originalSize": 15522,
+      "sizeInKB": "15.2",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/3D CARSI Logo.png": {
+      "originalSize": 1260688,
+      "sizeInKB": "1231.1",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/3D Clean Claims Logo.png": {
+      "originalSize": 749636,
+      "sizeInKB": "732.1",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/3D Facebook.png": {
+      "originalSize": 3029833,
+      "sizeInKB": "2958.8",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/3D Instagram.png": {
+      "originalSize": 3657977,
+      "sizeInKB": "3572.2",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/3D LinkedIn.png": {
+      "originalSize": 3504162,
+      "sizeInKB": "3422.0",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/3D YouTube.png": {
+      "originalSize": 3416940,
+      "sizeInKB": "3336.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/disaster-recovery-logo.png": {
+      "originalSize": 1283604,
+      "sizeInKB": "1253.5",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/Gemini_Generated_Image_h337f2h337f2h337.png": {
+      "originalSize": 4012260,
+      "sizeInKB": "3918.2",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/nrp/NRP favicon_128x128.png": {
+      "originalSize": 17455,
+      "sizeInKB": "17.0",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/nrp/NRP favicon_16x16.png": {
+      "originalSize": 737,
+      "sizeInKB": "0.7",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/nrp/NRP favicon_32x32.png": {
+      "originalSize": 1983,
+      "sizeInKB": "1.9",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/nrp/NRP favicon_48x48.png": {
+      "originalSize": 3549,
+      "sizeInKB": "3.5",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/nrp/NRP favicon_512x512.png": {
+      "originalSize": 195429,
+      "sizeInKB": "190.8",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "logos/nrp/nrp-badge-3d.png": {
+      "originalSize": 195429,
+      "sizeInKB": "190.8",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/branding/3D Disaster Recovery Logo.png": {
+      "originalSize": 1283604,
+      "sizeInKB": "1253.5",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/branding/Disaster Recovery Logo.png": {
+      "originalSize": 173678,
+      "sizeInKB": "169.6",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/damage/3D image of a house fire.png": {
+      "originalSize": 1607608,
+      "sizeInKB": "1569.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/damage/3D Vehicle into Home.png": {
+      "originalSize": 1907865,
+      "sizeInKB": "1863.1",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/equipment/3D Moisture Meter Reading.png": {
+      "originalSize": 2660923,
+      "sizeInKB": "2598.6",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/equipment/3D Thermal Fogging.png": {
+      "originalSize": 2757756,
+      "sizeInKB": "2693.1",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/process/3D Emergency Squalor Cleanup.png": {
+      "originalSize": 2118702,
+      "sizeInKB": "2069.0",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "optimised/process/3D Hazardous Cleaning.png": {
+      "originalSize": 1292236,
+      "sizeInKB": "1261.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Art Museums.png": {
+      "originalSize": 5651251,
+      "sizeInKB": "5518.8",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Care Facilities.png": {
+      "originalSize": 6764407,
+      "sizeInKB": "6605.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Close Living Residential.png": {
+      "originalSize": 7560371,
+      "sizeInKB": "7383.2",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Commercial .png": {
+      "originalSize": 1501980,
+      "sizeInKB": "1466.8",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Complex Claims.png": {
+      "originalSize": 7238241,
+      "sizeInKB": "7068.6",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Facility Management.png": {
+      "originalSize": 5576527,
+      "sizeInKB": "5445.8",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Family Home.png": {
+      "originalSize": 6387094,
+      "sizeInKB": "6237.4",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3d Government Buildings.png": {
+      "originalSize": 6421125,
+      "sizeInKB": "6270.6",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Graffiti Removal After.png": {
+      "originalSize": 4785800,
+      "sizeInKB": "4673.6",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Graffiti Remove Before.png": {
+      "originalSize": 1485345,
+      "sizeInKB": "1450.5",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Mega Mall.png": {
+      "originalSize": 7761877,
+      "sizeInKB": "7580.0",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Residential.png": {
+      "originalSize": 6253802,
+      "sizeInKB": "6107.2",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Schools.png": {
+      "originalSize": 6308416,
+      "sizeInKB": "6160.6",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Small Business .png": {
+      "originalSize": 1344852,
+      "sizeInKB": "1313.3",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Small Business Industrial.png": {
+      "originalSize": 6131879,
+      "sizeInKB": "5988.2",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3D Specialised Claims.png": {
+      "originalSize": 6422668,
+      "sizeInKB": "6272.1",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "places/3d Univercity.png": {
+      "originalSize": 7302569,
+      "sizeInKB": "7131.4",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "pricing/disaster-response-services.png": {
+      "originalSize": 1392422,
+      "sizeInKB": "1359.8",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/commercial-residential.png": {
+      "originalSize": 106221,
+      "sizeInKB": "103.7",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/crime-scene-remediation.webp": {
+      "originalSize": 9818,
+      "sizeInKB": "9.6",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/fire-damage-restoration.webp": {
+      "originalSize": 9730,
+      "sizeInKB": "9.5",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/fire-damaged-home.jpg": {
+      "originalSize": 80941,
+      "sizeInKB": "79.0",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/mould-remediation.webp": {
+      "originalSize": 7296,
+      "sizeInKB": "7.1",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/professional-mould-cleaning.jpg": {
+      "originalSize": 6458,
+      "sizeInKB": "6.3",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/sewage-sanitisation.webp": {
+      "originalSize": 7714,
+      "sizeInKB": "7.5",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "services/water-damage-restoration.webp": {
+      "originalSize": 9510,
+      "sizeInKB": "9.3",
+      "isHero": false,
+      "recommendations": [
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "team/3D Shane.png": {
+      "originalSize": 2299819,
+      "sizeInKB": "2245.9",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    },
+    "team/phill-bronwyn-mcgurk.png": {
+      "originalSize": 1084920,
+      "sizeInKB": "1059.5",
+      "isHero": false,
+      "recommendations": [
+        "Convert to WebP format",
+        "Reduce dimensions if possible",
+        "Apply compression (quality: 80-85)",
+        "Implement lazy loading"
+      ],
+      "suggestedSizes": "320, 640, 1024, 1920",
+      "priority": false
+    }
+  },
+  "heroImages": [
+    "hero/biohazard-remediation-services.png",
+    "hero/commercial-restoration-services.jpg",
+    "hero/disaster-recovery-services.jpg",
+    "hero/fire-smoke-damage-restoration.jpg",
+    "hero/fire-water-damage-restoration.jpg",
+    "hero/hero-disaster-tornado.png",
+    "hero/mould-remediation-services-old.jpg",
+    "hero/mould-remediation-services.jpg",
+    "hero/sewage-remediation-services.png"
+  ],
+  "recommendations": {},
+  "totalSize": 151373666,
+  "largestImages": [
+    {
+      "path": "places/3D Mega Mall.png",
+      "size": 7579.9580078125
+    },
+    {
+      "path": "places/3D Close Living Residential.png",
+      "size": 7383.1748046875
+    },
+    {
+      "path": "places/3d Univercity.png",
+      "size": 7131.4150390625
+    },
+    {
+      "path": "places/3D Complex Claims.png",
+      "size": 7068.5947265625
+    },
+    {
+      "path": "places/3D Care Facilities.png",
+      "size": 6605.8662109375
+    },
+    {
+      "path": "places/3D Specialised Claims.png",
+      "size": 6272.13671875
+    },
+    {
+      "path": "places/3d Government Buildings.png",
+      "size": 6270.6298828125
+    },
+    {
+      "path": "places/3D Family Home.png",
+      "size": 6237.396484375
+    },
+    {
+      "path": "places/3D Schools.png",
+      "size": 6160.5625
+    },
+    {
+      "path": "places/3D Residential.png",
+      "size": 6107.228515625
+    }
+  ],
+  "totalSizeMB": "144.36"
+}

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Bowen Hills | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Bowen Hills Brisbane. Commercial offices, showrooms, entertainment venues. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["bowen hills flooding","showroom water damage","commercial restoration"],
+export const metadata: Metadata = {
+  title: 'Bowen Hills Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Bowen Hills disaster restoration experts. Commercial & residential water, fire & mould recovery. RNA Showgrounds area specialists. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery bowen hills","water damage bowen hills 4006","commercial restoration","RNA showgrounds area","office restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/bowen-hills',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/bowen-hills',
+    },
+  },
+  openGraph: {
+    title: 'Bowen Hills Disaster Recovery | Emergency Restoration',
+    description: 'Bowen Hills disaster restoration experts. Commercial & residential water, fire & mould recovery. RNA Showgrounds area specialists. Insurance approved....',
+    url: 'https://disasterrecovery.com.au/locations/bowen-hills',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function BowenHillsPage() {

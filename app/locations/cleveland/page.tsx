@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Cleveland | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Cleveland Brisbane. Coastal properties, Raby Bay mansions, commercial center. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["cleveland water damage","raby bay flooding","coastal restoration"],
+export const metadata: Metadata = {
+  title: 'Cleveland Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Cleveland bayside disaster restoration specialists. Storm surge, water damage & mould experts. Redland Bay area coverage. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery cleveland","water damage cleveland 4163","bayside restoration","storm surge damage","Redland Bay recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/cleveland',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/cleveland',
+    },
+  },
+  openGraph: {
+    title: 'Cleveland Disaster Recovery | Emergency Restoration',
+    description: 'Cleveland bayside disaster restoration specialists. Storm surge, water damage & mould experts. Redland Bay area coverage. Insurance approved. Call 130...',
+    url: 'https://disasterrecovery.com.au/locations/cleveland',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function ClevelandPage() {

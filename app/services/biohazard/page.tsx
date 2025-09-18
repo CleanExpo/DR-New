@@ -8,6 +8,7 @@ import Footer from '@/components/layout/Footer';
 import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Phone, Shield, AlertTriangle, CheckCircle, Clock, Heart, Users, Truck } from 'lucide-react';
+import { Metadata } from 'next';
 
 export default function BiohazardPage() {
   const [activeSection, setActiveSection] = useState('trauma');
@@ -535,4 +536,38 @@ export default function BiohazardPage() {
       <Footer />
     </>
   );
+
+export const metadata: Metadata = {
+  title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+  description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compassionate. Call 1300 309 361.',
+  keywords: ["biohazard cleaning","trauma cleanup","crime scene cleaning","infectious disease control","blood cleanup","bodily fluid removal"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/biohazard',
+    },
+  },
+  openGraph: {
+    title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+    description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compas...',
+    url: 'https://disasterrecovery.com.au/services/biohazard',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/biohazard.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+    description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compas...',
+    images: ['https://disasterrecovery.com.au/images/services/biohazard.jpg'],
+  },
+};
 }

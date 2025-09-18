@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Spring Hill | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Spring Hill Brisbane. Medical facilities, office buildings, heritage properties. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["spring hill water damage","medical facility flooding","heritage restoration"],
+export const metadata: Metadata = {
+  title: 'Spring Hill Disaster Recovery | CBD Edge Restoration | 24/7',
+  description: 'Spring Hill disaster restoration specialists. Medical precinct, apartments & heritage buildings. Water, fire & mould experts. Quick CBD response. Call 1300 309 361.',
+  keywords: ["disaster recovery spring hill","water damage 4000","medical precinct restoration","apartment recovery","heritage building restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/spring-hill',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/spring-hill',
+    },
+  },
+  openGraph: {
+    title: 'Spring Hill Disaster Recovery | CBD Edge Restoration',
+    description: 'Spring Hill disaster restoration specialists. Medical precinct, apartments & heritage buildings. Water, fire & mould experts. Quick CBD response. Call...',
+    url: 'https://disasterrecovery.com.au/locations/spring-hill',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function SpringHillPage() {

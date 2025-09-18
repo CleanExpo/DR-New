@@ -20,6 +20,19 @@
         "-y",
         "@upstash/context7-mcp"
       ]
+    },
+    "semrush-mcp": {
+      "command": "npx.cmd",
+      "args": [
+        "-y",
+        "github:mrkooblu/semrush-mcp"
+      ],
+      "env": {
+        "SEMRUSH_API_KEY": "your8a9cd10576ea2e989b0d8945b6e1ce56ERE",
+        "LOG_LEVEL": "info",
+        "API_CACHE_TTL_SECONDS": "300",
+        "API_RATE_LIMIT_PER_SECOND": "10"
+      }
     }
   }
 }

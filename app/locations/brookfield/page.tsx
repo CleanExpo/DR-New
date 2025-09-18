@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Brookfield | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Brookfield Brisbane. Acreage properties, luxury homes, equestrian estates. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["brookfield flood restoration","acreage water damage","luxury home flooding"],
+export const metadata: Metadata = {
+  title: 'Brookfield Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Brookfield disaster restoration specialists. Acreage properties, luxury homes, water & fire damage experts. Quick rural response, insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery brookfield","water damage brookfield 4069","acreage restoration","luxury home recovery","rural property restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/brookfield',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/brookfield',
+    },
+  },
+  openGraph: {
+    title: 'Brookfield Disaster Recovery | Emergency Restoration',
+    description: 'Brookfield disaster restoration specialists. Acreage properties, luxury homes, water & fire damage experts. Quick rural response, insurance approved. ...',
+    url: 'https://disasterrecovery.com.au/locations/brookfield',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function BrookfieldPage() {

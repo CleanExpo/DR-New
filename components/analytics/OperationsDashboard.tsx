@@ -3,10 +3,22 @@
 import { useState } from 'react'
 import { Card } from '@/components/ui/Card'
 import {
-  LineChart, Line, AreaChart, Area, BarChart, Bar,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  RadialBarChart, RadialBar, Cell, PieChart, Pie
-} from 'recharts'
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Area,
+  AreaChart
+} from '@/components/charts/DynamicCharts'
 import {
   Clock, TrendingUp, Users, Truck, AlertTriangle,
   CheckCircle, Activity, MapPin, Phone, Shield

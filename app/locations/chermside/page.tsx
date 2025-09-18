@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Chermside | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Chermside Brisbane. Shopping centers, residential developments, medical facilities. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["chermside flooding","shopping centre water damage","medical facility restoration"],
+export const metadata: Metadata = {
+  title: 'Chermside Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Chermside disaster restoration team. Westfield area, residential & commercial water, fire & mould specialists. Quick northside response. Call 1300 309 361.',
+  keywords: ["disaster recovery chermside","water damage chermside 4032","Westfield Chermside area","northside restoration","commercial recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/chermside',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/chermside',
+    },
+  },
+  openGraph: {
+    title: 'Chermside Disaster Recovery | Emergency Restoration',
+    description: 'Chermside disaster restoration team. Westfield area, residential & commercial water, fire & mould specialists. Quick northside response. Call 1300 309...',
+    url: 'https://disasterrecovery.com.au/locations/chermside',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function ChermsidePage() {

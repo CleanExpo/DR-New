@@ -8,6 +8,41 @@ import Footer from '@/components/layout/Footer';
 import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Phone, AlertTriangle, Shield, Clock, CheckCircle, Droplets, Home, AlertCircle } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sewage Cleanup Services | Emergency Contamination Control',
+  description: 'Emergency sewage cleanup Brisbane, Ipswich & Logan. Raw sewage removal, sanitisation, contamination control. Health-focused, insurance approved. 24/7 response. Call 1300 309 361.',
+  keywords: ["sewage cleanup","raw sewage removal","black water damage","sewage backup","contamination control","sanitisation services"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/sewage',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/sewage',
+    },
+  },
+  openGraph: {
+    title: 'Sewage Cleanup Services | Emergency Contamination Control',
+    description: 'Emergency sewage cleanup Brisbane, Ipswich & Logan. Raw sewage removal, sanitisation, contamination control. Health-focused, insurance approved. 24/7 ...',
+    url: 'https://disasterrecovery.com.au/services/sewage',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/sewage.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Sewage Cleanup Services | Emergency Contamination Control',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sewage Cleanup Services | Emergency Contamination Control',
+    description: 'Emergency sewage cleanup Brisbane, Ipswich & Logan. Raw sewage removal, sanitisation, contamination control. Health-focused, insurance approved. 24/7 ...',
+    images: ['https://disasterrecovery.com.au/images/services/sewage.jpg'],
+  },
+};
 
 export default function SewageCleanupPage() {
   const [showHealthRisks, setShowHealthRisks] = useState(false);

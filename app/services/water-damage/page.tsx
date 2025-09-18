@@ -9,17 +9,37 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Brisbane | 24 Hour Emergency Response | Disaster Recovery',
-  description: 'Emergency water damage restoration in Brisbane. Call 1300 309 361. IICRC certified. 1-hour response. Insurance approved. Flooding, burst pipes, storm damage.',
-  keywords: 'water damage Brisbane, flood restoration Brisbane, emergency water extraction, burst pipe repair Brisbane, ceiling leak Brisbane, flooding help Brisbane',
+  title: 'Water Damage Restoration Services | 24/7 Emergency Response',
+  description: 'Professional water damage restoration Brisbane, Ipswich & Logan. Rapid extraction, structural drying, mould prevention. IICRC certified. Insurance approved. Call 1300 309 361.',
+  keywords: ["water damage restoration","flood damage repair","water extraction services","emergency water removal","structural drying","moisture control"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/water-damage',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/water-damage',
+    },
+  },
   openGraph: {
-    title: 'Emergency Water Damage Restoration Brisbane - 1300 309 361',
-    description: '24/7 water damage restoration in Brisbane. IICRC certified technicians. Insurance approved. Ring now for immediate help.',
+    title: 'Water Damage Restoration Services | 24/7 Emergency Response',
+    description: 'Professional water damage restoration Brisbane, Ipswich & Logan. Rapid extraction, structural drying, mould prevention. IICRC certified. Insurance app...',
     url: 'https://disasterrecovery.com.au/services/water-damage',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',
     type: 'website',
-  }
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/water-damage.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Water Damage Restoration Services | 24/7 Emergency Response',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Water Damage Restoration Services | 24/7 Emergency Response',
+    description: 'Professional water damage restoration Brisbane, Ipswich & Logan. Rapid extraction, structural drying, mould prevention. IICRC certified. Insurance app...',
+    images: ['https://disasterrecovery.com.au/images/services/water-damage.jpg'],
+  },
 };
 
 // Voice-optimized FAQ data
@@ -137,7 +157,14 @@ export default function WaterDamageRestoration() {
               fill
               className="object-cover"
               priority
-            />
+            
+            quality={85}
+          
+            sizes="100vw"
+          
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
+          />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
           </div>
 

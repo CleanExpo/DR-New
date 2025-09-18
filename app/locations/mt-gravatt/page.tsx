@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Mt Gravatt | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Mt Gravatt Brisbane. Commercial centers, residential areas, educational facilities. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["mt gravatt flooding","commercial water damage","university restoration"],
+export const metadata: Metadata = {
+  title: 'Mount Gravatt Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Mount Gravatt disaster restoration team. Garden City area, university precinct, water & fire damage experts. Quick southside response. Call 1300 309 361.',
+  keywords: ["disaster recovery mount gravatt","water damage mt gravatt 4122","Garden City area","university restoration","southside recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/mt-gravatt',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/mt-gravatt',
+    },
+  },
+  openGraph: {
+    title: 'Mount Gravatt Disaster Recovery | Emergency Restoration',
+    description: 'Mount Gravatt disaster restoration team. Garden City area, university precinct, water & fire damage experts. Quick southside response. Call 1300 309 3...',
+    url: 'https://disasterrecovery.com.au/locations/mt-gravatt',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function MtGravattPage() {

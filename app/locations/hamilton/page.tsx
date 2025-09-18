@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Hamilton | Riverside Flood Experts',
-  description: 'Expert flood and water damage restoration in Hamilton Brisbane. Riverside property specialists, luxury apartments, 24/7 response. Call 1300 309 361.',
-  keywords: ['water damage hamilton', 'hamilton flood restoration', 'riverside flooding brisbane', 'apartment water damage hamilton'],
+export const metadata: Metadata = {
+  title: 'Hamilton Disaster Recovery | Luxury Home Restoration | 24/7',
+  description: 'Hamilton's premier disaster restoration service. Luxury riverside homes, commercial properties, water & fire experts. Insurance specialists. Call 1300 309 361.',
+  keywords: ["disaster recovery hamilton","luxury home restoration 4007","riverside flooding","Portside Wharf area","commercial recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/hamilton',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/hamilton',
+    },
+  },
+  openGraph: {
+    title: 'Hamilton Disaster Recovery | Luxury Home Restoration',
+    description: 'Hamilton's premier disaster restoration service. Luxury riverside homes, commercial properties, water & fire experts. Insurance specialists. Call 1300...',
+    url: 'https://disasterrecovery.com.au/locations/hamilton',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function HamiltonPage() {

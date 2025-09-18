@@ -60,7 +60,13 @@ export default function Header() {
               height={50}
               className="h-14 w-auto"
               priority
-            />
+            
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
           </Link>
 
           {/* Desktop Navigation with Modern Rounded Boxes */}

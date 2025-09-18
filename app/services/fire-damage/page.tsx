@@ -6,14 +6,37 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Fire & Smoke Damage Restoration Brisbane | IICRC Certified | 1300 309 361",
-  description: "Professional fire and smoke damage restoration for commercial properties and luxury homes. Odor removal, soot cleanup, content restoration. Insurance approved. Call 1300 309 361.",
-  keywords: ["fire damage restoration brisbane", "smoke damage cleanup", "soot removal", "fire restoration services", "smoke odor removal", "commercial fire damage", "residential fire restoration"],
+  title: 'Fire Damage Restoration Services | Smoke & Soot Removal',
+  description: 'Complete fire damage restoration Brisbane & surrounds. Smoke odour removal, soot cleaning, structural repairs. IICRC certified. Insurance approved. 24/7 response. Call 1300 309 361.',
+  keywords: ["fire damage restoration","smoke damage cleanup","soot removal","odour elimination","fire restoration services","structural fire repair"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/fire-damage',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/fire-damage',
+    },
+  },
   openGraph: {
-    title: "Fire & Smoke Damage Restoration Brisbane | 24/7 Emergency",
-    description: "Expert fire damage restoration services. Complete smoke odor removal, structural repairs, and contents restoration for commercial and residential properties.",
-    url: "https://disasterrecovery.com.au/services/fire-damage",
-  }
+    title: 'Fire Damage Restoration Services | Smoke & Soot Removal',
+    description: 'Complete fire damage restoration Brisbane & surrounds. Smoke odour removal, soot cleaning, structural repairs. IICRC certified. Insurance approved. 24...',
+    url: 'https://disasterrecovery.com.au/services/fire-damage',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/fire-damage.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Fire Damage Restoration Services | Smoke & Soot Removal',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fire Damage Restoration Services | Smoke & Soot Removal',
+    description: 'Complete fire damage restoration Brisbane & surrounds. Smoke odour removal, soot cleaning, structural repairs. IICRC certified. Insurance approved. 24...',
+    images: ['https://disasterrecovery.com.au/images/services/fire-damage.jpg'],
+  },
 };
 
 export default function FireDamagePage() {
@@ -76,7 +99,16 @@ export default function FireDamagePage() {
                   alt="Fire damage restoration services"
                   fill
                   className="object-cover"
-                />
+                
+            quality={85}
+          
+            priority
+          
+            sizes="100vw"
+          
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwABmX/9k="
+          />
               </div>
             </div>
           </div>
@@ -254,7 +286,7 @@ export default function FireDamagePage() {
                 <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl font-bold text-orange-700">3</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Odor Elimination</h3>
+                <h3 className="text-lg font-semibold mb-2">Odour Elimination</h3>
                 <p className="text-gray-600 text-sm">
                   Advanced deodorization and air purification technology
                 </p>
@@ -281,7 +313,7 @@ export default function FireDamagePage() {
                     <svg className="w-5 h-5 text-orange-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
-                    Thermal fogging for smoke odor
+                    Thermal fogging for smoke odour
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-orange-600 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">

@@ -3,10 +3,22 @@
 import { useState, useEffect } from 'react'
 import { Card } from '@/components/ui/Card'
 import {
-  LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie,
-  Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  RadarChart, PolarGrid, Radar, PolarAngleAxis, PolarRadiusAxis
-} from 'recharts'
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Area,
+  AreaChart
+} from '@/components/charts/DynamicCharts'
 import {
   TrendingUp, Users, MousePointer, Target, DollarSign,
   Share2, Globe, Smartphone, Monitor, Tablet, Search

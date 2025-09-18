@@ -6,14 +6,37 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Commercial Restoration Services Brisbane | Business Continuity Experts | 1300 309 361",
-  description: "Professional restoration services for commercial properties in Brisbane, Ipswich & Logan. Minimize downtime, insurance approved, 24/7 emergency response. Call 1300 309 361.",
-  keywords: ["commercial restoration brisbane", "business water damage", "office flood restoration", "commercial fire damage", "warehouse restoration", "retail restoration", "office building restoration"],
+  title: 'Commercial Disaster Recovery | Business Restoration Services',
+  description: 'Commercial disaster recovery Brisbane. Offices, retail, industrial restoration. Minimal downtime, insurance expertise. Water, fire, mould specialists. 24/7. Call 1300 309 361.',
+  keywords: ["commercial restoration","business disaster recovery","office water damage","retail restoration","industrial cleanup","warehouse restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/commercial',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/commercial',
+    },
+  },
   openGraph: {
-    title: "Commercial Property Restoration Brisbane | 24/7 Emergency",
-    description: "Expert commercial restoration services. Minimize business interruption with IICRC certified restoration for offices, retail, warehouses, and industrial facilities.",
-    url: "https://disasterrecovery.com.au/services/commercial",
-  }
+    title: 'Commercial Disaster Recovery | Business Restoration Services',
+    description: 'Commercial disaster recovery Brisbane. Offices, retail, industrial restoration. Minimal downtime, insurance expertise. Water, fire, mould specialists....',
+    url: 'https://disasterrecovery.com.au/services/commercial',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/commercial.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Commercial Disaster Recovery | Business Restoration Services',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Commercial Disaster Recovery | Business Restoration Services',
+    description: 'Commercial disaster recovery Brisbane. Offices, retail, industrial restoration. Minimal downtime, insurance expertise. Water, fire, mould specialists....',
+    images: ['https://disasterrecovery.com.au/images/services/commercial.jpg'],
+  },
 };
 
 export default function CommercialServicesPage() {
@@ -87,7 +110,13 @@ export default function CommercialServicesPage() {
                   alt="Commercial property restoration services"
                   fill
                   className="object-cover"
-                />
+                
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
               </div>
             </div>
           </div>
@@ -322,7 +351,7 @@ export default function CommercialServicesPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Fire & Smoke</h3>
                 <p className="text-gray-600">
-                  Smoke odor removal, soot cleanup, and structural restoration for fire-damaged buildings
+                  Smoke odour removal, soot cleanup, and structural restoration for fire-damaged buildings
                 </p>
               </div>
 

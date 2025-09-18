@@ -6,14 +6,37 @@ import SchemaMarkup from '@/components/seo/SchemaMarkup';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Mould Remediation Brisbane | IICRC Certified Specialists | 24/7 Response | 1300 309 361",
-  description: "Professional mould remediation for commercial properties and luxury homes in Brisbane, Ipswich & Logan. IICRC certified specialists, safe removal, air quality testing. Experts in Queensland's subtropical climate challenges. Call 1300 309 361.",
-  keywords: ["mould remediation brisbane", "mould removal brisbane", "black mould removal queensland", "commercial mould remediation", "mould inspection brisbane", "air quality testing", "IICRC mould certification", "queenslander mould removal", "subtropical mould treatment"],
+  title: 'Mould Remediation Services | Professional Mould Removal',
+  description: 'Expert mould remediation Brisbane & surrounds. Safe removal, moisture control, prevention strategies. IICRC certified technicians. Health-focused approach. Call 1300 309 361.',
+  keywords: ["mould remediation","mould removal brisbane","black mould treatment","mould inspection","moisture control","antimicrobial treatment"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/mould-remediation',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/mould-remediation',
+    },
+  },
   openGraph: {
-    title: "Professional Mould Remediation Brisbane | IICRC Certified",
-    description: "Expert mould removal services for commercial and premium residential properties. Safe, thorough remediation with prevention strategies.",
-    url: "https://disasterrecovery.com.au/services/mould-remediation",
-  }
+    title: 'Mould Remediation Services | Professional Mould Removal',
+    description: 'Expert mould remediation Brisbane & surrounds. Safe removal, moisture control, prevention strategies. IICRC certified technicians. Health-focused appr...',
+    url: 'https://disasterrecovery.com.au/services/mould-remediation',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/mould-remediation.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Mould Remediation Services | Professional Mould Removal',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mould Remediation Services | Professional Mould Removal',
+    description: 'Expert mould remediation Brisbane & surrounds. Safe removal, moisture control, prevention strategies. IICRC certified technicians. Health-focused appr...',
+    images: ['https://disasterrecovery.com.au/images/services/mould-remediation.jpg'],
+  },
 };
 
 export default function MouldRemediationPage() {
@@ -72,7 +95,13 @@ export default function MouldRemediationPage() {
                   alt="Professional mould remediation service"
                   fill
                   className="object-cover"
-                />
+                
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
               </div>
             </div>
           </div>

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Norman Park | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Norman Park Brisbane. Queenslanders, family residences, local amenities. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["norman park water damage","queenslander flooding","residential restoration"],
+export const metadata: Metadata = {
+  title: 'Norman Park Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Norman Park disaster restoration team. Norman Creek flooding experts, residential water damage & mould specialists. Quick response. Call 1300 309 361.',
+  keywords: ["disaster recovery norman park","flood restoration 4170","Norman Creek flooding","residential water damage","mould recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/norman-park',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/norman-park',
+    },
+  },
+  openGraph: {
+    title: 'Norman Park Disaster Recovery | Emergency Restoration',
+    description: 'Norman Park disaster restoration team. Norman Creek flooding experts, residential water damage & mould specialists. Quick response. Call 1300 309 361....',
+    url: 'https://disasterrecovery.com.au/locations/norman-park',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function NormanParkPage() {

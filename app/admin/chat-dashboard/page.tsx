@@ -43,7 +43,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer
-} from 'recharts';
+} from '@/components/charts/DynamicCharts';
 import {
   Users,
   MessageSquare,

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Brisbane CBD | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Brisbane CBD Brisbane. Office towers, retail spaces, underground parking. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["cbd water damage","commercial restoration brisbane","office flooding"],
+export const metadata: Metadata = {
+  title: 'Brisbane CBD Disaster Recovery | Commercial Restoration | 24/7',
+  description: 'Brisbane CBD's premier disaster restoration service. Office towers, retail & hospitality specialists. Water, fire & mould recovery. Insurance experts. Call 1300 309 361.',
+  keywords: ["disaster recovery brisbane cbd","commercial water damage 4000","office restoration brisbane","retail restoration","hotel restoration"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/brisbane-cbd',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/brisbane-cbd',
+    },
+  },
+  openGraph: {
+    title: 'Brisbane CBD Disaster Recovery | Commercial Restoration',
+    description: 'Brisbane CBD's premier disaster restoration service. Office towers, retail & hospitality specialists. Water, fire & mould recovery. Insurance experts....',
+    url: 'https://disasterrecovery.com.au/locations/brisbane-cbd',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function BrisbaneCBDPage() {

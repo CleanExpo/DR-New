@@ -15,7 +15,13 @@ export default function Footer() {
                 width={200}
                 height={60}
                 className="h-16 w-auto bg-white rounded-lg p-2"
-              />
+              
+            quality={80}
+          
+            loading="lazy"
+          
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Professional disaster recovery services across Brisbane, Ipswich, and Logan.

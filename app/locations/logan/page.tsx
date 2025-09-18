@@ -5,19 +5,22 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Disaster Recovery Logan | Water Fire Damage Restoration | 1300 309 361",
-  description: "24/7 emergency disaster recovery services in Logan City. Professional water damage, fire damage restoration & mould remediation. 1-hour response guaranteed.",
-  keywords: ["disaster recovery logan", "water damage restoration logan", "fire damage logan", "emergency restoration logan", "flood damage logan", "storm damage logan", "logan restoration services", "logan city disaster recovery"],
+  title: "Logan City Disaster Recovery | 24/7 Emergency Restoration | 1300 309 361",
+  description: "Logan's premier disaster recovery service. IICRC certified water, fire & mould restoration. 1-hour response Springwood, Beenleigh, Browns Plains. Insurance specialists. Call 1300 309 361.",
+  keywords: ["disaster recovery logan", "water damage restoration logan", "fire damage logan", "emergency restoration logan", "flood damage logan", "storm damage logan", "logan restoration services", "logan city disaster recovery", "Springwood water damage", "Beenleigh fire restoration"],
   openGraph: {
-    title: "Disaster Recovery Logan - 24/7 Emergency Response",
-    description: "Professional disaster recovery services throughout Logan City. Water damage, fire restoration, mould remediation. Call 1300 309 361 for immediate help.",
-    url: "https://disasterrecoverybrisbane.com.au/locations/logan",
-    siteName: "Disaster Recovery Brisbane",
+    title: "Disaster Recovery Logan City - 24/7 Emergency Response",
+    description: "Logan's premier disaster recovery service. IICRC certified water, fire & mould restoration. 1-hour response all suburbs.",
+    url: "https://disasterrecovery.com.au/locations/logan",
+    siteName: "Disaster Recovery",
     locale: "en_AU",
     type: "website",
   },
   alternates: {
-    canonical: "https://disasterrecoverybrisbane.com.au/locations/logan",
+    canonical: "https://disasterrecovery.com.au/locations/logan",
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/logan',
+    },
   }
 };
 

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Kangaroo Point | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Kangaroo Point Brisbane. Cliff-top apartments, riverside complexes, commercial. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["kangaroo point flooding","apartment water damage","riverside restoration"],
+export const metadata: Metadata = {
+  title: 'Kangaroo Point Disaster Recovery | High-Rise Restoration | 24/7',
+  description: 'Kangaroo Point disaster restoration experts. High-rise apartments, cliff-side properties, water & fire specialists. CBD adjacent coverage. Call 1300 309 361.',
+  keywords: ["disaster recovery kangaroo point","high-rise restoration 4169","apartment water damage","cliff-side properties","CBD area recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/kangaroo-point',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/kangaroo-point',
+    },
+  },
+  openGraph: {
+    title: 'Kangaroo Point Disaster Recovery | High-Rise Restoration',
+    description: 'Kangaroo Point disaster restoration experts. High-rise apartments, cliff-side properties, water & fire specialists. CBD adjacent coverage. Call 1300 3...',
+    url: 'https://disasterrecovery.com.au/locations/kangaroo-point',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function KangarooPointPage() {

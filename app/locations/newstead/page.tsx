@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Newstead | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Newstead Brisbane. Gasworks precinct, retail complexes, residential towers. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["newstead water damage","gasworks flooding","retail water damage"],
+export const metadata: Metadata = {
+  title: 'Newstead Disaster Recovery | Commercial Restoration | 24/7',
+  description: 'Newstead disaster restoration experts. Gasworks precinct, commercial offices, residential towers. Water, fire & mould specialists. Call 1300 309 361.',
+  keywords: ["disaster recovery newstead","commercial restoration 4006","Gasworks precinct","office tower restoration","apartment recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/newstead',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/newstead',
+    },
+  },
+  openGraph: {
+    title: 'Newstead Disaster Recovery | Commercial Restoration',
+    description: 'Newstead disaster restoration experts. Gasworks precinct, commercial offices, residential towers. Water, fire & mould specialists. Call 1300 309 361....',
+    url: 'https://disasterrecovery.com.au/locations/newstead',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function NewsteadPage() {

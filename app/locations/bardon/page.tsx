@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Bardon | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Bardon Brisbane. Family homes, hillside properties, local businesses. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["bardon flood restoration","hillside water damage","family home flooding"],
+export const metadata: Metadata = {
+  title: 'Bardon Disaster Recovery | Emergency Restoration Services | 24/7',
+  description: 'Bardon's expert disaster restoration service. Specialising in hillside properties, water damage & landslip recovery. Quick response, insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery bardon","water damage bardon 4065","landslip damage","hillside property restoration","storm damage bardon"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/bardon',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/bardon',
+    },
+  },
+  openGraph: {
+    title: 'Bardon Disaster Recovery | Emergency Restoration Services',
+    description: 'Bardon's expert disaster restoration service. Specialising in hillside properties, water damage & landslip recovery. Quick response, insurance approve...',
+    url: 'https://disasterrecovery.com.au/locations/bardon',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function BardonPage() {

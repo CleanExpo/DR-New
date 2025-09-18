@@ -3,9 +3,23 @@ import Link from 'next/link'
 import { MapPin, Phone, Clock, CheckCircle, Home, Building2, Factory } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Disaster Recovery Brisbane | Emergency Restoration Services',
-  description: 'Brisbane\'s trusted disaster recovery experts. Water damage, fire restoration, mould remediation. Servicing CBD, inner suburbs & greater Brisbane. Call 1300 309 361.',
-  keywords: 'disaster recovery Brisbane, water damage Brisbane, fire damage Brisbane, mould removal Brisbane, emergency restoration Brisbane',
+  title: 'Disaster Recovery Brisbane | Emergency Restoration Services | 24/7',
+  description: '24/7 disaster recovery Brisbane specialists. IICRC certified water damage, fire restoration & mould remediation. Quick response across CBD & suburbs. Insurance approved. Call 1300 309 361.',
+  keywords: 'disaster recovery Brisbane, water damage Brisbane, fire damage Brisbane, mould removal Brisbane, emergency restoration Brisbane, flood restoration Brisbane CBD, storm damage repair Brisbane',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/brisbane',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/brisbane',
+    },
+  },
+  openGraph: {
+    title: 'Brisbane Disaster Recovery - 24/7 Emergency Response',
+    description: '24/7 disaster recovery Brisbane specialists. IICRC certified water damage, fire restoration & mould remediation. Quick response across CBD & suburbs.',
+    url: 'https://disasterrecovery.com.au/locations/brisbane',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 }
 
 const brisbaneSuburbs = [

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration St Lucia | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in St Lucia Brisbane. University precinct, riverside homes, student accommodation. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["st lucia water damage","university flooding","student accommodation water damage"],
+export const metadata: Metadata = {
+  title: 'St Lucia Disaster Recovery | University Area Restoration | 24/7',
+  description: 'St Lucia disaster restoration team. UQ area, riverside properties, student accommodation specialists. Water & flood damage experts. Call 1300 309 361.',
+  keywords: ["disaster recovery st lucia","flood restoration 4067","UQ area restoration","student accommodation","riverside recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/st-lucia',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/st-lucia',
+    },
+  },
+  openGraph: {
+    title: 'St Lucia Disaster Recovery | University Area Restoration',
+    description: 'St Lucia disaster restoration team. UQ area, riverside properties, student accommodation specialists. Water & flood damage experts. Call 1300 309 361....',
+    url: 'https://disasterrecovery.com.au/locations/st-lucia',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function StLuciaPage() {

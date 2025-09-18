@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Morningside | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Morningside Brisbane. Family homes, local shopping, professional services. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["morningside flood damage","family home water damage","storm restoration"],
+export const metadata: Metadata = {
+  title: 'Morningside Disaster Recovery | Emergency Restoration | 24/7',
+  description: 'Morningside disaster restoration specialists. Seven Hills area, residential & commercial water, fire & mould recovery. Insurance approved. Call 1300 309 361.',
+  keywords: ["disaster recovery morningside","water damage morningside 4170","Seven Hills restoration","residential recovery","mould remediation"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/morningside',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/morningside',
+    },
+  },
+  openGraph: {
+    title: 'Morningside Disaster Recovery | Emergency Restoration',
+    description: 'Morningside disaster restoration specialists. Seven Hills area, residential & commercial water, fire & mould recovery. Insurance approved. Call 1300 3...',
+    url: 'https://disasterrecovery.com.au/locations/morningside',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function MorningsidePage() {

@@ -2,11 +2,26 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata = {
-  title: 'Water Damage Restoration Manly | 24/7 Emergency Response',
-  description: 'Professional water damage restoration in Manly Brisbane. Waterfront homes, marina properties, coastal businesses. IICRC certified, insurance approved. Call 1300 309 361.',
-  keywords: ["manly water damage","waterfront flooding","marina restoration"],
+export const metadata: Metadata = {
+  title: 'Manly Disaster Recovery | Bayside Restoration Services | 24/7',
+  description: 'Manly bayside disaster restoration team. Storm surge, water damage & salt damage specialists. Marina & waterfront property experts. Call 1300 309 361.',
+  keywords: ["disaster recovery manly","bayside restoration manly 4179","storm surge damage","marina restoration","waterfront recovery"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/locations/manly',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/locations/manly',
+    },
+  },
+  openGraph: {
+    title: 'Manly Disaster Recovery | Bayside Restoration Services',
+    description: 'Manly bayside disaster restoration team. Storm surge, water damage & salt damage specialists. Marina & waterfront property experts. Call 1300 309 361....',
+    url: 'https://disasterrecovery.com.au/locations/manly',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+  },
 };
 
 export default function ManlyPage() {
