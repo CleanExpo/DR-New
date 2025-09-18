@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://disasterrecovery.com.au/images/services/storm-damage.jpg',
+        url: 'https://disasterrecovery.com.au/images/services/storm-damage-hero.png',
         width: 1200,
         height: 630,
         alt: 'Storm Damage Restoration | Emergency Tarping & Repairs',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Storm Damage Restoration | Emergency Tarping & Repairs',
     description: 'Storm damage restoration Brisbane region. Emergency roof tarping, water extraction, debris removal, structural repairs. 24/7 rapid response. Insurance...',
-    images: ['https://disasterrecovery.com.au/images/services/storm-damage.jpg'],
+    images: ['https://disasterrecovery.com.au/images/services/storm-damage-hero.png'],
   },
 };
 
@@ -224,7 +224,7 @@ export default function StormDamagePage() {
 
               <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/hero/storm-damage-restoration.jpg"
+                  src="/images/services/storm-damage-hero.png"
                   alt="Storm damage restoration team responding to emergency in Brisbane"
                   fill
                   className="object-cover"
