@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer id="footer-navigation" className="bg-gray-900 text-white" role="contentinfo" aria-label="Site footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center">
@@ -33,12 +33,13 @@ export default function Footer() {
           <div role="navigation" aria-labelledby="footer-services-heading">
             <h4 id="footer-services-heading" className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2">
-              <li><Link href="/water-damage" className="text-gray-300 hover:text-primary-400 transition-colors">Water Damage Restoration</Link></li>
-              <li><Link href="/fire-damage" className="text-gray-300 hover:text-primary-400 transition-colors">Fire Damage Restoration</Link></li>
-              <li><Link href="/mould-remediation" className="text-gray-300 hover:text-primary-400 transition-colors">Mould Remediation</Link></li>
-              <li><Link href="/storm-damage" className="text-gray-300 hover:text-primary-400 transition-colors">Storm Damage Repair</Link></li>
-              <li><Link href="/flood-restoration" className="text-gray-300 hover:text-primary-400 transition-colors">Flood Restoration</Link></li>
-              <li><Link href="/emergency-services" className="text-gray-300 hover:text-primary-400 transition-colors">Emergency Services</Link></li>
+              <li><Link href="/services/water-damage" className="text-gray-300 hover:text-primary-400 transition-colors">Water Damage Restoration</Link></li>
+              <li><Link href="/services/fire-damage" className="text-gray-300 hover:text-primary-400 transition-colors">Fire Damage Restoration</Link></li>
+              <li><Link href="/services/mould-remediation" className="text-gray-300 hover:text-primary-400 transition-colors">Mould Remediation</Link></li>
+              <li><Link href="/services/storm-damage" className="text-gray-300 hover:text-primary-400 transition-colors">Storm Damage Repair</Link></li>
+              <li><Link href="/services/biohazard" className="text-gray-300 hover:text-primary-400 transition-colors">Biohazard Cleanup</Link></li>
+              <li><Link href="/services/sewage" className="text-gray-300 hover:text-primary-400 transition-colors">Sewage Cleanup</Link></li>
+              <li><Link href="/services/commercial" className="text-gray-300 hover:text-primary-400 transition-colors">Commercial Restoration</Link></li>
             </ul>
           </div>
 
@@ -46,13 +47,27 @@ export default function Footer() {
           <div role="navigation" aria-labelledby="footer-areas-heading">
             <h4 id="footer-areas-heading" className="text-lg font-semibold mb-4">Service Areas</h4>
             <ul className="space-y-2">
-              <li className="text-gray-300">Brisbane CBD</li>
-              <li className="text-gray-300">North Brisbane</li>
-              <li className="text-gray-300">South Brisbane</li>
-              <li className="text-gray-300">West Brisbane</li>
-              <li className="text-gray-300">East Brisbane</li>
-              <li className="text-gray-300">Ipswich</li>
-              <li className="text-gray-300">Logan</li>
+              <li><Link href="/locations/brisbane" className="text-gray-300 hover:text-primary-400 transition-colors">Brisbane CBD</Link></li>
+              <li><Link href="/locations/brisbane" className="text-gray-300 hover:text-primary-400 transition-colors">North Brisbane</Link></li>
+              <li><Link href="/locations/brisbane" className="text-gray-300 hover:text-primary-400 transition-colors">South Brisbane</Link></li>
+              <li><Link href="/locations/brisbane" className="text-gray-300 hover:text-primary-400 transition-colors">West Brisbane</Link></li>
+              <li><Link href="/locations/brisbane" className="text-gray-300 hover:text-primary-400 transition-colors">East Brisbane</Link></li>
+              <li><Link href="/locations/ipswich" className="text-gray-300 hover:text-primary-400 transition-colors">Ipswich</Link></li>
+              <li><Link href="/locations/logan" className="text-gray-300 hover:text-primary-400 transition-colors">Logan</Link></li>
+            </ul>
+          </div>
+
+          {/* Quick Links */}
+          <div role="navigation" aria-labelledby="footer-quick-links-heading">
+            <h4 id="footer-quick-links-heading" className="text-lg font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              <li><Link href="/about" className="text-gray-300 hover:text-primary-400 transition-colors">About Us</Link></li>
+              <li><Link href="/pricing" className="text-gray-300 hover:text-primary-400 transition-colors">Pricing</Link></li>
+              <li><Link href="/faq" className="text-gray-300 hover:text-primary-400 transition-colors">FAQ</Link></li>
+              <li><Link href="/reviews" className="text-gray-300 hover:text-primary-400 transition-colors">Reviews</Link></li>
+              <li><Link href="/insurance-guide" className="text-gray-300 hover:text-primary-400 transition-colors">Insurance Guide</Link></li>
+              <li><Link href="/insurance-partners" className="text-gray-300 hover:text-primary-400 transition-colors">Insurance Partners</Link></li>
+              <li><Link href="/contact" className="text-gray-300 hover:text-primary-400 transition-colors">Contact Us</Link></li>
             </ul>
           </div>
 

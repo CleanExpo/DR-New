@@ -8,7 +8,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isInsuranceOpen, setIsInsuranceOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
+  const insuranceRef = useRef<HTMLDivElement>(null);
 
   const services = [
     { name: 'Water Damage Restoration', href: '/services/water-damage' },
@@ -18,6 +20,26 @@ export default function Header() {
     { name: 'Biohazard Cleanup', href: '/services/biohazard' },
     { name: 'Commercial Restoration', href: '/services/commercial' },
     { name: 'Sewage Cleanup', href: '/services/sewage' },
+  ];
+
+  const insuranceGuide = [
+    { name: 'Insurance Guide Overview', href: '/insurance-guide', divider: false },
+    { name: 'Home & Building Insurance', href: '/insurance-guide/home-building', divider: false },
+    { name: 'Contents Insurance', href: '/insurance-guide/contents', divider: false },
+    { name: 'Landlord Insurance', href: '/insurance-guide/landlord', divider: false },
+    { name: 'Business Interruption', href: '/insurance-guide/business-interruption', divider: false },
+    { name: 'Strata Insurance', href: '/insurance-guide/strata', divider: false },
+    { name: 'Flood vs Storm Damage', href: '/insurance-guide/flood-vs-storm', divider: true },
+    // Insurance Partners
+    { name: 'Our Insurance Partners', href: '/insurance-partners', divider: false },
+    { name: 'IAG Insurance', href: '/insurance-partners/iag', divider: false },
+    { name: 'Suncorp Group', href: '/insurance-partners/suncorp', divider: false },
+    { name: 'QBE Insurance', href: '/insurance-partners/qbe', divider: false },
+    { name: 'RACQ Insurance', href: '/insurance-partners/racq', divider: false },
+    { name: 'Allianz', href: '/insurance-partners/allianz', divider: false },
+    { name: 'Zurich', href: '/insurance-partners/zurich', divider: false },
+    { name: 'Hollards', href: '/insurance-partners/hollards', divider: false },
+    { name: 'Wesfarmers Insurance', href: '/insurance-partners/wesfarmers', divider: false },
   ];
 
   useEffect(() => {
@@ -34,6 +56,9 @@ export default function Header() {
     const handleClickOutside = (event: MouseEvent) => {
       if (servicesRef.current && !servicesRef.current.contains(event.target as Node)) {
         setIsServicesOpen(false);
+      }
+      if (insuranceRef.current && !insuranceRef.current.contains(event.target as Node)) {
+        setIsInsuranceOpen(false);
       }
     };
 
@@ -143,6 +168,62 @@ export default function Header() {
               <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Link>
 
+            {/* Insurance Guide Dropdown */}
+            <div className="relative" ref={insuranceRef}>
+              <button
+                onClick={() => setIsInsuranceOpen(!isInsuranceOpen)}
+                className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden flex items-center gap-1"
+              >
+                <span className="relative z-10 font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">
+                  Insurance
+                </span>
+                <svg
+                  className={`relative z-10 w-4 h-4 text-gray-800 group-hover:text-white transition-all duration-300 ${
+                    isInsuranceOpen ? 'rotate-180' : ''
+                  }`}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </button>
+
+              {/* Insurance Dropdown Menu */}
+              {isInsuranceOpen && (
+                <div className="absolute top-full mt-2 right-0 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200 max-h-[600px] overflow-y-auto">
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 border-b border-blue-200">
+                    <span className="text-sm font-semibold text-blue-900">Policy Guides</span>
+                  </div>
+                  {insuranceGuide.slice(0, 7).map((item) => (
+                    <div key={item.href}>
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-3 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-colors duration-200"
+                        onClick={() => setIsInsuranceOpen(false)}
+                      >
+                        <span className="text-gray-700 hover:text-blue-600 font-medium text-sm">{item.name}</span>
+                      </Link>
+                      {item.divider && <div className="border-t border-gray-200"></div>}
+                    </div>
+                  ))}
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 px-4 py-2 border-y border-green-200">
+                    <span className="text-sm font-semibold text-green-900">Insurance Partners</span>
+                  </div>
+                  {insuranceGuide.slice(7).map((partner) => (
+                    <Link
+                      key={partner.href}
+                      href={partner.href}
+                      className="block px-4 py-3 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 transition-colors duration-200 border-b border-gray-100 last:border-0"
+                      onClick={() => setIsInsuranceOpen(false)}
+                    >
+                      <span className="text-gray-700 hover:text-green-600 font-medium text-sm">{partner.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
               href="/contact"
               className="group relative px-4 py-2 rounded-full bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
@@ -225,6 +306,15 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative z-10">Pricing</span>
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </Link>
+
+              <Link
+                href="/insurance-guide"
+                className="block mx-2 px-5 py-3 rounded-2xl bg-gradient-to-br from-zinc-300 via-gray-200 to-zinc-400 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 text-gray-800 hover:text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl group overflow-hidden relative"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="relative z-10">Insurance Guide</span>
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </Link>
 

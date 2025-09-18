@@ -1,254 +1,236 @@
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Card from '@/components/ui/Card';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import { Metadata } from 'next';
+import { ChevronDown, Phone, Clock, Shield, DollarSign, FileText, Users, AlertTriangle } from 'lucide-react';
 
-export const metadata = {
-  title: "Emergency Disaster Recovery FAQ | Brisbane Ipswich Logan | 1300 309 361",
-  description: "Get instant answers to emergency disaster recovery questions. 24/7 water damage, fire damage, flood repair. Fast response times Brisbane, Ipswich, Logan. Call now for help.",
-  keywords: "disaster recovery FAQ, emergency water damage help, flood damage questions, fire damage repair Brisbane, emergency restoration answers, what to do flood damage, water damage response time"
+export const metadata: Metadata = {
+  title: 'FAQ - Frequently Asked Questions | Disaster Recovery Brisbane',
+  description: 'Common questions about water damage restoration, fire damage, mould remediation, insurance claims, and emergency response in Brisbane and Ipswich.',
+  keywords: ["disaster recovery FAQ", "water damage questions", "insurance claims", "emergency restoration", "mould remediation FAQ"],
 };
 
-const faqCategories = [
-  {
-    category: "Emergency Response",
-    faqs: [
-      {
-        question: "Who can help with flood damage right now?",
-        answer: "Disaster Recovery Brisbane provides 24/7 emergency flood damage response across Brisbane, Ipswich, and Logan. Our rapid triage system prioritises urgent cases. Our certified technicians immediately begin water extraction and damage control.",
-        voiceOptimised: "Call Disaster Recovery Brisbane at 1300 309 361 for immediate flood damage help. We provide 24/7 emergency response with priority triage across Brisbane, Ipswich, and Logan."
-      },
-      {
-        question: "How quickly can someone fix water damage?",
-        answer: "Water damage repair begins immediately with our rapid emergency response. Complete restoration typically takes 3-7 days depending on damage severity. We prioritise water extraction to prevent further damage and mould growth.",
-        voiceOptimised: "Water damage repair starts with rapid triage assessment. Complete restoration takes 3 to 7 days depending on damage severity."
-      },
-      {
-        question: "What should I do if my house floods?",
-        answer: "If your house floods: 1) Ensure safety first - turn off electricity if safe to do so, 2) Call 1300 309 361 immediately for emergency response, 3) Document damage with photos for insurance, 4) Do not enter standing water, 5) Remove valuables from affected areas if safely accessible.",
-        voiceOptimised: "If your house floods: ensure safety, call 1300 309 361 immediately, document damage, avoid standing water, and remove valuables safely."
-      },
-      {
-        question: "I have water in my house who do I call?",
-        answer: "Call Disaster Recovery Brisbane immediately at 1300 309 361. We provide 24/7 emergency water damage response across Brisbane, Ipswich, and Logan with rapid triage assessment. Our team handles all types of water damage from burst pipes to flooding.",
-        voiceOptimised: "Call 1300 309 361 immediately for water in your house. Disaster Recovery Brisbane provides 24/7 emergency response with priority triage."
-      }
-    ]
-  },
-  {
-    category: "Service Information",
-    faqs: [
-      {
-        question: "How much does emergency water extraction cost?",
-        answer: "Emergency water extraction costs vary based on damage extent and water category. We provide free emergency assessments and work directly with insurance companies. Most residential water extraction ranges from $2,000-$8,000, with exact quotes provided on-site.",
-        voiceOptimised: "Emergency water extraction costs vary by damage extent. We provide free assessments and work with insurance. Typical residential costs range from $2,000 to $8,000."
-      },
-      {
-        question: "Who provides 24 hour disaster recovery in Brisbane?",
-        answer: "Disaster Recovery Brisbane provides 24/7 disaster recovery services across Brisbane, Ipswich, and Logan. We're available 365 days a year with certified IICRC technicians and rapid emergency response for all water, fire, and storm damage situations.",
-        voiceOptimised: "Disaster Recovery Brisbane provides 24/7 disaster recovery across Brisbane, Ipswich, and Logan with priority triage system."
-      },
-      {
-        question: "What is the fastest water damage response time?",
-        answer: "Disaster Recovery Brisbane provides rapid response times in Brisbane with priority triage system. Our 24/7 rapid response team begins water extraction and damage control immediately to minimise property damage.",
-        voiceOptimised: "Disaster Recovery Brisbane provides rapid triage response, prioritising the most urgent water damage emergencies in Brisbane."
-      },
-      {
-        question: "How do I stop water damage from getting worse?",
-        answer: "To stop water damage from worsening: 1) Call professionals immediately at 1300 309 361, 2) Turn off water source if accessible, 3) Remove standing water if safe, 4) Move furniture and belongings to dry areas, 5) Ensure good ventilation. Professional extraction within 24 hours prevents mould growth.",
-        voiceOptimised: "To stop water damage worsening: call 1300 309 361 immediately, turn off water source, remove standing water safely, move belongings, and ensure ventilation."
-      }
-    ]
-  },
-  {
-    category: "Local Services",
-    faqs: [
-      {
-        question: "Best disaster recovery company Brisbane?",
-        answer: "Disaster Recovery Brisbane is the region's most trusted disaster recovery company with 15+ years experience. We're IICRC certified, provide rapid emergency response, work directly with insurance, and serve Brisbane, Ipswich, and Logan with 24/7 availability.",
-        voiceOptimised: "Disaster Recovery Brisbane is the region's most trusted company with 15+ years experience, IICRC certification, and rapid emergency response."
-      },
-      {
-        question: "Water damage restoration Ipswich emergency?",
-        answer: "Yes, Disaster Recovery Brisbane provides emergency water damage restoration throughout Ipswich 24/7. We prioritise urgent cases and handle all water damage categories from clean water to sewage backups with certified technicians and professional equipment.",
-        voiceOptimised: "Yes, Disaster Recovery Brisbane provides 24/7 emergency water damage restoration in Ipswich with priority triage system."
-      },
-      {
-        question: "Fire damage repair Logan after hours?",
-        answer: "Disaster Recovery Brisbane provides 24/7 fire damage repair services throughout Logan. Our after-hours emergency team provides rapid response for fire damage assessment, smoke removal, and structural repairs. Call 1300 309 361 any time day or night.",
-        voiceOptimised: "Yes, Disaster Recovery Brisbane provides 24/7 fire damage repair in Logan with rapid after-hours response."
-      }
-    ]
-  }
-];
-
 export default function FAQPage() {
+  const faqCategories = [
+    {
+      category: "Emergency Response",
+      icon: Clock,
+      questions: [
+        {
+          q: "How quickly can you respond to an emergency?",
+          a: "We guarantee a 1-hour emergency response time for Brisbane, Ipswich, and Logan areas. Our 24/7 emergency team is always ready to deploy immediately upon receiving your call at 1300 309 361."
+        },
+        {
+          q: "Do you provide 24/7 emergency services?",
+          a: "Yes, we operate 24 hours a day, 7 days a week, 365 days a year. Water damage, fires, and floods don't wait for business hours, and neither do we."
+        },
+        {
+          q: "What areas do you service?",
+          a: "We service all of Brisbane, Ipswich, Logan, and surrounding areas including Gold Coast and Sunshine Coast for major disasters. Our headquarters in Wacol allows rapid response throughout Southeast Queensland."
+        }
+      ]
+    },
+    {
+      category: "Insurance Claims",
+      icon: FileText,
+      questions: [
+        {
+          q: "Do you work directly with insurance companies?",
+          a: "Yes, we're preferred contractors for major insurers including IAG (NRMA, CGU, SGIO), Suncorp (AAMI, GIO), QBE, RACQ, Allianz, and others. We handle the entire claims process on your behalf."
+        },
+        {
+          q: "Will you help with my insurance claim?",
+          a: "Absolutely. We provide detailed documentation, photos, moisture readings, and comprehensive reports that insurance companies require. We liaise directly with your insurer and loss adjuster to streamline the process."
+        },
+        {
+          q: "What if I don't have insurance?",
+          a: "We work with both insured and uninsured customers. We provide transparent pricing and can arrange payment plans for larger restoration projects. Contact us for a free assessment and quote."
+        }
+      ]
+    },
+    {
+      category: "Water Damage",
+      icon: AlertTriangle,
+      questions: [
+        {
+          q: "How long does water damage restoration take?",
+          a: "Most residential water damage restoration takes 3-5 days for drying, depending on the extent of damage. Complete restoration including repairs may take 1-2 weeks. We provide detailed timelines after our initial assessment."
+        },
+        {
+          q: "Can you save my carpets and furniture?",
+          a: "In many cases, yes. If we respond quickly (within 24-48 hours), we can often save carpets, rugs, and furniture through professional extraction, drying, and cleaning. Each situation is assessed individually."
+        },
+        {
+          q: "How do you prevent mould after water damage?",
+          a: "We use industrial dehumidifiers, air movers, and antimicrobial treatments. We monitor moisture levels daily and don't consider a job complete until materials reach safe moisture content levels (usually below 16%)."
+        }
+      ]
+    },
+    {
+      category: "Mould Remediation",
+      icon: Shield,
+      questions: [
+        {
+          q: "Is mould dangerous to my health?",
+          a: "Yes, mould can cause respiratory issues, allergies, and other health problems, especially for children, elderly, and those with compromised immune systems. Professional remediation is essential for safe removal."
+        },
+        {
+          q: "How long does mould remediation take?",
+          a: "Small areas (under 10m²) typically take 1-2 days. Larger infestations may require 3-5 days or more. We contain the area, remove affected materials, treat surfaces, and verify clearance with testing."
+        },
+        {
+          q: "Will the mould come back?",
+          a: "When properly remediated and the moisture source is eliminated, mould should not return. We address the root cause, not just visible growth, and provide prevention recommendations."
+        }
+      ]
+    },
+    {
+      category: "Costs & Payment",
+      icon: DollarSign,
+      questions: [
+        {
+          q: "How much does restoration cost?",
+          a: "Costs vary significantly based on damage extent. Water damage typically ranges from $1,500-$8,000, fire restoration from $3,000-$25,000+. We provide free assessments and detailed quotes."
+        },
+        {
+          q: "Do you offer payment plans?",
+          a: "Yes, we understand disasters are unexpected. We offer flexible payment plans for uninsured customers and can discuss options during your free consultation."
+        },
+        {
+          q: "Are your services guaranteed?",
+          a: "Yes, we provide comprehensive warranties on our work. We're fully insured with $20 million public liability coverage and all work meets Australian Standards and IICRC guidelines."
+        }
+      ]
+    },
+    {
+      category: "Certifications & Standards",
+      icon: Users,
+      questions: [
+        {
+          q: "What certifications do you hold?",
+          a: "We're IICRC certified in water damage restoration, fire and smoke restoration, mould remediation, and biohazard cleaning. We're also members of the Restoration Industry Association (RIA) and CARSI."
+        },
+        {
+          q: "Do you follow Australian Standards?",
+          a: "Yes, all our work complies with AS/NZS standards including AS 3500 (plumbing), AS 4349 (building inspections), and IICRC S500 (water damage) and S520 (mould) standards."
+        },
+        {
+          q: "Are your technicians trained?",
+          a: "All our technicians undergo extensive training and hold relevant certifications. We're developing Australia's first ASQA-approved restoration training course to maintain industry-leading standards."
+        }
+      ]
+    }
+  ];
+
   return (
     <>
       <Header />
-      <main>
+      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <Breadcrumb
+          items={[
+            { label: 'FAQ' }
+          ]}
+        />
+
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary-900 to-primary-800 text-white section-padding">
-          <div className="max-w-7xl mx-auto text-center">
-            <div className="inline-flex items-center bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-6 py-2 mb-4">
-              <svg className="w-5 h-5 text-primary-300 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              <span className="text-sm font-semibold">Emergency Help Available 24/7</span>
-            </div>
-
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Emergency Disaster Recovery
-              <span className="block text-primary-300">Frequently Asked Questions</span>
-            </h1>
-
-            <p className="text-xl text-primary-100 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Get instant answers to emergency disaster recovery questions. When disaster strikes,
-              you need immediate help. Find answers now or call our 24/7 emergency hotline.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:1300309361"
-                className="bg-emergency-600 hover:bg-emergency-700 text-white font-bold py-4 px-8 rounded-lg transition-colors flex items-center justify-center space-x-3"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                </svg>
-                <div>
-                  <div className="text-sm opacity-90">Emergency Hotline</div>
-                  <div className="font-bold">1300 309 361</div>
-                </div>
-              </a>
-            </div>
-
-            <div className="mt-8 text-primary-200">
-              <p className="font-semibold">Available 24/7/365 • Priority Triage Response • Brisbane, Ipswich & Logan</p>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Categories */}
-        <section className="section-padding bg-white">
-          <div className="max-w-7xl mx-auto">
-            {faqCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="mb-16">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                    {category.category}
-                  </h2>
-                </div>
-
-                <div className="space-y-6">
-                  {category.faqs.map((faq, faqIndex) => (
-                    <Card key={faqIndex} className="overflow-hidden">
-                      <div className="p-8">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                          {faq.question}
-                        </h3>
-
-                        {/* Voice-optimized answer for featured snippets */}
-                        <div className="bg-primary-50 rounded-lg p-6 mb-4">
-                          <div className="text-sm font-semibold text-primary-700 mb-2">Quick Answer:</div>
-                          <p className="text-lg text-gray-900 font-medium leading-relaxed">
-                            {faq.voiceOptimised}
-                          </p>
-                        </div>
-
-                        {/* Detailed answer */}
-                        <div>
-                          <div className="text-sm font-semibold text-gray-700 mb-2">Detailed Information:</div>
-                          <p className="text-gray-700 leading-relaxed">
-                            {faq.answer}
-                          </p>
-                        </div>
-
-                        {/* Emergency CTA for relevant questions */}
-                        {faq.question.toLowerCase().includes('flood') ||
-                         faq.question.toLowerCase().includes('water') ||
-                         faq.question.toLowerCase().includes('emergency') ? (
-                          <div className="mt-6 p-4 bg-emergency-50 rounded-lg border border-emergency-200">
-                            <div className="flex items-center text-emergency-700">
-                              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                              </svg>
-                              <span className="font-semibold">Emergency Situation?</span>
-                            </div>
-                            <p className="text-emergency-600 mt-1">
-                              Don't wait - call our 24/7 emergency hotline now:
-                              <a href="tel:1300309361" className="font-bold ml-1 hover:underline">1300 309 361</a>
-                            </p>
-                          </div>
-                        ) : null}
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Still Need Help Section */}
-        <section className="section-padding bg-gray-50">
-          <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Still Need Immediate Help?
-            </h2>
-            <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-              Our emergency response team is available 24/7 to answer questions and provide immediate assistance.
-              Don't wait when disaster strikes - every minute counts.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div className="text-center">
-                <div className="bg-primary-100 text-primary-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Call Immediately</h3>
-                <p className="text-gray-700">24/7 emergency hotline</p>
-                <a href="tel:1300309361" className="text-primary-600 font-bold text-lg">1300 309 361</a>
-              </div>
-
-              <div className="text-center">
-                <div className="bg-primary-100 text-primary-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">1 Hour Response</h3>
-                <p className="text-gray-700">Guaranteed arrival time</p>
-                <p className="text-primary-600 font-bold">Brisbane, Ipswich, Logan</p>
-              </div>
-
-              <div className="text-center">
-                <div className="bg-primary-100 text-primary-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">IICRC Certified</h3>
-                <p className="text-gray-700">Professional technicians</p>
-                <p className="text-primary-600 font-bold">Insurance approved</p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-emergency-600 to-emergency-700 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">Emergency Disaster Situation?</h3>
-              <p className="text-emergency-100 mb-6 max-w-2xl mx-auto">
-                Water damage, fire damage, flooding, or storm damage requires immediate professional response.
-                Don't risk further damage or health hazards - call our emergency team now.
+        <section className="relative py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl">
+              <h1 className="text-5xl font-bold mb-6">
+                Frequently Asked Questions
+              </h1>
+              <p className="text-xl text-blue-100">
+                Find answers to common questions about our disaster recovery services,
+                insurance claims, costs, and emergency response procedures.
               </p>
-              <a
-                href="tel:1300309361"
-                className="bg-white text-emergency-600 font-bold py-4 px-8 rounded-lg hover:bg-gray-50 transition-colors inline-flex items-center space-x-3"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                </svg>
-                <span>CALL EMERGENCY: 1300 309 361</span>
-              </a>
+              <div className="mt-8">
+                <a
+                  href="tel:1300309361"
+                  className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call 1300 309 361 for Immediate Help
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Content */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="space-y-12">
+              {faqCategories.map((category, categoryIndex) => (
+                <div key={categoryIndex}>
+                  <div className="flex items-center gap-3 mb-6">
+                    <category.icon className="w-8 h-8 text-blue-600" />
+                    <h2 className="text-3xl font-bold text-gray-900">
+                      {category.category}
+                    </h2>
+                  </div>
+
+                  <div className="space-y-4">
+                    {category.questions.map((item, questionIndex) => (
+                      <details
+                        key={questionIndex}
+                        className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+                      >
+                        <summary className="flex items-center justify-between p-6 cursor-pointer">
+                          <h3 className="text-lg font-semibold text-gray-900 pr-4">
+                            {item.q}
+                          </h3>
+                          <ChevronDown className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0" />
+                        </summary>
+                        <div className="px-6 pb-6">
+                          <p className="text-gray-600 leading-relaxed">
+                            {item.a}
+                          </p>
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Additional Questions CTA */}
+            <div className="mt-16 bg-blue-50 rounded-2xl p-8 text-center">
+              <h2 className="text-2xl font-bold mb-4">Still Have Questions?</h2>
+              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Can't find the answer you're looking for? Our expert team is here to help
+                with any specific questions about your situation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                >
+                  Contact Us
+                </Link>
+                <Link
+                  href="/insurance-guide"
+                  className="inline-flex items-center justify-center bg-white hover:bg-gray-50 text-blue-600 font-bold py-3 px-6 rounded-lg border-2 border-blue-600 transition-colors"
+                >
+                  Insurance Guide
+                </Link>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="mt-16 grid md:grid-cols-3 gap-6">
+              <Link href="/services/water-damage" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <h3 className="font-semibold text-lg mb-2">Water Damage Services</h3>
+                <p className="text-gray-600 text-sm">Learn about our water extraction and drying services</p>
+              </Link>
+              <Link href="/services/fire-damage" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <h3 className="font-semibold text-lg mb-2">Fire Damage Restoration</h3>
+                <p className="text-gray-600 text-sm">Discover our fire and smoke damage solutions</p>
+              </Link>
+              <Link href="/services/mould-remediation" className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <h3 className="font-semibold text-lg mb-2">Mould Remediation</h3>
+                <p className="text-gray-600 text-sm">Professional mould removal and prevention</p>
+              </Link>
             </div>
           </div>
         </section>

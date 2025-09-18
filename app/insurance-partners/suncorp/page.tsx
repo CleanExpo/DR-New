@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 import { Metadata } from 'next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Building2, Users, Award, TrendingUp, Phone, Globe, Calendar, Shield } from 'lucide-react';
@@ -92,6 +93,12 @@ export default function SuncorpPartnerPage() {
     <>
       <Header />
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <Breadcrumb
+          items={[
+            { label: 'Insurance Partners', href: '/insurance-partners' },
+            { label: 'Suncorp Group' }
+          ]}
+        />
         {/* Hero Section */}
         <section className="relative py-20 bg-gradient-to-r from-orange-600 to-orange-500 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

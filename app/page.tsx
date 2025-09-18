@@ -322,13 +322,13 @@ export default function HomePage() {
                 {
                   title: "Commercial Water Damage",
                   description: "Rapid water extraction and structural drying to minimise business interruption.",
-                  link: "/services/water-damage-restoration",
+                  link: "/services/water-damage",
                   image: "/images/services/water-damage-restoration.webp"
                 },
                 {
                   title: "Fire & Smoke Restoration",
                   description: "Complete restoration services for commercial and high-value residential properties.",
-                  link: "/services/fire-damage-restoration",
+                  link: "/services/fire-damage",
                   image: "/images/services/fire-damage-restoration.webp"
                 },
                 {
@@ -346,13 +346,13 @@ export default function HomePage() {
                 {
                   title: "Biohazard & Trauma Cleaning",
                   description: "Discrete, professional cleaning services meeting all regulatory requirements.",
-                  link: "/services/biohazard-cleaning",
+                  link: "/services/biohazard",
                   image: "/images/services/crime-scene-remediation.webp"
                 },
                 {
                   title: "Business Continuity Solutions",
                   description: "Comprehensive restoration services designed to minimise operational downtime.",
-                  link: "/services",
+                  link: "/services/commercial",
                   image: "/images/services/commercial-residential.png"
                 }
               ].map((service, index) => (
