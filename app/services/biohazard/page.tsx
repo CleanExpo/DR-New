@@ -448,7 +448,7 @@ export default function BiohazardPage() {
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base">
-                    We're available 24/7 and can typically arrive within 2 hours of your call.
+                    We're available 24/7 with quick phone response to guide you through immediate safety steps.
                     For urgent situations, we prioritise immediate response. Our team understands
                     the sensitive nature of these situations and will work with your timeline.
                   </CardDescription>

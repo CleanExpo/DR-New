@@ -143,7 +143,7 @@ export async function POST(request: NextRequest) {
     if (priority === 'HIGH') {
       responseMessage = 'Emergency request received. Our team will contact you within 1 hour.';
     } else if (priority === 'MEDIUM') {
-      responseMessage = 'Your request has been prioritized. We will contact you within 2-4 hours.';
+      responseMessage = 'Your request has been prioritised. We will contact you within 2-4 hours.';
     } else {
       responseMessage = 'Your inquiry has been received. We will respond within 24 hours.';
     }

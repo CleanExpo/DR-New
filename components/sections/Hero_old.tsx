@@ -33,7 +33,7 @@ export default function Hero() {
               <p className="text-xl text-primary-100 leading-relaxed max-w-2xl">
                 Professional water damage, fire damage restoration, and mould remediation services
                 across Brisbane, Ipswich, and Logan. When disaster strikes, we respond immediately
-                to minimize damage and restore your property to its pre-loss condition.
+                to minimise damage and restore your property to its pre-loss condition.
               </p>
             </div>
 

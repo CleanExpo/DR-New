@@ -129,7 +129,7 @@ export default function CookieConsent() {
                 <h2 className="text-lg font-semibold text-gray-900">Cookie Preferences</h2>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                We use cookies to enhance your experience, analyze site traffic, and deliver personalized content.
+                We use cookies to enhance your experience, analyse site traffic, and deliver personalised content.
                 Your privacy is important to us.
               </p>
 

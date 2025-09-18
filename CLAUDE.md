@@ -209,7 +209,7 @@ Hero rotation sequence:
 - **Experience**: 25+ years in restoration industry
 - **Office**: 4/17 Tile St, Wacol, QLD 4076
 - **Phone**: 1300 309 361
-- **Email**: info@disasterrecovery.com.au
+- **Email**: admin@disasterrecovery.com.au
 - **Website**: disasterrecovery.com.au
 
 ### Certifications & Insurance
@@ -274,7 +274,7 @@ cp .env.production .env.local # Use production values for testing
 - `NEXT_PUBLIC_SITE_URL`: https://disasterrecovery.com.au
 - `NEXT_PUBLIC_BUSINESS_NAME`: Disaster Recovery
 - `NEXT_PUBLIC_PHONE`: 1300 309 361
-- `NEXT_PUBLIC_EMAIL`: info@disasterrecovery.com.au
+- `NEXT_PUBLIC_EMAIL`: admin@disasterrecovery.com.au
 - `NEXT_PUBLIC_ADDRESS`: 4/17 Tile St, Wacol, QLD 4076
 
 ### When Adding Features

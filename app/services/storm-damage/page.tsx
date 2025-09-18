@@ -90,22 +90,22 @@ export default function StormDamagePage() {
     {
       type: "Cyclone & Wind Damage",
       services: ["Roof repairs", "Structural stabilisation", "Debris removal", "Window replacement"],
-      responseTime: "1-2 hours"
+      responseTime: "Quick response"
     },
     {
       type: "Flood & Water Damage",
       services: ["Water extraction", "Rapid drying", "Mould prevention", "Contents recovery"],
-      responseTime: "Immediate"
+      responseTime: "Immediate phone support"
     },
     {
       type: "Hail Damage",
       services: ["Roof assessment", "Window replacement", "Vehicle protection", "Insurance documentation"],
-      responseTime: "Same day"
+      responseTime: "Quick response"
     },
     {
       type: "Lightning Strike",
       services: ["Electrical safety check", "Fire damage assessment", "Structural repairs", "Smoke remediation"],
-      responseTime: "Emergency"
+      responseTime: "Emergency phone support"
     }
   ];
 
@@ -472,8 +472,8 @@ export default function StormDamagePage() {
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base">
-                    We guarantee a 1-hour emergency response time for storm damage in Brisbane and Ipswich.
-                    Our teams are on standby 24/7 during storm season and can begin make-safe work immediately upon arrival.
+                    We guarantee quick emergency phone response for storm damage in Brisbane and Ipswich.
+                    Our teams are on standby 24/7 during storm season and can begin coordinating make-safe work immediately.
                   </CardDescription>
                 </CardContent>
               </Card>

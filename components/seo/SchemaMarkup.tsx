@@ -18,7 +18,7 @@ export default function SchemaMarkup({ type, data }: SchemaProps) {
           "description": "Professional disaster recovery and restoration services in Brisbane, Ipswich, and Logan. Water damage restoration, fire damage cleanup, mould removal, and emergency restoration services.",
           "url": "https://disasterrecovery.com.au",
           "telephone": "1300309361",
-          "email": "info@disasterrecovery.com.au",
+          "email": "admin@disasterrecovery.com.au",
           "foundingDate": "2011-07",
           "founders": [
             {

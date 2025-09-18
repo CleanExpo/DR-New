@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   keywords: ["water damage restoration brisbane", "flood damage repair", "water extraction brisbane", "emergency water damage", "water damage cleanup brisbane", "flood restoration brisbane"],
   openGraph: {
     title: "Water Damage Restoration Brisbane | Emergency Response",
-    description: "Professional water damage restoration in Brisbane. 1 hour response time. We extract water, dry your home, and prevent mould growth.",
+    description: "Professional water damage restoration in Brisbane. Quick phone response. We extract water, dry your home, and prevent mould growth.",
     url: "https://disasterrecovery.com.au/services/water-damage-restoration",
   }
 };

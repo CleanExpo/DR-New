@@ -114,7 +114,7 @@ export default function EagleFarmPage() {
                   <li>• Burst pipe and plumbing emergencies</li>
                   <li>• Storm and rain damage repairs</li>
                   <li>• Mould remediation and prevention</li>
-                  <li>• Sewage cleanup and sanitization</li>
+                  <li>• Sewage cleanup and sanitisation</li>
                   <li>• Fire and smoke damage restoration</li>
                   <li>• Contents restoration and recovery</li>
                   <li>• Insurance claim assistance</li>
@@ -142,7 +142,7 @@ export default function EagleFarmPage() {
                 <h3 className="text-xl font-bold mb-3">Fast Response</h3>
                 <p>
                   Our emergency teams can reach Eagle Farm quickly,
-                  minimizing damage and reducing restoration costs.
+                  minimising damage and reducing restoration costs.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg">

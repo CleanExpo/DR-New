@@ -42,7 +42,7 @@ export default function EnhancedSchemaMarkup({ type, data }: EnhancedSchemaProps
                 }
               ],
               "telephone": "+61 1300 309 361",
-              "email": "info@disasterrecovery.com.au",
+              "email": "admin@disasterrecovery.com.au",
               "faxNumber": "+61 7 3271 2514",
               "taxID": "ABN 123456789",
               "foundingDate": "2011-07-01",

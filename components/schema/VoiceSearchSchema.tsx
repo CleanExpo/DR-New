@@ -271,7 +271,7 @@ export function EmergencyHowToSchema() {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "What to do if your house floods",
-    "description": "Emergency steps to take when your house floods to minimize damage and ensure safety",
+    "description": "Emergency steps to take when your house floods to minimise damage and ensure safety",
     "image": "https://disasterrecoverybrisbane.com.au/images/emergency-flood-response.jpg",
     "totalTime": "PT5M",
     "supply": [

@@ -27,7 +27,7 @@ export default function LocalVoiceSearchLanding({
       "logo": "https://disasterrecovery.com.au/logo.png",
       "image": "https://disasterrecovery.com.au/images/hero/disaster-recovery-services.jpg",
       "telephone": "+61 1300 309 361",
-      "email": "info@disasterrecovery.com.au",
+      "email": "admin@disasterrecovery.com.au",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "4/17 Tile St",

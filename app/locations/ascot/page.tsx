@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export const metadata = {
   title: 'Water Damage Restoration Ascot | Luxury Home Specialists',
-  description: 'Premium water damage restoration in Ascot Brisbane. Specializing in luxury homes, heritage properties. 24/7 emergency response. Call 1300 309 361.',
+  description: 'Premium water damage restoration in Ascot Brisbane. Specialising in luxury homes, heritage properties. 24/7 emergency response. Call 1300 309 361.',
   keywords: ['water damage ascot', 'luxury home water damage', 'ascot flood restoration', 'heritage property water damage'],
 };
 

@@ -139,7 +139,7 @@ export default function Services() {
           <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Need Immediate Assistance?</h3>
             <p className="text-primary-100 mb-6 max-w-2xl mx-auto">
-              Our emergency response team is available 24/7 to help minimize damage and begin restoration immediately.
+              Our emergency response team is available 24/7 to help minimise damage and begin restoration immediately.
               Don't wait – call now for rapid response.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

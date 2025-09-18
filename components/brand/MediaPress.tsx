@@ -228,7 +228,7 @@ const MediaPress = () => {
               Download Press Kit
             </button>
             <button className="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-xl hover:bg-white/10 transition-colors">
-              Media Contact: media@disasterrecovery.com.au
+              Media Contact: admin@disasterrecovery.com.au
             </button>
           </div>
         </motion.div>

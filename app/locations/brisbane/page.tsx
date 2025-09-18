@@ -97,8 +97,8 @@ export default function BrisbanePage() {
               <div className="bg-blue-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
                 <Clock className="h-10 w-10 text-blue-600" />
               </div>
-              <h3 className="font-bold text-lg mb-2">45-Min Response</h3>
-              <p className="text-gray-700 text-sm">Rapid response across Brisbane metro</p>
+              <h3 className="font-bold text-lg mb-2">Quick Response</h3>
+              <p className="text-gray-700 text-sm">Rapid phone response for Brisbane metro</p>
             </div>
             <div className="text-center">
               <div className="bg-green-100 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
@@ -227,7 +227,7 @@ export default function BrisbanePage() {
             <div className="bg-white rounded-lg shadow-md p-6">
               <div className="text-3xl mb-4">🏬</div>
               <h3 className="font-bold text-lg mb-2">Fortitude Valley Restaurant</h3>
-              <p className="text-gray-700 text-sm mb-3">Emergency flood damage cleanup and sanitization</p>
+              <p className="text-gray-700 text-sm mb-3">Emergency flood damage cleanup and sanitisation</p>
               <p className="text-blue-600 font-semibold">Reopened in 5 days</p>
             </div>
           </div>

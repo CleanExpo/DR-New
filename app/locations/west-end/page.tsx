@@ -113,7 +113,7 @@ export default function WestEndPage() {
                   <li>• Burst pipe and plumbing emergencies</li>
                   <li>• Storm damage repairs</li>
                   <li>• Mould remediation in older homes</li>
-                  <li>• Sewage cleanup and sanitization</li>
+                  <li>• Sewage cleanup and sanitisation</li>
                   <li>• Fire and smoke damage restoration</li>
                   <li>• Insurance claim assistance</li>
                 </ul>

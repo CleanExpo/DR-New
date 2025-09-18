@@ -293,7 +293,7 @@ export default function HomePage() {
               {[
                 {
                   title: "Commercial Water Damage",
-                  description: "Rapid water extraction and structural drying to minimize business interruption.",
+                  description: "Rapid water extraction and structural drying to minimise business interruption.",
                   link: "/services/water-damage-restoration",
                   image: "/images/services/water-damage-restoration.webp"
                 },
@@ -323,7 +323,7 @@ export default function HomePage() {
                 },
                 {
                   title: "Business Continuity Solutions",
-                  description: "Comprehensive restoration services designed to minimize operational downtime.",
+                  description: "Comprehensive restoration services designed to minimise operational downtime.",
                   link: "/services",
                   image: "/images/services/commercial-residential.png"
                 }

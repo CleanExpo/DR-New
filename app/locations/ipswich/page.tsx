@@ -70,7 +70,7 @@ export default function IpswichLocationPage() {
     },
     {
       risk: "Heritage Building Challenges",
-      description: "Ipswich's historic buildings require specialized restoration techniques",
+      description: "Ipswich's historic buildings require specialised restoration techniques",
       preparation: "Regular maintenance and professional assessments help preserve heritage properties"
     }
   ];
@@ -85,7 +85,7 @@ export default function IpswichLocationPage() {
               Disaster Recovery Services Ipswich
             </h1>
             <p className="text-xl mb-8 text-gray-700">
-              24/7 Emergency Response • 1-Hour Arrival • Insurance Approved
+              24/7 Emergency Response • Quick Phone Response • Insurance Approved
             </p>
 
             {/* Emergency CTA */}
@@ -106,7 +106,7 @@ export default function IpswichLocationPage() {
               <span className="bg-white px-4 py-2 rounded-full shadow">✅ IICRC Certified</span>
               <span className="bg-white px-4 py-2 rounded-full shadow">✅ Insurance Approved</span>
               <span className="bg-white px-4 py-2 rounded-full shadow">✅ Local Ipswich Team</span>
-              <span className="bg-white px-4 py-2 rounded-full shadow">✅ 1-Hour Response</span>
+              <span className="bg-white px-4 py-2 rounded-full shadow">✅ Quick Response</span>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function IpswichLocationPage() {
             Emergency Restoration Services in Ipswich
           </h2>
           <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto">
-            Professional disaster recovery services available 24/7. Our Ipswich team responds within 1 hour to minimize damage and begin immediate restoration.
+            Professional disaster recovery services available 24/7. Our Ipswich team provides quick phone response to minimise damage and begin immediate restoration.
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -192,10 +192,10 @@ export default function IpswichLocationPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
               <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                1h
+                ⚡
               </div>
-              <h3 className="font-semibold mb-2">1-Hour Response</h3>
-              <p className="text-gray-700">Fastest emergency response time in Ipswich</p>
+              <h3 className="font-semibold mb-2">Quick Response</h3>
+              <p className="text-gray-700">Fast emergency phone response in Ipswich</p>
             </div>
             <div className="text-center">
               <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl">
@@ -225,20 +225,20 @@ export default function IpswichLocationPage() {
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Brassall</p>
               <p className="font-semibold mb-2">Burst Pipe Water Damage</p>
-              <p className="text-sm text-gray-700">Response time: 45 minutes</p>
-              <p className="text-sm text-green-600 mt-2">✓ Fully restored in 4 days</p>
+              <p className="text-sm text-gray-700">Quick response</p>
+              <p className="text-sm text-green-600 mt-2">✓ Fully restored</p>
             </Card>
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Redbank Plains</p>
               <p className="font-semibold mb-2">Storm Damage Restoration</p>
-              <p className="text-sm text-gray-700">Response time: 35 minutes</p>
-              <p className="text-sm text-green-600 mt-2">✓ Emergency tarping same day</p>
+              <p className="text-sm text-gray-700">Quick response</p>
+              <p className="text-sm text-green-600 mt-2">✓ Emergency tarping completed</p>
             </Card>
             <Card className="p-6">
               <p className="text-sm text-gray-500 mb-2">Springfield Lakes</p>
               <p className="font-semibold mb-2">Kitchen Fire Damage</p>
-              <p className="text-sm text-gray-700">Response time: 55 minutes</p>
-              <p className="text-sm text-green-600 mt-2">✓ Complete restoration in 1 week</p>
+              <p className="text-sm text-gray-700">Quick response</p>
+              <p className="text-sm text-green-600 mt-2">✓ Complete restoration</p>
             </Card>
           </div>
         </div>
@@ -251,7 +251,7 @@ export default function IpswichLocationPage() {
             Need Emergency Disaster Recovery in Ipswich?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Available 24/7 • Insurance Approved • 1-Hour Response
+            Available 24/7 • Insurance Approved • Quick Response
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="tel:1300309361">

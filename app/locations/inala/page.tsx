@@ -19,14 +19,14 @@ export const metadata: Metadata = {
 
 export default function InalaPage() {
   const nearbySuburbs = [
-    { name: 'Richlands', time: '5 min' },
-    { name: 'Forest Lake', time: '8 min' },
-    { name: 'Darra', time: '10 min' },
-    { name: 'Wacol', time: '7 min' },
-    { name: 'Durack', time: '5 min' },
-    { name: 'Doolandella', time: '8 min' },
-    { name: 'Oxley', time: '12 min' },
-    { name: 'Carole Park', time: '10 min' }
+    { name: 'Richlands', distance: 'Nearby' },
+    { name: 'Forest Lake', distance: 'Local area' },
+    { name: 'Darra', distance: 'Service area' },
+    { name: 'Wacol', distance: 'HQ location' },
+    { name: 'Durack', distance: 'Nearby' },
+    { name: 'Doolandella', distance: 'Local area' },
+    { name: 'Oxley', distance: 'Service area' },
+    { name: 'Carole Park', distance: 'Service area' }
   ];
 
   const commonIssues = [
@@ -76,7 +76,7 @@ export default function InalaPage() {
                 <p className="text-xl mb-8 text-gray-200">
                   Trusted emergency restoration services for Inala residents and businesses.
                   Rapid response for water damage, fire restoration, and flood recovery.
-                  Our Wacol headquarters is just 7 minutes away.
+                  Our Wacol headquarters is nearby.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -97,16 +97,16 @@ export default function InalaPage() {
 
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center bg-white/10 backdrop-blur p-3 rounded">
-                    <div className="text-2xl font-bold text-yellow-400">15-20min</div>
-                    <div className="text-sm">Response Time</div>
+                    <div className="text-2xl font-bold text-yellow-400">Quick</div>
+                    <div className="text-sm">Response</div>
                   </div>
                   <div className="text-center bg-white/10 backdrop-blur p-3 rounded">
                     <div className="text-2xl font-bold text-yellow-400">24/7</div>
                     <div className="text-sm">Available</div>
                   </div>
                   <div className="text-center bg-white/10 backdrop-blur p-3 rounded">
-                    <div className="text-2xl font-bold text-yellow-400">7min</div>
-                    <div className="text-sm">From Wacol HQ</div>
+                    <div className="text-2xl font-bold text-yellow-400">Local</div>
+                    <div className="text-sm">Wacol Based</div>
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function InalaPage() {
               Servicing Inala & Surrounding Areas
             </h2>
             <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-              Based just 7 minutes away at our Wacol headquarters, we provide rapid emergency
+              Based at our Wacol headquarters, we provide rapid emergency
               response throughout the Inala region.
             </p>
 
@@ -150,8 +150,8 @@ export default function InalaPage() {
                       <div>
                         <h3 className="font-semibold">{suburb.name}</h3>
                         <div className="flex items-center gap-1 mt-1">
-                          <Clock className="w-4 h-4 text-blue-600" />
-                          <span className="text-sm text-gray-600">{suburb.time}</span>
+                          <MapPin className="w-4 h-4 text-blue-600" />
+                          <span className="text-sm text-gray-600">{suburb.distance}</span>
                         </div>
                       </div>
                       <CheckCircle className="w-5 h-5 text-green-600" />
@@ -167,8 +167,8 @@ export default function InalaPage() {
                 <div>
                   <h3 className="font-bold text-lg mb-2">Wacol Headquarters Advantage</h3>
                   <p className="text-gray-700">
-                    Our main office and equipment depot at 4/17 Tile St, Wacol is just 7 minutes
-                    from Inala. This means faster response times, fully stocked equipment trucks,
+                    Our main office and equipment depot at 4/17 Tile St, Wacol provides
+                    quick response, fully stocked equipment trucks,
                     and immediate deployment of multiple crews when needed.
                   </p>
                 </div>
@@ -340,8 +340,8 @@ export default function InalaPage() {
                 <div>
                   <h3 className="font-bold text-lg mb-2">Rapid Response</h3>
                   <p className="text-blue-100">
-                    With our Wacol headquarters just minutes away, we guarantee fast
-                    emergency response times for all Inala properties.
+                    With our Wacol headquarters nearby, we guarantee quick
+                    emergency response for all Inala properties.
                   </p>
                 </div>
               </div>
@@ -378,8 +378,8 @@ export default function InalaPage() {
               Inala Emergency? We're Here 24/7
             </h2>
             <p className="text-xl mb-8 text-red-100">
-              Don't wait - water damage spreads quickly. Our Wacol team can be
-              at your Inala property within 15-20 minutes.
+              Don't wait - water damage spreads quickly. Our Wacol team provides
+              rapid response to your Inala property.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

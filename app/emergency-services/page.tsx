@@ -85,7 +85,7 @@ const emergencyFAQs = [
   },
   {
     question: "How fast is emergency water damage response in Brisbane?",
-    answer: "Emergency water damage response in Brisbane is available within 1 hour of your call to 1300 309 361. Our emergency team operates 24/7 across Brisbane, Ipswich, and Logan with rapid water extraction equipment ready to deploy immediately to minimize damage and prevent mould growth."
+    answer: "Emergency water damage response in Brisbane is available within 1 hour of your call to 1300 309 361. Our emergency team operates 24/7 across Brisbane, Ipswich, and Logan with rapid water extraction equipment ready to deploy immediately to minimise damage and prevent mould growth."
   },
   {
     question: "What should I do in a flood emergency?",

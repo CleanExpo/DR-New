@@ -134,7 +134,7 @@ export default function MiltonPage() {
                 <h3 className="text-xl font-bold mb-3">Office Buildings</h3>
                 <p>
                   Specialized service for Milton's office towers and commercial spaces.
-                  We work after hours to minimize business disruption.
+                  We work after hours to minimise business disruption.
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg">
