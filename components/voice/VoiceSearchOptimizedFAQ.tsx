@@ -1,13 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Card } from '@/components/ui/Card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
+import Image from 'next/image';
 
 interface FAQItem {
   question: string;
   answer: string;
   voiceKeywords?: string[];
   schema?: boolean;
+  image?: string;
+  imageAlt?: string;
 }
 
 interface VoiceSearchFAQProps {
@@ -17,7 +20,7 @@ interface VoiceSearchFAQProps {
 }
 
 export default function VoiceSearchOptimizedFAQ({ 
-  title = "Quick Answers for Brisbane Residents",
+  title = "Emergency Questions - Brisbane & Ipswich Residents",
   faqs,
   emergencyContext = false 
 }: VoiceSearchFAQProps) {
@@ -83,31 +86,44 @@ export default function VoiceSearchOptimizedFAQ({
             {title}
           </h2>
           
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {faqs.map((faq, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {faq.question}
-                </h3>
-                <div className="voice-answer text-gray-700 prose prose-lg max-w-none">
-                  <p>{faq.answer}</p>
-                </div>
-                {faq.voiceKeywords && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <span className="sr-only">Voice search keywords: </span>
-                    <div className="flex flex-wrap gap-2">
-                      {faq.voiceKeywords.map((keyword, kidx) => (
-                        <span 
-                          key={kidx}
-                          className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded"
-                          aria-hidden="true"
-                        >
-                          {keyword}
-                        </span>
-                      ))}
-                    </div>
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                {faq.image && (
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src={faq.image}
+                      alt={faq.imageAlt || faq.question}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
                   </div>
                 )}
+                <CardHeader>
+                  <CardTitle className="text-lg">{faq.question}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="voice-answer text-base text-gray-700">
+                    {faq.answer}
+                  </CardDescription>
+                  {faq.voiceKeywords && (
+                    <div className="mt-4 pt-4 border-t border-gray-200">
+                      <span className="text-xs text-gray-500 block mb-2">Voice search keywords:</span>
+                      <div className="flex flex-wrap gap-1">
+                        {faq.voiceKeywords.map((keyword, kidx) => (
+                          <span
+                            key={kidx}
+                            className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded"
+                            aria-hidden="true"
+                          >
+                            {keyword}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
               </Card>
             ))}
           </div>

@@ -11,31 +11,41 @@ const homepageFAQs = [
     question: "Hey Google, my house is flooding in Brisbane",
     answer: "Ring Disaster Recovery straight away on 1300 309 361. Turn off electricity at the main switch. Stop the water source if you can. Move valuables up high. We're in Wacol and can be there within an hour.",
     voiceKeywords: ["flooding", "emergency", "Brisbane", "help now"],
-    schema: true
+    schema: true,
+    image: "/images/faq/house-flooded-brisbane.png",
+    imageAlt: "Emergency flood response - House flooding in Brisbane, call 1300 309 361 immediately"
   },
   {
     question: "OK Google, emergency water damage Brisbane",
     answer: "For emergency water damage in Brisbane, ring 1300 309 361. Disaster Recovery provides 24-hour water extraction and drying. We're IICRC certified and insurance approved. Based in Wacol, we respond within 1 hour.",
     voiceKeywords: ["emergency", "water damage", "Brisbane", "24 hour"],
-    schema: true
+    schema: true,
+    image: "/images/faq/emergency-water-damage.png",
+    imageAlt: "24/7 Emergency water damage restoration Brisbane - Professional water extraction and drying"
   },
   {
     question: "Alexa, find 24 hour flood restoration near me",
     answer: "Disaster Recovery provides 24-hour flood restoration across Brisbane. Ring 1300 309 361 any time. We have industrial pumps and drying equipment. Located at 4/17 Tile St, Wacol. Emergency response within 1 hour.",
     voiceKeywords: ["24 hour", "flood restoration", "near me", "Brisbane"],
-    schema: true
+    schema: true,
+    image: "/images/faq/24hr-flood-services.png",
+    imageAlt: "24 hour flood restoration services Brisbane & Ipswich - Emergency response team available"
   },
   {
     question: "Who is the best water damage company in Brisbane?",
     answer: "Disaster Recovery is Brisbane's trusted water damage company. IICRC certified since 2011. We work with all insurance companies. $20 million public liability. Ring 1300 309 361 for immediate help.",
     voiceKeywords: ["best", "water damage company", "Brisbane", "trusted"],
-    schema: true
+    schema: true,
+    image: "/images/faq/best-in-brisbane.png",
+    imageAlt: "Best water damage restoration company Brisbane - IICRC certified, insurance approved fleet"
   },
   {
     question: "How much does flood restoration cost in Queensland?",
     answer: "Flood restoration costs vary by damage size. Most home insurance covers water damage. We work directly with all major insurers. Ring 1300 309 361. Acting fast reduces costs significantly.",
     voiceKeywords: ["cost", "flood restoration", "Queensland", "insurance"],
-    schema: true
+    schema: true,
+    image: "/images/faq/cost-of-restoration.png",
+    imageAlt: "Flood restoration costs Queensland - Insurance approved, fair pricing, act fast to save"
   }
 ];
 
@@ -593,7 +603,7 @@ export default function HomePage() {
 
         {/* Voice Search Optimized FAQ Section */}
         <VoiceSearchOptimizedFAQ
-          title="Emergency Questions - Brisbane Residents"
+          title="Emergency Questions - Brisbane & Ipswich Residents"
           faqs={homepageFAQs}
           emergencyContext={true}
         />
