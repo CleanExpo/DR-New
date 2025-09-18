@@ -290,8 +290,226 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Value Comparison Section */}
+      {/* Flood Restoration Cost Breakdown Section */}
       <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              How Much Does Flood Restoration Cost in Queensland?
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Understanding the real costs of flood damage restoration and how insurance coverage works
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Cost Breakdown Image */}
+            <div className="relative">
+              <Image
+                src="/images/faq/cost-of-restoration.png"
+                alt="Flood restoration costs Queensland - Insurance approved, fair pricing breakdown"
+                width={800}
+                height={600}
+                className="rounded-lg shadow-2xl w-full h-auto"
+                priority
+              />
+              <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                Insurance Approved
+              </div>
+            </div>
+
+            {/* Detailed Cost Information */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Factors Affecting Flood Restoration Costs
+              </h3>
+
+              <div className="space-y-6 mb-8">
+                <div className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-600">
+                  <h4 className="font-semibold text-gray-900 mb-2">1. Size of Affected Area</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                      <span><strong>Single room:</strong> $2,000 - $5,000</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                      <span><strong>Multiple rooms:</strong> $5,000 - $15,000</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                      <span><strong>Whole house:</strong> $15,000 - $50,000+</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-yellow-50 rounded-lg p-6 border-l-4 border-yellow-600">
+                  <h4 className="font-semibold text-gray-900 mb-2">2. Water Category</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <span className="text-blue-600 mr-2">💧</span>
+                      <span><strong>Clean water (Cat 1):</strong> Lowest cost - from burst pipes</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-gray-600 mr-2">💧</span>
+                      <span><strong>Grey water (Cat 2):</strong> Moderate cost - from washing machines</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-black mr-2">💧</span>
+                      <span><strong>Black water (Cat 3):</strong> Highest cost - sewage or flood water</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 rounded-lg p-6 border-l-4 border-green-600">
+                  <h4 className="font-semibold text-gray-900 mb-2">3. Response Time Impact</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <Clock className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                      <span><strong>Within 24 hours:</strong> Save 30-40% on total costs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Clock className="h-5 w-5 text-yellow-600 mr-2 flex-shrink-0 mt-0.5" />
+                      <span><strong>24-48 hours:</strong> Standard restoration costs</span>
+                    </li>
+                    <li className="flex items-start">
+                      <Clock className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
+                      <span><strong>After 48 hours:</strong> +50% due to mould growth</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Insurance Coverage */}
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg p-6 mb-6">
+                <h4 className="font-bold text-xl mb-3">Insurance Coverage</h4>
+                <p className="mb-4">
+                  Most home insurance policies in Queensland cover water damage restoration. We work directly with all major insurers including:
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 mr-2" />
+                    <span>QBE Insurance</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 mr-2" />
+                    <span>RACQ</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 mr-2" />
+                    <span>Suncorp</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 mr-2" />
+                    <span>Allianz</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Call to Action */}
+              <div className="bg-red-50 rounded-lg p-6 border-2 border-red-200">
+                <div className="flex items-start">
+                  <AlertCircle className="h-6 w-6 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-bold text-gray-900 mb-2">Act Fast to Reduce Costs!</h4>
+                    <p className="text-gray-700 mb-4">
+                      Every hour counts when dealing with water damage. Quick action prevents:
+                    </p>
+                    <ul className="space-y-1 text-sm text-gray-700 mb-4">
+                      <li>• Mould growth (starts within 24-48 hours)</li>
+                      <li>• Structural damage to timber and plasterboard</li>
+                      <li>• Electrical system damage</li>
+                      <li>• Content loss and furniture damage</li>
+                    </ul>
+                    <Link
+                      href="tel:1300309361"
+                      className="inline-flex items-center justify-center bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition-colors"
+                    >
+                      <Phone className="h-5 w-5 mr-2" />
+                      Call Now: 1300 309 361
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Cost Breakdown Table */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+              Typical Service Costs by Damage Type
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
+                <thead className="bg-primary-600 text-white">
+                  <tr>
+                    <th className="px-6 py-4 text-left">Service Type</th>
+                    <th className="px-6 py-4 text-left">Typical Range</th>
+                    <th className="px-6 py-4 text-left">Insurance Coverage</th>
+                    <th className="px-6 py-4 text-left">Time Frame</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-6 py-4">Water Extraction & Drying</td>
+                    <td className="px-6 py-4 font-semibold">$1,500 - $5,000</td>
+                    <td className="px-6 py-4">
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
+                    </td>
+                    <td className="px-6 py-4">2-4 days</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-6 py-4">Structural Drying</td>
+                    <td className="px-6 py-4 font-semibold">$2,000 - $8,000</td>
+                    <td className="px-6 py-4">
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
+                    </td>
+                    <td className="px-6 py-4">3-7 days</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-6 py-4">Mould Remediation</td>
+                    <td className="px-6 py-4 font-semibold">$2,500 - $10,000</td>
+                    <td className="px-6 py-4">
+                      <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm">Depends on Policy</span>
+                    </td>
+                    <td className="px-6 py-4">2-5 days</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-6 py-4">Content Restoration</td>
+                    <td className="px-6 py-4 font-semibold">$1,000 - $5,000</td>
+                    <td className="px-6 py-4">
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
+                    </td>
+                    <td className="px-6 py-4">1-3 weeks</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-6 py-4">Carpet & Flooring</td>
+                    <td className="px-6 py-4 font-semibold">$3,000 - $15,000</td>
+                    <td className="px-6 py-4">
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
+                    </td>
+                    <td className="px-6 py-4">1-2 weeks</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-6 py-4">Full House Restoration</td>
+                    <td className="px-6 py-4 font-semibold">$15,000 - $50,000+</td>
+                    <td className="px-6 py-4">
+                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
+                    </td>
+                    <td className="px-6 py-4">2-8 weeks</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-center text-gray-600 mt-4 text-sm">
+              * Costs vary based on property size, damage extent, and water category. These are indicative ranges for Brisbane properties.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Value Comparison Section */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

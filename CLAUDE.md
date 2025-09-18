@@ -3,7 +3,7 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ---
-**Version**: 2.0.0
+**Version**: 2.0.2
 **Last Updated**: January 2025
 **Maintainer**: Development Team
 **Production Status**: 45% Complete (25/56 checklist items)
@@ -69,14 +69,18 @@ npm run performance           # Build and run Lighthouse performance test
 npm run test:performance      # Run custom performance test script
 npm run build:analyze        # Analyze bundle size (ANALYZE=true)
 
-# Vercel Deployment Monitoring
-# Latest deployment URL: https://dr-gyshmkcj0-unite-group.vercel.app
-# Previous deployment URL: https://dr-kv13xi3us-unite-group.vercel.app
-# Use Playwright MCP to monitor build errors after each deployment
+# Deployment Verification
+npm run verify:deployment     # Run readability test + build verification
+npm run identify:fixes        # Identify potential build fixes
+npm run monitor:vercel        # Display latest Vercel deployment URLs
 
-# Build Error Detection
-node scripts/simple-readability-test.js  # Check Hemingway compliance
-npm run build                            # Verify local build success
+# Utility Scripts
+node scripts/generate-location-pages.js   # Generate suburb-specific landing pages
+node scripts/launch-day-audit.js         # Pre-launch comprehensive audit
+node scripts/seo-analysis.js             # SEO analysis and recommendations
+node scripts/security-check.js           # Security vulnerability check
+node scripts/optimize-hero-images.js     # Optimize hero section images
+node scripts/critical-performance-fixes.js # Apply critical performance fixes
 
 # Windows Batch Scripts
 start-all-mcp-servers.bat    # Start Context7, Sequential Thinking, and Playwright
@@ -103,6 +107,8 @@ test-all-mcps.bat            # Test all MCP servers
    - Server Components by default, Client Components only when needed
    - Page structure: `app/` for routes, `components/` for reusable UI
    - Optimized image loading with next/image
+   - Location-specific pages: `app/locations/[suburb]/page.tsx`
+   - Service pillar pages: `app/services/[service]/page.tsx`
 
 2. **Integration Layer** (`lib/integration/master-integration.ts`)
    - Central orchestration hub connecting all modules
@@ -116,11 +122,14 @@ test-all-mcps.bat            # Test all MCP servers
    - **Chatbot** (`lib/chatbot/`) - Multi-language support, sentiment analysis, OpenAI integration
    - **Conversion** (`lib/conversion/`) - A/B testing, funnel optimization, urgency components
    - **Brand** (`lib/brand/`) - Authority building, social proof amplification
+   - **Performance** (`lib/performanceMonitor.ts`) - Core Web Vitals tracking
+   - **Image Optimization** (`lib/imageOptimizer.ts`) - Dynamic image optimization
 
 4. **API Layer** (`app/api/`)
    - `/api/analytics/` - Analytics event tracking and reporting
    - `/api/chatbot/` - OpenAI-powered chat services (server-side only)
    - `/api/weather/` - Location-based weather for personalization
+   - `/api/contact/` - Form submission handling with email notifications
 
 ### Key Integration Points
 
@@ -199,6 +208,34 @@ Hero rotation sequence:
 3. **Playwright**: Browser automation and testing
 
 **Note**: MCP servers may not be available in all Claude environments
+
+## 🎨 Component Patterns
+
+### shadcn/ui Components
+- Located in `components/ui/` - Customizable, copy-paste friendly components
+- Common components: Card, Button, Dialog, Dropdown, Tabs, Alert
+- Always check existing components before creating new ones
+- Follow Radix UI primitives patterns for accessibility
+
+### Custom Components Structure
+- `components/sections/` - Page sections (Hero, Services, FAQ, etc.)
+- `components/layout/` - Layout components (Header, Footer, Navigation)
+- `components/seo/` - SEO-related components (SchemaMarkup, MetaTags)
+- `components/voice/` - Voice search optimization components
+- `components/brand/` - Brand and trust indicator components
+
+### Image Optimization Pattern
+```tsx
+// Always use Next.js Image component with proper sizing
+<Image
+  src="/images/hero/disaster-recovery.jpg"
+  alt="Descriptive alt text"
+  width={1920}
+  height={1080}
+  priority={isAboveFold}
+  className="object-cover"
+/>
+```
 
 ## 🎯 Business Context
 
@@ -384,6 +421,12 @@ Grammar notes:
 ---
 
 ## 📝 CHANGELOG
+
+### Version 2.0.2 (January 2025)
+- Enhanced development commands with utility scripts
+- Added component patterns and image optimization guidelines
+- Documented shadcn/ui component structure
+- Added more detailed architecture layers documentation
 
 ### Version 2.0.1 (January 2025)
 - Added comprehensive Australian English requirements and guidelines
