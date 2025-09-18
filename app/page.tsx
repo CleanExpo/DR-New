@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import VoiceSearchOptimizedFAQ from '@/components/voice/VoiceSearchOptimizedFAQ';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 
 // Homepage FAQs optimized for voice search
 const homepageFAQs = [
@@ -127,6 +128,145 @@ export default function HomePage() {
             <p className="text-gray-200">
               <span className="font-medium">Office:</span> 4/17 Tile St, Wacol, QLD 4076
             </p>
+          </div>
+        </section>
+
+        {/* Flooding Emergency Section with Action Cards */}
+        <section className="py-16 bg-gradient-to-br from-red-50 to-orange-50" aria-labelledby="flooding-emergency-heading">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <h2 id="flooding-emergency-heading" className="text-3xl md:text-4xl font-bold text-red-900 mb-4">
+                Flooding Emergency in Brisbane?
+              </h2>
+              <p className="text-xl text-gray-800 font-semibold">
+                Ring Disaster Recovery now: 1300 309 361. We're in Wacol. We can be there within an hour.
+              </p>
+            </div>
+
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">What to Do Right Now:</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Card 1: Turn off electricity */}
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src="/images/flooding/turn-off-main-power.png"
+                      alt="Turn off electricity at the main switch"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        1
+                      </div>
+                      <CardTitle className="text-xl">Turn off electricity at the main switch</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      Find your metre box. Switch off the main breaker straight away.
+                      <span className="block mt-2 text-red-600 font-semibold">⚠️ Never touch electrical switches with wet hands</span>
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                {/* Card 2: Stop water source */}
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src="/images/flooding/turn-off-water-supply.png"
+                      alt="Turn off water supply"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        2
+                      </div>
+                      <CardTitle className="text-xl">Stop the water source if possible</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      Turn off your water main. It's usually near your water meter.
+                      <span className="block mt-2 text-blue-600 font-semibold">💧 This can prevent further flooding</span>
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+
+                {/* Card 3: Move valuables */}
+                <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative h-48 w-full">
+                    <Image
+                      src="/images/flooding/lift-valuables-higher.png"
+                      alt="Move valuables to higher ground"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        3
+                      </div>
+                      <CardTitle className="text-xl">Move valuables to higher ground</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      Lift furniture, electronics, and documents above water level.
+                      <span className="block mt-2 text-green-600 font-semibold">📦 Focus on irreplaceable items first</span>
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* Call to Action */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    <span className="inline-flex items-center justify-center w-10 h-10 bg-red-600 text-white rounded-full mr-3">4</span>
+                    Ring Disaster Recovery now
+                  </h3>
+                  <p className="text-lg text-gray-700">
+                    Call 1300 309 361. We're in Wacol. We can be there within an hour.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="tel:1300309361"
+                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                    Ring 1300 309 361 Now
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-red-600 bg-white border-2 border-red-600 rounded-lg hover:bg-red-50 transition-colors"
+                  >
+                    Get Emergency Help Online
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mt-8 text-center text-sm text-gray-600">
+              <p className="font-semibold">We're local to Brisbane:</p>
+              <p>Office: 4/17 Tile St, Wacol • 24/7 Emergency Response • IICRC Certified • Insurance Approved</p>
+            </div>
           </div>
         </section>
 
