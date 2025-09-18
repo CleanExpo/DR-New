@@ -36,3 +36,5 @@ next-env.d.ts
 
 # Claude local memory (machine-specific)
 CLAUDE.local.mdnul
+.playwright-mcp/
+.playwright-mcp/
