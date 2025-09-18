@@ -87,13 +87,13 @@ export default function HomePage() {
           {/* Hero Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/hero/disaster-recovery-services.jpg"
+              src="/images/hero/hero-disaster-tornado.png"
               alt="Emergency disaster recovery services Brisbane - storm and tornado damage"
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
           </div>
           <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-2xl voice-answer">
