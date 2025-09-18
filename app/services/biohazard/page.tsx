@@ -231,6 +231,7 @@ export default function BiohazardPage() {
                 <div className="flex items-start gap-6 mb-8">
                   {(() => {
                     const service = getCurrentService();
+                    if (!service) return null;
                     const Icon = service.icon;
                     return (
                       <>
@@ -248,7 +249,7 @@ export default function BiohazardPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {getCurrentService().situations.map((situation, idx) => (
+                  {getCurrentService()?.situations.map((situation, idx) => (
                     <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                       <span className="text-gray-700">{situation}</span>
