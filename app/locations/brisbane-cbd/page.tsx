@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Brisbane CBD Disaster Recovery | Commercial Restoration | 24/7',
-  description: 'Brisbane CBD's premier disaster restoration service. Office towers, retail & hospitality specialists. Water, fire & mould recovery. Insurance experts. Call 1300 309 361.',
+  description: 'Brisbane CBD&apos;s premier disaster restoration service. Office towers, retail & hospitality specialists. Water, fire & mould recovery. Insurance experts. Call 1300 309 361.',
   keywords: ["disaster recovery brisbane cbd","commercial water damage 4000","office restoration brisbane","retail restoration","hotel restoration"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/brisbane-cbd',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Brisbane CBD Disaster Recovery | Commercial Restoration',
-    description: 'Brisbane CBD's premier disaster restoration service. Office towers, retail & hospitality specialists. Water, fire & mould recovery. Insurance experts....',
+    description: 'Brisbane CBD&apos;s premier disaster restoration service. Office towers, retail & hospitality specialists. Water, fire & mould recovery. Insurance experts....',
     url: 'https://disasterrecovery.com.au/locations/brisbane-cbd',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

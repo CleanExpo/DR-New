@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'New Farm Disaster Recovery | Heritage Restoration | 24/7',
-  description: 'New Farm's premier disaster restoration service. Heritage homes, riverside properties, water & fire specialists. Insurance experts. Call 1300 309 361.',
+  description: 'New Farm&apos;s premier disaster restoration service. Heritage homes, riverside properties, water & fire specialists. Insurance experts. Call 1300 309 361.',
   keywords: ["disaster recovery new farm","heritage restoration 4005","riverside flooding","Brunswick Street area","luxury home recovery"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/new-farm',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'New Farm Disaster Recovery | Heritage Restoration',
-    description: 'New Farm's premier disaster restoration service. Heritage homes, riverside properties, water & fire specialists. Insurance experts. Call 1300 309 361....',
+    description: 'New Farm&apos;s premier disaster restoration service. Heritage homes, riverside properties, water & fire specialists. Insurance experts. Call 1300 309 361....',
     url: 'https://disasterrecovery.com.au/locations/new-farm',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

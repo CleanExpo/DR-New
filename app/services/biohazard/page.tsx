@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
@@ -10,8 +7,42 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Phone, Shield, AlertTriangle, CheckCircle, Clock, Heart, Users, Truck } from 'lucide-react';
 import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+  description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compassionate. Call 1300 309 361.',
+  keywords: ["biohazard cleaning","trauma cleanup","crime scene cleaning","infectious disease control","blood cleanup","bodily fluid removal"],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services/biohazard',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au/services/biohazard',
+    },
+  },
+  openGraph: {
+    title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+    description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compas...',
+    url: 'https://disasterrecovery.com.au/services/biohazard',
+    siteName: 'Disaster Recovery',
+    locale: 'en_AU',
+    type: 'website',
+    images: [
+      {
+        url: 'https://disasterrecovery.com.au/images/services/biohazard.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
+    description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compas...',
+    images: ['https://disasterrecovery.com.au/images/services/biohazard.jpg'],
+  },
+};
+
 export default function BiohazardPage() {
-  const [activeSection, setActiveSection] = useState('trauma');
+  const activeSection = 'trauma'; // Default to trauma section
 
   const biohazardServices = [
     {
@@ -105,7 +136,8 @@ export default function BiohazardPage() {
     }
   ];
 
-  const getCurrentService = () => biohazardServices.find(s => s.id === activeSection);
+  // Show trauma service by default for static display
+  const currentService = biohazardServices.find(s => s.id === activeSection);
 
   return (
     <>
@@ -209,29 +241,24 @@ export default function BiohazardPage() {
               compassion, and attention to safety protocols.
             </p>
 
-            {/* Service Navigation */}
+            {/* Service Types */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
               {biohazardServices.map((service) => (
-                <button
+                <div
                   key={service.id}
-                  onClick={() => setActiveSection(service.id)}
-                  className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                    activeSection === service.id
-                      ? 'bg-purple-600 text-white shadow-lg'
-                      : 'bg-white text-gray-700 hover:bg-purple-50 shadow-md'
-                  }`}
+                  className="px-6 py-3 rounded-lg font-semibold bg-white text-gray-700 shadow-md"
                 >
                   {service.title.split(' ')[0]}
-                </button>
+                </div>
               ))}
             </div>
 
-            {/* Active Service Detail */}
-            {getCurrentService() && (
+            {/* Service Detail */}
+            {currentService && (
               <div className="bg-white rounded-xl shadow-xl p-8 md:p-12">
                 <div className="flex items-start gap-6 mb-8">
                   {(() => {
-                    const service = getCurrentService();
+                    const service = currentService;
                     if (!service) return null;
                     const Icon = service.icon;
                     return (
@@ -250,7 +277,7 @@ export default function BiohazardPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {getCurrentService()?.situations.map((situation, idx) => (
+                  {currentService?.situations.map((situation, idx) => (
                     <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                       <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                       <span className="text-gray-700">{situation}</span>
@@ -536,38 +563,5 @@ export default function BiohazardPage() {
       <Footer />
     </>
   );
-
-export const metadata: Metadata = {
-  title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
-  description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compassionate. Call 1300 309 361.',
-  keywords: ["biohazard cleaning","trauma cleanup","crime scene cleaning","infectious disease control","blood cleanup","bodily fluid removal"],
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au/services/biohazard',
-    languages: {
-      'en-AU': 'https://disasterrecovery.com.au/services/biohazard',
-    },
-  },
-  openGraph: {
-    title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
-    description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compas...',
-    url: 'https://disasterrecovery.com.au/services/biohazard',
-    siteName: 'Disaster Recovery',
-    locale: 'en_AU',
-    type: 'website',
-    images: [
-      {
-        url: 'https://disasterrecovery.com.au/images/services/biohazard.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Biohazard Cleaning Services | Trauma & Crime Scene Cleanup',
-    description: 'Professional biohazard cleaning Brisbane & surrounds. Trauma cleanup, crime scene restoration, infectious disease control. Certified, discreet, compas...',
-    images: ['https://disasterrecovery.com.au/images/services/biohazard.jpg'],
-  },
-};
 }
+

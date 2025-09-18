@@ -17,7 +17,8 @@ import {
   Legend,
   ResponsiveContainer,
   Area,
-  AreaChart
+  AreaChart,
+  ComposedChart
 } from '@/components/charts/DynamicCharts'
 import {
   TrendingUp, TrendingDown, DollarSign, Users, Activity,

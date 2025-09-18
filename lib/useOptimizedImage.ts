@@ -33,16 +33,19 @@ function getOptimizedImageData(imagePath: string): any {
     .replace(/^images\/+/, '')
     .replace(/^public\/+images\/+/, '');
 
+  // Cast imageManifest to any to allow string indexing
+  const manifest = imageManifest as any;
+
   // Look for exact match or similar match
-  const exactMatch = imageManifest[normalizedPath];
+  const exactMatch = manifest[normalizedPath];
   if (exactMatch) return exactMatch;
 
   // Try to find a partial match
-  const partialMatch = Object.keys(imageManifest).find(key =>
+  const partialMatch = Object.keys(manifest).find(key =>
     key.includes(normalizedPath) || normalizedPath.includes(key)
   );
 
-  return partialMatch ? imageManifest[partialMatch] : null;
+  return partialMatch ? manifest[partialMatch] : null;
 }
 
 /**

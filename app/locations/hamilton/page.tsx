@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Hamilton Disaster Recovery | Luxury Home Restoration | 24/7',
-  description: 'Hamilton's premier disaster restoration service. Luxury riverside homes, commercial properties, water & fire experts. Insurance specialists. Call 1300 309 361.',
+  description: 'Hamilton&apos;s premier disaster restoration service. Luxury riverside homes, commercial properties, water & fire experts. Insurance specialists. Call 1300 309 361.',
   keywords: ["disaster recovery hamilton","luxury home restoration 4007","riverside flooding","Portside Wharf area","commercial recovery"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/hamilton',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Hamilton Disaster Recovery | Luxury Home Restoration',
-    description: 'Hamilton's premier disaster restoration service. Luxury riverside homes, commercial properties, water & fire experts. Insurance specialists. Call 1300...',
+    description: 'Hamilton&apos;s premier disaster restoration service. Luxury riverside homes, commercial properties, water & fire experts. Insurance specialists. Call 1300...',
     url: 'https://disasterrecovery.com.au/locations/hamilton',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

@@ -17,7 +17,8 @@ import {
   Legend,
   ResponsiveContainer,
   Area,
-  AreaChart
+  AreaChart,
+  ComposedChart
 } from '@/components/charts/DynamicCharts'
 import {
   DollarSign, TrendingUp, TrendingDown, CreditCard,
@@ -150,7 +151,7 @@ export default function FinancialDashboard() {
           <ComposedChart data={revenueData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis dataKey="month" fontSize={12} />
-            <YAxis fontSize={12} tickFormatter={(value) => `$${value / 1000}k`} />
+            <YAxis fontSize={12} tickFormatter={(value: any) => `$${value / 1000}k`} />
             <Tooltip formatter={(value: any) => formatCurrency(value)} />
             <Legend />
             <Bar dataKey="revenue" fill="#3B82F6" name="Revenue" />
@@ -175,7 +176,7 @@ export default function FinancialDashboard() {
             <AreaChart data={cashFlow}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="week" fontSize={12} />
-              <YAxis fontSize={12} tickFormatter={(value) => `$${value / 1000}k`} />
+              <YAxis fontSize={12} tickFormatter={(value: any) => `$${value / 1000}k`} />
               <Tooltip formatter={(value: any) => formatCurrency(value)} />
               <Legend />
               <Area
@@ -282,7 +283,7 @@ export default function FinancialDashboard() {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                label={({ name, percentage }) => `${name} ${percentage}%`}
+                label={({ name, percentage }: any) => `${name} ${percentage}%`}
                 outerRadius={80}
                 fill="#8884d8"
                 dataKey="amount"

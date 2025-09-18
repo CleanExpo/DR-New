@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Paddington Disaster Recovery | Heritage Restoration | 24/7',
-  description: 'Paddington's heritage property disaster restoration experts. Queenslander homes, water damage & storm recovery specialists. Insurance approved. Call 1300 309 361.',
+  description: 'Paddington&apos;s heritage property disaster restoration experts. Queenslander homes, water damage & storm recovery specialists. Insurance approved. Call 1300 309 361.',
   keywords: ["disaster recovery paddington","heritage restoration 4064","Queenslander restoration","Latrobe Terrace area","storm damage recovery"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/paddington',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Paddington Disaster Recovery | Heritage Restoration',
-    description: 'Paddington's heritage property disaster restoration experts. Queenslander homes, water damage & storm recovery specialists. Insurance approved. Call 1...',
+    description: 'Paddington&apos;s heritage property disaster restoration experts. Queenslander homes, water damage & storm recovery specialists. Insurance approved. Call 1...',
     url: 'https://disasterrecovery.com.au/locations/paddington',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Indooroopilly Disaster Recovery | Emergency Restoration Services | 24/7',
-  description: 'Indooroopilly\'s trusted disaster restoration team. Water damage, fire & mould specialists servicing shopping centre, offices & homes. Insurance approved. Quick response. Call 1300 309 361.',
+  description: 'Indooroopilly&apos;s trusted disaster restoration team. Water damage, fire & mould specialists servicing shopping centre, offices & homes. Insurance approved. Quick response. Call 1300 309 361.',
   keywords: ["indooroopilly flooding", "shopping centre water damage", "office restoration", "Indooroopilly Shopping Centre restoration", "disaster recovery Indooroopilly", "water damage 4068"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/indooroopilly',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Indooroopilly Disaster Recovery - 24/7 Emergency Response',
-    description: 'Indooroopilly\'s trusted disaster restoration team. Water damage, fire & mould specialists. Quick response guaranteed.',
+    description: 'Indooroopilly&apos;s trusted disaster restoration team. Water damage, fire & mould specialists. Quick response guaranteed.',
     url: 'https://disasterrecovery.com.au/locations/indooroopilly',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

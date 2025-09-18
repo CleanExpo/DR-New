@@ -16,7 +16,12 @@ import {
   Legend,
   ResponsiveContainer,
   Area,
-  AreaChart
+  AreaChart,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar
 } from '@/components/charts/DynamicCharts'
 import { Users, Trophy, Target, Clock, Star, TrendingUp } from 'lucide-react'
 

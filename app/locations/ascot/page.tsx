@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Ascot Disaster Recovery | Emergency Restoration Services | 24/7',
-  description: 'Ascot's trusted disaster restoration team. Water damage, fire & mould specialists servicing luxury homes & racing precincts. Insurance approved. Quick response. Call 1300 309 361.',
+  description: 'Ascot&apos;s trusted disaster restoration team. Water damage, fire & mould specialists servicing luxury homes & racing precincts. Insurance approved. Quick response. Call 1300 309 361.',
   keywords: ["disaster recovery ascot","water damage ascot","fire restoration ascot 4007","Eagle Farm flooding","luxury home restoration"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/ascot',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Ascot Disaster Recovery | Emergency Restoration Services',
-    description: 'Ascot's trusted disaster restoration team. Water damage, fire & mould specialists servicing luxury homes & racing precincts. Insurance approved. Quick...',
+    description: 'Ascot&apos;s trusted disaster restoration team. Water damage, fire & mould specialists servicing luxury homes & racing precincts. Insurance approved. Quick...',
     url: 'https://disasterrecovery.com.au/locations/ascot',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

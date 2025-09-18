@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Ipswich Disaster Recovery Services | 24/7 Emergency Response | 1300 309 361",
-  description: "Ipswich's trusted disaster restoration specialists. IICRC certified water damage, fire & flood recovery. Quick response Booval, Brassall, Springfield. Insurance approved. Call 1300 309 361.",
+  description: "Ipswich&apos;s trusted disaster restoration specialists. IICRC certified water damage, fire & flood recovery. Quick response Booval, Brassall, Springfield. Insurance approved. Call 1300 309 361.",
   keywords: ["disaster recovery ipswich", "water damage restoration ipswich", "fire damage ipswich", "emergency restoration ipswich", "flood damage ipswich", "storm damage ipswich", "ipswich restoration services", "Bremer River flooding", "Springfield water damage"],
   openGraph: {
     title: "Disaster Recovery Ipswich - 24/7 Emergency Response",
-    description: "Ipswich's trusted disaster restoration specialists. IICRC certified water damage, fire & flood recovery. Quick response all suburbs.",
+    description: "Ipswich&apos;s trusted disaster restoration specialists. IICRC certified water damage, fire & flood recovery. Quick response all suburbs.",
     url: "https://disasterrecovery.com.au/locations/ipswich",
     siteName: "Disaster Recovery",
     locale: "en_AU",

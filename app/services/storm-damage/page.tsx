@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
@@ -45,7 +42,7 @@ export const metadata: Metadata = {
 };
 
 export default function StormDamagePage() {
-  const [activeTab, setActiveTab] = useState('emergency');
+  const activeTab = 'emergency'; // Default to emergency tab
 
   const stormServices = [
     {
@@ -256,132 +253,46 @@ export default function StormDamagePage() {
             {/* Tab Navigation */}
             <div className="flex justify-center mb-8">
               <div className="bg-white rounded-lg shadow-md p-1 flex gap-2">
-                <button
-                  onClick={() => setActiveTab('emergency')}
-                  className={`px-6 py-3 rounded-md font-semibold transition-all ${
-                    activeTab === 'emergency'
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
+                <div className="px-6 py-3 rounded-md font-semibold bg-blue-600 text-white">
                   Emergency Response
-                </button>
-                <button
-                  onClick={() => setActiveTab('services')}
-                  className={`px-6 py-3 rounded-md font-semibold transition-all ${
-                    activeTab === 'services'
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
+                </div>
+                <div className="px-6 py-3 rounded-md font-semibold text-gray-600">
                   Our Services
-                </button>
-                <button
-                  onClick={() => setActiveTab('process')}
-                  className={`px-6 py-3 rounded-md font-semibold transition-all ${
-                    activeTab === 'process'
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
+                </div>
+                <div className="px-6 py-3 rounded-md font-semibold text-gray-600">
                   Storm Types
-                </button>
+                </div>
               </div>
             </div>
 
-            {/* Tab Content */}
-            {activeTab === 'emergency' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {emergencySteps.map((item) => (
-                  <Card key={item.step} className={`${item.urgent ? 'border-red-500 border-2' : ''}`}>
-                    <CardHeader>
-                      <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl ${
-                          item.urgent ? 'bg-red-600' : 'bg-blue-600'
-                        }`}>
-                          {item.step}
-                        </div>
-                        <CardTitle className="text-xl">{item.title}</CardTitle>
+            {/* Emergency Response Content */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {emergencySteps.map((item) => (
+                <Card key={item.step} className={`${item.urgent ? 'border-red-500 border-2' : ''}`}>
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl ${
+                        item.urgent ? 'bg-red-600' : 'bg-blue-600'
+                      }`}>
+                        {item.step}
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-base">
-                        {item.description}
-                      </CardDescription>
-                      {item.urgent && (
-                        <div className="mt-3 text-red-600 font-semibold flex items-center gap-2">
-                          <AlertCircle className="w-5 h-5" />
-                          Critical Action Required
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
-
-            {activeTab === 'services' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {stormServices.map((service) => {
-                  const Icon = service.icon;
-                  return (
-                    <Card key={service.title} className="hover:shadow-xl transition-shadow">
-                      <CardHeader>
-                        <div className="flex items-start gap-4">
-                          <div className="p-3 bg-blue-100 rounded-lg">
-                            <Icon className="w-8 h-8 text-blue-600" />
-                          </div>
-                          <div className="flex-1">
-                            <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
-                            <CardDescription className="text-base">
-                              {service.description}
-                            </CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2">
-                          {service.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-center gap-2">
-                              <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                              <span className="text-gray-700">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
-              </div>
-            )}
-
-            {activeTab === 'process' && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {stormTypes.map((storm) => (
-                  <Card key={storm.type} className="hover:shadow-xl transition-shadow">
-                    <CardHeader>
-                      <CardTitle className="text-xl">{storm.type}</CardTitle>
-                      <div className="flex items-center gap-2 mt-2">
-                        <Clock className="w-5 h-5 text-blue-600" />
-                        <span className="text-sm font-semibold text-blue-600">
-                          Response Time: {storm.responseTime}
-                        </span>
+                      <CardTitle className="text-xl">{item.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {item.description}
+                    </CardDescription>
+                    {item.urgent && (
+                      <div className="mt-3 text-red-600 font-semibold flex items-center gap-2">
+                        <AlertCircle className="w-5 h-5" />
+                        Critical Action Required
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {storm.services.map((service, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
-                            <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                            <span className="text-gray-700">{service}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            )}
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 

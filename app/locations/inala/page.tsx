@@ -8,7 +8,7 @@ import { Phone, Clock, MapPin, CheckCircle, AlertTriangle, Home, Users, Truck } 
 
 export const metadata: Metadata = {
   title: 'Inala Disaster Recovery | Emergency Restoration Services | 24/7',
-  description: 'Inala's trusted disaster restoration specialists. High-density housing experts, water damage & mould recovery. Quick response from Wacol HQ. Call 1300 309 361.',
+  description: 'Inala&apos;s trusted disaster restoration specialists. High-density housing experts, water damage & mould recovery. Quick response from Wacol HQ. Call 1300 309 361.',
   keywords: ["disaster recovery inala","water damage inala 4077","mould remediation inala","storm damage recovery","affordable restoration"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/inala',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Inala Disaster Recovery | Emergency Restoration Services',
-    description: 'Inala's trusted disaster restoration specialists. High-density housing experts, water damage & mould recovery. Quick response from Wacol HQ. Call 1300...',
+    description: 'Inala&apos;s trusted disaster restoration specialists. High-density housing experts, water damage & mould recovery. Quick response from Wacol HQ. Call 1300...',
     url: 'https://disasterrecovery.com.au/locations/inala',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',
@@ -26,16 +26,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const metadata: Metadata = {
-  title: 'Disaster Recovery Inala | Emergency Water Fire Damage Services | 1300 309 361',
-  description: '24/7 emergency disaster recovery in Inala. Water damage, fire restoration, mould removal. Servicing Inala, Richlands, Forest Lake. Fast response guaranteed.',
-  keywords: 'disaster recovery Inala, water damage Inala, fire damage Inala, flood restoration Inala, emergency services Inala',
-  openGraph: {
-    title: 'Disaster Recovery Inala - 24/7 Emergency Response',
-    description: 'Professional disaster restoration services in Inala and surrounding suburbs. Water damage, fire restoration, mould remediation.',
-    url: 'https://disasterrecovery.com.au/locations/inala',
-  }
-};
 
 export default function InalaPage() {
   const nearbySuburbs = [

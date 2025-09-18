@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Bardon Disaster Recovery | Emergency Restoration Services | 24/7',
-  description: 'Bardon's expert disaster restoration service. Specialising in hillside properties, water damage & landslip recovery. Quick response, insurance approved. Call 1300 309 361.',
+  description: 'Bardon&apos;s expert disaster restoration service. Specialising in hillside properties, water damage & landslip recovery. Quick response, insurance approved. Call 1300 309 361.',
   keywords: ["disaster recovery bardon","water damage bardon 4065","landslip damage","hillside property restoration","storm damage bardon"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/bardon',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Bardon Disaster Recovery | Emergency Restoration Services',
-    description: 'Bardon's expert disaster restoration service. Specialising in hillside properties, water damage & landslip recovery. Quick response, insurance approve...',
+    description: 'Bardon&apos;s expert disaster restoration service. Specialising in hillside properties, water damage & landslip recovery. Quick response, insurance approve...',
     url: 'https://disasterrecovery.com.au/locations/bardon',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

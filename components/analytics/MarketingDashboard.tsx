@@ -17,7 +17,12 @@ import {
   Legend,
   ResponsiveContainer,
   Area,
-  AreaChart
+  AreaChart,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar
 } from '@/components/charts/DynamicCharts'
 import {
   TrendingUp, Users, MousePointer, Target, DollarSign,

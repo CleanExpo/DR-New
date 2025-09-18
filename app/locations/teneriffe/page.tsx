@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Teneriffe Disaster Recovery | Riverside Restoration | 24/7',
-  description: 'Teneriffe's premier disaster restoration service. Wool stores, luxury apartments, riverside properties. Water, fire & flood specialists. Call 1300 309 361.',
+  description: 'Teneriffe&apos;s premier disaster restoration service. Wool stores, luxury apartments, riverside properties. Water, fire & flood specialists. Call 1300 309 361.',
   keywords: ["disaster recovery teneriffe","riverside restoration 4005","wool store restoration","luxury apartment recovery","flood damage"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/teneriffe',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Teneriffe Disaster Recovery | Riverside Restoration',
-    description: 'Teneriffe's premier disaster restoration service. Wool stores, luxury apartments, riverside properties. Water, fire & flood specialists. Call 1300 309...',
+    description: 'Teneriffe&apos;s premier disaster restoration service. Wool stores, luxury apartments, riverside properties. Water, fire & flood specialists. Call 1300 309...',
     url: 'https://disasterrecovery.com.au/locations/teneriffe',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

@@ -96,25 +96,7 @@ const nextConfig = {
         },
       };
 
-      // Ignore moment locales (if any dependency uses it)
-      config.plugins.push(
-        new config.optimization.minimizer[0].constructor({
-          parallel: true,
-          terserOptions: {
-            compress: {
-              drop_console: process.env.NODE_ENV === 'production',
-              drop_debugger: true,
-              pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace'],
-              passes: 2,
-            },
-            mangle: true,
-            format: {
-              comments: false,
-            },
-          },
-          extractComments: false,
-        })
-      );
+      // Terser optimization is handled by Next.js automatically
     }
 
     // Fix for 'self is not defined' error

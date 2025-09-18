@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Bulimba Disaster Recovery | Emergency Restoration Services | 24/7',
-  description: 'Bulimba's trusted flood & disaster restoration team. Riverside property specialists, water damage experts. Quick response, insurance approved. Call 1300 309 361.',
+  description: 'Bulimba&apos;s trusted flood & disaster restoration team. Riverside property specialists, water damage experts. Quick response, insurance approved. Call 1300 309 361.',
   keywords: ["disaster recovery bulimba","flood restoration bulimba 4171","riverside property damage","water damage bulimba","Oxford Street restoration"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/bulimba',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Bulimba Disaster Recovery | Emergency Restoration Services',
-    description: 'Bulimba's trusted flood & disaster restoration team. Riverside property specialists, water damage experts. Quick response, insurance approved. Call 13...',
+    description: 'Bulimba&apos;s trusted flood & disaster restoration team. Riverside property specialists, water damage experts. Quick response, insurance approved. Call 13...',
     url: 'https://disasterrecovery.com.au/locations/bulimba',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

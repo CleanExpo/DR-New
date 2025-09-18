@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Clayfield Disaster Recovery | Emergency Restoration | 24/7',
-  description: 'Clayfield's premier disaster restoration service. Heritage homes, luxury properties, water & fire damage experts. Insurance approved. Call 1300 309 361.',
+  description: 'Clayfield&apos;s premier disaster restoration service. Heritage homes, luxury properties, water & fire damage experts. Insurance approved. Call 1300 309 361.',
   keywords: ["disaster recovery clayfield","water damage clayfield 4011","heritage home restoration","luxury property recovery","Eagle Junction area"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/clayfield',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Clayfield Disaster Recovery | Emergency Restoration',
-    description: 'Clayfield's premier disaster restoration service. Heritage homes, luxury properties, water & fire damage experts. Insurance approved. Call 1300 309 36...',
+    description: 'Clayfield&apos;s premier disaster restoration service. Heritage homes, luxury properties, water & fire damage experts. Insurance approved. Call 1300 309 36...',
     url: 'https://disasterrecovery.com.au/locations/clayfield',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',

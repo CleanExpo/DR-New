@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
@@ -45,7 +42,6 @@ export const metadata: Metadata = {
 };
 
 export default function SewageCleanupPage() {
-  const [showHealthRisks, setShowHealthRisks] = useState(false);
 
   const sewageCategories = [
     {
@@ -394,21 +390,13 @@ export default function SewageCleanupPage() {
             </p>
 
             <div className="bg-white rounded-xl shadow-lg p-8 max-w-4xl mx-auto">
-              <button
-                onClick={() => setShowHealthRisks(!showHealthRisks)}
-                className="w-full flex items-center justify-between mb-6 text-left"
-              >
-                <h3 className="text-xl font-bold text-red-700">
+              <div className="mb-6">
+                <h3 className="text-xl font-bold text-red-700 mb-4">
                   Health Hazards in Sewage Water
                 </h3>
-                <div className={`transform transition-transform ${showHealthRisks ? 'rotate-180' : ''}`}>
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </button>
+              </div>
 
-              {showHealthRisks && (
+              <div className="mb-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {healthRisks.map((risk, idx) => (
                     <div key={idx} className="flex items-center gap-2 p-3 bg-red-100 rounded">
@@ -417,7 +405,7 @@ export default function SewageCleanupPage() {
                     </div>
                   ))}
                 </div>
-              )}
+              </div>
 
               <div className="mt-6 p-4 bg-green-100 rounded-lg">
                 <div className="flex items-start gap-3">

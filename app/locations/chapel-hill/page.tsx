@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Chapel Hill Disaster Recovery | Emergency Restoration | 24/7',
-  description: 'Chapel Hill's disaster restoration specialists. Luxury homes, water damage & storm recovery experts. Quick response to elevated properties. Call 1300 309 361.',
+  description: 'Chapel Hill&apos;s disaster restoration specialists. Luxury homes, water damage & storm recovery experts. Quick response to elevated properties. Call 1300 309 361.',
   keywords: ["disaster recovery chapel hill","water damage chapel hill 4069","luxury home restoration","storm damage recovery","hillside properties"],
   alternates: {
     canonical: 'https://disasterrecovery.com.au/locations/chapel-hill',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Chapel Hill Disaster Recovery | Emergency Restoration',
-    description: 'Chapel Hill's disaster restoration specialists. Luxury homes, water damage & storm recovery experts. Quick response to elevated properties. Call 1300 ...',
+    description: 'Chapel Hill&apos;s disaster restoration specialists. Luxury homes, water damage & storm recovery experts. Quick response to elevated properties. Call 1300 ...',
     url: 'https://disasterrecovery.com.au/locations/chapel-hill',
     siteName: 'Disaster Recovery',
     locale: 'en_AU',
