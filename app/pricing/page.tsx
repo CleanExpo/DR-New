@@ -290,15 +290,15 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Flood Restoration Cost Breakdown Section */}
+      {/* The Real Cost of Flood Restoration Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How Much Does Flood Restoration Cost in Queensland?
+              The Real Cost of Flood & Water Damage in Queensland
             </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Understanding the real costs of flood damage restoration and how insurance coverage works
+              It's not just about restoration fees - understand the true hidden costs that can devastate your property and business
             </p>
           </div>
 
@@ -307,204 +307,137 @@ export default function PricingPage() {
             <div className="relative">
               <Image
                 src="/images/faq/cost-of-restoration.png"
-                alt="Flood restoration costs Queensland - Insurance approved, fair pricing breakdown"
+                alt="The real hidden costs of flood damage - Downtime, Rebuild, Business Loss, Reputation, Health"
                 width={800}
                 height={600}
                 className="rounded-lg shadow-2xl w-full h-auto"
                 priority
               />
-              <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                Insurance Approved
+              <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
+                Hidden Costs Alert
               </div>
             </div>
 
-            {/* Detailed Cost Information */}
+            {/* The Real Hidden Costs */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Factors Affecting Flood Restoration Costs
+                The Hidden Costs You Don't See Coming
               </h3>
 
               <div className="space-y-6 mb-8">
-                <div className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-600">
-                  <h4 className="font-semibold text-gray-900 mb-2">1. Size of Affected Area</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span><strong>Single room:</strong> $2,000 - $5,000</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span><strong>Multiple rooms:</strong> $5,000 - $15,000</span>
-                    </li>
-                    <li className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span><strong>Whole house:</strong> $15,000 - $50,000+</span>
-                    </li>
-                  </ul>
+                <div className="bg-red-50 rounded-lg p-6 border-l-4 border-red-600">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <Clock className="h-5 w-5 text-red-600 mr-2" />
+                    Downtime Costs
+                  </h4>
+                  <p className="text-gray-700">
+                    <strong>Every day waiting for a tradesperson costs you money.</strong> While you wait for
+                    unqualified or overbooked contractors, damage spreads, mould grows, and costs multiply exponentially.
+                    Professional response saves thousands in extended downtime.
+                  </p>
+                </div>
+
+                <div className="bg-orange-50 rounded-lg p-6 border-l-4 border-orange-600">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <TrendingUp className="h-5 w-5 text-orange-600 mr-2" />
+                    Rebuild vs Restore Costs
+                  </h4>
+                  <p className="text-gray-700">
+                    <strong>Improper restoration means complete rebuild later.</strong> Cutting corners with
+                    cheap services often results in hidden damage, requiring full demolition and rebuild at
+                    3-5x the cost of proper restoration. Do it right the first time.
+                  </p>
                 </div>
 
                 <div className="bg-yellow-50 rounded-lg p-6 border-l-4 border-yellow-600">
-                  <h4 className="font-semibold text-gray-900 mb-2">2. Water Category</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">💧</span>
-                      <span><strong>Clean water (Cat 1):</strong> Lowest cost - from burst pipes</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-gray-600 mr-2">💧</span>
-                      <span><strong>Grey water (Cat 2):</strong> Moderate cost - from washing machines</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-black mr-2">💧</span>
-                      <span><strong>Black water (Cat 3):</strong> Highest cost - sewage or flood water</span>
-                    </li>
-                  </ul>
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <DollarSign className="h-5 w-5 text-yellow-600 mr-2" />
+                    Loss of Business Income
+                  </h4>
+                  <p className="text-gray-700">
+                    <strong>A closed business loses customers every day.</strong> Commercial properties lose
+                    $1000s daily while closed. Customers find alternatives, contracts are lost, and some
+                    businesses never recover. Quick professional restoration minimises closure time.
+                  </p>
                 </div>
 
-                <div className="bg-green-50 rounded-lg p-6 border-l-4 border-green-600">
-                  <h4 className="font-semibold text-gray-900 mb-2">3. Response Time Impact</h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <Clock className="h-5 w-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span><strong>Within 24 hours:</strong> Save 30-40% on total costs</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Clock className="h-5 w-5 text-yellow-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span><strong>24-48 hours:</strong> Standard restoration costs</span>
-                    </li>
-                    <li className="flex items-start">
-                      <Clock className="h-5 w-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
-                      <span><strong>After 48 hours:</strong> +50% due to mould growth</span>
-                    </li>
-                  </ul>
+                <div className="bg-purple-50 rounded-lg p-6 border-l-4 border-purple-600">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <Shield className="h-5 w-5 text-purple-600 mr-2" />
+                    Reputation Costs
+                  </h4>
+                  <p className="text-gray-700">
+                    <strong>Extended closures damage your reputation permanently.</strong> In today's digital world,
+                    a business closed for weeks gets negative reviews, loses social media presence, and
+                    competitors take your market share. Some reputations never recover.
+                  </p>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-600">
+                  <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
+                    <AlertCircle className="h-5 w-5 text-blue-600 mr-2" />
+                    Sickness & Health Costs
+                  </h4>
+                  <p className="text-gray-700">
+                    <strong>It's not what you see now - it's the after effects.</strong> Mould exposure,
+                    contaminated air, and hidden bacteria cause respiratory issues, allergies, and serious
+                    illness months later. Medical costs and lost productivity far exceed proper remediation costs.
+                  </p>
                 </div>
               </div>
 
-              {/* Insurance Coverage */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg p-6 mb-6">
-                <h4 className="font-bold text-xl mb-3">Insurance Coverage</h4>
+              {/* Our Fair Pricing Promise */}
+              <div className="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg p-6 mb-6">
+                <h4 className="font-bold text-xl mb-3">Our Pricing Philosophy</h4>
                 <p className="mb-4">
-                  Most home insurance policies in Queensland cover water damage restoration. We work directly with all major insurers including:
+                  <strong>Our prices are fair and at market averages.</strong> Our service and knowledge is not free,
+                  nor is your health. When you choose Disaster Recovery, you're investing in:
                 </p>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center">
-                    <Shield className="h-5 w-5 mr-2" />
-                    <span>QBE Insurance</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Shield className="h-5 w-5 mr-2" />
-                    <span>RACQ</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Shield className="h-5 w-5 mr-2" />
-                    <span>Suncorp</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Shield className="h-5 w-5 mr-2" />
-                    <span>Allianz</span>
-                  </div>
-                </div>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>15+ years of expertise that prevents costly mistakes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>IICRC certified professionals who protect your health</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Insurance-approved processes for maximum claim success</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" />
+                    <span>Prevention of all the hidden costs listed above</span>
+                  </li>
+                </ul>
               </div>
 
               {/* Call to Action */}
               <div className="bg-red-50 rounded-lg p-6 border-2 border-red-200">
-                <div className="flex items-start">
-                  <AlertCircle className="h-6 w-6 text-red-600 mr-3 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-gray-900 mb-2">Act Fast to Reduce Costs!</h4>
-                    <p className="text-gray-700 mb-4">
-                      Every hour counts when dealing with water damage. Quick action prevents:
-                    </p>
-                    <ul className="space-y-1 text-sm text-gray-700 mb-4">
-                      <li>• Mould growth (starts within 24-48 hours)</li>
-                      <li>• Structural damage to timber and plasterboard</li>
-                      <li>• Electrical system damage</li>
-                      <li>• Content loss and furniture damage</li>
-                    </ul>
-                    <Link
-                      href="tel:1300309361"
-                      className="inline-flex items-center justify-center bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition-colors"
-                    >
-                      <Phone className="h-5 w-5 mr-2" />
-                      Call Now: 1300 309 361
-                    </Link>
-                  </div>
+                <div className="text-center">
+                  <h4 className="font-bold text-gray-900 mb-3 text-xl">
+                    Don't Let Hidden Costs Destroy Your Future
+                  </h4>
+                  <p className="text-gray-700 mb-4">
+                    The real cost isn't our restoration fee - it's what happens when you wait or choose wrong.
+                    Protect your property, business, and health with professional service.
+                  </p>
+                  <Link
+                    href="tel:1300309361"
+                    className="inline-flex items-center justify-center bg-red-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-red-700 transition-colors text-lg shadow-lg"
+                  >
+                    <Phone className="h-6 w-6 mr-2" />
+                    Call Disaster Recovery: 1300 309 361
+                  </Link>
+                  <p className="text-sm text-gray-600 mt-3">
+                    Your health and property are worth more than cutting corners
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Additional Cost Breakdown Table */}
-          <div className="mt-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Typical Service Costs by Damage Type
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
-                <thead className="bg-primary-600 text-white">
-                  <tr>
-                    <th className="px-6 py-4 text-left">Service Type</th>
-                    <th className="px-6 py-4 text-left">Typical Range</th>
-                    <th className="px-6 py-4 text-left">Insurance Coverage</th>
-                    <th className="px-6 py-4 text-left">Time Frame</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4">Water Extraction & Drying</td>
-                    <td className="px-6 py-4 font-semibold">$1,500 - $5,000</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
-                    </td>
-                    <td className="px-6 py-4">2-4 days</td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4">Structural Drying</td>
-                    <td className="px-6 py-4 font-semibold">$2,000 - $8,000</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
-                    </td>
-                    <td className="px-6 py-4">3-7 days</td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4">Mould Remediation</td>
-                    <td className="px-6 py-4 font-semibold">$2,500 - $10,000</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm">Depends on Policy</span>
-                    </td>
-                    <td className="px-6 py-4">2-5 days</td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4">Content Restoration</td>
-                    <td className="px-6 py-4 font-semibold">$1,000 - $5,000</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
-                    </td>
-                    <td className="px-6 py-4">1-3 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4">Carpet & Flooring</td>
-                    <td className="px-6 py-4 font-semibold">$3,000 - $15,000</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
-                    </td>
-                    <td className="px-6 py-4">1-2 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-6 py-4">Full House Restoration</td>
-                    <td className="px-6 py-4 font-semibold">$15,000 - $50,000+</td>
-                    <td className="px-6 py-4">
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Usually Covered</span>
-                    </td>
-                    <td className="px-6 py-4">2-8 weeks</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="text-center text-gray-600 mt-4 text-sm">
-              * Costs vary based on property size, damage extent, and water category. These are indicative ranges for Brisbane properties.
-            </p>
-          </div>
         </div>
       </section>
 
