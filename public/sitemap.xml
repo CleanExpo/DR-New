@@ -468,6 +468,34 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://disasterrecovery.com.au/insurance-partners/aig</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://disasterrecovery.com.au/insurance-partners/chubb</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://disasterrecovery.com.au/insurance-partners/guild</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://disasterrecovery.com.au/insurance-partners/ansvar</loc>
+    <lastmod>2025-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Legal Pages -->
   <url>
     <loc>https://disasterrecovery.com.au/privacy-policy</loc>

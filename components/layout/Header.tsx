@@ -32,14 +32,20 @@ export default function Header() {
     { name: 'Flood vs Storm Damage', href: '/insurance-guide/flood-vs-storm', divider: true },
     // Insurance Partners
     { name: 'Our Insurance Partners', href: '/insurance-partners', divider: false },
-    { name: 'IAG Insurance', href: '/insurance-partners/iag', divider: false },
-    { name: 'Suncorp Group', href: '/insurance-partners/suncorp', divider: false },
-    { name: 'QBE Insurance', href: '/insurance-partners/qbe', divider: false },
-    { name: 'RACQ Insurance', href: '/insurance-partners/racq', divider: false },
-    { name: 'Allianz', href: '/insurance-partners/allianz', divider: false },
-    { name: 'Zurich', href: '/insurance-partners/zurich', divider: false },
-    { name: 'Hollards', href: '/insurance-partners/hollards', divider: false },
-    { name: 'Wesfarmers Insurance', href: '/insurance-partners/wesfarmers', divider: false },
+    { name: 'IAG Insurance', href: '/insurance-partners/iag', divider: false, logo: '/images/insurance-logos/IAG Insurance.png' },
+    { name: 'CGU Insurance', href: '/insurance-partners/iag', divider: false, logo: '/images/insurance-logos/CGU Insurance.png' },
+    { name: 'Suncorp Group', href: '/insurance-partners/suncorp', divider: false, logo: '/images/insurance-logos/Suncorp Insurance.png' },
+    { name: 'Vero Insurance', href: '/insurance-partners/suncorp', divider: false, logo: '/images/insurance-logos/VERO Insurance.png' },
+    { name: 'QBE Insurance', href: '/insurance-partners/qbe', divider: false, logo: '/images/insurance-logos/QBE Insurance.png' },
+    { name: 'RACQ Insurance', href: '/insurance-partners/racq', divider: false, logo: '/images/insurance-logos/RACQ Insurance.png' },
+    { name: 'Allianz', href: '/insurance-partners/allianz', divider: false, logo: '/images/insurance-logos/Allianz Insurance.png' },
+    { name: 'Zurich', href: '/insurance-partners/zurich', divider: false, logo: '/images/insurance-logos/Zurich insurance.png' },
+    { name: 'Hollards', href: '/insurance-partners/hollards', divider: false, logo: '/images/insurance-logos/Hollard Insurance.png' },
+    { name: 'Wesfarmers Insurance', href: '/insurance-partners/wesfarmers', divider: false, logo: '/images/insurance-logos/Westfarmers insurance.png' },
+    { name: 'AIG Insurance', href: '/insurance-partners/aig', divider: false, logo: '/images/insurance-logos/AIG Insurance.png' },
+    { name: 'Chubb Insurance', href: '/insurance-partners/chubb', divider: false, logo: '/images/insurance-logos/Chubb Insurance.png' },
+    { name: 'Guild Insurance', href: '/insurance-partners/guild', divider: false, logo: '/images/insurance-logos/Guild Insurance.png' },
+    { name: 'Ansvar Insurance', href: '/insurance-partners/ansvar', divider: false, logo: '/images/insurance-logos/Ansvar Insurance.png' },
   ];
 
   useEffect(() => {
@@ -214,9 +220,19 @@ export default function Header() {
                     <Link
                       key={partner.href}
                       href={partner.href}
-                      className="block px-4 py-3 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 transition-colors duration-200 border-b border-gray-100 last:border-0"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gradient-to-r hover:from-green-50 hover:to-green-100 transition-colors duration-200 border-b border-gray-100 last:border-0"
                       onClick={() => setIsInsuranceOpen(false)}
                     >
+                      {partner.logo && (
+                        <Image
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          width={24}
+                          height={24}
+                          className="object-contain"
+                          loading="lazy"
+                        />
+                      )}
                       <span className="text-gray-700 hover:text-green-600 font-medium text-sm">{partner.name}</span>
                     </Link>
                   ))}
