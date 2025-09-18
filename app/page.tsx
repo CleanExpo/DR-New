@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import VoiceSearchOptimizedFAQ from '@/components/voice/VoiceSearchOptimizedFAQ';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 // Homepage FAQs optimized for voice search
 const homepageFAQs = [
@@ -87,12 +88,16 @@ export default function HomePage() {
         <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
           {/* Hero Background Image */}
           <div className="absolute inset-0 z-0">
-            <Image
+            <OptimizedImage
               src="/images/hero/hero-disaster-tornado.png"
-              alt="Emergency disaster recovery services Brisbane - storm and tornado damage"
+              alt="24/7 Emergency Disaster Recovery Services Brisbane & Ipswich - Water, Fire, Storm & Flood Damage Restoration"
+              title="Professional Disaster Recovery Services - IICRC Certified, Insurance Approved, 1-Hour Response"
               fill
               className="object-cover"
               priority
+              sizes="100vw"
+              quality={95}
+              loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
           </div>
@@ -150,12 +155,15 @@ export default function HomePage() {
                 {/* Card 1: Turn off electricity */}
                 <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-48 w-full">
-                    <Image
+                    <OptimizedImage
                       src="/images/flooding/turn-off-main-power.png"
-                      alt="Turn off electricity at the main switch"
+                      alt="Turn off electricity at the main switch - Flood emergency step 1"
+                      title="Emergency flood response: Turn off main power immediately"
                       fill
                       className="object-cover"
                       priority
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      quality={90}
                     />
                   </div>
                   <CardHeader className="pb-3">
@@ -177,12 +185,15 @@ export default function HomePage() {
                 {/* Card 2: Stop water source */}
                 <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-48 w-full">
-                    <Image
+                    <OptimizedImage
                       src="/images/flooding/turn-off-water-supply.png"
-                      alt="Turn off water supply"
+                      alt="Turn off water supply at the main valve - Flood emergency step 2"
+                      title="Emergency flood response: Stop water source to prevent damage"
                       fill
                       className="object-cover"
                       priority
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      quality={90}
                     />
                   </div>
                   <CardHeader className="pb-3">
@@ -204,12 +215,15 @@ export default function HomePage() {
                 {/* Card 3: Move valuables */}
                 <Card className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
                   <div className="relative h-48 w-full">
-                    <Image
+                    <OptimizedImage
                       src="/images/flooding/lift-valuables-higher.png"
-                      alt="Move valuables to higher ground"
+                      alt="Move valuables to higher ground - Flood emergency step 3"
+                      title="Emergency flood response: Protect belongings from water damage"
                       fill
                       className="object-cover"
                       priority
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      quality={90}
                     />
                   </div>
                   <CardHeader className="pb-3">
@@ -321,11 +335,14 @@ export default function HomePage() {
                 <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                   {/* Service Image */}
                   <div className="relative h-48 w-full">
-                    <Image
+                    <OptimizedImage
                       src={service.image}
-                      alt={service.title}
+                      alt={`${service.title} - Professional restoration service in Brisbane & Ipswich`}
+                      title={`${service.title} - IICRC Certified Restoration Services`}
                       fill
                       className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      quality={85}
                     />
                   </div>
                   <div className="p-6">
@@ -572,11 +589,14 @@ export default function HomePage() {
               ].map((equipment, index) => (
                 <div key={index} className="bg-gray-50 rounded-lg p-4 hover:shadow-lg transition-shadow">
                   <div className="relative h-32 w-full mb-3">
-                    <Image
+                    <OptimizedImage
                       src={equipment.image}
-                      alt={equipment.title}
+                      alt={`${equipment.title} - Professional restoration equipment`}
+                      title={`${equipment.title} - ${equipment.description}`}
                       fill
                       className="object-contain"
+                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                      quality={85}
                     />
                   </div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-1">
@@ -606,11 +626,14 @@ export default function HomePage() {
             </h2>
             <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
               <div className="relative h-64 rounded-lg overflow-hidden">
-                <Image
+                <OptimizedImage
                   src="/images/heroes/vehicles-fleet.jpg"
-                  alt="Disaster Recovery Fleet"
+                  alt="Disaster Recovery Fleet - 24/7 Emergency Response Vehicles in Brisbane & Ipswich"
+                  title="Professional Disaster Recovery Fleet - Fully Equipped Emergency Response Units"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={85}
                 />
               </div>
               <div className="prose prose-lg text-gray-700">

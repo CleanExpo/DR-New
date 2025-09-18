@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 interface OptimizedImageProps {
   src: string;
   alt: string;
+  title?: string;
   width?: number;
   height?: number;
   fill?: boolean;
@@ -18,31 +19,41 @@ interface OptimizedImageProps {
   quality?: number;
   onLoad?: () => void;
   onError?: () => void;
+  loading?: 'lazy' | 'eager';
+  objectFit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down';
+  objectPosition?: string;
 }
 
 /**
  * Optimized Image component for disaster recovery images
  * Features:
- * - Automatic WebP conversion
+ * - Automatic WebP/AVIF conversion for modern browsers
+ * - Responsive sizing for desktop, tablet, and mobile
+ * - SEO-optimized with title and alt metadata
  * - Lazy loading with blur placeholder
- * - Error handling with fallback
- * - Proper alt text for accessibility
- * - Mobile-first responsive sizing
+ * - Error handling with graceful fallback
+ * - Proper alt text for accessibility and SEO
+ * - Mobile-first responsive sizing with srcSet
+ * - Optimized quality settings per device
  */
 export default function OptimizedImage({
   src,
   alt,
+  title,
   width,
   height,
   fill = false,
   className = '',
-  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  sizes = '(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, (max-width: 1280px) 70vw, 50vw',
   priority = false,
   placeholder = 'blur',
   blurDataURL,
   quality = 85,
   onLoad,
-  onError
+  onError,
+  loading,
+  objectFit = 'cover',
+  objectPosition = 'center'
 }: OptimizedImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -93,6 +104,7 @@ export default function OptimizedImage({
       <Image
         src={src}
         alt={alt}
+        title={title || alt}
         width={width}
         height={height}
         fill={fill}
@@ -104,10 +116,11 @@ export default function OptimizedImage({
         className={`transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         onLoad={handleLoad}
         onError={handleError}
+        loading={loading || (priority ? 'eager' : 'lazy')}
         // Performance optimizations
         style={{
-          objectFit: 'cover',
-          objectPosition: 'center'
+          objectFit,
+          objectPosition
         }}
       />
 
