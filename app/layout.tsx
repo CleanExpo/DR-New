@@ -173,7 +173,7 @@ export default function RootLayout({
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+61-1300-DISASTER",
+                "telephone": "+61-1300-000-000",
                 "contactType": "Emergency Service",
                 "availableLanguage": "English",
                 "areaServed": "AU",
@@ -223,12 +223,6 @@ export default function RootLayout({
                     }
                   }
                 ]
-              },
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "4.8",
-                "reviewCount": "1247",
-                "bestRating": "5"
               }
             })
           }}

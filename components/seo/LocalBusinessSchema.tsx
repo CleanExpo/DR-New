@@ -7,17 +7,17 @@ interface LocalBusinessSchemaProps {
   phoneNumber?: string;
 }
 
-export function LocalBusinessSchema({ location = 'Brisbane', phoneNumber = '1300-XXX-XXX' }: LocalBusinessSchemaProps) {
+export function LocalBusinessSchema({ location = 'Brisbane', phoneNumber = '1300-000-000' }: LocalBusinessSchemaProps) {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `https://disaster-recovery-seven.vercel.app/#${location.toLowerCase()}`,
-    "name": `Disaster Recovery Claims Consulting - ${location}`,
-    "alternateName": "Disaster Recovery Insurance Claims Specialists",
-    "description": "Expert insurance claims consulting for water damage, fire damage, and mould remediation. 25+ years experience maximizing insurance settlements.",
+    "name": `Disaster Recovery Queensland - ${location}`,
+    "alternateName": "Master Restorer - Phill McGurk",
+    "description": "24/7 emergency disaster recovery and restoration services. IICRC certified Master Restorer with 25+ years experience. Water damage, fire damage, mould remediation specialist.",
     "url": "https://disaster-recovery-seven.vercel.app",
-    "telephone": phoneNumber,
-    "priceRange": "$850-$5000",
+    "telephone": "+61-" + phoneNumber,
+    "priceRange": "$330+",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": location,
@@ -48,30 +48,30 @@ export function LocalBusinessSchema({ location = 'Brisbane', phoneNumber = '1300
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Claims Consulting Services",
+      "name": "Emergency Restoration Services",
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Insurance Claims Assessment",
-            "description": "Professional assessment for water damage, fire damage, and mould insurance claims"
+            "name": "Water Damage Restoration",
+            "description": "24/7 emergency water extraction, drying, and restoration services"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Second Opinion Services",
-            "description": "Independent verification of contractor quotes and insurance assessments"
+            "name": "Fire Damage Restoration",
+            "description": "Complete fire damage restoration including smoke and soot removal"
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Expert Witness Services",
-            "description": "Expert testimony for insurance disputes and litigation"
+            "name": "Mould Remediation",
+            "description": "Professional mould removal and remediation by certified specialists"
           }
         }
       ]
@@ -94,10 +94,10 @@ export function LocalBusinessSchema({ location = 'Brisbane', phoneNumber = '1300
       }
     ],
     "knowsAbout": [
-      "Water Damage Assessment",
-      "Fire Damage Evaluation",
-      "Mould Inspection",
-      "Insurance Claims",
+      "Water Damage Restoration",
+      "Fire Damage Restoration",
+      "Mould Remediation",
+      "Storm Damage Repair",
       "Building Codes",
       "IICRC Standards",
       "Australian Standards"
@@ -112,41 +112,6 @@ export function LocalBusinessSchema({ location = 'Brisbane', phoneNumber = '1300
         "@type": "EducationalOccupationalCredential",
         "name": "25+ Years Industry Experience",
         "credentialCategory": "Experience"
-      }
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "147",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Sarah M."
-        },
-        "reviewBody": "Saved us $330,000 on commercial mould remediation. Expert knowledge and honest advice."
-      },
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "John D."
-        },
-        "reviewBody": "Their assessment turned our denied claim into full coverage. Worth every dollar."
       }
     ],
     "sameAs": [
@@ -203,26 +168,26 @@ export function LocalBusinessSchema({ location = 'Brisbane', phoneNumber = '1300
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is the difference between a claims consultant and a restoration contractor?",
+        "name": "What makes Disaster Recovery Queensland different from other restoration companies?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A claims consultant provides expert assessment and advocacy for property owners, ensuring maximum insurance settlements. We don't perform physical restoration work but help you find qualified contractors and verify their quotes."
+          "text": "Phill McGurk is one of only a limited number of Master Restorers in Brisbane and Queensland. With 25+ years experience and IICRC certification, we provide 24/7 emergency response with the highest level of expertise."
         }
       },
       {
         "@type": "Question",
-        "name": "How much can a claims consultant save me?",
+        "name": "How quickly can you respond to an emergency?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our clients typically see 10-50x return on investment. Recent cases include $330,000 saved on commercial mould remediation and turning denied claims into full coverage."
+          "text": "We provide 24/7 emergency response across Brisbane, Ipswich and Logan. Our rapid response team can be on-site within hours to prevent secondary damage and begin the restoration process."
         }
       },
       {
         "@type": "Question",
-        "name": "Do you work directly with insurance companies?",
+        "name": "Do you work with insurance companies?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, we provide professional documentation and expert reports that insurance companies require. Our 25+ years of experience means we know exactly what insurers need to approve claims."
+          "text": "Yes, we are insurance approved and work directly with all major insurance companies. We handle the documentation and communication to ensure smooth claim processing."
         }
       }
     ]

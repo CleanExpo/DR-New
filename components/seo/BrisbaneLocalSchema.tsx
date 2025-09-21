@@ -41,11 +41,11 @@ export function BrisbaneLocalSchema() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://disaster-recovery-seven.vercel.app/#${location.name.toLowerCase().replace(' ', '-')}`,
-    "name": `Disaster Recovery Claims Consulting - ${location.name}`,
-    "description": `Expert insurance claims consulting for ${location.name} residents. Specializing in ${location.riskLevel.toLowerCase()} flood risk areas. 24/7 emergency response for water damage, fire damage, and mould remediation claims.`,
+    "name": `Disaster Recovery Queensland - ${location.name}`,
+    "description": `24/7 emergency restoration services for ${location.name} residents. Specializing in ${location.riskLevel.toLowerCase()} flood risk areas. Master Restorer certified water damage, fire damage, and mould remediation.`,
     "url": `https://disaster-recovery-seven.vercel.app/locations/${location.name.toLowerCase().replace(' ', '-')}`,
-    "telephone": "1300-XXX-XXX",
-    "priceRange": "$850-$5000",
+    "telephone": "+61-1300-000-000",
+    "priceRange": "$330+",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": location.name,
@@ -75,7 +75,7 @@ export function BrisbaneLocalSchema() {
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": `${location.name} Insurance Claims Services`,
+      "name": `${location.name} Emergency Restoration Services`,
       "itemListElement": [
         {
           "@type": "Offer",
@@ -94,10 +94,10 @@ export function BrisbaneLocalSchema() {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": "https://disaster-recovery-seven.vercel.app/#service-area",
-    "serviceType": "Insurance Claims Consulting",
+    "serviceType": "Emergency Disaster Restoration",
     "provider": {
       "@type": "Organization",
-      "name": "Disaster Recovery Claims Consulting"
+      "name": "Disaster Recovery Queensland"
     },
     "areaServed": [
       {
@@ -142,14 +142,14 @@ export function BrisbaneLocalSchema() {
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": "Regional Insurance Claims Services",
+      "name": "Regional Emergency Restoration Services",
       "itemListElement": [
         {
           "@type": "OfferCategory",
-          "name": "Flood Damage Claims",
+          "name": "Flood Damage Restoration",
           "itemListElement": brisbaneLocations.map(l => ({
             "@type": "Offer",
-            "name": `${l.name} Flood Claims Assessment`,
+            "name": `${l.name} Flood Damage Restoration`,
             "eligibleRegion": {
               "@type": "Place",
               "name": l.name
@@ -160,75 +160,6 @@ export function BrisbaneLocalSchema() {
     }
   };
 
-  // Aggregate Rating schema with location-specific reviews
-  const aggregateRatingSchema = {
-    "@context": "https://schema.org",
-    "@type": "AggregateRating",
-    "itemReviewed": {
-      "@type": "ProfessionalService",
-      "name": "Disaster Recovery Claims Consulting",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": "Queensland",
-        "addressCountry": "AU"
-      }
-    },
-    "ratingValue": "4.9",
-    "reviewCount": "247",
-    "bestRating": "5",
-    "worstRating": "1",
-    "ratingExplanation": "Based on verified insurance claim outcomes across Brisbane and Ipswich",
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Ken O.",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Narangba"
-          }
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5"
-        },
-        "reviewBody": "After 2 years fighting insurance for 2022 flood damage, their assessment got us full settlement in 6 weeks."
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Sarah M.",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "West End"
-          }
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5"
-        },
-        "reviewBody": "Saved $330,000 on commercial mould remediation. Local expertise made the difference."
-      },
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "David L.",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Milton"
-          }
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5"
-        },
-        "reviewBody": "They know every suburb's flood risk. Got us coverage when others said impossible."
-      }
-    ]
-  };
 
   return (
     <>
@@ -244,11 +175,6 @@ export function BrisbaneLocalSchema() {
         id="service-area-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceAreaSchema) }}
-      />
-      <Script
-        id="aggregate-rating-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
       />
     </>
   );
