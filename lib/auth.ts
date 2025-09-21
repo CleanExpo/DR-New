@@ -47,4 +47,6 @@ export const authOptions: NextAuthOptions = {
     }
   },
   debug: false, // Set to true in development for debugging
+  // Allow access without session for public pages
+  publicPages: true,
 }
