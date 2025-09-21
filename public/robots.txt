@@ -1,13 +1,12 @@
-# Robots.txt for https://www.disasterrecovery.com.au
-# Generated: 2025-09-21T05:17:08.762Z
+# Robots.txt for https://dr-new.vercel.app
+# PUBLIC SITE - NO AUTHENTICATION REQUIRED
+# Generated: 2025-09-21
 
-# Allow all search engines
+# Allow all search engines - SITE IS PUBLIC
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /_next/
-Disallow: /static/
+Disallow: /api/admin/
+Disallow: /dashboard/
 
 # Google
 User-agent: Googlebot
@@ -36,8 +35,8 @@ User-agent: Claude-Web
 Allow: /
 
 # Sitemaps
-Sitemap: https://www.disasterrecovery.com.au/sitemap.xml
-Sitemap: https://www.disasterrecovery.com.au/sitemap.txt
+Sitemap: https://dr-new.vercel.app/sitemap.xml
+Sitemap: https://dr-new.vercel.app/sitemap.txt
 
 # Block bad bots
 User-agent: AhrefsBot
