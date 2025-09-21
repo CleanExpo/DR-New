@@ -62,8 +62,8 @@ This is a LOCAL service website focused on:
 ### **Environment Configuration**
 ```bash
 # Production
-NEXT_PUBLIC_APP_URL=https://disaster-recovery-seven.vercel.app
-NEXTAUTH_URL=https://disaster-recovery-seven.vercel.app
+NEXT_PUBLIC_APP_URL=https://dr-new.vercel.app
+NEXTAUTH_URL=https://dr-new.vercel.app
 
 # Local Development
 NEXT_PUBLIC_APP_URL=http://localhost:3000
