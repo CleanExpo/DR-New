@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "installCommand": "npm install --force --legacy-peer-deps",
-  "buildCommand": "npx prisma generate && node scripts/force-build-pages.js && node scripts/generate-sitemap.js && next build",
+  "buildCommand": "npx prisma generate && next build",
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=8192",
     "DATABASE_URL": "file:./prod.db",
