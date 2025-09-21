@@ -50,10 +50,6 @@
     "silent": true,
     "autoJobCancelation": false
   },
-  "authentication": {
-    "enabled": false
-  },
-  "passwordProtection": null,
   "rewrites": [
     {
       "source": "/pitch-deck/presentation",

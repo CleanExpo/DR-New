@@ -16,11 +16,11 @@ import EquipmentGallery from '../components/gallery/EquipmentGallery';
 import ServicesGrid from '../components/services/ServicesGrid';
 import ProcessShowcase from '../components/process/ProcessShowcase';
 import MasterCertifications from '../components/credentials/MasterCertifications';
-import ReviewDisplay from '@/components/reviews/ReviewDisplay';
-import VideoTestimonials from '@/components/reviews/VideoTestimonials';
-import FAQSection from '@/components/faq/FAQSection';
-import InternalLinkingHub from '@/components/navigation/InternalLinkingHub';
-import ConversionOptimization from '@/components/conversion/ConversionOptimization';
+// import ReviewDisplay from '@/components/reviews/ReviewDisplay';
+// import VideoTestimonials from '@/components/reviews/VideoTestimonials';
+// import FAQSection from '@/components/faq/FAQSection';
+// import InternalLinkingHub from '@/components/navigation/InternalLinkingHub';
+// import ConversionOptimization from '@/components/conversion/ConversionOptimization';
 
 interface LocationData {
   city: string;
@@ -104,7 +104,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Conversion Optimization Components */}
-      <ConversionOptimization />
+      {/* <ConversionOptimization /> */}
 
       {/* Main Content */}
       <main className="relative">
@@ -152,16 +152,16 @@ export default function HomePage() {
         <ProcessShowcase />
 
         {/* Review Display Section */}
-        <ReviewDisplay />
+        {/* <ReviewDisplay /> */}
 
         {/* Video Testimonials Section */}
-        <VideoTestimonials />
+        {/* <VideoTestimonials /> */}
 
         {/* FAQ Section */}
-        <FAQSection />
+        {/* <FAQSection /> */}
 
         {/* Internal Linking Hub */}
-        <InternalLinkingHub />
+        {/* <InternalLinkingHub /> */}
 
         {/* Trust Signals Section */}
         <section className="py-20 bg-white">
