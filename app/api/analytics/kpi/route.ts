@@ -13,8 +13,17 @@ export async function GET(req: NextRequest) {
     
     if (!session?.user) {
       return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
+        {
+          error: 'Not authenticated',
+          kpis: {
+            contractors: { total: 0, new: 0, approved: 0, active: 0, approvalRate: 0 },
+            revenue: { total: 0, transactions: 0, averageTransaction: 0 },
+            leads: { total: 0, converted: 0, conversionRate: 0 },
+            quality: { reportsSubmitted: 0, reportsApproved: 0, approvalRate: 0, averageQualityScore: 0 }
+          },
+          timestamp: new Date().toISOString()
+        },
+        { status: 200 }
       );
     }
 

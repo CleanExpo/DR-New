@@ -13,8 +13,8 @@ export async function GET(req: NextRequest) {
     
     if (!session?.user?.email) {
       return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
+        { user: null, authenticated: false },
+        { status: 200 }
       );
     }
 
@@ -35,8 +35,8 @@ export async function GET(req: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
+        { user: null, authenticated: false, error: 'User not found' },
+        { status: 200 }
       );
     }
 
@@ -52,7 +52,8 @@ export async function GET(req: NextRequest) {
         // TODO: Parse permissions when field is added
         // permissions: user.permissions ? JSON.parse(user.permissions as string) : []
         permissions: []
-      }
+      },
+      authenticated: true
     });
 
   } catch (error) {

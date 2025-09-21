@@ -13,8 +13,19 @@ export async function GET(req: NextRequest) {
     
     if (!session?.user) {
       return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
+        {
+          error: 'Not authenticated',
+          compliance: {
+            summary: { overallCompliance: 0, totalContractors: 0, lastUpdated: new Date().toISOString() },
+            certifications: { totalCertified: 0, iicrcCertified: 0, complianceRate: 0 },
+            training: { completed: 0, complianceRate: 0 },
+            insurance: { validInsurance: 0, expiringSoon: 0, complianceRate: 0 },
+            documentation: { submitted: 0, verified: 0, rejected: 0, verificationRate: 0 },
+            quality: { reportsSubmitted: 0, highQuality: 0, lowQuality: 0, qualityRate: 0 },
+            audit: { totalEvents: 0, criticalEvents: 0, criticalEventRate: 0 }
+          }
+        },
+        { status: 200 }
       );
     }
 

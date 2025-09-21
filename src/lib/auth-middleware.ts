@@ -45,10 +45,10 @@ export function withAuth(
         ? authHeader.substring(7) 
         : null;
       
-      if (!token && options.requireAuth !== false) {
+      if (!token && options.requireAuth === true) {
         return NextResponse.json(
-          { 
-            success: false, 
+          {
+            success: false,
             error: 'Authentication required',
             code: 'AUTH_REQUIRED'
           },

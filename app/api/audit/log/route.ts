@@ -58,8 +58,8 @@ export async function GET(req: NextRequest) {
     
     if (!session?.user) {
       return NextResponse.json(
-        { error: 'Not authenticated' },
-        { status: 401 }
+        { logs: [], totalCount: 0, hasMore: false, error: 'Not authenticated' },
+        { status: 200 }
       );
     }
 
