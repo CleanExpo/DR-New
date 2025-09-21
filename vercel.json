@@ -1,5 +1,7 @@
 {
   "framework": "nextjs",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "installCommand": "npm install --force --legacy-peer-deps",
   "buildCommand": "node scripts/force-build-pages.js && node scripts/generate-sitemap.js && next build",
   "env": {
