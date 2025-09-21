@@ -43,8 +43,13 @@
   },
   "regions": ["syd1"],
   "github": {
-    "silent": true
+    "silent": true,
+    "autoJobCancelation": false
   },
+  "authentication": {
+    "enabled": false
+  },
+  "passwordProtection": null,
   "rewrites": [
     {
       "source": "/pitch-deck/presentation",
