@@ -51,7 +51,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://disaster-recovery-seven.vercel.app'),
+  metadataBase: new URL('https://dr-new.vercel.app'),
   title: {
     default: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services | IICRC Certified',
     template: '%s | Disaster Recovery Australia'
@@ -116,12 +116,12 @@ export const metadata: Metadata = {
     yandex: '',
     yahoo: '',
     other: {
-      'msvalidate.01': 'B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1',
+      'msvalidate.01': 'DB030D197A83DF2F524BF0DFBACDC52C',
       'facebook-domain-verification': 'abcdef123456789' } },
   alternates: {
-    canonical: 'https://disaster-recovery-seven.vercel.app',
+    canonical: 'https://dr-new.vercel.app',
     languages: {
-      'en-AU': 'https://disaster-recovery-seven.vercel.app' } },
+      'en-AU': 'https://dr-new.vercel.app' } },
   category: 'Disaster Recovery Services' }
 
 export default function RootLayout({
