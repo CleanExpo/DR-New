@@ -40,8 +40,8 @@ import {
   ThermometerSun,
   Zap
 } from 'lucide-react'
-import SymptomChecker from '@/components/health/SymptomChecker'
-import HealthQuiz from '@/components/health/HealthQuiz'
+// import SymptomChecker from '@/components/health/SymptomChecker'
+// import HealthQuiz from '@/components/health/HealthQuiz'
 import ComprehensiveSEO from '@/components/seo/ComprehensiveSEO'
 
 const IndoorEnvironmentalHealthPage = () => {
@@ -418,11 +418,21 @@ const IndoorEnvironmentalHealthPage = () => {
             </TabsContent>
 
             <TabsContent value="symptom-checker" className="mt-8">
-              <SymptomChecker />
+              {/* <SymptomChecker /> */}
+              <Card>
+                <CardContent className="text-center py-8">
+                  <p className="text-gray-600">Symptom Checker component coming soon...</p>
+                </CardContent>
+              </Card>
             </TabsContent>
 
             <TabsContent value="health-quiz" className="mt-8">
-              <HealthQuiz />
+              {/* <HealthQuiz /> */}
+              <Card>
+                <CardContent className="text-center py-8">
+                  <p className="text-gray-600">Health Quiz component coming soon...</p>
+                </CardContent>
+              </Card>
             </TabsContent>
           </Tabs>
         </div>
