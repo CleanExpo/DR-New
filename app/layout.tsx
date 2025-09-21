@@ -51,7 +51,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://dr-new.vercel.app'),
+  metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
     default: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services | IICRC Certified',
     template: '%s | Disaster Recovery Australia'
@@ -119,9 +119,9 @@ export const metadata: Metadata = {
       'msvalidate.01': 'DB030D197A83DF2F524BF0DFBACDC52C',
       'facebook-domain-verification': 'abcdef123456789' } },
   alternates: {
-    canonical: 'https://dr-new.vercel.app',
+    canonical: 'https://disasterrecovery.com.au',
     languages: {
-      'en-AU': 'https://dr-new.vercel.app' } },
+      'en-AU': 'https://disasterrecovery.com.au' } },
   category: 'Disaster Recovery Services' }
 
 export default function RootLayout({
@@ -132,7 +132,7 @@ export default function RootLayout({
     <html lang="en-AU">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-        <meta name="msvalidate.01" content="B3F4D7E8C9A2B1C3D4E5F6A7B8C9D0E1" />
+        <meta name="msvalidate.01" content="DB030D197A83DF2F524BF0DFBACDC52C" />
         <link rel="icon" type="image/png" href="/logos/disaster-recovery-logo.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logos/disaster-recovery-logo.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/logos/disaster-recovery-logo.png" />
