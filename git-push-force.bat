@@ -5,15 +5,13 @@ echo.
 REM Set Git credentials
 git config --global credential.helper wincred
 
-REM Add the token to Windows Credential Manager manually if needed
-echo If prompted for credentials:
-echo Username: CleanExpo
-echo Password: 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
+REM Use git credential helper for secure authentication
+echo If prompted for credentials, enter your GitHub username and personal access token
 echo.
 
 REM Attempt the push
 echo Pushing to GitHub...
-git push https://CleanExpo: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@github.com/CleanExpo/DR-New.git DR-New:main --force
+git push origin DR-New --force
 
 if %errorlevel% equ 0 (
     echo.

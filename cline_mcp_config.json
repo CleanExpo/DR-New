@@ -26,7 +26,7 @@
     },
     "magic": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "@21st-dev/magic@latest", "API_KEY=\"cb36fba51af6068f87ca48aa2a514ca1efeb400fd98e9789c5f8b29a1777de7b\""]
+      "args": ["/c", "npx", "-y", "@21st-dev/magic@latest"]
     }
   }
 }

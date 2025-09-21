@@ -12,10 +12,9 @@ git log --oneline -3
 
 # Push the branch
 Write-Host "`nPushing to GitHub..." -ForegroundColor Green
-$token = "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"
-$url = "https://${token}@github.com/CleanExpo/DR-New.git"
 
-git push $url DR-New
+# Use git credential helper instead of hardcoded token
+git push origin DR-New
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`n✅ Successfully pushed DR-New branch to GitHub!" -ForegroundColor Green
