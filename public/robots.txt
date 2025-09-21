@@ -1,12 +1,13 @@
-﻿User-agent: *
-Disallow: /crm
-Disallow: /admin
-Disallow: /api
-Disallow: /_archive
+# Robots.txt for https://www.disasterrecovery.com.au
+# Generated: 2025-09-21T05:17:08.762Z
+
+# Allow all search engines
+User-agent: *
 Allow: /
-Crawl-delay: 0
-Sitemap: https://disaster-recovery-seven.vercel.app/sitemap.xml
-Sitemap: https://disaster-recovery-seven.vercel.app/image-sitemap.xml
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
 
 # Google
 User-agent: Googlebot
@@ -18,29 +19,35 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 0
 
-# AI crawlers
+# AI Crawlers - Allow for knowledge graph inclusion
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: Claude-Web
-Allow: /
-
 User-agent: CCBot
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: anthropic-ai
 Allow: /
 
-User-agent: YouBot
+User-agent: Claude-Web
 Allow: /
 
-# Schema.org crawler
-User-agent: Seznambot
-Allow: /
+# Sitemaps
+Sitemap: https://www.disasterrecovery.com.au/sitemap.xml
+Sitemap: https://www.disasterrecovery.com.au/sitemap.txt
 
-# Yandex
-User-agent: Yandex
-Allow: /
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

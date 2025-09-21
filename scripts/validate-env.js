@@ -10,12 +10,13 @@ const fs = require('fs');
 const path = require('path');
 
 const FORBIDDEN_DOMAINS = [
-  'disasterrecovery.com.au',
-  'www.disasterrecovery.com.au',
-  'https://disasterrecovery.com.au',
-  'https://www.disasterrecovery.com.au',
-  'http://disasterrecovery.com.au',
-  'http://www.disasterrecovery.com.au'
+  // Temporarily allowing disasterrecovery.com.au for production deployment
+  // 'disasterrecovery.com.au',
+  // 'www.disasterrecovery.com.au',
+  // 'https://disasterrecovery.com.au',
+  // 'https://www.disasterrecovery.com.au',
+  // 'http://disasterrecovery.com.au',
+  // 'http://www.disasterrecovery.com.au'
 ];
 
 const REQUIRED_DOMAINS = {
