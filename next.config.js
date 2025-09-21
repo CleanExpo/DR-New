@@ -98,6 +98,32 @@ const nextConfig = {
             value: 'public, max-age=31536000, immutable'
           }
         ]
+      },
+      {
+        source: '/BingSiteAuth.xml',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/xml'
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600'
+          }
+        ]
+      },
+      {
+        source: '/:all*.xml',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/xml'
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600'
+          }
+        ]
       }
     ];
   },
