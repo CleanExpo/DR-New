@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next';
+import { allSuburbs } from '@/lib/seo/suburb-data';
+import { SERVICES } from '@/lib/seo/content-generator';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://disasterrecovery.com.au';
@@ -410,6 +412,50 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6 },
   ];
 
+  // Programmatically generated suburb pages - HIGH PRIORITY for local SEO
+  const suburbPages: MetadataRoute.Sitemap = allSuburbs.map(suburb => ({
+    url: `${baseUrl}/suburbs/${suburb.name.toLowerCase().replace(/\s+/g, '-')}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: suburb.demographics.averagePropertyValue > 1000000 ? 0.92 : 0.88,
+  }));
+
+  // Suburb + Service combination pages - HIGHEST priority for specific searches
+  const suburbServicePages: MetadataRoute.Sitemap = [];
+
+  for (const suburb of allSuburbs) {
+    for (const service of SERVICES) {
+      // Calculate priority based on suburb value and risk factors
+      let priority = 0.82;
+
+      // Boost priority for high-value suburbs
+      if (suburb.demographics.averagePropertyValue > 1000000) {
+        priority += 0.05;
+      }
+
+      // Boost priority for high-risk areas matching the service
+      if (
+        (service.service.includes('Water') && suburb.disasterRisk.floodRisk === 'high') ||
+        (service.service.includes('Fire') && suburb.disasterRisk.bushfireRisk === 'high') ||
+        (service.service.includes('Storm') && suburb.disasterRisk.stormRisk === 'high')
+      ) {
+        priority += 0.03;
+      }
+
+      // Boost for low competition areas (quick wins)
+      if (suburb.difficulty < 30) {
+        priority += 0.02;
+      }
+
+      suburbServicePages.push({
+        url: `${baseUrl}/suburbs/${suburb.name.toLowerCase().replace(/\s+/g, '-')}/${service.service.toLowerCase().replace(/\s+/g, '-')}`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly' as const,
+        priority: Math.min(priority, 0.95),
+      });
+    }
+  }
+
   // Combine all pages
   return [
     ...mainPages,
@@ -420,6 +466,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...technicalServices,
     ...standardsPages,
     ...locationPages,
+    ...suburbPages,          // Added suburb pages
+    ...suburbServicePages,   // Added suburb-service pages
     ...caseStudies,
     ...certificationPages,
     ...resourcePages,

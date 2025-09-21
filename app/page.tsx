@@ -15,6 +15,7 @@ import RotatingHeroBanner from '../components/hero/RotatingHeroBanner';
 import EquipmentGallery from '../components/gallery/EquipmentGallery';
 import ServicesGrid from '../components/services/ServicesGrid';
 import ProcessShowcase from '../components/process/ProcessShowcase';
+import MasterCertifications from '../components/credentials/MasterCertifications';
 
 interface LocationData {
   city: string;
@@ -129,6 +130,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Master Certifications Section */}
+        <MasterCertifications />
 
         {/* Services Grid with Real Service Images */}
         <ServicesGrid />
