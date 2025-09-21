@@ -5,13 +5,6 @@
     "/client-portal/dashboard",
     "/client-portal/documents",
     "/client-portal/messages",
-    "/contractor-portal/dashboard",
-    "/contractor-portal/jobs",
-    "/contractor-portal/training",
-    "/contractor-portal/training/courses",
-    "/contractor-portal/training/courses/wrt",
-    "/contractor-portal/resources",
-    "/contractor-portal/earnings",
     "/technology/ai",
     "/government-funding",
     "/emergency-guide",
@@ -19,5 +12,5 @@
     "/legal/forms/non-disclosure",
     "/legal/forms/background-performing"
   ],
-  "buildTime": "2025-09-09T13:25:27.232Z"
+  "buildTime": "2025-09-21T09:43:16.236Z"
 }
