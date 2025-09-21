@@ -744,22 +744,6 @@ export default function UltraModernHeader() {
             
             {/* Mobile CTAs */}
             <div className="space-y-3 mt-4">
-              {/* CRM Portal Button */}
-              <Link
-                href="/crm"
-                className="block w-full text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <div 
-                  className="px-6 py-4 rounded-full font-bold text-white"
-                  style={{
-                    background: 'linear-gradient(135deg, #4545ff 0%, #8845ff 100%)',
-                    boxShadow: '0 10px 40px rgba(69, 69, 255, 0.3)' }}
-                >
-                  🔐 NRP CRM Portal
-                </div>
-              </Link>
-              
               {/* Contact Button */}
               <Link
                 href="/contact"

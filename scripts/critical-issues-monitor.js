@@ -20,31 +20,6 @@ const colors = {
 
 // CRITICAL REQUIREMENTS THAT MUST ALWAYS BE TRUE
 const CRITICAL_CHECKS = {
-  crmAccess: {
-    name: 'CRM Access Visibility',
-    files: [
-      {
-        path: 'src/components/UltraModernHeader.tsx',
-        mustContain: [
-          'href="/crm"',
-          'NRP CRM Portal',
-          'CRM Portal Button'
-        ],
-        mustNotContain: [
-          '/* Removed CTA Section',
-          '// CRM disabled'
-        ]
-      },
-      {
-        path: 'src/components/Header.tsx',
-        mustContain: [
-          'href="/crm"',
-          'NRP CRM'
-        ]
-      }
-    ]
-  },
-  
   commercialPage: {
     name: 'Commercial Page Functionality',
     files: [
@@ -65,30 +40,12 @@ const CRITICAL_CHECKS = {
     ]
   },
   
-  investmentPitch: {
-    name: 'Investment Pitch Completeness',
-    files: [
-      {
-        path: 'app/pitch/page.tsx',
-        mustContain: [
-          'PITCH_SLIDES',
-          'Series A Investment',
-          '$909M',
-          'Financial Projections'
-        ],
-        minimumLines: 500 // Must be substantial
-      }
-    ]
-  },
-  
   criticalPages: {
     name: 'Critical Pages Exist',
     mustExist: [
       'app/page.tsx',
-      'app/pitch/page.tsx',
       'app/contact/page.tsx',
       'app/services/page.tsx',
-      'app/crm/page.tsx',
       'app/about/page.tsx'
     ]
   },

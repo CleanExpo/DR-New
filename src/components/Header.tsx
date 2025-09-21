@@ -301,14 +301,6 @@ const Header: React.FC = () => {
 
         <div className="overflow-y-auto h-full pb-20">
           <div className="p-4 space-y-4">
-            {/* NRP CRM Link - Mobile */}
-            <Link
-              href="/crm"
-              className="flex items-center justify-center gap-2 px-4 py-3 mb-4 text-sm font-medium text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-150 shadow-sm"
-            >
-              <Shield className="h-4 w-4" />
-              <span>NRP CRM Portal</span>
-            </Link>
 
             {/* Emergency CTA */}
             <div className="mb-6">
@@ -336,7 +328,7 @@ const Header: React.FC = () => {
             <div>
               <h3 className="font-semibold text-neutral-900 mb-2">Major Locations</h3>
               <div className="space-y-1">
-                {['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide'].map((city) => (
+                {['Brisbane', 'Ipswich', 'Logan', 'Hamilton', 'Ascot'].map((city) => (
                   <Link
                     key={city}
                     href={`/locations/${city.toLowerCase()}`}
@@ -392,7 +384,7 @@ const Header: React.FC = () => {
             >
               <HeaderLogo darkMode={false} />
               
-              {/* NRP Certification Badge */}
+              {/* Master Restorer Certification Badge */}
               <div className="hidden md:flex items-center ml-4 pl-4 border-l border-neutral-300">
                 <Logo 
                   variant="nrp" 
@@ -518,14 +510,6 @@ const Header: React.FC = () => {
 
             {/* CTA Button and Mobile Menu Toggle */}
             <div className="flex items-center gap-4">
-              {/* NRP CRM Link - Desktop */}
-              <Link
-                href="/crm"
-                className="hidden lg:flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-150 shadow-sm hover:shadow-md"
-              >
-                <Shield className="h-4 w-4" />
-                <span>NRP CRM</span>
-              </Link>
 
               {/* Emergency CTA - Desktop */}
               <div className="hidden lg:block">
