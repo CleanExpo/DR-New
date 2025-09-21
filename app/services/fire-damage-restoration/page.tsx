@@ -8,7 +8,7 @@ import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { HeroSection } from '@/components/hero/HeroImage'
 import { getHeroImageById } from '@/components/hero/HeroImageData'
-import TriageInfoCard from '@/components/triage/TriageInfoCard'
+import { TriageInfoCard } from '@/components/triage/TriageInfoCard'
 import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck, MessageSquare} from 'lucide-react'
 
 // SEO Metadata with AI optimisation

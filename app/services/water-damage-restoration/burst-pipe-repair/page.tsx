@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/src/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import {
   Droplets, Zap, Wrench, Clock, Shield, AlertTriangle,
   CheckCircle, ArrowRight, Activity, MessageSquare, PhoneCall,

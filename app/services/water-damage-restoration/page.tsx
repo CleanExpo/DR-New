@@ -4,7 +4,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { HeroSection } from '@/components/hero/HeroImage';
 import { getHeroImageById } from '@/components/hero/HeroImageData';
-import TriageInfoCard from '@/components/triage/TriageInfoCard';
+import { TriageInfoCard } from '@/components/triage/TriageInfoCard';
 import {
   Droplets, Clock, Shield, Award, CheckCircle,
   ArrowRight, AlertTriangle, TrendingUp, Users, MapPin,
