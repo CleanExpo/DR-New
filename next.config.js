@@ -215,6 +215,10 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
+    outputFileTracingExcludes: {
+      '*': ['node_modules/@swc/core-linux-x64-gnu',
+            'node_modules/@swc/core-linux-x64-musl'],
+    },
     optimizePackageImports: [
       'lucide-react',
       '@radix-ui/react-icons',
