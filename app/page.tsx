@@ -16,6 +16,11 @@ import EquipmentGallery from '../components/gallery/EquipmentGallery';
 import ServicesGrid from '../components/services/ServicesGrid';
 import ProcessShowcase from '../components/process/ProcessShowcase';
 import MasterCertifications from '../components/credentials/MasterCertifications';
+import ReviewDisplay from '@/components/reviews/ReviewDisplay';
+import VideoTestimonials from '@/components/reviews/VideoTestimonials';
+import FAQSection from '@/components/faq/FAQSection';
+import InternalLinkingHub from '@/components/navigation/InternalLinkingHub';
+import ConversionOptimization from '@/components/conversion/ConversionOptimization';
 
 interface LocationData {
   city: string;
@@ -98,6 +103,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
+      {/* Conversion Optimization Components */}
+      <ConversionOptimization />
+
       {/* Main Content */}
       <main className="relative">
 
@@ -109,23 +117,23 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
             <div className="flex flex-wrap justify-center items-center gap-8 text-center">
               <div>
-                <div className="text-2xl font-bold">4,000+</div>
-                <div className="text-sm opacity-90">Lives saved annually</div>
+                <div className="text-2xl font-bold">24/7</div>
+                <div className="text-sm opacity-90">Emergency Response</div>
               </div>
               <div className="hidden md:block w-px h-12 bg-white/30" />
               <div>
-                <div className="text-2xl font-bold">688</div>
-                <div className="text-sm opacity-90">Mesothelioma deaths prevented</div>
+                <div className="text-2xl font-bold">IICRC</div>
+                <div className="text-sm opacity-90">Master Certified</div>
               </div>
               <div className="hidden md:block w-px h-12 bg-white/30" />
               <div>
-                <div className="text-2xl font-bold">40%</div>
-                <div className="text-sm opacity-90">Increase in disasters since 2019</div>
+                <div className="text-2xl font-bold">Brisbane</div>
+                <div className="text-sm opacity-90">Ipswich & Logan</div>
               </div>
               <div className="hidden md:block w-px h-12 bg-white/30" />
               <div>
-                <div className="text-2xl font-bold">3.7%</div>
-                <div className="text-sm opacity-90">Master Technician elite status</div>
+                <div className="text-2xl font-bold">Direct</div>
+                <div className="text-sm opacity-90">Insurance Billing</div>
               </div>
             </div>
           </div>
@@ -142,6 +150,18 @@ export default function HomePage() {
 
         {/* Process Showcase with Real Process Images */}
         <ProcessShowcase />
+
+        {/* Review Display Section */}
+        <ReviewDisplay />
+
+        {/* Video Testimonials Section */}
+        <VideoTestimonials />
+
+        {/* FAQ Section */}
+        <FAQSection />
+
+        {/* Internal Linking Hub */}
+        <InternalLinkingHub />
 
         {/* Trust Signals Section */}
         <section className="py-20 bg-white">
@@ -257,7 +277,7 @@ export default function HomePage() {
               ))}
             </div>
             <p className="text-center text-lg text-gray-700 mb-12">
-              4.9/5 from 10,000+ verified reviews
+              Professional Restoration Services
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">

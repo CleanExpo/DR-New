@@ -52,7 +52,7 @@ const MasterCertifications = () => {
             Industry-Leading Expertise
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Phillip McGurk brings unparalleled mastery in disaster recovery, achieving the elite IICRC Master status held by only 3.7% of technicians worldwide
+            Phill McGurk brings unparalleled mastery in disaster recovery, achieving the elite IICRC Master status
           </p>
         </motion.div>
 
@@ -70,8 +70,8 @@ const MasterCertifications = () => {
               <CardContent className="p-0">
                 <Image
                   src="/images/phil-mcgurk-iicrc-certification.png"
-                  alt="Phillip McGurk IICRC Master Certifications - Master Textile Cleaner, Master Fire & Smoke Restorer, Master Water Restorer - Certificate Expiration 06/26"
-                  title="IICRC Board of Directors recognizes Phillip McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC"
+                  alt="Phill McGurk IICRC Master Certifications - Master Textile Cleaner, Master Fire & Smoke Restorer, Master Water Restorer - Certificate Expiration 06/26"
+                  title="IICRC Board of Directors recognizes Phill McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC"
                   width={600}
                   height={800}
                   className="w-full h-auto object-cover rounded-lg shadow-2xl"
@@ -129,7 +129,7 @@ const MasterCertifications = () => {
                 <div>
                   <h4 className="text-lg font-bold mb-2">IICRC Board of Directors</h4>
                   <p className="text-gray-300 mb-4">
-                    The IICRC recognizes Phillip McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC.
+                    The IICRC recognizes Phill McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC.
                   </p>
                   <Link
                     href="https://iicrc.org/iicrcmaster/"
@@ -148,14 +148,14 @@ const MasterCertifications = () => {
               <div className="mt-4 flex items-center justify-between">
                 <div>
                   <div className="text-sm text-gray-400">
-                    Certificate Holder: <span className="text-white font-semibold">Phillip McGurk</span>
+                    Certificate Holder: <span className="text-white font-semibold">Phill McGurk</span>
                   </div>
                   <div className="text-sm text-gray-400">
                     Expiration Date: <span className="text-white font-semibold">06/26</span>
                   </div>
                 </div>
                 <Badge className="bg-yellow-500 text-gray-900 hover:bg-yellow-400">
-                  Elite 3.7% Status
+                  Master Certified
                 </Badge>
               </div>
             </motion.div>
@@ -171,12 +171,12 @@ const MasterCertifications = () => {
           className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900">20+</div>
-            <div className="text-sm text-gray-600">Years Experience</div>
+            <div className="text-3xl font-bold text-gray-900">Expert</div>
+            <div className="text-sm text-gray-600">Experience Level</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-gray-900">10,000+</div>
-            <div className="text-sm text-gray-600">Properties Restored</div>
+            <div className="text-3xl font-bold text-gray-900">Master</div>
+            <div className="text-sm text-gray-600">Restorer Certified</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-gray-900">$20M</div>
