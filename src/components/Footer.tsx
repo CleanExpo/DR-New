@@ -215,26 +215,26 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="grid md:grid-cols-3 gap-6 mb-6">
-              {/* Online Form */}
-              <Link href="/contractors/apply" className="group">
+              {/* About Us */}
+              <Link href="/about-phil-mcgurk" className="group">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                   <Users className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
-                  <div className="text-2xl font-bold mb-2">Join Network</div>
-                  <p className="text-sm opacity-90">Contractor Application</p>
+                  <div className="text-2xl font-bold mb-2">About Us</div>
+                  <p className="text-sm opacity-90">Master Restorer</p>
                   <div className="mt-2 text-xs bg-green-500/30 px-2 py-1 rounded-full inline-block">
-                    Get started today
+                    IICRC Certified
                   </div>
                 </div>
               </Link>
-              
-              {/* AI Platform */}
-              <Link href="/" className="group">
+
+              {/* Services */}
+              <Link href="/services" className="group">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                   <Zap className="h-8 w-8 mx-auto mb-3 group-hover:animate-bounce" />
-                  <div className="text-2xl font-bold mb-2">AI Platform</div>
-                  <p className="text-sm opacity-90">Automated Matching</p>
+                  <div className="text-2xl font-bold mb-2">Our Services</div>
+                  <p className="text-sm opacity-90">24/7 Emergency</p>
                   <div className="mt-2 text-xs bg-blue-500/30 px-2 py-1 rounded-full inline-block">
-                    Instant contractor dispatch
+                    Immediate response
                   </div>
                 </div>
               </Link>

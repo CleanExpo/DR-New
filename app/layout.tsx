@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   keywords: 'disaster recovery australia, water damage restoration sydney, fire damage melbourne, mould remediation brisbane, emergency restoration perth, flood cleanup adelaide, storm damage repair, biohazard cleanup, IICRC certified, insurance restoration, 24 hour emergency response, commercial restoration, residential restoration',
   authors: [{ name: 'Disaster Recovery Australia' }],
   creator: 'Disaster Recovery Australia',
-  publisher: 'National Restoration Platform',
+  publisher: 'Disaster Recovery Brisbane',
   formatDetection: {
     email: false,
     address: false,
@@ -144,7 +144,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Disaster Recovery Australia",
-              "alternateName": "NRP - National Restoration Platform",
+              "alternateName": "Disaster Recovery QLD",
               "url": "https://disaster-recovery-seven.vercel.app",
               "logo": "https://disaster-recovery-seven.vercel.app/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
               "description": "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",
