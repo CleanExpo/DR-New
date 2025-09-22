@@ -3,13 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Phone } from 'lucide-react';
 
+// FORCE REBUILD - SIMPLIFIED VERSION ONLY
+// Last updated: ${new Date().toISOString()}
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      {/* Simplified homepage - Updated deployment */}
-      {/* Hero Section with Background Image */}
+      {/* Hero Section ONLY */}
       <section className="relative min-h-[600px] flex items-center justify-center text-white">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/hero/queensland-house-water-damage.jpg"
@@ -21,7 +21,6 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             Water Damage Restoration<br />
@@ -56,7 +55,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Flooding Emergency Section */}
+      {/* Flooding Emergency Section ONLY */}
       <section className="py-16 bg-pink-50">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-red-900 mb-4">
@@ -137,6 +136,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* NO OTHER SECTIONS - THIS IS THE COMPLETE PAGE */}
     </div>
   );
 }
