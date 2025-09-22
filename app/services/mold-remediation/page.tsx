@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { ServicePageLayout } from '@/components/services/ServicePageLayout';
+import ServicePageLayout from '@/components/services/ServicePageLayout';
 import Image from 'next/image';
 import Link from 'next/link';
 

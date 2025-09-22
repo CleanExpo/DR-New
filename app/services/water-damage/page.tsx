@@ -2,7 +2,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ServicePageLayout } from '@/components/services/ServicePageLayout';
+import ServicePageLayout from '@/components/services/ServicePageLayout';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Services | 24/7 Online Emergency Response | IICRC S500 Certified',
