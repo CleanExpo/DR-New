@@ -2,7 +2,7 @@
   "framework": "nextjs",
   "cleanUrls": true,
   "trailingSlash": false,
-  "installCommand": "npm ci --omit=dev",
+  "installCommand": "npm ci --legacy-peer-deps",
   "buildCommand": "node scripts/build-vercel-optimized.js",
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=3072",
