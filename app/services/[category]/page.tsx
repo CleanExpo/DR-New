@@ -15,11 +15,15 @@ import {
   generateCategorySchema 
 } from '@/data/gmb-categories';
 
-// Generate static params for all GMB categories
-export async function generateStaticParams() {
-  return GMB_CATEGORIES.map((category) => ({
-    category: category.slug }));
-}
+// ISR: Generate pages on-demand with 1 hour revalidation
+// Commenting out generateStaticParams to prevent build-time generation
+// export async function generateStaticParams() {
+//   return GMB_CATEGORIES.map((category) => ({
+//     category: category.slug }));
+// }
+
+// Add ISR revalidation
+export const revalidate = 3600; // Revalidate every hour
 
 // Generate metadata for SEO
 export async function generateMetadata(

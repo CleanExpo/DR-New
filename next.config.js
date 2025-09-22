@@ -211,13 +211,15 @@ const nextConfig = {
     return config;
   },
 
-  // Experimental features
+  // Experimental features with memory optimizations
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
     outputFileTracingExcludes: {
       '*': ['node_modules/@swc/core-linux-x64-gnu',
-            'node_modules/@swc/core-linux-x64-musl'],
+            'node_modules/@swc/core-linux-x64-musl',
+            'node_modules/@prisma/engines',
+            'node_modules/sharp'],
     },
     optimizePackageImports: [
       'lucide-react',
@@ -229,6 +231,10 @@ const nextConfig = {
       '@heroicons/react'
     ],
     webVitalsAttribution: ['CLS', 'LCP'],
+    // Reduce memory usage during build
+    workerThreads: false,
+    cpus: 1,
+    isrMemoryCacheSize: 0,
   },
 
   // Production optimizations
@@ -237,9 +243,22 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: true,
 
-  // Output configuration
-  // Removed 'standalone' as it can cause issues with Vercel
+  // Output configuration - Optimized for Vercel deployment
+  output: 'standalone',
   distDir: '.next',
+
+  // Reduce memory usage during build
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
+
+  // Additional build optimizations
+  staticPageGenerationTimeout: 90,
+  generateBuildId: async () => {
+    // Use a consistent build ID for better caching
+    return 'dr-build-' + Date.now();
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

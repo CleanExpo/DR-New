@@ -59,23 +59,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// Generate static params for known scenarios
-export async function generateStaticParams() {
-  // Generate a subset of common scenarios for static generation
-  // More will be generated on-demand
-  const commonScenarios = [
-    'water-burst-pipe-immediate-residential',
-    'water-flooding-immediate-residential',
-    'fire-kitchen-fire-immediate-residential',
-    'mould-black-mould-just-discovered-residential',
-    'storm-roof-damage-immediate-residential',
-    // Add more common scenarios
-  ];
+// ISR: Generate pages on-demand with revalidation
+// Commenting out to prevent build-time generation
+// export async function generateStaticParams() {
+//   const commonScenarios = [
+//     'water-burst-pipe-immediate-residential',
+//     'water-flooding-immediate-residential',
+//     'fire-kitchen-fire-immediate-residential',
+//     'mould-black-mould-just-discovered-residential',
+//     'storm-roof-damage-immediate-residential',
+//   ];
 
-  return commonScenarios.map((scenario) => ({
-    scenario,
-  }));
-}
+//   return commonScenarios.map((scenario) => ({
+//     scenario,
+//   }));
+// }
+
+// Add ISR revalidation
+export const revalidate = 3600; // Revalidate every hour
 
 export default function WhosFirstScenarioPage({ params }: PageProps) {
   // Parse scenario ID to extract components

@@ -47,10 +47,15 @@ export async function generateMetadata({ params }: EquipmentPageProps): Promise<
       type: 'website' } };
 }
 
-export async function generateStaticParams() {
-  return equipmentCatalog.map((equipment) => ({
-    id: equipment.id }));
-}
+// ISR: Generate pages on-demand with revalidation
+// Commenting out to prevent build-time generation
+// export async function generateStaticParams() {
+//   return equipmentCatalog.map((equipment) => ({
+//     id: equipment.id }));
+// }
+
+// Add ISR revalidation
+export const revalidate = 3600; // Revalidate every hour
 
 export default function EquipmentSpecificationPage({ params }: EquipmentPageProps) {
   const equipment = getEquipmentById(params.id);
