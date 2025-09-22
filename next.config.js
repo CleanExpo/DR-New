@@ -231,10 +231,9 @@ const nextConfig = {
       '@heroicons/react'
     ],
     webVitalsAttribution: ['CLS', 'LCP'],
-    // Reduce memory usage during build
+    // Reduce memory usage during build - Vercel optimized
     workerThreads: false,
     cpus: 1,
-    isrMemoryCacheSize: 0,
   },
 
   // Production optimizations
@@ -254,7 +253,7 @@ const nextConfig = {
   },
 
   // Additional build optimizations
-  staticPageGenerationTimeout: 90,
+  staticPageGenerationTimeout: 120,
   generateBuildId: async () => {
     // Use a consistent build ID for better caching
     return 'dr-build-' + Date.now();

@@ -2,10 +2,11 @@
   "framework": "nextjs",
   "cleanUrls": true,
   "trailingSlash": false,
-  "installCommand": "npm install --force --legacy-peer-deps",
+  "installCommand": "npm ci --omit=dev",
   "buildCommand": "npx prisma generate && next build",
   "env": {
-    "NODE_OPTIONS": "--max-old-space-size=7680",
+    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
     "DATABASE_URL": "file:./prod.db",
     "SKIP_ENV_VALIDATION": "true",
     "NEXT_TELEMETRY_DISABLED": "1",
@@ -18,7 +19,8 @@
   },
   "build": {
     "env": {
-      "NODE_OPTIONS": "--max-old-space-size=7680",
+      "NODE_OPTIONS": "--max-old-space-size=4096",
+      "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
       "DATABASE_URL": "file:./build.db",
       "NEXT_TELEMETRY_DISABLED": "1",
       "SKIP_ENV_VALIDATION": "true",
