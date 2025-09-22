@@ -4,24 +4,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface ServicePageLayoutProps {
-  title: string;
-  description: string;
-  heroImage: string;
-  heroImageAlt: string;
-  certifications: string[];
-  responseTime: string;
-  availability: string;
+  title?: string;
+  description?: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  certifications?: string[];
+  responseTime?: string;
+  availability?: string;
   children: React.ReactNode;
-  relatedServices: Array<{
+  relatedServices?: Array<{
     title: string;
     href: string;
     image: string;
   }>;
-  faqs: Array<{
+  faqs?: Array<{
     question: string;
     answer: string;
   }>;
-  schemaData: any;
+  schemaData?: any;
 }
 
 export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
@@ -29,14 +31,21 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
   description,
   heroImage,
   heroImageAlt,
-  certifications,
-  responseTime,
-  availability,
+  heroTitle,
+  heroDescription,
+  certifications = [],
+  responseTime = "60 minutes",
+  availability = "24/7",
   children,
-  relatedServices,
-  faqs,
+  relatedServices = [],
+  faqs = [],
   schemaData
 }) => {
+  // Use heroTitle/heroDescription as fallbacks for title/description
+  const pageTitle = title || heroTitle || "Disaster Recovery Service";
+  const pageDescription = description || heroDescription || "Professional disaster recovery service available 24/7";
+  const imageAlt = heroImageAlt || `${pageTitle} - Professional Service`;
+  const heroImageUrl = heroImage || "/images/services/default-hero.jpg";
   return (
     <>
       {/* Schema.org JSON-LD */}
@@ -49,8 +58,8 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       <section className="relative min-h-[600px] bg-gradient-to-br from-neutral-50 to-neutral-100">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src={heroImage}
-            alt={heroImageAlt}
+            src={heroImageUrl}
+            alt={imageAlt}
             fill
             className="object-cover"
             priority
@@ -60,10 +69,10 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
         <div className="relative container mx-auto px-4 py-24">
           <div className="max-w-4xl">
             <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-6">
-              {title}
+              {pageTitle}
             </h1>
             <p className="text-xl text-neutral-700 mb-8">
-              {description}
+              {pageDescription}
             </p>
             
             {/* Trust Indicators */}
@@ -232,7 +241,7 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
       <section className="bg-gradient-to-r from-primary-600 to-primary-700 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Need {title}?
+            Need {pageTitle}?
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
             Our IICRC-certified technicians are ready to respond 24/7. Don't wait - every minute counts in disaster recovery.
@@ -259,3 +268,5 @@ export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
     </>
   );
 };
+
+export default ServicePageLayout;

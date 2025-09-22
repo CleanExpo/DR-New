@@ -21,7 +21,7 @@ import {
   DollarSign,
   Users
 } from 'lucide-react';
-import ServicePageLayout from '@/components/ServicePageLayout';
+import ServicePageLayout from '@/components/services/ServicePageLayout';
 import QuoteDialog from '@/components/QuoteDialog';
 
 export default function DishwasherLeaksPage() {
