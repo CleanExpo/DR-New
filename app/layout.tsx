@@ -11,10 +11,8 @@ import '@/styles/enhanced-storm.css'
 import '@/styles/performance-optimizations.css'
 import '@/styles/mobile-touch-targets.css'
 import { Providers } from './providers'
-import UltraModernHeader from '@/components/UltraModernHeader'
-import UltraModernFooter from '@/components/UltraModernFooter'
-import DemoModeIndicator from '@/components/DemoModeIndicator'
-import DemoModeBanner from '@/components/demo/DemoModeBanner'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
@@ -23,8 +21,6 @@ import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema'
 import { BrisbaneLocalSchema } from '@/components/seo/BrisbaneLocalSchema'
 import { SEOChecklist } from '@/components/seo/SEOChecklist'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
-import MobileNav from '@/components/mobile/MobileNav'
-import MobileFAB from '@/components/mobile/MobileFAB'
 import Breadcrumb from '@/components/Breadcrumb'
 import NavigationIndicator from '@/components/NavigationIndicator'
 import LoadingIndicator from '@/components/LoadingIndicator'
@@ -235,17 +231,15 @@ export default function RootLayout({
         <GoogleTagManager />
         <MicrosoftClarity />
         <Providers>
-          <UltraModernHeader />
-          {/* <MobileNav /> - Disabled, using UltraModernHeader instead */}
+          <Header />
           <Breadcrumb />
           <NavigationIndicator />
           <main id="main-content" className="min-h-screen">
             {children}
           </main>
           <div className="pb-16 lg:pb-0">
-            <UltraModernFooter />
+            <Footer />
           </div>
-          {/* <MobileFAB /> - Disabled, no portal needed */}
           <MobileEmergencyCTA />
           <LoadingIndicator />
           <ProgressSpinner />
