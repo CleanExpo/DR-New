@@ -63,12 +63,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Storm Water Timber Floor Damage Brisbane',
       description: 'Professional assessment photo showing Category 3 black water damage to timber floors from city drain backup during heavy storms. Dark staining indicates contamination requiring disposal of flooring, kitchen carcasses, and wall linings to 600mm height.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/timber-floor-storm-water-damage-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/timber-floor-storm-water-damage-brisbane.webp',
       keywords: ['storm water damage', 'timber floor water damage', 'black water contamination', 'Brisbane flooding', 'Category 3 water damage', 'insurance claim assessment'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/timber-floor-storm-water-damage-brisbane-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/timber-floor-storm-water-damage-brisbane-thumb.webp'
     }
   },
 
@@ -85,12 +85,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Hidden Mould Damage Carpet Edge Brisbane',
       description: 'Professional inspection revealing extensive mould growth on carpet smooth edge (tack strip) in child\'s bedroom. Long-term water ingress behind furniture created serious health risks requiring complete material removal and decontamination.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/hidden-mould-damage-carpet-smooth-edge-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/hidden-mould-damage-carpet-smooth-edge-brisbane.webp',
       keywords: ['hidden mould damage', 'carpet mould Brisbane', 'smooth edge contamination', 'bedroom water damage', 'child health risk mould', 'furniture hiding water damage'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/hidden-mould-damage-carpet-smooth-edge-brisbane-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/hidden-mould-damage-carpet-smooth-edge-brisbane-thumb.webp'
     }
   },
 
@@ -107,12 +107,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Specialized Drying Equipment Storm Response Brisbane',
       description: 'Emergency make-safe drying equipment deployment after storm water flooding. Professional restoration services often first on-site, providing critical damage mitigation while insurance assessors delayed 2 weeks. Shows importance of immediate response vs waiting.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/specialized-drying-equipment-storm-flood-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/specialized-drying-equipment-storm-flood-brisbane.webp',
       keywords: ['specialized drying equipment', 'make-safe services', 'storm water flooding Brisbane', 'emergency drying', 'insurance delay response', 'first responder restoration'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/specialized-drying-equipment-storm-flood-brisbane-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/specialized-drying-equipment-storm-flood-brisbane-thumb.webp'
     }
   },
 
@@ -129,12 +129,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Exterior Environmental Mould Patio Awning Brisbane',
       description: 'Environmental health assessment showing extensive mould growth on exterior patio awning. Clients with health conditions and medication-compromised immune systems at risk from airborne spores entering home. Professional cleaning and prevention strategies essential.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/exterior-environmental-mould-patio-awning-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/exterior-environmental-mould-patio-awning-brisbane.webp',
       keywords: ['exterior mould contamination', 'environmental health assessment', 'immunocompromised mould risk', 'patio awning mould', 'Brisbane mould inspection', 'health condition mould exposure'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/exterior-environmental-mould-patio-awning-brisbane-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/exterior-environmental-mould-patio-awning-brisbane-thumb.webp'
     }
   },
 
@@ -151,12 +151,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Commercial Environmental Mould 330k Savings Brisbane',
       description: 'Case study showing $330,000 savings on commercial mould remediation. Initial contractor quote $80,000 with 6 weeks closure. Expert protocol delivered $20,000 solution with zero downtime. Demonstrates importance of right expertise versus any contractor.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/commercial-environmental-mould-330k-savings-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/commercial-environmental-mould-330k-savings-brisbane.webp',
       keywords: ['commercial mould remediation', '$330k savings mould', 'expert protocol development', 'business interruption prevention', 'Brisbane commercial mould', 'overquoting contractors'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/commercial-environmental-mould-330k-savings-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/commercial-environmental-mould-330k-savings-thumb.webp'
     }
   },
 
@@ -173,12 +173,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Thermal Bridging FLIR Inspection Brisbane',
       description: 'Professional thermal imaging inspection revealing missing insulation causing thermal bridging in rental property. Temperature differentials of 59°C create condensation when dew point is reached, resulting in recurring mould issues. Shows importance of thermal camera diagnostics.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/thermal-bridging-flir-no-insulation-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/thermal-bridging-flir-no-insulation-brisbane.webp',
       keywords: ['thermal bridging inspection', 'FLIR thermal camera', 'missing insulation mould', 'condensation dew point', 'rental property mould', 'thermal imaging Brisbane'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/thermal-bridging-flir-no-insulation-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/thermal-bridging-flir-no-insulation-thumb.webp'
     }
   },
 
@@ -195,12 +195,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Biohazard Concrete Decontamination Brisbane',
       description: 'Professional biohazard decontamination of concrete floor contaminated by animal urine and feces. Shows realistic approach to odour removal with 90% reduction achieved while explaining limitations of porous material contamination. Demonstrates expertise in setting realistic expectations.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/biohazard-concrete-decontamination-animal-waste-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/biohazard-concrete-decontamination-animal-waste-brisbane.webp',
       keywords: ['biohazard decontamination', 'animal waste cleanup', 'concrete odour removal', 'pet urine remediation', 'realistic expectations restoration', 'Brisbane biohazard cleaning'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/biohazard-concrete-decontamination-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/biohazard-concrete-decontamination-thumb.webp'
     }
   },
 
@@ -217,12 +217,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Bathroom Leak Structural Mould Assessment Brisbane',
       description: 'Professional structural assessment of mould-affected timber framing from bathroom shower leak. Shows importance of evaluating timber fitness for purpose versus cosmetic mould removal. Demonstrates expertise in structural integrity assessment beyond surface cleaning.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/bathroom-leak-structural-mould-timber-assessment-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/bathroom-leak-structural-mould-timber-assessment-brisbane.webp',
       keywords: ['structural mould assessment', 'bathroom leak damage', 'timber fitness evaluation', 'shower leak mould', 'structural integrity testing', 'Brisbane mould inspection'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/bathroom-leak-structural-mould-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/bathroom-leak-structural-mould-thumb.webp'
     }
   },
 
@@ -239,12 +239,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Subfloor Mould Contamination Brisbane Assessment',
       description: 'Comprehensive subfloor mould assessment revealing extensive contamination requiring professional scope documentation for insurance claims. Demonstrates expertise in identifying hidden damage that standard inspections miss.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/subfloor-mould-contamination-brisbane-property-assessment.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/subfloor-mould-contamination-brisbane-property-assessment.webp',
       keywords: ['subfloor mould contamination', 'hidden damage assessment', 'insurance claim documentation', 'Brisbane property inspection', 'comprehensive mould scope', 'under house mould'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/subfloor-mould-contamination-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/subfloor-mould-contamination-thumb.webp'
     }
   },
 
@@ -261,12 +261,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Mould Affected Contents Assessment Brisbane',
       description: 'Professional contents assessment for mould-affected items showing expertise in determining restoration viability versus disposal requirements. Essential for accurate insurance claims and cost-effective remediation strategies.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/mould-affected-contents-assessment-disposal-restoration-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/mould-affected-contents-assessment-disposal-restoration-brisbane.webp',
       keywords: ['mould contents assessment', 'restore versus replace', 'insurance contents claim', 'mould affected belongings', 'Brisbane contents inspection', 'disposal requirements'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/mould-affected-contents-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/mould-affected-contents-thumb.webp'
     }
   },
 
@@ -283,12 +283,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Storm Water Entry Comprehensive Assessment Brisbane',
       description: 'Professional claims consulting showing how understanding history, external factors, and insurance policy details transforms small visible damage into justified large-scale replacement. Demonstrates expertise beyond simple damage assessment to strategic claims maximization.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/storm-water-entry-comprehensive-carpet-assessment-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/storm-water-entry-comprehensive-carpet-assessment-brisbane.webp',
       keywords: ['storm water damage assessment', 'wool carpet water damage', 'comprehensive claims strategy', 'insurance policy leverage', 'Brisbane water damage consulting', 'strategic replacement justification'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/storm-water-entry-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/storm-water-entry-thumb.webp'
     }
   },
 
@@ -305,12 +305,12 @@ export const siteImages = {
       '@type': 'ImageObject',
       name: 'Hidden Fridge Ice Maker Leak Mould Brisbane',
       description: 'Professional inspection using thermal cameras and moisture meters uncovered extensive hidden mould from slow ice maker leak. Shows importance of investigating odours and using proper diagnostic tools beyond visual inspection.',
-      contentUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/hidden-fridge-ice-maker-leak-mould-kitchen-brisbane.webp',
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/hidden-fridge-ice-maker-leak-mould-kitchen-brisbane.webp',
       keywords: ['hidden ice maker leak', 'fridge water damage', 'thermal imaging inspection', 'kitchen mould damage', 'concealed water leak Brisbane', 'moisture detection expertise'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
-      acquireLicensePage: 'https://disaster-recovery-seven.vercel.app/contact',
-      thumbnailUrl: 'https://disaster-recovery-seven.vercel.app/images/case-studies/hidden-fridge-leak-thumb.webp'
+      acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/hidden-fridge-leak-thumb.webp'
     }
   }
 };

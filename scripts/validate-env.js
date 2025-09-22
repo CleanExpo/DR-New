@@ -20,8 +20,8 @@ const FORBIDDEN_DOMAINS = [
 ];
 
 const REQUIRED_DOMAINS = {
-  production: 'disaster-recovery-seven.vercel.app',
-  staging: 'disaster-recovery-staging.vercel.app'
+  production: 'dr-new-ten.vercel.app',
+  staging: 'DEPRECATED - Use production only'
 };
 
 const ENV_FILES = [

@@ -32,7 +32,7 @@ const nextConfig = {
   // Image optimization with SEO enhancements
   images: {
     domains: [
-      'disaster-recovery-seven.vercel.app',
+      'dr-new-ten.vercel.app',
       'images.unsplash.com',
       'cloudinary.com'
     ],

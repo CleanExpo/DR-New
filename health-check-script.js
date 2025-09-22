@@ -33,7 +33,7 @@ const pagesToTest = [
 const results = [];
 
 async function testPage(path) {
-  const baseUrl = "https://disaster-recovery-seven.vercel.app";
+  const baseUrl = "https://dr-new-ten.vercel.app";
   const url = baseUrl + path;
   
   try {
