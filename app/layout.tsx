@@ -112,7 +112,7 @@ export const metadata: Metadata = {
     yandex: '',
     yahoo: '',
     other: {
-      'msvalidate.01': 'F73BE1B1E698FD592FE2EA8D27992837',
+      'msvalidate.01': 'DB030D197A83DF2F524BF0DFBACDC52C',
       'facebook-domain-verification': 'abcdef123456789' } },
   alternates: {
     canonical: 'https://disasterrecovery.com.au',
@@ -128,7 +128,7 @@ export default function RootLayout({
     <html lang="en-AU">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-        <meta name="msvalidate.01" content="F73BE1B1E698FD592FE2EA8D27992837" />
+        <meta name="msvalidate.01" content="DB030D197A83DF2F524BF0DFBACDC52C" />
         <link rel="icon" type="image/png" href="/logos/disaster-recovery-logo.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logos/disaster-recovery-logo.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/logos/disaster-recovery-logo.png" />
