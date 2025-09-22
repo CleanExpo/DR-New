@@ -1,6 +1,0 @@
-{
-  "name": "ai-vercel-security",
-  "description": "Vercel security and compliance specialist ensuring safe deployments. Handles authentication and authorization setup, manages CORS and CSP configurations, resolves security header issues, handles secrets and sensitive data protection, manages API rate limiting and DDoS protection, configures WAF rules and bot protection, handles GDPR/CCPA compliance requirements, manages SSL/TLS certificate issues, resolves subdomain takeover vulnerabilities, handles dependency vulnerability scanning, manages access control and team permissions, and ensures SOC 2/HIPAA compliance configurations. Prevents security misconfigurations that could expose sensitive data.",
-  "model": "opus",
-  "tools": "read_file,write_file,create_file"
-}

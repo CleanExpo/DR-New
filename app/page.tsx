@@ -25,7 +25,6 @@ import MasterCertifications from '../components/credentials/MasterCertifications
 interface LocationData {
   city: string;
   state: string;
-  contractors: number;
   responseTime: string;
   activeJobs: number;
 }
@@ -42,7 +41,6 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('residential');
   const [liveStats, setLiveStats] = useState({
-    activeContractors: 0,
     jobsInProgress: 0,
     avgResponseTime: '0',
     satisfactionRate: 0
@@ -56,19 +54,17 @@ export default function HomePage() {
         setUserLocation({
           city: 'Brisbane',
           state: 'QLD',
-          contractors: 47,
-          responseTime: '2.5 hrs',
-          activeJobs: 23
+          responseTime: '30 minutes',
+          activeJobs: 12
         });
         setIsLoading(false);
       }, 1000);
 
       // Simulate live stats updates
       setLiveStats({
-        activeContractors: 1247,
-        jobsInProgress: 342,
-        avgResponseTime: '2.3',
-        satisfactionRate: 94.7
+        jobsInProgress: 12,
+        avgResponseTime: '0.5',
+        satisfactionRate: 98.7
       });
     };
 
@@ -77,10 +73,9 @@ export default function HomePage() {
     // Simulate real-time updates
     const interval = setInterval(() => {
       setLiveStats(prev => ({
-        activeContractors: prev.activeContractors + Math.floor(Math.random() * 5 - 2),
-        jobsInProgress: prev.jobsInProgress + Math.floor(Math.random() * 3 - 1),
-        avgResponseTime: (parseFloat(prev.avgResponseTime) + (Math.random() * 0.2 - 0.1)).toFixed(1),
-        satisfactionRate: Math.min(100, Math.max(90, prev.satisfactionRate + (Math.random() * 0.5 - 0.25)))
+        jobsInProgress: prev.jobsInProgress + Math.floor(Math.random() * 2),
+        avgResponseTime: (parseFloat(prev.avgResponseTime) + (Math.random() * 0.1)).toFixed(1),
+        satisfactionRate: Math.min(100, Math.max(95, prev.satisfactionRate + (Math.random() * 0.2)))
       }));
     }, 5000);
 
@@ -241,10 +236,10 @@ export default function HomePage() {
             </h2>
             <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
               {[
-                { step: '1', title: 'Report Online', desc: 'Chat, form or email' },
-                { step: '2', title: 'AI Matching', desc: 'Instant contractor match' },
-                { step: '3', title: 'Get Estimate', desc: 'Transparent pricing' },
-                { step: '4', title: 'Work Begins', desc: 'Fast response guaranteed' }
+                { step: '1', title: 'Emergency Call', desc: '24/7 hotline response' },
+                { step: '2', title: 'Rapid Assessment', desc: 'On-site within 30 minutes' },
+                { step: '3', title: 'Insurance Approval', desc: 'Direct billing arranged' },
+                { step: '4', title: 'Restoration Begins', desc: 'Immediate action taken' }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -291,13 +286,13 @@ export default function HomePage() {
                 {
                   quote: "Insurance handled perfectly. No stress, just results.",
                   author: "James C.",
-                  location: "Sydney",
+                  location: "Ipswich",
                   service: "Fire Restoration"
                 },
                 {
                   quote: "Professional, fast, and exactly as estimated.",
                   author: "Emma W.",
-                  location: "Melbourne",
+                  location: "Logan",
                   service: "Storm Recovery"
                 }
               ].map((testimonial, index) => (
@@ -327,18 +322,18 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Emergency? Get Help Now
             </h2>
-            <p className="text-xl text-blue-800 mb-8 max-w-2xl mx-auto">
-              100% digital platform. No phone calls needed. 
-              Connect instantly with certified professionals.
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Brisbane's trusted Master Restorer.
+              Direct insurance billing. 24/7 emergency response.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-<Button 
-                size="lg" 
-                className="bg-green-500 hover:bg-green-400 text-white px-8 py-6 text-lg"
-                href="/claim"
+<Button
+                size="lg"
+                className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-6 text-lg font-bold"
+                href="tel:1300309361"
               >
-                Submit Claim Online
-                <Globe className="ml-2 h-5 w-5" />
+                <Phone className="ml-2 h-5 w-5 mr-2" />
+                Call 1300 309 361 Now
               </Button>
             </div>
           </div>

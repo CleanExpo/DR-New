@@ -21,18 +21,20 @@ import {
   DollarSign,
   Users
 } from 'lucide-react';
-import ServicePageLayout from '@/components/services/ServicePageLayout';
-import QuoteDialog from '@/components/QuoteDialog';
 
 export default function DishwasherLeaksPage() {
-  const [showQuoteDialog, setShowQuoteDialog] = useState(false);
 
   return (
-    <ServicePageLayout
-      heroImage="/images/services/water-damage/dishwasher-leak-hero.jpg"
-      heroTitle="Dishwasher Leak Water Damage Restoration"
-      heroDescription="Professional dishwasher leak cleanup and water damage restoration in Brisbane. 24/7 emergency response to prevent kitchen and floor damage."
-    >
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+        <div className="container mx-auto px-6">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Dishwasher Leak Water Damage Restoration</h1>
+          <p className="text-xl opacity-90 max-w-3xl">Professional dishwasher leak cleanup and water damage restoration in Brisbane. 24/7 emergency response to prevent kitchen and floor damage.</p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-6 py-12">
       {/* Emergency Alert */}
       <Alert className="mb-8 border-red-200 bg-red-50">
         <AlertCircle className="h-4 w-4" />
@@ -69,7 +71,7 @@ export default function DishwasherLeaksPage() {
               size="lg"
               variant="outline"
               className="w-full"
-              onClick={() => setShowQuoteDialog(true)}
+              href="tel:1300309361"
             >
               Get Insurance Report
             </Button>
@@ -316,7 +318,7 @@ export default function DishwasherLeaksPage() {
             <Button
               size="lg"
               variant="secondary"
-              onClick={() => setShowQuoteDialog(true)}
+              href="tel:1300309361"
             >
               Get Free Assessment
             </Button>
@@ -338,11 +340,7 @@ export default function DishwasherLeaksPage() {
         </CardContent>
       </Card>
 
-      <QuoteDialog
-        isOpen={showQuoteDialog}
-        onClose={() => setShowQuoteDialog(false)}
-        serviceType="Dishwasher Leak Water Damage"
-      />
-    </ServicePageLayout>
+      </div>
+    </div>
   );
 }

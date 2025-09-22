@@ -1,6 +1,0 @@
-{
-  "name": "ai-vercel-nextjs-specialist",
-  "description": "Next.js on Vercel deployment expert handling framework-specific build issues. Resolves App Router vs Pages Router conflicts, fixes dynamic imports and code splitting issues, handles Image Optimization API problems, resolves middleware and Edge Runtime incompatibilities, fixes getStaticProps/getServerSideProps/generateStaticParams errors, handles API route deployment issues, resolves font optimization problems, manages i18n routing configuration, fixes Turbopack compatibility issues, handles React Server Components problems, resolves streaming SSR issues, and ensures proper cache configuration. Knows Next.js 13/14/15 differences and Vercel-specific optimizations.",
-  "model": "opus",
-  "tools": "read_file,write_file,str_replace,create_file"
-}
