@@ -1,272 +1,147 @@
-// Service Page Layout Component with SEO Optimisation
 import React from 'react';
-import Image from 'next/image';
+import { Clock, Shield, Award, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 interface ServicePageLayoutProps {
   title?: string;
   description?: string;
-  heroImage?: string;
-  heroImageAlt?: string;
   heroTitle?: string;
   heroDescription?: string;
-  certifications?: string[];
-  responseTime?: string;
-  availability?: string;
   children: React.ReactNode;
-  relatedServices?: Array<{
-    title: string;
-    href: string;
-    image: string;
-  }>;
-  faqs?: Array<{
-    question: string;
-    answer: string;
-  }>;
-  schemaData?: any;
+  showEmergencyBanner?: boolean;
+  showTrustIndicators?: boolean;
+  serviceType?: string;
+  className?: string;
 }
 
-export const ServicePageLayout: React.FC<ServicePageLayoutProps> = ({
+export default function ServicePageLayout({
   title,
   description,
-  heroImage,
-  heroImageAlt,
   heroTitle,
   heroDescription,
-  certifications = [],
-  responseTime = "60 minutes",
-  availability = "24/7",
   children,
-  relatedServices = [],
-  faqs = [],
-  schemaData
-}) => {
-  // Use heroTitle/heroDescription as fallbacks for title/description
-  const pageTitle = title || heroTitle || "Disaster Recovery Service";
-  const pageDescription = description || heroDescription || "Professional disaster recovery service available 24/7";
-  const imageAlt = heroImageAlt || `${pageTitle} - Professional Service`;
-  const heroImageUrl = heroImage || "/images/services/default-hero.jpg";
+  showEmergencyBanner = true,
+  showTrustIndicators = true,
+  serviceType = 'restoration',
+  className = ''
+}: ServicePageLayoutProps) {
+  // Use heroTitle/heroDescription if provided, otherwise fall back to title/description
+  const displayTitle = heroTitle || title || 'Professional Restoration Services';
+  const displayDescription = heroDescription || description || 'Expert disaster recovery and restoration services in Brisbane, Ipswich, and Logan';
+
   return (
-    <>
-      {/* Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
+    <div className={`min-h-screen bg-gray-50 ${className}`}>
+      {/* Emergency Banner */}
+      {showEmergencyBanner && (
+        <div className="bg-red-600 text-white py-2">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-center gap-2">
+              <Phone className="h-4 w-4" />
+              <span className="font-semibold">24/7 Emergency Response</span>
+              <span className="hidden sm:inline">•</span>
+              <a href="tel:1300900300" className="hover:underline font-bold">
+                Call 1300 900 300
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
-      <section className="relative min-h-[600px] bg-gradient-to-br from-neutral-50 to-neutral-100">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src={heroImageUrl}
-            alt={imageAlt}
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-        </div>
-        <div className="relative container mx-auto px-4 py-24">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-neutral-900 mb-6">
-              {pageTitle}
+      <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              {displayTitle}
             </h1>
-            <p className="text-xl text-neutral-700 mb-8">
-              {pageDescription}
+            <p className="text-xl text-blue-100 mb-8">
+              {displayDescription}
             </p>
-            
-            {/* Trust Indicators */}
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-lg">
-                <h3 className="font-semibold text-emergency-600 mb-2">Response Time</h3>
-                <p className="text-2xl font-bold text-neutral-900">{responseTime}</p>
-              </div>
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-lg">
-                <h3 className="font-semibold text-success-600 mb-2">Availability</h3>
-                <p className="text-2xl font-bold text-neutral-900">{availability}</p>
-              </div>
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-lg">
-                <h3 className="font-semibold text-primary-600 mb-2">Certified</h3>
-                <p className="text-lg font-bold text-neutral-900">{certifications.length} Standards</p>
-              </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/book-service"
+                className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue-900 font-bold rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                Get Immediate Help
+              </Link>
+              <a
+                href="tel:1300900300"
+                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-blue-900 transition-colors"
+              >
+                <Phone className="h-5 w-5 mr-2" />
+                Call Now
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Certifications Bar */}
-      <section className="bg-primary-50 border-y border-primary-200">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-wrap items-center gap-8">
-            <span className="font-semibold text-neutral-700">Certified to:</span>
-            {certifications.map((cert, index) => (
-              <span key={index} className="px-4 py-2 bg-white rounded-full text-sm font-medium text-primary-700 shadow-sm">
-                {cert}
-              </span>
-            ))}
+      {/* Trust Indicators */}
+      {showTrustIndicators && (
+        <section className="bg-white border-b">
+          <div className="container mx-auto px-4 py-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex items-center gap-3">
+                <Clock className="h-10 w-10 text-blue-600 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Rapid Response</h3>
+                  <p className="text-sm text-gray-600">On-site within 60 minutes</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Shield className="h-10 w-10 text-blue-600 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Insurance Approved</h3>
+                  <p className="text-sm text-gray-600">Work with all major insurers</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Award className="h-10 w-10 text-blue-600 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Master Restorer</h3>
+                  <p className="text-sm text-gray-600">IICRC Certified Professionals</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Primary Content */}
-          <div className="lg:col-span-2">
-            {children}
-          </div>
-
-          {/* Sidebar */}
-          <aside className="space-y-8">
-            {/* Emergency CTA */}
-            <div className="bg-emergency-50 border-2 border-emergency-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-emergency-700 mb-4">
-                Emergency? We're Here 24/7
-              </h3>
-              <p className="text-emergency-600 mb-6">
-                Immediate response for disaster emergencies. Our certified technicians are standing by.
-              </p>
-              <a
-                href="/contact"
-                className="block w-full bg-emergency-600 text-white text-center py-4 rounded-lg font-bold text-lg hover:bg-emergency-700 transition-colours"
-              >
-                Call Get Help Now
-              </a>
-              <Link
-                href="/emergency-form"
-                className="block w-full mt-4 bg-white text-emergency-600 text-center py-4 rounded-lg font-bold border-2 border-emergency-600 hover:bg-emergency-50 transition-colours"
-              >
-                Request Emergency Service
-              </Link>
-            </div>
-
-            {/* Service Areas */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-neutral-900 mb-6">
-                Service Coverage
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-center text-neutral-700">
-                  <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Nationwide Coverage
-                </li>
-                <li className="flex items-center text-neutral-700">
-                  <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  1-Hour City Response
-                </li>
-                <li className="flex items-center text-neutral-700">
-                  <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Rural Area Coverage
-                </li>
-                <li className="flex items-center text-neutral-700">
-                  <svg className="w-5 h-5 text-success-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  Insurance Approved
-                </li>
-              </ul>
-            </div>
-
-            {/* Related Services */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold text-neutral-900 mb-6">
-                Related Services
-              </h3>
-              <div className="space-y-4">
-                {relatedServices.map((service, index) => (
-                  <Link
-                    key={index}
-                    href={service.href}
-                    className="flex items-center p-3 rounded-lg hover:bg-neutral-50 transition-colours group"
-                  >
-                    <div className="w-16 h-16 relative rounded-lg overflow-hidden mr-4">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-neutral-900 group-hover:text-primary-600 transition-colours">
-                        {service.title}
-                      </h4>
-                    </div>
-                    <svg className="w-5 h-5 text-neutral-600 group-hover:text-primary-600 transition-colours" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </aside>
-        </div>
+      <main className="container mx-auto px-4 py-12">
+        {children}
       </main>
 
-      {/* FAQ Section */}
-      <section className="bg-neutral-50 py-16">
+      {/* CTA Section */}
+      <section className="bg-blue-900 text-white py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-12 text-center">
-            Frequently Asked Questions
-          </h2>
-          <div className="max-w-3xl mx-auto">
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <details key={index} className="bg-white rounded-lg shadow-md group">
-                  <summary className="px-6 py-4 cursor-pointer list-none flex justify-between items-center font-semibold text-neutral-900 hover:text-primary-600 transition-colours">
-                    {faq.question}
-                    <svg className="w-5 h-5 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </summary>
-                  <div className="px-6 pb-4">
-                    <p className="text-neutral-700 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </details>
-              ))}
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">
+              Need {serviceType} Services Now?
+            </h2>
+            <p className="text-xl mb-8 text-blue-100">
+              Don't wait - water damage worsens every hour. Get professional help immediately.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/book-service"
+                className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue-900 font-bold rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                Book Emergency Service
+              </Link>
+              <a
+                href="tel:1300900300"
+                className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-blue-900 transition-colors"
+              >
+                <Phone className="h-5 w-5 mr-2" />
+                1300 900 300
+              </a>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Bottom CTA */}
-      <section className="bg-gradient-to-r from-primary-600 to-primary-700 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Need {pageTitle}?
-          </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Our IICRC-certified technicians are ready to respond 24/7. Don't wait - every minute counts in disaster recovery.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-primary-600 rounded-lg font-bold text-lg hover:bg-primary-50 transition-colours"
-            >
-              <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              Submit Form Now: Get Help Now
-            </a>
-            <Link
-              href="/get-quote"
-              className="inline-flex items-center justify-center px-8 py-4 bg-primary-800 text-white rounded-lg font-bold text-lg hover:bg-primary-900 transition-colours"
-            >
-              Get Free Assessment
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   );
-};
-
-export default ServicePageLayout;
+}
