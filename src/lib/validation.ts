@@ -59,25 +59,25 @@ export const ValidationSchemas = {
     }),
     
     urgency: z.enum(['emergency', 'urgent', 'planning', 'routine'], {
-      errorMap: () => ({ message: 'Please select urgency level' }),'
+      errorMap: () => ({ message: 'Please select urgency level' })
     }),
     
     message: z.string()
       .min(10, 'Message must be at least 10 characters')
-      .max(2000, 'Message must be less than 2000 characters'),'
+      .max(2000, 'Message must be less than 2000 characters'),
     
-    propertyType: z.enum(['residential', 'commercial', 'industrial']).optional(),'
+    propertyType: z.enum(['residential', 'commercial', 'industrial']).optional(),
     hasInsurance: z.boolean().optional(),
-    preferredContact: z.enum(['email', 'email', 'both']).optional(),'
+    preferredContact: z.enum(['email', 'email', 'both']).optional(),
   }),
   
   // Booking form validation
   bookingForm: z.object({
     // Service Details
-    serviceType: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'structural', 'biohazard', 'other']),'
-    urgency: z.enum(['emergency', 'urgent', 'routine']),'
-    propertyType: z.enum(['residential', 'commercial', 'industrial']),'
-    estimatedDamage: z.string().min(1, 'Please select estimated damage'),'
+    serviceType: z.enum(['water', 'fire', 'mould', 'storm', 'flood', 'structural', 'biohazard', 'other']),
+    urgency: z.enum(['emergency', 'urgent', 'routine']),
+    propertyType: z.enum(['residential', 'commercial', 'industrial']),
+    estimatedDamage: z.string().min(1, 'Please select estimated damage'),
     
     // Schedule
     date: z.string()
@@ -87,84 +87,84 @@ export const ValidationSchemas = {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         return selectedDate >= today;
-      },'Date cannot be in the past'),'
+      },'Date cannot be in the past'),
     
     time: z.string()
-      .regex(/^\d{2}:\d{2}$/, 'Invalid time format'),'
+      .regex(/^\d{2}:\d{2}$/, 'Invalid time format'),
     
     // Contact Information
     firstName: z.string()
       .min(2, 'First name must be at least 2 characters')
       .max(50, 'First name must be less than 50 characters')
-      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),'
+      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),
     
     lastName: z.string()
       .min(2, 'Last name must be at least 2 characters')
       .max(50, 'Last name must be less than 50 characters')
-      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),'
+      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),
     
-    email: z.string().email('Invalid email address'),'
+    email: z.string().email('Invalid email address'),
     
     
-      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian Email Address'),'
+      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian Email Address'),
     
-    preferredContact: z.enum(['email', 'email', 'both']),'
+    preferredContact: z.enum(['email', 'email', 'both']),
     
     // Address
     streetAddress: z.string()
       .min(5, 'Street address is required')
-      .max(200, 'Street address is too long'),'
+      .max(200, 'Street address is too long'),
     
     suburb: z.string()
       .min(2, 'Suburb is required')
-      .max(100, 'Suburb name is too long'),'
+      .max(100, 'Suburb name is too long'),
     
     state: z.enum(AUSTRALIAN_STATES, {
-      errorMap: () => ({ message: 'Please select a valid Australian state' }),'
+      errorMap: () => ({ message: 'Please select a valid Australian state' })
     }),
     
     postcode: z.string()
-      .regex(ValidationPatterns.POSTCODE_AU, 'Invalid Australian postcode'),'
+      .regex(ValidationPatterns.POSTCODE_AU, 'Invalid Australian postcode'),
     
     // Additional Information
     hasInsurance: z.boolean(),
     insuranceProvider: z.string().optional(),
     claimNumber: z.string().optional(),
-    additionalNotes: z.string().max(1000, 'Notes must be less than 1000 characters').optional(),'
-    accessInstructions: z.string().max(500, 'Instructions must be less than 500 characters').optional(),'
+    additionalNotes: z.string().max(1000, 'Notes must be less than 1000 characters').optional(),
+    accessInstructions: z.string().max(500, 'Instructions must be less than 500 characters').optional(),
   }),
   
   // Login form validation
   loginForm: z.object({
     email: z.string()
-      .email('Please enter a valid email address'),'
+      .email('Please enter a valid email address'),
     
     password: z.string()
-      .min(1, 'Password is required'),'
+      .min(1, 'Password is required'),
     
     rememberMe: z.boolean().optional() }),
   
   // Registration form validation
   registrationForm: z.object({
     email: z.string()
-      .email('Please enter a valid email address'),'
+      .email('Please enter a valid email address'),
     
     password: z.string()
       .regex(ValidationPatterns.STRONG_PASSWORD, 
-        'Password must be at least 8 characters with uppercase, lowercase, number, and special character'),'
+        'Password must be at least 8 characters with uppercase, lowercase, number, and special character'),
     
     confirmPassword: z.string(),
     
     firstName: z.string()
       .min(2, 'First name must be at least 2 characters')
-      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),'
+      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in first name'),
     
     lastName: z.string()
       .min(2, 'Last name must be at least 2 characters')
-      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),'
+      .regex(/^[a-zA-Z\s'-]+$/, 'Invalid characters in last name'),
     
     
-      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian Email Address'),'
+      .regex(ValidationPatterns.PHONE_AU, 'Invalid Australian Email Address'),
     
     companyName: z.string().optional(),
     
@@ -173,7 +173,7 @@ export const ValidationSchemas = {
       .optional(),
     
     acceptTerms: z.boolean()
-      .refine(val => val === true, 'You must accept the terms and conditions'),'
+      .refine(val => val === true, 'You must accept the terms and conditions'),
   }).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"],"
@@ -183,14 +183,14 @@ export const ValidationSchemas = {
   insuranceClaim: z.object({
     policyNumber: z.string()
       .min(5, 'Policy number is required')
-      .max(50, 'Policy number is too long'),'
+      .max(50, 'Policy number is too long'),
     
     claimNumber: z.string()
       .min(5, 'Claim number is required')
-      .max(50, 'Claim number is too long'),'
+      .max(50, 'Claim number is too long'),
     
     insurer: z.string()
-      .min(2, 'Insurance company name is required'),'
+      .min(2, 'Insurance company name is required'),
     
     dateOfLoss: z.string()
       .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format')
@@ -198,11 +198,11 @@ export const ValidationSchemas = {
         const lossDate = new Date(date);
         const today = new Date();
         return lossDate <= today;
-      },'Date of loss cannot be in the future'),'
+      },'Date of loss cannot be in the future'),
     
     excessAmount: z.number()
       .min(0, 'Excess cannot be negative')
-      .max(10000, 'Excess amount seems too high'),'
+      .max(10000, 'Excess amount seems too high'),
   }) };
 
 /**
@@ -324,7 +324,7 @@ export const CustomValidators = {
       return {
         isValid: false,
         formatted: abn,
-        error: 'Invalid ABN (checksum failed),'
+        error: 'Invalid ABN (checksum failed),
       };
     }
     
