@@ -100,12 +100,12 @@ export default function CommercialRestorationPage() {
         <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-12 text-center">
           <h2 className="text-3xl font-bold mb-4">Minimize Business Downtime</h2>
           <p className="text-xl mb-8">Get your business back to operational status fast with our commercial restoration experts</p>
-          <button
-            onClick={() => window.location.href = 'tel:1300309361'}
-            className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
+          <a
+            href="tel:1300309361"
+            className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
           >
             Call 1300 309 361 - 24/7 Response
-          </button>
+          </a>
         </div>
       </div>
     </div>
