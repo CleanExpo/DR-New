@@ -15,10 +15,12 @@ if (fs.existsSync(nextDir)) {
 }
 
 // Set optimized environment for Vercel
-process.env.NODE_OPTIONS = '--max-old-space-size=4096';
+process.env.NODE_OPTIONS = '--max-old-space-size=3072'; // Reduce to 3GB for better stability
 process.env.NEXT_TELEMETRY_DISABLED = '1';
 process.env.SKIP_ENV_VALIDATION = 'true';
-process.env.NEXT_BUILD_WORKERS = '2'; // Limit concurrent builds
+process.env.NEXT_BUILD_WORKERS = '1'; // Single worker for maximum memory efficiency
+process.env.NEXT_SHARP_PATH = '/tmp/node_modules/sharp';
+process.env.DISABLE_JEST_WORKERINFO = 'true';
 
 // Use SQLite for build
 if (!process.env.DATABASE_URL) {
@@ -26,10 +28,11 @@ if (!process.env.DATABASE_URL) {
 }
 
 console.log('📊 Build Configuration:');
-console.log(`   Memory Limit: 4096MB`);
-console.log(`   Build Workers: 2`);
+console.log(`   Memory Limit: 3072MB`);
+console.log(`   Build Workers: 1`);
 console.log(`   Telemetry: Disabled`);
-console.log(`   Database: SQLite\n`);
+console.log(`   Database: SQLite`);
+console.log(`   Sharp Path: /tmp/node_modules/sharp\n`);
 
 try {
   // Generate Prisma client
@@ -48,8 +51,9 @@ try {
     stdio: 'inherit',
     env: {
       ...process.env,
-      NEXT_BUILD_WORKERS: '2',
+      NEXT_BUILD_WORKERS: '1',
       NODE_ENV: 'production',
+      NEXT_EXPERIMENTAL_PRELOAD_ENTRIES_ON_START: 'false'
     }
   });
 

@@ -3,9 +3,9 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "installCommand": "npm ci --omit=dev",
-  "buildCommand": "npx prisma generate && next build",
+  "buildCommand": "node scripts/build-vercel-optimized.js",
   "env": {
-    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "NODE_OPTIONS": "--max-old-space-size=3072",
     "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
     "DATABASE_URL": "file:./prod.db",
     "SKIP_ENV_VALIDATION": "true",
@@ -19,7 +19,7 @@
   },
   "build": {
     "env": {
-      "NODE_OPTIONS": "--max-old-space-size=4096",
+      "NODE_OPTIONS": "--max-old-space-size=3072",
       "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
       "DATABASE_URL": "file:./build.db",
       "NEXT_TELEMETRY_DISABLED": "1",
