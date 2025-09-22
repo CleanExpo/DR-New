@@ -224,7 +224,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 text-xl font-bold"
-                onClick={() => window.location.href = 'tel:1300309361'}
+                href="tel:1300309361"
               >
                 <Phone className="w-6 h-6 mr-3" />
                 Call 1300 309 361 Now
@@ -335,7 +335,7 @@ export default function HomePage() {
 <Button 
                 size="lg" 
                 className="bg-green-500 hover:bg-green-400 text-white px-8 py-6 text-lg"
-                onClick={() => window.location.href = '/claim'}
+                href="/claim"
               >
                 Submit Claim Online
                 <Globe className="ml-2 h-5 w-5" />
