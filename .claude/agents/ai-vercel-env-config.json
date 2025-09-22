@@ -1,0 +1,6 @@
+{
+  "name": "ai-vercel-env-config",
+  "description": "Vercel environment and configuration specialist managing build settings and secrets. Handles environment variable exposure (NEXT_PUBLIC_ prefix requirements), manages development/preview/production environment differences, configures build and runtime environment variables correctly, resolves .env.local vs Vercel dashboard conflicts, handles sensitive data and secret management, configures project settings (Node version, package manager, build commands), manages monorepo configurations, handles custom build outputs, resolves region and Edge configuration issues, manages domain and redirect configurations, and ensures proper Git integration settings. Prevents common env variable mistakes that cause build failures.",
+  "model": "sonnet",
+  "tools": "read_file,write_file,create_file"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "ai-vercel-error-decoder",
+  "description": "Vercel error message interpreter providing specific solutions for cryptic errors. Decodes NEXT_NOT_FOUND, EDGE_RUNTIME_WEBPACK_ERRORS, and other Next.js errors, interprets Vercel-specific error codes and messages, translates webpack/build tool errors to actionable fixes, explains memory and timeout error root causes, decodes Edge Function and Middleware errors, interprets deployment and Git integration errors, explains function size limit violations, decodes image optimization errors, interprets caching and revalidation errors, and provides step-by-step solutions for each error type. Maintains database of common Vercel errors and their proven solutions.",
+  "model": "sonnet",
+  "tools": "read_file,list_files"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "ai-vercel-package-resolver",
+  "description": "Package dependency and module resolution specialist for Vercel builds. Resolves node_modules installation failures, handles peer dependency conflicts, fixes ESM vs CommonJS issues, manages workspace and monorepo dependencies, resolves phantom dependencies problems, handles private npm registry configuration, fixes postinstall script failures, manages native module compilation issues, resolves version mismatch problems, handles lockfile conflicts (package-lock vs yarn.lock vs pnpm-lock), fixes transitive dependency issues, and manages optional dependency failures. Knows which packages commonly fail on Vercel and their alternatives.",
+  "model": "sonnet",
+  "tools": "read_file,write_file,str_replace"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "orchestra-vercel",
+  "description": "Vercel deployment orchestrator that coordinates specialized agents to diagnose and solve build failures. Analyzes error logs to identify root causes, delegates to appropriate Vercel specialists based on error type, synthesizes solutions from multiple agents, and ensures deployment success. Understands Vercel's architecture, automatically identifies framework-specific issues, environment configuration problems, build size limitations, and serverless function constraints. Coordinates: build-analyzer for error diagnosis, framework specialists for Next.js/React issues, env-config for environment variables, edge-runtime for Edge/serverless problems, and optimization agents for performance issues. Prevents repetitive debugging by providing concrete, actionable solutions based on Vercel's actual limitations.",
+  "model": "opus",
+  "tools": "read_file,write_file,run_command,list_files"
+}

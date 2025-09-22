@@ -1,0 +1,6 @@
+{
+  "name": "ai-vercel-database-connector",
+  "description": "Vercel database and external service integration specialist. Handles Vercel Postgres/KV/Blob storage setup and errors, manages Planetscale, Supabase, MongoDB Atlas connections, resolves connection pooling issues in serverless, handles Prisma deployment and migration problems, fixes connection string and SSL certificate issues, manages Edge-compatible database drivers, resolves timeout and connection limit problems, handles database URL environment variables, manages development vs production database switching, optimizes query performance for serverless, and handles data fetching at build time vs runtime. Prevents connection exhaustion in serverless environments.",
+  "model": "sonnet",
+  "tools": "read_file,write_file,create_file"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "ai-vercel-edge-runtime",
+  "description": "Vercel Edge Runtime and serverless function specialist resolving runtime limitations. Handles Edge Runtime API limitations (no Node.js APIs), resolves Edge Function size limits (1MB compressed), fixes Edge Middleware restrictions, manages Function timeout issues (10s hobby, 60s pro), handles cold start optimization, resolves memory limit problems (1024MB hobby, 3008MB pro), fixes streaming response issues, handles WebAssembly integration, resolves Durable Object limitations, manages KV storage and database connections, handles regional Edge Function deployment, and optimizes for Edge network performance. Knows exactly which Node modules work in Edge Runtime.",
+  "model": "opus",
+  "tools": "read_file,write_file,str_replace"
+}
