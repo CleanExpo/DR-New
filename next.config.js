@@ -234,6 +234,8 @@ const nextConfig = {
     // Reduce memory usage during build - Vercel optimized
     workerThreads: false,
     cpus: 1,
+    // Use ISR for dynamic pages
+    isrFlushToDisk: true,
   },
 
   // Production optimizations
