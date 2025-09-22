@@ -10,10 +10,10 @@
     "DATABASE_URL": "file:./prod.db",
     "SKIP_ENV_VALIDATION": "true",
     "NEXT_TELEMETRY_DISABLED": "1",
-    "NEXTAUTH_URL": "https://dr-new.vercel.app",
+    "NEXTAUTH_URL": "https://dr-new-unite-group.vercel.app",
     "NEXTAUTH_SECRET": "/LGn3ayna3ZCC2djiCZCM3RBo9wNHHqE08HVGkgzVcc=",
-    "NEXT_PUBLIC_SITE_URL": "https://dr-new.vercel.app",
-    "NEXT_PUBLIC_APP_URL": "https://dr-new.vercel.app",
+    "NEXT_PUBLIC_SITE_URL": "https://dr-new-unite-group.vercel.app",
+    "NEXT_PUBLIC_APP_URL": "https://dr-new-unite-group.vercel.app",
     "NEXT_PUBLIC_DEMO_MODE": "false",
     "SKIP_BUILD_ERRORS": "true"
   },
@@ -25,10 +25,10 @@
       "NEXT_TELEMETRY_DISABLED": "1",
       "SKIP_ENV_VALIDATION": "true",
       "CI": "false",
-      "NEXTAUTH_URL": "https://dr-new.vercel.app",
+      "NEXTAUTH_URL": "https://dr-new-unite-group.vercel.app",
       "NEXTAUTH_SECRET": "/LGn3ayna3ZCC2djiCZCM3RBo9wNHHqE08HVGkgzVcc=",
-      "NEXT_PUBLIC_SITE_URL": "https://dr-new.vercel.app",
-      "NEXT_PUBLIC_APP_URL": "https://dr-new.vercel.app",
+      "NEXT_PUBLIC_SITE_URL": "https://dr-new-unite-group.vercel.app",
+      "NEXT_PUBLIC_APP_URL": "https://dr-new-unite-group.vercel.app",
       "NEXT_PUBLIC_DEMO_MODE": "false",
       "SKIP_BUILD_ERRORS": "true"
     }

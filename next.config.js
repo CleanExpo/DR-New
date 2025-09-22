@@ -22,6 +22,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   
   // Performance optimizations
   compiler: {
