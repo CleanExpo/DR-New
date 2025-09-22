@@ -1,4 +1,4 @@
-# CLAUDE.md - Disaster Recovery QLD Local Service
+# CLAUDE.md - Disaster Recovery Local Service
 
 ## Project Focus
 
@@ -62,8 +62,8 @@ This is a LOCAL service website focused on:
 ### **Environment Configuration**
 ```bash
 # Production
-NEXT_PUBLIC_APP_URL=https://dr-new.vercel.app
-NEXTAUTH_URL=https://dr-new.vercel.app
+NEXT_PUBLIC_APP_URL=https://dr-new-unite-group.vercel.app
+NEXTAUTH_URL=https://dr-new-unite-group.vercel.app
 
 # Local Development
 NEXT_PUBLIC_APP_URL=http://localhost:3000

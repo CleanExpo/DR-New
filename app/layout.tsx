@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   keywords: 'disaster recovery australia, water damage restoration sydney, fire damage melbourne, mould remediation brisbane, emergency restoration perth, flood cleanup adelaide, storm damage repair, biohazard cleanup, IICRC certified, insurance restoration, 24 hour emergency response, commercial restoration, residential restoration',
   authors: [{ name: 'Disaster Recovery Australia' }],
   creator: 'Disaster Recovery Australia',
-  publisher: 'Disaster Recovery Brisbane',
+  publisher: 'Disaster Recovery',
   formatDetection: {
     email: false,
     address: false,
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_AU',
-    url: 'https://disaster-recovery-seven.vercel.app',
+    url: 'https://dr-new-unite-group.vercel.app',
     siteName: 'Disaster Recovery Australia',
     title: 'Disaster Recovery Australia | 24/7 IICRC-Certified Emergency Restoration',
     description: 'Australia\'s elite network of <10,000 IICRC-certified restoration professionals. 24/7 emergency response prevents 50% of secondary damage. Trusted by major insurers.',
@@ -144,9 +144,9 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Disaster Recovery Australia",
-              "alternateName": "Disaster Recovery QLD",
-              "url": "https://disaster-recovery-seven.vercel.app",
-              "logo": "https://disaster-recovery-seven.vercel.app/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
+              "alternateName": "Disaster Recovery",
+              "url": "https://dr-new-unite-group.vercel.app",
+              "logo": "https://dr-new-unite-group.vercel.app/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
               "description": "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",
               "areaServed": {
                 "@type": "Country",
