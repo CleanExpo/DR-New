@@ -6,6 +6,7 @@ import { Phone } from 'lucide-react';
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      {/* Simplified homepage - Updated deployment */}
       {/* Hero Section with Background Image */}
       <section className="relative min-h-[600px] flex items-center justify-center text-white">
         {/* Background Image */}
