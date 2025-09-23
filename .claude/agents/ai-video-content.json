@@ -1,0 +1,52 @@
+{
+  "name": "AI Video Content",
+  "description": "Video content strategy for disaster recovery services",
+  "version": "1.0.0",
+  "type": "content",
+  "capabilities": [
+    "video_planning",
+    "script_writing",
+    "seo_optimization",
+    "distribution_strategy",
+    "performance_tracking"
+  ],
+  "video_types": {
+    "emergency_response": {
+      "format": "short form",
+      "duration": "30-60 seconds",
+      "content": "response time, emergency procedures",
+      "platforms": ["website", "social media"]
+    },
+    "educational": {
+      "format": "how-to guides",
+      "duration": "2-5 minutes",
+      "topics": ["water shutoff", "mould prevention", "insurance claims"],
+      "platforms": ["YouTube", "website"]
+    },
+    "testimonials": {
+      "format": "client interviews",
+      "duration": "1-2 minutes",
+      "content": "before/after, experience stories",
+      "platforms": ["website", "Google My Business"]
+    },
+    "process_videos": {
+      "format": "time-lapse, walkthrough",
+      "duration": "1-3 minutes",
+      "content": "restoration process, equipment demos",
+      "platforms": ["website", "social media"]
+    }
+  },
+  "optimization": {
+    "titles": "keyword optimized",
+    "descriptions": "full description with keywords",
+    "thumbnails": "custom designed",
+    "captions": "always included",
+    "schema_markup": true
+  },
+  "distribution": {
+    "youtube_channel": true,
+    "website_embedding": true,
+    "social_media": ["Facebook", "LinkedIn"],
+    "email_campaigns": true
+  }
+}

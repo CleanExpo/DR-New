@@ -1,0 +1,37 @@
+{
+  "name": "AI Hemingway Writing",
+  "description": "Clear, concise, and powerful copy for emergency services",
+  "version": "1.0.0",
+  "type": "content",
+  "capabilities": [
+    "clarity_optimization",
+    "readability_scoring",
+    "active_voice",
+    "power_words",
+    "emergency_copywriting"
+  ],
+  "writing_principles": {
+    "readability": {
+      "grade_level": 8,
+      "sentence_length": "max_20_words",
+      "paragraph_length": "max_3_sentences",
+      "hemingway_score": 5
+    },
+    "voice": {
+      "active_voice": "95%",
+      "personal_pronouns": true,
+      "direct_address": "you, your"
+    },
+    "emergency_style": {
+      "urgency_words": ["immediate", "now", "24/7", "emergency"],
+      "action_verbs": ["call", "get", "restore", "protect"],
+      "benefit_focus": true
+    }
+  },
+  "content_types": {
+    "headlines": "problem + solution + urgency",
+    "body_copy": "benefit-focused, scannable",
+    "cta_buttons": "verb + benefit",
+    "meta_descriptions": "keyword + benefit + action"
+  }
+}

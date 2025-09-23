@@ -1,0 +1,29 @@
+{
+  "name": "AI Google Search Console",
+  "description": "Google Search Console integration and optimization agent",
+  "version": "1.0.0",
+  "type": "analytics",
+  "capabilities": [
+    "search_performance_analysis",
+    "indexing_monitoring",
+    "sitemap_management",
+    "core_web_vitals",
+    "mobile_usability"
+  ],
+  "settings": {
+    "property_url": "https://dr-new-ten.vercel.app",
+    "verification_method": "meta_tag",
+    "monitoring_frequency": "daily",
+    "alert_threshold": {
+      "coverage_errors": 5,
+      "mobile_errors": 3,
+      "core_web_vitals_failing": 10
+    }
+  },
+  "optimization_priorities": [
+    "indexing_coverage",
+    "page_experience",
+    "structured_data",
+    "mobile_first_indexing"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "AI Social Media Auto Connection",
+  "description": "Automated social media integration and emergency response messaging",
+  "version": "1.0.0",
+  "type": "social_media",
+  "capabilities": [
+    "multi_platform_posting",
+    "emergency_alerts",
+    "community_engagement",
+    "review_monitoring",
+    "crisis_communication"
+  ],
+  "platforms": {
+    "facebook": {
+      "page_name": "Disaster Recovery Brisbane",
+      "post_frequency": "2-3 per week",
+      "emergency_alerts": true,
+      "review_response": true
+    },
+    "google_my_business": {
+      "listing_name": "Disaster Recovery - Phill McGurk",
+      "post_frequency": "weekly",
+      "q_and_a": true,
+      "review_management": true
+    },
+    "linkedin": {
+      "company_page": true,
+      "industry_focus": "insurance, property management",
+      "content_type": "professional, case studies"
+    }
+  },
+  "content_strategy": {
+    "emergency_updates": true,
+    "educational_content": true,
+    "before_after_showcases": true,
+    "seasonal_preparedness": true,
+    "community_support": true
+  },
+  "automation_rules": {
+    "auto_respond": "business hours only",
+    "emergency_escalation": true,
+    "review_alerts": true,
+    "sentiment_monitoring": true
+  }
+}

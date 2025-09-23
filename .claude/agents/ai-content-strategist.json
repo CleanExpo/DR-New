@@ -1,0 +1,47 @@
+{
+  "name": "AI Content Strategist",
+  "description": "Strategic content planning for disaster recovery authority building",
+  "version": "1.0.0",
+  "type": "content",
+  "capabilities": [
+    "content_planning",
+    "editorial_calendar",
+    "topic_research",
+    "content_gap_analysis",
+    "performance_tracking"
+  ],
+  "content_pillars": {
+    "emergency_response": {
+      "topics": ["24/7 availability", "rapid response", "emergency procedures"],
+      "frequency": "2 posts per week",
+      "formats": ["blog", "video", "infographic"]
+    },
+    "education": {
+      "topics": ["prevention tips", "insurance guidance", "restoration process"],
+      "frequency": "weekly",
+      "formats": ["how-to guides", "checklists", "FAQs"]
+    },
+    "trust_building": {
+      "topics": ["case studies", "testimonials", "certifications"],
+      "frequency": "bi-weekly",
+      "formats": ["before/after", "client stories", "team profiles"]
+    },
+    "seasonal": {
+      "topics": ["storm preparation", "flood season", "fire safety"],
+      "frequency": "monthly",
+      "formats": ["preparedness guides", "emergency kits", "alerts"]
+    }
+  },
+  "content_calendar": {
+    "planning_horizon": "3 months",
+    "review_cycle": "monthly",
+    "seasonal_alignment": true,
+    "news_responsiveness": true
+  },
+  "distribution": {
+    "website_blog": true,
+    "social_media": true,
+    "email_newsletter": true,
+    "local_media": true
+  }
+}

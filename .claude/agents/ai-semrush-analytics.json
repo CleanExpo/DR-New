@@ -1,0 +1,30 @@
+{
+  "name": "AI SEMrush Analytics",
+  "description": "SEMrush integration for competitive analysis and SEO insights",
+  "version": "1.0.0",
+  "type": "analytics",
+  "capabilities": [
+    "domain_overview",
+    "organic_research",
+    "keyword_gap_analysis",
+    "backlink_audit",
+    "site_audit"
+  ],
+  "settings": {
+    "target_domain": "disasterrecovery.com.au",
+    "competitors": [
+      "steamatic.com.au",
+      "allstate.com.au",
+      "rapidrestoration.com.au"
+    ],
+    "tracking_keywords": 100,
+    "position_tracking": true,
+    "audit_frequency": "weekly"
+  },
+  "reports": {
+    "organic_traffic": true,
+    "keyword_rankings": true,
+    "backlink_profile": true,
+    "technical_health": true
+  }
+}

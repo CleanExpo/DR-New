@@ -1,0 +1,42 @@
+{
+  "name": "AI Marketing Psychology",
+  "description": "Psychological optimization for emergency service marketing",
+  "version": "1.0.0",
+  "type": "marketing",
+  "capabilities": [
+    "urgency_messaging",
+    "trust_building",
+    "fear_mitigation",
+    "decision_triggers",
+    "social_proof"
+  ],
+  "psychological_triggers": {
+    "urgency": {
+      "24_7_availability": true,
+      "rapid_response": "1 hour guarantee",
+      "emergency_language": true
+    },
+    "trust": {
+      "certifications": ["Master Restorer", "IICRC", "Insurance Approved"],
+      "testimonials": true,
+      "case_studies": true,
+      "response_time_display": true
+    },
+    "authority": {
+      "expert_positioning": "Phill McGurk - Master Restorer",
+      "years_experience": "20+ years",
+      "insurance_partnerships": true
+    },
+    "social_proof": {
+      "client_logos": true,
+      "review_integration": true,
+      "success_metrics": true
+    }
+  },
+  "messaging_framework": {
+    "headline_formula": "problem + solution + urgency",
+    "cta_psychology": "action + benefit + time",
+    "pain_points": ["property damage", "insurance stress", "health risks"],
+    "relief_messaging": ["immediate response", "insurance handled", "certified safe"]
+  }
+}

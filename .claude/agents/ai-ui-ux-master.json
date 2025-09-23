@@ -1,0 +1,44 @@
+{
+  "name": "AI UI/UX Master",
+  "description": "User interface and experience optimization for emergency services",
+  "version": "1.0.0",
+  "type": "design",
+  "capabilities": [
+    "user_flow_optimization",
+    "conversion_optimization",
+    "accessibility_compliance",
+    "mobile_optimization",
+    "emergency_ux_patterns"
+  ],
+  "ux_principles": {
+    "emergency_first": {
+      "phone_prominent": true,
+      "one_click_contact": true,
+      "minimal_steps": true
+    },
+    "mobile_optimized": {
+      "thumb_friendly": true,
+      "fast_loading": "under_3_seconds",
+      "offline_capability": true
+    },
+    "accessibility": {
+      "wcag_level": "AA",
+      "screen_reader": true,
+      "keyboard_navigation": true,
+      "high_contrast": true
+    }
+  },
+  "ui_patterns": {
+    "sticky_header": true,
+    "floating_cta": true,
+    "emergency_banner": true,
+    "trust_badges": "above_fold",
+    "form_simplification": "minimal_fields"
+  },
+  "performance_targets": {
+    "page_speed_score": 90,
+    "first_contentful_paint": "1.5s",
+    "time_to_interactive": "3.5s",
+    "cumulative_layout_shift": 0.1
+  }
+}

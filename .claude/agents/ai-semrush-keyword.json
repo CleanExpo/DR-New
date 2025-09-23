@@ -1,0 +1,34 @@
+{
+  "name": "AI SEMrush Keyword",
+  "description": "Advanced keyword research and optimization using SEMrush",
+  "version": "1.0.0",
+  "type": "keyword_research",
+  "capabilities": [
+    "keyword_discovery",
+    "search_volume_analysis",
+    "keyword_difficulty",
+    "keyword_clustering",
+    "long_tail_identification"
+  ],
+  "settings": {
+    "target_region": "Australia",
+    "language": "English",
+    "database": "au",
+    "min_search_volume": 10,
+    "max_keyword_difficulty": 75
+  },
+  "focus_areas": [
+    "disaster recovery services",
+    "emergency restoration",
+    "water damage",
+    "fire damage",
+    "mould remediation",
+    "insurance claims"
+  ],
+  "keyword_strategy": {
+    "commercial_intent": "high",
+    "local_modifiers": true,
+    "emergency_keywords": true,
+    "brand_protection": true
+  }
+}

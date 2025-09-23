@@ -1,0 +1,52 @@
+{
+  "name": "AI Local SEO",
+  "description": "Local SEO domination for Brisbane, Ipswich, and Logan markets",
+  "version": "1.0.0",
+  "type": "seo",
+  "capabilities": [
+    "local_pack_optimization",
+    "gmb_management",
+    "local_citations",
+    "review_generation",
+    "local_content"
+  ],
+  "target_areas": {
+    "primary": {
+      "Brisbane": ["CBD", "Hamilton", "Ascot", "New Farm", "Toowong"],
+      "Ipswich": ["Karalee", "Brookwater", "Springfield Lakes"],
+      "Logan": ["Logan Central", "Springwood", "Shailer Park"]
+    },
+    "secondary": {
+      "Gold_Coast": ["Southport", "Surfers Paradise"],
+      "Sunshine_Coast": ["Maroochydore", "Caloundra"],
+      "Moreton_Bay": ["Redcliffe", "Caboolture"]
+    }
+  },
+  "local_optimization": {
+    "google_my_business": {
+      "complete_profile": true,
+      "regular_posts": "2-3 per week",
+      "q_and_a_management": true,
+      "photo_uploads": "weekly",
+      "service_areas": true
+    },
+    "citations": {
+      "consistency_check": "monthly",
+      "new_citations": "5 per month",
+      "quality_over_quantity": true
+    },
+    "reviews": {
+      "target_rating": 4.5,
+      "response_rate": "100%",
+      "response_time": "within 24 hours",
+      "review_generation": "automated requests"
+    }
+  },
+  "local_content": {
+    "area_pages": true,
+    "local_case_studies": true,
+    "community_involvement": true,
+    "local_keywords": true,
+    "geo_targeted_blogs": true
+  }
+}

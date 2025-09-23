@@ -1,0 +1,47 @@
+{
+  "name": "AI Technical SEO",
+  "description": "Technical SEO implementation and monitoring",
+  "version": "1.0.0",
+  "type": "seo",
+  "capabilities": [
+    "site_architecture",
+    "crawlability",
+    "indexability",
+    "page_speed",
+    "structured_data"
+  ],
+  "technical_requirements": {
+    "sitemap": {
+      "xml_sitemap": true,
+      "html_sitemap": true,
+      "image_sitemap": true,
+      "update_frequency": "daily"
+    },
+    "robots_txt": {
+      "crawl_delay": 0,
+      "disallow_paths": ["/admin", "/api", "/.well-known"],
+      "sitemap_reference": true
+    },
+    "schema_markup": {
+      "organization": true,
+      "local_business": true,
+      "emergency_service": true,
+      "faq": true,
+      "how_to": true
+    },
+    "performance": {
+      "lazy_loading": true,
+      "image_optimization": true,
+      "minification": true,
+      "caching": true,
+      "cdn": true
+    }
+  },
+  "monitoring": {
+    "crawl_errors": true,
+    "404_pages": true,
+    "redirect_chains": true,
+    "duplicate_content": true,
+    "canonical_tags": true
+  }
+}

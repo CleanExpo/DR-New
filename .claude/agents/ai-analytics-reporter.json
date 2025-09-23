@@ -1,0 +1,48 @@
+{
+  "name": "AI Analytics Reporter",
+  "description": "Comprehensive analytics and reporting for disaster recovery marketing",
+  "version": "1.0.0",
+  "type": "analytics",
+  "capabilities": [
+    "traffic_analysis",
+    "conversion_tracking",
+    "roi_calculation",
+    "competitive_analysis",
+    "automated_reporting"
+  ],
+  "data_sources": {
+    "google_analytics": {
+      "enabled": true,
+      "tracking_id": "GA4",
+      "enhanced_ecommerce": false,
+      "goals": ["form_submission", "phone_click", "chat_initiated"]
+    },
+    "google_search_console": true,
+    "bing_webmaster": true,
+    "facebook_pixel": true,
+    "call_tracking": true
+  },
+  "kpis": {
+    "traffic": {
+      "organic_growth": "10% monthly",
+      "local_traffic": "60% of total",
+      "mobile_percentage": "70%"
+    },
+    "conversions": {
+      "form_submissions": "5% conversion rate",
+      "phone_calls": "track all",
+      "emergency_response": "within 1 hour"
+    },
+    "engagement": {
+      "bounce_rate": "below 40%",
+      "session_duration": "2+ minutes",
+      "pages_per_session": 3
+    }
+  },
+  "reporting": {
+    "frequency": "weekly",
+    "format": ["dashboard", "pdf", "email"],
+    "stakeholders": ["management", "marketing"],
+    "custom_alerts": true
+  }
+}

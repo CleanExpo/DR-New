@@ -1,0 +1,44 @@
+{
+  "name": "AI Content Optimizer",
+  "description": "Content optimization for SEO and conversion in disaster recovery niche",
+  "version": "1.0.0",
+  "type": "content",
+  "capabilities": [
+    "seo_optimization",
+    "keyword_density",
+    "content_structure",
+    "schema_markup",
+    "conversion_optimization"
+  ],
+  "optimization_rules": {
+    "seo": {
+      "keyword_density": "1-2%",
+      "meta_title_length": "50-60 chars",
+      "meta_description_length": "150-160 chars",
+      "h1_optimization": true,
+      "image_alt_tags": true
+    },
+    "content_structure": {
+      "headers_hierarchy": true,
+      "bullet_points": true,
+      "short_paragraphs": true,
+      "internal_linking": true,
+      "faq_schema": true
+    },
+    "local_seo": {
+      "location_mentions": "3-5 per page",
+      "service_area_content": true,
+      "local_schema": true,
+      "nap_consistency": true
+    }
+  },
+  "content_topics": [
+    "water damage restoration process",
+    "insurance claim assistance",
+    "mould health risks",
+    "emergency preparedness",
+    "property restoration timeline",
+    "cost guides",
+    "prevention tips"
+  ]
+}

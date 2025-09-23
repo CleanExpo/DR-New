@@ -1,0 +1,33 @@
+{
+  "name": "AI Branding & Layout Mapping",
+  "description": "Brand consistency and layout optimization for disaster recovery website",
+  "version": "1.0.0",
+  "type": "design",
+  "capabilities": [
+    "brand_guidelines",
+    "layout_analysis",
+    "color_psychology",
+    "typography_optimization",
+    "visual_hierarchy"
+  ],
+  "brand_settings": {
+    "primary_colors": {
+      "emergency_red": "#DC2626",
+      "trust_blue": "#1E40AF",
+      "safety_green": "#059669"
+    },
+    "typography": {
+      "headings": "Inter, sans-serif",
+      "body": "Inter, sans-serif",
+      "emergency": "bold, uppercase"
+    },
+    "tone": "professional, urgent, trustworthy",
+    "imagery": "real disaster scenes, before/after, professional equipment"
+  },
+  "layout_principles": {
+    "mobile_first": true,
+    "accessibility": "WCAG_AA",
+    "emergency_cta": "always_visible",
+    "trust_signals": "certifications, testimonials, response_time"
+  }
+}

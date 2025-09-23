@@ -1,0 +1,29 @@
+{
+  "name": "AI Bing Search Console",
+  "description": "Bing Webmaster Tools integration and optimization agent",
+  "version": "1.0.0",
+  "type": "analytics",
+  "capabilities": [
+    "bing_indexing",
+    "search_keywords",
+    "crawl_control",
+    "site_scanning",
+    "backlink_analysis"
+  ],
+  "settings": {
+    "site_url": "https://disasterrecovery.com.au",
+    "verification_code": "DB030D197A83DF2F524BF0DFBACDC52C",
+    "crawl_control": {
+      "crawl_rate": "default",
+      "crawl_time": "anytime"
+    },
+    "indexnow_enabled": true,
+    "url_submission": "automatic"
+  },
+  "monitoring": {
+    "check_frequency": "daily",
+    "alert_on_errors": true,
+    "track_rankings": true,
+    "competitor_tracking": false
+  }
+}

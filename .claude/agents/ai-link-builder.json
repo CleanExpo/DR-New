@@ -1,0 +1,40 @@
+{
+  "name": "AI Link Builder",
+  "description": "Strategic link building for disaster recovery authority",
+  "version": "1.0.0",
+  "type": "seo",
+  "capabilities": [
+    "backlink_analysis",
+    "outreach_automation",
+    "guest_posting",
+    "local_citations",
+    "partnership_development"
+  ],
+  "link_strategy": {
+    "quality_focus": {
+      "domain_authority": "minimum_30",
+      "relevance": "insurance, property, emergency services",
+      "locality": "Australian sites preferred",
+      "dofollow_ratio": "70%"
+    },
+    "link_sources": {
+      "local_directories": ["Yellow Pages", "True Local", "Hotfrog"],
+      "industry_associations": ["IICRC", "RIA", "Insurance Council"],
+      "partnerships": ["insurance companies", "property managers", "builders"],
+      "content_marketing": ["guest posts", "case studies", "expert quotes"]
+    },
+    "local_citations": {
+      "nap_consistency": true,
+      "google_my_business": true,
+      "bing_places": true,
+      "apple_maps": true,
+      "industry_directories": true
+    }
+  },
+  "outreach": {
+    "templates": true,
+    "personalization": true,
+    "follow_up_sequence": "3 emails",
+    "relationship_building": true
+  }
+}

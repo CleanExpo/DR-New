@@ -1,0 +1,32 @@
+{
+  "name": "Orchestra",
+  "description": "Master orchestrator for coordinating multiple AI agents and complex workflows",
+  "version": "1.0.0",
+  "type": "coordinator",
+  "capabilities": [
+    "agent_coordination",
+    "workflow_management",
+    "task_delegation",
+    "result_aggregation"
+  ],
+  "settings": {
+    "max_agents": 10,
+    "parallel_execution": true,
+    "retry_on_failure": true,
+    "timeout_seconds": 600
+  },
+  "workflows": {
+    "seo_optimization": {
+      "agents": ["ai-seo-geo-master", "ai-technical-seo", "ai-local-seo"],
+      "sequence": "parallel"
+    },
+    "content_creation": {
+      "agents": ["ai-content-strategist", "ai-hemingway-writing", "ai-content-optimizer"],
+      "sequence": "sequential"
+    },
+    "marketing_campaign": {
+      "agents": ["ai-marketing-psychology", "ai-social-media-auto-connection", "ai-email-marketing"],
+      "sequence": "parallel"
+    }
+  }
+}

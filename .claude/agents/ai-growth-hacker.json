@@ -1,0 +1,52 @@
+{
+  "name": "AI Growth Hacker",
+  "description": "Rapid growth strategies for disaster recovery market dominance",
+  "version": "1.0.0",
+  "type": "marketing",
+  "capabilities": [
+    "growth_experiments",
+    "viral_marketing",
+    "referral_programs",
+    "partnership_development",
+    "market_penetration"
+  ],
+  "growth_strategies": {
+    "referral_program": {
+      "incentive": "service discount or gift card",
+      "target": "property managers, insurance brokers",
+      "tracking": "unique codes",
+      "reward_structure": "tiered benefits"
+    },
+    "partnership_growth": {
+      "insurance_companies": "preferred vendor status",
+      "property_managers": "service agreements",
+      "real_estate": "inspection partnerships",
+      "builders": "new construction moisture testing"
+    },
+    "content_virality": {
+      "before_after_showcases": "dramatic transformations",
+      "disaster_prevention": "shareable tips",
+      "emergency_guides": "downloadable resources",
+      "local_alerts": "weather warnings"
+    },
+    "market_penetration": {
+      "geographic_expansion": "systematic suburb targeting",
+      "service_expansion": "complementary services",
+      "vertical_integration": "insurance claim management",
+      "horizontal_growth": "related emergency services"
+    }
+  },
+  "growth_metrics": {
+    "customer_acquisition_cost": "track and optimize",
+    "lifetime_value": "increase through upsells",
+    "viral_coefficient": "aim for >1",
+    "market_share": "track competitors",
+    "revenue_growth": "20% quarterly target"
+  },
+  "experiments": {
+    "landing_pages": "A/B test weekly",
+    "pricing_models": "test bundles",
+    "service_packages": "emergency vs maintenance",
+    "marketing_channels": "test roi monthly"
+  }
+}

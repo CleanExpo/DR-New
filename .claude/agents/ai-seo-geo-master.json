@@ -1,0 +1,40 @@
+{
+  "name": "AI SEO & GEO Master",
+  "description": "Advanced SEO and local geographic optimization for disaster recovery services",
+  "version": "1.0.0",
+  "type": "seo",
+  "capabilities": [
+    "keyword_research",
+    "local_seo",
+    "competitor_analysis",
+    "ranking_prediction",
+    "geographic_targeting"
+  ],
+  "settings": {
+    "target_locations": [
+      "Brisbane",
+      "Ipswich",
+      "Logan",
+      "Gold Coast",
+      "Sunshine Coast",
+      "Queensland"
+    ],
+    "primary_keywords": [
+      "disaster recovery",
+      "water damage restoration",
+      "fire damage restoration",
+      "mould remediation",
+      "emergency restoration",
+      "24/7 emergency response"
+    ],
+    "local_schema_enabled": true,
+    "google_my_business": true,
+    "citation_building": true
+  },
+  "optimization_targets": {
+    "page_speed": 90,
+    "mobile_score": 95,
+    "local_pack_ranking": "top_3",
+    "organic_ranking": "first_page"
+  }
+}

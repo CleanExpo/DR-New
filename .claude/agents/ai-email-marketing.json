@@ -1,0 +1,48 @@
+{
+  "name": "AI Email Marketing",
+  "description": "Email marketing automation for disaster recovery client engagement",
+  "version": "1.0.0",
+  "type": "marketing",
+  "capabilities": [
+    "email_automation",
+    "segmentation",
+    "drip_campaigns",
+    "newsletter_creation",
+    "performance_tracking"
+  ],
+  "email_campaigns": {
+    "emergency_alerts": {
+      "trigger": "weather warnings, disasters",
+      "frequency": "as needed",
+      "content": "preparedness tips, emergency contacts",
+      "priority": "high"
+    },
+    "client_follow_up": {
+      "trigger": "service completion",
+      "sequence": ["thank you", "review request", "maintenance tips"],
+      "timing": ["immediate", "3 days", "2 weeks"]
+    },
+    "education_series": {
+      "frequency": "monthly newsletter",
+      "topics": ["prevention", "insurance", "maintenance"],
+      "format": "tips, guides, case studies"
+    },
+    "seasonal_campaigns": {
+      "storm_season": "preparation checklist",
+      "winter": "pipe protection",
+      "summer": "fire safety"
+    }
+  },
+  "segmentation": {
+    "client_type": ["residential", "commercial", "insurance"],
+    "location": ["Brisbane", "Ipswich", "Logan"],
+    "service_history": ["water damage", "fire damage", "mould"],
+    "engagement_level": ["active", "inactive", "prospect"]
+  },
+  "automation_rules": {
+    "welcome_series": "3 email sequence",
+    "re_engagement": "after 6 months inactive",
+    "birthday_greetings": false,
+    "service_reminders": "annual inspection"
+  }
+}
