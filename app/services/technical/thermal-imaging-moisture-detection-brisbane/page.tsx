@@ -143,7 +143,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
                   <p className="text-sm">Professional reports meeting insurance and restoration industry requirements</p>
                 </div>
                 <div>
-                  <h4 className="font-bold mb-2">Monitoring Protocols</p>
+                  <h4 className="font-bold mb-2">Monitoring Protocols</h4>
                   <p className="text-sm">Ongoing thermal monitoring during drying process to ensure completion</p>
                 </div>
               </div>

@@ -342,7 +342,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <h4 className="font-bold mb-2 text-blue-800">Desktop Air Purifiers:</h4>
                     <ul className="text-sm space-y-1">
-                      <li>• Silent operation (<30dB)</li>
+                      <li>• Silent operation (&lt;30dB)</li>
                       <li>• HEPA + activated carbon filters</li>
                       <li>• Personal air quality zones</li>
                       <li>• USB-powered compact units</li>

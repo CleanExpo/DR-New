@@ -146,7 +146,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                     Known carcinogen with strong odour.
                   </p>
                   <div className="text-xs">
-                    <strong>Safe Level:</strong> <0.1 ppm
+                    <strong>Safe Level:</strong> &lt;0.1 ppm
                   </div>
                 </div>
                 <div className="bg-white p-6 rounded-lg">
@@ -156,7 +156,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                     Linked to leukemia and blood disorders.
                   </p>
                   <div className="text-xs">
-                    <strong>Safe Level:</strong> <1 ppb
+                    <strong>Safe Level:</strong> &lt;1 ppb
                   </div>
                 </div>
                 <div className="bg-white p-6 rounded-lg">
@@ -166,7 +166,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                     Affects nervous system and development.
                   </p>
                   <div className="text-xs">
-                    <strong>Safe Level:</strong> <300 µg/m³
+                    <strong>Safe Level:</strong> &lt;300 µg/m³
                   </div>
                 </div>
               </div>
