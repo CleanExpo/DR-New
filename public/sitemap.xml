@@ -1,757 +1,850 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
   <url>
-    <loc>https://disasterrecovery.com.au</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1</priority>
+    <priority>1.0</priority>
   </url>
+
+  <!-- Main Pages -->
   <url>
     <loc>https://dr-new-ten.vercel.app/about</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/about-phil-mcgurk</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
     <loc>https://dr-new-ten.vercel.app/contact</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://dr-new-ten.vercel.app/emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/book-service</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Main Services -->
+  <url>
     <loc>https://dr-new-ten.vercel.app/services</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/fire-damage-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/services/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/storm-damage-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/biohazard</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/flood-damage-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/services/sewage-cleanup</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/trauma-cleaning</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/biohazard-cleanup</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/after-hours-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/trauma-cleanup</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/sunday-water-damage-brisbane</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/emergency-services</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Water Damage Sub-Services -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/burst-pipes</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/water-damage-restoration-brisbane</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/ceiling-water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/hot-water-system-burst</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/roof-leak-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/shower-leaks</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/toilet-overflow</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/washing-machine-flooding</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/water-damage/dishwasher-leaks</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Fire Damage Sub-Services -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/fire-damage/kitchen-fire-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/fire-damage/electrical-fire-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/fire-damage/smoke-odour-removal</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/fire-damage/soot-damage-cleanup</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/fire-damage/bushfire-smoke-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/fire-damage/structural-fire-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Mould Remediation Sub-Services -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/bathroom-mould</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/black-mould-removal</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/commercial-mould</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/hvac-mould</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Storm Damage Sub-Services -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/storm-damage/hail-damage-repair</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/storm-damage/wind-damage-repair</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/storm-damage/tree-damage-cleanup</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/storm-damage/cyclone-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/storm-damage/flood-damage-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Commercial Services Sub-Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/office-water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/retail-flood-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/restaurant-water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/warehouse-flooding</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/hotel-flood-recovery</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/hospital-water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/school-water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/commercial-services/factory-water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Emergency Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/after-hours-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/weekend-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/public-holiday-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/christmas-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/new-year-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/easter</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/anzac-day</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/midnight-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/early-morning-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/late-night</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/sunday-night-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Emergency Checklists -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/checklists</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/checklists/water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/checklists/fire-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/checklists/storm-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/checklists/mould</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/emergency/checklists/sewage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Insurance Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/aami</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/allianz</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/budget-direct</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/cgu</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/nrma</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/qbe</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/rac</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/racq</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/suncorp</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/youi</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Insurance Decoder Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance-decoder</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance-decoder/water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance-decoder/fire-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance-decoder/storm-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance-decoder/mould</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- FAQ Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/fire-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/mould-removal</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/storm-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/insurance-claims</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/emergency-response</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/sewage-cleanup</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/flood-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/biohazard-cleanup</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/carpet-drying</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/contents-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/document-drying</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/electronics-restoration</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/odour-removal</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Guide Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/water-damage/burst-pipe-ceiling-repair-cost</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Long-Tail Emergency FAQ Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/faq/long-tail-emergency-questions</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/emergency/how-much-does-emergency-water-damage-restoration-cost-brisbane-hamilton</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- High-Authority E-E-A-T Pages -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/master-restorer-brisbane</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/insurance/racq-approved-water-damage-restoration-contractor-brisbane</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/services/technical/thermal-imaging-moisture-detection-brisbane</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/locations/brisbane/emergency-water-damage-restoration-hamilton-ascot-new-farm-24-hours</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Downloadable Resources -->
+  <url>
+    <loc>https://dr-new-ten.vercel.app/resources/master-restorer-certification-guide</loc>
+    <lastmod>2025-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/fire-damage/smoke-damage-cleaning-guide</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/storm-damage/storm-damage-roof-leak-repair</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/mould/black-mould-bathroom-ceiling</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/mould/why-mould-returns-6-months</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/flood-damage/flood-damage-hardwood-floors</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/insurance/document-water-damage-insurance</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/insurance/insurance-approved-contractors</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/insurance/make-safe-insurance-coverage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/emergency/christmas-emergency-water-damage</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/emergency/weekend-public-holiday-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://dr-new-ten.vercel.app/guides/emergency/middle-night-flooding-emergency</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Main Location Pages -->
+  <url>
     <loc>https://dr-new-ten.vercel.app/locations/brisbane</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/ipswich</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/logan</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
+
+  <!-- Brisbane Suburb Pages (Priority Suburbs) -->
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/brisbane/hamilton</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hamilton/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hamilton/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hamilton/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hamilton/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hamilton/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/brisbane/ascot</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/ascot/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/ascot/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/ascot/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/ascot/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/ascot/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/brisbane/new-farm</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/new-farm/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/new-farm/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/new-farm/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/new-farm/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/new-farm/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/brisbane/bulimba</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/bulimba/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/bulimba/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/bulimba/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/bulimba/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/bulimba/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/brisbane/hawthorne</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hawthorne/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hawthorne/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hawthorne/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hawthorne/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/hawthorne/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/morningside</loc>
-    <lastmod>2025-09-21</lastmod>
+    <loc>https://dr-new-ten.vercel.app/locations/brisbane/toowong</loc>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/balmoral</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/cannon-hill</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/murarrie</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/tingalpa</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/wynnum</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/carina</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/camp-hill</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/seven-hills</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/norman-park</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+
+  <!-- Ipswich Suburb Pages (Priority Suburbs) -->
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/ipswich/karalee</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/karalee/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/karalee/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/karalee/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/karalee/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/karalee/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/ipswich/brookwater</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/brookwater/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/brookwater/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/brookwater/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/brookwater/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/brookwater/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/ipswich/springfield-lakes</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/springfield-lakes/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/springfield-lakes/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/springfield-lakes/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/springfield-lakes/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/springfield-lakes/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://dr-new-ten.vercel.app/locations/ipswich/springfield</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/ipswich/augustine-heights</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/augustine-heights/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/augustine-heights/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/augustine-heights/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/augustine-heights/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/augustine-heights/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/bellbird-park</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/redbank-plains</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/goodna</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/camira</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/booval</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/bundamba</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/raceview</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/ipswich/forest-lake</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+
+  <!-- Logan Suburb Pages (Priority Suburbs) -->
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/logan/springwood</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/springwood/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/springwood/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/springwood/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/springwood/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/springwood/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/logan/shailer-park</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/shailer-park/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/shailer-park/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/shailer-park/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/shailer-park/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/shailer-park/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/logan/daisy-hill</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/daisy-hill/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/daisy-hill/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/daisy-hill/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/daisy-hill/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/daisy-hill/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dr-new-ten.vercel.app/locations/logan/rochedale</loc>
-    <lastmod>2025-09-21</lastmod>
+    <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Legal Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/rochedale/water-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://dr-new-ten.vercel.app/privacy</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/rochedale/fire-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <loc>https://dr-new-ten.vercel.app/terms</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/rochedale/mould-remediation</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/rochedale/storm-damage</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/rochedale/commercial-restoration</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/underwood</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/eight-mile-plains</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/slacks-creek</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/meadowbrook</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/loganholme</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/tanah-merah</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/waterford</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/beenleigh</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dr-new-ten.vercel.app/locations/logan/eagleby</loc>
-    <lastmod>2025-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://dr-new-ten.vercel.app/cookies</loc>
+    <lastmod>2025-09-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
