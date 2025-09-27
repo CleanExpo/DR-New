@@ -28,6 +28,65 @@ export const WEBSITE_DESIGNER = 'Zenith';
 export const DESIGNER_URL = 'https://zenith.engineer';
 export const PARENT_AGENCY = 'Unite-Group Agency';
 
+// Social Media Configuration
+export const SOCIAL_MEDIA = {
+  facebook: {
+    url: 'https://www.facebook.com/disasterrecoverybrisbane',
+    handle: '@disasterrecoverybrisbane',
+    name: 'Disaster Recovery Brisbane'
+  },
+  instagram: {
+    url: 'https://www.instagram.com/disasterrecoverybrisbane',
+    handle: '@disasterrecoverybrisbane',
+    name: 'Disaster Recovery Brisbane'
+  },
+  linkedin: {
+    url: 'https://www.linkedin.com/company/disaster-recovery-brisbane',
+    handle: 'Disaster Recovery Brisbane',
+    name: 'Disaster Recovery Brisbane'
+  },
+  youtube: {
+    url: 'https://www.youtube.com/@disasterrecoverybrisbane',
+    handle: '@disasterrecoverybrisbane',
+    name: 'Disaster Recovery Brisbane'
+  },
+  tiktok: {
+    url: 'https://www.tiktok.com/@disasterrecoverybrisbane',
+    handle: '@disasterrecoverybrisbane',
+    name: 'Disaster Recovery Brisbane'
+  },
+  google: {
+    url: 'https://business.google.com/n/6247508497550516831',
+    handle: 'Disaster Recovery Brisbane',
+    name: 'Google Business Profile'
+  }
+};
+
+// Social Media Content Templates
+export const SOCIAL_CONTENT_TEMPLATES = {
+  emergency_response: {
+    facebook: "🚨 24/7 Emergency Response Available Now! Water damage? Fire damage? Mould issues? Our IICRC certified team responds within 60 minutes across Brisbane. Call now or visit our website for immediate help. #EmergencyResponse #DisasterRecovery #Brisbane",
+    instagram: "Emergency response teams ready 24/7! 🚨 Swipe to see our latest restoration project in Hamilton. Professional equipment, certified technicians, insurance approved. #DisasterRecovery #Brisbane #Emergency #Restoration",
+    linkedin: "Disaster Recovery Brisbane provides professional emergency restoration services with 60-minute response times. Our IICRC certified team handles water damage, fire damage, and mould remediation across Brisbane and surrounding areas.",
+    youtube: "Watch our emergency response team in action! 24/7 professional disaster recovery services across Brisbane.",
+    tiktok: "POV: Your house floods at 2AM 💧 But don't panic! Our emergency team responds 24/7 ⚡ #DisasterRecovery #Emergency #Brisbane"
+  },
+  before_after: {
+    facebook: "Incredible transformation! See how our expert team restored this Brisbane home after severe water damage. From disaster to beautiful - that's what we do! Professional restoration with insurance direct billing available.",
+    instagram: "Before ➡️ After magic ✨ Severe water damage restoration in New Farm. Professional equipment, certified techniques, amazing results! #BeforeAndAfter #WaterDamage #Brisbane #Restoration",
+    linkedin: "Case Study: Complete water damage restoration in Brisbane's premium suburbs. Our systematic approach ensures comprehensive restoration while minimizing disruption to property owners.",
+    youtube: "Dramatic before and after - see the complete restoration process from start to finish!",
+    tiktok: "This water damaged home looked hopeless... but wait for the transformation! 🤯 #BeforeAndAfter #Restoration #Brisbane"
+  },
+  prevention_tips: {
+    facebook: "💡 Prevention Tip Tuesday! Check your hot water system regularly for signs of corrosion or leaks. Early detection can save thousands in damage costs. Need professional advice? Contact our experts!",
+    instagram: "Prevention is better than cure! 🏠 Simple checks you can do today to prevent water damage. Save this post for future reference! #PreventionTips #HomeOwner #Brisbane",
+    linkedin: "Professional Advice: Regular building maintenance significantly reduces disaster recovery costs. Here are 5 key areas Brisbane property owners should monitor monthly.",
+    youtube: "Top 5 ways to prevent water damage in your Brisbane home - expert advice from our Master Restorer!",
+    tiktok: "5 seconds that could save you $50k! Check these spots in your home right now 👇 #Prevention #HomeTips #Brisbane"
+  }
+};
+
 // Lead Pricing
 export const LEAD_PRICE = 550;
 export const LEAD_PRICE_PREMIUM = 750; // For capital cities

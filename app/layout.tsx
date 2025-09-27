@@ -162,10 +162,10 @@ export default function RootLayout({
                 "geoRadius": "4000000"
               },
               "sameAs": [
-                "https://www.facebook.com/DisasterRecoveryAU",
-                "https://www.linkedin.com/company/disaster-recovery-au",
-                "https://www.instagram.com/disasterrecoveryau",
-                "https://www.youtube.com/@DisasterRecoveryAU"
+                "https://www.facebook.com/disasterrecoverybrisbane",
+                "https://www.linkedin.com/company/disaster-recovery-brisbane",
+                "https://www.instagram.com/disasterrecoverybrisbane",
+                "https://www.youtube.com/@disasterrecoverybrisbane"
               ],
               "contactPoint": {
                 "@type": "ContactPoint",

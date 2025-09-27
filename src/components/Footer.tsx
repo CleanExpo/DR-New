@@ -3,15 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FooterLogos } from '@/components/Logo';
-import { 
-  BUSINESS_NAME, 
-  BUSINESS_SHORT_NAME, 
-  EMAIL, 
-  WEBSITE, 
-  ABN, 
-  STATES, 
+import {
+  BUSINESS_NAME,
+  BUSINESS_SHORT_NAME,
+  EMAIL,
+  WEBSITE,
+  ABN,
+  STATES,
   CITIES_BY_STATE,
-  INSURANCE_PARTNERS 
+  INSURANCE_PARTNERS,
+  SOCIAL_MEDIA
 } from '@/lib/constants';
 import { 
   MapPin, 
@@ -333,17 +334,55 @@ const Footer: React.FC = () => {
                 <h4 className="font-semibold mb-4">Follow Our Work</h4>
                 <div className="flex items-center gap-3">
                   {[
-                    { icon: Facebook, href: "https://facebook.com/DisasterRecoveryAustralia", colour: "hover:text-blue-500" },
-                    { icon: Instagram, href: "https://instagram.com/disasterrecoveryau", colour: "hover:text-pink-500" },
-                    { icon: Youtube, href: "https://youtube.com/c/DisasterRecoveryAustralia", colour: "hover:text-red-500" },
-                    { icon: Linkedin, href: "https://linkedin.com/company/disaster-recovery-australia", colour: "hover:text-blue-600" },
-                    { icon: Twitter, href: "https://twitter.com/DisasterRecovAU", colour: "hover:text-blue-600" }
-                  ].map(({ icon: Icon, href, colour }, index) => (
-                    <a key={index} href={href} target="_blank" rel="noopener noreferrer" 
-                       className={`p-2 bg-gray-700 rounded-lg transition-all duration-300 ${colour} hover:scale-110`}>
+                    {
+                      icon: Facebook,
+                      href: SOCIAL_MEDIA.facebook.url,
+                      colour: "hover:text-blue-500",
+                      platform: "Facebook",
+                      handle: SOCIAL_MEDIA.facebook.handle
+                    },
+                    {
+                      icon: Instagram,
+                      href: SOCIAL_MEDIA.instagram.url,
+                      colour: "hover:text-pink-500",
+                      platform: "Instagram",
+                      handle: SOCIAL_MEDIA.instagram.handle
+                    },
+                    {
+                      icon: Youtube,
+                      href: SOCIAL_MEDIA.youtube.url,
+                      colour: "hover:text-red-500",
+                      platform: "YouTube",
+                      handle: SOCIAL_MEDIA.youtube.handle
+                    },
+                    {
+                      icon: Linkedin,
+                      href: SOCIAL_MEDIA.linkedin.url,
+                      colour: "hover:text-blue-600",
+                      platform: "LinkedIn",
+                      handle: SOCIAL_MEDIA.linkedin.handle
+                    }
+                  ].map(({ icon: Icon, href, colour, platform, handle }, index) => (
+                    <a
+                      key={index}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-2 bg-gray-700 rounded-lg transition-all duration-300 ${colour} hover:scale-110 group relative`}
+                      aria-label={`Follow us on ${platform} (${handle})`}
+                      title={`Follow us on ${platform}`}
+                    >
                       <Icon className="h-5 w-5" />
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        {platform}
+                      </div>
                     </a>
                   ))}
+                </div>
+
+                {/* Social Media Handle Display */}
+                <div className="mt-3 text-sm text-gray-300">
+                  <p>Find us as <strong>{SOCIAL_MEDIA.facebook.handle}</strong> on all platforms</p>
                 </div>
               </div>
             </div>
