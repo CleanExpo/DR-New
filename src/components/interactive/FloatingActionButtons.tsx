@@ -186,7 +186,7 @@ function ExpandableFABMenu() {
       icon: Mail,
       label: 'Email Documentation',
       colour: 'bg-gradient-to-r from-green-600 to-green-700',
-      action: () => window.open('mailto:claims@disasterrecovery.com.au', '_self')
+      action: () => window.open('mailto:claims@dr-new-ten.vercel.app', '_self')
     },
     {
       icon: Calendar,

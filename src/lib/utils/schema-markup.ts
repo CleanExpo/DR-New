@@ -221,8 +221,8 @@ export function generateOrganizationSchema(): OrganizationSchema {
     '@context': 'https://schema.org',
     '@type': 'Organisation',
     name: 'National Restoration Professionals (NRP)',
-    url: 'https://disasterrecovery.com.au',
-    logo: 'https://disasterrecovery.com.au/logo.png',
+    url: 'https://dr-new-ten.vercel.app',
+    logo: 'https://dr-new-ten.vercel.app/logo.png',
     description: 'Professional disaster recovery and emergency restoration services nationwide. IICRC certified, 24/7 emergency response.',
     address: {
       '@type': 'PostalAddress',
@@ -263,7 +263,7 @@ export function generateArticleSchema(
     author: {
       '@type': 'Organisation',
       name: 'National Restoration Professionals',
-      url: 'https://disasterrecovery.com.au'
+      url: 'https://dr-new-ten.vercel.app'
     },
     datePublished,
     dateModified,
@@ -272,7 +272,7 @@ export function generateArticleSchema(
       name: 'National Restoration Professionals',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://disasterrecovery.com.au/logo.png'
+        url: 'https://dr-new-ten.vercel.app/logo.png'
       }
     },
     mainEntityOfPage: {
@@ -363,7 +363,7 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     telephone: "",
     availableChannel: {
       '@type': 'ServiceChannel',
-      serviceUrl: 'https://disasterrecovery.com.au/emergency',
+      serviceUrl: 'https://dr-new-ten.vercel.app/emergency',
       servicePhone: '+61-1300-DISASTER',
       availableLanguage: {
         '@type': 'Language',
@@ -373,7 +373,7 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
     potentialAction: {
       '@type': 'Action',
       name: 'Request Emergency Help',
-      target: 'https://disasterrecovery.com.au/emergency-response'
+      target: 'https://dr-new-ten.vercel.app/emergency-response'
     }
   };
 }

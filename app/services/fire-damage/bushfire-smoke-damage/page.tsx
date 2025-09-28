@@ -24,7 +24,7 @@ export default function BushfireSmokeDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/fire-damage/bushfire-smoke-damage',
+    url: 'https://dr-new-ten.vercel.app/services/fire-damage/bushfire-smoke-damage',
     image: '/images/bushfire-smoke-damage.jpg',
     priceRange: '$$-$$$'
   };

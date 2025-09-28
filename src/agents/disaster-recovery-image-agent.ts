@@ -315,8 +315,8 @@ export function generateSEOMetadata(
       '@type': 'Organization',
       name: 'National Recovery Partners'
     },
-    license: 'https://disasterrecovery.com.au/terms',
-    acquireLicensePage: 'https://disasterrecovery.com.au/contact',
+    license: 'https://dr-new-ten.vercel.app/terms',
+    acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
     creditText: 'Disaster Recovery Australia - Professional 3D Visualization',
     copyrightNotice: '© 2025 Disaster Recovery Australia. All rights reserved.',
     keywords: [

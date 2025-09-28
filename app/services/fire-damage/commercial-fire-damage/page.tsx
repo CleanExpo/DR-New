@@ -24,7 +24,7 @@ export default function CommercialFireRestorationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/fire-damage/commercial-fire-damage',
+    url: 'https://dr-new-ten.vercel.app/services/fire-damage/commercial-fire-damage',
     image: '/images/commercial-fire-damage.jpg',
     priceRange: '$$-$$$'
   };

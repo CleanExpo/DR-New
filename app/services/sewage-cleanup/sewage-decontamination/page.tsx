@@ -24,7 +24,7 @@ export default function SewageDecontaminationServicesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/sewage-cleanup/sewage-decontamination',
+    url: 'https://dr-new-ten.vercel.app/services/sewage-cleanup/sewage-decontamination',
     image: '/images/sewage-decontamination.jpg',
     priceRange: '$$-$$$'
   };

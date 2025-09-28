@@ -24,7 +24,7 @@ export default function SootDamageCleaningPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/fire-damage/soot-damage-cleanup',
+    url: 'https://dr-new-ten.vercel.app/services/fire-damage/soot-damage-cleanup',
     image: '/images/soot-damage-cleanup.jpg',
     priceRange: '$$-$$$'
   };

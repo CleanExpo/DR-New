@@ -86,7 +86,7 @@ class SEOIntelligenceService {
   private location: string;
   private industry: string;
 
-  constructor(domain: string = 'disasterrecovery.com.au', location: string = 'Brisbane', industry: string = 'disaster recovery') {
+  constructor(domain: string = 'dr-new-ten.vercel.app', location: string = 'Brisbane', industry: string = 'disaster recovery') {
     this.domain = domain;
     this.location = location;
     this.industry = industry;

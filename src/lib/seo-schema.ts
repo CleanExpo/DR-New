@@ -98,15 +98,15 @@ export const generateEmergencyServiceSchema = () => ({
   },
   "availableChannel": {
     "@type": "ServiceChannel",
-    "serviceUrl": "https://disasterrecovery.com.au/emergency",
+    "serviceUrl": "https://dr-new-ten.vercel.app/emergency",
     "servicePhone": "1300-DISASTER",
     "availableLanguage": ["English", "Mandarin", "Arabic", "Vietnamese", "Spanish"]
   },
-  "termsOfService": "https://disasterrecovery.com.au/terms",
+  "termsOfService": "https://dr-new-ten.vercel.app/terms",
   "provider": {
     "@type": "Organization",
     "name": "National Restoration Platform (NRP)",
-    "url": "https://disasterrecovery.com.au"
+    "url": "https://dr-new-ten.vercel.app"
   }
 });
 
@@ -184,29 +184,29 @@ export const generateHowToSchema = () => ({
       "@type": "HowToStep",
       "name": "Report Damage",
       "text": "Call 1300-DISASTER or use our online form to report your emergency",
-      "url": "https://disasterrecovery.com.au/emergency",
-      "image": "https://disasterrecovery.com.au/images/step1.jpg"
+      "url": "https://dr-new-ten.vercel.app/emergency",
+      "image": "https://dr-new-ten.vercel.app/images/step1.jpg"
     },
     {
       "@type": "HowToStep",
       "name": "Instant Match",
       "text": "Our AI instantly matches you with the nearest certified contractor",
-      "url": "https://disasterrecovery.com.au/how-it-works",
-      "image": "https://disasterrecovery.com.au/images/step2.jpg"
+      "url": "https://dr-new-ten.vercel.app/how-it-works",
+      "image": "https://dr-new-ten.vercel.app/images/step2.jpg"
     },
     {
       "@type": "HowToStep",
       "name": "Fast Response",
       "text": "Contractor arrives within 60 minutes to assess and begin restoration",
-      "url": "https://disasterrecovery.com.au/response-time",
-      "image": "https://disasterrecovery.com.au/images/step3.jpg"
+      "url": "https://dr-new-ten.vercel.app/response-time",
+      "image": "https://dr-new-ten.vercel.app/images/step3.jpg"
     },
     {
       "@type": "HowToStep",
       "name": "Full Restoration",
       "text": "Complete restoration with insurance handled directly",
-      "url": "https://disasterrecovery.com.au/insurance",
-      "image": "https://disasterrecovery.com.au/images/step4.jpg"
+      "url": "https://dr-new-ten.vercel.app/insurance",
+      "image": "https://dr-new-ten.vercel.app/images/step4.jpg"
     }
   ]
 });
@@ -216,11 +216,11 @@ export const generateVideoSchema = () => ({
   "@type": "VideoObject",
   "name": "Disaster Recovery Australia - How We Work",
   "description": "Learn how Australia's largest disaster recovery network provides 24/7 emergency restoration services",
-  "thumbnailUrl": "https://disasterrecovery.com.au/video-thumb.jpg",
+  "thumbnailUrl": "https://dr-new-ten.vercel.app/video-thumb.jpg",
   "uploadDate": "2025-01-01T08:00:00+10:00",
   "duration": "PT2M30S",
-  "contentUrl": "https://disasterrecovery.com.au/video/how-we-work.mp4",
-  "embedUrl": "https://disasterrecovery.com.au/embed/how-we-work"
+  "contentUrl": "https://dr-new-ten.vercel.app/video/how-we-work.mp4",
+  "embedUrl": "https://dr-new-ten.vercel.app/embed/how-we-work"
 });
 
 // Helper functions for location data

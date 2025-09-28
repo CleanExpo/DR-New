@@ -24,7 +24,7 @@ export default function LoganWaterDamageServicesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/location-specific/logan-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/location-specific/logan-water-damage',
     image: '/images/logan-water-damage.jpg',
     priceRange: '$$-$$$'
   };

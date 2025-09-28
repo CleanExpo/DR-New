@@ -24,7 +24,7 @@ export default function BathroomMouldRemediationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/mould-remediation/bathroom-mould',
+    url: 'https://dr-new-ten.vercel.app/services/mould-remediation/bathroom-mould',
     image: '/images/bathroom-mould.jpg',
     priceRange: '$$-$$$'
   };

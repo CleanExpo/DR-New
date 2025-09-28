@@ -524,7 +524,7 @@ export default function AirQualityGuidesBrisbane() {
               Call 0413 965 292
             </a>
             <a
-              href="mailto:info@disasterrecovery.com.au"
+              href="mailto:info@dr-new-ten.vercel.app"
               className="bg-white hover:bg-gray-100 text-teal-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
             >
               Request Consultation

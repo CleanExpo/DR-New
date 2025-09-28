@@ -24,7 +24,7 @@ export default function AsbestosWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/specialty-services/asbestos-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/specialty-services/asbestos-water-damage',
     image: '/images/asbestos-water-damage.jpg',
     priceRange: '$$-$$$'
   };

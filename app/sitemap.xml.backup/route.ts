@@ -26,7 +26,7 @@ export async function GET() {
     // });
     const pages: any[] = [];
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au';
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dr-new-ten.vercel.app';
     
     // Static pages
     const staticPages = [

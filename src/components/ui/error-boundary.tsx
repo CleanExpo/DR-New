@@ -234,7 +234,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                   </p>
                   <p className="flex items-center justify-center gap-2">
                     <Mail className="h-4 w-4" />
-                    support@disasterrecovery.com.au
+                    support@dr-new-ten.vercel.app
                   </p>
                 </motion.div>
               </CardContent>

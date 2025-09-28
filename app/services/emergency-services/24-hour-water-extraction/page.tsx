@@ -24,7 +24,7 @@ export default function TwentyFourHourWaterExtractionPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/emergency-services/24-hour-water-extraction',
+    url: 'https://dr-new-ten.vercel.app/services/emergency-services/24-hour-water-extraction',
     image: '/images/24-hour-water-extraction.jpg',
     priceRange: '$$-$$$'
   };

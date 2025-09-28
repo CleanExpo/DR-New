@@ -24,7 +24,7 @@ export default function BloodSpillCleanupServicesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/biohazard-cleaning/blood-cleanup',
+    url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning/blood-cleanup',
     image: '/images/blood-cleanup.jpg',
     priceRange: '$$-$$$'
   };

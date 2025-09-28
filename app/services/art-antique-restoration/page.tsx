@@ -132,7 +132,7 @@ export default function ArtAntiqueRestorationPage() {
       '@type': 'LocalBusiness',
       name: 'Disaster Recovery Brisbane Art Conservation Specialists',
       telephone: '1300309361',
-      email: 'art@disasterrecovery.com.au',
+      email: 'art@dr-new-ten.vercel.app',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Brisbane',

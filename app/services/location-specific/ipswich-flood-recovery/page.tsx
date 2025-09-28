@@ -24,7 +24,7 @@ export default function IpswichFloodRecoveryPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/location-specific/ipswich-flood-recovery',
+    url: 'https://dr-new-ten.vercel.app/services/location-specific/ipswich-flood-recovery',
     image: '/images/ipswich-flood-recovery.jpg',
     priceRange: '$$-$$$'
   };

@@ -63,7 +63,7 @@ const structuredData = {
     serviceName: 'Water Damage Restoration Australia',
     serviceType: 'Emergency Water Damage Restoration',
     description: 'Professional water damage restoration with 24/7 emergency response across Australia. Proven in 2022 Brisbane floods - 67,890 insurance claims processed.',
-    url: 'https://disasterrecovery.com.au/services/water-damage-restoration'
+    url: 'https://dr-new-ten.vercel.app/services/water-damage-restoration'
   }),
   aggregateRating: {
     '@type': 'AggregateRating',

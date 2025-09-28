@@ -24,7 +24,7 @@ export default function HailDamageRestorationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/storm-damage/hail-damage-repair',
+    url: 'https://dr-new-ten.vercel.app/services/storm-damage/hail-damage-repair',
     image: '/images/hail-damage-repair.jpg',
     priceRange: '$$-$$$'
   };

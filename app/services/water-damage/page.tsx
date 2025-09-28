@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     images: ['/images/optimised/damage/3D Water Damage.png'],
     type: 'website' },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/services/water-damage' }
+    canonical: 'https://dr-new-ten.vercel.app/services/water-damage' }
 };
 
 const schemaData = {
@@ -25,7 +25,7 @@ const schemaData = {
     "@type": "Organisation",
     "name": "Disaster Recovery",
     "telephone": "",
-    "url": "https://disasterrecovery.com.au"
+    "url": "https://dr-new-ten.vercel.app"
   },
   "areaServed": {
     "@type": "Country",

@@ -165,7 +165,7 @@ export default function TermsOfService() {
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">12. Contact Information</h2>
             <div className="bg-gray-50 p-4 rounded-lg text-gray-700">
               <p className="font-semibold">Disaster Recovery</p>
-              <p>Email: legal@disasterrecovery.com.au</p>
+              <p>Email: legal@dr-new-ten.vercel.app</p>
               <p>email: Online Form Available 24/7</p>
               <p>Address: Brisbane, Australia</p>
               <p>ABN: [To be provided]</p>

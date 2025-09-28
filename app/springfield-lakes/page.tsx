@@ -52,7 +52,7 @@ const jsonLd = {
       "description": "Master certified disaster restoration specialists for Springfield Lakes premium estates, lakefront properties, and golf course homes. Expert restoration for executive residences and luxury developments.",
       "url": "https://dr-new-ten.vercel.app/springfield-lakes",
       "telephone": "+61-7-3000-0000",
-      "email": "emergency@disasterrecovery.com.au",
+      "email": "emergency@dr-new-ten.vercel.app",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Springfield Lakes",

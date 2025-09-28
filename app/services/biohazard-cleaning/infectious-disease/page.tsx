@@ -24,7 +24,7 @@ export default function InfectiousDiseaseSanitizationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/biohazard-cleaning/infectious-disease',
+    url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning/infectious-disease',
     image: '/images/infectious-disease.jpg',
     priceRange: '$$-$$$'
   };

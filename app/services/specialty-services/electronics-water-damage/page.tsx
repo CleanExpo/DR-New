@@ -24,7 +24,7 @@ export default function ElectronicsWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/specialty-services/electronics-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/specialty-services/electronics-water-damage',
     image: '/images/electronics-water-damage.jpg',
     priceRange: '$$-$$$'
   };

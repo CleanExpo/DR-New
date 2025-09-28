@@ -24,7 +24,7 @@ export default function SolarPanelWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/specialty-services/solar-panel-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/specialty-services/solar-panel-water-damage',
     image: '/images/solar-panel-water-damage.jpg',
     priceRange: '$$-$$$'
   };

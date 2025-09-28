@@ -24,7 +24,7 @@ export default function FlashFloodDamageRecoveryPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/storm-damage/flood-damage-restoration',
+    url: 'https://dr-new-ten.vercel.app/services/storm-damage/flood-damage-restoration',
     image: '/images/flood-damage-restoration.jpg',
     priceRange: '$$-$$$'
   };

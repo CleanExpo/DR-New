@@ -24,7 +24,7 @@ export default function OfficeWaterDamageRestorationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/commercial-services/office-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/commercial-services/office-water-damage',
     image: '/images/office-water-damage.jpg',
     priceRange: '$$-$$$'
   };

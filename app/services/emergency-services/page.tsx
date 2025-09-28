@@ -24,7 +24,7 @@ export default function EmergencyServicesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au',
+    url: 'https://dr-new-ten.vercel.app',
     image: '/images/disaster-recovery-logo.jpg',
     priceRange: '$$-$$$'
   };

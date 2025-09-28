@@ -24,7 +24,7 @@ export default function BlackWaterContaminationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/sewage-cleanup/black-water-cleanup',
+    url: 'https://dr-new-ten.vercel.app/services/sewage-cleanup/black-water-cleanup',
     image: '/images/black-water-cleanup.jpg',
     priceRange: '$$-$$$'
   };

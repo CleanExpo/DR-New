@@ -71,7 +71,7 @@ export default function IpswichPage() {
     description: 'Professional water damage restoration and emergency disaster recovery services in Ipswich, Springfield Lakes, Brookwater and surrounding areas. Certified Master Restorer with 24/7 emergency response.',
     url: 'https://dr-new-ten.vercel.app/ipswich',
     telephone: '1300309361',
-    email: 'emergency@disasterrecovery.com.au',
+    email: 'emergency@dr-new-ten.vercel.app',
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',

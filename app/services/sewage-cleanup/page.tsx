@@ -28,7 +28,7 @@ export const metadata: Metadata = generateSEO({
     'biohazard sewage cleanup',
     'commercial sewage cleanup'
   ],
-  canonical: 'https://disasterrecovery.com.au/services/sewage-cleanup',
+  canonical: 'https://dr-new-ten.vercel.app/services/sewage-cleanup',
   openGraph: {
     title: 'Emergency Sewage Cleanup Brisbane - 24/7 Professional Sanitization',
     description: 'Expert sewage cleanup and decontamination services. Fast response, health-certified technicians, complete sanitization. Protect your property and health.',
@@ -75,9 +75,9 @@ const sewageServiceSchema = generateServiceSchema({
 
 // Breadcrumb schema
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://disasterrecovery.com.au' },
-  { name: 'Services', url: 'https://disasterrecovery.com.au/services' },
-  { name: 'Sewage Cleanup', url: 'https://disasterrecovery.com.au/services/sewage-cleanup' }
+  { name: 'Home', url: 'https://dr-new-ten.vercel.app' },
+  { name: 'Services', url: 'https://dr-new-ten.vercel.app/services' },
+  { name: 'Sewage Cleanup', url: 'https://dr-new-ten.vercel.app/services/sewage-cleanup' }
 ])
 
 export default function SewageCleanupPage() {

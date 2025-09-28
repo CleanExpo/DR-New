@@ -128,7 +128,7 @@ export default function AscotPage() {
     description: 'Professional water damage restoration for Ascot luxury estates, racecourse precinct properties, and established wealth families. Equestrian and racing industry specialists.',
     url: 'https://dr-new-ten.vercel.app/brisbane/ascot',
     telephone: '1300309361',
-    email: 'ascot@disasterrecovery.com.au',
+    email: 'ascot@dr-new-ten.vercel.app',
     priceRange: '$75,000-$400,000+',
     address: {
       '@type': 'PostalAddress',

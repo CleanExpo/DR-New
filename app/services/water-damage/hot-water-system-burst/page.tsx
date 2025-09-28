@@ -24,7 +24,7 @@ export default function HotWaterSystemBurstDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/water-damage/hot-water-system-burst',
+    url: 'https://dr-new-ten.vercel.app/services/water-damage/hot-water-system-burst',
     image: '/images/hot-water-system-burst.jpg',
     priceRange: '$$-$$$'
   };

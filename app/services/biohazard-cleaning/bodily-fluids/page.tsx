@@ -24,7 +24,7 @@ export default function BodilyFluidCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/biohazard-cleaning/bodily-fluids',
+    url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning/bodily-fluids',
     image: '/images/bodily-fluids.jpg',
     priceRange: '$$-$$$'
   };

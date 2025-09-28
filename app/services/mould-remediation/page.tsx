@@ -30,7 +30,7 @@ export const metadata: Metadata = generateSEO({
     'commercial mould removal',
     'residential mould services'
   ],
-  canonical: 'https://disasterrecovery.com.au/services/mould-remediation',
+  canonical: 'https://dr-new-ten.vercel.app/services/mould-remediation',
   openGraph: {
     title: 'Professional Mould Remediation Brisbane - Safe & Certified Removal',
     description: 'IICRC certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Protect your health - call now.',
@@ -81,9 +81,9 @@ const mouldServiceSchema = generateServiceSchema({
 
 // Breadcrumb schema
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://disasterrecovery.com.au' },
-  { name: 'Services', url: 'https://disasterrecovery.com.au/services' },
-  { name: 'Mould Remediation', url: 'https://disasterrecovery.com.au/services/mould-remediation' }
+  { name: 'Home', url: 'https://dr-new-ten.vercel.app' },
+  { name: 'Services', url: 'https://dr-new-ten.vercel.app/services' },
+  { name: 'Mould Remediation', url: 'https://dr-new-ten.vercel.app/services/mould-remediation' }
 ])
 
 export default function MouldRemediationPage() {

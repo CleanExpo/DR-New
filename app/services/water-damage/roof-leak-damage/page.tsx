@@ -24,7 +24,7 @@ export default function RoofLeakWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/water-damage/roof-leak-damage',
+    url: 'https://dr-new-ten.vercel.app/services/water-damage/roof-leak-damage',
     image: '/images/roof-leak-damage.jpg',
     priceRange: '$$-$$$'
   };

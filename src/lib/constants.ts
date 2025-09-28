@@ -4,7 +4,7 @@ export const BUSINESS_SHORT_NAME = 'Disaster Recovery';
 
 // Contact Information
 export const PHONE = '1300 309 361';
-export const EMAIL = 'info@disasterrecovery.com.au';
+export const EMAIL = 'info@dr-new-ten.vercel.app';
 export const ADDRESS = '4/17 Tile St, Wacol, QLD 4076';
 
 // Business Details

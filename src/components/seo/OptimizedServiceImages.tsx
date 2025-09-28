@@ -15,7 +15,7 @@ export const serviceImages = {
       schema: {
         '@context': 'https://schema.org',
         '@type': 'ImageObject',
-        'contentUrl': 'https://disasterrecovery.com.au/images/suburbs/hamilton-luxury-property-water-damage-restoration.png',
+        'contentUrl': 'https://dr-new-ten.vercel.app/images/suburbs/hamilton-luxury-property-water-damage-restoration.png',
         'name': 'Hamilton Luxury Property Water Damage Restoration',
         'description': 'Master Restorer certified team providing emergency water damage restoration for Hamilton luxury properties',
         'keywords': 'Hamilton water damage, luxury property restoration, Brisbane emergency response, Master Restorer',
@@ -49,7 +49,7 @@ export const serviceImages = {
       schema: {
         '@context': 'https://schema.org',
         '@type': 'ImageObject',
-        'contentUrl': 'https://disasterrecovery.com.au/images/suburbs/ascot-emergency-flood-damage-repair.png',
+        'contentUrl': 'https://dr-new-ten.vercel.app/images/suburbs/ascot-emergency-flood-damage-repair.png',
         'name': 'Ascot Emergency Flood Damage Repair',
         'description': 'Professional flood damage restoration services for Ascot properties with direct insurance billing',
         'keywords': 'Ascot flood damage, emergency restoration, Brisbane water damage, insurance approved',
@@ -89,7 +89,7 @@ export const serviceImages = {
       schema: {
         '@context': 'https://schema.org',
         '@type': 'ImageObject',
-        'contentUrl': 'https://disasterrecovery.com.au/images/services/atp-testing-moisture-detection-new-farm.png',
+        'contentUrl': 'https://dr-new-ten.vercel.app/images/services/atp-testing-moisture-detection-new-farm.png',
         'name': 'ATP Testing Moisture Detection New Farm',
         'description': 'Professional ATP testing and moisture detection services for accurate water damage assessment in New Farm',
         'keywords': 'ATP testing, moisture detection, New Farm, water damage assessment, scientific restoration'
@@ -112,7 +112,7 @@ export const serviceImages = {
       schema: {
         '@context': 'https://schema.org',
         '@type': 'ImageObject',
-        'contentUrl': 'https://disasterrecovery.com.au/images/suburbs/karalee-ipswich-storm-damage-repair.png',
+        'contentUrl': 'https://dr-new-ten.vercel.app/images/suburbs/karalee-ipswich-storm-damage-repair.png',
         'name': 'Karalee Storm Damage Restoration',
         'description': 'Professional storm damage restoration services for Karalee and Springfield Lakes luxury properties',
         'keywords': 'Karalee storm damage, Ipswich restoration, Springfield Lakes, luxury property repair',

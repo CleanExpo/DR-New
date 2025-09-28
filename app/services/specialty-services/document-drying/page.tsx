@@ -24,7 +24,7 @@ export default function DocumentWaterDamageRecoveryPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/specialty-services/document-drying',
+    url: 'https://dr-new-ten.vercel.app/services/specialty-services/document-drying',
     image: '/images/document-drying.jpg',
     priceRange: '$$-$$$'
   };

@@ -24,7 +24,7 @@ export default function WarehouseFloodCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/commercial-services/warehouse-flooding',
+    url: 'https://dr-new-ten.vercel.app/services/commercial-services/warehouse-flooding',
     image: '/images/warehouse-flooding.jpg',
     priceRange: '$$-$$$'
   };

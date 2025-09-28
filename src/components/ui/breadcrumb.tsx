@@ -52,7 +52,7 @@ export function Breadcrumb() {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.label,
-      "item": `https://disasterrecovery.com.au${item.href}`
+      "item": `https://dr-new-ten.vercel.app${item.href}`
     }))
   };
   

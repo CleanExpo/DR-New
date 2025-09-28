@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
       type: 'website',
       locale: 'en_AU',
       siteName: 'National Recovery Partners',
-      url: `https://disasterrecovery.com.au/services/${slug}`,
+      url: `https://dr-new-ten.vercel.app/services/${slug}`,
       images: [
         {
           url: '/images/disaster-recovery-og.jpg',
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
       description: page.metaDescription,
       images: ['/images/disaster-recovery-twitter.jpg'] },
     alternates: {
-      canonical: `https://disasterrecovery.com.au/services/${slug}`
+      canonical: `https://dr-new-ten.vercel.app/services/${slug}`
     },
     robots: {
       index: true,

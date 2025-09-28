@@ -48,7 +48,7 @@ export async function generateMetadata(
       title,
       description,
       type: 'website',
-      url: `https://disasterrecovery.com.au/services/${category.slug}`,
+      url: `https://dr-new-ten.vercel.app/services/${category.slug}`,
       images: [
         {
           url: '/images/optimised/damage/3D image of a house fire.png',
@@ -61,7 +61,7 @@ export async function generateMetadata(
       title,
       description },
     alternates: {
-      canonical: `https://disasterrecovery.com.au/services/${category.slug}` } };
+      canonical: `https://dr-new-ten.vercel.app/services/${category.slug}` } };
 }
 
 // Icon mapping for services

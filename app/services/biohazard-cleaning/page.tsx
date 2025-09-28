@@ -30,7 +30,7 @@ export const metadata: Metadata = generateSEO({
     'police approved cleaners',
     'biohazard waste disposal'
   ],
-  canonical: 'https://disasterrecovery.com.au/services/biohazard-cleaning',
+  canonical: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning',
   openGraph: {
     title: 'Professional Biohazard & Crime Scene Cleaning Brisbane - Discrete & Compassionate',
     description: 'Certified biohazard and trauma scene cleaning. Discrete, compassionate service for crime scenes, unattended deaths, accidents. Available 24/7.',
@@ -77,9 +77,9 @@ const biohazardServiceSchema = generateServiceSchema({
 
 // Breadcrumb schema
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://disasterrecovery.com.au' },
-  { name: 'Services', url: 'https://disasterrecovery.com.au/services' },
-  { name: 'Biohazard Cleaning', url: 'https://disasterrecovery.com.au/services/biohazard-cleaning' }
+  { name: 'Home', url: 'https://dr-new-ten.vercel.app' },
+  { name: 'Services', url: 'https://dr-new-ten.vercel.app/services' },
+  { name: 'Biohazard Cleaning', url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning' }
 ])
 
 export default function BiohazardCleaningPage() {

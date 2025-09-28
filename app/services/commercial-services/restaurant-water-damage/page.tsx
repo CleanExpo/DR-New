@@ -24,7 +24,7 @@ export default function RestaurantWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/commercial-services/restaurant-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/commercial-services/restaurant-water-damage',
     image: '/images/restaurant-water-damage.jpg',
     priceRange: '$$-$$$'
   };

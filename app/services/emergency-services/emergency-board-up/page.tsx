@@ -24,7 +24,7 @@ export default function EmergencyBoardUpServicesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/emergency-services/emergency-board-up',
+    url: 'https://dr-new-ten.vercel.app/services/emergency-services/emergency-board-up',
     image: '/images/emergency-board-up.jpg',
     priceRange: '$$-$$$'
   };

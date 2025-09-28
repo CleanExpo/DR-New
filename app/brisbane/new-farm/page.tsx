@@ -130,7 +130,7 @@ export default function NewFarmPage() {
     description: 'Professional water damage restoration for New Farm heritage properties, riverfront homes, and cultural spaces. Heritage Queenslander specialists with Brisbane River flood expertise.',
     url: 'https://dr-new-ten.vercel.app/brisbane/new-farm',
     telephone: '1300309361',
-    email: 'newfarm@disasterrecovery.com.au',
+    email: 'newfarm@dr-new-ten.vercel.app',
     priceRange: '$50,000-$300,000+',
     address: {
       '@type': 'PostalAddress',

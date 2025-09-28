@@ -24,7 +24,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/indoor-environmental-professional',
+    url: 'https://dr-new-ten.vercel.app/services/indoor-environmental-professional',
     image: '/images/iep-services.jpg',
     priceRange: '$$$-$$$$'
   };

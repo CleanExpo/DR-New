@@ -24,7 +24,7 @@ export default function CommercialSewageCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/sewage-cleanup/commercial-sewage',
+    url: 'https://dr-new-ten.vercel.app/services/sewage-cleanup/commercial-sewage',
     image: '/images/commercial-sewage.jpg',
     priceRange: '$$-$$$'
   };

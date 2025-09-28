@@ -24,7 +24,7 @@ export default function AfterHoursEmergencyResponsePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/emergency-services/after-hours-response',
+    url: 'https://dr-new-ten.vercel.app/services/emergency-services/after-hours-response',
     image: '/images/after-hours-response.jpg',
     priceRange: '$$-$$$'
   };

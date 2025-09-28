@@ -151,7 +151,7 @@ export default function LoganPage() {
     description: 'Professional commercial water damage restoration in Logan including industrial facilities, retail centers, office complexes, and warehouses with business continuity focus.',
     url: 'https://dr-new-ten.vercel.app/logan',
     telephone: '1300309361',
-    email: 'commercial@disasterrecovery.com.au',
+    email: 'commercial@dr-new-ten.vercel.app',
     priceRange: '$$-$$$',
     address: {
       '@type': 'PostalAddress',

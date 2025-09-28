@@ -24,7 +24,7 @@ export default function ElectricalFireDamageCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/fire-damage/electrical-fire-damage',
+    url: 'https://dr-new-ten.vercel.app/services/fire-damage/electrical-fire-damage',
     image: '/images/electrical-fire-damage.jpg',
     priceRange: '$$-$$$'
   };

@@ -24,7 +24,7 @@ export default function CycloneDamageRestorationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/storm-damage/cyclone-damage',
+    url: 'https://dr-new-ten.vercel.app/services/storm-damage/cyclone-damage',
     image: '/images/cyclone-damage.jpg',
     priceRange: '$$-$$$'
   };

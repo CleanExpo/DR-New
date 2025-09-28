@@ -24,7 +24,7 @@ export default function FactoryFloodRecoveryPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/commercial-services/factory-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/commercial-services/factory-water-damage',
     image: '/images/factory-water-damage.jpg',
     priceRange: '$$-$$$'
   };

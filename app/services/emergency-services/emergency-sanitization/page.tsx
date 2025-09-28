@@ -24,7 +24,7 @@ export default function EmergencySanitizationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/emergency-services/emergency-sanitization',
+    url: 'https://dr-new-ten.vercel.app/services/emergency-services/emergency-sanitization',
     image: '/images/emergency-sanitization.jpg',
     priceRange: '$$-$$$'
   };

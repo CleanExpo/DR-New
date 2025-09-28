@@ -24,7 +24,7 @@ export default function FallenTreeDamageCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/storm-damage/tree-damage-cleanup',
+    url: 'https://dr-new-ten.vercel.app/services/storm-damage/tree-damage-cleanup',
     image: '/images/tree-damage-cleanup.jpg',
     priceRange: '$$-$$$'
   };

@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: ['/images/optimised/process/3D Assessment.png'] },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/insurance' }
+    canonical: 'https://dr-new-ten.vercel.app/insurance' }
 };
 
 const majorInsurers = [

@@ -248,7 +248,7 @@ export default function WhyMouldReturnsPage() {
     'Victorian Building Authority research reveals 92% of insurance claims have water-related defects. One in three Australian homes affected by mould.',
     '2024-01-15',
     '2024-12-29',
-    'https://disasterrecovery.com.au/guides/mould/why-mould-returns-6-months',
+    'https://dr-new-ten.vercel.app/guides/mould/why-mould-returns-6-months',
     ['mould remediation', 'VBA research', 'water damage', 'ABCB standards', 'AS-IICRC S520:2025']
   );
 
@@ -272,9 +272,9 @@ export default function WhyMouldReturnsPage() {
   ]);
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: 'Home', url: 'https://disasterrecovery.com.au' },
-    { name: 'Guides', url: 'https://disasterrecovery.com.au/guides' },
-    { name: 'Mould', url: 'https://disasterrecovery.com.au/guides/mould' },
+    { name: 'Home', url: 'https://dr-new-ten.vercel.app' },
+    { name: 'Guides', url: 'https://dr-new-ten.vercel.app/guides' },
+    { name: 'Mould', url: 'https://dr-new-ten.vercel.app/guides/mould' },
     { name: 'Why Mould Returns' }
   ]);
 

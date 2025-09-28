@@ -24,7 +24,7 @@ export default function HotelFloodRestorationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/commercial-services/hotel-flood-recovery',
+    url: 'https://dr-new-ten.vercel.app/services/commercial-services/hotel-flood-recovery',
     image: '/images/hotel-flood-recovery.jpg',
     priceRange: '$$-$$$'
   };

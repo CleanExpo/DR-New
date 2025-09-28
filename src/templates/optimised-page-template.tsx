@@ -131,7 +131,7 @@ export function generateAustralianMetadata({
     openGraph: {
       title,
       description,
-      url: `https://disasterrecovery.com.au${path}`,
+      url: `https://dr-new-ten.vercel.app${path}`,
       siteName: 'Disaster Recovery Australia',
       images: [
         {
@@ -157,7 +157,7 @@ export function generateAustralianMetadata({
         'max-image-preview': 'large',
         'max-snippet': -1 } },
     alternates: {
-      canonical: `https://disasterrecovery.com.au${path}` } };
+      canonical: `https://dr-new-ten.vercel.app${path}` } };
 }
 
 // Schema.org Generator for Australian Business

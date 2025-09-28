@@ -29,7 +29,7 @@ export const metadata: Metadata = generateSEO({
     'contents restoration fire damage',
     'commercial fire damage restoration'
   ],
-  canonical: 'https://disasterrecovery.com.au/services/fire-damage-restoration',
+  canonical: 'https://dr-new-ten.vercel.app/services/fire-damage-restoration',
   openGraph: {
     title: 'Fire & Smoke Damage Restoration Brisbane - 24/7 Emergency Service',
     description: 'Professional fire damage restoration and smoke cleanup in Brisbane. Fast response, insurance approved, complete restoration services.',
@@ -76,9 +76,9 @@ const fireDamageServiceSchema = generateServiceSchema({
 
 // Breadcrumb schema
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://disasterrecovery.com.au' },
-  { name: 'Services', url: 'https://disasterrecovery.com.au/services' },
-  { name: 'Fire Damage Restoration', url: 'https://disasterrecovery.com.au/services/fire-damage-restoration' }
+  { name: 'Home', url: 'https://dr-new-ten.vercel.app' },
+  { name: 'Services', url: 'https://dr-new-ten.vercel.app/services' },
+  { name: 'Fire Damage Restoration', url: 'https://dr-new-ten.vercel.app/services/fire-damage-restoration' }
 ])
 
 export default function FireDamageRestorationPage() {

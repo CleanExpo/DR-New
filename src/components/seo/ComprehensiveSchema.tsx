@@ -37,7 +37,7 @@ export const ComprehensiveSchema: React.FC<SchemaProps> = ({
     ],
     "description": "Australia's leading network of 10,000+ IICRC-certified disaster restoration specialists providing 24/7 emergency response nationwide.",
     "telephone": "1300-DISASTER",
-    "email": "emergency@disasterrecovery.com.au",
+    "email": "emergency@dr-new-ten.vercel.app",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "AU",

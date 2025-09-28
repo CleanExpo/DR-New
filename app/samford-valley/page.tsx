@@ -98,7 +98,7 @@ export default function SamfordValleyPage() {
     description: 'Professional water damage restoration for Samford Valley luxury estates, wine cellars, and high-value properties. Certified Master Restorer with discrete, confidential service for medical professionals and high net worth families.',
     url: 'https://dr-new-ten.vercel.app/samford-valley',
     telephone: '1300309361',
-    email: 'discrete@disasterrecovery.com.au',
+    email: 'discrete@dr-new-ten.vercel.app',
     priceRange: '$$$',
     address: {
       '@type': 'PostalAddress',

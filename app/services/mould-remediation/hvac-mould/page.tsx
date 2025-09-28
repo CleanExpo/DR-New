@@ -24,7 +24,7 @@ export default function AirConditioningMouldRemovalPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/mould-remediation/hvac-mould',
+    url: 'https://dr-new-ten.vercel.app/services/mould-remediation/hvac-mould',
     image: '/images/hvac-mould.jpg',
     priceRange: '$$-$$$'
   };

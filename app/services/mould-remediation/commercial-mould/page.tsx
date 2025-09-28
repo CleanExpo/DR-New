@@ -24,7 +24,7 @@ export default function CommercialMouldRemediationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/mould-remediation/commercial-mould',
+    url: 'https://dr-new-ten.vercel.app/services/mould-remediation/commercial-mould',
     image: '/images/commercial-mould.jpg',
     priceRange: '$$-$$$'
   };

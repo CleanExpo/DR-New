@@ -24,7 +24,7 @@ export default function ShowerLeakWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/water-damage/shower-leaks',
+    url: 'https://dr-new-ten.vercel.app/services/water-damage/shower-leaks',
     image: '/images/shower-leaks.jpg',
     priceRange: '$$-$$$'
   };

@@ -24,7 +24,7 @@ export default function KitchenFireDamageRestorationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/fire-damage/kitchen-fire-damage',
+    url: 'https://dr-new-ten.vercel.app/services/fire-damage/kitchen-fire-damage',
     image: '/images/kitchen-fire-damage.jpg',
     priceRange: '$$-$$$'
   };

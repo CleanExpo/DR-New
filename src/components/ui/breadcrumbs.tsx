@@ -22,7 +22,7 @@ export function Breadcrumbs({ items }: { items?: BreadcrumbItem[] }) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.href ? `https://disasterrecovery.com.au${item.href}` : undefined })) };
+      item: item.href ? `https://dr-new-ten.vercel.app${item.href}` : undefined })) };
 
   return (
     <>

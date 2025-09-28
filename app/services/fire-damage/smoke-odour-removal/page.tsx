@@ -24,7 +24,7 @@ export default function SmokeOdourRemovalServicesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/fire-damage/smoke-odour-removal',
+    url: 'https://dr-new-ten.vercel.app/services/fire-damage/smoke-odour-removal',
     image: '/images/smoke-odour-removal.jpg',
     priceRange: '$$-$$$'
   };

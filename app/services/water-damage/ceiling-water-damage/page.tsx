@@ -24,7 +24,7 @@ export default function CeilingWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/water-damage/ceiling-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/water-damage/ceiling-water-damage',
     image: '/images/ceiling-water-damage.jpg',
     priceRange: '$$-$$$'
   };

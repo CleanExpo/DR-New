@@ -152,7 +152,7 @@ export default function ComprehensiveSEO({
     "telephone": "+61-1300-309-361",
     "availableChannel": {
       "@type": "ServiceChannel",
-      "serviceUrl": "https://disasterrecovery.com.au",
+      "serviceUrl": "https://dr-new-ten.vercel.app",
       "servicePhone": "+61-1300-309-361",
       "availableLanguage": "English"
     }
@@ -204,7 +204,7 @@ export default function ComprehensiveSEO({
     "@type": "HowTo",
     "name": "How to Handle Water Damage Emergency",
     "description": "Steps to take when experiencing water damage in your Brisbane property",
-    "image": "https://disasterrecovery.com.au/images/services/water-damage-restoration.webp",
+    "image": "https://dr-new-ten.vercel.app/images/services/water-damage-restoration.webp",
     "totalTime": "PT30M",
     "estimatedCost": {
       "@type": "MonetaryAmount",
@@ -218,25 +218,25 @@ export default function ComprehensiveSEO({
         "@type": "HowToStep",
         "name": "Ensure Safety",
         "text": "Turn off electricity to affected areas and avoid standing water if electrical hazards exist",
-        "image": "https://disasterrecovery.com.au/images/process/safety.jpg"
+        "image": "https://dr-new-ten.vercel.app/images/process/safety.jpg"
       },
       {
         "@type": "HowToStep",
         "name": "Stop Water Source",
         "text": "If possible, stop the source of water by turning off main water supply",
-        "image": "https://disasterrecovery.com.au/images/process/water-shutoff.jpg"
+        "image": "https://dr-new-ten.vercel.app/images/process/water-shutoff.jpg"
       },
       {
         "@type": "HowToStep",
         "name": "Call Professionals",
         "text": "Call 1300 309 361 for immediate emergency response",
-        "image": "https://disasterrecovery.com.au/images/process/call.jpg"
+        "image": "https://dr-new-ten.vercel.app/images/process/call.jpg"
       },
       {
         "@type": "HowToStep",
         "name": "Document Damage",
         "text": "Take photos for insurance purposes before cleanup begins",
-        "image": "https://disasterrecovery.com.au/images/process/document.jpg"
+        "image": "https://dr-new-ten.vercel.app/images/process/document.jpg"
       }
     ]
   };
@@ -250,19 +250,19 @@ export default function ComprehensiveSEO({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://disasterrecovery.com.au"
+        "item": "https://dr-new-ten.vercel.app"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://disasterrecovery.com.au/services"
+        "item": "https://dr-new-ten.vercel.app/services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "Brisbane",
-        "item": "https://disasterrecovery.com.au/locations/brisbane"
+        "item": "https://dr-new-ten.vercel.app/locations/brisbane"
       }
     ]
   };

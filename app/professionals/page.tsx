@@ -110,7 +110,7 @@ export default function ProfessionalsPage() {
     description: 'Confidential water damage restoration for Brisbane medical professionals, surgeons, specialists, judges, and QCs. Discrete, professional service with after-hours coordination.',
     url: 'https://dr-new-ten.vercel.app/professionals',
     telephone: '1300309361',
-    email: 'discrete@disasterrecovery.com.au',
+    email: 'discrete@dr-new-ten.vercel.app',
     priceRange: '$$$',
     address: {
       '@type': 'PostalAddress',

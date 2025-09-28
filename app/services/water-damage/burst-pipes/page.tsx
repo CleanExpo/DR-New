@@ -24,7 +24,7 @@ export default function BurstPipesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/water-damage/burst-pipes',
+    url: 'https://dr-new-ten.vercel.app/services/water-damage/burst-pipes',
     image: '/images/burst-pipe-emergency.jpg',
     priceRange: '$$-$$$'
   };

@@ -161,7 +161,7 @@ export const defaultAuthors = {
       "Biohazard Cleanup Certified"
     ],
     linkedIn: "https://linkedin.com/in/michael-chen-disaster-recovery",
-    email: "michael.chen@disasterrecovery.com.au"
+    email: "michael.chen@dr-new-ten.vercel.app"
   },
   operations: {
     name: "Sarah Mitchell",
@@ -180,7 +180,7 @@ export const defaultAuthors = {
       "WHS Management Certificate"
     ],
     linkedIn: "https://linkedin.com/in/sarah-mitchell-operations",
-    email: "sarah.mitchell@disasterrecovery.com.au"
+    email: "sarah.mitchell@dr-new-ten.vercel.app"
   },
   compliance: {
     name: "David Thompson",
@@ -199,6 +199,6 @@ export const defaultAuthors = {
       "Environmental Protection Authority Licensed"
     ],
     linkedIn: "https://linkedin.com/in/david-thompson-compliance",
-    email: "david.thompson@disasterrecovery.com.au"
+    email: "david.thompson@dr-new-ten.vercel.app"
   }
 };

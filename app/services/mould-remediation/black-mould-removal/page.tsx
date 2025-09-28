@@ -24,7 +24,7 @@ export default function BlackMouldRemovalBrisbanePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/mould-remediation/black-mould-removal',
+    url: 'https://dr-new-ten.vercel.app/services/mould-remediation/black-mould-removal',
     image: '/images/black-mould-removal.jpg',
     priceRange: '$$-$$$'
   };

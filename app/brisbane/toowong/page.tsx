@@ -52,7 +52,7 @@ const jsonLd = {
       "description": "Master certified heritage Queenslander restoration specialists serving Toowong and university precinct. Expert restoration for character homes, heritage-listed buildings, and university properties.",
       "url": "https://dr-new-ten.vercel.app/brisbane/toowong",
       "telephone": "+61-7-3000-0000",
-      "email": "emergency@disasterrecovery.com.au",
+      "email": "emergency@dr-new-ten.vercel.app",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Toowong",

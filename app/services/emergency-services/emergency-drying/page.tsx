@@ -24,7 +24,7 @@ export default function EmergencyStructuralDryingPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/emergency-services/emergency-drying',
+    url: 'https://dr-new-ten.vercel.app/services/emergency-services/emergency-drying',
     image: '/images/emergency-drying.jpg',
     priceRange: '$$-$$$'
   };

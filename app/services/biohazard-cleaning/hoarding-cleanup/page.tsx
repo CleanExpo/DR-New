@@ -24,7 +24,7 @@ export default function HoardingCleanupServicesPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/biohazard-cleaning/hoarding-cleanup',
+    url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning/hoarding-cleanup',
     image: '/images/hoarding-cleanup.jpg',
     priceRange: '$$-$$$'
   };

@@ -370,7 +370,7 @@ export async function checkSEMrushConnection(): Promise<boolean> {
   return result !== null;
 }
 
-export async function getCompetitorAnalysis(domain: string = 'disasterrecovery.com.au') {
+export async function getCompetitorAnalysis(domain: string = 'dr-new-ten.vercel.app') {
   const competitors = await semrushAPI.getOrganicCompetitors(domain);
   const overview = await semrushAPI.getDomainOverview(domain);
   const backlinks = await semrushAPI.getBacklinksOverview(domain);
@@ -381,7 +381,7 @@ export async function getCompetitorAnalysis(domain: string = 'disasterrecovery.c
     backlinks };
 }
 
-export async function getKeywordOpportunities(domain: string = 'disasterrecovery.com.au') {
+export async function getKeywordOpportunities(domain: string = 'dr-new-ten.vercel.app') {
   const organic = await semrushAPI.getOrganicResults(domain, 50);
   
   // Find keywords with good volume but poor rankings

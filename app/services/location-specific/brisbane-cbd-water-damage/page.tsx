@@ -24,7 +24,7 @@ export default function BrisbaneCBDWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/location-specific/brisbane-cbd-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/location-specific/brisbane-cbd-water-damage',
     image: '/images/brisbane-cbd-water-damage.jpg',
     priceRange: '$$-$$$'
   };

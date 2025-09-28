@@ -131,7 +131,7 @@ export default function HamiltonPage() {
     description: 'Professional water damage restoration for Hamilton riverfront mansions and executive properties. Luxury home specialists with Brisbane River flood expertise.',
     url: 'https://dr-new-ten.vercel.app/brisbane/hamilton',
     telephone: '1300309361',
-    email: 'hamilton@disasterrecovery.com.au',
+    email: 'hamilton@dr-new-ten.vercel.app',
     priceRange: '$100,000-$500,000+',
     address: {
       '@type': 'PostalAddress',

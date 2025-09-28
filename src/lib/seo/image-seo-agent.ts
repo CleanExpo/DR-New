@@ -366,7 +366,7 @@ export class ImageSEOAgent {
       "contentUrl": image.formats.webp || image.formats.jpg,
       "thumbnailUrl": image.sizes.thumbnail,
       "uploadDate": new Date().toISOString(),
-      "acquireLicenseUrl": "https://disasterrecovery.com.au/contact",
+      "acquireLicenseUrl": "https://dr-new-ten.vercel.app/contact",
       "copyrightHolder": {
         "@type": "Organisation",
         "name": "Disaster Recovery"
@@ -520,11 +520,11 @@ export class ImageSEOAgent {
   static generateSitemapEntries(images: SEOOptimizedImage[]): string {
     const entries = images.map(img => `
     <image:image>
-      <image:loc>https://disasterrecovery.com.au${img.formats.webp}</image:loc>
+      <image:loc>https://dr-new-ten.vercel.app${img.formats.webp}</image:loc>
       <image:title>${this.escapeXML(img.title)}</image:title>
       <image:caption>${this.escapeXML(img.caption)}</image:caption>
       <image:geo_location>Australia</image:geo_location>
-      <image:license>https://disasterrecovery.com.au/terms</image:license>
+      <image:license>https://dr-new-ten.vercel.app/terms</image:license>
     </image:image>`).join('');
     
     return entries;

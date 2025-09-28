@@ -24,7 +24,7 @@ export default function HealthcareFacilityWaterDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/commercial-services/hospital-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/commercial-services/hospital-water-damage',
     image: '/images/hospital-water-damage.jpg',
     priceRange: '$$-$$$'
   };

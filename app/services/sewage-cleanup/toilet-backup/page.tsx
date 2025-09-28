@@ -24,7 +24,7 @@ export default function ToiletSewageBackupCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/sewage-cleanup/toilet-backup',
+    url: 'https://dr-new-ten.vercel.app/services/sewage-cleanup/toilet-backup',
     image: '/images/toilet-backup.jpg',
     priceRange: '$$-$$$'
   };

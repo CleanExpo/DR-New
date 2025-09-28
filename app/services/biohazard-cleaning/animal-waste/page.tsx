@@ -24,7 +24,7 @@ export default function AnimalWasteCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/biohazard-cleaning/animal-waste',
+    url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning/animal-waste',
     image: '/images/animal-waste.jpg',
     priceRange: '$$-$$$'
   };

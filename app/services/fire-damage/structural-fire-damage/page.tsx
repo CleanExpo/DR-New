@@ -24,7 +24,7 @@ export default function StructuralFireDamageRepairPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/fire-damage/structural-fire-damage',
+    url: 'https://dr-new-ten.vercel.app/services/fire-damage/structural-fire-damage',
     image: '/images/structural-fire-damage.jpg',
     priceRange: '$$-$$$'
   };

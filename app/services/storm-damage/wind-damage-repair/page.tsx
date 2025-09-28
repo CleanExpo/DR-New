@@ -24,7 +24,7 @@ export default function WindDamageRestorationPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/storm-damage/wind-damage-repair',
+    url: 'https://dr-new-ten.vercel.app/services/storm-damage/wind-damage-repair',
     image: '/images/wind-damage-repair.jpg',
     priceRange: '$$-$$$'
   };

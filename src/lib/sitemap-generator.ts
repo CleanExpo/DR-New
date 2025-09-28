@@ -7,7 +7,7 @@ export interface SitemapEntry {
   priority: number;
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://disasterrecovery.com.au';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dr-new-ten.vercel.app';
 
 export function generateSitemapEntries(): SitemapEntry[] {
   const entries: SitemapEntry[] = [];

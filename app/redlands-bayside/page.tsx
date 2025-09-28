@@ -153,7 +153,7 @@ export default function RedlandsBaysidePage() {
     description: 'Professional water damage restoration for Redlands bayside properties including Gumdale, Sheldon, Wellington Point, Cleveland, Thornlands, and bay islands. Marine specialist with salt water flood expertise.',
     url: 'https://dr-new-ten.vercel.app/redlands-bayside',
     telephone: '1300309361',
-    email: 'marine@disasterrecovery.com.au',
+    email: 'marine@dr-new-ten.vercel.app',
     priceRange: '$$-$$$',
     address: {
       '@type': 'PostalAddress',

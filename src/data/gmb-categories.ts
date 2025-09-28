@@ -430,18 +430,18 @@ export const generateCategorySchema = (category: GMBCategory, location?: string)
     '@type': category.schema['@type'],
     name: generateCategoryTitle(category, location),
     description: category.description,
-    url: `https://disasterrecovery.com.au/services/${category.slug}${location ? `/${location.toLowerCase().replace(/\s+/g, '-')}` : ''}`,
+    url: `https://dr-new-ten.vercel.app/services/${category.slug}${location ? `/${location.toLowerCase().replace(/\s+/g, '-')}` : ''}`,
     areaServed: location || 'Australia',
     availableChannel: {
       '@type': 'ServiceChannel',
-      serviceUrl: 'https://disasterrecovery.com.au',
+      serviceUrl: 'https://dr-new-ten.vercel.app',
       servicePhone: '24/7 Emergency Line',
       availableLanguage: 'English'
     },
     provider: {
       '@type': 'Organization',
       name: 'Disaster Recovery',
-      url: 'https://disasterrecovery.com.au'
+      url: 'https://dr-new-ten.vercel.app'
     },
     serviceType: category.services,
     additionalType: category.schema.additionalType

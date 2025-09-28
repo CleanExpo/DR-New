@@ -24,7 +24,7 @@ export default function SchoolWaterDamageCleanupPage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/commercial-services/school-water-damage',
+    url: 'https://dr-new-ten.vercel.app/services/commercial-services/school-water-damage',
     image: '/images/school-water-damage.jpg',
     priceRange: '$$-$$$'
   };

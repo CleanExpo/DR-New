@@ -24,7 +24,7 @@ export default function WashingMachineFloodDamagePage() {
       addressCountry: 'AU'
     },
     hours: '24/7 Online Emergency Response',
-    url: 'https://disasterrecovery.com.au/services/water-damage/washing-machine-flooding',
+    url: 'https://dr-new-ten.vercel.app/services/water-damage/washing-machine-flooding',
     image: '/images/washing-machine-flooding.jpg',
     priceRange: '$$-$$$'
   };

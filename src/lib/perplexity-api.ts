@@ -325,7 +325,7 @@ export async function checkPerplexityConnection(): Promise<boolean> {
   return result !== null;
 }
 
-export async function getLatestMarketData(domain: string = 'disasterrecovery.com.au') {
+export async function getLatestMarketData(domain: string = 'dr-new-ten.vercel.app') {
   const [marketInsights, regulatoryUpdates, insuranceInsights] = await Promise.all([
     perplexityAPI.getMarketInsights('Australia'),
     perplexityAPI.getRegulatoryUpdates('disaster recovery', 'Australia'),

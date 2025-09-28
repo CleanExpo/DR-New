@@ -122,7 +122,7 @@ export default function WineCellarRestorationPage() {
       '@type': 'LocalBusiness',
       name: 'Disaster Recovery Brisbane Wine Cellar Specialists',
       telephone: '1300309361',
-      email: 'wine@disasterrecovery.com.au',
+      email: 'wine@dr-new-ten.vercel.app',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Brisbane',
