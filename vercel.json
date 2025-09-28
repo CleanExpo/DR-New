@@ -3,33 +3,18 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "installCommand": "npm ci --legacy-peer-deps",
-  "buildCommand": "node scripts/build-vercel-optimized.js",
+  "buildCommand": "next build",
   "env": {
-    "NODE_OPTIONS": "--max-old-space-size=3072",
-    "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
-    "DATABASE_URL": "file:./prod.db",
-    "SKIP_ENV_VALIDATION": "true",
+    "NODE_OPTIONS": "--max-old-space-size=2048",
     "NEXT_TELEMETRY_DISABLED": "1",
-    "NEXTAUTH_URL": "https://dr-new-ten.vercel.app",
-    "NEXTAUTH_SECRET": "/LGn3ayna3ZCC2djiCZCM3RBo9wNHHqE08HVGkgzVcc=",
-    "NEXT_PUBLIC_SITE_URL": "https://dr-new-ten.vercel.app",
     "NEXT_PUBLIC_APP_URL": "https://dr-new-ten.vercel.app",
-    "NEXT_PUBLIC_DEMO_MODE": "false",
     "SKIP_BUILD_ERRORS": "true"
   },
   "build": {
     "env": {
-      "NODE_OPTIONS": "--max-old-space-size=3072",
-      "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
-      "DATABASE_URL": "file:./build.db",
+      "NODE_OPTIONS": "--max-old-space-size=2048",
       "NEXT_TELEMETRY_DISABLED": "1",
-      "SKIP_ENV_VALIDATION": "true",
-      "CI": "false",
-      "NEXTAUTH_URL": "https://dr-new-ten.vercel.app",
-      "NEXTAUTH_SECRET": "/LGn3ayna3ZCC2djiCZCM3RBo9wNHHqE08HVGkgzVcc=",
-      "NEXT_PUBLIC_SITE_URL": "https://dr-new-ten.vercel.app",
       "NEXT_PUBLIC_APP_URL": "https://dr-new-ten.vercel.app",
-      "NEXT_PUBLIC_DEMO_MODE": "false",
       "SKIP_BUILD_ERRORS": "true"
     }
   },
