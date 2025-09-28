@@ -214,6 +214,23 @@ export default function NewFarmPage() {
       />
 
       <div className="min-h-screen bg-white">
+        {/* Breadcrumb Navigation */}
+        <nav className="bg-gray-50 py-3 border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <Link href="/" className="hover:text-blue-600 transition-colors">
+                Home
+              </Link>
+              <span className="text-gray-400">/</span>
+              <Link href="/brisbane" className="hover:text-blue-600 transition-colors">
+                Brisbane
+              </Link>
+              <span className="text-gray-400">/</span>
+              <span className="text-gray-900 font-medium">New Farm</span>
+            </div>
+          </div>
+        </nav>
+
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-green-900 via-blue-900 to-purple-900 text-white py-20">
           <div className="container mx-auto px-4">

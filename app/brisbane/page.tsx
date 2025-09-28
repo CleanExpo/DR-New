@@ -441,6 +441,151 @@ export default function BrisbanePage() {
           </div>
         </section>
 
+        {/* Premium Suburb Services */}
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Premium Brisbane Suburb Specialists
+              </h2>
+              <p className="text-xl text-gray-600">
+                Specialized restoration services for Brisbane's most exclusive neighborhoods
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link
+                href="/brisbane/new-farm"
+                className="group bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100 hover:border-blue-300 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                    <MapPin className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">New Farm</h3>
+                    <p className="text-sm text-gray-600">Heritage Waterfront</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-3">
+                  Specialized heritage Queenslander restoration and Brisbane River flood expertise for New Farm's cultural district.
+                </p>
+                <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-700">
+                  <span>Learn More</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+
+              <Link
+                href="/brisbane/hamilton"
+                className="group bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-6 border border-emerald-100 hover:border-emerald-300 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
+                    <Shield className="h-6 w-6 text-emerald-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Hamilton</h3>
+                    <p className="text-sm text-gray-600">Executive Riverfront</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-3">
+                  Discrete executive response for Hamilton's riverfront mansions with priority service for CEO residences.
+                </p>
+                <div className="flex items-center text-emerald-600 font-medium group-hover:text-emerald-700">
+                  <span>Learn More</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+
+              <Link
+                href="/brisbane/ascot"
+                className="group bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 border border-yellow-100 hover:border-yellow-300 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center group-hover:bg-yellow-200 transition-colors">
+                    <Star className="h-6 w-6 text-yellow-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Ascot</h3>
+                    <p className="text-sm text-gray-600">Racecourse Precinct</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-3">
+                  Racing industry expertise and equestrian property specialists for Ascot's established wealth families.
+                </p>
+                <div className="flex items-center text-yellow-600 font-medium group-hover:text-yellow-700">
+                  <span>Learn More</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+
+              <Link
+                href="/brisbane/toowong"
+                className="group bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-100 hover:border-purple-300 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                    <CheckCircle className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Toowong</h3>
+                    <p className="text-sm text-gray-600">Heritage Character</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-3">
+                  Heritage Queenslander restoration with Brisbane City Council compliance for character precincts.
+                </p>
+                <div className="flex items-center text-purple-600 font-medium group-hover:text-purple-700">
+                  <span>Learn More</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+
+              <Link
+                href="/springfield-lakes"
+                className="group bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl p-6 border border-teal-100 hover:border-teal-300 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors">
+                    <Clock className="h-6 w-6 text-teal-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Springfield Lakes</h3>
+                    <p className="text-sm text-gray-600">Premium Estates</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-3">
+                  Lakefront property specialists with golf course estate expertise and executive discrete service.
+                </p>
+                <div className="flex items-center text-teal-600 font-medium group-hover:text-teal-700">
+                  <span>Learn More</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+
+              <div className="group bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-6 border border-gray-200 hover:border-gray-300 hover:shadow-lg transition-all">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+                    <Phone className="h-6 w-6 text-gray-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Your Suburb</h3>
+                    <p className="text-sm text-gray-600">Custom Service</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-3">
+                  Don't see your suburb? We provide premium restoration services across all Brisbane areas.
+                </p>
+                <div className="flex items-center text-gray-600 font-medium group-hover:text-gray-700">
+                  <span>Call (07) 3000 0000</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
