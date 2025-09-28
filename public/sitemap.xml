@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/</loc>
+    <loc>https://disasterrecovery.com.au/</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -10,25 +10,25 @@
 
   <!-- Main Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/about</loc>
+    <loc>https://disasterrecovery.com.au/about</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/contact</loc>
+    <loc>https://disasterrecovery.com.au/contact</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/book-service</loc>
+    <loc>https://disasterrecovery.com.au/book-service</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -36,67 +36,67 @@
 
   <!-- Main Services -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/services</loc>
+    <loc>https://disasterrecovery.com.au/services</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage-restoration</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage-restoration</loc>
+    <loc>https://disasterrecovery.com.au/services/fire-damage-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/mould-remediation</loc>
+    <loc>https://disasterrecovery.com.au/services/mould-remediation</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/storm-damage-restoration</loc>
+    <loc>https://disasterrecovery.com.au/services/storm-damage-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/flood-damage-restoration</loc>
+    <loc>https://disasterrecovery.com.au/services/flood-damage-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/sewage-cleanup</loc>
+    <loc>https://disasterrecovery.com.au/services/sewage-cleanup</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/biohazard-cleanup</loc>
+    <loc>https://disasterrecovery.com.au/services/biohazard-cleanup</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/trauma-cleanup</loc>
+    <loc>https://disasterrecovery.com.au/services/trauma-cleanup</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/emergency-services</loc>
+    <loc>https://disasterrecovery.com.au/services/emergency-services</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
@@ -104,49 +104,49 @@
 
   <!-- Water Damage Sub-Services -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/burst-pipes</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/burst-pipes</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/ceiling-water-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/ceiling-water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/hot-water-system-burst</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/hot-water-system-burst</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/roof-leak-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/roof-leak-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/shower-leaks</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/shower-leaks</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/toilet-overflow</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/toilet-overflow</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/washing-machine-flooding</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/washing-machine-flooding</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/water-damage/dishwasher-leaks</loc>
+    <loc>https://disasterrecovery.com.au/services/water-damage/dishwasher-leaks</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -154,37 +154,37 @@
 
   <!-- Fire Damage Sub-Services -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage/kitchen-fire-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/fire-damage/kitchen-fire-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage/electrical-fire-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/fire-damage/electrical-fire-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage/smoke-odour-removal</loc>
+    <loc>https://disasterrecovery.com.au/services/fire-damage/smoke-odour-removal</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage/soot-damage-cleanup</loc>
+    <loc>https://disasterrecovery.com.au/services/fire-damage/soot-damage-cleanup</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage/bushfire-smoke-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/fire-damage/bushfire-smoke-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/fire-damage/structural-fire-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/fire-damage/structural-fire-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -192,25 +192,25 @@
 
   <!-- Mould Remediation Sub-Services -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/bathroom-mould</loc>
+    <loc>https://disasterrecovery.com.au/services/mould-remediation/bathroom-mould</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/black-mould-removal</loc>
+    <loc>https://disasterrecovery.com.au/services/mould-remediation/black-mould-removal</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/commercial-mould</loc>
+    <loc>https://disasterrecovery.com.au/services/mould-remediation/commercial-mould</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/mould-remediation/hvac-mould</loc>
+    <loc>https://disasterrecovery.com.au/services/mould-remediation/hvac-mould</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -218,31 +218,31 @@
 
   <!-- Storm Damage Sub-Services -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/storm-damage/hail-damage-repair</loc>
+    <loc>https://disasterrecovery.com.au/services/storm-damage/hail-damage-repair</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/storm-damage/wind-damage-repair</loc>
+    <loc>https://disasterrecovery.com.au/services/storm-damage/wind-damage-repair</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/storm-damage/tree-damage-cleanup</loc>
+    <loc>https://disasterrecovery.com.au/services/storm-damage/tree-damage-cleanup</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/storm-damage/cyclone-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/storm-damage/cyclone-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/storm-damage/flood-damage-restoration</loc>
+    <loc>https://disasterrecovery.com.au/services/storm-damage/flood-damage-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -250,49 +250,49 @@
 
   <!-- Commercial Services Sub-Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/office-water-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/office-water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/retail-flood-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/retail-flood-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/restaurant-water-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/restaurant-water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/warehouse-flooding</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/warehouse-flooding</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/hotel-flood-recovery</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/hotel-flood-recovery</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/hospital-water-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/hospital-water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/school-water-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/school-water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/commercial-services/factory-water-damage</loc>
+    <loc>https://disasterrecovery.com.au/services/commercial-services/factory-water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -300,67 +300,67 @@
 
   <!-- Emergency Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/after-hours-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/after-hours-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/weekend-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/weekend-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/public-holiday-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/public-holiday-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/christmas-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/christmas-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/new-year-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/new-year-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/easter</loc>
+    <loc>https://disasterrecovery.com.au/emergency/easter</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/anzac-day</loc>
+    <loc>https://disasterrecovery.com.au/emergency/anzac-day</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/midnight-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/midnight-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/early-morning-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/early-morning-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/late-night</loc>
+    <loc>https://disasterrecovery.com.au/emergency/late-night</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/sunday-night-emergency</loc>
+    <loc>https://disasterrecovery.com.au/emergency/sunday-night-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -368,37 +368,37 @@
 
   <!-- Emergency Checklists -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/checklists</loc>
+    <loc>https://disasterrecovery.com.au/emergency/checklists</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/checklists/water-damage</loc>
+    <loc>https://disasterrecovery.com.au/emergency/checklists/water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/checklists/fire-damage</loc>
+    <loc>https://disasterrecovery.com.au/emergency/checklists/fire-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/checklists/storm-damage</loc>
+    <loc>https://disasterrecovery.com.au/emergency/checklists/storm-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/checklists/mould</loc>
+    <loc>https://disasterrecovery.com.au/emergency/checklists/mould</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/emergency/checklists/sewage</loc>
+    <loc>https://disasterrecovery.com.au/emergency/checklists/sewage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -406,61 +406,61 @@
 
   <!-- Insurance Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/aami</loc>
+    <loc>https://disasterrecovery.com.au/insurance/aami</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/allianz</loc>
+    <loc>https://disasterrecovery.com.au/insurance/allianz</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/budget-direct</loc>
+    <loc>https://disasterrecovery.com.au/insurance/budget-direct</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/cgu</loc>
+    <loc>https://disasterrecovery.com.au/insurance/cgu</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/nrma</loc>
+    <loc>https://disasterrecovery.com.au/insurance/nrma</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/qbe</loc>
+    <loc>https://disasterrecovery.com.au/insurance/qbe</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/rac</loc>
+    <loc>https://disasterrecovery.com.au/insurance/rac</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/racq</loc>
+    <loc>https://disasterrecovery.com.au/insurance/racq</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/suncorp</loc>
+    <loc>https://disasterrecovery.com.au/insurance/suncorp</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/youi</loc>
+    <loc>https://disasterrecovery.com.au/insurance/youi</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -468,31 +468,31 @@
 
   <!-- Insurance Decoder Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance-decoder</loc>
+    <loc>https://disasterrecovery.com.au/insurance-decoder</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance-decoder/water-damage</loc>
+    <loc>https://disasterrecovery.com.au/insurance-decoder/water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance-decoder/fire-damage</loc>
+    <loc>https://disasterrecovery.com.au/insurance-decoder/fire-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance-decoder/storm-damage</loc>
+    <loc>https://disasterrecovery.com.au/insurance-decoder/storm-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance-decoder/mould</loc>
+    <loc>https://disasterrecovery.com.au/insurance-decoder/mould</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -500,91 +500,91 @@
 
   <!-- FAQ Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq</loc>
+    <loc>https://disasterrecovery.com.au/faq</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/water-damage</loc>
+    <loc>https://disasterrecovery.com.au/faq/water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/fire-damage</loc>
+    <loc>https://disasterrecovery.com.au/faq/fire-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/mould-removal</loc>
+    <loc>https://disasterrecovery.com.au/faq/mould-removal</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/storm-damage</loc>
+    <loc>https://disasterrecovery.com.au/faq/storm-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/insurance-claims</loc>
+    <loc>https://disasterrecovery.com.au/faq/insurance-claims</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/emergency-response</loc>
+    <loc>https://disasterrecovery.com.au/faq/emergency-response</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/sewage-cleanup</loc>
+    <loc>https://disasterrecovery.com.au/faq/sewage-cleanup</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/flood-restoration</loc>
+    <loc>https://disasterrecovery.com.au/faq/flood-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/biohazard-cleanup</loc>
+    <loc>https://disasterrecovery.com.au/faq/biohazard-cleanup</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/carpet-drying</loc>
+    <loc>https://disasterrecovery.com.au/faq/carpet-drying</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/contents-restoration</loc>
+    <loc>https://disasterrecovery.com.au/faq/contents-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/document-drying</loc>
+    <loc>https://disasterrecovery.com.au/faq/document-drying</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/electronics-restoration</loc>
+    <loc>https://disasterrecovery.com.au/faq/electronics-restoration</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/odour-removal</loc>
+    <loc>https://disasterrecovery.com.au/faq/odour-removal</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -592,7 +592,7 @@
 
   <!-- Guide Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/water-damage/burst-pipe-ceiling-repair-cost</loc>
+    <loc>https://disasterrecovery.com.au/guides/water-damage/burst-pipe-ceiling-repair-cost</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -600,13 +600,13 @@
 
   <!-- Long-Tail Emergency FAQ Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/long-tail-emergency-questions</loc>
+    <loc>https://disasterrecovery.com.au/faq/long-tail-emergency-questions</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/emergency/how-much-does-emergency-water-damage-restoration-cost-brisbane-hamilton</loc>
+    <loc>https://disasterrecovery.com.au/guides/emergency/how-much-does-emergency-water-damage-restoration-cost-brisbane-hamilton</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -614,25 +614,25 @@
 
   <!-- High-Authority E-E-A-T Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/master-restorer-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/master-restorer-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/insurance/racq-approved-water-damage-restoration-contractor-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/insurance/racq-approved-water-damage-restoration-contractor-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/technical/thermal-imaging-moisture-detection-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/services/technical/thermal-imaging-moisture-detection-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/locations/brisbane/emergency-water-damage-restoration-hamilton-ascot-new-farm-24-hours</loc>
+    <loc>https://disasterrecovery.com.au/locations/brisbane/emergency-water-damage-restoration-hamilton-ascot-new-farm-24-hours</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -640,13 +640,13 @@
 
   <!-- Downloadable Resources -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/resources/master-restorer-certification-guide</loc>
+    <loc>https://disasterrecovery.com.au/resources/master-restorer-certification-guide</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/resources/air-quality-guides-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/resources/air-quality-guides-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -654,31 +654,31 @@
 
   <!-- Air Quality & VOC Services -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/air-quality/voc-removal-testing-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/services/air-quality/voc-removal-testing-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/air-quality/work-from-home-air-quality-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/services/air-quality/work-from-home-air-quality-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/air-quality/commercial-air-quality-restoration-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/services/air-quality/commercial-air-quality-restoration-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/air-quality/sick-building-syndrome-remediation-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/services/air-quality/sick-building-syndrome-remediation-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/air-quality/hvac-contamination-cleaning-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/services/air-quality/hvac-contamination-cleaning-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -686,73 +686,73 @@
 
   <!-- FAQ Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/faq/master-restorer-qualifications-brisbane</loc>
+    <loc>https://disasterrecovery.com.au/faq/master-restorer-qualifications-brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/fire-damage/smoke-damage-cleaning-guide</loc>
+    <loc>https://disasterrecovery.com.au/guides/fire-damage/smoke-damage-cleaning-guide</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/storm-damage/storm-damage-roof-leak-repair</loc>
+    <loc>https://disasterrecovery.com.au/guides/storm-damage/storm-damage-roof-leak-repair</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/mould/black-mould-bathroom-ceiling</loc>
+    <loc>https://disasterrecovery.com.au/guides/mould/black-mould-bathroom-ceiling</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/mould/why-mould-returns-6-months</loc>
+    <loc>https://disasterrecovery.com.au/guides/mould/why-mould-returns-6-months</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/flood-damage/flood-damage-hardwood-floors</loc>
+    <loc>https://disasterrecovery.com.au/guides/flood-damage/flood-damage-hardwood-floors</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/insurance/document-water-damage-insurance</loc>
+    <loc>https://disasterrecovery.com.au/guides/insurance/document-water-damage-insurance</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/insurance/insurance-approved-contractors</loc>
+    <loc>https://disasterrecovery.com.au/guides/insurance/insurance-approved-contractors</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/insurance/make-safe-insurance-coverage</loc>
+    <loc>https://disasterrecovery.com.au/guides/insurance/make-safe-insurance-coverage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/emergency/christmas-emergency-water-damage</loc>
+    <loc>https://disasterrecovery.com.au/guides/emergency/christmas-emergency-water-damage</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/emergency/weekend-public-holiday-emergency</loc>
+    <loc>https://disasterrecovery.com.au/guides/emergency/weekend-public-holiday-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/guides/emergency/middle-night-flooding-emergency</loc>
+    <loc>https://disasterrecovery.com.au/guides/emergency/middle-night-flooding-emergency</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -760,19 +760,19 @@
 
   <!-- Main Location Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/brisbane</loc>
+    <loc>https://disasterrecovery.com.au/brisbane</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/ipswich</loc>
+    <loc>https://disasterrecovery.com.au/ipswich</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/logan</loc>
+    <loc>https://disasterrecovery.com.au/logan</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
@@ -780,31 +780,31 @@
 
   <!-- Phase 3 Hyperlocal Premium Suburb Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/brisbane/new-farm</loc>
+    <loc>https://disasterrecovery.com.au/brisbane/new-farm</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/brisbane/hamilton</loc>
+    <loc>https://disasterrecovery.com.au/brisbane/hamilton</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/brisbane/ascot</loc>
+    <loc>https://disasterrecovery.com.au/brisbane/ascot</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/brisbane/toowong</loc>
+    <loc>https://disasterrecovery.com.au/brisbane/toowong</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/springfield-lakes</loc>
+    <loc>https://disasterrecovery.com.au/springfield-lakes</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
@@ -812,31 +812,31 @@
 
   <!-- Premium Service Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/samford-valley</loc>
+    <loc>https://disasterrecovery.com.au/samford-valley</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/professionals</loc>
+    <loc>https://disasterrecovery.com.au/professionals</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/redlands-bayside</loc>
+    <loc>https://disasterrecovery.com.au/redlands-bayside</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/wine-cellar-restoration</loc>
+    <loc>https://disasterrecovery.com.au/services/wine-cellar-restoration</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/services/art-antique-restoration</loc>
+    <loc>https://disasterrecovery.com.au/services/art-antique-restoration</loc>
     <lastmod>2025-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -844,19 +844,19 @@
 
   <!-- Legal Pages -->
   <url>
-    <loc>https://dr-new-ten.vercel.app/privacy</loc>
+    <loc>https://disasterrecovery.com.au/privacy</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/terms</loc>
+    <loc>https://disasterrecovery.com.au/terms</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://dr-new-ten.vercel.app/cookies</loc>
+    <loc>https://disasterrecovery.com.au/cookies</loc>
     <lastmod>2025-09-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

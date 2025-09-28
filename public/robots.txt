@@ -1,4 +1,4 @@
-# Robots.txt for https://dr-new-ten.vercel.app
+# Robots.txt for https://disasterrecovery.com.au
 # PUBLIC SITE - NO AUTHENTICATION REQUIRED
 # Generated: 2025-09-28
 
@@ -38,8 +38,8 @@ User-agent: Claude-Web
 Allow: /
 
 # Sitemaps
-Sitemap: https://dr-new-ten.vercel.app/sitemap.xml
-Sitemap: https://dr-new-ten.vercel.app/sitemap.txt
+Sitemap: https://disasterrecovery.com.au/sitemap.xml
+Sitemap: https://disasterrecovery.com.au/sitemap.txt
 
 # Block bad bots
 User-agent: AhrefsBot

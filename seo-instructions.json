@@ -1,0 +1,31 @@
+{
+  "domain": "dr-new-ten.vercel.app",
+  "sitemapUrl": "https://dr-new-ten.vercel.app/sitemap.xml",
+  "verificationFiles": {
+    "google": "google8f4d3e5a7b9c2d1e.html",
+    "bing": "BingSiteAuth.xml"
+  },
+  "manualSteps": {
+    "googleSearchConsole": [
+      "1. Visit https://search.google.com/search-console",
+      "2. Add property: dr-new-ten.vercel.app",
+      "3. Verify using HTML file method (google8f4d3e5a7b9c2d1e.html)",
+      "4. Submit sitemap: https://dr-new-ten.vercel.app/sitemap.xml",
+      "5. Monitor indexation status"
+    ],
+    "bingWebmasterTools": [
+      "1. Visit https://www.bing.com/webmasters",
+      "2. Add site: dr-new-ten.vercel.app",
+      "3. Verify using XML file method (BingSiteAuth.xml)",
+      "4. Submit sitemap: https://dr-new-ten.vercel.app/sitemap.xml",
+      "5. Monitor indexation status"
+    ]
+  },
+  "nextSteps": [
+    "Monitor Google Search Console for indexation",
+    "Monitor Bing Webmaster Tools for crawl status",
+    "Check for crawl errors and fix immediately",
+    "Resubmit sitemap if pages are updated",
+    "Monitor organic search visibility improvements"
+  ]
+}

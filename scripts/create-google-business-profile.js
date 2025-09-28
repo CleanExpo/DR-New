@@ -1,0 +1,373 @@
+#!/usr/bin/env node
+/**
+ * Google Business Profile Optimization Script
+ * Generates optimized GBP content for maximum local SEO impact
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+class GoogleBusinessProfileGenerator {
+  constructor() {
+    this.businessData = {
+      name: "Disaster Recovery Brisbane | Phill McGurk Master Restorer",
+      description: "Brisbane's only Master Restorer certified professional. 24/7 emergency water damage, fire damage, and mould remediation. IICRC certified. Insurance approved. Serving Brisbane, Ipswich, Logan premium properties.",
+
+      // NAP (Name, Address, Phone) - Critical for local SEO
+      address: {
+        street: "4/17 Tile Street",
+        city: "Wacol",
+        state: "QLD",
+        postcode: "4076",
+        country: "Australia",
+        full: "4/17 Tile Street, Wacol, QLD 4076, Australia"
+      },
+
+      phone: "1300 309 361",
+      website: "https://disasterrecovery.com.au",
+
+      // Service areas - Critical for GEO rankings
+      serviceAreas: [
+        "Brisbane City",
+        "Hamilton",
+        "Ascot",
+        "New Farm",
+        "Toowong",
+        "Ipswich",
+        "Springfield Lakes",
+        "Brookwater",
+        "Karalee",
+        "Logan Central",
+        "Fortitude Valley",
+        "Milton",
+        "South Brisbane",
+        "West End",
+        "Paddington",
+        "Red Hill",
+        "Kelvin Grove",
+        "Herston",
+        "Newstead",
+        "Teneriffe"
+      ],
+
+      // Business categories - Must match exact Google categories
+      categories: {
+        primary: "Water Damage Restoration Service",
+        secondary: [
+          "Fire Damage Restoration Service",
+          "Mold Remediation Service",
+          "Emergency Restoration Service",
+          "Commercial Cleaning Service",
+          "Disaster Recovery Service"
+        ]
+      },
+
+      // Business hours
+      hours: {
+        "Monday": "Open 24 hours",
+        "Tuesday": "Open 24 hours",
+        "Wednesday": "Open 24 hours",
+        "Thursday": "Open 24 hours",
+        "Friday": "Open 24 hours",
+        "Saturday": "Open 24 hours",
+        "Sunday": "Open 24 hours"
+      },
+
+      // Attributes - Critical for local search visibility
+      attributes: [
+        "24/7 Emergency Service",
+        "Insurance Claims Assistance",
+        "IICRC Certified",
+        "Master Restorer Certified",
+        "Commercial & Residential",
+        "Free Damage Assessment",
+        "Direct Insurance Billing",
+        "Equipment Available 24/7",
+        "Flood Water Extraction",
+        "Mould Testing & Removal"
+      ],
+
+      // Services - Comprehensive keyword coverage
+      services: [
+        "Water Damage Restoration",
+        "Emergency Water Extraction",
+        "Flood Cleanup",
+        "Burst Pipe Cleanup",
+        "Fire Damage Restoration",
+        "Smoke Damage Cleanup",
+        "Soot Removal",
+        "Mould Remediation",
+        "Mold Removal",
+        "Mould Testing",
+        "Storm Damage Repair",
+        "Sewage Cleanup",
+        "Biohazard Cleanup",
+        "Trauma Scene Cleanup",
+        "Vandalism Cleanup",
+        "Commercial Restoration",
+        "Residential Restoration",
+        "Insurance Claim Support",
+        "Emergency Board Up",
+        "Dehumidification Services"
+      ],
+
+      // Products - For comprehensive coverage
+      products: [
+        "Industrial Dehumidifiers",
+        "Commercial Water Extractors",
+        "Air Scrubbers",
+        "HEPA Filtration Systems",
+        "Moisture Meters",
+        "Thermal Imaging Equipment"
+      ]
+    };
+  }
+
+  generateOptimizedDescription() {
+    return `Brisbane's only Master Restorer certified professional for emergency disaster recovery. Phill McGurk leads Queensland's premier IICRC-certified team providing 24/7 water damage restoration, fire damage cleanup, and mould remediation.
+
+🏆 MASTER RESTORER CERTIFIED - One of limited Brisbane professionals
+⚡ 24/7 EMERGENCY RESPONSE - Within 1 hour Brisbane metro
+✅ INSURANCE APPROVED - Direct billing available
+🔬 IICRC CERTIFIED - Industry gold standard
+
+SPECIALIZING IN:
+• Premium Brisbane suburbs: Hamilton, Ascot, New Farm, Toowong
+• High-value commercial properties: CBD, Fortitude Valley, Milton
+• Luxury residential: Springfield Lakes, Brookwater, Karalee
+• Emergency response: Water, fire, mould, storm damage
+
+SERVICE GUARANTEE:
+• Master Restorer expertise
+• Advanced equipment on-site within 1 hour
+• Direct insurance claim assistance
+• Prevents secondary damage
+• Restores properties to pre-loss condition
+
+COVERAGE: Brisbane, Ipswich, Logan metro areas. From single rooms to multi-story commercial buildings.
+
+Call 1300 309 361 for immediate Master Restorer response.`;
+  }
+
+  generatePosts() {
+    return [
+      {
+        type: "Emergency Response",
+        content: "🚨 EMERGENCY WATER DAMAGE? Master Restorer on-call 24/7. Advanced extraction equipment deployed within 1 hour Brisbane metro. IICRC certified. Insurance approved. Call 1300 309 361 now.",
+        keywords: ["emergency water damage", "master restorer", "Brisbane", "24/7", "IICRC certified"]
+      },
+      {
+        type: "Service Highlight",
+        content: "Why choose a Master Restorer? Advanced certification beyond standard IICRC. Complex restoration projects. Insurance industry recognition. Phill McGurk - one of limited Master Restorers in Brisbane/QLD.",
+        keywords: ["master restorer", "IICRC", "Brisbane", "certification", "insurance"]
+      },
+      {
+        type: "Local Area",
+        content: "Specializing in Brisbane's premium suburbs: Hamilton riverfront mansions, Ascot racing precinct properties, New Farm heritage Queenslanders, Toowong character homes. Master Restorer expertise for luxury properties.",
+        keywords: ["Hamilton", "Ascot", "New Farm", "Toowong", "Brisbane suburbs", "luxury properties"]
+      },
+      {
+        type: "Commercial Focus",
+        content: "Commercial restoration specialists: Brisbane CBD high-rises, Fortitude Valley offices, Milton business parks. Master Restorer certification ensures minimal business disruption. Direct insurance billing.",
+        keywords: ["commercial restoration", "Brisbane CBD", "business", "master restorer", "insurance"]
+      },
+      {
+        type: "Technology",
+        content: "Advanced restoration technology: Thermal imaging leak detection, industrial dehumidification, HEPA air scrubbing. Master Restorer certification ensures latest techniques and equipment.",
+        keywords: ["restoration technology", "thermal imaging", "industrial equipment", "master restorer"]
+      }
+    ];
+  }
+
+  generateQAs() {
+    return [
+      {
+        question: "What makes a Master Restorer different from regular certified technicians?",
+        answer: "Master Restorer certification is the highest level in the restoration industry - beyond standard IICRC. Only a limited number of professionals in Brisbane/QLD hold this certification. It represents advanced expertise in complex restoration projects, insurance industry recognition, and ability to handle the most challenging damage scenarios."
+      },
+      {
+        question: "How quickly can you respond to emergency water damage in Brisbane?",
+        answer: "We guarantee response within 1 hour for Brisbane metro areas including Hamilton, Ascot, New Farm, Toowong, and CBD. Our 24/7 emergency team has equipment pre-loaded and ready for immediate deployment. The first 24-48 hours are critical to prevent secondary damage."
+      },
+      {
+        question: "Do you work directly with insurance companies?",
+        answer: "Yes, as a Master Restorer certified business, we work directly with all major insurance companies. We provide direct billing, detailed damage assessments, and comprehensive restoration reports that insurance companies trust and accept."
+      },
+      {
+        question: "What areas do you service for emergency restoration?",
+        answer: "We service all Brisbane metro areas, Ipswich, and Logan. We specialize in premium suburbs like Hamilton, Ascot, New Farm, Toowong, and luxury estates like Springfield Lakes, Brookwater, Karalee. Our Master Restorer certification ensures appropriate service for high-value properties."
+      },
+      {
+        question: "What types of damage do you restore?",
+        answer: "Our Master Restorer team handles all disaster recovery: water damage (floods, burst pipes), fire damage (smoke, soot), mould remediation, storm damage, sewage cleanup, and biohazard situations. From single rooms to multi-story commercial buildings."
+      }
+    ];
+  }
+
+  generateCitations() {
+    return [
+      {
+        platform: "Yellow Pages",
+        url: "https://www.yellowpages.com.au",
+        priority: "High",
+        notes: "Major Australian directory - critical for NAP consistency"
+      },
+      {
+        platform: "True Local",
+        url: "https://www.truelocal.com.au",
+        priority: "High",
+        notes: "Australian local business directory"
+      },
+      {
+        platform: "Yelp Australia",
+        url: "https://www.yelp.com.au",
+        priority: "Medium",
+        notes: "Review platform - important for social proof"
+      },
+      {
+        platform: "Hotfrog Australia",
+        url: "https://www.hotfrog.com.au",
+        priority: "Medium",
+        notes: "Business directory with local focus"
+      },
+      {
+        platform: "StartLocal",
+        url: "https://www.startlocal.com.au",
+        priority: "Medium",
+        notes: "Australian local business platform"
+      },
+      {
+        platform: "Whereis",
+        url: "https://www.whereis.com",
+        priority: "High",
+        notes: "Major Australian mapping/directory service"
+      },
+      {
+        platform: "Local Business Guide",
+        url: "https://www.localbusinessguide.com.au",
+        priority: "Medium",
+        notes: "Australian business directory"
+      },
+      {
+        platform: "IICRC Find a Professional",
+        url: "https://www.iicrc.org/find-professional",
+        priority: "Critical",
+        notes: "Industry certification directory - establishes credibility"
+      },
+      {
+        platform: "Brisbane City Council Business Directory",
+        url: "https://www.brisbane.qld.gov.au",
+        priority: "High",
+        notes: "Local government business listing"
+      },
+      {
+        platform: "Ipswich City Council Business Directory",
+        url: "https://www.ipswich.qld.gov.au",
+        priority: "High",
+        notes: "Service area government listing"
+      }
+    ];
+  }
+
+  generateOptimizationReport() {
+    const report = {
+      businessProfile: this.businessData,
+      optimizedDescription: this.generateOptimizedDescription(),
+      socialPosts: this.generatePosts(),
+      questionAnswers: this.generateQAs(),
+      citationOpportunities: this.generateCitations(),
+
+      implementationSteps: [
+        "1. Create Google Business Profile using exact NAP data",
+        "2. Select 'Water Damage Restoration Service' as primary category",
+        "3. Add all secondary categories for comprehensive coverage",
+        "4. Upload high-quality photos of equipment and team",
+        "5. Set up 24/7 hours with emergency contact",
+        "6. Add all service areas (Brisbane, Ipswich, Logan)",
+        "7. Include all attributes (24/7, IICRC, Master Restorer)",
+        "8. Create posts weekly highlighting Master Restorer expertise",
+        "9. Respond to all reviews professionally and promptly",
+        "10. Monitor GBP insights and optimize based on search terms"
+      ],
+
+      criticalKeywords: [
+        "master restorer brisbane",
+        "emergency water damage brisbane",
+        "IICRC certified brisbane",
+        "24/7 restoration brisbane",
+        "water damage hamilton",
+        "fire damage ascot",
+        "mould removal new farm",
+        "commercial restoration brisbane cbd",
+        "flood cleanup ipswich",
+        "storm damage logan"
+      ],
+
+      competitorAnalysis: {
+        gaps: [
+          "No Brisbane competitors highlight Master Restorer certification",
+          "Limited 24/7 emphasis in competitor profiles",
+          "Opportunity to dominate premium suburb keywords",
+          "Commercial restoration underemphasized by competitors"
+        ],
+        advantages: [
+          "Master Restorer certification unique positioning",
+          "24/7 emergency response guarantee",
+          "Premium suburb specialization",
+          "Direct insurance billing capability"
+        ]
+      }
+    };
+
+    return report;
+  }
+
+  async generateProfile() {
+    console.log('🏢 Generating Google Business Profile optimization...\n');
+
+    const report = this.generateOptimizationReport();
+
+    // Save comprehensive report
+    const reportPath = path.join(__dirname, '..', 'google-business-profile-optimization.json');
+    fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
+
+    console.log('📊 GOOGLE BUSINESS PROFILE OPTIMIZATION COMPLETE');
+    console.log('═══════════════════════════════════════════════');
+
+    console.log('\n🎯 KEY OPTIMIZATION POINTS:');
+    console.log('• Business Name: Include "Master Restorer" for differentiation');
+    console.log('• Primary Category: Water Damage Restoration Service');
+    console.log('• NAP Consistency: 4/17 Tile Street, Wacol, QLD 4076');
+    console.log('• Phone: 1300 309 361 (ensure consistent across all platforms)');
+    console.log('• Website: https://disasterrecovery.com.au');
+
+    console.log('\n🏆 COMPETITIVE ADVANTAGES TO HIGHLIGHT:');
+    console.log('• Master Restorer Certification (unique in Brisbane)');
+    console.log('• 24/7 Emergency Response (within 1 hour)');
+    console.log('• Premium Suburb Specialization');
+    console.log('• Direct Insurance Billing');
+
+    console.log('\n📍 SERVICE AREAS TO TARGET:');
+    report.businessProfile.serviceAreas.slice(0, 10).forEach(area => {
+      console.log(`• ${area}`);
+    });
+
+    console.log('\n🔍 CRITICAL KEYWORDS TO MONITOR:');
+    report.criticalKeywords.slice(0, 8).forEach(keyword => {
+      console.log(`• "${keyword}"`);
+    });
+
+    console.log(`\n✅ Full optimization report saved to: google-business-profile-optimization.json`);
+    console.log('\n📋 NEXT STEP: Create GBP manually using the generated data above');
+
+    return report;
+  }
+}
+
+// Run if called directly
+if (require.main === module) {
+  const generator = new GoogleBusinessProfileGenerator();
+  generator.generateProfile().catch(console.error);
+}
+
+module.exports = GoogleBusinessProfileGenerator;

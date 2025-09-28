@@ -1,0 +1,69 @@
+{
+  "analysisDate": "2025-09-28T07:42:58.428Z",
+  "domain": "dr-new-ten.vercel.app",
+  "totalIssues": 1,
+  "issuesByCategory": {
+    "critical": 0,
+    "high": 0,
+    "medium": 1,
+    "low": 0
+  },
+  "issues": [
+    {
+      "category": "PWA",
+      "issue": "Service Worker not implemented",
+      "impact": "Medium",
+      "fix": "Consider implementing Service Worker for caching"
+    }
+  ],
+  "recommendations": {
+    "immediate": [
+      "Enable SWC minification in Next.js config",
+      "Implement aggressive caching headers",
+      "Optimize font loading with display: swap",
+      "Enable CSS optimization in production",
+      "Remove console.log statements in production"
+    ],
+    "performance": [
+      "Implement advanced code splitting",
+      "Add AVIF image format support",
+      "Configure long-term image caching",
+      "Enable DNS prefetch control",
+      "Optimize Critical Rendering Path"
+    ],
+    "monitoring": [
+      "Implement Real User Monitoring (RUM)",
+      "Set up Core Web Vitals tracking",
+      "Monitor Largest Contentful Paint (LCP)",
+      "Track Cumulative Layout Shift (CLS)",
+      "Measure First Input Delay (FID)"
+    ],
+    "advanced": [
+      "Consider Service Worker implementation",
+      "Implement resource hints (preload, prefetch)",
+      "Optimize third-party scripts",
+      "Implement lazy loading for below-fold content",
+      "Consider HTTP/3 and QUIC protocol support"
+    ]
+  },
+  "priorityActions": [
+    "1. Fix all Critical and High impact issues immediately",
+    "2. Implement Core Web Vitals monitoring",
+    "3. Optimize Largest Contentful Paint (LCP) < 2.5s",
+    "4. Minimize Cumulative Layout Shift (CLS) < 0.1",
+    "5. Optimize First Input Delay (FID) < 100ms",
+    "6. Implement Progressive Web App features",
+    "7. Monitor and optimize Time to First Byte (TTFB)",
+    "8. Set up performance budget monitoring"
+  ],
+  "keyMetricsToTrack": [
+    "Core Web Vitals scores",
+    "PageSpeed Insights mobile/desktop scores",
+    "First Contentful Paint (FCP)",
+    "Largest Contentful Paint (LCP)",
+    "First Input Delay (FID)",
+    "Cumulative Layout Shift (CLS)",
+    "Time to Interactive (TTI)",
+    "Total Blocking Time (TBT)"
+  ]
+}
