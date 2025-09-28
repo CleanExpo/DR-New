@@ -47,7 +47,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://disasterrecovery.com.au'),
+  metadataBase: new URL('https://dr-new-ten.vercel.app'),
   title: {
     default: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services | IICRC Certified',
     template: '%s | Disaster Recovery Australia'
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_AU',
-    url: 'https://disasterrecovery.com.au',
+    url: 'https://dr-new-ten.vercel.app',
     siteName: 'Disaster Recovery Australia',
     title: 'Disaster Recovery Australia | 24/7 IICRC-Certified Emergency Restoration',
     description: 'Australia\'s elite network of <10,000 IICRC-certified restoration professionals. 24/7 emergency response prevents 50% of secondary damage. Trusted by major insurers.',
@@ -115,9 +115,9 @@ export const metadata: Metadata = {
       'msvalidate.01': 'DB030D197A83DF2F524BF0DFBACDC52C',
       'facebook-domain-verification': 'abcdef123456789' } },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au',
+    canonical: 'https://dr-new-ten.vercel.app',
     languages: {
-      'en-AU': 'https://disasterrecovery.com.au' } },
+      'en-AU': 'https://dr-new-ten.vercel.app' } },
   category: 'Disaster Recovery Services' }
 
 export default function RootLayout({
@@ -145,8 +145,8 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Disaster Recovery Australia",
               "alternateName": "Disaster Recovery",
-              "url": "https://disasterrecovery.com.au",
-              "logo": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
+              "url": "https://dr-new-ten.vercel.app",
+              "logo": "https://dr-new-ten.vercel.app/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
               "description": "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",
               "areaServed": {
                 "@type": "Country",

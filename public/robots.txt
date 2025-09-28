@@ -1,6 +1,6 @@
-# Robots.txt for https://disasterrecovery.com.au
+# Robots.txt for https://dr-new-ten.vercel.app
 # PUBLIC SITE - NO AUTHENTICATION REQUIRED
-# Generated: 2025-09-22
+# Generated: 2025-09-28
 
 # Allow all search engines - SITE IS PUBLIC
 User-agent: *
