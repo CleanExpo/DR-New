@@ -25,24 +25,26 @@ export default function ComprehensiveSEO({
   structuredData
 }: ComprehensiveSEOProps) {
 
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dr-new-ten.vercel.app';
+
   // Brisbane-specific schema for local SEO
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://disasterrecovery.com.au/#organization",
+    "@id": `${siteUrl}/#organization`,
     "name": "Disaster Recovery Brisbane",
     "alternateName": "NRP Disaster Recovery Services",
     "description": "24/7 emergency disaster recovery services in Brisbane, Ipswich, and Logan. IICRC certified water damage, fire damage, mould remediation specialists.",
-    "url": "https://disasterrecovery.com.au",
+    "url": siteUrl,
     "telephone": "+61-1300-309-361",
     "priceRange": "$$$",
     "image": [
-      "https://disasterrecovery.com.au/images/hero/disaster-recovery-services.jpg",
-      "https://disasterrecovery.com.au/logos/disaster-recovery-logo.png"
+      `${siteUrl}/images/hero/disaster-recovery-services.jpg`,
+      `${siteUrl}/logos/disaster-recovery-logo.png`
     ],
     "logo": {
       "@type": "ImageObject",
-      "url": "https://disasterrecovery.com.au/logos/disaster-recovery-logo.png",
+      "url": `${siteUrl}/logos/disaster-recovery-logo.png`,
       "width": 600,
       "height": 60
     },

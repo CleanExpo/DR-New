@@ -1,13 +1,15 @@
 // Comprehensive SEO Schema Generator for #1 Google Rankings
 
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dr-new-ten.vercel.app';
+
 export const generateLocalBusinessSchema = (location: string, postalCode: string) => ({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": `https://disasterrecovery.com.au/${location}`,
+  "@id": `${siteUrl}/${location}`,
   "name": `Disaster Recovery ${location} - 24/7 Emergency Restoration`,
-  "image": "https://disasterrecovery.com.au/logos/disaster-recovery-logo.png",
-  "logo": "https://disasterrecovery.com.au/logos/disaster-recovery-logo.png",
-  "url": `https://disasterrecovery.com.au/${location}`,
+  "image": `${siteUrl}/logos/disaster-recovery-logo.png`,
+  "logo": `${siteUrl}/logos/disaster-recovery-logo.png`,
+  "url": `${siteUrl}/${location}`,
   "telephone": "1300-DISASTER",
   "priceRange": "$$",
   "address": {

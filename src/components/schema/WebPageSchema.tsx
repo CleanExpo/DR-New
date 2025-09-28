@@ -16,23 +16,25 @@ export const WebPageSchema: FC<WebPageSchemaProps> = ({
   dateModified = new Date().toISOString(),
   breadcrumbs = []
 }) => {
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dr-new-ten.vercel.app';
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://www.disasterrecovery.com.au/#website",
-        "url": "https://www.disasterrecovery.com.au",
+        "@id": `${siteUrl}/#website`,
+        "url": siteUrl,
         "name": "Disaster Recovery Qld",
         "description": "Queensland's Premier Disaster Recovery Service - Master Restorer Phill McGurk",
         "publisher": {
-          "@id": "https://www.disasterrecovery.com.au/#organization"
+          "@id": `${siteUrl}/#organization`
         },
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://www.disasterrecovery.com.au/?s={search_term_string}"
+            "urlTemplate": `${siteUrl}/?s={search_term_string}`
           },
           "query-input": "required name=search_term_string"
         },
@@ -45,7 +47,7 @@ export const WebPageSchema: FC<WebPageSchemaProps> = ({
         "name": title,
         "description": description,
         "isPartOf": {
-          "@id": "https://www.disasterrecovery.com.au/#website"
+          "@id": `${siteUrl}/#website`
         },
         "datePublished": "2024-01-01T00:00:00+10:00",
         "dateModified": dateModified,
@@ -66,18 +68,18 @@ export const WebPageSchema: FC<WebPageSchemaProps> = ({
       },
       {
         "@type": "Organization",
-        "@id": "https://www.disasterrecovery.com.au/#organization",
+        "@id": `${siteUrl}/#organization`,
         "name": "Disaster Recovery Qld",
         "alternateName": "Disaster Recovery Queensland",
-        "url": "https://www.disasterrecovery.com.au",
+        "url": siteUrl,
         "logo": {
           "@type": "ImageObject",
-          "@id": "https://www.disasterrecovery.com.au/#logo",
-          "url": "https://www.disasterrecovery.com.au/images/logo.png",
-          "contentUrl": "https://www.disasterrecovery.com.au/images/logo.png",
+          "@id": `${siteUrl}/#logo`,
+          "url": `${siteUrl}/images/logo.png`,
+          "contentUrl": `${siteUrl}/images/logo.png`,
           "caption": "Disaster Recovery Qld"
         },
-        "image": { "@id": "https://www.disasterrecovery.com.au/#logo" },
+        "image": { "@id": `${siteUrl}/#logo` },
         "sameAs": [
           "https://www.facebook.com/DisasterRecoveryQld",
           "https://www.linkedin.com/company/disaster-recovery-qld",

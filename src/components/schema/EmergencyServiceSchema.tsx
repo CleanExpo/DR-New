@@ -1,13 +1,15 @@
 // Emergency Service Schema - CRITICAL for 24/7 services
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dr-new-ten.vercel.app';
+
 export const EmergencyServiceSchema = {
   "@context": "https://schema.org",
   "@type": "EmergencyService",
-  "@id": "https://www.disasterrecovery.com.au/#emergency",
+  "@id": `${siteUrl}/#emergency`,
   "name": "Disaster Recovery Qld - 24/7 Emergency Response",
   "description": "24/7 emergency water damage restoration, fire damage recovery, and disaster response services across Brisbane, Ipswich, and Logan by Master Restorer Phill McGurk",
-  "url": "https://www.disasterrecovery.com.au",
+  "url": siteUrl,
   "telephone": "+61-1300-000-000",
-  "email": "emergency@disasterrecovery.com.au",
+  "email": "emergency@dr-new-ten.vercel.app",
   "availableLanguage": ["en-AU"],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",

@@ -1,8 +1,10 @@
 // Aggregate Rating Schema - CRITICAL for trust signals
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://dr-new-ten.vercel.app';
+
 export const AggregateRatingSchema = {
   "@context": "https://schema.org",
   "@type": "AggregateRating",
-  "@id": "https://www.disasterrecovery.com.au/#rating",
+  "@id": `${siteUrl}/#rating`,
   "ratingValue": "4.9",
   "reviewCount": "127",
   "bestRating": "5",
@@ -10,7 +12,7 @@ export const AggregateRatingSchema = {
   "itemReviewed": {
     "@type": "LocalBusiness",
     "name": "Disaster Recovery Qld",
-    "image": "https://www.disasterrecovery.com.au/images/logo.png"
+    "image": `${siteUrl}/images/logo.png`
   }
 };
 
@@ -18,7 +20,7 @@ export const AggregateRatingSchema = {
 export const ReviewSchema = {
   "@context": "https://schema.org",
   "@type": "Review",
-  "@id": "https://www.disasterrecovery.com.au/#reviews",
+  "@id": `${siteUrl}/#reviews`,
   "itemReviewed": {
     "@type": "LocalBusiness",
     "name": "Disaster Recovery Qld",
