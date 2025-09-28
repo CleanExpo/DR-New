@@ -129,7 +129,7 @@ export default function AscotPage() {
     url: 'https://dr-new-ten.vercel.app/brisbane/ascot',
     telephone: '1300309361',
     email: 'ascot@disasterrecovery.com.au',
-    priceRange: '$$$$',
+    priceRange: '$75,000-$400,000+',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Serving Ascot District',
@@ -194,7 +194,6 @@ export default function AscotPage() {
         }
       ]
     },
-    priceRange: '$75,000-$400,000+',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5.0',

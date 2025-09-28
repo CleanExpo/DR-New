@@ -131,7 +131,7 @@ export default function NewFarmPage() {
     url: 'https://dr-new-ten.vercel.app/brisbane/new-farm',
     telephone: '1300309361',
     email: 'newfarm@disasterrecovery.com.au',
-    priceRange: '$$$',
+    priceRange: '$50,000-$300,000+',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Serving New Farm District',
@@ -196,7 +196,6 @@ export default function NewFarmPage() {
         }
       ]
     },
-    priceRange: '$50,000-$300,000+',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5.0',

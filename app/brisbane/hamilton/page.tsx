@@ -132,7 +132,7 @@ export default function HamiltonPage() {
     url: 'https://dr-new-ten.vercel.app/brisbane/hamilton',
     telephone: '1300309361',
     email: 'hamilton@disasterrecovery.com.au',
-    priceRange: '$$$$',
+    priceRange: '$100,000-$500,000+',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Serving Hamilton District',
@@ -197,7 +197,6 @@ export default function HamiltonPage() {
         }
       ]
     },
-    priceRange: '$100,000-$500,000+',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '5.0',
