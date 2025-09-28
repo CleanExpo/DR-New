@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "installCommand": "npm ci --legacy-peer-deps",
-  "buildCommand": "next build",
+  "buildCommand": "npm run build",
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=2048",
     "NEXT_TELEMETRY_DISABLED": "1",
@@ -19,15 +19,15 @@
     }
   },
   "functions": {
-    "src/app/api/**/*": {
+    "app/api/**/*": {
       "maxDuration": 30,
       "memory": 512
     },
-    "src/app/**/route.ts": {
+    "app/**/route.ts": {
       "maxDuration": 30,
       "memory": 512
     },
-    "src/app/**/route.js": {
+    "app/**/route.js": {
       "maxDuration": 30,
       "memory": 512
     }
