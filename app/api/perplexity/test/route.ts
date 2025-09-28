@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { perplexityAPI, checkPerplexityConnection } from '@/lib/perplexity-api';
+import { perplexityAPI, checkPerplexityConnection } from '../../../../src/lib/perplexity-api';
 
 export async function GET() {
   try {

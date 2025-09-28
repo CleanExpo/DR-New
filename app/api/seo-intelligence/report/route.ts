@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { seoIntelligenceService, generateQuickMarketReport } from '@/lib/seo-intelligence-service';
+import { seoIntelligenceService, generateQuickMarketReport } from '../../../../src/lib/seo-intelligence-service';
 
 export async function GET(request: Request) {
   try {

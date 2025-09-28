@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { checkSEMrushConnection } from '@/lib/semrush-api';
-import { checkPerplexityConnection } from '@/lib/perplexity-api';
-import { seoIntelligenceService } from '@/lib/seo-intelligence-service';
+import { checkSEMrushConnection } from '../../../../src/lib/semrush-api';
+import { checkPerplexityConnection } from '../../../../src/lib/perplexity-api';
+import { seoIntelligenceService } from '../../../../src/lib/seo-intelligence-service';
 
 export async function GET() {
   try {
