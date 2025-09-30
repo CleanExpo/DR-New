@@ -45,7 +45,48 @@ Candidates must provide comprehensive documentation including:
 
 ## Business Ownership Assessment Framework
 
-### **Stage 1: Business Foundation Assessment (Score: 0-25 points)**
+### **Stage 1: Professional Certification Assessment (Score: 0-30 points)**
+
+#### **1.1 Mandatory Certification Requirements (30 points)**
+**Comprehensive Professional Certification Portfolio:**
+Participants must demonstrate professional competency through mandatory certification achievements across four key categories.
+
+**Certification Point Allocation:**
+- **Government Cert 4 in Cleaning (Restoration Specialization):** 12 points (40% of total certification)
+- **IICRC Certifications:** 9 points (30% of total certification)
+- **CARSI Membership and CEC Credits:** 6 points (20% of total certification)
+- **Trade Association Membership:** 3 points (10% of total certification)
+
+**Assessment Criteria:**
+- **Government Cert 4 (12 points):** Certificate IV in Cleaning specializing in restoration
+  - Course enrollment or equivalent experience: 3 points
+  - 50% course completion: 6 points
+  - 75% course completion: 9 points
+  - Full certification completion: 12 points
+
+- **IICRC Certifications (9 points):** Institute of Inspection, Cleaning and Restoration Certification
+  - WRT (Water Damage Restoration): 3 points
+  - ASD (Applied Structural Drying): 3 points
+  - AMRT (Applied Microbial Remediation): 2 points
+  - Specialized certifications (FSR, CCT, UFT): 1 point each
+
+- **CARSI Membership and CECs (6 points):** Cleaning And Restoration Services Institute
+  - Active professional membership: 2 points
+  - Annual CEC requirement achievement (20+ CECs): 3 points
+  - Advanced CEC achievement (30+ CECs) or CEC delivery: 1 point
+
+- **Trade Association Membership (3 points):** Professional industry association participation
+  - Primary association membership (ACRA or equivalent): 2 points
+  - Active participation and contribution: 1 point
+
+**Excellence Indicators:**
+- ✅ Government Cert 4 completion with distinction
+- ✅ IICRC Master certifications achieved
+- ✅ CARSI leadership and CEC delivery
+- ✅ Trade association leadership roles
+- ✅ Ongoing professional development exceeding minimum requirements
+
+### **Stage 2: Business Foundation Assessment (Score: 0-25 points)**
 
 #### **1.1 Business Structure and Governance (5 points)**
 **Evaluation Criteria:**
@@ -157,9 +198,9 @@ Candidates must provide comprehensive documentation including:
 - ✅ Industry benchmarking and competitive analysis
 - ✅ Data-driven decision making and strategic optimization
 
-### **Stage 2: Leadership and Management Assessment (Score: 0-25 points)**
+### **Stage 3: Leadership and Management Assessment (Score: 0-20 points)**
 
-#### **2.1 Leadership Capability and Development (5 points)**
+#### **3.1 Leadership Capability and Development (4 points)**
 **Evaluation Criteria:**
 - Personal leadership skills and capability
 - Leadership development and continuous learning
@@ -181,7 +222,7 @@ Candidates must provide comprehensive documentation including:
 - ✅ Active community leadership and engagement
 - ✅ Mentoring and developing emerging industry leaders
 
-#### **2.2 Team Development and Management (5 points)**
+#### **3.2 Team Development and Management (4 points)**
 **Evaluation Criteria:**
 - Team building and development capability
 - Staff retention and satisfaction
@@ -203,7 +244,7 @@ Candidates must provide comprehensive documentation including:
 - ✅ Positive workplace culture and employee engagement
 - ✅ Recognition as employer of choice in industry
 
-#### **2.3 Communication and Relationship Management (5 points)**
+#### **3.3 Communication and Relationship Management (4 points)**
 **Evaluation Criteria:**
 - Professional communication skills and capability
 - Client relationship management excellence
@@ -225,7 +266,7 @@ Candidates must provide comprehensive documentation including:
 - ✅ Respected industry relationships and networking
 - ✅ Skilled conflict resolution and negotiation capability
 
-#### **2.4 Change Management and Innovation (5 points)**
+#### **3.4 Change Management and Innovation (4 points)**
 **Evaluation Criteria:**
 - Change management capability and experience
 - Innovation adoption and implementation
@@ -247,7 +288,7 @@ Candidates must provide comprehensive documentation including:
 - ✅ Continuous process improvement and optimization
 - ✅ Strong adaptability and business resilience
 
-#### **2.5 Professional Development and Learning (5 points)**
+#### **3.5 Professional Development and Learning (4 points)**
 **Evaluation Criteria:**
 - Personal professional development commitment
 - Continuing education and learning
@@ -269,9 +310,9 @@ Candidates must provide comprehensive documentation including:
 - ✅ Strong professional networks and industry relationships
 - ✅ Active knowledge sharing and industry contribution
 
-### **Stage 3: Operational Excellence Assessment (Score: 0-25 points)**
+### **Stage 4: Operational Excellence Assessment (Score: 0-25 points)**
 
-#### **3.1 Quality Management and Control (5 points)**
+#### **4.1 Quality Management and Control (5 points)**
 **Evaluation Criteria:**
 - Quality management system implementation
 - Quality control processes and procedures
@@ -381,9 +422,9 @@ Candidates must provide comprehensive documentation including:
 - ✅ Excellent resource utilization and effectiveness
 - ✅ Strong operational scalability and business flexibility
 
-### **Stage 4: Industry Leadership and Contribution Assessment (Score: 0-25 points)**
+### **Stage 5: Industry Leadership and Contribution Assessment (Score: 0-25 points)**
 
-#### **4.1 Industry Involvement and Contribution (5 points)**
+#### **5.1 Industry Involvement and Contribution (5 points)**
 **Evaluation Criteria:**
 - Professional association involvement and leadership
 - Industry standards development and contribution
@@ -498,9 +539,10 @@ Candidates must provide comprehensive documentation including:
 ## Assessment Scoring and Recognition Framework
 
 ### **Overall Assessment Scoring**
-- **Total Possible Score:** 100 points
+- **Total Possible Score:** 125 points
+- **Professional Certification:** 30 points (Mandatory foundation)
 - **Business Foundation:** 25 points
-- **Leadership and Management:** 25 points
+- **Leadership and Management:** 20 points
 - **Operational Excellence:** 25 points
 - **Industry Leadership and Contribution:** 25 points
 
@@ -508,31 +550,35 @@ Candidates must provide comprehensive documentation including:
 
 #### **Partnership Candidate (60-69 points)**
 - **Status:** Eligible for partnership development program
-- **Focus:** Business development and improvement support
+- **Focus:** Professional certification completion and business development
 - **Timeline:** 12-18 months development pathway
-- **Support:** Intensive business coaching and development
-- **Requirements:** Specific improvement plan and milestone achievement
+- **Support:** Intensive certification guidance and business coaching
+- **Requirements:** Minimum certification requirements and improvement plan
+- **Certification Minimum:** 18/30 points (must include Government Cert 4 enrollment + basic IICRC)
 
-#### **Partnership Associate (70-79 points)**
+#### **Partnership Associate (70-84 points)**
 - **Status:** Associate partnership with development pathway
-- **Focus:** Leadership development and industry contribution
+- **Focus:** Advanced certification completion and leadership development
 - **Timeline:** 6-12 months development pathway
 - **Support:** Leadership coaching and industry involvement
-- **Requirements:** Continuing development and contribution commitment
+- **Requirements:** Advanced certification achievement and contribution commitment
+- **Certification Minimum:** 22/30 points (must include Government Cert 4 progress + IICRC core certifications)
 
-#### **Partnership Professional (80-89 points)**
+#### **Partnership Professional (85-99 points)**
 - **Status:** Full partnership with leadership opportunities
 - **Focus:** Industry leadership and excellence maintenance
 - **Timeline:** Ongoing partnership and development
 - **Support:** Peer network access and leadership opportunities
 - **Requirements:** Ongoing excellence and industry contribution
+- **Certification Minimum:** 26/30 points (must include Government Cert 4 completion + IICRC specializations)
 
-#### **Partnership Excellence (90-100 points)**
+#### **Partnership Excellence (100-125 points)**
 - **Status:** Excellence partnership with industry leadership role
 - **Focus:** Industry leadership and advancement
 - **Timeline:** Ongoing partnership and leadership
 - **Support:** Industry leadership platform and recognition
 - **Requirements:** Industry leadership and advancement contribution
+- **Certification Minimum:** 30/30 points (full certification excellence + advanced specializations)
 
 ### **Continuous Assessment and Development**
 - **Annual Review:** Comprehensive annual assessment and development planning

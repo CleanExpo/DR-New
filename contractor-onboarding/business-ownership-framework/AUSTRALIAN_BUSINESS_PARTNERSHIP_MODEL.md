@@ -42,12 +42,12 @@
 - **Performance Bond:** $50,000 performance bond or guarantee
 - **Payment Terms:** 30-day payment capability for subcontractors and suppliers
 
-#### **3. Technical Competency and Certification**
-- **IICRC Certification:** Minimum Water Damage Restoration (WRT) certification
-- **Master Certification:** At least one IICRC Master designation preferred
-- **Australian Standards Knowledge:** Demonstrated understanding of relevant AS standards
-- **Continuing Education:** Commitment to minimum 40 hours annually
-- **Quality Management:** ISO 9001 or equivalent quality system implementation
+#### **3. Professional Certification Requirements (Mandatory 100-Point System)**
+- **Government Cert 4 in Cleaning (Restoration Specialization):** 40 points - Certificate IV completion required
+- **IICRC Certifications:** 30 points - WRT, ASD, AMRT core certifications required
+- **CARSI Membership and CEC Credits:** 20 points - Active membership with 20+ annual CECs
+- **Trade Association Membership:** 10 points - Active professional association membership
+- **Minimum Partnership Entry:** 60 points total with representation across all categories
 
 #### **4. Operational Excellence Standards**
 - **Response Time:** 60-minute emergency response capability
