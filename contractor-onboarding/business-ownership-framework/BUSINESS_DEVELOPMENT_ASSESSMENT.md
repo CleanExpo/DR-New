@@ -47,44 +47,53 @@ Candidates must provide comprehensive documentation including:
 
 ### **Stage 1: Professional Certification Assessment (Score: 0-30 points)**
 
-#### **1.1 Mandatory Certification Requirements (30 points)**
-**Comprehensive Professional Certification Portfolio:**
-Participants must demonstrate professional competency through mandatory certification achievements across four key categories.
+#### **1.1 Specialization-Based Certification Requirements (30 points)**
+**Inclusive Specialization Portfolio:**
+Recognition system supporting ALL restoration specialists from single-operator experts to comprehensive service providers.
 
-**Certification Point Allocation:**
-- **Government Cert 4 in Cleaning (Restoration Specialization):** 12 points (40% of total certification)
-- **IICRC Certifications:** 9 points (30% of total certification)
-- **CARSI Membership and CEC Credits:** 6 points (20% of total certification)
-- **Trade Association Membership:** 3 points (10% of total certification)
+**NRPG Specialization Point Allocation:**
+- **Core Specialization Portfolio:** 12 points (40% - Your primary expertise area)
+- **CARSI Mandatory Platform:** 7.5 points (25% - Comprehensive education beyond IICRC)
+- **Industry Association Diversity:** 6 points (20% - Multiple association opportunities)
+- **Government Cert IV & Continuing Education:** 4.5 points (15% - Progressive achievement)
 
 **Assessment Criteria:**
-- **Government Cert 4 (12 points):** Certificate IV in Cleaning specializing in restoration
-  - Course enrollment or equivalent experience: 3 points
-  - 50% course completion: 6 points
-  - 75% course completion: 9 points
-  - Full certification completion: 12 points
 
-- **IICRC Certifications (9 points):** Institute of Inspection, Cleaning and Restoration Certification
-  - WRT (Water Damage Restoration): 3 points
-  - ASD (Applied Structural Drying): 3 points
-  - AMRT (Applied Microbial Remediation): 2 points
-  - Specialized certifications (FSR, CCT, UFT): 1 point each
+**Core Specialization Portfolio (12 points):**
+- **Primary Specialization (8 points):** Full certification in chosen expertise area
+  - Water Damage (WRT+ASD): 8 points OR
+  - Mould Remediation (AMRT): 8 points OR
+  - Fire/Smoke Damage (FSR): 8 points OR
+  - Trauma/Biohazard (TCSC): 8 points OR
+  - Contents Restoration (CCT+UFT): 8 points
+- **Additional Specializations (4 points max):** 2 points per additional certified area
 
-- **CARSI Membership and CECs (6 points):** Cleaning And Restoration Services Institute
-  - Active professional membership: 2 points
-  - Annual CEC requirement achievement (20+ CECs): 3 points
-  - Advanced CEC achievement (30+ CECs) or CEC delivery: 1 point
+**CARSI Mandatory Platform (7.5 points):** Owner-operated comprehensive education platform
+- **Active Membership:** 2.5 points (mandatory foundation)
+- **Course Completion:** 3.5 points (variety of subjects beyond IICRC)
+- **CEC Achievement:** 1.5 points (20+ annual CARSI CEC credits)
 
-- **Trade Association Membership (3 points):** Professional industry association participation
-  - Primary association membership (ACRA or equivalent): 2 points
-  - Active participation and contribution: 1 point
+**Industry Association Diversity (6 points):** Multiple association opportunities
+- **Primary Association:** 3 points (RIA, ATFA, ACCA, Building Services, Environmental, Regional)
+- **Secondary Associations:** 3 points (additional memberships and leadership roles)
+
+**Government Cert IV & Continuing Education (4.5 points):** Progressive achievement
+- **Cert IV Progress/Completion:** 3 points (enrollment to full certification)
+- **Advanced Continuing Education:** 1.5 points (beyond minimum requirements)
 
 **Excellence Indicators:**
-- ✅ Government Cert 4 completion with distinction
-- ✅ IICRC Master certifications achieved
-- ✅ CARSI leadership and CEC delivery
-- ✅ Trade association leadership roles
-- ✅ Ongoing professional development exceeding minimum requirements
+- ✅ Master-level certification in primary specialization area
+- ✅ Multi-specialization capability (2+ certified restoration areas)
+- ✅ CARSI course completion and CEC delivery leadership
+- ✅ Multiple professional association involvement and leadership
+- ✅ Government Cert IV completion with advanced continuing education
+- ✅ Background check clearance and ongoing compliance maintenance
+
+**Mandatory Background Check Requirements (Gateway - Not Points Based):**
+- **Criminal Background Check:** National police clearance for all principals
+- **Financial Background Check:** Business credit verification and insurance validation
+- **Professional Background Check:** License and certification verification
+- **Ongoing Compliance:** Annual review and continuous monitoring
 
 ### **Stage 2: Business Foundation Assessment (Score: 0-25 points)**
 
@@ -548,37 +557,41 @@ Participants must demonstrate professional competency through mandatory certific
 
 ### **Partnership Recognition Levels**
 
-#### **Partnership Candidate (60-69 points)**
-- **Status:** Eligible for partnership development program
-- **Focus:** Professional certification completion and business development
+#### **NRPG Certified Specialist (60-69 points)**
+- **Status:** Recognized specialist eligible for platform participation
+- **Target:** Single-specialty experts and emerging restoration professionals
+- **Focus:** Core specialization excellence and business foundation development
 - **Timeline:** 12-18 months development pathway
-- **Support:** Intensive certification guidance and business coaching
-- **Requirements:** Minimum certification requirements and improvement plan
-- **Certification Minimum:** 18/30 points (must include Government Cert 4 enrollment + basic IICRC)
+- **Support:** Specialization-specific coaching and business development
+- **Requirements:** Strong certification in ONE restoration area + business standards
+- **Certification Minimum:** 18/30 points (core specialization + CARSI membership + association)
 
-#### **Partnership Associate (70-84 points)**
-- **Status:** Associate partnership with development pathway
-- **Focus:** Advanced certification completion and leadership development
+#### **NRPG Certified Professional (70-84 points)**
+- **Status:** Multi-competency professional with platform leadership opportunities
+- **Target:** Multi-competency professionals and growing restoration businesses
+- **Focus:** Expanded capability development and industry contribution
 - **Timeline:** 6-12 months development pathway
-- **Support:** Leadership coaching and industry involvement
-- **Requirements:** Advanced certification achievement and contribution commitment
-- **Certification Minimum:** 22/30 points (must include Government Cert 4 progress + IICRC core certifications)
+- **Support:** Leadership coaching and multi-specialization development
+- **Requirements:** Certified in 2-3 restoration areas + industry involvement
+- **Certification Minimum:** 22/30 points (core + additional specializations + enhanced CARSI/association participation)
 
-#### **Partnership Professional (85-99 points)**
-- **Status:** Full partnership with leadership opportunities
+#### **NRPG Certified Expert (85-99 points)**
+- **Status:** Industry leader and comprehensive service provider
+- **Target:** Industry leaders and comprehensive restoration service providers
 - **Focus:** Industry leadership and excellence maintenance
 - **Timeline:** Ongoing partnership and development
-- **Support:** Peer network access and leadership opportunities
-- **Requirements:** Ongoing excellence and industry contribution
-- **Certification Minimum:** 26/30 points (must include Government Cert 4 completion + IICRC specializations)
+- **Support:** Peer network access and industry leadership platform
+- **Requirements:** Advanced certifications across multiple areas + industry leadership
+- **Certification Minimum:** 26/30 points (comprehensive specializations + Cert IV + CARSI leadership + association leadership)
 
-#### **Partnership Excellence (100-125 points)**
-- **Status:** Excellence partnership with industry leadership role
-- **Focus:** Industry leadership and advancement
-- **Timeline:** Ongoing partnership and leadership
-- **Support:** Industry leadership platform and recognition
-- **Requirements:** Industry leadership and advancement contribution
-- **Certification Minimum:** 30/30 points (full certification excellence + advanced specializations)
+#### **NRPG Certified Master (100-125 points)**
+- **Status:** Industry authority and education leader
+- **Target:** Industry authorities and education leaders in restoration
+- **Focus:** Industry leadership, standards development, and professional education
+- **Timeline:** Ongoing partnership and industry leadership
+- **Support:** Industry authority platform and national recognition
+- **Requirements:** Master-level certifications + education delivery + industry advancement
+- **Certification Minimum:** 30/30 points (master certifications + CARSI course delivery + association leadership + Cert IV excellence)
 
 ### **Continuous Assessment and Development**
 - **Annual Review:** Comprehensive annual assessment and development planning

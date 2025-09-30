@@ -1,17 +1,18 @@
-# Business Ownership Framework
-## Australian Restoration Industry Partnership Excellence
+# NRPG Business Ownership Framework
+## National Restoration Professionals Group - Specialization-Friendly Partnership Excellence
 
-This framework establishes a comprehensive business ownership development model inspired by The Core Group (North America) and adapted for the Australian restoration industry market.
+This framework establishes a comprehensive, inclusive business ownership development model supporting ALL restoration specialists through the 3-part NRPG ecosystem (Website + NRPG + CRM), inspired by The Core Group and adapted for Australian restoration industry diversity.
 
 ---
 
 ## Framework Overview
 
-### **Business First, Training Second**
-This framework prioritizes business ownership excellence over technical training:
-- **Primary Focus:** Business development, leadership, and industry contribution
-- **Secondary Support:** Technical training integrated as partnership benefits
-- **Ultimate Goal:** Develop restoration business owners into industry leaders
+### **Specialization-Friendly Business Excellence**
+This framework supports ALL restoration specialists while building business excellence:
+- **Inclusive Approach:** Single-operator specialists to comprehensive service providers
+- **Primary Focus:** Business excellence built upon specialization strengths
+- **Secondary Support:** Growth opportunities and multi-specialization development
+- **Ultimate Goal:** Industry authority through 3-part ecosystem (Website + NRPG + CRM)
 
 ### **Australian Market Adaptation**
 Complete integration with Australian business environment:
