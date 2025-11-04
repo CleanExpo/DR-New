@@ -5,13 +5,6 @@ import Stripe from 'stripe';
 
 export const dynamic = 'force-dynamic';
 
-// Disable body parsing for webhook
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 /**
  * Handle Stripe webhook events
  */
