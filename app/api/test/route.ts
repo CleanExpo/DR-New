@@ -5,7 +5,6 @@ export async function GET(request: NextRequest) {
     status: 'success',
     message: 'Basic API test working',
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV,
     deployment: 'vercel'
   });
 }

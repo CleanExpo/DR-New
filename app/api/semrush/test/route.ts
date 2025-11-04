@@ -38,7 +38,7 @@ export async function GET() {
     console.error('SEMrush API test error:', error);
     return NextResponse.json({
       success: false,
-      message: 'Error testing SEMrush API connection',
-      error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 });
+      message: 'Error testing SEMrush API connection'
+    }, { status: 500 });
   }
 }

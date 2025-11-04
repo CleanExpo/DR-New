@@ -1,0 +1,2002 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// EXISTING MODELS (Preserved from original schema)
+// ============================================
+
+model Agency {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  domain      String?
+  logo        String?
+  primaryColor String  @default("#3B82F6")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  clients     Client[]
+  audits      Audit[]
+  proposals   Proposal[]
+  invoices    Invoice[]
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  name          String?
+  role          String    @default("CLIENT")
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  agencyId      String?
+  agency        Agency?   @relation(fields: [agencyId], references: [id])
+
+  clients       Client[]
+  audits        Audit[]
+  proposals     Proposal[]
+  notifications Notification[]
+
+  // New relations for field service CRM
+  workOrders    WorkOrder[]
+  activities    ActivityLog[]
+  reports       Report[]
+}
+
+model Client {
+  id           String   @id @default(cuid())
+  businessName String
+  contactName  String
+  email        String
+  phone        String?
+  website      String?
+  address      String?
+  city         String?
+  state        String?
+  zipCode      String?
+  industry     String?
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  agencyId     String
+  agency       Agency   @relation(fields: [agencyId], references: [id])
+
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id])
+
+  audits       Audit[]
+  proposals    Proposal[]
+  invoices     Invoice[]
+  enquiries    Enquiry[]
+
+  // New relations for field service CRM
+  workOrders   WorkOrder[]
+}
+
+model Audit {
+  id          String      @id @default(cuid())
+  title       String
+  description String?
+  status      String      @default("DRAFT")
+  version     Int         @default(1)
+  shareToken  String?     @unique
+  findings    String?
+  metrics     String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  sharedAt    DateTime?
+
+  agencyId    String
+  agency      Agency      @relation(fields: [agencyId], references: [id])
+
+  clientId    String
+  client      Client      @relation(fields: [clientId], references: [id])
+
+  createdById String
+  createdBy   User        @relation(fields: [createdById], references: [id])
+
+  proposals   Proposal[]
+}
+
+model Proposal {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  content     String
+  status      String   @default("DRAFT")
+  shareToken  String?  @unique
+  price       Float?
+  validUntil  DateTime?
+  acceptedAt  DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  agencyId    String
+  agency      Agency   @relation(fields: [agencyId], references: [id])
+
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+
+  auditId     String?
+  audit       Audit?   @relation(fields: [auditId], references: [id])
+
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id])
+
+  invoice     Invoice?
+}
+
+model Invoice {
+  id          String        @id @default(cuid())
+  invoiceNumber String      @unique
+  amount      Float
+  tax         Float         @default(0)
+  total       Float
+  status      String        @default("PENDING")
+  dueDate     DateTime
+  paidAt      DateTime?
+  stripeInvoiceId String?   @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  agencyId    String
+  agency      Agency        @relation(fields: [agencyId], references: [id])
+
+  clientId    String
+  client      Client        @relation(fields: [clientId], references: [id])
+
+  proposalId  String?       @unique
+  proposal    Proposal?     @relation(fields: [proposalId], references: [id])
+
+  // New relations for field service CRM
+  workOrderId String?
+  workOrder   WorkOrder?    @relation(fields: [workOrderId], references: [id])
+
+  paymentTransactions Payment[]
+}
+
+model Enquiry {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  message     String
+  source      String?
+  metadata    String?
+  responded   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  clientId    String?
+  client      Client?  @relation(fields: [clientId], references: [id])
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  type        String
+  title       String
+  message     String
+  read        Boolean  @default(false)
+  metadata    String?
+  createdAt   DateTime @default(now())
+
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+// Lead Management Models (Preserved)
+model Lead {
+  id                    String   @id @default(cuid())
+
+  // Contact Information
+  fullName              String
+  phone                 String
+  email                 String
+
+  // Property Information
+  propertyType          String
+  propertyAddress       String
+  suburb                String
+  state                 String
+  postcode              String
+
+  // Damage Information
+  damageType            String   // JSON array stored as string
+  damageDate            DateTime
+  damageDescription     String
+  estimatedAreaAffected String
+
+  // Insurance Information
+  hasInsurance          Boolean
+  insuranceCompany      String?
+  claimNumber           String?
+  excessAmount          String?
+
+  // Value Indicators
+  urgencyLevel          String
+  propertyValue         String
+  isBusinessProperty    Boolean
+  requiresAccommodation Boolean
+
+  // Lead Quality
+  leadScore             Int
+  leadValue             Float
+  hasPhotos             Boolean
+  readyToStart          String
+  budget                String?
+  decisionMaker         Boolean
+  qualityStatus         String   // HIGH_VALUE, QUALIFIED, STANDARD
+
+  // Tracking
+  source                String?
+  ipAddress             String?
+  userAgent             String?
+  status                String   @default("NEW") // NEW, ASSIGNED, ACCEPTED, REJECTED, COMPLETED
+
+  // Assignment
+  partnerId             String?
+  partner               Partner? @relation(fields: [partnerId], references: [id])
+  assignedAt            DateTime?
+  acceptedAt            DateTime?
+  rejectedAt            DateTime?
+  completedAt           DateTime?
+
+  // Metadata
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  billing               PartnerBilling[]
+  tracking              LeadTracking[]
+  notes                 LeadNote[]
+
+  // New relations for field service CRM
+  workOrders            WorkOrder[]
+}
+
+model Partner {
+  id                String   @id @default(cuid())
+  businessName      String
+  contactName       String
+  email             String   @unique
+  phone             String
+  abn               String?
+
+  // Service Information
+  serviceAreas      String   // JSON array of suburbs/postcodes
+  specializations   String   // JSON array of damage types
+  certifications    String?  // JSON array
+  insuranceApproved Boolean  @default(false)
+
+  // Account Information
+  leadCredits       Float    @default(0)
+  accountBalance    Float    @default(0)
+  creditLimit       Float    @default(5000)
+  paymentTerms      Int      @default(7) // days
+
+  // Settings
+  autoAcceptScore   Int      @default(80)
+  maxLeadsPerDay    Int      @default(10)
+  receiveEmergency  Boolean  @default(true)
+  receiveCommercial Boolean  @default(true)
+
+  // Status
+  status            String   @default("PENDING") // PENDING, ACTIVE, SUSPENDED
+  verifiedAt        DateTime?
+  suspendedAt       DateTime?
+
+  // Metadata
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  leads             Lead[]
+  billing           PartnerBilling[]
+  payments          PartnerPayment[]
+}
+
+model PartnerBilling {
+  id          String   @id @default(cuid())
+  partnerId   String
+  partner     Partner  @relation(fields: [partnerId], references: [id])
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id])
+
+  amount      Float
+  status      String   @default("PENDING") // PENDING, PAID, CANCELLED, REFUNDED
+  dueDate     DateTime
+  paidAt      DateTime?
+
+  // Payment Information
+  paymentMethod String?
+  transactionId String?
+  invoiceNumber String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PartnerPayment {
+  id          String   @id @default(cuid())
+  partnerId   String
+  partner     Partner  @relation(fields: [partnerId], references: [id])
+
+  amount      Float
+  type        String   // CREDIT_PURCHASE, LEAD_PAYMENT, REFUND
+  method      String   // CARD, BANK_TRANSFER, PAYPAL
+  status      String   // PENDING, COMPLETED, FAILED
+
+  transactionId String?
+  description String?
+
+  createdAt   DateTime @default(now())
+}
+
+model LeadTracking {
+  id          String   @id @default(cuid())
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id])
+
+  event       String   // VIEWED, ACCEPTED, REJECTED, CONTACTED, QUOTED, WON, LOST
+  metadata    String?  // JSON string with event details
+
+  createdAt   DateTime @default(now())
+}
+
+model LeadNote {
+  id          String   @id @default(cuid())
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id])
+
+  note        String
+  type        String   // INTERNAL, PARTNER, CUSTOMER
+  author      String
+
+  createdAt   DateTime @default(now())
+}
+
+// NRP Contractor CRM Models (Preserved)
+model Contractor {
+  id                    String   @id @default(cuid())
+
+  // Authentication
+  username              String   @unique
+  email                 String   @unique
+  passwordHash          String
+  passwordResetToken    String?
+  passwordResetExpiry   DateTime?
+  emailVerified         Boolean  @default(false)
+  emailVerificationToken String?
+
+  // Two-Factor Authentication
+  twoFactorEnabled      Boolean  @default(false)
+  twoFactorSecret       String?
+  twoFactorBackupCodes  String?  // JSON array of encrypted backup codes
+
+  // Contact Information
+  mobileNumber          String
+  mobileVerified        Boolean  @default(false)
+
+  // Status
+  status                String   @default("PENDING") // PENDING, UNDER_REVIEW, APPROVED, SUSPENDED, REJECTED
+  onboardingStep        Int      @default(1)
+  onboardingCompleted   Boolean  @default(false)
+  approvedAt            DateTime?
+  rejectedAt            DateTime?
+  suspendedAt           DateTime?
+  rejectionReason       String?
+
+  // Timestamps
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  lastLoginAt           DateTime?
+
+  // Relations
+  companyProfile        ContractorCompany?
+  certifications        ContractorCertification[]
+  insurance             ContractorInsurance[]
+  references            ContractorReference[]
+  backgroundChecks      BackgroundCheck[]
+  subscription          ContractorSubscription?
+  documents             ContractorDocument[]
+  territories           ContractorTerritory[]
+  kpiMetrics            ContractorKPI[]
+  notifications         ContractorNotification[]
+  auditLogs             ContractorAuditLog[]
+  agreements            ContractorAgreement[]
+  trainings             ContractorTraining[]
+  projects              ContractorProject[]
+  supportTickets        ContractorSupport[]
+
+  // New relations for field service CRM
+  workOrders            WorkOrder[]
+  schedules             Schedule[]
+  licenses              License[]
+  equipment             Equipment[]
+  technicianProfile     TechnicianProfile?
+}
+
+// All other Contractor-related models preserved as-is...
+// (ContractorCompany through ContractorAuditLog - keeping existing structure)
+
+model ContractorCompany {
+  id                    String   @id @default(cuid())
+  contractorId          String   @unique
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Company Details
+  companyName           String
+  tradingName           String?
+  abn                   String   @unique
+  acn                   String?
+  companyStructure      String   // SOLE_TRADER, PARTNERSHIP, PTY_LTD, TRUST
+
+  // Addresses
+  registeredAddress     String
+  registeredCity        String
+  registeredState       String
+  registeredPostcode    String
+
+  mailingAddress        String?
+  mailingCity           String?
+  mailingState          String?
+  mailingPostcode       String?
+
+  // Contact Details
+  officePhone           String?
+  officeFax             String?
+  website               String?
+  companyEmail          String?
+
+  // Directors/Owners
+  directors             String   // JSON array of director objects
+
+  // Branding
+  companyLogo           String?  // URL to uploaded logo
+  brandColors           String?  // JSON object
+
+  // Verification
+  abnVerified           Boolean  @default(false)
+  abnVerifiedAt         DateTime?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model ContractorCertification {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  certificationType     String   // CPP40421, IICRC_WRT, IICRC_ASD, IICRC_AMRT, etc.
+  certificationName     String
+  certificationNumber   String
+  issuingOrganization   String
+  issueDate             DateTime
+  expiryDate            DateTime?
+
+  // Verification
+  documentUrl           String   // URL to uploaded certificate
+  verified              Boolean  @default(false)
+  verifiedAt            DateTime?
+  verifiedBy            String?
+  verificationNotes     String?
+
+  // Status
+  status                String   @default("PENDING") // PENDING, VERIFIED, EXPIRED, REJECTED
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model ContractorInsurance {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  insuranceType         String   // PUBLIC_LIABILITY, PROFESSIONAL_INDEMNITY, WORKERS_COMP
+  insurer               String
+  policyNumber          String
+  coverageAmount        Float
+  excess                Float?
+
+  effectiveDate         DateTime
+  expiryDate            DateTime
+
+  // Certificate of Currency
+  certificateUrl        String   // URL to uploaded certificate
+
+  // Verification
+  verified              Boolean  @default(false)
+  verifiedAt            DateTime?
+  verifiedBy            String?
+
+  // Status
+  status                String   @default("PENDING") // PENDING, ACTIVE, EXPIRED, CANCELLED
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([expiryDate])
+}
+
+model ContractorReference {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  referenceName         String
+  companyName           String
+  position              String
+  email                 String
+  phone                 String
+  relationship          String   // CLIENT, SUPPLIER, PARTNER, OTHER
+  projectDescription    String?
+
+  // Verification
+  contacted             Boolean  @default(false)
+  contactedAt           DateTime?
+  rating                Int?     // 1-5
+  feedback              String?
+  verified              Boolean  @default(false)
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model BackgroundCheck {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  checkType             String   // CRIMINAL, CREDIT, IDENTITY, QUALIFICATION
+  provider              String   // Third-party provider name
+  providerReference     String?
+
+  // Consent
+  consentGiven          Boolean
+  consentDate           DateTime
+  consentDocument       String?  // URL to signed consent
+
+  // Results
+  status                String   @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, FAILED
+  result                String?  // CLEAR, FLAGGED, REQUIRES_REVIEW
+  resultDetails         String?  // JSON object with detailed results
+  reportUrl             String?  // URL to full report
+
+  // Scoring
+  riskScore             Int?     // 0-100
+  riskLevel             String?  // LOW, MEDIUM, HIGH
+
+  requestedAt           DateTime @default(now())
+  completedAt           DateTime?
+  expiresAt             DateTime?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model ContractorSubscription {
+  id                    String   @id @default(cuid())
+  contractorId          String   @unique
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Subscription Details
+  tier                  String   // TIER_25KM, TIER_50KM, TIER_75KM, TIER_100KM, RURAL
+  status                String   @default("PENDING") // PENDING, ACTIVE, SUSPENDED, CANCELLED
+
+  // Coverage
+  baseRadius            Int      // in kilometers
+  additionalTerritories String?  // JSON array of additional coverage areas
+
+  // Billing
+  billingFrequency      String   @default("MONTHLY") // MONTHLY, QUARTERLY, ANNUAL
+  amount                Float
+  nextBillingDate       DateTime?
+
+  // Payment Method
+  paymentMethod         String?  // DIRECT_DEBIT, CREDIT_CARD
+  paymentDetails        String?  // Encrypted payment details
+
+  // Performance Bond
+  bondAmount            Float    @default(5000)
+  bondStatus            String   @default("PENDING") // PENDING, SECURED, RELEASED
+  bondSecuredDate       DateTime?
+
+  // Dates
+  startDate             DateTime?
+  endDate               DateTime?
+  cancelledAt           DateTime?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  // Relations
+  payments              ContractorPayment[]
+  invoices              ContractorInvoice[]
+}
+
+model ContractorPayment {
+  id                    String   @id @default(cuid())
+  subscriptionId        String
+  subscription          ContractorSubscription @relation(fields: [subscriptionId], references: [id])
+
+  amount                Float
+  type                  String   // SUBSCRIPTION, BOND, BACKGROUND_CHECK, OTHER
+  status                String   @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED, REFUNDED
+
+  paymentMethod         String
+  transactionId         String?
+  failureReason         String?
+
+  dueDate               DateTime
+  paidAt                DateTime?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model ContractorInvoice {
+  id                    String   @id @default(cuid())
+  subscriptionId        String
+  subscription          ContractorSubscription @relation(fields: [subscriptionId], references: [id])
+
+  invoiceNumber         String   @unique
+  amount                Float
+  gst                   Float
+  total                 Float
+
+  status                String   @default("DRAFT") // DRAFT, ISSUED, PAID, OVERDUE, CANCELLED
+
+  issueDate             DateTime
+  dueDate               DateTime
+  paidAt                DateTime?
+
+  items                 String   // JSON array of line items
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([invoiceNumber])
+}
+
+model ContractorDocument {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  documentType          String   // CERTIFICATION, INSURANCE, ID, REFERENCE, PROJECT, OTHER
+  documentName          String
+  fileName              String
+  fileUrl               String
+  fileSize              Int
+  mimeType              String
+
+  // Metadata
+  category              String?
+  tags                  String?  // JSON array
+  description           String?
+
+  // Verification
+  verified              Boolean  @default(false)
+  verifiedAt            DateTime?
+  verifiedBy            String?
+
+  // Expiry
+  expiryDate            DateTime?
+  expiryNotificationSent Boolean @default(false)
+
+  uploadedAt            DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([documentType, expiryDate])
+}
+
+model ContractorTerritory {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Territory Definition
+  type                  String   // RADIUS, POSTCODE, SUBURB, LGA, STATE
+  name                  String
+
+  // For radius-based
+  centerLat             Float?
+  centerLng             Float?
+  radiusKm              Float?
+
+  // For area-based
+  postcodes             String?  // JSON array
+  suburbs               String?  // JSON array
+
+  // Service Preferences
+  emergencyResponse     Boolean  @default(true)
+  afterHours            Boolean  @default(false)
+  weekendService        Boolean  @default(true)
+
+  // Capacity
+  maxJobsPerDay         Int      @default(5)
+  currentActiveJobs     Int      @default(0)
+
+  // Status
+  active                Boolean  @default(true)
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([type, active])
+}
+
+model ContractorKPI {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Period
+  periodType            String   // MONTHLY, QUARTERLY, ANNUAL
+  periodStart           DateTime
+  periodEnd             DateTime
+
+  // Performance Metrics
+  totalJobs             Int      @default(0)
+  completedJobs         Int      @default(0)
+  averageResponseTime   Float?   // in hours
+  averageCompletionTime Float?   // in days
+
+  // Quality Metrics
+  customerSatisfaction  Float?   // 0-5 rating
+  qualityScore          Float?   // 0-100
+  complianceScore       Float?   // 0-100
+
+  // Clean Claims Integration
+  cleanClaimsScore      Float?   // 0-100
+  carsiCompliance       Float?   // 0-100
+
+  // Financial
+  totalRevenue          Float?
+  averageJobValue       Float?
+
+  // Issues
+  complaints            Int      @default(0)
+  violations            Int      @default(0)
+
+  calculatedAt          DateTime @default(now())
+
+  @@unique([contractorId, periodType, periodStart])
+  @@index([periodType, periodStart])
+}
+
+model ContractorAgreement {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  agreementType         String   // PARTNERSHIP, CODE_OF_CONDUCT, WHS, PRIVACY, NDA
+  agreementName         String
+  version               String
+
+  // Content
+  documentUrl           String?  // URL to agreement document
+  content               String?  // Agreement text
+
+  // Acceptance
+  accepted              Boolean  @default(false)
+  acceptedAt            DateTime?
+  acceptanceMethod      String?  // DIGITAL_SIGNATURE, CHECKBOX, EMAIL
+  ipAddress             String?
+  userAgent             String?
+
+  // Digital Signature
+  signatureData         String?  // Base64 encoded signature image
+  signedName            String?
+  signedPosition        String?
+
+  // Validity
+  effectiveDate         DateTime
+  expiryDate            DateTime?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([agreementType, accepted])
+}
+
+model ContractorTraining {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  trainingType          String   // CARSI, WHS, TECHNICAL, COMPLIANCE, PRODUCT
+  trainingName          String
+  provider              String
+
+  // Progress
+  status                String   @default("NOT_STARTED") // NOT_STARTED, IN_PROGRESS, COMPLETED
+  progress              Int      @default(0) // 0-100
+
+  // Completion
+  completedAt           DateTime?
+  certificateUrl        String?
+  certificateNumber     String?
+
+  // CEU Points
+  ceuPoints             Float?
+
+  // Validity
+  validFrom             DateTime?
+  validUntil            DateTime?
+
+  // Tracking
+  enrolledAt            DateTime @default(now())
+  lastAccessedAt        DateTime?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([trainingType, status])
+}
+
+model ContractorProject {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  projectName           String
+  projectType           String   // WATER, FIRE, MOLD, STORM, BIOHAZARD
+  clientName            String
+  location              String
+
+  // Timeline
+  startDate             DateTime
+  endDate               DateTime?
+  duration              Int?     // in days
+
+  // Scope
+  scopeOfWork           String   // Detailed description
+  areaAffected          Float?   // in square meters
+
+  // Financial
+  projectValue          Float?
+  insuranceCompany      String?
+  claimNumber           String?
+
+  // Documentation
+  beforePhotos          String?  // JSON array of photo URLs
+  afterPhotos           String?  // JSON array of photo URLs
+  reportUrl             String?
+
+  // Quality
+  customerRating        Float?   // 0-5
+  customerFeedback      String?
+
+  // Used for verification
+  canContact            Boolean  @default(false)
+  contactName           String?
+  contactPhone          String?
+  contactEmail          String?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@index([projectType, startDate])
+}
+
+model ContractorNotification {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  type                  String   // SYSTEM, COMPLIANCE, EXPIRY, PAYMENT, JOB, TRAINING
+  priority              String   @default("NORMAL") // LOW, NORMAL, HIGH, URGENT
+
+  subject               String
+  message               String
+
+  // Actions
+  actionRequired        Boolean  @default(false)
+  actionUrl             String?
+  actionDeadline        DateTime?
+
+  // Status
+  read                  Boolean  @default(false)
+  readAt                DateTime?
+  dismissed             Boolean  @default(false)
+  dismissedAt           DateTime?
+
+  // Delivery
+  emailSent             Boolean  @default(false)
+  smsSent               Boolean  @default(false)
+
+  createdAt             DateTime @default(now())
+
+  @@index([type, read, priority])
+}
+
+model ContractorSupport {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  ticketNumber          String   @unique
+  category              String   // TECHNICAL, BILLING, COMPLIANCE, GENERAL
+  priority              String   @default("NORMAL") // LOW, NORMAL, HIGH, URGENT
+
+  subject               String
+  description           String
+
+  status                String   @default("OPEN") // OPEN, IN_PROGRESS, WAITING, RESOLVED, CLOSED
+
+  // Assignment
+  assignedTo            String?
+  assignedAt            DateTime?
+
+  // Resolution
+  resolution            String?
+  resolvedAt            DateTime?
+  closedAt              DateTime?
+
+  // Satisfaction
+  satisfactionRating    Int?     // 1-5
+  satisfactionFeedback  String?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  messages              SupportMessage[]
+
+  @@index([ticketNumber])
+  @@index([status, priority])
+}
+
+model SupportMessage {
+  id                    String   @id @default(cuid())
+  supportTicketId       String
+  supportTicket         ContractorSupport @relation(fields: [supportTicketId], references: [id], onDelete: Cascade)
+
+  message               String
+  isInternal            Boolean  @default(false)
+
+  authorId              String
+  authorType            String   // CONTRACTOR, ADMIN, SYSTEM
+  authorName            String
+
+  attachments           String?  // JSON array of attachment URLs
+
+  createdAt             DateTime @default(now())
+}
+
+model ContractorAuditLog {
+  id                    String   @id @default(cuid())
+  contractorId          String
+  contractor            Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  action                String   // LOGIN, LOGOUT, UPDATE_PROFILE, UPLOAD_DOCUMENT, etc.
+  category              String   // AUTH, PROFILE, DOCUMENT, PAYMENT, COMPLIANCE
+
+  details               String?  // JSON object with action details
+
+  ipAddress             String?
+  userAgent             String?
+
+  performedBy           String   // User ID who performed the action
+  performedByType       String   // CONTRACTOR, ADMIN, SYSTEM
+
+  createdAt             DateTime @default(now())
+
+  @@index([category, createdAt])
+  @@index([action, createdAt])
+}
+
+// MVP Models (Preserved)
+model OnboardingPayment {
+  id                String   @id @default(uuid())
+  contractorId      String
+  amount            Float
+  currency          String   @default("AUD")
+  status            String   @default("pending") // pending, completed, failed
+  stripePaymentId   String?
+  stripeSessionId   String?
+  metadata          String?  // JSON string for additional data
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([contractorId])
+  @@index([status])
+}
+
+model OnboardingProgress {
+  id           String     @id @default(uuid())
+  contractorId String     @unique
+  currentStep  Int        @default(1)
+  totalSteps   Int        @default(14)
+  completed    Boolean    @default(false)
+  startedAt    DateTime   @default(now())
+  completedAt  DateTime?
+  metadata     String?    // JSON string for step details
+
+  @@index([contractorId])
+}
+
+model ModuleProgress {
+  id           String   @id @default(uuid())
+  contractorId String
+  moduleName   String
+  completed    Boolean  @default(false)
+  score        Float?
+  attempts     Int      @default(0)
+  startedAt    DateTime @default(now())
+  completedAt  DateTime?
+
+  @@unique([contractorId, moduleName])
+  @@index([contractorId])
+}
+
+model SubscriptionPricing {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  price       Float
+  currency    String   @default("AUD")
+  interval    String   @default("month") // month, year
+  features    String?  // JSON string of features
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([isActive])
+}
+
+model ErrorLog {
+  id         String   @id @default(uuid())
+  level      String   // error, warning, info
+  message    String
+  stack      String?
+  metadata   String?  // JSON string for additional context
+  source     String?  // API route, function name, etc.
+  userId     String?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
+
+  @@index([level])
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  action     String   // login, logout, create, update, delete, etc.
+  resource   String   // user, contractor, lead, etc.
+  resourceId String?
+  details    String?  // JSON string of changes
+  ipAddress  String?
+  userAgent  String?
+  success    Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([resource])
+  @@index([createdAt])
+}
+
+// ============================================
+// NEW FIELD SERVICE CRM MODELS
+// ============================================
+
+// Enum definitions for better type safety
+enum WorkOrderStatus {
+  DRAFT
+  SCHEDULED
+  DISPATCHED
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETED
+  CANCELLED
+  INVOICED
+}
+
+enum WorkOrderPriority {
+  LOW
+  NORMAL
+  HIGH
+  URGENT
+  EMERGENCY
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH
+  CHECK
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  PAYPAL
+  STRIPE
+  OTHER
+}
+
+enum ScheduleStatus {
+  TENTATIVE
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum DocumentCategory {
+  CONTRACT
+  INVOICE
+  RECEIPT
+  REPORT
+  PHOTO
+  CERTIFICATE
+  INSURANCE
+  PERMIT
+  OTHER
+}
+
+// 1. Work Order / Job Model
+model WorkOrder {
+  id                  String             @id @default(cuid())
+  workOrderNumber     String             @unique
+  tenantId            String?            // Multi-tenancy support
+
+  // Relations
+  leadId              String?
+  lead                Lead?              @relation(fields: [leadId], references: [id])
+
+  clientId            String?
+  client              Client?            @relation(fields: [clientId], references: [id])
+
+  contractorId        String?
+  contractor          Contractor?        @relation(fields: [contractorId], references: [id])
+
+  assignedToId        String?
+  assignedTo          User?              @relation(fields: [assignedToId], references: [id])
+
+  // Job Details
+  title               String
+  description         String
+  serviceType         String             // WATER, FIRE, MOULD, STORM, BIOHAZARD, etc.
+  scope               String?            // Detailed scope of work
+
+  // Status & Priority
+  status              WorkOrderStatus    @default(DRAFT)
+  priority            WorkOrderPriority  @default(NORMAL)
+
+  // Location
+  serviceAddress      String
+  serviceCity         String
+  serviceState        String
+  servicePostcode     String
+  latitude            Float?
+  longitude           Float?
+
+  // Insurance
+  insuranceCompany    String?
+  claimNumber         String?
+  adjustorName        String?
+  adjustorPhone       String?
+  adjustorEmail       String?
+  deductible          Float?
+
+  // Scheduling
+  scheduledStartDate  DateTime?
+  scheduledEndDate    DateTime?
+  actualStartDate     DateTime?
+  actualEndDate       DateTime?
+  estimatedHours      Float?
+  actualHours         Float?
+
+  // Financial
+  estimatedCost       Float?
+  actualCost          Float?
+  laborCost           Float?
+  materialCost        Float?
+  equipmentCost       Float?
+  subcontractorCost   Float?
+  profitMargin        Float?
+
+  // Completion
+  completionNotes     String?
+  customerSignature   String?            // Base64 signature
+  signedAt            DateTime?
+  signedByName        String?
+
+  // Quality
+  qualityScore        Float?             // 0-100
+  customerRating      Float?             // 0-5
+  customerFeedback    String?
+
+  // Flags
+  isEmergency         Boolean           @default(false)
+  requiresPermit      Boolean           @default(false)
+  permitNumber        String?
+  isRecurring         Boolean           @default(false)
+  recurringSchedule   String?            // JSON cron expression
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  // Timestamps
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  // Relations
+  schedules           Schedule[]
+  invoices            Invoice[]
+  payments            Payment[]
+  documents           Document[]
+  activities          ActivityLog[]
+  equipment           EquipmentUsage[]
+  materials           MaterialUsage[]
+
+  @@index([workOrderNumber])
+  @@index([status, priority])
+  @@index([scheduledStartDate])
+  @@index([tenantId])
+  @@index([contractorId])
+  @@index([leadId])
+}
+
+// 2. Schedule/Appointment Model
+model Schedule {
+  id                  String            @id @default(cuid())
+  tenantId            String?
+
+  workOrderId         String
+  workOrder           WorkOrder         @relation(fields: [workOrderId], references: [id])
+
+  contractorId        String?
+  contractor          Contractor?       @relation(fields: [contractorId], references: [id])
+
+  technicianId        String?
+  technician          TechnicianProfile? @relation(fields: [technicianId], references: [id])
+
+  // Schedule Details
+  title               String
+  description         String?
+
+  // Timing
+  startDateTime       DateTime
+  endDateTime         DateTime
+  duration            Int               // in minutes
+
+  // Status
+  status              ScheduleStatus    @default(TENTATIVE)
+
+  // Location
+  locationType        String           // ONSITE, REMOTE, OFFICE
+  locationAddress     String?
+  locationNotes       String?
+
+  // Tracking
+  checkInTime         DateTime?
+  checkInLocation     String?          // JSON with lat/lng
+  checkOutTime        DateTime?
+  checkOutLocation    String?          // JSON with lat/lng
+
+  // Travel
+  travelTimeMinutes   Int?
+  travelDistance      Float?           // in kilometers
+
+  // Reminders
+  reminderSent        Boolean          @default(false)
+  reminderSentAt      DateTime?
+  confirmedByCustomer Boolean          @default(false)
+  confirmedAt         DateTime?
+
+  // Cancellation
+  cancelledBy         String?
+  cancelledAt         DateTime?
+  cancellationReason  String?
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([startDateTime, endDateTime])
+  @@index([technicianId, startDateTime])
+  @@index([status])
+  @@index([tenantId])
+}
+
+// 3. Technician Profile (extends Contractor)
+model TechnicianProfile {
+  id                  String           @id @default(cuid())
+  contractorId        String           @unique
+  contractor          Contractor       @relation(fields: [contractorId], references: [id])
+
+  // Skills & Specializations
+  skills              String           // JSON array
+  specializations     String           // JSON array
+  experienceYears     Int
+
+  // Availability
+  workingHours        String           // JSON schedule
+  availableDays       String           // JSON array of days
+  maxDailyJobs        Int              @default(5)
+  preferredRadius     Float            // in kilometers
+
+  // Performance
+  totalJobsCompleted  Int              @default(0)
+  averageRating       Float?
+  onTimePercentage    Float?
+  firstTimeFixRate    Float?
+
+  // Equipment
+  hasVehicle          Boolean          @default(true)
+  vehicleType         String?
+  vehicleRegistration String?
+
+  // Emergency Response
+  emergencyAvailable  Boolean          @default(false)
+  emergencyRate       Float?           // hourly rate for emergency
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  schedules           Schedule[]
+}
+
+// 4. License/Certification Model (Enhanced)
+model License {
+  id                  String           @id @default(cuid())
+  tenantId            String?
+
+  contractorId        String
+  contractor          Contractor       @relation(fields: [contractorId], references: [id])
+
+  // License Details
+  licenseType         String           // TRADE, PROFESSIONAL, BUSINESS, DRIVER
+  licenseName         String
+  licenseNumber       String           @unique
+  issuingAuthority    String
+  issuingState        String
+
+  // Validity
+  issueDate           DateTime
+  expiryDate          DateTime
+
+  // Verification
+  verificationStatus  String           @default("PENDING") // PENDING, VERIFIED, REJECTED
+  verifiedAt          DateTime?
+  verifiedBy          String?
+  verificationMethod  String?          // MANUAL, API, DOCUMENT
+  verificationNotes   String?
+
+  // Document
+  documentUrl         String?
+  documentUploadedAt  DateTime?
+
+  // Renewal
+  renewalReminderDays Int              @default(30)
+  renewalReminderSent Boolean          @default(false)
+  renewalCost         Float?
+
+  // Restrictions
+  restrictions        String?          // JSON array of restrictions
+  endorsements        String?          // JSON array of endorsements
+
+  // Compliance
+  requiredForWork     Boolean          @default(false)
+  complianceCheckDate DateTime?
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([licenseNumber])
+  @@index([expiryDate])
+  @@index([contractorId])
+  @@index([tenantId])
+}
+
+// 5. Insurance/Compliance Model (Enhanced)
+model InsuranceCompliance {
+  id                  String           @id @default(cuid())
+  tenantId            String?
+
+  contractorId        String?
+
+  // Policy Details
+  policyType          String           // GENERAL_LIABILITY, WORKERS_COMP, AUTO, PROFESSIONAL
+  policyName          String
+  policyNumber        String           @unique
+  carrier             String
+  agent               String?
+  agentPhone          String?
+  agentEmail          String?
+
+  // Coverage
+  coverageAmount      Float
+  deductible          Float
+  aggregateLimit      Float?
+  perOccurrenceLimit  Float?
+
+  // Additional Insureds
+  additionalInsureds  String?          // JSON array
+
+  // Validity
+  effectiveDate       DateTime
+  expirationDate      DateTime
+
+  // Verification
+  certificateUrl      String?
+  certificateUploadedAt DateTime?
+  verificationStatus  String           @default("PENDING")
+  verifiedAt          DateTime?
+  verifiedBy          String?
+
+  // Claims
+  claimsHistory       String?          // JSON array of claims
+  totalClaims         Int              @default(0)
+
+  // Compliance Requirements
+  meetsStateRequirements Boolean       @default(false)
+  meetsClientRequirements Boolean      @default(false)
+  complianceNotes     String?
+
+  // Audit
+  lastAuditDate       DateTime?
+  nextAuditDate       DateTime?
+  auditResults        String?          // JSON audit findings
+
+  // Renewal
+  autoRenewal         Boolean          @default(false)
+  renewalReminderDays Int              @default(30)
+  renewalQuoteReceived Boolean         @default(false)
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([policyNumber])
+  @@index([expirationDate])
+  @@index([contractorId])
+  @@index([tenantId])
+}
+
+// 6. Equipment/Asset Model
+model Equipment {
+  id                  String           @id @default(cuid())
+  tenantId            String?
+
+  contractorId        String?
+  contractor          Contractor?      @relation(fields: [contractorId], references: [id])
+
+  // Equipment Details
+  equipmentNumber     String           @unique
+  name                String
+  category            String           // VEHICLE, TOOL, SAFETY, CLEANING, DRYING, etc.
+  manufacturer        String?
+  model               String?
+  serialNumber        String?
+
+  // Purchase/Lease
+  acquisitionType     String           // PURCHASED, LEASED, RENTED
+  purchaseDate        DateTime?
+  purchasePrice       Float?
+  vendor              String?
+  warrantyExpiry      DateTime?
+
+  // Lease Details
+  leaseCompany        String?
+  leaseEndDate        DateTime?
+  monthlyLeaseAmount  Float?
+
+  // Specifications
+  specifications      String?          // JSON object
+  capacity            String?
+  powerRequirements   String?
+
+  // Location & Assignment
+  currentLocation     String?
+  assignedTo          String?
+  assignedDate        DateTime?
+
+  // Condition
+  condition           String           @default("GOOD") // NEW, EXCELLENT, GOOD, FAIR, POOR
+  lastInspectionDate  DateTime?
+  nextServiceDate     DateTime?
+
+  // Usage Tracking
+  hoursUsed           Float            @default(0)
+  currentMileage      Float?
+
+  // Maintenance
+  maintenanceSchedule String?          // JSON schedule
+  maintenanceHistory  String?          // JSON array
+
+  // Financial
+  currentValue        Float?
+  depreciationRate    Float?
+  hourlyCost          Float?
+  dailyRate           Float?
+
+  // Status
+  status              String           @default("AVAILABLE") // AVAILABLE, IN_USE, MAINTENANCE, RETIRED
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  usage               EquipmentUsage[]
+  maintenanceRecords  MaintenanceRecord[]
+
+  @@index([equipmentNumber])
+  @@index([status])
+  @@index([category])
+  @@index([tenantId])
+}
+
+// 7. Equipment Usage Tracking
+model EquipmentUsage {
+  id                  String           @id @default(cuid())
+
+  equipmentId         String
+  equipment           Equipment        @relation(fields: [equipmentId], references: [id])
+
+  workOrderId         String
+  workOrder           WorkOrder        @relation(fields: [workOrderId], references: [id])
+
+  // Usage Details
+  checkOutDate        DateTime
+  checkInDate         DateTime?
+  checkOutBy          String
+  checkInBy           String?
+
+  // Metrics
+  hoursUsed           Float?
+  milesDriven         Float?
+
+  // Condition
+  checkOutCondition   String
+  checkInCondition    String?
+  damageNotes         String?
+
+  // Cost
+  usageCost           Float?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([equipmentId])
+  @@index([workOrderId])
+}
+
+// 8. Material Usage Tracking
+model MaterialUsage {
+  id                  String           @id @default(cuid())
+
+  workOrderId         String
+  workOrder           WorkOrder        @relation(fields: [workOrderId], references: [id])
+
+  // Material Details
+  materialName        String
+  materialCode        String?
+  category            String
+  supplier            String?
+
+  // Quantity
+  quantity            Float
+  unit                String           // EACH, BOX, ROLL, GALLON, etc.
+
+  // Cost
+  unitCost            Float
+  totalCost           Float
+  markup              Float            @default(0)
+
+  // Tracking
+  usedBy              String
+  usedDate            DateTime
+
+  createdAt           DateTime         @default(now())
+
+  @@index([workOrderId])
+  @@index([materialCode])
+}
+
+// 9. Maintenance Record
+model MaintenanceRecord {
+  id                  String           @id @default(cuid())
+
+  equipmentId         String
+  equipment           Equipment        @relation(fields: [equipmentId], references: [id])
+
+  // Maintenance Details
+  maintenanceType     String           // PREVENTIVE, REPAIR, INSPECTION, CALIBRATION
+  description         String
+  performedBy         String
+  performedDate       DateTime
+
+  // Cost
+  laborHours          Float?
+  laborCost           Float?
+  partsCost           Float?
+  totalCost           Float?
+
+  // Parts Used
+  partsUsed           String?          // JSON array
+
+  // Next Service
+  nextServiceDate     DateTime?
+  nextServiceMileage  Float?
+
+  // Documentation
+  serviceReport       String?
+  invoiceNumber       String?
+  warrantyWork        Boolean          @default(false)
+
+  createdAt           DateTime         @default(now())
+
+  @@index([equipmentId])
+  @@index([performedDate])
+}
+
+// 10. Document Model (Enhanced)
+model Document {
+  id                  String           @id @default(cuid())
+  tenantId            String?
+
+  // Relations (polymorphic)
+  workOrderId         String?
+  workOrder           WorkOrder?       @relation(fields: [workOrderId], references: [id])
+
+  // Document Details
+  documentNumber      String           @unique
+  name                String
+  category            DocumentCategory
+  type                String           // PDF, IMAGE, VIDEO, SPREADSHEET, etc.
+
+  // File Information
+  fileUrl             String
+  fileName            String
+  fileSize            Int              // in bytes
+  mimeType            String
+
+  // Metadata
+  description         String?
+  tags                String?          // JSON array
+  version             Int              @default(1)
+
+  // Security
+  isConfidential      Boolean          @default(false)
+  accessLevel         String           @default("INTERNAL") // PUBLIC, INTERNAL, RESTRICTED
+
+  // Source
+  uploadedBy          String
+  source              String           // WEB, MOBILE, EMAIL, SCAN
+
+  // Processing
+  processedAt         DateTime?
+  ocrText             String?          // Extracted text from OCR
+  thumbnailUrl        String?
+
+  // Expiry
+  expiryDate          DateTime?
+  retentionDays       Int?
+
+  // Signatures
+  requiresSignature   Boolean          @default(false)
+  signatureStatus     String?          // PENDING, SIGNED, DECLINED
+  signedAt            DateTime?
+  signedBy            String?
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([documentNumber])
+  @@index([category])
+  @@index([workOrderId])
+  @@index([tenantId])
+}
+
+// 11. Payment Model (Enhanced)
+model Payment {
+  id                  String           @id @default(cuid())
+  tenantId            String?
+
+  invoiceId           String?
+  invoice             Invoice?         @relation(fields: [invoiceId], references: [id])
+
+  workOrderId         String?
+  workOrder           WorkOrder?       @relation(fields: [workOrderId], references: [id])
+
+  // Payment Details
+  paymentNumber       String           @unique
+  amount              Float
+  currency            String           @default("AUD")
+
+  // Method
+  method              PaymentMethod
+  status              PaymentStatus    @default(PENDING)
+
+  // Transaction Details
+  transactionId       String?
+  referenceNumber     String?
+  authorizationCode   String?
+
+  // Card Details (encrypted/tokenized)
+  cardLast4           String?
+  cardBrand           String?
+
+  // Bank Details
+  bankName            String?
+  accountLast4        String?
+  routingNumber       String?
+
+  // Check Details
+  checkNumber         String?
+  checkDate           DateTime?
+
+  // Processing
+  processedAt         DateTime?
+  processorResponse   String?          // JSON response from processor
+
+  // Fees
+  processingFee       Float            @default(0)
+  netAmount           Float?
+
+  // Refund
+  refundedAmount      Float            @default(0)
+  refundReason        String?
+  refundedAt          DateTime?
+
+  // Reconciliation
+  reconciledAt        DateTime?
+  batchNumber         String?
+  depositDate         DateTime?
+
+  // Notes
+  internalNotes       String?
+  customerNotes       String?
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([paymentNumber])
+  @@index([status])
+  @@index([method])
+  @@index([workOrderId])
+  @@index([tenantId])
+}
+
+// 12. Activity Log Model (Detailed Audit Trail)
+model ActivityLog {
+  id                  String           @id @default(cuid())
+  tenantId            String?
+
+  // Actor
+  userId              String?
+  user                User?            @relation(fields: [userId], references: [id])
+  actorType           String           // USER, SYSTEM, API, WEBHOOK
+  actorName           String
+
+  // Target (polymorphic)
+  entityType          String           // WORK_ORDER, SCHEDULE, PAYMENT, etc.
+  entityId            String
+  entityName          String?
+
+  workOrderId         String?
+  workOrder           WorkOrder?       @relation(fields: [workOrderId], references: [id])
+
+  // Action
+  action              String           // CREATE, UPDATE, DELETE, VIEW, EXPORT, etc.
+  actionCategory      String           // CRUD, AUTH, SYNC, WORKFLOW, etc.
+
+  // Details
+  description         String
+  changes             String?          // JSON diff of changes
+  previousValues      String?          // JSON of previous values
+  newValues           String?          // JSON of new values
+
+  // Context
+  ipAddress           String?
+  userAgent           String?
+  sessionId           String?
+  requestId           String?
+
+  // Source
+  source              String           // WEB, MOBILE, API, IMPORT
+  sourceVersion       String?
+
+  // Result
+  success             Boolean          @default(true)
+  errorMessage        String?
+
+  // Performance
+  executionTime       Int?             // in milliseconds
+
+  // Compliance
+  requiresAudit       Boolean          @default(false)
+  auditReviewed       Boolean          @default(false)
+  reviewedBy          String?
+  reviewedAt          DateTime?
+
+  createdAt           DateTime         @default(now())
+
+  @@index([entityType, entityId])
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@index([tenantId])
+  @@index([workOrderId])
+}
+
+// 13. Report Model (Saved Reports & Templates)
+model Report {
+  id                  String           @id @default(cuid())
+  tenantId            String?
+
+  createdById         String
+  createdBy           User             @relation(fields: [createdById], references: [id])
+
+  // Report Details
+  name                String
+  description         String?
+  category            String           // OPERATIONAL, FINANCIAL, COMPLIANCE, QUALITY
+  type                String           // STANDARD, CUSTOM, DASHBOARD
+
+  // Configuration
+  reportConfig        String           // JSON configuration
+  filters             String?          // JSON saved filters
+  dateRange           String?          // JSON date range config
+  groupBy             String?
+  sortBy              String?
+
+  // Template
+  isTemplate          Boolean          @default(false)
+  templateCategory    String?
+
+  // Scheduling
+  isScheduled         Boolean          @default(false)
+  scheduleConfig      String?          // JSON cron expression & recipients
+  lastRunAt           DateTime?
+  nextRunAt           DateTime?
+
+  // Distribution
+  recipients          String?          // JSON array of emails
+  deliveryMethod      String?          // EMAIL, WEBHOOK, FTP
+
+  // Format
+  outputFormat        String           @default("PDF") // PDF, EXCEL, CSV, JSON
+
+  // Permissions
+  isPublic            Boolean          @default(false)
+  sharedWith          String?          // JSON array of user IDs
+
+  // Cache
+  cachedDataUrl       String?
+  cacheExpiresAt      DateTime?
+
+  // Usage
+  runCount            Int              @default(0)
+  lastAccessedAt      DateTime?
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([category])
+  @@index([type])
+  @@index([createdById])
+  @@index([tenantId])
+}
+
+// 14. Tenant Model (Multi-tenancy Support)
+model Tenant {
+  id                  String           @id @default(cuid())
+
+  // Tenant Details
+  name                String
+  slug                String           @unique
+  domain              String?
+
+  // Company Information
+  companyName         String
+  abn                 String?
+  acn                 String?
+
+  // Contact
+  primaryContact      String
+  primaryEmail        String
+  primaryPhone        String
+
+  // Address
+  address             String
+  city                String
+  state               String
+  postcode            String
+  country             String           @default("Australia")
+
+  // Subscription
+  subscriptionPlan    String           // STARTER, PROFESSIONAL, ENTERPRISE
+  subscriptionStatus  String           @default("TRIAL") // TRIAL, ACTIVE, SUSPENDED, CANCELLED
+  trialEndsAt         DateTime?
+  subscriptionEndsAt  DateTime?
+
+  // Limits
+  maxUsers            Int              @default(5)
+  maxWorkOrders       Int              @default(100)
+  maxStorage          Int              @default(10) // in GB
+
+  // Features (JSON flags)
+  features            String           @default("{}")
+
+  // Branding
+  logoUrl             String?
+  primaryColor        String?
+  secondaryColor      String?
+
+  // Settings
+  timezone            String           @default("Australia/Brisbane")
+  dateFormat          String           @default("DD/MM/YYYY")
+  currency            String           @default("AUD")
+
+  // Security
+  ssoEnabled          Boolean          @default(false)
+  ssoProvider         String?
+  ssoConfig           String?          // Encrypted JSON
+  ipWhitelist         String?          // JSON array
+
+  // API Access
+  apiEnabled          Boolean          @default(false)
+  apiKey              String?          @unique
+  apiSecret           String?          // Encrypted
+  webhookUrl          String?
+
+  // Compliance
+  dataRetentionDays   Int              @default(2555) // 7 years
+  gdprCompliant       Boolean          @default(false)
+
+  // Status
+  isActive            Boolean          @default(true)
+  suspendedAt         DateTime?
+  suspendedReason     String?
+
+  // Soft delete
+  deletedAt           DateTime?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([slug])
+  @@index([apiKey])
+}

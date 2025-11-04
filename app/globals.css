@@ -2,25 +2,136 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Print styles for invoices */
+@media print {
+  @page {
+    margin: 1cm;
+    size: A4;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  /* Hide navigation, buttons, etc */
+  nav, header, footer, button:not(.print-keep) {
+    display: none !important;
+  }
+}
+
 /* Enhanced CSS Variables for Theming */
 :root {
+  /* Light Mode Colors */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+
+  --sidebar: 0 0% 100%;
+  --sidebar-foreground: 222.2 47.4% 11.2%;
+  --sidebar-border: 214.3 31.8% 91.4%;
+  --sidebar-hover: 210 40% 96.1%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --success: 142.1 76.2% 36.3%;
+  --success-foreground: 355.7 100% 97.3%;
+
+  --warning: 32.1 94.6% 43.7%;
+  --warning-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221.2 83.2% 53.3%;
+
+  --radius: 0.5rem;
+
+  /* Gradients */
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --emergency-gradient: linear-gradient(135deg, #f93b1d 0%, #ea1e63 100%);
   --success-gradient: linear-gradient(135deg, #13ce66 0%, #00d4ff 100%);
   --dark-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  
+
   /* Animation Timings */
   --animation-fast: 0.2s;
   --animation-normal: 0.3s;
   --animation-slow: 0.5s;
   --animation-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   /* Shadows */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.3);
+}
+
+.dark {
+  /* Dark Mode Colors */
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+
+  --sidebar: 217.2 32.6% 17.5%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-border: 217.2 32.6% 24%;
+  --sidebar-hover: 217.2 32.6% 22%;
+
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 217.2 91.2% 59.8%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --success: 142.1 70.6% 45.3%;
+  --success-foreground: 144.9 80.4% 10%;
+
+  --warning: 32.1 94.6% 43.7%;
+  --warning-foreground: 26 83.3% 14.1%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 224.3 76.3% 48%;
 }
 
 /* Smooth Scroll */

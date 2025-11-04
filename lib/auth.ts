@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
       return {}
     }
   },
-  secret: process.env.NEXTAUTH_SECRET || "dummy-secret-for-public-site",
+  secret: process.env.NEXTAUTH_SECRET || process.env.NODE_ENV === 'production' ? undefined : "dev-only-secret",
   pages: undefined, // No auth pages needed
   debug: false
 }

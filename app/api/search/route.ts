@@ -346,8 +346,7 @@ export async function GET(request: NextRequest) {
     console.error('Search API error:', error);
     return NextResponse.json({
       success: false,
-      message: 'Search failed',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      message: 'Search failed'
     }, { status: 500 });
   }
 }

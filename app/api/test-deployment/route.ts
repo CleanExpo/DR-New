@@ -15,9 +15,7 @@ export async function GET(request: NextRequest) {
     ],
     environment: {
       hasAirtableToken: !!process.env.AIRTABLE_ACCESS_TOKEN,
-      hasAirtableBase: !!process.env.AIRTABLE_BASE_ID,
-      airtableTokenLength: process.env.AIRTABLE_ACCESS_TOKEN?.length || 0,
-      airtableBasePrefix: process.env.AIRTABLE_BASE_ID?.substring(0, 4) || 'none'
+      hasAirtableBase: !!process.env.AIRTABLE_BASE_ID
     }
   });
 }

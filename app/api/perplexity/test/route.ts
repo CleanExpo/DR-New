@@ -40,8 +40,7 @@ export async function GET() {
     console.error('Perplexity API test error:', error);
     return NextResponse.json({
       success: false,
-      message: 'Error testing Perplexity API connection',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      message: 'Error testing Perplexity API connection'
     }, { status: 500 });
   }
 }

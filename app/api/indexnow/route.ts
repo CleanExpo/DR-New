@@ -3,11 +3,18 @@ import { NextRequest, NextResponse } from 'next/server';
 // IndexNow API endpoint for instant search engine notification
 // Supports Bing, Yandex, Seznam, and IndexNow-compatible engines
 
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'your-indexnow-key-here';
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY;
 const INDEXNOW_HOST = 'https://disaster-recovery-seven.vercel.app';
 
 export async function POST(request: NextRequest) {
   try {
+    if (!INDEXNOW_KEY) {
+      return NextResponse.json(
+        { error: 'IndexNow API not configured' },
+        { status: 503 }
+      );
+    }
+
     const { urls } = await request.json();
 
     if (!urls || !Array.isArray(urls)) {

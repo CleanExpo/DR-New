@@ -118,9 +118,8 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error in fraud detection API:', error);
     return NextResponse.json(
-      { 
-        error: 'Internal server error during fraud analysis',
-        details: error instanceof Error ? error.message : 'Unknown error'
+      {
+        error: 'Internal server error during fraud analysis'
       },
       { status: 500 }
     );

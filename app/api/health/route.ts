@@ -7,14 +7,13 @@ export async function GET() {
       timestamp: new Date().toISOString(),
       airtable_configured: {
         token: !!process.env.AIRTABLE_ACCESS_TOKEN,
-        base_id: !!process.env.AIRTABLE_BASE_ID,
-        token_length: process.env.AIRTABLE_ACCESS_TOKEN?.length || 0
+        base_id: !!process.env.AIRTABLE_BASE_ID
       }
     });
   } catch (error) {
     return NextResponse.json({
       status: 'error',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: 'Health check failed'
     }, { status: 500 });
   }
 }

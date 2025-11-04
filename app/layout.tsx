@@ -26,6 +26,7 @@ import NavigationIndicator from '@/components/NavigationIndicator'
 import LoadingIndicator from '@/components/LoadingIndicator'
 import ProgressSpinner from '@/components/ProgressSpinner'
 import LazyImage from '@/components/LazyImage'
+import { Toaster } from '@/components/ui/toaster'
 // import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
 // import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
 
@@ -244,6 +245,7 @@ export default function RootLayout({
           <LoadingIndicator />
           <ProgressSpinner />
           <LazyImage />
+          <Toaster />
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>

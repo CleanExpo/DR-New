@@ -96,3 +96,5 @@ _archive/
 .env*
 !.env.example
 !.env.training.example
+
+.env*.local

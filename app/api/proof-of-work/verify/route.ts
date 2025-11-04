@@ -169,9 +169,8 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error verifying proof of work:', error);
     return NextResponse.json(
-      { 
-        error: 'Internal server error during proof of work verification',
-        details: error instanceof Error ? error.message : 'Unknown error'
+      {
+        error: 'Internal server error during proof of work verification'
       },
       { status: 500 }
     );

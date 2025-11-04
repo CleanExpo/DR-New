@@ -68,8 +68,8 @@ export async function POST(request: NextRequest) {
       // Tracking Information
       tracking: {
         source: body.source || 'website',
-        ipAddress: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || '',
-        userAgent: body.userAgent || request.headers.get('user-agent') || '',
+        ipAddress: (request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || '').split(',')[0].trim(),
+        userAgent: request.headers.get('user-agent') || '',
       },
       
       // Workflow Status

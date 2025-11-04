@@ -22,6 +22,12 @@ const config: Config = {
   			ring: 'hsl(var(--ring))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				hover: 'hsl(var(--sidebar-hover))',
+  			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -33,6 +39,14 @@ const config: Config = {
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			success: {
+  				DEFAULT: 'hsl(var(--success))',
+  				foreground: 'hsl(var(--success-foreground))'
+  			},
+  			warning: {
+  				DEFAULT: 'hsl(var(--warning))',
+  				foreground: 'hsl(var(--warning-foreground))'
   			},
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',

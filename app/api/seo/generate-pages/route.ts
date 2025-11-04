@@ -104,7 +104,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Error generating SEO pages:', error);
     return NextResponse.json(
-      { error: 'Failed to generate SEO pages', details: error instanceof Error ? error.message : 'Unknown error' },
+      { error: 'Failed to generate SEO pages' },
       { status: 500 }
     );
   }
