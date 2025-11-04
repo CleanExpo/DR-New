@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { CompanyAddress } from '@/components/CompanyAddress';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -131,10 +132,7 @@ export default function PrivacyPolicy() {
             <div className="space-y-3 text-gray-700">
               <p>For privacy-related questions or concerns:</p>
               <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="font-semibold">Disaster Recovery</p>
-                <p>Email: privacy@dr-new-ten.vercel.app</p>
-                <p>email: Online Form Available 24/7</p>
-                <p>Address: Brisbane, Queensland, Australia</p>
+                <CompanyAddress className="text-gray-700" />
               </div>
             </div>
           </section>

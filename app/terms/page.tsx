@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { CompanyAddress } from '@/components/CompanyAddress';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
@@ -164,11 +165,8 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">12. Contact Information</h2>
             <div className="bg-gray-50 p-4 rounded-lg text-gray-700">
-              <p className="font-semibold">Disaster Recovery</p>
-              <p>Email: legal@dr-new-ten.vercel.app</p>
-              <p>email: Online Form Available 24/7</p>
-              <p>Address: Brisbane, Australia</p>
-              <p>ABN: [To be provided]</p>
+              <CompanyAddress className="text-gray-700 mb-4" />
+              <p className="mt-4">ABN: [To be provided]</p>
             </div>
           </section>
 
