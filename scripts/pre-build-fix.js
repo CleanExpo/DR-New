@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+// Skip on Vercel - they have their own build process
+if (process.env.VERCEL || process.env.VERCEL_ENV) {
+  console.log('Skipping pre-build fixes on Vercel environment');
+  process.exit(0);
+}
+
 const fs = require('fs').promises;
 const path = require('path');
 

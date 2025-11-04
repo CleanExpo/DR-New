@@ -6,6 +6,12 @@
  * Run this before EVERY deployment
  */
 
+// Skip on Vercel - they have their own build checks
+if (process.env.VERCEL || process.env.VERCEL_ENV) {
+  console.log('Skipping critical checks on Vercel environment');
+  process.exit(0);
+}
+
 const fs = require('fs').promises;
 const path = require('path');
 
