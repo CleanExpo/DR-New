@@ -1,31 +1,46 @@
 # Google Analytics 4 Setup - Disaster Recovery
 
-## ✅ Configuration Complete (Local)
+## ✅ Dual Tracking Configuration Complete (Local)
 
-**GA4 Measurement ID**: `G-BWDWXDJM4Z`
+**Primary GA4 Property**: `G-BWDWXDJM4Z` (Main Analytics)
+**Secondary GA4 Property**: `G-RK33F1ZD1H` (NRPG Analytics)
+
+### Benefits of Dual Tracking
+- **Separate Dashboards**: Different teams can access their own GA4 property
+- **Data Isolation**: Each property has independent settings and configurations
+- **Redundancy**: Backup tracking in case one property has issues
+- **Custom Goals**: Set different conversion goals per property
 
 ## Local Development Setup
 
 Your `.env.local` file has been configured with:
 ```bash
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-BWDWXDJM4Z
+NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY=G-RK33F1ZD1H
 ```
+
+**All events automatically send to BOTH properties** via gtag.js.
 
 ## 🚨 REQUIRED: Vercel Production Setup
 
 **Environment variables in `.env.local` are NOT deployed to Vercel.**
 
-### Add to Vercel (2 minutes):
+### Add to Vercel (3 minutes):
 
 1. **Visit Vercel Dashboard**:
    - https://vercel.com/unite-group/dr-new/settings/environment-variables
 
-2. **Add Environment Variable**:
+2. **Add Primary GA4 Property**:
    - **Key**: `NEXT_PUBLIC_GA_MEASUREMENT_ID`
    - **Value**: `G-BWDWXDJM4Z`
    - **Environments**: ✅ Production ✅ Preview ✅ Development
+   - Click "Save"
 
-3. **Click "Save"**
+3. **Add Secondary GA4 Property (NRPG)**:
+   - **Key**: `NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY`
+   - **Value**: `G-RK33F1ZD1H`
+   - **Environments**: ✅ Production ✅ Preview ✅ Development
+   - Click "Save"
 
 4. **Redeploy**:
    - Go to: https://vercel.com/unite-group/dr-new
@@ -33,17 +48,27 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-BWDWXDJM4Z
    - Select "Use existing Build Cache"
    - Click "Redeploy"
 
+### How Dual Tracking Works
+Once deployed, all pageviews and events will automatically send to **both** GA4 properties:
+- Primary property (G-BWDWXDJM4Z) receives all data
+- Secondary property (G-RK33F1ZD1H) receives identical data
+- No code changes needed - gtag.js handles distribution automatically
+
 ## Implementation Details
 
 ### Tracking Code Location
-- **File**: `app/layout.tsx` (lines 208-223)
+- **File**: `app/layout.tsx` (lines 208-235)
 - **Strategy**: `afterInteractive` (loads after page becomes interactive)
-- **Configuration**: Page path tracking, cookie flags for security
+- **Configuration**: Dual property tracking, page path tracking, cookie flags for security
+- **Primary ID**: Loaded via gtag.js script
+- **Secondary ID**: Configured in initialization script (conditional)
 
 ### Analytics Library
 - **File**: `lib/analytics.ts`
 - **Events Tracked**: 15+ custom conversion events
 - **Functions**: All imported and ready to use
+- **Dual Tracking**: All events automatically send to both GA4 properties
+- **No Changes Needed**: Existing tracking functions work with both properties
 
 ## 📊 Events Being Tracked
 
@@ -71,24 +96,35 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=G-BWDWXDJM4Z
 
 ## Verify Setup (Post-Deployment)
 
-### 1. Check Real-time Data
-1. Visit: https://analytics.google.com/
-2. Navigate to: **Reports → Real-time**
-3. Open your website: https://dr-new-ten.vercel.app
-4. Should see yourself as active user within 30 seconds
+### 1. Check Real-time Data (Both Properties)
 
-### 2. Test Event Tracking
-Visit your homepage and:
-- ✅ Click phone number → Check for `emergency_phone_click` event
-- ✅ Navigate to service page → Check for `service_view` event
-- ✅ Click emergency button → Check for `emergency_request` event
+**Primary Property (G-BWDWXDJM4Z)**:
+1. Visit: https://analytics.google.com/
+2. Select Primary property from account dropdown
+3. Navigate to: **Reports → Real-time**
+4. Open your website: https://dr-new-ten.vercel.app
+5. Should see yourself as active user within 30 seconds
+
+**Secondary Property (G-RK33F1ZD1H)**:
+1. Switch to Secondary property in GA4
+2. Navigate to: **Reports → Real-time**
+3. Should see the same data (your active session)
+
+### 2. Test Event Tracking (Dual Verification)
+Visit your homepage and verify events appear in **BOTH** properties:
+- ✅ Click phone number → Check for `phone_click` event in both properties
+- ✅ Navigate to service page → Check for `service_view` event in both properties
+- ✅ Click emergency button → Check for `emergency_request` event in both properties
 
 ### 3. Verify Tag Installation
 1. Install: [Google Tag Assistant Chrome Extension](https://chrome.google.com/webstore/detail/tag-assistant-legacy-by-g/kejbdjndbnbjgmefkgdddjlbokphdefk)
 2. Visit your site
 3. Click extension → Should show "Google Analytics: GA4" tag firing
+4. Check Network tab → Should see requests to both tracking IDs
 
 ## 🎯 Conversion Goals to Set Up in GA4
+
+**Important**: Set up conversion goals in BOTH properties for consistent tracking.
 
 ### High-Value Conversions
 1. **Emergency Phone Calls**
@@ -202,5 +238,6 @@ const handleSubmit = (data) => {
 ---
 
 **Last Updated**: November 4, 2025
-**Tracking ID**: G-BWDWXDJM4Z
-**Implementation Status**: ✅ Local Complete | ⏳ Vercel Pending
+**Primary Tracking ID**: G-BWDWXDJM4Z (Main Analytics)
+**Secondary Tracking ID**: G-RK33F1ZD1H (NRPG Analytics)
+**Implementation Status**: ✅ Dual Tracking - Local Complete | ⏳ Vercel Pending (2 environment variables required)

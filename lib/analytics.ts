@@ -1,9 +1,17 @@
 /**
  * Comprehensive Google Analytics 4 Conversion Tracking
  * Disaster Recovery Services - Local Business Focus
+ *
+ * DUAL TRACKING CONFIGURATION:
+ * - Primary GA4 Property: G-BWDWXDJM4Z (Main Analytics)
+ * - Secondary GA4 Property: G-RK33F1ZD1H (NRPG Analytics)
+ *
+ * All events automatically send to both properties via gtag.js.
+ * Both properties receive identical data for separate team dashboards.
  */
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+const GA_MEASUREMENT_ID_SECONDARY = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY || '';
 
 // Type definitions
 export interface ConversionEvent {

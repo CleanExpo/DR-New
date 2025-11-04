@@ -205,6 +205,7 @@ export default function RootLayout({
             {children}
           </main>
         </Providers>
+        {/* Google Analytics 4 - Dual Tracking */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'}`}
           strategy="afterInteractive"
@@ -214,11 +215,22 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+
+            // Primary GA4 Property
             gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'}', {
               page_path: window.location.pathname,
               send_page_view: true,
               cookie_flags: 'SameSite=None;Secure'
             });
+
+            // Secondary GA4 Property (NRPG)
+            ${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY ? `
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY}', {
+              page_path: window.location.pathname,
+              send_page_view: true,
+              cookie_flags: 'SameSite=None;Secure'
+            });
+            ` : ''}
           `}
         </Script>
       </body>
