@@ -86,23 +86,28 @@ if (!isVercel && !fs.existsSync('node_modules')) {
 // Generate Prisma client
 console.log('\n🔨 Generating Prisma client...');
 try {
-  // Always use the main schema file which has all models
-  const schemaFile = 'prisma/schema.prisma';
-  
-  console.log(`Using schema file: ${schemaFile}`);
-  
-  const prismaEnv = {
-    ...process.env,
-    DATABASE_URL: process.env.DATABASE_URL || 'file:./build.db',
-    PRISMA_SCHEMA_PATH: schemaFile
-  };
-  
-  // Generate Prisma client
-  executeCommand('npx prisma generate', {
-    env: prismaEnv
-  });
-  
-  console.log('✅ Prisma client generated successfully');
+  // Skip Prisma generation on Vercel - it's handled by postinstall
+  if (isVercel) {
+    console.log('⏭️  Skipping Prisma generation on Vercel (handled by postinstall)');
+  } else {
+    // Always use the main schema file which has all models
+    const schemaFile = 'prisma/schema.prisma';
+
+    console.log(`Using schema file: ${schemaFile}`);
+
+    const prismaEnv = {
+      ...process.env,
+      DATABASE_URL: process.env.DATABASE_URL || 'file:./build.db',
+      PRISMA_SCHEMA_PATH: schemaFile
+    };
+
+    // Generate Prisma client
+    executeCommand('npx prisma generate', {
+      env: prismaEnv
+    });
+
+    console.log('✅ Prisma client generated successfully');
+  }
   
   // Push database schema if in development
   if (!isVercel && process.env.NODE_ENV !== 'production') {
