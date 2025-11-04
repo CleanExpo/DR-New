@@ -38,7 +38,10 @@ export const AUSTRALIAN_CONFIG = {
   country: 'Australia',
   currency: 'AUD',
   timezone: 'Australia/Brisbane',
-  emergencyNumber: '000'
+  emergencyNumber: '000',
+  emergency: {
+    number: '1300 309 361'
+  }
 }
 
 export function AustralianLocationGrid({ locations }: { locations?: string[] }) {

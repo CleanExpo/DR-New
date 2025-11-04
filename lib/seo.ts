@@ -74,7 +74,7 @@ export function generateServiceSEO(config: {
     ogDescription: config.description,
     twitterTitle: `${config.serviceName} ${config.location}`,
     twitterDescription: twitterDescription,
-    type: 'service',
+    type: 'website',
   });
 }
 
@@ -109,7 +109,7 @@ export function generateLocationSEO(config: {
     ogDescription: `Professional ${config.services[0] || 'restoration'} services in ${config.suburb}. IICRC certified.`,
     twitterTitle: `${config.suburb} Disaster Recovery`,
     twitterDescription: twitterDescription,
-    type: 'service',
+    type: 'website',
   });
 }
 
@@ -143,7 +143,7 @@ export function generateInsuranceSEO(config: {
     ogDescription: `${statusText} provider for ${config.insurerName} claims.`,
     twitterTitle: `${config.insurerName} Claims Support`,
     twitterDescription: twitterDesc,
-    type: 'service',
+    type: 'website',
   });
 }
 

@@ -60,9 +60,11 @@ export {
 // Component exports
 export {
   SuburbPageTemplate,
-  generateSuburbMetadata,
   type SuburbPageProps,
 } from './SuburbPageTemplate';
+
+// Metadata exports (server-side only)
+export { generateSuburbMetadata } from './metadata';
 
 /**
  * Convenience function: Generate complete page configuration
