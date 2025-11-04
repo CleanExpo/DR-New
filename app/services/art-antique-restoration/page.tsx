@@ -44,7 +44,7 @@ const artCategories = [
   {
     category: 'Paper & Textile Arts',
     mediums: ['Rare books', 'Manuscripts', 'Prints', 'Historic textiles'],
-    damageTypes: ['Paper buckling', 'Ink running', 'Mold growth', 'Fiber degradation'],
+    damageTypes: ['Paper buckling', 'Ink running', 'Mould growth', 'Fiber degradation'],
     urgency: 'Critical - 1 hour',
     techniques: ['Freeze stabilization', 'Controlled drying', 'Pressure flattening', 'Conservation cleaning']
   }

@@ -174,7 +174,7 @@ All content uses Australian English spelling:
 - Specialised (not specialized)
 - Colour, odour, honour
 - Centre (not center)
-- Mould (not mold)
+- Mould (not mould)
 
 ---
 

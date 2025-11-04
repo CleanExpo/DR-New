@@ -765,7 +765,7 @@ Sample Collection Protocol:
 Laboratory Analysis:
 Total Viable Count: General microbial population assessment
 Bacterial Identification: Specific bacterial species identification
-Fungal Identification: Mold and yeast species identification
+Fungal Identification: Mould and yeast species identification
 Pathogen Testing: Specific pathogen detection when indicated
 Antibiotic Resistance: Testing for resistant organisms when relevant
 

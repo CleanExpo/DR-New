@@ -164,7 +164,7 @@ const faqs = [
   }
 ];
 
-export default function MoldRemediationPage() {
+export default function MouldRemediationPage() {
   return (
     <ServicePageLayout
       title="Mould Remediation Services"

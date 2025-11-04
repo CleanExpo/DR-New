@@ -19,7 +19,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li><Link href="/services/water-damage" className="hover:text-white">Water Damage</Link></li>
               <li><Link href="/services/fire-damage" className="hover:text-white">Fire Damage</Link></li>
-              <li><Link href="/services/mold-remediation" className="hover:text-white">Mold Remediation</Link></li>
+              <li><Link href="/services/mould-remediation" className="hover:text-white">Mould Remediation</Link></li>
             </ul>
           </div>
           <div>

@@ -158,7 +158,7 @@ All content uses Australian English:
 - Odour (not odor)
 - Specialised (not specialized)
 - Optimised (not optimized)
-- Mould (not mold)
+- Mould (not mould)
 - Centre (not center)
 
 ## Key Business Information

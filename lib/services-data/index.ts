@@ -127,7 +127,7 @@ const SERVICES: ServiceData[] = [
     subcategories: ['air-quality-testing', 'surface-testing', 'moisture-mapping'],
     description: 'Professional mould inspection and testing services',
     keywords: [
-      'mould inspection', 'mold testing', 'mould assessment', 'air quality test',
+      'mould inspection', 'mould testing', 'mould assessment', 'air quality test',
       'mould detection', 'black mould test', 'mould survey'
     ],
     equipment: ['air sampling pumps', 'moisture meters', 'borescopes', 'thermal cameras'],
@@ -143,7 +143,7 @@ const SERVICES: ServiceData[] = [
     subcategories: ['black-mould', 'toxic-mould', 'surface-mould'],
     description: 'Safe and complete mould removal and remediation',
     keywords: [
-      'mould removal', 'mold remediation', 'black mould removal',
+      'mould removal', 'mould remediation', 'black mould removal',
       'toxic mould', 'mould treatment', 'fungus removal'
     ],
     equipment: ['negative air machines', 'HEPA vacuums', 'containment barriers'],

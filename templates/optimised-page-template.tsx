@@ -73,3 +73,61 @@ export function EmergencyCTA() {
     </div>
   )
 }
+
+export function TrustIndicators() {
+  return (
+    <div className="grid grid-cols-3 gap-4 py-6">
+      <div className="text-center">
+        <div className="text-2xl font-bold">24/7</div>
+        <div className="text-sm">Emergency Response</div>
+      </div>
+      <div className="text-center">
+        <div className="text-2xl font-bold">Licensed</div>
+        <div className="text-sm">& Insured</div>
+      </div>
+      <div className="text-center">
+        <div className="text-2xl font-bold">Local</div>
+        <div className="text-sm">Brisbane Team</div>
+      </div>
+    </div>
+  )
+}
+
+export function generateAustralianMetadata(config: {
+  title: string
+  description: string
+  url?: string
+}) {
+  return {
+    title: config.title,
+    description: config.description,
+    openGraph: {
+      title: config.title,
+      description: config.description,
+      url: config.url || 'https://dr-new-ten.vercel.app',
+      type: 'website'
+    }
+  }
+}
+
+export function generateAustralianSchema(service: {
+  name: string
+  description: string
+  areaServed?: string[]
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.name,
+    description: service.description,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Disaster Recovery Brisbane',
+      telephone: '1300 309 361'
+    },
+    areaServed: (service.areaServed || ['Brisbane', 'Ipswich', 'Logan']).map(area => ({
+      '@type': 'City',
+      name: area
+    }))
+  }
+}

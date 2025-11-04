@@ -10,7 +10,7 @@ Login to GMB and add ALL these categories:
 - Add these 6 additional:
   - Fire Damage Restoration Service
   - Building Restoration Service
-  - Mold Remediation Service
+  - Mould Remediation Service
   - Damage Restoration Service
   - Emergency Response Service
   - Cleaning Service

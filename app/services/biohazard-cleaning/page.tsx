@@ -71,8 +71,13 @@ const biohazardFAQs = [
 const biohazardServiceSchema = generateServiceSchema({
   name: 'Biohazard and Crime Scene Cleaning',
   description: 'Professional biohazard remediation, crime scene cleanup, and trauma cleaning services. Discrete, compassionate, and thorough decontamination available 24/7 across Brisbane and Queensland.',
-  image: '/images/services/crime-scene-remediation.webp',
-  areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast', 'Cairns', 'Townsville']
+  provider: {
+    name: 'Disaster Recovery Brisbane',
+    telephone: '1300 309 361'
+  },
+  areaServed: 'Queensland',
+  url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning',
+  image: '/images/services/crime-scene-remediation.webp'
 })
 
 // Breadcrumb schema

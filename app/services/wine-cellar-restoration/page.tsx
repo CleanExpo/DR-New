@@ -60,7 +60,7 @@ const wineProtectionServices = [
   },
   {
     title: 'Humidity Management Restoration',
-    description: 'Precise humidity control to prevent cork deterioration, mold growth, and label damage.',
+    description: 'Precise humidity control to prevent cork deterioration, mould growth, and label damage.',
     icon: Wind,
     urgency: 'High - 6 hours',
     process: ['Humidity level assessment', 'Dehumidification setup', 'Air circulation optimization', 'Moisture barrier restoration']

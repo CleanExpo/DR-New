@@ -20,7 +20,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
     if (titleLower.includes('water')) return '💧';
     if (titleLower.includes('fire')) return '🔥';
     if (titleLower.includes('storm')) return '⛈️';
-    if (titleLower.includes('mould') || titleLower.includes('mold')) return '🦠';
+    if (titleLower.includes('mould') || titleLower.includes('mould')) return '🦠';
     if (titleLower.includes('flood')) return '🌊';
     return '🚨';
   };

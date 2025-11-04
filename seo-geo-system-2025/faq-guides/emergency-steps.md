@@ -24,7 +24,7 @@ A: Proper documentation is crucial:
 ### Professional Assessment
 **Q: How quickly should professionals assess water damage?**
 A: Within 24 hours is critical because:
-- Mold growth can begin within 24-48 hours
+- Mould growth can begin within 24-48 hours
 - Secondary damage increases exponentially
 - Insurance coverage may require prompt action
 - Structural integrity can deteriorate rapidly
@@ -163,7 +163,7 @@ A: Monitor these sources:
       "name": "How quickly should I call for water damage restoration in Brisbane?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Call within the first hour if possible, but definitely within 24 hours. Brisbane's humid climate accelerates mold growth and secondary damage."
+        "text": "Call within the first hour if possible, but definitely within 24 hours. Brisbane's humid climate accelerates mould growth and secondary damage."
       }
     },
     {

@@ -55,7 +55,7 @@
 ## FAQ Schema Content
 ### Common Questions
 1. **"How quickly should water damage be addressed?"**
-   - Answer: Within 24-48 hours to prevent secondary damage like mold
+   - Answer: Within 24-48 hours to prevent secondary damage like mould
    - Include Brisbane-specific humidity factors
 
 2. **"Will my insurance cover water damage restoration?"**

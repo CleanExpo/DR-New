@@ -221,14 +221,25 @@ export function generateLocalBusinessSchema(business: {
 export function generateServiceSchema(service: {
   name: string;
   description: string;
-  provider: {
+  provider?: {
     name: string;
     telephone?: string;
   };
-  areaServed: string;
-  url: string;
+  areaServed?: string | string[];
+  url?: string;
   image?: string;
 }) {
+  // Default provider if not provided
+  const provider = service.provider || {
+    name: 'Disaster Recovery Brisbane',
+    telephone: '1300 309 361'
+  };
+
+  // Handle areaServed as string or array
+  const areaServed = Array.isArray(service.areaServed)
+    ? service.areaServed[0] || 'Queensland'
+    : service.areaServed || 'Queensland';
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -236,14 +247,14 @@ export function generateServiceSchema(service: {
     description: service.description,
     provider: {
       '@type': 'LocalBusiness',
-      name: service.provider.name,
-      telephone: service.provider.telephone || '',
+      name: provider.name,
+      telephone: provider.telephone || '1300 309 361',
     },
     areaServed: {
       '@type': 'City',
-      name: service.areaServed,
+      name: areaServed,
     },
-    url: service.url,
+    url: service.url || 'https://dr-new-ten.vercel.app',
     image: service.image,
   };
 }

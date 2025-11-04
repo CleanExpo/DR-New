@@ -38,7 +38,7 @@
 - How long has damage been present?
 
 **Timeline Impact:**
-- Affects mold risk assessment
+- Affects mould risk assessment
 - Determines mitigation urgency
 - Influences restoration approach
 - Important for insurance documentation
@@ -144,7 +144,7 @@ to keep you updated on our progress."
 | Standing water | Medium | Urgent | 6-8 hours |
 | Fire/smoke damage | High | Emergency | 2-4 hours |
 | Storm damage with structural issues | High | Emergency | 2-4 hours |
-| Mold discovery | Low-Medium | Standard | 24 hours |
+| Mould discovery | Low-Medium | Standard | 24 hours |
 | Contents damage only | Low | Standard | 24-48 hours |
 
 ### Commitment Language Templates

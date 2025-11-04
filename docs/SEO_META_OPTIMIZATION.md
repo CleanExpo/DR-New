@@ -105,7 +105,7 @@ initializePageTracking({
 ```
 Title: Water Damage Restoration Brisbane | 24/7 Response | Certified
 Meta: Professional water damage restoration Brisbane. Same-day response. Insurance approved.
-      IICRC certified. Prevent mold growth. Call 1300 309 361.
+      IICRC certified. Prevent mould growth. Call 1300 309 361.
 ```
 
 **GA4 Tracking:**
@@ -341,7 +341,7 @@ Emergency Water Damage Restoration Brisbane | IICRC Certified | 1-Hour Response
 
 **High Conversion Meta:**
 ```
-Urgent water damage? IICRC certified team responds within 1 hour in Brisbane. Prevent mold,
+Urgent water damage? IICRC certified team responds within 1 hour in Brisbane. Prevent mould,
 save your property. Insurance approved. Free assessment. Call 1300 309 361 now.
 ```
 

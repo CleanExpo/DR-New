@@ -336,7 +336,7 @@ export function generateServiceModifiers(service: ServiceData): string[] {
   } else if (service.category.slug === 'fire-damage') {
     modifiers.push('smoke', 'soot', 'burn', 'char', 'restoration');
   } else if (service.category.slug === 'mould') {
-    modifiers.push('mold', 'black mould', 'remediation', 'removal', 'treatment');
+    modifiers.push('mould', 'black mould', 'remediation', 'removal', 'treatment');
   }
 
   return modifiers;

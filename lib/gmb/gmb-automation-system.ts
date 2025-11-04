@@ -112,7 +112,7 @@ export class GMBAutomationSystem {
       'services_offered': [
         'water_damage_restoration',
         'fire_damage_restoration',
-        'mold_remediation',
+        'mould_remediation',
         'emergency_response'
       ],
       'specialties': [
@@ -146,7 +146,7 @@ export class GMBAutomationSystem {
           'Fire Damage Restoration Service',
           'Building Restoration Service',
           'Emergency Response Service',
-          'Mold Remediation Service'
+          'Mould Remediation Service'
         ]
       }
     };
