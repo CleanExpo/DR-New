@@ -184,15 +184,15 @@ export default function WaterDamageRestorationPage() {
           </div>
         </section>
 
-        {/* Critical Alert with CSIRO Data */}
+        {/* Critical Alert */}
         <section className="bg-red-900/30 border-y border-red-600/30 py-6">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-center gap-4 text-center">
               <AlertTriangle className="h-6 w-6 text-red-600 animate-pulse" />
               <p className="text-white font-semibold">
-                CSIRO: Properties dried within 48 hours show 87% less structural damage.
+                Every hour counts - water damage worsens rapidly.
                 <Link href="/client/emergency" className="text-red-600 ml-2 underline">
-                  Act now - {buildingResearch.healthImpactCost} annual health cost from mould.
+                  Call now for 1 hour response time - {AUSTRALIAN_CONFIG.emergency.number}
                 </Link>
               </p>
             </div>
@@ -206,81 +206,92 @@ export default function WaterDamageRestorationPage() {
           </div>
         </section>
 
-        {/* Real Case Studies */}
+        {/* Service Excellence */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-white mb-4">
-                Proven in Australia's Worst Disasters
+                Master Restorer Service
               </h2>
               <p className="text-xl text-blue-700">
-                Real results from {floodStats.largestEvent.totalClaims.toLocaleString()} insurance claims
+                IICRC Certified Water Damage Restoration for Brisbane, Ipswich & Logan
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              {/* Brisbane Floods 2022 */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {/* Certification */}
               <article className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <Award className="h-12 w-12 text-blue-600 mb-4" />
                 <h3 className="text-2xl font-bold text-white mb-3">
-                  {brisbaneFloods.title}
-                </h3>
-                <p className="text-blue-700 mb-4">{brisbaneFloods.location} • {brisbaneFloods.year}</p>
-                
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="bg-black/30 rounded-lg p-3">
-                    <p className="text-3xl font-bold text-white">
-                      {brisbaneFloods.details.propertiesFlooded.toLocaleString()}
-                    </p>
-                    <p className="text-sm text-gray-200">Properties Flooded</p>
-                  </div>
-                  <div className="bg-black/30 rounded-lg p-3">
-                    <p className="text-3xl font-bold text-white">
-                      {brisbaneFloods.details.totalDamage}
-                    </p>
-                    <p className="text-sm text-gray-200">Total Damage</p>
-                  </div>
-                </div>
-                
-                <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
-                  <p className="text-green-700">
-                    <strong>Key Learning:</strong> {brisbaneFloods.keyLearning}
-                  </p>
-                </div>
-                
-                <p className="text-xs text-gray-300 mt-3">
-                  Source: {brisbaneFloods.publicRecord}
-                </p>
-              </article>
-
-              {/* Lismore Floods 2022 */}
-              <article className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {VERIFIED_CASE_STUDIES[1].title}
+                  IICRC Certified
                 </h3>
                 <p className="text-blue-700 mb-4">
-                  {VERIFIED_CASE_STUDIES[1].location} • {VERIFIED_CASE_STUDIES[1].year}
+                  Phill McGurk - Master Restorer with advanced water damage restoration certification
                 </p>
-                
-                <div className="grid grid-cols-2 gap-4 mb-4">
-                  <div className="bg-black/30 rounded-lg p-3">
-                    <p className="text-3xl font-bold text-white">14.4m</p>
-                    <p className="text-sm text-gray-200">Record Water Level</p>
-                  </div>
-                  <div className="bg-black/30 rounded-lg p-3">
-                    <p className="text-3xl font-bold text-white">3,000</p>
-                    <p className="text-sm text-gray-200">Homes Destroyed</p>
-                  </div>
-                </div>
-                
-                <div className="p-4 bg-green-500/10 rounded-lg border border-green-500/30">
-                  <p className="text-green-700">
-                    <strong>Key Learning:</strong> {VERIFIED_CASE_STUDIES[1].keyLearning}
-                  </p>
-                </div>
-                
-                <p className="text-xs text-gray-300 mt-3">
-                  Source: {VERIFIED_CASE_STUDIES[1].publicRecord}
+                <ul className="space-y-2 text-gray-200">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>IICRC S500 Standard</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>Water Damage Specialist</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>Insurance Approved</span>
+                  </li>
+                </ul>
+              </article>
+
+              {/* Response Time */}
+              <article className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <Clock className="h-12 w-12 text-blue-600 mb-4" />
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  1 Hour Response
+                </h3>
+                <p className="text-blue-700 mb-4">
+                  Emergency water extraction and damage mitigation available 24/7
                 </p>
+                <ul className="space-y-2 text-gray-200">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>24/7 Availability</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>Brisbane Metro Coverage</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>Ipswich & Logan Service</span>
+                  </li>
+                </ul>
+              </article>
+
+              {/* Protection */}
+              <article className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <Shield className="h-12 w-12 text-blue-600 mb-4" />
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  $20M Liability
+                </h3>
+                <p className="text-blue-700 mb-4">
+                  Fully insured and licensed for residential and commercial restoration
+                </p>
+                <ul className="space-y-2 text-gray-200">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>Public Liability Coverage</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>Workers Compensation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                    <span>Professional Indemnity</span>
+                  </li>
+                </ul>
               </article>
             </div>
           </div>
@@ -374,75 +385,114 @@ export default function WaterDamageRestorationPage() {
           </div>
         </section>
 
-        {/* Insurance Partners */}
+        {/* Insurance Work */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl font-bold text-white text-center mb-12">
-              Direct Billing with Major Insurers
+              Insurance Approved Restoration
             </h2>
 
-            <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {INSURANCE_DATA.majorInsurers.map((insurer) => (
-                <div key={insurer.name} className="bg-white/10 rounded-xl p-6 border border-white/10 text-center">
-                  <h3 className="text-xl font-bold text-white mb-3">{insurer.name}</h3>
-                  <p className="text-3xl font-bold text-blue-600 mb-2">
-                    {insurer.marketShare}
+            <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/10">
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Direct Insurance Billing</h3>
+                  <p className="text-blue-700 mb-6">
+                    Work directly with all major insurance companies for water damage claims
                   </p>
-                  <p className="text-sm text-gray-200">Market Share</p>
-                  <p className="text-sm text-blue-700 mt-3">
-                    Approval: <strong className="text-white">{insurer.averageClaimTime}</strong>
-                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Complete claims documentation</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Photo evidence and moisture mapping</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Scope of works for adjusters</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Direct billing available</span>
+                    </li>
+                  </ul>
                 </div>
-              ))}
-            </div>
 
-            <div className="mt-12 text-center">
-              <p className="text-2xl font-bold text-white mb-2">
-                {INSURANCE_DATA.claimStatistics.data.totalCatastropheClaims.toLocaleString()} Claims in 2024
-              </p>
-              <p className="text-blue-700">
-                Total value: {INSURANCE_DATA.claimStatistics.data.totalValue} • 
-                Satisfaction: {INSURANCE_DATA.claimStatistics.data.customerSatisfaction}
-              </p>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Certified Standards</h3>
+                  <p className="text-blue-700 mb-6">
+                    All work meets insurance requirements and Australian standards
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">IICRC S500 Water Damage Standard</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">AS/NZS 3500.2 Compliance</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Thermal imaging documentation</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Professional loss assessment</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Health Risks */}
+        {/* Mould Prevention */}
         <section className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl font-bold text-white text-center mb-12">
-              Health Risks Increase Every Hour
+              Prevent Mould Growth
             </h2>
 
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-red-900/50 to-orange-900/50 rounded-xl p-8 border border-red-600/30">
                 <h3 className="text-2xl font-bold text-white mb-6">
-                  Australian Institute of Health Data
+                  Time Critical Water Damage Response
                 </h3>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-4xl font-bold text-red-600">1 in 4</p>
-                    <p className="text-red-700">Australian homes affected by mould</p>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-black/30 rounded-lg p-4">
+                    <p className="text-4xl font-bold text-red-600">24-48hrs</p>
+                    <p className="text-red-700">Mould begins to grow</p>
                   </div>
-                  <div>
-                    <p className="text-4xl font-bold text-blue-500">430,000</p>
-                    <p className="text-orange-700">Annual respiratory issues</p>
-                  </div>
-                  <div>
-                    <p className="text-4xl font-bold text-blue-500">$2.3B</p>
-                    <p className="text-yellow-700">Annual health costs</p>
-                  </div>
-                  <div>
-                    <p className="text-4xl font-bold text-emerald-600">1.2M</p>
-                    <p className="text-green-700">Work days lost</p>
+                  <div className="bg-black/30 rounded-lg p-4">
+                    <p className="text-4xl font-bold text-blue-500">72hrs+</p>
+                    <p className="text-orange-700">Structural damage sets in</p>
                   </div>
                 </div>
-                
-                <p className="text-xs text-gray-300 mt-6">
-                  Source: AIHW Environmental Health Report 2023
-                </p>
+
+                <div className="space-y-4">
+                  <h4 className="text-xl font-bold text-white">Our Prevention Process:</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Immediate water extraction within 1 hour response time</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Industrial dehumidification and air movement</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Thermal imaging to detect hidden moisture</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-200">Antimicrobial treatment as needed</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -465,24 +515,31 @@ export default function WaterDamageRestorationPage() {
           </div>
         </section>
 
-        {/* Final CTA with Real Impact */}
+        {/* Final CTA */}
         <section className="py-20 bg-gradient-to-r from-red-900/80 to-orange-900/80">
           <div className="container mx-auto px-6 text-center">
             <AlertTriangle className="h-16 w-16 text-blue-500 mx-auto mb-6 animate-pulse" />
             <h2 className="text-4xl font-bold text-white mb-6">
-              {buildingResearch.mouldGrowthTimeframe} Until Permanent Damage
+              Every Minute Counts
             </h2>
             <p className="text-xl text-yellow-700 mb-8 max-w-3xl mx-auto">
-              {floodStats.largestEvent.propertiesAffected.toLocaleString()} properties saved in 2022. 
-              Don't lose {buildingResearch.propertyValueLoss} of your property value.
+              Professional water damage restoration with 1 hour response time for Brisbane, Ipswich and Logan properties.
             </p>
-            <Link
-              href="/client/emergency"
-              className="inline-block px-10 py-5 bg-white text-red-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"
-            >
-              <MessageSquare className="inline-block mr-2 h-6 w-6" />
-              Emergency: {AUSTRALIAN_CONFIG.emergency.number}
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/client/emergency"
+                className="inline-block px-10 py-5 bg-white text-red-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"
+              >
+                <MessageSquare className="inline-block mr-2 h-6 w-6" />
+                Emergency: {AUSTRALIAN_CONFIG.emergency.number}
+              </Link>
+              <Link
+                href="/client/instant-quote"
+                className="inline-block px-10 py-5 bg-blue-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all"
+              >
+                Get Free Assessment
+              </Link>
+            </div>
           </div>
         </section>
       </main>
