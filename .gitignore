@@ -40,6 +40,8 @@ next-env.d.ts
 
 # Database
 /data
+# Exception: application code in data/ directory
+!data/australian-disaster-facts.ts
 *.db
 *.sqlite
 *.sqlite3
