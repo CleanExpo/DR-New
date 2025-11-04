@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, MapPin, Shield, Star, CheckCircle, Clock, ArrowRight } from 'lucide-react';
+import { Phone, MapPin, Shield, Star, CheckCircle, Clock, ArrowRight, Award, Users, Building2 } from 'lucide-react';
 
 // FORCE REBUILD - SIMPLIFIED VERSION ONLY
 // Last updated: ${new Date().toISOString()}
@@ -22,36 +22,65 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Water Damage Restoration<br />
-            Brisbane | 24/7 Emergency
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            When Disaster Strikes Your Brisbane Home,<br />
+            Every Minute Counts
           </h1>
 
-          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-            24-hour water damage, fire damage, and flood restoration. IICRC certified.<br />
-            Insurance approved. We can be there within 1 hour.
+          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto font-medium">
+            Master Restorer responds in 60 minutes. Water damage. Fire damage. Storm damage.<br />
+            Your home restored to perfection. Guaranteed.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="tel:1300309361"
-              className="inline-flex items-center justify-center px-8 py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors"
+              className="inline-flex items-center justify-center px-10 py-5 bg-red-600 text-white text-lg font-bold rounded-lg hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              <Phone className="w-5 h-5 mr-2" />
-              1300 309 361
+              <Phone className="w-6 h-6 mr-2 animate-pulse" />
+              Emergency: Call 1300 309 361
             </Link>
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center justify-center px-10 py-5 bg-white text-gray-900 text-lg font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Emergency Contact
+              Book Free Assessment
             </Link>
           </div>
+        </div>
+      </section>
 
-          <p className="mt-6 text-sm">
-            Office: 4/17 Tile St, Wacol, QLD 4076
-          </p>
+      {/* Trust Strip - Subliminal Authority Signals */}
+      <section className="bg-gradient-to-r from-blue-900 to-blue-800 py-6">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-white text-center">
+            <div className="flex flex-col items-center">
+              <Award className="w-8 h-8 mb-2 text-yellow-400" />
+              <p className="text-sm font-semibold">Master Restorer</p>
+              <p className="text-xs opacity-90">1 of 12 in QLD</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Clock className="w-8 h-8 mb-2 text-yellow-400" />
+              <p className="text-sm font-semibold">20+ Years</p>
+              <p className="text-xs opacity-90">Brisbane & Ipswich</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Building2 className="w-8 h-8 mb-2 text-yellow-400" />
+              <p className="text-sm font-semibold">All Major Insurers</p>
+              <p className="text-xs opacity-90">Approved Partner</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Users className="w-8 h-8 mb-2 text-yellow-400" />
+              <p className="text-sm font-semibold">500+ Properties</p>
+              <p className="text-xs opacity-90">Successfully Restored</p>
+            </div>
+            <div className="flex flex-col items-center md:col-span-1 col-span-2">
+              <Shield className="w-8 h-8 mb-2 text-yellow-400" />
+              <p className="text-sm font-semibold">60-Min Response</p>
+              <p className="text-xs opacity-90">Emergency Service</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -133,6 +162,68 @@ export default function HomePage() {
               <strong>We're local to Brisbane:</strong><br />
               Office: 4/17 Tile St, Wacol • 24/7 Emergency Response • IICRC Certified • Insurance Approved
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* The Moment It Happened - Empathy Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/hero/fire-water-damage-restoration.jpg"
+                    alt="Understanding your disaster recovery needs"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                  You Woke Up to Water Spreading Across Your Floor
+                </h2>
+
+                <div className="space-y-4 text-lg text-gray-700">
+                  <p className="leading-relaxed">
+                    Your first thought: <span className="font-semibold text-gray-900">"Who do I call?"</span>
+                  </p>
+                  <p className="leading-relaxed">
+                    Your second thought: <span className="font-semibold text-gray-900">"Will my home ever be the same?"</span>
+                  </p>
+
+                  <div className="border-l-4 border-blue-600 pl-6 py-4 my-6 bg-white rounded-r-lg shadow-sm">
+                    <p className="text-xl font-semibold text-gray-900 mb-2">
+                      We understand that fear.
+                    </p>
+                    <p className="text-gray-700">
+                      We've walked 500+ Brisbane families through it. And every single one of them got their home back. Better than before.
+                    </p>
+                  </div>
+
+                  <p className="leading-relaxed">
+                    Your home isn't just walls and floors. It's where your children took their first steps. Where you hosted Christmas dinner. Where you feel safe.
+                  </p>
+
+                  <p className="leading-relaxed font-semibold text-gray-900">
+                    That's why you need more than just repairs. You need someone who understands what's really at stake.
+                  </p>
+                </div>
+
+                <div className="mt-8">
+                  <Link
+                    href="/about-phil-mcgurk"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-lg"
+                  >
+                    Meet Our Master Restorer
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -288,6 +379,80 @@ export default function HomePage() {
               View All Brisbane Services
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Phill McGurk - The Mentor/Expert */}
+      <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1">
+                <div className="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-lg font-bold mb-6">
+                  <Award className="inline-block w-5 h-5 mr-2" />
+                  Master Restorer Certified
+                </div>
+
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                  Meet Phill McGurk<br />
+                  <span className="text-yellow-400">One of Queensland's 12 Master Restorers</span>
+                </h2>
+
+                <div className="space-y-4 text-lg">
+                  <p className="leading-relaxed">
+                    When your $3M home floods, you need more than a contractor.
+                  </p>
+
+                  <p className="leading-relaxed">
+                    You need someone who understands period features, heritage materials, and the irreplaceable details that make your house your home.
+                  </p>
+
+                  <blockquote className="border-l-4 border-yellow-400 pl-6 py-4 my-6 italic text-xl">
+                    "I've spent 20 years becoming one of the best in Brisbane. Not the cheapest. The best.
+                    <br /><br />
+                    Because when you're trusting someone with your most valuable asset, 'good enough' isn't good enough."
+                  </blockquote>
+
+                  <p className="text-sm text-blue-200">
+                    — Phill McGurk, Master Restorer<br />
+                    IICRC Certified • 20+ Years Experience • 500+ Properties Restored
+                  </p>
+                </div>
+
+                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                  <Link
+                    href="/about-phil-mcgurk"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold rounded-lg transition-colors"
+                  >
+                    Read Phill's Story
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                  <Link
+                    href="tel:1300309361"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-100 text-blue-900 font-bold rounded-lg transition-colors"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call 1300 309 361
+                  </Link>
+                </div>
+              </div>
+
+              <div className="order-1 md:order-2">
+                <div className="relative h-[500px] rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/hero/fire-water-damage-restoration.jpg"
+                    alt="Phill McGurk - Master Restorer"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                    <p className="text-white font-bold text-xl">Phill McGurk</p>
+                    <p className="text-yellow-400">Master Restorer • Brisbane</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
