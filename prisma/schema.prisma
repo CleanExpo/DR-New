@@ -1069,3 +1069,14 @@ model AuditLog {
   @@index([resource])
   @@index([createdAt])
 }
+// Onboarding Draft Model
+model OnboardingDraft {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  data      String   // JSON string to store partial onboarding data
+  step      Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("onboarding_drafts")
+}
