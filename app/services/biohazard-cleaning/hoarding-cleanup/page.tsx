@@ -1,201 +1,30 @@
-'use client';
+import type { Metadata } from 'next';
+import HoardingCleanupClient from './HoardingCleanupClient';
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
-import {  Clock, Shield, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare} from 'lucide-react';
+// SEO Metadata - Local Brisbane, Ipswich, Logan focus
+export const metadata: Metadata = {
+  title: 'Hoarding Cleanup Brisbane, Ipswich & Logan | Compassionate Service',
+  description: 'Professional hoarding cleanup in Brisbane, Ipswich, Logan. Compassionate, discreet extreme cleaning. IICRC certified. Master Restorer Phill McGurk.',
+  keywords: 'hoarding cleanup Brisbane, hoarder house cleaning Ipswich, extreme cleaning Logan, hoarding remediation Brisbane, compassionate hoarding cleanup Ipswich, professional decluttering Logan',
+  openGraph: {
+    title: 'Hoarding Cleanup Brisbane | Compassionate Professional Service',
+    description: 'Discreet hoarding cleanup Brisbane, Ipswich, Logan. Professional extreme cleaning, odour removal, restoration. Compassionate certified service.',
+    images: [{ url: '/images/hoarding-cleanup.jpg', width: 1200, height: 630, alt: 'Hoarding Cleanup Brisbane' }],
+    type: 'website',
+    siteName: 'Disaster Recovery Brisbane',
+    locale: 'en_AU'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hoarding Cleanup Brisbane | Discreet Service',
+    description: 'Professional hoarding cleanup Brisbane, Ipswich, Logan. Compassionate, certified, discreet. Master Restorer Phill McGurk.',
+    images: ['/images/hoarding-cleanup.jpg']
+  },
+  alternates: {
+    canonical: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning/hoarding-cleanup'
+  }
+};
 
 export default function HoardingCleanupServicesPage() {
-  const [showQuoteDialog, setShowQuoteDialog] = useState(false);
-
-  const businessInfo = {
-    name: 'Disaster Recovery - Hoarding Cleanup Services',
-    description: 'Professional hoarding cleanup services services in Queensland. 24/7 emergency response for hoarder house, extreme cleaning.',
-    telephone: "",
-    address: {
-      streetAddress: 'Servicing All Areas',
-      addressLocality: 'Brisbane',
-      addressRegion: 'QLD',
-      postalCode: '4000',
-      addressCountry: 'AU'
-    },
-    hours: '24/7 Online Emergency Response',
-    url: 'https://dr-new-ten.vercel.app/services/biohazard-cleaning/hoarding-cleanup',
-    image: '/images/hoarding-cleanup.jpg',
-    priceRange: '$$-$$$'
-  };
-
-  const faqs = [
-    {
-      question: 'How quickly can you respond to hoarding cleanup services emergencies?',
-      answer: 'We offer 24/7 emergency response for hoarding cleanup services with teams typically arriving within 2 hours in metro areas. Our rapid response helps minimize damage and reduce restoration costs.'
-    },
-    {
-      question: 'Is hoarding cleanup services covered by insurance?',
-      answer: 'Most insurance policies cover hoarding cleanup services damage when it\'s sudden and accidental. We work directly with all major insurers and can help manage your claim from start to finish.'
-    },
-    {
-      question: 'What is the cost of hoarding cleanup services services?',
-      answer: 'Costs vary based on the extent of damage and services required. We provide free assessments and quotes, and work with your insurance company for direct billing where applicable.'
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateLocalBusinessSchema(businessInfo)) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateFAQSchema(faqs)) }}
-      />
-
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Hoarding Cleanup Services
-            </h1>
-            <p className="text-xl mb-8 text-blue-800">
-              Expert hoarding cleanup services services across Queensland. Fast response, professional restoration, insurance approved.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-                onClick={() => setShowQuoteDialog(true)}
-              >
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Use Our Online Form'
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">Professional Hoarding Cleanup Services Services</h2>
-            <p className="text-lg text-gray-700 mb-8">
-              When you need expert hoarding cleanup services services, Disaster Recovery provides comprehensive solutions 
-              with 24/7 emergency response across Southeast Queensland.
-            </p>
-            
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              <Card className="p-6">
-                <h3 className="text-xl font-bold mb-4">Our Services</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Emergency response 24/7</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Professional assessment</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Complete restoration</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Insurance assistance</span>
-                  </li>
-                </ul>
-              </Card>
-              
-              <Card className="p-6">
-                <h3 className="text-xl font-bold mb-4">Why Choose Us</h3>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>15+ years experience</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Certified technicians</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Latest equipment</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span>Guaranteed results</span>
-                  </li>
-                </ul>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Hoarding Cleanup Services FAQs</h2>
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <Card key={index} className="p-6">
-                  <h3 className="text-lg font-bold mb-3">{faq.question}</h3>
-                  <p className="text-gray-700">{faq.answer}</p>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Need Hoarding Cleanup Services Services?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Get professional help now. Available 24/7 for emergency response.
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-blue-600 hover:bg-blue-700"
-            onClick={() => setShowQuoteDialog(true)}
-          >
-            <MessageSquare className="mr-2" />
-            Use Our Online Form'
-          </Button>
-        </div>
-      </section>
-
-      {/* Quote Dialog */}
-      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>Hoarding Cleanup Services Services</DialogTitle>
-            <DialogDescription>
-              Get immediate assistance 24/7. Our team is ready to help.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
-              <MessageSquare className="h-5 w-5 text-blue-700" />
-              <div>
-                <p className="font-semibold">Submit Form Now</p>
-                <p className="text-2xl font-bold text-blue-700">online support</p>
-              </div>
-            </div>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700">
-              Request Service
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </div>
-  );
+  return <HoardingCleanupClient />;
 }

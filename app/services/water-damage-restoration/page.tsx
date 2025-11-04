@@ -36,26 +36,29 @@ const LandingHeader = dynamic(() => import('@/components/LandingHeader'), {
   ssr: true
 });
 
-// Generate metadata - using real data
-export const metadata: Metadata = generateAustralianMetadata({
-  title: 'Water Damage Restoration Services Australia',
-  description: 'Professional water damage restoration across Australia. 2-hour response. Insurance approved. Based on 2022 Brisbane floods recovery success - 20,439 properties restored.',
-  keywords: [
-    'water damage restoration',
-    'flood recovery',
-    'burst pipe repair',
-    'emergency water extraction',
-    'structural drying',
-    'mould prevention',
-    'insurance restoration',
-    'IICRC certified',
-    'Brisbane floods',
-    'Lismore floods',
-    'AS/NZS 3500.2',
-    'CSIRO approved'
-  ],
-  path: '/services/water-damage-restoration'
-});
+// Generate metadata - Local Brisbane, Ipswich, Logan focus
+export const metadata: Metadata = {
+  title: 'Water Damage Restoration Brisbane, Ipswich & Logan | 2hr Response',
+  description: 'Expert water damage restoration in Brisbane, Ipswich, Logan. 2-hour emergency response, flood recovery, burst pipes. IICRC certified. Master Restorer Phill McGurk.',
+  keywords: 'water damage restoration Brisbane, flood recovery Ipswich, emergency water extraction Logan, burst pipe repair Brisbane, structural drying Ipswich, mould prevention Logan, insurance restoration Brisbane',
+  openGraph: {
+    title: 'Water Damage Restoration Brisbane | Emergency Flood Recovery',
+    description: 'Fast water damage restoration Brisbane, Ipswich, Logan. 2-hour response, IICRC certified, insurance approved. Master Restorer service.',
+    images: [{ url: '/images/optimized/damage/3D Burst Water Pipe.png', width: 1200, height: 630, alt: 'Water Damage Restoration Brisbane' }],
+    type: 'website',
+    siteName: 'Disaster Recovery Brisbane',
+    locale: 'en_AU'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Water Damage Restoration Brisbane | 2hr Response',
+    description: 'Emergency water damage restoration in Brisbane, Ipswich, Logan. Master Restorer Phill McGurk. Call now for 2-hour response.',
+    images: ['/images/optimized/damage/3D Burst Water Pipe.png']
+  },
+  alternates: {
+    canonical: 'https://dr-new-ten.vercel.app/services/water-damage-restoration'
+  }
+};
 
 // Schema markup with real data
 const structuredData = {

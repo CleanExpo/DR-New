@@ -3,49 +3,39 @@ import ServicePageLayout from '@/components/services/ServicePageLayout';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// SEO Metadata with comprehensive storm damage keywords
+// SEO Metadata - Local Brisbane, Ipswich, Logan focus
 export const metadata: Metadata = {
-  title: 'Storm & Natural Disaster Recovery | Emergency Response | Roof Repair & Restoration',
-  description: 'Professional storm and natural disaster recovery services. Cyclone, hail, wind damage restoration. Emergency roof repair, structural restoration. 24/7 emergency response nationwide.',
-  keywords: [
-    'storm damage restoration',
-    'cyclone damage repair',
-    'hail damage restoration',
-    'wind damage repair',
-    'natural disaster recovery',
-    'roof storm damage',
-    'emergency roof repair',
-    'storm cleanup',
-    'tree damage removal',
-    'flood damage restoration',
-    'storm restoration company',
-    'severe weather damage',
-    'tornado damage repair',
-    'lightning damage restoration',
-    'bushfire damage recovery'
-  ],
+  title: 'Storm Damage Restoration Brisbane, Ipswich & Logan | Emergency Repair',
+  description: 'Expert storm damage restoration in Brisbane, Ipswich, Logan. Cyclone, hail, wind damage repair. Emergency roof repair, tree removal. 24/7 response.',
+  keywords: 'storm damage restoration Brisbane, cyclone damage repair Ipswich, hail damage restoration Logan, wind damage repair Brisbane, emergency roof repair Ipswich, storm cleanup Logan, tree damage removal Brisbane',
   openGraph: {
-    title: 'Storm & Natural Disaster Recovery Services | 24/7 Online Emergency Response',
-    description: 'Professional storm and natural disaster recovery services. Expert cyclone, hail, and wind damage restoration with 24/7 emergency response nationwide.',
-    images: [
-      {
-        url: '/images/optimised/damage/3D Hurricane Damage.png',
-        width: 1200,
-        height: 630,
-        alt: 'Professional storm damage restoration service' },
-    ] },
+    title: 'Storm Damage Restoration Brisbane | Emergency Roof Repair',
+    description: 'Professional storm damage restoration Brisbane, Ipswich, Logan. Cyclone, hail, wind damage repair. 24/7 emergency response.',
+    images: [{
+      url: '/images/optimised/damage/3D Hurricane Damage.png',
+      width: 1200,
+      height: 630,
+      alt: 'Storm Damage Restoration Brisbane'
+    }],
+    type: 'website',
+    siteName: 'Disaster Recovery Brisbane',
+    locale: 'en_AU'
+  },
   twitter: {
     card: 'summary_large_image',
-    title: 'Storm & Natural Disaster Recovery | Emergency Response',
-    description: 'Expert storm damage restoration services. Professional cyclone, hail, and wind damage repair available 24/7.',
-    images: ['/images/optimised/damage/3D Hurricane Damage.png'] },
+    title: 'Storm Damage Restoration Brisbane | 24/7 Emergency',
+    description: 'Emergency storm damage restoration Brisbane, Ipswich, Logan. Master Restorer Phill McGurk. Cyclone, hail, wind damage repair.',
+    images: ['/images/optimised/damage/3D Hurricane Damage.png']
+  },
   alternates: {
-    canonical: '/services/storm-damage' },
+    canonical: 'https://dr-new-ten.vercel.app/services/storm-damage'
+  },
   other: {
-    'geo.region': 'AU',
-    'geo.placename': 'Australia',
-    'geo.position': '-25.2744;133.7751',
-    'ICBM': '-25.2744, 133.7751' }
+    'geo.region': 'AU-QLD',
+    'geo.placename': 'Brisbane',
+    'geo.position': '-27.4705;153.0260',
+    'ICBM': '-27.4705, 153.0260'
+  }
 };
 
 // Schema.org structured data for storm damage restoration

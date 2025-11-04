@@ -11,32 +11,29 @@ import { getHeroImageById } from '@/components/hero/HeroImageData'
 import { TriageInfoCard } from '@/components/triage/TriageInfoCard'
 import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck, MessageSquare} from 'lucide-react'
 
-// SEO Metadata with AI optimisation
-export const metadata: Metadata = generateSEO({
-  title: 'Fire Damage Restoration Brisbane | Smoke & Soot Cleanup | Disaster Recovery',
-  description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. Insurance approved, IICRC certified. Use Our Online Form',
-  keywords: [
-    'fire damage restoration Brisbane',
-    'smoke damage cleanup Queensland',
-    'fire restoration services',
-    'smoke and soot removal',
-    'fire damage repair Brisbane',
-    'odour removal after fire',
-    'fire damage insurance claims',
-    'emergency fire restoration',
-    'IICRC fire damage certified',
-    'structural fire damage repair',
-    'contents restoration fire damage',
-    'commercial fire damage restoration'
-  ],
-  canonical: 'https://dr-new-ten.vercel.app/services/fire-damage-restoration',
+// SEO Metadata - Local Brisbane, Ipswich, Logan focus
+export const metadata: Metadata = {
+  title: 'Fire Damage Restoration Brisbane, Ipswich & Logan | 24/7 Response',
+  description: 'Expert fire & smoke damage restoration in Brisbane, Ipswich, Logan. Emergency response, soot removal, odour elimination. IICRC certified. Master Restorer Phill McGurk.',
+  keywords: 'fire damage restoration Brisbane, smoke damage cleanup Ipswich, fire restoration Logan, soot removal Brisbane, odour elimination Ipswich, emergency fire restoration Logan, insurance approved Brisbane',
   openGraph: {
-    title: 'Fire & Smoke Damage Restoration Brisbane - 24/7 Emergency Service',
-    description: 'Professional fire damage restoration and smoke cleanup in Brisbane. Fast response, insurance approved, complete restoration services.',
-    images: [{ url: '/images/services/fire-damage-restoration.webp', alt: 'Fire Damage Restoration Service' }],
-    type: 'website'
+    title: 'Fire & Smoke Restoration Brisbane | Master Restorer Service',
+    description: 'Professional fire damage restoration Brisbane, Ipswich, Logan. 24/7 emergency response, complete smoke & soot cleanup. Insurance approved.',
+    images: [{ url: '/images/services/fire-damage-restoration.webp', width: 1200, height: 630, alt: 'Fire Damage Restoration Brisbane' }],
+    type: 'website',
+    siteName: 'Disaster Recovery Brisbane',
+    locale: 'en_AU'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fire Damage Restoration Brisbane | 24/7 Emergency',
+    description: 'Emergency fire & smoke restoration in Brisbane, Ipswich, Logan. Master Restorer Phill McGurk. IICRC certified.',
+    images: ['/images/services/fire-damage-restoration.webp']
+  },
+  alternates: {
+    canonical: 'https://dr-new-ten.vercel.app/services/fire-damage-restoration'
   }
-})
+}
 
 // FAQ data for schema
 const fireDamageFAQs = [

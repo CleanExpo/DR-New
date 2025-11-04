@@ -10,34 +10,29 @@ import { HeroSection } from '@/components/hero/HeroImage'
 import { getHeroImageById } from '@/components/hero/HeroImageData'
 import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscope, Home, Heart, FileCheck, AlertCircle, MessageSquare} from 'lucide-react'
 
-// SEO Metadata with AI optimisation
-export const metadata: Metadata = generateSEO({
-  title: 'Mould Remediation Brisbane | Professional Mould Removal Services | Disaster Recovery',
-  description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Use Our Online Form',
-  keywords: [
-    'mould remediation Brisbane',
-    'mould removal Queensland',
-    'black mould removal Brisbane',
-    'mould inspection services',
-    'mould testing Brisbane',
-    'toxic mould remediation',
-    'bathroom mould removal',
-    'ceiling mould treatment',
-    'mould prevention Brisbane',
-    'IICRC mould certified',
-    'air quality testing mould',
-    'flood mould remediation',
-    'commercial mould removal',
-    'residential mould services'
-  ],
-  canonical: 'https://dr-new-ten.vercel.app/services/mould-remediation',
+// SEO Metadata - Local Brisbane, Ipswich, Logan focus
+export const metadata: Metadata = {
+  title: 'Mould Remediation Brisbane, Ipswich & Logan | IICRC Certified',
+  description: 'Expert mould remediation in Brisbane, Ipswich, Logan. Complete black mould removal, air testing, prevention. IICRC certified. Master Restorer Phill McGurk.',
+  keywords: 'mould remediation Brisbane, mould removal Ipswich, black mould removal Logan, mould inspection Brisbane, mould testing Ipswich, toxic mould remediation Logan, IICRC mould certified Brisbane',
   openGraph: {
-    title: 'Professional Mould Remediation Brisbane - Safe & Certified Removal',
-    description: 'IICRC certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Protect your health - call now.',
-    images: [{ url: '/images/services/mould-remediation.webp', alt: 'Professional Mould Remediation Service' }],
-    type: 'website'
+    title: 'Mould Remediation Brisbane | Safe Certified Removal',
+    description: 'Professional mould remediation Brisbane, Ipswich, Logan. IICRC certified, complete removal, air quality testing. Health-focused solutions.',
+    images: [{ url: '/images/services/mould-remediation.webp', width: 1200, height: 630, alt: 'Mould Remediation Brisbane' }],
+    type: 'website',
+    siteName: 'Disaster Recovery Brisbane',
+    locale: 'en_AU'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mould Remediation Brisbane | IICRC Certified',
+    description: 'Safe mould removal Brisbane, Ipswich, Logan. Master Restorer Phill McGurk. Complete air testing & prevention.',
+    images: ['/images/services/mould-remediation.webp']
+  },
+  alternates: {
+    canonical: 'https://dr-new-ten.vercel.app/services/mould-remediation'
   }
-})
+}
 
 // FAQ data for schema
 const mouldFAQs = [

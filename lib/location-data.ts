@@ -566,5 +566,86 @@ export const suburbData: Record<string, SuburbData> = {
     ],
     localInsights: 'Stafford\'s mix of older homes near Kedron Brook and newer developments requires versatile flood response capabilities.',
     serviceAreas: ['Stafford Heights', 'Gordon Park', 'Kedron', 'Everton Park']
+  },
+  'kenmore': {
+    name: 'Kenmore',
+    slug: 'kenmore-disaster-recovery',
+    postcode: '4069',
+    coordinates: {
+      latitude: -27.5069,
+      longitude: 152.9378
+    },
+    distanceFromWacol: 10,
+    responseTime: '12-18 minutes',
+    demographics: {
+      medianHousePrice: '$1.35 million',
+      population: '9,500',
+      propertyType: 'Hillside family homes, Executive residences, Modern estates'
+    },
+    landmarks: ['Kenmore Village', 'Moggill Creek', 'Kenmore State High School', 'Kenmore Library', 'Gold Creek Reservoir'],
+    disasterRisks: ['Hillside water runoff', 'Retaining wall failures', 'Storm damage from elevated exposure', 'Slope subsidence'],
+    floodHistory: 'Elevated position protects from major flooding, but steep terrain creates unique water flow challenges during storms',
+    uniqueSellingPoints: [
+      'Hillside property water management specialists',
+      'Retaining wall water damage experts',
+      'Slope stabilization coordination',
+      'Executive home restoration expertise'
+    ],
+    localInsights: 'Kenmore\'s distinctive hillside topography requires specialized understanding of water flow patterns and structural considerations for elevated properties. Storm water management is critical due to steep gradients channeling water rapidly downslope.',
+    serviceAreas: ['Chapel Hill', 'Brookfield', 'Fig Tree Pocket', 'Pullenvale']
+  },
+  'mt-gravatt': {
+    name: 'Mt Gravatt',
+    slug: 'mt-gravatt-disaster-recovery',
+    postcode: '4122',
+    coordinates: {
+      latitude: -27.5344,
+      longitude: 153.0825
+    },
+    distanceFromWacol: 19,
+    responseTime: '22-30 minutes',
+    demographics: {
+      medianHousePrice: '$815,000',
+      population: '8,800',
+      propertyType: 'Post-war homes, Modern renovations, Elevated properties'
+    },
+    landmarks: ['Mt Gravatt Outlook Reserve', 'Westfield Garden City', 'Griffith University', 'Mt Gravatt Showgrounds', 'Toohey Forest'],
+    disasterRisks: ['Elevated storm exposure', 'Hillside water drainage', 'Bushfire smoke impact', 'Tree damage from exposed position'],
+    floodHistory: 'Elevated location provides excellent flood protection, but exposed position increases storm damage vulnerability',
+    uniqueSellingPoints: [
+      'Elevated property specialists',
+      'Storm damage rapid response',
+      'University precinct expertise',
+      'Shopping centre coordination experience'
+    ],
+    localInsights: 'Mt Gravatt\'s elevated position on one of Brisbane\'s highest points creates unique weather exposure challenges. Properties experience stronger winds and more severe storm impacts while benefiting from superior flood protection. The mix of established homes and university student accommodation requires versatile restoration approaches.',
+    serviceAreas: ['Upper Mt Gravatt', 'Wishart', 'Mansfield', 'Holland Park']
+  },
+  'manly': {
+    name: 'Manly',
+    slug: 'manly-disaster-recovery',
+    postcode: '4179',
+    coordinates: {
+      latitude: -27.4533,
+      longitude: 153.1844
+    },
+    distanceFromWacol: 36,
+    responseTime: '40-50 minutes',
+    demographics: {
+      medianHousePrice: '$965,000',
+      population: '4,000',
+      propertyType: 'Bayside family homes, Waterfront properties, Coastal apartments'
+    },
+    landmarks: ['Manly Harbour', 'Royal Queensland Yacht Squadron', 'Manly Village', 'Wynnum Esplanade', 'Waterfront Marina'],
+    disasterRisks: ['Storm surge from Moreton Bay', 'Coastal flooding', 'Salt corrosion damage', 'High humidity mould growth', 'King tide inundation'],
+    floodHistory: 'Cyclone season brings storm surge risks. King tides periodically flood waterfront areas. 2022 floods impacted low-lying bayside properties',
+    uniqueSellingPoints: [
+      'Bayside property specialists',
+      'Storm surge damage experts',
+      'Salt corrosion remediation',
+      'Marina and boat facility coordination'
+    ],
+    localInsights: 'Manly\'s unique bayside location presents distinct challenges from salt air corrosion, tidal influences, and storm surge risks. Properties require specialized treatments for coastal environments including salt-resistant materials and enhanced moisture control. The harbour and marina community demands understanding of both residential and marine facility restoration.',
+    serviceAreas: ['Wynnum', 'Lota', 'Manly West', 'Tingalpa']
   }
 };
