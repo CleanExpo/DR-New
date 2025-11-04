@@ -21,14 +21,7 @@ import {
   EmergencyCTA
 } from '@/templates/optimised-page-template';
 
-import {
-  AUSTRALIAN_DISASTER_STATISTICS,
-  VERIFIED_CASE_STUDIES,
-  LEGAL_PRECEDENTS,
-  INSURANCE_DATA,
-  HEALTH_IMPACT_DATA,
-  RESTORATION_TECHNOLOGY
-} from '@/data/australian-disaster-facts';
+// Removed fabricated statistics - using only verified company information
 
 // Lazy load header for performance
 const LandingHeader = dynamic(() => import('@/components/LandingHeader'), {
@@ -60,30 +53,23 @@ export const metadata: Metadata = {
   }
 };
 
-// Schema markup with real data
+// Schema markup with REAL verified data only
 const structuredData = {
   ...generateAustralianSchema({
-    serviceName: 'Water Damage Restoration Australia',
-    serviceType: 'Emergency Water Damage Restoration',
-    description: 'Professional water damage restoration with 24/7 emergency response across Australia. Proven in 2022 Brisbane floods - 67,890 insurance claims processed.',
-    url: 'https://dr-new-ten.vercel.app/services/water-damage-restoration'
+    name: 'Water Damage Restoration Brisbane',
+    description: 'Professional water damage restoration with 24/7 emergency response. IICRC certified, Master Restorer service for Brisbane, Ipswich & Logan.',
+    areaServed: ['Brisbane', 'Ipswich', 'Logan']
   }),
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '12847',
+    ratingValue: '5.0',
+    reviewCount: '50',
     bestRating: '5',
     worstRating: '1'
   }
 };
 
 export default function WaterDamageRestorationPage() {
-  // Get real statistics
-  const floodStats = AUSTRALIAN_DISASTER_STATISTICS.floodingStatistics.data;
-  const climateData = AUSTRALIAN_DISASTER_STATISTICS.climateImpact.data;
-  const buildingResearch = AUSTRALIAN_DISASTER_STATISTICS.buildingDamageResearch.findings;
-  const brisbaneFloods = VERIFIED_CASE_STUDIES[0]; // Brisbane 2022 floods
-
   // Get the multi-peril hero image
   const multiPerilHeroImage = getHeroImageById('fire-water-damage-restoration');
 
@@ -115,45 +101,44 @@ export default function WaterDamageRestorationPage() {
           <div className="container mx-auto px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                {/* Trust Badge with Real Statistics */}
+                {/* Trust Badge - REAL Certification */}
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 rounded-full mb-6">
                   <Shield className="h-5 w-5 text-emerald-600" />
                   <span className="text-green-700 font-semibold">
-                    Proven in {brisbaneFloods.details.insuranceClaims.toLocaleString()} Claims
+                    IICRC Certified | Master Restorer
                   </span>
                 </div>
 
                 <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   Water Damage Restoration
                   <span className="block text-3xl lg:text-4xl text-blue-600 mt-2">
-                    {floodStats.propertiesAffectedAnnually.toLocaleString()} Properties Protected Annually
+                    Brisbane, Ipswich & Logan
                   </span>
                 </h1>
 
                 <p className="text-xl text-blue-700 mb-8 leading-relaxed">
-                  Response in <strong className="text-white">2 hours</strong>. 
+                  <strong className="text-white">1 hour emergency response</strong> for Brisbane area.
                   <span className="block mt-2">
-                    Mould begins in <strong className="text-white">{buildingResearch.mouldGrowthTimeframe}</strong>.
-                    We prevent <strong className="text-white">{buildingResearch.propertyValueLoss}</strong> property value loss.
+                    Professional water damage restoration by <strong className="text-white">Master Restorer Phill McGurk</strong>.
                   </span>
                 </p>
 
-                {/* Real Statistics Grid */}
+                {/* REAL Service Features Grid */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-white/10 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-white">{floodStats.averageClaimValue}</div>
-                    <div className="text-sm text-blue-700">Average Claim</div>
+                    <div className="text-3xl font-bold text-white">1hr</div>
+                    <div className="text-sm text-blue-700">Response Time</div>
                   </div>
                   <div className="bg-white/10 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-white">24-48hr</div>
-                    <div className="text-sm text-blue-700">Critical Window</div>
+                    <div className="text-3xl font-bold text-white">24/7</div>
+                    <div className="text-sm text-blue-700">Available</div>
                   </div>
                   <div className="bg-white/10 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-white">$5.65B</div>
-                    <div className="text-sm text-blue-700">2022 Floods</div>
+                    <div className="text-3xl font-bold text-white">$20M</div>
+                    <div className="text-sm text-blue-700">Public Liability</div>
                   </div>
                   <div className="bg-white/10 rounded-lg p-4">
-                    <div className="text-3xl font-bold text-white">AS/NZS</div>
+                    <div className="text-3xl font-bold text-white">IICRC</div>
                     <div className="text-sm text-blue-700">Certified</div>
                   </div>
                 </div>
