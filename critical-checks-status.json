@@ -1,9 +1,8 @@
 {
-  "timestamp": "2025-11-04T06:35:11.789Z",
+  "timestamp": "2025-11-04T09:05:13.887Z",
   "status": "PASSED",
   "results": {
     "commercialPage": "PASSED",
-    "criticalPages": "PASSED",
-    "noSyntaxErrors": "PASSED"
+    "criticalPages": "PASSED"
   }
 }
