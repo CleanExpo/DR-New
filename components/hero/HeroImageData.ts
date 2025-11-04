@@ -40,6 +40,34 @@ const heroImages: HeroImage[] = [
     width: 1920,
     height: 1080,
   },
+  {
+    id: 'biohazard-remediation',
+    src: '/images/services/crime-scene-remediation.webp',
+    alt: 'Biohazard and Crime Scene Cleaning Services',
+    width: 1920,
+    height: 1080,
+  },
+  {
+    id: 'fire-smoke-restoration',
+    src: '/images/hero/fire-damage-hero.jpg',
+    alt: 'Fire and Smoke Damage Restoration',
+    width: 1920,
+    height: 1080,
+  },
+  {
+    id: 'sewage-remediation',
+    src: '/images/services/sewage-cleanup.jpg',
+    alt: 'Sewage Cleanup and Remediation Services',
+    width: 1920,
+    height: 1080,
+  },
+  {
+    id: 'fire-water-damage-restoration',
+    src: '/images/hero/disaster-recovery-hero.jpg',
+    alt: 'Multi-Peril Disaster Recovery',
+    width: 1920,
+    height: 1080,
+  },
 ];
 
 export function getHeroImageById(id: string): HeroImage | undefined {
