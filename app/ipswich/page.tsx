@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { Phone, Clock, Star, Shield, Users, MapPin, Award, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Water Damage Restoration Ipswich | Emergency Response | Master Restorer',
-  description: 'Professional water damage restoration in Ipswich, Springfield Lakes, Brookwater. Certified Master Restorer. 24/7 emergency response. Insurance approved. Call 1300 309 361.',
-  keywords: 'water damage restoration Ipswich, emergency water extraction Springfield Lakes, flood damage repair Brookwater, mould remediation Ipswich, disaster recovery Queensland',
+  title: 'Disaster Recovery Ipswich | 24/7 Emergency Restoration | Master Restorer',
+  description: 'Ipswich disaster recovery specialists. 30-45 min response from Wacol HQ. Bremer River flood experts. Serving Springfield Lakes, Brookwater, Karalee, CBD. IICRC Master Restorer. Call 1300 309 361.',
+  keywords: 'disaster recovery Ipswich, emergency restoration Ipswich, water damage Ipswich, Ipswich restoration services, flood damage Ipswich, Bremer River flooding, Springfield Lakes restoration, Brookwater emergency services, Karalee disaster recovery, Ipswich CBD restoration',
   openGraph: {
     title: 'Water Damage Restoration Ipswich | Emergency Response | Master Restorer',
     description: 'Professional water damage restoration in Ipswich. Certified Master Restorer with 24/7 emergency response.',
@@ -334,57 +334,493 @@ export default function IpswichPage() {
           </div>
         </section>
 
-        {/* Local Knowledge Section */}
+        {/* Ipswich's Trusted Team Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+                Ipswich's Trusted Disaster Recovery Team
+              </h2>
+
+              <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
+                <p className="text-lg leading-relaxed">
+                  Based just 15-20 kilometers from Ipswich at our Wacol headquarters, we provide the fastest emergency response
+                  times in the Greater Ipswich region. Our team reaches most Ipswich properties within 30-45 minutes of your
+                  emergency call, ensuring water damage, fire damage, or storm damage is contained before it spreads.
+                </p>
+
+                <p className="text-lg leading-relaxed">
+                  Ipswich presents unique disaster recovery challenges that require local expertise. From the historic Bremer River
+                  flooding that affected thousands of properties in 2011, 2013, and most recently in 2022, to the heritage
+                  Queenslander homes that demand specialized restoration techniques, our team understands the specific needs of
+                  Ipswich residents and businesses. We've restored properties across every Ipswich suburb, from the heritage charm
+                  of One Mile to the modern developments of Springfield Lakes and Ripley Valley.
+                </p>
+
+                <p className="text-lg leading-relaxed">
+                  Whether you own a high-value property in Karalee or Brookwater, manage commercial premises in the Ipswich CBD,
+                  or need emergency assistance anywhere across the Greater Ipswich region, our <Link href="/about" className="text-blue-600 hover:text-blue-700 font-semibold">IICRC certified Master Restorer</Link> Phill
+                  McGurk and his experienced team deliver professional, reliable disaster recovery services 24 hours a day, 7 days
+                  a week. We're insurance approved by all major Australian insurers and maintain the highest industry certifications.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Common Ipswich Disasters Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+                Common Ipswich Disasters We Handle
+              </h2>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white rounded-lg p-6 shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">💧</span>
+                    Bremer River Flooding
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    The Bremer River has caused significant flooding in Ipswich throughout history, particularly affecting
+                    low-lying areas in the CBD, Booval, and East Ipswich. Our team has extensive experience with flood
+                    recovery from the major 2011 and 2013 events, and most recently the 2022 flooding. We understand flood
+                    zones, water table issues, and the specific challenges Bremer River flooding presents to Ipswich properties.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">⛈️</span>
+                    Flash Flooding & Storms
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Ipswich experiences severe weather patterns including flash flooding, intense storms, hail, and destructive
+                    winds. Low-lying areas and new developments can experience stormwater management issues during heavy rainfall.
+                    Our rapid response team mitigates water ingress, secures properties, and begins immediate restoration work.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🏚️</span>
+                    Heritage Property Issues
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Ipswich is home to beautiful heritage Queenslander homes and historic buildings that require specialized
+                    restoration expertise. Older properties face unique challenges including timber rot, water ingress through
+                    aged weatherboards, subfloor moisture issues, and structural concerns. Our team has the heritage restoration
+                    experience necessary to preserve these valuable properties while meeting modern <Link href="/services/water-damage-restoration" className="text-blue-600 hover:text-blue-700">disaster recovery standards</Link>.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🏗️</span>
+                    New Development Defects
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    The rapid growth in Springfield Lakes, Ripley Valley, and other new developments can lead to construction-related
+                    water damage from plumbing defects, poor drainage, or building envelope failures. Our team works with developers,
+                    homeowners, and insurers to identify and rectify these issues quickly.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🏢</span>
+                    Commercial Property Disasters
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Ipswich CBD, Riverlink Shopping Centre, and industrial estates require immediate disaster response to minimize
+                    business interruption. We provide <Link href="/services/commercial-restoration" className="text-blue-600 hover:text-blue-700">large-scale commercial restoration services</Link> including 24/7 emergency response, business continuity planning,
+                    and fast-track restoration to get your business operational quickly.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-md">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
+                    <span className="text-3xl">🔥</span>
+                    Fire & Smoke Damage
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Fire damage requires immediate professional intervention to prevent further deterioration from smoke, soot,
+                    and water used in firefighting efforts. Our certified team provides complete <Link href="/services/fire-damage-restoration" className="text-blue-600 hover:text-blue-700">fire damage restoration</Link> including
+                    structural assessment, smoke odor removal, and full property restoration to pre-loss condition.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Ipswich Suburbs We Service */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-                Ipswich-Specific Disaster Recovery Expertise
+                Comprehensive Coverage Across Greater Ipswich
               </h2>
 
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Growth Corridor Challenges</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>New construction water system issues in Springfield Lakes and Brookwater</span>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b-2 border-blue-600 pb-2">
+                    Central Ipswich
+                  </h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      <Link href="/locations/ipswich-cbd-disaster-recovery" className="hover:text-blue-600">Ipswich CBD</Link>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Development-related drainage problems in Ripley area</span>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      Booval
                     </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Clay soil movement affecting Karalee properties</span>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      East Ipswich
                     </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                      <span>Storm water management in new estates</span>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      North Ipswich
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      West Ipswich
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Local Risk Factors</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <span>Bremer River flooding potential in low-lying areas</span>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b-2 border-green-600 pb-2">
+                    Growth Corridors
+                  </h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      Springfield
                     </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <span>Seasonal storm patterns affecting the region</span>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      <Link href="/locations/springfield-lakes-disaster-recovery" className="hover:text-green-600">Springfield Lakes</Link>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <span>High-value properties requiring specialized care</span>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      Springfield Central
                     </li>
-                    <li className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <span>Queensland building code compliance requirements</span>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      Augustine Heights
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      Brookwater
                     </li>
                   </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b-2 border-purple-600 pb-2">
+                    Premium Residential
+                  </h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      Karalee
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      Ipswich Mountain
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      Tivoli
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      Woodend
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      Brassall
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b-2 border-orange-600 pb-2">
+                    Historic Areas
+                  </h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                      One Mile
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                      Bundamba
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                      Silkstone
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                      Limestone Ridges
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 border-b-2 border-red-600 pb-2">
+                    Emerging Areas
+                  </h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-red-600 flex-shrink-0" />
+                      Ripley
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-red-600 flex-shrink-0" />
+                      Ripley Valley
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-red-600 flex-shrink-0" />
+                      White Rock
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-red-600 flex-shrink-0" />
+                      Deebing Heights
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mt-8 bg-blue-50 rounded-lg p-6 text-center">
+                <p className="text-gray-700 text-lg">
+                  Don't see your suburb listed? We service the entire Greater Ipswich region.
+                  <Link href="tel:1300309361" className="text-blue-600 hover:text-blue-700 font-semibold ml-2">
+                    Call 1300 309 361
+                  </Link> to confirm coverage.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Ipswich Residents Choose Us */}
+        <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-12">
+                Why Ipswich Residents Choose Our Team
+              </h2>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Clock className="w-8 h-8 text-yellow-400 flex-shrink-0" />
+                    <h3 className="text-xl font-semibold">Fastest Response in Ipswich</h3>
+                  </div>
+                  <p className="text-blue-100 leading-relaxed">
+                    Our Wacol headquarters is just 15-20km from Ipswich, enabling 30-45 minute response times across
+                    the entire region. When disaster strikes, every minute counts to prevent further damage.
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Award className="w-8 h-8 text-yellow-400 flex-shrink-0" />
+                    <h3 className="text-xl font-semibold">IICRC Master Restorer</h3>
+                  </div>
+                  <p className="text-blue-100 leading-relaxed">
+                    Phill McGurk holds Master Restorer certification, one of only a limited number in Queensland.
+                    This ensures the highest standards of workmanship and industry best practices on every job.
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <MapPin className="w-8 h-8 text-yellow-400 flex-shrink-0" />
+                    <h3 className="text-xl font-semibold">Bremer River Flood Experts</h3>
+                  </div>
+                  <p className="text-blue-100 leading-relaxed">
+                    With extensive experience in the 2011, 2013, and 2022 Bremer River flooding events, we understand
+                    Ipswich's unique flood challenges and have the expertise to fully restore flood-affected properties.
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Shield className="w-8 h-8 text-yellow-400 flex-shrink-0" />
+                    <h3 className="text-xl font-semibold">All Insurers Approved</h3>
+                  </div>
+                  <p className="text-blue-100 leading-relaxed">
+                    We work directly with Suncorp, RACQ, QBE, Allianz, and all major Australian insurers.
+                    Direct billing available for approved claims to simplify your recovery process.
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Users className="w-8 h-8 text-yellow-400 flex-shrink-0" />
+                    <h3 className="text-xl font-semibold">Heritage Property Specialists</h3>
+                  </div>
+                  <p className="text-blue-100 leading-relaxed">
+                    Queenslander homes and historic buildings require specialized restoration techniques. Our team
+                    has the expertise to preserve heritage features while meeting modern building standards.
+                  </p>
+                </div>
+
+                <div className="bg-white/10 backdrop-blur rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <CheckCircle className="w-8 h-8 text-yellow-400 flex-shrink-0" />
+                    <h3 className="text-xl font-semibold">Ipswich City Council Compliance</h3>
+                  </div>
+                  <p className="text-blue-100 leading-relaxed">
+                    All restoration work meets Ipswich City Council requirements and Queensland building codes.
+                    We handle all necessary permits and compliance documentation for your peace of mind.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Insurance Claims Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+                Insurance Claims Assistance in Ipswich
+              </h2>
+
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                  Navigating insurance claims after a disaster can be stressful. Our team has extensive experience working
+                  with insurance companies on Ipswich flood claims, storm damage claims, and fire damage assessments. We
+                  provide detailed documentation, rapid damage assessments, and direct communication with your insurer to
+                  ensure claims are processed efficiently.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Approved Contractor Status</h3>
+                    <ul className="space-y-2 text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>Suncorp Insurance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>RACQ Insurance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>QBE Insurance</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>Allianz Australia</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                        <span>All major Australian insurers</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Claims Support</h3>
+                    <ul className="space-y-2 text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span>Direct billing available for approved claims</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span>Detailed damage documentation and photography</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span>Fast turnaround on assessments and quotes</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span>Direct communication with loss adjusters</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                        <span>Historical flood claim data expertise</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-6 text-center">
+                  <p className="text-gray-800 font-semibold mb-4">
+                    Need help with an insurance claim? Our team provides expert guidance throughout the entire process.
+                  </p>
+                  <Link
+                    href="/insurance-claims"
+                    className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                  >
+                    Learn More About Insurance Claims
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+                Frequently Asked Questions - Ipswich Disaster Recovery
+              </h2>
+
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    How quickly can you respond to an emergency in Ipswich?
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Our team responds to Ipswich emergencies within 30-45 minutes on average. Based just 15-20 kilometers
+                    away at our Wacol headquarters, we can reach most Ipswich suburbs faster than any other certified disaster
+                    recovery provider. We operate 24/7/365, including public holidays and weekends. The moment you call
+                    1300 309 361, our emergency dispatch activates our closest available team to your location.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    Do you have experience with Bremer River flooding?
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    Yes, extensive experience. Our team has restored hundreds of Ipswich properties affected by Bremer River
+                    flooding during the major events of 2011, 2013, and 2022. We understand which Ipswich suburbs are in
+                    flood-prone zones, the unique challenges of floodwater contamination, and the specific restoration techniques
+                    required for Queensland's flood conditions. We work closely with Ipswich City Council on flood-affected
+                    properties to ensure all restoration work meets current building codes and flood mitigation requirements.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg shadow-md p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    Which Ipswich suburbs do you service?
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    We service the entire Greater Ipswich region including Ipswich CBD, Springfield Lakes, Brookwater, Karalee,
+                    Ripley, Redbank Plains, Booval, East Ipswich, North Ipswich, West Ipswich, One Mile, Bundamba, Silkstone,
+                    Brassall, Tivoli, Woodend, Augustine Heights, Springfield Central, Ripley Valley, White Rock, Deebing Heights,
+                    and all surrounding areas. If you're located in the Ipswich City Council area, we provide emergency disaster
+                    recovery services to your property. Call <Link href="tel:1300309361" className="text-blue-600 hover:text-blue-700 font-semibold">1300 309 361</Link> to confirm specific coverage.
+                  </p>
                 </div>
               </div>
             </div>
