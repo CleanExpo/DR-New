@@ -166,63 +166,104 @@ export default function AdminOnboardingPage() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs text-gray-500">Total Applications</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-            </div>
-            <Eye className="w-8 h-8 text-gray-400" />
-          </div>
-        </Card>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="container mx-auto px-4 py-8 space-y-8">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+            Contractor Applications
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Review and verify pending contractor registrations
+          </p>
+        </div>
 
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs text-gray-500">Pending</p>
-              <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
+        {/* Stats Overview */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 hover:shadow-xl transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-gray-500 to-gray-600 rounded-xl flex items-center justify-center shadow-lg">
+                <Eye className="w-6 h-6 text-white" />
+              </div>
             </div>
-            <Clock className="w-8 h-8 text-yellow-400" />
-          </div>
-        </Card>
-
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs text-gray-500">Under Review</p>
-              <p className="text-2xl font-bold text-blue-600">{stats.underReview}</p>
+              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                {stats.total}
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Total Applications
+              </div>
             </div>
-            <Eye className="w-8 h-8 text-blue-400" />
           </div>
-        </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 hover:shadow-xl transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
+                <Clock className="w-6 h-6 text-white" />
+              </div>
+            </div>
             <div>
-              <p className="text-xs text-gray-500">Approved</p>
-              <p className="text-2xl font-bold text-green-600">{stats.approved}</p>
+              <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-500 mb-1">
+                {stats.pending}
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Pending Review
+              </div>
             </div>
-            <CheckCircle className="w-8 h-8 text-green-400" />
           </div>
-        </Card>
 
-        <Card className="p-4">
-          <div className="flex items-center justify-between">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 hover:shadow-xl transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                <Eye className="w-6 h-6 text-white" />
+              </div>
+            </div>
             <div>
-              <p className="text-xs text-gray-500">Rejected</p>
-              <p className="text-2xl font-bold text-red-600">{stats.rejected}</p>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-500 mb-1">
+                {stats.underReview}
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Under Review
+              </div>
             </div>
-            <XCircle className="w-8 h-8 text-red-400" />
           </div>
-        </Card>
-      </div>
 
-      {/* Filters and Search */}
-      <Card className="p-6">
-        <div className="flex flex-col md:flex-row gap-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 hover:shadow-xl transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                <CheckCircle className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-green-600 dark:text-green-500 mb-1">
+                {stats.approved}
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Approved
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6 hover:shadow-xl transition-all duration-300">
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+                <XCircle className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-red-600 dark:text-red-500 mb-1">
+                {stats.rejected}
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Rejected
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Filters and Search */}
+        <Card className="p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+          <div className="flex flex-col md:flex-row gap-4">
           {/* Search */}
           <div className="flex-1">
             <div className="relative">
@@ -282,61 +323,65 @@ export default function AdminOnboardingPage() {
         </div>
       </Card>
 
-      {/* Applications List */}
-      {loading ? (
-        <div className="flex items-center justify-center py-12">
-          <RefreshCw className="w-8 h-8 text-blue-600 animate-spin" />
-        </div>
-      ) : filteredApplications.length === 0 ? (
-        <Card className="p-12 text-center">
-          <Eye className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            No Applications Found
-          </h3>
-          <p className="text-sm text-gray-600">
-            {searchQuery
-              ? 'Try adjusting your search criteria'
-              : 'No contractor applications at this time'}
-          </p>
-        </Card>
-      ) : (
-        <div className="grid grid-cols-1 gap-6">
-          {filteredApplications.map((application) => (
-            <ApplicationCard
-              key={application.id}
-              application={application}
-              onView={() => handleView(application)}
-              onApprove={() => handleApprove(application)}
-              onReject={() => handleReject(application)}
+        {/* Applications List */}
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-16">
+            <RefreshCw className="w-12 h-12 text-blue-600 dark:text-blue-500 animate-spin mb-4" />
+            <p className="text-gray-600 dark:text-gray-400">Loading applications...</p>
+          </div>
+        ) : filteredApplications.length === 0 ? (
+          <Card className="p-16 text-center bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-100 dark:bg-gray-700 rounded-2xl mb-6">
+              <Eye className="w-10 h-10 text-gray-400 dark:text-gray-500" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              No Applications Found
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {searchQuery
+                ? 'Try adjusting your search criteria'
+                : 'No contractor applications at this time'}
+            </p>
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 gap-6">
+            {filteredApplications.map((application) => (
+              <ApplicationCard
+                key={application.id}
+                application={application}
+                onView={() => handleView(application)}
+                onApprove={() => handleApprove(application)}
+                onReject={() => handleReject(application)}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Modals */}
+        {selectedContractor && (
+          <>
+            <ApprovalModal
+              open={showApprovalModal}
+              onClose={() => {
+                setShowApprovalModal(false);
+                setSelectedContractor(null);
+              }}
+              contractor={selectedContractor}
+              onConfirm={confirmApproval}
             />
-          ))}
-        </div>
-      )}
 
-      {/* Modals */}
-      {selectedContractor && (
-        <>
-          <ApprovalModal
-            open={showApprovalModal}
-            onClose={() => {
-              setShowApprovalModal(false);
-              setSelectedContractor(null);
-            }}
-            contractor={selectedContractor}
-            onConfirm={confirmApproval}
-          />
-
-          <RejectionModal
-            open={showRejectionModal}
-            onClose={() => {
-              setShowRejectionModal(false);
-              setSelectedContractor(null);
-            }}
-            contractor={selectedContractor}
-            onConfirm={confirmRejection}
-          />
-        </>
-      )}
+            <RejectionModal
+              open={showRejectionModal}
+              onClose={() => {
+                setShowRejectionModal(false);
+                setSelectedContractor(null);
+              }}
+              contractor={selectedContractor}
+              onConfirm={confirmRejection}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }

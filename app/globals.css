@@ -72,11 +72,39 @@
 
   --radius: 0.5rem;
 
+  /* Modern Color Palette */
+  --primary-50: 239 246 255;
+  --primary-100: 219 234 254;
+  --primary-200: 191 219 254;
+  --primary-500: 59 130 246;
+  --primary-600: 37 99 235;
+  --primary-700: 29 78 216;
+
+  --accent-500: 139 92 246;
+  --accent-600: 124 58 237;
+
+  --success-500: 16 185 129;
+  --error-500: 239 68 68;
+  --warning-500: 245 158 11;
+
+  --gray-50: 249 250 251;
+  --gray-100: 243 244 246;
+  --gray-200: 229 231 235;
+  --gray-800: 31 41 55;
+  --gray-900: 17 24 39;
+
   /* Gradients */
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --secondary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --emergency-gradient: linear-gradient(135deg, #f93b1d 0%, #ea1e63 100%);
-  --success-gradient: linear-gradient(135deg, #13ce66 0%, #00d4ff 100%);
+  --success-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
   --dark-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  --mesh-gradient: radial-gradient(at 40% 20%, hsla(221, 83%, 53%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 80% 0%, hsla(274, 68%, 58%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 0% 50%, hsla(221, 83%, 53%, 0.05) 0px, transparent 50%),
+                    radial-gradient(at 80% 50%, hsla(274, 68%, 58%, 0.05) 0px, transparent 50%),
+                    radial-gradient(at 0% 100%, hsla(221, 83%, 53%, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 80% 100%, hsla(274, 68%, 58%, 0.1) 0px, transparent 50%);
 
   /* Animation Timings */
   --animation-fast: 0.2s;
@@ -89,7 +117,9 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.3);
+  --shadow-glow-purple: 0 0 40px rgba(139, 92, 246, 0.3);
 }
 
 .dark {
