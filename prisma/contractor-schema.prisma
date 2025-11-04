@@ -21,7 +21,10 @@ model Contractor {
   // Contact Information
   mobileNumber          String
   mobileVerified        Boolean  @default(false)
-  
+
+  // Stripe Integration
+  stripeCustomerId      String?
+
   // Status
   status                String   @default("PENDING") // PENDING, UNDER_REVIEW, APPROVED, SUSPENDED, REJECTED
   onboardingStep        Int      @default(1)
@@ -228,7 +231,11 @@ model ContractorSubscription {
   billingFrequency      String   @default("MONTHLY") // MONTHLY, QUARTERLY, ANNUAL
   amount                Float
   nextBillingDate       DateTime?
-  
+  lastBillingDate       DateTime?
+
+  // Stripe Integration
+  stripeSubscriptionId  String?
+
   // Payment Method
   paymentMethod         String?  // DIRECT_DEBIT, CREDIT_CARD
   paymentDetails        String?  // Encrypted payment details
@@ -259,9 +266,10 @@ model ContractorPayment {
   amount                Float
   type                  String   // SUBSCRIPTION, BOND, BACKGROUND_CHECK, OTHER
   status                String   @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED, REFUNDED
-  
+
   paymentMethod         String
   transactionId         String?
+  stripePaymentIntentId String?
   failureReason         String?
   
   dueDate               DateTime
