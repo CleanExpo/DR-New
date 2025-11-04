@@ -12,8 +12,8 @@ export default function HomePage() {
       <section className="relative min-h-[600px] flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero/queensland-house-water-damage.jpg"
-            alt="Queensland House - Disaster Recovery Services"
+            src="/images/hero/fire-water-damage-restoration.jpg"
+            alt="Water Damage Restoration - Disaster Recovery Services Brisbane"
             fill
             className="object-cover"
             priority

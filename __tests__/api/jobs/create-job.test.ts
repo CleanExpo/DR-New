@@ -47,7 +47,7 @@ describe('POST /api/jobs', () => {
 
     // Assert
     expect(() => {
-      if (\!invalidData['title'] || \!invalidData['suburb']) {
+      if (!invalidData['title'] || !invalidData['suburb']) {
         throw new Error('Missing required fields');
       }
     }).toThrow('Missing required fields');

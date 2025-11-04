@@ -25,19 +25,25 @@
     ],
     "paths": {
       "@/*": [
-        "./src/*"
+        "./*"
       ],
       "@/components/*": [
-        "./src/components/*"
+        "./components/*"
       ],
       "@/lib/*": [
-        "./src/lib/*"
+        "./lib/*"
       ],
       "@/hooks/*": [
-        "./src/hooks/*"
+        "./hooks/*"
       ],
       "@/types/*": [
-        "./src/types/*"
+        "./types/*"
+      ],
+      "@/styles/*": [
+        "./styles/*"
+      ],
+      "@/app/*": [
+        "./app/*"
       ]
     },
     // Strict mode flags - enabling gradually
