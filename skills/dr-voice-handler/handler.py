@@ -5,13 +5,19 @@ Voice interaction handler for Phill McGurk's Disaster Recovery emergency bot
 Project: Disaster Recovery Brisbane/Ipswich/Logan & NRPG
 Business: Phill McGurk - IICRC Master Restorer
 Author: Disaster Recovery & NRPG Team
-Version: 1.0.0
+Version: 2.0.0
 Created: 2025-11-05
+Updated: 2025-11-05 - Integrated intent classifier, emergency router, service area validator
 """
 
 import json
 import logging
 from typing import Dict, Any, Optional
+
+# Import bot components
+from intent_classifier import DisasterRecoveryIntentClassifier
+from emergency_router import DisasterRecoveryEmergencyRouter
+from service_area_validator import DisasterRecoveryServiceAreaValidator
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -22,115 +28,189 @@ class DisasterRecoveryVoiceHandler:
     """
     Voice handler for Disaster Recovery emergency bot
     Processes voice commands and routes emergency requests for Phill McGurk's services
+
     Service Areas: Brisbane, Ipswich, Logan
+    Emergency Contact: 1300 309 361
+    Business: Phill McGurk - IICRC Master Restorer
+
+    Components:
+    - Intent Classifier: Identifies service type and emergency level
+    - Emergency Router: Routes calls based on severity
+    - Service Area Validator: Validates location coverage
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
         """
-        Initialise the voice handler
+        Initialise the voice handler with all bot components
 
         Args:
             config: Optional configuration dictionary
         """
         self.config = config or {}
-        self.emergency_keywords = [
-            'flood', 'flooding', 'water damage', 'fire', 'smoke',
-            'mould', 'mold', 'sewage', 'storm', 'emergency'
-        ]
-        logger.info("Disaster Recovery Voice Handler initialised")
 
-    def process_voice_input(self, audio_input: str) -> Dict[str, Any]:
+        # Initialize bot components
+        self.intent_classifier = DisasterRecoveryIntentClassifier()
+        self.emergency_router = DisasterRecoveryEmergencyRouter()
+        self.service_area_validator = DisasterRecoveryServiceAreaValidator()
+
+        logger.info("Disaster Recovery Voice Handler v2.0 initialised with all components")
+
+    def process_voice_input(
+        self,
+        audio_input: str,
+        location: Optional[str] = None
+    ) -> Dict[str, Any]:
         """
-        Process voice input and determine intent
+        Process voice input through complete bot pipeline
 
         Args:
             audio_input: Transcribed voice input text
+            location: Optional customer location (suburb)
 
         Returns:
-            Dictionary with intent, confidence, and action
+            Dictionary with classification, routing, and response
         """
-        audio_lower = audio_input.lower()
+        logger.info(f"Processing input: {audio_input[:50]}...")
 
-        # Check for emergency keywords
-        is_emergency = any(keyword in audio_lower for keyword in self.emergency_keywords)
+        # Step 1: Classify intent
+        classification = self.intent_classifier.classify(audio_input)
 
+        # Step 2: Validate service area (if location provided)
+        area_validation = None
+        if location:
+            area_validation = self.service_area_validator.validate(location)
+            logger.info(f"Location validation: {area_validation.region.value}")
+
+        # Step 3: Route emergency
+        routing = self.emergency_router.route(classification, location)
+
+        # Build response
         response = {
             'input': audio_input,
-            'is_emergency': is_emergency,
-            'intent': self._determine_intent(audio_lower),
-            'confidence': 0.85,  # Placeholder - would use ML model
-            'recommended_action': None
+            'location': location,
+            'classification': {
+                'service_type': classification.service_type.value,
+                'emergency_level': classification.emergency_level.name,
+                'confidence': classification.confidence,
+                'keywords_matched': classification.keywords_matched
+            },
+            'routing': {
+                'route_to': routing.route_to,
+                'priority': routing.priority,
+                'response_time': routing.response_time,
+                'escalate': routing.escalate,
+                'contact_method': routing.contact_method
+            },
+            'area_validation': {
+                'is_serviced': area_validation.is_serviced if area_validation else None,
+                'region': area_validation.region.value if area_validation else None,
+                'suburb': area_validation.suburb if area_validation else None
+            } if area_validation else None,
+            'suggested_response': routing.message,
+            'fallback_response': classification.suggested_response
         }
 
-        # Set recommended action
-        if is_emergency:
-            response['recommended_action'] = 'route_to_emergency_team'
+        logger.info(f"Routing decision: {routing.route_to} (Priority: {routing.priority})")
 
         return response
 
-    def _determine_intent(self, text: str) -> str:
+    def generate_voice_response(self, processing_result: Dict[str, Any]) -> str:
         """
-        Determine user intent from text
+        Generate voice response from processing result
 
         Args:
-            text: Lowercase text input
+            processing_result: Result from process_voice_input
 
         Returns:
-            Intent classification
+            Voice response text
         """
-        if any(word in text for word in ['flood', 'flooding', 'water']):
-            return 'water_damage_emergency'
-        elif any(word in text for word in ['fire', 'smoke']):
-            return 'fire_damage_emergency'
-        elif any(word in text for word in ['mould', 'mold']):
-            return 'mould_remediation'
-        elif any(word in text for word in ['quote', 'price', 'cost']):
-            return 'quote_request'
-        elif any(word in text for word in ['book', 'schedule', 'appointment']):
-            return 'booking_request'
-        else:
-            return 'general_enquiry'
+        return processing_result['suggested_response']
 
-    def generate_response(self, intent: str) -> str:
+    def handle_conversation(
+        self,
+        user_input: str,
+        location: Optional[str] = None
+    ) -> str:
         """
-        Generate appropriate voice response based on intent
+        Handle complete conversation interaction
 
         Args:
-            intent: Classified intent
+            user_input: Customer's message
+            location: Optional location
 
         Returns:
-            Response text to be spoken
+            Bot response message
         """
-        responses = {
-            'water_damage_emergency': "I understand you have a water damage emergency. I'm connecting you to our emergency response team immediately. Please stay on the line.",
-            'fire_damage_emergency': "I understand you have fire damage. Our emergency team is standing by. Connecting you now.",
-            'mould_remediation': "I can help with mould remediation. Let me connect you to our mould specialists.",
-            'quote_request': "I'd be happy to help with a quote. Let me gather some information from you.",
-            'booking_request': "I can help schedule an appointment. Let me check our availability.",
-            'general_enquiry': "How can I help you today with your disaster recovery needs?"
-        }
+        # Process input through pipeline
+        result = self.process_voice_input(user_input, location)
 
-        return responses.get(intent, responses['general_enquiry'])
+        # Check if location needs validation
+        if not location and result['routing']['escalate']:
+            return (
+                result['suggested_response'] +
+                "\n\nBefore we connect you, could you please provide your suburb location? "
+                "This helps us dispatch the right team immediately."
+            )
+
+        # Check if outside service area
+        if result['area_validation'] and not result['area_validation']['is_serviced']:
+            return result['area_validation'].get('message', result['suggested_response'])
+
+        # Return main response
+        return result['suggested_response']
 
 
 def main():
-    """Main function for testing"""
+    """Main function for testing integrated bot"""
+    print("=" * 80)
+    print("DISASTER RECOVERY & NRPG BOT - INTEGRATED SYSTEM TEST")
+    print("Phill McGurk - IICRC Master Restorer")
+    print("Service Areas: Brisbane, Ipswich, Logan")
+    print("Emergency: 1300 309 361")
+    print("=" * 80)
+    print()
+
     handler = DisasterRecoveryVoiceHandler()
 
-    # Test cases
-    test_inputs = [
-        "I have flooding in my house",
-        "Need help with fire damage",
-        "How much does mould removal cost?"
+    # Test scenarios with location
+    test_scenarios = [
+        ("My house is flooding in Hamilton!", "Hamilton"),
+        ("Fire damage at commercial property in Ipswich", "Ipswich"),
+        ("Mould throughout home in Springwood", "Springwood"),
+        ("Do you service Logan area?", "Logan"),
+        ("Sewage backup emergency", "Ascot"),
+        ("Need quote for water damage restoration", "Sydney"),
+        ("Storm damage to roof", "Karalee")
     ]
 
-    for test_input in test_inputs:
-        print(f"\nInput: {test_input}")
-        result = handler.process_voice_input(test_input)
-        print(f"Intent: {result['intent']}")
-        print(f"Emergency: {result['is_emergency']}")
-        response = handler.generate_response(result['intent'])
-        print(f"Response: {response}")
+    for user_input, location in test_scenarios:
+        print("-" * 80)
+        print(f"USER INPUT: {user_input}")
+        print(f"LOCATION: {location}")
+        print()
+
+        # Process through complete pipeline
+        result = handler.process_voice_input(user_input, location)
+
+        print(f"SERVICE TYPE: {result['classification']['service_type']}")
+        print(f"EMERGENCY LEVEL: {result['classification']['emergency_level']}")
+        print(f"CONFIDENCE: {result['classification']['confidence']}")
+        print(f"ROUTE TO: {result['routing']['route_to']}")
+        print(f"PRIORITY: {result['routing']['priority']}")
+        print(f"ESCALATE: {'YES' if result['routing']['escalate'] else 'NO'}")
+
+        if result['area_validation']:
+            print(f"AREA SERVICED: {'YES' if result['area_validation']['is_serviced'] else 'NO'}")
+            print(f"REGION: {result['area_validation']['region']}")
+
+        print()
+        print("BOT RESPONSE:")
+        print(handler.generate_voice_response(result))
+        print()
+
+    print("=" * 80)
+    print("INTEGRATION TEST COMPLETE")
+    print("=" * 80)
 
 
 if __name__ == "__main__":
