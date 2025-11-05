@@ -7,7 +7,8 @@ import {
   Video, Paperclip, Smile, MoreVertical, Bot, User,
   Clock, CheckCheck, Check, AlertCircle, Loader2
 } from 'lucide-react';
-import { useWebSocket } from '@/lib/websocket-provider';
+// WebSocket is optional for this bot - REST API is primary communication method
+// import { useWebSocket } from '@/lib/websocket-provider';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -59,7 +60,8 @@ export const LiveChatInterface: React.FC = () => {
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { emit, on, off, connected } = useWebSocket();
+  // WebSocket not needed - bot uses REST API
+  // const { emit, on, off, connected } = useWebSocket();
 
   // Auto-scroll to bottom on new messages
   const scrollToBottom = () => {
@@ -102,64 +104,64 @@ export const LiveChatInterface: React.FC = () => {
     
     setMessages([welcomeMessage]);
     setIsLoading(false);
-    
-    // Emit chat started event
-    emit('chat:start', { sessionId, type: 'customer' });
-  }, [emit]);
 
-  // WebSocket event handlers
-  useEffect(() => {
-    const handleMessage = (data: any) => {
-      const message: Message = {
-        id: data.messageId || `msg-${Date.now()}`,
-        type: 'received',
-        content: data.message,
-        timestamp: new Date(data.timestamp),
-        sender: data.sender || session?.agent || {
-          id: 'system',
-          name: 'System'
-        },
-        status: 'delivered'
-      };
-      
-      setMessages(prev => [...prev, message]);
-      setIsTyping(false);
-    };
+    // WebSocket not needed - bot uses REST API
+    // emit('chat:start', { sessionId, type: 'customer' });
+  }, []);
 
-    const handleTyping = (data: any) => {
-      setIsTyping(data.isTyping);
-    };
-
-    const handleAgentJoined = (data: any) => {
-      if (session) {
-        setSession({
-          ...session,
-          agent: data.agent,
-          type: 'human'
-        });
-        
-        const systemMessage: Message = {
-          id: `msg-${Date.now()}`,
-          type: 'system',
-          content: `${data.agent.name} has joined the chat`,
-          timestamp: new Date(),
-          sender: { id: 'system', name: 'System' }
-        };
-        
-        setMessages(prev => [...prev, systemMessage]);
-      }
-    };
-
-    on('chat:receive', handleMessage);
-    on('chat:typing', handleTyping);
-    on('chat:agent:joined', handleAgentJoined);
-
-    return () => {
-      off('chat:receive', handleMessage);
-      off('chat:typing', handleTyping);
-      off('chat:agent:joined', handleAgentJoined);
-    };
-  }, [on, off, session]);
+  // WebSocket not needed - bot uses REST API only
+  // useEffect(() => {
+  //   const handleMessage = (data: any) => {
+  //     const message: Message = {
+  //       id: data.messageId || `msg-${Date.now()}`,
+  //       type: 'received',
+  //       content: data.message,
+  //       timestamp: new Date(data.timestamp),
+  //       sender: data.sender || session?.agent || {
+  //         id: 'system',
+  //         name: 'System'
+  //       },
+  //       status: 'delivered'
+  //     };
+  //
+  //     setMessages(prev => [...prev, message]);
+  //     setIsTyping(false);
+  //   };
+  //
+  //   const handleTyping = (data: any) => {
+  //     setIsTyping(data.isTyping);
+  //   };
+  //
+  //   const handleAgentJoined = (data: any) => {
+  //     if (session) {
+  //       setSession({
+  //         ...session,
+  //         agent: data.agent,
+  //         type: 'human'
+  //       });
+  //
+  //       const systemMessage: Message = {
+  //         id: `msg-${Date.now()}`,
+  //         type: 'system',
+  //         content: `${data.agent.name} has joined the chat`,
+  //         timestamp: new Date(),
+  //         sender: { id: 'system', name: 'System' }
+  //       };
+  //
+  //       setMessages(prev => [...prev, systemMessage]);
+  //     }
+  //   };
+  //
+  //   on('chat:receive', handleMessage);
+  //   on('chat:typing', handleTyping);
+  //   on('chat:agent:joined', handleAgentJoined);
+  //
+  //   return () => {
+  //     off('chat:receive', handleMessage);
+  //     off('chat:typing', handleTyping);
+  //     off('chat:agent:joined', handleAgentJoined);
+  //   };
+  // }, [on, off, session]);
 
   // Send message
   const sendMessage = useCallback(() => {
@@ -180,12 +182,12 @@ export const LiveChatInterface: React.FC = () => {
     setMessages(prev => [...prev, message]);
     setInputMessage('');
 
-    // Emit message via WebSocket
-    emit('chat:message', {
-      sessionId: session.id,
-      message: inputMessage,
-      timestamp: new Date()
-    });
+    // WebSocket not needed - bot uses REST API
+    // emit('chat:message', {
+    //   sessionId: session.id,
+    //   message: inputMessage,
+    //   timestamp: new Date()
+    // });
 
     // Update message status
     setTimeout(() => {
@@ -288,7 +290,8 @@ export const LiveChatInterface: React.FC = () => {
   const closeChat = () => {
     setIsOpen(false);
     if (session) {
-      emit('chat:end', { sessionId: session.id });
+      // WebSocket not needed - bot uses REST API
+      // emit('chat:end', { sessionId: session.id });
     }
   };
 
