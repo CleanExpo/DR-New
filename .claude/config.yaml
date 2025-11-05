@@ -29,7 +29,7 @@ features:
 
 # MCP Server Configuration
 mcp:
-  playwright: auto               # auto | force_on | force_off
+  playwright: force_on           # auto | force_on | force_off (ENABLED for bot testing)
   fs: true                       # Filesystem access
   git: read                      # read | staged_write (read-only by default)
   browser: false                 # Web browsing (disabled by default)
