@@ -19,12 +19,14 @@ services:
       - ENABLE_MCP=true
       - AGENT_CONCURRENCY=5
       - HOST_PLATFORM=${OS:-linux}
-    networks:
-      - claude-net
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     ports:
       - "3000:3000"
       - "3001:3001"
     restart: unless-stopped
+    depends_on:
+      - redis
 
   # Code Generation Agent
   claude-codegen:
@@ -160,7 +162,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.28.0.0/16
+        - subnet: 172.29.0.0/16
 
 volumes:
   claude-outputs:
