@@ -49,6 +49,29 @@ Next task or completion
   2. Escalate to Stuck for analysis
   3. Escalate to user if ambiguous
 
+## ⚠️ CRITICAL DIRECTIVE: Subagent Execution
+
+**IMPORTANT: When using subagents, instruct them to execute tasks autonomously without progress reports**
+
+When launching subagents via the Task tool:
+- Tell subagents to **complete the job directly** without reporting back
+- Subagents should **execute the full task** without interim status updates
+- Only the **final result** should be returned
+- Avoid verbose progress commentary from subagents
+- Focus on **efficient execution** rather than detailed progress tracking
+
+**Directive Template**:
+```
+Execute this task completely and autonomously. Do not provide progress reports or interim updates.
+Complete the work and return only the final result.
+```
+
+This ensures:
+- ✓ Faster task completion
+- ✓ Reduced token usage
+- ✓ More efficient orchestration
+- ✓ Direct action without overhead
+
 ## Agent Roster
 
 ### Core Agents
