@@ -1,17 +1,19 @@
 /**
  * Disaster Recovery Bot Chat API Endpoint
  *
- * Handles chat requests and connects to the Python bot backend
+ * Handles chat requests using TypeScript bot (Vercel-compatible)
  * Project: Disaster Recovery & NRPG (NOT RestoreAssist)
  * Business: Phill McGurk - IICRC Master Restorer
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { spawn } from 'child_process';
-import * as path from 'path';
+import { DisasterRecoveryBot } from '@/lib/bot/disaster-recovery-bot';
 
 // Session storage (in-memory for now, later move to Redis)
 const sessions = new Map<string, ChatSession>();
+
+// Initialize bot instance
+const bot = new DisasterRecoveryBot();
 
 interface ChatSession {
   id: string;
@@ -52,101 +54,6 @@ interface BotResponse {
     isServiced: boolean;
     region: string;
     suburb: string;
-  };
-}
-
-/**
- * Call Python bot handler and get response
- */
-async function callPythonBot(
-  message: string,
-  location?: string
-): Promise<any> {
-  return new Promise((resolve, reject) => {
-    const pythonPath = process.env.PYTHON_PATH || 'python';
-    const scriptPath = path.join(
-      process.cwd(),
-      'skills',
-      'dr-voice-handler',
-      'bot_cli.py'
-    );
-
-    // Spawn Python process with CLI arguments
-    const pythonProcess = spawn(pythonPath, [
-      scriptPath,
-      '--message',
-      message,
-      ...(location ? ['--location', location] : [])
-    ]);
-
-    let outputData = '';
-    let errorData = '';
-
-    pythonProcess.stdout.on('data', (data) => {
-      outputData += data.toString();
-    });
-
-    pythonProcess.stderr.on('data', (data) => {
-      errorData += data.toString();
-    });
-
-    pythonProcess.on('close', (code) => {
-      if (code !== 0) {
-        console.error('Python bot error:', errorData);
-        reject(new Error(`Python bot exited with code ${code}: ${errorData}`));
-        return;
-      }
-
-      try {
-        // Parse JSON output from Python bot
-        const result = JSON.parse(outputData);
-        resolve(result);
-      } catch (error) {
-        console.error('Failed to parse bot response:', outputData);
-        reject(new Error('Invalid bot response format'));
-      }
-    });
-
-    pythonProcess.on('error', (error) => {
-      console.error('Failed to start Python process:', error);
-      reject(error);
-    });
-  });
-}
-
-/**
- * Generate fallback response when bot is unavailable
- */
-function generateFallbackResponse(message: string): BotResponse {
-  return {
-    sessionId: '',
-    response: `Thank you for contacting Disaster Recovery Brisbane.
-
-Your message has been received. For immediate emergency assistance, please call 1300 309 361.
-
-Our service areas include Brisbane, Ipswich, and Logan. We provide 24/7 emergency response for:
-- Water damage and flooding
-- Fire and smoke damage
-- Mould remediation
-- Storm damage
-- Sewage cleanup
-- Biohazard and trauma cleaning
-
-A team member will respond to your inquiry shortly.`,
-    emergencyLevel: 'STANDARD',
-    classification: {
-      serviceType: 'general_inquiry',
-      emergencyLevel: 'STANDARD',
-      confidence: 0.5,
-      keywordsMatched: []
-    },
-    routing: {
-      routeTo: 'customer_service',
-      priority: 'standard',
-      responseTime: 'Within 1 business day',
-      escalate: false,
-      contactMethod: 'email'
-    }
   };
 }
 
@@ -214,61 +121,57 @@ export async function POST(request: NextRequest) {
     });
     session.lastActivity = new Date();
 
-    // Call Python bot
+    // Call TypeScript bot
     let botResult: any;
     try {
-      botResult = await callPythonBot(
+      botResult = await bot.processMessage(
         message,
         location || session.location
       );
     } catch (error) {
-      console.error('Bot call failed, using fallback:', error);
-      // Use fallback response if bot fails
-      const fallback = generateFallbackResponse(message);
-      fallback.sessionId = session.id;
-
-      session.messages.push({
-        role: 'bot',
-        content: fallback.response,
-        timestamp: new Date()
-      });
-
-      return NextResponse.json(fallback);
+      console.error('Bot processing error:', error);
+      return NextResponse.json(
+        {
+          error: 'Failed to process message',
+          details: error instanceof Error ? error.message : 'Unknown error'
+        },
+        { status: 500 }
+      );
     }
 
     // Add bot response to session
     session.messages.push({
       role: 'bot',
-      content: botResult.suggested_response || botResult.response,
+      content: botResult.response,
       timestamp: new Date()
     });
 
     // Build response
     const response: BotResponse = {
       sessionId: session.id,
-      response: botResult.suggested_response || botResult.response || botResult.fallback_response,
-      emergencyLevel: botResult.classification?.emergency_level || 'STANDARD',
+      response: botResult.response,
+      emergencyLevel: botResult.classification.emergency_level,
       classification: {
-        serviceType: botResult.classification?.service_type || 'general_inquiry',
-        emergencyLevel: botResult.classification?.emergency_level || 'STANDARD',
-        confidence: botResult.classification?.confidence || 0.5,
-        keywordsMatched: botResult.classification?.keywords_matched || []
+        serviceType: botResult.classification.service_type,
+        emergencyLevel: botResult.classification.emergency_level,
+        confidence: botResult.classification.confidence,
+        keywordsMatched: botResult.classification.keywords_matched
       },
       routing: {
-        routeTo: botResult.routing?.route_to || 'customer_service',
-        priority: botResult.routing?.priority || 'standard',
-        responseTime: botResult.routing?.response_time || 'Within 1 business day',
-        escalate: botResult.routing?.escalate || false,
-        contactMethod: botResult.routing?.contact_method || 'email'
+        routeTo: botResult.routing.route_to,
+        priority: botResult.routing.priority,
+        responseTime: botResult.routing.response_time,
+        escalate: botResult.routing.escalate,
+        contactMethod: botResult.routing.contact_method
       }
     };
 
     // Add area validation if available
     if (botResult.area_validation) {
       response.areaValidation = {
-        isServiced: botResult.area_validation.is_serviced || false,
-        region: botResult.area_validation.region || 'unknown',
-        suburb: botResult.area_validation.suburb || ''
+        isServiced: botResult.area_validation.is_serviced,
+        region: botResult.area_validation.region,
+        suburb: botResult.area_validation.suburb
       };
     }
 
