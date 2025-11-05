@@ -216,7 +216,7 @@ export default function HomePage() {
 
                 <div className="mt-8">
                   <Link
-                    href="/about-phil-mcgurk"
+                    href="/about-phill-mcgurk"
                     className="inline-flex items-centre justify-centre px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors shadow-lg"
                   >
                     Meet Our Master Restorer
@@ -424,7 +424,7 @@ export default function HomePage() {
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <Link
-                    href="/about-phil-mcgurk"
+                    href="/about-phill-mcgurk"
                     className="inline-flex items-centre justify-centre px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold rounded-lg transition-colors"
                   >
                     Read Phill's Story

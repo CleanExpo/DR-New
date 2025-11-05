@@ -83,7 +83,7 @@ const MasterCertifications = () => {
             <Card className="relative overflow-hidden">
               <CardContent className="p-0">
                 <Image
-                  src="/images/phil-mcgurk-iicrc-certification.png"
+                  src="/images/phill-mcgurk-iicrc-certification.png"
                   alt="Phill McGurk IICRC Master Certifications - Master Textile Cleaner, Master Fire & Smoke Restorer, Master Water Restorer - Certificate Expiration 06/26"
                   title="IICRC Board of Directors recognises Phill McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC"
                   width={600}

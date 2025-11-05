@@ -78,7 +78,7 @@ const GMB_OPTIMIZATION_CHECKLIST = {
         type: 'UPDATE',
         title: '🏆 Master Restorer Certification',
         content: 'Proud to be one of a limited number of Master Restorers in Brisbane & QLD. IICRC certified for water, fire & textile restoration.',
-        image: 'phil-mcgurk-iicrc-certification.png',
+        image: 'phill-mcgurk-iicrc-certification.png',
         schedule: 'Wednesday 12pm'
       },
       {

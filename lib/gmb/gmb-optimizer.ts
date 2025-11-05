@@ -140,7 +140,7 @@ export class GMBOptimizer {
         title: '🏆 Master Restorer Certification - Your Guarantee of Quality',
         content: `Phill McGurk is one of a limited number of Master Restorers in Brisbane & QLD. This prestigious IICRC certification ensures the highest standards in disaster recovery. Trust your property to certified experts.`,
         callToAction: 'LEARN_MORE',
-        url: 'https://disaster-recovery-seven.vercel.app/about-phil-mcgurk'
+        url: 'https://disaster-recovery-seven.vercel.app/about-phill-mcgurk'
       },
       {
         title: '🏢 Commercial Restoration Specialists',

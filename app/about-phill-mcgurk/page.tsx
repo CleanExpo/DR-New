@@ -95,7 +95,7 @@ export default function PhillMcGurkAboutPage() {
               {"@type": "Organization", "name": "Australian Restoration Industry Association"}
             ],
             "sameAs": [
-              "https://www.linkedin.com/in/phil-mcgurk-master-restorer"
+              "https://www.linkedin.com/in/phill-mcgurk-master-restorer"
             ]
           })
         }}
@@ -127,7 +127,7 @@ export default function PhillMcGurkAboutPage() {
                 <p className="text-xl mb-8 text-blue-100">
                   With extensive hands-on experience in disaster restoration,
                   Phill McGurk stands as Australia's most trusted disaster recovery expert.
-                  As the only certified Master Restorer in Queensland, Phil leads with unmatched
+                  As the only certified Master Restorer in Queensland, Phill leads with unmatched
                   expertise, compassion, and technical excellence.
                 </p>
 
@@ -144,11 +144,11 @@ export default function PhillMcGurkAboutPage() {
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
                     <Phone className="mr-2 h-5 w-5" />
-                    Call Phil Now: 1300 000 000
+                    Call Phill Now: 1300 000 000
                   </Button>
                   <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white/20">
                     <Mail className="mr-2 h-5 w-5" />
-                    Email Phil
+                    Email Phill
                   </Button>
                 </div>
               </motion.div>
@@ -400,7 +400,7 @@ export default function PhillMcGurkAboutPage() {
           </div>
         </section>
 
-        {/* Phil's Philosophy */}
+        {/* Phill's Philosophy */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-6">
             <motion.div
@@ -506,7 +506,7 @@ export default function PhillMcGurkAboutPage() {
               </h3>
               <p className="text-xl mb-8 text-orange-100">
                 Don't trust your property to anyone less than the best.
-                Phil's hand-picked team of experts is ready 24/7.
+                Phill's hand-picked team of experts is ready 24/7.
               </p>
               <div className="flex flex-wrap gap-4 justify-centre">
                 <Button size="lg" className="bg-white text-orange-500 hover:bg-gray-100">

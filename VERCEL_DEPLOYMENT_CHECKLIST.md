@@ -35,7 +35,7 @@ NEXTAUTH_SECRET = LMUDdvl91SzvH84on2RBx820GPJX33z+ICkk66EQMpg=
 ### 3. Test Live Site Pages
 Test these critical URLs:
 - [ ] https://www.disasterrecovery.com.au
-- [ ] https://www.disasterrecovery.com.au/about-phil-mcgurk
+- [ ] https://www.disasterrecovery.com.au/about-phill-mcgurk
 - [ ] https://www.disasterrecovery.com.au/locations/brisbane/hamilton
 - [ ] https://www.disasterrecovery.com.au/locations/ipswich/karalee
 - [ ] https://www.disasterrecovery.com.au/services/commercial

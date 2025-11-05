@@ -70,7 +70,7 @@ CNAME   www     cname.vercel-dns.com 3600
 ### Core Pages (6)
 - `/` - Homepage
 - `/about` - About Us
-- `/about-phil-mcgurk` - Master Restorer Profile
+- `/about-phill-mcgurk` - Master Restorer Profile
 - `/contact` - Contact Page
 - `/services` - Services Overview
 - `/emergency` - Emergency Services

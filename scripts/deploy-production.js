@@ -41,7 +41,7 @@ function generateProductionSitemap() {
     // Core pages
     { url: '', priority: 1.0, changefreq: 'daily' },
     { url: '/about', priority: 0.9, changefreq: 'weekly' },
-    { url: '/about-phil-mcgurk', priority: 0.95, changefreq: 'weekly' },
+    { url: '/about-phill-mcgurk', priority: 0.95, changefreq: 'weekly' },
     { url: '/contact', priority: 0.9, changefreq: 'monthly' },
     { url: '/services', priority: 0.95, changefreq: 'weekly' },
 

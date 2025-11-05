@@ -98,7 +98,7 @@ class DeploymentManager {
       `${CONFIG.liveUrl}/sitemap.xml`,
       `${CONFIG.liveUrl}/robots.txt`,
       `${CONFIG.liveUrl}/locations/brisbane/hamilton`,
-      `${CONFIG.liveUrl}/about-phil-mcgurk`
+      `${CONFIG.liveUrl}/about-phill-mcgurk`
     ];
 
     for (const url of urlsToCheck) {

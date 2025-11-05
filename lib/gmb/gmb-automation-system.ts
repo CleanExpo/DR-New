@@ -23,7 +23,7 @@ export class GMBAutomationSystem {
         type: 'UPDATE',
         title: 'Master Restorer Certification',
         description: 'One of a limited number of Master Restorers in Brisbane & QLD',
-        image: '/images/phil-mcgurk-iicrc-certification.png'
+        image: '/images/phill-mcgurk-iicrc-certification.png'
       },
       {
         type: 'EVENT',

@@ -91,7 +91,7 @@ async function createDailyPost() {
     },
     wednesday: {
       summary: '🏆 Master Restorer Certified - One of a limited number in Queensland. Excellence in every restoration.',
-      media: [{ mediaFormat: 'PHOTO', sourceUrl: 'https://disasterrecovery.com.au/images/phil-mcgurk-iicrc-certification.png' }]
+      media: [{ mediaFormat: 'PHOTO', sourceUrl: 'https://disasterrecovery.com.au/images/phill-mcgurk-iicrc-certification.png' }]
     },
     thursday: {
       summary: '🏠 Protecting Brisbane homes 24/7. Water damage, fire damage, mould - we handle it all.',
@@ -141,7 +141,7 @@ async function uploadDailyPhotos() {
     {
       mediaFormat: 'PHOTO',
       locationAssociation: { category: 'ADDITIONAL' },
-      sourceUrl: 'https://disasterrecovery.com.au/images/phil-mcgurk-iicrc-certification.png',
+      sourceUrl: 'https://disasterrecovery.com.au/images/phill-mcgurk-iicrc-certification.png',
       description: 'Master Restorer certification - One of limited few in Queensland'
     }
   ];

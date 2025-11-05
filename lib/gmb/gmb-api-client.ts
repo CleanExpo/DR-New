@@ -188,7 +188,7 @@ export const AUTO_POST_TEMPLATES = {
     summary: '🏆 Master Restorer Certification - One of Limited Few in QLD',
     media: [{
       mediaFormat: 'PHOTO',
-      sourceUrl: 'https://disasterrecovery.com.au/images/phil-mcgurk-iicrc-certification.png'
+      sourceUrl: 'https://disasterrecovery.com.au/images/phill-mcgurk-iicrc-certification.png'
     }]
   },
 

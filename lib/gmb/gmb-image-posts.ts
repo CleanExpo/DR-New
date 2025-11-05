@@ -102,7 +102,7 @@ export const GMB_IMAGE_POSTS = [
       },
       {
         day: 'Wednesday',
-        image: '/images/phil-mcgurk-iicrc-certification.png',
+        image: '/images/phill-mcgurk-iicrc-certification.png',
         caption: '🏅 Master Restorer Certified - Phill McGurk and team bring elite expertise to every restoration. One of a limited number in Queensland. Excellence in every project!',
         hashtags: ['#MasterRestorer', '#IICRCCertified', '#EliteRestoration', '#Queensland'],
         callToAction: 'LEARN_MORE',

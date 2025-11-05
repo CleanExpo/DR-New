@@ -18,7 +18,7 @@ test.describe('Verify Recent Changes', () => {
   });
 
   test('Phill McGurk name is spelled correctly', async ({ page }) => {
-    await page.goto('/about-phil-mcgurk');
+    await page.goto('/about-phill-mcgurk');
 
     // Check for correct spelling "Phill McGurk"
     const correctName = await page.locator('text=/Phill McGurk/').count();
