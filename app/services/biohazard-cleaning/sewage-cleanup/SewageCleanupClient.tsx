@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateLocalBusinessWithServices, generateFAQSchema } from '@/lib/seo';
 import { Shield, CheckCircle2, MessageSquare, AlertTriangle, Clock } from 'lucide-react';
 
@@ -304,7 +304,7 @@ export default function SewageCleanupClient() {
       </section>
 
       {/* Quote dialogue */}
-      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Emergency Sewage Cleanup</DialogTitle>
@@ -325,7 +325,7 @@ export default function SewageCleanupClient() {
             </Button>
           </div>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </div>
   );
 }

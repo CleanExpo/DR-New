@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
 import {  Clock, Shield, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare} from 'lucide-react';
 
@@ -174,7 +174,7 @@ export default function ToiletSewageBackupCleanupPage() {
       </section>
 
       {/* Quote dialogue */}
-      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Toilet Sewage Backup Cleanup Services</DialogTitle>
@@ -195,7 +195,7 @@ export default function ToiletSewageBackupCleanupPage() {
             </Button>
           </div>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </div>
   );
 }

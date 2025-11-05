@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateLocalBusinessSchema, generateFAQSchema } from '@/lib/seo';
 import {  Clock, Shield, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare} from 'lucide-react';
 
@@ -174,7 +174,7 @@ export default function HoardingCleanupClient() {
       </section>
 
       {/* Quote dialogue */}
-      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Hoarding Cleanup Services Services</DialogTitle>
@@ -195,7 +195,7 @@ export default function HoardingCleanupClient() {
             </Button>
           </div>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </div>
   );
 }

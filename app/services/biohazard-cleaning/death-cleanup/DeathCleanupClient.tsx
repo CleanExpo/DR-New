@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateLocalBusinessWithServices, generateFAQSchema } from '@/lib/seo';
 import { Shield, CheckCircle2, MessageSquare, Heart, Clock } from 'lucide-react';
 
@@ -274,7 +274,7 @@ export default function DeathCleanupClient() {
       </section>
 
       {/* Quote dialogue */}
-      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Death Cleanup Services</DialogTitle>
@@ -295,7 +295,7 @@ export default function DeathCleanupClient() {
             </Button>
           </div>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </div>
   );
 }

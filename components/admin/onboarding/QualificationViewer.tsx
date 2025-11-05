@@ -235,7 +235,7 @@ export function QualificationViewer({
       </div>
 
       {/* Verify Modal */}
-      <dialogue open={showVerifyModal} onOpenChange={setShowVerifyModal}>
+      <Dialog open={showVerifyModal} onOpenChange={setShowVerifyModal}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Verify Qualification</DialogTitle>
@@ -269,10 +269,10 @@ export function QualificationViewer({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </dialogue>
+      </Dialog>
 
       {/* Reject Modal */}
-      <dialogue open={showRejectModal} onOpenChange={setShowRejectModal}>
+      <Dialog open={showRejectModal} onOpenChange={setShowRejectModal}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Reject Qualification</DialogTitle>
@@ -307,7 +307,7 @@ export function QualificationViewer({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </>
   );
 }

@@ -124,7 +124,7 @@ export function JobStatusUpdater({ jobId, currentStatus, onStatusUpdated }: JobS
   const currentStatusLabel = statusOptions.find(s => s.value === currentStatus)?.label || currentStatus;
 
   return (
-    <dialogue open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">
           Update Status
@@ -211,6 +211,6 @@ export function JobStatusUpdater({ jobId, currentStatus, onStatusUpdated }: JobS
           </Button>
         </DialogFooter>
       </DialogContent>
-    </dialogue>
+    </Dialog>
   );
 }

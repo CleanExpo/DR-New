@@ -60,7 +60,7 @@ export function SendInvoiceButton({ invoiceId, clientEmail, onSent }: SendInvoic
         Send Invoice
       </Button>
 
-      <dialogue open={showDialog} onOpenChange={setShowDialog}>
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Send Invoice via Email</DialogTitle>
@@ -91,7 +91,7 @@ export function SendInvoiceButton({ invoiceId, clientEmail, onSent }: SendInvoic
             </Button>
           </DialogFooter>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </>
   );
 }

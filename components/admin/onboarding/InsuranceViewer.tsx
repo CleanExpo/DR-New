@@ -268,7 +268,7 @@ export function InsuranceViewer({
       </div>
 
       {/* Verify Modal */}
-      <dialogue open={showVerifyModal} onOpenChange={setShowVerifyModal}>
+      <Dialog open={showVerifyModal} onOpenChange={setShowVerifyModal}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Verify Insurance Policy</DialogTitle>
@@ -302,10 +302,10 @@ export function InsuranceViewer({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </dialogue>
+      </Dialog>
 
       {/* Reject Modal */}
-      <dialogue open={showRejectModal} onOpenChange={setShowRejectModal}>
+      <Dialog open={showRejectModal} onOpenChange={setShowRejectModal}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Reject Insurance Policy</DialogTitle>
@@ -340,7 +340,7 @@ export function InsuranceViewer({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </>
   );
 }

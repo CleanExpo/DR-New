@@ -91,7 +91,7 @@ export function RefundModal({
 
   if (showConfirmation) {
     return (
-      <dialogue open={open} onOpenChange={onOpenChange}>
+      <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
             <DialogTitle className="flex items-centre gap-2">
@@ -138,12 +138,12 @@ export function RefundModal({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     );
   }
 
   return (
-    <dialogue open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Process Refund</DialogTitle>
@@ -224,6 +224,6 @@ export function RefundModal({
           </DialogFooter>
         </form>
       </DialogContent>
-    </dialogue>
+    </Dialog>
   );
 }

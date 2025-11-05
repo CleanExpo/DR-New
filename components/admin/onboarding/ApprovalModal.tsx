@@ -60,7 +60,7 @@ export function ApprovalModal({
   const hasValidABN = contractor.companyProfile?.abnVerified || false;
 
   return (
-    <dialogue open={open} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle className="flex items-centre gap-2 text-xl">
@@ -215,6 +215,6 @@ export function ApprovalModal({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </dialogue>
+    </Dialog>
   );
 }

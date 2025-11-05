@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateLocalBusinessWithServices, generateFAQSchema } from '@/lib/seo';
 import { Shield, CheckCircle2, MessageSquare, Lock, Clock } from 'lucide-react';
 
@@ -232,7 +232,7 @@ export default function CrimeSceneCleanupClient() {
       </section>
 
       {/* Quote dialogue */}
-      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Crime Scene Cleanup Services</DialogTitle>
@@ -253,7 +253,7 @@ export default function CrimeSceneCleanupClient() {
             </Button>
           </div>
         </DialogContent>
-      </dialogue>
+      </Dialog>
     </div>
   );
 }

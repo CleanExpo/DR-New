@@ -98,7 +98,7 @@ export function PaymentModal({
   const remainingAfterPayment = balance - formData.amount;
 
   return (
-    <dialogue open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Record Payment</DialogTitle>
@@ -207,6 +207,6 @@ export function PaymentModal({
           </DialogFooter>
         </form>
       </DialogContent>
-    </dialogue>
+    </Dialog>
   );
 }

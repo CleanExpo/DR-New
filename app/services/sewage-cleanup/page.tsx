@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { dialogue, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { HeroSection } from '@/components/hero/HeroImage'
@@ -127,7 +127,7 @@ export default function SewageCleanupPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <dialogue>
+                <Dialog>
                   <DialogTrigger asChild>
                     <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
                       <MessageSquare className="mr-2 h-5 w-5" />
@@ -164,7 +164,7 @@ export default function SewageCleanupPage() {
                       </div>
                     </div>
                   </DialogContent>
-                </dialogue>
+                </Dialog>
                 
                 <Button size="lg" variant="outline">
                   Insurance Claim Help

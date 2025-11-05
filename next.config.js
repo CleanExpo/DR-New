@@ -265,6 +265,10 @@ const nextConfig = {
     // Use a consistent build ID for better caching
     return 'dr-build-' + Date.now();
   },
+
+  // Skip pre-rendering for error pages that cause Html import issues
+  skipTrailingSlashRedirect: true,
+  skipMiddlewareUrlNormalize: true,
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

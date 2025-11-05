@@ -74,7 +74,7 @@ export function RejectionModal({
   };
 
   return (
-    <dialogue open={open} onOpenChange={handleClose}>
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle className="flex items-centre gap-2 text-xl text-red-600">
@@ -177,6 +177,6 @@ export function RejectionModal({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </dialogue>
+    </Dialog>
   );
 }

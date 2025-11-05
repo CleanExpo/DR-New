@@ -21,6 +21,18 @@ const poppins = Poppins({
   variable: '--font-poppins'
 })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
+  ]
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
@@ -36,17 +48,6 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: 'cover'
-  },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
-  ],
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -93,7 +94,16 @@ export const metadata: Metadata = {
     canonical: 'https://disasterrecovery.com.au',
     languages: {
       'en-AU': 'https://disasterrecovery.com.au' } },
-  category: 'Disaster Recovery Services' }
+  category: 'Disaster Recovery Services',
+  icons: {
+    icon: [
+      { url: '/logos/disaster-recovery-logo.png', type: 'image/png' },
+      { url: '/logos/disaster-recovery-logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logos/disaster-recovery-logo.png', sizes: '16x16', type: 'image/png' }
+    ],
+    apple: { url: '/logos/disaster-recovery-logo.png', sizes: '180x180' },
+    shortcut: '/logos/disaster-recovery-logo.png'
+  } }
 
 export default function RootLayout({
   children }: {
@@ -101,16 +111,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-AU">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-        <meta name="msvalidate.01" content="DB030D197A83DF2F524BF0DFBACDC52C" />
-        <link rel="icon" type="image/png" href="/logos/disaster-recovery-logo.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/logos/disaster-recovery-logo.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/logos/disaster-recovery-logo.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/logos/disaster-recovery-logo.png" />
-        <link rel="shortcut icon" href="/logos/disaster-recovery-logo.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-colour" content="#0052CC" />
+      <body className={`${poppins.variable} ${inter.variable} font-sans`}>
+        <Providers>
+          {children}
+        </Providers>
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -174,7 +178,7 @@ export default function RootLayout({
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Fire Damage Restoration",
-                      "description": "Complete fire and smoke damage restoration services"
+                      "description": "Complete fire and smoke restoration services"
                     }
                   },
                   {
@@ -198,13 +202,6 @@ export default function RootLayout({
             })
           }}
         />
-      </head>
-      <body className={`${poppins.variable} ${inter.variable} font-sans`}>
-        <Providers>
-          <main id="main-content" className="min-h-screen">
-            {children}
-          </main>
-        </Providers>
         {/* Google Analytics 4 - Dual Tracking */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'}`}
