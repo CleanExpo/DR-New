@@ -282,7 +282,7 @@ export class InsuranceDecoder {
     let score = 50; // Start at neutral
     const factors: { factor: string; impact: 'positive' | 'negative'; reason: string }[] = [];
     
-    // Analyze each answer
+    // analyse each answer
     scenario.questions.forEach(question => {
       const answer = answers[question.id];
       const option = question.options.find(o => o.value === answer);

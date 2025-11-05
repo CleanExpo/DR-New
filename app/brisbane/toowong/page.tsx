@@ -94,7 +94,7 @@ const jsonLd = {
       "@type": "Service",
       "@id": "https://dr-new-ten.vercel.app/brisbane/toowong#heritage-restoration",
       "name": "Heritage Queenslander Restoration Toowong",
-      "description": "Specialized heritage Queenslander restoration services including character home restoration, heritage council compliance, and university precinct emergency response.",
+      "description": "specialised heritage Queenslander restoration services including character home restoration, heritage council compliance, and university precinct emergency response.",
       "provider": {
         "@id": "https://dr-new-ten.vercel.app/brisbane/toowong#business"
       },
@@ -111,7 +111,7 @@ const jsonLd = {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Do you specialize in heritage Queenslander restoration in Toowong?",
+          "name": "Do you specialise in heritage Queenslander restoration in Toowong?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes, we are Master certified specialists in heritage Queenslander restoration throughout Toowong and the university precinct. We understand the unique requirements of character homes and heritage-listed buildings, including Brisbane City Council heritage compliance."
@@ -122,7 +122,7 @@ const jsonLd = {
           "name": "Can you restore water damage to heritage timber features?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Absolutely. Our heritage restoration protocols preserve original timber features, ornate fretwork, and character elements. We use specialized drying techniques that protect heritage materials while ensuring complete moisture removal."
+            "text": "Absolutely. Our heritage restoration protocols preserve original timber features, ornate fretwork, and character elements. We use specialised drying techniques that protect heritage materials while ensuring complete moisture removal."
           }
         },
         {
@@ -155,7 +155,7 @@ const jsonLd = {
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "Specialized Heritage Restoration",
+          "name": "specialised Heritage Restoration",
           "text": "Implementation of heritage-appropriate restoration techniques preserving original materials and character."
         }
       ]
@@ -176,8 +176,8 @@ export default function ToowongHeritagePage() {
         <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-slate-800 text-white py-20">
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="text-centre">
+              <div className="flex items-centre justify-centre gap-2 mb-4">
                 <Home className="h-8 w-8 text-yellow-400" />
                 <span className="text-yellow-400 font-semibold text-lg">Heritage Specialist</span>
               </div>
@@ -186,20 +186,20 @@ export default function ToowongHeritagePage() {
                 <span className="block text-yellow-400">Queenslander Restoration</span>
               </h1>
               <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
-                Master certified heritage restoration for Toowong's character homes and university precinct properties. Preserving Brisbane's architectural heritage with specialized expertise.
+                Master certified heritage restoration for Toowong's character homes and university precinct properties. Preserving Brisbane's architectural heritage with specialised expertise.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <div className="flex flex-col sm:flex-row gap-4 justify-centre mb-8">
                 <a
                   href="tel:+61730000000"
-                  className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+                  className="inline-flex items-centre justify-centre gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
                 >
                   <Phone className="h-5 w-5" />
                   Emergency: (07) 3000 0000
                 </a>
                 <Link
                   href="#services"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border border-white/20"
+                  className="inline-flex items-centre justify-centre gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors border border-white/20"
                 >
                   <Shield className="h-5 w-5" />
                   Heritage Services
@@ -207,21 +207,21 @@ export default function ToowongHeritagePage() {
               </div>
 
               {/* Heritage Authority Badges */}
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <div className="flex flex-wrap justify-centre gap-4 mb-8">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <Award className="h-5 w-5 text-yellow-400" />
                     <span className="text-sm font-medium">Master Restorer Certified</span>
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <Shield className="h-5 w-5 text-yellow-400" />
                     <span className="text-sm font-medium">Heritage Council Approved</span>
                   </div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <Home className="h-5 w-5 text-yellow-400" />
                     <span className="text-sm font-medium">Character Home Specialist</span>
                   </div>
@@ -234,7 +234,7 @@ export default function ToowongHeritagePage() {
         {/* Emergency Response Banner */}
         <section className="bg-red-600 text-white py-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <AlertTriangle className="h-6 w-6 animate-pulse" />
               <span className="font-semibold">HERITAGE EMERGENCY RESPONSE</span>
               <span className="hidden sm:inline">•</span>
@@ -248,7 +248,7 @@ export default function ToowongHeritagePage() {
         {/* Heritage Risk Assessment */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Toowong Heritage Risk Profile
               </h2>
@@ -259,8 +259,8 @@ export default function ToowongHeritagePage() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-xl p-6 shadow-sm border">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <div className="flex items-centre gap-3 mb-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-centre justify-centre">
                     <Home className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
@@ -274,8 +274,8 @@ export default function ToowongHeritagePage() {
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <div className="flex items-centre gap-3 mb-4">
+                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-centre justify-centre">
                     <MapPin className="h-6 w-6 text-orange-600" />
                   </div>
                   <div>
@@ -284,13 +284,13 @@ export default function ToowongHeritagePage() {
                   </div>
                 </div>
                 <p className="text-gray-700">
-                  High-density student living in character homes requires discrete, efficient restoration to minimize disruption to academic schedules.
+                  High-density student living in character homes requires discrete, efficient restoration to minimise disruption to academic schedules.
                 </p>
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-sm border">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <div className="flex items-centre gap-3 mb-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-centre justify-centre">
                     <Shield className="h-6 w-6 text-green-600" />
                   </div>
                   <div>
@@ -299,7 +299,7 @@ export default function ToowongHeritagePage() {
                   </div>
                 </div>
                 <p className="text-gray-700">
-                  Brisbane City Council heritage overlay requires specialized restoration techniques and permit compliance for character precincts.
+                  Brisbane City Council heritage overlay requires specialised restoration techniques and permit compliance for character precincts.
                 </p>
               </div>
             </div>
@@ -309,9 +309,9 @@ export default function ToowongHeritagePage() {
         {/* Heritage Services */}
         <section id="services" className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Specialized Heritage Services
+                specialised Heritage Services
               </h2>
               <p className="text-xl text-gray-600">
                 Master certified restoration for Toowong's architectural treasures
@@ -326,7 +326,7 @@ export default function ToowongHeritagePage() {
                     <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Original Timber Preservation</h4>
-                      <p className="text-gray-600">Specialized drying and restoration of heritage hardwood floors, walls, and decorative elements</p>
+                      <p className="text-gray-600">specialised drying and restoration of heritage hardwood floors, walls, and decorative elements</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -393,7 +393,7 @@ export default function ToowongHeritagePage() {
         {/* Heritage Council Compliance */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                   Brisbane City Council Heritage Compliance
@@ -404,7 +404,7 @@ export default function ToowongHeritagePage() {
 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-centre justify-centre flex-shrink-0">
                       <Shield className="h-4 w-4 text-blue-600" />
                     </div>
                     <div>
@@ -414,7 +414,7 @@ export default function ToowongHeritagePage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-centre justify-centre flex-shrink-0">
                       <Award className="h-4 w-4 text-blue-600" />
                     </div>
                     <div>
@@ -424,7 +424,7 @@ export default function ToowongHeritagePage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-centre justify-centre flex-shrink-0">
                       <Home className="h-4 w-4 text-blue-600" />
                     </div>
                     <div>
@@ -435,26 +435,26 @@ export default function ToowongHeritagePage() {
                 </div>
               </div>
 
-              <div className="lg:text-center">
+              <div className="lg:text-centre">
                 <div className="bg-white rounded-xl p-8 shadow-sm border">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">Heritage Premium Service</h3>
                   <div className="text-4xl font-bold text-blue-600 mb-2">2.5x</div>
                   <p className="text-gray-600 mb-6">Standard rate multiplier for heritage specialist expertise</p>
 
                   <div className="space-y-3 text-left">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-sm text-gray-700">Council compliance included</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-sm text-gray-700">Heritage impact assessment</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-sm text-gray-700">Permit application management</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-sm text-gray-700">Character preservation expertise</span>
                     </div>
@@ -468,7 +468,7 @@ export default function ToowongHeritagePage() {
         {/* Local Expertise */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Deep Toowong Expertise
               </h2>
@@ -478,8 +478,8 @@ export default function ToowongHeritagePage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-centre">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
                   <MapPin className="h-8 w-8 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Character Precinct Knowledge</h3>
@@ -488,8 +488,8 @@ export default function ToowongHeritagePage() {
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-centre">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
                   <Clock className="h-8 w-8 text-green-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">30-Minute Response</h3>
@@ -498,13 +498,13 @@ export default function ToowongHeritagePage() {
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-centre">
+                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
                   <Award className="h-8 w-8 text-yellow-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Master Restorer Certified</h3>
                 <p className="text-gray-600">
-                  Phill McGurk - One of limited Master Restorers in Brisbane with specialized heritage Queenslander expertise.
+                  Phill McGurk - One of limited Master Restorers in Brisbane with specialised heritage Queenslander expertise.
                 </p>
               </div>
             </div>
@@ -514,29 +514,29 @@ export default function ToowongHeritagePage() {
         {/* Service Areas */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Heritage Service Coverage
               </h2>
               <p className="text-xl text-gray-600">
-                Specialized heritage restoration across Brisbane's character precincts
+                specialised heritage restoration across Brisbane's character precincts
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white rounded-lg p-6 text-center shadow-sm border">
+              <div className="bg-white rounded-lg p-6 text-centre shadow-sm border">
                 <h3 className="font-semibold text-gray-900 mb-2">Toowong</h3>
                 <p className="text-sm text-gray-600">Heritage overlay precinct</p>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-sm border">
+              <div className="bg-white rounded-lg p-6 text-centre shadow-sm border">
                 <h3 className="font-semibold text-gray-900 mb-2">Taringa</h3>
                 <p className="text-sm text-gray-600">Character home concentration</p>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-sm border">
+              <div className="bg-white rounded-lg p-6 text-centre shadow-sm border">
                 <h3 className="font-semibold text-gray-900 mb-2">St Lucia</h3>
                 <p className="text-sm text-gray-600">University district heritage</p>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-sm border">
+              <div className="bg-white rounded-lg p-6 text-centre shadow-sm border">
                 <h3 className="font-semibold text-gray-900 mb-2">Indooroopilly</h3>
                 <p className="text-sm text-gray-600">Historical character homes</p>
               </div>
@@ -546,24 +546,24 @@ export default function ToowongHeritagePage() {
 
         {/* CTA Section */}
         <section className="py-16 bg-blue-600 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Protect Your Heritage Investment
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
               Don't let water, fire, or storm damage compromise your Toowong character home. Our heritage specialists respond within 30 minutes.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <a
                 href="tel:+61730000000"
-                className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+                className="inline-flex items-centre justify-centre gap-2 bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
               >
                 <Phone className="h-5 w-5" />
                 Call (07) 3000 0000
               </a>
               <Link
                 href="/"
-                className="inline-flex items-center justify-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
+                className="inline-flex items-centre justify-centre gap-2 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors"
               >
                 <Home className="h-5 w-5" />
                 All Services

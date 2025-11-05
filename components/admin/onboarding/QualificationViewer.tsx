@@ -5,7 +5,7 @@ import { IICRCQualification } from '@/lib/types/contractor-onboarding';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
+  dialogue,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -73,7 +73,7 @@ export function QualificationViewer({
     const Icon = config.icon;
 
     return (
-      <Badge variant={config.variant} className="flex items-center gap-1">
+      <Badge variant={config.variant} className="flex items-centre gap-1">
         <Icon className="w-3 h-3" />
         {config.label}
       </Badge>
@@ -108,7 +108,7 @@ export function QualificationViewer({
       <div className="border rounded-lg p-6 bg-white shadow-sm hover:shadow-md transition-shadow">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-centre justify-centre">
               <Award className="w-5 h-5 text-blue-600" />
             </div>
             <div>
@@ -201,7 +201,7 @@ export function QualificationViewer({
             href={qualification.documentUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+            className="flex items-centre gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
           >
             <FileText className="w-4 h-4" />
             View Certificate Document
@@ -211,7 +211,7 @@ export function QualificationViewer({
 
         {/* Action Buttons */}
         {qualification.status === 'PENDING' && (
-          <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
+          <div className="flex items-centre gap-2 pt-4 border-t border-gray-200">
             <Button
               variant="default"
               size="sm"
@@ -235,7 +235,7 @@ export function QualificationViewer({
       </div>
 
       {/* Verify Modal */}
-      <Dialog open={showVerifyModal} onOpenChange={setShowVerifyModal}>
+      <dialogue open={showVerifyModal} onOpenChange={setShowVerifyModal}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Verify Qualification</DialogTitle>
@@ -269,10 +269,10 @@ export function QualificationViewer({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </dialogue>
 
       {/* Reject Modal */}
-      <Dialog open={showRejectModal} onOpenChange={setShowRejectModal}>
+      <dialogue open={showRejectModal} onOpenChange={setShowRejectModal}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Reject Qualification</DialogTitle>
@@ -307,7 +307,7 @@ export function QualificationViewer({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     </>
   );
 }

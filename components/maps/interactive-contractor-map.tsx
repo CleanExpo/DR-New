@@ -91,7 +91,7 @@ export const InteractiveContractorMap: React.FC = () => {
   const [emergencies, setEmergencies] = useState<EmergencyJob[]>([]);
   const [selectedContractor, setSelectedContractor] = useState<Contractor | null>(null);
   const [selectedEmergency, setSelectedEmergency] = useState<EmergencyJob | null>(null);
-  const [center, setCenter] = useState(defaultCenter);
+  const [centre, setCenter] = useState(defaultCenter);
   const [zoom, setZoom] = useState(11);
   const [filters, setFilters] = useState<MapFilters>({
     showAvailable: true,
@@ -376,9 +376,9 @@ export const InteractiveContractorMap: React.FC = () => {
       {/* Map Controls */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <CardTitle>Interactive Contractor Map</CardTitle>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Badge variant={connected ? 'default' : 'destructive'}>
                 {connected ? 'Live' : 'Offline'}
               </Badge>
@@ -425,7 +425,7 @@ export const InteractiveContractorMap: React.FC = () => {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Service Radius (km)</label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Slider
                   value={[filters.radiusFilter]}
                   onValueChange={([value]) => 
@@ -441,8 +441,8 @@ export const InteractiveContractorMap: React.FC = () => {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Map Layers</label>
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2">
+              <div className="flex items-centre gap-4">
+                <label className="flex items-centre gap-2">
                   <Switch
                     checked={filters.showServiceAreas}
                     onCheckedChange={(checked) =>
@@ -451,7 +451,7 @@ export const InteractiveContractorMap: React.FC = () => {
                   />
                   <span className="text-xs">Service Areas</span>
                 </label>
-                <label className="flex items-center gap-2">
+                <label className="flex items-centre gap-2">
                   <Switch
                     checked={filters.showHeatmap}
                     onCheckedChange={(checked) =>
@@ -465,9 +465,9 @@ export const InteractiveContractorMap: React.FC = () => {
           </div>
 
           {/* Status Filters */}
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-centre gap-4 mb-4">
             <span className="text-sm font-medium">Show:</span>
-            <label className="flex items-center gap-2">
+            <label className="flex items-centre gap-2">
               <Switch
                 checked={filters.showAvailable}
                 onCheckedChange={(checked) =>
@@ -476,7 +476,7 @@ export const InteractiveContractorMap: React.FC = () => {
               />
               <span className="text-sm">Available ({contractors.filter(c => c.status === 'available').length})</span>
             </label>
-            <label className="flex items-center gap-2">
+            <label className="flex items-centre gap-2">
               <Switch
                 checked={filters.showBusy}
                 onCheckedChange={(checked) =>
@@ -485,7 +485,7 @@ export const InteractiveContractorMap: React.FC = () => {
               />
               <span className="text-sm">Busy ({contractors.filter(c => c.status === 'busy').length})</span>
             </label>
-            <label className="flex items-center gap-2">
+            <label className="flex items-centre gap-2">
               <Switch
                 checked={filters.showEmergencies}
                 onCheckedChange={(checked) =>
@@ -504,7 +504,7 @@ export const InteractiveContractorMap: React.FC = () => {
             >
               <GoogleMap
                 mapContainerStyle={mapContainerStyle}
-                center={center}
+                centre={centre}
                 zoom={zoom}
                 options={mapOptions}
                 onLoad={(map) => { mapRef.current = map; }}
@@ -521,7 +521,7 @@ export const InteractiveContractorMap: React.FC = () => {
                     {/* Service Area Circle */}
                     {filters.showServiceAreas && (
                       <Circle
-                        center={contractor.position}
+                        centre={contractor.position}
                         radius={contractor.serviceRadius * 1000}
                         options={{
                           fillColor: contractor.status === 'available' ? '#10B981' : '#F59E0B',
@@ -579,19 +579,19 @@ export const InteractiveContractorMap: React.FC = () => {
                     <div className="p-2 min-w-[200px]">
                       <h3 className="font-semibold">{selectedContractor.name}</h3>
                       <div className="space-y-1 mt-2 text-sm">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <Shield className="w-3 h-3" />
                           <span>{selectedContractor.jobsCompleted} jobs</span>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <Star className="w-3 h-3" />
                           <span>{selectedContractor.rating} rating</span>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <Clock className="w-3 h-3" />
                           <span>{selectedContractor.responseTime} min response</span>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <Phone className="w-3 h-3" />
                           <span>{selectedContractor.phone}</span>
                         </div>
@@ -622,7 +622,7 @@ export const InteractiveContractorMap: React.FC = () => {
                     onCloseClick={() => setSelectedEmergency(null)}
                   >
                     <div className="p-2 min-w-[200px]">
-                      <h3 className="font-semibold flex items-center gap-2">
+                      <h3 className="font-semibold flex items-centre gap-2">
                         <AlertTriangle className="w-4 h-4 text-red-500" />
                         {selectedEmergency.type} Emergency
                       </h3>
@@ -696,7 +696,7 @@ export const InteractiveContractorMap: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardContent className="p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-700">Total Contractors</p>
                 <p className="text-2xl font-bold">{contractors.length}</p>
@@ -708,7 +708,7 @@ export const InteractiveContractorMap: React.FC = () => {
 
         <Card>
           <CardContent className="p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-700">Active Emergencies</p>
                 <p className="text-2xl font-bold">{emergencies.filter(e => e.status === 'pending').length}</p>
@@ -720,7 +720,7 @@ export const InteractiveContractorMap: React.FC = () => {
 
         <Card>
           <CardContent className="p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-700">Avg Response Time</p>
                 <p className="text-2xl font-bold">
@@ -734,7 +734,7 @@ export const InteractiveContractorMap: React.FC = () => {
 
         <Card>
           <CardContent className="p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-centre justify-between">
               <div>
                 <p className="text-sm text-gray-700">Coverage Area</p>
                 <p className="text-2xl font-bold">

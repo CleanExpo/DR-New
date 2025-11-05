@@ -95,12 +95,12 @@ export default function UltimateGuide({
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      element.scrollIntoView({ behaviour: 'smooth', block: 'start' });
     }
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behaviour: 'smooth' });
   };
 
   const toggleChecklistItem = (index: number) => {
@@ -124,9 +124,9 @@ export default function UltimateGuide({
       {/* Hero Section */}
       <section className="pt-20 pb-12 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 text-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             {/* Meta Information */}
-            <div className="flex flex-wrap justify-center gap-4 mb-6">
+            <div className="flex flex-wrap justify-centre gap-4 mb-6">
               <Badge className="bg-white/20 text-white border-white/30">
                 <BookOpen className="w-3 h-3 mr-1" />
                 Ultimate Guide
@@ -165,9 +165,9 @@ export default function UltimateGuide({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex items-center justify-center gap-3"
+              className="flex items-centre justify-centre gap-3"
             >
-              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-centre justify-centre">
                 <User className="w-6 h-6" />
               </div>
               <div className="text-left">
@@ -181,7 +181,7 @@ export default function UltimateGuide({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-wrap justify-center gap-4 mt-8"
+              className="flex flex-wrap justify-centre gap-4 mt-8"
             >
               <Button
                 variant="secondary"
@@ -208,7 +208,7 @@ export default function UltimateGuide({
       {statistics.length > 0 && (
         <section className="py-8 bg-white border-b">
           <div className="container mx-auto px-6">
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-centre gap-8">
               {statistics.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -216,7 +216,7 @@ export default function UltimateGuide({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-center"
+                  className="text-centre"
                 >
                   <div className={`text-2xl md:text-3xl font-bold ${
                     stat.highlight ? 'text-blue-600' : 'text-gray-900'
@@ -237,7 +237,7 @@ export default function UltimateGuide({
           <aside className="lg:col-span-1">
             <div className="sticky top-20">
               <Card className="p-6">
-                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <h3 className="font-bold text-lg mb-4 flex items-centre gap-2">
                   <List className="w-5 h-5" />
                   Table of Contents
                 </h3>
@@ -246,7 +246,7 @@ export default function UltimateGuide({
                     <button
                       key={index}
                       onClick={() => scrollToSection(sections[index]?.id || '')}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors flex items-center gap-2 ${
+                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors flex items-centre gap-2 ${
                         activeSection === sections[index]?.id
                           ? 'bg-blue-100 text-blue-700 font-semibold'
                           : 'hover:bg-gray-100 text-gray-700'
@@ -291,7 +291,7 @@ export default function UltimateGuide({
               >
                 <Card className="overflow-hidden">
                   <div className="bg-gradient-to-r from-blue-50 to-purple-50 px-8 py-6 border-b">
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 flex items-centre gap-3">
                       <span className="text-blue-600">{index + 1}.</span>
                       {section.title}
                     </h2>
@@ -343,7 +343,7 @@ export default function UltimateGuide({
                     {/* Tips Section */}
                     {section.tips && section.tips.length > 0 && (
                       <div className="mt-8 p-6 bg-blue-50 rounded-lg">
-                        <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                        <h4 className="font-bold text-blue-900 mb-3 flex items-centre gap-2">
                           <Lightbulb className="w-5 h-5" />
                           Pro Tips
                         </h4>
@@ -382,7 +382,7 @@ export default function UltimateGuide({
               >
                 <Card className="overflow-hidden">
                   <div className="bg-gradient-to-r from-red-50 to-orange-50 px-8 py-6 border-b">
-                    <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                    <h2 className="text-2xl font-bold text-gray-900 flex items-centre gap-3">
                       <AlertCircle className="w-6 h-6 text-red-600" />
                       Emergency Action Checklist
                     </h2>
@@ -460,7 +460,7 @@ export default function UltimateGuide({
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-12"
+              className="text-centre bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-12"
             >
               <Award className="w-16 h-16 mx-auto mb-6" />
               <h2 className="text-3xl font-bold mb-4">
@@ -469,7 +469,7 @@ export default function UltimateGuide({
               <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
                 Our IICRC certified experts are available 24/7 to help with your disaster recovery needs
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-centre">
                 <Button
                   size="lg"
                   className="bg-white text-blue-600 hover:bg-gray-100"
@@ -489,16 +489,16 @@ export default function UltimateGuide({
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex flex-wrap justify-center gap-6 mt-8">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap justify-centre gap-6 mt-8">
+                <div className="flex items-centre gap-2">
                   <CheckCircle className="w-5 h-5" />
                   <span>Insurance Approved</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Star className="w-5 h-5" />
                   <span>4.9/5 Rating</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <TrendingUp className="w-5 h-5" />
                   <span>10,000+ Jobs Completed</span>
                 </div>

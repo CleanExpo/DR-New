@@ -135,7 +135,7 @@ export default function MouldInsurancePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-centre gap-4 mb-6">
               <Shield className="w-12 h-12" />
               <Microscope className="w-10 h-10" />
             </div>
@@ -152,7 +152,7 @@ export default function MouldInsurancePage() {
       {/* Critical Alert */}
       <section className="bg-yellow-500 text-black py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-centre justify-centre gap-3">
             <Clock className="w-6 h-6" />
             <p className="font-semibold">
               WARNING: Most policies have strict 48-72 hour action requirements for mould coverage
@@ -164,7 +164,7 @@ export default function MouldInsurancePage() {
       {/* Coverage Scenarios */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Mould Coverage Scenarios
             </h2>
@@ -234,7 +234,7 @@ export default function MouldInsurancePage() {
       {/* Critical Factors */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Critical Coverage Factors
           </h2>
           
@@ -266,7 +266,7 @@ export default function MouldInsurancePage() {
       {/* Claim Strategy */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Mould Claim Strategy
           </h2>
           
@@ -301,7 +301,7 @@ export default function MouldInsurancePage() {
       {/* Health Documentation */}
       <section className="py-16 bg-red-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <Heart className="w-12 h-12 text-red-600 mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Health Impact Documentation
@@ -333,7 +333,7 @@ export default function MouldInsurancePage() {
       {/* Prevention Tips */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Prevention = Coverage Protection
           </h2>
           
@@ -355,24 +355,24 @@ export default function MouldInsurancePage() {
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-green-600 to-emerald-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Dealing with Mould Issues?
           </h2>
           <p className="text-xl mb-8 text-green-800">
-            Get professional help to maximize your insurance coverage
+            Get professional help to maximise your insurance coverage
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link
               href="/whos-first"
-              className="bg-white text-green-600 hover:bg-green-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-white text-green-600 hover:bg-green-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <Phone className="w-5 h-5" />
               Find Mould Specialists
             </Link>
             <Link
               href="/emergency/checklists/mould"
-              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <CheckCircle className="w-5 h-5" />
               Mould Emergency Checklist

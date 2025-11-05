@@ -29,7 +29,7 @@ export function SEOChecklist() {
               description: '12+ case studies with real value'
             },
             {
-              name: 'Keyword optimization',
+              name: 'Keyword optimisation',
               status: 'complete',
               description: 'Natural keyword placement in titles, headings, alt text'
             },
@@ -61,7 +61,7 @@ export function SEOChecklist() {
             {
               name: 'Robots.txt',
               status: 'complete',
-              description: 'Optimized with AI crawler permissions'
+              description: 'optimised with AI crawler permissions'
             },
             {
               name: 'IndexNow protocol',
@@ -84,7 +84,7 @@ export function SEOChecklist() {
               description: 'CLS, FCP, FID tracking implemented'
             },
             {
-              name: 'Image optimization',
+              name: 'Image optimisation',
               status: 'complete',
               description: 'WebP format with lazy loading'
             },
@@ -94,7 +94,7 @@ export function SEOChecklist() {
               description: '1-year cache TTL for images'
             },
             {
-              name: 'LCP optimization',
+              name: 'LCP optimisation',
               status: 'warning',
               description: 'Currently 2.8s, target <2.5s'
             }
@@ -126,7 +126,7 @@ export function SEOChecklist() {
             {
               name: 'Service schema',
               status: 'complete',
-              description: 'ProfessionalService with offer catalog'
+              description: 'ProfessionalService with offer catalogue'
             }
           ]
         },

@@ -337,7 +337,7 @@ const HealthQuiz: React.FC = () => {
         <CardContent className="space-y-6">
           <div className={`p-6 rounded-lg border-2 ${getRiskBgColor(quizResult.riskLevel)}`}>
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <span className={`px-4 py-2 rounded-full text-white font-semibold ${getRiskColor(quizResult.riskLevel)}`}>
                   {quizResult.category}
                 </span>
@@ -447,7 +447,7 @@ const HealthQuiz: React.FC = () => {
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-4">
-          <div className="flex items-center">
+          <div className="flex items-centre">
             <currentQ.icon className="h-6 w-6 text-orange-600 mr-3" />
             <span className="text-sm font-medium text-gray-500">
               Question {currentQuestion + 1} of {questions.length} - {currentQ.category}
@@ -469,7 +469,7 @@ const HealthQuiz: React.FC = () => {
             className="space-y-3"
           >
             {currentQ.options.map((option) => (
-              <div key={option.value} className="flex items-center space-x-2">
+              <div key={option.value} className="flex items-centre space-x-2">
                 <RadioGroupItem value={option.value} id={option.value} />
                 <Label
                   htmlFor={option.value}

@@ -68,7 +68,7 @@ export default function SewageCleanupPage() {
         {/* Emergency Alert Banner */}
         <section className="bg-red-600 text-white py-4">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <Biohazard className="h-6 w-6 animate-pulse" />
               <p className="font-bold text-lg">
                 SEWAGE EMERGENCY? Call 1300 309 361 - Immediate Hazmat Response
@@ -81,7 +81,7 @@ export default function SewageCleanupPage() {
         {/* Health Warning Banner */}
         <section className="bg-orange-600 text-white py-3">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-3 text-center">
+            <div className="flex items-centre justify-centre gap-3 text-centre">
               <AlertCircle className="h-5 w-5" />
               <p className="font-semibold">
                 HEALTH HAZARD: Do not enter contaminated areas. Professional cleanup required.
@@ -95,10 +95,10 @@ export default function SewageCleanupPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <div>
                 {/* Hazmat Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500/20 rounded-full mb-6">
+                <div className="inline-flex items-centre gap-2 px-4 py-2 bg-red-500/20 rounded-full mb-6">
                   <Biohazard className="h-5 w-5 text-red-600" />
                   <span className="text-red-700 font-semibold">
                     Category 3 Water Specialists
@@ -144,14 +144,14 @@ export default function SewageCleanupPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="tel:1300309361"
-                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-center animate-pulse"
+                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-centre animate-pulse"
                   >
                     <PhoneCall className="inline-block mr-2 h-5 w-5" />
                     Emergency: 1300 309 361
                   </Link>
                   <Link
                     href="/client/instant-quote"
-                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-center"
+                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-centre"
                   >
                     <MessageSquare className="inline-block mr-2 h-5 w-5" />
                     Urgent Cleanup Request
@@ -171,7 +171,7 @@ export default function SewageCleanupPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/equipment/hazmat-cleanup.png"
+                    src="/images/optimised/equipment/hazmat-cleanup.png"
                     alt="Hazmat sewage cleanup equipment and protective gear"
                     fill
                     className="object-contain drop-shadow-2xl"
@@ -193,26 +193,26 @@ export default function SewageCleanupPage() {
         {/* Health Risks Alert */}
         <section className="bg-red-900/50 border-y border-red-600/50 py-8">
           <div className="container mx-auto px-6">
-            <h3 className="text-2xl font-bold text-white text-center mb-6">
+            <h3 className="text-2xl font-bold text-white text-centre mb-6">
               Sewage Contains Dangerous Pathogens
             </h3>
             <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
+              <div className="text-centre">
                 <AlertTriangle className="h-12 w-12 text-red-600 mx-auto mb-3" />
                 <h4 className="font-bold text-white mb-2">E.coli</h4>
                 <p className="text-sm text-red-300">Severe intestinal illness</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <AlertTriangle className="h-12 w-12 text-red-600 mx-auto mb-3" />
                 <h4 className="font-bold text-white mb-2">Salmonella</h4>
                 <p className="text-sm text-red-300">Food poisoning, fever</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <AlertTriangle className="h-12 w-12 text-red-600 mx-auto mb-3" />
                 <h4 className="font-bold text-white mb-2">Hepatitis</h4>
                 <p className="text-sm text-red-300">Liver infection, jaundice</p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <AlertTriangle className="h-12 w-12 text-red-600 mx-auto mb-3" />
                 <h4 className="font-bold text-white mb-2">Parasites</h4>
                 <p className="text-sm text-red-300">Intestinal worms, illness</p>
@@ -224,32 +224,32 @@ export default function SewageCleanupPage() {
         {/* Hazmat Cleanup Process */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Professional Sewage Decontamination Process
             </h2>
 
             <div className="max-w-6xl mx-auto">
               {/* Safety Equipment */}
               <div className="grid md:grid-cols-4 gap-6 mb-12">
-                <div className="bg-gradient-to-br from-red-900/50 to-orange-900/50 rounded-xl p-6 border border-red-500/30 text-center">
+                <div className="bg-gradient-to-br from-red-900/50 to-orange-900/50 rounded-xl p-6 border border-red-500/30 text-centre">
                   <Shield className="h-12 w-12 text-red-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">PPE Suits</h3>
                   <p className="text-sm text-red-700">Full body protection</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-900/50 to-yellow-900/50 rounded-xl p-6 border border-orange-500/30 text-center">
+                <div className="bg-gradient-to-br from-orange-900/50 to-yellow-900/50 rounded-xl p-6 border border-orange-500/30 text-centre">
                   <Wind className="h-12 w-12 text-orange-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">HEPA Filtration</h3>
                   <p className="text-sm text-orange-700">Air purification</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl p-6 border border-blue-500/30 text-center">
+                <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl p-6 border border-blue-500/30 text-centre">
                   <Droplets className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Disinfectants</h3>
                   <p className="text-sm text-blue-700">Hospital-grade</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 rounded-xl p-6 border border-purple-500/30 text-center">
+                <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 rounded-xl p-6 border border-purple-500/30 text-centre">
                   <Gauge className="h-12 w-12 text-purple-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Air Testing</h3>
                   <p className="text-sm text-purple-700">Safety verification</p>
@@ -303,7 +303,7 @@ export default function SewageCleanupPage() {
                   }
                 ].map((step, idx) => (
                   <div key={idx} className="flex gap-8">
-                    <div className={`flex-shrink-0 w-16 h-16 bg-${step.colour}-500 rounded-full flex items-center justify-center text-white font-bold text-xl`}>
+                    <div className={`flex-shrink-0 w-16 h-16 bg-${step.colour}-500 rounded-full flex items-centre justify-centre text-white font-bold text-xl`}>
                       {step.step}
                     </div>
                     <div className="flex-1">
@@ -323,7 +323,7 @@ export default function SewageCleanupPage() {
         {/* Common Sewage Sources */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Common Sewage Cleanup Scenarios
             </h2>
 
@@ -373,7 +373,7 @@ export default function SewageCleanupPage() {
                 }
               ].map((scenario, idx) => (
                 <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">{scenario.source}</h3>
                     <span className={`px-3 py-1 rounded-full text-sm font-bold ${
                       scenario.risk === 'Extreme' ? 'bg-red-600 text-white' : 'bg-orange-600 text-white'
@@ -401,7 +401,7 @@ export default function SewageCleanupPage() {
         {/* Insurance & Documentation */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Insurance Claims & Documentation
             </h2>
 
@@ -463,7 +463,7 @@ export default function SewageCleanupPage() {
 
         {/* Final Emergency CTA */}
         <section className="py-20 bg-gradient-to-r from-red-900/80 to-orange-900/80">
-          <div className="container mx-auto px-6 text-center">
+          <div className="container mx-auto px-6 text-centre">
             <Biohazard className="h-16 w-16 text-red-500 mx-auto mb-6 animate-pulse" />
             <h2 className="text-4xl font-bold text-white mb-6">
               Sewage Emergency? Don't Risk Your Health
@@ -472,7 +472,7 @@ export default function SewageCleanupPage() {
               Category 3 blackwater contains dangerous pathogens that can cause serious illness.
               Our hazmat-certified teams safely decontaminate and restore your property.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
                 className="inline-block px-10 py-5 bg-white text-red-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"

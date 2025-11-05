@@ -55,7 +55,7 @@ export default async function InvoicesPage({
   return (
     <div className="container mx-auto py-8 px-4 space-y-8">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <div>
           <h1 className="text-3xl font-bold">Invoices</h1>
           <p className="text-muted-foreground">Manage your invoices and payments</p>
@@ -91,7 +91,7 @@ export default async function InvoicesPage({
         </CardHeader>
         <CardContent>
           {invoices.length === 0 ? (
-            <div className="text-center py-12">
+            <div className="text-centre py-12">
               <p className="text-muted-foreground mb-4">No invoices found</p>
               <Link href="/invoices/new">
                 <Button variant="outline">
@@ -156,7 +156,7 @@ export default async function InvoicesPage({
 
               {/* Pagination */}
               {totalPages > 1 && (
-                <div className="flex justify-center gap-2 mt-4">
+                <div className="flex justify-centre gap-2 mt-4">
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                     <Link
                       key={p}

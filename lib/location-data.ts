@@ -591,7 +591,7 @@ export const suburbData: Record<string, SuburbData> = {
       'Slope stabilization coordination',
       'Executive home restoration expertise'
     ],
-    localInsights: 'Kenmore\'s distinctive hillside topography requires specialized understanding of water flow patterns and structural considerations for elevated properties. Storm water management is critical due to steep gradients channeling water rapidly downslope.',
+    localInsights: 'Kenmore\'s distinctive hillside topography requires specialised understanding of water flow patterns and structural considerations for elevated properties. Storm water management is critical due to steep gradients channeling water rapidly downslope.',
     serviceAreas: ['Chapel Hill', 'Brookfield', 'Fig Tree Pocket', 'Pullenvale']
   },
   'mt-gravatt': {
@@ -645,7 +645,7 @@ export const suburbData: Record<string, SuburbData> = {
       'Salt corrosion remediation',
       'Marina and boat facility coordination'
     ],
-    localInsights: 'Manly\'s unique bayside location presents distinct challenges from salt air corrosion, tidal influences, and storm surge risks. Properties require specialized treatments for coastal environments including salt-resistant materials and enhanced moisture control. The harbour and marina community demands understanding of both residential and marine facility restoration.',
+    localInsights: 'Manly\'s unique bayside location presents distinct challenges from salt air corrosion, tidal influences, and storm surge risks. Properties require specialised treatments for coastal environments including salt-resistant materials and enhanced moisture control. The harbour and marina community demands understanding of both residential and marine facility restoration.',
     serviceAreas: ['Wynnum', 'Lota', 'Manly West', 'Tingalpa']
   }
 };

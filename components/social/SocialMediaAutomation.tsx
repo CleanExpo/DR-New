@@ -113,11 +113,11 @@ const SocialMediaAutomation: React.FC<SocialMediaAutomationProps> = ({ className
 
   return (
     <div className={`bg-white rounded-lg shadow-lg p-6 ${className}`}>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-centre justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900">Social Media Automation</h2>
         <button
           onClick={connectToAirtable}
-          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          className="flex items-centre gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
         >
           <Share2 className="h-4 w-4" />
           Connect to Airtable
@@ -138,7 +138,7 @@ const SocialMediaAutomation: React.FC<SocialMediaAutomationProps> = ({ className
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
-              <div className={`w-12 h-12 rounded-lg ${template.color} flex items-center justify-center mb-3`}>
+              <div className={`w-12 h-12 rounded-lg ${template.color} flex items-centre justify-centre mb-3`}>
                 <template.icon className="h-6 w-6" />
               </div>
               <h4 className="font-semibold text-gray-900">{template.name}</h4>
@@ -171,11 +171,11 @@ const SocialMediaAutomation: React.FC<SocialMediaAutomationProps> = ({ className
 
       {/* Content Generation */}
       <div className="mb-6">
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-centre justify-between mb-3">
           <h3 className="text-lg font-semibold">Content Creation</h3>
           <button
             onClick={generateContent}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-centre gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Zap className="h-4 w-4" />
             Generate Content
@@ -193,7 +193,7 @@ const SocialMediaAutomation: React.FC<SocialMediaAutomationProps> = ({ className
           <span>
             {customContent.length} / {platforms.find(p => p.id === selectedPlatform)?.maxLength} characters
           </span>
-          <span className="flex items-center gap-1">
+          <span className="flex items-centre gap-1">
             <TrendingUp className="h-4 w-4" />
             Engagement Score: High
           </span>
@@ -253,12 +253,12 @@ const SocialMediaAutomation: React.FC<SocialMediaAutomationProps> = ({ className
         <button
           onClick={schedulePost}
           disabled={!customContent || !scheduleTime}
-          className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+          className="flex-1 flex items-centre justify-centre gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
         >
           <Calendar className="h-5 w-5" />
           Schedule Post
         </button>
-        <button className="flex items-center justify-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+        <button className="flex items-centre justify-centre gap-2 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
           <Clock className="h-5 w-5" />
           Save Draft
         </button>
@@ -266,7 +266,7 @@ const SocialMediaAutomation: React.FC<SocialMediaAutomationProps> = ({ className
 
       {/* Integration Status */}
       <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <div className="flex items-center gap-2 text-yellow-800">
+        <div className="flex items-centre gap-2 text-yellow-800">
           <Share2 className="h-5 w-5" />
           <span className="font-semibold">Airtable Integration Available</span>
         </div>

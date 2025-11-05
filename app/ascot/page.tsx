@@ -39,7 +39,7 @@ export default function AscotPage() {
 
   // Generate all content sections
   const intro = generateIntro(suburb);
-  const heroIntro = `Prestigious Ascot properties deserve Master Restorer expertise. Specializing in ${suburb.demographics.primaryPropertyTypes[0].toLowerCase()} and executive estates near Eagle Farm and Doomben Racecourses. Emergency response within ${suburb.responseTime} to all Ascot ${suburb.postcode} properties.`;
+  const heroIntro = `Prestigious Ascot properties deserve Master Restorer expertise. specialising in ${suburb.demographics.primaryPropertyTypes[0].toLowerCase()} and executive estates near Eagle Farm and Doomben Racecourses. Emergency response within ${suburb.responseTime} to all Ascot ${suburb.postcode} properties.`;
 
   const disasterTypesRaw = generateDisasterTypesSection(suburb);
   const disasterTypes = disasterTypesRaw.map(block => ({

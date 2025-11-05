@@ -160,7 +160,7 @@ const faqs = [
   },
   {
     question: "How do you handle the emotional aspects of trauma cleanup?",
-    answer: "Our technicians are trained to work with compassion and discretion during difficult times. We can recommend grief counseling resources and work quietly and respectfully to minimize additional trauma for families."
+    answer: "Our technicians are trained to work with compassion and discretion during difficult times. We can recommend grief counseling resources and work quietly and respectfully to minimise additional trauma for families."
   }
 ];
 
@@ -213,7 +213,7 @@ export default function BiohazardCleanupPage() {
         
         {/* Emergency Notice */}
         <div className="bg-gradient-to-r from-emergency-500 to-red-600 rounded-xl p-6 text-white mb-8">
-          <div className="flex items-center">
+          <div className="flex items-centre">
             <svg className="w-8 h-8 mr-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
@@ -236,7 +236,7 @@ export default function BiohazardCleanupPage() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-centre justify-centre mb-4">
               <span className="text-2xl font-bold text-red-600">1</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Assessment & Safety</h3>
@@ -252,7 +252,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-centre justify-centre mb-4">
               <span className="text-2xl font-bold text-red-600">2</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Removal & Collection</h3>
@@ -268,7 +268,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-centre justify-centre mb-4">
               <span className="text-2xl font-bold text-red-600">3</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Disinfection & Decon</h3>
@@ -284,7 +284,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-red-100 rounded-full flex items-centre justify-centre mb-4">
               <span className="text-2xl font-bold text-red-600">4</span>
             </div>
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Verification & Disposal</h3>
@@ -309,7 +309,7 @@ export default function BiohazardCleanupPage() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div className="bg-gradient-to-br from-red-50 to-pink-50 border border-red-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-centre justify-centre mb-4">
               <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -322,7 +322,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-centre justify-centre mb-4">
               <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
@@ -335,7 +335,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-centre justify-centre mb-4">
               <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -348,7 +348,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-centre justify-centre mb-4">
               <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
               </svg>
@@ -361,7 +361,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-centre justify-centre mb-4">
               <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
               </svg>
@@ -374,7 +374,7 @@ export default function BiohazardCleanupPage() {
           </div>
           
           <div className="bg-gradient-to-br from-gray-50 to-neutral-100 border border-gray-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-centre justify-centre mb-4">
               <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
@@ -405,25 +405,25 @@ export default function BiohazardCleanupPage() {
                 glove systems to prevent exposure to bloodborne pathogens and biohazardous materials.
               </p>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Full hazmat suits
                 </div>
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Respiratory protection
                 </div>
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Eye and face protection
                 </div>
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -441,25 +441,25 @@ export default function BiohazardCleanupPage() {
                 containment systems, and ATP testing devices for verification.
               </p>
               <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   HEPA air scrubbers
                 </div>
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   Ozone generators
                 </div>
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                   ATP testing devices
                 </div>
-                <div className="flex items-center text-red-600">
+                <div className="flex items-centre text-red-600">
                   <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -591,8 +591,8 @@ export default function BiohazardCleanupPage() {
         </h2>
         
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-centre">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
               <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
@@ -604,8 +604,8 @@ export default function BiohazardCleanupPage() {
             </p>
           </div>
           
-          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-center">
-            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-centre">
+            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
               <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
@@ -613,12 +613,12 @@ export default function BiohazardCleanupPage() {
             <h3 className="text-lg font-semibold text-neutral-900 mb-3">Complete Confidentiality</h3>
             <p className="text-neutral-700 text-sm">
               Strict confidentiality protocols protect privacy. Unmarked vehicles and discrete 
-              service to minimize attention and protect dignity.
+              service to minimise attention and protect dignity.
             </p>
           </div>
           
-          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="bg-white border border-neutral-200 rounded-xl p-6 shadow-sm text-centre">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-centre justify-centre mx-auto mb-4">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
@@ -633,7 +633,7 @@ export default function BiohazardCleanupPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-8 text-center text-white">
+      <section className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-8 text-centre text-white">
         <h2 className="text-3xl font-bold mb-4">
           Need Professional Biohazard Cleanup?
         </h2>
@@ -641,10 +641,10 @@ export default function BiohazardCleanupPage() {
           Don't risk your health or safety. Our IICRC S540 certified specialists provide safe, 
           professional biohazard cleanup with complete confidentiality and compassionate service.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-centre">
           <a
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 bg-white text-red-600 rounded-lg font-bold text-lg hover:bg-red-50 transition-colours"
+            className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-red-600 rounded-lg font-bold text-lg hover:bg-red-50 transition-colours"
           >
             <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -653,7 +653,7 @@ export default function BiohazardCleanupPage() {
           </a>
           <Link
             href="/biohazard-assessment"
-            className="inline-flex items-center justify-center px-8 py-4 bg-red-700 text-white rounded-lg font-bold text-lg hover:bg-red-800 transition-colours"
+            className="inline-flex items-centre justify-centre px-8 py-4 bg-red-700 text-white rounded-lg font-bold text-lg hover:bg-red-800 transition-colours"
           >
             Request Confidential Consultation
           </Link>

@@ -81,7 +81,7 @@ export default function TrustBadges({
           return (
             <div
               key={badge.id}
-              className={`inline-flex items-center gap-2 px-3 py-1.5 ${badge.bg} rounded-full`}
+              className={`inline-flex items-centre gap-2 px-3 py-1.5 ${badge.bg} rounded-full`}
               title={badge.description}
             >
               <Icon className={`w-4 h-4 ${badge.color}`} />
@@ -101,9 +101,9 @@ export default function TrustBadges({
           return (
             <div
               key={badge.id}
-              className="flex flex-col items-center text-center p-3"
+              className="flex flex-col items-centre text-centre p-3"
             >
-              <div className={`w-12 h-12 ${badge.bg} rounded-full flex items-center justify-center mb-2`}>
+              <div className={`w-12 h-12 ${badge.bg} rounded-full flex items-centre justify-centre mb-2`}>
                 <Icon className={`w-6 h-6 ${badge.color}`} />
               </div>
               <div className="text-xs font-semibold text-gray-700">{badge.title}</div>
@@ -124,7 +124,7 @@ export default function TrustBadges({
               key={badge.id}
               className={`flex items-start gap-4 p-4 ${badge.bg} rounded-lg border-l-4 ${badge.color.replace('text-', 'border-')}`}
             >
-              <div className={`flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center`}>
+              <div className={`flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-centre justify-centre`}>
                 <Icon className={`w-5 h-5 ${badge.color}`} />
               </div>
               <div>
@@ -148,7 +148,7 @@ export default function TrustBadges({
             key={badge.id}
             className={`flex items-start gap-4 p-6 bg-white rounded-lg shadow-md border-t-4 ${badge.color.replace('text-', 'border-')} hover:shadow-lg transition-shadow`}
           >
-            <div className={`flex-shrink-0 w-12 h-12 ${badge.bg} rounded-lg flex items-center justify-center`}>
+            <div className={`flex-shrink-0 w-12 h-12 ${badge.bg} rounded-lg flex items-centre justify-centre`}>
               <Icon className={`w-6 h-6 ${badge.color}`} />
             </div>
             <div>
@@ -165,30 +165,30 @@ export default function TrustBadges({
 // Specialised badge for certification logos
 export function CertificationLogos({ className = '' }: { className?: string }) {
   return (
-    <div className={`flex flex-wrap items-center justify-center gap-8 ${className}`}>
-      <div className="text-center">
-        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-blue-200 h-24 w-32 flex items-center justify-center mb-2">
+    <div className={`flex flex-wrap items-centre justify-centre gap-8 ${className}`}>
+      <div className="text-centre">
+        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-blue-200 h-24 w-32 flex items-centre justify-centre mb-2">
           <div className="text-blue-600 font-bold text-lg">IICRC</div>
         </div>
         <p className="text-xs text-gray-600 font-medium">Certified Firm</p>
       </div>
 
-      <div className="text-center">
-        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-green-200 h-24 w-32 flex items-center justify-center mb-2">
+      <div className="text-centre">
+        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-green-200 h-24 w-32 flex items-centre justify-centre mb-2">
           <div className="text-green-600 font-bold text-lg">CARSI</div>
         </div>
         <p className="text-xs text-gray-600 font-medium">Member Company</p>
       </div>
 
-      <div className="text-center">
-        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-purple-200 h-24 w-32 flex items-center justify-center mb-2">
+      <div className="text-centre">
+        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-purple-200 h-24 w-32 flex items-centre justify-centre mb-2">
           <Shield className="w-12 h-12 text-purple-600" />
         </div>
         <p className="text-xs text-gray-600 font-medium">$20M Insured</p>
       </div>
 
-      <div className="text-center">
-        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-orange-200 h-24 w-32 flex items-center justify-center mb-2">
+      <div className="text-centre">
+        <div className="bg-white p-4 rounded-lg shadow-md border-2 border-orange-200 h-24 w-32 flex items-centre justify-centre mb-2">
           <div className="text-orange-600 font-bold text-sm">Master<br/>Restorer</div>
         </div>
         <p className="text-xs text-gray-600 font-medium">Qualified Team</p>
@@ -210,10 +210,10 @@ export function InsurancePartnerLogos({ className = '' }: { className?: string }
 
   return (
     <div className={className}>
-      <h3 className="text-center text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
+      <h3 className="text-centre text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wide">
         Trusted by Major Insurers
       </h3>
-      <div className="flex flex-wrap items-center justify-center gap-6">
+      <div className="flex flex-wrap items-centre justify-centre gap-6">
         {partners.map((partner) => (
           <div
             key={partner.name}

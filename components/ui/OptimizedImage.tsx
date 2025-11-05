@@ -21,7 +21,7 @@ interface OptimizedImageProps {
 }
 
 /**
- * Optimized Image component for disaster recovery images
+ * optimised Image component for disaster recovery images
  * Features:
  * - Automatic WebP conversion
  * - Lazy loading with blur placeholder
@@ -65,12 +65,12 @@ export default function OptimizedImage({
   if (hasError) {
     return (
       <div
-        className={`bg-gray-200 flex items-center justify-center ${className}`}
+        className={`bg-gray-200 flex items-centre justify-centre ${className}`}
         style={{ width, height }}
         role="img"
         aria-label={`Failed to load: ${alt}`}
       >
-        <div className="text-gray-500 text-center p-4">
+        <div className="text-gray-500 text-centre p-4">
           <div className="text-sm font-medium">Image unavailable</div>
           <div className="text-xs text-gray-400 mt-1">Disaster recovery service image</div>
         </div>
@@ -107,7 +107,7 @@ export default function OptimizedImage({
         // Performance optimizations
         style={{
           objectFit: 'cover',
-          objectPosition: 'center'
+          objectPosition: 'centre'
         }}
       />
 

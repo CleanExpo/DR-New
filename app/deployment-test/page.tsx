@@ -5,17 +5,17 @@ export default function DeploymentTest() {
   const hasPublicUrl = typeof window !== 'undefined' && window.location.href.includes('dr-new-ten.vercel.app');
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-2xl w-full">
-        <h1 className="text-3xl font-bold text-center mb-8">Deployment Test</h1>
+        <h1 className="text-3xl font-bold text-centre mb-8">Deployment Test</h1>
 
         <div className="space-y-4">
-          <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+          <div className="flex items-centre justify-between p-4 bg-green-50 rounded-lg">
             <span className="font-medium">Page Loaded Successfully</span>
             <span className="text-green-600 text-xl">✅</span>
           </div>
 
-          <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+          <div className="flex items-centre justify-between p-4 bg-blue-50 rounded-lg">
             <span className="font-medium">Vercel Domain</span>
             <span className={`text-xl ${hasPublicUrl ? 'text-green-600' : 'text-yellow-600'}`}>
               {hasPublicUrl ? '✅' : '⚠️'}
@@ -43,7 +43,7 @@ export default function DeploymentTest() {
           </div>
         </div>
 
-        <div className="mt-8 text-center">
+        <div className="mt-8 text-centre">
           <p className="text-sm text-gray-600">
             If you can see this page, the basic deployment is working.
             <br />

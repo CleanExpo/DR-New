@@ -16,8 +16,8 @@ export default function SouthBrisbaneWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <Building2 className="h-12 w-12 text-blue-300" />
             </div>
@@ -36,7 +36,7 @@ export default function SouthBrisbaneWaterDamagePage() {
               <p className="text-lg">High-Rise & Commercial Expert</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Building2 className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">High-Rise Expert</p>
@@ -60,7 +60,7 @@ export default function SouthBrisbaneWaterDamagePage() {
       {/* South Brisbane Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             South Brisbane Water Damage Services
           </h2>
 
@@ -71,23 +71,23 @@ export default function SouthBrisbaneWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">South Brisbane Coverage</h3>
                 <p className="text-lg mb-4">
                   South Brisbane is a dynamic precinct featuring cultural venues, high-rise living,
-                  and major commercial developments. Our specialized team understands the unique
+                  and major commercial developments. Our specialised team understands the unique
                   water damage challenges of this riverside location.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Cultural Centre precinct</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Brisbane Convention Centre area</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>High-rise apartment towers</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Grey Street dining precinct</span>
                   </li>
@@ -99,22 +99,22 @@ export default function SouthBrisbaneWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">High-Rise Challenges</h3>
                 <p className="text-lg mb-4">
                   South Brisbane's numerous high-rise buildings present unique water damage
-                  scenarios requiring specialized equipment and expertise.
+                  scenarios requiring specialised equipment and expertise.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Multi-floor water migration</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Balcony and facade leaks</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Fire sprinkler activation</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Basement parking flooding</span>
                   </li>
@@ -122,13 +122,13 @@ export default function SouthBrisbaneWaterDamagePage() {
               </Card>
             </div>
 
-            {/* Specialized Services */}
+            {/* specialised Services */}
             <Card className="p-8 bg-gradient-to-r from-purple-50 to-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
-                Specialized South Brisbane Services
+              <h3 className="text-2xl font-bold text-centre mb-6">
+                specialised South Brisbane Services
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Building2 className="h-10 w-10 mx-auto mb-4 text-purple-600" />
                   <h4 className="font-bold text-lg mb-2">High-Rise Response</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -138,7 +138,7 @@ export default function SouthBrisbaneWaterDamagePage() {
                     <li>• Body corporate liaison</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Star className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Cultural Venues</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -148,7 +148,7 @@ export default function SouthBrisbaneWaterDamagePage() {
                     <li>• Minimal disruption</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Droplets className="h-10 w-10 mx-auto mb-4 text-green-600" />
                   <h4 className="font-bold text-lg mb-2">Commercial</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -166,7 +166,7 @@ export default function SouthBrisbaneWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             South Brisbane Water Damage Emergency?
           </h2>

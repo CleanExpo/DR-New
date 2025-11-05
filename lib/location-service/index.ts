@@ -84,7 +84,7 @@ const MAJOR_CITIES: LocationData[] = [
   }
 ];
 
-// Regional centers
+// Regional centres
 const REGIONAL_CENTERS: LocationData[] = [
   {
     id: 'newcastle',
@@ -261,7 +261,7 @@ export async function getLocationBySlug(slug: string): Promise<LocationData | nu
  * Get locations within radius of a point
  */
 export async function getLocationsWithinRadius(
-  center: { lat: number; lng: number },
+  centre: { lat: number; lng: number },
   radiusKm: number
 ): Promise<LocationData[]> {
   const allLocations = await getAustralianLocations();
@@ -270,7 +270,7 @@ export async function getLocationsWithinRadius(
     if (!location.coordinates) return false;
 
     const distance = calculateDistance(
-      center,
+      centre,
       location.coordinates
     );
 

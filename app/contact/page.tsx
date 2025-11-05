@@ -149,10 +149,10 @@ export default function ModernContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-centre"
           >
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-blue-600/20 border border-red-600/30"
+              className="inline-flex items-centre gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-blue-600/20 border border-red-600/30"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -184,7 +184,7 @@ export default function ModernContactPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {contactInfo.map((info, i) => {
               const gradientClassName = 'absolute inset-0 bg-gradient-to-r ' + info.colour + ' rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all';
-              const iconClassName = 'inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ' + info.colour + ' bg-opacity-20';
+              const iconClassName = 'inline-flex items-centre justify-centre w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ' + info.colour + ' bg-opacity-20';
               
               return (
                 <motion.div
@@ -223,7 +223,7 @@ export default function ModernContactPage() {
                 className="max-w-4xl overflow-hidden mx-auto"
               >
                 <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-purple-500/30">
-                  <div className="text-center mb-8">
+                  <div className="text-centre mb-8">
                     <h2 className="text-3xl font-bold mb-2">
                       <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
                         Emergency Contact Form
@@ -406,7 +406,7 @@ export default function ModernContactPage() {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-xl" />
                       <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
-                      <div className="relative bg-gradient-to-r from-red-600 to-blue-700 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
+                      <div className="relative bg-gradient-to-r from-red-600 to-blue-700 rounded-xl px-8 py-4 font-bold text-lg flex items-centre justify-centre gap-2">
                         {isSubmitting ? (
                           <>
                             <motion.div
@@ -427,16 +427,16 @@ export default function ModernContactPage() {
                     </motion.button>
 
                     {/* Trust Indicators */}
-                    <div className="flex items-center justify-center gap-6 text-xs text-gray-700">
-                      <div className="flex items-center gap-1">
+                    <div className="flex items-centre justify-centre gap-6 text-xs text-gray-700">
+                      <div className="flex items-centre gap-1">
                         <ShieldCheckIcon className="w-4 h-4" />
                         SSL Secured
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-centre gap-1">
                         <CheckCircleIcon className="w-4 h-4" />
                         IICRC Certified
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-centre gap-1">
                         <SparklesIcon className="w-4 h-4" />
                         Instant Response
                       </div>
@@ -448,7 +448,7 @@ export default function ModernContactPage() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="max-w-2xl mx-auto text-center"
+                className="max-w-2xl mx-auto text-centre"
               >
                 <div className="success bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-12 border border-green-500/30" role="alert" aria-live="polite">
                   <motion.div
@@ -534,7 +534,7 @@ export default function ModernContactPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-4xl overflow-hidden mx-auto text-center"
+          className="max-w-4xl overflow-hidden mx-auto text-centre"
         >
           <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-3xl p-12 border border-blue-500/30">
             <ChatBubbleOvalLeftEllipsisIcon className="w-16 h-16 text-blue-600 mx-auto mb-6" />
@@ -549,7 +549,7 @@ export default function ModernContactPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
+              className="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-centre gap-2"
             >
               <ChatBubbleOvalLeftEllipsisIcon className="w-5 h-5" />
               Start Live Chat

@@ -441,7 +441,7 @@ export function generateOrganizationSchema(config: {
 }
 
 /**
- * Generate LocalBusiness with ratings and service catalog
+ * Generate LocalBusiness with ratings and service catalogue
  */
 export function generateLocalBusinessWithServices(config: {
   name: string;

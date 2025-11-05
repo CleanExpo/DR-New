@@ -133,14 +133,14 @@ export function PerformanceWrapper({ children }: { children: React.ReactNode }) 
               (e.currentTarget as HTMLAnchorElement).getAttribute('href') || ''
             );
             if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              target.scrollIntoView({ behaviour: 'smooth', block: 'start' });
             }
           });
         });
       }
     };
 
-    // Optimize third-party scripts
+    // optimise third-party scripts
     const optimizeThirdPartyScripts = () => {
       // Load Google Analytics after page load
       if (typeof window !== 'undefined' && window.gtag) {

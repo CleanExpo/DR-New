@@ -68,7 +68,7 @@ export default function BurstPipeRepairPage() {
         {/* Emergency Alert Banner */}
         <section className="bg-red-600 text-white py-4">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <Droplets className="h-6 w-6 animate-bounce" />
               <p className="font-bold text-lg">
                 BURST PIPE EMERGENCY? Call 1300 309 361 - Stop Water Now!
@@ -81,7 +81,7 @@ export default function BurstPipeRepairPage() {
         {/* Emergency Steps Banner */}
         <section className="bg-orange-600 text-white py-3">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-6 text-center text-sm">
+            <div className="flex items-centre justify-centre gap-6 text-centre text-sm">
               <span><strong>1.</strong> Turn off water main</span>
               <span><strong>2.</strong> Call 1300 309 361</span>
               <span><strong>3.</strong> Clear area of valuables</span>
@@ -94,10 +94,10 @@ export default function BurstPipeRepairPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <div>
                 {/* Emergency Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-6">
+                <div className="inline-flex items-centre gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-6">
                   <Wrench className="h-5 w-5 text-blue-600" />
                   <span className="text-blue-700 font-semibold">
                     Emergency Pipe Repair Specialists
@@ -143,14 +143,14 @@ export default function BurstPipeRepairPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="tel:1300309361"
-                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-center animate-pulse"
+                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-centre animate-pulse"
                   >
                     <PhoneCall className="inline-block mr-2 h-5 w-5" />
                     Call 1300 309 361 NOW
                   </Link>
                   <Link
                     href="/client/instant-quote"
-                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-center"
+                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-centre"
                   >
                     <MessageSquare className="inline-block mr-2 h-5 w-5" />
                     Emergency Repair Request
@@ -173,7 +173,7 @@ export default function BurstPipeRepairPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/damage/3D Burst Water Pipe.png"
+                    src="/images/optimised/damage/3D Burst Water Pipe.png"
                     alt="Burst pipe emergency repair visualization"
                     fill
                     className="object-contain drop-shadow-2xl"
@@ -195,7 +195,7 @@ export default function BurstPipeRepairPage() {
         {/* Water Damage Prevention Alert */}
         <section className="bg-blue-900/30 border-y border-blue-600/30 py-6">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <Clock className="h-6 w-6 text-blue-600 animate-pulse" />
               <p className="text-white font-semibold">
                 A burst pipe can release 1,000L+ per hour. Immediate action prevents structural damage and mould growth.
@@ -207,35 +207,35 @@ export default function BurstPipeRepairPage() {
         {/* Emergency Response Process */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Emergency Burst Pipe Response Protocol
             </h2>
 
             <div className="max-w-6xl mx-auto">
               {/* Response Time Grid */}
               <div className="grid md:grid-cols-4 gap-6 mb-12">
-                <div className="bg-gradient-to-br from-red-900/50 to-orange-900/50 rounded-xl p-6 border border-red-500/30 text-center">
+                <div className="bg-gradient-to-br from-red-900/50 to-orange-900/50 rounded-xl p-6 border border-red-500/30 text-centre">
                   <Clock className="h-12 w-12 text-red-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Dispatch</h3>
                   <p className="text-3xl font-bold text-red-600 mb-2">15min</p>
                   <p className="text-sm text-red-700">Emergency call-out</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-900/50 to-yellow-900/50 rounded-xl p-6 border border-orange-500/30 text-center">
+                <div className="bg-gradient-to-br from-orange-900/50 to-yellow-900/50 rounded-xl p-6 border border-orange-500/30 text-centre">
                   <Zap className="h-12 w-12 text-orange-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Water Stop</h3>
                   <p className="text-3xl font-bold text-orange-600 mb-2">5min</p>
                   <p className="text-sm text-orange-700">On-site arrival</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 rounded-xl p-6 border border-blue-500/30 text-center">
+                <div className="bg-gradient-to-br from-blue-900/50 to-cyan-900/50 rounded-xl p-6 border border-blue-500/30 text-centre">
                   <Wrench className="h-12 w-12 text-cyan-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Repair</h3>
                   <p className="text-3xl font-bold text-cyan-600 mb-2">2-4hr</p>
                   <p className="text-sm text-cyan-700">Permanent fix</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-xl p-6 border border-green-500/30 text-center">
+                <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-xl p-6 border border-green-500/30 text-centre">
                   <Droplets className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Cleanup</h3>
                   <p className="text-3xl font-bold text-emerald-600 mb-2">Same Day</p>
@@ -276,7 +276,7 @@ export default function BurstPipeRepairPage() {
                   }
                 ].map((step, idx) => (
                   <div key={idx} className="flex gap-8">
-                    <div className={`flex-shrink-0 w-20 h-20 bg-${step.colour}-500 rounded-full flex items-center justify-center text-white font-bold text-sm`}>
+                    <div className={`flex-shrink-0 w-20 h-20 bg-${step.colour}-500 rounded-full flex items-centre justify-centre text-white font-bold text-sm`}>
                       {step.time}
                     </div>
                     <div className="flex-1">
@@ -296,7 +296,7 @@ export default function BurstPipeRepairPage() {
         {/* Common Burst Pipe Causes */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Common Causes of Burst Pipes in Brisbane
             </h2>
 
@@ -346,7 +346,7 @@ export default function BurstPipeRepairPage() {
                 }
               ].map((item, idx) => (
                 <div key={idx} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">{item.cause}</h3>
                     <span className={`px-3 py-1 rounded-full text-sm font-bold ${
                       item.urgency === 'High' ? 'bg-red-600 text-white' : 'bg-orange-600 text-white'
@@ -374,7 +374,7 @@ export default function BurstPipeRepairPage() {
         {/* Pipe Types & Repair Methods */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Pipe Types & Repair Methods
             </h2>
 
@@ -483,12 +483,12 @@ export default function BurstPipeRepairPage() {
         {/* Service Areas */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Emergency Pipe Repair Service Areas
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Brisbane Metro</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Wrench className="h-12 w-12 text-cyan-600 mx-auto mb-4" />
@@ -500,7 +500,7 @@ export default function BurstPipeRepairPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Ipswich</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Settings className="h-12 w-12 text-cyan-600 mx-auto mb-4" />
@@ -512,7 +512,7 @@ export default function BurstPipeRepairPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Logan</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Home className="h-12 w-12 text-cyan-600 mx-auto mb-4" />
@@ -529,7 +529,7 @@ export default function BurstPipeRepairPage() {
 
         {/* Final Emergency CTA */}
         <section className="py-20 bg-gradient-to-r from-blue-900/80 to-cyan-900/80">
-          <div className="container mx-auto px-6 text-center">
+          <div className="container mx-auto px-6 text-centre">
             <Droplets className="h-16 w-16 text-cyan-500 mx-auto mb-6 animate-bounce" />
             <h2 className="text-4xl font-bold text-white mb-6">
               Stop the Flood - Save Your Property
@@ -538,7 +538,7 @@ export default function BurstPipeRepairPage() {
               Every minute of delay means more damage. Our emergency plumbers carry everything
               needed to stop leaks and begin restoration immediately.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
                 className="inline-block px-10 py-5 bg-white text-blue-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"

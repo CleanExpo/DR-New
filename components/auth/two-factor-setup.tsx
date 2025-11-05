@@ -216,7 +216,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
-        <div className="flex items-center gap-3">
+        <div className="flex items-centre gap-3">
           <Shield className="w-8 h-8 text-blue-600" />
           <div>
             <CardTitle>Two-Factor Authentication Setup</CardTitle>
@@ -246,7 +246,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                   className="cursor-pointer hover:border-blue-500 transition-colors"
                   onClick={() => handleMethodSelect('app')}
                 >
-                  <CardContent className="p-6 text-center space-y-3">
+                  <CardContent className="p-6 text-centre space-y-3">
                     <Smartphone className="w-12 h-12 mx-auto text-blue-600" />
                     <h3 className="font-semibold">Authenticator App</h3>
                     <p className="text-sm text-gray-200">
@@ -260,7 +260,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                   className="cursor-pointer hover:border-blue-500 transition-colors"
                   onClick={() => handleMethodSelect('sms')}
                 >
-                  <CardContent className="p-6 text-center space-y-3">
+                  <CardContent className="p-6 text-centre space-y-3">
                     <Mail className="w-12 h-12 mx-auto text-green-600" />
                     <h3 className="font-semibold">SMS</h3>
                     <p className="text-sm text-gray-200">
@@ -274,7 +274,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                   className="cursor-pointer hover:border-blue-500 transition-colors"
                   onClick={() => handleMethodSelect('email')}
                 >
-                  <CardContent className="p-6 text-center space-y-3">
+                  <CardContent className="p-6 text-centre space-y-3">
                     <Mail className="w-12 h-12 mx-auto text-purple-600" />
                     <h3 className="font-semibold">Email</h3>
                     <p className="text-sm text-gray-200">
@@ -303,7 +303,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                       Scan this QR code with your authenticator app:
                     </p>
                     
-                    <div className="flex justify-center p-4 bg-white rounded-lg">
+                    <div className="flex justify-centre p-4 bg-white rounded-lg">
                       {qrCode && (
                         <img src={qrCode} alt="2FA QR Code" className="w-48 h-48" />
                       )}
@@ -313,7 +313,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
                       <p className="text-sm text-gray-200">
                         Or enter this code manually:
                       </p>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-centre gap-2">
                         <code className="flex-1 p-2 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">
                           {secret}
                         </code>
@@ -483,7 +483,7 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
 
                 <div className="grid grid-cols-2 gap-2 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg font-mono text-sm">
                   {backupCodes.map((code, index) => (
-                    <div key={index} className="flex items-center gap-2">
+                    <div key={index} className="flex items-centre gap-2">
                       <span>{code}</span>
                     </div>
                   ))}

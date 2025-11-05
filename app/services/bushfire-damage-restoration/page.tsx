@@ -247,19 +247,19 @@ export default function BushfireDamageRestorationPage() {
 
               {/* Bushfire Statistics */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <div className="text-2xl font-bold">3,000+</div>
                   <div className="text-sm">Homes Lost Annually</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <div className="text-2xl font-bold">$1.8B</div>
                   <div className="text-sm">Annual Damage Cost</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <div className="text-2xl font-bold">24hr</div>
                   <div className="text-sm">Critical Window</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <div className="text-2xl font-bold">100%</div>
                   <div className="text-sm">Insurance Coverage</div>
                 </div>
@@ -269,7 +269,7 @@ export default function BushfireDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="/claim"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -278,7 +278,7 @@ export default function BushfireDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/emergency/checklists/bushfire"
-                  className="bg-white text-orange-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-50 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-white text-orange-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-50 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -289,7 +289,7 @@ export default function BushfireDamageRestorationPage() {
 
               {/* Critical Warning */}
               <div className="mt-8 bg-red-600/30 border-2 border-red-400 rounded-lg p-4">
-                <p className="font-semibold flex items-center gap-2">
+                <p className="font-semibold flex items-centre gap-2">
                   <AlertTriangle className="w-5 h-5" />
                   DO NOT enter fire-damaged property until declared safe by authorities
                 </p>
@@ -321,10 +321,10 @@ export default function BushfireDamageRestorationPage() {
         {/* Restoration Process */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Bushfire Restoration Process
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-centre text-gray-200 mb-12 max-w-3xl mx-auto">
               Systematic approach developed from decades of Australian bushfire recovery
             </p>
 
@@ -370,10 +370,10 @@ export default function BushfireDamageRestorationPage() {
         {/* High Risk Areas */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Australian Bushfire Risk Areas We Service
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12">
+            <p className="text-xl text-centre text-gray-200 mb-12">
               Specialist teams positioned in all high-risk bushfire zones
             </p>
 
@@ -411,7 +411,7 @@ export default function BushfireDamageRestorationPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
                 The Hidden Danger: Smoke & Soot Damage
               </h2>
 
@@ -470,7 +470,7 @@ export default function BushfireDamageRestorationPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
                 Bushfire Insurance Claims Support
               </h2>
 
@@ -536,7 +536,7 @@ export default function BushfireDamageRestorationPage() {
         {/* Community Support */}
         <section className="py-16 bg-orange-50">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-centre">
               <Heart className="w-16 h-16 text-orange-600 mx-auto mb-6" />
               <h2 className="text-3xl font-bold mb-6">
                 Supporting Australian Communities Through Recovery
@@ -565,7 +565,7 @@ export default function BushfireDamageRestorationPage() {
         <section className="py-20 bg-gradient-to-br from-orange-900 to-red-800 text-white">
           <div className="container mx-auto px-6">
             <motion.div 
-              className="max-w-4xl mx-auto text-center"
+              className="max-w-4xl mx-auto text-centre"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -588,10 +588,10 @@ export default function BushfireDamageRestorationPage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-centre">
                 <motion.a
                   href="/claim"
-                  className="bg-white text-orange-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-50 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-white text-orange-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-50 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -600,7 +600,7 @@ export default function BushfireDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/claim"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

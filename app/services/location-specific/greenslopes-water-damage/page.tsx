@@ -16,8 +16,8 @@ export default function GreenslopesWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <Hospital className="h-12 w-12 text-blue-300" />
             </div>
@@ -37,7 +37,7 @@ export default function GreenslopesWaterDamagePage() {
               <p className="text-lg">Hospital & Medical Facility Expert</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Hospital className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">Medical Specialist</p>
@@ -61,7 +61,7 @@ export default function GreenslopesWaterDamagePage() {
       {/* Greenslopes Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Greenslopes Water Damage Services
           </h2>
 
@@ -72,23 +72,23 @@ export default function GreenslopesWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">Greenslopes Coverage Areas</h3>
                 <p className="text-lg mb-4">
                   Greenslopes is home to major medical facilities, established residential areas,
-                  and growing commercial precincts. Our specialized team understands the critical
+                  and growing commercial precincts. Our specialised team understands the critical
                   nature of water damage in this diverse suburb.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Greenslopes Private Hospital precinct</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Logan Road commercial strip</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Chatsworth Road businesses</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Residential streets and units</span>
                   </li>
@@ -100,22 +100,22 @@ export default function GreenslopesWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">Critical Facility Expertise</h3>
                 <p className="text-lg mb-4">
                   Greenslopes Private Hospital and surrounding medical facilities require
-                  specialized water damage response to maintain critical operations.
+                  specialised water damage response to maintain critical operations.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Hospital-grade sanitation protocols</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Medical equipment protection</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Minimal operational disruption</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Compliance with health standards</span>
                   </li>
@@ -125,11 +125,11 @@ export default function GreenslopesWaterDamagePage() {
 
             {/* Medical Facility Focus */}
             <Card className="p-8 bg-gradient-to-r from-red-50 to-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
-                Specialized Greenslopes Medical Facility Services
+              <h3 className="text-2xl font-bold text-centre mb-6">
+                specialised Greenslopes Medical Facility Services
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Hospital className="h-10 w-10 mx-auto mb-4 text-red-600" />
                   <h4 className="font-bold text-lg mb-2">Hospital Response</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -139,7 +139,7 @@ export default function GreenslopesWaterDamagePage() {
                     <li>• 24/7 availability</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Droplets className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Medical Suites</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -149,7 +149,7 @@ export default function GreenslopesWaterDamagePage() {
                     <li>• Rapid response teams</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Shield className="h-10 w-10 mx-auto mb-4 text-green-600" />
                   <h4 className="font-bold text-lg mb-2">Compliance</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -168,7 +168,7 @@ export default function GreenslopesWaterDamagePage() {
       {/* Greenslopes Property Types */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Water Damage Solutions for All Greenslopes Properties
           </h2>
 
@@ -188,7 +188,7 @@ export default function GreenslopesWaterDamagePage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg mb-3">Specialized Services:</h4>
+                  <h4 className="font-bold text-lg mb-3">specialised Services:</h4>
                   <ul className="list-disc list-inside space-y-2">
                     <li>Priority response protocols</li>
                     <li>Sterile environment restoration</li>
@@ -257,13 +257,13 @@ export default function GreenslopesWaterDamagePage() {
       {/* Why Choose Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Greenslopes Trusts Our Emergency Service
           </h2>
 
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <Hospital className="h-12 w-12 mx-auto mb-4 text-red-600" />
                 <h3 className="font-bold text-lg mb-2">Medical Certified</h3>
                 <p className="text-sm text-gray-700">
@@ -271,7 +271,7 @@ export default function GreenslopesWaterDamagePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <MapPin className="h-12 w-12 mx-auto mb-4 text-blue-600" />
                 <h3 className="font-bold text-lg mb-2">Local Knowledge</h3>
                 <p className="text-sm text-gray-700">
@@ -279,7 +279,7 @@ export default function GreenslopesWaterDamagePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <Shield className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="font-bold text-lg mb-2">Master Restorer</h3>
                 <p className="text-sm text-gray-700">
@@ -287,7 +287,7 @@ export default function GreenslopesWaterDamagePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <Clock className="h-12 w-12 mx-auto mb-4 text-purple-600" />
                 <h3 className="font-bold text-lg mb-2">Priority Response</h3>
                 <p className="text-sm text-gray-700">
@@ -297,10 +297,10 @@ export default function GreenslopesWaterDamagePage() {
             </div>
 
             <Card className="mt-8 p-8 bg-red-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Greenslopes Hospital Precinct Emergency Protocol
               </h3>
-              <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="grid md:grid-cols-3 gap-6 text-centre">
                 <div>
                   <div className="text-3xl font-bold text-red-600 mb-2">Priority 1</div>
                   <p className="font-semibold">Medical Facilities</p>
@@ -324,7 +324,7 @@ export default function GreenslopesWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-red-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Greenslopes Water Damage Emergency?
           </h2>

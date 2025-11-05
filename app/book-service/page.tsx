@@ -106,7 +106,7 @@ export default function BookServicePage() {
   
   // Scroll to top when step changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behaviour: 'smooth' });
   }, [currentStep]);
 
   // Enhanced validation functions
@@ -340,12 +340,12 @@ export default function BookServicePage() {
       {/* Header */}
       <div className="bg-white border-b sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Book Restoration Service</h1>
               <p className="text-sm text-gray-700">Professional disaster recovery services nationwide</p>
             </div>
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-centre gap-4">
               <div className="text-right">
                 <p className="text-sm text-gray-700">Initial Assessment Fee</p>
                 <p className="text-2xl font-bold text-gray-900">$2,750</p>
@@ -359,12 +359,12 @@ export default function BookServicePage() {
       {/* Progress Bar */}
       <div className="bg-white border-b" role="navigation" aria-label="Form progress">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-centre justify-between">
             {[1, 2, 3, 4, 5].map((step) => (
               <div key={step} className="flex-1">
-                <div className="flex items-center">
+                <div className="flex items-centre">
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
+                    className={`w-10 h-10 rounded-full flex items-centre justify-centre font-semibold transition-all duration-300 ${
                       step < currentStep
                         ? 'bg-green-500 text-white ring-2 ring-green-200'
                         : step === currentStep
@@ -404,12 +404,12 @@ export default function BookServicePage() {
               </div>
             ))}
           </div>
-          <div className="mt-2 text-center">
+          <div className="mt-2 text-centre">
             <div className="text-sm text-gray-700">
               Step {currentStep} of 5
             </div>
             <div className="mt-2">
-              <div className="flex items-center justify-center gap-2">
+              <div className="flex items-centre justify-centre gap-2">
                 <div className="text-lg font-semibold text-blue-600">
                   {calculateCompletionPercentage()}% Complete
                 </div>
@@ -918,7 +918,7 @@ export default function BookServicePage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Upload Photos (Optional)
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400 transition-colours">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-centre hover:border-gray-400 transition-colours">
                     <Camera className="h-12 w-12 text-gray-700 mx-auto mb-3" />
                     <p className="text-sm text-gray-700">
                       Drag & drop photos here, or click to select
@@ -1046,7 +1046,7 @@ export default function BookServicePage() {
 
                 {/* Secure Payment Notice */}
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <Shield className="h-5 w-5 text-green-600" />
                     <div>
                       <p className="font-medium text-green-900">Secure Payment Processing</p>
@@ -1063,7 +1063,7 @@ export default function BookServicePage() {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours flex items-center gap-2"
+                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours flex items-centre gap-2"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back
@@ -1074,7 +1074,7 @@ export default function BookServicePage() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center gap-2"
+                  className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre gap-2"
                 >
                   Next
                   <ArrowRight className="h-4 w-4" />
@@ -1083,7 +1083,7 @@ export default function BookServicePage() {
                 <button
                   type="submit"
                   disabled={isProcessing}
-                  className="ml-auto px-8 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colours flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="ml-auto px-8 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800 transition-colours flex items-centre gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isProcessing ? (
                     <>
@@ -1102,16 +1102,16 @@ export default function BookServicePage() {
           </form>
 
           {/* Trust Badges */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-700">
-            <div className="flex items-center gap-2">
+          <div className="mt-8 flex flex-wrap items-centre justify-centre gap-6 text-sm text-gray-700">
+            <div className="flex items-centre gap-2">
               <Shield className="h-5 w-5 text-green-600" />
               <span>SSL Secured</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <CheckCircle className="h-5 w-5 text-blue-600" />
               <span>IICRC Certified Contractors</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Clock className="h-5 w-5 text-blue-700" />
               <span>24/7 Online Emergency Response</span>
             </div>

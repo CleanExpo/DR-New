@@ -84,7 +84,7 @@ const IndoorEnvironmentalHealthPage = () => {
     {
       title: 'Microbiologists',
       icon: Microscope,
-      description: 'Laboratory experts analyzing biological contaminants',
+      description: 'Laboratory experts analysing biological contaminants',
       certifications: ['ASM', 'AIHA', 'EPA']
     },
     {
@@ -276,10 +276,10 @@ const IndoorEnvironmentalHealthPage = () => {
       />
 
       {/* Hero Section with Overlay */}
-      <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[600px] flex items-centre justify-centre overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/optimized/damage/Mould Remediation - Black Mould.png"
+            src="/images/optimised/damage/Mould Remediation - Black Mould.png"
             alt="Indoor environmental health hazards showing bacteria, air filtration, and human health impacts"
             fill
             className="object-cover"
@@ -318,7 +318,7 @@ const IndoorEnvironmentalHealthPage = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {['IICRC Certified', 'Medical Documentation', 'Laboratory Partnerships', 'Specialist Network'].map((item, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+                <div key={index} className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-centre">
                   <CheckCircle className="h-6 w-6 text-green-400 mx-auto mb-2" />
                   <span className="text-white text-sm font-medium">{item}</span>
                 </div>
@@ -331,7 +331,7 @@ const IndoorEnvironmentalHealthPage = () => {
       {/* Interactive Tools Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Is Your Building Making You Sick?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Use our diagnostic tools to identify potential environmental health hazards
@@ -356,7 +356,7 @@ const IndoorEnvironmentalHealthPage = () => {
                 <CardContent className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h3 className="text-lg font-semibold mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold mb-3 flex items-centre">
                         <AlertCircle className="mr-2 h-5 w-5 text-red-600" />
                         Why Standard Testing Fails
                       </h3>
@@ -371,7 +371,7 @@ const IndoorEnvironmentalHealthPage = () => {
                         </li>
                         <li className="flex items-start">
                           <ChevronRight className="h-5 w-5 text-orange-600 mr-2 flex-shrink-0 mt-0.5" />
-                          <span>Hidden contamination requires specialized detection</span>
+                          <span>Hidden contamination requires specialised detection</span>
                         </li>
                         <li className="flex items-start">
                           <ChevronRight className="h-5 w-5 text-orange-600 mr-2 flex-shrink-0 mt-0.5" />
@@ -381,7 +381,7 @@ const IndoorEnvironmentalHealthPage = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-semibold mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold mb-3 flex items-centre">
                         <CheckCircle className="mr-2 h-5 w-5 text-green-600" />
                         Our Comprehensive Approach
                       </h3>
@@ -410,7 +410,7 @@ const IndoorEnvironmentalHealthPage = () => {
                     <p className="font-semibold text-orange-900 mb-2">Critical Connection</p>
                     <p className="text-orange-800">
                       Water damage, fire incidents, and mould growth create complex environmental
-                      hazards that require specialized expertise to identify and remediate properly.
+                      hazards that require specialised expertise to identify and remediate properly.
                     </p>
                   </div>
                 </CardContent>
@@ -420,7 +420,7 @@ const IndoorEnvironmentalHealthPage = () => {
             <TabsContent value="symptom-checker" className="mt-8">
               {/* <SymptomChecker /> */}
               <Card>
-                <CardContent className="text-center py-8">
+                <CardContent className="text-centre py-8">
                   <p className="text-gray-600">Symptom Checker component coming soon...</p>
                 </CardContent>
               </Card>
@@ -429,7 +429,7 @@ const IndoorEnvironmentalHealthPage = () => {
             <TabsContent value="health-quiz" className="mt-8">
               {/* <HealthQuiz /> */}
               <Card>
-                <CardContent className="text-center py-8">
+                <CardContent className="text-centre py-8">
                   <p className="text-gray-600">Health Quiz component coming soon...</p>
                 </CardContent>
               </Card>
@@ -441,10 +441,10 @@ const IndoorEnvironmentalHealthPage = () => {
       {/* Health Conditions Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Health Conditions We Address</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Specialized expertise in environmental health conditions often misdiagnosed or overlooked
+              specialised expertise in environmental health conditions often misdiagnosed or overlooked
             </p>
           </div>
 
@@ -452,7 +452,7 @@ const IndoorEnvironmentalHealthPage = () => {
             {healthConditions.map((condition, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="flex items-center">
+                  <CardTitle className="flex items-centre">
                     <condition.icon className="mr-3 h-6 w-6 text-orange-600" />
                     {condition.name}
                   </CardTitle>
@@ -484,7 +484,7 @@ const IndoorEnvironmentalHealthPage = () => {
       {/* Specialist Network Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Our Specialist Network</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Pre-vetted experts across multiple disciplines ready to deploy
@@ -493,14 +493,14 @@ const IndoorEnvironmentalHealthPage = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {specialistNetwork.map((specialist, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+              <Card key={index} className="text-centre hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <specialist.icon className="h-12 w-12 text-orange-600 mx-auto mb-4" />
                   <CardTitle className="text-lg">{specialist.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-4">{specialist.description}</p>
-                  <div className="flex flex-wrap gap-1 justify-center">
+                  <div className="flex flex-wrap gap-1 justify-centre">
                     {specialist.certifications.map((cert, idx) => (
                       <Badge key={idx} variant="outline" className="text-xs">
                         {cert}
@@ -517,7 +517,7 @@ const IndoorEnvironmentalHealthPage = () => {
       {/* Testing Services Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Comprehensive Testing & Analysis</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Laboratory partnerships providing medical-grade documentation for healthcare providers
@@ -567,7 +567,7 @@ const IndoorEnvironmentalHealthPage = () => {
       {/* Remediation Technologies Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Advanced Remediation Technologies</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               State-of-the-art equipment and proven methodologies for complete restoration
@@ -578,7 +578,7 @@ const IndoorEnvironmentalHealthPage = () => {
             {remediationTechnologies.map((tech, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <CardTitle className="text-lg flex items-center">
+                  <CardTitle className="text-lg flex items-centre">
                     <Zap className="mr-2 h-5 w-5 text-orange-600" />
                     {tech.name}
                   </CardTitle>
@@ -603,7 +603,7 @@ const IndoorEnvironmentalHealthPage = () => {
       {/* Case Studies Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Proven Results: Case Studies</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Real examples of our detective work uncovering and resolving environmental health issues
@@ -614,7 +614,7 @@ const IndoorEnvironmentalHealthPage = () => {
             {caseStudies.map((study, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-centre justify-between mb-2">
                     <Badge variant="outline">{study.type}</Badge>
                     <study.icon className="h-6 w-6 text-orange-600" />
                   </div>
@@ -655,35 +655,35 @@ const IndoorEnvironmentalHealthPage = () => {
       <section className="py-16 bg-gradient-to-br from-orange-600 to-orange-700 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">Why We're Different</h2>
+            <h2 className="text-4xl font-bold text-centre mb-12">Why We're Different</h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center">
+              <div className="text-centre">
                 <Microscope className="h-12 w-12 mx-auto mb-4" />
                 <h3 className="font-semibold mb-2">Complete Testing</h3>
                 <p className="text-orange-100">Where others test for basics, we test for everything</p>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <Users className="h-12 w-12 mx-auto mb-4" />
                 <h3 className="font-semibold mb-2">Vetted Network</h3>
                 <p className="text-orange-100">Specialist network ready to deploy immediately</p>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <FileText className="h-12 w-12 mx-auto mb-4" />
                 <h3 className="font-semibold mb-2">Medical Documentation</h3>
                 <p className="text-orange-100">Reports your doctor will understand and accept</p>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <Heart className="h-12 w-12 mx-auto mb-4" />
                 <h3 className="font-semibold mb-2">Health Connection</h3>
                 <p className="text-orange-100">Understanding restoration-health relationships</p>
               </div>
             </div>
 
-            <div className="mt-12 text-center">
+            <div className="mt-12 text-centre">
               <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100">
                 Get Your Building Tested
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -697,7 +697,7 @@ const IndoorEnvironmentalHealthPage = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto">
-            <CardHeader className="text-center">
+            <CardHeader className="text-centre">
               <CardTitle className="text-2xl">Resources for Healthcare Professionals</CardTitle>
               <CardDescription>
                 Educational materials and collaboration opportunities for medical providers
@@ -705,7 +705,7 @@ const IndoorEnvironmentalHealthPage = () => {
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
+                <div className="text-centre">
                   <GraduationCap className="h-10 w-10 text-orange-600 mx-auto mb-3" />
                   <h3 className="font-semibold mb-2">Continuing Education</h3>
                   <p className="text-sm text-gray-600 mb-3">
@@ -714,7 +714,7 @@ const IndoorEnvironmentalHealthPage = () => {
                   <Button variant="outline" size="sm">Learn More</Button>
                 </div>
 
-                <div className="text-center">
+                <div className="text-centre">
                   <FileText className="h-10 w-10 text-orange-600 mx-auto mb-3" />
                   <h3 className="font-semibold mb-2">Published Research</h3>
                   <p className="text-sm text-gray-600 mb-3">
@@ -723,7 +723,7 @@ const IndoorEnvironmentalHealthPage = () => {
                   <Button variant="outline" size="sm">View Library</Button>
                 </div>
 
-                <div className="text-center">
+                <div className="text-centre">
                   <Stethoscope className="h-10 w-10 text-orange-600 mx-auto mb-3" />
                   <h3 className="font-semibold mb-2">Provider Network</h3>
                   <p className="text-sm text-gray-600 mb-3">
@@ -740,7 +740,7 @@ const IndoorEnvironmentalHealthPage = () => {
       {/* CTA Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-4xl font-bold mb-6">
               Don't Let Your Building Make You Sick
             </h2>
@@ -750,7 +750,7 @@ const IndoorEnvironmentalHealthPage = () => {
               you need for a healthy indoor environment.
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center mb-8">
+            <div className="flex flex-wrap gap-4 justify-centre mb-8">
               <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
                 <Phone className="mr-2 h-5 w-5" />
                 1300-DISASTER
@@ -761,7 +761,7 @@ const IndoorEnvironmentalHealthPage = () => {
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-centre">
               <div>
                 <Clock className="h-8 w-8 text-orange-600 mx-auto mb-2" />
                 <p className="text-sm font-semibold">24/7 Response</p>

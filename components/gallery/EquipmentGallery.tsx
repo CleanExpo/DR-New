@@ -12,7 +12,7 @@ interface EquipmentItem {
   id: string;
   title: string;
   image: string;
-  category: 'extraction' | 'drying' | 'detection' | 'air-treatment' | 'specialized';
+  category: 'extraction' | 'drying' | 'detection' | 'air-treatment' | 'specialised';
   description: string;
   capabilities: string[];
   certifications: string[];
@@ -23,7 +23,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'dehumidifier',
     title: '3D Industrial Dehumidifier',
-    image: '/images/optimized/equipment/3D Model Dehumidifier.png',
+    image: '/images/optimised/equipment/3D Model Dehumidifier.png',
     category: 'drying',
     description: 'Professional-grade dehumidifiers capable of removing massive amounts of moisture from air and materials.',
     capabilities: ['High-capacity moisture extraction', 'Continuous operation', 'Energy efficient'],
@@ -33,7 +33,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'extraction-unit',
     title: '3D Water Extraction Unit',
-    image: '/images/optimized/equipment/3D Professional Water Extractor.png',
+    image: '/images/optimised/equipment/3D Professional Water Extractor.png',
     category: 'extraction',
     description: 'Powerful water extraction systems for removing standing water and moisture from carpets and flooring.',
     capabilities: ['Rapid water removal', 'Deep carpet extraction', 'Submersible pump capability'],
@@ -43,7 +43,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'industrial-fan',
     title: '3D Industrial Drying Fan',
-    image: '/images/optimized/equipment/3D Air Mover.png',
+    image: '/images/optimised/equipment/3D Air Mover.png',
     category: 'air-treatment',
     description: 'High-velocity air movers designed to accelerate evaporation and drying processes.',
     capabilities: ['Variable speed control', 'Stackable design', 'Low amperage draw'],
@@ -53,7 +53,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'thermal-camera',
     title: '3D Thermal Imaging Camera',
-    image: '/images/optimized/equipment/3D Thermal Fogging.png',
+    image: '/images/optimised/equipment/3D Thermal Fogging.png',
     category: 'detection',
     description: 'Advanced thermal imaging technology for detecting hidden moisture and temperature variations.',
     capabilities: ['Non-invasive detection', 'Real-time imaging', 'Documentation capability'],
@@ -63,7 +63,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'moisture-meter',
     title: '3D Moisture Detection Meter',
-    image: '/images/optimized/equipment/3D Moisture Meter Reading.png',
+    image: '/images/optimised/equipment/3D Moisture Meter Reading.png',
     category: 'detection',
     description: 'Precision moisture meters for accurate assessment of material moisture content.',
     capabilities: ['Non-destructive testing', 'Multiple material types', 'Digital display'],
@@ -73,7 +73,7 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'moisture-reading',
     title: '3D Moisture Meter Reading',
-    image: '/images/optimized/equipment/3D Moisture Meter Reading.png',
+    image: '/images/optimised/equipment/3D Moisture Meter Reading.png',
     category: 'detection',
     description: 'Live demonstration of moisture detection capabilities in real-world applications.',
     capabilities: ['Real-time monitoring', 'Documentation', 'Progress tracking'],
@@ -83,9 +83,9 @@ const equipmentData: EquipmentItem[] = [
   {
     id: 'thermal-fogging',
     title: '3D Thermal Fogging Equipment',
-    image: '/images/optimized/equipment/3D Thermal Fogging.png',
-    category: 'specialized',
-    description: 'Specialized thermal fogging equipment for odor neutralization and decontamination.',
+    image: '/images/optimised/equipment/3D Thermal Fogging.png',
+    category: 'specialised',
+    description: 'specialised thermal fogging equipment for odor neutralization and decontamination.',
     capabilities: ['Odor neutralization', 'Decontamination', 'Fine particle distribution'],
     certifications: ['Professional Grade', 'Safety Certified'],
     icon: ShieldCheck
@@ -98,7 +98,7 @@ const categories = [
   { id: 'drying', label: 'Drying Systems', icon: Wind },
   { id: 'detection', label: 'Detection Tools', icon: Search },
   { id: 'air-treatment', label: 'Air Treatment', icon: Wind },
-  { id: 'specialized', label: 'Specialized', icon: ShieldCheck }
+  { id: 'specialised', label: 'specialised', icon: ShieldCheck }
 ];
 
 export default function EquipmentGallery() {
@@ -133,7 +133,7 @@ export default function EquipmentGallery() {
     <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-centre mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -160,14 +160,14 @@ export default function EquipmentGallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-centre gap-3 mb-12"
         >
           {categories.map((category) => (
             <Button
               key={category.id}
               variant={selectedCategory === category.id ? "default" : "outline"}
               onClick={() => setSelectedCategory(category.id)}
-              className="flex items-center gap-2 px-6 py-3"
+              className="flex items-centre gap-2 px-6 py-3"
             >
               <category.icon className="w-4 h-4" />
               {category.label}
@@ -222,7 +222,7 @@ export default function EquipmentGallery() {
                       <h4 className="font-semibold text-sm text-gray-900 mb-2">Key Capabilities:</h4>
                       <ul className="text-xs text-gray-600 space-y-1">
                         {item.capabilities.map((capability, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
+                          <li key={idx} className="flex items-centre gap-2">
                             <div className="w-1 h-1 bg-blue-600 rounded-full" />
                             {capability}
                           </li>
@@ -251,7 +251,7 @@ export default function EquipmentGallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+              className="fixed inset-0 z-50 bg-black/90 flex items-centre justify-centre p-4"
               onClick={closeLightbox}
             >
               <motion.div
@@ -284,7 +284,7 @@ export default function EquipmentGallery() {
                       <h4 className="font-semibold text-gray-900 mb-2">Capabilities:</h4>
                       <ul className="text-gray-600 space-y-1">
                         {filteredEquipment[lightboxIndex].capabilities.map((capability, idx) => (
-                          <li key={idx} className="flex items-center gap-2">
+                          <li key={idx} className="flex items-centre gap-2">
                             <div className="w-2 h-2 bg-blue-600 rounded-full" />
                             {capability}
                           </li>
@@ -340,7 +340,7 @@ export default function EquipmentGallery() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center mt-16"
+          className="text-centre mt-16"
         >
           <div className="bg-blue-600 text-white rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-4">Need Professional Equipment?</h3>

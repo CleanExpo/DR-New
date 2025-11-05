@@ -46,7 +46,7 @@ export default function IndustrialPropertyPage() {
         'Raw material inventory',
         'Finished goods storage',
         'Quality control systems',
-        'Specialized tooling'
+        'specialised tooling'
       ],
       complianceRequirements: [
         'OSHA safety standards',
@@ -60,7 +60,7 @@ export default function IndustrialPropertyPage() {
     },
     warehouse: {
       name: 'Warehouses & Distribution',
-      description: 'Storage facilities, distribution centers, logistics hubs',
+      description: 'Storage facilities, distribution centres, logistics hubs',
       criticalAssets: [
         'Inventory and stock',
         'Racking systems',
@@ -99,7 +99,7 @@ export default function IndustrialPropertyPage() {
       productionLoss: '$200,000 - $2M+ per day'
     },
     datacenter: {
-      name: 'Data Centers',
+      name: 'Data centres',
       description: 'Server farms, colocation facilities, cloud infrastructure',
       criticalAssets: [
         'Server equipment',
@@ -176,7 +176,7 @@ export default function IndustrialPropertyPage() {
         'Hazmat team activation',
         'Regulatory notification',
         'Environmental assessment',
-        'Specialized cleanup'
+        'specialised cleanup'
       ]
     },
     {
@@ -288,7 +288,7 @@ export default function IndustrialPropertyPage() {
 
   const restorationChallenges = [
     {
-      challenge: 'Specialized Equipment',
+      challenge: 'specialised Equipment',
       description: 'Custom machinery may take months to replace',
       solutions: [
         'Maintain equipment inventories',
@@ -318,8 +318,8 @@ export default function IndustrialPropertyPage() {
       ]
     },
     {
-      challenge: 'Skilled Labor',
-      description: 'Specialized workers needed for repairs',
+      challenge: 'Skilled labour',
+      description: 'specialised workers needed for repairs',
       solutions: [
         'Pre-qualified contractors',
         'National contractor networks',
@@ -329,10 +329,10 @@ export default function IndustrialPropertyPage() {
     },
     {
       challenge: 'Environmental Cleanup',
-      description: 'Contamination requires specialized response',
+      description: 'Contamination requires specialised response',
       solutions: [
         'Environmental consultants',
-        'Specialized cleanup crews',
+        'specialised cleanup crews',
         'Regulatory coordination',
         'Long-term monitoring'
       ]
@@ -393,7 +393,7 @@ export default function IndustrialPropertyPage() {
       category: 'Equipment & Machinery',
       percentage: '35-45%',
       factors: [
-        'Specialized equipment replacement',
+        'specialised equipment replacement',
         'Calibration and testing',
         'Installation costs',
         'Temporary rentals'
@@ -420,10 +420,10 @@ export default function IndustrialPropertyPage() {
       ]
     },
     {
-      category: 'Labor & Expertise',
+      category: 'labour & Expertise',
       percentage: '15-20%',
       factors: [
-        'Specialized contractors',
+        'specialised contractors',
         'Overtime premiums',
         'Technical consultants',
         'Training costs'
@@ -487,35 +487,35 @@ export default function IndustrialPropertyPage() {
   const faqs = [
     {
       question: 'What makes industrial property restoration different from commercial?',
-      answer: 'Industrial restoration involves specialized equipment, regulatory compliance, environmental concerns, and often hazardous materials. The scale is larger, downtime costs are higher, and technical expertise requirements are more specialized. Safety protocols and regulatory approvals also add complexity.'
+      answer: 'Industrial restoration involves specialised equipment, regulatory compliance, environmental concerns, and often hazardous materials. The scale is larger, downtime costs are higher, and technical expertise requirements are more specialised. Safety protocols and regulatory approvals also add complexity.'
     },
     {
       question: 'How long does industrial facility restoration typically take?',
-      answer: 'Timeline varies significantly: minor incidents (1-2 weeks), moderate damage (2-8 weeks), major disasters (2-6 months or more). Factors include equipment lead times, regulatory approvals, environmental cleanup, and specialized contractor availability. Custom equipment replacement can extend timelines significantly.'
+      answer: 'Timeline varies significantly: minor incidents (1-2 weeks), moderate damage (2-8 weeks), major disasters (2-6 months or more). Factors include equipment lead times, regulatory approvals, environmental cleanup, and specialised contractor availability. Custom equipment replacement can extend timelines significantly.'
     },
     {
       question: 'What are the biggest cost drivers in industrial restoration?',
-      answer: 'Major cost drivers include: specialized equipment replacement (35-45%), production loss/business interruption (25-35%), regulatory compliance and environmental cleanup (10-15%), and specialized labor (15-20%). A single production line can cost millions to replace.'
+      answer: 'Major cost drivers include: specialised equipment replacement (35-45%), production loss/business interruption (25-35%), regulatory compliance and environmental cleanup (10-15%), and specialised labour (15-20%). A single production line can cost millions to replace.'
     },
     {
       question: 'How do environmental regulations affect industrial restoration?',
-      answer: 'Environmental regulations can significantly impact timeline and cost. Requirements include immediate spill reporting, environmental assessment, specialized cleanup procedures, ongoing monitoring, and regulatory approval before reopening. Non-compliance can result in severe penalties and criminal liability.'
+      answer: 'Environmental regulations can significantly impact timeline and cost. Requirements include immediate spill reporting, environmental assessment, specialised cleanup procedures, ongoing monitoring, and regulatory approval before reopening. Non-compliance can result in severe penalties and criminal liability.'
     },
     {
       question: 'What insurance is essential for industrial facilities?',
       answer: 'Critical coverage includes: property damage with equipment breakdown, business interruption with extended period, environmental liability, contingent business interruption, and cyber coverage for industrial control systems. Many facilities need $50M+ in total coverage.'
     },
     {
-      question: 'How can industrial facilities minimize disaster recovery time?',
+      question: 'How can industrial facilities minimise disaster recovery time?',
       answer: 'Key strategies: maintain detailed equipment inventories, pre-qualify restoration contractors, develop comprehensive emergency response plans, maintain critical spare parts, establish alternate production arrangements, and conduct regular emergency drills. Pre-planning can reduce recovery time by 30-50%.'
     },
     {
       question: 'What about worker safety during industrial restoration?',
-      answer: 'Worker safety is paramount. Requirements include: hazard assessment before work begins, specialized PPE for all workers, continuous air monitoring, confined space protocols, lockout/tagout procedures, and OSHA compliance throughout. Safety violations can stop restoration work immediately.'
+      answer: 'Worker safety is paramount. Requirements include: hazard assessment before work begins, specialised PPE for all workers, continuous air monitoring, confined space protocols, lockout/tagout procedures, and OSHA compliance throughout. Safety violations can stop restoration work immediately.'
     },
     {
       question: 'How do you handle hazardous materials during restoration?',
-      answer: 'Hazardous materials require: immediate containment, certified hazmat teams, regulatory notification (often within hours), specialized disposal procedures, chain of custody documentation, and potential long-term environmental monitoring. Improper handling can result in criminal charges.'
+      answer: 'Hazardous materials require: immediate containment, certified hazmat teams, regulatory notification (often within hours), specialised disposal procedures, chain of custody documentation, and potential long-term environmental monitoring. Improper handling can result in criminal charges.'
     }
   ];
 
@@ -529,28 +529,28 @@ export default function IndustrialPropertyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
+            className="text-centre"
           >
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-centre mb-6">
               <Factory className="w-20 h-20 text-yellow-600" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Industrial Facility Disaster Recovery
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-200">
-              Specialized Response for Manufacturing, Processing & Heavy Industry
+              specialised Response for Manufacturing, Processing & Heavy Industry
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-centre gap-4">
               <Link
                 href="/whos-first/industrial"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 24/7 Industrial Response
               </Link>
               <Link
                 href="/insurance-decoder/industrial"
-                className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Shield className="w-5 h-5" />
                 Industrial Insurance Guide
@@ -569,7 +569,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Factory className="w-8 h-8 text-gray-200" />
               Industrial Facility Types
             </h2>
@@ -607,7 +607,7 @@ export default function IndustrialPropertyPage() {
                   </p>
                   
                   <div className="mb-6">
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <h4 className="font-semibold mb-3 flex items-centre gap-2">
                       <Settings className="w-5 h-5 text-gray-200" />
                       Critical Assets
                     </h4>
@@ -637,7 +637,7 @@ export default function IndustrialPropertyPage() {
 
                 <div>
                   <div className="bg-yellow-50 rounded-lg p-6 border border-yellow-200">
-                    <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold mb-4 flex items-centre gap-2">
                       <AlertTriangle className="w-5 h-5 text-yellow-600" />
                       Compliance Requirements
                     </h4>
@@ -666,7 +666,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <AlertOctagon className="w-8 h-8 text-red-600" />
               Industrial-Specific Hazards
             </h2>
@@ -680,7 +680,7 @@ export default function IndustrialPropertyPage() {
                   viewport={{ once: true }}
                   className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-red-500"
                 >
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-centre gap-3 mb-4">
                     {hazard.icon}
                     <h3 className="text-xl font-bold">{hazard.hazard}</h3>
                   </div>
@@ -725,7 +725,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <FileText className="w-8 h-8 text-blue-600" />
               Regulatory Compliance Requirements
             </h2>
@@ -770,7 +770,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <AlertCircle className="w-8 h-8 text-orange-600" />
               Industrial Restoration Challenges
             </h2>
@@ -813,7 +813,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Shield className="w-8 h-8 text-blue-600" />
               Industrial Insurance Coverage
             </h2>
@@ -839,13 +839,13 @@ export default function IndustrialPropertyPage() {
                 </tbody>
               </table>
             </div>
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-centre">
               <Link
                 href="/insurance-decoder/industrial"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                className="inline-flex items-centre gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
                 <Calculator className="w-5 h-5" />
-                Analyze Your Industrial Coverage
+                analyse Your Industrial Coverage
               </Link>
             </div>
           </motion.div>
@@ -861,7 +861,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <DollarSign className="w-8 h-8 text-green-600" />
               Industrial Restoration Cost Breakdown
             </h2>
@@ -875,7 +875,7 @@ export default function IndustrialPropertyPage() {
                   viewport={{ once: true }}
                   className="bg-white rounded-lg shadow-lg p-6"
                 >
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <h3 className="font-bold">{cost.category}</h3>
                     <span className="text-2xl font-bold text-green-600">{cost.percentage}</span>
                   </div>
@@ -903,7 +903,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <AlertTriangle className="w-8 h-8 text-red-600" />
               Industrial Emergency Plan Components
             </h2>
@@ -942,7 +942,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <HelpCircle className="w-8 h-8 text-blue-600" />
               Industrial Facility FAQs
             </h2>
@@ -958,7 +958,7 @@ export default function IndustrialPropertyPage() {
                 >
                   <button
                     onClick={() => setExpandedSection(expandedSection === index ? null : index)}
-                    className="w-full px-6 py-4 text-left font-semibold flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
+                    className="w-full px-6 py-4 text-left font-semibold flex items-centre justify-between hover:bg-gray-50 transition-colors rounded-lg"
                   >
                     <span>{faq.question}</span>
                     <ChevronRight
@@ -988,7 +988,7 @@ export default function IndustrialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <BookOpen className="w-8 h-8 text-blue-600" />
               Industrial Recovery Resources
             </h2>
@@ -1035,7 +1035,7 @@ export default function IndustrialPropertyPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-gray-800 to-slate-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1043,22 +1043,22 @@ export default function IndustrialPropertyPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Minimize Industrial Downtime & Production Loss
+              minimise Industrial Downtime & Production Loss
             </h2>
             <p className="text-xl mb-8 text-gray-200">
-              Specialized industrial restoration teams available 24/7 across Australia
+              specialised industrial restoration teams available 24/7 across Australia
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="/whos-first/industrial"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Industrial Emergency Response
               </Link>
               <Link
                 href="/insurance-decoder/industrial"
-                className="bg-white text-gray-800 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-white text-gray-800 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Calculator className="w-5 h-5" />
                 Coverage Assessment

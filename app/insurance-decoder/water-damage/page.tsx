@@ -144,7 +144,7 @@ export default function WaterDamageInsurancePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-centre gap-4 mb-6">
               <Shield className="w-12 h-12" />
               <Droplets className="w-10 h-10" />
             </div>
@@ -161,7 +161,7 @@ export default function WaterDamageInsurancePage() {
       {/* Alert */}
       <section className="bg-yellow-500 text-black py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-centre justify-centre gap-3">
             <AlertCircle className="w-6 h-6" />
             <p className="font-semibold">
               Most policies require notification within 48-72 hours of discovering water damage
@@ -173,7 +173,7 @@ export default function WaterDamageInsurancePage() {
       {/* Coverage Tabs */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               What's Covered vs What's Not
             </h2>
@@ -186,7 +186,7 @@ export default function WaterDamageInsurancePage() {
             <div className="grid md:grid-cols-3 gap-6">
               {/* Typically Covered */}
               <div className="border-2 border-green-200 rounded-xl p-6 bg-green-50">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <CheckCircle className="w-8 h-8 text-green-600" />
                   <h3 className="text-xl font-bold text-green-900">Typically Covered</h3>
                 </div>
@@ -202,7 +202,7 @@ export default function WaterDamageInsurancePage() {
 
               {/* Typically Not Covered */}
               <div className="border-2 border-red-200 rounded-xl p-6 bg-red-50">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <XCircle className="w-8 h-8 text-red-600" />
                   <h3 className="text-xl font-bold text-red-900">Typically Not Covered</h3>
                 </div>
@@ -218,7 +218,7 @@ export default function WaterDamageInsurancePage() {
 
               {/* Grey Areas */}
               <div className="border-2 border-yellow-200 rounded-xl p-6 bg-yellow-50">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <AlertCircle className="w-8 h-8 text-yellow-600" />
                   <h3 className="text-xl font-bold text-yellow-900">Grey Areas</h3>
                 </div>
@@ -239,7 +239,7 @@ export default function WaterDamageInsurancePage() {
       {/* Claim Process */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             5-Step Claim Process
           </h2>
           
@@ -274,7 +274,7 @@ export default function WaterDamageInsurancePage() {
       {/* Common Mistakes */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Avoid These Common Mistakes
           </h2>
           
@@ -290,21 +290,21 @@ export default function WaterDamageInsurancePage() {
               >
                 <div className="grid md:grid-cols-3 gap-4">
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-centre gap-2 mb-2">
                       <XCircle className="w-5 h-5 text-red-600" />
                       <span className="font-semibold text-red-900">Mistake</span>
                     </div>
                     <p className="text-gray-200">{item.mistake}</p>
                   </div>
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-centre gap-2 mb-2">
                       <AlertCircle className="w-5 h-5 text-yellow-600" />
                       <span className="font-semibold text-yellow-900">Consequence</span>
                     </div>
                     <p className="text-gray-200">{item.consequence}</p>
                   </div>
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-centre gap-2 mb-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <span className="font-semibold text-green-900">Solution</span>
                     </div>
@@ -320,7 +320,7 @@ export default function WaterDamageInsurancePage() {
       {/* Tips Section */}
       <section className="py-16 bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Maximizing Your Claim
           </h2>
           
@@ -354,24 +354,24 @@ export default function WaterDamageInsurancePage() {
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Need Help with Your Water Damage Claim?
           </h2>
           <p className="text-xl mb-8 text-blue-800">
             Our insurance-approved contractors can help navigate the claims process
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link
               href="/whos-first"
-              className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <Phone className="w-5 h-5" />
               Find Approved Contractors
             </Link>
             <Link
               href="/emergency/checklists/water-damage"
-              className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <CheckCircle className="w-5 h-5" />
               Emergency Checklist

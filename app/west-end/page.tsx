@@ -59,7 +59,7 @@ export default function WestEndPage() {
     steps: [
       {
         title: 'Immediate Contact',
-        description: 'Call 1300 309 361 for 24/7 emergency response. Our team specializes in West End riverside property and high-rise flood recovery.',
+        description: 'Call 1300 309 361 for 24/7 emergency response. Our team specialises in West End riverside property and high-rise flood recovery.',
       },
       {
         title: `${suburb.responseTime} Response`,
@@ -79,7 +79,7 @@ export default function WestEndPage() {
       },
       {
         title: 'Multi-Unit Coordination',
-        description: 'Specialized coordination for apartment complexes and strata properties requiring simultaneous restoration across multiple units.',
+        description: 'specialised coordination for apartment complexes and strata properties requiring simultaneous restoration across multiple units.',
       },
       {
         title: 'Insurance Coordination',

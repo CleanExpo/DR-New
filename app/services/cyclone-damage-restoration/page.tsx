@@ -265,7 +265,7 @@ export default function CycloneDamageRestorationPage() {
             <div className="max-w-5xl mx-auto">
               {/* Cyclone Warning Banner */}
               <div className="bg-red-600/90 backdrop-blur-sm rounded-lg p-4 mb-6 border-2 border-red-400">
-                <p className="font-bold text-lg flex items-center gap-2">
+                <p className="font-bold text-lg flex items-centre gap-2">
                   <Wind className="w-6 h-6 animate-spin" />
                   CYCLONE SEASON ACTIVE: November - April | 24/7 Emergency Response Ready
                 </p>
@@ -287,22 +287,22 @@ export default function CycloneDamageRestorationPage() {
 
               {/* Key Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Wind className="w-8 h-8 mx-auto mb-2 text-blue-700" />
                   <div className="text-2xl font-bold">Cat 1-5</div>
                   <div className="text-sm">All Categories</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Clock className="w-8 h-8 mx-auto mb-2 text-blue-700" />
                   <div className="text-2xl font-bold">2-4hr</div>
                   <div className="text-sm">Post-Cyclone Response</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <MapPin className="w-8 h-8 mx-auto mb-2 text-blue-700" />
                   <div className="text-2xl font-bold">3 States</div>
                   <div className="text-sm">QLD, NT, WA</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Users className="w-8 h-8 mx-auto mb-2 text-blue-700" />
                   <div className="text-2xl font-bold">24/7</div>
                   <div className="text-sm">Emergency Teams</div>
@@ -313,7 +313,7 @@ export default function CycloneDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="/claim"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -322,7 +322,7 @@ export default function CycloneDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/claim"
-                  className="bg-white text-slate-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-white text-slate-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -337,10 +337,10 @@ export default function CycloneDamageRestorationPage() {
         {/* Cyclone Categories */}
         <section className="py-16 bg-white border-b">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Cyclone Category Response Capabilities
             </h2>
-            <p className="text-xl text-center text-gray-700 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-centre text-gray-700 mb-12 max-w-3xl mx-auto">
               Equipped and experienced for all tropical cyclone intensities
             </p>
 
@@ -371,10 +371,10 @@ export default function CycloneDamageRestorationPage() {
         {/* Cyclone Zones */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Tropical Cyclone Coverage Zones
             </h2>
-            <p className="text-xl text-center text-gray-700 mb-12">
+            <p className="text-xl text-centre text-gray-700 mb-12">
               Pre-positioned teams across Australia&apos;s cyclone belt
             </p>
 
@@ -388,7 +388,7 @@ export default function CycloneDamageRestorationPage() {
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-centre gap-3 mb-4">
                     <div className="p-3 bg-blue-100 rounded-lg text-blue-600">
                       {zone.icon}
                     </div>
@@ -421,7 +421,7 @@ export default function CycloneDamageRestorationPage() {
         {/* Common Damage Types */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
               Cyclone Damage Types We Restore
             </h2>
 
@@ -451,10 +451,10 @@ export default function CycloneDamageRestorationPage() {
         {/* Restoration Timeline */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Cyclone Recovery Timeline
             </h2>
-            <p className="text-xl text-center text-gray-700 mb-12">
+            <p className="text-xl text-centre text-gray-700 mb-12">
               Systematic restoration from emergency response to complete rebuild
             </p>
 
@@ -490,7 +490,7 @@ export default function CycloneDamageRestorationPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
                 Why We&apos;re Australia&apos;s Cyclone Recovery Leaders
               </h2>
 
@@ -547,7 +547,7 @@ export default function CycloneDamageRestorationPage() {
                   Our mobile command units, generators, industrial pumps, and restoration equipment are 
                   strategically located for immediate deployment when cyclones threaten.
                 </p>
-                <div className="flex items-center gap-2 text-blue-900 font-semibold">
+                <div className="flex items-centre gap-2 text-blue-900 font-semibold">
                   <AlertCircle className="w-5 h-5" />
                   Current Status: CYCLONE SEASON ACTIVE - Teams on standby 24/7
                 </div>
@@ -560,7 +560,7 @@ export default function CycloneDamageRestorationPage() {
         <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
           <div className="container mx-auto px-6">
             <motion.div 
-              className="max-w-4xl mx-auto text-center"
+              className="max-w-4xl mx-auto text-centre"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -585,10 +585,10 @@ export default function CycloneDamageRestorationPage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-centre">
                 <motion.a
                   href="/claim"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -597,7 +597,7 @@ export default function CycloneDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/emergency/checklists/cyclone"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

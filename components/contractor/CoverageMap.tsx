@@ -5,13 +5,13 @@ import { Card } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 
 interface CoverageMapProps {
-  center: { lat: number; lng: number }
+  centre: { lat: number; lng: number }
   radius: number // in kilometers
   height?: string
 }
 
 export function CoverageMap({
-  center,
+  centre,
   radius,
   height = "400px",
 }: CoverageMapProps) {
@@ -29,16 +29,16 @@ export function CoverageMap({
 
     try {
       const map = new google.maps.Map(mapRef.current!, {
-        center,
+        centre,
         zoom: getZoomLevel(radius),
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: true,
       })
 
-      // Add marker at center
+      // Add marker at centre
       new google.maps.Marker({
-        position: center,
+        position: centre,
         map,
         title: "Your Base Location",
         icon: {
@@ -59,7 +59,7 @@ export function CoverageMap({
         fillColor: "#2563eb",
         fillOpacity: 0.15,
         map,
-        center,
+        centre,
         radius: radius * 1000, // Convert km to meters
       })
 
@@ -68,7 +68,7 @@ export function CoverageMap({
       setError("Failed to initialize map")
       setLoading(false)
     }
-  }, [center, radius])
+  }, [centre, radius])
 
   const getZoomLevel = (km: number) => {
     if (km <= 25) return 11
@@ -79,8 +79,8 @@ export function CoverageMap({
 
   if (error) {
     return (
-      <Card className="flex items-center justify-center" style={{ height }}>
-        <div className="text-center p-6">
+      <Card className="flex items-centre justify-centre" style={{ height }}>
+        <div className="text-centre p-6">
           <p className="text-muted-foreground">{error}</p>
           <p className="text-sm text-muted-foreground mt-2">
             Coverage radius: {radius}km from base location
@@ -113,10 +113,10 @@ export function CoverageMapFallback({
 }) {
   return (
     <Card
-      className="flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100"
+      className="flex flex-col items-centre justify-centre bg-gradient-to-br from-blue-50 to-blue-100"
       style={{ height }}
     >
-      <div className="text-center p-6">
+      <div className="text-centre p-6">
         <div className="mb-4">
           <div className="relative w-32 h-32 mx-auto">
             <div className="absolute inset-0 rounded-full border-4 border-blue-200"></div>
@@ -126,7 +126,7 @@ export function CoverageMapFallback({
                 clipPath: "polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 0%)",
               }}
             ></div>
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-centre justify-centre">
               <div className="w-4 h-4 rounded-full bg-blue-600"></div>
             </div>
           </div>

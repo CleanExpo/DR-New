@@ -16,8 +16,8 @@ export default function SevenHillsWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <MapPin className="h-12 w-12 text-blue-300" />
             </div>
@@ -36,7 +36,7 @@ export default function SevenHillsWaterDamagePage() {
               <p className="text-lg">Master Restorer on Call</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Clock className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">Rapid Response</p>
@@ -60,7 +60,7 @@ export default function SevenHillsWaterDamagePage() {
       {/* Seven Hills Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Water Damage Services in Seven Hills, Brisbane
           </h2>
 
@@ -75,19 +75,19 @@ export default function SevenHillsWaterDamagePage() {
                   Seven Hills properties, from older plumbing systems to sloping blocks prone to water runoff.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>All Seven Hills streets and estates</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Near Moreton Bay College area</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Seven Hills Reserve vicinity</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Rapid response from Brisbane East</span>
                   </li>
@@ -99,22 +99,22 @@ export default function SevenHillsWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">Common Water Issues in Seven Hills</h3>
                 <p className="text-lg mb-4">
                   Seven Hills properties face specific water damage risks due to the suburb's topography
-                  and housing stock. We specialize in addressing these local challenges.
+                  and housing stock. We specialise in addressing these local challenges.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Aging pipe infrastructure in older homes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Storm water runoff on sloping blocks</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Retaining wall water seepage</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Roof leaks during storm season</span>
                   </li>
@@ -124,12 +124,12 @@ export default function SevenHillsWaterDamagePage() {
 
             {/* Service Features */}
             <Card className="p-8 bg-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Our Seven Hills Water Damage Restoration Services
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="bg-white rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <div className="text-centre">
+                  <div className="bg-white rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-centre justify-centre">
                     <Phone className="h-10 w-10 text-blue-600" />
                   </div>
                   <h4 className="font-bold text-lg mb-2">Emergency Response</h4>
@@ -140,8 +140,8 @@ export default function SevenHillsWaterDamagePage() {
                     <li>• Emergency tarping</li>
                   </ul>
                 </div>
-                <div className="text-center">
-                  <div className="bg-white rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <div className="text-centre">
+                  <div className="bg-white rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-centre justify-centre">
                     <Shield className="h-10 w-10 text-blue-600" />
                   </div>
                   <h4 className="font-bold text-lg mb-2">Professional Restoration</h4>
@@ -152,8 +152,8 @@ export default function SevenHillsWaterDamagePage() {
                     <li>• Content restoration</li>
                   </ul>
                 </div>
-                <div className="text-center">
-                  <div className="bg-white rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                <div className="text-centre">
+                  <div className="bg-white rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-centre justify-centre">
                     <Star className="h-10 w-10 text-blue-600" />
                   </div>
                   <h4 className="font-bold text-lg mb-2">Insurance Support</h4>
@@ -173,7 +173,7 @@ export default function SevenHillsWaterDamagePage() {
       {/* Emergency Response Process */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our Seven Hills Emergency Response Process
           </h2>
 
@@ -187,7 +187,7 @@ export default function SevenHillsWaterDamagePage() {
                   <h3 className="text-xl font-bold mb-2">Immediate Contact</h3>
                   <p className="text-gray-700">
                     Call our 24/7 emergency line. We'll dispatch our Seven Hills response team immediately
-                    while providing you with crucial first steps to minimize damage.
+                    while providing you with crucial first steps to minimise damage.
                   </p>
                 </div>
               </div>
@@ -244,12 +244,12 @@ export default function SevenHillsWaterDamagePage() {
       {/* Why Choose Us */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Seven Hills Residents Choose Our Services
           </h2>
 
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Shield className="h-12 w-12 mx-auto mb-4 text-blue-600" />
               <h3 className="font-bold text-lg mb-2">Master Restorer</h3>
               <p className="text-sm text-gray-700">
@@ -257,7 +257,7 @@ export default function SevenHillsWaterDamagePage() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <MapPin className="h-12 w-12 mx-auto mb-4 text-green-600" />
               <h3 className="font-bold text-lg mb-2">Local Knowledge</h3>
               <p className="text-sm text-gray-700">
@@ -265,7 +265,7 @@ export default function SevenHillsWaterDamagePage() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Clock className="h-12 w-12 mx-auto mb-4 text-orange-600" />
               <h3 className="font-bold text-lg mb-2">24/7 Available</h3>
               <p className="text-sm text-gray-700">
@@ -273,7 +273,7 @@ export default function SevenHillsWaterDamagePage() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <Star className="h-12 w-12 mx-auto mb-4 text-purple-600" />
               <h3 className="font-bold text-lg mb-2">Insurance Approved</h3>
               <p className="text-sm text-gray-700">
@@ -286,7 +286,7 @@ export default function SevenHillsWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Water Damage Emergency in Seven Hills?
           </h2>

@@ -270,7 +270,7 @@ ${promptData.callToAction}
     <div className={`bg-white rounded-lg shadow-lg ${className}`}>
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-t-lg">
-        <div className="flex items-center gap-3 mb-2">
+        <div className="flex items-centre gap-3 mb-2">
           <Wand2 className="h-6 w-6" />
           <h2 className="text-2xl font-bold">AI Marketing Campaign Generator</h2>
         </div>
@@ -393,7 +393,7 @@ ${promptData.callToAction}
         <button
           onClick={generateCampaign}
           disabled={isGenerating}
-          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all flex items-center justify-center gap-3"
+          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all flex items-centre justify-centre gap-3"
         >
           {isGenerating ? (
             <>
@@ -411,18 +411,18 @@ ${promptData.callToAction}
         {/* Generated Campaign Results */}
         {generatedCampaign && (
           <div className="border-t pt-6 space-y-6">
-            <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-gray-900 flex items-centre gap-2">
               <CheckCircle className="h-6 w-6 text-green-600" />
               Generated Campaign
             </h3>
 
             {/* Campaign Content */}
             <div className="bg-gray-50 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-centre justify-between mb-3">
                 <h4 className="font-semibold text-gray-900">Campaign Content</h4>
                 <button
                   onClick={copyContent}
-                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm"
+                  className="flex items-centre gap-2 text-blue-600 hover:text-blue-700 text-sm"
                 >
                   <Copy className="h-4 w-4" />
                   Copy
@@ -437,7 +437,7 @@ ${promptData.callToAction}
 
             {/* Performance Predictions */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-blue-50 p-4 rounded-lg text-center">
+              <div className="bg-blue-50 p-4 rounded-lg text-centre">
                 <Users className="h-6 w-6 text-blue-600 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-blue-900">
                   {generatedCampaign.estimatedReach.toLocaleString()}
@@ -445,7 +445,7 @@ ${promptData.callToAction}
                 <div className="text-sm text-blue-700">Estimated Reach</div>
               </div>
 
-              <div className="bg-green-50 p-4 rounded-lg text-center">
+              <div className="bg-green-50 p-4 rounded-lg text-centre">
                 <DollarSign className="h-6 w-6 text-green-600 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-green-900">
                   ${generatedCampaign.estimatedCost}
@@ -453,7 +453,7 @@ ${promptData.callToAction}
                 <div className="text-sm text-green-700">Estimated Cost</div>
               </div>
 
-              <div className="bg-purple-50 p-4 rounded-lg text-center">
+              <div className="bg-purple-50 p-4 rounded-lg text-centre">
                 <TrendingUp className="h-6 w-6 text-purple-600 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-purple-900">
                   {generatedCampaign.performancePrediction.engagementRate}%
@@ -461,7 +461,7 @@ ${promptData.callToAction}
                 <div className="text-sm text-purple-700">Engagement Rate</div>
               </div>
 
-              <div className="bg-orange-50 p-4 rounded-lg text-center">
+              <div className="bg-orange-50 p-4 rounded-lg text-centre">
                 <Target className="h-6 w-6 text-orange-600 mx-auto mb-2" />
                 <div className="text-2xl font-bold text-orange-900">
                   {generatedCampaign.performancePrediction.estimatedLeads}
@@ -504,7 +504,7 @@ ${promptData.callToAction}
               <button
                 onClick={saveToAirtable}
                 disabled={airtableSyncStatus === 'syncing'}
-                className="flex-1 bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                className="flex-1 bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-centre justify-centre gap-2"
               >
                 {airtableSyncStatus === 'syncing' ? (
                   <>
@@ -524,7 +524,7 @@ ${promptData.callToAction}
                 )}
               </button>
 
-              <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-center gap-2">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors flex items-centre gap-2">
                 <Play className="h-5 w-5" />
                 Launch Campaign
               </button>
@@ -532,7 +532,7 @@ ${promptData.callToAction}
 
             {airtableSyncStatus === 'error' && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <div className="flex items-center gap-2 text-red-800">
+                <div className="flex items-centre gap-2 text-red-800">
                   <AlertCircle className="h-5 w-5" />
                   <span className="font-medium">Failed to save to Airtable</span>
                 </div>

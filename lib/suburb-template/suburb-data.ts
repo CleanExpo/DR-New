@@ -117,7 +117,7 @@ const innerBrisbane: Record<string, SuburbTemplate> = {
       'Period-correct repairs',
     ],
     uniqueCharacteristics: [
-      'High concentration of heritage properties requiring specialized care',
+      'High concentration of heritage properties requiring specialised care',
       'Mixed commercial (galleries, restaurants) and residential areas',
       'Close-set terrace configuration requires careful planning',
       'Cultural and artistic community values aesthetic restoration',
@@ -431,7 +431,7 @@ const innerBrisbane: Record<string, SuburbTemplate> = {
       'Premium heritage suburb requiring specialist restoration knowledge',
       'High concentration of protected and character buildings',
       'Hilly topography creates unique drainage challenges',
-      'Owners prioritize authentic heritage restoration',
+      'Owners prioritise authentic heritage restoration',
       'Wooden construction increases fire risk',
       'Close-set properties require careful planning to prevent damage spread',
     ],
@@ -513,7 +513,7 @@ const innerBrisbane: Record<string, SuburbTemplate> = {
 
 /**
  * OUTER BRISBANE SUBURBS
- * Suburban, family-focused, commercial centers
+ * Suburban, family-focused, commercial centres
  */
 const outerBrisbane: Record<string, SuburbTemplate> = {
   'chermside': {
@@ -551,7 +551,7 @@ const outerBrisbane: Record<string, SuburbTemplate> = {
     keySpecialties: [
       'Suburban family home restoration',
       'Commercial property repair',
-      'Shopping center emergency response',
+      'Shopping centre emergency response',
       'Retail water damage mitigation',
     ],
     uniqueCharacteristics: [
@@ -580,7 +580,7 @@ const outerBrisbane: Record<string, SuburbTemplate> = {
     demographics: {
       medianPrice: '$650,000',
       population: '10,500',
-      primaryPropertyTypes: ['Suburban homes', 'Modern apartments', 'Shopping center'],
+      primaryPropertyTypes: ['Suburban homes', 'Modern apartments', 'Shopping centre'],
       householdComposition: 'Families, young professionals',
     },
     disasterRisks: [
@@ -600,7 +600,7 @@ const outerBrisbane: Record<string, SuburbTemplate> = {
     keySpecialties: [
       'Family home restoration',
       'Commercial property services',
-      'Shopping center emergency response',
+      'Shopping centre emergency response',
       'Rapid residential turnaround',
     ],
     uniqueCharacteristics: [
@@ -665,7 +665,7 @@ const ipswich: Record<string, SuburbTemplate> = {
       'Modern construction standards throughout',
       'Inland location with lower storm exposure',
     ],
-    landmarks: ['Springfield Lake', 'Town Center', 'Springfield Sporting Complex', 'Shopping precinct'],
+    landmarks: ['Springfield Lake', 'Town centre', 'Springfield Sporting Complex', 'Shopping precinct'],
     nearbySuburbs: ['karalee', 'brookwater', 'forest-lake', 'ipswich-cbd'],
     regionParent: 'ipswich',
   },
@@ -759,7 +759,7 @@ const ipswich: Record<string, SuburbTemplate> = {
       'Rapid infrastructure development',
       'Young, growing demographic',
     ],
-    landmarks: ['Brookwater Town Center', 'Community lake', 'Shopping precinct', 'Recreation facilities'],
+    landmarks: ['Brookwater Town centre', 'Community lake', 'Shopping precinct', 'Recreation facilities'],
     nearbySuburbs: ['springfield-lakes', 'karalee', 'forest-lake'],
     regionParent: 'ipswich',
   },
@@ -814,7 +814,7 @@ const logan: Record<string, SuburbTemplate> = {
       'Affordable housing with investment appeal',
       'Good road access for service delivery',
     ],
-    landmarks: ['Springwood Business District', 'Shopping centers', 'Transport hubs'],
+    landmarks: ['Springwood Business District', 'Shopping centres', 'Transport hubs'],
     nearbySuburbs: ['beenleigh', 'browns-plains', 'waterford'],
     regionParent: 'logan',
   },

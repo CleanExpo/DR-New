@@ -16,8 +16,8 @@ export default function RedHillWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <Home className="h-12 w-12 text-blue-300" />
             </div>
@@ -26,7 +26,7 @@ export default function RedHillWaterDamagePage() {
               <span className="block text-blue-300 text-3xl mt-4">Heritage Queenslander & Character Home Expert</span>
             </h1>
             <p className="text-xl mb-8">
-              Specialized water damage restoration for Red Hill's prestigious heritage homes and Queenslanders.
+              specialised water damage restoration for Red Hill's prestigious heritage homes and Queenslanders.
               Master Restorer Phill McGurk provides expert 24/7 emergency response for character properties.
             </p>
 
@@ -36,7 +36,7 @@ export default function RedHillWaterDamagePage() {
               <p className="text-lg">Character Home Specialist</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Home className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">Heritage Expert</p>
@@ -60,7 +60,7 @@ export default function RedHillWaterDamagePage() {
       {/* Red Hill Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Red Hill Heritage Property Water Damage Services
           </h2>
 
@@ -75,19 +75,19 @@ export default function RedHillWaterDamagePage() {
                   and heritage value of this exclusive inner-city suburb.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Paddington Terrace properties</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Musgrave Road heritage homes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Kennedy Terrace estates</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Character-filled residential streets</span>
                   </li>
@@ -99,22 +99,22 @@ export default function RedHillWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">Heritage Property Challenges</h3>
                 <p className="text-lg mb-4">
                   Red Hill's heritage Queenslanders and elevated positions create unique
-                  restoration requirements we specialize in.
+                  restoration requirements we specialise in.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Original timber floor damage</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>VJ wall and ceiling issues</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Heritage roof complications</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Steep block water runoff</span>
                   </li>
@@ -127,7 +127,7 @@ export default function RedHillWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-red-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Red Hill Water Damage Emergency?
           </h2>

@@ -16,8 +16,8 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-purple-900 to-blue-900 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Home className="h-16 w-16 mr-4 text-purple-400" />
               <Laptop className="h-16 w-16 text-blue-400" />
             </div>
@@ -37,7 +37,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
               <p className="text-lg">Comprehensive Testing • Same Day Results</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Wind className="h-10 w-10 mx-auto mb-2 text-blue-400" />
                 <p className="font-bold">Air Quality Testing</p>
@@ -62,7 +62,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               The Hidden Cost of Poor Home Office Air Quality
             </h2>
 
@@ -78,23 +78,23 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
                 <div className="bg-red-50 p-6 rounded-lg">
                   <h4 className="font-bold mb-3 text-red-800">Common WFH Air Quality Problems:</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Poor ventilation in converted spaces</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>CO2 buildup from extended occupation</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Electronic equipment off-gassing</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Furniture and carpet emissions</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Printer and office supply fumes</span>
                     </li>
@@ -135,10 +135,10 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
 
             {/* CO2 Levels Info */}
             <Card className="p-8 bg-yellow-50">
-              <h3 className="text-2xl font-bold text-center mb-6 text-yellow-800">
+              <h3 className="text-2xl font-bold text-centre mb-6 text-yellow-800">
                 CO2 Levels: The Hidden Productivity Killer
               </h3>
-              <div className="grid md:grid-cols-4 gap-6 text-center">
+              <div className="grid md:grid-cols-4 gap-6 text-centre">
                 <div className="bg-green-100 p-4 rounded-lg">
                   <h4 className="text-xl font-bold text-green-800">350-400 ppm</h4>
                   <p className="text-sm">Outdoor air (baseline)</p>
@@ -160,7 +160,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
                   <p className="text-xs text-red-700">Severe impairment</p>
                 </div>
               </div>
-              <p className="text-center mt-6 text-lg">
+              <p className="text-centre mt-6 text-lg">
                 <strong>Most Brisbane home offices measure 1500-3000 ppm during work hours</strong>
               </p>
             </Card>
@@ -172,7 +172,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Professional Home Office Air Quality Assessment
             </h2>
 
@@ -186,23 +186,23 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
                   provides accurate baseline data.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>CO2 levels during work hours</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>VOCs from equipment and furniture</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Particulate matter and allergens</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Humidity and temperature monitoring</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Ventilation effectiveness analysis</span>
                   </li>
@@ -271,7 +271,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
               </Card>
 
               <Card className="p-6 border-l-4 border-l-purple-600">
-                <h3 className="text-xl font-bold mb-3 text-purple-800">Complete Workspace Optimization</h3>
+                <h3 className="text-xl font-bold mb-3 text-purple-800">Complete Workspace optimisation</h3>
                 <p className="text-3xl font-bold text-purple-600 mb-4">$950</p>
                 <ul className="space-y-2 text-sm mb-6">
                   <li>• Multi-day monitoring study</li>
@@ -291,7 +291,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Proven Home Office Air Quality Solutions
             </h2>
 
@@ -306,23 +306,23 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
                 <div className="bg-green-50 p-6 rounded-lg">
                   <h4 className="font-bold mb-3 text-green-800">Ventilation Solutions:</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Silent mechanical ventilation systems</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Smart automated window openers</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Heat recovery ventilation (HRV)</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Ceiling fans with air purification</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Positive pressure systems</span>
                     </li>
@@ -363,11 +363,11 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
 
             {/* Smart Monitoring */}
             <Card className="p-8 bg-purple-50">
-              <h3 className="text-2xl font-bold text-center mb-6 text-purple-800">
+              <h3 className="text-2xl font-bold text-centre mb-6 text-purple-800">
                 Smart Air Quality Monitoring for WFH Productivity
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
+                <div className="text-centre">
                   <Laptop className="h-16 w-16 mx-auto mb-4 text-purple-600" />
                   <h4 className="text-xl font-bold mb-2">Real-Time Monitoring</h4>
                   <p className="text-sm">
@@ -375,7 +375,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
                     Track CO2, VOCs, and productivity correlation in real-time.
                   </p>
                 </div>
-                <div className="text-center">
+                <div className="text-centre">
                   <Wind className="h-16 w-16 mx-auto mb-4 text-blue-600" />
                   <h4 className="text-xl font-bold mb-2">Automated Response</h4>
                   <p className="text-sm">
@@ -383,12 +383,12 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
                     or activate purification when air quality declines.
                   </p>
                 </div>
-                <div className="text-center">
+                <div className="text-centre">
                   <Brain className="h-16 w-16 mx-auto mb-4 text-green-600" />
                   <h4 className="text-xl font-bold mb-2">Productivity Analytics</h4>
                   <p className="text-sm">
                     Track your most productive air quality conditions
-                    and receive optimization recommendations.
+                    and receive optimisation recommendations.
                   </p>
                 </div>
               </div>
@@ -401,7 +401,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Common Brisbane Work-From-Home Setups
             </h2>
 
@@ -516,7 +516,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Work-From-Home Air Quality Service Areas
             </h2>
 
@@ -524,23 +524,23 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-blue-800">Brisbane Inner City</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Home className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Brisbane CBD apartments</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Home className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Hamilton waterfront homes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Home className="h-4 w-4 text-blue-600 mr-2" />
                     <span>New Farm converted spaces</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Home className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Ascot heritage home offices</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Home className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Toowong professional setups</span>
                   </li>
@@ -550,23 +550,23 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-green-800">Brisbane Suburbs</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-green-600 mr-2" />
                     <span>Coorparoo family homes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-green-600 mr-2" />
                     <span>Carindale converted garages</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-green-600 mr-2" />
                     <span>Chermside granny flats</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-green-600 mr-2" />
                     <span>Aspley home offices</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-green-600 mr-2" />
                     <span>All Brisbane metro areas</span>
                   </li>
@@ -576,23 +576,23 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-purple-800">Growth Corridors</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Laptop className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Ipswich new developments</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Laptop className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Springfield Lakes estates</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Laptop className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Logan growth areas</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Laptop className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Caboolture corridor</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Laptop className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Gold Coast hinterland</span>
                   </li>
@@ -600,7 +600,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
               </Card>
             </div>
 
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-lg mb-4">
                 <strong>Home office assessments available 7 days a week</strong>
               </p>
@@ -614,7 +614,7 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
 
       {/* Contact CTA */}
       <section className="py-16 bg-gradient-to-r from-purple-700 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Transform Your Home Office Air Quality
           </h2>
@@ -657,27 +657,27 @@ export default function WorkFromHomeAirQualityBrisbanePage() {
       {/* Productivity Stats */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl font-bold mb-12">
               Proven Results: Better Air = Better Work
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
+              <div className="text-centre">
                 <div className="text-4xl font-bold text-green-600 mb-2">23%</div>
                 <p className="text-lg font-semibold">Productivity Increase</p>
                 <p className="text-sm text-gray-600">
-                  Average improvement in cognitive performance with optimized air quality
+                  Average improvement in cognitive performance with optimised air quality
                 </p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <div className="text-4xl font-bold text-blue-600 mb-2">67%</div>
                 <p className="text-lg font-semibold">Reduction in Fatigue</p>
                 <p className="text-sm text-gray-600">
                   Fewer afternoon energy crashes with proper ventilation
                 </p>
               </div>
-              <div className="text-center">
+              <div className="text-centre">
                 <div className="text-4xl font-bold text-purple-600 mb-2">40%</div>
                 <p className="text-lg font-semibold">Fewer Sick Days</p>
                 <p className="text-sm text-gray-600">

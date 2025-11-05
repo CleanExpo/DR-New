@@ -61,14 +61,14 @@ const karaleePrecincts = [
 const riversideServices = [
   {
     title: 'Bremer River Flood Emergency Response',
-    description: 'Rapid response to Bremer River flood events with specialized pumping, drying and restoration for riverside properties affected by 2011/2022 flood patterns.',
+    description: 'Rapid response to Bremer River flood events with specialised pumping, drying and restoration for riverside properties affected by 2011/2022 flood patterns.',
     icon: Waves,
     urgency: 'Critical - 60 minutes',
     features: ['River flood extraction', 'Contaminated water protocols', 'Structural drying systems', 'Flood barrier coordination']
   },
   {
     title: 'Established Home Restoration',
-    description: 'Specialized care for Karalee\'s mature homes including timber floors, heritage features, and established garden protection.',
+    description: 'specialised care for Karalee\'s mature homes including timber floors, heritage features, and established garden protection.',
     icon: Home,
     urgency: 'High - 2 hours',
     features: ['Heritage timber restoration', 'Plaster wall drying', 'Garden coordination', 'Period feature preservation']
@@ -112,7 +112,7 @@ const karaleeRisks = [
 
 const karaleeFeatures = [
   'Bremer River flood response within 25-30 minutes from Wacol',
-  'Riverside estate specialized restoration protocols',
+  'Riverside estate specialised restoration protocols',
   'Established home and heritage timber expertise',
   'Golf course property and landscaping coordination',
   '2011/2022 flood event experience in Ipswich region',
@@ -128,7 +128,7 @@ const karaleeFAQ = [
   },
   {
     question: 'Do you have experience with established homes and heritage features?',
-    answer: 'Yes, Master Restorer Phill McGurk specializes in the restoration of Karalee\'s established homes including heritage timber floors, plaster walls, and period features. We understand the unique challenges of older construction including timber floor drying, ceiling restoration, and preserving the character features that make Karalee homes special. Our techniques are tailored to protect both structural integrity and aesthetic value.'
+    answer: 'Yes, Master Restorer Phill McGurk specialises in the restoration of Karalee\'s established homes including heritage timber floors, plaster walls, and period features. We understand the unique challenges of older construction including timber floor drying, ceiling restoration, and preserving the character features that make Karalee homes special. Our techniques are tailored to protect both structural integrity and aesthetic value.'
   },
   {
     question: 'Can you coordinate with landscaping during water damage restoration?',
@@ -136,7 +136,7 @@ const karaleeFAQ = [
   },
   {
     question: 'What makes Bremer River flooding different from regular water damage?',
-    answer: 'Bremer River flooding introduces contaminated water containing sewage, agricultural runoff, and debris requiring specialized health protocols. Unlike clean water from burst pipes, flood water demands comprehensive contamination treatment, antimicrobial applications, and often structural materials replacement. Our team follows strict IICRC flood protocols and coordinates with insurance companies familiar with Ipswich flood claims. Response time is critical as flood water causes exponentially more damage than clean water.'
+    answer: 'Bremer River flooding introduces contaminated water containing sewage, agricultural runoff, and debris requiring specialised health protocols. Unlike clean water from burst pipes, flood water demands comprehensive contamination treatment, antimicrobial applications, and often structural materials replacement. Our team follows strict IICRC flood protocols and coordinates with insurance companies familiar with Ipswich flood claims. Response time is critical as flood water causes exponentially more damage than clean water.'
   }
 ];
 
@@ -242,8 +242,8 @@ export default function KaraleePage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-emerald-900 via-green-900 to-teal-800 text-white py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
+            <div className="max-w-5xl mx-auto text-centre">
+              <div className="flex items-centre justify-centre gap-3 mb-6 flex-wrap">
                 <TreePine className="w-12 h-12 text-emerald-400" />
                 <span className="bg-gradient-to-r from-emerald-400 to-green-500 text-white px-6 py-3 rounded-full font-bold text-lg">
                   Riverside Specialist • Bremer River Expert
@@ -257,7 +257,7 @@ export default function KaraleePage() {
 
               <p className="text-xl mb-8 leading-relaxed max-w-4xl mx-auto">
                 Professional water damage restoration for Karalee's riverside estates and golf course properties.
-                <strong> Master Restorer Phill McGurk</strong> - specialized in Bremer River flood events, established home
+                <strong> Master Restorer Phill McGurk</strong> - specialised in Bremer River flood events, established home
                 restoration, and executive property care with 25-minute response from Wacol.
               </p>
 
@@ -286,7 +286,7 @@ export default function KaraleePage() {
 
               <Link
                 href="tel:1300309361"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-center gap-3 shadow-lg"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-centre gap-3 shadow-lg"
               >
                 <Phone className="w-6 h-6" />
                 Riverside Emergency: 1300 309 361
@@ -304,7 +304,7 @@ export default function KaraleePage() {
                 Karalee's prestigious position alongside the Bremer River creates both lifestyle benefits and unique challenges for property owners. From riverside executive estates to golf course properties and established family homes, this mature Ipswich suburb faces specific water damage risks including Bremer River flooding (2011, 2022 events), established home maintenance issues, and stormwater management across varied terrain. Master Restorer Phill McGurk brings decades of Ipswich region experience to Karalee, understanding the critical differences between river flood contamination and clean water damage.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Our team responds within 25-30 minutes to Karalee emergencies from our Wacol operations, equipped with contaminated water extraction equipment, structural drying systems, and specialized techniques for established homes with timber floors, heritage features, and mature landscaping. We understand Karalee's flood history, creek catchment areas, and the importance of rapid response to protect your valuable riverside or golf course estate investment.
+                Our team responds within 25-30 minutes to Karalee emergencies from our Wacol operations, equipped with contaminated water extraction equipment, structural drying systems, and specialised techniques for established homes with timber floors, heritage features, and mature landscaping. We understand Karalee's flood history, creek catchment areas, and the importance of rapid response to protect your valuable riverside or golf course estate investment.
               </p>
             </div>
           </div>
@@ -313,12 +313,12 @@ export default function KaraleePage() {
         {/* Karalee Precincts */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Karalee Property Precincts
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized restoration services across Karalee's diverse communities,
+                specialised restoration services across Karalee's diverse communities,
                 from riverside estates to golf course homes and established neighborhoods.
               </p>
             </div>
@@ -326,7 +326,7 @@ export default function KaraleePage() {
             <div className="grid md:grid-cols-2 gap-8">
               {karaleePrecincts.map((precinct, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-emerald-600">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-centre justify-between mb-6">
                     <h3 className="text-xl font-semibold text-gray-900">
                       {precinct.area}
                     </h3>
@@ -381,13 +381,13 @@ export default function KaraleePage() {
         {/* Riverside Services */}
         <section className="py-16 bg-emerald-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Shield className="w-12 h-12 text-emerald-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Riverside Restoration Services
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized services designed for Karalee's unique riverside environment
+                specialised services designed for Karalee's unique riverside environment
                 and Bremer River flood challenges.
               </p>
             </div>
@@ -397,8 +397,8 @@ export default function KaraleePage() {
                 const IconComponent = service.icon;
                 return (
                   <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-emerald-600 hover:shadow-xl transition-shadow">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-centre gap-4 mb-6">
+                      <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-centre justify-centre">
                         <IconComponent className="w-6 h-6 text-emerald-600" />
                       </div>
                       <div>
@@ -417,7 +417,7 @@ export default function KaraleePage() {
                       <span className="text-sm text-gray-500 mb-3 block">Key Features:</span>
                       <div className="space-y-2">
                         {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
+                          <div key={idx} className="flex items-centre gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
                             <span className="text-sm text-gray-700">{feature}</span>
                           </div>
@@ -434,7 +434,7 @@ export default function KaraleePage() {
         {/* Risk Management */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <AlertTriangle className="w-12 h-12 text-red-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Karalee Water Damage Risk Management
@@ -474,13 +474,13 @@ export default function KaraleePage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Karalee Riverside Restoration Features
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {karaleeFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+                  <div key={index} className="flex items-centre gap-3 bg-white rounded-lg p-4 shadow-sm">
                     <TreePine className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
@@ -493,7 +493,7 @@ export default function KaraleePage() {
         {/* FAQ Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
               Frequently Asked Questions
             </h2>
 
@@ -503,7 +503,7 @@ export default function KaraleePage() {
                   key={idx}
                   className="group bg-white rounded-lg p-6 shadow-md border-l-4 border-emerald-600 cursor-pointer"
                 >
-                  <summary className="flex items-center justify-between font-semibold text-gray-900 text-lg">
+                  <summary className="flex items-centre justify-between font-semibold text-gray-900 text-lg">
                     {faq.question}
                     <span className="text-2xl group-open:rotate-45 transition-transform">+</span>
                   </summary>
@@ -516,28 +516,28 @@ export default function KaraleePage() {
 
         {/* Emergency CTA */}
         <section className="py-16 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <Waves className="w-16 h-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold mb-6">
               Karalee Water Emergency? Bremer River Flood Response Available 24/7
             </h2>
             <p className="text-xl mb-8 max-w-4xl mx-auto">
               Riverside properties require immediate response to prevent contamination spread and structural damage.
-              Our Master Restorer team provides rapid flood water extraction and specialized restoration to protect
+              Our Master Restorer team provides rapid flood water extraction and specialised restoration to protect
               your valuable Karalee riverside or golf course estate investment.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-5 h-5" />
                 Riverside Emergency: 1300 309 361
               </Link>
               <Link
                 href="/emergency-guide"
-                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors inline-flex items-center justify-center gap-3"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors inline-flex items-centre justify-centre gap-3"
               >
                 <Shield className="w-5 h-5" />
                 Flood Preparation Guide
@@ -549,13 +549,13 @@ export default function KaraleePage() {
         {/* Related Areas */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-centre text-gray-900 mb-8">
               Additional Ipswich & Springfield Areas We Serve
             </h3>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <Link
                 href="/brookwater"
-                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-center border-t-4 border-emerald-600"
+                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-centre border-t-4 border-emerald-600"
               >
                 <TreePine className="w-8 h-8 text-emerald-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-semibold text-gray-900 mb-2">Brookwater</h4>
@@ -563,7 +563,7 @@ export default function KaraleePage() {
               </Link>
               <Link
                 href="/springfield-lakes"
-                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-center border-t-4 border-blue-600"
+                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-centre border-t-4 border-blue-600"
               >
                 <Home className="w-8 h-8 text-blue-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-semibold text-gray-900 mb-2">Springfield Lakes</h4>
@@ -571,7 +571,7 @@ export default function KaraleePage() {
               </Link>
               <Link
                 href="/ipswich"
-                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-center border-t-4 border-purple-600"
+                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-centre border-t-4 border-purple-600"
               >
                 <MapPin className="w-8 h-8 text-purple-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-semibold text-gray-900 mb-2">Ipswich CBD</h4>

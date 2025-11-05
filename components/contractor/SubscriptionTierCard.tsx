@@ -42,7 +42,7 @@ export function SubscriptionTierCard({
           Current Plan
         </Badge>
       )}
-      <CardHeader className="text-center pb-4">
+      <CardHeader className="text-centre pb-4">
         <CardTitle className="text-xl">{tier.name}</CardTitle>
         <CardDescription>{tier.radius}km Coverage Radius</CardDescription>
         <div className="mt-4">

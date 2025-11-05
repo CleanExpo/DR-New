@@ -156,7 +156,7 @@ const EmergencyLeadForm: React.FC<EmergencyLeadFormProps> = ({
   if (submitStatus === 'success') {
     return (
       <div className={`bg-green-50 border border-green-200 rounded-lg p-6 ${className}`}>
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-centre gap-3 mb-4">
           <CheckCircle className="h-8 w-8 text-green-600" />
           <div>
             <h3 className="text-lg font-bold text-green-800">Request Submitted Successfully!</h3>
@@ -176,7 +176,7 @@ const EmergencyLeadForm: React.FC<EmergencyLeadFormProps> = ({
         </div>
         {urgencyLevel === 'emergency' && (
           <div className="mt-4 p-3 bg-red-100 border border-red-300 rounded-lg">
-            <p className="text-red-800 font-semibold flex items-center gap-2">
+            <p className="text-red-800 font-semibold flex items-centre gap-2">
               <Phone className="h-4 w-4" />
               For immediate assistance: <a href="tel:0413965292" className="underline">0413 965 292</a>
             </p>
@@ -190,12 +190,12 @@ const EmergencyLeadForm: React.FC<EmergencyLeadFormProps> = ({
     <div className={`bg-white rounded-lg shadow-lg ${className}`}>
       {/* Header */}
       <div className={`${config.color} text-white p-6 rounded-t-lg`}>
-        <div className="flex items-center gap-3 mb-2">
+        <div className="flex items-centre gap-3 mb-2">
           <AlertTriangle className="h-6 w-6" />
           <h2 className="text-xl font-bold">{title}</h2>
         </div>
         <p className="opacity-90">{config.subtitle}</p>
-        <div className="mt-3 flex items-center gap-2 text-sm">
+        <div className="mt-3 flex items-centre gap-2 text-sm">
           <Clock className="h-4 w-4" />
           <span>Response time: {config.responseTime}</span>
         </div>
@@ -220,7 +220,7 @@ const EmergencyLeadForm: React.FC<EmergencyLeadFormProps> = ({
                     : 'border-gray-300 hover:border-gray-400'
                 } ${type.urgent ? 'ring-1 ring-red-200' : ''}`}
               >
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-centre gap-2 mb-1">
                   <span className="text-lg">{type.icon}</span>
                   <span className="font-medium text-sm">{type.label}</span>
                 </div>
@@ -412,7 +412,7 @@ const EmergencyLeadForm: React.FC<EmergencyLeadFormProps> = ({
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full ${config.color} hover:opacity-90 disabled:opacity-50 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all flex items-center justify-center gap-3`}
+          className={`w-full ${config.color} hover:opacity-90 disabled:opacity-50 text-white py-4 px-6 rounded-lg font-semibold text-lg transition-all flex items-centre justify-centre gap-3`}
         >
           {isSubmitting ? (
             <>
@@ -430,7 +430,7 @@ const EmergencyLeadForm: React.FC<EmergencyLeadFormProps> = ({
         {/* Direct Contact for Emergencies */}
         {urgencyLevel === 'emergency' && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-centre gap-2 mb-2">
               <Phone className="h-5 w-5 text-red-600" />
               <span className="font-semibold text-red-800">Can't wait? Call now:</span>
             </div>

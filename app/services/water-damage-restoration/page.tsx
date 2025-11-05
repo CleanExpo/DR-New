@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Water Damage Restoration Brisbane | Emergency Flood Recovery',
     description: 'Fast water damage restoration Brisbane, Ipswich, Logan. 2-hour response, IICRC certified, insurance approved. Master Restorer service.',
-    images: [{ url: '/images/optimized/damage/3D Burst Water Pipe.png', width: 1200, height: 630, alt: 'Water Damage Restoration Brisbane' }],
+    images: [{ url: '/images/optimised/damage/3D Burst Water Pipe.png', width: 1200, height: 630, alt: 'Water Damage Restoration Brisbane' }],
     type: 'website',
     siteName: 'Disaster Recovery Brisbane',
     locale: 'en_AU'
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Water Damage Restoration Brisbane | 2hr Response',
     description: 'Emergency water damage restoration in Brisbane, Ipswich, Logan. Master Restorer Phill McGurk. Call now for 2-hour response.',
-    images: ['/images/optimized/damage/3D Burst Water Pipe.png']
+    images: ['/images/optimised/damage/3D Burst Water Pipe.png']
   },
   alternates: {
     canonical: 'https://dr-new-ten.vercel.app/services/water-damage-restoration'
@@ -99,10 +99,10 @@ export default function WaterDamageRestorationPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <div>
                 {/* Trust Badge - REAL Certification */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 rounded-full mb-6">
+                <div className="inline-flex items-centre gap-2 px-4 py-2 bg-green-500/20 rounded-full mb-6">
                   <Shield className="h-5 w-5 text-emerald-600" />
                   <span className="text-green-700 font-semibold">
                     IICRC Certified | Master Restorer
@@ -147,14 +147,14 @@ export default function WaterDamageRestorationPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="/client/emergency"
-                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-center animate-pulse"
+                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-centre animate-pulse"
                   >
                     <MessageSquare className="inline-block mr-2 h-5 w-5" />
                     Call {AUSTRALIAN_CONFIG.emergency.number} Now
                   </Link>
                   <Link
                     href="/client/instant-quote"
-                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-center"
+                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-centre"
                   >
                     Free Assessment
                   </Link>
@@ -165,7 +165,7 @@ export default function WaterDamageRestorationPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/damage/3D Burst Water Pipe.png"
+                    src="/images/optimised/damage/3D Burst Water Pipe.png"
                     alt="Water damage emergency response - 3D visualisation"
                     fill
                     className="object-contain drop-shadow-2xl"
@@ -187,7 +187,7 @@ export default function WaterDamageRestorationPage() {
         {/* Critical Alert */}
         <section className="bg-red-900/30 border-y border-red-600/30 py-6">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <AlertTriangle className="h-6 w-6 text-red-600 animate-pulse" />
               <p className="text-white font-semibold">
                 Every hour counts - water damage worsens rapidly.
@@ -209,7 +209,7 @@ export default function WaterDamageRestorationPage() {
         {/* Service Excellence */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-4xl font-bold text-white mb-4">
                 Master Restorer Service
               </h2>
@@ -300,7 +300,7 @@ export default function WaterDamageRestorationPage() {
         {/* Scientific Process with Australian Standards */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Australian Standard Restoration Process
             </h2>
 
@@ -371,7 +371,7 @@ export default function WaterDamageRestorationPage() {
                   }
                 ].map((step, idx) => (
                   <div key={idx} className="flex gap-6">
-                    <div className={`flex-shrink-0 w-16 h-16 bg-${step.colour}-500 rounded-full flex items-center justify-center text-white font-bold`}>
+                    <div className={`flex-shrink-0 w-16 h-16 bg-${step.colour}-500 rounded-full flex items-centre justify-centre text-white font-bold`}>
                       {step.time}
                     </div>
                     <div className="flex-1">
@@ -388,7 +388,7 @@ export default function WaterDamageRestorationPage() {
         {/* Insurance Work */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Insurance Approved Restoration
             </h2>
 
@@ -451,7 +451,7 @@ export default function WaterDamageRestorationPage() {
         {/* Mould Prevention */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Prevent Mould Growth
             </h2>
 
@@ -501,13 +501,13 @@ export default function WaterDamageRestorationPage() {
         {/* Coverage Map */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Complete Australian Coverage
             </h2>
             
             <AustralianLocationGrid serviceSlug="water-damage-restoration" />
             
-            <div className="mt-12 text-center">
+            <div className="mt-12 text-centre">
               <p className="text-xl text-blue-700">
                 From Coober Pedy to Thursday Island - We're There in Hours
               </p>
@@ -517,7 +517,7 @@ export default function WaterDamageRestorationPage() {
 
         {/* Final CTA */}
         <section className="py-20 bg-gradient-to-r from-red-900/80 to-orange-900/80">
-          <div className="container mx-auto px-6 text-center">
+          <div className="container mx-auto px-6 text-centre">
             <AlertTriangle className="h-16 w-16 text-blue-500 mx-auto mb-6 animate-pulse" />
             <h2 className="text-4xl font-bold text-white mb-6">
               Every Minute Counts
@@ -525,7 +525,7 @@ export default function WaterDamageRestorationPage() {
             <p className="text-xl text-yellow-700 mb-8 max-w-3xl mx-auto">
               Professional water damage restoration with 1 hour response time for Brisbane, Ipswich and Logan properties.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="/client/emergency"
                 className="inline-block px-10 py-5 bg-white text-red-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"

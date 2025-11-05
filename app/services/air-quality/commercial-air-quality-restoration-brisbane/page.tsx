@@ -16,8 +16,8 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-gray-900 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Building className="h-16 w-16 mr-4 text-blue-400" />
               <Shield className="h-16 w-16 text-green-400" />
             </div>
@@ -37,7 +37,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
               <p className="text-lg">24/7 • NATA Accredited • Compliance Specialists</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Award className="h-10 w-10 mx-auto mb-2 text-blue-400" />
                 <p className="font-bold">NATA Accredited</p>
@@ -62,7 +62,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               The Commercial Air Quality Crisis in Brisbane
             </h2>
 
@@ -78,23 +78,23 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                 <div className="bg-red-50 p-6 rounded-lg">
                   <h4 className="font-bold mb-3 text-red-800">Business Impact:</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>15-20% reduction in employee productivity</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>35% increase in sick leave usage</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Higher employee turnover rates</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Potential legal liability exposure</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Damage to company reputation</span>
                     </li>
@@ -108,7 +108,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                 <p className="text-lg mb-4">
                   Brisbane's subtropical climate creates unique commercial air quality challenges.
                   High humidity, temperature fluctuations, and older building stock contribute
-                  to complex indoor air quality issues requiring specialized expertise.
+                  to complex indoor air quality issues requiring specialised expertise.
                 </p>
                 <div className="space-y-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
@@ -135,10 +135,10 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
 
             {/* Industry Statistics */}
             <Card className="p-8 bg-yellow-50">
-              <h3 className="text-2xl font-bold text-center mb-6 text-yellow-800">
+              <h3 className="text-2xl font-bold text-centre mb-6 text-yellow-800">
                 Commercial Air Quality Impact Statistics
               </h3>
-              <div className="grid md:grid-cols-4 gap-6 text-center">
+              <div className="grid md:grid-cols-4 gap-6 text-centre">
                 <div className="bg-white p-4 rounded-lg">
                   <div className="text-3xl font-bold text-red-600 mb-2">$2.3B</div>
                   <p className="text-sm font-semibold">Annual cost to Australian businesses</p>
@@ -169,7 +169,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Brisbane Commercial Industries We Serve
             </h2>
 
@@ -243,7 +243,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                 <h3 className="text-xl font-bold mb-3 text-red-800">Industrial & Manufacturing</h3>
                 <p className="text-sm mb-3">
                   Factories, warehouses, processing plants, and industrial facilities
-                  requiring specialized air quality management and compliance.
+                  requiring specialised air quality management and compliance.
                 </p>
                 <ul className="text-xs space-y-1">
                   <li>• Manufacturing plants and factories</li>
@@ -259,7 +259,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                 <h3 className="text-xl font-bold mb-3 text-teal-800">Specialty Commercial</h3>
                 <p className="text-sm mb-3">
                   Unique commercial environments with specific air quality requirements
-                  including laboratories, clean rooms, and specialized facilities.
+                  including laboratories, clean rooms, and specialised facilities.
                 </p>
                 <ul className="text-xs space-y-1">
                   <li>• Research laboratories</li>
@@ -278,7 +278,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Comprehensive Commercial Air Quality Testing
             </h2>
 
@@ -292,23 +292,23 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                   ensure regulatory compliance and employee safety.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>VOCs and chemical contamination</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Mould and microbial assessment</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Particulate matter and allergens</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Carbon dioxide and ventilation</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Legionella and water system testing</span>
                   </li>
@@ -398,41 +398,41 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Commercial Air Quality Restoration Solutions
             </h2>
 
             <div className="grid md:grid-cols-2 gap-8 mb-12">
               <Card className="p-8">
                 <Wind className="h-12 w-12 text-blue-600 mb-4" />
-                <h3 className="text-2xl font-bold mb-4">HVAC System Optimization</h3>
+                <h3 className="text-2xl font-bold mb-4">HVAC System optimisation</h3>
                 <p className="text-lg mb-4">
-                  Maximize your existing HVAC investment with professional optimization,
+                  maximise your existing HVAC investment with professional optimisation,
                   cleaning, and upgrade recommendations. Improve efficiency while
                   ensuring excellent indoor air quality.
                 </p>
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h4 className="font-bold mb-3 text-blue-800">HVAC Solutions:</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                       <span>Duct cleaning and sanitization</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
-                      <span>Filter upgrade and optimization</span>
+                      <span>Filter upgrade and optimisation</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                       <span>Ventilation rate improvements</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                       <span>Smart control system integration</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
-                      <span>Energy efficiency optimization</span>
+                      <span>Energy efficiency optimisation</span>
                     </li>
                   </ul>
                 </div>
@@ -471,7 +471,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
 
             {/* Industry-Specific Solutions */}
             <Card className="p-8 bg-purple-50">
-              <h3 className="text-2xl font-bold text-center mb-6 text-purple-800">
+              <h3 className="text-2xl font-bold text-centre mb-6 text-purple-800">
                 Industry-Specific Air Quality Solutions
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
@@ -492,13 +492,13 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                     <li>• Dining area air quality</li>
                     <li>• Grease and odour management</li>
                     <li>• Food safety air systems</li>
-                    <li>• Customer comfort optimization</li>
+                    <li>• Customer comfort optimisation</li>
                   </ul>
                 </div>
                 <div className="bg-white p-6 rounded-lg">
                   <h4 className="text-lg font-bold mb-3 text-orange-800">Educational Institutions</h4>
                   <ul className="text-sm space-y-2">
-                    <li>• Classroom air quality optimization</li>
+                    <li>• Classroom air quality optimisation</li>
                     <li>• Laboratory fume management</li>
                     <li>• Childcare centre air safety</li>
                     <li>• Sports facility ventilation</li>
@@ -515,13 +515,13 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               24/7 Commercial Air Quality Emergency Response
             </h2>
 
             <Card className="p-8 bg-red-50">
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
+                <div className="text-centre">
                   <AlertTriangle className="h-16 w-16 mx-auto mb-4 text-red-600" />
                   <h4 className="text-xl font-bold mb-2">Chemical Incidents</h4>
                   <p className="text-sm">
@@ -529,7 +529,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                     contamination requiring immediate air quality intervention.
                   </p>
                 </div>
-                <div className="text-center">
+                <div className="text-centre">
                   <Building className="h-16 w-16 mx-auto mb-4 text-blue-600" />
                   <h4 className="text-xl font-bold mb-2">Building Emergencies</h4>
                   <p className="text-sm">
@@ -537,7 +537,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                     affecting employee safety and business operations.
                   </p>
                 </div>
-                <div className="text-center">
+                <div className="text-centre">
                   <Shield className="h-16 w-16 mx-auto mb-4 text-green-600" />
                   <h4 className="text-xl font-bold mb-2">Compliance Emergencies</h4>
                   <p className="text-sm">
@@ -546,7 +546,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                   </p>
                 </div>
               </div>
-              <div className="text-center mt-8">
+              <div className="text-centre mt-8">
                 <p className="text-lg font-bold text-red-800 mb-4">
                   Emergency Response: 60 minutes Brisbane CBD • 90 minutes metro area
                 </p>
@@ -563,7 +563,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Commercial Air Quality Service Areas
             </h2>
 
@@ -571,23 +571,23 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-blue-800">Brisbane CBD & Inner City</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Building className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Brisbane CBD high-rise offices</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Building className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Fortitude Valley creative precincts</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Building className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Milton professional centres</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Building className="h-4 w-4 text-blue-600 mr-2" />
                     <span>South Brisbane office towers</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Building className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Spring Hill medical precinct</span>
                   </li>
@@ -597,23 +597,23 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-green-800">Industrial & Commercial Hubs</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-green-600 mr-2" />
                     <span>Eagle Farm industrial</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-green-600 mr-2" />
                     <span>Pinkenba freight hub</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-green-600 mr-2" />
                     <span>Acacia Ridge logistics</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-green-600 mr-2" />
                     <span>Northgate manufacturing</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-green-600 mr-2" />
                     <span>Port of Brisbane facilities</span>
                   </li>
@@ -623,23 +623,23 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-purple-800">Retail & Hospitality</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Queen Street Mall retail</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Chermside & Carindale centres</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Airport retail and hospitality</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Casino and entertainment</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Users className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Suburban shopping centres</span>
                   </li>
@@ -647,7 +647,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
               </Card>
             </div>
 
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-lg mb-4">
                 <strong>Commercial air quality services available across South East Queensland</strong>
               </p>
@@ -661,7 +661,7 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
 
       {/* Contact CTA */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-purple-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Protect Your Business with Professional Air Quality Management
           </h2>
@@ -705,12 +705,12 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Related Commercial Services
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Wind className="h-12 w-12 mx-auto mb-4 text-blue-600" />
                 <h3 className="text-xl font-bold mb-3">
                   HVAC Duct Cleaning
@@ -723,20 +723,20 @@ export default function CommercialAirQualityRestorationBrisbanePage() {
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Shield className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="text-xl font-bold mb-3">
                   Sick Building Syndrome
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Specialized assessment and remediation for workplace health issues.
+                  specialised assessment and remediation for workplace health issues.
                 </p>
                 <Link href="/services/air-quality/sick-building-syndrome-brisbane">
                   <Button variant="outline">Learn More</Button>
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <AlertTriangle className="h-12 w-12 mx-auto mb-4 text-red-600" />
                 <h3 className="text-xl font-bold mb-3">
                   VOC Testing & Removal

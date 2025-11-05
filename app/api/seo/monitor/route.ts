@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
       category: 'Performance',
       issues: ['Largest Contentful Paint at 2.8s (target: <2.5s)'],
       recommendations: [
-        'Optimize hero images further',
+        'optimise hero images further',
         'Implement resource hints (preconnect, prefetch)',
         'Consider edge caching for static assets'
       ]
@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
       category: 'Mobile Experience',
       issues: [],
       recommendations: [
-        'Touch targets optimized',
+        'Touch targets optimised',
         'Viewport configured correctly',
         'Mobile-first responsive design'
       ]
@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
       recommendations: [
         'All AI crawlers allowed',
         'Structured data AI-friendly',
-        'Content optimized for LLMs',
+        'Content optimised for LLMs',
         'Natural language keywords used'
       ]
     },
@@ -139,7 +139,7 @@ export async function GET(request: NextRequest) {
       'Real disaster story content with authoritative sources',
       'Comprehensive local GEO targeting with 50+ suburbs',
       'IndexNow for instant indexing',
-      'AI-optimized content structure',
+      'AI-optimised content structure',
       'Expert E-E-A-T signals throughout'
     ]
   };

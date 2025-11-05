@@ -61,7 +61,7 @@ const heroBanners: HeroBanner[] = [
     id: 'commercial-restoration',
     title: 'Commercial Property',
     subtitle: 'Business Continuity',
-    description: 'Minimize downtime with rapid commercial restoration. Get your business back to normal operations.',
+    description: 'minimise downtime with rapid commercial restoration. Get your business back to normal operations.',
     image: '/images/hero/commercial-restoration-services.jpg',
     alt: 'Commercial disaster recovery team working on office building restoration',
     service: 'Commercial Restoration',
@@ -87,7 +87,7 @@ const heroBanners: HeroBanner[] = [
     subtitle: 'Category 3 Water',
     description: 'Immediate sewage cleanup and sanitization. Prevent contamination and health risks.',
     image: '/images/hero/sewage-remediation-services.png',
-    alt: 'Professional sewage remediation team with specialized equipment',
+    alt: 'Professional sewage remediation team with specialised equipment',
     service: 'Sewage Remediation',
     urgency: 'Contamination risk - urgent',
     ctaText: 'Emergency Cleanup',
@@ -124,7 +124,7 @@ export default function RotatingHeroBanner() {
   const banner = heroBanners[currentBanner];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-centre justify-centre overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
@@ -239,15 +239,15 @@ export default function RotatingHeroBanner() {
                 transition={{ delay: 0.7 }}
                 className="flex flex-wrap gap-6 text-sm font-medium"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Shield className="w-5 h-5 text-green-400" />
                   <span>IICRC Certified</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Clock className="w-5 h-5 text-blue-400" />
                   <span>24/7 Emergency</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <CheckCircle className="w-5 h-5 text-green-400" />
                   <span>Insurance Approved</span>
                 </div>
@@ -287,7 +287,7 @@ export default function RotatingHeroBanner() {
           >
             <a
               href="tel:1300309361"
-              className="bg-red-600/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-red-700 transition-all duration-300 shadow-2xl flex items-center gap-2"
+              className="bg-red-600/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-red-700 transition-all duration-300 shadow-2xl flex items-centre gap-2"
             >
               <Phone className="w-5 h-5" />
               1300 309 361

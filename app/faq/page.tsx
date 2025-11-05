@@ -51,7 +51,7 @@ export default function FAQIndexPage() {
   return (
     <div className="min-h-screen">
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <HelpCircle className="h-16 w-16 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Frequently Asked Questions
@@ -77,7 +77,7 @@ export default function FAQIndexPage() {
                   </div>
                   <h2 className="text-2xl font-bold mb-3">{category.name}</h2>
                   <p className="text-gray-700 mb-4">{category.description}</p>
-                  <div className="flex items-center text-blue-600 font-bold">
+                  <div className="flex items-centre text-blue-600 font-bold">
                     View Questions <ArrowRight className="ml-2 h-4 w-4" />
                   </div>
                 </Card>
@@ -90,7 +90,7 @@ export default function FAQIndexPage() {
       {/* Quick Answers */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Quick Answers to Top Questions
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
@@ -121,7 +121,7 @@ export default function FAQIndexPage() {
 
       {/* CTA */}
       <section className="py-20 bg-gradient-to-r from-blue-700 to-red-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Can't Find Your Answer?
           </h2>

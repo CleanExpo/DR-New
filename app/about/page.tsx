@@ -75,10 +75,10 @@ export default function ModernAboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-centre"
           >
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-purple-500/20 to-indigo-500/20 border border-purple-500/30"
+              className="inline-flex items-centre gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-purple-500/20 to-indigo-500/20 border border-purple-500/30"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
@@ -114,9 +114,9 @@ export default function ModernAboutPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
-                className="text-center"
+                className="text-centre"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-r from-purple-500/20 to-indigo-500/20 border border-purple-500/30">
+                <div className="inline-flex items-centre justify-centre w-16 h-16 mb-4 rounded-full bg-gradient-to-r from-purple-500/20 to-indigo-500/20 border border-purple-500/30">
                   {stat.icon}
                 </div>
                 <motion.div
@@ -136,7 +136,7 @@ export default function ModernAboutPage() {
       {/* Our Story Section */}
       <section className="relative z-10 px-6 py-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-centre">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -172,7 +172,7 @@ export default function ModernAboutPage() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden flex items-center justify-center">
+              <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden flex items-centre justify-centre">
                 <img
                   src="/images/team/3D Shane.png"
                   alt="Shane - Founder and CEO of Disaster Recovery"
@@ -187,7 +187,7 @@ export default function ModernAboutPage() {
                     if (fallback) fallback.style.display = 'flex';
                   }}
                 />
-                <div id="founder-fallback" className="hidden w-full h-full items-center justify-center bg-gradient-to-r from-purple-500/20 to-indigo-500/20">
+                <div id="founder-fallback" className="hidden w-full h-full items-centre justify-centre bg-gradient-to-r from-purple-500/20 to-indigo-500/20">
                   <UserGroupIcon className="w-32 h-32 text-purple-600/50" />
                 </div>
               </div>
@@ -212,7 +212,7 @@ export default function ModernAboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-centre mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
@@ -255,7 +255,7 @@ export default function ModernAboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-centre mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
@@ -275,7 +275,7 @@ export default function ModernAboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 border border-purple-500/30 rounded-xl p-6 text-center hover:border-purple-500/50 transition-all"
+                className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 border border-purple-500/30 rounded-xl p-6 text-centre hover:border-purple-500/50 transition-all"
                 whileHover={{ y: -5 }}
               >
                 <TrophyIcon className="w-12 h-12 text-purple-600 mx-auto mb-3" />
@@ -295,7 +295,7 @@ export default function ModernAboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-centre mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
@@ -307,7 +307,7 @@ export default function ModernAboutPage() {
             </p>
           </motion.div>
 
-          <div className="bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-3xl p-12 border border-purple-500/30 text-center">
+          <div className="bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-3xl p-12 border border-purple-500/30 text-centre">
             <UserGroupIcon className="w-24 h-24 text-purple-600 mx-auto mb-6" />
             <h3 className="text-2xl font-bold mb-4">150+ Certified Professionals</h3>
             <p className="text-gray-700 max-w-2xl mx-auto mb-8">
@@ -333,7 +333,7 @@ export default function ModernAboutPage() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-centre"
         >
           <h2 className="text-4xl font-bold mb-6">
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">

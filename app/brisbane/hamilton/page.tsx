@@ -68,7 +68,7 @@ const executiveServices = [
   },
   {
     title: 'Riverfront Mansion Restoration',
-    description: 'Specialized restoration for luxury riverfront properties with flood zone expertise and premium finishes.',
+    description: 'specialised restoration for luxury riverfront properties with flood zone expertise and premium finishes.',
     icon: Waves,
     urgency: 'Critical - 1 hour',
     features: ['Flood zone rapid response', 'Luxury finish restoration', 'Private jetty coordination', 'Premium material sourcing']
@@ -112,7 +112,7 @@ const hamiltonRisks = [
 
 const hamiltonFeatures = [
   'Executive priority response within 30 minutes',
-  'Brisbane River flood zone specialized protocols',
+  'Brisbane River flood zone specialised protocols',
   'Luxury mansion restoration with premium materials',
   'Private jetty and marina facility coordination',
   'High-rise building management liaison services',
@@ -217,8 +217,8 @@ export default function HamiltonPage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-gold-900 via-blue-900 to-purple-900 text-white py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="max-w-5xl mx-auto text-centre">
+              <div className="flex items-centre justify-centre gap-3 mb-6">
                 <Crown className="w-12 h-12 text-gold-400" />
                 <span className="bg-gradient-to-r from-yellow-400 to-gold-500 text-black px-6 py-3 rounded-full font-bold text-lg">
                   Executive Specialist • Riverfront Expert
@@ -232,7 +232,7 @@ export default function HamiltonPage() {
 
               <p className="text-xl mb-8 leading-relaxed max-w-4xl mx-auto">
                 Professional water damage restoration for Hamilton's riverfront mansions and executive properties.
-                <strong> Master Restorer Phill McGurk</strong> - specialized in luxury homes, business leader
+                <strong> Master Restorer Phill McGurk</strong> - specialised in luxury homes, business leader
                 schedules, and Brisbane River flood zone rapid response.
               </p>
 
@@ -261,7 +261,7 @@ export default function HamiltonPage() {
 
               <Link
                 href="tel:1300309361"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-center gap-3"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-centre gap-3"
               >
                 <Phone className="w-6 h-6" />
                 Executive Emergency: 1300 309 361
@@ -273,12 +273,12 @@ export default function HamiltonPage() {
         {/* Hamilton Precincts */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Hamilton Premium Precincts
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized restoration services across Hamilton's luxury precincts,
+                specialised restoration services across Hamilton's luxury precincts,
                 from riverfront mansions to executive high-rise living.
               </p>
             </div>
@@ -286,7 +286,7 @@ export default function HamiltonPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {hamiltonPrecincts.map((precinct, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-gold-600">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-centre justify-between mb-6">
                     <h3 className="text-xl font-semibold text-gray-900">
                       {precinct.area}
                     </h3>
@@ -342,13 +342,13 @@ export default function HamiltonPage() {
         {/* Executive Services */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Shield className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Executive & Luxury Property Services
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized restoration services designed for Hamilton's business leaders,
+                specialised restoration services designed for Hamilton's business leaders,
                 executives, and luxury property owners.
               </p>
             </div>
@@ -358,8 +358,8 @@ export default function HamiltonPage() {
                 const IconComponent = service.icon;
                 return (
                   <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-purple-600 hover:shadow-xl transition-shadow">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-centre gap-4 mb-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-centre justify-centre">
                         <IconComponent className="w-6 h-6 text-purple-600" />
                       </div>
                       <div>
@@ -378,7 +378,7 @@ export default function HamiltonPage() {
                       <span className="text-sm text-gray-500 mb-3 block">Key Features:</span>
                       <div className="space-y-2">
                         {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
+                          <div key={idx} className="flex items-centre gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
                             <span className="text-sm text-gray-700">{feature}</span>
                           </div>
@@ -395,7 +395,7 @@ export default function HamiltonPage() {
         {/* Risk Management */}
         <section className="py-16 bg-blue-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Award className="w-12 h-12 text-red-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Hamilton Water Damage Risk Management
@@ -435,13 +435,13 @@ export default function HamiltonPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Hamilton Executive Restoration Features
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {hamiltonFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+                  <div key={index} className="flex items-centre gap-3 bg-white rounded-lg p-4 shadow-sm">
                     <Crown className="w-5 h-5 text-gold-600 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
@@ -453,7 +453,7 @@ export default function HamiltonPage() {
 
         {/* Emergency CTA */}
         <section className="py-16 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <Crown className="w-16 h-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold mb-6">
               Hamilton Executive Emergency? Priority Response Available 24/7
@@ -464,17 +464,17 @@ export default function HamiltonPage() {
               properties and maintain business continuity.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-5 h-5" />
                 Executive Emergency: 1300 309 361
               </Link>
               <Link
                 href="/professionals"
-                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-center justify-center gap-3"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Shield className="w-5 h-5" />
                 Discrete Professional Service
@@ -486,13 +486,13 @@ export default function HamiltonPage() {
         {/* Related Areas */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-centre text-gray-900 mb-8">
               Additional Brisbane Premium Areas
             </h3>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <Link
                 href="/brisbane/new-farm"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Home className="w-8 h-8 text-green-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">New Farm</h4>
@@ -500,7 +500,7 @@ export default function HamiltonPage() {
               </Link>
               <Link
                 href="/brisbane/ascot"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Star className="w-8 h-8 text-purple-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Ascot</h4>
@@ -508,7 +508,7 @@ export default function HamiltonPage() {
               </Link>
               <Link
                 href="/samford-valley"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <TreePine className="w-8 h-8 text-blue-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Samford Valley</h4>

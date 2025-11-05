@@ -8,8 +8,8 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
+    <div className="min-h-screen flex items-centre justify-centre bg-gray-100">
+      <div className="text-centre">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Something went wrong!</h2>
         <button
           onClick={reset}

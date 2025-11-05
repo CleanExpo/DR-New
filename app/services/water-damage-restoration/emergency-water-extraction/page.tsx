@@ -84,7 +84,7 @@ export default function EmergencyWaterExtractionPage() {
         {/* Emergency Alert Banner */}
         <section className="bg-red-600 text-white py-4">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <AlertTriangle className="h-6 w-6 animate-pulse" />
               <p className="font-bold text-lg">
                 WATER EMERGENCY? Call 1300 309 361 - 2 Hour Response Guaranteed
@@ -99,10 +99,10 @@ export default function EmergencyWaterExtractionPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <div>
                 {/* Trust Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-6">
+                <div className="inline-flex items-centre gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-6">
                   <Droplets className="h-5 w-5 text-blue-600" />
                   <span className="text-blue-700 font-semibold">
                     Emergency Water Extraction Specialists
@@ -147,14 +147,14 @@ export default function EmergencyWaterExtractionPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="tel:1300309361"
-                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-center animate-pulse"
+                    className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-centre animate-pulse"
                   >
                     <PhoneCall className="inline-block mr-2 h-5 w-5" />
                     Call 1300 309 361 NOW
                   </Link>
                   <Link
                     href="/client/instant-quote"
-                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-center"
+                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-centre"
                   >
                     <MessageSquare className="inline-block mr-2 h-5 w-5" />
                     Online Emergency Form
@@ -166,7 +166,7 @@ export default function EmergencyWaterExtractionPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/equipment/industrial-water-pump.png"
+                    src="/images/optimised/equipment/industrial-water-pump.png"
                     alt="Industrial water extraction equipment - emergency pumps"
                     fill
                     className="object-contain drop-shadow-2xl"
@@ -188,7 +188,7 @@ export default function EmergencyWaterExtractionPage() {
         {/* Critical Time Alert */}
         <section className="bg-orange-900/30 border-y border-orange-600/30 py-6">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <Timer className="h-6 w-6 text-orange-600 animate-pulse" />
               <p className="text-white font-semibold">
                 CRITICAL: Mould begins growing in 24-48 hours. Immediate water extraction prevents thousands in damage.
@@ -200,7 +200,7 @@ export default function EmergencyWaterExtractionPage() {
         {/* Emergency Water Extraction Process */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Emergency Water Extraction Process
             </h2>
 
@@ -262,11 +262,11 @@ export default function EmergencyWaterExtractionPage() {
                   }
                 ].map((step, idx) => (
                   <div key={idx} className="flex gap-6">
-                    <div className={`flex-shrink-0 w-16 h-16 bg-${step.colour}-500 rounded-full flex items-center justify-center text-white font-bold text-sm`}>
+                    <div className={`flex-shrink-0 w-16 h-16 bg-${step.colour}-500 rounded-full flex items-centre justify-centre text-white font-bold text-sm`}>
                       {step.time}
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex items-centre gap-3 mb-2">
                         <div className="text-white">{step.icon}</div>
                         <h3 className="text-xl font-bold text-white">{step.title}</h3>
                       </div>
@@ -282,13 +282,13 @@ export default function EmergencyWaterExtractionPage() {
         {/* Water Categories & Dangers */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Water Categories We Handle
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
               <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 rounded-xl p-6 border border-blue-500/30">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <Droplets className="h-8 w-8 text-blue-600" />
                   <h3 className="text-xl font-bold text-white">Category 1 - Clean</h3>
                 </div>
@@ -312,7 +312,7 @@ export default function EmergencyWaterExtractionPage() {
               </div>
 
               <div className="bg-gradient-to-br from-yellow-900/50 to-orange-900/50 rounded-xl p-6 border border-yellow-500/30">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <AlertTriangle className="h-8 w-8 text-yellow-600" />
                   <h3 className="text-xl font-bold text-white">Category 2 - Grey</h3>
                 </div>
@@ -336,7 +336,7 @@ export default function EmergencyWaterExtractionPage() {
               </div>
 
               <div className="bg-gradient-to-br from-red-900/50 to-red-800/50 rounded-xl p-6 border border-red-500/30">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <AlertTriangle className="h-8 w-8 text-red-600" />
                   <h3 className="text-xl font-bold text-white">Category 3 - Black</h3>
                 </div>
@@ -365,12 +365,12 @@ export default function EmergencyWaterExtractionPage() {
         {/* Service Areas */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Emergency Water Extraction Service Areas
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Brisbane Metro</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -382,7 +382,7 @@ export default function EmergencyWaterExtractionPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Ipswich</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -394,7 +394,7 @@ export default function EmergencyWaterExtractionPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Logan</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Clock className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -407,14 +407,14 @@ export default function EmergencyWaterExtractionPage() {
               </div>
             </div>
 
-            <div className="mt-12 text-center">
+            <div className="mt-12 text-centre">
               <div className="bg-blue-600/10 rounded-xl p-6 border border-blue-600/30 max-w-4xl mx-auto">
                 <h3 className="text-xl font-bold text-white mb-3">
                   Complete Southeast Queensland Coverage
                 </h3>
                 <p className="text-blue-700">
                   From Brisbane CBD to Gold Coast, Sunshine Coast to Toowoomba -
-                  Our emergency water extraction teams cover all major population centers
+                  Our emergency water extraction teams cover all major population centres
                   with 2-hour guaranteed response times.
                 </p>
               </div>
@@ -424,7 +424,7 @@ export default function EmergencyWaterExtractionPage() {
 
         {/* Final Emergency CTA */}
         <section className="py-20 bg-gradient-to-r from-red-900/80 to-orange-900/80">
-          <div className="container mx-auto px-6 text-center">
+          <div className="container mx-auto px-6 text-centre">
             <AlertTriangle className="h-16 w-16 text-red-500 mx-auto mb-6 animate-pulse" />
             <h2 className="text-4xl font-bold text-white mb-6">
               Water Emergency? Every Second Counts
@@ -433,7 +433,7 @@ export default function EmergencyWaterExtractionPage() {
               Don't wait - water damage spreads rapidly. Our emergency extraction teams
               are standing by with industrial pumps ready to deploy.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
                 className="inline-block px-10 py-5 bg-white text-red-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all animate-pulse"

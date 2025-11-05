@@ -271,7 +271,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
       <div
         {...getRootProps()}
         className={cn(
-          'border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors',
+          'border-2 border-dashed rounded-lg p-8 text-centre cursor-pointer transition-colors',
           isDragActive
             ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
             : 'border-gray-300 dark:border-gray-700 hover:border-gray-400 dark:hover:border-gray-600'
@@ -296,10 +296,10 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
       {/* Overall Progress */}
       {files.length > 0 && (
         <Card className="p-4">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-4">
+          <div className="flex items-centre justify-between mb-3">
+            <div className="flex items-centre gap-4">
               <h3 className="font-medium">Upload Progress</h3>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <Badge variant="default">
                   {uploadedCount}/{files.length} uploaded
                 </Badge>
@@ -310,7 +310,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
                 )}
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               {!autoUpload && files.some(f => f.status === 'pending') && (
                 <Button
                   size="sm"
@@ -356,7 +356,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-medium truncate">{file.name}</p>
-                  <div className="flex items-center gap-4 text-sm text-gray-300">
+                  <div className="flex items-centre gap-4 text-sm text-gray-300">
                     <span>{formatSize(file.size)}</span>
                     {file.status === 'uploading' && file.speed && (
                       <>
@@ -373,7 +373,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 {file.status === 'uploading' && (
                   <Button
                     size="icon"
@@ -446,14 +446,14 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
             
             {/* Status Icons */}
             {file.status === 'completed' && (
-              <div className="flex items-center gap-2 text-green-600">
+              <div className="flex items-centre gap-2 text-green-600">
                 <CheckCircle className="w-4 h-4" />
                 <span className="text-sm">Upload successful</span>
               </div>
             )}
             
             {file.status === 'error' && (
-              <div className="flex items-center gap-2 text-red-600">
+              <div className="flex items-centre gap-2 text-red-600">
                 <AlertCircle className="w-4 h-4" />
                 <span className="text-sm">{file.error || 'Upload failed'}</span>
               </div>

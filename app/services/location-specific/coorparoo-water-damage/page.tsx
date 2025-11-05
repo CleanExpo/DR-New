@@ -16,8 +16,8 @@ export default function CoorparooWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <Building className="h-12 w-12 text-blue-300" />
             </div>
@@ -36,7 +36,7 @@ export default function CoorparooWaterDamagePage() {
               <p className="text-lg">Coorparoo Rapid Response Team</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Building className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">Commercial Expert</p>
@@ -60,7 +60,7 @@ export default function CoorparooWaterDamagePage() {
       {/* Coorparoo Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Water Damage Services Throughout Coorparoo
           </h2>
 
@@ -71,23 +71,23 @@ export default function CoorparooWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">Coorparoo Service Areas</h3>
                 <p className="text-lg mb-4">
                   Coorparoo is a major commercial and residential hub with diverse property types.
-                  From busy shopping precincts to quiet residential streets, we provide specialized
+                  From busy shopping precincts to quiet residential streets, we provide specialised
                   water damage restoration for all Coorparoo properties.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Coorparoo Square shopping precinct</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Old Cleveland Road businesses</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Cavendish Road commercial area</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Residential streets and apartments</span>
                   </li>
@@ -102,19 +102,19 @@ export default function CoorparooWaterDamagePage() {
                   to modern commercial complexes.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Shopping centre water damage</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Office building pipe bursts</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Apartment complex flooding</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Heritage home water issues</span>
                   </li>
@@ -124,11 +124,11 @@ export default function CoorparooWaterDamagePage() {
 
             {/* Commercial Focus Section */}
             <Card className="p-8 bg-gradient-to-r from-blue-50 to-purple-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Coorparoo Commercial Water Damage Expertise
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Building className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Retail & Shopping</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -138,7 +138,7 @@ export default function CoorparooWaterDamagePage() {
                     <li>• After-hours service</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Droplets className="h-10 w-10 mx-auto mb-4 text-purple-600" />
                   <h4 className="font-bold text-lg mb-2">Office Buildings</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -148,7 +148,7 @@ export default function CoorparooWaterDamagePage() {
                     <li>• Weekend emergency response</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Shield className="h-10 w-10 mx-auto mb-4 text-green-600" />
                   <h4 className="font-bold text-lg mb-2">Property Management</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -167,7 +167,7 @@ export default function CoorparooWaterDamagePage() {
       {/* Coorparoo Specific Services */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Comprehensive Coorparoo Water Damage Solutions
           </h2>
 
@@ -230,13 +230,13 @@ export default function CoorparooWaterDamagePage() {
       {/* Response Process */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our Coorparoo Emergency Response Process
           </h2>
 
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
+              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Emergency Call</h3>
@@ -245,8 +245,8 @@ export default function CoorparooWaterDamagePage() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
+              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-blue-600">2</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Rapid Arrival</h3>
@@ -255,8 +255,8 @@ export default function CoorparooWaterDamagePage() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
+              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-blue-600">3</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Extract & Dry</h3>
@@ -265,8 +265,8 @@ export default function CoorparooWaterDamagePage() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+            <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
+              <div className="bg-blue-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-centre justify-centre">
                 <span className="text-2xl font-bold text-blue-600">4</span>
               </div>
               <h3 className="font-bold text-lg mb-2">Full Restoration</h3>
@@ -277,7 +277,7 @@ export default function CoorparooWaterDamagePage() {
           </div>
 
           <Card className="mt-8 p-8 bg-blue-50 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-center mb-6">
+            <h3 className="text-2xl font-bold text-centre mb-6">
               Why Coorparoo Chooses Our Services
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
@@ -316,7 +316,7 @@ export default function CoorparooWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Coorparoo Water Damage Emergency?
           </h2>

@@ -94,7 +94,7 @@ export default function EmergencyGuidePage() {
       <div className="container mx-auto px-4 py-8">
         {/* Emergency Alert Banner */}
         <div className="bg-red-600 text-white rounded-lg p-6 mb-8">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-centre gap-3 mb-3">
             <AlertTriangle className="w-8 h-8" />
             <h1 className="text-3xl font-bold">24/7 Emergency Response Guide</h1>
           </div>
@@ -116,7 +116,7 @@ export default function EmergencyGuidePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {Object.entries(emergencySteps).map(([type, steps]) => (
               <div key={type} className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   {type === 'water' && <Droplets className="w-6 h-6 text-blue-600" />}
                   {type === 'fire' && <Flame className="w-6 h-6 text-red-600" />}
                   {type === 'storm' && <Wind className="w-6 h-6 text-purple-600" />}
@@ -126,7 +126,7 @@ export default function EmergencyGuidePage() {
                 <ol className="space-y-2">
                   {steps.map((step, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+                      <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-sm font-semibold">
                         {index + 1}
                       </span>
                       <span className="text-gray-700">{step}</span>
@@ -154,7 +154,7 @@ export default function EmergencyGuidePage() {
 
         {/* Critical First 48 Hours */}
         <div className="bg-gradient-to-r from-orange-600 to-red-600 rounded-lg p-6 mb-12">
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-centre gap-3 mb-4">
             <Clock className="w-8 h-8 text-white" />
             <h2 className="text-2xl font-bold text-white">Critical First 48 Hours</h2>
           </div>
@@ -209,7 +209,7 @@ export default function EmergencyGuidePage() {
               <h3 className="text-white font-semibold mb-3">Documents</h3>
               <ul className="space-y-2">
                 {['Insurance policies', 'Property documents', 'Medical records', 'Photo inventory'].map(item => (
-                  <li key={item} className="flex items-center gap-2">
+                  <li key={item} className="flex items-centre gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600" />
                     <span className="text-gray-700 text-sm">{item}</span>
                   </li>
@@ -220,7 +220,7 @@ export default function EmergencyGuidePage() {
               <h3 className="text-white font-semibold mb-3">Supplies</h3>
               <ul className="space-y-2">
                 {['First aid kit', 'Flashlights & batteries', 'Emergency water', 'Non-perishable food'].map(item => (
-                  <li key={item} className="flex items-center gap-2">
+                  <li key={item} className="flex items-centre gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600" />
                     <span className="text-gray-700 text-sm">{item}</span>
                   </li>
@@ -231,7 +231,7 @@ export default function EmergencyGuidePage() {
               <h3 className="text-white font-semibold mb-3">Tools</h3>
               <ul className="space-y-2">
                 {['Battery radio', 'Phone chargers', 'Basic tools', 'Plastic sheeting'].map(item => (
-                  <li key={item} className="flex items-center gap-2">
+                  <li key={item} className="flex items-centre gap-2">
                     <CheckCircle className="w-4 h-4 text-green-600" />
                     <span className="text-gray-700 text-sm">{item}</span>
                   </li>

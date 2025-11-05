@@ -39,7 +39,7 @@ export default function ToowongPage() {
 
   // Generate all content sections
   const intro = generateIntro(suburb);
-  const heroIntro = `Hillside property specialists serving Toowong's diverse residential landscape. Expert restoration of ${suburb.demographics.primaryPropertyTypes[0].toLowerCase()}, heritage homes, and university-area properties. ${suburb.responseTime} emergency response to Toowong ${suburb.postcode} with specialized hillside expertise.`;
+  const heroIntro = `Hillside property specialists serving Toowong's diverse residential landscape. Expert restoration of ${suburb.demographics.primaryPropertyTypes[0].toLowerCase()}, heritage homes, and university-area properties. ${suburb.responseTime} emergency response to Toowong ${suburb.postcode} with specialised hillside expertise.`;
 
   const disasterTypesRaw = generateDisasterTypesSection(suburb);
   const disasterTypes = disasterTypesRaw.map(block => ({
@@ -78,7 +78,7 @@ export default function ToowongPage() {
       },
       {
         title: 'Professional Restoration',
-        description: 'Master Restorer certified restoration with specialized knowledge of hillside property challenges.',
+        description: 'Master Restorer certified restoration with specialised knowledge of hillside property challenges.',
       },
     ],
   };

@@ -39,7 +39,7 @@ export default function PhillMcGurkAboutPage() {
     },
     {
       area: 'Fire & Smoke Restoration',
-      description: 'Specializing in large-loss fire damage, odor elimination, and contents restoration',
+      description: 'specialising in large-loss fire damage, odor elimination, and contents restoration',
       projects: 'Extensive'
     },
     {
@@ -106,7 +106,7 @@ export default function PhillMcGurkAboutPage() {
         <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white">
           <div className="absolute inset-0 bg-black/20" />
           <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 lg:py-32">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -160,8 +160,8 @@ export default function PhillMcGurkAboutPage() {
                 className="relative"
               >
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-[4/5] bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
-                    <div className="text-center p-8">
+                  <div className="aspect-[4/5] bg-gradient-to-br from-blue-600 to-blue-800 flex items-centre justify-centre">
+                    <div className="text-centre p-8">
                       <Shield className="w-32 h-32 mx-auto mb-4 text-white/80" />
                       <h3 className="text-2xl font-bold mb-2">Phill McGurk</h3>
                       <p className="text-blue-200">Master Restorer</p>
@@ -171,12 +171,12 @@ export default function PhillMcGurkAboutPage() {
 
                   {/* Trust badges overlay */}
                   <div className="absolute bottom-4 left-4 right-4 bg-white rounded-lg p-3 shadow-lg">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-centre justify-between">
+                      <div className="flex items-centre gap-2">
                         <BadgeCheck className="w-6 h-6 text-green-600" />
                         <span className="font-semibold">Verified Expert</span>
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-centre gap-1">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
                         ))}
@@ -197,7 +197,7 @@ export default function PhillMcGurkAboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-centre mb-12"
             >
               <h2 className="text-4xl font-bold mb-4">Industry-Leading Credentials</h2>
               <p className="text-xl text-gray-600">
@@ -232,7 +232,7 @@ export default function PhillMcGurkAboutPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-gold-500 to-yellow-500 rounded-2xl p-8 text-center text-black shadow-xl"
+              className="bg-gradient-to-r from-gold-500 to-yellow-500 rounded-2xl p-8 text-centre text-black shadow-xl"
             >
               <Trophy className="w-16 h-16 mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-2">Master Restorer Certification</h3>
@@ -255,11 +255,11 @@ export default function PhillMcGurkAboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-centre mb-12"
             >
               <h2 className="text-4xl font-bold mb-4">Areas of Expertise</h2>
               <p className="text-xl text-gray-600">
-                Specialized knowledge across all disaster recovery scenarios
+                specialised knowledge across all disaster recovery scenarios
               </p>
             </motion.div>
 
@@ -294,7 +294,7 @@ export default function PhillMcGurkAboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-centre mb-12"
             >
               <h2 className="text-4xl font-bold mb-4">Proven Track Record</h2>
               <p className="text-xl text-gray-600">
@@ -309,7 +309,7 @@ export default function PhillMcGurkAboutPage() {
                 viewport={{ once: true }}
               >
                 <Card className="p-8 h-full">
-                  <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                  <h3 className="text-2xl font-bold mb-6 flex items-centre gap-2">
                     <Trophy className="w-6 h-6 text-gold-500" />
                     Major Achievements
                   </h3>
@@ -330,7 +330,7 @@ export default function PhillMcGurkAboutPage() {
                 viewport={{ once: true }}
               >
                 <Card className="p-8 h-full">
-                  <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                  <h3 className="text-2xl font-bold mb-6 flex items-centre gap-2">
                     <HandshakeIcon className="w-6 h-6 text-blue-600" />
                     Insurance Partners
                   </h3>
@@ -339,7 +339,7 @@ export default function PhillMcGurkAboutPage() {
                   </p>
                   <div className="grid grid-cols-3 gap-4">
                     {insurancePartners.map((partner, i) => (
-                      <div key={i} className="bg-gray-100 rounded-lg p-3 text-center font-medium text-gray-700">
+                      <div key={i} className="bg-gray-100 rounded-lg p-3 text-centre font-medium text-gray-700">
                         {partner}
                       </div>
                     ))}
@@ -355,7 +355,7 @@ export default function PhillMcGurkAboutPage() {
               viewport={{ once: true }}
               className="bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl p-8 text-white"
             >
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
+              <div className="grid lg:grid-cols-2 gap-8 items-centre">
                 <div>
                   <h3 className="text-3xl font-bold mb-4">2011 Brisbane Floods Hero</h3>
                   <p className="text-lg mb-4 text-blue-100">
@@ -363,19 +363,19 @@ export default function PhillMcGurkAboutPage() {
                     private restoration response in Queensland history.
                   </p>
                   <ul className="space-y-2">
-                    <li className="flex items-center gap-2">
+                    <li className="flex items-centre gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-400" />
                       <span>Coordinated 50+ restoration teams</span>
                     </li>
-                    <li className="flex items-center gap-2">
+                    <li className="flex items-centre gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-400" />
                       <span>Restored 500+ homes in 90 days</span>
                     </li>
-                    <li className="flex items-center gap-2">
+                    <li className="flex items-centre gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-400" />
                       <span>Saved insurers $10M+ in secondary damage</span>
                     </li>
-                    <li className="flex items-center gap-2">
+                    <li className="flex items-centre gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-400" />
                       <span>Received Queensland Disaster Recovery Award</span>
                     </li>
@@ -409,7 +409,7 @@ export default function PhillMcGurkAboutPage() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto"
             >
-              <div className="text-center mb-12">
+              <div className="text-centre mb-12">
                 <h2 className="text-4xl font-bold mb-4">The McGurk Method</h2>
                 <p className="text-xl text-gray-600">
                   A proven approach to disaster recovery
@@ -428,21 +428,21 @@ export default function PhillMcGurkAboutPage() {
                   </blockquote>
 
                   <div className="grid md:grid-cols-3 gap-6 my-8">
-                    <div className="text-center">
+                    <div className="text-centre">
                       <Zap className="w-12 h-12 mx-auto mb-3 text-orange-500" />
                       <h4 className="font-bold mb-2">Rapid Response</h4>
                       <p className="text-sm text-gray-600">
                         On-site within 2 hours to prevent secondary damage
                       </p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-centre">
                       <Target className="w-12 h-12 mx-auto mb-3 text-blue-500" />
                       <h4 className="font-bold mb-2">Precision Work</h4>
                       <p className="text-sm text-gray-600">
                         Scientific approach with moisture mapping and thermal imaging
                       </p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-centre">
                       <Heart className="w-12 h-12 mx-auto mb-3 text-red-500" />
                       <h4 className="font-bold mb-2">Compassionate Care</h4>
                       <p className="text-sm text-gray-600">
@@ -463,7 +463,7 @@ export default function PhillMcGurkAboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-12"
+              className="text-centre mb-12"
             >
               <h2 className="text-4xl font-bold mb-4">Media & Industry Recognition</h2>
               <p className="text-xl text-gray-600">
@@ -472,22 +472,22 @@ export default function PhillMcGurkAboutPage() {
             </motion.div>
 
             <div className="grid md:grid-cols-4 gap-6 mb-12">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Globe2 className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                 <h4 className="font-bold">Channel 7 News</h4>
                 <p className="text-sm text-gray-600">Flood Recovery Expert</p>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Globe2 className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                 <h4 className="font-bold">ABC Radio</h4>
                 <p className="text-sm text-gray-600">Disaster Preparedness</p>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Globe2 className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                 <h4 className="font-bold">Courier Mail</h4>
                 <p className="text-sm text-gray-600">Industry Leader Profile</p>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Globe2 className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                 <h4 className="font-bold">RIA Journal</h4>
                 <p className="text-sm text-gray-600">Technical Articles</p>
@@ -499,7 +499,7 @@ export default function PhillMcGurkAboutPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-8 text-white text-center"
+              className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-8 text-white text-centre"
             >
               <h3 className="text-3xl font-bold mb-4">
                 Get Phill McGurk's Team On Your Property Today
@@ -508,7 +508,7 @@ export default function PhillMcGurkAboutPage() {
                 Don't trust your property to anyone less than the best.
                 Phil's hand-picked team of experts is ready 24/7.
               </p>
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-wrap gap-4 justify-centre">
                 <Button size="lg" className="bg-white text-orange-500 hover:bg-gray-100">
                   <Phone className="mr-2" />
                   Emergency: 1300 000 000
@@ -534,9 +534,9 @@ export default function PhillMcGurkAboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold mb-12 text-center">About Disaster Recovery Australia</h2>
+              <h2 className="text-4xl font-bold mb-12 text-centre">About Disaster Recovery Australia</h2>
 
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="grid lg:grid-cols-2 gap-12 items-centre">
                 <div>
                   <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
                   <p className="text-gray-600 mb-6">
@@ -585,22 +585,22 @@ export default function PhillMcGurkAboutPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <Card className="p-6 text-center">
+                  <Card className="p-6 text-centre">
                     <Building2 className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                     <div className="text-3xl font-bold">50+</div>
                     <div className="text-sm text-gray-600">Expert Technicians</div>
                   </Card>
-                  <Card className="p-6 text-center">
+                  <Card className="p-6 text-centre">
                     <Truck className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                     <div className="text-3xl font-bold">25+</div>
                     <div className="text-sm text-gray-600">Response Vehicles</div>
                   </Card>
-                  <Card className="p-6 text-center">
+                  <Card className="p-6 text-centre">
                     <MapPin className="w-12 h-12 mx-auto mb-3 text-blue-600" />
                     <div className="text-3xl font-bold">100%</div>
                     <div className="text-sm text-gray-600">Brisbane Coverage</div>
                   </Card>
-                  <Card className="p-6 text-center">
+                  <Card className="p-6 text-centre">
                     <Star className="w-12 h-12 mx-auto mb-3 text-yellow-500" />
                     <div className="text-3xl font-bold">★★★★★</div>
                     <div className="text-sm text-gray-600">Google Rating</div>

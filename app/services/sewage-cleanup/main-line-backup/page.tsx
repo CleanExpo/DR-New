@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
 import {  Clock, Shield, AlertTriangle, CheckCircle2, ArrowRight, MessageSquare} from 'lucide-react';
 
@@ -32,7 +32,7 @@ export default function MainSewerLineBackupPage() {
   const faqs = [
     {
       question: 'How quickly can you respond to main sewer line backup emergencies?',
-      answer: 'We offer 24/7 emergency response for main sewer line backup with teams typically arriving within 2 hours in metro areas. Our rapid response helps minimize damage and reduce restoration costs.'
+      answer: 'We offer 24/7 emergency response for main sewer line backup with teams typically arriving within 2 hours in metro areas. Our rapid response helps minimise damage and reduce restoration costs.'
     },
     {
       question: 'Is main sewer line backup covered by insurance?',
@@ -58,14 +58,14 @@ export default function MainSewerLineBackupPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Main Sewer Line Backup
             </h1>
             <p className="text-xl mb-8 text-blue-800">
               Expert main sewer line backup services across Queensland. Fast response, professional restoration, insurance approved.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button 
                 size="lg" 
                 className="bg-blue-600 hover:bg-blue-700 text-white"
@@ -142,7 +142,7 @@ export default function MainSewerLineBackupPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Main Sewer Line Backup FAQs</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Main Sewer Line Backup FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -157,7 +157,7 @@ export default function MainSewerLineBackupPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">Need Main Sewer Line Backup Services?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Get professional help now. Available 24/7 for emergency response.
@@ -173,8 +173,8 @@ export default function MainSewerLineBackupPage() {
         </div>
       </section>
 
-      {/* Quote Dialog */}
-      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      {/* Quote dialogue */}
+      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Main Sewer Line Backup Services</DialogTitle>
@@ -183,7 +183,7 @@ export default function MainSewerLineBackupPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg">
+            <div className="flex items-centre gap-3 p-3 bg-orange-50 rounded-lg">
               <MessageSquare className="h-5 w-5 text-blue-700" />
               <div>
                 <p className="font-semibold">Submit Form Now</p>
@@ -195,7 +195,7 @@ export default function MainSewerLineBackupPage() {
             </Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     </div>
   );
 }

@@ -47,7 +47,7 @@ export default function DishwasherLeaksPage() {
       <div className="grid md:grid-cols-2 gap-4 mb-12">
         <Card className="border-2 border-blue-500 bg-blue-50">
           <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <h3 className="text-xl font-bold mb-4 flex items-centre gap-2">
               <Phone className="h-6 w-6 text-blue-600" />
               Emergency Response
             </h3>
@@ -62,7 +62,7 @@ export default function DishwasherLeaksPage() {
 
         <Card>
           <CardContent className="p-6">
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <h3 className="text-xl font-bold mb-4 flex items-centre gap-2">
               <FileText className="h-6 w-6 text-green-600" />
               Insurance Claims
             </h3>
@@ -135,7 +135,7 @@ export default function DishwasherLeaksPage() {
       {/* Immediate Steps */}
       <Card className="mb-12 border-orange-200 bg-orange-50">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-centre gap-2">
             <AlertTriangle className="h-6 w-6 text-orange-600" />
             Immediate Steps for Dishwasher Leaks
           </CardTitle>
@@ -193,7 +193,7 @@ export default function DishwasherLeaksPage() {
               {
                 step: 3,
                 title: "Structural Drying",
-                description: "Deploy specialized drying equipment for cabinets and floors",
+                description: "Deploy specialised drying equipment for cabinets and floors",
                 time: "24-72 hours"
               },
               {
@@ -205,7 +205,7 @@ export default function DishwasherLeaksPage() {
             ].map((item) => (
               <div key={item.step} className="flex gap-4">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-bold">
                     {item.step}
                   </div>
                 </div>
@@ -231,7 +231,7 @@ export default function DishwasherLeaksPage() {
         <CardContent>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h4 className="font-bold mb-3 flex items-center gap-2">
+              <h4 className="font-bold mb-3 flex items-centre gap-2">
                 <AlertCircle className="h-5 w-5 text-red-500" />
                 Hidden Damage Risks
               </h4>
@@ -243,7 +243,7 @@ export default function DishwasherLeaksPage() {
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-3 flex items-center gap-2">
+              <h4 className="font-bold mb-3 flex items-centre gap-2">
                 <DollarSign className="h-5 w-5 text-green-500" />
                 Cost Escalation Timeline
               </h4>
@@ -301,14 +301,14 @@ export default function DishwasherLeaksPage() {
 
       {/* CTA Section */}
       <Card className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <CardContent className="p-8 text-center">
+        <CardContent className="p-8 text-centre">
           <h2 className="text-3xl font-bold mb-4">
             Don't Let Dishwasher Leaks Damage Your Kitchen
           </h2>
           <p className="text-xl mb-6">
             Fast response prevents costly cabinet and floor replacement
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <a href="tel:1300309361">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
                 <Phone className="mr-2" />
@@ -323,16 +323,16 @@ export default function DishwasherLeaksPage() {
               Get Free Assessment
             </Button>
           </div>
-          <div className="mt-8 flex justify-center gap-8">
-            <div className="flex items-center gap-2">
+          <div className="mt-8 flex justify-centre gap-8">
+            <div className="flex items-centre gap-2">
               <Clock className="h-5 w-5" />
               <span>60 Min Response</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Shield className="h-5 w-5" />
               <span>Insurance Approved</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Users className="h-5 w-5" />
               <span>IICRC Certified</span>
             </div>

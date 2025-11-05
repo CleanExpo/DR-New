@@ -302,7 +302,7 @@ export default function StormDamageRestorationPage() {
             <div className="max-w-5xl mx-auto">
               {/* Storm Warning Banner */}
               <div className="bg-yellow-600/90 backdrop-blur-sm rounded-lg p-4 mb-6 border-2 border-yellow-400">
-                <p className="font-bold text-lg flex items-center gap-2">
+                <p className="font-bold text-lg flex items-centre gap-2">
                   <Wind className="w-6 h-6" />
                   STORM SEASON ACTIVE: Severe weather warnings in effect | 24/7 Response Ready
                 </p>
@@ -324,22 +324,22 @@ export default function StormDamageRestorationPage() {
 
               {/* Key Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Clock className="w-8 h-8 mx-auto mb-2 text-purple-700" />
                   <div className="text-2xl font-bold">60min</div>
                   <div className="text-sm">Emergency Response</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Shield className="w-8 h-8 mx-auto mb-2 text-purple-700" />
                   <div className="text-2xl font-bold">Make-Safe</div>
                   <div className="text-sm">Insurance Approved</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Building className="w-8 h-8 mx-auto mb-2 text-purple-700" />
                   <div className="text-2xl font-bold">15,000+</div>
                   <div className="text-sm">Storms Responded</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Users className="w-8 h-8 mx-auto mb-2 text-purple-700" />
                   <div className="text-2xl font-bold">24/7</div>
                   <div className="text-sm">Storm Teams</div>
@@ -350,7 +350,7 @@ export default function StormDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="/claim"
-                  className="bg-yellow-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-yellow-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-700 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -359,7 +359,7 @@ export default function StormDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/claim"
-                  className="bg-white text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-50 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-white text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-50 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -374,10 +374,10 @@ export default function StormDamageRestorationPage() {
         {/* Storm Types */}
         <section className="py-16 bg-white border-b">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Australian Storm Types We Handle
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-centre text-gray-200 mb-12 max-w-3xl mx-auto">
               Specialised response for every severe weather system
             </p>
 
@@ -391,7 +391,7 @@ export default function StormDamageRestorationPage() {
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-centre gap-3 mb-4">
                     <div className="p-3 bg-purple-100 rounded-lg text-purple-600">
                       {storm.icon}
                     </div>
@@ -409,10 +409,10 @@ export default function StormDamageRestorationPage() {
         {/* Damage Types */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Storm Damage Types & Solutions
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12">
+            <p className="text-xl text-centre text-gray-200 mb-12">
               Comprehensive restoration for all storm-related damage
             </p>
 
@@ -449,10 +449,10 @@ export default function StormDamageRestorationPage() {
         {/* High-Risk Storm Belts */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Australia&apos;s Storm Belt Coverage
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12">
+            <p className="text-xl text-centre text-gray-200 mb-12">
               Pre-positioned teams in severe weather corridors
             </p>
 
@@ -466,7 +466,7 @@ export default function StormDamageRestorationPage() {
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-centre gap-3 mb-4">
                     <div className="p-3 bg-purple-100 rounded-lg text-purple-600">
                       {belt.icon}
                     </div>
@@ -497,10 +497,10 @@ export default function StormDamageRestorationPage() {
         {/* Response Protocol */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Storm Response Protocol
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12">
+            <p className="text-xl text-centre text-gray-200 mb-12">
               Systematic approach from emergency response to complete restoration
             </p>
 
@@ -535,7 +535,7 @@ export default function StormDamageRestorationPage() {
         {/* Seasonal Preparedness */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
               Year-Round Storm Preparedness
             </h2>
 
@@ -569,7 +569,7 @@ export default function StormDamageRestorationPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
                 Why We&apos;re Australia&apos;s Storm Recovery Leaders
               </h2>
 
@@ -626,7 +626,7 @@ export default function StormDamageRestorationPage() {
                   is forecast. This proactive approach means we&apos;re often on-site within minutes of storm 
                   passage, providing the fastest possible response to minimise damage.
                 </p>
-                <div className="flex items-center gap-2 text-purple-900 font-semibold">
+                <div className="flex items-centre gap-2 text-purple-900 font-semibold">
                   <AlertCircle className="w-5 h-5" />
                   Current Status: STORM WATCH - Teams on standby in Sydney, Brisbane, Melbourne
                 </div>
@@ -639,7 +639,7 @@ export default function StormDamageRestorationPage() {
         <section className="py-20 bg-gradient-to-br from-gray-900 to-purple-900 text-white">
           <div className="container mx-auto px-6">
             <motion.div 
-              className="max-w-4xl mx-auto text-center"
+              className="max-w-4xl mx-auto text-centre"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -664,10 +664,10 @@ export default function StormDamageRestorationPage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-centre">
                 <motion.a
                   href="/claim"
-                  className="bg-yellow-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-yellow-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-700 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -676,7 +676,7 @@ export default function StormDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/emergency/checklists/storm-damage"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

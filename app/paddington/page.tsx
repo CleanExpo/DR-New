@@ -59,7 +59,7 @@ export default function PaddingtonPage() {
     steps: [
       {
         title: 'Immediate Contact',
-        description: 'Call 1300 309 361 for 24/7 emergency response. Our team specializes in Paddington heritage Queenslander and character property restoration.',
+        description: 'Call 1300 309 361 for 24/7 emergency response. Our team specialises in Paddington heritage Queenslander and character property restoration.',
       },
       {
         title: `${suburb.responseTime} Response`,
@@ -67,7 +67,7 @@ export default function PaddingtonPage() {
       },
       {
         title: 'Heritage Assessment',
-        description: 'Specialized evaluation of fire, water, or storm damage to heritage Queenslanders, terraces, and workers cottages with focus on preserving character features.',
+        description: 'specialised evaluation of fire, water, or storm damage to heritage Queenslanders, terraces, and workers cottages with focus on preserving character features.',
       },
       {
         title: 'Fire Damage Control',

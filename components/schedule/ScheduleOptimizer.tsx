@@ -12,15 +12,15 @@ import { Route, Clock, TrendingUp, CheckCircle } from "lucide-react"
 interface ScheduleOptimizerProps {
   technicianId: string
   date: string
-  onOptimized?: () => void
+  onoptimised?: () => void
 }
 
 export function ScheduleOptimizer({
   technicianId,
   date,
-  onOptimized,
+  onoptimised,
 }: ScheduleOptimizerProps) {
-  const [optimizing, setOptimizing] = useState(false)
+  const [optimising, setoptimising] = useState(false)
   const [optimizedRoute, setOptimizedRoute] = useState<OptimizedRoute | null>(null)
   const [applied, setApplied] = useState(false)
   const { toast } = useToast()
@@ -35,7 +35,7 @@ export function ScheduleOptimizer({
       return
     }
 
-    setOptimizing(true)
+    setoptimising(true)
     try {
       const response = await fetch("/api/schedule/optimize", {
         method: "POST",
@@ -43,7 +43,7 @@ export function ScheduleOptimizer({
         body: JSON.stringify({ technicianId, date }),
       })
 
-      if (!response.ok) throw new Error("Failed to optimize schedule")
+      if (!response.ok) throw new Error("Failed to optimise schedule")
 
       const data: OptimizedRoute = await response.json()
       setOptimizedRoute(data)
@@ -51,23 +51,23 @@ export function ScheduleOptimizer({
 
       toast({
         title: "Schedule Optimized",
-        description: `Found optimized route with ${data.appointments.length} appointments`,
+        description: `Found optimised route with ${data.appointments.length} appointments`,
       })
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to optimize schedule",
+        description: "Failed to optimise schedule",
         variant: "destructive",
       })
     } finally {
-      setOptimizing(false)
+      setoptimising(false)
     }
   }
 
   const applyOptimizedSchedule = async () => {
     if (!optimizedRoute) return
 
-    setOptimizing(true)
+    setoptimising(true)
     try {
       const updatePromises = optimizedRoute.appointments.map((apt) =>
         fetch(`/api/schedule/appointments/${apt.appointmentId}`, {
@@ -86,17 +86,17 @@ export function ScheduleOptimizer({
       setApplied(true)
       toast({
         title: "Schedule Updated",
-        description: "Optimized schedule has been applied successfully",
+        description: "optimised schedule has been applied successfully",
       })
-      onOptimized?.()
+      onoptimised?.()
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to apply optimized schedule",
+        description: "Failed to apply optimised schedule",
         variant: "destructive",
       })
     } finally {
-      setOptimizing(false)
+      setoptimising(false)
     }
   }
 
@@ -113,26 +113,26 @@ export function ScheduleOptimizer({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-centre gap-2">
           <Route className="w-5 h-5" />
           Schedule Optimizer
         </CardTitle>
         <CardDescription>
-          Optimize technician route to minimize travel time
+          optimise technician route to minimise travel time
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex items-center gap-2">
-          <Button onClick={optimizeSchedule} disabled={optimizing || !technicianId || !date}>
-            {optimizing ? "Optimizing..." : "Optimize Schedule"}
+        <div className="flex items-centre gap-2">
+          <Button onClick={optimizeSchedule} disabled={optimising || !technicianId || !date}>
+            {optimising ? "optimising..." : "optimise Schedule"}
           </Button>
           {optimizedRoute && !applied && (
             <Button
               onClick={applyOptimizedSchedule}
-              disabled={optimizing}
+              disabled={optimising}
               variant="default"
             >
-              Apply Optimized Schedule
+              Apply optimised Schedule
             </Button>
           )}
           {applied && (
@@ -147,7 +147,7 @@ export function ScheduleOptimizer({
           <div className="space-y-4 mt-6">
             <div className="grid grid-cols-2 gap-4 p-4 bg-muted rounded-lg">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-centre gap-2 text-sm text-muted-foreground">
                   <Clock className="w-4 h-4" />
                   Total Travel Time
                 </div>
@@ -156,7 +156,7 @@ export function ScheduleOptimizer({
                 </p>
               </div>
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-centre gap-2 text-sm text-muted-foreground">
                   <TrendingUp className="w-4 h-4" />
                   Total Work Time
                 </div>
@@ -168,7 +168,7 @@ export function ScheduleOptimizer({
 
             <div className="border-t pt-4">
               <h4 className="text-sm font-medium mb-3">
-                Optimized Route ({optimizedRoute.appointments.length} appointments)
+                optimised Route ({optimizedRoute.appointments.length} appointments)
               </h4>
               <div className="space-y-2">
                 {optimizedRoute.appointments.map((appointment, index) => (
@@ -177,11 +177,11 @@ export function ScheduleOptimizer({
                     className="relative p-3 rounded-lg border bg-card"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-sm">
+                      <div className="flex items-centre justify-centre w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold text-sm">
                         {appointment.order}
                       </div>
                       <div className="flex-1 space-y-1">
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-centre justify-between">
                           <span className="font-medium">
                             {formatTime(appointment.suggestedStart)} -{" "}
                             {formatTime(appointment.suggestedEnd)}
@@ -191,7 +191,7 @@ export function ScheduleOptimizer({
                           </Badge>
                         </div>
                         {appointment.travelTimeToPrevious > 0 && (
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div className="flex items-centre gap-2 text-sm text-muted-foreground">
                             <Clock className="w-3 h-3" />
                             <span>
                               {formatDuration(appointment.travelTimeToPrevious)} travel time from previous
@@ -210,11 +210,11 @@ export function ScheduleOptimizer({
 
             <div className="border-t pt-4">
               <div className="space-y-2 text-sm">
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <span className="text-muted-foreground">Total Appointments:</span>
                   <span className="font-medium">{optimizedRoute.appointments.length}</span>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <span className="text-muted-foreground">Average Travel Time:</span>
                   <span className="font-medium">
                     {optimizedRoute.appointments.length > 0
@@ -224,7 +224,7 @@ export function ScheduleOptimizer({
                       : "N/A"}
                   </span>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-centre justify-between">
                   <span className="text-muted-foreground">Efficiency Rating:</span>
                   <span className="font-medium">
                     {optimizedRoute.totalWorkTime > 0
@@ -243,7 +243,7 @@ export function ScheduleOptimizer({
             {!applied && (
               <div className="border-t pt-4">
                 <p className="text-sm text-muted-foreground">
-                  Review the optimized route above and click &quot;Apply Optimized Schedule&quot; to update all
+                  Review the optimised route above and click &quot;Apply optimised Schedule&quot; to update all
                   appointments with the suggested times.
                 </p>
               </div>
@@ -252,9 +252,9 @@ export function ScheduleOptimizer({
         )}
 
         {!optimizedRoute && (
-          <div className="text-center py-8 text-muted-foreground">
+          <div className="text-centre py-8 text-muted-foreground">
             <Route className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p>Click &quot;Optimize Schedule&quot; to generate an optimized route</p>
+            <p>Click &quot;optimise Schedule&quot; to generate an optimised route</p>
           </div>
         )}
       </CardContent>

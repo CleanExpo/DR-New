@@ -286,7 +286,7 @@ export default function FloodDamageRestorationPage() {
             <div className="max-w-5xl mx-auto">
               {/* Flood Alert Banner */}
               <div className="bg-orange-600/90 backdrop-blur-sm rounded-lg p-4 mb-6 border-2 border-orange-400">
-                <p className="font-bold text-lg flex items-center gap-2">
+                <p className="font-bold text-lg flex items-centre gap-2">
                   <Droplets className="w-6 h-6" />
                   LA NIÑA ALERT: Increased flood risk across Eastern Australia | 24/7 Response Ready
                 </p>
@@ -308,22 +308,22 @@ export default function FloodDamageRestorationPage() {
 
               {/* Key Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Droplets className="w-8 h-8 mx-auto mb-2 text-cyan-700" />
                   <div className="text-2xl font-bold">60min</div>
                   <div className="text-sm">Metro Response</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Clock className="w-8 h-8 mx-auto mb-2 text-cyan-700" />
                   <div className="text-2xl font-bold">24-48hr</div>
                   <div className="text-sm">Critical Window</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Building className="w-8 h-8 mx-auto mb-2 text-cyan-700" />
                   <div className="text-2xl font-bold">10,000+</div>
                   <div className="text-sm">Properties Restored</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-centre">
                   <Shield className="w-8 h-8 mx-auto mb-2 text-cyan-700" />
                   <div className="text-2xl font-bold">Cat 1-3</div>
                   <div className="text-sm">All Water Types</div>
@@ -334,7 +334,7 @@ export default function FloodDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="/claim"
-                  className="bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-700 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -343,7 +343,7 @@ export default function FloodDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/claim"
-                  className="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-cyan-50 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-cyan-50 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -358,7 +358,7 @@ export default function FloodDamageRestorationPage() {
         {/* Critical 48-Hour Warning */}
         <section className="py-8 bg-red-50 border-y-2 border-red-200">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto flex items-center gap-4">
+            <div className="max-w-4xl mx-auto flex items-centre gap-4">
               <AlertCircle className="w-12 h-12 text-red-600 flex-shrink-0" />
               <div>
                 <h2 className="text-xl font-bold text-red-900">Critical: First 48 Hours</h2>
@@ -374,10 +374,10 @@ export default function FloodDamageRestorationPage() {
         {/* Flood Types */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Flood Types We Handle
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-centre text-gray-200 mb-12 max-w-3xl mx-auto">
               Specialised response protocols for every flood scenario
             </p>
 
@@ -411,10 +411,10 @@ export default function FloodDamageRestorationPage() {
         {/* Water Categories */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Water Contamination Categories
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12">
+            <p className="text-xl text-centre text-gray-200 mb-12">
               Professional assessment and treatment for all contamination levels
             </p>
 
@@ -464,10 +464,10 @@ export default function FloodDamageRestorationPage() {
         {/* High-Risk Flood Zones */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Australia&apos;s High-Risk Flood Zones
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12">
+            <p className="text-xl text-centre text-gray-200 mb-12">
               Pre-positioned teams in flood-prone regions nationwide
             </p>
 
@@ -481,7 +481,7 @@ export default function FloodDamageRestorationPage() {
                   transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-centre gap-3 mb-4">
                     <div className="p-3 bg-blue-100 rounded-lg text-blue-600">
                       {zone.icon}
                     </div>
@@ -503,10 +503,10 @@ export default function FloodDamageRestorationPage() {
         {/* Restoration Process */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
               Professional Flood Restoration Process
             </h2>
-            <p className="text-xl text-center text-gray-200 mb-12">
+            <p className="text-xl text-centre text-gray-200 mb-12">
               Systematic approach from emergency response to complete restoration
             </p>
 
@@ -542,7 +542,7 @@ export default function FloodDamageRestorationPage() {
         <section className="py-16 bg-white">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
                 Critical Factors in Flood Recovery
               </h2>
 
@@ -574,7 +574,7 @@ export default function FloodDamageRestorationPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
                 Why We&apos;re Australia&apos;s Flood Recovery Leaders
               </h2>
 
@@ -631,7 +631,7 @@ export default function FloodDamageRestorationPage() {
                   heightened alert. We&apos;ve increased equipment stocks, expanded crew numbers, and established 
                   additional response centres in high-risk areas.
                 </p>
-                <div className="flex items-center gap-2 text-blue-900 font-semibold">
+                <div className="flex items-centre gap-2 text-blue-900 font-semibold">
                   <AlertCircle className="w-5 h-5" />
                   Current Status: LA NIÑA ACTIVE - Enhanced flood response capability deployed
                 </div>
@@ -644,7 +644,7 @@ export default function FloodDamageRestorationPage() {
         <section className="py-20 bg-gradient-to-br from-blue-900 to-cyan-800 text-white">
           <div className="container mx-auto px-6">
             <motion.div 
-              className="max-w-4xl mx-auto text-center"
+              className="max-w-4xl mx-auto text-centre"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -669,10 +669,10 @@ export default function FloodDamageRestorationPage() {
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-centre">
                 <motion.a
                   href="/claim"
-                  className="bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-700 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -681,7 +681,7 @@ export default function FloodDamageRestorationPage() {
                 </motion.a>
                 <motion.a
                   href="/emergency/checklists/water-damage"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/10 transition-colors inline-flex items-centre justify-centre gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

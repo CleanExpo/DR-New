@@ -1,7 +1,7 @@
 /**
  * Reusable Suburb Page Component Template
  * Production-ready component for rendering all 40+ suburb pages
- * Accepts SuburbPageConfig and renders complete, SEO-optimized page
+ * Accepts SuburbPageConfig and renders complete, SEO-optimised page
  */
 
 'use client';
@@ -117,7 +117,7 @@ export function SuburbPageTemplate({
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               {/* Location Badge */}
-              <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
+              <div className="flex items-centre justify-centre gap-3 mb-6 flex-wrap">
                 <MapPin className="w-5 h-5 text-yellow-300" />
                 <span className="bg-white/20 backdrop-blur px-4 py-2 rounded-full font-semibold text-sm">
                   {suburb.name} • Postcode {suburb.postcode}
@@ -127,19 +127,19 @@ export function SuburbPageTemplate({
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-center">
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-centre">
                 {suburb.name} Disaster Recovery
                 <span className="block text-yellow-300 text-3xl md:text-5xl mt-2">
                   24/7 Emergency Response
                 </span>
               </h1>
 
-              <p className="text-xl text-center mb-8 leading-relaxed max-w-4xl mx-auto">
+              <p className="text-xl text-centre mb-8 leading-relaxed max-w-4xl mx-auto">
                 {heroIntro}
               </p>
 
               {/* Key Stats */}
-              <div className="grid md:grid-cols-4 gap-4 mb-12 text-center">
+              <div className="grid md:grid-cols-4 gap-4 mb-12 text-centre">
                 <div className="bg-white/10 backdrop-blur rounded-lg p-6 border border-white/20">
                   <Clock className="w-8 h-8 mb-2 text-yellow-300 mx-auto" />
                   <div className="text-2xl font-bold">{suburb.responseTime}</div>
@@ -163,10 +163,10 @@ export function SuburbPageTemplate({
               </div>
 
               {/* CTA Button */}
-              <div className="text-center">
+              <div className="text-centre">
                 <Link
                   href="tel:1300309361"
-                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors inline-flex items-center gap-3 shadow-lg"
+                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors inline-flex items-centre gap-3 shadow-lg"
                 >
                   <Phone className="w-6 h-6" />
                   Emergency: 1300 309 361
@@ -190,7 +190,7 @@ export function SuburbPageTemplate({
         {disasterTypes.length > 0 && (
           <section className="py-16">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Common Disasters in {suburb.name}
               </h2>
 
@@ -227,7 +227,7 @@ export function SuburbPageTemplate({
         {whyChooseUs.length > 0 && (
           <section className="py-16 bg-blue-50">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Why {suburb.name} Residents Choose Us
               </h2>
 
@@ -247,7 +247,7 @@ export function SuburbPageTemplate({
         {emergencyResponse.steps.length > 0 && (
           <section className="py-16">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Our {suburb.name} Emergency Response Process
               </h2>
 
@@ -256,7 +256,7 @@ export function SuburbPageTemplate({
                   {emergencyResponse.steps.map((step, idx) => (
                     <div key={idx} className="flex gap-6">
                       <div className="flex-shrink-0">
-                        <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-600 text-white font-bold text-lg">
+                        <div className="flex items-centre justify-centre h-12 w-12 rounded-full bg-blue-600 text-white font-bold text-lg">
                           {idx + 1}
                         </div>
                       </div>
@@ -276,7 +276,7 @@ export function SuburbPageTemplate({
         {servicesAvailable.length > 0 && (
           <section className="py-16 bg-gray-50">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Services Available in {suburb.name}
               </h2>
 
@@ -287,7 +287,7 @@ export function SuburbPageTemplate({
                     <p className="text-gray-700 mb-4">{service.description}</p>
                     <Link
                       href={`/services/${service.type.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center gap-2"
+                      className="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-centre gap-2"
                     >
                       Learn More →
                     </Link>
@@ -302,7 +302,7 @@ export function SuburbPageTemplate({
         {faqItems.length > 0 && (
           <section className="py-16">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Frequently Asked Questions
               </h2>
 
@@ -312,7 +312,7 @@ export function SuburbPageTemplate({
                     key={idx}
                     className="group bg-white rounded-lg p-6 shadow-md border-l-4 border-blue-600 cursor-pointer"
                   >
-                    <summary className="flex items-center justify-between font-semibold text-gray-900 text-lg">
+                    <summary className="flex items-centre justify-between font-semibold text-gray-900 text-lg">
                       {faq.question}
                       <span className="text-2xl group-open:rotate-45 transition-transform">+</span>
                     </summary>
@@ -328,7 +328,7 @@ export function SuburbPageTemplate({
         {nearbySuburbs.length > 0 && (
           <section className="py-16 bg-gray-50">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Also Serving Nearby Areas
               </h2>
 
@@ -337,7 +337,7 @@ export function SuburbPageTemplate({
                   <Link
                     key={idx}
                     href={`/${suburb.regionParent}/${nearbySuburb.slug}`}
-                    className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-center border-t-4 border-blue-600"
+                    className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-centre border-t-4 border-blue-600"
                   >
                     <Home className="w-8 h-8 text-blue-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                     <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
@@ -353,27 +353,27 @@ export function SuburbPageTemplate({
 
         {/* Emergency CTA Section */}
         <section className="py-20 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <AlertTriangle className="w-20 h-20 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Emergency Disaster in {suburb.name}?
             </h2>
             <p className="text-xl mb-8 max-w-4xl mx-auto">
               Don't wait. Every minute counts when disaster strikes. Our Master Restorer team responds 24/7
-              to protect your property and minimize damage.
+              to protect your property and minimise damage.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-6 h-6" />
                 Call Now: 1300 309 361
               </Link>
               <Link
                 href="/emergency-contact"
-                className="bg-red-700 hover:bg-red-800 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors inline-flex items-center justify-center gap-3"
+                className="bg-red-700 hover:bg-red-800 text-white px-8 py-4 rounded-lg font-bold text-lg transition-colors inline-flex items-centre justify-centre gap-3"
               >
                 <MapPin className="w-6 h-6" />
                 Emergency Contact

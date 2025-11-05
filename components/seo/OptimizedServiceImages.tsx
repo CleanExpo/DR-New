@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 
-// SEO-Optimized Image Data with Full Metadata
+// SEO-optimised Image Data with Full Metadata
 export const serviceImages = {
   hamilton: [
     {
@@ -69,8 +69,8 @@ export const serviceImages = {
     {
       src: '/images/suburbs/ascot-commercial-water-damage-restoration.png',
       alt: 'Ascot commercial water damage restoration - Professional team servicing office buildings and retail spaces',
-      title: 'Commercial Water Damage Restoration Ascot - Minimize Business Downtime',
-      caption: 'Specialized commercial restoration services for Ascot business properties'
+      title: 'Commercial Water Damage Restoration Ascot - minimise Business Downtime',
+      caption: 'specialised commercial restoration services for Ascot business properties'
     },
     {
       src: '/images/suburbs/ascot-storm-damage-restoration-services.png',
@@ -99,7 +99,7 @@ export const serviceImages = {
       src: '/images/suburbs/new-farm-commercial-storm-damage-recovery.png',
       alt: 'New Farm commercial storm damage recovery - Rapid response for business continuity',
       title: 'Commercial Storm Damage Recovery New Farm - Business Continuity Focus',
-      caption: 'Specialized storm damage restoration for New Farm commercial properties'
+      caption: 'specialised storm damage restoration for New Farm commercial properties'
     }
   ],
 
@@ -136,7 +136,7 @@ export const serviceImages = {
       src: '/images/services/commercial-storm-damage-ascot-brisbane.png',
       alt: 'Commercial storm damage restoration Ascot Brisbane - Office buildings and retail space recovery',
       title: 'Commercial Storm Damage Services - Brisbane CBD & Ascot',
-      caption: 'Specialized commercial restoration minimizing business interruption'
+      caption: 'specialised commercial restoration minimizing business interruption'
     },
     {
       src: '/images/services/ascot-commercial-property-storm-restoration.png',
@@ -147,7 +147,7 @@ export const serviceImages = {
   ]
 };
 
-// Component for displaying optimized images with schema
+// Component for displaying optimised images with schema
 export const OptimizedServiceImage: React.FC<{
   image: typeof serviceImages.hamilton[0];
   priority?: boolean;
@@ -174,7 +174,7 @@ export const OptimizedServiceImage: React.FC<{
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ..."
       />
       {image.caption && (
-        <p className="mt-2 text-sm text-gray-600 italic text-center">
+        <p className="mt-2 text-sm text-gray-600 italic text-centre">
           {image.caption}
         </p>
       )}

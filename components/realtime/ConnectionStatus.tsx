@@ -80,7 +80,7 @@ export function ConnectionStatus({
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className={`flex items-center gap-2 ${className}`}>
+          <div className={`flex items-centre gap-2 ${className}`}>
             <span className={`h-2 w-2 rounded-full ${getStatusDot()}`} />
             <span className={getStatusColor()}>{getStatusIcon()}</span>
           </div>

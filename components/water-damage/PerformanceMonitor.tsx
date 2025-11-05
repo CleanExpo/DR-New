@@ -19,7 +19,7 @@ export default function PerformanceMonitor() {
       window['web-vital'].getLCP(reportWebVitals);
     }
 
-    // Optimize font loading
+    // optimise font loading
     if ('fonts' in document) {
       // @ts-ignore
       document.fonts.ready.then(() => {

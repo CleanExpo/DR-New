@@ -13,7 +13,7 @@ export default function CoverageChecker() {
   
   // Scroll to top when step changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behaviour: 'smooth' });
   }, [step]);
 
   const scenarios = [
@@ -281,7 +281,7 @@ export default function CoverageChecker() {
       return {
         type: 'uncertain',
         title: 'Uncertain Coverage',
-        message: 'This is a grey area. You\'ll need expert help to maximize your chances of coverage.'
+        message: 'This is a grey area. You\'ll need expert help to maximise your chances of coverage.'
       };
     } else {
       return {
@@ -328,8 +328,8 @@ export default function CoverageChecker() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="max-w-4xl mx-auto text-centre">
+          <div className="flex items-centre justify-centre gap-3 mb-4">
             <Calculator className="w-10 h-10" />
             <h1 className="text-4xl md:text-5xl font-bold">Coverage Probability Checker</h1>
           </div>
@@ -345,7 +345,7 @@ export default function CoverageChecker() {
           {step === 0 && !selectedScenario && (
             <section className="py-16 px-4">
               <div className="max-w-4xl mx-auto">
-                <h2 className="text-2xl font-bold mb-8 text-center">
+                <h2 className="text-2xl font-bold mb-8 text-centre">
                   What type of damage are you checking?
                 </h2>
                 
@@ -358,7 +358,7 @@ export default function CoverageChecker() {
                       onClick={() => setSelectedScenario(scenario.id)}
                       className="bg-white rounded-lg shadow-lg p-6 text-left hover:shadow-xl transition-shadow border-2 border-transparent hover:border-blue-500"
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-centre gap-4">
                         <span className="text-4xl">{scenario.icon}</span>
                         <span className="text-lg font-semibold">{scenario.label}</span>
                       </div>
@@ -447,7 +447,7 @@ export default function CoverageChecker() {
               className="bg-white rounded-2xl shadow-xl overflow-hidden"
             >
               {/* Probability Display */}
-              <div className={`p-8 text-center text-white ${
+              <div className={`p-8 text-centre text-white ${
                 result.probability >= 70 ? 'bg-gradient-to-br from-green-500 to-green-600' :
                 result.probability >= 40 ? 'bg-gradient-to-br from-yellow-500 to-yellow-600' :
                 'bg-gradient-to-br from-red-500 to-red-600'
@@ -494,7 +494,7 @@ export default function CoverageChecker() {
                   <div className="space-y-2">
                     {result.nextSteps.map((step: string, index: number) => (
                       <div key={index} className="flex items-start gap-3">
-                        <span className="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                        <span className="bg-blue-600 text-white w-6 h-6 rounded-full flex items-centre justify-centre flex-shrink-0 text-sm font-bold">
                           {index + 1}
                         </span>
                         <p className="text-gray-200">{step}</p>
@@ -507,7 +507,7 @@ export default function CoverageChecker() {
                 <div className="flex flex-wrap gap-4">
                   <a
                     href="tel:1800000000"
-                    className="flex-1 bg-green-700 text-white px-6 py-3 rounded-lg font-bold text-center hover:bg-green-800 transition-colors flex items-center justify-center gap-2"
+                    className="flex-1 bg-green-700 text-white px-6 py-3 rounded-lg font-bold text-centre hover:bg-green-800 transition-colors flex items-centre justify-centre gap-2"
                   >
                     <Phone className="w-5 h-5" />
                     Get Expert Help Now

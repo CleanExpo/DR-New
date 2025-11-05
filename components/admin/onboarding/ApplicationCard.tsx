@@ -60,7 +60,7 @@ export function ApplicationCard({
     const Icon = config.icon;
 
     return (
-      <Badge variant={config.variant} className="flex items-center gap-1">
+      <Badge variant={config.variant} className="flex items-centre gap-1">
         <Icon className="w-3 h-3" />
         {config.label}
       </Badge>
@@ -92,7 +92,7 @@ export function ApplicationCard({
           <div className="flex items-start gap-4">
             {/* Avatar with status indicator */}
             <div className="relative">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-centre justify-centre text-white font-bold text-xl shadow-lg">
                 {application.companyProfile?.companyName?.[0] || application.username[0].toUpperCase()}
               </div>
               <div className={cn(
@@ -120,8 +120,8 @@ export function ApplicationCard({
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 py-5 border-y border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+          <div className="flex items-centre gap-3">
+            <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-centre justify-centre">
               <Building2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
@@ -132,8 +132,8 @@ export function ApplicationCard({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
+          <div className="flex items-centre gap-3">
+            <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-centre justify-centre">
               <Award className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
@@ -142,8 +142,8 @@ export function ApplicationCard({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+          <div className="flex items-centre gap-3">
+            <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-centre justify-centre">
               <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
             </div>
             <div>
@@ -152,8 +152,8 @@ export function ApplicationCard({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-center justify-center">
+          <div className="flex items-centre gap-3">
+            <div className="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-xl flex items-centre justify-centre">
               <MapPin className="w-5 h-5 text-orange-600 dark:text-orange-400" />
             </div>
             <div>
@@ -166,7 +166,7 @@ export function ApplicationCard({
         </div>
 
         {/* Submission Date */}
-        <div className="flex items-center gap-2 mb-5 px-4 py-2.5 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
+        <div className="flex items-centre gap-2 mb-5 px-4 py-2.5 bg-gray-50 dark:bg-gray-900/50 rounded-xl">
           <Calendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
           <span className="text-sm text-gray-600 dark:text-gray-400">
             Submitted {formatDistanceToNow(new Date(application.createdAt), { addSuffix: true })}
@@ -175,7 +175,7 @@ export function ApplicationCard({
 
         {/* Completion Progress */}
         <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-centre justify-between mb-3">
             <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Application Completion</span>
             <span className="text-sm font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               {completionPercentage}%
@@ -199,7 +199,7 @@ export function ApplicationCard({
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-centre gap-3">
           <Button
             variant="outline"
             size="sm"

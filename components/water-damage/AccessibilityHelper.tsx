@@ -11,7 +11,7 @@ export default function AccessibilityHelper() {
         const main = document.getElementById('main');
         if (main) {
           main.focus();
-          main.scrollIntoView({ behavior: 'smooth' });
+          main.scrollIntoView({ behaviour: 'smooth' });
         }
       }
 
@@ -40,7 +40,7 @@ export default function AccessibilityHelper() {
 
     // Focus management
     const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-    const modal = document.querySelector('[role="dialog"]');
+    const modal = document.querySelector('[role="dialogue"]');
 
     if (modal) {
       const focusableContent = modal.querySelectorAll(focusableElements);

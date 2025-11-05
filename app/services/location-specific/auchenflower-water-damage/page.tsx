@@ -16,8 +16,8 @@ export default function AuchenflowerWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <TreePine className="h-12 w-12 text-blue-300" />
             </div>
@@ -36,7 +36,7 @@ export default function AuchenflowerWaterDamagePage() {
               <p className="text-lg">Riverside Property Expert</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <TreePine className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">Riverside Expert</p>
@@ -60,7 +60,7 @@ export default function AuchenflowerWaterDamagePage() {
       {/* Auchenflower Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Auchenflower Premium Water Damage Services
           </h2>
 
@@ -75,19 +75,19 @@ export default function AuchenflowerWaterDamagePage() {
                   matches the high standards expected in this exclusive area.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Riverside Drive properties</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Wesley Hospital precinct</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Heritage-listed homes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Luxury apartment complexes</span>
                   </li>
@@ -98,23 +98,23 @@ export default function AuchenflowerWaterDamagePage() {
                 <Home className="h-12 w-12 text-green-600 mb-4" />
                 <h3 className="text-2xl font-bold mb-4">Premium Property Challenges</h3>
                 <p className="text-lg mb-4">
-                  Auchenflower's high-value properties require specialized care and discretion
+                  Auchenflower's high-value properties require specialised care and discretion
                   during water damage restoration.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Riverside flooding risks</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Heritage feature preservation</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Luxury finishes protection</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Pool and spa system damage</span>
                   </li>
@@ -124,11 +124,11 @@ export default function AuchenflowerWaterDamagePage() {
 
             {/* Premium Services */}
             <Card className="p-8 bg-gradient-to-r from-green-50 to-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Auchenflower Premium Restoration Services
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Home className="h-10 w-10 mx-auto mb-4 text-green-600" />
                   <h4 className="font-bold text-lg mb-2">Luxury Homes</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -138,7 +138,7 @@ export default function AuchenflowerWaterDamagePage() {
                     <li>• High-end finishes</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <TreePine className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Riverside Properties</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -148,7 +148,7 @@ export default function AuchenflowerWaterDamagePage() {
                     <li>• Retaining wall care</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Shield className="h-10 w-10 mx-auto mb-4 text-purple-600" />
                   <h4 className="font-bold text-lg mb-2">Elite Service</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -166,7 +166,7 @@ export default function AuchenflowerWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Auchenflower Water Damage Emergency?
           </h2>

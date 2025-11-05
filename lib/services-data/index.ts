@@ -209,7 +209,7 @@ const SERVICES: ServiceData[] = [
     slug: 'infectious-disease-cleaning',
     category: SERVICE_CATEGORIES[4],
     subcategories: ['covid-cleaning', 'virus-disinfection', 'bacteria-removal'],
-    description: 'Specialized cleaning for infectious disease contamination',
+    description: 'specialised cleaning for infectious disease contamination',
     keywords: [
       'covid cleaning', 'virus cleaning', 'disease cleanup', 'sanitization',
       'disinfection', 'pathogen removal', 'contamination cleaning'

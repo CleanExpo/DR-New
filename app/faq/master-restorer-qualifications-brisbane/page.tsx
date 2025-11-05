@@ -16,7 +16,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <HelpCircle className="h-16 w-16 mx-auto mb-6 text-blue-400" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Master Restorer Qualifications FAQ
@@ -44,7 +44,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
 
             {/* What is a Master Restorer */}
             <Card className="p-8">
-              <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
+              <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-centre">
                 <Shield className="h-8 w-8 mr-3" />
                 What exactly is a Master Restorer and why does it matter?
               </h2>
@@ -57,23 +57,23 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="font-bold mb-3">Master Restorer Requirements:</h3>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Minimum 5 years of restoration experience</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Multiple specialist IICRC certifications (WRT, ASD, FSRT, etc.)</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Proven track record of complex restoration projects</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Ongoing professional development and education</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Industry recognition and peer review</span>
                     </li>
@@ -88,7 +88,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
 
             {/* How many Master Restorers in Brisbane */}
             <Card className="p-8">
-              <h2 className="text-2xl font-bold mb-4 text-green-800 flex items-center">
+              <h2 className="text-2xl font-bold mb-4 text-green-800 flex items-centre">
                 <Award className="h-8 w-8 mr-3" />
                 How many Master Restorers are there in Brisbane and Queensland?
               </h2>
@@ -141,23 +141,23 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                   <div className="bg-green-50 p-6 rounded-lg">
                     <h3 className="font-bold mb-3 text-green-800">Cost Benefits:</h3>
                     <ul className="space-y-2">
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Accurate initial assessment reduces scope creep</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Faster project completion times</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Reduced risk of additional damage</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Lower chance of callbacks/rework</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Better insurance claim outcomes</span>
                       </li>
@@ -166,23 +166,23 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                   <div className="bg-blue-50 p-6 rounded-lg">
                     <h3 className="font-bold mb-3 text-blue-800">Insurance Advantages:</h3>
                     <ul className="space-y-2">
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                         <span>Preferred contractor status with major insurers</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                         <span>Direct billing arrangements available</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                         <span>Faster claim approvals and processing</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                         <span>Comprehensive documentation reducing disputes</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                         <span>Industry-standard pricing transparency</span>
                       </li>
@@ -190,7 +190,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                   </div>
                 </div>
                 <div className="bg-yellow-50 p-6 rounded-lg">
-                  <p className="font-bold text-yellow-800 text-center">
+                  <p className="font-bold text-yellow-800 text-centre">
                     For insurance claims, you typically only pay your excess regardless of contractor choice.
                     Master Restorer expertise at no additional cost to you.
                   </p>
@@ -213,29 +213,29 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                     <h3 className="font-bold mb-3 text-red-800">Why Insurers Prefer Master Restorers:</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <ul className="space-y-2">
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                           <span>Reduced risk of callbacks and disputes</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                           <span>Industry-standard documentation quality</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                           <span>Proven track record of successful projects</span>
                         </li>
                       </ul>
                       <ul className="space-y-2">
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                           <span>Advanced technical knowledge</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                           <span>Compliance with IICRC standards</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                           <span>Professional liability insurance coverage</span>
                         </li>
@@ -271,19 +271,19 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                   <div className="bg-orange-50 p-6 rounded-lg">
                     <h3 className="font-bold mb-3 text-orange-800">Emergency Response:</h3>
                     <ul className="space-y-2">
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <Clock className="h-5 w-5 text-orange-600 mr-2" />
                         <span>24/7 availability including weekends</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <Clock className="h-5 w-5 text-orange-600 mr-2" />
                         <span>Christmas, Easter, and public holidays</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <Clock className="h-5 w-5 text-orange-600 mr-2" />
                         <span>60-minute response Hamilton/Ascot</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <Clock className="h-5 w-5 text-orange-600 mr-2" />
                         <span>90-minute maximum Brisbane metro</span>
                       </li>
@@ -301,7 +301,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                   </div>
                 </div>
                 <div className="bg-red-50 p-6 rounded-lg">
-                  <p className="font-bold text-red-800 text-center text-lg">
+                  <p className="font-bold text-red-800 text-centre text-lg">
                     Emergency Line: [Emergency Number] - Direct to Master Restorer
                   </p>
                 </div>
@@ -315,8 +315,8 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
               </h2>
               <div className="space-y-4">
                 <p className="text-lg">
-                  Yes, Master Restorer Phill McGurk specializes in heritage property restoration throughout
-                  Brisbane's premium suburbs. Heritage homes require specialized knowledge and techniques
+                  Yes, Master Restorer Phill McGurk specialises in heritage property restoration throughout
+                  Brisbane's premium suburbs. Heritage homes require specialised knowledge and techniques
                   that only advanced certification provides.
                 </p>
                 <div className="space-y-6">
@@ -324,37 +324,37 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                     <h3 className="font-bold mb-3 text-teal-800">Heritage Property Expertise:</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <ul className="space-y-2">
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Lime plaster restoration techniques</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Period-appropriate material sourcing</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Original timber preservation methods</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Heritage council compliance</span>
                         </li>
                       </ul>
                       <ul className="space-y-2">
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Character feature protection</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Traditional restoration methods</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Specialist heritage craftspeople network</span>
                         </li>
-                        <li className="flex items-center">
+                        <li className="flex items-centre">
                           <CheckCircle className="h-5 w-5 text-teal-600 mr-2" />
                           <span>Historical accuracy requirements</span>
                         </li>
@@ -408,23 +408,23 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                   <div className="bg-indigo-50 p-6 rounded-lg">
                     <h3 className="font-bold mb-3 text-indigo-800">Assessment Documentation:</h3>
                     <ul className="space-y-2">
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-indigo-600 mr-2" />
                         <span>Comprehensive damage assessment reports</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-indigo-600 mr-2" />
                         <span>Thermal imaging and moisture mapping</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-indigo-600 mr-2" />
                         <span>Professional photography (before/during/after)</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-indigo-600 mr-2" />
                         <span>Detailed scope of works</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-indigo-600 mr-2" />
                         <span>Material and equipment specifications</span>
                       </li>
@@ -433,23 +433,23 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                   <div className="bg-green-50 p-6 rounded-lg">
                     <h3 className="font-bold mb-3 text-green-800">Progress Documentation:</h3>
                     <ul className="space-y-2">
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Daily progress reports with photos</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Moisture monitoring charts</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Equipment placement diagrams</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Environmental monitoring logs</span>
                       </li>
-                      <li className="flex items-center">
+                      <li className="flex items-centre">
                         <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                         <span>Completion certificates</span>
                       </li>
@@ -477,7 +477,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
 
       {/* Contact CTA */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-indigo-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             More Questions About Master Restorer Services?
           </h2>
@@ -520,12 +520,12 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Related Resources & Guides
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Shield className="h-12 w-12 mx-auto mb-4 text-blue-600" />
                 <h3 className="text-xl font-bold mb-3">
                   Master Restorer Certification Guide
@@ -538,7 +538,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Award className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="text-xl font-bold mb-3">
                   About Master Restorer Phill McGurk
@@ -551,7 +551,7 @@ export default function MasterRestorerQualificationsFAQBrisbanePage() {
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <HelpCircle className="h-12 w-12 mx-auto mb-4 text-purple-600" />
                 <h3 className="text-xl font-bold mb-3">
                   More Water Damage FAQs

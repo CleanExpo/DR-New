@@ -63,7 +63,7 @@ export const LiveChatInterface: React.FC = () => {
 
   // Auto-scroll to bottom on new messages
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behaviour: 'smooth' });
   };
 
   useEffect(() => {
@@ -284,8 +284,8 @@ export const LiveChatInterface: React.FC = () => {
           >
             {/* Header */}
             <div className="bg-blue-600 text-white p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
+              <div className="flex items-centre justify-between">
+                <div className="flex items-centre gap-3">
                   <Avatar className="w-10 h-10">
                     {session?.agent.isBot ? (
                       <Bot className="w-6 h-6" />
@@ -297,7 +297,7 @@ export const LiveChatInterface: React.FC = () => {
                     <h3 className="font-semibold">
                       {session?.agent.name || 'Chat Support'}
                     </h3>
-                    <div className="flex items-center gap-2 text-xs">
+                    <div className="flex items-centre gap-2 text-xs">
                       <span className={cn(
                         'w-2 h-2 rounded-full',
                         session?.agent.status === 'online' ? 'bg-green-400' :
@@ -316,7 +316,7 @@ export const LiveChatInterface: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-centre gap-1">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -343,7 +343,7 @@ export const LiveChatInterface: React.FC = () => {
                 <ScrollArea className="flex-1 p-4">
                   <div className="space-y-4">
                     {isLoading ? (
-                      <div className="flex items-center justify-center py-8">
+                      <div className="flex items-centre justify-centre py-8">
                         <Loader2 className="w-6 h-6 animate-spin text-gray-200" />
                       </div>
                     ) : (
@@ -354,7 +354,7 @@ export const LiveChatInterface: React.FC = () => {
                             className={cn(
                               'flex gap-3',
                               message.type === 'sent' && 'justify-end',
-                              message.type === 'system' && 'justify-center'
+                              message.type === 'system' && 'justify-centre'
                             )}
                           >
                             {message.type === 'system' ? (
@@ -380,7 +380,7 @@ export const LiveChatInterface: React.FC = () => {
                                 )}>
                                   <p className="text-sm">{message.content}</p>
                                   <div className={cn(
-                                    'flex items-center gap-1 mt-1',
+                                    'flex items-centre gap-1 mt-1',
                                     message.type === 'sent' ? 'text-blue-800' : 'text-gray-300'
                                   )}>
                                     <Clock className="w-3 h-3" />
@@ -427,7 +427,7 @@ export const LiveChatInterface: React.FC = () => {
 
                 {/* Input */}
                 <div className="border-t border-gray-200 dark:border-gray-800 p-4">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-centre gap-2">
                     <Button
                       variant="ghost"
                       size="icon"

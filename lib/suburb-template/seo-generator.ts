@@ -1,6 +1,6 @@
 /**
  * SEO Configuration Generator - Keyword & Metadata Strategy
- * Generates SEO-optimized metadata, keywords, and link strategies per suburb
+ * Generates SEO-optimised metadata, keywords, and link strategies per suburb
  */
 
 import { SuburbTemplate, SEOConfig, InternalLinkingMap } from './types';

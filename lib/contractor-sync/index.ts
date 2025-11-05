@@ -258,7 +258,7 @@ async function notifyContractorOfPageGeneration(
       Great news! We've automatically generated ${pageCount} location-specific pages
       for your services across your coverage area.
 
-      These pages are now live and optimized for search engines, helping potential
+      These pages are now live and optimised for search engines, helping potential
       customers find your services in their local area.
 
       Coverage Summary:

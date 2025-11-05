@@ -176,7 +176,7 @@ export default function ReviewDisplay() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           {/* Review Header with Aggregate Rating */}
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -187,10 +187,10 @@ export default function ReviewDisplay() {
             </motion.h2>
 
             {/* Aggregate Rating Display */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
-              <div className="text-center">
+            <div className="flex flex-col md:flex-row items-centre justify-centre gap-8 mb-8">
+              <div className="text-centre">
                 <div className="text-6xl font-bold text-gray-900 mb-2">{averageRating}</div>
-                <div className="flex justify-center gap-0.5 mb-2">
+                <div className="flex justify-centre gap-0.5 mb-2">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className={`w-6 h-6 ${i < Math.floor(averageRating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} />
                   ))}
@@ -204,7 +204,7 @@ export default function ReviewDisplay() {
                   const starCount = 5 - index;
                   const percentage = (value / totalReviews) * 100;
                   return (
-                    <div key={key} className="flex items-center gap-3">
+                    <div key={key} className="flex items-centre gap-3">
                       <span className="text-sm text-gray-600 w-12">{starCount} star</span>
                       <div className="flex-1 bg-gray-200 rounded-full h-2">
                         <motion.div
@@ -222,7 +222,7 @@ export default function ReviewDisplay() {
             </div>
 
             {/* Trust Badges */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="flex flex-wrap justify-centre gap-4 mb-8">
               <Badge className="px-4 py-2 bg-green-100 text-green-800">
                 <CheckCircle className="w-4 h-4 mr-2" />
                 Verified Reviews
@@ -239,7 +239,7 @@ export default function ReviewDisplay() {
           </div>
 
           {/* Service Filter */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <div className="flex flex-wrap justify-centre gap-2 mb-8">
             {services.map(service => (
               <Button
                 key={service}
@@ -269,7 +269,7 @@ export default function ReviewDisplay() {
                       {/* Review Header */}
                       <div className="flex items-start justify-between mb-4">
                         <div>
-                          <div className="flex items-center gap-2 mb-1">
+                          <div className="flex items-centre gap-2 mb-1">
                             <h4 className="font-semibold text-gray-900">{review.author}</h4>
                             {review.verified && (
                               <Badge variant="outline" className="text-xs">
@@ -278,7 +278,7 @@ export default function ReviewDisplay() {
                               </Badge>
                             )}
                           </div>
-                          <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <div className="flex items-centre gap-2 text-xs text-gray-600">
                             <MapPin className="w-3 h-3" />
                             <span>{review.location}</span>
                             <span>•</span>
@@ -308,19 +308,19 @@ export default function ReviewDisplay() {
                       {/* Additional Info */}
                       <div className="space-y-2 border-t pt-4">
                         {review.responseTime && (
-                          <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <div className="flex items-centre gap-2 text-xs text-gray-600">
                             <AlertCircle className="w-3 h-3 text-green-600" />
                             <span>Response time: <strong>{review.responseTime}</strong></span>
                           </div>
                         )}
                         {review.insuranceClaim && (
-                          <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <div className="flex items-centre gap-2 text-xs text-gray-600">
                             <Shield className="w-3 h-3 text-blue-600" />
                             <span>Insurance claim handled</span>
                           </div>
                         )}
-                        <div className="flex items-center justify-between pt-2">
-                          <button className="flex items-center gap-1 text-xs text-gray-600 hover:text-blue-600">
+                        <div className="flex items-centre justify-between pt-2">
+                          <button className="flex items-centre gap-1 text-xs text-gray-600 hover:text-blue-600">
                             <ThumbsUp className="w-3 h-3" />
                             <span>Helpful ({review.helpfulCount})</span>
                           </button>
@@ -334,7 +334,7 @@ export default function ReviewDisplay() {
           </div>
 
           {/* Load More Button */}
-          <div className="text-center">
+          <div className="text-centre">
             <Button size="lg" variant="outline">
               Load More Reviews
               <TrendingUp className="w-4 h-4 ml-2" />

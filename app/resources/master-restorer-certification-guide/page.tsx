@@ -16,8 +16,8 @@ export default function MasterRestorerCertificationGuidePage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Download className="h-16 w-16 mr-4 text-gold-400" />
               <Shield className="h-16 w-16 text-gold-400" />
             </div>
@@ -37,7 +37,7 @@ export default function MasterRestorerCertificationGuidePage() {
               <p className="text-lg">Written by IICRC Certified Master Restorer Phill McGurk</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Award className="h-10 w-10 mx-auto mb-2 text-gold-400" />
                 <p className="font-bold">Expert Written</p>
@@ -62,7 +62,7 @@ export default function MasterRestorerCertificationGuidePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               What's Inside This Professional Guide
             </h2>
 
@@ -75,19 +75,19 @@ export default function MasterRestorerCertificationGuidePage() {
                   to Master Restorer, including requirements and capabilities.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Water Restoration Technician (WRT)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Applied Structural Drying (ASD)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Fire & Smoke Restoration (FSRT)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Master Restorer Requirements</span>
                   </li>
@@ -102,19 +102,19 @@ export default function MasterRestorerCertificationGuidePage() {
                   and what this means for your restoration project.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Advanced technical expertise</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Complex project management</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Insurance company relationships</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Heritage property specialization</span>
                   </li>
@@ -124,7 +124,7 @@ export default function MasterRestorerCertificationGuidePage() {
 
             {/* Chapter Breakdown */}
             <Card className="p-8 bg-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-8">
+              <h3 className="text-2xl font-bold text-centre mb-8">
                 Complete Chapter Breakdown
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
@@ -158,12 +158,12 @@ export default function MasterRestorerCertificationGuidePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               What You'll Learn From This Guide
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Award className="h-16 w-16 mx-auto mb-4 text-blue-600" />
                 <h3 className="text-xl font-bold mb-3">Certification Levels</h3>
                 <p className="text-sm">
@@ -172,7 +172,7 @@ export default function MasterRestorerCertificationGuidePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Shield className="h-16 w-16 mx-auto mb-4 text-green-600" />
                 <h3 className="text-xl font-bold mb-3">Quality Assurance</h3>
                 <p className="text-sm">
@@ -181,7 +181,7 @@ export default function MasterRestorerCertificationGuidePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Star className="h-16 w-16 mx-auto mb-4 text-purple-600" />
                 <h3 className="text-xl font-bold mb-3">Choosing Contractors</h3>
                 <p className="text-sm">
@@ -190,7 +190,7 @@ export default function MasterRestorerCertificationGuidePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <FileText className="h-16 w-16 mx-auto mb-4 text-orange-600" />
                 <h3 className="text-xl font-bold mb-3">Insurance Claims</h3>
                 <p className="text-sm">
@@ -199,7 +199,7 @@ export default function MasterRestorerCertificationGuidePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Users className="h-16 w-16 mx-auto mb-4 text-red-600" />
                 <h3 className="text-xl font-bold mb-3">Brisbane Market</h3>
                 <p className="text-sm">
@@ -208,7 +208,7 @@ export default function MasterRestorerCertificationGuidePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <CheckCircle className="h-16 w-16 mx-auto mb-4 text-teal-600" />
                 <h3 className="text-xl font-bold mb-3">Technical Knowledge</h3>
                 <p className="text-sm">
@@ -224,7 +224,7 @@ export default function MasterRestorerCertificationGuidePage() {
       {/* Download Form Section */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-purple-700 text-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl font-bold mb-6">
               Download Your Free Master Restorer Guide
             </h2>
@@ -298,7 +298,7 @@ export default function MasterRestorerCertificationGuidePage() {
                   Download Free Guide Now
                 </Button>
 
-                <p className="text-xs text-gray-600 text-center">
+                <p className="text-xs text-gray-600 text-centre">
                   Your information is secure and will never be shared. You'll receive an immediate download link
                   and occasional professional restoration tips.
                 </p>
@@ -312,14 +312,14 @@ export default function MasterRestorerCertificationGuidePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               About the Author: Master Restorer Phill McGurk
             </h2>
 
             <Card className="p-8">
-              <div className="grid md:grid-cols-3 gap-8 items-center">
-                <div className="text-center">
-                  <div className="w-48 h-48 mx-auto bg-gray-300 rounded-full mb-4 flex items-center justify-center">
+              <div className="grid md:grid-cols-3 gap-8 items-centre">
+                <div className="text-centre">
+                  <div className="w-48 h-48 mx-auto bg-gray-300 rounded-full mb-4 flex items-centre justify-centre">
                     <Users className="h-24 w-24 text-gray-600" />
                   </div>
                   <h3 className="text-2xl font-bold">Phill McGurk</h3>
@@ -377,12 +377,12 @@ export default function MasterRestorerCertificationGuidePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               More Professional Resources
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Download className="h-12 w-12 mx-auto mb-4 text-blue-600" />
                 <h3 className="text-xl font-bold mb-3">
                   Emergency Response Checklist
@@ -395,7 +395,7 @@ export default function MasterRestorerCertificationGuidePage() {
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <FileText className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="text-xl font-bold mb-3">
                   Insurance Claims Guide
@@ -408,13 +408,13 @@ export default function MasterRestorerCertificationGuidePage() {
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Shield className="h-12 w-12 mx-auto mb-4 text-purple-600" />
                 <h3 className="text-xl font-bold mb-3">
                   Heritage Property Guide
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  Specialized restoration guide for Brisbane's heritage and character homes.
+                  specialised restoration guide for Brisbane's heritage and character homes.
                 </p>
                 <Link href="/resources/heritage-property-restoration-guide">
                   <Button variant="outline">Download Guide</Button>
@@ -427,7 +427,7 @@ export default function MasterRestorerCertificationGuidePage() {
 
       {/* Contact CTA */}
       <section className="py-16 bg-blue-900 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Need Master Restorer Services?
           </h2>

@@ -59,7 +59,7 @@ export default function CommercialPropertyPage() {
     },
     retail: {
       name: 'Retail Stores',
-      description: 'Shops, boutiques, department stores, shopping centers',
+      description: 'Shops, boutiques, department stores, shopping centres',
       criticalConcerns: [
         'Inventory damage and loss',
         'Customer access and safety',
@@ -99,7 +99,7 @@ export default function CommercialPropertyPage() {
     },
     medical: {
       name: 'Medical Facilities',
-      description: 'Clinics, dental practices, medical centers, pharmacies',
+      description: 'Clinics, dental practices, medical centres, pharmacies',
       criticalConcerns: [
         'Patient care continuity',
         'Medical equipment damage',
@@ -119,7 +119,7 @@ export default function CommercialPropertyPage() {
     },
     warehouse: {
       name: 'Warehouses',
-      description: 'Storage facilities, distribution centers, logistics hubs',
+      description: 'Storage facilities, distribution centres, logistics hubs',
       criticalConcerns: [
         'Inventory protection and salvage',
         'Supply chain disruption',
@@ -139,7 +139,7 @@ export default function CommercialPropertyPage() {
     },
     education: {
       name: 'Educational Facilities',
-      description: 'Schools, universities, training centers, childcare',
+      description: 'Schools, universities, training centres, childcare',
       criticalConcerns: [
         'Student and staff safety',
         'Educational continuity',
@@ -229,7 +229,7 @@ export default function CommercialPropertyPage() {
     },
     {
       factor: 'Extra Expenses',
-      description: 'Additional costs to minimize loss',
+      description: 'Additional costs to minimise loss',
       calculation: 'Temporary premises + Equipment rental + Overtime',
       mitigation: 'Extra expense insurance coverage'
     },
@@ -391,7 +391,7 @@ export default function CommercialPropertyPage() {
       answer: 'Property insurance covers physical damage to buildings, equipment, and inventory. Business interruption insurance covers lost income and ongoing expenses during closure. Both are essential - property insurance alone won\'t cover the revenue lost while repairs are underway.'
     },
     {
-      question: 'How can businesses minimize downtime during restoration?',
+      question: 'How can businesses minimise downtime during restoration?',
       answer: 'Key strategies include: having a business continuity plan, setting up temporary operations, using phased restoration to reopen partially, expediting critical area repairs, and maintaining clear communication with customers about reopening timelines.'
     },
     {
@@ -426,28 +426,28 @@ export default function CommercialPropertyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
+            className="text-centre"
           >
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-centre mb-6">
               <Building className="w-20 h-20 text-blue-700" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Commercial Property Disaster Recovery
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-blue-800">
-              Minimize Downtime, Protect Revenue, Ensure Business Continuity
+              minimise Downtime, Protect Revenue, Ensure Business Continuity
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-centre gap-4">
               <Link
                 href="/whos-first/commercial"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 24/7 Commercial Response
               </Link>
               <Link
                 href="/insurance-decoder/business"
-                className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Shield className="w-5 h-5" />
                 Business Insurance Guide
@@ -466,7 +466,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Store className="w-8 h-8 text-blue-600" />
               Commercial Property Types
             </h2>
@@ -531,7 +531,7 @@ export default function CommercialPropertyPage() {
 
                 <div>
                   <div className="bg-white rounded-lg p-6 shadow-md">
-                    <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold mb-4 flex items-centre gap-2">
                       <Shield className="w-5 h-5 text-blue-600" />
                       Insurance Requirements
                     </h4>
@@ -560,7 +560,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <AlertTriangle className="w-8 h-8 text-red-600" />
               Commercial Disaster Response Priorities
             </h2>
@@ -574,9 +574,9 @@ export default function CommercialPropertyPage() {
                   viewport={{ once: true }}
                   className="bg-white rounded-lg shadow-lg p-6 border-t-4 border-red-500"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold">
+                  <div className="flex items-centre justify-between mb-4">
+                    <div className="flex items-centre gap-3">
+                      <div className="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-centre justify-centre font-bold">
                         {priority.priority}
                       </div>
                       <div className="text-red-600">{priority.icon}</div>
@@ -610,7 +610,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <BarChart className="w-8 h-8 text-green-600" />
               Understanding Business Interruption Impact
             </h2>
@@ -652,7 +652,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Shield className="w-8 h-8 text-blue-600" />
               Commercial Insurance Essentials
             </h2>
@@ -688,10 +688,10 @@ export default function CommercialPropertyPage() {
                 </tbody>
               </table>
             </div>
-            <div className="mt-6 text-center">
+            <div className="mt-6 text-centre">
               <Link
                 href="/insurance-decoder/commercial"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                className="inline-flex items-centre gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
                 <Calculator className="w-5 h-5" />
                 Check Your Commercial Coverage
@@ -710,7 +710,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Clock className="w-8 h-8 text-blue-600" />
               Typical Commercial Recovery Timeline
             </h2>
@@ -725,14 +725,14 @@ export default function CommercialPropertyPage() {
                   viewport={{ once: true }}
                   className="relative flex items-start mb-8"
                 >
-                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm z-10">
+                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-centre justify-centre font-bold text-sm z-10">
                     {phase.days}
                   </div>
                   <div className="ml-8 bg-white rounded-lg shadow-lg p-6 flex-grow">
                     <h3 className="font-bold text-lg mb-3">{phase.phase}</h3>
                     <div className="grid md:grid-cols-2 gap-2">
                       {phase.tasks.map((task, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
+                        <div key={idx} className="flex items-centre gap-2">
                           <CheckCircle className="w-4 h-4 text-green-500" />
                           <span className="text-sm text-gray-200">{task}</span>
                         </div>
@@ -755,7 +755,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <DollarSign className="w-8 h-8 text-green-600" />
               Commercial Restoration Cost Breakdown
             </h2>
@@ -799,7 +799,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <HelpCircle className="w-8 h-8 text-blue-600" />
               Commercial Property FAQs
             </h2>
@@ -815,7 +815,7 @@ export default function CommercialPropertyPage() {
                 >
                   <button
                     onClick={() => setExpandedFAQ(expandedFAQ === index ? null : index)}
-                    className="w-full px-6 py-4 text-left font-semibold flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
+                    className="w-full px-6 py-4 text-left font-semibold flex items-centre justify-between hover:bg-gray-50 transition-colors rounded-lg"
                   >
                     <span>{faq.question}</span>
                     <ChevronRight
@@ -845,7 +845,7 @@ export default function CommercialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <BookOpen className="w-8 h-8 text-blue-600" />
               Commercial Recovery Resources
             </h2>
@@ -892,7 +892,7 @@ export default function CommercialPropertyPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-indigo-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -900,22 +900,22 @@ export default function CommercialPropertyPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Minimize Business Disruption from Disasters
+              minimise Business Disruption from Disasters
             </h2>
             <p className="text-xl mb-8 text-blue-800">
               Get priority commercial restoration services to protect your revenue
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="/whos-first/commercial"
-                className="bg-white text-blue-700 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-white text-blue-700 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 24/7 Commercial Response
               </Link>
               <Link
                 href="/insurance-decoder/commercial"
-                className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Calculator className="w-5 h-5" />
                 Assess Your Coverage

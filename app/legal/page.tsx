@@ -82,15 +82,15 @@ export default function LegalDocumentsHub() {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center">
+          <div className="text-centre">
             <FaBalanceScale className="text-6xl mx-auto mb-6 opacity-90" />
             <h1 className="text-5xl font-bold mb-4">
-              Legal Document Center
+              Legal Document centre
             </h1>
             <p className="text-xl mb-8 opacity-90">
               Comprehensive legal frameworks for disaster recovery operations
             </p>
-            <div className="flex justify-center gap-8">
+            <div className="flex justify-centre gap-8">
               <div className="bg-white/10 rounded-lg px-6 py-4">
                 <div className="text-3xl font-bold">{totalDocuments}+</div>
                 <div className="text-sm opacity-90">Legal Documents</div>
@@ -169,7 +169,7 @@ export default function LegalDocumentsHub() {
                   <p className="text-sm text-gray-700 mb-4">
                     {category.description}
                   </p>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-centre">
                     <span className="text-xs bg-gray-100 px-2 py-1 rounded">
                       {category.count} Documents
                     </span>
@@ -191,7 +191,7 @@ export default function LegalDocumentsHub() {
           <p className="text-amber-800 mb-4">
             These documents are provided as templates and general guidance for the disaster recovery
             industry. While they have been prepared with care to comply with Australian law, they
-            should be reviewed and customized by qualified legal counsel to ensure they meet your
+            should be reviewed and customised by qualified legal counsel to ensure they meet your
             specific business needs and circumstances.
           </p>
           <div className="grid md:grid-cols-3 gap-4 mt-6">
@@ -211,12 +211,12 @@ export default function LegalDocumentsHub() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-8 text-white text-centre">
           <h3 className="text-2xl font-bold mb-4">Need Custom Legal Documents?</h3>
           <p className="mb-6 opacity-90">
-            Our legal team can help customize these documents for your specific needs
+            Our legal team can help customise these documents for your specific needs
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-centre gap-4">
             <Link 
               href="/contact"
               className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"

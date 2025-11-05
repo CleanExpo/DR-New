@@ -63,12 +63,12 @@ async function getDirectoryStats(dirPath: string): Promise<ImageStats> {
               stats.largeImages.push(`${fullPath} (${sizeMB.toFixed(2)}MB)`);
             }
 
-            // Check for unoptimized images (PNG/JPG > 500KB)
+            // Check for unoptimised images (PNG/JPG > 500KB)
             if ((ext === '.png' || ext === '.jpg' || ext === '.jpeg') && sizeKB > 500) {
               stats.unoptimizedImages.push(fullPath);
             }
 
-            // Check if original exists (indicates optimization happened)
+            // Check if original exists (indicates optimisation happened)
             const originalPath = fullPath.replace(/(\.[^.]+)$/, '.original$1');
             if (existsSync(originalPath)) {
               stats.optimizedCount++;
@@ -127,9 +127,9 @@ export async function GET(request: NextRequest) {
         averageSize: formatSize(stats.totalImages > 0 ? stats.totalSize / stats.totalImages : 0) },
       issues: {
         largeImages: stats.largeImages.slice(0, 10), // Top 10 largest
-        unoptimizedImages: stats.unoptimizedImages.slice(0, 10), // Top 10 unoptimized
+        unoptimizedImages: stats.unoptimizedImages.slice(0, 10), // Top 10 unoptimised
         totalLargeImages: stats.largeImages.length,
-        totalUnoptimized: stats.unoptimizedImages.length },
+        totalUnoptimised: stats.unoptimizedImages.length },
       breakdown: Object.entries(stats.breakdown).map(([ext, data]) => ({
         extension: ext,
         count: data.count,
@@ -141,7 +141,7 @@ export async function GET(request: NextRequest) {
     // Add recommendations
     if (stats.largeImages.length > 0) {
       response.recommendations.push(
-        `${stats.largeImages.length} images are larger than 1MB and should be optimized`
+        `${stats.largeImages.length} images are larger than 1MB and should be optimised`
       );
     }
 
@@ -154,7 +154,7 @@ export async function GET(request: NextRequest) {
     const optimizationRate = (stats.optimizedCount / stats.totalImages) * 100;
     if (optimizationRate < 50) {
       response.recommendations.push(
-        'Less than 50% of images are optimized. Run npm run image-worker to optimize all images'
+        'Less than 50% of images are optimised. Run npm run image-worker to optimise all images'
       );
     }
 

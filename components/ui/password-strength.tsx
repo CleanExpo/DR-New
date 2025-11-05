@@ -37,7 +37,7 @@ export function PasswordStrength({ requirements, className }: PasswordStrengthPr
     <div className={cn('space-y-3', className)}>
       {/* Strength Bar */}
       <div>
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex items-centre justify-between mb-2">
           <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
             Password Strength
           </span>
@@ -74,11 +74,11 @@ export function PasswordStrength({ requirements, className }: PasswordStrengthPr
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.05 }}
-            className="flex items-center gap-2 text-xs"
+            className="flex items-centre gap-2 text-xs"
           >
             <div
               className={cn(
-                'flex items-center justify-center w-4 h-4 rounded-full transition-colors',
+                'flex items-centre justify-centre w-4 h-4 rounded-full transition-colors',
                 req.met
                   ? 'bg-green-100 dark:bg-green-900/30'
                   : 'bg-gray-100 dark:bg-gray-700'

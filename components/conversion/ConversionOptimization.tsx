@@ -147,9 +147,9 @@ export default function ConversionOptimization({
                   <X className="w-6 h-6" />
                 </button>
 
-                <CardContent className="p-8 text-center">
+                <CardContent className="p-8 text-centre">
                   {/* Emergency Icon */}
-                  <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="w-20 h-20 bg-red-100 rounded-full flex items-centre justify-centre mx-auto mb-6">
                     <AlertCircle className="w-10 h-10 text-red-600 animate-pulse" />
                   </div>
 
@@ -165,7 +165,7 @@ export default function ConversionOptimization({
 
                   {/* Urgency Box */}
                   <div className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4 mb-6">
-                    <div className="flex items-center justify-center gap-2 mb-2">
+                    <div className="flex items-centre justify-centre gap-2 mb-2">
                       <Clock className="w-5 h-5 text-yellow-600 animate-pulse" />
                       <span className="font-semibold text-gray-900">Limited Time Offer</span>
                     </div>
@@ -177,15 +177,15 @@ export default function ConversionOptimization({
 
                   {/* Benefits */}
                   <div className="space-y-2 mb-6 text-left">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <span>Response within 45 minutes</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <span>Insurance claim assistance included</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <CheckCircle className="w-5 h-5 text-green-600" />
                       <span>No call-out fees - ever</span>
                     </div>
@@ -235,9 +235,9 @@ export default function ConversionOptimization({
             className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl"
           >
             <div className="container mx-auto px-4 py-4">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex flex-col md:flex-row items-centre justify-between gap-4">
                 {/* Left Side - Message */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-centre gap-4">
                   <div className="bg-white/20 p-2 rounded-full">
                     <Zap className="w-6 h-6 animate-pulse" />
                   </div>
@@ -282,7 +282,7 @@ export default function ConversionOptimization({
           transition={{ delay: 2 }}
           className="fixed bottom-24 left-4 z-40 bg-white rounded-lg shadow-xl p-4 max-w-xs"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-centre gap-3">
             <div className="relative">
               <Users className="w-8 h-8 text-blue-600" />
               <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse" />

@@ -87,7 +87,7 @@ export function ListicleSchema({
     }))
   };
 
-  // Featured Snippet optimization
+  // Featured Snippet optimisation
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -253,7 +253,7 @@ export const listicleData = {
       {
         position: 2,
         name: "West End - 61% denial rate",
-        description: "Gentrification penalty. Challenge maintenance assumptions with heritage defense."
+        description: "Gentrification penalty. Challenge maintenance assumptions with heritage defence."
       },
       {
         position: 3,

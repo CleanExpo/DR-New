@@ -13,7 +13,7 @@ interface WebVitalsData {
 
 /**
  * Core Web Vitals Optimizer
- * Monitors and optimizes:
+ * Monitors and optimises:
  * - LCP (Largest Contentful Paint) < 2.5s
  * - FID (First Input Delay) < 100ms
  * - CLS (Cumulative Layout Shift) < 0.1
@@ -69,16 +69,16 @@ export const WebVitalsOptimizer = () => {
           fixLayoutShifts();
           break;
         case 'LCP':
-          // Optimize largest content
+          // optimise largest content
           optimizeLCP();
           break;
         case 'FID':
         case 'INP':
-          // Optimize JavaScript execution
+          // optimise JavaScript execution
           optimizeJavaScript();
           break;
         case 'TTFB':
-          // Cache optimization
+          // Cache optimisation
           optimizeCaching();
           break;
       }
@@ -120,7 +120,7 @@ export const WebVitalsOptimizer = () => {
       });
     };
 
-    // Optimize LCP element
+    // optimise LCP element
     const optimizeLCP = () => {
       // Find LCP element (usually hero image or text)
       const observer = new PerformanceObserver((list) => {
@@ -128,7 +128,7 @@ export const WebVitalsOptimizer = () => {
         const lastEntry = entries[entries.length - 1] as any;
 
         if (lastEntry.element) {
-          // Prioritize LCP element loading
+          // prioritise LCP element loading
           if (lastEntry.element.tagName === 'IMG') {
             const img = lastEntry.element as HTMLImageElement;
             img.loading = 'eager';
@@ -151,7 +151,7 @@ export const WebVitalsOptimizer = () => {
       }
     };
 
-    // Optimize JavaScript execution
+    // optimise JavaScript execution
     const optimizeJavaScript = () => {
       // Defer non-critical scripts
       document.querySelectorAll('script:not([defer]):not([async])').forEach((script) => {
@@ -170,7 +170,7 @@ export const WebVitalsOptimizer = () => {
       }
     };
 
-    // Optimize caching
+    // optimise caching
     const optimizeCaching = () => {
       // Prefetch likely navigation targets
       const links = document.querySelectorAll('a[href^="/"]');
@@ -254,7 +254,7 @@ export const WebVitalsOptimizer = () => {
       }
     }
 
-    // Optimize animations for better performance
+    // optimise animations for better performance
     const optimizeAnimations = () => {
       // Use CSS transforms instead of position changes
       const animatedElements = document.querySelectorAll('[data-animate]');

@@ -124,7 +124,7 @@ export default function InsuranceDecoderHub() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center text-white"
+            className="text-centre text-white"
           >
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Insurance Decoder
@@ -139,7 +139,7 @@ export default function InsuranceDecoderHub() {
             
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-2xl p-2">
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Search className="w-6 h-6 text-gray-200 ml-2" />
                 <input
                   type="text"
@@ -164,11 +164,11 @@ export default function InsuranceDecoderHub() {
           >
             {[
               { number: '500+', label: 'Terms Decoded' },
-              { number: '10,000+', label: 'Claims Analyzed' },
+              { number: '10,000+', label: 'Claims analysed' },
               { number: '95%', label: 'Success Rate' },
               { number: '24/7', label: 'Expert Help' }
             ].map((stat, index) => (
-              <div key={index} className="bg-white/10 backdrop-blur rounded-lg p-4 text-center">
+              <div key={index} className="bg-white/10 backdrop-blur rounded-lg p-4 text-centre">
                 <p className="text-3xl font-bold text-white">{stat.number}</p>
                 <p className="text-blue-700">{stat.label}</p>
               </div>
@@ -180,7 +180,7 @@ export default function InsuranceDecoderHub() {
       {/* Category Filter */}
       <section className="py-8 px-4 bg-white border-b">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-3 justify-centre">
             {[
               { value: 'all', label: 'All Terms', icon: Book },
               { value: 'coverage', label: 'Coverage Terms', icon: CheckCircle },
@@ -192,7 +192,7 @@ export default function InsuranceDecoderHub() {
                 <button
                   key={cat.value}
                   onClick={() => setSelectedCategory(cat.value as any)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+                  className={`flex items-centre gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
                     selectedCategory === cat.value
                       ? 'bg-blue-600 text-white shadow-lg'
                       : 'bg-gray-100 text-gray-200 hover:bg-gray-200'
@@ -210,7 +210,7 @@ export default function InsuranceDecoderHub() {
       {/* Common Terms Grid */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Common Insurance Terms Decoded
           </h2>
           
@@ -229,8 +229,8 @@ export default function InsuranceDecoderHub() {
                       term.category === 'exclusion' ? 'bg-red-50' :
                       'bg-blue-50'
                     }`}>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
+                      <div className="flex items-centre justify-between">
+                        <div className="flex items-centre gap-3">
                           <Icon className={`w-6 h-6 ${
                             term.category === 'coverage' ? 'text-green-600' :
                             term.category === 'exclusion' ? 'text-red-600' :
@@ -247,7 +247,7 @@ export default function InsuranceDecoderHub() {
                     </div>
                     <div className="p-6">
                       <p className="text-gray-200 mb-4">{term.snippet}</p>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-centre justify-between">
                         <span className={`text-sm font-semibold ${
                           term.category === 'coverage' ? 'text-green-600' :
                           term.category === 'exclusion' ? 'text-red-600' :
@@ -269,12 +269,12 @@ export default function InsuranceDecoderHub() {
       {/* Coverage Checker Tool */}
       <section className="py-16 px-4 bg-gradient-to-br from-blue-50 to-blue-100">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Is Your Damage Covered? Check Now
             </h2>
             <p className="text-xl text-gray-200">
-              Our intelligent coverage checker analyzes your specific situation
+              Our intelligent coverage checker analyses your specific situation
             </p>
           </div>
           
@@ -318,7 +318,7 @@ export default function InsuranceDecoderHub() {
                   <div className="space-y-2">
                     <p className="text-sm font-semibold text-gray-200">Key Factors:</p>
                     {scenario.factors.map((factor, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-sm text-gray-200">
+                      <div key={idx} className="flex items-centre gap-2 text-sm text-gray-200">
                         <CheckCircle className="w-4 h-4 text-blue-500" />
                         {factor}
                       </div>
@@ -333,10 +333,10 @@ export default function InsuranceDecoderHub() {
             ))}
           </div>
           
-          <div className="text-center mt-8">
+          <div className="text-centre mt-8">
             <Link
               href="/is-it-covered"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg"
+              className="inline-flex items-centre gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg"
             >
               <Calculator className="w-6 h-6" />
               Use Coverage Calculator
@@ -349,7 +349,7 @@ export default function InsuranceDecoderHub() {
       {/* Insurer Comparisons */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Compare Insurer Coverage
           </h2>
           
@@ -361,7 +361,7 @@ export default function InsuranceDecoderHub() {
                 className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all"
               >
                 <Link href={comp.url}>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <Users className="w-8 h-8 text-blue-600" />
                     <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
                       Compare
@@ -379,7 +379,7 @@ export default function InsuranceDecoderHub() {
             ))}
           </div>
           
-          <div className="text-center mt-8">
+          <div className="text-centre mt-8">
             <Link
               href="/insurance-coverage"
               className="text-blue-600 font-semibold hover:underline"
@@ -414,7 +414,7 @@ export default function InsuranceDecoderHub() {
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-centre">
           <h2 className="text-4xl font-bold mb-6">
             Do Not Let Confusion Cost You Coverage
           </h2>
@@ -428,7 +428,7 @@ export default function InsuranceDecoderHub() {
             <p className="text-lg mb-6">
               Our restoration experts know exactly what insurers look for and how to document properly
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-centre">
               <a
                 href="tel:1800000000"
                 className="bg-green-500 hover:bg-green-800 text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition-all hover:scale-105"

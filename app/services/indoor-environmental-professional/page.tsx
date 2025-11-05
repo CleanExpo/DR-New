@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
 import {  Clock, Shield, Wind, Thermometer, Activity, Home, AlertTriangle, CheckCircle2, ArrowRight, Microscope, FileText, Gauge, Heart, Brain, MessageSquare} from 'lucide-react';
 
@@ -227,8 +227,8 @@ export default function IndoorEnvironmentalProfessionalPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-emerald-900 to-teal-700 text-white py-24">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-emerald-800/50 px-4 py-2 rounded-full mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="inline-flex items-centre gap-2 bg-emerald-800/50 px-4 py-2 rounded-full mb-6">
               <Microscope className="h-5 w-5" />
               <span className="text-sm font-medium">Certified Indoor Environmental Professionals</span>
             </div>
@@ -239,7 +239,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
               Scientific assessment of your indoor environment. Identifying and resolving health hazards 
               in homes and workplaces through comprehensive testing and expert analysis.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button 
                 size="lg" 
                 className="bg-blue-600 hover:bg-blue-700 text-white"
@@ -253,16 +253,16 @@ export default function IndoorEnvironmentalProfessionalPage() {
                 Download IEP Guide
               </Button>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-8 text-sm">
-              <div className="flex items-center gap-2">
+            <div className="mt-8 flex items-centre justify-centre gap-8 text-sm">
+              <div className="flex items-centre gap-2">
                 <Shield className="h-5 w-5 text-blue-500" />
                 <span>IICRC Certified</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Microscope className="h-5 w-5 text-blue-500" />
                 <span>Scientific Testing</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <FileText className="h-5 w-5 text-blue-500" />
                 <span>Insurance Reports</span>
               </div>
@@ -300,7 +300,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
       {/* IEP Services Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">Comprehensive IEP Services</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Scientific investigation of all factors affecting indoor environmental quality and human health
@@ -309,7 +309,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {iepServices.map((service, index) => (
               <Card key={index} className="p-6 hover:shadow-xl transition-shadow">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <service.icon className="h-10 w-10 text-emerald-600" />
                   <h3 className="text-xl font-bold">{service.category}</h3>
                 </div>
@@ -331,7 +331,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
       <section className="py-20 bg-emerald-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-4xl font-bold mb-4">Environmental Health Impacts</h2>
               <p className="text-xl text-gray-700">
                 Understanding how indoor environments affect human health systems
@@ -340,7 +340,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {healthImpacts.map((impact, index) => (
                 <Card key={index} className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-centre gap-3 mb-4">
                     <impact.icon className="h-8 w-8 text-emerald-600" />
                     <h3 className="text-xl font-bold">{impact.system} System</h3>
                   </div>
@@ -374,7 +374,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
       {/* Assessment Process */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">IEP Assessment Process</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Systematic approach to identifying and resolving environmental health issues
@@ -385,7 +385,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
               {assessmentProcess.map((item, index) => (
                 <div key={index} className="flex gap-4 mb-8 relative">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-full flex items-centre justify-centre font-bold">
                       {item.step}
                     </div>
                     {index < assessmentProcess.length - 1 && (
@@ -415,7 +415,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <Card className="p-8">
-              <h2 className="text-3xl font-bold mb-6 text-center">Australian Building Code & Standards Compliance</h2>
+              <h2 className="text-3xl font-bold mb-6 text-centre">Australian Building Code & Standards Compliance</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-xl font-bold mb-4">Regulatory Standards</h3>
@@ -476,7 +476,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
       {/* Case Studies */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold mb-4">IEP Case Studies</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Real examples of how IEP assessments have resolved complex environmental health issues
@@ -539,7 +539,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">Indoor Environmental Professional FAQs</h2>
+            <h2 className="text-4xl font-bold text-centre mb-12">Indoor Environmental Professional FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -554,12 +554,12 @@ export default function IndoorEnvironmentalProfessionalPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-emerald-900 to-teal-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-4xl font-bold mb-6">Your Health Can\'t Wait</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Don\'t let poor indoor environmental quality affect your health. Get a professional IEP assessment today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Button 
               size="lg" 
               className="bg-blue-600 hover:bg-blue-700"
@@ -579,8 +579,8 @@ export default function IndoorEnvironmentalProfessionalPage() {
         </div>
       </section>
 
-      {/* Quote Dialog */}
-      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      {/* Quote dialogue */}
+      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Book IEP Assessment</DialogTitle>
@@ -589,7 +589,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-lg">
+            <div className="flex items-centre gap-3 p-3 bg-emerald-50 rounded-lg">
               <MessageSquare className="h-5 w-5 text-emerald-600" />
               <div>
                 <p className="font-semibold">Call Our IEP Team</p>
@@ -597,19 +597,19 @@ export default function IndoorEnvironmentalProfessionalPage() {
               </div>
             </div>
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Certified IEP professionals</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Scientific testing equipment</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Insurance-approved reports</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Health-focused solutions</span>
               </div>
@@ -619,7 +619,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
             </Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     </div>
   );
 }

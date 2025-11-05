@@ -221,7 +221,7 @@ export const FireDamageHowTo = () => (
       },
       {
         name: "Smoke and soot removal",
-        text: "Use specialized equipment and techniques to remove smoke and soot from all surfaces."
+        text: "Use specialised equipment and techniques to remove smoke and soot from all surfaces."
       },
       {
         name: "Cleaning and sanitising",

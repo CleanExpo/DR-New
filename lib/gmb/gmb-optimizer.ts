@@ -27,11 +27,11 @@ export class GMBOptimizer {
     this.mybusiness = google.mybusinessbusinessinformation('v1');
   }
 
-  // Profile optimization functions
+  // Profile optimisation functions
   async optimizeBusinessInfo() {
     const optimizations = {
       businessName: 'Disaster Recovery Qld - Master Restorer Phill McGurk',
-      description: `Queensland's Premier Disaster Recovery Service led by Master Restorer Phill McGurk - One of a Limited Number of Master Restorers in Brisbane & QLD. Specializing in water damage restoration, fire damage recovery, mould remediation, and emergency response for high-value residential and commercial properties in Brisbane, Ipswich, and Logan.`,
+      description: `Queensland's Premier Disaster Recovery Service led by Master Restorer Phill McGurk - One of a Limited Number of Master Restorers in Brisbane & QLD. specialising in water damage restoration, fire damage recovery, mould remediation, and emergency response for high-value residential and commercial properties in Brisbane, Ipswich, and Logan.`,
 
       categories: [
         'Water Damage Restoration Service',
@@ -127,12 +127,12 @@ export class GMBOptimizer {
     return optimizations;
   }
 
-  // Generate optimized posts for GMB
+  // Generate optimised posts for GMB
   async generateLocalPosts() {
     const posts = [
       {
         title: '🚨 24/7 Emergency Water Damage Response',
-        content: `Master Restorer Phill McGurk and team are available 24/7 for emergency water damage restoration in Brisbane, Ipswich, and Logan. Immediate response to minimize damage and begin recovery. Insurance approved - direct billing available.`,
+        content: `Master Restorer Phill McGurk and team are available 24/7 for emergency water damage restoration in Brisbane, Ipswich, and Logan. Immediate response to minimise damage and begin recovery. Insurance approved - direct billing available.`,
         callToAction: 'CALL',
         image: '/images/services/hamilton-luxury-property-water-damage-restoration.png'
       },
@@ -144,13 +144,13 @@ export class GMBOptimizer {
       },
       {
         title: '🏢 Commercial Restoration Specialists',
-        content: `Minimize business downtime with our rapid commercial restoration services. From retail stores to office towers, we handle water, fire, and storm damage restoration across Brisbane CBD, Ipswich, and Logan.`,
+        content: `minimise business downtime with our rapid commercial restoration services. From retail stores to office towers, we handle water, fire, and storm damage restoration across Brisbane CBD, Ipswich, and Logan.`,
         callToAction: 'GET_QUOTE',
         image: '/images/services/commercial-storm-damage-ascot-brisbane.png'
       },
       {
         title: '🏠 Hamilton & Ascot Emergency Services',
-        content: `Protecting Brisbane's premium properties with immediate disaster response. Specializing in high-value residential restoration in Hamilton, Ascot, New Farm, and surrounding suburbs.`,
+        content: `Protecting Brisbane's premium properties with immediate disaster response. specialising in high-value residential restoration in Hamilton, Ascot, New Farm, and surrounding suburbs.`,
         callToAction: 'CALL',
         image: '/images/suburbs/ascot-emergency-flood-damage-repair.png'
       },
@@ -165,20 +165,20 @@ export class GMBOptimizer {
     return posts;
   }
 
-  // Q&A optimization for GMB
+  // Q&A optimisation for GMB
   async generateOptimizedQA() {
     const questions = [
       {
         question: 'Do you provide 24/7 emergency service?',
-        answer: 'Yes, we provide 24/7 emergency response for all disaster recovery needs across Brisbane, Ipswich, and Logan. Our Master Restorer team is always ready to respond immediately to minimize damage.'
+        answer: 'Yes, we provide 24/7 emergency response for all disaster recovery needs across Brisbane, Ipswich, and Logan. Our Master Restorer team is always ready to respond immediately to minimise damage.'
       },
       {
         question: 'Are you insurance approved?',
-        answer: 'Yes, we work directly with all major insurance companies. Phill McGurk\'s Master Restorer certification is recognized by insurers, and we handle direct billing to make the process stress-free for you.'
+        answer: 'Yes, we work directly with all major insurance companies. Phill McGurk\'s Master Restorer certification is recognised by insurers, and we handle direct billing to make the process stress-free for you.'
       },
       {
         question: 'What areas do you service?',
-        answer: 'We service all of Brisbane, Ipswich, and Logan, with specialized focus on premium areas including Hamilton, Ascot, New Farm, Karalee, Brookwater, and Springfield Lakes. Our commercial services cover all CBD and industrial areas.'
+        answer: 'We service all of Brisbane, Ipswich, and Logan, with specialised focus on premium areas including Hamilton, Ascot, New Farm, Karalee, Brookwater, and Springfield Lakes. Our commercial services cover all CBD and industrial areas.'
       },
       {
         question: 'What makes you different from other restoration companies?',

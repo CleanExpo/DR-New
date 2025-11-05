@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ContractorApplication } from '@/lib/types/contractor-onboarding';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
+  dialogue,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -60,10 +60,10 @@ export function ApprovalModal({
   const hasValidABN = contractor.companyProfile?.abnVerified || false;
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <dialogue open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl">
+          <DialogTitle className="flex items-centre gap-2 text-xl">
             <CheckCircle2 className="w-6 h-6 text-green-600" />
             Approve Contractor Application
           </DialogTitle>
@@ -84,7 +84,7 @@ export function ApprovalModal({
             </h4>
 
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 {hasValidABN ? (
                   <CheckCircle2 className="w-4 h-4 text-green-600" />
                 ) : (
@@ -96,7 +96,7 @@ export function ApprovalModal({
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 {allQualificationsVerified ? (
                   <CheckCircle2 className="w-4 h-4 text-green-600" />
                 ) : (
@@ -112,7 +112,7 @@ export function ApprovalModal({
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 {allInsuranceVerified ? (
                   <CheckCircle2 className="w-4 h-4 text-green-600" />
                 ) : (
@@ -215,6 +215,6 @@ export function ApprovalModal({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </dialogue>
   );
 }

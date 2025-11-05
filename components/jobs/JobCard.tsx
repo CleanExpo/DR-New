@@ -61,7 +61,7 @@ export function JobCard({ job, onClick }: JobCardProps) {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-centre gap-2 mb-2">
                 <span className="text-xs font-mono text-muted-foreground">
                   #{job.jobNumber}
                 </span>
@@ -87,27 +87,27 @@ export function JobCard({ job, onClick }: JobCardProps) {
 
         <CardContent className="space-y-3">
           {/* Service Type */}
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-centre gap-2 text-sm">
             <span className="font-medium text-muted-foreground">Service:</span>
             <span>{serviceTypeLabels[job.serviceType]}</span>
           </div>
 
           {/* Client */}
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-centre gap-2 text-sm">
             <UserIcon className="w-4 h-4 text-muted-foreground" />
             <span className="truncate">{job.clientName || 'Unknown Client'}</span>
           </div>
 
           {/* Location */}
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-centre gap-2 text-sm">
             <MapPinIcon className="w-4 h-4 text-muted-foreground" />
             <span className="truncate">{job.location}</span>
           </div>
 
           {/* Technician */}
           {job.technicianName && (
-            <div className="flex items-center gap-2 text-sm">
-              <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+            <div className="flex items-centre gap-2 text-sm">
+              <div className="w-6 h-6 rounded-full bg-primary/10 flex items-centre justify-centre">
                 <span className="text-xs font-semibold text-primary">
                   {job.technicianName.split(' ').map(n => n[0]).join('')}
                 </span>
@@ -118,7 +118,7 @@ export function JobCard({ job, onClick }: JobCardProps) {
 
           {/* Scheduled Date */}
           {job.scheduledDate && (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-centre gap-2 text-sm text-muted-foreground">
               <CalendarIcon className="w-4 h-4" />
               <span>
                 {new Date(job.scheduledDate).toLocaleDateString('en-AU', {
@@ -133,7 +133,7 @@ export function JobCard({ job, onClick }: JobCardProps) {
           )}
 
           {/* Time since creation */}
-          <div className="flex items-center gap-2 text-xs text-muted-foreground pt-2 border-t">
+          <div className="flex items-centre gap-2 text-xs text-muted-foreground pt-2 border-t">
             <ClockIcon className="w-3 h-3" />
             <span>Created {formatRelativeTime(job.createdAt)}</span>
           </div>

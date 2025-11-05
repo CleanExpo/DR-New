@@ -109,12 +109,12 @@ export default function EmergencyServicePage({
       {/* Urgent Header Bar */}
       <div className="bg-red-600 text-white py-2 sticky top-0 z-50">
         <div className="container mx-auto px-6">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-centre justify-between gap-2">
+            <div className="flex items-centre gap-2">
               <AlertCircle className="w-5 h-5 animate-pulse" />
               <span className="font-semibold">EMERGENCY SERVICE AVAILABLE NOW</span>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-centre gap-4">
               <span className="text-sm">{liveViewers} people viewing</span>
               <Badge className="bg-yellow-400 text-black">
                 <Clock className="w-3 h-3 mr-1" />
@@ -128,13 +128,13 @@ export default function EmergencyServicePage({
       {/* Hero Section */}
       <section className="py-12 md:py-20">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             {/* Emergency Badge */}
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full mb-6"
+              className="inline-flex items-centre gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full mb-6"
             >
               <EmergencyIcon className="w-5 h-5" />
               <span className="font-semibold uppercase tracking-wide">{emergencyType.replace('-', ' ')} Emergency</span>
@@ -167,13 +167,13 @@ export default function EmergencyServicePage({
               transition={{ delay: 0.3 }}
               className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-6 mb-8"
             >
-              <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="flex items-centre justify-centre gap-3 mb-4">
                 <AlertTriangle className="w-6 h-6 text-yellow-600 animate-pulse" />
                 <p className="text-lg font-semibold text-gray-900">{urgencyMessage}</p>
               </div>
 
               {/* Countdown Timer */}
-              <div className="text-center">
+              <div className="text-centre">
                 <p className="text-sm text-gray-600 mb-2">Damage increases every minute. Act now:</p>
                 <div className="text-3xl font-mono font-bold text-red-600">
                   {formatTime(timeLeft)}
@@ -186,7 +186,7 @@ export default function EmergencyServicePage({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+              className="flex flex-col sm:flex-row gap-4 justify-centre mb-8"
             >
               <Button
                 size="lg"
@@ -211,7 +211,7 @@ export default function EmergencyServicePage({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-wrap justify-center gap-4"
+              className="flex flex-wrap justify-centre gap-4"
             >
               <Badge className="px-3 py-1 bg-green-100 text-green-800">
                 <CheckCircle className="w-4 h-4 mr-1" />
@@ -233,7 +233,7 @@ export default function EmergencyServicePage({
       {/* Features Grid */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why We\'re {location}\'s #1 {emergencyType.replace('-', ' ')} Service
           </h2>
 
@@ -266,7 +266,7 @@ export default function EmergencyServicePage({
       {competitors && (
         <section className="py-12 bg-gray-50">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Compare {emergencyType.replace('-', ' ')} Services
             </h2>
 
@@ -275,9 +275,9 @@ export default function EmergencyServicePage({
                 <thead className="bg-gray-100">
                   <tr>
                     <th className="px-6 py-4 text-left">Company</th>
-                    <th className="px-6 py-4 text-center">{emergencyType} Service</th>
-                    <th className="px-6 py-4 text-center">Response Time</th>
-                    <th className="px-6 py-4 text-center">Surcharge</th>
+                    <th className="px-6 py-4 text-centre">{emergencyType} Service</th>
+                    <th className="px-6 py-4 text-centre">Response Time</th>
+                    <th className="px-6 py-4 text-centre">Surcharge</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -292,15 +292,15 @@ export default function EmergencyServicePage({
                           <Badge className="ml-2 bg-green-600 text-white">BEST VALUE</Badge>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-6 py-4 text-centre">
                         {comp.sundayService ? (
                           <CheckCircle className="w-5 h-5 text-green-600 mx-auto" />
                         ) : (
                           <span className="text-red-600">✗</span>
                         )}
                       </td>
-                      <td className="px-6 py-4 text-center">{comp.responseTime}</td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-6 py-4 text-centre">{comp.responseTime}</td>
+                      <td className="px-6 py-4 text-centre">
                         {comp.surcharge || 'N/A'}
                       </td>
                     </tr>
@@ -315,7 +315,7 @@ export default function EmergencyServicePage({
       {/* Testimonials */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Recent {emergencyType.replace('-', ' ')} Emergencies We\'ve Handled
           </h2>
 
@@ -338,7 +338,7 @@ export default function EmergencyServicePage({
                     <p className="text-gray-700 mb-4 italic">"{testimonial.content}"</p>
                     <div className="border-t pt-3">
                       <p className="font-semibold">{testimonial.author}</p>
-                      <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
+                      <div className="flex items-centre gap-2 text-sm text-gray-600 mt-1">
                         <MapPin className="w-3 h-3" />
                         <span>{testimonial.location}</span>
                         <span>•</span>
@@ -356,7 +356,7 @@ export default function EmergencyServicePage({
       {/* FAQ Section */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             {emergencyType.replace('-', ' ')} Service FAQs
           </h2>
 
@@ -388,7 +388,7 @@ export default function EmergencyServicePage({
 
       {/* Final CTA */}
       <section className="py-16 bg-gradient-to-r from-red-600 to-red-700 text-white">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-centre">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Don\'t Wait - {emergencyType.replace('-', ' ')} Damage Gets Worse Every Hour
           </h2>

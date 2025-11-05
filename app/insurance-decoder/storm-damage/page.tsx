@@ -149,7 +149,7 @@ export default function StormDamageInsurancePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-centre gap-4 mb-6">
               <Shield className="w-12 h-12" />
               <Wind className="w-10 h-10" />
             </div>
@@ -166,7 +166,7 @@ export default function StormDamageInsurancePage() {
       {/* Alert */}
       <section className="bg-orange-500 text-white py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-centre justify-centre gap-3">
             <Cloud className="w-6 h-6" />
             <p className="font-semibold">
               Storm season preparation can significantly impact your coverage
@@ -178,7 +178,7 @@ export default function StormDamageInsurancePage() {
       {/* Storm Types Coverage */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Storm Event Coverage
           </h2>
           
@@ -231,7 +231,7 @@ export default function StormDamageInsurancePage() {
       {/* Damage Categories */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Coverage by Damage Type
           </h2>
           
@@ -245,7 +245,7 @@ export default function StormDamageInsurancePage() {
                 viewport={{ once: true }}
                 className="bg-white rounded-lg shadow-lg p-6"
               >
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <Home className="w-8 h-8 text-purple-600" />
                   <h3 className="text-xl font-bold text-gray-900">{category.category}</h3>
                 </div>
@@ -282,7 +282,7 @@ export default function StormDamageInsurancePage() {
       {/* Claim Process Timeline */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Storm Claim Timeline
           </h2>
           
@@ -329,7 +329,7 @@ export default function StormDamageInsurancePage() {
       {/* Deductibles */}
       <section className="py-16 bg-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Understanding Storm Deductibles
           </h2>
           
@@ -364,7 +364,7 @@ export default function StormDamageInsurancePage() {
       {/* Maximizing Your Claim */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Tips for Maximizing Your Storm Claim
           </h2>
           
@@ -383,24 +383,24 @@ export default function StormDamageInsurancePage() {
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Storm Damage? Act Fast!
           </h2>
           <p className="text-xl mb-8 text-purple-800">
-            Get professional help to secure your property and maximize your claim
+            Get professional help to secure your property and maximise your claim
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link
               href="/whos-first"
-              className="bg-white text-purple-600 hover:bg-purple-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-white text-purple-600 hover:bg-purple-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <Phone className="w-5 h-5" />
               Find Storm Damage Experts
             </Link>
             <Link
               href="/emergency/checklists/storm-damage"
-              className="bg-purple-700 hover:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-purple-700 hover:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <CheckCircle className="w-5 h-5" />
               Storm Emergency Checklist

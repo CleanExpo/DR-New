@@ -124,7 +124,7 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
     >
       <div className="flex h-full flex-col">
         {/* Logo */}
-        <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-4">
+        <div className="flex h-16 items-centre justify-between border-b border-sidebar-border px-4">
           <AnimatePresence mode="wait">
             {!collapsed ? (
               <motion.div
@@ -133,9 +133,9 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-2"
+                className="flex items-centre gap-2"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <div className="flex h-8 w-8 items-centre justify-centre rounded-lg bg-primary text-primary-foreground">
                   <LayoutDashboard className="h-5 w-5" />
                 </div>
                 <span className="text-lg font-bold tracking-tight text-sidebar-foreground">
@@ -149,7 +149,7 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground"
+                className="flex h-8 w-8 items-centre justify-centre rounded-lg bg-primary text-primary-foreground"
               >
                 <LayoutDashboard className="h-5 w-5" />
               </motion.div>
@@ -179,14 +179,14 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
                   <button
                     onClick={() => toggleExpanded(item.title)}
                     className={cn(
-                      'flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                      'flex w-full items-centre justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                       isActive(item.href)
                         ? 'bg-primary text-primary-foreground'
                         : 'text-sidebar-foreground hover:bg-sidebar-hover',
-                      collapsed && 'justify-center'
+                      collapsed && 'justify-centre'
                     )}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-centre gap-3">
                       <item.icon className="h-5 w-5 shrink-0" />
                       <AnimatePresence>
                         {!collapsed && (
@@ -225,7 +225,7 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
                             key={child.href}
                             href={child.href}
                             className={cn(
-                              'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200',
+                              'flex items-centre gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200',
                               isActive(child.href)
                                 ? 'bg-primary/10 font-medium text-primary'
                                 : 'text-muted-foreground hover:bg-sidebar-hover hover:text-sidebar-foreground'
@@ -242,11 +242,11 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
                 <Link
                   href={item.href}
                   className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                    'flex items-centre gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                     isActive(item.href)
                       ? 'bg-primary text-primary-foreground'
                       : 'text-sidebar-foreground hover:bg-sidebar-hover',
-                    collapsed && 'justify-center'
+                    collapsed && 'justify-centre'
                   )}
                 >
                   <item.icon className="h-5 w-5 shrink-0" />
@@ -272,11 +272,11 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
         <div className="border-t border-sidebar-border p-3">
           <div
             className={cn(
-              'flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-sidebar-hover',
-              collapsed && 'justify-center'
+              'flex items-centre gap-3 rounded-lg px-3 py-2 hover:bg-sidebar-hover',
+              collapsed && 'justify-centre'
             )}
           >
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <div className="flex h-8 w-8 shrink-0 items-centre justify-centre rounded-full bg-primary/10 text-primary">
               <User className="h-4 w-4" />
             </div>
             <AnimatePresence>
@@ -303,7 +303,7 @@ export function Sidebar({ collapsed, onCollapse }: SidebarProps) {
             variant="ghost"
             className={cn(
               'mt-2 w-full justify-start gap-3 text-destructive hover:bg-destructive/10 hover:text-destructive',
-              collapsed && 'justify-center'
+              collapsed && 'justify-centre'
             )}
           >
             <LogOut className="h-4 w-4 shrink-0" />

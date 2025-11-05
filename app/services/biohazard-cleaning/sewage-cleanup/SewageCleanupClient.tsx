@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateLocalBusinessWithServices, generateFAQSchema } from '@/lib/seo';
 import { Shield, CheckCircle2, MessageSquare, AlertTriangle, Clock } from 'lucide-react';
 
@@ -53,7 +53,7 @@ export default function SewageCleanupClient() {
     },
     {
       question: 'What is Category 3 water damage?',
-      answer: 'Category 3 water, also called "blackwater," is grossly contaminated and may contain pathogenic, toxigenic, or other harmful agents. This includes sewage backup, flooding from rivers or streams, and toilet overflows with feces. It requires specialized cleanup protocols.'
+      answer: 'Category 3 water, also called "blackwater," is grossly contaminated and may contain pathogenic, toxigenic, or other harmful agents. This includes sewage backup, flooding from rivers or streams, and toilet overflows with feces. It requires specialised cleanup protocols.'
     },
     {
       question: 'What does sewage cleanup involve?',
@@ -75,8 +75,8 @@ export default function SewageCleanupClient() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-red-900 to-red-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre mb-6">
               <AlertTriangle className="h-16 w-16 text-yellow-400" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -85,7 +85,7 @@ export default function SewageCleanupClient() {
             <p className="text-xl mb-8 text-red-100">
               Fast sewage backup cleanup and Category 3 water damage restoration. IICRC certified Master Restorer. Available 24/7.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button
                 size="lg"
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
@@ -126,17 +126,17 @@ export default function SewageCleanupClient() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Clock className="h-12 w-12 text-red-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">1-Hour Response</h3>
                 <p className="text-sm text-gray-600">Emergency teams available 24/7</p>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Shield className="h-12 w-12 text-red-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">IICRC Certified</h3>
                 <p className="text-sm text-gray-600">Master Restorer Phill McGurk</p>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <AlertTriangle className="h-12 w-12 text-red-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Category 3 Specialists</h3>
                 <p className="text-sm text-gray-600">Proper biohazard protocols</p>
@@ -272,7 +272,7 @@ export default function SewageCleanupClient() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Sewage Cleanup FAQs</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Sewage Cleanup FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -287,7 +287,7 @@ export default function SewageCleanupClient() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-red-900 to-red-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">Sewage Emergency? Get Help Now!</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Don't risk your health. Professional sewage cleanup available 24/7 with 1-hour response time.
@@ -303,8 +303,8 @@ export default function SewageCleanupClient() {
         </div>
       </section>
 
-      {/* Quote Dialog */}
-      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      {/* Quote dialogue */}
+      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Emergency Sewage Cleanup</DialogTitle>
@@ -313,7 +313,7 @@ export default function SewageCleanupClient() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
+            <div className="flex items-centre gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
               <AlertTriangle className="h-5 w-5 text-red-700" />
               <div>
                 <p className="font-semibold text-red-900">Emergency Service</p>
@@ -325,7 +325,7 @@ export default function SewageCleanupClient() {
             </Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     </div>
   );
 }

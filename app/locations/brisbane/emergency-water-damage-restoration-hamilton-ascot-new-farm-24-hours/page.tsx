@@ -16,8 +16,8 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-red-900 to-red-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Phone className="h-12 w-12 mr-4 text-yellow-400 animate-pulse" />
               <Clock className="h-12 w-12 mr-4 text-yellow-400" />
               <MapPin className="h-12 w-12 text-yellow-400" />
@@ -38,7 +38,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
               <p className="text-lg">Response time: 60-90 minutes Hamilton area</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Clock className="h-10 w-10 mx-auto mb-2 text-yellow-400" />
                 <p className="font-bold">24/7 Available</p>
@@ -62,13 +62,13 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
       {/* Immediate Response Coverage */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Emergency Response Coverage: Brisbane Premium Suburbs
           </h2>
 
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <MapPin className="h-12 w-12 mx-auto mb-4 text-blue-600" />
                 <h3 className="text-xl font-bold mb-2">Hamilton</h3>
                 <p className="text-gray-600 mb-4">Waterfront Properties</p>
@@ -80,7 +80,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
                 </div>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <MapPin className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="text-xl font-bold mb-2">Ascot</h3>
                 <p className="text-gray-600 mb-4">Heritage Properties</p>
@@ -92,7 +92,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
                 </div>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <MapPin className="h-12 w-12 mx-auto mb-4 text-purple-600" />
                 <h3 className="text-xl font-bold mb-2">New Farm</h3>
                 <p className="text-gray-600 mb-4">Apartment Buildings</p>
@@ -104,7 +104,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
                 </div>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <MapPin className="h-12 w-12 mx-auto mb-4 text-orange-600" />
                 <h3 className="text-xl font-bold mb-2">Bulimba</h3>
                 <p className="text-gray-600 mb-4">Riverside Homes</p>
@@ -118,7 +118,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
             </div>
 
             {/* Response Time Guarantee */}
-            <Card className="p-8 bg-gradient-to-r from-green-600 to-blue-600 text-white text-center">
+            <Card className="p-8 bg-gradient-to-r from-green-600 to-blue-600 text-white text-centre">
               <h3 className="text-2xl font-bold mb-4">Emergency Response Time Guarantee</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
@@ -148,7 +148,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
       {/* Emergency Scenarios */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Common Emergency Scenarios in Hamilton & Ascot Properties
           </h2>
 
@@ -180,8 +180,8 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
                 </div>
               </div>
               <div className="mt-6 p-4 bg-red-50 rounded-lg">
-                <p className="font-bold text-red-800 text-center">
-                  DON'T WAIT: Water damage costs double every hour. Call now to minimize damage.
+                <p className="font-bold text-red-800 text-centre">
+                  DON'T WAIT: Water damage costs double every hour. Call now to minimise damage.
                 </p>
               </div>
             </Card>
@@ -219,14 +219,14 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
               </h3>
               <div className="space-y-4">
                 <p className="text-lg">
-                  Ascot's heritage properties require specialized care during emergency restoration.
+                  Ascot's heritage properties require specialised care during emergency restoration.
                   Our Master Restorer certification includes heritage-specific techniques for:
                 </p>
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="bg-green-50 p-4 rounded-lg">
                     <h4 className="font-bold mb-2">Original Timber</h4>
                     <ul className="text-sm space-y-1">
-                      <li>• Specialized drying techniques</li>
+                      <li>• specialised drying techniques</li>
                       <li>• Timber preservation methods</li>
                       <li>• Character protection</li>
                     </ul>
@@ -256,7 +256,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
 
       {/* Emergency Contact Banner */}
       <section className="py-16 bg-gradient-to-r from-red-600 to-orange-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-4xl font-bold mb-6">
             Water Emergency in Hamilton, Ascot, or New Farm?
           </h2>
@@ -297,7 +297,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
       {/* Why Choose Master Restorer */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Hamilton & Ascot Properties Choose Master Restorer Phill McGurk
           </h2>
 
@@ -312,15 +312,15 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
                   the highest level of restoration expertise.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Advanced water damage restoration techniques</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Heritage property specialization</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Premium insurance preferred contractor</span>
                   </li>
@@ -331,19 +331,19 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
                 <MapPin className="h-12 w-12 text-green-600 mb-4" />
                 <h3 className="text-2xl font-bold mb-4">Local Hamilton Expertise</h3>
                 <p className="text-lg mb-4">
-                  Specialized knowledge of Hamilton, Ascot, and New Farm properties.
+                  specialised knowledge of Hamilton, Ascot, and New Farm properties.
                   We understand the unique challenges of Brisbane's premium suburbs.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Heritage home restoration experience</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>High-value property insurance claims</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Premium suburb building codes knowledge</span>
                   </li>
@@ -352,10 +352,10 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
             </div>
 
             <Card className="p-8 bg-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Emergency Response Commitment to Hamilton & Ascot
               </h3>
-              <div className="grid md:grid-cols-4 gap-6 text-center">
+              <div className="grid md:grid-cols-4 gap-6 text-centre">
                 <div>
                   <div className="text-3xl font-bold text-blue-600 mb-2">60</div>
                   <p className="font-semibold">Minutes Response</p>
@@ -385,7 +385,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
       {/* Coverage Areas Detail */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Complete Brisbane Premium Suburb Coverage
           </h2>
 
@@ -430,7 +430,7 @@ export default function EmergencyWaterDamageRestorationHamiltonAscotNewFarmPage(
             </Card>
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-centre mt-8">
             <p className="text-lg mb-4">
               <strong>Not sure if we cover your area?</strong> Call our emergency line and we'll confirm immediate availability.
             </p>

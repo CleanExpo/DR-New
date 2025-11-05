@@ -107,7 +107,7 @@ const AutomationDashboard: React.FC = () => {
 
   return (
     <div className="space-y-6 p-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-centre">
         <h2 className="text-3xl font-bold">Marketing Automation Dashboard</h2>
         <Button onClick={loadAutomationData}>
           Refresh
@@ -149,11 +149,11 @@ const AutomationDashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {sequences.map((sequence) => (
           <Card key={sequence.id} className="border-l-4 border-l-blue-500">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardHeader className="flex flex-row items-centre justify-between space-y-0 pb-2">
               <CardTitle className="text-lg font-semibold">
                 {sequence.name}
               </CardTitle>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Badge variant={getSequenceTypeColor(sequence.trigger)}>
                   {sequence.trigger.replace('_', ' ')}
                 </Badge>
@@ -168,7 +168,7 @@ const AutomationDashboard: React.FC = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <span className={`inline-block w-3 h-3 rounded-full ${
                     sequence.isActive ? 'bg-green-500' : 'bg-gray-400'
                   }`}></span>
@@ -181,7 +181,7 @@ const AutomationDashboard: React.FC = () => {
                   <h4 className="font-medium text-sm">Automation Steps:</h4>
                   <div className="grid grid-cols-1 gap-2">
                     {sequence.steps.slice(0, 3).map((step, index) => (
-                      <div key={step.id} className="flex items-center gap-3 p-2 bg-gray-50 rounded">
+                      <div key={step.id} className="flex items-centre gap-3 p-2 bg-gray-50 rounded">
                         <span className="text-lg">{getStepTypeIcon(step.type)}</span>
                         <div className="flex-1">
                           <div className="text-sm font-medium capitalize">{step.type}</div>
@@ -192,7 +192,7 @@ const AutomationDashboard: React.FC = () => {
                       </div>
                     ))}
                     {sequence.steps.length > 3 && (
-                      <div className="text-xs text-gray-500 text-center py-2">
+                      <div className="text-xs text-gray-500 text-centre py-2">
                         +{sequence.steps.length - 3} more steps
                       </div>
                     )}
@@ -206,7 +206,7 @@ const AutomationDashboard: React.FC = () => {
 
       {sequences.length === 0 && (
         <Card>
-          <CardContent className="p-8 text-center">
+          <CardContent className="p-8 text-centre">
             <div className="text-6xl mb-4">🤖</div>
             <h3 className="text-lg font-semibold mb-2">No Automation Sequences Found</h3>
             <p className="text-gray-600">

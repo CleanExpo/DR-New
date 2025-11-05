@@ -24,7 +24,7 @@ const brisbaneLocations: Location[] = [
   { name: 'Hamilton', postalCode: '4007', latitude: -27.4385, longitude: 153.0642, riskLevel: 'High' },
   { name: 'Bulimba', postalCode: '4171', latitude: -27.4520, longitude: 153.0598, riskLevel: 'High' },
 
-  // Commercial Centers
+  // Commercial centres
   { name: 'Brisbane CBD', postalCode: '4000', latitude: -27.4705, longitude: 153.0260, riskLevel: 'Medium' },
   { name: 'Fortitude Valley', postalCode: '4006', latitude: -27.4573, longitude: 153.0342, riskLevel: 'Medium' },
   { name: 'South Brisbane', postalCode: '4101', latitude: -27.4750, longitude: 153.0170, riskLevel: 'High' },
@@ -42,7 +42,7 @@ export function BrisbaneLocalSchema() {
     "@type": "LocalBusiness",
     "@id": `https://disaster-recovery-seven.vercel.app/#${location.name.toLowerCase().replace(' ', '-')}`,
     "name": `Disaster Recovery Queensland - ${location.name}`,
-    "description": `24/7 emergency restoration services for ${location.name} residents. Specializing in ${location.riskLevel.toLowerCase()} flood risk areas. Master Restorer certified water damage, fire damage, and mould remediation.`,
+    "description": `24/7 emergency restoration services for ${location.name} residents. specialising in ${location.riskLevel.toLowerCase()} flood risk areas. Master Restorer certified water damage, fire damage, and mould remediation.`,
     "url": `https://disaster-recovery-seven.vercel.app/locations/${location.name.toLowerCase().replace(' ', '-')}`,
     "telephone": "+61-1300-000-000",
     "priceRange": "$330+",
@@ -82,7 +82,7 @@ export function BrisbaneLocalSchema() {
           "itemOffered": {
             "@type": "Service",
             "name": `${location.riskLevel} Flood Risk Assessment`,
-            "description": `Specialized assessment for ${location.name}'s ${location.riskLevel.toLowerCase()} flood risk profile`
+            "description": `specialised assessment for ${location.name}'s ${location.riskLevel.toLowerCase()} flood risk profile`
           }
         }
       ]

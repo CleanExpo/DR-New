@@ -103,7 +103,7 @@ export default function WhosFirstPage() {
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-90" />
-        <div className="relative max-w-7xl mx-auto text-center text-white">
+        <div className="relative max-w-7xl mx-auto text-centre text-white">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ export default function WhosFirstPage() {
       {/* Why First Matters */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             Why Your First Call Matters
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -175,7 +175,7 @@ export default function WhosFirstPage() {
       {/* Common Scenarios */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             Common "Who's First?" Scenarios
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -189,7 +189,7 @@ export default function WhosFirstPage() {
                   onClick={() => setSelectedScenario(scenario.id)}
                 >
                   <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-centre gap-3">
                       <Icon className="w-8 h-8" />
                       <div>
                         <h3 className="text-xl font-bold">{scenario.question}</h3>
@@ -217,7 +217,7 @@ export default function WhosFirstPage() {
       {/* Interactive Quiz */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             Find Your "Who's First?" Answer
           </h2>
           
@@ -234,7 +234,7 @@ export default function WhosFirstPage() {
                     />
                   ))}
                 </div>
-                <p className="text-sm text-gray-200 text-center">
+                <p className="text-sm text-gray-200 text-centre">
                   Step {quizStep + 1} of {quizQuestions.length}
                 </p>
               </div>
@@ -245,7 +245,7 @@ export default function WhosFirstPage() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-2xl font-bold mb-6 text-center">
+                <h3 className="text-2xl font-bold mb-6 text-centre">
                   {quizQuestions[quizStep].question}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -257,7 +257,7 @@ export default function WhosFirstPage() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => handleQuizAnswer(option.value)}
-                        className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow border-2 border-transparent hover:border-blue-500"
+                        className="flex items-centre gap-4 p-4 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow border-2 border-transparent hover:border-blue-500"
                       >
                         <Icon className="w-8 h-8 text-blue-600" />
                         <span className="text-lg font-semibold">{option.label}</span>
@@ -282,7 +282,7 @@ export default function WhosFirstPage() {
               animate={{ opacity: 1, scale: 1 }}
               className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 shadow-xl"
             >
-              <div className="text-center mb-8">
+              <div className="text-centre mb-8">
                 <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Your Personalized First-Call Plan</h3>
                 <p className="text-gray-200">Based on your specific situation</p>
@@ -294,30 +294,30 @@ export default function WhosFirstPage() {
                 </h4>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre flex-shrink-0 mt-0.5">1</span>
                     <p>Call us immediately at 1800 000 000 for 24/7 response</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre flex-shrink-0 mt-0.5">2</span>
                     <p>We'll guide you through emergency mitigation steps</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre flex-shrink-0 mt-0.5">3</span>
                     <p>We coordinate all necessary services in the right order</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-centre justify-centre flex-shrink-0 mt-0.5">4</span>
                     <p>We assist with your insurance claim for maximum coverage</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex gap-4 justify-center">
+              <div className="flex gap-4 justify-centre">
                 <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="tel:1800000000"
-                  className="bg-green-700 text-white px-8 py-3 rounded-lg font-bold flex items-center gap-2 shadow-lg hover:bg-green-800"
+                  className="bg-green-700 text-white px-8 py-3 rounded-lg font-bold flex items-centre gap-2 shadow-lg hover:bg-green-800"
                 >
                   <Phone className="w-5 h-5" />
                   Call Now
@@ -336,7 +336,7 @@ export default function WhosFirstPage() {
 
       {/* Value Proposition */}
       <section className="py-16 px-4 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-centre">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Why We're Always The First Call
           </h2>
@@ -362,7 +362,7 @@ export default function WhosFirstPage() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="tel:1800000000"
-            className="inline-flex items-center gap-3 bg-white text-blue-800 px-10 py-4 rounded-lg font-bold text-xl shadow-2xl hover:bg-gray-100"
+            className="inline-flex items-centre gap-3 bg-white text-blue-800 px-10 py-4 rounded-lg font-bold text-xl shadow-2xl hover:bg-gray-100"
           >
             <Phone className="w-6 h-6" />
             Make Us Your First Call

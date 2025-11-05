@@ -15,14 +15,14 @@ const MasterCertifications = () => {
       icon: Sparkles,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
-      description: 'Advanced expertise in fabric and textile restoration, including upholstery, carpets, and specialized materials'
+      description: 'Advanced expertise in fabric and textile restoration, including upholstery, carpets, and specialised materials'
     },
     {
       title: 'Master Fire & Smoke Restorer',
       icon: Flame,
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
-      description: 'Specialized in complex fire and smoke damage recovery, odor elimination, and structural restoration'
+      description: 'specialised in complex fire and smoke damage recovery, odor elimination, and structural restoration'
     },
     {
       title: 'Master Water Restorer',
@@ -42,7 +42,7 @@ const MasterCertifications = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-centre mb-12"
         >
           <Badge className="mb-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-white">
             <Award className="w-4 h-4 mr-2" />
@@ -56,7 +56,7 @@ const MasterCertifications = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 items-centre">
           {/* Certification Image */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -71,7 +71,7 @@ const MasterCertifications = () => {
                 <Image
                   src="/images/phil-mcgurk-iicrc-certification.png"
                   alt="Phill McGurk IICRC Master Certifications - Master Textile Cleaner, Master Fire & Smoke Restorer, Master Water Restorer - Certificate Expiration 06/26"
-                  title="IICRC Board of Directors recognizes Phill McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC"
+                  title="IICRC Board of Directors recognises Phill McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC"
                   width={600}
                   height={800}
                   className="w-full h-auto object-cover rounded-lg shadow-2xl"
@@ -101,7 +101,7 @@ const MasterCertifications = () => {
                         <cert.icon className={`w-8 h-8 ${cert.color}`} />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-centre gap-2 mb-2">
                           <h3 className="text-xl font-bold text-gray-900">
                             {cert.title}
                           </h3>
@@ -125,17 +125,17 @@ const MasterCertifications = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-6 p-6 bg-gradient-to-r from-gray-900 to-gray-700 rounded-xl text-white"
             >
-              <div className="flex items-center justify-between">
+              <div className="flex items-centre justify-between">
                 <div>
                   <h4 className="text-lg font-bold mb-2">IICRC Board of Directors</h4>
                   <p className="text-gray-300 mb-4">
-                    The IICRC recognizes Phill McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC.
+                    The IICRC recognises Phill McGurk for achieving the highest level of certification through continuous education and meeting the requirements of the IICRC.
                   </p>
                   <Link
                     href="https://iicrc.org/iicrcmaster/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+                    className="inline-flex items-centre gap-2 text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
                   >
                     <span className="font-semibold">Verify IICRC Master Certification</span>
                     <ExternalLink className="w-4 h-4" />
@@ -145,7 +145,7 @@ const MasterCertifications = () => {
                   <Award className="w-16 h-16" />
                 </div>
               </div>
-              <div className="mt-4 flex items-center justify-between">
+              <div className="mt-4 flex items-centre justify-between">
                 <div>
                   <div className="text-sm text-gray-400">
                     Certificate Holder: <span className="text-white font-semibold">Phill McGurk</span>
@@ -170,19 +170,19 @@ const MasterCertifications = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-3xl font-bold text-gray-900">Expert</div>
             <div className="text-sm text-gray-600">Experience Level</div>
           </div>
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-3xl font-bold text-gray-900">Master</div>
             <div className="text-sm text-gray-600">Restorer Certified</div>
           </div>
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-3xl font-bold text-gray-900">$20M</div>
             <div className="text-sm text-gray-600">Insurance Coverage</div>
           </div>
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-3xl font-bold text-gray-900">24/7</div>
             <div className="text-sm text-gray-600">Emergency Response</div>
           </div>

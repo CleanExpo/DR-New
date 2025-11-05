@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { dialogue, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { HeroSection } from '@/components/hero/HeroImage'
@@ -43,7 +43,7 @@ const fireDamageFAQs = [
   },
   {
     question: "How long does fire damage restoration take?",
-    answer: "Minor fire damage typically takes 1-2 weeks to restore. Extensive fire damage requiring structural repairs can take 1-3 months. We provide a detailed timeline after our initial assessment and work efficiently to minimize disruption."
+    answer: "Minor fire damage typically takes 1-2 weeks to restore. Extensive fire damage requiring structural repairs can take 1-3 months. We provide a detailed timeline after our initial assessment and work efficiently to minimise disruption."
   },
   {
     question: "Will insurance cover fire damage restoration?",
@@ -91,7 +91,7 @@ export default function FireDamageRestorationPage() {
 
       {/* Emergency Banner */}
       <div className="bg-gradient-to-r from-blue-700 to-red-600 text-white py-3 px-4 relative z-30">
-        <div className="container mx-auto flex items-center justify-center gap-4">
+        <div className="container mx-auto flex items-centre justify-centre gap-4">
           <Flame className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Fire Damage Emergency Response</span>
           <a href="#contact-form" className="font-bold underline">online support</a>
@@ -113,7 +113,7 @@ export default function FireDamageRestorationPage() {
       {/* Additional Service Details */}
       <section className="relative bg-gradient-to-b from-orange-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-centre">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Fire & Smoke Damage Restoration Specialists in Queensland
@@ -124,7 +124,7 @@ export default function FireDamageRestorationPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Dialog>
+                <dialogue>
                   <DialogTrigger asChild>
                     <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
                       <MessageSquare className="mr-2 h-5 w-5" />
@@ -139,17 +139,17 @@ export default function FireDamageRestorationPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 pt-4">
-                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
+                      <a href="#contact-form" className="flex items-centre justify-centre gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
                         <MessageSquare className="h-5 w-5" />
                         Use Our Online Form'
                       </a>
                       <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div className="text-center">
+                        <div className="text-centre">
                           <Truck className="h-8 w-8 mx-auto mb-1 text-blue-700" />
                           <p className="font-medium">Rapid Response</p>
                           <p className="text-gray-700">&lt; 60 minutes</p>
                         </div>
-                        <div className="text-center">
+                        <div className="text-centre">
                           <Shield className="h-8 w-8 mx-auto mb-1 text-blue-700" />
                           <p className="font-medium">Insurance Help</p>
                           <p className="text-gray-700">We manage claims</p>
@@ -157,7 +157,7 @@ export default function FireDamageRestorationPage() {
                       </div>
                     </div>
                   </DialogContent>
-                </Dialog>
+                </dialogue>
                 
                 <Button size="lg" variant="outline">
                   Free Fire Damage Assessment
@@ -165,15 +165,15 @@ export default function FireDamageRestorationPage() {
               </div>
 
               <div className="grid grid-cols-3 gap-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Clock className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">24/7 Response</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <Shield className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">Insurance Approved</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-centre gap-2">
                   <CheckCircle className="h-5 w-5 text-blue-700" />
                   <span className="text-sm font-medium">IICRC Certified</span>
                 </div>
@@ -226,7 +226,7 @@ export default function FireDamageRestorationPage() {
       {/* Service Types Grid */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Comprehensive Fire Damage Restoration Services
           </h2>
           
@@ -388,7 +388,7 @@ export default function FireDamageRestorationPage() {
       {/* Process Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our Fire Damage Restoration Process
           </h2>
           
@@ -434,7 +434,7 @@ export default function FireDamageRestorationPage() {
               ].map((item) => (
                 <div key={item.step} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-centre justify-centre font-bold">
                       {item.step}
                     </div>
                   </div>
@@ -453,7 +453,7 @@ export default function FireDamageRestorationPage() {
       {/* FAQ Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Fire Damage Restoration FAQs
           </h2>
           
@@ -476,15 +476,15 @@ export default function FireDamageRestorationPage() {
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">
+            <h2 className="text-3xl font-bold text-centre mb-8">
               We Work With All Major Insurance Companies
             </h2>
-            <p className="text-center text-gray-700 mb-8">
+            <p className="text-centre text-gray-700 mb-8">
               Our team assists you throughout the insurance claim process, helping ensure you receive maximum coverage for your fire damage restoration.
             </p>
             <div className="grid md:grid-cols-4 gap-4">
               {['Documentation', 'Claim Filing', 'Adjuster Meeting', 'Direct Billing'].map((service) => (
-                <div key={service} className="bg-white p-4 rounded-lg text-center">
+                <div key={service} className="bg-white p-4 rounded-lg text-centre">
                   <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
                   <p className="font-medium">{service}</p>
                 </div>
@@ -496,7 +496,7 @@ export default function FireDamageRestorationPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-red-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Fire Damage? We're Here to Help 24/7
           </h2>
@@ -504,8 +504,8 @@ export default function FireDamageRestorationPage() {
             Don't let fire damage devastate your property. Our certified restoration experts 
             are ready to respond immediately and restore your home or business.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact-form" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+            <a href="#contact-form" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-centre justify-centre gap-2">
               <MessageSquare className="h-5 w-5" />
               Use Our Online Form'
             </a>

@@ -16,8 +16,8 @@ export default function CampHillWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <Home className="h-12 w-12 text-blue-300" />
             </div>
@@ -27,7 +27,7 @@ export default function CampHillWaterDamagePage() {
             </h1>
             <p className="text-xl mb-8">
               Expert water damage restoration for Camp Hill's character homes and contemporary residences.
-              Master Restorer Phill McGurk delivers immediate emergency response with specialized heritage property experience.
+              Master Restorer Phill McGurk delivers immediate emergency response with specialised heritage property experience.
             </p>
 
             <div className="bg-orange-500 text-white p-6 rounded-lg inline-block mb-8">
@@ -36,7 +36,7 @@ export default function CampHillWaterDamagePage() {
               <p className="text-lg">Camp Hill Specialist Team</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Home className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">Heritage Expert</p>
@@ -60,7 +60,7 @@ export default function CampHillWaterDamagePage() {
       {/* Camp Hill Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Water Damage Restoration Services in Camp Hill
           </h2>
 
@@ -71,23 +71,23 @@ export default function CampHillWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">Camp Hill Coverage</h3>
                 <p className="text-lg mb-4">
                   Camp Hill is renowned for its elevated position, character Queenslanders, and mix of heritage
-                  and modern homes. Our water damage team specializes in the unique requirements of Camp Hill's
+                  and modern homes. Our water damage team specialises in the unique requirements of Camp Hill's
                   diverse property portfolio, from 1920s Queenslanders to contemporary family homes.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Bennett's Road heritage precinct</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Martha Street residential area</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Near Camp Hill Marketplace</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>White's Hill Reserve vicinity</span>
                   </li>
@@ -99,22 +99,22 @@ export default function CampHillWaterDamagePage() {
                 <h3 className="text-2xl font-bold mb-4">Camp Hill Property Challenges</h3>
                 <p className="text-lg mb-4">
                   Camp Hill's elevated position and heritage properties present unique water damage risks.
-                  We understand these local challenges and provide specialized solutions.
+                  We understand these local challenges and provide specialised solutions.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Heritage Queenslander timber damage</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Under-house flooding on slopes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Aging copper and galvanized pipes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Storm damage to character roofing</span>
                   </li>
@@ -122,13 +122,13 @@ export default function CampHillWaterDamagePage() {
               </Card>
             </div>
 
-            {/* Specialized Services for Camp Hill */}
+            {/* specialised Services for Camp Hill */}
             <Card className="p-8 bg-gradient-to-r from-blue-50 to-green-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
-                Specialized Camp Hill Water Damage Services
+              <h3 className="text-2xl font-bold text-centre mb-6">
+                specialised Camp Hill Water Damage Services
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Home className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Queenslander Restoration</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -138,7 +138,7 @@ export default function CampHillWaterDamagePage() {
                     <li>• Under-house water extraction</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Droplets className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Modern Home Solutions</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -148,7 +148,7 @@ export default function CampHillWaterDamagePage() {
                     <li>• Advanced drying systems</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Shield className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Complete Protection</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -167,7 +167,7 @@ export default function CampHillWaterDamagePage() {
       {/* Camp Hill Specific Scenarios */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Common Water Damage Scenarios in Camp Hill
           </h2>
 
@@ -189,7 +189,7 @@ export default function CampHillWaterDamagePage() {
                 <div>
                   <h4 className="font-bold text-lg mb-3">Our Solutions:</h4>
                   <ul className="list-disc list-inside space-y-2">
-                    <li>Specialized timber drying techniques</li>
+                    <li>specialised timber drying techniques</li>
                     <li>Heritage-appropriate restoration</li>
                     <li>Preservation of original features</li>
                     <li>Expert insurance claim support</li>
@@ -230,13 +230,13 @@ export default function CampHillWaterDamagePage() {
       {/* Local Knowledge Section */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Why Camp Hill Residents Trust Our Team
           </h2>
 
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <MapPin className="h-12 w-12 mx-auto mb-4 text-blue-600" />
                 <h3 className="font-bold text-lg mb-2">Local Knowledge</h3>
                 <p className="text-sm text-gray-700">
@@ -244,15 +244,15 @@ export default function CampHillWaterDamagePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <Home className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="font-bold text-lg mb-2">Heritage Experts</h3>
                 <p className="text-sm text-gray-700">
-                  Specialized in Queenslander and character home restoration
+                  specialised in Queenslander and character home restoration
                 </p>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <Clock className="h-12 w-12 mx-auto mb-4 text-orange-600" />
                 <h3 className="font-bold text-lg mb-2">Rapid Response</h3>
                 <p className="text-sm text-gray-700">
@@ -260,7 +260,7 @@ export default function CampHillWaterDamagePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow">
+              <Card className="p-6 text-centre hover:shadow-lg transition-shadow">
                 <Shield className="h-12 w-12 mx-auto mb-4 text-purple-600" />
                 <h3 className="font-bold text-lg mb-2">Master Restorer</h3>
                 <p className="text-sm text-gray-700">
@@ -270,10 +270,10 @@ export default function CampHillWaterDamagePage() {
             </div>
 
             <Card className="mt-8 p-8 bg-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Camp Hill Emergency Response Guarantee
               </h3>
-              <div className="grid md:grid-cols-4 gap-6 text-center">
+              <div className="grid md:grid-cols-4 gap-6 text-centre">
                 <div>
                   <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
                   <p className="font-semibold">Emergency Service</p>
@@ -302,7 +302,7 @@ export default function CampHillWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Water Damage Emergency in Camp Hill?
           </h2>

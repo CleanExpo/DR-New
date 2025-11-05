@@ -78,7 +78,7 @@ const SocialMediaSharing: React.FC<SocialMediaSharingProps> = ({
   };
 
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={`flex items-centre gap-2 ${className}`}>
       {showLabels && (
         <span className="text-sm font-medium text-gray-700 mr-2">Share:</span>
       )}

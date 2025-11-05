@@ -28,7 +28,7 @@ export default function AccessibilityPage() {
       {/* Header */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-16">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Accessibility Statement
             </h1>
@@ -283,7 +283,7 @@ export default function AccessibilityPage() {
                   href="https://www.w3.org/WAI/WCAG21/quickref/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                  className="flex items-centre gap-2 text-blue-600 hover:text-blue-700"
                 >
                   <ExternalLink className="h-4 w-4" />
                   WCAG 2.1 Quick Reference
@@ -292,7 +292,7 @@ export default function AccessibilityPage() {
                   href="https://www.vision6.com.au/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                  className="flex items-centre gap-2 text-blue-600 hover:text-blue-700"
                 >
                   <ExternalLink className="h-4 w-4" />
                   Vision Australia
@@ -301,7 +301,7 @@ export default function AccessibilityPage() {
                   href="https://www.humanrights.gov.au/our-work/disability-rights"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
+                  className="flex items-centre gap-2 text-blue-600 hover:text-blue-700"
                 >
                   <ExternalLink className="h-4 w-4" />
                   Australian Human Rights Commission - Disability Rights
@@ -310,29 +310,29 @@ export default function AccessibilityPage() {
             </div>
 
             {/* Last Updated */}
-            <div className="text-center mt-12 text-gray-600">
+            <div className="text-centre mt-12 text-gray-600">
               <p className="text-sm">
                 This accessibility statement was last updated on November 4, 2025.
               </p>
             </div>
 
             {/* Emergency CTA */}
-            <div className="mt-12 bg-gradient-to-br from-red-600 to-red-700 text-white rounded-xl p-8 text-center">
+            <div className="mt-12 bg-gradient-to-br from-red-600 to-red-700 text-white rounded-xl p-8 text-centre">
               <h2 className="text-2xl font-bold mb-4">Need Emergency Assistance?</h2>
               <p className="text-lg mb-6">
                 Our accessible 24/7 emergency line is always available
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-centre">
                 <a
                   href="tel:1300309361"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-red-600 font-bold rounded-lg hover:bg-gray-100 transition-colors"
+                  className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-red-600 font-bold rounded-lg hover:bg-gray-100 transition-colors"
                 >
                   <Phone className="w-5 h-5 mr-2" />
                   Call 1300 309 361 Now
                 </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-red-800 text-white font-bold rounded-lg hover:bg-red-900 transition-colors"
+                  className="inline-flex items-centre justify-centre px-8 py-4 bg-red-800 text-white font-bold rounded-lg hover:bg-red-900 transition-colors"
                 >
                   Contact Us Online
                 </Link>

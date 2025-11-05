@@ -63,7 +63,7 @@ export default function BulimbaPage() {
       },
       {
         title: `${suburb.responseTime} Response`,
-        description: `Our specialized team arrives within ${suburb.responseTime} with white-glove service approach for Bulimba\'s high-value properties.`,
+        description: `Our specialised team arrives within ${suburb.responseTime} with white-glove service approach for Bulimba\'s high-value properties.`,
       },
       {
         title: 'Luxury Property Assessment',
@@ -75,7 +75,7 @@ export default function BulimbaPage() {
       },
       {
         title: 'Content Protection',
-        description: 'Specialized handling and restoration of luxury furnishings, antiques, artwork, and high-value items with climate-controlled storage if needed.',
+        description: 'Specialised handling and restoration of luxury furnishings, antiques, artwork, and high-value items with climate-controlled storage if needed.',
       },
       {
         title: 'Heritage Restoration',

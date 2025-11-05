@@ -124,7 +124,7 @@ function PaymentForm({
         )}
       </Button>
 
-      <p className="text-xs text-gray-500 text-center">
+      <p className="text-xs text-gray-500 text-centre">
         Payments are processed securely via Stripe. Your card details are never stored.
       </p>
     </form>
@@ -173,7 +173,7 @@ export function InvoicePayment({
     return (
       <Card>
         <CardContent className="pt-6">
-          <div className="flex items-center justify-center py-8">
+          <div className="flex items-centre justify-centre py-8">
             <Loader2 className="h-8 w-8 animate-spin text-gray-400" />
           </div>
         </CardContent>

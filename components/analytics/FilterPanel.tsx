@@ -95,8 +95,8 @@ export function FilterPanel({
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="flex items-centre justify-between">
+          <div className="flex items-centre gap-2">
             <CardTitle className="text-lg font-semibold">Filters</CardTitle>
             {activeCount > 0 && (
               <Badge variant="secondary" className="rounded-full">
@@ -104,7 +104,7 @@ export function FilterPanel({
               </Badge>
             )}
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-centre gap-2">
             {onExport && (
               <Button
                 variant="outline"

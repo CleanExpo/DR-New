@@ -34,7 +34,7 @@ export function ExternalLink({
       target="_blank"
       rel={rel}
       onClick={handleClick}
-      className={`inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 underline transition-colors ${className}`}
+      className={`inline-flex items-centre gap-1 text-blue-600 hover:text-blue-800 underline transition-colors ${className}`}
       title={`External link to ${new URL(href).hostname}`}
     >
       {children}

@@ -112,12 +112,12 @@ export function LiveActivityFeed({
   return (
     <Card className={className}>
       <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold flex items-center gap-2">
+        <div className="flex items-centre justify-between">
+          <CardTitle className="text-lg font-semibold flex items-centre gap-2">
             <Activity className="h-5 w-5" />
             Live Activity Feed
           </CardTitle>
-          <div className="flex items-center gap-2">
+          <div className="flex items-centre gap-2">
             {status.connected ? (
               <Badge variant="outline" className="text-green-600 border-green-600">
                 <span className="h-2 w-2 rounded-full bg-green-600 mr-2 animate-pulse" />
@@ -140,7 +140,7 @@ export function LiveActivityFeed({
       <CardContent>
         <ScrollArea className="h-[400px]" ref={scrollRef}>
           {displayEvents.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center p-8">
+            <div className="flex flex-col items-centre justify-centre h-full text-centre p-8">
               <Activity className="h-12 w-12 text-muted-foreground mb-4" />
               <p className="text-sm text-muted-foreground">
                 No recent activity

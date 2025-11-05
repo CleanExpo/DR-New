@@ -325,7 +325,7 @@ export default function ResidentialPropertyPage() {
       ]
     },
     {
-      category: 'Insurance Optimization',
+      category: 'Insurance optimisation',
       icon: <FileText className="w-5 h-5" />,
       tips: [
         'Review coverage annually',
@@ -421,9 +421,9 @@ export default function ResidentialPropertyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
+            className="text-centre"
           >
-            <div className="flex justify-center mb-6">
+            <div className="flex justify-centre mb-6">
               <Home className="w-20 h-20 text-blue-700" />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -432,17 +432,17 @@ export default function ResidentialPropertyPage() {
             <p className="text-xl md:text-2xl mb-8 text-blue-800">
               Complete Guide for Homeowners, Tenants & Landlords
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-centre gap-4">
               <Link
                 href="/whos-first/residential"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Emergency Help
               </Link>
               <Link
                 href="/insurance-decoder"
-                className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Shield className="w-5 h-5" />
                 Insurance Guide
@@ -461,7 +461,7 @@ export default function ResidentialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Home className="w-8 h-8 text-blue-600" />
               Residential Property Types
             </h2>
@@ -526,7 +526,7 @@ export default function ResidentialPropertyPage() {
 
                 <div>
                   <div className="bg-white rounded-lg p-6 shadow-md">
-                    <h4 className="font-semibold mb-4 flex items-center gap-2">
+                    <h4 className="font-semibold mb-4 flex items-centre gap-2">
                       <Shield className="w-5 h-5 text-blue-600" />
                       Insurance Considerations
                     </h4>
@@ -555,7 +555,7 @@ export default function ResidentialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <AlertTriangle className="w-8 h-8 text-orange-600" />
               Disaster Impacts on Residential Properties
             </h2>
@@ -569,7 +569,7 @@ export default function ResidentialPropertyPage() {
                   viewport={{ once: true }}
                   className="bg-white rounded-lg shadow-lg p-6"
                 >
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-centre gap-3 mb-4">
                     {disaster.icon}
                     <h3 className="text-xl font-bold">{disaster.disaster}</h3>
                   </div>
@@ -614,7 +614,7 @@ export default function ResidentialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <FileText className="w-8 h-8 text-blue-600" />
               Residential Insurance Claim Process
             </h2>
@@ -629,7 +629,7 @@ export default function ResidentialPropertyPage() {
                   className="relative"
                 >
                   <div className="bg-gradient-to-br from-blue-50 to-white rounded-lg p-6 border-2 border-blue-200 h-full">
-                    <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                    <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-xl font-bold mb-4">
                       {step.step}
                     </div>
                     <h3 className="font-bold mb-2">{step.title}</h3>
@@ -664,7 +664,7 @@ export default function ResidentialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Shield className="w-8 h-8 text-green-600" />
               Disaster Prevention for Homeowners
             </h2>
@@ -678,7 +678,7 @@ export default function ResidentialPropertyPage() {
                   viewport={{ once: true }}
                   className="bg-white rounded-lg shadow-lg p-6"
                 >
-                  <div className="flex items-center gap-2 mb-4 text-green-600">
+                  <div className="flex items-centre gap-2 mb-4 text-green-600">
                     {category.icon}
                     <h3 className="font-bold">{category.category}</h3>
                   </div>
@@ -706,7 +706,7 @@ export default function ResidentialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <DollarSign className="w-8 h-8 text-green-600" />
               Restoration Cost Factors
             </h2>
@@ -720,7 +720,7 @@ export default function ResidentialPropertyPage() {
                   viewport={{ once: true }}
                   className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-6 border border-gray-200"
                 >
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-centre justify-between mb-3">
                     <h3 className="font-bold">{factor.factor}</h3>
                     <span className={`px-3 py-1 rounded text-sm font-semibold ${
                       factor.impact === 'Very High'
@@ -754,7 +754,7 @@ export default function ResidentialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <HelpCircle className="w-8 h-8 text-blue-600" />
               Residential Property FAQs
             </h2>
@@ -770,7 +770,7 @@ export default function ResidentialPropertyPage() {
                 >
                   <button
                     onClick={() => setExpandedSection(expandedSection === index ? null : index)}
-                    className="w-full px-6 py-4 text-left font-semibold flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
+                    className="w-full px-6 py-4 text-left font-semibold flex items-centre justify-between hover:bg-gray-50 transition-colors rounded-lg"
                   >
                     <span>{faq.question}</span>
                     <ChevronRight
@@ -800,7 +800,7 @@ export default function ResidentialPropertyPage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <BookOpen className="w-8 h-8 text-blue-600" />
               Related Resources
             </h2>
@@ -847,7 +847,7 @@ export default function ResidentialPropertyPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -860,17 +860,17 @@ export default function ResidentialPropertyPage() {
             <p className="text-xl mb-8 text-blue-800">
               Get immediate assistance from certified restoration specialists
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="/whos-first/residential"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Get Emergency Help
               </Link>
               <Link
                 href="/insurance-decoder"
-                className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Calculator className="w-5 h-5" />
                 Check Insurance Coverage

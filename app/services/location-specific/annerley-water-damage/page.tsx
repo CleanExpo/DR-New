@@ -16,8 +16,8 @@ export default function AnnerleyWaterDamagePage() {
       {/* Emergency Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Droplets className="h-12 w-12 mr-4 text-blue-300" />
               <Train className="h-12 w-12 text-blue-300" />
             </div>
@@ -36,7 +36,7 @@ export default function AnnerleyWaterDamagePage() {
               <p className="text-lg">Inner South Rapid Response</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Train className="h-10 w-10 mx-auto mb-2 text-blue-300" />
                 <p className="font-bold">Transport Hub</p>
@@ -60,7 +60,7 @@ export default function AnnerleyWaterDamagePage() {
       {/* Annerley Area Information */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Annerley Water Damage Services
           </h2>
 
@@ -75,19 +75,19 @@ export default function AnnerleyWaterDamagePage() {
                   face unique water damage challenges we're equipped to handle.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Fairfield station precinct</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Ipswich Road commercial strip</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Cracknell Road residential area</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Junction Park vicinity</span>
                   </li>
@@ -102,19 +102,19 @@ export default function AnnerleyWaterDamagePage() {
                   water damage scenarios we regularly address.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Older home plumbing failures</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Storm water drainage issues</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Commercial property flooding</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <AlertTriangle className="h-5 w-5 text-orange-600 mr-2" />
                     <span>Unit complex water damage</span>
                   </li>
@@ -124,11 +124,11 @@ export default function AnnerleyWaterDamagePage() {
 
             {/* Service Features */}
             <Card className="p-8 bg-gradient-to-r from-blue-50 to-green-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Comprehensive Annerley Water Damage Solutions
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Train className="h-10 w-10 mx-auto mb-4 text-blue-600" />
                   <h4 className="font-bold text-lg mb-2">Transport Corridor</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -138,7 +138,7 @@ export default function AnnerleyWaterDamagePage() {
                     <li>• Commercial expertise</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Droplets className="h-10 w-10 mx-auto mb-4 text-green-600" />
                   <h4 className="font-bold text-lg mb-2">Residential Focus</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -148,7 +148,7 @@ export default function AnnerleyWaterDamagePage() {
                     <li>• Content restoration</li>
                   </ul>
                 </div>
-                <div className="bg-white rounded-lg p-6 text-center">
+                <div className="bg-white rounded-lg p-6 text-centre">
                   <Shield className="h-10 w-10 mx-auto mb-4 text-purple-600" />
                   <h4 className="font-bold text-lg mb-2">Complete Service</h4>
                   <ul className="text-sm space-y-1 text-left">
@@ -167,7 +167,7 @@ export default function AnnerleyWaterDamagePage() {
       {/* Annerley Property Types */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Annerley Property Water Damage Expertise
           </h2>
 
@@ -187,7 +187,7 @@ export default function AnnerleyWaterDamagePage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-bold text-lg mb-3">Specialized Care:</h4>
+                  <h4 className="font-bold text-lg mb-3">specialised Care:</h4>
                   <ul className="list-disc list-inside space-y-2">
                     <li>Heritage-appropriate methods</li>
                     <li>Timber preservation</li>
@@ -216,7 +216,7 @@ export default function AnnerleyWaterDamagePage() {
                   <h4 className="font-bold text-lg mb-3">Rapid Solutions:</h4>
                   <ul className="list-disc list-inside space-y-2">
                     <li>After-hours response</li>
-                    <li>Minimize downtime</li>
+                    <li>minimise downtime</li>
                     <li>Stock protection</li>
                     <li>Quick reopening</li>
                   </ul>
@@ -244,7 +244,7 @@ export default function AnnerleyWaterDamagePage() {
                     <li>Multi-unit coordination</li>
                     <li>Body corporate liaison</li>
                     <li>Rapid containment</li>
-                    <li>Neighbor protection</li>
+                    <li>neighbour protection</li>
                   </ul>
                 </div>
               </div>
@@ -256,14 +256,14 @@ export default function AnnerleyWaterDamagePage() {
       {/* Response Process */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Our Annerley Emergency Response Process
           </h2>
 
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Card className="p-6">
-                <div className="flex items-center mb-4">
+                <div className="flex items-centre mb-4">
                   <div className="bg-blue-100 rounded-full p-3 mr-4">
                     <Phone className="h-6 w-6 text-blue-600" />
                   </div>
@@ -276,7 +276,7 @@ export default function AnnerleyWaterDamagePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="flex items-center mb-4">
+                <div className="flex items-centre mb-4">
                   <div className="bg-blue-100 rounded-full p-3 mr-4">
                     <MapPin className="h-6 w-6 text-blue-600" />
                   </div>
@@ -289,7 +289,7 @@ export default function AnnerleyWaterDamagePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="flex items-center mb-4">
+                <div className="flex items-centre mb-4">
                   <div className="bg-blue-100 rounded-full p-3 mr-4">
                     <Droplets className="h-6 w-6 text-blue-600" />
                   </div>
@@ -302,7 +302,7 @@ export default function AnnerleyWaterDamagePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="flex items-center mb-4">
+                <div className="flex items-centre mb-4">
                   <div className="bg-blue-100 rounded-full p-3 mr-4">
                     <Shield className="h-6 w-6 text-blue-600" />
                   </div>
@@ -316,10 +316,10 @@ export default function AnnerleyWaterDamagePage() {
             </div>
 
             <Card className="p-8 bg-blue-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Why Annerley Residents Choose Us
               </h3>
-              <div className="grid md:grid-cols-4 gap-4 text-center">
+              <div className="grid md:grid-cols-4 gap-4 text-centre">
                 <div>
                   <Star className="h-8 w-8 mx-auto mb-2 text-yellow-500" />
                   <p className="font-semibold">Master Restorer</p>
@@ -348,7 +348,7 @@ export default function AnnerleyWaterDamagePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-green-600 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Annerley Water Damage Emergency?
           </h2>

@@ -189,7 +189,7 @@ export const ComprehensiveSchema: React.FC<SchemaProps> = ({
         "name": "What areas do you service?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We provide nationwide coverage across Australia, including all capital cities, regional centers, and remote areas. From Sydney to Perth, Brisbane to Hobart, and everywhere in between."
+          "text": "We provide nationwide coverage across Australia, including all capital cities, regional centres, and remote areas. From Sydney to Perth, Brisbane to Hobart, and everywhere in between."
         }
       },
       {

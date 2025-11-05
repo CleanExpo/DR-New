@@ -39,7 +39,7 @@ export default function WynnumPage() {
 
   // Generate all content sections
   const intro = generateIntro(suburb);
-  const heroIntro = `Coastal property specialists serving Wynnum's bayside community. Expert restoration of ${suburb.demographics.primaryPropertyTypes[0].toLowerCase()}, beach homes, and waterfront properties. ${suburb.responseTime} emergency response to Wynnum ${suburb.postcode} with specialized storm surge and salt water damage expertise.`;
+  const heroIntro = `Coastal property specialists serving Wynnum's bayside community. Expert restoration of ${suburb.demographics.primaryPropertyTypes[0].toLowerCase()}, beach homes, and waterfront properties. ${suburb.responseTime} emergency response to Wynnum ${suburb.postcode} with specialised storm surge and salt water damage expertise.`;
 
   const disasterTypesRaw = generateDisasterTypesSection(suburb);
   const disasterTypes = disasterTypesRaw.map(block => ({
@@ -66,7 +66,7 @@ export default function WynnumPage() {
       },
       {
         title: 'Coastal Damage Assessment',
-        description: 'Specialized evaluation of storm surge, water, mould, or salt damage to your Wynnum waterfront property.',
+        description: 'specialised evaluation of storm surge, water, mould, or salt damage to your Wynnum waterfront property.',
       },
       {
         title: 'Emergency Stabilization',
@@ -78,7 +78,7 @@ export default function WynnumPage() {
       },
       {
         title: 'Coastal Restoration',
-        description: 'Master Restorer certified restoration with specialized knowledge of coastal property challenges and salt corrosion.',
+        description: 'Master Restorer certified restoration with specialised knowledge of coastal property challenges and salt corrosion.',
       },
     ],
   };

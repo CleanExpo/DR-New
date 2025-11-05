@@ -38,7 +38,7 @@ export default function FloodRecoveryPage() {
         <div className="absolute inset-0 water-wave opacity-20" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-centre">
             <div className="damage-reveal">
               {/* Emergency Alert */}
               <Alert variant="emergency" className="mb-6">
@@ -107,7 +107,7 @@ export default function FloodRecoveryPage() {
             <div className="relative">
               <div className="relative w-full h-[500px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/images/optimized/flood/flood-recovery-team.jpg"
+                  src="/images/optimised/flood/flood-recovery-team.jpg"
                   alt="Professional flood recovery team extracting water"
                   fill
                   className="object-cover"
@@ -133,7 +133,7 @@ export default function FloodRecoveryPage() {
       {/* Flood Response Process */}
       <section className="py-20 bg-black/30">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
               Emergency Flood Response Process
             </h2>
@@ -153,7 +153,7 @@ export default function FloodRecoveryPage() {
             <TabsContent value="immediate" className="space-y-6">
               <Card className="bg-red-900/30 border-red-500/30">
                 <CardHeader>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <AlertTriangle className="h-8 w-8 text-red-400" />
                     <CardTitle className="text-white text-2xl">Immediate Response (0-2 Hours)</CardTitle>
                   </div>
@@ -210,7 +210,7 @@ export default function FloodRecoveryPage() {
             <TabsContent value="extraction" className="space-y-6">
               <Card className="bg-orange-900/30 border-orange-500/30">
                 <CardHeader>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <Droplets className="h-8 w-8 text-blue-400" />
                     <CardTitle className="text-white text-2xl">Water Extraction (2-24 Hours)</CardTitle>
                   </div>
@@ -251,24 +251,24 @@ export default function FloodRecoveryPage() {
             <TabsContent value="drying" className="space-y-6">
               <Card className="bg-yellow-900/30 border-yellow-500/30">
                 <CardHeader>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <Wind className="h-8 w-8 text-gray-400" />
                     <CardTitle className="text-white text-2xl">Structural Drying (1-5 Days)</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center">
+                    <div className="text-centre">
                       <Thermometer className="h-12 w-12 text-orange-400 mx-auto mb-3" />
                       <h4 className="font-bold text-white mb-2">Temperature Control</h4>
                       <p className="text-yellow-200">Optimal 22-26°C for maximum evaporation</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-centre">
                       <Droplets className="h-12 w-12 text-blue-400 mx-auto mb-3" />
                       <h4 className="font-bold text-white mb-2">Humidity Management</h4>
                       <p className="text-yellow-200">Maintain 30-50% relative humidity</p>
                     </div>
-                    <div className="text-center">
+                    <div className="text-centre">
                       <Wind className="h-12 w-12 text-gray-400 mx-auto mb-3" />
                       <h4 className="font-bold text-white mb-2">Air Movement</h4>
                       <p className="text-yellow-200">Strategic airflow for rapid drying</p>
@@ -281,7 +281,7 @@ export default function FloodRecoveryPage() {
             <TabsContent value="restoration" className="space-y-6">
               <Card className="bg-green-900/30 border-green-500/30">
                 <CardHeader>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-centre gap-3">
                     <Shield className="h-8 w-8 text-green-400" />
                     <CardTitle className="text-white text-2xl">Complete Restoration (5+ Days)</CardTitle>
                   </div>
@@ -341,7 +341,7 @@ export default function FloodRecoveryPage() {
       {/* Service Areas */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
               Flood Recovery Coverage Areas
             </h2>
@@ -351,7 +351,7 @@ export default function FloodRecoveryPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="bg-white/10 border-blue-500/30 text-center coverage-expand">
+            <Card className="bg-white/10 border-blue-500/30 text-centre coverage-expand">
               <CardHeader>
                 <MapPin className="h-8 w-8 text-blue-400 mx-auto mb-2" />
                 <CardTitle className="text-white">Brisbane Metro</CardTitle>
@@ -371,13 +371,13 @@ export default function FloodRecoveryPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/10 border-blue-500/30 text-center coverage-expand">
+            <Card className="bg-white/10 border-blue-500/30 text-centre coverage-expand">
               <CardHeader>
                 <MapPin className="h-8 w-8 text-blue-400 mx-auto mb-2" />
                 <CardTitle className="text-white">Ipswich Region</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-blue-200 mb-4">Specialized flood teams serving Ipswich area</p>
+                <p className="text-blue-200 mb-4">specialised flood teams serving Ipswich area</p>
                 <div className="space-y-2 text-sm text-blue-300">
                   <p>• Central Ipswich</p>
                   <p>• Springfield Lakes</p>
@@ -391,7 +391,7 @@ export default function FloodRecoveryPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/10 border-blue-500/30 text-center coverage-expand">
+            <Card className="bg-white/10 border-blue-500/30 text-centre coverage-expand">
               <CardHeader>
                 <MapPin className="h-8 w-8 text-blue-400 mx-auto mb-2" />
                 <CardTitle className="text-white">Logan City</CardTitle>
@@ -417,12 +417,12 @@ export default function FloodRecoveryPage() {
       {/* Insurance & Costs */}
       <section className="py-20 bg-black/30">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-4xl font-bold text-white mb-4">
               Insurance & Cost Information
             </h2>
             <p className="text-xl text-blue-300">
-              We work directly with your insurance company to minimize your costs
+              We work directly with your insurance company to minimise your costs
             </p>
           </div>
 
@@ -440,7 +440,7 @@ export default function FloodRecoveryPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                    Minimize your out-of-pocket expenses
+                    minimise your out-of-pocket expenses
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
@@ -486,7 +486,7 @@ export default function FloodRecoveryPage() {
 
       {/* Emergency CTA */}
       <section className="py-20 bg-gradient-to-r from-red-900/80 to-blue-900/80">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-6 text-centre">
           <Waves className="h-16 w-16 text-blue-400 mx-auto mb-6 emergency-pulse" />
           <h2 className="text-4xl font-bold text-white mb-6">
             Flood Emergency? We're Ready 24/7
@@ -495,7 +495,7 @@ export default function FloodRecoveryPage() {
             Every minute counts in flood recovery. Our expert teams are standing by across
             Brisbane, Ipswich & Logan to respond immediately to your flood emergency.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Button
               asChild
               size="lg"

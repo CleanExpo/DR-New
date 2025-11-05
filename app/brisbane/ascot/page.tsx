@@ -61,7 +61,7 @@ const ascotEstates = [
 const ascotSpecialties = [
   {
     title: 'Racing Industry & Equestrian Properties',
-    description: 'Specialized restoration for properties connected to racing industry and equestrian facilities.',
+    description: 'specialised restoration for properties connected to racing industry and equestrian facilities.',
     icon: Trophy,
     urgency: 'High - 3 hours',
     expertise: ['Equestrian facility restoration', 'Racing memorabilia protection', 'Stable and outbuilding repair', 'Industry network coordination']
@@ -82,7 +82,7 @@ const ascotSpecialties = [
   },
   {
     title: 'Luxury Collection & Memorabilia',
-    description: 'Specialized protection for racing memorabilia, luxury collections, and high-value personal items.',
+    description: 'specialised protection for racing memorabilia, luxury collections, and high-value personal items.',
     icon: Sparkles,
     urgency: 'Critical - 2 hours',
     expertise: ['Racing memorabilia conservation', 'Luxury collection protection', 'High-value item documentation', 'Specialist storage coordination']
@@ -108,7 +108,7 @@ const establishedWealthProtocols = [
   },
   {
     protocol: 'Generational Heirloom Care',
-    description: 'Specialized handling of family heirlooms and generationally significant items',
+    description: 'specialised handling of family heirlooms and generationally significant items',
     implementation: ['Heritage item identification', 'Specialist conservation', 'Family consultation', 'Restoration documentation']
   },
   {
@@ -214,8 +214,8 @@ export default function AscotPage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-purple-900 via-gold-900 to-green-900 text-white py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="max-w-5xl mx-auto text-centre">
+              <div className="flex items-centre justify-centre gap-3 mb-6">
                 <Trophy className="w-12 h-12 text-gold-400" />
                 <span className="bg-gradient-to-r from-gold-400 to-yellow-400 text-black px-6 py-3 rounded-full font-bold text-lg">
                   Established Wealth • Racing Precinct
@@ -229,7 +229,7 @@ export default function AscotPage() {
 
               <p className="text-xl mb-8 leading-relaxed max-w-4xl mx-auto">
                 Professional water damage restoration for Ascot's luxury estates, racecourse precinct properties,
-                and established wealth families. <strong>Master Restorer Phill McGurk</strong> - specialized
+                and established wealth families. <strong>Master Restorer Phill McGurk</strong> - specialised
                 in equestrian properties, racing industry connections, and generational family homes.
               </p>
 
@@ -258,7 +258,7 @@ export default function AscotPage() {
 
               <Link
                 href="tel:1300309361"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-center gap-3"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-centre gap-3"
               >
                 <Phone className="w-6 h-6" />
                 Ascot Emergency: 1300 309 361
@@ -270,12 +270,12 @@ export default function AscotPage() {
         {/* Ascot Estates */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Ascot Luxury Estate Precincts
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized restoration services across Ascot's distinguished precincts,
+                specialised restoration services across Ascot's distinguished precincts,
                 from racing industry estates to established family properties.
               </p>
             </div>
@@ -283,7 +283,7 @@ export default function AscotPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {ascotEstates.map((estate, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-purple-600">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-centre justify-between mb-6">
                     <h3 className="text-xl font-semibold text-gray-900">
                       {estate.area}
                     </h3>
@@ -338,13 +338,13 @@ export default function AscotPage() {
         {/* Ascot Specialties */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Star className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Ascot Estate Restoration Specialties
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized restoration services for Ascot's unique property types,
+                specialised restoration services for Ascot's unique property types,
                 racing industry connections, and established wealth requirements.
               </p>
             </div>
@@ -354,8 +354,8 @@ export default function AscotPage() {
                 const IconComponent = specialty.icon;
                 return (
                   <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-gold-600 hover:shadow-xl transition-shadow">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-gold-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-centre gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gold-100 rounded-lg flex items-centre justify-centre">
                         <IconComponent className="w-6 h-6 text-gold-600" />
                       </div>
                       <div>
@@ -371,10 +371,10 @@ export default function AscotPage() {
                     </p>
 
                     <div>
-                      <span className="text-sm text-gray-500 mb-3 block">Specialized Expertise:</span>
+                      <span className="text-sm text-gray-500 mb-3 block">specialised Expertise:</span>
                       <div className="space-y-2">
                         {specialty.expertise.map((skill, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
+                          <div key={idx} className="flex items-centre gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
                             <span className="text-sm text-gray-700">{skill}</span>
                           </div>
@@ -391,13 +391,13 @@ export default function AscotPage() {
         {/* Established Wealth Protocols */}
         <section className="py-16 bg-blue-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Shield className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Established Wealth Service Protocols
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized service protocols designed for Ascot's established families
+                specialised service protocols designed for Ascot's established families
                 and generational wealth requirements.
               </p>
             </div>
@@ -412,7 +412,7 @@ export default function AscotPage() {
                     <span className="text-sm text-gray-500 mb-3 block">Implementation Steps:</span>
                     <div className="grid md:grid-cols-2 gap-4">
                       {protocol.implementation.map((step, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
+                        <div key={idx} className="flex items-centre gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
                           <span className="text-sm text-gray-700">{step}</span>
                         </div>
@@ -429,13 +429,13 @@ export default function AscotPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Ascot Estate Restoration Features
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {ascotFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+                  <div key={index} className="flex items-centre gap-3 bg-white rounded-lg p-4 shadow-sm">
                     <Trophy className="w-5 h-5 text-purple-600 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
@@ -447,7 +447,7 @@ export default function AscotPage() {
 
         {/* Emergency CTA */}
         <section className="py-16 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <Trophy className="w-16 h-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold mb-6">
               Ascot Estate Emergency? Racing Industry Specialist Available 24/7
@@ -458,17 +458,17 @@ export default function AscotPage() {
               racing memorabilia, and generational family estates.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-5 h-5" />
                 Ascot Emergency: 1300 309 361
               </Link>
               <Link
                 href="/professionals"
-                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-center justify-center gap-3"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Shield className="w-5 h-5" />
                 Discrete Professional Service
@@ -480,13 +480,13 @@ export default function AscotPage() {
         {/* Related Areas */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-centre text-gray-900 mb-8">
               Additional Brisbane Luxury Areas
             </h3>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <Link
                 href="/brisbane/hamilton"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Crown className="w-8 h-8 text-gold-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Hamilton</h4>
@@ -494,7 +494,7 @@ export default function AscotPage() {
               </Link>
               <Link
                 href="/brisbane/new-farm"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Home className="w-8 h-8 text-green-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">New Farm</h4>
@@ -502,7 +502,7 @@ export default function AscotPage() {
               </Link>
               <Link
                 href="/brisbane/toowong"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <TreePine className="w-8 h-8 text-blue-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Toowong</h4>

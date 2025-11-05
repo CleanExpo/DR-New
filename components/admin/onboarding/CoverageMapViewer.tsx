@@ -44,8 +44,8 @@ export function CoverageMapViewer({
       {/* Coverage Summary */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center">
+          <div className="flex items-centre gap-3">
+            <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-centre justify-centre">
               <Circle className="w-5 h-5 text-blue-600" />
             </div>
             <div>
@@ -58,8 +58,8 @@ export function CoverageMapViewer({
         </Card>
 
         <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+          <div className="flex items-centre gap-3">
+            <div className="w-10 h-10 rounded-lg bg-green-100 flex items-centre justify-centre">
               <DollarSign className="w-5 h-5 text-green-600" />
             </div>
             <div>
@@ -72,8 +72,8 @@ export function CoverageMapViewer({
         </Card>
 
         <Card className="p-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
+          <div className="flex items-centre gap-3">
+            <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-centre justify-centre">
               <Users className="w-5 h-5 text-purple-600" />
             </div>
             <div>
@@ -109,10 +109,10 @@ export function CoverageMapViewer({
       <Card className="p-0 overflow-hidden">
         <div
           ref={mapRef}
-          className="w-full h-[400px] bg-gray-100 flex items-center justify-center relative"
+          className="w-full h-[400px] bg-gray-100 flex items-centre justify-centre relative"
         >
           {/* Placeholder Map */}
-          <div className="text-center">
+          <div className="text-centre">
             <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-2" />
             <p className="text-sm text-gray-600 font-medium">
               Map View - {getTierLabel(contractor.subscription?.tier)}
@@ -129,15 +129,15 @@ export function CoverageMapViewer({
           <div className="absolute bottom-4 left-4 bg-white p-3 rounded-lg shadow-md">
             <h4 className="text-xs font-semibold text-gray-900 mb-2">Legend</h4>
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <div className="w-3 h-3 rounded-full bg-blue-500"></div>
                 <span className="text-xs text-gray-700">Your Coverage Area</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 <span className="text-xs text-gray-700">Active Contractors</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <span className="text-xs text-gray-700">Pending Contractors</span>
               </div>
@@ -156,10 +156,10 @@ export function CoverageMapViewer({
             {nearbyContractors.map((nearby) => (
               <div
                 key={nearby.id}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                className="flex items-centre justify-between p-3 bg-gray-50 rounded-lg"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                <div className="flex items-centre gap-3">
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-centre justify-centre">
                     <MapPin className="w-4 h-4 text-green-600" />
                   </div>
                   <div>

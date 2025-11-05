@@ -59,7 +59,7 @@ export default function MiltonPage() {
     steps: [
       {
         title: 'Immediate Contact',
-        description: 'Call 1300 309 361 for 24/7 emergency response. Our team specializes in Milton commercial and entertainment venue restoration.',
+        description: 'Call 1300 309 361 for 24/7 emergency response. Our team specialises in Milton commercial and entertainment venue restoration.',
       },
       {
         title: `${suburb.responseTime} Response`,
@@ -75,7 +75,7 @@ export default function MiltonPage() {
       },
       {
         title: 'Business Continuity',
-        description: 'Specialized support for restaurants, bars, and entertainment venues to minimize downtime during critical events and sporting seasons.',
+        description: 'specialised support for restaurants, bars, and entertainment venues to minimise downtime during critical events and sporting seasons.',
       },
       {
         title: 'Insurance Coordination',

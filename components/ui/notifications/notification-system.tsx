@@ -118,7 +118,7 @@ export const NotificationSystem: React.FC<NotificationSystemProps> = ({
       >
         <Bell className="w-5 h-5" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+          <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-centre justify-centre">
             {unreadCount}
           </span>
         )}
@@ -137,8 +137,8 @@ export const NotificationSystem: React.FC<NotificationSystemProps> = ({
             )}
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
-              <div className="flex items-center gap-2">
+            <div className="flex items-centre justify-between p-4 border-b border-gray-200 dark:border-gray-800">
+              <div className="flex items-centre gap-2">
                 <Bell className="w-5 h-5" />
                 <h3 className="font-semibold">Notifications</h3>
                 {unreadCount > 0 && (
@@ -147,7 +147,7 @@ export const NotificationSystem: React.FC<NotificationSystemProps> = ({
                   </Badge>
                 )}
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 {notifications.length > 0 && (
                   <Button
                     variant="ghost"
@@ -170,7 +170,7 @@ export const NotificationSystem: React.FC<NotificationSystemProps> = ({
             {/* Notifications List */}
             <div className="overflow-y-auto max-h-[400px]">
               {notifications.length === 0 ? (
-                <div className="p-8 text-center text-gray-300">
+                <div className="p-8 text-centre text-gray-300">
                   <Bell className="w-12 h-12 mx-auto mb-4 opacity-30" />
                   <p>No notifications yet</p>
                 </div>
@@ -227,7 +227,7 @@ export const NotificationSystem: React.FC<NotificationSystemProps> = ({
                               <X className="w-3 h-3" />
                             </Button>
                           </div>
-                          <div className="flex items-center gap-2 mt-2">
+                          <div className="flex items-centre gap-2 mt-2">
                             <Clock className="w-3 h-3 text-gray-200" />
                             <span className="text-xs text-gray-300">
                               {new Date(notification.timestamp).toLocaleTimeString()}

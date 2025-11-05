@@ -214,12 +214,12 @@ export default function LegalDocumentsPage() {
               <h2 className="text-xl font-semibold mb-2">Australian Legal Compliance</h2>
               <p className="mb-3">All documents are prepared by Australian legal professionals and comply with:</p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-                <span className="flex items-center gap-2">✓ Australian Consumer Law (ACL)</span>
-                <span className="flex items-center gap-2">✓ Privacy Act 1988</span>
-                <span className="flex items-center gap-2">✓ Work Health & Safety Act</span>
-                <span className="flex items-center gap-2">✓ Building Code of Australia</span>
-                <span className="flex items-center gap-2">✓ ASIC Regulations</span>
-                <span className="flex items-center gap-2">✓ State-specific requirements</span>
+                <span className="flex items-centre gap-2">✓ Australian Consumer Law (ACL)</span>
+                <span className="flex items-centre gap-2">✓ Privacy Act 1988</span>
+                <span className="flex items-centre gap-2">✓ Work Health & Safety Act</span>
+                <span className="flex items-centre gap-2">✓ Building Code of Australia</span>
+                <span className="flex items-centre gap-2">✓ ASIC Regulations</span>
+                <span className="flex items-centre gap-2">✓ State-specific requirements</span>
               </div>
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function LegalDocumentsPage() {
               </div>
             </div>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-center gap-2">
+              <button className="px-4 py-2 bg-white/20 border border-white/30 rounded-lg text-white hover:bg-white/30 transition-colors flex items-centre gap-2">
                 <Filter className="w-4 h-4" />
                 <select 
                   value={filterCategory}
@@ -275,7 +275,7 @@ export default function LegalDocumentsPage() {
                   <p className="text-white/90 text-sm mb-4">{doc.description}</p>
                   <button
                     onClick={() => handleDownload(doc.id, doc.title)}
-                    className="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
+                    className="w-full px-4 py-2 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-centre justify-centre gap-2"
                   >
                     <Download className="w-4 h-4" />
                     Download
@@ -327,7 +327,7 @@ export default function LegalDocumentsPage() {
               </div>
               <button
                 onClick={() => handleDownload(doc.id, doc.title)}
-                className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-centre justify-centre gap-2"
               >
                 <Download className="w-4 h-4" />
                 Download with NRP Branding
@@ -347,12 +347,12 @@ export default function LegalDocumentsPage() {
                 Each template includes:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-700">
-                <span className="flex items-center gap-2">• NRP logo and contact information</span>
-                <span className="flex items-center gap-2">• Professional formatting and layout</span>
-                <span className="flex items-center gap-2">• Digital signature fields where required</span>
-                <span className="flex items-center gap-2">• Version control and update tracking</span>
-                <span className="flex items-center gap-2">• Australian legal jurisdiction clauses</span>
-                <span className="flex items-center gap-2">• Automatic date and reference numbering</span>
+                <span className="flex items-centre gap-2">• NRP logo and contact information</span>
+                <span className="flex items-centre gap-2">• Professional formatting and layout</span>
+                <span className="flex items-centre gap-2">• Digital signature fields where required</span>
+                <span className="flex items-centre gap-2">• Version control and update tracking</span>
+                <span className="flex items-centre gap-2">• Australian legal jurisdiction clauses</span>
+                <span className="flex items-centre gap-2">• Automatic date and reference numbering</span>
               </div>
             </div>
           </div>

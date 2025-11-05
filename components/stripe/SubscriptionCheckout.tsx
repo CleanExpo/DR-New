@@ -208,7 +208,7 @@ function PaymentForm({
           </Button>
         </div>
 
-        <p className="text-xs text-gray-500 text-center">
+        <p className="text-xs text-gray-500 text-centre">
           Your subscription will start immediately. Billed monthly. Cancel anytime.
         </p>
       </form>
@@ -281,7 +281,7 @@ export function SubscriptionCheckout({ contractorId, onSuccess }: SubscriptionCh
 
   return (
     <div className="space-y-8">
-      <div className="text-center">
+      <div className="text-centre">
         <h2 className="text-3xl font-bold text-gray-900">Choose Your Subscription</h2>
         <p className="mt-2 text-gray-600">
           Select the coverage area that best suits your business needs
@@ -336,7 +336,7 @@ export function SubscriptionCheckout({ contractorId, onSuccess }: SubscriptionCh
 
               <div className="pt-4">
                 <div
-                  className={`w-full py-2 px-4 rounded-md text-center font-medium ${
+                  className={`w-full py-2 px-4 rounded-md text-centre font-medium ${
                     selectedTier === tier.id
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-700'
@@ -350,7 +350,7 @@ export function SubscriptionCheckout({ contractorId, onSuccess }: SubscriptionCh
         ))}
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-centre">
         <Button
           onClick={handleContinueToPayment}
           disabled={isLoading}
@@ -368,7 +368,7 @@ export function SubscriptionCheckout({ contractorId, onSuccess }: SubscriptionCh
         </Button>
       </div>
 
-      <div className="text-center text-sm text-gray-500">
+      <div className="text-centre text-sm text-gray-500">
         <p>All prices in AUD and include GST</p>
         <p className="mt-1">Cancel anytime. No lock-in contracts.</p>
       </div>

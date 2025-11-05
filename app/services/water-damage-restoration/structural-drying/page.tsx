@@ -68,7 +68,7 @@ export default function StructuralDryingPage() {
         {/* Emergency Banner */}
         <section className="bg-blue-600 text-white py-4">
           <div className="container mx-auto px-6">
-            <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex items-centre justify-centre gap-4 text-centre">
               <Wind className="h-6 w-6 animate-spin" />
               <p className="font-bold text-lg">
                 Professional Structural Drying - Call 1300 309 361
@@ -83,10 +83,10 @@ export default function StructuralDryingPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <div>
                 {/* Trust Badge */}
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-6">
+                <div className="inline-flex items-centre gap-2 px-4 py-2 bg-blue-500/20 rounded-full mb-6">
                   <Wind className="h-5 w-5 text-blue-600" />
                   <span className="text-blue-700 font-semibold">
                     Professional Structural Drying
@@ -132,14 +132,14 @@ export default function StructuralDryingPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="tel:1300309361"
-                    className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-center"
+                    className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl text-white font-bold hover:shadow-2xl transition-all text-centre"
                   >
                     <PhoneCall className="inline-block mr-2 h-5 w-5" />
                     Call 1300 309 361
                   </Link>
                   <Link
                     href="/client/instant-quote"
-                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-center"
+                    className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-centre"
                   >
                     <MessageSquare className="inline-block mr-2 h-5 w-5" />
                     Get Drying Quote
@@ -151,7 +151,7 @@ export default function StructuralDryingPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/equipment/dehumidifier-industrial.png"
+                    src="/images/optimised/equipment/dehumidifier-industrial.png"
                     alt="Industrial LGR dehumidifier for structural drying"
                     fill
                     className="object-contain drop-shadow-2xl"
@@ -173,7 +173,7 @@ export default function StructuralDryingPage() {
         {/* Science Behind Drying */}
         <section className="bg-indigo-900/30 border-y border-indigo-600/30 py-8">
           <div className="container mx-auto px-6">
-            <div className="text-center">
+            <div className="text-centre">
               <h3 className="text-2xl font-bold text-white mb-4">The Science of Structural Drying</h3>
               <p className="text-indigo-700 max-w-4xl mx-auto">
                 Effective drying requires precise control of temperature, humidity, and airflow.
@@ -187,35 +187,35 @@ export default function StructuralDryingPage() {
         {/* Drying Process & Equipment */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Professional Structural Drying Process
             </h2>
 
             <div className="max-w-6xl mx-auto">
               {/* Equipment Grid */}
               <div className="grid md:grid-cols-4 gap-6 mb-12">
-                <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl p-6 border border-blue-500/30 text-center">
+                <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl p-6 border border-blue-500/30 text-centre">
                   <Wind className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Air Movers</h3>
                   <p className="text-3xl font-bold text-blue-600 mb-2">3000CFM</p>
                   <p className="text-sm text-blue-700">High-velocity airflow</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-xl p-6 border border-green-500/30 text-center">
+                <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-xl p-6 border border-green-500/30 text-centre">
                   <Droplets className="h-12 w-12 text-emerald-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">LGR Dehumidifiers</h3>
                   <p className="text-3xl font-bold text-emerald-600 mb-2">90L/Day</p>
                   <p className="text-sm text-green-700">Moisture removal</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-900/50 to-red-900/50 rounded-xl p-6 border border-orange-500/30 text-center">
+                <div className="bg-gradient-to-br from-orange-900/50 to-red-900/50 rounded-xl p-6 border border-orange-500/30 text-centre">
                   <Thermometer className="h-12 w-12 text-orange-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Heat Systems</h3>
                   <p className="text-3xl font-bold text-orange-600 mb-2">22-26°C</p>
                   <p className="text-sm text-orange-700">Temperature control</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 rounded-xl p-6 border border-purple-500/30 text-center">
+                <div className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 rounded-xl p-6 border border-purple-500/30 text-centre">
                   <Gauge className="h-12 w-12 text-purple-600 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-white mb-2">Monitoring</h3>
                   <p className="text-3xl font-bold text-purple-600 mb-2">24/7</p>
@@ -260,11 +260,11 @@ export default function StructuralDryingPage() {
                   }
                 ].map((step, idx) => (
                   <div key={idx} className="flex gap-8">
-                    <div className={`flex-shrink-0 w-20 h-20 bg-${step.colour}-500 rounded-full flex items-center justify-center text-white font-bold`}>
+                    <div className={`flex-shrink-0 w-20 h-20 bg-${step.colour}-500 rounded-full flex items-centre justify-centre text-white font-bold`}>
                       {step.day}
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-centre gap-3 mb-3">
                         <div className="text-white">{step.icon}</div>
                         <h3 className="text-2xl font-bold text-white">{step.title}</h3>
                       </div>
@@ -281,7 +281,7 @@ export default function StructuralDryingPage() {
         {/* Material-Specific Drying */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Material-Specific Drying Protocols
             </h2>
 
@@ -359,13 +359,13 @@ export default function StructuralDryingPage() {
         {/* Monitoring & Documentation */}
         <section className="py-20 bg-black/30">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Scientific Monitoring & Documentation
             </h2>
 
             <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
               <div className="bg-gradient-to-br from-green-900/50 to-emerald-900/50 rounded-xl p-8 border border-green-500/30">
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-centre gap-3 mb-6">
                   <BarChart3 className="h-8 w-8 text-emerald-600" />
                   <h3 className="text-2xl font-bold text-white">Daily Monitoring</h3>
                 </div>
@@ -394,7 +394,7 @@ export default function StructuralDryingPage() {
               </div>
 
               <div className="bg-gradient-to-br from-blue-900/50 to-indigo-900/50 rounded-xl p-8 border border-blue-500/30">
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-centre gap-3 mb-6">
                   <Shield className="h-8 w-8 text-blue-600" />
                   <h3 className="text-2xl font-bold text-white">Insurance Documentation</h3>
                 </div>
@@ -428,12 +428,12 @@ export default function StructuralDryingPage() {
         {/* Service Areas & Response */}
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h2 className="text-4xl font-bold text-white text-center mb-12">
+            <h2 className="text-4xl font-bold text-white text-centre mb-12">
               Structural Drying Service Areas
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Brisbane Areas</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Wind className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -447,7 +447,7 @@ export default function StructuralDryingPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Ipswich Areas</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Thermometer className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -461,7 +461,7 @@ export default function StructuralDryingPage() {
                 </div>
               </div>
 
-              <div className="text-center">
+              <div className="text-centre">
                 <h3 className="text-2xl font-bold text-white mb-4">Logan Areas</h3>
                 <div className="bg-white/10 rounded-lg p-6">
                   <Gauge className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -480,7 +480,7 @@ export default function StructuralDryingPage() {
 
         {/* Final CTA */}
         <section className="py-20 bg-gradient-to-r from-blue-900/80 to-indigo-900/80">
-          <div className="container mx-auto px-6 text-center">
+          <div className="container mx-auto px-6 text-centre">
             <Wind className="h-16 w-16 text-blue-500 mx-auto mb-6 animate-spin" />
             <h2 className="text-4xl font-bold text-white mb-6">
               Professional Structural Drying Prevents Thousands in Damage
@@ -489,7 +489,7 @@ export default function StructuralDryingPage() {
               Don't risk mould growth or structural damage. Our IICRC certified technicians
               use advanced drying science to restore your property safely and efficiently.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
                 className="inline-block px-10 py-5 bg-white text-blue-600 rounded-xl font-bold text-lg hover:shadow-2xl transition-all"

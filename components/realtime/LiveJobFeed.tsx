@@ -182,12 +182,12 @@ export function LiveJobFeed() {
 
   return (
     <Card className="h-full">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-        <CardTitle className="text-xl font-bold flex items-center gap-2">
+      <CardHeader className="flex flex-row items-centre justify-between space-y-0 pb-4">
+        <CardTitle className="text-xl font-bold flex items-centre gap-2">
           <Briefcase className="h-5 w-5" />
           Live Job Feed
         </CardTitle>
-        <div className="flex items-center gap-2">
+        <div className="flex items-centre gap-2">
           {isConnected && (
             <Badge variant="outline" className="gap-1">
               <span className="h-2 w-2 bg-green-500 rounded-full animate-pulse" />
@@ -217,11 +217,11 @@ export function LiveJobFeed() {
 
         <ScrollArea className="h-[600px] pr-4">
           {isLoading ? (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-centre py-8 text-muted-foreground">
               Loading available jobs...
             </div>
           ) : jobs.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-centre py-8 text-muted-foreground">
               No jobs available at the moment
             </div>
           ) : (
@@ -239,7 +239,7 @@ export function LiveJobFeed() {
                   <CardContent className="p-4 pl-5">
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
+                        <div className="flex items-centre gap-2 mb-1">
                           <h3 className="font-semibold text-lg">
                             #{job.jobNumber} - {job.title}
                           </h3>
@@ -254,13 +254,13 @@ export function LiveJobFeed() {
                         </div>
 
                         <div className="space-y-1 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-centre gap-2">
                             <MapPin className="h-3 w-3" />
                             <span>{job.propertyAddress}</span>
                           </div>
 
                           {job.scheduledStart && (
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-centre gap-2">
                               <Clock className="h-3 w-3" />
                               <span>
                                 {format(new Date(job.scheduledStart), 'MMM d, h:mm a')}
@@ -270,7 +270,7 @@ export function LiveJobFeed() {
                           )}
 
                           {job.estimatedPrice && (
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-centre gap-2">
                               <DollarSign className="h-3 w-3" />
                               <span>Estimated: ${job.estimatedPrice}</span>
                             </div>

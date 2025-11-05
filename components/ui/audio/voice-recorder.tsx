@@ -294,7 +294,7 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
   return (
     <Card className={cn('p-6 space-y-4', className)}>
       {/* Recording Controls */}
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-centre justify-centre gap-4">
         {!isRecording && !audioUrl && (
           <Button
             size="lg"
@@ -362,7 +362,7 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
 
       {/* Recording Time */}
       {(isRecording || audioUrl) && (
-        <div className="text-center space-y-2">
+        <div className="text-centre space-y-2">
           <div className="text-2xl font-mono">
             {formatTime(recordingTime)}
           </div>
@@ -382,7 +382,7 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
 
       {/* Playback Controls */}
       {audioUrl && !isRecording && (
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-centre justify-centre gap-2">
           <Button
             variant="outline"
             size="sm"
@@ -449,7 +449,7 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
 
       {/* Processing Indicator */}
       {isProcessing && (
-        <div className="flex items-center justify-center gap-2 text-sm text-gray-200 dark:text-gray-200">
+        <div className="flex items-centre justify-centre gap-2 text-sm text-gray-200 dark:text-gray-200">
           <Loader2 className="w-4 h-4 animate-spin" />
           Processing audio...
         </div>

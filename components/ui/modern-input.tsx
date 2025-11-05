@@ -41,7 +41,7 @@ export const ModernInput = forwardRef<HTMLInputElement, ModernInputProps>(
           />
         </div>
         {errorMessage && (
-          <p className="text-sm text-red-500 mt-1.5 flex items-center gap-1">
+          <p className="text-sm text-red-500 mt-1.5 flex items-centre gap-1">
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"

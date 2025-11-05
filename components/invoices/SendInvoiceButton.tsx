@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { MailIcon } from "lucide-react";
 
@@ -60,7 +60,7 @@ export function SendInvoiceButton({ invoiceId, clientEmail, onSent }: SendInvoic
         Send Invoice
       </Button>
 
-      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      <dialogue open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Send Invoice via Email</DialogTitle>
@@ -91,7 +91,7 @@ export function SendInvoiceButton({ invoiceId, clientEmail, onSent }: SendInvoic
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     </>
   );
 }

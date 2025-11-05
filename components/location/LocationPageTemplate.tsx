@@ -202,14 +202,14 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <a
                   href="tel:1300309361"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105 shadow-xl"
+                  className="inline-flex items-centre justify-centre px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105 shadow-xl"
                 >
                   <Phone className="mr-2" />
                   Emergency: 1300 309 361
                 </a>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 font-bold rounded-lg text-lg transition-all hover:bg-blue-50 shadow-xl"
+                  className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-900 font-bold rounded-lg text-lg transition-all hover:bg-blue-50 shadow-xl"
                 >
                   Get Free Quote
                 </Link>
@@ -217,15 +217,15 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
 
               {/* Trust Badges */}
               <div className="flex flex-wrap gap-4 text-sm">
-                <span className="flex items-center bg-white/10 px-3 py-2 rounded-lg backdrop-blur">
+                <span className="flex items-centre bg-white/10 px-3 py-2 rounded-lg backdrop-blur">
                   <Shield className="w-5 h-5 mr-2" />
                   $20M Insurance
                 </span>
-                <span className="flex items-center bg-white/10 px-3 py-2 rounded-lg backdrop-blur">
+                <span className="flex items-centre bg-white/10 px-3 py-2 rounded-lg backdrop-blur">
                   <Award className="w-5 h-5 mr-2" />
                   IICRC Certified
                 </span>
-                <span className="flex items-center bg-white/10 px-3 py-2 rounded-lg backdrop-blur">
+                <span className="flex items-centre bg-white/10 px-3 py-2 rounded-lg backdrop-blur">
                   <Clock className="w-5 h-5 mr-2" />
                   Since 2011
                 </span>
@@ -279,7 +279,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
         {/* About the Area */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-centre">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                   Disaster Recovery Services in {suburb.name}
@@ -333,13 +333,13 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
         {/* Services Grid */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
               Our {suburb.name} Disaster Recovery Services
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-centre justify-centre mb-4">
                   <span className="text-2xl">💧</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Water Damage Restoration</h3>
@@ -349,7 +349,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-centre justify-centre mb-4">
                   <span className="text-2xl">🔥</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Fire & Smoke Damage</h3>
@@ -359,7 +359,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-centre justify-centre mb-4">
                   <span className="text-2xl">🦠</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Mould Remediation</h3>
@@ -369,7 +369,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-centre justify-centre mb-4">
                   <span className="text-2xl">⛈️</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Storm Damage Recovery</h3>
@@ -379,7 +379,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-centre justify-centre mb-4">
                   <span className="text-2xl">⚠️</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Biohazard Cleaning</h3>
@@ -389,7 +389,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
               </div>
 
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-centre justify-centre mb-4">
                   <span className="text-2xl">🏢</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3">Commercial Restoration</h3>
@@ -404,17 +404,17 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
         {/* Local Landmarks */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold mb-8 text-center">
+            <h2 className="text-3xl font-bold mb-8 text-centre">
               Servicing All of {suburb.name}
             </h2>
             <div className="max-w-3xl mx-auto">
-              <p className="text-lg text-gray-700 text-center mb-8">
+              <p className="text-lg text-gray-700 text-centre mb-8">
                 Our team provides comprehensive disaster recovery services throughout {suburb.name},
                 including rapid response to properties near:
               </p>
               <div className="grid md:grid-cols-2 gap-4">
                 {suburb.landmarks.map((landmark, index) => (
-                  <div key={index} className="flex items-center p-4 bg-gray-50 rounded-lg">
+                  <div key={index} className="flex items-centre p-4 bg-gray-50 rounded-lg">
                     <MapPin className="w-5 h-5 text-blue-600 mr-3 flex-shrink-0" />
                     <span className="text-gray-800">{landmark}</span>
                   </div>
@@ -427,18 +427,18 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
         {/* Insurance Partners */}
         <section className="py-16 bg-gradient-to-br from-blue-50 to-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Insurance Approved {suburb.name} Restoration
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {['QBE', 'IAG', 'RACQ', 'Allianz'].map((insurer) => (
-                <div key={insurer} className="bg-white p-6 rounded-lg shadow-md text-center">
+                <div key={insurer} className="bg-white p-6 rounded-lg shadow-md text-centre">
                   <div className="text-3xl font-bold text-blue-600 mb-2">{insurer}</div>
                   <p className="text-sm text-gray-600">Approved Provider</p>
                 </div>
               ))}
             </div>
-            <p className="text-center mt-8 text-lg text-gray-700">
+            <p className="text-centre mt-8 text-lg text-gray-700">
               We handle all insurance paperwork and direct billing for {suburb.name} residents
             </p>
           </div>
@@ -447,7 +447,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
         {/* FAQ Section */}
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Frequently Asked Questions - {suburb.name}
             </h2>
             <div className="space-y-6">
@@ -499,7 +499,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
 
         {/* Final CTA */}
         <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-          <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto px-4 text-centre">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               {suburb.name}&apos;s Trusted Emergency Response Team
             </h2>
@@ -507,17 +507,17 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
               Available 24/7 for water damage, fire restoration, and all disaster recovery needs.
               {suburb.distanceFromWacol}km from our base means we&apos;re always nearby when you need us most.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <a
                 href="tel:1300309361"
-                className="inline-flex items-center justify-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105 shadow-xl"
+                className="inline-flex items-centre justify-centre px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg text-lg transition-all transform hover:scale-105 shadow-xl"
               >
                 <Phone className="mr-2" />
                 Call 1300 309 361 Now
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 font-bold rounded-lg text-lg transition-all hover:bg-blue-50 shadow-xl"
+                className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-900 font-bold rounded-lg text-lg transition-all hover:bg-blue-50 shadow-xl"
               >
                 Request Free Assessment
               </Link>

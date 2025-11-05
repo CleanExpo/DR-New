@@ -181,7 +181,7 @@ export default function Category3CaseStudySEO({
               itemOffered: {
                 '@type': 'Service',
                 name: 'High-Rise Restoration',
-                description: 'Specialized restoration for multi-story buildings'
+                description: 'specialised restoration for multi-story buildings'
               }
             }
           ]
@@ -256,7 +256,7 @@ export default function Category3CaseStudySEO({
       <meta name="geo.position" content="-28.0167;153.4000" />
       <meta name="ICBM" content="-28.0167, 153.4000" />
 
-      {/* Voice Search Optimization */}
+      {/* Voice Search optimisation */}
       <meta name="voice:title" content="Emergency sewage cleanup Gold Coast apartments" />
       <meta name="voice:description" content="24 hour Category 3 water damage restoration for Gold Coast high-rise buildings" />
 

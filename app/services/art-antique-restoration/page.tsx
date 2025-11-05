@@ -44,7 +44,7 @@ const artCategories = [
   {
     category: 'Paper & Textile Arts',
     mediums: ['Rare books', 'Manuscripts', 'Prints', 'Historic textiles'],
-    damageTypes: ['Paper buckling', 'Ink running', 'Mould growth', 'Fiber degradation'],
+    damageTypes: ['Paper buckling', 'Ink running', 'Mould growth', 'fibre degradation'],
     urgency: 'Critical - 1 hour',
     techniques: ['Freeze stabilization', 'Controlled drying', 'Pressure flattening', 'Conservation cleaning']
   }
@@ -67,7 +67,7 @@ const conservationServices = [
   },
   {
     title: 'Climate-Controlled Storage',
-    description: 'Specialized storage facilities with precise temperature and humidity control during restoration.',
+    description: 'specialised storage facilities with precise temperature and humidity control during restoration.',
     icon: Thermometer,
     timeframe: 'Duration of treatment',
     process: ['Environmental monitoring', 'Secure storage', 'Access control', 'Condition tracking']
@@ -90,7 +90,7 @@ const collectorsAndInstitutions = [
   },
   {
     type: 'Cultural Institutions',
-    locations: ['Brisbane museums', 'Art galleries', 'Historical societies', 'Cultural centers'],
+    locations: ['Brisbane museums', 'Art galleries', 'Historical societies', 'Cultural centres'],
     collections: ['Public art collections', 'Historical artifacts', 'Cultural heritage items', 'Educational displays'],
     services: ['Emergency response', 'Bulk treatment protocols', 'Staff training', 'Disaster preparedness']
   },
@@ -209,8 +209,8 @@ export default function ArtAntiqueRestorationPage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 text-white py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="max-w-5xl mx-auto text-centre">
+              <div className="flex items-centre justify-centre gap-3 mb-6">
                 <Palette className="w-12 h-12 text-yellow-400" />
                 <span className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-3 rounded-full font-bold text-lg">
                   Museum-Grade Conservation • Heritage Specialist
@@ -224,7 +224,7 @@ export default function ArtAntiqueRestorationPage() {
 
               <p className="text-xl mb-8 leading-relaxed max-w-4xl mx-auto">
                 Professional art and antique water damage restoration using museum-grade conservation techniques.
-                <strong> Master Restorer Phill McGurk</strong> - specialized expertise in preserving paintings,
+                <strong> Master Restorer Phill McGurk</strong> - specialised expertise in preserving paintings,
                 sculptures, heritage furniture, and rare collections for Brisbane's most valuable cultural assets.
               </p>
 
@@ -253,7 +253,7 @@ export default function ArtAntiqueRestorationPage() {
 
               <Link
                 href="tel:1300309361"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-center gap-3"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-centre gap-3"
               >
                 <Phone className="w-6 h-6" />
                 Art Emergency: 1300 309 361
@@ -265,12 +265,12 @@ export default function ArtAntiqueRestorationPage() {
         {/* Art Categories */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Art & Antique Categories Restored
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized conservation protocols for different types of cultural objects,
+                specialised conservation protocols for different types of cultural objects,
                 from oil paintings to heritage furniture, each requiring unique expertise.
               </p>
             </div>
@@ -278,7 +278,7 @@ export default function ArtAntiqueRestorationPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {artCategories.map((category, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-centre justify-between mb-6">
                     <h3 className="text-xl font-semibold text-gray-900">
                       {category.category}
                     </h3>
@@ -318,7 +318,7 @@ export default function ArtAntiqueRestorationPage() {
                       <span className="text-sm text-gray-500 mb-2 block">Conservation Techniques:</span>
                       <div className="space-y-1">
                         {category.techniques.map((technique, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
+                          <div key={idx} className="flex items-centre gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
                             <span className="text-sm text-gray-700">{technique}</span>
                           </div>
@@ -335,7 +335,7 @@ export default function ArtAntiqueRestorationPage() {
         {/* Conservation Services */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Professional Conservation Services
@@ -351,8 +351,8 @@ export default function ArtAntiqueRestorationPage() {
                 const IconComponent = service.icon;
                 return (
                   <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-purple-600 hover:shadow-xl transition-shadow">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-centre gap-4 mb-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-centre justify-centre">
                         <IconComponent className="w-6 h-6 text-purple-600" />
                       </div>
                       <div>
@@ -371,8 +371,8 @@ export default function ArtAntiqueRestorationPage() {
                       <span className="text-sm text-gray-500 mb-3 block">Process Steps:</span>
                       <div className="space-y-2">
                         {service.process.map((step, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
-                            <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                          <div key={idx} className="flex items-centre gap-2">
+                            <span className="w-6 h-6 bg-purple-600 text-white rounded-full flex items-centre justify-centre text-xs font-bold">
                               {idx + 1}
                             </span>
                             <span className="text-sm text-gray-700">{step}</span>
@@ -390,13 +390,13 @@ export default function ArtAntiqueRestorationPage() {
         {/* Collectors & Institutions */}
         <section className="py-16 bg-blue-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Crown className="w-12 h-12 text-purple-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Collectors & Cultural Institutions Served
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized services for private collectors, museums, galleries, and heritage properties
+                specialised services for private collectors, museums, galleries, and heritage properties
                 across Brisbane's cultural landscape.
               </p>
             </div>
@@ -428,10 +428,10 @@ export default function ArtAntiqueRestorationPage() {
                     </div>
 
                     <div>
-                      <span className="text-sm text-gray-500 mb-2 block">Specialized Services:</span>
+                      <span className="text-sm text-gray-500 mb-2 block">specialised Services:</span>
                       <div className="space-y-1">
                         {client.services.map((service, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
+                          <div key={idx} className="flex items-centre gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
                             <span className="text-sm text-gray-700">{service}</span>
                           </div>
@@ -449,13 +449,13 @@ export default function ArtAntiqueRestorationPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Art & Antique Conservation Features
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {artRestorationFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+                  <div key={index} className="flex items-centre gap-3 bg-white rounded-lg p-4 shadow-sm">
                     <Palette className="w-5 h-5 text-purple-600 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
@@ -468,7 +468,7 @@ export default function ArtAntiqueRestorationPage() {
         {/* Master Restorer Conservation Expertise */}
         <section className="py-16 bg-gray-900 text-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-centre">
               <Award className="w-16 h-16 text-yellow-400 mx-auto mb-6" />
               <h2 className="text-3xl font-bold mb-6">
                 Cultural Heritage Conservation Mastery
@@ -502,7 +502,7 @@ export default function ArtAntiqueRestorationPage() {
 
         {/* Emergency CTA */}
         <section className="py-16 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <Palette className="w-16 h-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold mb-6">
               Art Collection Emergency? Every Minute Counts for Cultural Assets
@@ -513,17 +513,17 @@ export default function ArtAntiqueRestorationPage() {
               emergency protocols to preserve your valuable cultural assets.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-5 h-5" />
                 Art Emergency: 1300 309 361
               </Link>
               <Link
                 href="/professionals"
-                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-center justify-center gap-3"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Shield className="w-5 h-5" />
                 Discrete Professional Service
@@ -535,13 +535,13 @@ export default function ArtAntiqueRestorationPage() {
         {/* Related Services */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-centre text-gray-900 mb-8">
               Related Luxury Services
             </h3>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <Link
                 href="/services/wine-cellar-restoration"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Star className="w-8 h-8 text-purple-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Wine Cellar Restoration</h4>
@@ -549,7 +549,7 @@ export default function ArtAntiqueRestorationPage() {
               </Link>
               <Link
                 href="/samford-valley"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Crown className="w-8 h-8 text-yellow-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Luxury Estate Services</h4>
@@ -557,7 +557,7 @@ export default function ArtAntiqueRestorationPage() {
               </Link>
               <Link
                 href="/professionals"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Shield className="w-8 h-8 text-blue-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Professional Services</h4>

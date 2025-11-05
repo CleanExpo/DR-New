@@ -155,9 +155,9 @@ function generateHtmlFromTemplate(template?: string, data?: Record<string, any>)
         <style>
           body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
           .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background: #0066cc; color: white; padding: 20px; text-align: center; }
+          .header { background: #0066cc; color: white; padding: 20px; text-align: centre; }
           .content { padding: 20px; background: #f9f9f9; }
-          .footer { padding: 20px; text-align: center; color: #666; font-size: 12px; }
+          .footer { padding: 20px; text-align: centre; color: #666; font-size: 12px; }
         </style>
       </head>
       <body>
@@ -189,7 +189,7 @@ function generateHtmlFromTemplate(template?: string, data?: Record<string, any>)
     `,
     '2fa-code': `
       <h2>Your Verification Code</h2>
-      <p style="font-size: 24px; font-weight: bold; text-align: center; padding: 20px; background: white; border: 2px solid #0066cc;">
+      <p style="font-size: 24px; font-weight: bold; text-align: centre; padding: 20px; background: white; border: 2px solid #0066cc;">
         ${data?.code}
       </p>
       <p>This code is valid for ${data?.validMinutes} minutes.</p>

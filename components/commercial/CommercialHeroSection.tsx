@@ -19,7 +19,7 @@ const CommercialHeroSection = () => {
 
   const clientTypes = [
     'Office Buildings',
-    'Retail Centers',
+    'Retail centres',
     'Industrial Warehouses',
     'Hotels & Hospitality',
     'Medical Facilities',
@@ -39,7 +39,7 @@ const CommercialHeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-centre mb-12"
         >
           <Badge className="mb-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
             <Shield className="w-4 h-4 mr-2" />
@@ -54,13 +54,13 @@ const CommercialHeroSection = () => {
           </h1>
 
           <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-            Specialized restoration services for Brisbane's commercial sector.
-            Minimize downtime, protect assets, and ensure business continuity
+            specialised restoration services for Brisbane's commercial sector.
+            minimise downtime, protect assets, and ensure business continuity
             with our Master Restorer certified team.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center mb-8">
+          <div className="flex flex-wrap gap-4 justify-centre mb-8">
             <Button
               size="lg"
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg font-bold"
@@ -78,7 +78,7 @@ const CommercialHeroSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-centre">
           {/* Commercial Management Image */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -91,7 +91,7 @@ const CommercialHeroSection = () => {
               <CardContent className="p-0">
                 <Image
                   src="/images/commercial-management-brisbane.png"
-                  alt="Disaster Recovery Commercial Management Services - Brisbane CBD, Office Buildings, Retail Centers, Industrial Properties"
+                  alt="Disaster Recovery Commercial Management Services - Brisbane CBD, Office Buildings, Retail centres, Industrial Properties"
                   title="Professional Commercial Property Disaster Recovery Management - 24/7 Emergency Response, Insurance Approved, Business Continuity Solutions"
                   width={800}
                   height={600}
@@ -123,7 +123,7 @@ const CommercialHeroSection = () => {
                   transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
                 >
                   <Card className="hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6 text-center">
+                    <CardContent className="p-6 text-centre">
                       <stat.icon className="w-10 h-10 text-blue-600 mx-auto mb-3" />
                       <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                       <div className="text-sm text-gray-600">{stat.label}</div>
@@ -146,7 +146,7 @@ const CommercialHeroSection = () => {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.05 * index }}
-                      className="flex items-center gap-2"
+                      className="flex items-centre gap-2"
                     >
                       <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
                       <span className="text-sm text-gray-700">{type}</span>
@@ -166,7 +166,7 @@ const CommercialHeroSection = () => {
                       Brisbane CBD & Commercial Districts
                     </h3>
                     <p className="text-gray-600 text-sm mb-3">
-                      Specialized coverage for Brisbane's key commercial areas:
+                      specialised coverage for Brisbane's key commercial areas:
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {['Brisbane CBD', 'Fortitude Valley', 'South Brisbane', 'Eight Mile Plains', 'Springwood', 'Eagle Farm'].map((area) => (
@@ -189,19 +189,19 @@ const CommercialHeroSection = () => {
             >
               <h3 className="text-lg font-bold mb-3">Insurance & Compliance</h3>
               <ul className="space-y-2">
-                <li className="flex items-center gap-2">
+                <li className="flex items-centre gap-2">
                   <CheckCircle className="w-5 h-5 text-green-400" />
                   <span>Direct insurance billing available</span>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-centre gap-2">
                   <CheckCircle className="w-5 h-5 text-green-400" />
                   <span>WorkCover compliant operations</span>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-centre gap-2">
                   <CheckCircle className="w-5 h-5 text-green-400" />
                   <span>IICRC certified Master Restorer</span>
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-centre gap-2">
                   <CheckCircle className="w-5 h-5 text-green-400" />
                   <span>$20M public liability insurance</span>
                 </li>
@@ -215,7 +215,7 @@ const CommercialHeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 text-center bg-blue-600 rounded-2xl p-8"
+          className="mt-12 text-centre bg-blue-600 rounded-2xl p-8"
         >
           <h2 className="text-2xl font-bold text-white mb-4">
             Protect Your Commercial Property Investment
@@ -224,7 +224,7 @@ const CommercialHeroSection = () => {
             Join 500+ Brisbane businesses that trust us for rapid disaster response and restoration.
             Available 24/7, 365 days a year.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-centre">
             <Link href="/services/commercial">
               <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
                 View Commercial Services

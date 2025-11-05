@@ -17,7 +17,7 @@ interface LazyImageOptimizedProps {
 }
 
 /**
- * Optimized lazy loading image component with:
+ * optimised lazy loading image component with:
  * - Intersection Observer for viewport detection
  * - Progressive enhancement
  * - Native lazy loading fallback
@@ -25,7 +25,7 @@ interface LazyImageOptimizedProps {
  * - Automatic WebP/AVIF format selection
  * - Responsive image loading
  */
-export const LazyImageOptimized: React.FC<LazyImageOptimizedProps> = ({
+export const LazyImageoptimised: React.FC<LazyImageOptimizedProps> = ({
   src,
   alt,
   className = '',
@@ -42,32 +42,32 @@ export const LazyImageOptimized: React.FC<LazyImageOptimizedProps> = ({
   const [currentSrc, setCurrentSrc] = useState<string>('');
   const imgRef = useRef<HTMLDivElement>(null);
 
-  // Generate optimized image paths
+  // Generate optimised image paths
   const generateSrcSet = () => {
     const basePath = src.replace(/\.[^/.]+$/, '');
     const extension = src.match(/\.[^/.]+$/)?.[0] || '';
 
     return {
       avif: [
-        `/optimized/thumbnail${basePath}-400w.avif 400w`,
-        `/optimized/mobile${basePath}-768w.avif 768w`,
-        `/optimized/tablet${basePath}-1024w.avif 1024w`,
-        `/optimized/desktop${basePath}-1920w.avif 1920w`,
-        `/optimized/retina${basePath}-2560w.avif 2560w`
+        `/optimised/thumbnail${basePath}-400w.avif 400w`,
+        `/optimised/mobile${basePath}-768w.avif 768w`,
+        `/optimised/tablet${basePath}-1024w.avif 1024w`,
+        `/optimised/desktop${basePath}-1920w.avif 1920w`,
+        `/optimised/retina${basePath}-2560w.avif 2560w`
       ].join(', '),
       webp: [
-        `/optimized/thumbnail${basePath}-400w.webp 400w`,
-        `/optimized/mobile${basePath}-768w.webp 768w`,
-        `/optimized/tablet${basePath}-1024w.webp 1024w`,
-        `/optimized/desktop${basePath}-1920w.webp 1920w`,
-        `/optimized/retina${basePath}-2560w.webp 2560w`
+        `/optimised/thumbnail${basePath}-400w.webp 400w`,
+        `/optimised/mobile${basePath}-768w.webp 768w`,
+        `/optimised/tablet${basePath}-1024w.webp 1024w`,
+        `/optimised/desktop${basePath}-1920w.webp 1920w`,
+        `/optimised/retina${basePath}-2560w.webp 2560w`
       ].join(', '),
       fallback: [
-        `/optimized/thumbnail${basePath}-400w.jpg 400w`,
-        `/optimized/mobile${basePath}-768w.jpg 768w`,
-        `/optimized/tablet${basePath}-1024w.jpg 1024w`,
-        `/optimized/desktop${basePath}-1920w.jpg 1920w`,
-        `/optimized/retina${basePath}-2560w.jpg 2560w`
+        `/optimised/thumbnail${basePath}-400w.jpg 400w`,
+        `/optimised/mobile${basePath}-768w.jpg 768w`,
+        `/optimised/tablet${basePath}-1024w.jpg 1024w`,
+        `/optimised/desktop${basePath}-1920w.jpg 1920w`,
+        `/optimised/retina${basePath}-2560w.jpg 2560w`
       ].join(', ')
     };
   };
@@ -208,4 +208,4 @@ export const LazyImageOptimized: React.FC<LazyImageOptimizedProps> = ({
   );
 };
 
-export default LazyImageOptimized;
+export default LazyImageoptimised;

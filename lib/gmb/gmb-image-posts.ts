@@ -74,7 +74,7 @@ export const GMB_IMAGE_POSTS = [
       {
         day: 'Wednesday',
         image: '/images/suburbs/new-farm-commercial-storm-damage-recovery.png',
-        caption: '🏢 New Farm Commercial Recovery - Storm damage restoration for businesses. Minimize downtime with our rapid response team. Master Restorer certified excellence.',
+        caption: '🏢 New Farm Commercial Recovery - Storm damage restoration for businesses. minimise downtime with our rapid response team. Master Restorer certified excellence.',
         hashtags: ['#NewFarmBusiness', '#StormRecovery', '#CommercialProperty', '#RapidResponse'],
         callToAction: 'CALL',
         location: 'New Farm'

@@ -81,7 +81,7 @@ export function AvailabilityChecker({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-centre gap-2">
           <Clock className="w-5 h-5" />
           Availability Checker
         </CardTitle>
@@ -130,7 +130,7 @@ export function AvailabilityChecker({
                   {availability.availableSlots.map((slot, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-2 p-2 rounded-md bg-green-50 border border-green-200"
+                      className="flex items-centre gap-2 p-2 rounded-md bg-green-50 border border-green-200"
                     >
                       <CheckCircle className="w-4 h-4 text-green-600" />
                       <span className="text-sm">
@@ -155,11 +155,11 @@ export function AvailabilityChecker({
                   {availability.bookedAppointments.map((appointment) => (
                     <div
                       key={appointment.id}
-                      className="flex items-center gap-2 p-3 rounded-md bg-red-50 border border-red-200"
+                      className="flex items-centre gap-2 p-3 rounded-md bg-red-50 border border-red-200"
                     >
                       <XCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-centre gap-2">
                           <span className="text-sm font-medium">
                             {formatTime(appointment.scheduledStart)} -{" "}
                             {formatTime(appointment.scheduledEnd)}
@@ -183,11 +183,11 @@ export function AvailabilityChecker({
             </div>
 
             <div className="border-t pt-4">
-              <div className="flex items-center justify-between text-sm">
+              <div className="flex items-centre justify-between text-sm">
                 <span className="text-muted-foreground">Total Available Slots:</span>
                 <span className="font-medium">{availability.availableSlots.length}</span>
               </div>
-              <div className="flex items-center justify-between text-sm mt-1">
+              <div className="flex items-centre justify-between text-sm mt-1">
                 <span className="text-muted-foreground">Total Booked:</span>
                 <span className="font-medium">{availability.bookedAppointments.length}</span>
               </div>

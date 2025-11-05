@@ -104,7 +104,7 @@ export default function InternalLinkingHub() {
     <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-centre mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export default function InternalLinkingHub() {
                   {/* Main Link */}
                   <Link
                     href={hub.mainLink}
-                    className="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold mb-4"
+                    className="inline-flex items-centre text-blue-600 hover:text-blue-700 font-semibold mb-4"
                   >
                     View All Services
                     <ArrowRight className="w-4 h-4 ml-1" />
@@ -162,9 +162,9 @@ export default function InternalLinkingHub() {
                       <Link
                         key={linkIndex}
                         href={link.href}
-                        className="flex items-center justify-between py-1.5 text-sm text-gray-700 hover:text-blue-600 transition-colors"
+                        className="flex items-centre justify-between py-1.5 text-sm text-gray-700 hover:text-blue-600 transition-colors"
                       >
-                        <span className="flex items-center gap-2">
+                        <span className="flex items-centre gap-2">
                           <ChevronRight className="w-3 h-3" />
                           {link.label}
                         </span>
@@ -189,7 +189,7 @@ export default function InternalLinkingHub() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-centre">
             Service Locations Across Southeast Queensland
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -231,7 +231,7 @@ export default function InternalLinkingHub() {
           >
             <Card className="h-full bg-red-50 border-red-200">
               <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <Clock className="w-6 h-6 text-red-600" />
                   <h3 className="font-bold text-lg text-gray-900">Emergency Services</h3>
                 </div>
@@ -243,9 +243,9 @@ export default function InternalLinkingHub() {
                     <Link
                       key={index}
                       href={page.href}
-                      className="flex items-center justify-between py-2 text-sm hover:text-red-600 transition-colors"
+                      className="flex items-centre justify-between py-2 text-sm hover:text-red-600 transition-colors"
                     >
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-centre gap-2">
                         <ChevronRight className="w-3 h-3" />
                         {page.label}
                       </span>
@@ -269,7 +269,7 @@ export default function InternalLinkingHub() {
           >
             <Card className="h-full bg-green-50 border-green-200">
               <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <FileText className="w-6 h-6 text-green-600" />
                   <h3 className="font-bold text-lg text-gray-900">Ultimate Guides</h3>
                 </div>
@@ -281,9 +281,9 @@ export default function InternalLinkingHub() {
                     <Link
                       key={index}
                       href={guide.href}
-                      className="flex items-center justify-between py-2 text-sm hover:text-green-600 transition-colors"
+                      className="flex items-centre justify-between py-2 text-sm hover:text-green-600 transition-colors"
                     >
-                      <span className="flex items-center gap-2">
+                      <span className="flex items-centre gap-2">
                         <ChevronRight className="w-3 h-3" />
                         {guide.label}
                       </span>
@@ -305,7 +305,7 @@ export default function InternalLinkingHub() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8"
+          className="text-centre bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8"
         >
           <h3 className="text-xl font-bold text-gray-900 mb-4">
             Can\'t find what you\'re looking for?
@@ -313,7 +313,7 @@ export default function InternalLinkingHub() {
           <p className="text-gray-600 mb-6">
             We offer comprehensive disaster recovery services across all of Southeast Queensland
           </p>
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-centre gap-2">
             {['Sewage Cleanup', 'Biohazard Cleaning', 'Storm Damage', 'Vandalism Repair', 'Trauma Cleaning'].map(service => (
               <Badge key={service} variant="outline" className="px-4 py-2">
                 {service}

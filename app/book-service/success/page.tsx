@@ -69,8 +69,8 @@ function BookingSuccessPageContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
           <p className="mt-4 text-gray-700">Processing your booking...</p>
         </div>
@@ -80,8 +80,8 @@ function BookingSuccessPageContent() {
 
   if (!bookingDetails) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <AlertTriangle className="h-12 w-12 text-red-500 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-gray-900">Booking Not Found</h2>
           <p className="mt-2 text-gray-700">Unable to load booking details.</p>
@@ -97,7 +97,7 @@ function BookingSuccessPageContent() {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Success Header */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-6 text-center">
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-6 text-centre">
           <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto mb-4" />
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Booking Confirmed!</h1>
           <p className="text-xl text-gray-700 mb-4">
@@ -111,14 +111,14 @@ function BookingSuccessPageContent() {
 
         {/* What Happens Next */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-centre gap-2">
             <Clock className="h-6 w-6 text-blue-600" />
             What Happens Next
           </h2>
           
           <div className="space-y-4">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-centre justify-centre text-blue-600 font-semibold">
                 1
               </div>
               <div>
@@ -131,7 +131,7 @@ function BookingSuccessPageContent() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-centre justify-centre text-blue-600 font-semibold">
                 2
               </div>
               <div>
@@ -141,7 +141,7 @@ function BookingSuccessPageContent() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-centre justify-centre text-blue-600 font-semibold">
                 3
               </div>
               <div>
@@ -151,7 +151,7 @@ function BookingSuccessPageContent() {
             </div>
 
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-centre justify-centre text-blue-600 font-semibold">
                 4
               </div>
               <div>
@@ -166,7 +166,7 @@ function BookingSuccessPageContent() {
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           {/* Service Details */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <Home className="h-5 w-5 text-blue-600" />
               Service Details
             </h3>
@@ -199,7 +199,7 @@ function BookingSuccessPageContent() {
 
           {/* Payment Summary */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <h3 className="font-bold text-gray-900 mb-4 flex items-centre gap-2">
               <Shield className="h-5 w-5 text-green-600" />
               Payment Summary
             </h3>
@@ -232,14 +232,14 @@ function BookingSuccessPageContent() {
             The contractor will contact you using the information below:
           </p>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-centre gap-3">
               <Mail className="h-5 w-5 text-blue-600" />
               <div>
                 <p className="text-sm text-gray-700">Email</p>
                 <p className="font-semibold">{bookingDetails.email}</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-centre gap-3">
               <User className="h-5 w-5 text-blue-600" />
               <div>
                 <p className="text-sm text-gray-700">Name</p>
@@ -251,7 +251,7 @@ function BookingSuccessPageContent() {
 
         {/* Important Information */}
         <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-6 mb-6">
-          <h3 className="font-bold text-orange-900 mb-3 flex items-center gap-2">
+          <h3 className="font-bold text-orange-900 mb-3 flex items-centre gap-2">
             <AlertTriangle className="h-5 w-5" />
             Important Information
           </h3>
@@ -276,25 +276,25 @@ function BookingSuccessPageContent() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center justify-center gap-2">
+        <div className="flex flex-col sm:flex-row gap-4 justify-centre">
+          <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-centre justify-centre gap-2">
             <Download className="h-5 w-5" />
             Download Receipt
           </button>
-          <button className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colours flex items-center justify-center gap-2">
+          <button className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colours flex items-centre justify-centre gap-2">
             <Send className="h-5 w-5" />
             Email Confirmation
           </button>
           <Link 
             href="/"
-            className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours text-center"
+            className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colours text-centre"
           >
             Return to Home
           </Link>
         </div>
 
         {/* Support Contact */}
-        <div className="text-center mt-8 p-6 bg-gray-100 rounded-lg">
+        <div className="text-centre mt-8 p-6 bg-gray-100 rounded-lg">
           <p className="text-gray-700 mb-2">Need immediate assistance?</p>
           <p className="text-lg font-semibold">Call our 24/7 Support: Online Form Available 24/7</p>
           <p className="text-sm text-gray-700 mt-1">Reference: {bookingDetails.bookingId}</p>
@@ -307,8 +307,8 @@ function BookingSuccessPageContent() {
 export default function BookingSuccessPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
           <p className="mt-4 text-gray-700">Loading booking confirmation...</p>
         </div>

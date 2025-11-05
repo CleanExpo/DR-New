@@ -29,7 +29,7 @@ export function MetricCard({
   if (loading) {
     return (
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardHeader className="flex flex-row items-centre justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
             {title}
           </CardTitle>
@@ -47,7 +47,7 @@ export function MetricCard({
 
   return (
     <Card className="hover:shadow-md transition-shadow">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <CardHeader className="flex flex-row items-centre justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
           {title}
         </CardTitle>
@@ -60,8 +60,8 @@ export function MetricCard({
           {value}
         </div>
         {change !== undefined && (
-          <div className="flex items-center mt-1">
-            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${getChangeBgColor(change)}`}>
+          <div className="flex items-centre mt-1">
+            <span className={`inline-flex items-centre px-2 py-0.5 rounded text-xs font-medium ${getChangeBgColor(change)}`}>
               {trend === 'up' && <ArrowUpIcon className="h-3 w-3 mr-1" />}
               {trend === 'down' && <ArrowDownIcon className="h-3 w-3 mr-1" />}
               {trend === 'neutral' && <MinusIcon className="h-3 w-3 mr-1" />}

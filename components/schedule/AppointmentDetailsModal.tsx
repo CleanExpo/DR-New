@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { format } from "date-fns"
 import {
-  Dialog,
+  dialogue,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -107,10 +107,10 @@ export function AppointmentDetailsModal({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <dialogue open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
+          <DialogTitle className="flex items-centre gap-2">
             Appointment Details
             {appointment.isEmergency && (
               <Badge variant="destructive" className="ml-2">
@@ -125,7 +125,7 @@ export function AppointmentDetailsModal({
         </DialogHeader>
 
         <div className="space-y-6">
-          <div className="flex items-center gap-2">
+          <div className="flex items-centre gap-2">
             <Badge className={statusColors[appointment.status]}>
               {appointment.status}
             </Badge>
@@ -133,7 +133,7 @@ export function AppointmentDetailsModal({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <h4 className="text-sm font-medium flex items-center gap-2">
+              <h4 className="text-sm font-medium flex items-centre gap-2">
                 <Calendar className="w-4 h-4" />
                 Scheduled Start
               </h4>
@@ -142,7 +142,7 @@ export function AppointmentDetailsModal({
               </p>
             </div>
             <div className="space-y-2">
-              <h4 className="text-sm font-medium flex items-center gap-2">
+              <h4 className="text-sm font-medium flex items-centre gap-2">
                 <Clock className="w-4 h-4" />
                 Scheduled End
               </h4>
@@ -188,7 +188,7 @@ export function AppointmentDetailsModal({
 
           {appointment.workOrder?.client && (
             <div className="space-y-2 border-t pt-4">
-              <h4 className="text-sm font-medium flex items-center gap-2">
+              <h4 className="text-sm font-medium flex items-centre gap-2">
                 <User className="w-4 h-4" />
                 Client Information
               </h4>
@@ -197,12 +197,12 @@ export function AppointmentDetailsModal({
                   {appointment.workOrder.client.firstName}{" "}
                   {appointment.workOrder.client.lastName}
                 </p>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-centre gap-2 text-sm text-muted-foreground">
                   <Mail className="w-3 h-3" />
                   {appointment.workOrder.client.email}
                 </div>
                 {appointment.workOrder.client.phone && (
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-centre gap-2 text-sm text-muted-foreground">
                     <Phone className="w-3 h-3" />
                     {appointment.workOrder.client.phone}
                   </div>
@@ -213,7 +213,7 @@ export function AppointmentDetailsModal({
 
           {appointment.technician && (
             <div className="space-y-2 border-t pt-4">
-              <h4 className="text-sm font-medium flex items-center gap-2">
+              <h4 className="text-sm font-medium flex items-centre gap-2">
                 <User className="w-4 h-4" />
                 Assigned Technician
               </h4>
@@ -221,12 +221,12 @@ export function AppointmentDetailsModal({
                 <p className="text-sm">
                   {appointment.technician.firstName} {appointment.technician.lastName}
                 </p>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="flex items-centre gap-2 text-sm text-muted-foreground">
                   <Mail className="w-3 h-3" />
                   {appointment.technician.email}
                 </div>
                 {appointment.technician.phone && (
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex items-centre gap-2 text-sm text-muted-foreground">
                     <Phone className="w-3 h-3" />
                     {appointment.technician.phone}
                   </div>
@@ -237,7 +237,7 @@ export function AppointmentDetailsModal({
 
           {appointment.travelTime && (
             <div className="space-y-2 border-t pt-4">
-              <h4 className="text-sm font-medium flex items-center gap-2">
+              <h4 className="text-sm font-medium flex items-centre gap-2">
                 <MapPin className="w-4 h-4" />
                 Travel Time
               </h4>
@@ -295,6 +295,6 @@ export function AppointmentDetailsModal({
           </div>
         </div>
       </DialogContent>
-    </Dialog>
+    </dialogue>
   )
 }

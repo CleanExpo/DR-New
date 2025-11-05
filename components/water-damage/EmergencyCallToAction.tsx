@@ -69,7 +69,7 @@ export default function EmergencyCallToAction() {
         borderRadius: '8px',
         padding: '1.5rem',
         margin: '2rem 0',
-        textAlign: 'center',
+        textAlign: 'centre',
       }}
     >
       <div

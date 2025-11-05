@@ -35,7 +35,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
+            className="text-centre"
           >
             <span className="text-6xl mb-6 block">{getServiceIcon()}</span>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -44,17 +44,17 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
             <p className="text-xl md:text-2xl mb-8 text-blue-800">
               {description}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-centre gap-4">
               <Link
                 href="/whos-first"
-                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Emergency Response
               </Link>
               <Link
                 href="/insurance-decoder"
-                className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
               >
                 <Shield className="w-5 h-5" />
                 Insurance Help
@@ -67,7 +67,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
       {/* Emergency Banner */}
       <section className="bg-red-600 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-centre justify-centre gap-4">
             <AlertTriangle className="w-8 h-8" />
             <p className="text-lg font-semibold">
               24/7 Emergency Response Available - Insurance Approved Contractors
@@ -87,7 +87,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
                 <MapPin className="w-8 h-8 text-blue-600" />
                 Service Areas in {city}
               </h2>
@@ -138,7 +138,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
             {/* Emergency Response */}
             {data.content?.emergencyResponse && (
               <div className="bg-blue-50 p-6 rounded-lg mb-8">
-                <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
+                <h3 className="text-xl font-bold mb-3 flex items-centre gap-2">
                   <AlertTriangle className="w-6 h-6 text-blue-600" />
                   Emergency Response
                 </h3>
@@ -179,14 +179,14 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
             {/* Insurance Partners */}
             {data.content?.insurancePartners && data.content.insurancePartners.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                <h3 className="text-xl font-bold mb-4 flex items-centre gap-2">
                   <Shield className="w-6 h-6 text-blue-600" />
                   Insurance Partners
                 </h3>
                 <p className="mb-4">We work directly with all major insurance companies:</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {data.content.insurancePartners.map((partner, idx) => (
-                    <div key={idx} className="bg-gray-50 p-3 rounded text-center font-medium">
+                    <div key={idx} className="bg-gray-50 p-3 rounded text-centre font-medium">
                       {partner}
                     </div>
                   ))}
@@ -261,7 +261,7 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -274,17 +274,17 @@ export default function LocationServicePageComponent({ data }: { data: any }) {
             <p className="text-xl mb-8 text-blue-800">
               Available 24/7 across {city} - Insurance approved contractors ready to help
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="/whos-first"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Get Help Now
               </Link>
               <Link
                 href="/insurance-decoder"
-                className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Shield className="w-5 h-5" />
                 Check Insurance

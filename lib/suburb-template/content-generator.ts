@@ -1,6 +1,6 @@
 /**
  * Content Generator - Suburb-Specific Content Creation
- * Generates unique, SEO-optimized content for each suburb
+ * Generates unique, SEO-optimised content for each suburb
  */
 
 import {
@@ -99,7 +99,7 @@ const disasterDescriptions: Record<string, string[]> = {
 };
 
 /**
- * FAQ questions organized by topic
+ * FAQ questions organised by topic
  */
 const faqTemplates: Record<string, FAQItem[]> = {
   'services': [
@@ -146,7 +146,7 @@ const faqTemplates: Record<string, FAQItem[]> = {
   'property-specific': [
     {
       question: 'Do you have experience with {PROPERTY_TYPE} properties?',
-      answer: 'Yes, we specialize in restoring {PROPERTY_TYPE} properties. This includes understanding unique materials, construction methods, and preservation requirements specific to these properties.',
+      answer: 'Yes, we specialise in restoring {PROPERTY_TYPE} properties. This includes understanding unique materials, construction methods, and preservation requirements specific to these properties.',
       category: 'property-specific',
     },
   ],
@@ -159,7 +159,7 @@ const whyChooseUsVariations: Record<string, string[]> = {
   'standard': [
     'Master Restorer certification with industry-leading expertise',
     '24/7 emergency response available throughout {REGION}',
-    'Direct insurance billing to minimize your out-of-pocket costs',
+    'Direct insurance billing to minimise your out-of-pocket costs',
     '{DISTANCE} minute typical response time in {SUBURB}',
     'Comprehensive services from water and fire restoration to mould remediation',
   ],
@@ -294,7 +294,7 @@ export function generateFAQs(suburb: SuburbTemplate): FAQItem[] {
   if (suburb.demographics.primaryPropertyTypes.length > 0) {
     const propertyFAQ = {
       question: `Do you have experience with ${suburb.demographics.primaryPropertyTypes.join(' and ')} properties?`,
-      answer: `Yes, we specialize in restoring ${suburb.demographics.primaryPropertyTypes.join(' and ')} properties in ${suburb.name}. This includes understanding unique materials, construction methods, and preservation requirements specific to these properties.`,
+      answer: `Yes, we specialise in restoring ${suburb.demographics.primaryPropertyTypes.join(' and ')} properties in ${suburb.name}. This includes understanding unique materials, construction methods, and preservation requirements specific to these properties.`,
       category: 'property-specific' as const,
     };
     faqs.push(propertyFAQ);
@@ -338,7 +338,7 @@ export function generateEmergencyResponse(suburb: SuburbTemplate): ContentBlock 
 
   return {
     heading: `Our ${suburb.name} Emergency Response`,
-    content: `When disaster strikes, every minute counts. Our emergency response protocol is designed to minimize property damage and protect your family or business:\n\n${steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}`,
+    content: `When disaster strikes, every minute counts. Our emergency response protocol is designed to minimise property damage and protect your family or business:\n\n${steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}`,
     sectionId: 'emergency-response',
   };
 }

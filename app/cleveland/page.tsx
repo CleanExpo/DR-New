@@ -40,7 +40,7 @@ const clevelandPrecincts = [
   },
   {
     area: 'Central Cleveland',
-    characteristics: 'Town center, commercial hub, transport links',
+    characteristics: 'Town centre, commercial hub, transport links',
     propertyTypes: ['Family homes', 'Commercial spaces', 'Mixed-use'],
     stormRisk: 'Medium - Elevated location',
     medianPrice: '$720,000',
@@ -61,14 +61,14 @@ const clevelandPrecincts = [
 const coastalServices = [
   {
     title: 'Storm Surge Emergency Response',
-    description: 'Rapid response to coastal storm surge events with specialized pumping and drying for saltwater intrusion.',
+    description: 'Rapid response to coastal storm surge events with specialised pumping and drying for saltwater intrusion.',
     icon: Waves,
     urgency: 'Critical - 60 minutes',
     features: ['Saltwater extraction', 'Corrosion prevention', 'Marine-grade restoration', 'Storm surge barriers']
   },
   {
     title: 'Salt Damage Remediation',
-    description: 'Specialized treatment for salt corrosion affecting coastal properties, including metals, timber, and finishes.',
+    description: 'specialised treatment for salt corrosion affecting coastal properties, including metals, timber, and finishes.',
     icon: Ship,
     urgency: 'High - 2 hours',
     features: ['Salt crystallization removal', 'Metal corrosion treatment', 'Timber protection', 'Coastal finish restoration']
@@ -85,7 +85,7 @@ const coastalServices = [
     description: 'High-humidity mould remediation and prevention strategies for Cleveland\'s marine climate.',
     icon: Wind,
     urgency: 'Medium - 24 hours',
-    features: ['Marine climate mould removal', 'Humidity control systems', 'Ventilation optimization', 'Anti-mould treatments']
+    features: ['Marine climate mould removal', 'Humidity control systems', 'Ventilation optimisation', 'Anti-mould treatments']
   }
 ];
 
@@ -112,7 +112,7 @@ const clevelandRisks = [
 
 const clevelandFeatures = [
   'Coastal property storm surge response within 40 minutes',
-  'Moreton Bay waterfront specialized protocols',
+  'Moreton Bay waterfront specialised protocols',
   'Saltwater damage and corrosion expertise',
   'Canal home and jetty coordination services',
   'Marine-grade materials and restoration techniques',
@@ -124,11 +124,11 @@ const clevelandFeatures = [
 const clevelandFAQ = [
   {
     question: 'How quickly can you respond to storm surge flooding in Cleveland?',
-    answer: 'We provide emergency response to Cleveland coastal properties within 40-45 minutes. Our team is equipped with specialized saltwater extraction equipment and understands the unique challenges of Moreton Bay storm surge events. We prioritize waterfront and canal properties during severe weather events.'
+    answer: 'We provide emergency response to Cleveland coastal properties within 40-45 minutes. Our team is equipped with specialised saltwater extraction equipment and understands the unique challenges of Moreton Bay storm surge events. We prioritise waterfront and canal properties during severe weather events.'
   },
   {
     question: 'Do you have experience with salt damage in coastal homes?',
-    answer: 'Yes, Master Restorer Phill McGurk specializes in coastal property restoration throughout the Bayside region. Salt damage requires specialized treatment including salt crystallization removal, corrosion prevention, and marine-grade restoration techniques. We use industry-leading products designed for harsh coastal environments.'
+    answer: 'Yes, Master Restorer Phill McGurk specialises in coastal property restoration throughout the Bayside region. Salt damage requires specialised treatment including salt crystallization removal, corrosion prevention, and marine-grade restoration techniques. We use industry-leading products designed for harsh coastal environments.'
   },
   {
     question: 'Can you help with canal home water damage at Raby Bay?',
@@ -136,7 +136,7 @@ const clevelandFAQ = [
   },
   {
     question: 'Why is mould such a problem in Cleveland properties?',
-    answer: 'Cleveland\'s coastal location creates consistently high humidity levels (often 70-90%), which provides ideal conditions for mould growth. Combined with salt air and temperature fluctuations, properties require specialized mould prevention strategies. We implement marine-climate specific solutions including dehumidification, ventilation optimization, and anti-mould treatments.'
+    answer: 'Cleveland\'s coastal location creates consistently high humidity levels (often 70-90%), which provides ideal conditions for mould growth. Combined with salt air and temperature fluctuations, properties require specialised mould prevention strategies. We implement marine-climate specific solutions including dehumidification, ventilation optimisation, and anti-mould treatments.'
   }
 ];
 
@@ -242,8 +242,8 @@ export default function ClevelandPage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-cyan-900 via-blue-900 to-cyan-800 text-white py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6 flex-wrap">
+            <div className="max-w-5xl mx-auto text-centre">
+              <div className="flex items-centre justify-centre gap-3 mb-6 flex-wrap">
                 <Anchor className="w-12 h-12 text-cyan-400" />
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-6 py-3 rounded-full font-bold text-lg">
                   Coastal Specialist • Storm Surge Expert
@@ -257,7 +257,7 @@ export default function ClevelandPage() {
 
               <p className="text-xl mb-8 leading-relaxed max-w-4xl mx-auto">
                 Professional water damage restoration for Cleveland's waterfront properties and Moreton Bay coastal homes.
-                <strong> Master Restorer Phill McGurk</strong> - specialized in storm surge events, saltwater damage,
+                <strong> Master Restorer Phill McGurk</strong> - specialised in storm surge events, saltwater damage,
                 and high-humidity coastal climate restoration.
               </p>
 
@@ -286,7 +286,7 @@ export default function ClevelandPage() {
 
               <Link
                 href="tel:1300309361"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-center gap-3 shadow-lg"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-centre gap-3 shadow-lg"
               >
                 <Phone className="w-6 h-6" />
                 Coastal Emergency: 1300 309 361
@@ -308,7 +308,7 @@ export default function ClevelandPage() {
                 freshwater and saltwater damage restoration.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Our team responds within 40 minutes to Cleveland emergencies, equipped with specialized saltwater extraction
+                Our team responds within 40 minutes to Cleveland emergencies, equipped with specialised saltwater extraction
                 equipment, marine-grade restoration materials, and the expertise to handle everything from minor leaks to
                 major storm surge flooding. We understand Cleveland's weather patterns, tidal systems, and the importance of
                 rapid response to prevent catastrophic salt corrosion in your valuable coastal investment.
@@ -320,12 +320,12 @@ export default function ClevelandPage() {
         {/* Cleveland Precincts */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Cleveland Coastal Precincts
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized restoration services across Cleveland's diverse waterfront communities,
+                specialised restoration services across Cleveland's diverse waterfront communities,
                 from canal estates to bay-front properties.
               </p>
             </div>
@@ -333,7 +333,7 @@ export default function ClevelandPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {clevelandPrecincts.map((precinct, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-cyan-600">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-centre justify-between mb-6">
                     <h3 className="text-xl font-semibold text-gray-900">
                       {precinct.area}
                     </h3>
@@ -388,13 +388,13 @@ export default function ClevelandPage() {
         {/* Coastal Services */}
         <section className="py-16 bg-blue-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Shield className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Coastal Restoration Services
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized services designed for Cleveland's unique coastal environment
+                specialised services designed for Cleveland's unique coastal environment
                 and Moreton Bay waterfront challenges.
               </p>
             </div>
@@ -404,8 +404,8 @@ export default function ClevelandPage() {
                 const IconComponent = service.icon;
                 return (
                   <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-cyan-600 hover:shadow-xl transition-shadow">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-centre gap-4 mb-6">
+                      <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-centre justify-centre">
                         <IconComponent className="w-6 h-6 text-cyan-600" />
                       </div>
                       <div>
@@ -424,7 +424,7 @@ export default function ClevelandPage() {
                       <span className="text-sm text-gray-500 mb-3 block">Key Features:</span>
                       <div className="space-y-2">
                         {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
+                          <div key={idx} className="flex items-centre gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
                             <span className="text-sm text-gray-700">{feature}</span>
                           </div>
@@ -441,7 +441,7 @@ export default function ClevelandPage() {
         {/* Risk Management */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <AlertTriangle className="w-12 h-12 text-red-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Cleveland Coastal Risk Management
@@ -481,13 +481,13 @@ export default function ClevelandPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Cleveland Coastal Restoration Features
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {clevelandFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+                  <div key={index} className="flex items-centre gap-3 bg-white rounded-lg p-4 shadow-sm">
                     <Anchor className="w-5 h-5 text-cyan-600 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
@@ -500,7 +500,7 @@ export default function ClevelandPage() {
         {/* FAQ Section */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+            <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
               Frequently Asked Questions
             </h2>
 
@@ -510,7 +510,7 @@ export default function ClevelandPage() {
                   key={idx}
                   className="group bg-white rounded-lg p-6 shadow-md border-l-4 border-cyan-600 cursor-pointer"
                 >
-                  <summary className="flex items-center justify-between font-semibold text-gray-900 text-lg">
+                  <summary className="flex items-centre justify-between font-semibold text-gray-900 text-lg">
                     {faq.question}
                     <span className="text-2xl group-open:rotate-45 transition-transform">+</span>
                   </summary>
@@ -523,7 +523,7 @@ export default function ClevelandPage() {
 
         {/* Emergency CTA */}
         <section className="py-16 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <Waves className="w-16 h-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold mb-6">
               Cleveland Coastal Emergency? Storm Surge Response Available 24/7
@@ -534,17 +534,17 @@ export default function ClevelandPage() {
               your valuable Moreton Bay waterfront investment.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-5 h-5" />
                 Coastal Emergency: 1300 309 361
               </Link>
               <Link
                 href="/emergency-guide"
-                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors inline-flex items-center justify-center gap-3"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors inline-flex items-centre justify-centre gap-3"
               >
                 <Shield className="w-5 h-5" />
                 Storm Preparation Guide
@@ -556,13 +556,13 @@ export default function ClevelandPage() {
         {/* Related Areas */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-centre text-gray-900 mb-8">
               Additional Bayside Areas We Serve
             </h3>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <Link
                 href="/wynnum"
-                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-center border-t-4 border-cyan-600"
+                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-centre border-t-4 border-cyan-600"
               >
                 <Waves className="w-8 h-8 text-cyan-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-semibold text-gray-900 mb-2">Wynnum</h4>
@@ -570,7 +570,7 @@ export default function ClevelandPage() {
               </Link>
               <Link
                 href="/manly"
-                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-center border-t-4 border-blue-600"
+                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-centre border-t-4 border-blue-600"
               >
                 <Ship className="w-8 h-8 text-blue-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-semibold text-gray-900 mb-2">Manly</h4>
@@ -578,7 +578,7 @@ export default function ClevelandPage() {
               </Link>
               <Link
                 href="/redland-bay"
-                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-center border-t-4 border-green-600"
+                className="group bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all text-centre border-t-4 border-green-600"
               >
                 <Home className="w-8 h-8 text-green-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-semibold text-gray-900 mb-2">Redland Bay</h4>

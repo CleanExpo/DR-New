@@ -115,8 +115,8 @@ export default function ResourcesPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-slate-900 text-white py-20">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-800/30 px-4 py-2 rounded-full mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="inline-flex items-centre gap-2 bg-blue-800/30 px-4 py-2 rounded-full mb-6">
               <BookOpen className="h-5 w-5 text-blue-400" />
               <span className="text-sm font-medium">Professional Resources</span>
             </div>
@@ -136,7 +136,7 @@ export default function ResourcesPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-2 text-center">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-2 text-centre">
                 <span className="text-white text-sm font-medium">Featured Resource</span>
               </div>
               <Link href="/resources/water-damage-categories" className="block p-8 hover:bg-gray-50 transition-colors">
@@ -145,7 +145,7 @@ export default function ResourcesPage() {
                     <Droplets className="h-12 w-12 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
+                    <div className="flex items-centre gap-3 mb-2">
                       <span className="bg-red-100 text-red-700 text-xs font-semibold px-2 py-1 rounded">
                         Essential Reading
                       </span>
@@ -159,7 +159,7 @@ export default function ResourcesPage() {
                       Learn how to identify water contamination levels, understand health risks,
                       and ensure proper insurance claim documentation according to IICRC S500 standards.
                     </p>
-                    <div className="flex items-center text-blue-600 font-medium">
+                    <div className="flex items-centre text-blue-600 font-medium">
                       Read Complete Guide
                       <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -177,7 +177,7 @@ export default function ResourcesPage() {
       <section className="py-8">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <div className="flex flex-wrap gap-3 justify-center">
+            <div className="flex flex-wrap gap-3 justify-centre">
               {categories.map((category) => (
                 <button
                   key={category.name}
@@ -210,7 +210,7 @@ export default function ResourcesPage() {
                         <Icon className="h-6 w-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
+                        <div className="flex items-centre gap-2 mb-2">
                           <span className={`text-xs font-semibold px-2 py-1 rounded ${
                             resource.badge === 'Essential' ? 'bg-red-100 text-red-700' :
                             resource.badge === 'Popular' ? 'bg-green-100 text-green-700' :
@@ -230,7 +230,7 @@ export default function ResourcesPage() {
                     <p className="text-gray-600 text-sm mb-4">
                       {resource.description}
                     </p>
-                    <div className="flex items-center text-blue-600 font-medium text-sm">
+                    <div className="flex items-centre text-blue-600 font-medium text-sm">
                       Learn More
                       <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -248,12 +248,12 @@ export default function ResourcesPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-centre">
               Quick Reference Guides
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="border-2 border-gray-200 rounded-xl p-6">
-                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <h3 className="font-bold text-lg mb-4 flex items-centre gap-2">
                   <AlertCircle className="h-5 w-5 text-orange-500" />
                   Emergency Contacts
                 </h3>
@@ -278,7 +278,7 @@ export default function ResourcesPage() {
               </div>
 
               <div className="border-2 border-gray-200 rounded-xl p-6">
-                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                <h3 className="font-bold text-lg mb-4 flex items-centre gap-2">
                   <Shield className="h-5 w-5 text-blue-500" />
                   Industry Standards
                 </h3>
@@ -309,7 +309,7 @@ export default function ResourcesPage() {
       {/* Newsletter CTA */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
         <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center text-white">
+          <div className="max-w-3xl mx-auto text-centre text-white">
             <h2 className="text-3xl font-bold mb-4">
               Stay Informed on Disaster Recovery
             </h2>

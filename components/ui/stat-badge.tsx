@@ -20,12 +20,12 @@ export function StatBadge({ icon: Icon, value, label, className }: StatBadgeProp
       whileHover={{ scale: 1.05 }}
       transition={{ duration: 0.2 }}
       className={cn(
-        'inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3',
+        'inline-flex items-centre gap-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3',
         'border border-white/20 shadow-lg',
         className
       )}
     >
-      <div className="flex items-center justify-center w-10 h-10 bg-white/20 rounded-lg">
+      <div className="flex items-centre justify-centre w-10 h-10 bg-white/20 rounded-lg">
         <Icon className="w-5 h-5 text-white" />
       </div>
       <div>

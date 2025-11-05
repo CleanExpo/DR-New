@@ -133,8 +133,8 @@ export default function WaterDamageCategoriesPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-slate-900 text-white py-20">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-blue-800/30 px-4 py-2 rounded-full mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="inline-flex items-centre gap-2 bg-blue-800/30 px-4 py-2 rounded-full mb-6">
               <Shield className="h-5 w-5 text-blue-400" />
               <span className="text-sm font-medium">IICRC S500 Standard Reference Guide</span>
             </div>
@@ -146,7 +146,7 @@ export default function WaterDamageCategoriesPage() {
               Learn why identifying water contamination levels can save lives, protect property,
               and ensure proper insurance claims processing across Australia
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-centre">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3">
                 <p className="text-sm text-blue-200">Reading Time</p>
                 <p className="text-2xl font-bold">8 minutes</p>
@@ -189,7 +189,7 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 The Three Categories of Water Damage: Visual Guide
               </h2>
@@ -216,8 +216,8 @@ export default function WaterDamageCategoriesPage() {
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               {/* Category 1 */}
               <div className="bg-blue-50 rounded-xl p-6 border-2 border-blue-200">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">1</div>
+                <div className="flex items-centre gap-3 mb-4">
+                  <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-centre justify-centre font-bold text-lg">1</div>
                   <h3 className="text-xl font-bold text-blue-900">Clean Water</h3>
                 </div>
                 <p className="text-blue-800 mb-4">
@@ -253,8 +253,8 @@ export default function WaterDamageCategoriesPage() {
 
               {/* Category 2 */}
               <div className="bg-yellow-50 rounded-xl p-6 border-2 border-yellow-400">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-yellow-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">2</div>
+                <div className="flex items-centre gap-3 mb-4">
+                  <div className="bg-yellow-500 text-white rounded-full w-12 h-12 flex items-centre justify-centre font-bold text-lg">2</div>
                   <h3 className="text-xl font-bold text-yellow-900">Grey Water</h3>
                 </div>
                 <p className="text-yellow-800 mb-4">
@@ -290,8 +290,8 @@ export default function WaterDamageCategoriesPage() {
 
               {/* Category 3 */}
               <div className="bg-red-50 rounded-xl p-6 border-2 border-red-400">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">3</div>
+                <div className="flex items-centre gap-3 mb-4">
+                  <div className="bg-red-600 text-white rounded-full w-12 h-12 flex items-centre justify-centre font-bold text-lg">3</div>
                   <h3 className="text-xl font-bold text-red-900">Black Water</h3>
                 </div>
                 <p className="text-red-800 mb-4">
@@ -333,7 +333,7 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16 bg-gradient-to-r from-orange-50 to-red-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-centre gap-3 mb-6">
               <Clock className="h-8 w-8 text-orange-600" />
               <h2 className="text-3xl font-bold text-gray-900">
                 Critical Time Factor: Category Deterioration
@@ -382,12 +382,12 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
               Insurance Claims: Why Category Classification Matters
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-green-50 rounded-xl p-6">
-                <h3 className="text-xl font-bold text-green-900 mb-4 flex items-center gap-2">
+                <h3 className="text-xl font-bold text-green-900 mb-4 flex items-centre gap-2">
                   <CheckCircle className="h-6 w-6 text-green-600" />
                   Typically Covered
                 </h3>
@@ -407,7 +407,7 @@ export default function WaterDamageCategoriesPage() {
                 </ul>
               </div>
               <div className="bg-red-50 rounded-xl p-6">
-                <h3 className="text-xl font-bold text-red-900 mb-4 flex items-center gap-2">
+                <h3 className="text-xl font-bold text-red-900 mb-4 flex items-centre gap-2">
                   <XCircle className="h-6 w-6 text-red-600" />
                   Often Excluded
                 </h3>
@@ -443,7 +443,7 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
               Health Risks by Water Category
             </h2>
             <div className="space-y-6">
@@ -500,12 +500,12 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
               IICRC S500 Professional Standards & Requirements
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <div className="text-centre">
+                <div className="bg-blue-100 rounded-full w-20 h-20 flex items-centre justify-centre mx-auto mb-4">
                   <Shield className="h-10 w-10 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">Safety Protocols</h3>
@@ -513,8 +513,8 @@ export default function WaterDamageCategoriesPage() {
                   Proper PPE selection, containment barriers, and negative air pressure for Categories 2 & 3
                 </p>
               </div>
-              <div className="text-center">
-                <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <div className="text-centre">
+                <div className="bg-green-100 rounded-full w-20 h-20 flex items-centre justify-centre mx-auto mb-4">
                   <Droplets className="h-10 w-10 text-green-600" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">Moisture Mapping</h3>
@@ -522,8 +522,8 @@ export default function WaterDamageCategoriesPage() {
                   Document all affected areas with moisture meters and thermal imaging cameras
                 </p>
               </div>
-              <div className="text-center">
-                <div className="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+              <div className="text-centre">
+                <div className="bg-purple-100 rounded-full w-20 h-20 flex items-centre justify-centre mx-auto mb-4">
                   <AlertCircle className="h-10 w-10 text-purple-600" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">Antimicrobial Application</h3>
@@ -575,10 +575,10 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
               Water Damage Restoration Services Across Australia
             </h2>
-            <p className="text-lg text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 text-centre mb-12 max-w-3xl mx-auto">
               Our network of IICRC-certified technicians provides 24/7 emergency response
               for all water damage categories across every major city and regional area in Australia.
             </p>
@@ -607,20 +607,20 @@ export default function WaterDamageCategoriesPage() {
                   </div>
                   <Link
                     href={`/locations/${location.city.toLowerCase().replace(' ', '-')}/water-damage-restoration`}
-                    className="mt-4 inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm"
+                    className="mt-4 inline-flex items-centre text-blue-600 hover:text-blue-700 font-medium text-sm"
                   >
                     View {location.city} Services →
                   </Link>
                 </div>
               ))}
             </div>
-            <div className="mt-12 text-center">
+            <div className="mt-12 text-centre">
               <p className="text-gray-600 mb-4">
                 Can't find your location? We service all of Australia including regional and remote areas.
               </p>
               <Link
                 href="/locations"
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-centre gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <MapPin className="h-5 w-5" />
                 Find Your Local Service
@@ -634,7 +634,7 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-centre">
               Frequently Asked Questions About Water Damage Categories
             </h2>
             <div className="space-y-6">
@@ -700,7 +700,7 @@ export default function WaterDamageCategoriesPage() {
       {/* Call to Action Section */}
       <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Experiencing Water Damage? Act Now!
             </h2>
@@ -708,22 +708,22 @@ export default function WaterDamageCategoriesPage() {
               Every minute counts when dealing with water damage. Our IICRC-certified
               technicians are available 24/7 across Australia for all water damage categories.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="/emergency"
-                className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-red-700 transition-colors"
+                className="inline-flex items-centre justify-centre gap-2 bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-red-700 transition-colors"
               >
                 <Phone className="h-6 w-6" />
                 Emergency Response
               </Link>
               <Link
                 href="/services/water-damage-restoration"
-                className="inline-flex items-center justify-center gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors"
+                className="inline-flex items-centre justify-centre gap-2 bg-white text-blue-900 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors"
               >
                 Learn More About Our Services
               </Link>
             </div>
-            <div className="mt-12 grid sm:grid-cols-3 gap-6 text-center">
+            <div className="mt-12 grid sm:grid-cols-3 gap-6 text-centre">
               <div>
                 <p className="text-3xl font-bold">24/7</p>
                 <p className="text-blue-200">Emergency Response</p>
@@ -745,7 +745,7 @@ export default function WaterDamageCategoriesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-centre">
               Related Water Damage Resources
             </h2>
             <div className="grid md:grid-cols-3 gap-6">

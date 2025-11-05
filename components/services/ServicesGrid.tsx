@@ -104,7 +104,7 @@ const services: Service[] = [
     id: 'commercial-restoration',
     title: 'Commercial Restoration',
     shortDescription: 'Business continuity focused commercial disaster recovery.',
-    fullDescription: 'Specialized commercial restoration services designed to minimize business downtime. From offices to warehouses, we understand the critical nature of getting your business operational quickly.',
+    fullDescription: 'specialised commercial restoration services designed to minimise business downtime. From offices to warehouses, we understand the critical nature of getting your business operational quickly.',
     image: '/images/services/commercial-residential.png',
     icon: Building2,
     urgency: 'urgent',
@@ -158,7 +158,7 @@ export default function ServicesGrid() {
     <section className="py-20 bg-gradient-to-br from-white to-gray-50">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-centre mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -186,7 +186,7 @@ export default function ServicesGrid() {
             transition={{ delay: 0.2 }}
             className="bg-red-600 text-white rounded-2xl p-6 max-w-2xl mx-auto"
           >
-            <div className="flex items-center justify-center gap-3 mb-3">
+            <div className="flex items-centre justify-centre gap-3 mb-3">
               <AlertTriangle className="w-6 h-6" />
               <span className="text-xl font-bold">Emergency? Call Now!</span>
             </div>
@@ -249,7 +249,7 @@ export default function ServicesGrid() {
                       opacity: hoveredService === service.id ? 1 : 0,
                       scale: hoveredService === service.id ? 1 : 0.8
                     }}
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="absolute inset-0 flex items-centre justify-centre"
                   >
                     <Button
                       size="lg"
@@ -285,7 +285,7 @@ export default function ServicesGrid() {
                     <h4 className="font-semibold text-sm text-gray-900 mb-2">Key Features:</h4>
                     <ul className="text-xs text-gray-600 space-y-1">
                       {service.features.slice(0, 3).map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2">
+                        <li key={idx} className="flex items-centre gap-2">
                           <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
                           {feature}
                         </li>
@@ -337,7 +337,7 @@ export default function ServicesGrid() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+              className="fixed inset-0 z-50 bg-black/80 flex items-centre justify-centre p-4"
               onClick={() => setSelectedService(null)}
             >
               <motion.div
@@ -371,7 +371,7 @@ export default function ServicesGrid() {
                           <h4 className="font-bold text-lg text-gray-900 mb-3">Service Features</h4>
                           <ul className="space-y-2">
                             {selectedService.features.map((feature, idx) => (
-                              <li key={idx} className="flex items-center gap-3">
+                              <li key={idx} className="flex items-centre gap-3">
                                 <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                                 <span className="text-gray-700">{feature}</span>
                               </li>
@@ -383,8 +383,8 @@ export default function ServicesGrid() {
                           <h4 className="font-bold text-lg text-gray-900 mb-3">Process Steps</h4>
                           <ol className="space-y-2">
                             {selectedService.processSteps.map((step, idx) => (
-                              <li key={idx} className="flex items-center gap-3">
-                                <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                              <li key={idx} className="flex items-centre gap-3">
+                                <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-sm font-bold">
                                   {idx + 1}
                                 </div>
                                 <span className="text-gray-700">{step}</span>
@@ -400,7 +400,7 @@ export default function ServicesGrid() {
                           <h4 className="font-bold text-lg text-gray-900 mb-3">Health Risks</h4>
                           <ul className="space-y-2">
                             {selectedService.healthRisks.map((risk, idx) => (
-                              <li key={idx} className="flex items-center gap-3">
+                              <li key={idx} className="flex items-centre gap-3">
                                 <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0" />
                                 <span className="text-gray-700">{risk}</span>
                               </li>
@@ -412,7 +412,7 @@ export default function ServicesGrid() {
                           <h4 className="font-bold text-lg text-gray-900 mb-3">Certifications</h4>
                           <div className="space-y-3">
                             {selectedService.certifications.map((cert, idx) => (
-                              <div key={idx} className="flex items-center gap-3">
+                              <div key={idx} className="flex items-centre gap-3">
                                 <Shield className="w-5 h-5 text-blue-600" />
                                 <span className="text-gray-700">{cert}</span>
                               </div>
@@ -421,7 +421,7 @@ export default function ServicesGrid() {
                         </div>
 
                         <div className="bg-gray-50 rounded-lg p-6">
-                          <div className="text-center">
+                          <div className="text-centre">
                             <div className="text-2xl font-bold text-gray-900 mb-1">
                               {selectedService.averageCost}
                             </div>
@@ -460,14 +460,14 @@ export default function ServicesGrid() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8"
+          className="text-centre bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8"
         >
           <h3 className="text-2xl font-bold mb-4">Emergency Disaster Recovery</h3>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
             Don't wait for disasters to worsen. Our certified technicians are standing by 24/7
             with professional equipment and rapid response times.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Button
               size="lg"
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-xl font-bold"

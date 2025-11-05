@@ -138,9 +138,9 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
           >
             <div className="flex h-full flex-col">
               {/* Header */}
-              <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-4">
-                <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex h-16 items-centre justify-between border-b border-sidebar-border px-4">
+                <div className="flex items-centre gap-2">
+                  <div className="flex h-8 w-8 items-centre justify-centre rounded-lg bg-primary text-primary-foreground">
                     <LayoutDashboard className="h-5 w-5" />
                   </div>
                   <span className="text-lg font-bold tracking-tight text-sidebar-foreground">
@@ -166,13 +166,13 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
                         <button
                           onClick={() => toggleExpanded(item.title)}
                           className={cn(
-                            'flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                            'flex w-full items-centre justify-between rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                             isActive(item.href)
                               ? 'bg-primary text-primary-foreground'
                               : 'text-sidebar-foreground hover:bg-sidebar-hover'
                           )}
                         >
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-centre gap-3">
                             <item.icon className="h-5 w-5 shrink-0" />
                             <span>{item.title}</span>
                           </div>
@@ -199,7 +199,7 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
                                   href={child.href}
                                   onClick={onClose}
                                   className={cn(
-                                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200',
+                                    'flex items-centre gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-200',
                                     isActive(child.href)
                                       ? 'bg-primary/10 font-medium text-primary'
                                       : 'text-muted-foreground hover:bg-sidebar-hover hover:text-sidebar-foreground'
@@ -217,7 +217,7 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
                         href={item.href}
                         onClick={onClose}
                         className={cn(
-                          'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                          'flex items-centre gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                           isActive(item.href)
                             ? 'bg-primary text-primary-foreground'
                             : 'text-sidebar-foreground hover:bg-sidebar-hover'
@@ -233,8 +233,8 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
 
               {/* User Profile */}
               <div className="border-t border-sidebar-border p-3">
-                <div className="flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-sidebar-hover">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <div className="flex items-centre gap-3 rounded-lg px-3 py-2 hover:bg-sidebar-hover">
+                  <div className="flex h-8 w-8 shrink-0 items-centre justify-centre rounded-full bg-primary/10 text-primary">
                     <User className="h-4 w-4" />
                   </div>
                   <div className="flex-1 overflow-hidden">

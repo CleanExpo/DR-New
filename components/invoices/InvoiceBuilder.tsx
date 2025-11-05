@@ -110,7 +110,7 @@ export function InvoiceBuilder({ lineItems, onLineItemsChange }: InvoiceBuilderP
               </div>
               <div className="col-span-3 md:col-span-2">
                 <Label className="text-xs">Total</Label>
-                <div className="h-9 flex items-center font-semibold">
+                <div className="h-9 flex items-centre font-semibold">
                   {formatCurrency(calculateLineTotal(item))}
                 </div>
               </div>

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateLocalBusinessWithServices, generateFAQSchema } from '@/lib/seo';
 import { Shield, CheckCircle2, MessageSquare, AlertCircle, Clock } from 'lucide-react';
 
@@ -57,7 +57,7 @@ export default function MedicalWasteClient() {
     },
     {
       question: 'How do you dispose of medical waste safely?',
-      answer: 'We follow strict Queensland health regulations for medical waste disposal. Sharps go in approved puncture-resistant containers, infectious materials are properly bagged and labeled, and all waste is transported to licensed medical waste disposal facilities. We provide full documentation and certificates of disposal.'
+      answer: 'We follow strict Queensland health regulations for medical waste disposal. Sharps go in approved puncture-resistant containers, infectious materials are properly bagged and labelled, and all waste is transported to licensed medical waste disposal facilities. We provide full documentation and certificates of disposal.'
     }
   ];
 
@@ -75,8 +75,8 @@ export default function MedicalWasteClient() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-teal-900 to-teal-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre mb-6">
               <AlertCircle className="h-16 w-16 text-teal-300" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -85,7 +85,7 @@ export default function MedicalWasteClient() {
             <p className="text-xl mb-8 text-teal-100">
               Professional medical waste cleanup and safe disposal services. Sharps, infectious materials, pharmaceuticals. IICRC certified. Available 24/7.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button
                 size="lg"
                 className="bg-teal-600 hover:bg-teal-700 text-white"
@@ -108,17 +108,17 @@ export default function MedicalWasteClient() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Clock className="h-12 w-12 text-teal-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">24/7 Response</h3>
                 <p className="text-sm text-gray-600">2-hour emergency response time</p>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Shield className="h-12 w-12 text-teal-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Certified Safe</h3>
                 <p className="text-sm text-gray-600">Full regulatory compliance</p>
               </Card>
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <AlertCircle className="h-12 w-12 text-teal-600 mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Proper Disposal</h3>
                 <p className="text-sm text-gray-600">Licensed medical waste facilities</p>
@@ -206,13 +206,13 @@ export default function MedicalWasteClient() {
                 <li className="flex gap-3">
                   <span className="font-bold text-teal-600">2.</span>
                   <div>
-                    <strong>Safe Collection:</strong> We identify and categorize all medical waste including sharps, infectious materials, and pharmaceuticals.
+                    <strong>Safe Collection:</strong> We identify and categorise all medical waste including sharps, infectious materials, and pharmaceuticals.
                   </div>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-bold text-teal-600">3.</span>
                   <div>
-                    <strong>Proper Containment:</strong> All waste is placed in approved puncture-resistant sharps containers and biohazard bags with proper labeling.
+                    <strong>Proper Containment:</strong> All waste is placed in approved puncture-resistant sharps containers and biohazard bags with proper labelling.
                   </div>
                 </li>
                 <li className="flex gap-3">
@@ -237,7 +237,7 @@ export default function MedicalWasteClient() {
             </Card>
 
             <Card className="p-6 bg-yellow-50 border-yellow-200">
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+              <h3 className="text-xl font-bold mb-4 flex items-centre gap-2">
                 <AlertCircle className="h-6 w-6 text-yellow-600" />
                 Common Medical Waste We Handle
               </h3>
@@ -288,7 +288,7 @@ export default function MedicalWasteClient() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Medical Waste Cleanup FAQs</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Medical Waste Cleanup FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -303,7 +303,7 @@ export default function MedicalWasteClient() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-teal-900 to-teal-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">Need Medical Waste Cleanup Services?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Safe, compliant medical waste disposal available 24/7. Licensed facilities, full documentation provided.
@@ -319,8 +319,8 @@ export default function MedicalWasteClient() {
         </div>
       </section>
 
-      {/* Quote Dialog */}
-      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      {/* Quote dialogue */}
+      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Medical Waste Cleanup Services</DialogTitle>
@@ -329,7 +329,7 @@ export default function MedicalWasteClient() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-teal-50 rounded-lg">
+            <div className="flex items-centre gap-3 p-3 bg-teal-50 rounded-lg">
               <MessageSquare className="h-5 w-5 text-teal-700" />
               <div>
                 <p className="font-semibold">Safe Disposal Request</p>
@@ -341,7 +341,7 @@ export default function MedicalWasteClient() {
             </Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     </div>
   );
 }

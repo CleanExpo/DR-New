@@ -14,8 +14,8 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
     <div className="min-h-screen bg-white">
       {/* Emergency Banner */}
       <div className="bg-red-600 text-white py-3 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="max-w-7xl mx-auto flex items-centre justify-between">
+          <div className="flex items-centre gap-2">
             <AlertCircle className="w-5 h-5 animate-pulse" />
             <span className="font-semibold">Emergency? Call us first: 1800 000 000</span>
           </div>
@@ -29,7 +29,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
+            className="text-centre mb-8"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{scenario.question}</h1>
             <p className="text-2xl mb-6">The Answer: <span className="text-yellow-600">Disaster Recovery - Always First</span></p>
@@ -49,11 +49,11 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="flex flex-wrap gap-4 justify-center"
+            className="flex flex-wrap gap-4 justify-centre"
           >
             <a
               href="tel:1800000000"
-              className="bg-green-500 hover:bg-green-800 text-white px-8 py-4 rounded-lg font-bold text-lg flex items-center gap-2 shadow-xl transition-all hover:scale-105"
+              className="bg-green-500 hover:bg-green-800 text-white px-8 py-4 rounded-lg font-bold text-lg flex items-centre gap-2 shadow-xl transition-all hover:scale-105"
             >
               <Phone className="w-6 h-6" />
               Call Us First Now
@@ -68,7 +68,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* Why Call Us First */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             Why Disaster Recovery Should Be Your First Call
           </h2>
           
@@ -94,10 +94,10 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* Wrong First Calls */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
             Common Mistakes: Wrong First Calls
           </h2>
-          <p className="text-center text-gray-700 mb-12 text-lg">
+          <p className="text-centre text-gray-700 mb-12 text-lg">
             These seem logical but can cost you thousands and weeks of delays
           </p>
           
@@ -128,7 +128,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* Our Process */}
       <section className="py-16 px-4 bg-gradient-to-br from-blue-50 to-blue-100">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             What Happens When You Call Us First
           </h2>
           
@@ -142,7 +142,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
                   transition={{ delay: index * 0.1 }}
                   className="flex items-start gap-4 pb-4 border-b last:border-0"
                 >
-                  <div className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">
+                  <div className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-centre justify-centre flex-shrink-0 font-bold">
                     {index + 1}
                   </div>
                   <p className="text-lg text-gray-700">{step}</p>
@@ -156,10 +156,10 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* Critical Timeline */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-4">
             Every Minute Counts: Critical Timeline
           </h2>
-          <p className="text-center text-gray-700 mb-12 text-lg">
+          <p className="text-centre text-gray-700 mb-12 text-lg">
             The first 24 hours determine your outcome
           </p>
           
@@ -183,14 +183,14 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* Cost Impact */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             The Financial Impact of Calling Us First
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="bg-white rounded-xl shadow-lg p-8 text-center"
+              className="bg-white rounded-xl shadow-lg p-8 text-centre"
             >
               <DollarSign className="w-12 h-12 text-green-600 mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">With Us First</h3>
@@ -200,7 +200,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
             
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="bg-white rounded-xl shadow-lg p-8 text-center"
+              className="bg-white rounded-xl shadow-lg p-8 text-centre"
             >
               <DollarSign className="w-12 h-12 text-red-600 mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Wrong First Call</h3>
@@ -210,7 +210,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
             
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl shadow-lg p-8 text-center"
+              className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl shadow-lg p-8 text-centre"
             >
               <CheckCircle className="w-12 h-12 mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">You Save</h3>
@@ -224,7 +224,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* Insurance Insights */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             Insurance Insights: What They Don't Tell You
           </h2>
           
@@ -250,7 +250,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* Health & Safety */}
       <section className="py-16 px-4 bg-red-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             Health & Safety Risks You May Not Know
           </h2>
           
@@ -276,7 +276,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {/* FAQs */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
             Frequently Asked Questions
           </h2>
           
@@ -290,7 +290,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
                 className="bg-white rounded-lg shadow-md overflow-hidden"
               >
                 <details className="group">
-                  <summary className="px-6 py-4 cursor-pointer list-none flex items-center justify-between hover:bg-gray-50">
+                  <summary className="px-6 py-4 cursor-pointer list-none flex items-centre justify-between hover:bg-gray-50">
                     <span className="text-lg font-semibold text-gray-800">{faq.question}</span>
                     <ArrowRight className="w-5 h-5 text-gray-700 group-open:rotate-90 transition-transform" />
                   </summary>
@@ -308,7 +308,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       {scenario.caseStudy && (
         <section className="py-16 px-4 bg-gradient-to-br from-green-50 to-green-100">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-centre mb-12">
               Real Success Story
             </h2>
             
@@ -344,7 +344,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-centre">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Don't Make The Wrong First Call
           </h2>
@@ -358,10 +358,10 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
             <p className="text-4xl font-bold text-yellow-600">Disaster Recovery. Always.</p>
           </div>
           
-          <div className="flex flex-wrap gap-4 justify-center">
+          <div className="flex flex-wrap gap-4 justify-centre">
             <a
               href="tel:1800000000"
-              className="bg-green-500 hover:bg-green-800 text-white px-10 py-5 rounded-lg font-bold text-xl flex items-center gap-3 shadow-2xl transition-all hover:scale-105"
+              className="bg-green-500 hover:bg-green-800 text-white px-10 py-5 rounded-lg font-bold text-xl flex items-centre gap-3 shadow-2xl transition-all hover:scale-105"
             >
               <Phone className="w-7 h-7" />
               Call Us First: 1800 000 000

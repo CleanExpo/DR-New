@@ -29,7 +29,7 @@ export function HeroSection({
   height = 'h-[600px]',
 }: HeroSectionProps) {
   return (
-    <section className={`relative ${height} flex items-center justify-center overflow-hidden`}>
+    <section className={`relative ${height} flex items-centre justify-centre overflow-hidden`}>
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -45,7 +45,7 @@ export function HeroSection({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
+      <div className="relative z-10 container mx-auto px-4 text-centre text-white">
         <motion.h1
           className="text-4xl md:text-6xl font-bold mb-6"
           initial={{ opacity: 0, y: 20 }}

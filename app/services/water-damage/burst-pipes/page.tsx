@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { generateSEO, generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '@/lib/seo';
 import {  Clock, Shield, Droplets, AlertTriangle, Wrench, Home, CheckCircle2, ArrowRight, XCircle, Gauge, MessageSquare} from 'lucide-react';
 
@@ -58,7 +58,7 @@ export default function BurstPipesPage() {
     },
     {
       question: 'How long does burst pipe restoration take?',
-      answer: 'Emergency water extraction takes 1-2 days, drying takes 3-5 days, and full restoration including repairs can take 1-3 weeks depending on damage extent. We work efficiently to minimize disruption.'
+      answer: 'Emergency water extraction takes 1-2 days, drying takes 3-5 days, and full restoration including repairs can take 1-3 weeks depending on damage extent. We work efficiently to minimise disruption.'
     }
   ];
 
@@ -163,8 +163,8 @@ export default function BurstPipesPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-blue-900 to-cyan-700 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-red-600/90 px-4 py-2 rounded-full mb-6 animate-pulse">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="inline-flex items-centre gap-2 bg-red-600/90 px-4 py-2 rounded-full mb-6 animate-pulse">
               <AlertTriangle className="h-5 w-5" />
               <span className="text-sm font-bold">EMERGENCY BURST PIPE RESPONSE</span>
             </div>
@@ -175,7 +175,7 @@ export default function BurstPipesPage() {
               24/7 emergency response for burst pipes and water damage. Fast water extraction, 
               professional drying, and complete restoration across Queensland.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button 
                 size="lg" 
                 className="bg-red-600 hover:bg-red-700 text-white"
@@ -189,16 +189,16 @@ export default function BurstPipesPage() {
                 Get Immediate Help
               </Button>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
+            <div className="mt-8 flex items-centre justify-centre gap-6 text-sm">
+              <div className="flex items-centre gap-2">
                 <Clock className="h-5 w-5 text-blue-500" />
                 <span>60min Response</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Shield className="h-5 w-5 text-blue-500" />
                 <span>Insurance Approved</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-centre gap-2">
                 <Wrench className="h-5 w-5 text-blue-500" />
                 <span>Licensed Plumbers</span>
               </div>
@@ -211,7 +211,7 @@ export default function BurstPipesPage() {
       <section className="py-16 bg-red-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">
+            <h2 className="text-3xl font-bold text-centre mb-8">
               <AlertTriangle className="inline-block h-8 w-8 text-red-600 mr-2" />
               Immediate Actions for Burst Pipes
             </h2>
@@ -219,7 +219,7 @@ export default function BurstPipesPage() {
               {emergencySteps.map((item, index) => (
                 <Card key={index} className={`p-4 ${item.critical ? 'border-2 border-red-600 bg-red-50' : ''}`}>
                   <div className="flex items-start gap-3">
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                    <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-centre justify-centre font-bold ${
                       item.critical ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
                     }`}>
                       {item.step}
@@ -232,7 +232,7 @@ export default function BurstPipesPage() {
                 </Card>
               ))}
             </div>
-            <div className="mt-8 text-center">
+            <div className="mt-8 text-centre">
               <Button 
                 size="lg"
                 className="bg-red-600 hover:bg-red-700"
@@ -249,7 +249,7 @@ export default function BurstPipesPage() {
       {/* Common Burst Pipe Locations */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
+          <div className="text-centre mb-10">
             <h2 className="text-3xl font-bold mb-4">Common Burst Pipe Locations</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Understanding where pipes commonly fail helps with prevention and quick response
@@ -258,7 +258,7 @@ export default function BurstPipesPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {commonBurstPipeLocations.map((item, index) => (
               <Card key={index} className="p-6 hover:shadow-xl transition-shadow">
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-centre gap-2 mb-3">
                   <Home className="h-6 w-6 text-blue-600" />
                   <h3 className="text-xl font-bold">{item.location}</h3>
                 </div>
@@ -281,10 +281,10 @@ export default function BurstPipesPage() {
       {/* Our Process */}
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
+          <div className="text-centre mb-10">
             <h2 className="text-3xl font-bold mb-4">Our Burst Pipe Restoration Process</h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Systematic approach to minimize damage and restore your property quickly
+              Systematic approach to minimise damage and restore your property quickly
             </p>
           </div>
           <div className="max-w-5xl mx-auto">
@@ -365,22 +365,22 @@ export default function BurstPipesPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <Card className="p-8 bg-orange-50 border-2 border-orange-200">
-              <h2 className="text-2xl font-bold mb-6 text-center">
+              <h2 className="text-2xl font-bold mb-6 text-centre">
                 <Gauge className="inline-block h-8 w-8 text-blue-700 mr-2" />
                 Warning Signs of Pipe Problems
               </h2>
-              <p className="text-center text-gray-700 mb-6">
+              <p className="text-centre text-gray-700 mb-6">
                 Early detection can prevent major burst pipe disasters
               </p>
               <div className="grid md:grid-cols-2 gap-4">
                 {warningSignsOfPipeFailure.map((sign, index) => (
-                  <div key={index} className="flex items-center gap-2">
+                  <div key={index} className="flex items-centre gap-2">
                     <XCircle className="h-5 w-5 text-blue-700 flex-shrink-0" />
                     <span className="text-gray-700">{sign}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 text-center">
+              <div className="mt-6 text-centre">
                 <p className="text-sm text-gray-700 mb-4">
                   Notice any of these signs? Get a professional inspection before disaster strikes.
                 </p>
@@ -401,7 +401,7 @@ export default function BurstPipesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Burst Pipe Damage Costs & Insurance</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Burst Pipe Damage Costs & Insurance</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4">Typical Restoration Costs</h3>
@@ -464,7 +464,7 @@ export default function BurstPipesPage() {
       {/* Service Areas */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
+          <div className="text-centre mb-10">
             <h2 className="text-3xl font-bold mb-4">24/7 Burst Pipe Response Areas</h2>
             <p className="text-xl text-gray-700">
               Rapid emergency response across Southeast Queensland
@@ -472,7 +472,7 @@ export default function BurstPipesPage() {
           </div>
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {['Brisbane CBD', 'North Brisbane', 'South Brisbane', 'Eastern Suburbs', 'Western Suburbs', 'Gold Coast', 'Sunshine Coast', 'Ipswich', 'Logan', 'Redlands', 'Moreton Bay', 'Toowoomba'].map((area) => (
-              <div key={area} className="bg-white p-3 rounded-lg text-center shadow-md hover:shadow-lg transition-shadow">
+              <div key={area} className="bg-white p-3 rounded-lg text-centre shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="font-semibold">{area}</h3>
                 <p className="text-xs text-gray-700 mt-1">Emergency Response</p>
               </div>
@@ -485,7 +485,7 @@ export default function BurstPipesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-10">Burst Pipe Emergency FAQs</h2>
+            <h2 className="text-3xl font-bold text-centre mb-10">Burst Pipe Emergency FAQs</h2>
             <div className="space-y-6">
               {faqs.map((faq, index) => (
                 <Card key={index} className="p-6">
@@ -500,12 +500,12 @@ export default function BurstPipesPage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-900 to-cyan-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">Burst Pipe Emergency? Act Fast!</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Every minute counts. Get immediate professional help to minimize damage and costs.
+            Every minute counts. Get immediate professional help to minimise damage and costs.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Button 
               size="lg" 
               className="bg-red-600 hover:bg-red-700"
@@ -522,11 +522,11 @@ export default function BurstPipesPage() {
         </div>
       </section>
 
-      {/* Quote Dialog */}
-      <Dialog open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
+      {/* Quote dialogue */}
+      <dialogue open={showQuoteDialog} onOpenChange={setShowQuoteDialog}>
         <DialogContent className="max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-centre gap-2">
               <AlertTriangle className="h-5 w-5 text-red-600 animate-pulse" />
               Burst Pipe Emergency Response
             </DialogTitle>
@@ -535,7 +535,7 @@ export default function BurstPipesPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 pt-4">
-            <div className="flex items-center gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
+            <div className="flex items-centre gap-3 p-3 bg-red-50 rounded-lg border-2 border-red-200">
               <MessageSquare className="h-6 w-6 text-red-600 animate-pulse" />
               <div>
                 <p className="font-semibold">Emergency Hotline</p>
@@ -543,19 +543,19 @@ export default function BurstPipesPage() {
               </div>
             </div>
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>60-minute emergency response</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Licensed emergency plumbers</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Insurance claim assistance</span>
               </div>
-              <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-centre gap-2 text-sm">
                 <CheckCircle2 className="h-4 w-4 text-green-500" />
                 <span>Free damage assessment</span>
               </div>
@@ -565,7 +565,7 @@ export default function BurstPipesPage() {
             </Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     </div>
   );
 }

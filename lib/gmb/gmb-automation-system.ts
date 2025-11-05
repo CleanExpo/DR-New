@@ -1,5 +1,5 @@
 // Google My Business Automation System
-// This system will automatically manage and optimize your GMB profiles
+// This system will automatically manage and optimise your GMB profiles
 
 interface GMBAutomationConfig {
   apiKey: string;
@@ -69,11 +69,11 @@ export class GMBAutomationSystem {
       },
       {
         q: "What areas do you cover?",
-        a: "We service all of Brisbane, Ipswich, and Logan with specialized teams for Hamilton, Ascot, New Farm, and Springfield Lakes."
+        a: "We service all of Brisbane, Ipswich, and Logan with specialised teams for Hamilton, Ascot, New Farm, and Springfield Lakes."
       },
       {
         q: "Do you handle commercial properties?",
-        a: "Absolutely! We specialize in commercial restoration for offices, retail, industrial, and strata properties."
+        a: "Absolutely! We specialise in commercial restoration for offices, retail, industrial, and strata properties."
       },
       {
         q: "What's your response time?",
@@ -84,7 +84,7 @@ export class GMBAutomationSystem {
     return questions;
   }
 
-  // 4. PHOTO OPTIMIZATION
+  // 4. PHOTO optimisation
   async optimizeAndUploadPhotos() {
     const photoCategories = [
       { category: 'EXTERIOR', description: 'Our emergency response vehicles' },
@@ -94,11 +94,11 @@ export class GMBAutomationSystem {
       { category: 'IDENTITY', description: 'Master Restorer certification' }
     ];
 
-    // Auto-tag and optimize images for GMB
+    // Auto-tag and optimise images for GMB
     return photoCategories;
   }
 
-  // 5. ATTRIBUTES OPTIMIZATION
+  // 5. ATTRIBUTES optimisation
   async updateBusinessAttributes() {
     const attributes = {
       'has_wheelchair_accessible_entrance': true,
@@ -129,7 +129,7 @@ export class GMBAutomationSystem {
   // 6. LOCAL RANKING SIGNALS
   async boostLocalSignals() {
     const signals = {
-      // Service area optimization
+      // Service area optimisation
       serviceAreas: [
         { suburb: 'Hamilton', postcode: '4007', priority: 'HIGH' },
         { suburb: 'Ascot', postcode: '4007', priority: 'HIGH' },
@@ -139,7 +139,7 @@ export class GMBAutomationSystem {
         { suburb: 'Ipswich', postcode: '4305', priority: 'MEDIUM' }
       ],
 
-      // Category optimization
+      // Category optimisation
       categories: {
         primary: 'Water Damage Restoration Service',
         secondary: [

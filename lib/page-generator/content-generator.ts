@@ -61,7 +61,7 @@ function generateHeroSection(context: ContentGenerationContext): string {
   return `
     <section className="hero-section py-20 bg-gradient-to-b from-blue-50 to-white">
       <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-centre">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             ${seoData.h1}
           </h1>
@@ -86,7 +86,7 @@ function generateHeroSection(context: ContentGenerationContext): string {
             </div>
           ` : ''}
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <a href="/claim" className="btn-primary">
               Get Immediate Help
             </a>
@@ -111,23 +111,23 @@ function generateStatsSection(context: ContentGenerationContext): string {
   return `
     <section className="stats-section py-16 bg-gray-50">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-centre mb-12">
           ${location.name} Disaster Recovery Statistics
         </h2>
         <div className="grid md:grid-cols-4 gap-6">
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-4xl font-bold text-blue-600">${stats.totalJobs}</div>
             <div className="text-gray-600">Jobs Completed</div>
           </div>
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-4xl font-bold text-green-600">${stats.successRate}%</div>
             <div className="text-gray-600">Success Rate</div>
           </div>
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-4xl font-bold text-purple-600">${stats.avgSettlement}</div>
             <div className="text-gray-600">Avg Settlement</div>
           </div>
-          <div className="text-center">
+          <div className="text-centre">
             <div className="text-4xl font-bold text-orange-600">${stats.responseTime}</div>
             <div className="text-gray-600">Response Time</div>
           </div>
@@ -148,7 +148,7 @@ function generateServicesSection(context: ContentGenerationContext): string {
   return `
     <section className="services-section py-16">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-centre mb-12">
           Emergency Services in ${location.name}
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
@@ -180,14 +180,14 @@ function generateContractorsSection(context: ContentGenerationContext): string {
   return `
     <section id="contractors" className="contractors-section py-16 bg-gray-50">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-centre mb-12">
           Certified Contractors Serving ${location.name}
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           ${contractors.slice(0, 6).map(contractor => `
             <div className="bg-white rounded-lg shadow-md p-6">
               <h3 className="text-xl font-semibold mb-2">${contractor.businessName}</h3>
-              <div className="flex items-center mb-3">
+              <div className="flex items-centre mb-3">
                 ${generateStarRating(contractor.rating || 0)}
                 <span className="ml-2 text-gray-600">(${contractor.reviewCount || 0} reviews)</span>
               </div>
@@ -203,7 +203,7 @@ function generateContractorsSection(context: ContentGenerationContext): string {
           `).join('')}
         </div>
         ${contractors.length > 6 ? `
-          <div className="text-center mt-8">
+          <div className="text-centre mt-8">
             <a href="/contractors?location=${location.slug}" className="btn-secondary">
               View All ${contractors.length} Contractors
             </a>
@@ -225,7 +225,7 @@ function generateTestimonialsSection(context: ContentGenerationContext): string 
   return `
     <section className="testimonials-section py-16">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-centre mb-12">
           What ${location.name} Residents Say
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
@@ -258,7 +258,7 @@ function generateFAQSection(context: ContentGenerationContext): string {
   return `
     <section className="faq-section py-16 bg-gray-50">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-centre mb-12">
           Frequently Asked Questions
         </h2>
         <div className="max-w-3xl mx-auto space-y-6">
@@ -286,14 +286,14 @@ function generateCTASection(context: ContentGenerationContext): string {
 
   return `
     <section className="cta-section py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-      <div className="container mx-auto px-6 text-center">
+      <div className="container mx-auto px-6 text-centre">
         <h2 className="text-3xl font-bold mb-4">
           Need Emergency ${service ? service.name : 'Disaster Recovery'} in ${location.name}?
         </h2>
         <p className="text-xl mb-8">
           Get immediate assistance from certified professionals. Available 24/7.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-centre">
           <a href="/claim" className="bg-white text-blue-600 font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors">
             Start Emergency Claim
           </a>
@@ -373,7 +373,7 @@ function getCommonServices(): any[] {
 function generateNoContractorsSection(location: any): string {
   return `
     <section className="contractors-section py-16 bg-gray-50">
-      <div className="container mx-auto px-6 text-center">
+      <div className="container mx-auto px-6 text-centre">
         <h2 className="text-3xl font-bold mb-6">
           Expanding to ${location.name}
         </h2>
@@ -470,7 +470,7 @@ function generateLocationServiceContent(location: any, service?: any): string {
     ` : ''}
 
     ${service ? `
-      <h3>Specialized ${service.name} Services</h3>
+      <h3>specialised ${service.name} Services</h3>
       <p>
         Our ${service.name.toLowerCase()} services in ${location.name} include comprehensive assessment,
         emergency mitigation, complete restoration, and insurance claim management. Every contractor in our

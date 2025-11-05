@@ -89,12 +89,12 @@ export default function VideoTestimonials() {
     <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-centre mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full mb-4"
+            className="inline-flex items-centre gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full mb-4"
           >
             <Volume2 className="w-4 h-4" />
             <span className="text-sm font-semibold">Real Stories, Real Results</span>
@@ -126,7 +126,7 @@ export default function VideoTestimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-4 mt-8"
+            className="flex flex-wrap justify-centre gap-4 mt-8"
           >
             <Badge className="px-4 py-2 bg-green-100 text-green-800">
               <CheckCircle className="w-4 h-4 mr-2" />
@@ -164,7 +164,7 @@ export default function VideoTestimonials() {
                       setSelectedVideo(video);
                       setIsPlaying(true);
                     }}
-                    className="absolute inset-0 z-20 flex items-center justify-center group/play"
+                    className="absolute inset-0 z-20 flex items-centre justify-centre group/play"
                   >
                     <div className="bg-white/90 group-hover/play:bg-white group-hover/play:scale-110 transition-all duration-300 rounded-full p-5 shadow-2xl">
                       <Play className="w-8 h-8 text-red-600 ml-1" />
@@ -186,12 +186,12 @@ export default function VideoTestimonials() {
                   {/* Bottom Info */}
                   <div className="absolute bottom-4 left-4 right-4 z-20 text-white">
                     <h3 className="font-bold text-lg mb-1">{video.title}</h3>
-                    <div className="flex items-center gap-4 text-sm">
-                      <div className="flex items-center gap-1">
+                    <div className="flex items-centre gap-4 text-sm">
+                      <div className="flex items-centre gap-1">
                         <MapPin className="w-3 h-3" />
                         <span>{video.location}</span>
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-centre gap-1">
                         <Calendar className="w-3 h-3" />
                         <span>{video.date}</span>
                       </div>
@@ -246,12 +246,12 @@ export default function VideoTestimonials() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-centre mt-12"
         >
           <p className="text-lg text-gray-700 mb-6">
             Join thousands of satisfied customers across Brisbane, Ipswich, and Logan
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Button size="lg" className="bg-red-600 hover:bg-red-700">
               Get Emergency Help Now
             </Button>
@@ -263,7 +263,7 @@ export default function VideoTestimonials() {
 
         {/* Video Modal (Placeholder) */}
         {selectedVideo && isPlaying && (
-          <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-black/90 z-50 flex items-centre justify-centre p-4">
             <div className="relative max-w-4xl w-full">
               <button
                 onClick={() => {
@@ -274,7 +274,7 @@ export default function VideoTestimonials() {
               >
                 Close
               </button>
-              <div className="aspect-video bg-gray-900 rounded-lg flex items-center justify-center">
+              <div className="aspect-video bg-gray-900 rounded-lg flex items-centre justify-centre">
                 <p className="text-white">Video Player Placeholder</p>
               </div>
             </div>

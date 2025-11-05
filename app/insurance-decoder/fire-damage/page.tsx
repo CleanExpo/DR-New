@@ -165,7 +165,7 @@ export default function FireDamageInsurancePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-centre gap-4 mb-6">
               <Shield className="w-12 h-12" />
               <Flame className="w-10 h-10" />
             </div>
@@ -182,7 +182,7 @@ export default function FireDamageInsurancePage() {
       {/* Critical Alert */}
       <section className="bg-red-600 text-white py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-centre justify-centre gap-3">
             <AlertTriangle className="w-6 h-6" />
             <p className="font-semibold">
               Never enter fire-damaged property until fire department gives all-clear
@@ -194,7 +194,7 @@ export default function FireDamageInsurancePage() {
       {/* Coverage Types */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Understanding Your Fire Coverage
             </h2>
@@ -237,7 +237,7 @@ export default function FireDamageInsurancePage() {
       {/* Common Exclusions */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Common Policy Exclusions
           </h2>
           
@@ -251,7 +251,7 @@ export default function FireDamageInsurancePage() {
                 viewport={{ once: true }}
                 className="bg-white rounded-lg shadow-lg p-6 border-2 border-red-200"
               >
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-centre gap-3 mb-4">
                   <XCircle className="w-8 h-8 text-red-600" />
                   <h3 className="text-xl font-bold text-red-900">{exclusion.category}</h3>
                 </div>
@@ -272,7 +272,7 @@ export default function FireDamageInsurancePage() {
       {/* Claim Process Timeline */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Fire Insurance Claim Timeline
           </h2>
           
@@ -290,7 +290,7 @@ export default function FireDamageInsurancePage() {
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex items-centre gap-3 mb-3">
                       <span className={`text-lg font-bold ${
                         phase.critical ? 'text-red-600' : 'text-blue-600'
                       }`}>
@@ -321,7 +321,7 @@ export default function FireDamageInsurancePage() {
       {/* Settlement Types */}
       <section className="py-16 bg-orange-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Understanding Settlement Options
           </h2>
           
@@ -372,7 +372,7 @@ export default function FireDamageInsurancePage() {
       {/* Tips Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Maximizing Your Fire Damage Claim
           </h2>
           
@@ -408,24 +408,24 @@ export default function FireDamageInsurancePage() {
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Need Help with Your Fire Damage Claim?
           </h2>
           <p className="text-xl mb-8 text-orange-800">
             Our certified contractors work directly with insurance companies
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <Link
               href="/whos-first"
-              className="bg-white text-orange-600 hover:bg-orange-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-white text-orange-600 hover:bg-orange-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <Phone className="w-5 h-5" />
               Find Fire Restoration Experts
             </Link>
             <Link
               href="/emergency/checklists/fire-damage"
-              className="bg-red-700 hover:bg-red-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-red-700 hover:bg-red-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
             >
               <CheckCircle className="w-5 h-5" />
               Fire Emergency Checklist

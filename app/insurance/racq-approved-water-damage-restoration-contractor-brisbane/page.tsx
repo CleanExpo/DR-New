@@ -16,8 +16,8 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-900 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Shield className="h-16 w-16 mr-4 text-yellow-400" />
               <div className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-bold text-xl">
                 RACQ APPROVED
@@ -39,7 +39,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
               <p className="text-lg">Quote your RACQ claim number for priority response</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Shield className="h-10 w-10 mx-auto mb-2 text-yellow-400" />
                 <p className="font-bold">RACQ Approved</p>
@@ -64,7 +64,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Streamlined RACQ Water Damage Claims Process
             </h2>
 
@@ -78,19 +78,19 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
                   with your claim. As an approved contractor, we streamline the entire process.
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>Provide your RACQ claim number when calling</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>We coordinate directly with RACQ assessors</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>Direct billing arrangement available</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>You typically only pay your excess</span>
                   </div>
@@ -111,19 +111,19 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
                   then we'll help you lodge your RACQ claim correctly.
                 </p>
                 <div className="space-y-3">
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>Emergency response within 60 minutes</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>Immediate damage mitigation</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>Professional documentation for RACQ</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-3" />
                     <span>Assistance with claim lodgement</span>
                   </div>
@@ -138,27 +138,27 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
 
             {/* Step-by-step process */}
             <Card className="p-8 bg-gray-50">
-              <h3 className="text-2xl font-bold text-center mb-8">
+              <h3 className="text-2xl font-bold text-centre mb-8">
                 Your RACQ Water Damage Claim Journey
               </h3>
               <div className="grid md:grid-cols-4 gap-6">
-                <div className="text-center">
-                  <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                <div className="text-centre">
+                  <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">1</div>
                   <h4 className="font-bold mb-2">Emergency Call</h4>
                   <p className="text-sm">Call our RACQ emergency line immediately. Water damage spreads rapidly.</p>
                 </div>
-                <div className="text-center">
-                  <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                <div className="text-centre">
+                  <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">2</div>
                   <h4 className="font-bold mb-2">Immediate Response</h4>
                   <p className="text-sm">Master Restorer on-site within 60 minutes for damage assessment and mitigation.</p>
                 </div>
-                <div className="text-center">
-                  <div className="bg-green-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                <div className="text-centre">
+                  <div className="bg-green-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">3</div>
                   <h4 className="font-bold mb-2">RACQ Coordination</h4>
                   <p className="text-sm">We handle all RACQ communication, documentation, and assessor coordination.</p>
                 </div>
-                <div className="text-center">
-                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+                <div className="text-centre">
+                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">4</div>
                   <h4 className="font-bold mb-2">Complete Restoration</h4>
                   <p className="text-sm">Full restoration with direct RACQ billing. You pay only your excess.</p>
                 </div>
@@ -172,7 +172,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               RACQ Approved Service Coverage - Queensland
             </h2>
 
@@ -180,23 +180,23 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-blue-800">Brisbane Metro</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Brisbane CBD & Inner City</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Hamilton & Ascot</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>New Farm & Bulimba</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Toowong & Paddington</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>All Brisbane suburbs</span>
                   </li>
@@ -206,23 +206,23 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-green-800">Ipswich Region</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Ipswich CBD</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Karalee & Brookwater</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Springfield Lakes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Augustine Heights</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>All Ipswich areas</span>
                   </li>
@@ -232,23 +232,23 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-purple-800">Logan & South</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Logan Central</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Springwood</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Shailer Park</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>Daisy Hill</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
                     <span>All Logan suburbs</span>
                   </li>
@@ -256,7 +256,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
               </Card>
             </div>
 
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-lg mb-4">
                 <strong>RACQ Members:</strong> Priority emergency response throughout our service area
               </p>
@@ -272,7 +272,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               RACQ Direct Billing & Cost Information
             </h2>
 
@@ -285,19 +285,19 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
                   meaning you typically only pay your policy excess.
                 </p>
                 <ul className="space-y-2 mb-6">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>No upfront payment required (in most cases)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>We bill RACQ directly</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>You pay only your policy excess</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Transparent cost breakdown provided</span>
                   </li>
@@ -317,19 +317,19 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
                   quickly and without issues.
                 </p>
                 <ul className="space-y-2 mb-6">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Professional damage assessment reports</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Detailed restoration scope of works</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Progress photography and documentation</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Compliance with RACQ requirements</span>
                   </li>
@@ -349,7 +349,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Common RACQ Water Damage Claims We Handle
             </h2>
 
@@ -439,7 +439,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
                   Heritage & High-Value Properties
                 </h3>
                 <p className="text-sm mb-3">
-                  Specialized restoration for Hamilton, Ascot heritage
+                  specialised restoration for Hamilton, Ascot heritage
                   homes and high-value properties.
                 </p>
                 <ul className="text-xs space-y-1">
@@ -456,7 +456,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
 
       {/* Emergency Contact */}
       <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-900 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             RACQ Water Damage Emergency?
           </h2>
@@ -499,7 +499,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               RACQ Water Damage Claims FAQ
             </h2>
 
@@ -516,7 +516,7 @@ export default function RACQApprovedWaterDamageRestorationContractorBrisbanePage
 
               <Card className="p-6">
                 <h3 className="text-lg font-bold mb-3">What if RACQ wants their own quotes?</h3>
-                <p>As an approved contractor, our quotes are typically accepted by RACQ. If additional quotes are required, we coordinate this process to minimize delays.</p>
+                <p>As an approved contractor, our quotes are typically accepted by RACQ. If additional quotes are required, we coordinate this process to minimise delays.</p>
               </Card>
 
               <Card className="p-6">

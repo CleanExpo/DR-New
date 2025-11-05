@@ -16,8 +16,8 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Thermometer className="h-16 w-16 mr-4 text-red-400" />
               <Eye className="h-16 w-16 text-blue-400" />
             </div>
@@ -37,7 +37,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               <p className="text-lg">Thermal imaging available 24/7 for emergencies</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <Award className="h-10 w-10 mx-auto mb-2 text-blue-400" />
                 <p className="font-bold">IICRC Certified</p>
@@ -62,7 +62,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Advanced Thermal Imaging Technology for Water Damage Detection
             </h2>
 
@@ -76,19 +76,19 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
                   to trained technicians using professional FLIR thermal cameras.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Detects temperature variations as small as 0.1°C</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Non-invasive assessment method</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Real-time visual feedback</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Accurate moisture mapping</span>
                   </li>
@@ -103,19 +103,19 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
                   allowing for targeted, cost-effective restoration rather than exploratory demolition.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Hidden water behind walls and ceilings</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Wet insulation in cavity walls</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Plumbing leaks within walls</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                     <span>Roof leak water migration paths</span>
                   </li>
@@ -125,15 +125,15 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
 
             {/* IICRC Standards */}
             <Card className="p-8 bg-blue-50">
-              <div className="text-center mb-6">
+              <div className="text-centre mb-6">
                 <Award className="h-16 w-16 mx-auto text-blue-600 mb-4" />
                 <h3 className="text-2xl font-bold">IICRC S500 Standard Compliance</h3>
               </div>
-              <p className="text-lg text-center mb-6">
+              <p className="text-lg text-centre mb-6">
                 Our thermal imaging and moisture detection protocols comply with IICRC S500 Standard for
                 Professional Water Damage Restoration, ensuring accurate assessment and documentation.
               </p>
-              <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div className="grid md:grid-cols-3 gap-6 text-centre">
                 <div>
                   <h4 className="font-bold mb-2">Moisture Mapping</h4>
                   <p className="text-sm">Detailed thermal maps showing moisture extent and severity levels</p>
@@ -156,13 +156,13 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Professional Grade Detection Equipment
             </h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="p-6">
-                <div className="text-center mb-4">
+                <div className="text-centre mb-4">
                   <Thermometer className="h-12 w-12 mx-auto text-red-600 mb-2" />
                   <h3 className="text-lg font-bold">FLIR Thermal Cameras</h3>
                 </div>
@@ -176,7 +176,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="text-center mb-4">
+                <div className="text-centre mb-4">
                   <Zap className="h-12 w-12 mx-auto text-yellow-600 mb-2" />
                   <h3 className="text-lg font-bold">Moisture Meters</h3>
                 </div>
@@ -190,7 +190,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="text-center mb-4">
+                <div className="text-centre mb-4">
                   <Eye className="h-12 w-12 mx-auto text-blue-600 mb-2" />
                   <h3 className="text-lg font-bold">Hygrometers</h3>
                 </div>
@@ -204,7 +204,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="text-center mb-4">
+                <div className="text-centre mb-4">
                   <FileText className="h-12 w-12 mx-auto text-green-600 mb-2" />
                   <h3 className="text-lg font-bold">Data Loggers</h3>
                 </div>
@@ -218,7 +218,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="text-center mb-4">
+                <div className="text-centre mb-4">
                   <Star className="h-12 w-12 mx-auto text-purple-600 mb-2" />
                   <h3 className="text-lg font-bold">Penetrating Radar</h3>
                 </div>
@@ -232,7 +232,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               </Card>
 
               <Card className="p-6">
-                <div className="text-center mb-4">
+                <div className="text-centre mb-4">
                   <CheckCircle className="h-12 w-12 mx-auto text-teal-600 mb-2" />
                   <h3 className="text-lg font-bold">Air Quality Monitors</h3>
                 </div>
@@ -253,13 +253,13 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Professional Water Damage Assessment Process
             </h2>
 
             <div className="grid md:grid-cols-4 gap-6 mb-12">
-              <Card className="p-6 text-center">
-                <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+              <Card className="p-6 text-centre">
+                <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">1</div>
                 <h3 className="text-lg font-bold mb-3">Initial Visual Assessment</h3>
                 <p className="text-sm">
                   Comprehensive visual inspection to identify obvious water damage,
@@ -267,8 +267,8 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
-                <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+              <Card className="p-6 text-centre">
+                <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">2</div>
                 <h3 className="text-lg font-bold mb-3">Thermal Imaging Survey</h3>
                 <p className="text-sm">
                   Systematic thermal imaging of all suspected areas using professional
@@ -276,8 +276,8 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
-                <div className="bg-green-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+              <Card className="p-6 text-centre">
+                <div className="bg-green-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">3</div>
                 <h3 className="text-lg font-bold mb-3">Moisture Verification</h3>
                 <p className="text-sm">
                   Direct moisture measurement using calibrated meters to confirm
@@ -285,8 +285,8 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
-                <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+              <Card className="p-6 text-centre">
+                <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-centre justify-centre mx-auto mb-4 text-2xl font-bold">4</div>
                 <h3 className="text-lg font-bold mb-3">Professional Reporting</h3>
                 <p className="text-sm">
                   Comprehensive assessment report with thermal images, moisture maps,
@@ -297,26 +297,26 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
 
             {/* Benefits of Professional Assessment */}
             <Card className="p-8 bg-green-50">
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="text-2xl font-bold text-centre mb-6">
                 Benefits of Professional Thermal Assessment
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-lg font-bold mb-3 text-green-800">Cost Savings</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Eliminates unnecessary exploratory demolition</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Targets restoration to affected areas only</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Reduces overall project costs</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Minimizes business/living disruption</span>
                     </li>
@@ -325,19 +325,19 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
                 <div>
                   <h4 className="text-lg font-bold mb-3 text-blue-800">Accuracy & Speed</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                       <span>Immediate moisture detection results</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                       <span>Comprehensive moisture mapping</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                       <span>Faster project completion</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-blue-600 mr-2" />
                       <span>Prevents secondary damage</span>
                     </li>
@@ -353,7 +353,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
       <section className="py-16 bg-blue-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Thermal Imaging Services Throughout Brisbane
             </h2>
 
@@ -361,23 +361,23 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-blue-800">Brisbane Premium Suburbs</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Thermometer className="h-4 w-4 text-red-600 mr-2" />
                     <span>Hamilton waterfront properties</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Thermometer className="h-4 w-4 text-red-600 mr-2" />
                     <span>Ascot heritage homes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Thermometer className="h-4 w-4 text-red-600 mr-2" />
                     <span>New Farm luxury apartments</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Thermometer className="h-4 w-4 text-red-600 mr-2" />
                     <span>Bulimba riverside properties</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Thermometer className="h-4 w-4 text-red-600 mr-2" />
                     <span>Toowong executive homes</span>
                   </li>
@@ -387,23 +387,23 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-green-800">Ipswich Region</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Eye className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Karalee acreage properties</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Eye className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Brookwater golf course estates</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Eye className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Springfield Lakes developments</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Eye className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Augustine Heights new builds</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Eye className="h-4 w-4 text-blue-600 mr-2" />
                     <span>All Ipswich commercial</span>
                   </li>
@@ -413,23 +413,23 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-purple-800">Commercial & Logan</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Zap className="h-4 w-4 text-yellow-600 mr-2" />
                     <span>Brisbane CBD buildings</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Zap className="h-4 w-4 text-yellow-600 mr-2" />
                     <span>Industrial complexes</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Zap className="h-4 w-4 text-yellow-600 mr-2" />
                     <span>Logan commercial properties</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Zap className="h-4 w-4 text-yellow-600 mr-2" />
                     <span>Retail and office spaces</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Zap className="h-4 w-4 text-yellow-600 mr-2" />
                     <span>Multi-story buildings</span>
                   </li>
@@ -437,7 +437,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
               </Card>
             </div>
 
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-lg mb-4">
                 <strong>Emergency thermal assessment available 24/7</strong>
               </p>
@@ -451,7 +451,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
 
       {/* Contact Section */}
       <section className="py-16 bg-gradient-to-r from-gray-700 to-gray-900 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Professional Thermal Imaging Assessment
           </h2>
@@ -497,7 +497,7 @@ export default function ThermalImagingMoistureDetectionBrisbanePage() {
       {/* Downloadable Resources */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <h2 className="text-3xl font-bold mb-12">
               Technical Resources & Guides
             </h2>

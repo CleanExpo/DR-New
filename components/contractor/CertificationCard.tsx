@@ -102,7 +102,7 @@ export function CertificationCard({
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-sm">
+        <div className="flex items-centre gap-2 text-sm">
           <StatusIcon className={cn("h-4 w-4", expiryStatus.color)} />
           <span className={cn("font-medium", expiryStatus.color)}>
             {expiryStatus.status}

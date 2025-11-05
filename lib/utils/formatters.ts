@@ -113,7 +113,7 @@ export function formatPhoneNumber(phone: string): string {
     }
   }
 
-  return phone; // Return as-is if format not recognized
+  return phone; // Return as-is if format not recognised
 }
 
 /**

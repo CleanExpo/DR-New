@@ -106,7 +106,7 @@ export default function NewInvoicePage() {
   return (
     <div className="container mx-auto py-8 px-4 space-y-6 max-w-5xl">
       {/* Header */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-centre gap-4">
         <Link href="/invoices">
           <Button variant="ghost" size="icon">
             <ArrowLeftIcon className="h-4 w-4" />

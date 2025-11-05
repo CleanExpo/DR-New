@@ -93,9 +93,9 @@ export default function AuthorBio({
 
   if (variant === 'inline') {
     return (
-      <div className={`inline-flex items-center gap-3 ${className}`}>
+      <div className={`inline-flex items-centre gap-3 ${className}`}>
         <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-blue-500 flex-shrink-0">
-          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-lg">
+          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-centre justify-centre text-white font-bold text-lg">
             {data.name.charAt(0)}
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function AuthorBio({
     return (
       <div className={`flex items-start gap-4 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-600 ${className}`}>
         <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 flex-shrink-0">
-          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-2xl">
+          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-centre justify-centre text-white font-bold text-2xl">
             {data.name.charAt(0)}
           </div>
         </div>
@@ -124,11 +124,11 @@ export default function AuthorBio({
           </div>
           <p className="text-sm text-gray-700 mb-3">{data.bio}</p>
           <div className="flex flex-wrap gap-2">
-            <span className="inline-flex items-center gap-1 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+            <span className="inline-flex items-centre gap-1 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
               <Briefcase className="w-3 h-3" />
               {data.experience}
             </span>
-            <span className="inline-flex items-center gap-1 text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+            <span className="inline-flex items-centre gap-1 text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
               <Award className="w-3 h-3" />
               {data.certifications}
             </span>
@@ -144,7 +144,7 @@ export default function AuthorBio({
       <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6">
         <div className="flex items-start gap-6">
           <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white flex-shrink-0">
-            <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-4xl">
+            <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-centre justify-centre text-white font-bold text-4xl">
               {data.name.charAt(0)}
             </div>
           </div>
@@ -152,11 +152,11 @@ export default function AuthorBio({
             <h2 className="text-2xl font-bold mb-1">{data.name}</h2>
             <p className="text-blue-100 text-lg mb-2">{data.title}</p>
             <div className="flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-1 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+              <span className="inline-flex items-centre gap-1 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
                 <Briefcase className="w-4 h-4" />
                 {data.experience}
               </span>
-              <span className="inline-flex items-center gap-1 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+              <span className="inline-flex items-centre gap-1 text-sm bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
                 <Award className="w-4 h-4" />
                 Certified Expert
               </span>
@@ -167,7 +167,7 @@ export default function AuthorBio({
 
       <div className="p-6">
         <div className="mb-6">
-          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-centre gap-2">
             <GraduationCap className="w-5 h-5 text-blue-600" />
             About {author === 'team' ? 'Our Team' : data.name.split(' ')[0]}
           </h3>
@@ -176,7 +176,7 @@ export default function AuthorBio({
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <h4 className="font-bold text-gray-900 mb-3 flex items-centre gap-2">
               <Award className="w-5 h-5 text-blue-600" />
               Credentials & Certifications
             </h4>
@@ -191,7 +191,7 @@ export default function AuthorBio({
           </div>
 
           <div>
-            <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <h4 className="font-bold text-gray-900 mb-3 flex items-centre gap-2">
               <Briefcase className="w-5 h-5 text-blue-600" />
               Areas of Expertise
             </h4>
@@ -212,14 +212,14 @@ export default function AuthorBio({
             <div className="flex flex-col gap-2">
               <a
                 href="tel:1300309361"
-                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
+                className="inline-flex items-centre gap-2 text-blue-600 hover:text-blue-800 transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 <span>1300 309 361</span>
               </a>
               <a
                 href="mailto:admin@disasterrecovery.com.au"
-                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
+                className="inline-flex items-centre gap-2 text-blue-600 hover:text-blue-800 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span>admin@disasterrecovery.com.au</span>
@@ -229,7 +229,7 @@ export default function AuthorBio({
         )}
       </div>
 
-      <div className="bg-gray-50 px-6 py-4 text-center">
+      <div className="bg-gray-50 px-6 py-4 text-centre">
         <p className="text-sm text-gray-600">
           <strong>{data.name}</strong> {author === 'team' ? 'has' : 'and the team have'} helped thousands of Brisbane families and businesses recover from disasters since 2011
         </p>
@@ -270,9 +270,9 @@ export function PublicationMeta({
   };
 
   return (
-    <div className={`flex flex-wrap items-center gap-4 text-sm text-gray-600 ${className}`}>
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-xs">
+    <div className={`flex flex-wrap items-centre gap-4 text-sm text-gray-600 ${className}`}>
+      <div className="flex items-centre gap-2">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-centre justify-centre text-white font-bold text-xs">
           {authorNames[author].charAt(0)}
         </div>
         <span className="font-medium text-gray-900">{authorNames[author]}</span>

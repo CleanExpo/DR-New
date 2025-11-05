@@ -22,9 +22,9 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-centre">
             <div>
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-centre gap-2 mb-4">
                 <AlertTriangle className="h-6 w-6 text-yellow-400" />
                 <span className="text-yellow-400 font-semibold">Emergency Response Available</span>
               </div>
@@ -38,7 +38,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="tel:0413965292"
-                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center gap-2"
+                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-centre justify-centre gap-2"
                 >
                   <Phone className="h-5 w-5" />
                   Call 0413 965 292
@@ -70,7 +70,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
                 <Users className="h-8 w-8 text-blue-300 mb-3" />
                 <h3 className="font-semibold mb-2">Workplace Focus</h3>
-                <p className="text-blue-100 text-sm">Specialized in commercial buildings and workplace health improvement</p>
+                <p className="text-blue-100 text-sm">specialised in commercial buildings and workplace health improvement</p>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
       {/* Understanding SBS Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Understanding Sick Building Syndrome
             </h2>
@@ -89,7 +89,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-centre">
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Common SBS Symptoms</h3>
               <div className="space-y-4">
@@ -120,27 +120,27 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Primary Causes</h3>
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Poor ventilation and air circulation</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>HVAC system contamination</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Chemical pollutants and VOCs</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Biological contaminants (mould, bacteria)</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Inadequate fresh air supply</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Poor humidity control</span>
                   </li>
@@ -154,7 +154,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
       {/* Our Process Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Our SBS Remediation Process
             </h2>
@@ -204,7 +204,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
                 <li>• Air filtration enhancement</li>
                 <li>• Mould and bacteria removal</li>
                 <li>• VOC source elimination</li>
-                <li>• Ventilation optimization</li>
+                <li>• Ventilation optimisation</li>
                 <li>• Post-remediation verification</li>
               </ul>
             </div>
@@ -215,9 +215,9 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
       {/* Services Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Specialized SBS Remediation Services
+              specialised SBS Remediation Services
             </h2>
             <p className="text-xl text-gray-600">
               Comprehensive solutions for all types of commercial buildings and workplace environments
@@ -278,7 +278,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
               <h3 className="text-xl font-bold text-gray-900 mb-3">Preventive Solutions</h3>
               <p className="text-gray-600 mb-4">Long-term strategies to prevent sick building syndrome recurrence.</p>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Ventilation optimization</li>
+                <li>• Ventilation optimisation</li>
                 <li>• Humidity control systems</li>
                 <li>• Air filtration upgrades</li>
                 <li>• Maintenance protocols</li>
@@ -303,9 +303,9 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
       {/* Target Buildings Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Buildings We Specialize In
+              Buildings We specialise In
             </h2>
             <p className="text-xl text-gray-600">
               Expert sick building syndrome remediation for all commercial and institutional facilities
@@ -313,35 +313,35 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Office Buildings</h3>
               <p className="text-gray-600 text-sm">High-rise offices, corporate headquarters, co-working spaces</p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Healthcare Facilities</h3>
-              <p className="text-gray-600 text-sm">Hospitals, clinics, aged care facilities, medical centers</p>
+              <p className="text-gray-600 text-sm">Hospitals, clinics, aged care facilities, medical centres</p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Educational Buildings</h3>
               <p className="text-gray-600 text-sm">Schools, universities, training facilities, libraries</p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Government Buildings</h3>
               <p className="text-gray-600 text-sm">Municipal offices, courthouses, public facilities</p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Retail Spaces</h3>
-              <p className="text-gray-600 text-sm">Shopping centers, department stores, specialty retail</p>
+              <p className="text-gray-600 text-sm">Shopping centres, department stores, specialty retail</p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Hospitality Venues</h3>
-              <p className="text-gray-600 text-sm">Hotels, restaurants, conference centers, entertainment</p>
+              <p className="text-gray-600 text-sm">Hotels, restaurants, conference centres, entertainment</p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Industrial Facilities</h3>
               <p className="text-gray-600 text-sm">Manufacturing plants, warehouses, processing facilities</p>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-sm text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm text-centre">
               <h3 className="font-bold text-gray-900 mb-2">Mixed-Use Buildings</h3>
               <p className="text-gray-600 text-sm">Commercial-residential, shopping complexes, business parks</p>
             </div>
@@ -352,7 +352,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
       {/* Why Choose Us Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Why Choose Our SBS Remediation Services
             </h2>
@@ -390,7 +390,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
               <Users className="h-8 w-8 text-purple-600 mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Workplace Productivity Focus</h3>
               <p className="text-gray-600">
-                Specialized understanding of how indoor air quality affects workplace productivity, absenteeism, and employee well-being.
+                specialised understanding of how indoor air quality affects workplace productivity, absenteeism, and employee well-being.
               </p>
             </div>
 
@@ -416,7 +416,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
       {/* Service Areas Section */}
       <section id="service-areas" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               SBS Remediation Service Areas
             </h2>
@@ -441,7 +441,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
             <div className="bg-white rounded-lg p-6 shadow-sm border">
               <MapPin className="h-8 w-8 text-green-600 mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Greater Brisbane</h3>
-              <p className="text-gray-600 mb-4">Suburban office parks, retail centers, and mixed-use developments.</p>
+              <p className="text-gray-600 mb-4">Suburban office parks, retail centres, and mixed-use developments.</p>
               <ul className="text-sm text-gray-600 space-y-1">
                 <li>• Chermside • Indooroopilly</li>
                 <li>• Carindale • Garden City</li>
@@ -453,7 +453,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
             <div className="bg-white rounded-lg p-6 shadow-sm border">
               <MapPin className="h-8 w-8 text-purple-600 mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Ipswich & Logan</h3>
-              <p className="text-gray-600 mb-4">Industrial facilities, educational institutions, and healthcare centers.</p>
+              <p className="text-gray-600 mb-4">Industrial facilities, educational institutions, and healthcare centres.</p>
               <ul className="text-sm text-gray-600 space-y-1">
                 <li>• Ipswich CBD</li>
                 <li>• Logan Central</li>
@@ -467,17 +467,17 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
 
       {/* Free Assessment CTA */}
       <section id="assessment" className="py-16 bg-blue-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <h2 className="text-3xl font-bold mb-4">
             Free Sick Building Syndrome Assessment
           </h2>
           <p className="text-xl text-blue-100 mb-8">
             Professional evaluation of your building's indoor air quality and identification of sick building syndrome causes. No obligation assessment with detailed reporting.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <a
               href="tel:0413965292"
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center gap-2"
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-centre justify-centre gap-2"
             >
               <Phone className="h-5 w-5" />
               Emergency: 0413 965 292

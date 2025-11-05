@@ -49,7 +49,7 @@ function MetricCard({
 
   return (
     <Card className={isAnimating ? 'ring-2 ring-blue-500 transition-all' : ''}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <CardHeader className="flex flex-row items-centre justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <div className={color}>{icon}</div>
       </CardHeader>
@@ -151,15 +151,15 @@ export function LiveMetrics({ initialMetrics }: LiveMetricsProps) {
   return (
     <div className="space-y-4">
       {/* Connection Status */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-centre justify-between">
         <h2 className="text-2xl font-bold">Live Metrics</h2>
         {status.connected ? (
-          <div className="flex items-center gap-2 text-sm text-green-600">
+          <div className="flex items-centre gap-2 text-sm text-green-600">
             <span className="h-2 w-2 rounded-full bg-green-600 animate-pulse" />
             Real-time updates active
           </div>
         ) : (
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="flex items-centre gap-2 text-sm text-gray-500">
             <span className="h-2 w-2 rounded-full bg-gray-500" />
             Offline
           </div>
@@ -201,7 +201,7 @@ export function LiveMetrics({ initialMetrics }: LiveMetricsProps) {
       {/* Revenue Card (Full Width) */}
       {metrics.totalRevenue > 0 && (
         <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardHeader className="flex flex-row items-centre justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               Total Revenue (Today)
             </CardTitle>

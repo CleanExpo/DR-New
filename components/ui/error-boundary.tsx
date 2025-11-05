@@ -114,7 +114,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       const { error, errorInfo, errorId } = this.state;
 
       return (
-        <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-centre justify-centre p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -122,7 +122,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             className="w-full max-w-2xl"
           >
             <Card className="bg-white/95 backdrop-blur-sm border-red-200 shadow-2xl">
-              <CardHeader className="text-center pb-4">
+              <CardHeader className="text-centre pb-4">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -157,7 +157,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                     transition={{ delay: 0.3 }}
                   >
                     <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-                      <h4 className="font-semibold text-red-800 mb-2 flex items-center">
+                      <h4 className="font-semibold text-red-800 mb-2 flex items-centre">
                         <Bug className="h-4 w-4 mr-2" />
                         Technical Details
                       </h4>
@@ -185,7 +185,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="flex flex-col sm:flex-row gap-3 justify-center"
+                  className="flex flex-col sm:flex-row gap-3 justify-centre"
                 >
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button 
@@ -227,12 +227,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="text-center text-sm text-gray-700 space-y-2"
+                  className="text-centre text-sm text-gray-700 space-y-2"
                 >
                   <p>
                     If the problem persists, please contact our support team.
                   </p>
-                  <p className="flex items-center justify-center gap-2">
+                  <p className="flex items-centre justify-centre gap-2">
                     <Mail className="h-4 w-4" />
                     support@dr-new-ten.vercel.app
                   </p>
@@ -276,8 +276,8 @@ export function useErrorHandler() {
 
 // Simple error fallback components
 export const SimpleErrorFallback = ({ error }: { error?: Error }) => (
-  <div className="flex items-center justify-center p-8">
-    <div className="text-center">
+  <div className="flex items-centre justify-centre p-8">
+    <div className="text-centre">
       <FileX className="h-12 w-12 text-gray-700 mx-auto mb-4" />
       <p className="text-gray-700">Something went wrong loading this component.</p>
       <Button 

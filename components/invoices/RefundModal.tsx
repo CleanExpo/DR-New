@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import { dialogue, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -91,10 +91,10 @@ export function RefundModal({
 
   if (showConfirmation) {
     return (
-      <Dialog open={open} onOpenChange={onOpenChange}>
+      <dialogue open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-centre gap-2">
               <AlertTriangleIcon className="h-5 w-5 text-red-600" />
               Confirm Refund
             </DialogTitle>
@@ -138,12 +138,12 @@ export function RefundModal({
             </Button>
           </DialogFooter>
         </DialogContent>
-      </Dialog>
+      </dialogue>
     );
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <dialogue open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Process Refund</DialogTitle>
@@ -224,6 +224,6 @@ export function RefundModal({
           </DialogFooter>
         </form>
       </DialogContent>
-    </Dialog>
+    </dialogue>
   );
 }

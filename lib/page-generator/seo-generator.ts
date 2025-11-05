@@ -1,6 +1,6 @@
 /**
  * SEO Generation Module
- * Generates SEO-optimized titles, descriptions, and keywords
+ * Generates SEO-optimised titles, descriptions, and keywords
  */
 
 import { LocationData, ServiceData, ContractorData, SEOData } from './types';
@@ -31,7 +31,7 @@ export function generateSEOData(
 }
 
 /**
- * Generate SEO-optimized title (50-60 characters ideal)
+ * Generate SEO-optimised title (50-60 characters ideal)
  */
 function generateTitle(location: LocationData, service?: ServiceData): string {
   const templates = [
@@ -70,7 +70,7 @@ function generateTitle(location: LocationData, service?: ServiceData): string {
 }
 
 /**
- * Generate SEO-optimized description (150-160 characters ideal)
+ * Generate SEO-optimised description (150-160 characters ideal)
  */
 function generateDescription(
   location: LocationData,

@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Commercial Restoration Services Brisbane | 24/7 Business Recovery',
-  description: 'Expert commercial disaster recovery for Brisbane businesses. Minimize downtime with 24/7 emergency response. Office buildings, retail, industrial facilities.',
+  description: 'Expert commercial disaster recovery for Brisbane businesses. minimise downtime with 24/7 emergency response. Office buildings, retail, industrial facilities.',
   keywords: 'commercial restoration brisbane, business disaster recovery, office water damage, retail fire restoration, industrial cleaning'
 };
 
@@ -15,7 +15,7 @@ export default function CommercialRestorationPage() {
           Commercial Restoration Services
         </h1>
         <p className="text-xl text-gray-700 max-w-3xl">
-          Professional disaster recovery for Brisbane businesses. We minimize downtime and get you operational fast.
+          Professional disaster recovery for Brisbane businesses. We minimise downtime and get you operational fast.
         </p>
 
         {/* Service Categories */}
@@ -28,7 +28,7 @@ export default function CommercialRestorationPage() {
             },
             {
               title: 'Retail Spaces',
-              description: 'Fast recovery to minimize business interruption',
+              description: 'Fast recovery to minimise business interruption',
               services: ['Emergency boarding', 'Stock salvage', 'Deep cleaning']
             },
             {
@@ -42,7 +42,7 @@ export default function CommercialRestorationPage() {
               <p className="text-gray-600 mb-4">{category.description}</p>
               <ul className="space-y-2">
                 {category.services.map((service, sIndex) => (
-                  <li key={sIndex} className="flex items-center gap-2 text-sm text-gray-700">
+                  <li key={sIndex} className="flex items-centre gap-2 text-sm text-gray-700">
                     <span className="text-green-600">✓</span> {service}
                   </li>
                 ))}
@@ -58,12 +58,12 @@ export default function CommercialRestorationPage() {
             {[
               '24/7 Emergency Response - No downtime',
               'Direct insurance billing - No upfront costs',
-              'Minimize business interruption',
+              'minimise business interruption',
               'IICRC certified commercial technicians',
               'Large loss specialists',
               'Complete documentation for claims'
             ].map((benefit, index) => (
-              <div key={index} className="flex items-center gap-3">
+              <div key={index} className="flex items-centre gap-3">
                 <div className="bg-blue-600 text-white rounded-full p-1">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -85,11 +85,11 @@ export default function CommercialRestorationPage() {
               'Government Buildings',
               'Hospitality & Hotels',
               'Manufacturing Plants',
-              'Data Centers',
+              'Data centres',
               'Retail Chains',
               'Corporate Offices'
             ].map((industry, index) => (
-              <div key={index} className="bg-white border-2 border-gray-200 rounded-lg p-4 text-center hover:border-blue-500 transition-colors">
+              <div key={index} className="bg-white border-2 border-gray-200 rounded-lg p-4 text-centre hover:border-blue-500 transition-colors">
                 <span className="text-gray-800 font-medium">{industry}</span>
               </div>
             ))}
@@ -97,8 +97,8 @@ export default function CommercialRestorationPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">Minimize Business Downtime</h2>
+        <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-12 text-centre">
+          <h2 className="text-3xl font-bold mb-4">minimise Business Downtime</h2>
           <p className="text-xl mb-8">Get your business back to operational status fast with our commercial restoration experts</p>
           <a
             href="tel:1300309361"

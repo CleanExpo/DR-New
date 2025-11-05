@@ -27,7 +27,7 @@ interface VoiceSearchSchemaProps {
 
 /**
  * Voice Search Schema Component
- * Generates structured data optimized for voice assistants (Google Assistant, Siri, Alexa)
+ * Generates structured data optimised for voice assistants (Google Assistant, Siri, Alexa)
  * Implements Speakable specification for voice-first content
  */
 export default function VoiceSearchSchema({
@@ -213,22 +213,22 @@ export default function VoiceSearchSchema({
   );
 }
 
-// Helper function to generate voice-optimized meta tags
+// Helper function to generate voice-optimised meta tags
 export function VoiceSearchMetaTags() {
   return (
     <>
-      {/* Google Assistant optimization */}
+      {/* Google Assistant optimisation */}
       <meta name="google-site-verification" content="verification-code" />
       <meta name="google" content="nositelinkssearchbox" />
 
-      {/* Siri and Apple optimization */}
+      {/* Siri and Apple optimisation */}
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-title" content="Disaster Recovery" />
 
-      {/* Alexa optimization */}
+      {/* Alexa optimisation */}
       <meta name="alexa" content="true" />
 
-      {/* General voice search optimization */}
+      {/* General voice search optimisation */}
       <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       <meta name="format-detection" content="telephone=yes" />
 

@@ -34,7 +34,7 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>)
           {label}
         </p>
         {payload.map((entry, index) => (
-          <div key={index} className="flex items-center gap-2 text-sm">
+          <div key={index} className="flex items-centre gap-2 text-sm">
             <span
               className="w-3 h-3 rounded"
               style={{ backgroundColor: entry.color }}

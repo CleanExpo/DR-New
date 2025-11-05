@@ -87,7 +87,7 @@ export function SubscriptionManagement({
     <div className="space-y-6">
       {/* Current Subscription */}
       <Card className="p-6">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-centre justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Current Subscription</h3>
           <PaymentStatusBadge status={subscription.status} />
         </div>
@@ -168,7 +168,7 @@ export function SubscriptionManagement({
 
       {/* Cancellation Confirmation Modal */}
       {showCancelConfirm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-centre justify-centre p-4 z-50">
           <Card className="max-w-md w-full p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Cancel Subscription?
@@ -203,7 +203,7 @@ export function SubscriptionManagement({
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Billing History</h3>
 
         {payments.length === 0 ? (
-          <p className="text-gray-600 text-center py-8">No payment history yet</p>
+          <p className="text-gray-600 text-centre py-8">No payment history yet</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">

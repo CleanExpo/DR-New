@@ -153,7 +153,7 @@ export default function ServicePageSchema({
         }}
       />
 
-      {/* FAQ Schema for voice search optimization */}
+      {/* FAQ Schema for voice search optimisation */}
       <EnhancedSchemaMarkup
         type="FAQEnhanced"
         data={{

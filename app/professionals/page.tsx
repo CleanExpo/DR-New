@@ -47,7 +47,7 @@ const medicalSpecialties = [
   {
     title: 'Dental Specialists',
     professionals: ['Oral Surgeons', 'Orthodontists', 'Periodontists', 'Endodontists'],
-    locations: ['Private Practice Networks', 'Specialist Dental Centers', 'Hospital Dental Units'],
+    locations: ['Private Practice Networks', 'Specialist Dental centres', 'Hospital Dental Units'],
     serviceLevel: 'Gold',
     responseTime: '2 hours',
     features: ['Dental equipment care', 'Patient record protection', 'Practice continuity planning']
@@ -211,8 +211,8 @@ export default function ProfessionalsPage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-gray-900 via-blue-900 to-green-900 text-white py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="max-w-5xl mx-auto text-centre">
+              <div className="flex items-centre justify-centre gap-3 mb-6">
                 <Shield className="w-12 h-12 text-gold-400" />
                 <span className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-full font-bold text-lg">
                   Confidential • Discrete • Professional
@@ -255,7 +255,7 @@ export default function ProfessionalsPage() {
 
               <Link
                 href="tel:1300309361"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-center gap-3"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-centre gap-3"
               >
                 <Phone className="w-6 h-6" />
                 Discrete Emergency: 1300 309 361
@@ -267,13 +267,13 @@ export default function ProfessionalsPage() {
         {/* Medical Professionals */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Heart className="w-12 h-12 text-red-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Medical Professional Discrete Services
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized restoration protocols for medical professionals requiring confidential,
+                specialised restoration protocols for medical professionals requiring confidential,
                 after-hours coordination that accommodates surgical schedules and hospital commitments.
               </p>
             </div>
@@ -281,11 +281,11 @@ export default function ProfessionalsPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {medicalSpecialties.map((specialty, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-red-600">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-centre justify-between mb-6">
                     <h3 className="text-xl font-semibold text-gray-900">
                       {specialty.title}
                     </h3>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <Star className="w-5 h-5 text-yellow-500" />
                       <span className="text-sm font-bold text-blue-600">{specialty.serviceLevel}</span>
                     </div>
@@ -322,7 +322,7 @@ export default function ProfessionalsPage() {
                     <span className="text-sm text-gray-500 mb-2 block">Special Features:</span>
                     <div className="space-y-1">
                       {specialty.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
+                        <div key={idx} className="flex items-centre gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
                           <span className="text-sm text-gray-700">{feature}</span>
                         </div>
@@ -338,7 +338,7 @@ export default function ProfessionalsPage() {
         {/* Legal Professionals */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Briefcase className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Legal Professional Priority Response
@@ -352,11 +352,11 @@ export default function ProfessionalsPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {legalProfessionals.map((legal, index) => (
                 <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-blue-600">
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-centre justify-between mb-6">
                     <h3 className="text-xl font-semibold text-gray-900">
                       {legal.title}
                     </h3>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-centre gap-2">
                       <Star className="w-5 h-5 text-yellow-500" />
                       <span className="text-sm font-bold text-purple-600">{legal.serviceLevel}</span>
                     </div>
@@ -393,7 +393,7 @@ export default function ProfessionalsPage() {
                     <span className="text-sm text-gray-500 mb-2 block">Special Features:</span>
                     <div className="space-y-1">
                       {legal.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2">
+                        <div key={idx} className="flex items-centre gap-2">
                           <CheckCircle className="w-4 h-4 text-green-600" />
                           <span className="text-sm text-gray-700">{feature}</span>
                         </div>
@@ -410,13 +410,13 @@ export default function ProfessionalsPage() {
         <section className="py-16 bg-blue-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Discrete Service Protocols
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {discreteFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+                  <div key={index} className="flex items-centre gap-3 bg-white rounded-lg p-4 shadow-sm">
                     <Lock className="w-5 h-5 text-blue-600 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
@@ -429,7 +429,7 @@ export default function ProfessionalsPage() {
         {/* Master Restorer Section */}
         <section className="py-16 bg-gray-900 text-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-centre">
               <Award className="w-16 h-16 text-yellow-400 mx-auto mb-6" />
               <h2 className="text-3xl font-bold mb-6">
                 Trusted by Queensland's Leading Professionals
@@ -463,7 +463,7 @@ export default function ProfessionalsPage() {
 
         {/* Emergency CTA */}
         <section className="py-16 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <Phone className="w-16 h-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold mb-6">
               Professional Emergency? Discrete Response Available 24/7
@@ -474,17 +474,17 @@ export default function ProfessionalsPage() {
               your professional status demands.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-5 h-5" />
                 Discrete Emergency: 1300 309 361
               </Link>
               <Link
                 href="/samford-valley"
-                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-center justify-center gap-3"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Shield className="w-5 h-5" />
                 Luxury Estate Services
@@ -496,13 +496,13 @@ export default function ProfessionalsPage() {
         {/* Related Services */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-centre text-gray-900 mb-8">
               Additional Professional Services
             </h3>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <Link
                 href="/services/wine-cellar-restoration"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Eye className="w-8 h-8 text-purple-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Wine Cellar Restoration</h4>
@@ -510,7 +510,7 @@ export default function ProfessionalsPage() {
               </Link>
               <Link
                 href="/services/art-antique-restoration"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Award className="w-8 h-8 text-yellow-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Art & Antique Recovery</h4>
@@ -518,7 +518,7 @@ export default function ProfessionalsPage() {
               </Link>
               <Link
                 href="/emergency/steps"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Clock className="w-8 h-8 text-blue-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Emergency Response</h4>

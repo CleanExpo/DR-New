@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import {
-  Dialog,
+  dialogue,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -124,7 +124,7 @@ export function JobStatusUpdater({ jobId, currentStatus, onStatusUpdated }: JobS
   const currentStatusLabel = statusOptions.find(s => s.value === currentStatus)?.label || currentStatus;
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <dialogue open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">
           Update Status
@@ -211,6 +211,6 @@ export function JobStatusUpdater({ jobId, currentStatus, onStatusUpdated }: JobS
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </dialogue>
   );
 }

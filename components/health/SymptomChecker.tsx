@@ -258,8 +258,8 @@ const SymptomChecker: React.FC = () => {
         </CardHeader>
         <CardContent className="space-y-6">
           <div className={`p-6 rounded-lg border-2 ${getRiskColor(riskAssessment.level)}`}>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
+            <div className="flex items-centre justify-between mb-4">
+              <div className="flex items-centre">
                 {getRiskIcon(riskAssessment.level)}
                 <span className="ml-3 text-xl font-semibold capitalize">
                   {riskAssessment.level} Risk Level
@@ -346,14 +346,14 @@ const SymptomChecker: React.FC = () => {
       <CardContent className="space-y-6">
         {symptomCategories.map((category, categoryIndex) => (
           <div key={categoryIndex} className="space-y-3">
-            <div className="flex items-center mb-3">
+            <div className="flex items-centre mb-3">
               <category.icon className="h-5 w-5 text-orange-600 mr-2" />
               <h3 className="font-semibold text-lg">{category.name} Symptoms</h3>
             </div>
 
             <div className="grid md:grid-cols-2 gap-3">
               {category.symptoms.map((symptom, symptomIndex) => (
-                <div key={symptomIndex} className="flex items-center space-x-2">
+                <div key={symptomIndex} className="flex items-centre space-x-2">
                   <Checkbox
                     id={`${category.name}-${symptomIndex}`}
                     checked={selectedSymptoms.has(symptom)}
@@ -372,7 +372,7 @@ const SymptomChecker: React.FC = () => {
         ))}
 
         <div className="pt-6 border-t">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-centre justify-between mb-4">
             <span className="text-sm text-gray-600">
               {selectedSymptoms.size} symptom{selectedSymptoms.size !== 1 ? 's' : ''} selected
             </span>
@@ -393,7 +393,7 @@ const SymptomChecker: React.FC = () => {
             disabled={selectedSymptoms.size === 0}
             onClick={analyzeSymptoms}
           >
-            Analyze Symptoms
+            analyse Symptoms
             <ChevronRight className="ml-2 h-5 w-5" />
           </Button>
         </div>

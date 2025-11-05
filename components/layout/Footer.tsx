@@ -33,7 +33,7 @@ export default function Footer() {
             <p className="text-gray-400">24/7 Emergency Response</p>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+        <div className="mt-8 pt-8 border-t border-gray-800 text-centre text-gray-400">
           <p>&copy; {new Date().getFullYear()} Disaster Recovery. All rights reserved.</p>
         </div>
       </div>

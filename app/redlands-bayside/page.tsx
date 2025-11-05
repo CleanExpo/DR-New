@@ -47,7 +47,7 @@ const baysideAreas = [
   {
     name: 'Cleveland',
     medianPrice: '$750,000',
-    characteristics: 'Transport hub, bayside access, commercial center',
+    characteristics: 'Transport hub, bayside access, commercial centre',
     waterRisks: ['CBD flooding', 'Ferry terminal overflow', 'Creek systems'],
     responseTime: '20 minutes',
     properties: 'Mixed residential/commercial, waterfront units, period homes'
@@ -73,14 +73,14 @@ const baysideAreas = [
 const marineSpecialties = [
   {
     title: 'Salt Water Flood Restoration',
-    description: 'Specialized techniques for salt water damage from storm surge, king tides, and marina overflow. Corrosion prevention and marine-grade restoration.',
+    description: 'specialised techniques for salt water damage from storm surge, king tides, and marina overflow. Corrosion prevention and marine-grade restoration.',
     icon: Waves,
     expertise: ['Corrosion treatment', 'Salt extraction', 'Marine-grade materials', 'Electrical system protection'],
     urgency: 'Critical - 4 hours'
   },
   {
     title: 'Canal Estate Emergency Response',
-    description: 'Rapid response for luxury canal properties with specialized equipment for waterfront access and marine environment challenges.',
+    description: 'Rapid response for luxury canal properties with specialised equipment for waterfront access and marine environment challenges.',
     icon: Anchor,
     expertise: ['Boat access capability', 'Seawall assessment', 'Marina coordination', 'Luxury finishing restoration'],
     urgency: 'High - 6 hours'
@@ -94,7 +94,7 @@ const marineSpecialties = [
   },
   {
     title: 'Bayside Heritage Properties',
-    description: 'Specialized restoration for heritage Queenslanders and period homes in bayside locations with heritage compliance.',
+    description: 'specialised restoration for heritage Queenslanders and period homes in bayside locations with heritage compliance.',
     icon: Home,
     expertise: ['Heritage material sourcing', 'Council compliance', 'Period restoration techniques', 'Character preservation'],
     urgency: 'Medium - 48 hours'
@@ -256,8 +256,8 @@ export default function RedlandsBaysidePage() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-r from-blue-900 via-teal-900 to-cyan-900 text-white py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto text-center">
-              <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="max-w-5xl mx-auto text-centre">
+              <div className="flex items-centre justify-centre gap-3 mb-6">
                 <Waves className="w-12 h-12 text-cyan-400" />
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-400 text-black px-6 py-3 rounded-full font-bold text-lg">
                   Marine Specialist • Salt Water Expert
@@ -300,7 +300,7 @@ export default function RedlandsBaysidePage() {
 
               <Link
                 href="tel:1300309361"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-center gap-3"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-xl transition-colors inline-flex items-centre gap-3"
               >
                 <Phone className="w-6 h-6" />
                 Marine Emergency: 1300 309 361
@@ -312,7 +312,7 @@ export default function RedlandsBaysidePage() {
         {/* Bayside Areas Coverage */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Redlands Bayside Service Coverage
               </h2>
@@ -325,7 +325,7 @@ export default function RedlandsBaysidePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {baysideAreas.map((area, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-lg border-b-4 border-cyan-600">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <h3 className="text-xl font-semibold text-gray-900">{area.name}</h3>
                     <Waves className="w-6 h-6 text-cyan-600" />
                   </div>
@@ -368,13 +368,13 @@ export default function RedlandsBaysidePage() {
         {/* Marine Specialties */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Anchor className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Marine Environment Restoration Specialties
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized protocols for bayside and marine water damage restoration,
+                specialised protocols for bayside and marine water damage restoration,
                 including salt water flooding, storm surge recovery, and marina facilities.
               </p>
             </div>
@@ -384,8 +384,8 @@ export default function RedlandsBaysidePage() {
                 const IconComponent = specialty.icon;
                 return (
                   <div key={index} className="bg-white rounded-lg p-8 shadow-lg border-l-4 border-cyan-600 hover:shadow-xl transition-shadow">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
+                    <div className="flex items-centre gap-4 mb-6">
+                      <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-centre justify-centre">
                         <IconComponent className="w-6 h-6 text-cyan-600" />
                       </div>
                       <div>
@@ -401,10 +401,10 @@ export default function RedlandsBaysidePage() {
                     </p>
 
                     <div>
-                      <span className="text-sm text-gray-500 mb-3 block">Specialized Expertise:</span>
+                      <span className="text-sm text-gray-500 mb-3 block">specialised Expertise:</span>
                       <div className="space-y-2">
                         {specialty.expertise.map((skill, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
+                          <div key={idx} className="flex items-centre gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
                             <span className="text-sm text-gray-700">{skill}</span>
                           </div>
@@ -421,13 +421,13 @@ export default function RedlandsBaysidePage() {
         {/* Bay Island Services */}
         <section className="py-16 bg-blue-50">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <div className="text-centre mb-12">
               <Ship className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Bay Island Emergency Services
               </h2>
               <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Specialized logistics and premium service for Russell Island, Macleay Island,
+                specialised logistics and premium service for Russell Island, Macleay Island,
                 and remote bay island properties requiring boat or water taxi access.
               </p>
             </div>
@@ -435,7 +435,7 @@ export default function RedlandsBaysidePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {islandServices.map((island, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-centre justify-between mb-4">
                     <h3 className="text-lg font-semibold text-gray-900">{island.name}</h3>
                     <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">
                       {island.logistics}
@@ -497,13 +497,13 @@ export default function RedlandsBaysidePage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              <h2 className="text-3xl font-bold text-centre text-gray-900 mb-12">
                 Redlands Bayside Restoration Features
               </h2>
 
               <div className="grid md:grid-cols-2 gap-4">
                 {redlandsFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow-sm">
+                  <div key={index} className="flex items-centre gap-3 bg-white rounded-lg p-4 shadow-sm">
                     <Waves className="w-5 h-5 text-cyan-600 flex-shrink-0" />
                     <span className="text-gray-700">{feature}</span>
                   </div>
@@ -516,13 +516,13 @@ export default function RedlandsBaysidePage() {
         {/* Master Restorer Marine Expertise */}
         <section className="py-16 bg-gray-900 text-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-4xl mx-auto text-centre">
               <Award className="w-16 h-16 text-cyan-400 mx-auto mb-6" />
               <h2 className="text-3xl font-bold mb-6">
                 Marine Environment Restoration Mastery
               </h2>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Phill McGurk's Master Restorer certification includes specialized training in marine environment
+                Phill McGurk's Master Restorer certification includes specialised training in marine environment
                 restoration. Our understanding of salt water corrosion, tidal patterns, and bayside property
                 challenges ensures optimal restoration outcomes for Redlands waterfront properties.
               </p>
@@ -550,28 +550,28 @@ export default function RedlandsBaysidePage() {
 
         {/* Emergency CTA */}
         <section className="py-16 bg-red-600 text-white">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto px-4 text-centre">
             <Waves className="w-16 h-16 mx-auto mb-6 animate-pulse" />
             <h2 className="text-3xl font-bold mb-6">
               Bayside Emergency? Marine Specialist Available 24/7
             </h2>
             <p className="text-xl mb-8 max-w-4xl mx-auto">
-              Salt water flooding and storm surge require immediate specialized response to prevent
+              Salt water flooding and storm surge require immediate specialised response to prevent
               long-term corrosion damage. Our marine restoration expert responds immediately to
               protect your bayside property investment.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href="tel:1300309361"
-                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-center justify-center gap-3"
+                className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Phone className="w-5 h-5" />
                 Marine Emergency: 1300 309 361
               </Link>
               <Link
                 href="/emergency/steps"
-                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-center justify-center gap-3"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors flex items-centre justify-centre gap-3"
               >
                 <Shield className="w-5 h-5" />
                 Emergency Response Steps
@@ -583,13 +583,13 @@ export default function RedlandsBaysidePage() {
         {/* Related Areas */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">
+            <h3 className="text-2xl font-bold text-centre text-gray-900 mb-8">
               Additional Service Areas
             </h3>
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               <Link
                 href="/samford-valley"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <TreePine className="w-8 h-8 text-green-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Hinterland Luxury</h4>
@@ -597,7 +597,7 @@ export default function RedlandsBaysidePage() {
               </Link>
               <Link
                 href="/brisbane"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Home className="w-8 h-8 text-blue-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Brisbane Premium</h4>
@@ -605,7 +605,7 @@ export default function RedlandsBaysidePage() {
               </Link>
               <Link
                 href="/services/wine-cellar-restoration"
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-center"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow text-centre"
               >
                 <Star className="w-8 h-8 text-purple-600 mx-auto mb-4" />
                 <h4 className="font-semibold text-gray-900 mb-2">Specialty Services</h4>

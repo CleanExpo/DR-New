@@ -22,9 +22,9 @@ export default function HVACContaminationCleaningBrisbane() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-green-900 to-green-700 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-centre">
             <div>
-              <div className="flex items-center gap-2 mb-4">
+              <div className="flex items-centre gap-2 mb-4">
                 <AlertTriangle className="h-6 w-6 text-yellow-400" />
                 <span className="text-yellow-400 font-semibold">Emergency Contamination Response</span>
               </div>
@@ -38,7 +38,7 @@ export default function HVACContaminationCleaningBrisbane() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="tel:0413965292"
-                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center gap-2"
+                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-centre justify-centre gap-2"
                 >
                   <Phone className="h-5 w-5" />
                   Call 0413 965 292
@@ -80,7 +80,7 @@ export default function HVACContaminationCleaningBrisbane() {
       {/* HVAC Contamination Types Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               HVAC Contamination We Clean
             </h2>
@@ -124,7 +124,7 @@ export default function HVACContaminationCleaningBrisbane() {
                 <li>• Construction dust removal</li>
                 <li>• Fiberglass particle cleaning</li>
                 <li>• Metal shaving extraction</li>
-                <li>• Fabric fiber removal</li>
+                <li>• Fabric fibre removal</li>
                 <li>• General debris clearing</li>
               </ul>
             </div>
@@ -174,7 +174,7 @@ export default function HVACContaminationCleaningBrisbane() {
       {/* Cleaning Process Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Our HVAC Cleaning Process
             </h2>
@@ -184,7 +184,7 @@ export default function HVACContaminationCleaningBrisbane() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white rounded-lg p-6 shadow-sm border text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm border text-centre">
               <div className="bg-blue-100 rounded-lg p-3 w-fit mx-auto mb-4">
                 <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
@@ -198,7 +198,7 @@ export default function HVACContaminationCleaningBrisbane() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm border text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm border text-centre">
               <div className="bg-green-100 rounded-lg p-3 w-fit mx-auto mb-4">
                 <span className="text-2xl font-bold text-green-600">2</span>
               </div>
@@ -212,7 +212,7 @@ export default function HVACContaminationCleaningBrisbane() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm border text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm border text-centre">
               <div className="bg-purple-100 rounded-lg p-3 w-fit mx-auto mb-4">
                 <span className="text-2xl font-bold text-purple-600">3</span>
               </div>
@@ -226,7 +226,7 @@ export default function HVACContaminationCleaningBrisbane() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-lg p-6 shadow-sm border text-center">
+            <div className="bg-white rounded-lg p-6 shadow-sm border text-centre">
               <div className="bg-orange-100 rounded-lg p-3 w-fit mx-auto mb-4">
                 <span className="text-2xl font-bold text-orange-600">4</span>
               </div>
@@ -246,7 +246,7 @@ export default function HVACContaminationCleaningBrisbane() {
       {/* HVAC Components We Clean */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               HVAC Components We Clean
             </h2>
@@ -293,35 +293,35 @@ export default function HVACContaminationCleaningBrisbane() {
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Distribution Components</h3>
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Supply air vents and grilles</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Return air vents and registers</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Diffusers and air outlets</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Variable air volume (VAV) boxes</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Fan coil units</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Terminal units and dampers</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Mixing boxes and plenum chambers</span>
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-centre gap-3">
                     <CheckCircle className="h-5 w-5 text-green-600" />
                     <span>Fresh air intake systems</span>
                   </li>
@@ -335,7 +335,7 @@ export default function HVACContaminationCleaningBrisbane() {
       {/* Equipment & Technology Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Professional HVAC Cleaning Equipment
             </h2>
@@ -356,7 +356,7 @@ export default function HVACContaminationCleaningBrisbane() {
             </div>
 
             <div className="bg-white rounded-lg p-6 shadow-sm border">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Specialized Cleaning Tools</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">specialised Cleaning Tools</h3>
               <ul className="space-y-2 text-gray-600">
                 <li>• Pneumatic duct cleaning systems</li>
                 <li>• Rotating brush technology</li>
@@ -411,7 +411,7 @@ export default function HVACContaminationCleaningBrisbane() {
       {/* Benefits Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Benefits of Professional HVAC Cleaning
             </h2>
@@ -475,7 +475,7 @@ export default function HVACContaminationCleaningBrisbane() {
       {/* Service Areas Section */}
       <section id="service-areas" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               HVAC Cleaning Service Areas
             </h2>
@@ -500,10 +500,10 @@ export default function HVACContaminationCleaningBrisbane() {
             <div className="bg-white rounded-lg p-6 shadow-sm border">
               <MapPin className="h-8 w-8 text-blue-600 mb-4" />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Greater Brisbane</h3>
-              <p className="text-gray-600 mb-4">Suburban commercial complexes, retail centers, and industrial facilities.</p>
+              <p className="text-gray-600 mb-4">Suburban commercial complexes, retail centres, and industrial facilities.</p>
               <ul className="text-sm text-gray-600 space-y-1">
                 <li>• All suburban business districts</li>
-                <li>• Shopping centers</li>
+                <li>• Shopping centres</li>
                 <li>• Industrial estates</li>
                 <li>• Healthcare facilities</li>
               </ul>
@@ -517,7 +517,7 @@ export default function HVACContaminationCleaningBrisbane() {
                 <li>• Ipswich CBD</li>
                 <li>• Logan Central</li>
                 <li>• Manufacturing plants</li>
-                <li>• Distribution centers</li>
+                <li>• Distribution centres</li>
               </ul>
             </div>
           </div>
@@ -526,17 +526,17 @@ export default function HVACContaminationCleaningBrisbane() {
 
       {/* Free Inspection CTA */}
       <section id="inspection" className="py-16 bg-green-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <h2 className="text-3xl font-bold mb-4">
             Free HVAC Contamination Inspection
           </h2>
           <p className="text-xl text-green-100 mb-8">
             Professional assessment of your HVAC system contamination with detailed reporting and cleaning recommendations. No obligation inspection with immediate response available.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-centre">
             <a
               href="tel:0413965292"
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center gap-2"
+              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-centre justify-centre gap-2"
             >
               <Phone className="h-5 w-5" />
               Emergency: 0413 965 292

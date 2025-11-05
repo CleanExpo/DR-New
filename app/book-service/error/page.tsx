@@ -63,8 +63,8 @@ function BookingErrorPageContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading error details...</p>
         </div>
@@ -74,8 +74,8 @@ function BookingErrorPageContent() {
 
   if (!errorDetails) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-gray-900">Error Details Not Found</h2>
           <p className="mt-2 text-gray-600">Unable to load error information.</p>
@@ -141,7 +141,7 @@ function BookingErrorPageContent() {
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 py-12">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Error Header */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-6 text-center">
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-6 text-centre">
           {getErrorIcon()}
           <h1 className="text-3xl font-bold text-gray-900 mb-2 mt-4">Booking Failed</h1>
           <p className="text-xl text-gray-600 mb-4">
@@ -156,7 +156,7 @@ function BookingErrorPageContent() {
 
         {/* Error Details */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-centre gap-2">
             <AlertTriangle className="h-6 w-6 text-orange-600" />
             What Went Wrong
           </h2>
@@ -173,7 +173,7 @@ function BookingErrorPageContent() {
 
         {/* Troubleshooting Steps */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-centre gap-2">
             <HelpCircle className="h-6 w-6 text-blue-600" />
             Troubleshooting Steps
           </h2>
@@ -181,7 +181,7 @@ function BookingErrorPageContent() {
           <ol className="space-y-3">
             {getTroubleshootingSteps().map((step, index) => (
               <li key={index} className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-sm font-semibold">
+                <span className="flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-centre justify-centre text-blue-600 text-sm font-semibold">
                   {index + 1}
                 </span>
                 <span className="text-gray-700">{step}</span>
@@ -192,7 +192,7 @@ function BookingErrorPageContent() {
 
         {/* Your Data is Safe */}
         <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6 mb-6">
-          <h3 className="font-bold text-green-900 mb-3 flex items-center gap-2">
+          <h3 className="font-bold text-green-900 mb-3 flex items-centre gap-2">
             <Shield className="h-5 w-5" />
             Your Information is Safe
           </h3>
@@ -217,22 +217,22 @@ function BookingErrorPageContent() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 justify-centre mb-6">
           <Link 
             href="/book-service"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 min-h-[44px]"
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-centre justify-centre gap-2 min-h-[44px]"
           >
             <RefreshCw className="h-5 w-5" />
             Try Again
           </Link>
           <Link 
             href="/"
-            className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2 min-h-[44px]"
+            className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-centre justify-centre gap-2 min-h-[44px]"
           >
             <ArrowLeft className="h-5 w-5" />
             Return Home
           </Link>
-          <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 min-h-[44px]">
+          <button className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-centre justify-centre gap-2 min-h-[44px]">
             <Mail className="h-5 w-5" />
             Contact Support
           </button>
@@ -240,7 +240,7 @@ function BookingErrorPageContent() {
 
         {/* Alternative Options */}
         <div className="bg-blue-50 rounded-xl p-6 mb-6">
-          <h3 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
+          <h3 className="font-bold text-blue-900 mb-4 flex items-centre gap-2">
             <Clock className="h-5 w-5" />
             Need Immediate Help?
           </h3>
@@ -266,18 +266,18 @@ function BookingErrorPageContent() {
         </div>
 
         {/* Support Contact */}
-        <div className="text-center p-6 bg-gray-100 rounded-lg">
+        <div className="text-centre p-6 bg-gray-100 rounded-lg">
           <p className="text-gray-600 mb-2">Still having trouble?</p>
           <p className="text-lg font-semibold">Support available via online form 24/7</p>
           <p className="text-sm text-gray-500 mt-2">
             Reference this error code when contacting support: <span className="font-mono">{errorDetails.code}</span>
           </p>
-          <div className="mt-4 flex justify-center gap-4">
-            <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
+          <div className="mt-4 flex justify-centre gap-4">
+            <button className="text-blue-600 hover:text-blue-700 font-medium flex items-centre gap-1">
               <Mail className="h-4 w-4" />
               Email Support
             </button>
-            <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
+            <button className="text-blue-600 hover:text-blue-700 font-medium flex items-centre gap-1">
               <Phone className="h-4 w-4" />
               Request Callback
             </button>
@@ -291,8 +291,8 @@ function BookingErrorPageContent() {
 export default function BookingErrorPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
+      <div className="min-h-screen bg-gray-50 flex items-centre justify-centre">
+        <div className="text-centre">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading error information...</p>
         </div>

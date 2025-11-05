@@ -87,8 +87,8 @@ export default function EmergencyMobileLayout({
                 exit={{ y: -100, opacity: 0 }}
                 className="fixed top-0 left-0 right-0 z-50 bg-red-600 text-white shadow-lg"
               >
-                <div className="flex items-center justify-between px-4 py-3">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-centre justify-between px-4 py-3">
+                  <div className="flex items-centre gap-2">
                     <AlertTriangle className="w-5 h-5" />
                     <span className="text-sm font-semibold">{emergencyMessage}</span>
                   </div>
@@ -114,7 +114,7 @@ export default function EmergencyMobileLayout({
             <Button
               size="lg"
               onClick={handleEmergencyCall}
-              className="bg-red-600 hover:bg-red-700 text-white shadow-2xl rounded-full w-16 h-16 p-0 flex items-center justify-center"
+              className="bg-red-600 hover:bg-red-700 text-white shadow-2xl rounded-full w-16 h-16 p-0 flex items-centre justify-centre"
               aria-label={`Emergency call ${emergencyNumber}`}
             >
               <Phone className="w-8 h-8" />
@@ -131,11 +131,11 @@ export default function EmergencyMobileLayout({
             transition={{ delay: 0.3 }}
             className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40"
           >
-            <div className="flex items-center justify-around py-3 px-2">
+            <div className="flex items-centre justify-around py-3 px-2">
               {/* Emergency Call */}
               <button
                 onClick={handleEmergencyCall}
-                className="flex flex-col items-center gap-1 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors min-w-0 flex-1"
+                className="flex flex-col items-centre gap-1 px-3 py-2 rounded-lg hover:bg-red-50 transition-colors min-w-0 flex-1"
               >
                 <Phone className="w-6 h-6 text-red-600" />
                 <span className="text-xs font-semibold text-red-600">Call Now</span>
@@ -144,22 +144,22 @@ export default function EmergencyMobileLayout({
               {/* Services */}
               <button
                 onClick={() => window.location.href = '/services'}
-                className="flex flex-col items-center gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors min-w-0 flex-1"
+                className="flex flex-col items-centre gap-1 px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors min-w-0 flex-1"
               >
                 <Shield className="w-6 h-6 text-blue-600" />
                 <span className="text-xs font-medium text-blue-600">Services</span>
               </button>
 
               {/* Response Time */}
-              <div className="flex flex-col items-center gap-1 px-3 py-2 min-w-0 flex-1">
+              <div className="flex flex-col items-centre gap-1 px-3 py-2 min-w-0 flex-1">
                 <Clock className="w-6 h-6 text-green-600" />
                 <span className="text-xs font-medium text-green-600">60min</span>
               </div>
 
               {/* Scroll to Top */}
               <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="flex flex-col items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors min-w-0 flex-1"
+                onClick={() => window.scrollTo({ top: 0, behaviour: 'smooth' })}
+                className="flex flex-col items-centre gap-1 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors min-w-0 flex-1"
               >
                 <ChevronUp className="w-6 h-6 text-gray-600" />
                 <span className="text-xs font-medium text-gray-600">Top</span>

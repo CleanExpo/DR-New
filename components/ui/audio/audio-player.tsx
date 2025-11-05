@@ -229,7 +229,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
   return (
     <div className={cn('bg-gray-100 dark:bg-gray-800 rounded-lg p-4', className)}>
       {/* Main controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-centre gap-3">
         <Button
           size="icon"
           variant="default"
@@ -263,7 +263,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
         </div>
 
         {/* Volume control */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-centre gap-2">
           <Button
             size="icon"
             variant="ghost"

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ContractorApplication, REJECTION_REASONS, RejectionReason } from '@/lib/types/contractor-onboarding';
 import { Button } from '@/components/ui/button';
 import {
-  Dialog,
+  dialogue,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -74,10 +74,10 @@ export function RejectionModal({
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
+    <dialogue open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-xl text-red-600">
+          <DialogTitle className="flex items-centre gap-2 text-xl text-red-600">
             <XCircle className="w-6 h-6" />
             Reject Contractor Application
           </DialogTitle>
@@ -177,6 +177,6 @@ export function RejectionModal({
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </dialogue>
   );
 }

@@ -94,10 +94,10 @@ export const siteImages = {
     }
   },
 
-  // Image 3: Specialized drying equipment deployment
+  // Image 3: specialised drying equipment deployment
   specializedDryingEquipment: {
-    src: '/images/case-studies/specialized-drying-equipment-storm-flood-brisbane.webp',
-    alt: 'Specialized drying equipment deployed in Brisbane kitchen after storm water flooding showing professional yellow drying hoses preventing secondary damage',
+    src: '/images/case-studies/specialised-drying-equipment-storm-flood-brisbane.webp',
+    alt: 'specialised drying equipment deployed in Brisbane kitchen after storm water flooding showing professional yellow drying hoses preventing secondary damage',
     title: 'Emergency Make-Safe Drying Equipment - Storm Water Flood Response Brisbane',
     width: 1920,
     height: 2560,
@@ -105,14 +105,14 @@ export const siteImages = {
     caption: 'Professional drying equipment installed as emergency make-safe while awaiting insurance assessor (2 weeks delay). Critical intervention prevents secondary damage and mould growth during assessment delays.',
     metadata: {
       '@type': 'ImageObject',
-      name: 'Specialized Drying Equipment Storm Response Brisbane',
+      name: 'specialised Drying Equipment Storm Response Brisbane',
       description: 'Emergency make-safe drying equipment deployment after storm water flooding. Professional restoration services often first on-site, providing critical damage mitigation while insurance assessors delayed 2 weeks. Shows importance of immediate response vs waiting.',
-      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/specialized-drying-equipment-storm-flood-brisbane.webp',
-      keywords: ['specialized drying equipment', 'make-safe services', 'storm water flooding Brisbane', 'emergency drying', 'insurance delay response', 'first responder restoration'],
+      contentUrl: 'https://dr-new-ten.vercel.app/images/case-studies/specialised-drying-equipment-storm-flood-brisbane.webp',
+      keywords: ['specialised drying equipment', 'make-safe services', 'storm water flooding Brisbane', 'emergency drying', 'insurance delay response', 'first responder restoration'],
       datePublished: new Date().toISOString(),
       copyrightHolder: 'Disaster Recovery Claims Consulting',
       acquireLicensePage: 'https://dr-new-ten.vercel.app/contact',
-      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/specialized-drying-equipment-storm-flood-brisbane-thumb.webp'
+      thumbnailUrl: 'https://dr-new-ten.vercel.app/images/case-studies/specialised-drying-equipment-storm-flood-brisbane-thumb.webp'
     }
   },
 

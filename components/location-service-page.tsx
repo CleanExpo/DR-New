@@ -54,7 +54,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center">
+            <div className="text-centre">
               <span className="text-6xl mb-6 block">{serviceIcon}</span>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 {title}
@@ -62,17 +62,17 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
               <p className="text-xl md:text-2xl mb-8 text-blue-800">
                 {description}
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              <div className="flex flex-wrap justify-centre gap-4">
                 <Link
                   href={`/whos-first/${data.service}`}
-                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
                 >
                   <Phone className="w-5 h-5" />
                   Emergency Response
                 </Link>
                 <Link
                   href="/insurance-decoder"
-                  className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center gap-2"
+                  className="bg-white text-blue-900 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre gap-2"
                 >
                   <Shield className="w-5 h-5" />
                   Insurance Help
@@ -86,7 +86,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
       {/* Emergency Response Banner */}
       <section className="bg-red-600 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-centre justify-centre gap-4">
             <AlertTriangle className="w-8 h-8" />
             <p className="text-lg font-semibold">{data.emergencyResponse}</p>
             <Phone className="w-6 h-6" />
@@ -103,7 +103,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <MapPin className="w-8 h-8 text-blue-600" />
               Service Areas in {data.city}
             </h2>
@@ -135,7 +135,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <TrendingUp className="w-8 h-8 text-green-600" />
               Our Proven Process
             </h2>
@@ -149,7 +149,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   viewport={{ once: true }}
                   className="bg-white rounded-lg shadow-lg p-6 border-t-4 border-blue-600"
                 >
-                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-centre justify-centre text-xl font-bold mb-4">
                     {index + 1}
                   </div>
                   <p className="text-gray-200">{step}</p>
@@ -169,7 +169,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-centre gap-3">
               <Award className="w-8 h-8 text-yellow-600" />
               Why Choose Our {data.city} Team
             </h2>
@@ -202,28 +202,28 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
             viewport={{ once: true }}
           >
             <div className="bg-white rounded-xl shadow-xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-centre gap-3">
                 <Shield className="w-8 h-8 text-blue-600" />
                 Insurance Claims Assistance
               </h2>
               <p className="text-lg text-gray-200 mb-6">{data.insuranceInfo}</p>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="text-centre">
+                  <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-centre justify-centre mx-auto mb-4">
                     <FileText className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold mb-2">Documentation</h3>
                   <p className="text-sm text-gray-200">Complete photo and video documentation for your claim</p>
                 </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="text-centre">
+                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-centre justify-centre mx-auto mb-4">
                     <Users className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold mb-2">Direct Billing</h3>
                   <p className="text-sm text-gray-200">We work directly with all major insurers</p>
                 </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="text-centre">
+                  <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-centre justify-centre mx-auto mb-4">
                     <Zap className="w-8 h-8" />
                   </div>
                   <h3 className="font-semibold mb-2">Fast Processing</h3>
@@ -275,7 +275,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   <li>• Warehouses</li>
                   <li>• Factories</li>
                   <li>• Storage Facilities</li>
-                  <li>• Distribution Centers</li>
+                  <li>• Distribution centres</li>
                 </ul>
               </div>
             </div>
@@ -330,7 +330,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   <Link
                     key={index}
                     href={service.link}
-                    className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+                    className="flex items-centre gap-2 text-blue-600 hover:text-blue-700 font-medium"
                   >
                     <ChevronRight className="w-4 h-4" />
                     {service.name}
@@ -351,7 +351,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   <Link
                     key={index}
                     href={location.link}
-                    className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+                    className="flex items-centre gap-2 text-blue-600 hover:text-blue-700 font-medium"
                   >
                     <MapPin className="w-4 h-4" />
                     {location.name}
@@ -365,7 +365,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -378,17 +378,17 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
             <p className="text-xl mb-8 text-blue-800">
               Available 24/7 for emergency response. Insurance approved contractors.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Link
                 href={`/whos-first/${data.service}`}
-                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Phone className="w-5 h-5" />
                 Call Now for Help
               </Link>
               <Link
                 href="/insurance-decoder"
-                className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                className="bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold transition-colors inline-flex items-centre justify-centre gap-2"
               >
                 <Shield className="w-5 h-5" />
                 Insurance Assistance

@@ -66,7 +66,7 @@ export default function NewFarmPage() {
       },
       {
         title: 'Heritage Property Assessment',
-        description: 'Specialized evaluation of water, fire, mould, or storm damage to Queenslander and heritage properties.',
+        description: 'specialised evaluation of water, fire, mould, or storm damage to Queenslander and heritage properties.',
       },
       {
         title: 'Emergency Stabilization',

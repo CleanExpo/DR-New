@@ -42,7 +42,7 @@ const defaultFAQs: FAQItem[] = [
   },
   {
     question: "What areas do you service for emergency restoration?",
-    answer: "We service all of Brisbane, Ipswich, Logan, Gold Coast, Sunshine Coast, and surrounding areas. Our network extends throughout Queensland with specialized teams for remote and regional areas. We've even deployed to PNG and offshore facilities.",
+    answer: "We service all of Brisbane, Ipswich, Logan, Gold Coast, Sunshine Coast, and surrounding areas. Our network extends throughout Queensland with specialised teams for remote and regional areas. We've even deployed to PNG and offshore facilities.",
     category: "Service Areas",
     schema: true
   },
@@ -78,13 +78,13 @@ const defaultFAQs: FAQItem[] = [
   },
   {
     question: "How long does restoration take?",
-    answer: "Minor water damage: 3-5 days. Major flooding: 1-2 weeks. Fire damage: 2-4 weeks. We work 24/7 to minimize downtime. Many businesses reopen within days. We provide detailed timelines upfront and daily progress updates.",
+    answer: "Minor water damage: 3-5 days. Major flooding: 1-2 weeks. Fire damage: 2-4 weeks. We work 24/7 to minimise downtime. Many businesses reopen within days. We provide detailed timelines upfront and daily progress updates.",
     category: "Process",
     schema: true
   },
   {
     question: "Do I need to move out during restoration?",
-    answer: "Usually not! We use containment systems to isolate work areas. Most families stay home during restoration. For extensive damage, we can arrange temporary accommodation through your insurance. We minimize disruption to your life.",
+    answer: "Usually not! We use containment systems to isolate work areas. Most families stay home during restoration. For extensive damage, we can arrange temporary accommodation through your insurance. We minimise disruption to your life.",
     category: "Process",
     schema: true
   },
@@ -105,7 +105,7 @@ const defaultFAQs: FAQItem[] = [
   },
   {
     question: "Can you handle commercial and industrial properties?",
-    answer: "Absolutely! We've restored everything from small offices to 80-floor high-rises, hospitals, schools, factories, and even offshore oil rigs. No job is too big or complex. We have specialized commercial response teams.",
+    answer: "Absolutely! We've restored everything from small offices to 80-floor high-rises, hospitals, schools, factories, and even offshore oil rigs. No job is too big or complex. We have specialised commercial response teams.",
     category: "Commercial",
     schema: true
   },
@@ -141,7 +141,7 @@ const defaultFAQs: FAQItem[] = [
   },
   {
     question: "Can you save my hardwood floors after flooding?",
-    answer: "Often yes! Using specialized drying mats and injection systems, we can save most hardwood floors if we respond quickly. We've saved thousands of dollars in flooring for Brisbane homeowners. Time is critical - call immediately.",
+    answer: "Often yes! Using specialised drying mats and injection systems, we can save most hardwood floors if we respond quickly. We've saved thousands of dollars in flooring for Brisbane homeowners. Time is critical - call immediately.",
     category: "Specific Damage",
     schema: true
   }
@@ -221,12 +221,12 @@ export default function FAQSection({
       <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="container mx-auto px-6">
           {/* Header */}
-          <div className="text-center mb-12">
+          <div className="text-centre mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-4"
+              className="inline-flex items-centre gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-4"
             >
               <HelpCircle className="w-4 h-4" />
               <span className="text-sm font-semibold">Quick Answers</span>
@@ -280,7 +280,7 @@ export default function FAQSection({
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex flex-wrap justify-center gap-2 mb-8"
+              className="flex flex-wrap justify-centre gap-2 mb-8"
             >
               <Badge
                 className={`cursor-pointer px-4 py-2 ${
@@ -315,7 +315,7 @@ export default function FAQSection({
           {/* Featured FAQs */}
           {!searchTerm && selectedCategory === 'all' && featuredFAQs.length > 0 && (
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">Most Asked Questions</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-centre">Most Asked Questions</h3>
               <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
                 {featuredFAQs.slice(0, 4).map((faq, index) => (
                   <motion.div
@@ -398,7 +398,7 @@ export default function FAQSection({
             </AnimatePresence>
 
             {filteredFAQs.length === 0 && (
-              <div className="text-center py-12">
+              <div className="text-centre py-12">
                 <p className="text-gray-600 text-lg">No questions found matching your search.</p>
                 <p className="text-gray-500 mt-2">Try different keywords or browse all categories.</p>
               </div>
@@ -410,7 +410,7 @@ export default function FAQSection({
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8"
+            className="text-centre mt-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8"
           >
             <MessageCircle className="w-12 h-12 text-blue-600 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -419,15 +419,15 @@ export default function FAQSection({
             <p className="text-gray-600 mb-6">
               Our disaster recovery experts are available 24/7 to answer your specific questions
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <button
                 onClick={() => window.location.href = 'tel:1300309361'}
-                className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="inline-flex items-centre justify-centre px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call 1300 309 361
               </button>
-              <button className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+              <button className="inline-flex items-centre justify-centre px-6 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Start Live Chat
               </button>

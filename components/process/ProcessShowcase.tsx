@@ -53,7 +53,7 @@ const processCategories: ProcessCategory[] = [
         description: 'Comprehensive damage evaluation using thermal imaging and moisture detection',
         details: 'Our certified technicians conduct thorough property assessment to identify all affected areas, hidden moisture, and potential safety hazards. This critical first step determines the scope and approach for restoration.',
         duration: '30-60 minutes',
-        image: '/images/optimized/process/3D Hazardous Cleaning.png',
+        image: '/images/optimised/process/3D Hazardous Cleaning.png',
         icon: Search,
         keyActions: ['Visual inspection', 'Thermal imaging scan', 'Moisture mapping', 'Safety evaluation'],
         equipment: ['Thermal cameras', 'Moisture meters', 'Documentation tools', 'Safety equipment'],
@@ -74,11 +74,11 @@ const processCategories: ProcessCategory[] = [
         step: 2,
         title: 'Professional Drying Setup',
         description: 'Strategic placement of industrial dehumidifiers and air movers for optimal drying',
-        details: 'Using psychrometric calculations and industry best practices, we create optimal drying conditions. Equipment is strategically placed to maximize air circulation and moisture removal while monitoring progress continuously.',
+        details: 'Using psychrometric calculations and industry best practices, we create optimal drying conditions. Equipment is strategically placed to maximise air circulation and moisture removal while monitoring progress continuously.',
         duration: '2-4 hours setup',
-        image: '/images/optimized/process/3D Emergency Squalor Cleanup.png',
+        image: '/images/optimised/process/3D Emergency Squalor Cleanup.png',
         icon: TrendingUp,
-        keyActions: ['Equipment placement', 'Airflow optimization', 'Moisture monitoring', 'Progress tracking'],
+        keyActions: ['Equipment placement', 'Airflow optimisation', 'Moisture monitoring', 'Progress tracking'],
         equipment: ['Industrial dehumidifiers', 'Air movers', 'Monitoring devices', 'Psychrometric tools'],
         qualityChecks: ['Optimal equipment placement', 'Proper air circulation', 'Baseline measurements', 'Safety compliance']
       }
@@ -99,7 +99,7 @@ const processCategories: ProcessCategory[] = [
         description: 'Safe removal of damaged materials and contamination treatment',
         details: 'Following IICRC standards, we safely remove damaged materials, treat affected surfaces, and apply antimicrobial solutions. All work is performed under proper containment to prevent cross-contamination.',
         duration: '1-5 days',
-        image: '/images/optimized/process/3D Hazardous Cleaning.png',
+        image: '/images/optimised/process/3D Hazardous Cleaning.png',
         icon: Shield,
         keyActions: ['Containment setup', 'Material removal', 'Surface treatment', 'Antimicrobial application'],
         equipment: ['Containment barriers', 'HEPA filtration', 'Removal tools', 'Treatment solutions'],
@@ -122,7 +122,7 @@ const processCategories: ProcessCategory[] = [
         description: 'Full property restoration returning it to pre-loss condition',
         details: 'The final phase involves complete restoration including reconstruction, painting, flooring installation, and final cleaning. We ensure your property is returned to its original condition or better.',
         duration: '1-4 weeks',
-        image: '/images/optimized/process/3D Emergency Squalor Cleanup.png',
+        image: '/images/optimised/process/3D Emergency Squalor Cleanup.png',
         icon: Sparkles,
         keyActions: ['Reconstruction', 'Finishing work', 'Final cleaning', 'Quality inspection'],
         equipment: ['Construction tools', 'Finishing materials', 'Quality meters', 'Inspection equipment'],
@@ -133,7 +133,7 @@ const processCategories: ProcessCategory[] = [
   {
     id: 'hazardous',
     title: 'Hazardous Cleaning',
-    description: 'Specialized biohazard and contamination cleanup',
+    description: 'specialised biohazard and contamination cleanup',
     icon: AlertTriangle,
     totalDuration: '1-3 days',
     priority: 'critical',
@@ -143,12 +143,12 @@ const processCategories: ProcessCategory[] = [
         step: 1,
         title: 'Hazardous Material Cleanup',
         description: 'Safe handling and disposal of biohazardous materials with full safety protocols',
-        details: 'Specialized cleanup of biohazardous materials including bodily fluids, chemicals, and contaminated materials. Our technicians use full PPE and follow strict safety protocols for worker and occupant safety.',
+        details: 'specialised cleanup of biohazardous materials including bodily fluids, chemicals, and contaminated materials. Our technicians use full PPE and follow strict safety protocols for worker and occupant safety.',
         duration: '4-24 hours',
-        image: '/images/optimized/process/3D Hazardous Cleaning.png',
+        image: '/images/optimised/process/3D Hazardous Cleaning.png',
         icon: AlertTriangle,
         keyActions: ['Safety protocols', 'Material removal', 'Decontamination', 'Proper disposal'],
-        equipment: ['Full PPE', 'Specialized tools', 'Decontamination solutions', 'Disposal containers'],
+        equipment: ['Full PPE', 'specialised tools', 'Decontamination solutions', 'Disposal containers'],
         qualityChecks: ['Safety compliance', 'Complete removal', 'Decontamination verification', 'Proper disposal']
       }
     ]
@@ -168,7 +168,7 @@ const processCategories: ProcessCategory[] = [
         description: 'Rapid emergency cleanup for urgent situations requiring immediate response',
         details: 'Emergency situations require immediate response to prevent further damage and health risks. Our rapid response team is equipped to handle urgent cleanup scenarios with speed and efficiency while maintaining safety standards.',
         duration: '4-12 hours',
-        image: '/images/optimized/process/3D Emergency Squalor Cleanup.png',
+        image: '/images/optimised/process/3D Emergency Squalor Cleanup.png',
         icon: Clock,
         keyActions: ['Rapid response', 'Emergency stabilization', 'Immediate cleanup', 'Safety securing'],
         equipment: ['Emergency vehicles', 'Rapid-deploy equipment', 'Safety gear', 'Communication tools'],
@@ -194,7 +194,7 @@ export default function ProcessShowcase() {
     <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-centre mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -220,21 +220,21 @@ export default function ProcessShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-6 text-sm font-medium text-gray-600"
+            className="flex flex-wrap justify-centre gap-6 text-sm font-medium text-gray-600"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Award className="w-5 h-5 text-blue-600" />
               <span>IICRC Certified</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Shield className="w-5 h-5 text-green-600" />
               <span>Insurance Approved</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <FileCheck className="w-5 h-5 text-purple-600" />
               <span>Fully Documented</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-centre gap-2">
               <Users className="w-5 h-5 text-orange-600" />
               <span>Trained Technicians</span>
             </div>
@@ -254,7 +254,7 @@ export default function ProcessShowcase() {
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="flex flex-col items-center gap-2 py-4 px-3 text-center data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                  className="flex flex-col items-centre gap-2 py-4 px-3 text-centre data-[state=active]:bg-blue-600 data-[state=active]:text-white"
                 >
                   <category.icon className="w-5 h-5" />
                   <span className="text-xs font-medium leading-tight">{category.title}</span>
@@ -278,14 +278,14 @@ export default function ProcessShowcase() {
               >
                 <TabsContent value={selectedCategory} className="mt-0">
                   {/* Category Header */}
-                  <div className="text-center mb-12">
-                    <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="text-centre mb-12">
+                    <div className="flex items-centre justify-centre gap-3 mb-4">
                       <currentCategory.icon className="w-8 h-8 text-blue-600" />
                       <h3 className="text-3xl font-bold text-gray-900">{currentCategory.title}</h3>
                     </div>
                     <p className="text-lg text-gray-700 mb-4">{currentCategory.description}</p>
-                    <div className="flex items-center justify-center gap-6 text-sm">
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-centre justify-centre gap-6 text-sm">
+                      <div className="flex items-centre gap-2">
                         <Clock className="w-4 h-4 text-blue-600" />
                         <span className="font-medium">Duration: {currentCategory.totalDuration}</span>
                       </div>
@@ -318,7 +318,7 @@ export default function ProcessShowcase() {
 
                             {/* Step Number */}
                             <div className="absolute top-4 left-4">
-                              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-xl font-bold">
                                 {step.step}
                               </div>
                             </div>
@@ -344,13 +344,13 @@ export default function ProcessShowcase() {
 
                             {/* Key Actions */}
                             <div className="mb-6">
-                              <h5 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                              <h5 className="font-semibold text-gray-900 mb-3 flex items-centre gap-2">
                                 <CheckCircle className="w-4 h-4 text-green-600" />
                                 Key Actions
                               </h5>
                               <ul className="space-y-2">
                                 {step.keyActions.map((action, idx) => (
-                                  <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
+                                  <li key={idx} className="flex items-centre gap-2 text-sm text-gray-600">
                                     <div className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
                                     {action}
                                   </li>
@@ -360,7 +360,7 @@ export default function ProcessShowcase() {
 
                             {/* Equipment Used */}
                             <div className="mb-6">
-                              <h5 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                              <h5 className="font-semibold text-gray-900 mb-3 flex items-centre gap-2">
                                 <Wrench className="w-4 h-4 text-blue-600" />
                                 Equipment Used
                               </h5>
@@ -375,13 +375,13 @@ export default function ProcessShowcase() {
 
                             {/* Quality Checks */}
                             <div className="mb-6">
-                              <h5 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                              <h5 className="font-semibold text-gray-900 mb-3 flex items-centre gap-2">
                                 <FileCheck className="w-4 h-4 text-green-600" />
                                 Quality Checks
                               </h5>
                               <ul className="space-y-1">
                                 {step.qualityChecks.map((check, idx) => (
-                                  <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
+                                  <li key={idx} className="flex items-centre gap-2 text-sm text-gray-600">
                                     <CheckCircle className="w-3 h-3 text-green-500" />
                                     {check}
                                   </li>
@@ -415,7 +415,7 @@ export default function ProcessShowcase() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+              className="fixed inset-0 z-50 bg-black/80 flex items-centre justify-centre p-4"
               onClick={() => setSelectedStep(null)}
             >
               <motion.div
@@ -436,8 +436,8 @@ export default function ProcessShowcase() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-6 left-6 text-white">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                      <div className="flex items-centre gap-3 mb-3">
+                        <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-centre justify-centre text-xl font-bold">
                           {selectedStep.step}
                         </div>
                         <div>
@@ -456,7 +456,7 @@ export default function ProcessShowcase() {
                         <h4 className="font-bold text-lg text-gray-900 mb-4">Key Actions</h4>
                         <ul className="space-y-3">
                           {selectedStep.keyActions.map((action, idx) => (
-                            <li key={idx} className="flex items-center gap-3">
+                            <li key={idx} className="flex items-centre gap-3">
                               <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                               <span className="text-gray-700">{action}</span>
                             </li>
@@ -468,7 +468,7 @@ export default function ProcessShowcase() {
                         <h4 className="font-bold text-lg text-gray-900 mb-4">Equipment</h4>
                         <div className="space-y-2">
                           {selectedStep.equipment.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-3">
+                            <div key={idx} className="flex items-centre gap-3">
                               <Wrench className="w-4 h-4 text-blue-600" />
                               <span className="text-gray-700 text-sm">{item}</span>
                             </div>
@@ -480,7 +480,7 @@ export default function ProcessShowcase() {
                         <h4 className="font-bold text-lg text-gray-900 mb-4">Quality Checks</h4>
                         <ul className="space-y-2">
                           {selectedStep.qualityChecks.map((check, idx) => (
-                            <li key={idx} className="flex items-center gap-3">
+                            <li key={idx} className="flex items-centre gap-3">
                               <FileCheck className="w-4 h-4 text-green-600" />
                               <span className="text-gray-700 text-sm">{check}</span>
                             </li>
@@ -489,7 +489,7 @@ export default function ProcessShowcase() {
                       </div>
                     </div>
 
-                    <div className="mt-8 text-center">
+                    <div className="mt-8 text-centre">
                       <Button
                         size="lg"
                         className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4"
@@ -518,7 +518,7 @@ export default function ProcessShowcase() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-centre mt-16"
         >
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-4">Professional Process, Guaranteed Results</h3>
@@ -526,7 +526,7 @@ export default function ProcessShowcase() {
               Every step documented, every process certified. Our IICRC trained technicians
               follow proven procedures for consistent, reliable results.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-centre">
               <Button
                 size="lg"
                 className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-xl font-bold"

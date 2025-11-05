@@ -16,8 +16,8 @@ export default function VOCRemovalTestingBrisbanePage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-green-900 to-green-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center items-center mb-6">
+          <div className="max-w-4xl mx-auto text-centre">
+            <div className="flex justify-centre items-centre mb-6">
               <Wind className="h-16 w-16 mr-4 text-green-400" />
               <TestTube className="h-16 w-16 text-blue-400" />
             </div>
@@ -37,7 +37,7 @@ export default function VOCRemovalTestingBrisbanePage() {
               <p className="text-lg">NATA Accredited • Same Day Service Available</p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 text-center">
+            <div className="grid md:grid-cols-3 gap-4 text-centre">
               <div>
                 <TestTube className="h-10 w-10 mx-auto mb-2 text-blue-400" />
                 <p className="font-bold">NATA Accredited</p>
@@ -62,7 +62,7 @@ export default function VOCRemovalTestingBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Understanding Volatile Organic Compounds (VOCs) in Brisbane Homes
             </h2>
 
@@ -78,23 +78,23 @@ export default function VOCRemovalTestingBrisbanePage() {
                 <div className="bg-red-50 p-6 rounded-lg">
                   <h4 className="font-bold mb-3 text-red-800">Common VOC Sources in Brisbane Homes:</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Paints, varnishes, and wood stains</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>New furniture and cabinetry</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Carpets, adhesives, and sealants</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Cleaning products and air fresheners</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-red-600 mr-2" />
                       <span>Building materials and insulation</span>
                     </li>
@@ -135,7 +135,7 @@ export default function VOCRemovalTestingBrisbanePage() {
 
             {/* Most Dangerous VOCs */}
             <Card className="p-8 bg-yellow-50">
-              <h3 className="text-2xl font-bold text-center mb-6 text-yellow-800">
+              <h3 className="text-2xl font-bold text-centre mb-6 text-yellow-800">
                 Most Dangerous VOCs Found in Brisbane Properties
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
@@ -179,7 +179,7 @@ export default function VOCRemovalTestingBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               NATA Accredited VOC Testing Brisbane
             </h2>
 
@@ -192,23 +192,23 @@ export default function VOCRemovalTestingBrisbanePage() {
                   commonly found in Brisbane homes and offices. Same-day emergency testing available.
                 </p>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>NATA certified laboratory analysis</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Comprehensive 100+ VOC panel</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Real-time air quality monitoring</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Detailed health risk assessment</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                     <span>Source identification and mapping</span>
                   </li>
@@ -220,28 +220,28 @@ export default function VOCRemovalTestingBrisbanePage() {
                 <h3 className="text-2xl font-bold mb-4">Professional Testing Process</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 text-sm font-bold">1</div>
+                    <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 text-sm font-bold">1</div>
                     <div>
                       <h4 className="font-bold">Initial Assessment</h4>
                       <p className="text-sm">On-site evaluation and sampling strategy development</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 text-sm font-bold">2</div>
+                    <div className="bg-green-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 text-sm font-bold">2</div>
                     <div>
                       <h4 className="font-bold">Sample Collection</h4>
                       <p className="text-sm">Strategic air sampling using calibrated equipment</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 text-sm font-bold">3</div>
+                    <div className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 text-sm font-bold">3</div>
                     <div>
                       <h4 className="font-bold">Laboratory Analysis</h4>
                       <p className="text-sm">NATA accredited testing for VOC identification</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 text-sm font-bold">4</div>
+                    <div className="bg-orange-600 text-white rounded-full w-8 h-8 flex items-centre justify-centre mr-4 text-sm font-bold">4</div>
                     <div>
                       <h4 className="font-bold">Detailed Report</h4>
                       <p className="text-sm">Comprehensive results with health risk assessment</p>
@@ -303,7 +303,7 @@ export default function VOCRemovalTestingBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Professional VOC Removal & Air Purification Brisbane
             </h2>
 
@@ -318,23 +318,23 @@ export default function VOCRemovalTestingBrisbanePage() {
                 <div className="bg-green-50 p-6 rounded-lg">
                   <h4 className="font-bold mb-3 text-green-800">Carbon Filtration Systems:</h4>
                   <ul className="space-y-2">
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Industrial activated carbon filters</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>HEPA + carbon combination systems</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Whole-house air purification</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>Portable high-capacity units</span>
                     </li>
-                    <li className="flex items-center">
+                    <li className="flex items-centre">
                       <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
                       <span>UV-C sterilization integration</span>
                     </li>
@@ -356,13 +356,13 @@ export default function VOCRemovalTestingBrisbanePage() {
                       <li>• Ozone treatment for paint fumes</li>
                       <li>• Thermal fogging neutralization</li>
                       <li>• Hydroxyl radical treatment</li>
-                      <li>• Ventilation optimization</li>
+                      <li>• Ventilation optimisation</li>
                     </ul>
                   </div>
                   <div className="bg-purple-50 p-4 rounded-lg">
                     <h4 className="font-bold mb-2 text-purple-800">Formaldehyde Removal:</h4>
                     <ul className="text-sm space-y-1">
-                      <li>• Specialized formaldehyde scavengers</li>
+                      <li>• specialised formaldehyde scavengers</li>
                       <li>• Catalytic oxidation systems</li>
                       <li>• Sealing and encapsulation</li>
                       <li>• Temperature/humidity control</li>
@@ -374,11 +374,11 @@ export default function VOCRemovalTestingBrisbanePage() {
 
             {/* Emergency VOC Response */}
             <Card className="p-8 bg-red-50">
-              <h3 className="text-2xl font-bold text-center mb-6 text-red-800">
+              <h3 className="text-2xl font-bold text-centre mb-6 text-red-800">
                 Emergency VOC Response - Brisbane 24/7
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
+                <div className="text-centre">
                   <Clock className="h-16 w-16 mx-auto mb-4 text-red-600" />
                   <h4 className="text-xl font-bold mb-2">Immediate Response</h4>
                   <p className="text-sm">
@@ -386,7 +386,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                     On-site within 60 minutes Brisbane metro.
                   </p>
                 </div>
-                <div className="text-center">
+                <div className="text-centre">
                   <Wind className="h-16 w-16 mx-auto mb-4 text-blue-600" />
                   <h4 className="text-xl font-bold mb-2">Emergency Ventilation</h4>
                   <p className="text-sm">
@@ -394,7 +394,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                     and emergency evacuation protocols.
                   </p>
                 </div>
-                <div className="text-center">
+                <div className="text-centre">
                   <TestTube className="h-16 w-16 mx-auto mb-4 text-green-600" />
                   <h4 className="text-xl font-bold mb-2">Immediate Testing</h4>
                   <p className="text-sm">
@@ -412,7 +412,7 @@ export default function VOCRemovalTestingBrisbanePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Common VOC Problems in Brisbane Properties
             </h2>
 
@@ -477,7 +477,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                 <h3 className="text-lg font-bold mb-3 text-orange-800">Healthcare Facilities</h3>
                 <p className="text-sm mb-3">
                   Medical equipment, cleaning chemicals, and sterilization processes
-                  create unique VOC challenges requiring specialized solutions.
+                  create unique VOC challenges requiring specialised solutions.
                 </p>
                 <ul className="text-xs space-y-1">
                   <li>• Medical equipment off-gassing</li>
@@ -509,7 +509,7 @@ export default function VOCRemovalTestingBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               VOC Testing & Removal Service Areas
             </h2>
 
@@ -517,23 +517,23 @@ export default function VOCRemovalTestingBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-blue-800">Brisbane Metro</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Wind className="h-4 w-4 text-green-600 mr-2" />
                     <span>Brisbane CBD & Inner City</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Wind className="h-4 w-4 text-green-600 mr-2" />
                     <span>Hamilton & Ascot (Heritage homes)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Wind className="h-4 w-4 text-green-600 mr-2" />
                     <span>New Farm & Bulimba (New developments)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Wind className="h-4 w-4 text-green-600 mr-2" />
                     <span>Toowong & Paddington (Office buildings)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Wind className="h-4 w-4 text-green-600 mr-2" />
                     <span>All Brisbane suburbs</span>
                   </li>
@@ -543,23 +543,23 @@ export default function VOCRemovalTestingBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-green-800">Ipswich Region</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <TestTube className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Ipswich CBD commercial</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <TestTube className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Springfield Lakes (New homes)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <TestTube className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Brookwater (Golf course estates)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <TestTube className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Karalee (Acreage properties)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <TestTube className="h-4 w-4 text-blue-600 mr-2" />
                     <span>Augustine Heights developments</span>
                   </li>
@@ -569,23 +569,23 @@ export default function VOCRemovalTestingBrisbanePage() {
               <Card className="p-6">
                 <h3 className="text-xl font-bold mb-4 text-purple-800">Logan & Gold Coast</h3>
                 <ul className="space-y-2">
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Logan Central commercial</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Springwood business district</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Shailer Park residential</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Upper Gold Coast (Nerang, Mudgeeraba)</span>
                   </li>
-                  <li className="flex items-center">
+                  <li className="flex items-centre">
                     <Shield className="h-4 w-4 text-purple-600 mr-2" />
                     <span>Industrial Logan areas</span>
                   </li>
@@ -593,7 +593,7 @@ export default function VOCRemovalTestingBrisbanePage() {
               </Card>
             </div>
 
-            <div className="text-center">
+            <div className="text-centre">
               <p className="text-lg mb-4">
                 <strong>Emergency VOC response available 24/7 throughout service area</strong>
               </p>
@@ -607,7 +607,7 @@ export default function VOCRemovalTestingBrisbanePage() {
 
       {/* Emergency Contact */}
       <section className="py-16 bg-gradient-to-r from-green-700 to-blue-700 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             VOC Emergency or Testing Required?
           </h2>
@@ -650,12 +650,12 @@ export default function VOCRemovalTestingBrisbanePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
+            <h2 className="text-3xl font-bold text-centre mb-12">
               Related Air Quality Services
             </h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Wind className="h-12 w-12 mx-auto mb-4 text-blue-600" />
                 <h3 className="text-xl font-bold mb-3">
                   Indoor Air Quality Testing
@@ -668,7 +668,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <Shield className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="text-xl font-bold mb-3">
                   HVAC System Cleaning
@@ -681,7 +681,7 @@ export default function VOCRemovalTestingBrisbanePage() {
                 </Link>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-centre">
                 <TestTube className="h-12 w-12 mx-auto mb-4 text-purple-600" />
                 <h3 className="text-xl font-bold mb-3">
                   Mould & Moisture Assessment

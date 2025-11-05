@@ -15,7 +15,7 @@ export default function LongTailEmergencyQuestionsPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-red-900 to-red-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-centre">
             <AlertTriangle className="h-16 w-16 mx-auto mb-6 text-yellow-400" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Emergency Questions Answered: What To Do When Disaster Strikes Brisbane
@@ -31,7 +31,7 @@ export default function LongTailEmergencyQuestionsPage() {
       {/* Critical Emergency Questions */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Critical Emergency Questions - Get Help Now
           </h2>
 
@@ -207,7 +207,7 @@ export default function LongTailEmergencyQuestionsPage() {
 
       {/* Emergency Action Section */}
       <section className="py-16 bg-red-900 text-white">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-4 text-centre">
           <h2 className="text-3xl font-bold mb-6">
             Don't Wait - Every Minute Counts
           </h2>
@@ -216,17 +216,17 @@ export default function LongTailEmergencyQuestionsPage() {
             Get immediate help from Queensland's Master Restorer covering Brisbane, Ipswich, and Logan.
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
-            <div className="text-center">
+            <div className="text-centre">
               <Phone className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
               <h3 className="text-xl font-bold mb-2">24/7 Emergency Response</h3>
               <p>Available Christmas, Easter, weekends</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <Clock className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
               <h3 className="text-xl font-bold mb-2">Rapid Response Time</h3>
               <p>On-site within 60-90 minutes</p>
             </div>
-            <div className="text-center">
+            <div className="text-centre">
               <Shield className="h-12 w-12 mx-auto mb-4 text-yellow-400" />
               <h3 className="text-xl font-bold mb-2">Master Restorer Certified</h3>
               <p>One of limited certified in QLD</p>
@@ -243,25 +243,25 @@ export default function LongTailEmergencyQuestionsPage() {
       {/* Location-Specific Help */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
+          <h2 className="text-3xl font-bold text-centre mb-12">
             Emergency Help By Location
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <h3 className="text-xl font-bold mb-2">Brisbane Emergency</h3>
               <p className="mb-4">Hamilton, Ascot, New Farm, Bulimba, CBD</p>
               <Link href="/locations/brisbane">
                 <Button variant="outline">Brisbane Emergency Help</Button>
               </Link>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <h3 className="text-xl font-bold mb-2">Ipswich Emergency</h3>
               <p className="mb-4">Karalee, Brookwater, Springfield Lakes</p>
               <Link href="/locations/ipswich">
                 <Button variant="outline">Ipswich Emergency Help</Button>
               </Link>
             </Card>
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-centre">
               <h3 className="text-xl font-bold mb-2">Logan Emergency</h3>
               <p className="mb-4">Springwood, Shailer Park, Daisy Hill</p>
               <Link href="/locations/logan">

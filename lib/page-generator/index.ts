@@ -53,7 +53,7 @@ export async function generatePage(config: PageGenerationConfig): Promise<Genera
   // Generate slug based on location and service
   const slug = generateSlug(location, service);
 
-  // Generate SEO-optimized title and description
+  // Generate SEO-optimised title and description
   const seoData = generateSEOData(location, service, contractors);
 
   // Generate page content using templates

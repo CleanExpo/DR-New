@@ -69,12 +69,12 @@ export function StatCard({
         className
       )}
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-centre justify-between mb-4">
         <motion.div
           whileHover={{ rotate: 5, scale: 1.1 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            'w-12 h-12 bg-gradient-to-r rounded-xl flex items-center justify-center shadow-lg',
+            'w-12 h-12 bg-gradient-to-r rounded-xl flex items-centre justify-centre shadow-lg',
             colors.gradient
           )}
         >
