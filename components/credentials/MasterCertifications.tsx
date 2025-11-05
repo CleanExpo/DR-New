@@ -11,25 +11,39 @@ import { Badge } from '@/components/ui/badge';
 const MasterCertifications = () => {
   const certifications = [
     {
-      title: 'Master Textile Cleaner',
-      icon: Sparkles,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
-      description: 'Advanced expertise in fabric and textile restoration, including upholstery, carpets, and specialised materials'
+      title: 'IICRC Master Restorer',
+      icon: Award,
+      color: 'text-yellow-600',
+      bgColor: 'bg-yellow-50',
+      description: 'Highest level of IICRC certification - Master Water Restorer, Master Fire & Smoke Restorer, Master Textile Cleaner'
     },
     {
-      title: 'Master Fire & Smoke Restorer',
+      title: 'RAI Master Restorer',
+      icon: Shield,
+      color: 'text-blue-600',
+      bgColor: 'bg-blue-50',
+      description: 'Restoration Industry Association Master Restorer certification - one of the few in Brisbane & QLD'
+    },
+    {
+      title: 'Xactimate Master',
+      icon: Sparkles,
+      color: 'text-green-600',
+      bgColor: 'bg-green-50',
+      description: 'Expert in Xactimate insurance estimating software - ensuring accurate claims and faster approvals'
+    },
+    {
+      title: 'Hazmat Licensed',
       icon: Flame,
       color: 'text-orange-600',
       bgColor: 'bg-orange-50',
-      description: 'specialised in complex fire and smoke damage recovery, odor elimination, and structural restoration'
+      description: 'Licensed for hazardous materials handling and removal - ensuring safe, compliant cleanup'
     },
     {
-      title: 'Master Water Restorer',
+      title: 'Asbestos Assessor',
       icon: Droplet,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-      description: 'Expert in comprehensive water damage restoration, structural drying, and moisture management'
+      color: 'text-red-600',
+      bgColor: 'bg-red-50',
+      description: 'Certified asbestos assessor for safe identification and management in older properties'
     }
   ];
 
@@ -46,13 +60,13 @@ const MasterCertifications = () => {
         >
           <Badge className="mb-4 bg-gradient-to-r from-yellow-500 to-amber-600 text-white">
             <Award className="w-4 h-4 mr-2" />
-            IICRC Certified Master Restorer
+            Master Certified Professional
           </Badge>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Industry-Leading Expertise
+            Industry-Leading Credentials
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Phill McGurk brings unparalleled mastery in disaster recovery, achieving the elite IICRC Master status
+            <strong>Phill McGurk:</strong> IICRC Master Restorer | RAI Master Restorer | Xactimate Master | Hazmat Licensed | Asbestos Assessor
           </p>
         </motion.div>
 

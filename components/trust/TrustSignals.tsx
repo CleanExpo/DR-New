@@ -27,10 +27,11 @@ export default function TrustSignals({
   className = ''
 }: TrustSignalsProps) {
   const certifications = [
-    { name: 'Master Restorer', icon: Trophy, color: 'text-gold-500' },
-    { name: 'IICRC Certified', icon: Award, color: 'text-blue-600' },
-    { name: 'EPA Licensed', icon: Shield, color: 'text-green-600' },
-    { name: 'SafeWork QLD', icon: BadgeCheck, color: 'text-purple-600' }
+    { name: 'IICRC Master Restorer', icon: Trophy, color: 'text-gold-500' },
+    { name: 'RAI Master Restorer', icon: Award, color: 'text-blue-600' },
+    { name: 'Xactimate Master', icon: Shield, color: 'text-green-600' },
+    { name: 'Hazmat Licensed', icon: BadgeCheck, color: 'text-orange-600' },
+    { name: 'Asbestos Assessor', icon: Shield, color: 'text-red-600' }
   ];
 
   const insuranceLogos = [
@@ -239,7 +240,7 @@ export function FloatingTrustBar() {
             {/* Master Restorer */}
             <div className="flex items-centre gap-2">
               <Trophy className="w-5 h-5 text-gold-500" />
-              <span className="font-bold text-sm">Master Restorer</span>
+              <span className="font-bold text-sm">IICRC & RAI Master</span>
             </div>
 
             {/* Rating */}
@@ -278,11 +279,11 @@ export function FloatingTrustBar() {
 // Trust Badges Grid
 export function TrustBadgesGrid() {
   const badges = [
-    { name: 'Master Restorer', icon: Trophy, description: 'Highest industry certification' },
-    { name: 'IICRC Certified', icon: Award, description: 'International certification' },
-    { name: '24/7 Response', icon: Clock, description: 'Always available' },
-    { name: '100% Guaranteed', icon: Shield, description: 'Satisfaction guaranteed' },
-    { name: '15,000+ Jobs', icon: CheckCircle2, description: 'Proven experience' },
+    { name: 'IICRC Master', icon: Trophy, description: 'Highest IICRC certification' },
+    { name: 'RAI Master', icon: Award, description: 'RAI Master Restorer' },
+    { name: 'Xactimate Master', icon: Shield, description: 'Insurance estimating expert' },
+    { name: 'Hazmat Licensed', icon: BadgeCheck, description: 'Certified hazmat handler' },
+    { name: 'Asbestos Assessor', icon: Shield, description: 'Certified assessor' },
     { name: '4.9★ Rating', icon: Star, description: '1,247 reviews' }
   ];
 

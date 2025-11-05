@@ -4,7 +4,7 @@ import { Phone, Clock, Star, Shield, Users, MapPin, Award, CheckCircle, Crown, W
 
 export const metadata: Metadata = {
   title: 'Hamilton Water Damage Restoration | Riverfront Mansion Specialists | Executive Emergency Response',
-  description: 'Professional water damage restoration Hamilton Brisbane. Riverfront mansion specialists, executive property experts, CEO residence emergency response. Master Restorer certified for ultra-luxury homes.',
+  description: 'Professional water damage restoration Hamilton Brisbane. Riverfront mansion specialists, executive property experts, CEO residence emergency response. Phill McGurk - IICRC Master Restorer, RAI Master Restorer, Xactimate Master, Hazmat Licensed, Asbestos Assessor.',
   keywords: 'Hamilton water damage restoration, riverfront mansion flooding, executive property emergency, Brisbane River luxury homes, Hamilton luxury restoration, CEO residence water damage',
   openGraph: {
     title: 'Hamilton Water Damage Restoration | Riverfront Mansion Specialists',

@@ -7,7 +7,7 @@ export const metadata: Metadata = generateServiceSEO({
   serviceName: 'Crime Scene Cleanup',
   location: 'Brisbane, Ipswich & Logan',
   title: 'Crime Scene Cleanup Brisbane, Ipswich & Logan | Discreet Biohazard Removal',
-  description: 'Professional crime scene cleanup in Brisbane, Ipswich, Logan. Discreet, trauma-informed biohazard removal. IICRC certified. Master Restorer Phill McGurk.',
+  description: 'Professional crime scene cleanup in Brisbane, Ipswich, Logan. Discreet, trauma-informed biohazard removal. Phill McGurk - IICRC Master Restorer, RAI Master Restorer, Xactimate Master, Hazmat Licensed, Asbestos Assessor.',
   keywords: [
     'crime scene cleanup Brisbane',
     'trauma cleaning Ipswich',

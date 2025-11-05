@@ -32,11 +32,11 @@ const LandingHeader = dynamic(() => import('@/components/LandingHeader'), {
 // Generate metadata - Local Brisbane, Ipswich, Logan focus
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Brisbane, Ipswich & Logan | 2hr Response',
-  description: 'Expert water damage restoration in Brisbane, Ipswich, Logan. 2-hour emergency response, flood recovery, burst pipes. IICRC certified. Master Restorer Phill McGurk.',
+  description: 'Expert water damage restoration in Brisbane, Ipswich, Logan. 2-hour emergency response, flood recovery, burst pipes. Phill McGurk - IICRC Master Restorer, RAI Master Restorer, Xactimate Master, Hazmat Licensed, Asbestos Assessor.',
   keywords: 'water damage restoration Brisbane, flood recovery Ipswich, emergency water extraction Logan, burst pipe repair Brisbane, structural drying Ipswich, mould prevention Logan, insurance restoration Brisbane',
   openGraph: {
     title: 'Water Damage Restoration Brisbane | Emergency Flood Recovery',
-    description: 'Fast water damage restoration Brisbane, Ipswich, Logan. 2-hour response, IICRC certified, insurance approved. Master Restorer service.',
+    description: 'Fast water damage restoration Brisbane, Ipswich, Logan. 2-hour response, IICRC & RAI Master Restorer certified, insurance approved.',
     images: [{ url: '/images/optimised/damage/3D Burst Water Pipe.png', width: 1200, height: 630, alt: 'Water Damage Restoration Brisbane' }],
     type: 'website',
     siteName: 'Disaster Recovery Brisbane',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Water Damage Restoration Brisbane | 2hr Response',
-    description: 'Emergency water damage restoration in Brisbane, Ipswich, Logan. Master Restorer Phill McGurk. Call now for 2-hour response.',
+    description: 'Emergency water damage restoration in Brisbane, Ipswich, Logan. Phill McGurk - IICRC & RAI Master Restorer, Xactimate Master, Hazmat Licensed, Asbestos Assessor. Call now for 2-hour response.',
     images: ['/images/optimised/damage/3D Burst Water Pipe.png']
   },
   alternates: {

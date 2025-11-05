@@ -57,8 +57,8 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-white text-centre">
             <div className="flex flex-col items-centre">
               <Award className="w-8 h-8 mb-2 text-yellow-400" />
-              <p className="text-sm font-semibold">Master Restorer</p>
-              <p className="text-xs opacity-90">1 of 12 in QLD</p>
+              <p className="text-sm font-semibold">IICRC & RAI Master</p>
+              <p className="text-xs opacity-90">Double Master Certified</p>
             </div>
             <div className="flex flex-col items-centre">
               <Clock className="w-8 h-8 mb-2 text-yellow-400" />
@@ -160,7 +160,8 @@ export default function HomePage() {
 
             <p className="mt-8 text-gray-700">
               <strong>We're local to Brisbane:</strong><br />
-              Office: 4/17 Tile St, Wacol • 24/7 Emergency Response • IICRC Certified • Insurance Approved
+              Office: 4/17 Tile St, Wacol • 24/7 Emergency Response<br />
+              <strong>Phill McGurk:</strong> IICRC Master Restorer | RAI Master Restorer | Xactimate Master | Hazmat Licensed | Asbestos Assessor
             </p>
           </div>
         </div>
@@ -415,8 +416,9 @@ export default function HomePage() {
                   </blockquote>
 
                   <p className="text-sm text-blue-200">
-                    — Phill McGurk, Master Restorer<br />
-                    IICRC Certified • 20+ Years Experience • 500+ Properties Restored
+                    — Phill McGurk, IICRC & RAI Master Restorer<br />
+                    IICRC Master | RAI Master | Xactimate Master | Hazmat Licensed | Asbestos Assessor<br />
+                    20+ Years Experience • 500+ Properties Restored
                   </p>
                 </div>
 

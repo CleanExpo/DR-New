@@ -23,12 +23,12 @@ export default function PhillMcGurkAboutPage() {
   ];
 
   const credentials = [
-    { title: 'Master Restorer', org: 'RIA', year: '2010', desc: 'Highest certification in restoration industry' },
-    { title: 'IICRC Certified', org: 'IICRC', year: '2005', desc: 'Water, Fire, Mould, Trauma certified' },
-    { title: 'Xactimate Master', org: 'Xactware', year: '2008', desc: 'Expert insurance estimating' },
-    { title: 'HAZMAT Licensed', org: 'EPA', year: '2012', desc: 'Hazardous materials handling' },
-    { title: 'Asbestos Assessor', org: 'SafeWork', year: '2015', desc: 'Class A & B asbestos certified' },
-    { title: 'Structural Drying', org: 'IICRC', year: '2007', desc: 'Advanced drying specialist' }
+    { title: 'IICRC Master Restorer', org: 'IICRC', year: '2010', desc: 'Highest IICRC certification - Master Water, Fire & Smoke Restorer' },
+    { title: 'RAI Master Restorer', org: 'RIA', year: '2010', desc: 'Restoration Industry Association Master certification' },
+    { title: 'Xactimate Master', org: 'Xactware', year: '2008', desc: 'Expert insurance estimating and claims management' },
+    { title: 'Hazmat Licensed', org: 'QLD Govt', year: '2012', desc: 'Hazardous materials handling and removal' },
+    { title: 'Asbestos Assessor', org: 'QLD Govt', year: '2015', desc: 'Certified asbestos identification and assessment' },
+    { title: 'Structural Drying', org: 'IICRC', year: '2007', desc: 'Advanced structural drying specialist' }
   ];
 
   const expertise = [
@@ -78,7 +78,7 @@ export default function PhillMcGurkAboutPage() {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Phill McGurk",
-            "jobTitle": "Master Restorer & CEO",
+            "jobTitle": "IICRC & RAI Master Restorer & CEO",
             "worksFor": {
               "@type": "Organization",
               "name": "Disaster Recovery Australia"
@@ -87,7 +87,7 @@ export default function PhillMcGurkAboutPage() {
               "@type": "Organization",
               "name": "Restoration Industry Association"
             },
-            "award": ["Master Restorer Certification", "IICRC Triple Master"],
+            "award": ["IICRC Master Restorer", "RAI Master Restorer", "Xactimate Master", "Hazmat License", "Asbestos Assessor"],
             "knowsAbout": ["Disaster Recovery", "Water Damage Restoration", "Fire Damage Restoration", "Mould Remediation"],
             "memberOf": [
               {"@type": "Organization", "name": "RIA"},
