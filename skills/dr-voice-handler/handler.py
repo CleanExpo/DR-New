@@ -3,7 +3,7 @@ Disaster Recovery Voice Handler
 Voice interaction handler for Phill McGurk's Disaster Recovery emergency bot
 
 Project: Disaster Recovery Brisbane/Ipswich/Logan & NRPG
-Business: Phill McGurk - IICRC & RAI Master Restorer
+Business: Phill McGurk - IICRC Master Restorer
 Author: Disaster Recovery & NRPG Team
 Version: 1.0.0
 Created: 2025-11-05

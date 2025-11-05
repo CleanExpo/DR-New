@@ -12,7 +12,7 @@
 - ✅ Replaced with factual, verifiable information only
 
 ### 2. **Content & Pages Created**
-- ✅ Created about page: `/about-phill-mcgurk`
+- ✅ Created about page: `/about`
 - ✅ Emergency service pages for high-value keywords:
   - `/emergency/sunday-water-damage-brisbane`
   - `/emergency/after-hours-restoration`

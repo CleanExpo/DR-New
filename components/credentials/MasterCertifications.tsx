@@ -18,13 +18,6 @@ const MasterCertifications = () => {
       description: 'Highest level of IICRC certification - Master Water Restorer, Master Fire & Smoke Restorer, Master Textile Cleaner'
     },
     {
-      title: 'RAI Master Restorer',
-      icon: Shield,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-      description: 'Restoration Industry Association Master Restorer certification - one of the few in Brisbane & QLD'
-    },
-    {
       title: 'Xactimate Master',
       icon: Sparkles,
       color: 'text-green-600',
@@ -66,7 +59,7 @@ const MasterCertifications = () => {
             Industry-Leading Credentials
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            <strong>Phill McGurk:</strong> IICRC Master Restorer | RAI Master Restorer | Xactimate Master | Hazmat Licensed | Asbestos Assessor
+            <strong>Phill McGurk:</strong> IICRC Master Restorer | Xactimate Master | Hazmat Licensed | Asbestos Assessor
           </p>
         </motion.div>
 

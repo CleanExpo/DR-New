@@ -8,7 +8,7 @@ Voice interaction skill for **Phill McGurk's Disaster Recovery** emergency bot.
 
 This skill is ONLY for:
 - **Project:** Disaster Recovery Brisbane/Ipswich/Logan
-- **Business:** Phill McGurk - IICRC & RAI Master Restorer
+- **Business:** Phill McGurk - IICRC Master Restorer
 - **Parent System:** NRPG (National Restoration Procurement Group)
 - **Location:** D:\DR New
 
@@ -96,7 +96,6 @@ This skill integrates with:
 ## Credentials
 
 - IICRC Master Restorer
-- RAI Master Restorer
 - Xactimate Master
 - Hazmat Licensed
 - Asbestos Assessor

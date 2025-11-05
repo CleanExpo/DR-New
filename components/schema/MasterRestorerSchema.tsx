@@ -7,8 +7,8 @@ export const MasterRestorerSchema: React.FC = () => {
     "@type": "Person",
     "@id": "https://disaster-recovery-seven.vercel.app/#phill-mcgurk",
     "name": "Phill McGurk",
-    "jobTitle": "IICRC & RAI Master Restorer",
-    "description": "One of a limited number of Master Restorers in Brisbane and Queensland. IICRC Master Restorer, RAI Master Restorer, Xactimate Master, Hazmat Licensed, and Asbestos Assessor. Over 20 years experience in disaster recovery and restoration.",
+    "jobTitle": "IICRC Master Restorer",
+    "description": "One of a limited number of Master Restorers in Brisbane and Queensland. IICRC Master Restorer, Xactimate Master, Hazmat Licensed, and Asbestos Assessor. Over 20 years experience in disaster recovery and restoration.",
     "image": "https://disaster-recovery-seven.vercel.app/images/phill-mcgurk-master-restorer.webp",
     "url": "https://disaster-recovery-seven.vercel.app/about",
     "sameAs": [
@@ -32,15 +32,6 @@ export const MasterRestorerSchema: React.FC = () => {
         "issuedBy": {
           "@type": "Organization",
           "name": "IICRC - Institute of Inspection, Cleaning and Restoration Certification"
-        }
-      },
-      {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "certification",
-        "name": "RAI Master Restorer",
-        "issuedBy": {
-          "@type": "Organization",
-          "name": "Restoration Industry Association"
         }
       },
       {
@@ -217,7 +208,6 @@ export const MasterRestorerSchema: React.FC = () => {
     },
     "award": [
       "IICRC Master Restorer Certification",
-      "RAI Master Restorer Certification",
       "Xactimate Master Certification",
       "Hazmat License",
       "Asbestos Assessor Certification",

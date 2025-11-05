@@ -21,7 +21,7 @@ class BuildOptimizer {
       '/about',
       '/emergency',
       '/insurance',
-      '/about-phill-mcgurk',
+      '/about',
       '/book-service',
       '/faq',
       '/testimonials'

@@ -15,7 +15,7 @@
 ### 3. **Files Modified** ✅
 ```
 ✓ app/page.tsx - Homepage statistics corrected
-✓ app/about-phill-mcgurk/page.tsx - Name and stats fixed
+✓ app/about/page.tsx - Name and stats fixed
 ✓ components/reviews/ReviewDisplay.tsx - Fake reviews removed
 ✓ components/credentials/MasterCertifications.tsx - Updated name and removed percentages
 ✓ All GMB documentation files - Name corrected

@@ -1,0 +1,287 @@
+# Claude Orchestrator Configuration - Disaster Recovery Bot Development
+# Project: Disaster Recovery & NRPG (NOT RestoreAssist)
+
+# Project Type & Autonomy
+project_type: nextjs_bot_development
+autonomy: trusted
+
+# Project Information
+project:
+  name: "Disaster Recovery Brisbane/Ipswich/Logan Bot"
+  business: "Phill McGurk - IICRC Master Restorer"
+  parent_system: "NRPG (National Restoration Procurement Group)"
+  version: "1.0.0"
+  description: "Emergency disaster recovery bot for Brisbane, Ipswich, and Logan service areas"
+  emergency_contact: "1300 309 361"
+  service_areas: ["Brisbane", "Ipswich", "Logan"]
+  credentials: "IICRC Master Restorer | Xactimate Master | Hazmat Licensed | Asbestos Assessor"
+
+# Feature Toggles
+features:
+  research: true                 # Enable research agent (voice AI patterns, emergency workflows)
+  tests: true                    # Enable bot testing workflows
+  docs: true                     # Enable bot documentation generation
+  devops: true                   # Enable bot CI/CD workflows
+  data: true                     # Enable bot training data, emergency scenarios
+
+# MCP Server Configuration
+mcp:
+  playwright: auto               # auto | force_on | force_off
+  fs: true                       # Filesystem access
+  git: read                      # read | staged_write (read-only by default)
+  browser: false                 # Web browsing (disabled by default)
+  jina: auto                     # auto uses key if present; else off
+  auto_discover: true            # Scan for MCP servers in standard locations
+  status_endpoint: "/mcp"        # View MCP server status summary
+
+# Playwright Policy (for bot UI testing)
+playwright:
+  if_found:
+    alter_config: false          # Do not modify existing playwright.config.*
+    alter_tests: false           # Do not modify existing test files
+    new_test_dir: "tests/bot"    # Add bot tests here (namespaced)
+  if_not_found:
+    offer_install: true          # Prompt user to install Playwright
+    fallback_mode: "smoke"       # If declined: lighter smoke tests
+
+# Project Paths
+paths:
+  app: ./app
+  api: ./app/api
+  components: ./components
+  lib: ./lib
+  skills: ./skills               # Bot skills directory
+  bot_api: ./app/api/bot         # Bot API endpoints
+  bot_components: ./components/bot  # Bot UI components
+  bot_lib: ./lib/bot             # Bot utilities
+  bot_tests: ./tests/bot         # Bot tests
+  workdir: ./                    # Current working directory
+
+# Guardrails
+guardrails:
+  write_scope:
+    - "skills/**"                # Bot skill development
+    - "app/api/bot/**"           # Bot API endpoints
+    - "components/bot/**"        # Bot UI components
+    - "lib/bot/**"               # Bot utilities
+    - "tests/bot/**"             # Bot tests
+    - ".claude/**"               # Claude configuration
+    - "docs/bot/**"              # Bot documentation
+  protected_files:
+    - ".env*"                    # Environment variables (GMB credentials, etc.)
+    - "CLAUDE.md"                # Root project instructions
+    - "package-lock.json"        # Lockfiles managed by package manager
+    - "yarn.lock"
+    - "pnpm-lock.yaml"
+  require_tests_to_pass: true    # Phase gate: tests must pass before Integrator
+  strict_mode: false             # Enable for production bot deployments
+
+# Telemetry & Logs
+logging:
+  enabled: true
+  level: "info"                  # debug | info | warn | error
+  run_logs: ".claude/logs/{YYYY-MM-DD}/"
+  summaries: ".claude/reports/"
+  rotation: true
+  max_size: "10MB"
+  max_files: 10
+
+# CI Configuration
+ci:
+  installed: false               # CI files not yet present for bot
+  enabled: false                 # Will enable when bot CI is ready
+  file: ".github/workflows/bot-quality.yml"
+  auto_enable: false             # Never auto-enable CI
+
+# Agent Configuration
+agents:
+  # Core agents
+  coder:
+    enabled: true
+    definition: ".claude/agents/coder.md"
+    focus: "Bot implementation (voice handler, intent classifier, emergency router)"
+
+  tester:
+    enabled: true
+    definition: ".claude/agents/tester.md"
+    focus: "Bot E2E validation + emergency scenario testing"
+
+  research:
+    enabled: true
+    definition: ".claude/agents/research.md"
+    focus: "Voice AI patterns, emergency service workflows"
+    fallback_mode: "local"
+
+  integrator:
+    enabled: true
+    definition: ".claude/agents/integrator.md"
+    focus: "Merge bot outputs, resolve imports/paths, ensure bot build"
+
+  stuck:
+    enabled: true
+    definition: ".claude/agents/stuck.md"
+    focus: "Dead-end detection, A/B/C choices, escalation"
+
+  # Master SDK agents
+  master-fullstack:
+    enabled: true
+    definition: ".claude/agents/master-fullstack.md"
+    auto_create_missing: true    # Creates missing bot pieces
+    focus: "Verify bot completeness (voice handler + intent + emergency router)"
+
+  master-devops:
+    enabled: true
+    definition: ".claude/agents/master-devops.md"
+    ci_auto_enable: false        # Only enable CI when user requests
+    focus: "Bot CI/CD with deployment guardrails"
+
+  master-docs:
+    enabled: true
+    definition: ".claude/agents/master-docs.md"
+    auto_generate: true          # Auto-generate bot docs after phases
+    focus: "Bot README/documentation generation"
+
+  master-data:
+    enabled: true                # ENABLED for bot training data
+    definition: ".claude/agents/master-data.md"
+    focus: "Bot training data, test fixtures, emergency scenarios"
+
+# Stack Configuration
+stack:
+  preset: "nextjs_bot"
+  framework: "Next.js 14"
+  language: "TypeScript + Python"
+  bot_backend: "Python 3.9+"
+  bot_framework: "Custom Voice Handler"
+  styling: "Tailwind CSS"
+  testing: "Playwright + Pytest"
+  deployment: "Vercel (Next.js) + Cloud Function (Bot)"
+  package_manager: "npm"
+
+# Bot-Specific Configuration
+bot:
+  type: "voice_emergency_handler"
+  service_type: "disaster_recovery"
+  service_areas:
+    - name: "Brisbane"
+      suburbs: ["Hamilton", "Ascot", "New Farm", "Bulimba", "Hawthorne", "Morningside", "Balmoral"]
+    - name: "Ipswich"
+      suburbs: ["Karalee", "Brookwater", "Springfield Lakes", "Augustine Heights", "Bellbird Park"]
+    - name: "Logan"
+      suburbs: ["Springwood", "Shailer Park", "Daisy Hill", "Rochedale", "Underwood"]
+  emergency_keywords:
+    - "flood"
+    - "flooding"
+    - "water damage"
+    - "fire"
+    - "smoke damage"
+    - "mould"
+    - "mold"
+    - "sewage"
+    - "storm damage"
+    - "biohazard"
+    - "trauma cleaning"
+  emergency_contact: "1300 309 361"
+  business_context:
+    owner: "Phill McGurk"
+    credentials:
+      - "IICRC Master Restorer"
+      - "Xactimate Master"
+      - "Hazmat Licensed"
+      - "Asbestos Assessor"
+    key_differentiator: "One of a Limited Number of Master Restorers in Brisbane & QLD"
+  intent_classification:
+    confidence_threshold: 0.6    # Minimum confidence for automated routing
+    fallback_to_human: true      # Fallback to 1300 309 361 for low confidence
+
+# Phase Gates
+phase_gates:
+  tester_to_integrator: true     # Tester MUST pass before Integrator
+  integrator_to_devops: false    # Optional gate before bot deployment
+  manual_approval_production: true  # Require manual approval for production bot
+
+# Workflow Templates
+workflows:
+  bot_feature:
+    steps:
+      - agent: research
+        description: "Gather voice AI context and patterns"
+      - agent: master-fullstack
+        description: "Verify bot requirements complete"
+      - agent: coder
+        description: "Implement bot feature"
+      - agent: tester
+        description: "Validate bot (PHASE GATE)"
+      - agent: integrator
+        description: "Wire bot components together"
+      - agent: master-docs
+        description: "Update bot documentation"
+
+  bot_bugfix:
+    steps:
+      - agent: research
+        description: "Investigate bot issue"
+      - agent: stuck
+        description: "Check known bot patterns"
+      - agent: coder
+        description: "Implement bot fix"
+      - agent: tester
+        description: "Add bot regression test (PHASE GATE)"
+      - agent: integrator
+        description: "Verify no bot side effects"
+
+  bot_deploy:
+    steps:
+      - agent: tester
+        description: "Run full bot test suite (PHASE GATE)"
+      - agent: master-devops
+        description: "Deploy bot with guardrails"
+      - agent: tester
+        description: "Verify deployed bot environment"
+      - agent: master-docs
+        description: "Update bot CHANGELOG"
+
+# Environment Settings
+environments:
+  development:
+    debug: true
+    autonomy: trusted
+    require_tests: false
+    bot_mode: "training"         # Bot in training mode
+
+  staging:
+    debug: false
+    autonomy: trusted
+    require_tests: true
+    bot_mode: "testing"          # Bot in testing mode
+
+  production:
+    debug: false
+    autonomy: review_each_step   # Extra caution in production
+    require_tests: true
+    require_approval: true
+    strict_mode: true
+    bot_mode: "live"             # Bot in live emergency mode
+
+# Edge Cases & Safeguards
+edge_cases:
+  bot_voice_recognition:
+    australian_english: true     # Handle Australian English accents
+    emergency_priority: true     # Prioritize emergency keyword detection
+    false_positive_threshold: 0.4  # Lower threshold triggers fallback
+
+  bot_service_areas:
+    strict_validation: true      # Only Brisbane/Ipswich/Logan
+    fallback_for_outside: true   # Polite decline for outside areas
+
+  bot_emergency_routing:
+    always_provide_contact: true # Always provide 1300 309 361
+    human_fallback: true         # Fallback to human for ambiguous cases
+    after_hours_handling: true   # 24/7 emergency support
+
+# Utilities
+utilities:
+  review_mode_command: "/switch-to-review-mode"
+  mcp_status_command: "/mcp status"
+  bot_test_command: "npm run test:bot"
+  bot_python_test_command: "python -m pytest skills/dr-voice-handler/tests/"

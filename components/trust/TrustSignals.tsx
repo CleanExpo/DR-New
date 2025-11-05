@@ -28,7 +28,6 @@ export default function TrustSignals({
 }: TrustSignalsProps) {
   const certifications = [
     { name: 'IICRC Master Restorer', icon: Trophy, color: 'text-gold-500' },
-    { name: 'RAI Master Restorer', icon: Award, color: 'text-blue-600' },
     { name: 'Xactimate Master', icon: Shield, color: 'text-green-600' },
     { name: 'Hazmat Licensed', icon: BadgeCheck, color: 'text-orange-600' },
     { name: 'Asbestos Assessor', icon: Shield, color: 'text-red-600' }
@@ -240,7 +239,7 @@ export function FloatingTrustBar() {
             {/* Master Restorer */}
             <div className="flex items-centre gap-2">
               <Trophy className="w-5 h-5 text-gold-500" />
-              <span className="font-bold text-sm">IICRC & RAI Master</span>
+              <span className="font-bold text-sm">IICRC Master</span>
             </div>
 
             {/* Rating */}
@@ -280,7 +279,6 @@ export function FloatingTrustBar() {
 export function TrustBadgesGrid() {
   const badges = [
     { name: 'IICRC Master', icon: Trophy, description: 'Highest IICRC certification' },
-    { name: 'RAI Master', icon: Award, description: 'RAI Master Restorer' },
     { name: 'Xactimate Master', icon: Shield, description: 'Insurance estimating expert' },
     { name: 'Hazmat Licensed', icon: BadgeCheck, description: 'Certified hazmat handler' },
     { name: 'Asbestos Assessor', icon: Shield, description: 'Certified assessor' },
