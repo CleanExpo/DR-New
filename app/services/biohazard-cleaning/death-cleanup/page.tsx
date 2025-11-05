@@ -7,7 +7,7 @@ export const metadata: Metadata = generateServiceSEO({
   serviceName: 'Death & Decomposition Cleanup',
   location: 'Brisbane, Ipswich & Logan',
   title: 'Death & Decomposition Cleanup Brisbane, Ipswich & Logan | 24/7 Service',
-  description: 'Compassionate death cleanup in Brisbane, Ipswich, Logan. Unattended death, decomposition removal. Phill McGurk - IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor.',
+  description: 'Compassionate death cleanup in Brisbane, Ipswich, Logan. Unattended death, decomposition removal. Phill McGurk - IICRC Master Restorer.',
   keywords: [
     'death cleanup Brisbane',
     'decomposition cleanup Ipswich',

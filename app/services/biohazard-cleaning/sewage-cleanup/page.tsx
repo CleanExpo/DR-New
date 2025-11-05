@@ -7,7 +7,7 @@ export const metadata: Metadata = generateServiceSEO({
   serviceName: 'Sewage Cleanup',
   location: 'Brisbane, Ipswich & Logan',
   title: 'Sewage Cleanup Brisbane, Ipswich & Logan | Emergency Contamination',
-  description: 'Emergency sewage cleanup in Brisbane, Ipswich, Logan. Category 3 water damage, contamination removal. Phill McGurk - IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor.',
+  description: 'Emergency sewage cleanup in Brisbane, Ipswich, Logan. Category 3 water damage, contamination removal. Phill McGurk - IICRC Master Restorer.',
   keywords: [
     'sewage cleanup Brisbane',
     'sewage removal Ipswich',

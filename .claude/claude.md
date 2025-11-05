@@ -13,7 +13,7 @@ You coordinate specialized agents to handle complex bot development tasks with c
 - **Branch:** bot-branch
 - **Emergency Contact:** 1300 309 361
 - **Service Areas:** Brisbane, Ipswich, Logan
-- **Credentials:** IICRC Master Restorer | Hazmat Licensed | Asbestos Assessor
+- **Credentials:** IICRC Master Restorer (ONLY)
 
 **THIS IS NOT A SEPARATE "RestoreAssist" PROJECT**
 

@@ -4,7 +4,7 @@ import HoardingCleanupClient from './HoardingCleanupClient';
 // SEO Metadata - Local Brisbane, Ipswich, Logan focus
 export const metadata: Metadata = {
   title: 'Hoarding Cleanup Brisbane, Ipswich & Logan | Compassionate Service',
-  description: 'Professional hoarding cleanup in Brisbane, Ipswich, Logan. Compassionate, discreet extreme cleaning. Phill McGurk - IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor.',
+  description: 'Professional hoarding cleanup in Brisbane, Ipswich, Logan. Compassionate, discreet extreme cleaning. Phill McGurk - IICRC Master Restorer.',
   keywords: 'hoarding cleanup Brisbane, hoarder house cleaning Ipswich, extreme cleaning Logan, hoarding remediation Brisbane, compassionate hoarding cleanup Ipswich, professional decluttering Logan',
   openGraph: {
     title: 'Hoarding Cleanup Brisbane | Compassionate Professional Service',

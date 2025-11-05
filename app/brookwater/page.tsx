@@ -4,7 +4,7 @@ import { Phone, Clock, Star, Shield, Users, MapPin, Award, CheckCircle, Trophy, 
 
 export const metadata: Metadata = {
   title: 'Brookwater Water Damage Restoration | Golf Course Luxury Estate Specialists | 24/7 Emergency',
-  description: 'Professional water damage restoration Brookwater Springfield. Championship golf estate specialists, new construction experts, smart home system protection. Phill McGurk - IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor.',
+  description: 'Professional water damage restoration Brookwater Springfield. Championship golf estate specialists, new construction experts, smart home system protection. Phill McGurk - IICRC Master Restorer.',
   keywords: 'Brookwater water damage restoration, golf course estate restoration, luxury home Springfield, new construction water damage, smart home restoration, Brookwater emergency',
   openGraph: {
     title: 'Brookwater Water Damage Restoration | Golf Course Luxury Estate Specialists',
@@ -128,7 +128,7 @@ const brookwaterFAQ = [
   },
   {
     question: 'Do you work with builders on new construction water damage?',
-    answer: 'Yes, Phill McGurk (IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor) has extensive experience coordinating with builders and QBCC warranty claims for new construction defects. Many Brookwater homes are still under builder warranty, and we provide professional documentation, defect assessment, and liaison services to ensure your warranty rights are protected. We understand the importance of proper documentation and timely notification to builders and QBCC.'
+    answer: 'Yes, Phill McGurk (IICRC Master Restorer) has extensive experience coordinating with builders and QBCC warranty claims for new construction defects. Many Brookwater homes are still under builder warranty, and we provide professional documentation, defect assessment, and liaison services to ensure your warranty rights are protected. We understand the importance of proper documentation and timely notification to builders and QBCC.'
   },
   {
     question: 'Can you protect smart home systems during water damage restoration?',
@@ -257,7 +257,7 @@ export default function BrookwaterPage() {
 
               <p className="text-xl mb-8 leading-relaxed max-w-4xl mx-auto">
                 Professional water damage restoration for Brookwater's championship golf course estates and luxury properties.
-                <strong>Phill McGurk - IICRC Master Restorer</strong> - Xactimate Master, Hazmat Licensed, Asbestos Assessor - specialised in Greg Norman course homes, new construction
+                <strong>Phill McGurk - IICRC Master Restorer</strong> - Xactimate Master - specialised in Greg Norman course homes, new construction
                 care, smart home protection, and premium finish restoration with 30-minute response from Wacol.
               </p>
 

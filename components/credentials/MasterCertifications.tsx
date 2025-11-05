@@ -15,21 +15,7 @@ const MasterCertifications = () => {
       icon: Award,
       color: 'text-yellow-600',
       bgColor: 'bg-yellow-50',
-      description: 'Highest level of IICRC certification - Master Water Restorer, Master Fire & Smoke Restorer, Master Textile Cleaner'
-    },
-    {
-      title: 'Hazmat Licensed',
-      icon: Flame,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
-      description: 'Licensed for hazardous materials handling and removal - ensuring safe, compliant cleanup'
-    },
-    {
-      title: 'Asbestos Assessor',
-      icon: Droplet,
-      color: 'text-red-600',
-      bgColor: 'bg-red-50',
-      description: 'Certified asbestos assessor for safe identification and management in older properties'
+      description: 'Highest level of IICRC certification - Master Water Restorer, Master Fire & Smoke Restorer, Master Textile Cleaner. One of a Limited Number of Master Restorers in Brisbane & Queensland.'
     }
   ];
 
@@ -52,7 +38,7 @@ const MasterCertifications = () => {
             Industry-Leading Credentials
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            <strong>Phill McGurk:</strong> IICRC Master Restorer | Hazmat Licensed | Asbestos Assessor
+            <strong>Phill McGurk:</strong> IICRC Master Restorer
           </p>
         </motion.div>
 
