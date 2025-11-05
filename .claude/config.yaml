@@ -14,7 +14,10 @@ project:
   description: "Emergency disaster recovery bot for Brisbane, Ipswich, and Logan service areas"
   emergency_contact: "1300 309 361"
   service_areas: ["Brisbane", "Ipswich", "Logan"]
-  credentials: "IICRC Master Restorer | Xactimate Master | Hazmat Licensed | Asbestos Assessor"
+  credentials: "IICRC Master Restorer | Hazmat Licensed | Asbestos Assessor"
+  pricing:
+    assessments_from: 550
+    restoration_services_from: 2750
 
 # Feature Toggles
 features:

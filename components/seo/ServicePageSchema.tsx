@@ -46,7 +46,7 @@ export default function ServicePageSchema({
     },
     {
       question: `What's the cost of ${serviceName} in Brisbane?`,
-      answer: `${serviceName} costs vary based on the extent of damage, property size, and specific requirements. We provide free assessments and work directly with your insurance for billing. Contact us at 1300 309 361 for a quote.`
+      answer: `${serviceName} costs vary based on the extent of damage, property size, and specific requirements. We provide professional assessment from $550s and work directly with your insurance for billing. Contact us at 1300 309 361 for a quote.`
     },
     {
       question: `How long does ${serviceName} take to complete?`,
@@ -118,7 +118,7 @@ export default function ServicePageSchema({
                   "@type": "PriceSpecification",
                   "price": "0",
                   "priceCurrency": "AUD",
-                  "description": "Free assessment, insurance direct billing available"
+                  "description": "professional assessment from $550, insurance direct billing available"
                 },
                 "availability": "https://schema.org/InStock",
                 "availableDeliveryMethod": "https://schema.org/OnSiteService",

@@ -8,7 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { spawn } from 'child_process';
-import path from 'path';
+import * as path from 'path';
 
 // Session storage (in-memory for now, later move to Redis)
 const sessions = new Map<string, ChatSession>();
@@ -157,11 +157,14 @@ function cleanupSessions() {
   const now = new Date();
   const timeout = 30 * 60 * 1000; // 30 minutes
 
-  for (const [sessionId, session] of sessions.entries()) {
+  const sessionsToDelete: string[] = [];
+  sessions.forEach((session, sessionId) => {
     if (now.getTime() - session.lastActivity.getTime() > timeout) {
-      sessions.delete(sessionId);
+      sessionsToDelete.push(sessionId);
     }
-  }
+  });
+
+  sessionsToDelete.forEach(sessionId => sessions.delete(sessionId));
 }
 
 /**

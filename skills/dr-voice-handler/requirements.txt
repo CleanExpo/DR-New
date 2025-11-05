@@ -1,7 +1,7 @@
 # Disaster Recovery Voice Handler Requirements
 # Project: Disaster Recovery & NRPG (NOT RestoreAssist)
 # Business: Phill McGurk - IICRC Master Restorer
-# Credentials: IICRC Master | Xactimate Master | Hazmat Licensed | Asbestos Assessor
+# Credentials: IICRC Master Restorer | Hazmat Licensed | Asbestos Assessor
 
 # Core dependencies
 python>=3.8

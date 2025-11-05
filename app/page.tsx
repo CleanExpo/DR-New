@@ -45,7 +45,7 @@ export default function HomePage() {
               href="/contact"
               className="inline-flex items-centre justify-centre px-10 py-5 bg-white text-gray-900 text-lg font-bold rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Book Free Assessment
+              Book professional assessment from $550
             </Link>
           </div>
         </div>

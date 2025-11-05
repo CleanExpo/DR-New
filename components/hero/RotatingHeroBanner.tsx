@@ -227,7 +227,7 @@ export default function RotatingHeroBanner() {
                   className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 px-8 py-6 text-xl font-semibold"
                   onClick={() => window.location.href = '/quote'}
                 >
-                  Get Free Quote
+                  Get professional quote
                   <CheckCircle className="w-6 h-6 ml-3" />
                 </Button>
               </motion.div>

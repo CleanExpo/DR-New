@@ -216,7 +216,7 @@ YES - We service {suburb_title}, {region.value}
 
 Our Credentials:
 - IICRC Master Restorer (highest industry certification)
-- Xactimate Master (insurance expertise)
+- Hazmat Licensed professional
 - Hazmat Licensed
 - Asbestos Assessor
 

@@ -320,7 +320,7 @@ export default function DishwasherLeaksPage() {
               variant="secondary"
               href="tel:1300309361"
             >
-              Get Free Assessment
+              Get professional assessment from $550
             </Button>
           </div>
           <div className="mt-8 flex justify-centre gap-8">

@@ -211,7 +211,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
                   href="/contact"
                   className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-900 font-bold rounded-lg text-lg transition-all hover:bg-blue-50 shadow-xl"
                 >
-                  Get Free Quote
+                  Get professional quote
                 </Link>
               </div>
 
@@ -519,7 +519,7 @@ export default function LocationPageTemplate({ suburb }: LocationPageTemplatePro
                 href="/contact"
                 className="inline-flex items-centre justify-centre px-8 py-4 bg-white text-blue-900 font-bold rounded-lg text-lg transition-all hover:bg-blue-50 shadow-xl"
               >
-                Request Free Assessment
+                Request professional assessment from $550
               </Link>
             </div>
           </div>

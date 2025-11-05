@@ -96,7 +96,6 @@ This skill integrates with:
 ## Credentials
 
 - IICRC Master Restorer
-- Xactimate Master
 - Hazmat Licensed
 - Asbestos Assessor
 

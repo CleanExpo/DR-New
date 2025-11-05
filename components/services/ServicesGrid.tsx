@@ -482,7 +482,7 @@ export default function ServicesGrid() {
               className="bg-white/10 border-white/30 text-white hover:bg-white/20 px-8 py-4 text-xl font-semibold"
               onClick={() => window.location.href = '/quote'}
             >
-              Get Free Quote
+              Get professional quote
             </Button>
           </div>
         </motion.div>

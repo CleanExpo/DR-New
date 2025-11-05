@@ -42,7 +42,7 @@ export default function BurstPipesPage() {
     },
     {
       question: 'How much does burst pipe water damage restoration cost?',
-      answer: 'Costs vary based on damage extent, typically ranging from $2,000-$15,000. Most home insurance policies cover burst pipe damage. We provide free assessments and work directly with insurers for claim management.'
+      answer: 'Costs vary based on damage extent, typically ranging from $2,000-$15,000. Most home insurance policies cover burst pipe damage. We provide professional assessment from $550s and work directly with insurers for claim management.'
     },
     {
       question: 'How quickly can you respond to burst pipe emergencies?',

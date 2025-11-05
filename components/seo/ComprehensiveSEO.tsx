@@ -190,7 +190,7 @@ export default function ComprehensiveSEO({
         "name": "How much does water damage restoration cost in Brisbane?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Water damage restoration in Brisbane typically ranges from $1,500 to $4,500 depending on the extent of damage, affected area size, and required equipment. We provide free assessments and quotes."
+          "text": "Water damage restoration in Brisbane typically ranges from $1,500 to $4,500 depending on the extent of damage, affected area size, and required equipment. We provide professional assessment from $550s and quotes."
         }
       }
     ]

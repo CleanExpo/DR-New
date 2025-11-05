@@ -47,7 +47,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
                   href="#assessment"
                   className="bg-white hover:bg-gray-100 text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg transition-colors"
                 >
-                  Free Assessment
+                  professional assessment from $550
                 </a>
               </div>
             </div>
@@ -465,7 +465,7 @@ export default function SickBuildingSyndromeRemediationBrisbane() {
         </div>
       </section>
 
-      {/* Free Assessment CTA */}
+      {/* professional assessment from $550 CTA */}
       <section id="assessment" className="py-16 bg-blue-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-centre">
           <h2 className="text-3xl font-bold mb-4">

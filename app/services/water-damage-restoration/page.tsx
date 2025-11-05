@@ -32,7 +32,7 @@ const LandingHeader = dynamic(() => import('@/components/LandingHeader'), {
 // Generate metadata - Local Brisbane, Ipswich, Logan focus
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Brisbane, Ipswich & Logan | 2hr Response',
-  description: 'Expert water damage restoration in Brisbane, Ipswich, Logan. 2-hour emergency response, flood recovery, burst pipes. Phill McGurk - IICRC Master Restorer, Xactimate Master, Hazmat Licensed, Asbestos Assessor.',
+  description: 'Expert water damage restoration in Brisbane, Ipswich, Logan. 2-hour emergency response, flood recovery, burst pipes. Phill McGurk - IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor.',
   keywords: 'water damage restoration Brisbane, flood recovery Ipswich, emergency water extraction Logan, burst pipe repair Brisbane, structural drying Ipswich, mould prevention Logan, insurance restoration Brisbane',
   openGraph: {
     title: 'Water Damage Restoration Brisbane | Emergency Flood Recovery',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Water Damage Restoration Brisbane | 2hr Response',
-    description: 'Emergency water damage restoration in Brisbane, Ipswich, Logan. Phill McGurk - IICRC Master Restorer, Xactimate Master, Hazmat Licensed, Asbestos Assessor. Call now for 2-hour response.',
+    description: 'Emergency water damage restoration in Brisbane, Ipswich, Logan. Phill McGurk - IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor. Call now for 2-hour response.',
     images: ['/images/optimised/damage/3D Burst Water Pipe.png']
   },
   alternates: {
@@ -156,7 +156,7 @@ export default function WaterDamageRestorationPage() {
                     href="/client/instant-quote"
                     className="px-8 py-4 bg-white/10 border border-white/20 rounded-xl text-white font-bold hover:bg-white/20 transition-all text-centre"
                   >
-                    Free Assessment
+                    professional assessment from $550
                   </Link>
                 </div>
               </div>
@@ -537,7 +537,7 @@ export default function WaterDamageRestorationPage() {
                 href="/client/instant-quote"
                 className="inline-block px-10 py-5 bg-blue-600 text-white rounded-xl font-bold text-lg hover:shadow-2xl transition-all"
               >
-                Get Free Assessment
+                Get professional assessment from $550
               </Link>
             </div>
           </div>

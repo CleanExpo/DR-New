@@ -513,7 +513,7 @@ export default function FloodRecoveryPage() {
               className="border-white/30 text-white hover:bg-white/10 px-10 py-5 text-xl"
             >
               <Link href="/client/instant-quote">
-                Get Free Assessment
+                Get professional assessment from $550
               </Link>
             </Button>
           </div>

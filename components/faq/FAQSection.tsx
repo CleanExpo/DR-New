@@ -63,7 +63,7 @@ const defaultFAQs: FAQItem[] = [
   },
   {
     question: "How much does water damage restoration cost?",
-    answer: "Costs vary based on damage extent, but typical residential water damage restoration ranges from $2,000-$8,000. We provide FREE assessments and detailed quotes. Insurance typically covers the full cost. We NEVER charge for emergency call-outs or assessments.",
+    answer: "Costs vary based on damage extent, but typical residential water damage restoration ranges from $2,000-$8,000. We provide professional assessment from $550s and detailed quotes. Insurance typically covers the full cost. We NEVER charge for emergency call-outs or assessments.",
     category: "Pricing",
     featured: true,
     schema: true

@@ -132,7 +132,7 @@ const relatedServices = [
 const faqs = [
   {
     question: "How do I know if I have a mould problem that requires professional remediation?",
-    answer: "Signs include visible mould growth, musty odours, water damage history, respiratory symptoms that improve when away from the property, and moisture problems. We provide free assessments to determine if professional remediation is needed."
+    answer: "Signs include visible mould growth, musty odours, water damage history, respiratory symptoms that improve when away from the property, and moisture problems. We provide professional assessment from $550s to determine if professional remediation is needed."
   },
   {
     question: "What is the IICRC S520 standard for mould remediation?",
@@ -607,7 +607,7 @@ export default function MouldRemediationPage() {
             href="/mould-assessment"
             className="inline-flex items-centre justify-centre px-8 py-4 bg-primary-700 text-white rounded-lg font-bold text-lg hover:bg-primary-800 transition-colours"
           >
-            Schedule Free Assessment
+            Schedule professional assessment from $550
           </Link>
         </div>
       </section>

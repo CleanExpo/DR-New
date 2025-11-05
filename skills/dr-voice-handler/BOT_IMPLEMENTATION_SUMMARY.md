@@ -65,7 +65,6 @@ A complete, production-ready disaster recovery bot with four integrated componen
 
 - **Professional Messaging**: Highlights Phill McGurk's credentials
   - IICRC Master Restorer (one of limited number in Brisbane & QLD)
-  - Xactimate Master (insurance expertise)
   - Hazmat Licensed
   - Asbestos Assessor certified
 
@@ -287,7 +286,6 @@ All components use: **1300 309 361**
 ### Credentials Highlighted
 
 - IICRC Master Restorer
-- Xactimate Master
 - Hazmat Licensed
 - Asbestos Assessor
 

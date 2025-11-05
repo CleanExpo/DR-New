@@ -40,7 +40,7 @@ export default function WarehouseFloodCleanupPage() {
     },
     {
       question: 'What is the cost of warehouse flood cleanup services?',
-      answer: 'Costs vary based on the extent of damage and services required. We provide free assessments and quotes, and work with your insurance company for direct billing where applicable.'
+      answer: 'Costs vary based on the extent of damage and services required. We provide professional assessment from $550s and quotes, and work with your insurance company for direct billing where applicable.'
     }
   ];
 

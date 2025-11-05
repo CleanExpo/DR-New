@@ -4,7 +4,7 @@ import { Phone, Clock, Star, Shield, Users, MapPin, Award, CheckCircle, Anchor, 
 
 export const metadata: Metadata = {
   title: 'Cleveland Water Damage Restoration | Coastal Storm Surge Specialists | 24/7 Emergency',
-  description: 'Professional water damage restoration Cleveland Brisbane. Coastal property specialists, storm surge experts, salt damage remediation. Phill McGurk - IICRC Master Restorer, Xactimate Master, Hazmat Licensed, Asbestos Assessor.',
+  description: 'Professional water damage restoration Cleveland Brisbane. Coastal property specialists, storm surge experts, salt damage remediation. Phill McGurk - IICRC Master Restorer, Hazmat Licensed, Asbestos Assessor.',
   keywords: 'Cleveland water damage restoration, coastal property flooding, storm surge Cleveland, Moreton Bay emergency, Cleveland salt damage, coastal home restoration',
   openGraph: {
     title: 'Cleveland Water Damage Restoration | Coastal Storm Surge Specialists',

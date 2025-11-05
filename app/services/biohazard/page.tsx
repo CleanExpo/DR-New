@@ -37,7 +37,7 @@ export default function BiohazardPage() {
                 href="/contact"
                 className="bg-white text-red-600 border-2 border-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-red-50 transition"
               >
-                Get Free Quote
+                Get professional quote
               </a>
             </div>
           </div>

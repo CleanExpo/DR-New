@@ -222,7 +222,7 @@ IMMEDIATE ACTION REQUIRED:
 Why call us immediately:
 - One of a limited number of Master Restorers in Brisbane & QLD
 - IICRC Master Restorer certification (highest industry standard)
-- Xactimate Master for accurate insurance claims
+- Professional damage assessments from $550
 - Hazmat Licensed and Asbestos Assessor certified
 - 24/7 emergency response across Brisbane, Ipswich, and Logan
 
@@ -252,7 +252,7 @@ Service: {service_name}{location_msg}
 
 Our Credentials:
 - IICRC Master Restorer (one of a limited number in Brisbane & QLD)
-- Xactimate Master (insurance claim expertise)
+- Hazmat Licensed professional
 - Hazmat Licensed (hazardous materials handling)
 - Asbestos Assessor (safe identification and management)
 

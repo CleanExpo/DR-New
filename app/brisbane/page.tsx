@@ -167,7 +167,7 @@ const faqSchema = {
       name: 'How much does water damage restoration cost in Brisbane?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Costs vary based on damage extent, affected area size, and restoration complexity. We provide free assessments and work with insurance companies for direct billing. Emergency mitigation typically starts within your insurance excess.'
+        text: 'Costs vary based on damage extent, affected area size, and restoration complexity. We provide professional assessment from $550s and work with insurance companies for direct billing. Emergency mitigation typically starts within your insurance excess.'
       }
     }
   ]
@@ -1325,7 +1325,7 @@ export default function BrisbanePage() {
                 </h3>
                 <p className="text-gray-600">
                   Costs vary based on damage extent, affected area size, and restoration complexity.
-                  We provide free assessments and work with insurance companies for direct billing.
+                  We provide professional assessment from $550s and work with insurance companies for direct billing.
                   Emergency mitigation typically starts within your insurance excess.
                   Most Brisbane residential jobs range from $2,000-$15,000 depending on scope.
                 </p>
@@ -1383,7 +1383,7 @@ export default function BrisbanePage() {
                 href="/contact"
                 className="inline-flex items-centre justify-centre px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white font-bold rounded-lg transition-colors"
               >
-                Get Free Assessment
+                Get professional assessment from $550
               </Link>
             </div>
           </div>
