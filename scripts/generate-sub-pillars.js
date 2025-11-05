@@ -96,8 +96,7 @@ const subPillarPages = {
     { slug: 'piano-water-damage', title: 'Piano Water Damage Restoration', keywords: 'musical instrument, piano flooding' },
     { slug: 'wine-cellar-flooding', title: 'Wine Cellar Flood Recovery', keywords: 'wine storage, cellar water damage' },
     { slug: 'boat-water-damage', title: 'Marine Water Damage', keywords: 'boat flooding, yacht restoration' },
-    { slug: 'caravan-water-damage', title: 'Caravan Water Damage', keywords: 'RV flooding, mobile home water' },
-    { slug: 'solar-panel-water-damage', title: 'Solar Panel Water Damage', keywords: 'solar system, panel flooding' }
+    { slug: 'caravan-water-damage', title: 'Caravan Water Damage', keywords: 'RV flooding, mobile home water' }
   ],
   'emergency-services': [
     { slug: '24-hour-water-extraction', title: '24 Hour Water Extraction', keywords: 'emergency pumping, rapid extraction' },
