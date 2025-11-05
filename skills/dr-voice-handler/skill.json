@@ -1,0 +1,24 @@
+{
+  "name": "dr-voice-handler",
+  "version": "1.0.0",
+  "description": "Voice handler bot for Disaster Recovery & NRPG - processes voice commands and emergency interactions for Phill McGurk's disaster recovery services",
+  "type": "voice-interaction",
+  "created": "2025-11-05",
+  "author": "Disaster Recovery & NRPG Team",
+  "project": "Disaster Recovery Brisbane/Ipswich/Logan",
+  "business": "Phill McGurk - IICRC & RAI Master Restorer",
+  "capabilities": [
+    "voice-recognition",
+    "natural-language-processing",
+    "emergency-response",
+    "service-routing",
+    "disaster-recovery-triage"
+  ],
+  "configuration": {
+    "enabled": true,
+    "priority": "high",
+    "context": "disaster-recovery-emergency-services",
+    "service_areas": ["Brisbane", "Ipswich", "Logan"],
+    "emergency_contact": "1300 309 361"
+  }
+}

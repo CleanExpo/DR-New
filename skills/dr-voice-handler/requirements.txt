@@ -1,0 +1,13 @@
+# Disaster Recovery Voice Handler Requirements
+# Project: Disaster Recovery & NRPG (NOT RestoreAssist)
+# Business: Phill McGurk - IICRC & RAI Master Restorer
+
+# Core dependencies
+python>=3.8
+
+# Future integrations (to be added as needed)
+# speech-recognition>=3.10.0
+# google-cloud-speech>=2.0.0
+# azure-cognitiveservices-speech>=1.30.0
+# pydub>=0.25.1
+# numpy>=1.24.0
