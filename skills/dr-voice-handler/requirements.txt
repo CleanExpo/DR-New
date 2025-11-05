@@ -1,13 +1,20 @@
 # Disaster Recovery Voice Handler Requirements
 # Project: Disaster Recovery & NRPG (NOT RestoreAssist)
-# Business: Phill McGurk - IICRC & RAI Master Restorer
+# Business: Phill McGurk - IICRC Master Restorer
+# Credentials: IICRC Master | Xactimate Master | Hazmat Licensed | Asbestos Assessor
 
 # Core dependencies
 python>=3.8
 
+# ElevenLabs Voice API
+requests>=2.31.0
+elevenlabs>=0.2.27  # Official ElevenLabs Python SDK
+
+# Audio processing (optional)
+pydub>=0.25.1
+
 # Future integrations (to be added as needed)
-# speech-recognition>=3.10.0
-# google-cloud-speech>=2.0.0
-# azure-cognitiveservices-speech>=1.30.0
-# pydub>=0.25.1
-# numpy>=1.24.0
+# speech-recognition>=3.10.0  # Voice-to-text
+# google-cloud-speech>=2.0.0  # Google Speech API
+# azure-cognitiveservices-speech>=1.30.0  # Azure Speech
+# numpy>=1.24.0  # Audio processing

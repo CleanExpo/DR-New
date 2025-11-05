@@ -19,6 +19,15 @@ from intent_classifier import DisasterRecoveryIntentClassifier
 from emergency_router import DisasterRecoveryEmergencyRouter
 from service_area_validator import DisasterRecoveryServiceAreaValidator
 
+# Import voice synthesis (optional)
+try:
+    from elevenlabs_voice import DisasterRecoveryVoiceSynthesizer
+    from voice_config import DisasterRecoveryVoiceConfig
+    VOICE_AVAILABLE = True
+except ImportError:
+    VOICE_AVAILABLE = False
+    logger.warning("Voice synthesis not available - install elevenlabs package")
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -52,6 +61,17 @@ class DisasterRecoveryVoiceHandler:
         self.intent_classifier = DisasterRecoveryIntentClassifier()
         self.emergency_router = DisasterRecoveryEmergencyRouter()
         self.service_area_validator = DisasterRecoveryServiceAreaValidator()
+
+        # Initialize voice synthesis (if available)
+        self.voice_synthesizer = None
+        self.voice_config = None
+        if VOICE_AVAILABLE:
+            try:
+                self.voice_synthesizer = DisasterRecoveryVoiceSynthesizer()
+                self.voice_config = DisasterRecoveryVoiceConfig()
+                logger.info("Voice synthesis enabled")
+            except Exception as e:
+                logger.warning(f"Voice synthesis initialization failed: {e}")
 
         logger.info("Disaster Recovery Voice Handler v2.0 initialised with all components")
 
@@ -158,6 +178,83 @@ class DisasterRecoveryVoiceHandler:
 
         # Return main response
         return result['suggested_response']
+
+    def synthesize_voice_response(
+        self,
+        text: str,
+        emergency_level: Optional[str] = None,
+        save_to_file: Optional[str] = None
+    ) -> Optional[bytes]:
+        """
+        Synthesize text response to voice audio
+
+        Args:
+            text: Text to convert to speech
+            emergency_level: Emergency level for voice selection (CRITICAL, URGENT, etc.)
+            save_to_file: Optional filename to save audio
+
+        Returns:
+            Audio bytes (MP3 format) or None if synthesis unavailable
+        """
+        if not self.voice_synthesizer:
+            logger.warning("Voice synthesis not available")
+            return None
+
+        # Select appropriate voice based on emergency level
+        voice_id = None
+        if emergency_level and self.voice_config:
+            voice_profile = self.voice_config.get_voice_for_context(emergency_level)
+            voice_id = voice_profile.voice_id
+            logger.info(f"Using voice: {voice_profile.name} for {emergency_level} level")
+
+        # Synthesize
+        audio = self.voice_synthesizer.synthesize(text, voice_id=voice_id)
+
+        # Save to file if requested
+        if audio and save_to_file:
+            self.voice_synthesizer.save_audio(audio, save_to_file)
+
+        return audio
+
+    def handle_conversation_with_voice(
+        self,
+        user_input: str,
+        location: Optional[str] = None,
+        save_audio_to: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Handle conversation with voice synthesis
+
+        Args:
+            user_input: Customer's message
+            location: Optional location
+            save_audio_to: Optional filename to save voice response
+
+        Returns:
+            Dictionary with text response and audio bytes
+        """
+        # Get text response
+        text_response = self.handle_conversation(user_input, location)
+
+        # Get emergency level from classification
+        result = self.process_voice_input(user_input, location)
+        emergency_level = result['classification']['emergency_level']
+
+        # Synthesize voice
+        audio = None
+        if self.voice_synthesizer:
+            audio = self.synthesize_voice_response(
+                text_response,
+                emergency_level=emergency_level,
+                save_to_file=save_audio_to
+            )
+
+        return {
+            'text_response': text_response,
+            'audio': audio,
+            'emergency_level': emergency_level,
+            'has_audio': audio is not None
+        }
 
 
 def main():
