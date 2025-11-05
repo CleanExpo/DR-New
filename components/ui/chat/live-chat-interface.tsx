@@ -81,20 +81,20 @@ export const LiveChatInterface: React.FC = () => {
       type: 'bot',
       agent: {
         id: 'bot-1',
-        name: 'NRP Assistant',
+        name: 'DR Assistant',
         status: 'online',
         isBot: true
       },
       startedAt: new Date()
     };
-    
+
     setSession(newSession);
-    
+
     // Add welcome message
     const welcomeMessage: Message = {
       id: `msg-${Date.now()}`,
       type: 'received',
-      content: 'Hello! I\'m here to help with your disaster recovery needs. How can I assist you today?',
+      content: 'Hello! I\'m the Disaster Recovery Assistant for Phill McGurk\'s Brisbane/Ipswich/Logan service. How can I help with your emergency restoration needs today?',
       timestamp: new Date(),
       sender: newSession.agent,
       status: 'delivered'
@@ -198,24 +198,72 @@ export const LiveChatInterface: React.FC = () => {
       );
     }, 500);
 
-    // Simulate bot typing
+    // Call bot API
     if (session.type === 'bot') {
-      setTimeout(() => {
+      setTimeout(async () => {
         setIsTyping(true);
-        // Simulate bot response
-        setTimeout(() => {
+
+        try {
+          // Call bot API endpoint
+          const response = await fetch('/api/bot/chat', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              sessionId: session.id,
+              message: inputMessage,
+              location: undefined // Can be extracted from conversation or asked
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error('Bot API request failed');
+          }
+
+          const data = await response.json();
+
+          // Create bot response message
           const botResponse: Message = {
             id: `msg-${Date.now()}`,
             type: 'received',
-            content: 'I understand your concern. Let me help you with that.',
+            content: data.response,
             timestamp: new Date(),
             sender: session.agent,
             status: 'delivered'
           };
+
           setMessages(prev => [...prev, botResponse]);
+
+          // Check for emergency escalation
+          if (data.routing?.escalate && data.emergencyLevel === 'CRITICAL') {
+            // Add emergency notification
+            const emergencyNotice: Message = {
+              id: `msg-${Date.now()}-emergency`,
+              type: 'system',
+              content: `*** EMERGENCY RESPONSE REQUIRED ***\nPlease call 1300 309 361 immediately for urgent assistance.`,
+              timestamp: new Date(),
+              sender: { id: 'system', name: 'System' }
+            };
+            setMessages(prev => [...prev, emergencyNotice]);
+          }
+        } catch (error) {
+          console.error('Bot API error:', error);
+
+          // Fallback error message
+          const errorResponse: Message = {
+            id: `msg-${Date.now()}`,
+            type: 'received',
+            content: 'Sorry, I\'m having trouble processing your request right now. For immediate emergency assistance, please call 1300 309 361.',
+            timestamp: new Date(),
+            sender: session.agent,
+            status: 'error'
+          };
+          setMessages(prev => [...prev, errorResponse]);
+        } finally {
           setIsTyping(false);
-        }, 2000);
-      }, 1000);
+        }
+      }, 500);
     }
   }, [inputMessage, session, emit]);
 
