@@ -3,6 +3,7 @@ import { Inter, Poppins } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import { Providers } from './providers'
+import { LiveChatInterface } from '@/components/ui/chat/live-chat-interface'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -114,6 +115,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <Providers>
           {children}
+          <LiveChatInterface />
         </Providers>
         <Script
           id="structured-data"
