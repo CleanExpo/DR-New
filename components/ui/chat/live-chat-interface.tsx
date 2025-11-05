@@ -302,7 +302,7 @@ export const LiveChatInterface: React.FC = () => {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={openChat}
-            className="fixed bottom-6 right-6 z-40 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all"
+            className="fixed bottom-6 right-6 z-40 bg-red-600 hover:bg-red-700 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all"
           >
             <MessageCircle className="w-6 h-6" />
             {connected && (
@@ -331,7 +331,7 @@ export const LiveChatInterface: React.FC = () => {
             )}
           >
             {/* Header */}
-            <div className="bg-blue-600 text-white p-4">
+            <div className="bg-red-600 text-white p-4">
               <div className="flex items-centre justify-between">
                 <div className="flex items-centre gap-3">
                   <Avatar className="w-10 h-10">
@@ -423,13 +423,13 @@ export const LiveChatInterface: React.FC = () => {
                                 <div className={cn(
                                   'max-w-[70%] rounded-lg p-3',
                                   message.type === 'sent'
-                                    ? 'bg-blue-600 text-white'
+                                    ? 'bg-red-600 text-white'
                                     : 'bg-gray-100 dark:bg-gray-800'
                                 )}>
                                   <p className="text-sm">{message.content}</p>
                                   <div className={cn(
                                     'flex items-centre gap-1 mt-1',
-                                    message.type === 'sent' ? 'text-blue-800' : 'text-gray-300'
+                                    message.type === 'sent' ? 'text-red-100' : 'text-gray-300'
                                   )}>
                                     <Clock className="w-3 h-3" />
                                     <span className="text-xs">
@@ -502,7 +502,7 @@ export const LiveChatInterface: React.FC = () => {
                     <Button
                       onClick={sendMessage}
                       disabled={!inputMessage.trim() || !connected}
-                      className="bg-blue-600 hover:bg-blue-700 text-white"
+                      className="bg-red-600 hover:bg-red-700 text-white"
                     >
                       <Send className="w-5 h-5" />
                     </Button>
