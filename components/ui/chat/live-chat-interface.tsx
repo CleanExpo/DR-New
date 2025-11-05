@@ -267,7 +267,7 @@ export const LiveChatInterface: React.FC = () => {
         }
       }, 500);
     }
-  }, [inputMessage, session, emit]);
+  }, [inputMessage, session]); // Removed 'emit' dependency - WebSocket not used
 
   // Handle Enter key
   const handleKeyPress = (e: React.KeyboardEvent) => {
