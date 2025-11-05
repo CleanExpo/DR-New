@@ -1,9 +1,15 @@
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
 import './globals.css'
 import { Providers } from './providers'
-import { LiveChatInterface } from '@/components/ui/chat/live-chat-interface'
+
+// Dynamically import chat to prevent SSR errors (client-only component)
+const LiveChatInterface = dynamic(
+  () => import('@/components/ui/chat/live-chat-interface').then(mod => ({ default: mod.LiveChatInterface })),
+  { ssr: false }
+)
 
 const inter = Inter({ 
   subsets: ['latin'],

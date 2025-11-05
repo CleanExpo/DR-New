@@ -62,6 +62,7 @@ export const LiveChatInterface: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   // WebSocket not needed - bot uses REST API
   // const { emit, on, off, connected } = useWebSocket();
+  const connected = false; // Bot uses REST API, not WebSocket
 
   // Auto-scroll to bottom on new messages
   const scrollToBottom = () => {
