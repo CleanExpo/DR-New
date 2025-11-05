@@ -6,6 +6,9 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { FileText, FileCheck, CreditCard, MessageSquare } from 'lucide-react'
 
+// Force dynamic rendering - this page requires authentication
+export const dynamic = 'force-dynamic'
+
 export default function ClientPortalPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
