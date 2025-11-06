@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Expert mould remediation services following IICRC S520 standards. Comprehensive black mould removal and toxic mould cleanup with 24/7 emergency response.',
     images: [
       {
-        url: '/images/optimised/damage/3D Mould Damage.png',
+        url: '/images/optimized/damage/3D Mould Damage.png',
         width: 1200,
         height: 630,
         alt: 'Professional mould remediation service' },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mould Remediation Services | IICRC S520 Certified',
     description: 'Expert mould remediation services. IICRC S520 certified technicians. Professional black mould removal available 24/7.',
-    images: ['/images/optimised/damage/3D Mould Damage.png'] },
+    images: ['/images/optimized/damage/3D Mould Damage.png'] },
   alternates: {
     canonical: '/services/mould-remediation' },
   other: {
@@ -110,22 +110,22 @@ const relatedServices = [
   {
     title: 'Water Damage Restoration',
     href: '/services/water-damage-restoration',
-    image: '/images/optimised/damage/3D Water Damage.png'
+    image: '/images/optimized/damage/3D Water Damage.png'
   },
   {
     title: 'Fire Damage Restoration',
     href: '/services/fire-damage',
-    image: '/images/optimised/damage/3D Fire Damage.png'
+    image: '/images/optimized/damage/3D Fire Damage.png'
   },
   {
     title: 'Indoor Air Quality Testing',
     href: '/services/indoor-air-quality',
-    image: '/images/optimised/equipment/3D Thermal Camera.png'
+    image: '/images/optimized/equipment/3D Thermal Camera.png'
   },
   {
     title: 'Structural Drying',
     href: '/services/structural-drying',
-    image: '/images/optimised/equipment/3D Dehumidifier.png'
+    image: '/images/optimized/equipment/3D Dehumidifier.png'
   }
 ];
 
@@ -169,7 +169,7 @@ export default function MoldRemediationPage() {
     <ServicePageLayout
       title="Mould Remediation Services"
       description="Professional mould remediation services following IICRC S520 standards. Expert black mould removal, toxic mould cleanup, and comprehensive mould damage restoration with certified technicians available 24/7."
-      heroImage="/images/optimised/damage/3D Mould Damage.png"
+      heroImage="/images/optimized/damage/3D Mould Damage.png"
       heroImageAlt="Professional mould remediation service showing expert technicians safely removing mould contamination"
       certifications={['IICRC S520', 'IICRC WRT', 'Indoor Environmental Professional', 'HAZMAT Licensed']}
       responseTime="1-2 Hours"
@@ -202,7 +202,7 @@ export default function MoldRemediationPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/process/3D Remediation.png"
+              src="/images/optimized/process/3D Remediation.png"
               alt="Professional mould remediation process with containment and HEPA filtration"
               width={500}
               height={400}
@@ -431,7 +431,7 @@ export default function MoldRemediationPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3D Moisture Meter Reading.png"
+              src="/images/optimized/equipment/3D Moisture Meter Reading.png"
               alt="Professional moisture meter reading during mould assessment and remediation"
               width={500}
               height={600}
