@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_AU',
-    url: 'https://dr-new-unite-group.vercel.app',
+    url: 'https://disasterrecovery.com.au',
     siteName: 'Disaster Recovery Australia',
     title: 'Disaster Recovery Australia | 24/7 IICRC-Certified Emergency Restoration',
     description: 'Australia\'s elite network of <10,000 IICRC-certified restoration professionals. 24/7 emergency response prevents 50% of secondary damage. Trusted by major insurers.',
@@ -150,8 +150,8 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Disaster Recovery Australia",
               "alternateName": "Disaster Recovery",
-              "url": "https://dr-new-unite-group.vercel.app",
-              "logo": "https://dr-new-unite-group.vercel.app/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
+              "url": "https://disasterrecovery.com.au",
+              "logo": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
               "description": "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",
               "areaServed": {
                 "@type": "Country",
@@ -174,7 +174,7 @@ export default function RootLayout({
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+61-1300-000-000",
+                "telephone": "+61-1300-309-361",
                 "contactType": "Emergency Service",
                 "availableLanguage": "English",
                 "areaServed": "AU",
@@ -256,7 +256,7 @@ export default function RootLayout({
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -264,7 +264,8 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'}');
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+            ${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY ? `gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY}');` : ''}
           `}
         </Script>
       </body>

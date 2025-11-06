@@ -1,0 +1,993 @@
+{
+  "timestamp": "2025-11-06T21:16:07.827Z",
+  "baseUrl": "http://localhost:3000",
+  "pages": {
+    "homepage": {
+      "desktop": {
+        "url": "http://localhost:3000/",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\homepage-desktop.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\homepage-tablet.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\homepage-mobile.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      }
+    },
+    "services": {
+      "desktop": {
+        "url": "http://localhost:3000/services",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\services-desktop.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "Water Damage Restoration"
+              }
+            ]
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/services",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\services-tablet.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "Water Damage Restoration"
+              }
+            ]
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/services",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\services-mobile.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "Water Damage Restoration"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "water-damage": {
+      "desktop": {
+        "url": "http://localhost:3000/services/water-damage",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\water-damage-desktop.png",
+        "issueCount": 4,
+        "issues": [
+          {
+            "category": "Visual",
+            "severity": "HIGH",
+            "issue": "Broken Images",
+            "count": 18,
+            "examples": [
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Water%20Damage.png&w=3840&q=75",
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Flood%20Damage.png&w=3840&q=75",
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fprocess%2F3D%20Emergency%20Squalor%20Cleanup.png&w=3840&q=75"
+            ]
+          },
+          {
+            "category": "Typography",
+            "severity": "MEDIUM",
+            "issue": "Small Font Size",
+            "count": 3,
+            "note": "Text smaller than 14px detected"
+          },
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "SEO/Content",
+            "severity": "HIGH",
+            "issue": "Missing H1",
+            "details": "Every page must have exactly one H1 heading"
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/services/water-damage",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\water-damage-tablet.png",
+        "issueCount": 4,
+        "issues": [
+          {
+            "category": "Visual",
+            "severity": "HIGH",
+            "issue": "Broken Images",
+            "count": 18,
+            "examples": [
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Water%20Damage.png&w=3840&q=75",
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Flood%20Damage.png&w=3840&q=75",
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fprocess%2F3D%20Emergency%20Squalor%20Cleanup.png&w=3840&q=75"
+            ]
+          },
+          {
+            "category": "Typography",
+            "severity": "MEDIUM",
+            "issue": "Small Font Size",
+            "count": 3,
+            "note": "Text smaller than 14px detected"
+          },
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "SEO/Content",
+            "severity": "HIGH",
+            "issue": "Missing H1",
+            "details": "Every page must have exactly one H1 heading"
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/services/water-damage",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\water-damage-mobile.png",
+        "issueCount": 4,
+        "issues": [
+          {
+            "category": "Visual",
+            "severity": "HIGH",
+            "issue": "Broken Images",
+            "count": 17,
+            "examples": [
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Water%20Damage.png&w=3840&q=75",
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Flood%20Damage.png&w=3840&q=75",
+              "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fprocess%2F3D%20Emergency%20Squalor%20Cleanup.png&w=3840&q=75"
+            ]
+          },
+          {
+            "category": "Typography",
+            "severity": "MEDIUM",
+            "issue": "Small Font Size",
+            "count": 3,
+            "note": "Text smaller than 14px detected"
+          },
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "SEO/Content",
+            "severity": "HIGH",
+            "issue": "Missing H1",
+            "details": "Every page must have exactly one H1 heading"
+          }
+        ]
+      }
+    },
+    "brisbane": {
+      "desktop": {
+        "url": "http://localhost:3000/locations/brisbane",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\brisbane-desktop.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/locations/brisbane",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\brisbane-tablet.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/locations/brisbane",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\brisbane-mobile.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      }
+    },
+    "contact": {
+      "desktop": {
+        "url": "http://localhost:3000/contact",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\contact-desktop.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Typography",
+            "severity": "MEDIUM",
+            "issue": "Small Font Size",
+            "count": 4,
+            "note": "Text smaller than 14px detected"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "24/7 Online Support"
+              }
+            ]
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/contact",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\contact-tablet.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Typography",
+            "severity": "MEDIUM",
+            "issue": "Small Font Size",
+            "count": 4,
+            "note": "Text smaller than 14px detected"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "24/7 Online Support"
+              }
+            ]
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/contact",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\contact-mobile.png",
+        "issueCount": 3,
+        "issues": [
+          {
+            "category": "Layout",
+            "severity": "CRITICAL",
+            "issue": "Horizontal Overflow",
+            "details": "Page width (395px) exceeds viewport (375px)"
+          },
+          {
+            "category": "Typography",
+            "severity": "MEDIUM",
+            "issue": "Small Font Size",
+            "count": 4,
+            "note": "Text smaller than 14px detected"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "24/7 Online Support"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "insurance-claims": {
+      "desktop": {
+        "url": "http://localhost:3000/insurance-claims",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\insurance-claims-desktop.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/insurance-claims",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\insurance-claims-tablet.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/insurance-claims",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\insurance-claims-mobile.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      }
+    },
+    "residential": {
+      "desktop": {
+        "url": "http://localhost:3000/residential",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\residential-desktop.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/residential",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\residential-tablet.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/residential",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\residential-mobile.png",
+        "issueCount": 1,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          }
+        ]
+      }
+    },
+    "commercial": {
+      "desktop": {
+        "url": "http://localhost:3000/services/commercial",
+        "viewport": "desktop",
+        "screenshot": "D:\\DR New\\audit-results\\commercial-desktop.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "Office Buildings"
+              }
+            ]
+          }
+        ]
+      },
+      "tablet": {
+        "url": "http://localhost:3000/services/commercial",
+        "viewport": "tablet",
+        "screenshot": "D:\\DR New\\audit-results\\commercial-tablet.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "Office Buildings"
+              }
+            ]
+          }
+        ]
+      },
+      "mobile": {
+        "url": "http://localhost:3000/services/commercial",
+        "viewport": "mobile",
+        "screenshot": "D:\\DR New\\audit-results\\commercial-mobile.png",
+        "issueCount": 2,
+        "issues": [
+          {
+            "category": "Call-to-Action",
+            "severity": "HIGH",
+            "issue": "No Emergency CTAs",
+            "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+          },
+          {
+            "category": "Content Structure",
+            "severity": "MEDIUM",
+            "issue": "Broken Heading Hierarchy",
+            "count": 1,
+            "examples": [
+              {
+                "from": "H1",
+                "to": "H3",
+                "text": "Office Buildings"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "summary": {
+    "critical": [
+      {
+        "page": "contact",
+        "viewport": "mobile",
+        "category": "Layout",
+        "severity": "CRITICAL",
+        "issue": "Horizontal Overflow",
+        "details": "Page width (395px) exceeds viewport (375px)"
+      }
+    ],
+    "high": [
+      {
+        "page": "homepage",
+        "viewport": "desktop",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "homepage",
+        "viewport": "tablet",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "homepage",
+        "viewport": "mobile",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "services",
+        "viewport": "desktop",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "services",
+        "viewport": "tablet",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "services",
+        "viewport": "mobile",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "desktop",
+        "category": "Visual",
+        "severity": "HIGH",
+        "issue": "Broken Images",
+        "count": 18,
+        "examples": [
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Water%20Damage.png&w=3840&q=75",
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Flood%20Damage.png&w=3840&q=75",
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fprocess%2F3D%20Emergency%20Squalor%20Cleanup.png&w=3840&q=75"
+        ]
+      },
+      {
+        "page": "water-damage",
+        "viewport": "desktop",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "desktop",
+        "category": "SEO/Content",
+        "severity": "HIGH",
+        "issue": "Missing H1",
+        "details": "Every page must have exactly one H1 heading"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "tablet",
+        "category": "Visual",
+        "severity": "HIGH",
+        "issue": "Broken Images",
+        "count": 18,
+        "examples": [
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Water%20Damage.png&w=3840&q=75",
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Flood%20Damage.png&w=3840&q=75",
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fprocess%2F3D%20Emergency%20Squalor%20Cleanup.png&w=3840&q=75"
+        ]
+      },
+      {
+        "page": "water-damage",
+        "viewport": "tablet",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "tablet",
+        "category": "SEO/Content",
+        "severity": "HIGH",
+        "issue": "Missing H1",
+        "details": "Every page must have exactly one H1 heading"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "mobile",
+        "category": "Visual",
+        "severity": "HIGH",
+        "issue": "Broken Images",
+        "count": 17,
+        "examples": [
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Water%20Damage.png&w=3840&q=75",
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fdamage%2F3D%20Flood%20Damage.png&w=3840&q=75",
+          "http://localhost:3000/_next/image?url=%2Fimages%2Foptimised%2Fprocess%2F3D%20Emergency%20Squalor%20Cleanup.png&w=3840&q=75"
+        ]
+      },
+      {
+        "page": "water-damage",
+        "viewport": "mobile",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "mobile",
+        "category": "SEO/Content",
+        "severity": "HIGH",
+        "issue": "Missing H1",
+        "details": "Every page must have exactly one H1 heading"
+      },
+      {
+        "page": "brisbane",
+        "viewport": "desktop",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "brisbane",
+        "viewport": "tablet",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "brisbane",
+        "viewport": "mobile",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "insurance-claims",
+        "viewport": "desktop",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "insurance-claims",
+        "viewport": "tablet",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "insurance-claims",
+        "viewport": "mobile",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "residential",
+        "viewport": "desktop",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "residential",
+        "viewport": "tablet",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "residential",
+        "viewport": "mobile",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "commercial",
+        "viewport": "desktop",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "commercial",
+        "viewport": "tablet",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      },
+      {
+        "page": "commercial",
+        "viewport": "mobile",
+        "category": "Call-to-Action",
+        "severity": "HIGH",
+        "issue": "No Emergency CTAs",
+        "details": "Should have prominent \"Get Emergency Help\" or similar buttons"
+      }
+    ],
+    "medium": [
+      {
+        "page": "services",
+        "viewport": "desktop",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "Water Damage Restoration"
+          }
+        ]
+      },
+      {
+        "page": "services",
+        "viewport": "tablet",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "Water Damage Restoration"
+          }
+        ]
+      },
+      {
+        "page": "services",
+        "viewport": "mobile",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "Water Damage Restoration"
+          }
+        ]
+      },
+      {
+        "page": "water-damage",
+        "viewport": "desktop",
+        "category": "Typography",
+        "severity": "MEDIUM",
+        "issue": "Small Font Size",
+        "count": 3,
+        "note": "Text smaller than 14px detected"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "tablet",
+        "category": "Typography",
+        "severity": "MEDIUM",
+        "issue": "Small Font Size",
+        "count": 3,
+        "note": "Text smaller than 14px detected"
+      },
+      {
+        "page": "water-damage",
+        "viewport": "mobile",
+        "category": "Typography",
+        "severity": "MEDIUM",
+        "issue": "Small Font Size",
+        "count": 3,
+        "note": "Text smaller than 14px detected"
+      },
+      {
+        "page": "contact",
+        "viewport": "desktop",
+        "category": "Typography",
+        "severity": "MEDIUM",
+        "issue": "Small Font Size",
+        "count": 4,
+        "note": "Text smaller than 14px detected"
+      },
+      {
+        "page": "contact",
+        "viewport": "desktop",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "24/7 Online Support"
+          }
+        ]
+      },
+      {
+        "page": "contact",
+        "viewport": "tablet",
+        "category": "Typography",
+        "severity": "MEDIUM",
+        "issue": "Small Font Size",
+        "count": 4,
+        "note": "Text smaller than 14px detected"
+      },
+      {
+        "page": "contact",
+        "viewport": "tablet",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "24/7 Online Support"
+          }
+        ]
+      },
+      {
+        "page": "contact",
+        "viewport": "mobile",
+        "category": "Typography",
+        "severity": "MEDIUM",
+        "issue": "Small Font Size",
+        "count": 4,
+        "note": "Text smaller than 14px detected"
+      },
+      {
+        "page": "contact",
+        "viewport": "mobile",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "24/7 Online Support"
+          }
+        ]
+      },
+      {
+        "page": "commercial",
+        "viewport": "desktop",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "Office Buildings"
+          }
+        ]
+      },
+      {
+        "page": "commercial",
+        "viewport": "tablet",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "Office Buildings"
+          }
+        ]
+      },
+      {
+        "page": "commercial",
+        "viewport": "mobile",
+        "category": "Content Structure",
+        "severity": "MEDIUM",
+        "issue": "Broken Heading Hierarchy",
+        "count": 1,
+        "examples": [
+          {
+            "from": "H1",
+            "to": "H3",
+            "text": "Office Buildings"
+          }
+        ]
+      }
+    ],
+    "low": []
+  }
+}
