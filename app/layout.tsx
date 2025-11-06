@@ -13,12 +13,13 @@ import '@/styles/mobile-touch-targets.css'
 import { Providers } from './providers'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import EmergencyCTA from '@/components/EmergencyCTA'
 // Temporarily disabled to fix prerendering - client components using hooks
 // import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
 // import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
 // import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 // import { WebVitalsReporter } from '@/components/seo/WebVitalsReporter'
-// import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema'
+// import { LocalBusinessSchema} from '@/components/seo/LocalBusinessSchema'
 // import { BrisbaneLocalSchema } from '@/components/seo/BrisbaneLocalSchema'
 // import { SEOChecklist } from '@/components/seo/SEOChecklist'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
@@ -247,6 +248,8 @@ export default function RootLayout({
           <div className="pb-16 lg:pb-0">
             <Footer />
           </div>
+          {/* Emergency CTA - appears after scrolling */}
+          <EmergencyCTA />
           {/* Temporarily disabled to fix prerendering errors */}
           {/* <MobileEmergencyCTA /> */}
           {/* <LoadingIndicator /> */}
