@@ -185,11 +185,13 @@ export default function UltraModernServicesPage() {
   ];
 
   // Get the main disaster recovery hero image
-  const disasterRecoveryHeroImage = getHeroImageById('disaster-recovery-main');
+  // Temporarily disabled - causing page load issues
+  // const disasterRecoveryHeroImage = getHeroImageById('disaster-recovery-main');
 
   return (
     <div ref={containerRef} className="min-h-screen relative overflow-hidden noise-overlay">
       {/* Hero Section with Comprehensive Services Image */}
+      {/* Temporarily disabled - causing page load issues
       {disasterRecoveryHeroImage && (
         <HeroSection
           image={disasterRecoveryHeroImage}
@@ -200,6 +202,7 @@ export default function UltraModernServicesPage() {
           height="h-[700px]"
         />
       )}
+      */}
 
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
