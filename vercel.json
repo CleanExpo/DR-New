@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "installCommand": "npm ci --legacy-peer-deps",
-  "buildCommand": "next build",
+  "buildCommand": "npx prisma generate && next build",
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=3072",
     "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
