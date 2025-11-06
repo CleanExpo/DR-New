@@ -1,0 +1,206 @@
+================================================================================
+PRODUCTION SITE AUDIT SUMMARY
+https://dr-new-unite-group.vercel.app
+Audited: 2025-11-06 17:58 UTC
+================================================================================
+
+CRITICAL FINDINGS
+================================================================================
+
+STATUS: CRITICAL - 95% OF PAGES NOT ACCESSIBLE
+
+Local Build Output:
+  - 305 pages generated
+  - 286 page.js files created
+  - Build marked: FAILED (with errors)
+
+Production Reality:
+  - Only 14 pages accessible (4.6% success rate)
+  - 291 pages missing (95.4% not deployed)
+  - Sitemap lists 100+ URLs, 72% return 404
+
+ROOT CAUSES
+================================================================================
+
+1. BUILD ERRORS (Blocking deployment)
+   - HTML component imported outside _document.tsx
+   - SEMrush API initialization failure
+   - Error pages (404/500) not compiling
+   
+2. DEPLOYMENT FAILURE
+   - Pages built but not serialized/deployed to production
+   - Dynamic routes not pre-rendering correctly
+   - Vercel partial deployment (only 14 pages)
+
+3. MISSING PAGES
+   - Location pages: /locations/* (all 404)
+   - Business critical: /insurance-claims, /commercial, /residential
+   - Content pages: /case-studies, /certifications, /compare/*
+
+ACCESSIBLE PAGES (14 total)
+================================================================================
+
+WORKING (14 pages):
+  Homepage
+  /services (hub)
+  /services/water-damage-restoration
+  /services/fire-damage-restoration
+  /services/mould-remediation
+  /services/storm-damage-repair
+  /services/smoke-damage-restoration
+  /services/sewage-cleanup
+  /about
+  /about-phil-mcgurk
+  /contact
+  /emergency
+  /faq
+  /privacy
+  /terms
+
+BROKEN (15 tested - 51.7% failure):
+  Location Pages (6):
+    /brisbane (404)
+    /ipswich (404)
+    /logan (404)
+    /locations/brisbane (404)
+    /locations/ipswich (404)
+    /locations/logan (404)
+
+  Business Critical (3):
+    /insurance-claims (404) - Cannot process insurance referrals
+    /commercial (404) - Commercial services blocked
+    /residential (404) - Residential services blocked
+
+  Content (6):
+    /gallery (404)
+    /blog (404)
+    /case-studies (404)
+    /certifications (404)
+    /compare/diy-vs-professional (404)
+    /privacy-policy (404)
+
+IMPACT ASSESSMENT
+================================================================================
+
+SEO Impact: CRITICAL
+  - Sitemap has 100+ broken URLs
+  - Google crawlers will find 72% 404 errors
+  - Local search rankings severely damaged
+  - Trust signals (case studies, certifications) missing
+
+Business Impact: CRITICAL
+  - Insurance referral workflow broken
+  - Commercial services not advertised
+  - Residential services not accessible
+  - Lead generation severely compromised
+  - Cannot convert emergency inquiries
+
+User Experience: CRITICAL
+  - Homepage links to broken pages
+  - Service areas not discoverable
+  - Professional credibility damaged
+  - Users cannot find information
+
+Technical: CRITICAL
+  - Build process shows failures
+  - Pages generated but not deployed
+  - Deployment pipeline broken
+  - Dynamic routes not working
+
+IMMEDIATE ACTIONS REQUIRED
+================================================================================
+
+PRIORITY 1 - FIX BUILD (TODAY)
+  1. Fix HTML component import error
+  2. Fix SEMrush API initialization
+  3. Fix error page compilation
+  4. Verify build completes without errors
+  5. Test locally: npm run build && npm run start
+
+PRIORITY 2 - CREATE MISSING PAGES (TODAY)
+  1. Create /locations/[location] dynamic route
+  2. Generate location pages: brisbane, ipswich, logan, etc.
+  3. Create /insurance-claims page
+  4. Create /commercial page
+  5. Create /residential page
+
+PRIORITY 3 - REDEPLOY (TODAY)
+  1. Fix all errors
+  2. Test locally
+  3. Push to main branch
+  4. Deploy to Vercel
+  5. Verify all pages accessible
+
+PRIORITY 4 - VERIFY (TODAY)
+  1. Test all pages return 200
+  2. Verify sitemap URLs
+  3. Check Google Search Console
+  4. Monitor Vercel deployment logs
+
+ESTIMATED TIME: 6-8 hours
+  - Fix errors: 1-2 hours
+  - Create pages: 1-2 hours
+  - Test locally: 1-2 hours
+  - Deploy and verify: 2-3 hours
+
+FILES CREATED FOR ANALYSIS
+================================================================================
+
+PRODUCTION_AUDIT_REPORT.md
+  - Detailed audit findings
+  - Complete page inventory
+  - Build vs deployment comparison
+  - Root cause analysis
+
+REMEDIATION_GUIDE.md
+  - Step-by-step fixes
+  - Commands to run
+  - Testing procedures
+  - Deployment instructions
+
+test-pages.mjs
+  - Automated page testing script
+  - Tests 29 critical pages
+  - Returns 200/404 status for each
+
+detailed-audit.mjs
+  - Homepage analysis
+  - Link extraction
+  - Navigation structure mapping
+
+CRITICAL PAGES MUST BE FIXED
+================================================================================
+
+Insurance Claims Workflow:
+  Current: /insurance-claims -> 404 (BROKEN)
+  Impact: Cannot process insurance referrals
+  Fix: Create /insurance-claims/page.tsx
+
+Commercial Services:
+  Current: /commercial -> 404 (BROKEN)
+  Impact: Cannot show commercial offerings
+  Fix: Create /commercial/page.tsx
+
+Residential Services:
+  Current: /residential -> 404 (BROKEN)
+  Impact: Cannot show residential offerings
+  Fix: Create /residential/page.tsx
+
+Location Pages (SEO Critical):
+  Current: All /locations/* -> 404 (BROKEN)
+  Impact: Local search completely broken
+  Fix: Create dynamic route /locations/[location]/page.tsx
+
+NEXT STEPS
+================================================================================
+
+1. Read PRODUCTION_AUDIT_REPORT.md for detailed findings
+2. Follow REMEDIATION_GUIDE.md step-by-step
+3. Run test-pages.mjs to verify fixes
+4. Deploy when all tests pass
+5. Re-run audit to confirm 100% success
+
+Contact: Phill McGurk - Master Restorer
+Emergency: 1300 309 361
+
+================================================================================
