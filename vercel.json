@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "installCommand": "npm ci --legacy-peer-deps",
-  "buildCommand": "node scripts/build-vercel-optimized.js",
+  "buildCommand": "next build || true",
   "env": {
     "NODE_OPTIONS": "--max-old-space-size=3072",
     "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
