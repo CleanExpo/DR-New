@@ -39,7 +39,8 @@ yarn-error.log*
 next-env.d.ts
 
 # Database
-/data
+/# data - commented out to allow data/ directory
+# data
 *.db
 *.sqlite
 *.sqlite3
