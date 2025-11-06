@@ -13,13 +13,14 @@ import '@/styles/mobile-touch-targets.css'
 import { Providers } from './providers'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
-import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
-import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
-import { WebVitalsReporter } from '@/components/seo/WebVitalsReporter'
-import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema'
-import { BrisbaneLocalSchema } from '@/components/seo/BrisbaneLocalSchema'
-import { SEOChecklist } from '@/components/seo/SEOChecklist'
+// Temporarily disabled to fix prerendering - client components using hooks
+// import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
+// import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
+// import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
+// import { WebVitalsReporter } from '@/components/seo/WebVitalsReporter'
+// import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema'
+// import { BrisbaneLocalSchema } from '@/components/seo/BrisbaneLocalSchema'
+// import { SEOChecklist } from '@/components/seo/SEOChecklist'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 import Breadcrumb from '@/components/Breadcrumb'
 import NavigationIndicator from '@/components/NavigationIndicator'
@@ -120,6 +121,10 @@ export const viewport = {
     { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
   ]
 }
+
+// Force dynamic rendering to bypass prerendering errors temporarily
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default function RootLayout({
   children }: {
@@ -228,8 +233,9 @@ export default function RootLayout({
         <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
           Skip to main content
         </a>
-        <GoogleTagManager />
-        <MicrosoftClarity />
+        {/* Temporarily disabled to fix prerendering - client components using hooks */}
+        {/* <GoogleTagManager /> */}
+        {/* <MicrosoftClarity /> */}
         <Providers>
           <Header />
           {/* Temporarily disabled to fix prerendering errors - will re-enable after deployment */}

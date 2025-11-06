@@ -72,3 +72,22 @@ export function generateBreadcrumbSchema(items: any[]) {
     })),
   };
 }
+
+export function generateArticleSchema(article: any) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title || article.headline,
+    description: article.description,
+    author: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Brisbane',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Brisbane',
+    },
+    datePublished: article.datePublished || new Date().toISOString(),
+    dateModified: article.dateModified || new Date().toISOString(),
+  };
+}
