@@ -3,8 +3,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { HeroSection } from '@/components/hero/HeroImage';
-import { getHeroImageById } from '@/components/hero/HeroImageData';
+// import { HeroSection } from '@/components/hero/HeroImage'; // Temporarily disabled
+// import { getHeroImageById } from '@/components/hero/HeroImageData'; // Temporarily disabled
 import {
   HomeIcon,
   FireIcon,
