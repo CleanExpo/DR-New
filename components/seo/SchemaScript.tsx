@@ -1,17 +1,42 @@
+'use client';
+
 import Script from 'next/script';
 
 interface SchemaScriptProps {
   schema: any;
+  id?: string;
 }
 
-export function SchemaScript({ schema }: SchemaScriptProps) {
+/**
+ * Component for rendering JSON-LD schema markup
+ * Implements structured data for SEO optimisation
+ */
+export function SchemaScript({ schema, id = 'schema-script' }: SchemaScriptProps) {
   return (
     <Script
-      id={`schema-${Math.random().toString(36).substr(2, 9)}`}
+      id={id}
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(schema, null, 2)
+      }}
+      strategy="beforeInteractive"
     />
   );
 }
 
-export default SchemaScript;
+/**
+ * Component for multiple schema scripts
+ */
+export function MultiSchemaScript({ schemas }: { schemas: any[] }) {
+  return (
+    <>
+      {schemas.map((schema, index) => (
+        <SchemaScript
+          key={`schema-${index}`}
+          id={`schema-script-${index}`}
+          schema={schema}
+        />
+      ))}
+    </>
+  );
+}
