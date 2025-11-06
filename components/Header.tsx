@@ -16,9 +16,6 @@ export default function Header() {
             <Link href="/services" className="text-gray-700 hover:text-blue-600 font-medium">
               Services
             </Link>
-            <Link href="/about-phil-mcgurk" className="text-gray-700 hover:text-blue-600 font-medium">
-              About Phill McGurk
-            </Link>
             <Link href="/service-areas" className="text-gray-700 hover:text-blue-600 font-medium">
               Service Areas
             </Link>
@@ -42,9 +39,6 @@ export default function Header() {
       <nav className="md:hidden flex items-center justify-around py-3 border-t border-gray-200 bg-gray-50">
         <Link href="/services" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
           Services
-        </Link>
-        <Link href="/about-phil-mcgurk" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
-          About
         </Link>
         <Link href="/service-areas" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
           Areas
