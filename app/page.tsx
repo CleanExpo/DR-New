@@ -1,344 +1,242 @@
-'use client';
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Phone, MapPin, Shield, Star, CheckCircle, Clock, ArrowRight, Award, Users, Building2 } from 'lucide-react';
 
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  ArrowRight, MessageCircle, Globe, CheckCircle,
-  Clock, Shield, Users, Zap, Star, Mail, MapPin,
-  TrendingUp, AlertCircle, Building2, Home, Factory, Hospital, Phone
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import RotatingHeroBanner from '../components/hero/RotatingHeroBanner';
-import EquipmentGallery from '../components/gallery/EquipmentGallery';
-import ServicesGrid from '../components/services/ServicesGrid';
-import ProcessShowcase from '../components/process/ProcessShowcase';
-import MasterCertifications from '../components/credentials/MasterCertifications';
-// import ReviewDisplay from '@/components/reviews/ReviewDisplay';
-// import VideoTestimonials from '@/components/reviews/VideoTestimonials';
-// import FAQSection from '@/components/faq/FAQSection';
-// import InternalLinkingHub from '@/components/navigation/InternalLinkingHub';
-// import ConversionOptimization from '@/components/conversion/ConversionOptimization';
-
-interface LocationData {
-  city: string;
-  state: string;
-  responseTime: string;
-  activeJobs: number;
-}
-
-interface ServiceStats {
-  category: string;
-  icon: React.ElementType;
-  count: number;
-  trend: number;
-}
-
+// Homepage for Disaster Recovery Brisbane - Full website with header and navigation handled by layout.tsx
 export default function HomePage() {
-  const [userLocation, setUserLocation] = useState<LocationData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('residential');
-  const [liveStats, setLiveStats] = useState({
-    jobsInProgress: 0,
-    avgResponseTime: '0',
-    satisfactionRate: 0
-  });
-
-  // Simulate geolocation detection and data loading
-  useEffect(() => {
-    const detectLocation = async () => {
-      // Simulate API call for location detection
-      setTimeout(() => {
-        setUserLocation({
-          city: 'Brisbane',
-          state: 'QLD',
-          responseTime: '30 minutes',
-          activeJobs: 12
-        });
-        setIsLoading(false);
-      }, 1000);
-
-      // Simulate live stats updates
-      setLiveStats({
-        jobsInProgress: 12,
-        avgResponseTime: '0.5',
-        satisfactionRate: 98.7
-      });
-    };
-
-    detectLocation();
-
-    // Simulate real-time updates
-    const interval = setInterval(() => {
-      setLiveStats(prev => ({
-        jobsInProgress: prev.jobsInProgress + Math.floor(Math.random() * 2),
-        avgResponseTime: (parseFloat(prev.avgResponseTime) + (Math.random() * 0.1)).toFixed(1),
-        satisfactionRate: Math.min(100, Math.max(95, prev.satisfactionRate + (Math.random() * 0.2)))
-      }));
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const serviceStats: ServiceStats[] = [
-    { category: 'Water Damage', icon: Zap, count: 12453, trend: 12 },
-    { category: 'Fire Restoration', icon: Shield, count: 8234, trend: -5 },
-    { category: 'Mould Remediation', icon: Users, count: 6789, trend: 23 },
-    { category: 'Storm Recovery', icon: Clock, count: 4567, trend: 45 }
-  ];
-
-  const propertyTypes = [
-    { id: 'residential', label: 'Residential', icon: Home, description: 'Homes, Units, Townhouses' },
-    { id: 'commercial', label: 'Commercial', icon: Building2, description: 'Offices, Retail, Hospitality' },
-    { id: 'industrial', label: 'Industrial', icon: Factory, description: 'Warehouses, Factories, Plants' },
-    { id: 'institutional', label: 'Institutional', icon: Hospital, description: 'Hospitals, Schools, Government' }
-  ];
-
   return (
     <div className="min-h-screen">
-      {/* Conversion Optimization Components */}
-      {/* <ConversionOptimization /> */}
+      {/* Hero Section */}
+      <section className="relative min-h-[600px] flex items-center justify-center text-white">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero/fire-water-damage-restoration.jpg"
+            alt="Disaster Recovery Services Brisbane - Water & Fire Damage Restoration"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
+        </div>
 
-      {/* Main Content */}
-      <main className="relative">
+        <div className="relative z-10 container mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            When Disaster Strikes Your Brisbane Home,<br />
+            Every Minute Counts
+          </h1>
 
-        {/* Rotating Hero Banner with Real Images */}
-        <RotatingHeroBanner />
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Master Restorer responds in 60 minutes. Water damage. Fire damage. Storm damage.<br />
+            Your home restored to perfection. Guaranteed.
+          </p>
 
-        {/* Credibility Banner */}
-        <section className="py-8 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-wrap justify-center items-center gap-8 text-center">
-              <div>
-                <div className="text-2xl font-bold">24/7</div>
-                <div className="text-sm opacity-90">Emergency Response</div>
-              </div>
-              <div className="hidden md:block w-px h-12 bg-white/30" />
-              <div>
-                <div className="text-2xl font-bold">IICRC</div>
-                <div className="text-sm opacity-90">Master Certified</div>
-              </div>
-              <div className="hidden md:block w-px h-12 bg-white/30" />
-              <div>
-                <div className="text-2xl font-bold">Brisbane</div>
-                <div className="text-sm opacity-90">Ipswich & Logan</div>
-              </div>
-              <div className="hidden md:block w-px h-12 bg-white/30" />
-              <div>
-                <div className="text-2xl font-bold">Direct</div>
-                <div className="text-sm opacity-90">Insurance Billing</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Master Certifications Section */}
-        <MasterCertifications />
-
-        {/* Services Grid with Real Service Images */}
-        <ServicesGrid />
-
-        {/* Equipment Gallery with Real Equipment Images */}
-        <EquipmentGallery />
-
-        {/* Process Showcase with Real Process Images */}
-        <ProcessShowcase />
-
-        {/* Review Display Section */}
-        {/* <ReviewDisplay /> */}
-
-        {/* Video Testimonials Section */}
-        {/* <VideoTestimonials /> */}
-
-        {/* FAQ Section */}
-        {/* <FAQSection /> */}
-
-        {/* Internal Linking Hub */}
-        {/* <InternalLinkingHub /> */}
-
-        {/* Trust Signals Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-              >
-                Brisbane's Trusted Disaster Recovery Experts
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-xl text-gray-700 max-w-3xl mx-auto"
-              >
-                Serving Brisbane, Ipswich, and Logan with professional disaster recovery services.
-                IICRC certified, insurance approved, available 24/7.
-              </motion.p>
-            </div>
-
-            <div className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16">
-              {[
-                { icon: Clock, title: '24/7 Emergency', desc: 'Always available when disaster strikes', color: 'text-red-600' },
-                { icon: Shield, title: 'IICRC Certified', desc: 'Industry-leading standards & training', color: 'text-blue-600' },
-                { icon: CheckCircle, title: 'Insurance Approved', desc: 'Direct billing & claim assistance', color: 'text-green-600' },
-                { icon: Users, title: 'Local Experts', desc: 'Brisbane, Ipswich, Logan specialists', color: 'text-purple-600' }
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow duration-300"
-                >
-                  <feature.icon className={`h-12 w-12 ${feature.color} mx-auto mb-4`} />
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Emergency Contact Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center bg-red-600 text-white rounded-2xl p-8 max-w-2xl mx-auto"
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link
+              href="tel:1300309361"
+              className="inline-flex items-center justify-center px-8 py-4 bg-red-600 text-white font-bold text-lg rounded-lg hover:bg-red-700 transition-colors shadow-lg"
             >
-              <AlertCircle className="w-12 h-12 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Emergency Disaster Recovery</h3>
-              <p className="text-red-100 mb-6">
-                Water damage? Fire damage? Mould problems? Don't wait - every minute counts!
+              <Phone className="w-5 h-5 mr-2" />
+              Emergency: Call 1300 309 361
+            </Link>
+
+            <Link
+              href="/book-service"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-bold text-lg rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+            >
+              Book Free Assessment
+            </Link>
+          </div>
+
+          <p className="text-sm opacity-90">
+            <MapPin className="w-4 h-4 inline mr-1" />
+            4/17 Tile St, Wacol, QLD 4076 | 24/7 Emergency Response
+          </p>
+        </div>
+      </section>
+
+      {/* Trust Indicators */}
+      <section className="py-12 bg-blue-900 text-white">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+            <div>
+              <Award className="w-12 h-12 mx-auto mb-3 text-yellow-400" />
+              <div className="text-2xl font-bold mb-1">IICRC & RAI Master</div>
+              <div className="text-sm opacity-90">Double Certified</div>
+            </div>
+            <div>
+              <Clock className="w-12 h-12 mx-auto mb-3 text-yellow-400" />
+              <div className="text-2xl font-bold mb-1">20+ Years</div>
+              <div className="text-sm opacity-90">Brisbane & Ipswich</div>
+            </div>
+            <div>
+              <Shield className="w-12 h-12 mx-auto mb-3 text-yellow-400" />
+              <div className="text-2xl font-bold mb-1">All Major Insurers</div>
+              <div className="text-sm opacity-90">Approved Partner</div>
+            </div>
+            <div>
+              <Users className="w-12 h-12 mx-auto mb-3 text-yellow-400" />
+              <div className="text-2xl font-bold mb-1">500+ Properties</div>
+              <div className="text-sm opacity-90">Successfully Restored</div>
+            </div>
+            <div>
+              <Building2 className="w-12 h-12 mx-auto mb-3 text-yellow-400" />
+              <div className="text-2xl font-bold mb-1">60-Min Response</div>
+              <div className="text-sm opacity-90">Emergency Service</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Emergency Services */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Emergency Restoration Services</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              IICRC Master Restorer Phill McGurk and his team provide 24/7 emergency response across Brisbane, Ipswich, and Logan
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-blue-600 mb-4">
+                <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Water Damage Restoration</h3>
+              <p className="text-gray-600 mb-4">
+                Burst pipes, flooding, storm damage. Industrial pumps and drying equipment. We extract water and prevent mould growth.
               </p>
-              <Button
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 px-8 py-4 text-xl font-bold"
-                href="tel:1300309361"
-              >
-                <Phone className="w-6 h-6 mr-3" />
-                Call 1300 309 361 Now
-              </Button>
-            </motion.div>
-          </div>
-        </section>
+              <Link href="/services/water-damage-restoration" className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
+                Learn More <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
 
-        {/* Process */}
-        <section className="py-20 bg-gray-50/95 backdrop-blur-sm">
-          <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              How It Works
-            </h2>
-            <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              {[
-                { step: '1', title: 'Emergency Call', desc: '24/7 hotline response' },
-                { step: '2', title: 'Rapid Assessment', desc: 'On-site within 30 minutes' },
-                { step: '3', title: 'Insurance Approval', desc: 'Direct billing arranged' },
-                { step: '4', title: 'Restoration Begins', desc: 'Immediate action taken' }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.15 }}
-                  viewport={{ once: true }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                    {item.step}
-                  </div>
-                  <h3 className="font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-700">{item.desc}</p>
-                </motion.div>
-              ))}
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-red-600 mb-4">
+                <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Fire & Smoke Damage</h3>
+              <p className="text-gray-600 mb-4">
+                Complete fire restoration. Smoke odour removal. Structural repairs. Contents cleaning and restoration.
+              </p>
+              <Link href="/services/fire-damage-restoration" className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
+                Learn More <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            <div className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="text-green-600 mb-4">
+                <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Mould Remediation</h3>
+              <p className="text-gray-600 mb-4">
+                Professional mould removal and prevention. Air quality testing. Complete decontamination. Health-safe environment.
+              </p>
+              <Link href="/services/mould-remediation" className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
+                Learn More <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Testimonials */}
-        <section className="py-20 bg-white/95 backdrop-blur-sm">
-          <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-              Trusted by Thousands
-            </h2>
-            <div className="flex justify-center gap-1 mb-8">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 text-yellow-600 fill-current" />
-              ))}
+      {/* Why Choose Us */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Brisbane Trusts Disaster Recovery</h2>
+            <p className="text-xl text-gray-600">One of Brisbane's few IICRC Master Restorers</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="flex items-start gap-4">
+              <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">Master Restorer Certified</h3>
+                <p className="text-gray-600">
+                  Phill McGurk holds both IICRC and RAI Master Restorer certifications - one of a limited number in Brisbane and QLD.
+                </p>
+              </div>
             </div>
-            <p className="text-center text-lg text-gray-700 mb-12">
-              Professional Restoration Services
-            </p>
 
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                {
-                  quote: "Response was incredible. Water damage fixed within hours.",
-                  author: "Sarah M.",
-                  location: "Brisbane",
-                  service: "Water Damage"
-                },
-                {
-                  quote: "Insurance handled perfectly. No stress, just results.",
-                  author: "James C.",
-                  location: "Ipswich",
-                  service: "Fire Restoration"
-                },
-                {
-                  quote: "Professional, fast, and exactly as estimated.",
-                  author: "Emma W.",
-                  location: "Logan",
-                  service: "Storm Recovery"
-                }
-              ].map((testimonial, index) => (
-                <Card key={index} className="bg-white">
-                  <CardContent className="p-6">
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 text-yellow-600 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 mb-4 italic">"{testimonial.quote}"</p>
-                    <div className="border-t pt-4">
-                      <p className="font-semibold">{testimonial.author}</p>
-                      <p className="text-sm text-gray-700">{testimonial.location}</p>
-                      <p className="text-xs text-blue-600 mt-1">{testimonial.service}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="flex items-start gap-4">
+              <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">Insurance Approved</h3>
+                <p className="text-gray-600">
+                  We work directly with all major insurance companies. Streamlined claims process. No upfront costs for insured work.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">24/7 Emergency Response</h3>
+                <p className="text-gray-600">
+                  Call 1300 309 361 any time. We respond within 60 minutes to emergencies across Brisbane, Ipswich, and Logan.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <CheckCircle className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-xl font-bold mb-2">Local Brisbane Team</h3>
+                <p className="text-gray-600">
+                  Based in Wacol, QLD. We know Brisbane properties, weather patterns, and insurance requirements inside out.
+                </p>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Final CTA */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Emergency? Get Help Now
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Brisbane's trusted Master Restorer.
-              Direct insurance billing. 24/7 emergency response.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-<Button
-                size="lg"
-                className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-6 text-lg font-bold"
-                href="tel:1300309361"
-              >
-                <Phone className="ml-2 h-5 w-5 mr-2" />
-                Call 1300 309 361 Now
-              </Button>
+      {/* Service Areas */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Service Areas</h2>
+          <p className="text-xl text-gray-600 mb-8">Emergency restoration across Brisbane, Ipswich, and Logan</p>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div>
+              <h3 className="text-2xl font-bold mb-3">Brisbane</h3>
+              <p className="text-gray-600">Hamilton, Ascot, New Farm, Toowong, CBD, and all surrounding suburbs</p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-3">Ipswich</h3>
+              <p className="text-gray-600">Karalee, Brookwater, Springfield Lakes, and greater Ipswich region</p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold mb-3">Logan</h3>
+              <p className="text-gray-600">Commercial properties and residential areas throughout Logan</p>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-16 bg-red-600 text-white text-center">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-4">Experiencing a Disaster Emergency?</h2>
+          <p className="text-2xl mb-8">Every minute counts. Call now for immediate response.</p>
+          <Link
+            href="tel:1300309361"
+            className="inline-flex items-center justify-center px-12 py-5 bg-white text-red-600 font-bold text-xl rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+          >
+            <Phone className="w-6 h-6 mr-3" />
+            1300 309 361
+          </Link>
+          <p className="mt-6 text-lg opacity-90">24/7 Emergency Service | 60-Minute Response</p>
+        </div>
+      </section>
     </div>
   );
 }
