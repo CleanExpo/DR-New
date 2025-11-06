@@ -61,17 +61,6 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: 'cover'
-  },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
-  ],
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
@@ -120,6 +109,18 @@ export const metadata: Metadata = {
       'en-AU': 'https://disasterrecovery.com.au' } },
   category: 'Disaster Recovery Services' }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' }
+  ]
+}
+
 export default function RootLayout({
   children }: {
   children: React.ReactNode
@@ -127,7 +128,6 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
         <meta name="msvalidate.01" content="DB030D197A83DF2F524BF0DFBACDC52C" />
         <link rel="icon" type="image/png" href="/logos/disaster-recovery-logo.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/logos/disaster-recovery-logo.png" />
