@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Expert structural drying services with industrial equipment. Professional water extraction, dehumidification, and moisture monitoring to prevent mould and structural damage.',
     images: [
       {
-        url: '/images/optimized/equipment/3D Dehumidifier.png',
+        url: '/images/optimised/equipment/3D Dehumidifier.png',
         width: 1200,
         height: 630,
         alt: 'Professional structural drying equipment' },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Structural Drying Services | Professional Water Extraction',
     description: 'Expert structural drying services. Industrial dehumidifiers, air movers, and professional moisture monitoring available 24/7.',
-    images: ['/images/optimized/equipment/3D Dehumidifier.png'] },
+    images: ['/images/optimised/equipment/3D Dehumidifier.png'] },
   alternates: {
     canonical: '/services/structural-drying' },
   other: {
@@ -110,22 +110,22 @@ const relatedServices = [
   {
     title: 'Water Damage Restoration',
     href: '/services/water-damage-restoration',
-    image: '/images/optimized/damage/3D Water Damage.png'
+    image: '/images/optimised/damage/3D Water Damage.png'
   },
   {
     title: 'Mould Remediation',
     href: '/services/mould-remediation',
-    image: '/images/optimized/damage/3D Mould Damage.png'
+    image: '/images/optimised/damage/3D Mould Damage.png'
   },
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimized/process/3D Assessment.png'
+    image: '/images/optimised/process/3D Assessment.png'
   },
   {
     title: 'Fire Damage Restoration',
     href: '/services/fire-damage',
-    image: '/images/optimized/damage/3D Fire Damage.png'
+    image: '/images/optimised/damage/3D Fire Damage.png'
   }
 ];
 
@@ -169,7 +169,7 @@ export default function StructuralDryingPage() {
     <ServicePageLayout
       title="Structural Drying Services"
       description="Professional structural drying services with industrial dehumidifiers, air movers, and expert moisture monitoring. Complete water extraction and building drying to prevent mould growth and structural damage with 24/7 service availability."
-      heroImage="/images/optimized/equipment/3D Dehumidifier.png"
+      heroImage="/images/optimised/equipment/3D Dehumidifier.png"
       heroImageAlt="Professional structural drying equipment including industrial dehumidifiers for effective water removal"
       certifications={['IICRC WRT', 'IICRC ASD', 'Certified Drying Specialist', 'Moisture Control Expert']}
       responseTime="1-2 Hours"
@@ -202,7 +202,7 @@ export default function StructuralDryingPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/equipment/3D Industrial Fan.png"
+              src="/images/optimised/equipment/3D Industrial Fan.png"
               alt="Professional air mover equipment for structural drying and water damage restoration"
               width={500}
               height={400}
@@ -400,7 +400,7 @@ export default function StructuralDryingPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/equipment/3D Moisture Meter Reading.png"
+              src="/images/optimised/equipment/3D Moisture Meter Reading.png"
               alt="Professional moisture meter for monitoring structural drying progress and verification"
               width={500}
               height={600}
