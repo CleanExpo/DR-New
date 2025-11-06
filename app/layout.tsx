@@ -232,18 +232,20 @@ export default function RootLayout({
         <MicrosoftClarity />
         <Providers>
           <Header />
-          <Breadcrumb />
-          <NavigationIndicator />
+          {/* Temporarily disabled to fix prerendering errors - will re-enable after deployment */}
+          {/* <Breadcrumb /> */}
+          {/* <NavigationIndicator /> */}
           <main id="main-content" className="min-h-screen">
             {children}
           </main>
           <div className="pb-16 lg:pb-0">
             <Footer />
           </div>
-          <MobileEmergencyCTA />
-          <LoadingIndicator />
-          <ProgressSpinner />
-          <LazyImage />
+          {/* Temporarily disabled to fix prerendering errors */}
+          {/* <MobileEmergencyCTA /> */}
+          {/* <LoadingIndicator /> */}
+          {/* <ProgressSpinner /> */}
+          {/* <LazyImage /> */}
           {/* <LiveChat /> - Reserved for future version */}
           {/* <AudioSystemSimple /> - Removed as not functioning properly */}
         </Providers>
