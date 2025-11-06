@@ -8,11 +8,11 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { MultiSchemaScript } from '@/components/seo/SchemaScript';
-import { 
-  generateArticleSchema, 
+import {
+  generateArticleSchema,
   generateFAQSchema,
-  generateBreadcrumbSchema 
-} from '@/lib/utils/schema-markup';
+  generateBreadcrumbSchema
+} from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Why Mould Returns Within 6 Months - VBA Research Shows 92% Have Water Defects | Disaster Recovery',

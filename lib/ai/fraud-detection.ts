@@ -10,3 +10,10 @@ export async function analyzeFraudRisk(data: any) {
 export const fraudDetection = {
   analyze: analyzeFraudRisk
 };
+
+// Default export for compatibility
+const FraudDetectionService = {
+  analyze: analyzeFraudRisk
+};
+
+export default FraudDetectionService;

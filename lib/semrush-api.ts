@@ -9,3 +9,6 @@ export async function getSEMrushData(domain: string) {
 export const semrushApi = {
   getData: getSEMrushData
 };
+
+// Add uppercase variant for compatibility
+export const semrushAPI = semrushApi;

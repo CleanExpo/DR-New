@@ -62,7 +62,7 @@ const priorityLevels: PriorityLevel[] = [
   }
 ];
 
-export default function TriageInfoCard() {
+export function TriageInfoCard() {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -198,3 +198,5 @@ export default function TriageInfoCard() {
     </div>
   );
 }
+
+export default TriageInfoCard;
