@@ -245,8 +245,8 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: true,
 
-  // Output configuration - Optimized for Vercel deployment
-  output: 'standalone',
+  // Output configuration - Use default for better compatibility
+  // output: 'standalone', // Disabled - causing SSR issues
   distDir: '.next',
 
   // Reduce memory usage during build
