@@ -3,6 +3,10 @@ import { AlertTriangle, Home, Search, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
+// Prevent static generation - force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white flex items-center justify-center px-4">
