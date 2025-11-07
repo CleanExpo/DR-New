@@ -90,8 +90,8 @@ const CommercialHeroSection = () => {
               <CardContent className="p-0">
                 <Image
                   src="/images/commercial-management-brisbane.png"
-                  alt="Disaster Recovery Commercial Management Services - Brisbane CBD, Office Buildings, Retail Centers, Industrial Properties"
-                  title="Professional Commercial Property Disaster Recovery Management - 24/7 Emergency Response, Insurance Approved, Business Continuity Solutions"
+                  alt="Commercial disaster recovery Brisbane CBD - IICRC Master Restorer office buildings, retail centers, industrial warehouses, hotels - 24/7 emergency response"
+                  title="Commercial Property Restoration Brisbane | 1300 309 361 | Master Restorer Certified"
                   width={800}
                   height={600}
                   className="w-full h-auto object-cover"

@@ -63,9 +63,9 @@ const filesToUpdate = [
   'scripts/run-system-audit.js',
   'scripts/system-audit-cli.ps1',
   'scripts/web-optimize-images.js',
-  'public/images/optimised/manifest.json',
-  'public/images/optimised/seo-metadata.json',
-  'public/images/optimised/images-sitemap.xml',
+  'public/images/optimized/manifest.json',
+  'public/images/optimized/seo-metadata.json',
+  'public/images/optimized/images-sitemap.xml',
   'public/images/optimized/manifest.json',
   'public/images/optimized/seo-metadata.json',
   'public/images/optimized/images-sitemap.xml'

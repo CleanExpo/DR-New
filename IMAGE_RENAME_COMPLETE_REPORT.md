@@ -45,7 +45,7 @@ Successfully renamed **103 image files** from names containing spaces to hyphena
 | `3d Univercity.png` | `3d-university.png` | ✅ (fixed typo!) |
 
 ### 2. Equipment Directory - 7 files ✅
-**Location:** `public/images/optimised/equipment/`
+**Location:** `public/images/optimized/equipment/`
 
 | Old Name | New Name | Status | Code Refs |
 |----------|----------|--------|-----------|
@@ -58,7 +58,7 @@ Successfully renamed **103 image files** from names containing spaces to hyphena
 | `3D Thermal Fogging.png` | `3d-thermal-fogging.png` | ✅ | ⚠️ YES |
 
 ### 3. Process Directory - 6 files ✅
-**Location:** `public/images/optimised/process/`
+**Location:** `public/images/optimized/process/`
 
 | Old Name | New Name | Status | Code Refs |
 |----------|----------|--------|-----------|
@@ -108,7 +108,7 @@ Successfully renamed **103 image files** from names containing spaces to hyphena
 All NRP favicon files renamed from `NRP Favicon` format to `nrp-favicon` format.
 
 ### 7. Branding Directories - 8 files ✅
-**Locations:** `public/images/optimised/branding/` and `public/images/optimized/branding/`
+**Locations:** `public/images/optimized/branding/` and `public/images/optimized/branding/`
 
 Including:
 - `3D Disaster Recovery Logo.png` → `3d-disaster-recovery-logo.png`
@@ -116,7 +116,7 @@ Including:
 - `IICRC logo.png` → `iicrc-logo.png`
 
 ### 8. Damage Directories - 18 files ✅
-**Locations:** `public/images/optimised/damage/` and `public/images/optimized/damage/`
+**Locations:** `public/images/optimized/damage/` and `public/images/optimized/damage/`
 
 Including:
 - `3D Flood Damage.png` → `3d-flood-damage.png`
@@ -162,9 +162,9 @@ All code references have been automatically updated using the reference update s
 
 ### Metadata Files Updated:
 
-- `public/images/optimised/manifest.json` - 13 changes
-- `public/images/optimised/seo-metadata.json` - 26 changes
-- `public/images/optimised/images-sitemap.xml` - 13 changes
+- `public/images/optimized/manifest.json` - 13 changes
+- `public/images/optimized/seo-metadata.json` - 26 changes
+- `public/images/optimized/images-sitemap.xml` - 13 changes
 - `public/images/optimized/manifest.json` - 13 changes
 - `public/images/optimized/seo-metadata.json` - 26 changes
 - `public/images/optimized/images-sitemap.xml` - 13 changes
@@ -203,9 +203,9 @@ All service pages updated with correct image references:
 19. scripts/run-system-audit.js
 20. scripts/system-audit-cli.ps1
 21. scripts/web-optimize-images.js
-22. public/images/optimised/manifest.json
-23. public/images/optimised/seo-metadata.json
-24. public/images/optimised/images-sitemap.xml
+22. public/images/optimized/manifest.json
+23. public/images/optimized/seo-metadata.json
+24. public/images/optimized/images-sitemap.xml
 25. public/images/optimized/manifest.json
 26. public/images/optimized/seo-metadata.json
 27. public/images/optimized/images-sitemap.xml

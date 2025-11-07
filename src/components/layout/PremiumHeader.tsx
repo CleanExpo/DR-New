@@ -266,7 +266,7 @@ export default function PremiumHeader() {
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-6 border-b">
               <Image
-                src="/images/optimised/branding/Disaster Recovery Logo.png"
+                src="/images/optimized/branding/Disaster Recovery Logo.png"
                 alt="Disaster Recovery QLD"
                 width={150}
                 height={40}

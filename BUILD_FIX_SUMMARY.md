@@ -19,7 +19,7 @@ Successfully resolved all critical build errors and optimized the Disaster Recov
 ### 2. Missing Images - 404 Errors
 **Issue:** 5 image references in components pointed to non-existent files:
 - `/images/optimized/flood/flood-recovery-team.jpg`
-- `/images/optimised/process/3D Remediation.png`
+- `/images/optimized/process/3D Remediation.png`
 - `/images/optimized/equipment/industrial-water-pump.png`
 - `/images/optimized/equipment/hazmat-cleanup.png`
 - `/images/optimized/equipment/dehumidifier-industrial.png`

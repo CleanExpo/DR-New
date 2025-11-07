@@ -196,13 +196,13 @@ export function PhoneLink({
 **File:** `src/app/services/water-damage/page.tsx`
 **Time Estimate:** 30-60 minutes
 
-**Issue:** Images reference `/images/optimised/` but should be `/images/optimized/`
+**Issue:** Images reference `/images/optimized/` but should be `/images/optimized/`
 
 **Option 1: Fix Image Paths in Code**
 ```tsx
 // Find all image imports/references:
 // WRONG:
-src="/images/optimised/damage/3D Water Damage.png"
+src="/images/optimized/damage/3D Water Damage.png"
 
 // CORRECT:
 src="/images/optimized/damage/3D Water Damage.png"

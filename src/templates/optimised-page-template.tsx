@@ -109,7 +109,7 @@ export function generateAustralianMetadata({
   description,
   keywords,
   path,
-  image = '/images/optimised/damage/3D image of a house fire.png'
+  image = '/images/optimized/damage/3D image of a house fire.png'
 }: {
   title: string;
   description: string;

@@ -53,7 +53,7 @@ export async function generateMetadata(
       url: `https://disasterrecovery.com.au/services/${category.slug}`,
       images: [
         {
-          url: '/images/optimised/damage/3D image of a house fire.png',
+          url: '/images/optimized/damage/3D image of a house fire.png',
           width: 1200,
           height: 630,
           alt: title },

@@ -450,7 +450,7 @@ const faqSchema = {
 
 // Service cards - Add specificity
 <Image
-  src="/images/optimised/damage/3D Water Damage.png"
+  src="/images/optimized/damage/3D Water Damage.png"
   alt="Professional water damage restoration equipment deployed in Brisbane home - industrial dehumidifiers and air movers"
   // Instead of just "3D Water Damage"
 />
@@ -461,7 +461,7 @@ const faqSchema = {
 
 // Related service thumbnails
 <Image
-  src="/images/optimised/damage/3D Mould Damage.png"
+  src="/images/optimized/damage/3D Mould Damage.png"
   alt="IICRC-certified mould remediation specialist removing black mould in Brisbane bathroom"
 />
 ```
@@ -684,9 +684,9 @@ immediate mould remediation protocols to prevent secondary damage..."
 - `/images/disaster-recovery-twitter.jpg`
 
 **Service pages reference:**
-- `/images/optimised/damage/3D Water Damage.png`
-- `/images/optimised/damage/3D Mould Damage.png`
-- `/images/optimised/process/3D Drying Process.png`
+- `/images/optimized/damage/3D Water Damage.png`
+- `/images/optimized/damage/3D Mould Damage.png`
+- `/images/optimized/process/3D Drying Process.png`
 
 **Verification Needed:** Check if these files exist in `D:\DR New\public\images\`
 

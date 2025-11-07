@@ -14,15 +14,15 @@
 
 ### Phase 1: Priority Directories (55 files)
 - ✅ `public/images/places/` - 17 files
-- ✅ `public/images/optimised/equipment/` - 7 files
-- ✅ `public/images/optimised/process/` - 6 files
+- ✅ `public/images/optimized/equipment/` - 7 files
+- ✅ `public/images/optimized/process/` - 6 files
 - ✅ `public/images/team/` - 1 file
 - ✅ `public/logos/` & `public/images/logos/` - 24 files
 
 ### Phase 2: Additional Directories (48 files)
 - ✅ `public/images/favicons/` - 6 files
-- ✅ `public/images/optimised/branding/` - 4 files
-- ✅ `public/images/optimised/damage/` - 5 files
+- ✅ `public/images/optimized/branding/` - 4 files
+- ✅ `public/images/optimized/damage/` - 5 files
 - ✅ `public/images/optimized/branding/` - 4 files
 - ✅ `public/images/optimized/damage/` - 13 files
 - ✅ `public/images/optimized/equipment/` - 11 files
@@ -128,7 +128,7 @@ git commit -m "refactor: Rename 103 image files from spaces to hyphens
 
 ### Most Affected:
 1. **app/services/water-damage/page.tsx** - 18 changes
-2. **public/images/optimised/seo-metadata.json** - 26 changes
+2. **public/images/optimized/seo-metadata.json** - 26 changes
 3. **scripts/web-optimize-images.js** - 13 changes
 
 ### Components:

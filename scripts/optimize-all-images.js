@@ -17,7 +17,7 @@ const sharp = require('sharp');
 const CONFIG = {
   inputDir: path.join(__dirname, '../public/images'),
   outputDir: path.join(__dirname, '../public/images/optimised'),
-  watermarkPath: path.join(__dirname, '../public/images/optimised/branding/Disaster Recovery Logo.png'),
+  watermarkPath: path.join(__dirname, '../public/images/optimized/branding/Disaster Recovery Logo.png'),
   
   // Size variants for responsive images
   sizes: {

@@ -41,7 +41,7 @@ git status
 - **Solution:** Created placeholder images from existing similar assets
 - **Files Added:**
   - `public/images/optimized/flood/flood-recovery-team.jpg`
-  - `public/images/optimised/process/3D Remediation.png`
+  - `public/images/optimized/process/3D Remediation.png`
   - `public/images/optimized/equipment/industrial-water-pump.png`
   - `public/images/optimized/equipment/hazmat-cleanup.png`
   - `public/images/optimized/equipment/dehumidifier-industrial.png`

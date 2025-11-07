@@ -276,8 +276,8 @@ class WebImageOptimizer {
       '@context': 'https://schema.org',
       '@type': 'ImageObject',
       name: image.title,
-      contentUrl: `/images/optimised/${image.category}/${image.filename}`,
-      thumbnail: `/images/optimised/thumbnails/${image.filename}`,
+      contentUrl: `/images/optimized/${image.category}/${image.filename}`,
+      thumbnail: `/images/optimized/thumbnails/${image.filename}`,
       description: `${image.title} - Professional disaster recovery services`,
       keywords: this.generateKeywords(image).join(', ')
     };
@@ -332,7 +332,7 @@ class WebImageOptimizer {
       xml += '  <url>\n';
       xml += `    <loc>${baseUrl}/${image.category}</loc>\n`;
       xml += '    <image:image>\n';
-      xml += `      <image:loc>${baseUrl}/images/optimised/${image.category}/${image.filename}</image:loc>\n`;
+      xml += `      <image:loc>${baseUrl}/images/optimized/${image.category}/${image.filename}</image:loc>\n`;
       xml += `      <image:title>${image.title}</image:title>\n`;
       xml += `      <image:caption>Professional ${image.category} services - ${image.title}</image:caption>\n`;
       xml += '    </image:image>\n';
@@ -345,8 +345,8 @@ class WebImageOptimizer {
 
   generateRobotsTxt() {
     return `User-agent: *
-Allow: /images/optimised/
-Sitemap: /images/optimised/images-sitemap.xml`;
+Allow: /images/optimized/
+Sitemap: /images/optimized/images-sitemap.xml`;
   }
 
   generateStructuredData(images) {
@@ -359,7 +359,7 @@ Sitemap: /images/optimised/images-sitemap.xml`;
       associatedMedia: images.map(img => ({
         '@type': 'ImageObject',
         name: img.title,
-        contentUrl: `/images/optimised/${img.category}/${img.filename}`
+        contentUrl: `/images/optimized/${img.category}/${img.filename}`
       }))
     };
   }

@@ -106,7 +106,7 @@ export default function ServiceAreasPage() {
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-900 via-slate-900 to-slate-800 text-white py-20">
-        <div className="absolute inset-0 bg-[url('/images/optimised/damage/3D-Storm-Damage.png')] opacity-10 bg-cover bg-center" />
+        <div className="absolute inset-0 bg-[url('/images/optimized/damage/3D-Storm-Damage.png')] opacity-10 bg-cover bg-center" />
         <div className="relative max-w-7xl mx-auto px-6">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">

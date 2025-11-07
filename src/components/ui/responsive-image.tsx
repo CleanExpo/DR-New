@@ -162,7 +162,7 @@ export function ResponsiveImage(...args: any[]): void {
         {/* Watermark overlay */}
         <div className="absolute bottom-4 right-4 opacity-90 pointer-events-none z-10">
           <Image
-            src="/images/optimised/branding/Disaster Recovery Logo.png"
+            src="/images/optimized/branding/Disaster Recovery Logo.png"
             alt="NRP Logo"
             width={deviceType === 'mobile' ? 60 : deviceType === 'tablet' ? 80 : 100}
             height={deviceType === 'mobile' ? 20 : deviceType === 'tablet' ? 27 : 33}
@@ -249,7 +249,7 @@ export function ResponsivePicture(...args: any[]): void {
       {watermarked && (
         <div className="absolute bottom-4 right-4 opacity-90 pointer-events-none">
           <img
-            src="/images/optimised/branding/Disaster Recovery Logo.png"
+            src="/images/optimized/branding/Disaster Recovery Logo.png"
             alt="NRP Logo"
             className="w-20 md:w-24 lg:w-28 h-auto drop-shadow-lg"
             loading="eager"

@@ -178,7 +178,8 @@ export default function WaterDamageRestorationPage() {
                 <div className="relative w-full h-[500px]">
                   <Image
                     src="/images/optimized/damage/3D Burst Water Pipe.png"
-                    alt="Water damage emergency response - 3D visualisation"
+                    alt="Burst water pipe emergency Brisbane - IICRC Master Restorer rapid response, frozen pipe damage, plumbing failure flooding, 60-minute arrival"
+                    title="Burst Pipe Emergency Brisbane | 1300 309 361 | Immediate Response"
                     fill
                     className="object-contain drop-shadow-2xl"
                     priority

@@ -42,7 +42,7 @@ export default function PremiumHero({
   title = "Queensland's Premier Disaster Recovery Experts",
   subtitle = "24/7 Online Emergency Response",
   description = "When disaster strikes, every second counts. Our IICRC certified team provides immediate response for water damage, fire restoration, mould remediation, and more across Queensland.",
-  backgroundImage = "/images/optimised/damage/3D Vehicle into Home.png",
+  backgroundImage = "/images/optimized/damage/3D Vehicle into Home.png",
   showStats = true,
   showVideo = false
 }: HeroProps) {
@@ -50,9 +50,9 @@ export default function PremiumHero({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const heroImages = [
-    "/images/optimised/damage/3D Vehicle into Home.png",
-    "/images/optimised/damage/3D image of a house fire.png",
-    "/images/optimised/process/3D Emergency Squalor Cleanup.png"
+    "/images/optimized/damage/3D Vehicle into Home.png",
+    "/images/optimized/damage/3D image of a house fire.png",
+    "/images/optimized/process/3D Emergency Squalor Cleanup.png"
   ];
 
   useEffect(() => {

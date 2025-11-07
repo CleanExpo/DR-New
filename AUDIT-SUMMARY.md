@@ -160,7 +160,7 @@
 
 ### 4. Fix Image Paths (30 mins)
 ```tsx
-// Change: /images/optimised/
+// Change: /images/optimized/
 // To: /images/optimized/
 ```
 

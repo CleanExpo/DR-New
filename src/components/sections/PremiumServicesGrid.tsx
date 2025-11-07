@@ -14,7 +14,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Water Damage Restoration",
     description: "Rapid water extraction, structural drying, and complete restoration to prevent secondary damage and mould growth.",
-    image: "/images/optimised/equipment/3D Moisture Meter Reading.png",
+    image: "/images/optimized/equipment/3D Moisture Meter Reading.png",
     href: "/services/water-damage",
     category: "water",
     badge: "Most Common",
@@ -30,7 +30,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Fire & Smoke Restoration",
     description: "Complete fire damage restoration including smoke odour removal, soot cleaning, and structural repairs.",
-    image: "/images/optimised/damage/3D image of a house fire.png",
+    image: "/images/optimized/damage/3D image of a house fire.png",
     href: "/services/fire-damage-restoration",
     category: "fire",
     responseTime: "90 min",
@@ -44,7 +44,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Mould Remediation",
     description: "Professional mould removal and prevention using IICRC certified techniques to ensure a healthy environment.",
-    image: "/images/optimised/process/3D Hazardous Cleaning.png",
+    image: "/images/optimized/process/3D Hazardous Cleaning.png",
     href: "/services/mould-remediation",
     category: "mould",
     badge: "Health Priority",
@@ -58,7 +58,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Storm & Flood Damage",
     description: "Comprehensive storm damage recovery including emergency tarping, water extraction, and full restoration.",
-    image: "/images/optimised/damage/3D Vehicle into Home.png",
+    image: "/images/optimized/damage/3D Vehicle into Home.png",
     href: "/services/storm-damage",
     category: "storm",
     responseTime: "45 min",
@@ -72,7 +72,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Biohazard Cleanup",
     description: "Sensitive and professional cleanup of biohazardous materials following strict safety protocols.",
-    image: "/images/optimised/process/3D Emergency Squalor Cleanup.png",
+    image: "/images/optimized/process/3D Emergency Squalor Cleanup.png",
     href: "/services/biohazard-cleaning",
     category: "biohazard",
     features: [

@@ -47,8 +47,8 @@ src="/images/team/3d-shane.png"
 **File:** `app/services/water-damage/page.tsx`
 **Lines 87, 311:**
 ```tsx
-image: '/images/optimised/process/3d-assessment.png'
-src="/images/optimised/process/3d-assessment.png"
+image: '/images/optimized/process/3d-assessment.png'
+src="/images/optimized/process/3d-assessment.png"
 ```
 ✅ **PASS** - Multiple references updated from `3D Assessment.png` to `3d-assessment.png`
 
@@ -109,14 +109,14 @@ $ git status --short | grep "^??" | wc -l
 #### Before:
 ```
 ❌ /images/team/3D%20Shane.png
-❌ /images/optimised/process/3D%20Assessment.png
+❌ /images/optimized/process/3D%20Assessment.png
 ❌ /logos/3D%20CARSI%20Logo.png
 ```
 
 #### After:
 ```
 ✅ /images/team/3d-shane.png
-✅ /images/optimised/process/3d-assessment.png
+✅ /images/optimized/process/3d-assessment.png
 ✅ /logos/3d-carsi-logo.png
 ```
 
@@ -192,9 +192,9 @@ All files now follow the pattern: `lowercase-with-hyphens.ext`
 ### ✅ JSON Files Updated
 
 #### Files Checked:
-1. `public/images/optimised/manifest.json` - ✅ 13 updates
-2. `public/images/optimised/seo-metadata.json` - ✅ 26 updates
-3. `public/images/optimised/images-sitemap.xml` - ✅ 13 updates
+1. `public/images/optimized/manifest.json` - ✅ 13 updates
+2. `public/images/optimized/seo-metadata.json` - ✅ 26 updates
+3. `public/images/optimized/images-sitemap.xml` - ✅ 13 updates
 4. `public/images/optimized/manifest.json` - ✅ 13 updates
 5. `public/images/optimized/seo-metadata.json` - ✅ 26 updates
 6. `public/images/optimized/images-sitemap.xml` - ✅ 13 updates

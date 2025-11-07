@@ -22,8 +22,8 @@ const CASES: BeforeAfterCase[] = [
   {
     id: 'fire-restoration',
     title: 'Fire Damage Restoration',
-    beforeImage: '/images/optimised/damage/3D image of a house fire.png',
-    afterImage: '/images/optimised/damage/3D image of a house fire.png', // Would be replaced with actual after image
+    beforeImage: '/images/optimized/damage/3D image of a house fire.png',
+    afterImage: '/images/optimized/damage/3D image of a house fire.png', // Would be replaced with actual after image
     beforeLabel: 'Fire Damaged',
     afterLabel: 'Fully Restored',
     description: 'Complete fire restoration: Structural repairs, soot removal, odour elimination, and full property restoration completed in 5 days.',
@@ -33,8 +33,8 @@ const CASES: BeforeAfterCase[] = [
   {
     id: 'water-recovery',
     title: 'Water Damage Recovery',
-    beforeImage: '/images/optimised/damage/3D Vehicle into Home.png',
-    afterImage: '/images/optimised/damage/3D Vehicle into Home.png', // Would be replaced with actual after image
+    beforeImage: '/images/optimized/damage/3D Vehicle into Home.png',
+    afterImage: '/images/optimized/damage/3D Vehicle into Home.png', // Would be replaced with actual after image
     beforeLabel: 'Flood Damaged',
     afterLabel: 'Fully Dried & Restored',
     description: 'Emergency water extraction: Complete structural drying, mould prevention, and restoration with direct insurance billing.',

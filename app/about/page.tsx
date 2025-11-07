@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   ShieldCheckIcon,
@@ -171,9 +172,12 @@ export default function ModernAboutPage() {
               className="relative"
             >
               <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden flex items-center justify-center">
-                <img
+                <Image
                   src="/images/team/3d-shane.png"
-                  alt="Shane - Founder and CEO of Disaster Recovery"
+                  alt="Brisbane disaster recovery team - IICRC Master Restorer Phill McGurk and professional restoration technicians serving Brisbane, Ipswich, and Logan 24/7"
+                  title="Expert Disaster Recovery Team Brisbane | 1300 309 361 | Master Restorer Certified"
+                  width={600}
+                  height={600}
                   className="w-full h-full object-contain"
                   style={{
                     maxHeight: '100%',

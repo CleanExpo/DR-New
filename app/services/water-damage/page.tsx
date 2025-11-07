@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
     description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call 1300 309 361.',
-    images: ['/images/optimised/damage/3D Water Damage.png'],
+    images: ['/images/optimized/damage/3D Water Damage.png'],
     type: 'website' },
   alternates: {
     canonical: 'https://disasterrecovery.com.au/services/water-damage' }
@@ -74,17 +74,17 @@ export default function WaterDamageRestorationPage() {
     {
       title: 'Mould Remediation',
       href: '/services/mould-remediation',
-      image: '/images/optimised/damage/3D Mould Damage.png'
+      image: '/images/optimized/damage/3D Mould Damage.png'
     },
     {
       title: 'Structural Drying',
       href: '/services/structural-drying',
-      image: '/images/optimised/process/3d-drying-process.png'
+      image: '/images/optimized/process/3d-drying-process.png'
     },
     {
       title: 'Emergency Response',
       href: '/services/emergency-response',
-      image: '/images/optimised/process/3d-assessment.png'
+      image: '/images/optimized/process/3d-assessment.png'
     }
   ];
 
@@ -115,7 +115,7 @@ export default function WaterDamageRestorationPage() {
     <ServicePageLayout
       title="Water Damage Restoration"
       description="IICRC S500-certified water damage restoration with immediate 24/7 response. Professional extraction, structural drying, and complete restoration services."
-      heroImage="/images/optimised/damage/3D Water Damage.png"
+      heroImage="/images/optimized/damage/3D Water Damage.png"
       heroImageAlt="Professional water damage restoration services"
       certifications={certifications}
       responseTime="< 1 Hour"
@@ -155,8 +155,9 @@ export default function WaterDamageRestorationPage() {
           <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
             <div className="h-48 relative r6-image-container">
               <Image
-                src="/images/optimised/damage/3D Water Damage.png"
-                alt="Category 1 Clean Water Damage"
+                src="/images/optimized/damage/3D Water Damage.png"
+                alt="Category 1 clean water damage Brisbane - IICRC Master Restorer emergency extraction from broken pipes, tub overflows, appliance leaks - rapid response"
+                title="Clean Water Damage Restoration Brisbane | 1300 309 361 | 60-Min Response"
                 fill
                 className="object-cover r6-scale-hover"
               />
@@ -198,8 +199,9 @@ export default function WaterDamageRestorationPage() {
           <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
             <div className="h-48 relative r6-image-container">
               <Image
-                src="/images/optimised/damage/3D Flood Damage.png"
-                alt="Category 2 Grey Water Damage"
+                src="/images/optimized/damage/3D Flood Damage.png"
+                alt="Category 2 grey water damage Brisbane - IICRC Master Restorer contaminated water cleanup from washing machines, dishwashers - PPE protocols"
+                title="Grey Water Damage Cleanup Brisbane | 1300 309 361 | Safe Removal"
                 fill
                 className="object-cover r6-scale-hover"
               />
@@ -241,8 +243,9 @@ export default function WaterDamageRestorationPage() {
           <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
             <div className="h-48 relative r6-image-container">
               <Image
-                src="/images/optimised/process/3d-emergency-squalor-cleanup.png"
-                alt="Category 3 Black Water Damage"
+                src="/images/optimized/process/3d-emergency-squalor-cleanup.png"
+                alt="Category 3 black water damage Brisbane - IICRC Master Restorer sewage backup cleanup, biohazard protocols, IICRC S500 compliant flood contamination"
+                title="Black Water Sewage Cleanup Brisbane | 1300 309 361 | HAZMAT Certified"
                 fill
                 className="object-cover r6-scale-hover"
               />
@@ -308,8 +311,9 @@ export default function WaterDamageRestorationPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start">
                     <Image
-                      src="/images/optimised/process/3d-assessment.png"
-                      alt="Emergency assessment"
+                      src="/images/optimized/process/3d-assessment.png"
+                      alt="Emergency water damage assessment Brisbane - IICRC Master Restorer rapid on-site evaluation, moisture detection, damage scope determination"
+                      title="Emergency Water Damage Assessment | 1300 309 361 | Expert Analysis"
                       width={100}
                       height={100}
                       className="rounded-lg mr-4"
@@ -355,8 +359,9 @@ export default function WaterDamageRestorationPage() {
                 <div className="grid md:grid-cols-3 gap-4 mt-6">
                   <div className="text-center">
                     <Image
-                      src="/images/optimised/equipment/3d-thermal-camera.png"
-                      alt="Thermal imaging"
+                      src="/images/optimized/equipment/3d-thermal-camera.png"
+                      alt="FLIR thermal imaging camera Brisbane - IICRC Master Restorer hidden moisture detection, infrared water damage analysis, structural drying monitoring"
+                      title="Thermal Imaging Water Detection | 1300 309 361 | 0.05°C Sensitivity"
                       width={80}
                       height={80}
                       className="mx-auto mb-2 rounded"
@@ -368,8 +373,9 @@ export default function WaterDamageRestorationPage() {
                   </div>
                   <div className="text-center">
                     <Image
-                      src="/images/optimised/equipment/3d-moisture-meter.png"
-                      alt="Moisture meters"
+                      src="/images/optimized/equipment/3d-moisture-meter.png"
+                      alt="Professional moisture meter Brisbane - IICRC Master Restorer penetrating moisture detection, 0-100% WME range, IICRC S500 moisture mapping"
+                      title="Moisture Detection Equipment Brisbane | 1300 309 361 | Precision Mapping"
                       width={80}
                       height={80}
                       className="mx-auto mb-2 rounded"
@@ -381,8 +387,9 @@ export default function WaterDamageRestorationPage() {
                   </div>
                   <div className="text-center">
                     <Image
-                      src="/images/optimised/equipment/3d-moisture-meter-reading.png"
-                      alt="Hygrometers"
+                      src="/images/optimized/equipment/3d-moisture-meter-reading.png"
+                      alt="Industrial hygrometer Brisbane - IICRC Master Restorer humidity monitoring, psychrometric readings, structural drying verification, IICRC WRT certified"
+                      title="Humidity Monitoring Equipment | 1300 309 361 | Daily Drying Logs"
                       width={80}
                       height={80}
                       className="mx-auto mb-2 rounded"
@@ -415,8 +422,9 @@ export default function WaterDamageRestorationPage() {
                 <div className="r6-glass-card r6-glow-blue border-l-4 border-electric-blue p-4 mt-4">
                   <div className="flex items-center mb-2">
                     <Image
-                      src="/images/optimised/equipment/3d-extraction-unit.png"
-                      alt="Extraction equipment"
+                      src="/images/optimized/equipment/3d-extraction-unit.png"
+                      alt="Truck-mounted water extraction unit Brisbane - IICRC Master Restorer 40,000 gallon capacity, industrial flood pump, emergency water removal"
+                      title="Industrial Water Extraction Brisbane | 1300 309 361 | 40K Gallon Capacity"
                       width={60}
                       height={60}
                       className="mr-3 rounded"
@@ -451,8 +459,9 @@ export default function WaterDamageRestorationPage() {
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
                   <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
-                      src="/images/optimised/equipment/3d-dehumidifier.png"
-                      alt="Dehumidifier"
+                      src="/images/optimized/equipment/3d-dehumidifier.png"
+                      alt="LGR dehumidifier Brisbane - IICRC Master Restorer 185 PPD moisture removal, low-grain refrigerant, prevents mould growth within 24-48 hours"
+                      title="Industrial Dehumidifier Brisbane | 1300 309 361 | 185 PPD Capacity"
                       width={70}
                       height={70}
                       className="mr-4 rounded"
@@ -466,8 +475,9 @@ export default function WaterDamageRestorationPage() {
                   </div>
                   <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
-                      src="/images/optimised/equipment/3d-industrial-fan.png"
-                      alt="Air movers"
+                      src="/images/optimized/equipment/3d-industrial-fan.png"
+                      alt="High-velocity air mover Brisbane - IICRC Master Restorer 3,200 CFM axial airflow, rapid evaporation, structural drying acceleration, IICRC S500"
+                      title="Industrial Air Mover Brisbane | 1300 309 361 | 3,200 CFM Power"
                       width={70}
                       height={70}
                       className="mr-4 rounded"
@@ -503,8 +513,9 @@ export default function WaterDamageRestorationPage() {
                   <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
                     <div className="flex items-center mb-2">
                       <Image
-                        src="/images/optimised/equipment/3d-thermal-fogging.png"
-                        alt="Thermal fogging"
+                        src="/images/optimized/equipment/3d-thermal-fogging.png"
+                        alt="Thermal fogging deodorization Brisbane - IICRC Master Restorer penetrating odour neutralization, porous material treatment, antimicrobial application"
+                        title="Thermal Fogging Treatment Brisbane | 1300 309 361 | Deep Deodorization"
                         width={50}
                         height={50}
                         className="mr-3 rounded"
@@ -548,8 +559,9 @@ export default function WaterDamageRestorationPage() {
                 </p>
                 <div className="flex items-center justify-center mt-6">
                   <Image
-                    src="/images/optimised/process/3d-restoration.png"
-                    alt="Complete restoration"
+                    src="/images/optimized/process/3d-restoration.png"
+                    alt="Complete water damage restoration Brisbane - IICRC Master Restorer structural repairs, drywall replacement, reconstruction to pre-loss condition"
+                    title="Complete Restoration Services Brisbane | 1300 309 361 | Pre-Loss Quality"
                     width={200}
                     height={150}
                     className="rounded-lg"
@@ -597,37 +609,37 @@ export default function WaterDamageRestorationPage() {
                 name: "Truck-Mounted Extractors",
                 specs: "40,000 gallons/day capacity",
                 benefit: "Removes water 50% faster",
-                image: "/images/optimised/equipment/3d-extraction-unit.png"
+                image: "/images/optimized/equipment/3d-extraction-unit.png"
               },
               {
                 name: "LGR Dehumidifiers",
                 specs: "185 PPD removal rate",
                 benefit: "Prevents mould in 24-48hrs",
-                image: "/images/optimised/equipment/3d-dehumidifier.png"
+                image: "/images/optimized/equipment/3d-dehumidifier.png"
               },
               {
                 name: "Axial Air Movers",
                 specs: "3,200 CFM airflow",
                 benefit: "Accelerates evaporation",
-                image: "/images/optimised/equipment/3d-industrial-fan.png"
+                image: "/images/optimized/equipment/3d-industrial-fan.png"
               },
               {
                 name: "FLIR Thermal Cameras",
                 specs: "0.05°C sensitivity",
                 benefit: "Finds hidden moisture",
-                image: "/images/optimised/equipment/3d-thermal-camera.png"
+                image: "/images/optimized/equipment/3d-thermal-camera.png"
               },
               {
                 name: "Penetrating Moisture Meters",
                 specs: "0-100% WME range",
                 benefit: "Accurate moisture mapping",
-                image: "/images/optimised/equipment/3d-moisture-meter.png"
+                image: "/images/optimized/equipment/3d-moisture-meter.png"
               },
               {
                 name: "HEPA Air Scrubbers",
                 specs: "99.97% filtration",
                 benefit: "Cleanroom air quality",
-                image: "/images/optimised/equipment/3d-thermal-fogging.png"
+                image: "/images/optimized/equipment/3d-thermal-fogging.png"
               }
             ].map((item, index) => (
               <div key={index} className="r6-card-premium r6-hover-lift p-6">

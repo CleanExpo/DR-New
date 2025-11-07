@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Professional fire and smoke damage restoration following IICRC S700 standards. 24/7 emergency response for complete fire damage recovery.',
     images: [
       {
-        url: '/images/optimised/damage/3D image of a house fire.png',
+        url: '/images/optimized/damage/3D image of a house fire.png',
         width: 1200,
         height: 630,
         alt: 'Professional fire damage restoration service' },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Fire & Smoke Damage Restoration | IICRC Certified',
     description: 'Expert fire damage restoration services. IICRC S700 certified technicians. 24/7 emergency response nationwide.',
-    images: ['/images/optimised/damage/3D image of a house fire.png'] },
+    images: ['/images/optimized/damage/3D image of a house fire.png'] },
   alternates: {
     canonical: '/services/fire-damage' },
   other: {
@@ -106,22 +106,22 @@ const relatedServices = [
   {
     title: 'Water Damage Restoration',
     href: '/services/water-damage-restoration',
-    image: '/images/optimised/damage/3D Water Damage.png'
+    image: '/images/optimized/damage/3D Water Damage.png'
   },
   {
     title: 'Mould Remediation',
     href: '/services/mould-remediation',
-    image: '/images/optimised/damage/3D Mould Damage.png'
+    image: '/images/optimized/damage/3D Mould Damage.png'
   },
   {
     title: 'Storm Damage Repair',
     href: '/services/storm-damage',
-    image: '/images/optimised/damage/3D Hurricane Damage.png'
+    image: '/images/optimized/damage/3D Hurricane Damage.png'
   },
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimised/process/3d-assessment.png'
+    image: '/images/optimized/process/3d-assessment.png'
   }
 ];
 
@@ -165,7 +165,7 @@ export default function FireDamagePage() {
     <ServicePageLayout
       title="Fire & Smoke Damage Restoration"
       description="Expert fire and smoke damage restoration services following IICRC S700 standards. Professional soot removal, smoke odour elimination, and complete structural fire damage repair with 24/7 emergency response."
-      heroImage="/images/optimised/damage/3D image of a house fire.png"
+      heroImage="/images/optimized/damage/3D image of a house fire.png"
       heroImageAlt="Professional fire damage restoration service showing expert technicians assessing and cleaning fire-damaged property"
       certifications={['IICRC S700', 'IICRC WRT', 'HAZMAT Licensed', 'OH&S Compliant']}
       responseTime="1-2 Hours"
@@ -198,8 +198,9 @@ export default function FireDamagePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3d-thermal-fogging.png"
-              alt="Professional thermal fogging equipment for smoke odour elimination"
+              src="/images/optimized/equipment/3d-thermal-fogging.png"
+              alt="Thermal fogging smoke odour removal Brisbane - IICRC Master Restorer S700 certified fire damage deodorization, microscopic penetration, permanent elimination"
+              title="Fire Smoke Odour Removal Brisbane | 1300 309 361 | IICRC S700 Compliant"
               width={500}
               height={400}
               className="rounded-lg shadow-lg"
@@ -327,8 +328,9 @@ export default function FireDamagePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3d-moisture-meter-reading.png"
-              alt="Professional moisture meter for fire damage assessment and monitoring"
+              src="/images/optimized/equipment/3d-moisture-meter-reading.png"
+              alt="Fire damage moisture assessment Brisbane - IICRC Master Restorer S700 post-firefighting water damage analysis, structural integrity testing"
+              title="Fire Damage Assessment Brisbane | 1300 309 361 | Complete Analysis"
               width={500}
               height={600}
               className="rounded-lg shadow-lg"

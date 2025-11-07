@@ -32,8 +32,8 @@ export default function BeforeAfterSlider() {
       disaster: 'Kitchen Fire Damage',
       responseTime: '38 minutes',
       insuranceAmount: '$182,000',
-      beforeImage: '/images/optimised/damage/3D image of a house fire.png',
-      afterImage: '/images/optimised/damage/3D image of a house fire.png', // Using same image as placeholder
+      beforeImage: '/images/optimized/damage/3D image of a house fire.png',
+      afterImage: '/images/optimized/damage/3D image of a house fire.png', // Using same image as placeholder
       beforeTitle: 'FIRE DESTRUCTION',
       afterTitle: 'LIKE NEW AGAIN',
       description: 'Severe kitchen fire - Smoke damage throughout property',

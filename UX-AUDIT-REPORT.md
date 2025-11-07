@@ -184,14 +184,14 @@ Multiple images failing to load due to path inconsistencies. The images exist in
 
 **Broken Image Examples:**
 ```
-❌ /images/optimised/damage/3D Water Damage.png
-❌ /images/optimised/damage/3D Flood Damage.png
-❌ /images/optimised/process/3D Emergency Squalor Cleanup.png
+❌ /images/optimized/damage/3D Water Damage.png
+❌ /images/optimized/damage/3D Flood Damage.png
+❌ /images/optimized/process/3D Emergency Squalor Cleanup.png
 ```
 
 **Root Cause:**
 Mixed spelling: "optimised" (British) vs "optimized" (American) in directory structure and code references. Images exist at BOTH paths:
-- `/public/images/optimised/` (British spelling)
+- `/public/images/optimized/` (British spelling)
 - `/public/images/optimized/` (American spelling)
 
 **Files to Fix:**
@@ -208,7 +208,7 @@ Mixed spelling: "optimised" (British) vs "optimized" (American) in directory str
 # 3. More common in tech/SEO
 
 # Search and replace in codebase:
-/images/optimised/ → /images/optimized/
+/images/optimized/ → /images/optimized/
 ```
 
 **Option B: Standardize on British Spelling**
