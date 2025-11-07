@@ -454,7 +454,7 @@ export function generateMetaDescriptions(keyword: string, location?: string): st
 }
 
 // Generate Content Headers Structure
-export function generateContentStructure(keyword: string): any {
+export function generateContentStructure(keyword: string): unknown {
   return {
     h1: keyword.charAt(0).toUpperCase() + keyword.slice(1),
     h2Tags: [

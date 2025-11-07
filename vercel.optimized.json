@@ -1,0 +1,229 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "cleanUrls": true,
+  "trailingSlash": false,
+
+  "installCommand": "npm ci --legacy-peer-deps --prefer-offline",
+  "buildCommand": "npm run build:vercel-optimized",
+
+  "env": {
+    "NODE_ENV": "production",
+    "NODE_OPTIONS": "--max-old-space-size=4096",
+    "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
+    "DATABASE_URL": "file:./prod.db",
+    "SKIP_ENV_VALIDATION": "true",
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "NEXTAUTH_URL": "https://disasterrecovery.com.au",
+    "NEXTAUTH_SECRET": "/LGn3ayna3ZCC2djiCZCM3RBo9wNHHqE08HVGkgzVcc=",
+    "NEXT_PUBLIC_SITE_URL": "https://disasterrecovery.com.au",
+    "NEXT_PUBLIC_APP_URL": "https://disasterrecovery.com.au",
+    "NEXT_PUBLIC_DEMO_MODE": "false",
+    "SKIP_BUILD_ERRORS": "false",
+    "NEXT_BUILD_ID": "@vercel/build-id"
+  },
+
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "NODE_OPTIONS": "--max-old-space-size=4096 --optimize-for-size --max_old_space_size=4096 --gc-interval=100",
+      "NEXT_SHARP_PATH": "/tmp/node_modules/sharp",
+      "DATABASE_URL": "file:./build.db",
+      "NEXT_TELEMETRY_DISABLED": "1",
+      "SKIP_ENV_VALIDATION": "true",
+      "CI": "false",
+      "NEXTAUTH_URL": "https://disasterrecovery.com.au",
+      "NEXTAUTH_SECRET": "/LGn3ayna3ZCC2djiCZCM3RBo9wNHHqE08HVGkgzVcc=",
+      "NEXT_PUBLIC_SITE_URL": "https://disasterrecovery.com.au",
+      "NEXT_PUBLIC_APP_URL": "https://disasterrecovery.com.au",
+      "NEXT_PUBLIC_DEMO_MODE": "false",
+      "SKIP_BUILD_ERRORS": "false"
+    }
+  },
+
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 30,
+      "memory": 1024,
+      "runtime": "nodejs20.x"
+    },
+    "app/**/route.ts": {
+      "maxDuration": 30,
+      "memory": 1024,
+      "runtime": "nodejs20.x"
+    },
+    "app/api/analytics/**/*.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "app/api/seo/**/*.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  },
+
+  "regions": ["syd1"],
+
+  "github": {
+    "enabled": true,
+    "silent": false,
+    "autoAlias": true,
+    "autoJobCancelation": true
+  },
+
+  "git": {
+    "deploymentEnabled": {
+      "main": true
+    }
+  },
+
+  "crons": [
+    {
+      "path": "/api/seo/monitor",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/analytics/kpi",
+      "schedule": "0 1 * * *"
+    }
+  ],
+
+  "rewrites": [
+    {
+      "source": "/api/v1/:path*",
+      "destination": "/api/:path*"
+    }
+  ],
+
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(self)"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        }
+      ]
+    },
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:all*.(webp|avif|jpg|jpeg|png|gif|svg|ico)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/sw-optimized.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    },
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-prerender-revalidate"
+        }
+      ],
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        }
+      ]
+    }
+  ],
+
+  "public": true
+}

@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest) {
+export async function POST(...args: any[]): Promise<void> {
   try {
     const session = await getServerSession();
     const { action, resource, details, severity = 'INFO' } = await req.json();
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(...args: any[]): Promise<void> {
   try {
     const session = await getServerSession();
     
@@ -69,12 +69,12 @@ export async function GET(req: NextRequest) {
     const severity = searchParams.get('severity');
     const action = searchParams.get('action');
 
-    const whereClause: any = {};
+    const whereClause: unknown = {};
     if (severity) whereClause.severity = severity;
     if (action) whereClause.action = action;
 
     // TODO: Query audit logs when model is added to schema
-    const logs: any[] = [];
+    const logs: unknown[] = [];
     const totalCount = 0;
     
     // const logs = await prisma.auditLog.findMany({

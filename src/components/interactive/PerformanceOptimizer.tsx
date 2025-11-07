@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 // Performance monitoring hook
-export function usePerformanceMonitor() {
+export function usePerformanceMonitor(...args: any[]): void {
   const [metrics, setMetrics] = useState({
     fps: 0,
     frameTime: 0,
@@ -79,12 +79,7 @@ interface LazyComponentProps {
   rootMargin?: string;
 }
 
-export function LazyLoadComponent({ 
-  children, 
-  fallback = <div className="animate-pulse bg-gray-200 rounded-lg h-32" />, 
-  threshold = 0.1,
-  rootMargin = '100px'
-}: LazyComponentProps) {
+export function LazyLoadComponent(...args: any[]): void {
   const [ref, inView] = useInView({
     threshold,
     rootMargin,
@@ -105,11 +100,7 @@ interface GPUAcceleratedProps {
   className?: string;
 }
 
-export function GPUAccelerated({ 
-  children, 
-  enabled = true, 
-  className = '' 
-}: GPUAcceleratedProps) {
+export function GPUAccelerated(...args: any[]): void {
   const style = enabled ? {
     transform: 'translateZ(0)',
     willChange: 'transform, opacity',
@@ -126,21 +117,14 @@ export function GPUAccelerated({
 // Optimised animation component with reduced motion support
 interface OptimizedAnimationProps {
   children: React.ReactNode;
-  animate?: any;
-  initial?: any;
-  transition?: any;
+  animate?: unknown;
+  initial?: unknown;
+  transition?: unknown;
   className?: string;
   respectReducedMotion?: boolean;
 }
 
-export function OptimizedAnimation({
-  children,
-  animate,
-  initial,
-  transition,
-  className = '',
-  respectReducedMotion = true
-}: OptimizedAnimationProps) {
+export function OptimizedAnimation(...args: any[]): void {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -217,7 +201,7 @@ export function MemoizedComponent<T extends Record<string, any>>({
 }: {
   component: React.ComponentType<T>;
   props: T;
-  deps?: any[];
+  deps?: unknown[];
 }) {
   return useMemo(() => <Component {...props} />, deps);
 }
@@ -295,15 +279,7 @@ interface OptimizedImageProps {
   quality?: number;
 }
 
-export function OptimizedImage({
-  src,
-  alt,
-  width,
-  height,
-  className = '',
-  priority = false,
-  quality = 75
-}: OptimizedImageProps) {
+export function OptimizedImage(...args: any[]): void {
   const [ref, inView] = useInView({
     threshold: 0.1,
     rootMargin: '50px',
@@ -358,7 +334,7 @@ export function OptimizedImage({
 }
 
 // Resource preloader
-export function useResourcePreloader(resources: string[]) {
+export function useResourcePreloader(...args: any[]): void {
   const [loadedResources, setLoadedResources] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -394,7 +370,7 @@ export function useResourcePreloader(resources: string[]) {
 }
 
 // Performance monitoring dashboard (development only)
-export function PerformanceDashboard({ enabled = false }: { enabled?: boolean }) {
+export function PerformanceDashboard(...args: any[]): void {
   const metrics = usePerformanceMonitor();
 
   if (!enabled || process.env.NODE_ENV === 'production') {

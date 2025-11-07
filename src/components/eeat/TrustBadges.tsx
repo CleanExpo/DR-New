@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 
 interface TrustBadgesProps {
@@ -8,7 +7,7 @@ interface TrustBadgesProps {
   showAll?: boolean;
 }
 
-export function TrustBadges({ variant = 'compact', showAll = false }: TrustBadgesProps) {
+export function TrustBadges(...args: any[]): void {
   const badges = [
     {
       name: 'IICRC Certified',
@@ -151,7 +150,7 @@ export function TrustBadges({ variant = 'compact', showAll = false }: TrustBadge
 }
 
 // Industry statistics component
-export function IndustryStats() {
+export function IndustryStats(...args: any[]): void {
   return (
     <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl p-8">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -177,7 +176,7 @@ export function IndustryStats() {
 }
 
 // Insurance partners component
-export function InsurancePartners() {
+export function InsurancePartners(...args: any[]): void {
   const partners = [
     'Allianz', 'QBE', 'Suncorp', 'NRMA', 'AAMI', 'GIO', 
     'CommInsure', 'Youi', 'Budget Direct', 'Woolworths Insurance'

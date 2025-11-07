@@ -27,7 +27,7 @@ export interface LocationServicePage {
     answer: string;
   }[];
   relatedPages: string[];
-  schema: any;
+  schema: unknown;
 }
 
 export interface LocationData {
@@ -270,8 +270,8 @@ export class LocationServiceGenerator {
   }
 
   private static generateMetaDescription(
-    service: any,
-    location: any,
+    service: unknown,
+    location: unknown,
     suburb?: string,
     variation?: string
   ): string {
@@ -282,8 +282,8 @@ export class LocationServiceGenerator {
   }
 
   private static generateContent(
-    service: any,
-    location: any,
+    service: unknown,
+    location: unknown,
     suburb?: string,
     variation?: string
   ) {
@@ -321,7 +321,7 @@ export class LocationServiceGenerator {
     };
   }
 
-  private static generateLocalKnowledge(service: any, location: any, suburb?: string): string[] {
+  private static generateLocalKnowledge(service: unknown, location: unknown, suburb?: string): string[] {
     const knowledge = [];
     
     if (location.city === 'Sydney') {
@@ -345,7 +345,7 @@ export class LocationServiceGenerator {
     return knowledge;
   }
 
-  private static generateCommonIssues(service: any, location: any, suburb?: string): string[] {
+  private static generateCommonIssues(service: unknown, location: unknown, suburb?: string): string[] {
     const issues = [];
     
     switch (service.category) {
@@ -375,7 +375,7 @@ export class LocationServiceGenerator {
     return issues;
   }
 
-  private static generateTestimonial(service: any, location: any, suburb?: string) {
+  private static generateTestimonial(service: unknown, location: unknown, suburb?: string) {
     const testimonials = [
       {
         text: `They arrived within 30 minutes of my call and immediately stopped the water damage from spreading. Professional, efficient, and handled everything with my insurance company.`,
@@ -403,7 +403,7 @@ export class LocationServiceGenerator {
     };
   }
 
-  private static generateFAQs(service: any, location: any, suburb?: string) {
+  private static generateFAQs(service: unknown, location: unknown, suburb?: string) {
     const locationText = suburb || location.city;
     
     return [
@@ -457,7 +457,7 @@ export class LocationServiceGenerator {
     return pages;
   }
 
-  private static generateSchema(service: any, location: any, suburb?: string) {
+  private static generateSchema(service: unknown, location: unknown, suburb?: string) {
     return {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
@@ -491,12 +491,12 @@ export class LocationServiceGenerator {
     };
   }
 
-  private static getRegionForSuburb(location: any, suburb: string): string | undefined {
+  private static getRegionForSuburb(location: unknown, suburb: string): string | undefined {
     // This would be more sophisticated in production
     return location.regions[0];
   }
 
-  private static getNearbySuburbs(location: any, suburb: string): string[] {
+  private static getNearbySuburbs(location: unknown, suburb: string): string[] {
     // Return suburbs near the given suburb
     const index = location.suburbs.indexOf(suburb);
     if (index === -1) return location.suburbs.slice(0, 5);

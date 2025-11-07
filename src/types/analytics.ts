@@ -157,8 +157,8 @@ export interface SystemAuditLog {
   resourceId?: string;
   changes?: {
     field: string;
-    oldValue: any;
-    newValue: any;
+    oldValue: unknown;
+    newValue: unknown;
   }[];
   ipAddress: string;
   userAgent: string;
@@ -196,7 +196,7 @@ export interface ReportSchedule {
 export interface ReportFilter {
   field: string;
   operator: 'equals' | 'contains' | 'greater_than' | 'less_than' | 'between' | 'in';
-  value: any;
+  value: unknown;
   dataType: 'string' | 'number' | 'date' | 'boolean' | 'array';
 }
 

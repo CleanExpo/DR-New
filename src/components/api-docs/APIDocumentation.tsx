@@ -345,7 +345,7 @@ const apiCategories: APICategory[] = [
   }
 ];
 
-export function APIDocumentation() {
+export function APIDocumentation(...args: any[]): void {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<APICategory>(apiCategories[0]);
   const [selectedEndpoint, setSelectedEndpoint] = useState<APIEndpoint | null>(null);

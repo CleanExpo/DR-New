@@ -68,10 +68,18 @@ export async function POST(request: NextRequest) {
 
 // GET endpoint to verify IndexNow setup
 export async function GET() {
-  return NextResponse.json({
-    status: 'IndexNow API endpoint active',
-    host: INDEXNOW_HOST,
-    keyConfigured: !!INDEXNOW_KEY,
-    supportedEngines: ['Bing', 'Yandex', 'Seznam', 'IndexNow.org']
-  });
+  try {
+    return NextResponse.json({
+      status: 'IndexNow API endpoint active',
+      host: INDEXNOW_HOST,
+      keyConfigured: !!INDEXNOW_KEY,
+      supportedEngines: ['Bing', 'Yandex', 'Seznam', 'IndexNow.org']
+    });
+  } catch (error) {
+    console.error('Error in GET:', error);
+    return NextResponse.json(
+      { error: 'Failed to get IndexNow status' },
+      { status: 500 }
+    );
+  }
 }

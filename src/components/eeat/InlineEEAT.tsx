@@ -1,8 +1,6 @@
 'use client';
 
-import React from 'react';
-
-export function InlineEEAT() {
+export function InlineEEAT(...args: any[]): void {
   return (
     <>
       {/* Industry Statistics Bar */}

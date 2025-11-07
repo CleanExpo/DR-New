@@ -57,7 +57,7 @@ interface Ticket {
   satisfaction?: number;
 }
 
-export function SupportTickets() {
+export function SupportTickets(...args: any[]): void {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('open');

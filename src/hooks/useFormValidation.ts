@@ -50,7 +50,7 @@ export function useFormValidation<T extends Record<string, any>>(
   }, [schema, values]);
   
   // Validate single field
-  const validateField = useCallback(async (fieldName: string, value: any): Promise<string | null> => {
+  const validateField = useCallback(async (fieldName: string, value: unknown): Promise<string | null> => {
     try {
       // Create a partial schema for the specific field
       const fieldSchema = schema.shape[fieldName as keyof typeof schema.shape];
@@ -70,7 +70,7 @@ export function useFormValidation<T extends Record<string, any>>(
   // Handle field change
   const handleChange = useCallback(async (
     fieldName: string,
-    value: any
+    value: unknown
   ) => {
     // Sanitise input if enabled
     let sanitisedValue = value;
@@ -142,7 +142,7 @@ export function useFormValidation<T extends Record<string, any>>(
   }, [initialValues]);
   
   // Set field value programmatically
-  const setFieldValue = useCallback((fieldName: string, value: any) => {
+  const setFieldValue = useCallback((fieldName: string, value: unknown) => {
     handleChange(fieldName, value);
   }, [handleChange]);
   

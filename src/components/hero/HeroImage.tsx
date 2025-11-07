@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { HeroImageMetadata, generateImageStructuredData } from './HeroImageData';
@@ -13,13 +12,7 @@ interface HeroImageProps {
   children?: React.ReactNode;
 }
 
-export function HeroImage({
-  image,
-  className = '',
-  overlay = true,
-  parallax = false,
-  children
-}: HeroImageProps) {
+export function HeroImage(...args: any[]): void {
   // Generate structured data for SEO
   const structuredData = generateImageStructuredData(image);
 
@@ -85,14 +78,7 @@ interface HeroSectionProps {
   height?: string;
 }
 
-export function HeroSection({
-  image,
-  title,
-  subtitle,
-  ctaText,
-  ctaLink,
-  height = 'h-[600px]'
-}: HeroSectionProps) {
+export function HeroSection(...args: any[]): void {
   return (
     <section className={`relative ${height} w-full`}>
       <HeroImage image={image} parallax>

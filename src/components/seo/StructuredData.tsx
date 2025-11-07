@@ -1,4 +1,4 @@
-export function StructuredData({ data }: { data: any }) {
+export function StructuredData(...args: any[]): void {
   return (
     <script
       type="application/ld+json"

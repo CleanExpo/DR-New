@@ -43,7 +43,7 @@ import {
 import { ComplianceMetrics, AnalyticsDateRange } from '@/types/analytics';
 import { usePermissions } from '@/hooks/usePermissions';
 
-export function ComplianceReports() {
+export function ComplianceReports(...args: any[]): void {
   const [metrics, setMetrics] = useState<ComplianceMetrics | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [dateRange, setDateRange] = useState<AnalyticsDateRange>({

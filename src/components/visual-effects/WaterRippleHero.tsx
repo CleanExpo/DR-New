@@ -11,7 +11,7 @@ interface WaterRippleHeroProps {
   className?: string;
 }
 
-export function WaterRippleHero({ children, className = '' }: WaterRippleHeroProps) {
+export function WaterRippleHero(...args: any[]): void {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();

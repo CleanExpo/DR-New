@@ -8,7 +8,7 @@ import { SchemaGenerationContext, SchemaType } from './types';
 /**
  * Generate schema based on context and type
  */
-export function generateSchema(context: SchemaGenerationContext): any {
+export function generateSchema(context: SchemaGenerationContext): unknown {
   const { location, service, contractors, type } = context;
 
   switch (type) {
@@ -30,7 +30,7 @@ export function generateSchema(context: SchemaGenerationContext): any {
 /**
  * Generate LocalBusiness schema
  */
-function generateLocalBusinessSchema(context: SchemaGenerationContext): any {
+function generateLocalBusinessSchema(context: SchemaGenerationContext): unknown {
   const { location, service, contractors } = context;
 
   const aggregateRating = calculateAggregateRating(contractors);
@@ -90,7 +90,7 @@ function generateLocalBusinessSchema(context: SchemaGenerationContext): any {
 /**
  * Generate Service schema
  */
-function generateServiceSchema(context: SchemaGenerationContext): any {
+function generateServiceSchema(context: SchemaGenerationContext): unknown {
   const { location, service, contractors } = context;
 
   if (!service) {
@@ -138,7 +138,7 @@ function generateServiceSchema(context: SchemaGenerationContext): any {
 /**
  * Generate FAQ schema
  */
-function generateFAQSchema(context: SchemaGenerationContext): any {
+function generateFAQSchema(context: SchemaGenerationContext): unknown {
   const { location, service } = context;
 
   const faqs = generateFAQItems(location, service);
@@ -160,7 +160,7 @@ function generateFAQSchema(context: SchemaGenerationContext): any {
 /**
  * Generate Organization schema
  */
-function generateOrganizationSchema(context: SchemaGenerationContext): any {
+function generateOrganizationSchema(context: SchemaGenerationContext): unknown {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -203,7 +203,7 @@ function generateOrganizationSchema(context: SchemaGenerationContext): any {
 /**
  * Generate AggregateRating schema
  */
-function generateAggregateRatingSchema(context: SchemaGenerationContext): any {
+function generateAggregateRatingSchema(context: SchemaGenerationContext): unknown {
   const { contractors } = context;
 
   return calculateAggregateRating(contractors);
@@ -212,7 +212,7 @@ function generateAggregateRatingSchema(context: SchemaGenerationContext): any {
 /**
  * Generate default schema
  */
-function generateDefaultSchema(context: SchemaGenerationContext): any {
+function generateDefaultSchema(context: SchemaGenerationContext): unknown {
   const { location, service } = context;
 
   return {
@@ -234,7 +234,7 @@ function generateDefaultSchema(context: SchemaGenerationContext): any {
 
 // Helper functions
 
-function calculateAggregateRating(contractors?: any[]): any {
+function calculateAggregateRating(contractors?: unknown[]): unknown {
   if (!contractors || contractors.length === 0) {
     return {
       '@type': 'AggregateRating',
@@ -257,7 +257,7 @@ function calculateAggregateRating(contractors?: any[]): any {
   };
 }
 
-function generateAreaServed(location: any): any {
+function generateAreaServed(location: unknown): unknown {
   return {
     '@type': 'GeoCircle',
     geoMidpoint: {
@@ -269,7 +269,7 @@ function generateAreaServed(location: any): any {
   };
 }
 
-function generateServiceOffers(service?: any): any[] {
+function generateServiceOffers(service?: unknown): unknown[] {
   const baseServices = [
     {
       '@type': 'Offer',
@@ -313,7 +313,7 @@ function generateServiceOffers(service?: any): any[] {
   return baseServices;
 }
 
-function generateProviderInfo(contractors?: any[]): any {
+function generateProviderInfo(contractors?: unknown[]): unknown {
   if (!contractors || contractors.length === 0) {
     return {
       '@type': 'Organization',
@@ -334,7 +334,7 @@ function generateProviderInfo(contractors?: any[]): any {
   };
 }
 
-function generateServiceSubcategories(service: any): any[] {
+function generateServiceSubcategories(service: unknown): unknown[] {
   if (!service.subcategories || service.subcategories.length === 0) {
     return [];
   }
@@ -349,7 +349,7 @@ function generateServiceSubcategories(service: any): any[] {
   }));
 }
 
-function generateFAQItems(location: any, service?: any): any[] {
+function generateFAQItems(location: unknown, service?: unknown): unknown[] {
   return [
     {
       question: `How quickly can I get emergency ${service ? service.name.toLowerCase() : 'restoration'} in ${location.name}?`,
@@ -374,7 +374,7 @@ function generateFAQItems(location: any, service?: any): any[] {
   ];
 }
 
-function generateBreadcrumb(location: any, service?: any): any {
+function generateBreadcrumb(location: unknown, service?: unknown): unknown {
   const items = [
     {
       '@type': 'ListItem',
@@ -411,7 +411,7 @@ function generateBreadcrumb(location: any, service?: any): any {
   };
 }
 
-function generateDefaultServiceSchema(location: any): any {
+function generateDefaultServiceSchema(location: unknown): unknown {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',

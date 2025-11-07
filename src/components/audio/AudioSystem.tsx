@@ -12,11 +12,7 @@ interface AudioSystemProps {
   voiceType?: 'emergency' | 'contractor' | 'client' | 'learning';
 }
 
-export function AudioSystem({ 
-  enabled = true, 
-  autoPlay = false,
-  voiceType = 'client' 
-}: AudioSystemProps) {
+export function AudioSystem(...args: any[]): void {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.8);
@@ -254,7 +250,7 @@ export function AudioSystem({
 }
 
 // Audio provider for emergency announcements
-export function AudioEmergencyProvider({ children }: { children: React.ReactNode }) {
+export function AudioEmergencyProvider(...args: any[]): void {
   const [emergency, setEmergency] = useState<string | null>(null);
   
   useEffect(() => {
@@ -286,7 +282,7 @@ export function AudioEmergencyProvider({ children }: { children: React.ReactNode
 }
 
 // Hook for using audio in components
-export function useAudio() {
+export function useAudio(...args: any[]): void {
   const [isSupported, setIsSupported] = useState(false);
   
   useEffect(() => {

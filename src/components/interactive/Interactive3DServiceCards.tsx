@@ -17,7 +17,7 @@ interface ServiceCardProps {
 }
 
 // Individual 3D Service Card with advanced tilt and hover effects
-function Interactive3DCard({ title, description, imageUrl, features, responseTime, index }: ServiceCardProps) {
+function Interactive3DCard(...args: any[]): void {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 

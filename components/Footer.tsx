@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">Disaster Recovery</h3>
@@ -66,6 +66,53 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+          </div>
+
+          {/* NRPG & CARSI */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">For Contractors</h4>
+            <div className="space-y-4">
+              <div>
+                <h5 className="text-sm font-bold text-blue-400 mb-2">NRPG</h5>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/about-nrpg" className="text-gray-400 hover:text-white text-sm">
+                      About NRPG
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/nrpg" className="text-gray-400 hover:text-white text-sm">
+                      Member Benefits
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/nrpg" className="text-gray-400 hover:text-white text-sm">
+                      Join Network
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h5 className="text-sm font-bold text-green-400 mb-2">CARSI</h5>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/about-carsi" className="text-gray-400 hover:text-white text-sm">
+                      About CARSI
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/carsi" className="text-gray-400 hover:text-white text-sm">
+                      Online Training
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/training" className="text-gray-400 hover:text-white text-sm">
+                      Course Catalog
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           {/* Contact */}

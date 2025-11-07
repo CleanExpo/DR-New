@@ -1,3 +1,3 @@
-export function HeroSection({ children }: { children?: React.ReactNode }) {
+export function HeroSection(...args: any[]): void {
   return <div className="hero-section">{children}</div>;
 }

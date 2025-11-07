@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -15,15 +14,7 @@ interface GlassMorphismCardProps {
   glowColor?: 'blue' | 'purple' | 'green' | 'red' | 'yellow';
 }
 
-export function GlassMorphismCard({
-  children,
-  className = '',
-  intensity = 'medium',
-  blur = 'md',
-  border = true,
-  glow = false,
-  glowColor = 'blue'
-}: GlassMorphismCardProps) {
+export function GlassMorphismCard(...args: any[]): void {
   const getBackgroundIntensity = () => {
     switch (intensity) {
       case 'light': return 'bg-white/10';
@@ -97,15 +88,7 @@ interface NeonGlowButtonProps {
   className?: string;
 }
 
-export function NeonGlowButton({
-  children,
-  colour = 'blue',
-  size = 'md',
-  variant = 'solid',
-  animated = true,
-  onClick,
-  className = ''
-}: NeonGlowButtonProps) {
+export function NeonGlowButton(...args: any[]): void {
   const getColorClasses = () => {
     const colours = {
       blue: {
@@ -235,13 +218,7 @@ interface NeonTextProps {
   className?: string;
 }
 
-export function NeonText({
-  children,
-  colour = 'blue',
-  size = 'md',
-  animated = true,
-  className = ''
-}: NeonTextProps) {
+export function NeonText(...args: any[]): void {
   const getColorClass = () => {
     switch (colour) {
       case 'blue': return 'text-blue-600';
@@ -314,11 +291,7 @@ interface FrostedGlassPanelProps {
   frost?: 'light' | 'medium' | 'heavy';
 }
 
-export function FrostedGlassPanel({
-  children,
-  className = '',
-  frost = 'medium'
-}: FrostedGlassPanelProps) {
+export function FrostedGlassPanel(...args: any[]): void {
   const getFrostClass = () => {
     switch (frost) {
       case 'light': return 'backdrop-blur-sm bg-white/5';
@@ -345,7 +318,7 @@ interface HolographicCardProps {
   className?: string;
 }
 
-export function HolographicCard({ children, className = '' }: HolographicCardProps) {
+export function HolographicCard(...args: any[]): void {
   return (
     <motion.div
       className={cn(
@@ -407,7 +380,7 @@ export function HolographicCard({ children, className = '' }: HolographicCardPro
 }
 
 // Cyberpunk Grid Background
-export function CyberpunkGrid({ className = '' }: { className?: string }) {
+export function CyberpunkGrid(...args: any[]): void {
   return (
     <div className={cn("absolute inset-0 overflow-hidden", className)}>
       <svg

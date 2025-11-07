@@ -5,12 +5,12 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface WebSocketContextType {
-  socket: any | null;
+  socket: unknown | null;
   connected: boolean;
-  send: (event: string, data: any) => void;
-  emit: (event: string, data?: any) => void;
-  on: (event: string, handler: (data: any) => void) => void;
-  off: (event: string, handler: (data: any) => void) => void;
+  send: (event: string, data: unknown) => void;
+  emit: (event: string, data?: unknown) => void;
+  on: (event: string, handler: (data: unknown) => void) => void;
+  off: (event: string, handler: (data: unknown) => void) => void;
 }
 
 const WebSocketContext = createContext<WebSocketContextType>({
@@ -22,7 +22,7 @@ const WebSocketContext = createContext<WebSocketContextType>({
   off: () => {},
 });
 
-export function WebSocketProvider({ children }: { children: React.ReactNode }) {
+export function WebSocketProvider(...args: any[]): void {
   const [connected, setConnected] = useState(false);
   const [socket, setSocket] = useState<any>(null);
 
@@ -35,21 +35,17 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const send = (event: string, data: any) => {
-    console.log('WebSocket send:', event, data);
-  };
+  const send = (event: string, data: unknown) => {
+      };
 
-  const emit = (event: string, data?: any) => {
-    console.log('WebSocket emit:', event, data);
-  };
+  const emit = (event: string, data?: unknown) => {
+      };
 
-  const on = (event: string, handler: (data: any) => void) => {
-    console.log('WebSocket on:', event);
-  };
+  const on = (event: string, handler: (data: unknown) => void) => {
+      };
 
-  const off = (event: string, handler: (data: any) => void) => {
-    console.log('WebSocket off:', event);
-  };
+  const off = (event: string, handler: (data: unknown) => void) => {
+      };
 
   return (
     <WebSocketContext.Provider value={{ socket, connected, send, emit, on, off }}>
@@ -58,6 +54,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function useWebSocket() {
+export function useWebSocket(...args: any[]): void {
   return useContext(WebSocketContext);
 }

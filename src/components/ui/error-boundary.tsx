@@ -65,8 +65,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   reportError = (error: Error, errorInfo: ErrorInfo) => {
     // Example: Send to error tracking service
     // Sentry.captureException(error, { contexts: { react: errorInfo } });
-    console.log('Error reported:', { error, errorInfo, errorId: this.state.errorId });
-  };
+      };
 
   handleRefresh = () => {
     window.location.reload();
@@ -90,8 +89,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       url: window.location.href };
 
     // In a real app, send this to your error reporting service
-    console.log('Error report generated:', errorReport);
-    
+        
     // For now, just copy to clipboard
     navigator.clipboard.writeText(JSON.stringify(errorReport, null, 2));
     alert('Error report copied to clipboard. Please send it to support.');
@@ -263,7 +261,7 @@ export function withErrorBoundary<P extends {}>(
 }
 
 // Hook for manually reporting errors
-export function useErrorHandler() {
+export function useErrorHandler(...args: any[]): void {
   return {
     reportError: (error: Error, context?: string) => {
       console.error(`Manual error report ${context ? `(${context})` : ''}:`, error);

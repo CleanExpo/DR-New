@@ -34,10 +34,10 @@ import { AuditLogs } from './sections/AuditLogs';
 import { ComplianceOverview } from './sections/ComplianceOverview';
 
 interface AdminDashboardProps {
-  user?: any;
+  user?: unknown;
 }
 
-export function AdminDashboard({ user }: AdminDashboardProps) {
+export function AdminDashboard(...args: any[]): void {
   const [activeTab, setActiveTab] = useState('overview');
   const [stats, setStats] = useState({
     pendingApplications: 0,

@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, Shield, Droplet, Flame, Sparkles, ExternalLink } from 'lucide-react';
 import Image from 'next/image';

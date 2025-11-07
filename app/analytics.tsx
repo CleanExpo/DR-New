@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 
-export function GoogleAnalytics() {
+export function GoogleAnalytics(...args: any[]): void {
   const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX';
   
   if (!GA_ID || GA_ID === 'G-XXXXXXXXXX') {
@@ -18,7 +18,7 @@ export function GoogleAnalytics() {
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
+          function gtag(...args: any[]): void {dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', '${GA_ID}', {
             page_path: window.location.pathname,
@@ -31,7 +31,7 @@ export function GoogleAnalytics() {
   );
 }
 
-export function GoogleTagManager() {
+export function GoogleTagManager(...args: any[]): void {
   const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-XXXXXXX';
   
   if (!GTM_ID || GTM_ID === 'GTM-XXXXXXX') {
@@ -44,7 +44,7 @@ export function GoogleTagManager() {
         {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          j=d.createElement(s),dl=l!=='dataLayer'?'&l='+l:'';j.async=true;j.src=
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','${GTM_ID}');
         `}
@@ -61,7 +61,7 @@ export function GoogleTagManager() {
   );
 }
 
-export function MicrosoftClarity() {
+export function MicrosoftClarity(...args: any[]): void {
   const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID || '';
   
   if (!CLARITY_ID) {
@@ -81,7 +81,7 @@ export function MicrosoftClarity() {
   );
 }
 
-export function FacebookPixel() {
+export function FacebookPixel(...args: any[]): void {
   const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || '';
   
   if (!PIXEL_ID) {
@@ -107,7 +107,7 @@ export function FacebookPixel() {
 }
 
 // Track custom events
-export function trackEvent(eventName: string, parameters?: Record<string, any>) {
+export function trackEvent(...args: any[]): void {
   if (typeof window !== 'undefined') {
     // Google Analytics
     if ((window as any).gtag) {
@@ -130,13 +130,7 @@ export function trackEvent(eventName: string, parameters?: Record<string, any>) 
 }
 
 // Track lead submissions
-export function trackLead(leadData: {
-  value?: number;
-  currency?: string;
-  content_name?: string;
-  content_category?: string;
-  [key: string]: any;
-}) {
+export function trackLead(...args: any[]): void {
   trackEvent('generate_lead', {
     value: leadData.value || 550,
     currency: leadData.currency || 'AUD',
@@ -150,12 +144,7 @@ export function trackLead(leadData: {
 }
 
 // Track conversions
-export function trackConversion(conversionData: {
-  value: number;
-  currency?: string;
-  transaction_id?: string;
-  [key: string]: any;
-}) {
+export function trackConversion(...args: any[]): void {
   trackEvent('conversion', {
     currency: 'AUD',
     ...conversionData

@@ -1,18 +1,38 @@
 // SEMrush API integration
-export async function getSEMrushData(domain: string) {
-  return {
-    domain,
-    metrics: {}
-  };
+export interface SEMrushData {
+  domain: string;
+  metrics: Record<string, unknown>;
 }
 
-export async function checkSEMrushConnection() {
-  // Stub implementation - returns false if no API key configured
-  const apiKey = process.env.SEMRUSH_API_KEY;
-  return {
-    configured: !!apiKey,
-    connected: false
-  };
+export async function getSEMrushData(domain: string): Promise<SEMrushData> {
+  try {
+    return {
+      domain,
+      metrics: {}
+    };
+  } catch (error) {
+    console.error('Error in getSEMrushData:', error);
+    throw error;
+  }
+}
+
+export interface SEMrushConnection {
+  configured: boolean;
+  connected: boolean;
+}
+
+export async function checkSEMrushConnection(): Promise<SEMrushConnection> {
+  try {
+    // Stub implementation - returns false if no API key configured
+    const apiKey = process.env.SEMRUSH_API_KEY;
+    return {
+      configured: !!apiKey,
+      connected: false
+    };
+  } catch (error) {
+    console.error('Error in checkSEMrushConnection:', error);
+    throw error;
+  }
 }
 
 export const semrushApi = {

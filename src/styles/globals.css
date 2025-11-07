@@ -1,17 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* PREMIUM DESIGN SYSTEM - DISASTER RECOVERY BRISBANE */
+/* Import design system first for proper cascade */
+@import './design-system.css';
 
-/* Import email overflow fixes */
+/* Import micro-interactions */
+@import './micro-interactions.css';
+
+/* Legacy imports - to be deprecated */
 @import './email-overflow-fix.css';
-
-/* Import UI/UX fixes and improvements */
 @import './ui-fixes.css';
-
-/* Import contrast fixes for hover and focus states */
 @import './contrast-fixes.css';
-
-/* Import typography system with golden ratio */
 @import './typography-golden-ratio.css';
 
 @layer base {

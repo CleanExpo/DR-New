@@ -30,7 +30,7 @@ import { ComplianceReports } from './ComplianceReports';
 import { usePermissions, useHasPermission } from '@/hooks/usePermissions';
 import { ProtectedComponent } from '@/components/auth/ProtectedRoute';
 
-export function AnalyticsDashboard() {
+export function AnalyticsDashboard(...args: any[]): void {
   const [activeTab, setActiveTab] = useState('overview');
   const { user } = usePermissions();
   

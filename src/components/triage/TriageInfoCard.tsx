@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface TriageInfoCardProps {
   title?: string;
   description?: string;

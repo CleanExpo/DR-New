@@ -1,5 +1,5 @@
 // Schema markup utilities
-export function generateArticleSchema(article: any) {
+export function generateArticleSchema(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -12,7 +12,7 @@ export function generateArticleSchema(article: any) {
   };
 }
 
-export function generateBreadcrumbSchema(items: any[]) {
+export function generateBreadcrumbSchema(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

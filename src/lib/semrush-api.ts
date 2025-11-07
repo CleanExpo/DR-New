@@ -1,7 +1,7 @@
 // Enhanced SEMrush API Integration with Real Functionality
 
 interface SEMrushAPIResponse {
-  data: any[];
+  data: unknown[];
   error?: string;
   units_used?: number;
 }
@@ -361,16 +361,22 @@ export type {
 
 // Helper functions for the application
 export async function checkSEMrushConnection(): Promise<boolean> {
+  try {
   if (!semrushAPI.isConfigured()) {
     return false;
-  }
+  
+  } catch (error) {
+    console.error(`Error in checkSEMrushConnection:`, error);
+    throw error;
+  }}
   
   // Test with a simple request
   const result = await semrushAPI.getKeywordOverview('disaster recovery');
   return result !== null;
 }
 
-export async function getCompetitorAnalysis(domain: string = 'disasterrecovery.com.au') {
+export async function getCompetitorAnalysis(...args: any[]): Promise<void> {
+  try {
   const competitors = await semrushAPI.getOrganicCompetitors(domain);
   const overview = await semrushAPI.getDomainOverview(domain);
   const backlinks = await semrushAPI.getBacklinksOverview(domain);
@@ -378,10 +384,15 @@ export async function getCompetitorAnalysis(domain: string = 'disasterrecovery.c
   return {
     overview,
     competitors,
-    backlinks };
+    backlinks 
+  } catch (error) {
+    console.error(`Error in getCompetitorAnalysis:`, error);
+    throw error;
+  }};
 }
 
-export async function getKeywordOpportunities(domain: string = 'disasterrecovery.com.au') {
+export async function getKeywordOpportunities(...args: any[]): Promise<void> {
+  try {
   const organic = await semrushAPI.getOrganicResults(domain, 50);
   
   // Find keywords with good volume but poor rankings
@@ -392,4 +403,8 @@ export async function getKeywordOpportunities(domain: string = 'disasterrecovery
   );
   
   return opportunities.sort((a, b) => b.volume - a.volume);
-}
+
+  } catch (error) {
+    console.error(`Error in getKeywordOpportunities:`, error);
+    throw error;
+  }}

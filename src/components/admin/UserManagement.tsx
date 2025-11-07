@@ -53,7 +53,7 @@ interface UserWithCompany extends UserType {
   };
 }
 
-export function UserManagement() {
+export function UserManagement(...args: any[]): void {
   const [users, setUsers] = useState<UserWithCompany[]>([]);
   const [selectedUser, setSelectedUser] = useState<UserWithCompany | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);

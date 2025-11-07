@@ -11,7 +11,7 @@ interface ImageProps {
   priority?: boolean;
 }
 
-export function LazyLoadImage({ src, webpSrc, alt, width, height, priority = false }: ImageProps) {
+export function LazyLoadImage(...args: any[]): void {
   const [isIntersecting, setIsIntersecting] = useState(priority);
   const imgRef = useRef<HTMLDivElement>(null);
 

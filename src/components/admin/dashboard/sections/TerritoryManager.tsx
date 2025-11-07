@@ -48,7 +48,7 @@ interface TerritoryConflict {
   notes?: string;
 }
 
-export function TerritoryManager() {
+export function TerritoryManager(...args: any[]): void {
   const [territories, setTerritories] = useState<Territory[]>([]);
   const [conflicts, setConflicts] = useState<TerritoryConflict[]>([]);
   const [selectedTerritory, setSelectedTerritory] = useState<Territory | null>(null);

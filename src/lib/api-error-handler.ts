@@ -10,9 +10,9 @@ import { Prisma } from '@prisma/client';
 export class APIError extends Error {
   statusCode: number;
   isOperational: boolean;
-  details?: any;
+  details?: unknown;
 
-  constructor(message: string, statusCode: number, isOperational = true, details?: any) {
+  constructor(message: string, statusCode: number, isOperational = true, details?: unknown) {
     super(message);
     this.statusCode = statusCode;
     this.isOperational = isOperational;
@@ -30,7 +30,7 @@ export interface APIResponse<T = any> {
   error?: {
     message: string;
     code?: string;
-    details?: any;
+    details?: unknown;
   };
   meta?: {
     timestamp: string;
@@ -41,7 +41,7 @@ export interface APIResponse<T = any> {
 /**
  * Create a successful API response
  */
-export function successResponse<T>(data: T, meta?: any): NextResponse {
+export function successResponse<T>(data: T, meta?: unknown): NextResponse {
   const response: APIResponse<T> = {
     success: true,
     data,
@@ -60,7 +60,7 @@ export function errorResponse(
   message: string,
   statusCode: number = 500,
   code?: string,
-  details?: any
+  details?: unknown
 ): NextResponse {
   const response: APIResponse = {
     success: false,
@@ -91,7 +91,7 @@ export function errorResponse(
 /**
  * Global error handler for API routes
  */
-export function handleAPIError(error: any): NextResponse {
+export function handleAPIError(error: unknown): NextResponse {
   // API Error (known operational errors)
   if (error instanceof APIError) {
     return errorResponse(
@@ -206,9 +206,9 @@ export function handleAPIError(error: any): NextResponse {
  * Async handler wrapper for API routes
  */
 export function asyncHandler<T = any>(
-  handler: (req: any, params?: any) => Promise<NextResponse>
+  handler: (req: unknown, params?: unknown) => Promise<NextResponse>
 ) {
-  return async (req: any, params?: any): Promise<NextResponse> => {
+  return async (req: unknown, params?: unknown): Promise<NextResponse> => {
     try {
       return await handler(req, params);
     } catch (error) {
@@ -220,7 +220,7 @@ export function asyncHandler<T = any>(
 /**
  * Validate required fields
  */
-export function validateRequired(data: any, fields: string[]): void {
+export function validateRequired(data: unknown, fields: string[]): void {
   const missing = fields.filter(field => !data[field]);
   if (missing.length > 0) {
     throw new APIError(
@@ -269,7 +269,7 @@ export async function logAPIRequest(
   path: string,
   userId?: string,
   status?: number,
-  error?: any
+  error?: unknown
 ): Promise<void> {
   try {
     // In production, this would write to a database or logging service
@@ -284,8 +284,7 @@ export async function logAPIRequest(
     };
     
     if (process.env.NODE_ENV === 'development') {
-      console.log('[API Request]', logEntry);
-    }
+          }
     
     // Store in database if available
     if (global.prisma?.auditLog) {
@@ -307,7 +306,7 @@ export async function logAPIRequest(
 /**
  * Sanitize user input
  */
-export function sanitizeInput(input: any): any {
+export function sanitizeInput(input: unknown): unknown {
   if (typeof input === 'string') {
     // Remove potential XSS attempts
     return input
@@ -322,7 +321,7 @@ export function sanitizeInput(input: any): any {
   }
   
   if (typeof input === 'object' && input !== null) {
-    const sanitized: any = {};
+    const sanitized: unknown = {};
     for (const key in input) {
       if (input.hasOwnProperty(key)) {
         sanitized[key] = sanitizeInput(input[key]);
@@ -353,11 +352,7 @@ export function getPaginationParams(searchParams: URLSearchParams): PaginationPa
   };
 }
 
-export function getPaginationMeta(
-  total: number,
-  page: number,
-  limit: number
-) {
+export function getPaginationMeta(...args: any[]): void {
   const totalPages = Math.ceil(total / limit);
   
   return {

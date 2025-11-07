@@ -35,7 +35,7 @@ interface ResponsiveImageProps {
 /**
  * Device detection hook
  */
-function useDeviceType() {
+function useDeviceType(...args: any[]): void {
   const [deviceType, setDeviceType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   
   useEffect(() => {
@@ -61,21 +61,7 @@ function useDeviceType() {
 /**
  * Responsive Image Component
  */
-export function ResponsiveImage({
-  src,
-  alt,
-  priority = false,
-  className,
-  watermarked = true,
-  category = 'hero',
-  sizes,
-  quality,
-  fill = false,
-  aspectRatio = 16/9,
-  onLoad,
-  placeholder = 'blur',
-  blurDataURL
-}: ResponsiveImageProps) {
+export function ResponsiveImage(...args: any[]): void {
   const deviceType = useDeviceType();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -218,19 +204,7 @@ export function ResponsiveImage({
 /**
  * Picture element for maximum compatibility
  */
-export function ResponsivePicture({
-  src,
-  alt,
-  className,
-  watermarked = true,
-  loading = 'lazy'
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  watermarked?: boolean;
-  loading?: 'lazy' | 'eager';
-}) {
+export function ResponsivePicture(...args: any[]): void {
   const basePath = src.replace(/\.[^.]+$/, '');
   const extension = src.split('.').pop();
   
@@ -289,17 +263,7 @@ export function ResponsivePicture({
 /**
  * Training-specific image component
  */
-export function TrainingImage({
-  src,
-  alt,
-  caption,
-  className
-}: {
-  src: string;
-  alt: string;
-  caption?: string;
-  className?: string;
-}) {
+export function TrainingImage(...args: any[]): void {
   const deviceType = useDeviceType();
   
   return (
@@ -324,21 +288,7 @@ export function TrainingImage({
 /**
  * Hero image component with text overlay
  */
-export function HeroImage({
-  src,
-  alt,
-  title,
-  subtitle,
-  className,
-  overlay = true
-}: {
-  src: string;
-  alt: string;
-  title?: string;
-  subtitle?: string;
-  className?: string;
-  overlay?: boolean;
-}) {
+export function HeroImage(...args: any[]): void {
   return (
     <div className={cn("relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh]", className)}>
       <ResponsiveImage
@@ -378,15 +328,7 @@ export function HeroImage({
 /**
  * Gallery component for multiple images
  */
-export function ImageGallery({
-  images,
-  className,
-  columns = { mobile: 1, tablet: 2, desktop: 3 }
-}: {
-  images: Array<{ src: string; alt: string; caption?: string }>;
-  className?: string;
-  columns?: { mobile: number; tablet: number; desktop: number };
-}) {
+export function ImageGallery(...args: any[]): void {
   return (
     <div className={cn(
       "grid gap-4",

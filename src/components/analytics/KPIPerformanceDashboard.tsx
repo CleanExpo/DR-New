@@ -54,7 +54,7 @@ import {
 import { KPIMetrics, AnalyticsDateRange } from '@/types/analytics';
 import { usePermissions } from '@/hooks/usePermissions';
 
-export function KPIPerformanceDashboard() {
+export function KPIPerformanceDashboard(...args: any[]): void {
   const [metrics, setMetrics] = useState<KPIMetrics | null>(null);
   const [dateRange, setDateRange] = useState<AnalyticsDateRange>({
     preset: 'last_30_days',

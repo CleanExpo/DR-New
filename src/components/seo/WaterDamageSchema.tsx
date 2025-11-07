@@ -59,7 +59,7 @@ export const waterDamageCategories: WaterDamageCategory[] = [
   }
 ];
 
-export function generateWaterDamageSchema(category?: WaterDamageCategory) {
+export function generateWaterDamageSchema(...args: any[]): void {
   if (!category) {
     return {
       '@context': 'https://schema.org',
@@ -96,7 +96,7 @@ export function generateWaterDamageSchema(category?: WaterDamageCategory) {
   };
 }
 
-export function generateLocationSchema(location: string, service: string = 'water damage restoration') {
+export function generateLocationSchema(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',

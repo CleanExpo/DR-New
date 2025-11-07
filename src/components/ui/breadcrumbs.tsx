@@ -9,7 +9,7 @@ interface BreadcrumbItem {
   href?: string;
 }
 
-export function Breadcrumbs({ items }: { items?: BreadcrumbItem[] }) {
+export function Breadcrumbs(...args: any[]): void {
   const pathname = usePathname();
   
   // Auto-generate breadcrumbs if not provided

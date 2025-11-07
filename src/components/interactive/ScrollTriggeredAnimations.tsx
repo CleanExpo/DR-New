@@ -11,7 +11,7 @@ interface ParallaxBackgroundProps {
   className?: string;
 }
 
-function ParallaxBackground({ children, speed = 0.5, className = '' }: ParallaxBackgroundProps) {
+function ParallaxBackground(...args: any[]): void {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -40,7 +40,7 @@ interface StaggeredListProps {
   direction?: 'up' | 'down' | 'left' | 'right';
 }
 
-function StaggeredList({ children, staggerDelay = 0.1, direction = 'up' }: StaggeredListProps) {
+function StaggeredList(...args: any[]): void {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.1,
     triggerOnce: true });
@@ -95,7 +95,7 @@ function StaggeredList({ children, staggerDelay = 0.1, direction = 'up' }: Stagg
 }
 
 // Scroll Progress Indicator
-function ScrollProgressIndicator() {
+function ScrollProgressIndicator(...args: any[]): void {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -116,13 +116,7 @@ interface FadeInOnScrollProps {
   className?: string;
 }
 
-function FadeInOnScroll({ 
-  children, 
-  delay = 0, 
-  duration = 0.6, 
-  direction = 'up',
-  className = '' 
-}: FadeInOnScrollProps) {
+function FadeInOnScroll(...args: any[]): void {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.1,
     triggerOnce: true });
@@ -174,7 +168,7 @@ interface TextRevealProps {
   delay?: number;
 }
 
-function TextReveal({ text, className = '', delay = 0 }: TextRevealProps) {
+function TextReveal(...args: any[]): void {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.1,
     triggerOnce: true });
@@ -231,7 +225,7 @@ interface ScrollCounterProps {
   className?: string;
 }
 
-function ScrollCounter({ target, duration = 2000, suffix = '', className = '' }: ScrollCounterProps) {
+function ScrollCounter(...args: any[]): void {
   const [ref, inView] = useIntersectionObserver({
     threshold: 0.3,
     triggerOnce: true });
@@ -294,12 +288,7 @@ interface ParallaxSectionProps {
   className?: string;
 }
 
-function ParallaxSection({ 
-  children, 
-  backgroundElement, 
-  speed = 0.5, 
-  className = '' 
-}: ParallaxSectionProps) {
+function ParallaxSection(...args: any[]): void {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -338,7 +327,7 @@ interface StickyScrollElementProps {
   className?: string;
 }
 
-function StickyScrollElement({ children, className = '' }: StickyScrollElementProps) {
+function StickyScrollElement(...args: any[]): void {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -365,7 +354,7 @@ interface HorizontalScrollProps {
   className?: string;
 }
 
-function HorizontalScroll({ children, className = '' }: HorizontalScrollProps) {
+function HorizontalScroll(...args: any[]): void {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef });

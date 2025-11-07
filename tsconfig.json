@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false, // Will enable gradually
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -40,18 +40,9 @@
         "./src/types/*"
       ]
     },
-    // Strict mode flags - enabling gradually
-    "noImplicitAny": false, // Phase 3: Enable after fixing existing issues
-    "strictNullChecks": false, // Phase 2: Enable after noImplicitThis
-    "strictFunctionTypes": true, // Phase 1: ENABLED - Ensures function parameters are checked
-    "strictBindCallApply": true, // Phase 1: ENABLED - Type checks for bind, call, apply
-    "strictPropertyInitialization": false, // Phase 3: Requires strictNullChecks first
-    "noImplicitThis": true, // Phase 1: ENABLED - Requires explicit this typing
-    "alwaysStrict": true, // Phase 1: ENABLED - Ensures "use strict" in all files
-    
     // Additional type checking flags
-    "noUnusedLocals": false, // Phase 4: Enable after main strict flags
-    "noUnusedParameters": false, // Phase 4: Enable after main strict flags
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "noImplicitReturns": true, // ENABLED: Functions must return values
     "noFallthroughCasesInSwitch": true, // ENABLED: Switch case safety
     "allowUnreachableCode": false, // Phase 1: ENABLED - Errors on unreachable code

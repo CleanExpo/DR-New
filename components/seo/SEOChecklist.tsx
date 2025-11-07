@@ -12,7 +12,7 @@ interface SEOCheck {
   }[];
 }
 
-export function SEOChecklist() {
+export function SEOChecklist(...args: any[]): void {
   const [checks, setChecks] = useState<SEOCheck[]>([]);
   const [overallScore, setOverallScore] = useState(0);
 

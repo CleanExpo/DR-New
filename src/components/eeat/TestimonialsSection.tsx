@@ -113,7 +113,7 @@ interface TestimonialsSectionProps {
   showFullStories?: boolean;
 }
 
-export function TestimonialsSection({ limit = 3, showFullStories = false }: TestimonialsSectionProps) {
+export function TestimonialsSection(...args: any[]): void {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const displayTestimonials = limit ? testimonials.slice(0, limit) : testimonials;
 
@@ -243,7 +243,7 @@ export function TestimonialsSection({ limit = 3, showFullStories = false }: Test
 }
 
 // Google Reviews Widget
-export function GoogleReviewsWidget() {
+export function GoogleReviewsWidget(...args: any[]): void {
   return (
     <div className="bg-white rounded-lg shadow-md p-6 max-w-sm">
       <div className="flex items-center gap-3 mb-4">

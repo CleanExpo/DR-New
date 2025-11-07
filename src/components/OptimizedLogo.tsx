@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Optimized logo component that doesn't rely on external image files
 export const OptimizedLogo: React.FC<{ 
   size?: number;

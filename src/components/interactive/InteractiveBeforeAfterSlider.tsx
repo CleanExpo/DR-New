@@ -44,7 +44,7 @@ const CASES: BeforeAfterCase[] = [
 ];
 
 // Individual Before/After Slider Card
-function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
+function BeforeAfterSliderCard(...args: any[]): void {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -57,7 +57,7 @@ function BeforeAfterSliderCard({ caseData }: { caseData: BeforeAfterCase }) {
     return Math.max(0, Math.min(100, percentage));
   });
 
-  const handlePan = useCallback((event: any, info: PanInfo) => {
+  const handlePan = useCallback((event: unknown, info: PanInfo) => {
     if (!containerRef.current) return;
     
     const containerWidth = containerRef.current.offsetWidth;

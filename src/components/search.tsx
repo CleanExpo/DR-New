@@ -23,7 +23,7 @@ interface QuickResult {
   type: 'service' | 'contractor' | 'article';
 }
 
-export function Search() {
+export function Search(...args: any[]): void {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);

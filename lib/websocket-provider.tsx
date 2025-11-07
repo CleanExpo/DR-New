@@ -7,9 +7,9 @@ import { toast } from 'sonner';
 interface WebSocketContextType {
   socket: Socket | null;
   connected: boolean;
-  emit: (event: string, data?: any) => void;
-  on: (event: string, handler: (data: any) => void) => void;
-  off: (event: string, handler?: (data: any) => void) => void;
+  emit: (event: string, data?: unknown) => void;
+  on: (event: string, handler: (data: unknown) => void) => void;
+  off: (event: string, handler?: (data: unknown) => void) => void;
   joinRoom: (room: string) => void;
   leaveRoom: (room: string) => void;
 }
@@ -59,8 +59,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
 
     // Connection events
     newSocket.on('connect', () => {
-      console.log('WebSocket connected');
-      setConnected(true);
+            setConnected(true);
       
       // Join rooms
       if (userId || userType || location) {
@@ -69,8 +68,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     });
 
     newSocket.on('disconnect', () => {
-      console.log('WebSocket disconnected');
-      setConnected(false);
+            setConnected(false);
     });
 
     newSocket.on('connect_error', (error) => {
@@ -124,19 +122,19 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
     };
   }, [userId, userType, location]);
 
-  const emit = useCallback((event: string, data?: any) => {
+  const emit = useCallback((event: string, data?: unknown) => {
     if (socket) {
       socket.emit(event, data);
     }
   }, [socket]);
 
-  const on = useCallback((event: string, handler: (data: any) => void) => {
+  const on = useCallback((event: string, handler: (data: unknown) => void) => {
     if (socket) {
       socket.on(event, handler);
     }
   }, [socket]);
 
-  const off = useCallback((event: string, handler?: (data: any) => void) => {
+  const off = useCallback((event: string, handler?: (data: unknown) => void) => {
     if (socket) {
       if (handler) {
         socket.off(event, handler);

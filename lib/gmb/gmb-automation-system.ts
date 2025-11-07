@@ -39,7 +39,7 @@ export class GMBAutomationSystem {
   }
 
   // 2. REVIEW RESPONSE AUTOMATION
-  async generateReviewResponse(review: any) {
+  async generateReviewResponse(review: unknown) {
     const templates = {
       positive: [
         "Thank you for trusting us with your {property_type} restoration. We're honored to be one of Brisbane's limited Master Restorers.",

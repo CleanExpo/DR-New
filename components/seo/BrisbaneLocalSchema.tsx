@@ -35,7 +35,7 @@ const brisbaneLocations: Location[] = [
   { name: 'Bundamba', postalCode: '4304', latitude: -27.6050, longitude: 152.8110, riskLevel: 'High' },
 ];
 
-export function BrisbaneLocalSchema() {
+export function BrisbaneLocalSchema(...args: any[]): void {
   // Generate schema for each location
   const locationSchemas = brisbaneLocations.map(location => ({
     "@context": "https://schema.org",

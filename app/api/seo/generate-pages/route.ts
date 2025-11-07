@@ -5,7 +5,7 @@ import { generateSEOContent } from '@/lib/seo/content-generator';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest) {
+export async function POST(...args: any[]): Promise<void> {
   try {
     // TODO: Implement when sEOLocationPage model is added
     return NextResponse.json(
@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(...args: any[]): Promise<void> {
   try {
     // TODO: Implement when sEOLocationPage model is added
     return NextResponse.json(
@@ -128,7 +128,7 @@ export async function GET(req: NextRequest) {
     
     const skip = (page - 1) * limit;
     
-    const where: any = { status };
+    const where: unknown = { status };
     if (state) where.state = state;
     if (serviceType) where.serviceType = serviceType;
     

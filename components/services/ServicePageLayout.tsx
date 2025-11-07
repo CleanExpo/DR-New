@@ -1,4 +1,4 @@
-export function ServicePageLayout({ children }: { children: React.ReactNode }) {
+export function ServicePageLayout(...args: any[]): void {
   return <div>{children}</div>;
 }
 

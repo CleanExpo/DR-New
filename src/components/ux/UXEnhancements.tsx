@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Phone, MessageCircle, AlertTriangle, X, ArrowRight, Clock } from 'lucide-react';
 
 // Floating Emergency CTA - Always Visible
-export function FloatingEmergencyCTA() {
+export function FloatingEmergencyCTA(...args: any[]): void {
   const [isVisible, setIsVisible] = useState(true);
   
   return (
@@ -43,7 +43,7 @@ export function FloatingEmergencyCTA() {
 }
 
 // Quick Action Bar - Mobile Optimized
-export function QuickActionBar() {
+export function QuickActionBar(...args: any[]): void {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-[9990] md:hidden">
       <div className="grid grid-cols-3 gap-1 p-2">
@@ -77,7 +77,7 @@ export function QuickActionBar() {
 }
 
 // Progress Indicator for Forms
-export function FormProgressIndicator({ currentStep, totalSteps }: { currentStep: number; totalSteps: number }) {
+export function FormProgressIndicator(...args: any[]): void {
   const progress = (currentStep / totalSteps) * 100;
   
   return (
@@ -97,7 +97,7 @@ export function FormProgressIndicator({ currentStep, totalSteps }: { currentStep
 }
 
 // Trust Indicator Banner
-export function TrustIndicatorBanner() {
+export function TrustIndicatorBanner(...args: any[]): void {
   const [currentIndex, setCurrentIndex] = useState(0);
   const indicators = [
     "✓ 115,000+ Certified Contractors",
@@ -126,7 +126,7 @@ export function TrustIndicatorBanner() {
 }
 
 // Loading State with Progress
-export function LoadingWithProgress({ message = "Processing your request..." }: { message?: string }) {
+export function LoadingWithProgress(...args: any[]): void {
   const [progress, setProgress] = useState(0);
   
   useEffect(() => {
@@ -159,7 +159,7 @@ export function LoadingWithProgress({ message = "Processing your request..." }: 
 }
 
 // Improved Chat Button
-export function ImprovedChatButton() {
+export function ImprovedChatButton(...args: any[]): void {
   const [isHovered, setIsHovered] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -198,7 +198,7 @@ export function ImprovedChatButton() {
 }
 
 // Service Status Indicator
-export function ServiceStatusIndicator() {
+export function ServiceStatusIndicator(...args: any[]): void {
   const [status, setStatus] = useState<'online' | 'busy' | 'offline'>('online');
   
   useEffect(() => {
@@ -237,7 +237,7 @@ export function ServiceStatusIndicator() {
 }
 
 // Accessibility Skip Links
-export function SkipLinks() {
+export function SkipLinks(...args: any[]): void {
   return (
     <div className="sr-only focus-within:not-sr-only">
       <a 

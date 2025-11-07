@@ -1,8 +1,8 @@
 interface Window {
-  dataLayer?: any[];
-  clarity?: (action: string, ...args: any[]) => void;
-  gtag?: (...args: any[]) => void;
-  fbq?: (...args: any[]) => void;
+  dataLayer?: unknown[];
+  clarity?: (action: string, ...args: unknown[]) => void;
+  gtag?: (...args: unknown[]) => void;
+  fbq?: (...args: unknown[]) => void;
 }
 
 interface PerformanceNavigationTiming {

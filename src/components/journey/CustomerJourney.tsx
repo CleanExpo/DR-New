@@ -15,7 +15,7 @@ interface JourneyStep {
   estimatedTime: string;
 }
 
-export function CustomerJourneyWizard() {
+export function CustomerJourneyWizard(...args: any[]): void {
   const [currentStep, setCurrentStep] = useState(0);
   const [emergencyType, setEmergencyType] = useState('');
   const [propertyType, setPropertyType] = useState('');

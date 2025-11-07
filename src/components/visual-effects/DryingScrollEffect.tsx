@@ -11,7 +11,7 @@ interface DryingScrollEffectProps {
   className?: string;
 }
 
-export function DryingScrollEffect({ children, className = '' }: DryingScrollEffectProps) {
+export function DryingScrollEffect(...args: any[]): void {
   const containerRef = useRef<HTMLDivElement>(null);
   const moistureOverlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);

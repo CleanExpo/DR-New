@@ -154,7 +154,7 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
       if (allFiles.every(f => f.status === 'completed')) {
         onUploadComplete?.(allFiles);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (axios.isCancel(error)) {
         // Upload was cancelled
         setFiles(prev => prev.map(f => 

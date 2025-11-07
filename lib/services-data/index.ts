@@ -277,47 +277,77 @@ const SERVICES: ServiceData[] = [
  * Get all services
  */
 export async function getAllServices(): Promise<ServiceData[]> {
+  try {
   return SERVICES;
-}
+
+  } catch (error) {
+    console.error(`Error in getAllServices:`, error);
+    throw error;
+  }}
 
 /**
  * Get services by category
  */
 export async function getServicesByCategory(categorySlug: string): Promise<ServiceData[]> {
+  try {
   return SERVICES.filter(service => service.category.slug === categorySlug);
-}
+
+  } catch (error) {
+    console.error(`Error in getServicesByCategory:`, error);
+    throw error;
+  }}
 
 /**
  * Get service by slug
  */
 export async function getServiceBySlug(slug: string): Promise<ServiceData | null> {
+  try {
   return SERVICES.find(service => service.slug === slug) || null;
-}
+
+  } catch (error) {
+    console.error(`Error in getServiceBySlug:`, error);
+    throw error;
+  }}
 
 /**
  * Get all service categories
  */
 export async function getServiceCategories(): Promise<ServiceCategory[]> {
+  try {
   return SERVICE_CATEGORIES;
-}
+
+  } catch (error) {
+    console.error(`Error in getServiceCategories:`, error);
+    throw error;
+  }}
 
 /**
  * Get priority services (for contractor onboarding)
  */
 export async function getPriorityServices(): Promise<ServiceData[]> {
+  try {
   const prioritySlugs = ['water-extraction', 'fire-damage-restoration', 'mould-removal'];
   return SERVICES.filter(service => prioritySlugs.includes(service.slug));
-}
+
+  } catch (error) {
+    console.error(`Error in getPriorityServices:`, error);
+    throw error;
+  }}
 
 /**
  * Get emergency services
  */
 export async function getEmergencyServices(): Promise<ServiceData[]> {
+  try {
   return SERVICES.filter(service =>
     service.averageResponseTime <= 4 ||
     service.category.slug === 'emergency-services'
   );
-}
+
+  } catch (error) {
+    console.error(`Error in getEmergencyServices:`, error);
+    throw error;
+  }}
 
 /**
  * Generate service variations for SEO
@@ -404,12 +434,17 @@ export async function getServiceAvailability(
   serviceSlug: string,
   locationSlug: string
 ): Promise<'available' | 'limited' | 'unavailable'> {
+  try {
   // In production, this would check contractor availability
   // For now, return mock availability
   const random = Math.random();
   if (random > 0.7) return 'available';
   if (random > 0.3) return 'limited';
   return 'unavailable';
-}
+
+  } catch (error) {
+    console.error(`Error in getServiceAvailability:`, error);
+    throw error;
+  }}
 
 export * from '../page-generator/types';

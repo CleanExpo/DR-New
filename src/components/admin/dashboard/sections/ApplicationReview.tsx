@@ -51,7 +51,7 @@ interface Application {
   }[];
 }
 
-export function ApplicationReview() {
+export function ApplicationReview(...args: any[]): void {
   const [applications, setApplications] = useState<Application[]>([]);
   const [selectedApplication, setSelectedApplication] = useState<Application | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('all');

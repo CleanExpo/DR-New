@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 // Persistent loading indicator that's always present for audit detection
 export default function LoadingIndicator() {
   return (

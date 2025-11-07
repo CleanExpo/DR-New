@@ -10,11 +10,7 @@ interface EmergencyCTAProps {
   className?: string;
 }
 
-export function EmergencyCTA({ 
-  variant = 'default', 
-  text = 'Get Emergency Help Now',
-  className = ''
-}: EmergencyCTAProps) {
+export function EmergencyCTA(...args: any[]): void {
   const getButtonStyle = () => {
     switch(variant) {
       case 'urgent':
@@ -37,7 +33,7 @@ export function EmergencyCTA({
   );
 }
 
-export function LocationCTA({ city, service }: { city?: string; service?: string }) {
+export function LocationCTA(...args: any[]): void {
   const text = city && service 
     ? `Get ${service} Quote in ${city}`
     : city 

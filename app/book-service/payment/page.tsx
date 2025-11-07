@@ -16,7 +16,7 @@ import {
   FileText,
   Info, MessageSquare} from 'lucide-react';
 
-function PaymentPageContent() {
+function PaymentPageContent(...args: any[]): void {
   const searchParams = useSearchParams();
   const router = useRouter();
   const amount = searchParams?.get('amount') || '2750';
@@ -65,7 +65,7 @@ function PaymentPageContent() {
   };
 
   const validatePayment = () => {
-    const newErrors: any = {};
+    const newErrors: unknown = {};
 
     if (!cardDetails.number || cardDetails.number.replace(/\s/g, '').length < 16) {
       newErrors.number = 'Valid card number required';

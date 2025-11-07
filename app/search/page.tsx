@@ -117,7 +117,7 @@ const locations = [
   'Adelaide'
 ];
 
-function SearchPageContent() {
+function SearchPageContent(...args: any[]): void {
   const searchParams = useSearchParams();
   const router = useRouter();
   

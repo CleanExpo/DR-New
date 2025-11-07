@@ -28,7 +28,7 @@ export class ImageOptimizer {
   ): Promise<Buffer> {
     // For now, return the original buffer
     // In production, use a cloud service like Cloudinary or client-side optimization
-    console.log('Image optimization skipped (Sharp removed for Vercel compatibility)');
+    ');
     return buffer;
   }
 

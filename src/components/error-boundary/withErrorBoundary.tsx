@@ -33,10 +33,7 @@ export function withErrorBoundary<P extends object>(
 /**
  * Hook to wrap children with an error boundary
  */
-export function useErrorBoundary(
-  children: React.ReactNode,
-  options: WithErrorBoundaryOptions = {}
-) {
+export function useErrorBoundary(...args: any[]): void {
   return (
     <ErrorBoundary {...options}>
       {children}

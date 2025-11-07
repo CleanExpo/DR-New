@@ -2,7 +2,7 @@
 // In production, this would use a real database
 
 interface ClaimData {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 class DemoStorage {

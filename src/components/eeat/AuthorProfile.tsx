@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 
 export interface Author {
@@ -20,7 +19,7 @@ interface AuthorProfileProps {
   variant?: 'full' | 'compact' | 'byline';
 }
 
-export function AuthorProfile({ author, variant = 'compact' }: AuthorProfileProps) {
+export function AuthorProfile(...args: any[]): void {
   if (variant === 'byline') {
     return (
       <div className="flex items-center gap-3 py-4 border-t border-b border-gray-200">

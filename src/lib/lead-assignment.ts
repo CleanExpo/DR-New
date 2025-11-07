@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 /**
  * Calculate lead value based on various factors
  */
-export function calculateLeadValue(leadData: any): number {
+export function calculateLeadValue(leadData: unknown): number {
   let value = 0;
 
   // Base value by damage type
@@ -89,8 +89,7 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
     });
 
     if (matchingPartners.length === 0) {
-      console.log('No matching partners found for lead:', leadId);
-      return null;
+            return null;
     }
 
     // Sort by auto-accept score and available credits
@@ -149,8 +148,7 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
       }
     });
 
-    console.log(`Lead ${leadId} assigned to partner ${selectedPartner.businessName}`);
-    return selectedPartner.id;
+        return selectedPartner.id;
 
   } catch (error) {
     console.error('Error assigning lead to partner:', error);
@@ -161,9 +159,14 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
 /**
  * Get partner details
  */
-export async function getPartnerDetails(partnerId: string) {
+export async function getPartnerDetails(...args: any[]): Promise<void> {
+  try {
   return await prisma.partner.findUnique({
-    where: { id: partnerId },
+    where: { id: partnerId 
+  } catch (error) {
+    console.error(`Error in getPartnerDetails:`, error);
+    throw error;
+  }},
     include: {
       leads: {
         take: 10,
@@ -180,9 +183,14 @@ export async function getPartnerDetails(partnerId: string) {
 /**
  * Update partner credits
  */
-export async function updatePartnerCredits(partnerId: string, amount: number) {
+export async function updatePartnerCredits(...args: any[]): Promise<void> {
+  try {
   return await prisma.partner.update({
-    where: { id: partnerId },
+    where: { id: partnerId 
+  } catch (error) {
+    console.error(`Error in updatePartnerCredits:`, error);
+    throw error;
+  }},
     data: {
       leadCredits: { increment: amount },
       accountBalance: { increment: amount }
@@ -193,11 +201,16 @@ export async function updatePartnerCredits(partnerId: string, amount: number) {
 /**
  * Get available partners for a location
  */
-export async function getAvailablePartners(suburb: string, state: string, postcode: string) {
+export async function getAvailablePartners(...args: any[]): Promise<void> {
+  try {
   const partners = await prisma.partner.findMany({
     where: {
       status: 'ACTIVE',
-      leadCredits: { gt: 0 }
+      leadCredits: { gt: 0 
+  } catch (error) {
+    console.error(`Error in getAvailablePartners:`, error);
+    throw error;
+  }}
     }
   });
 

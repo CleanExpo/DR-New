@@ -18,7 +18,7 @@ import { Slider } from '@/components/ui/slider';
 import { useWebSocket } from '@/lib/websocket-provider';
 import { cn } from '@/lib/utils';
 
-const libraries: any[] = ['places', 'visualization', 'geometry'];
+const libraries: unknown[] = ['places', 'visualization', 'geometry'];
 
 interface Contractor {
   id: string;
@@ -122,7 +122,7 @@ export const InteractiveContractorMap: React.FC = () => {
       setEmergencies(data);
     };
 
-    const handleContractorMove = (update: { id: string; position: any }) => {
+    const handleContractorMove = (update: { id: string; position: unknown }) => {
       setContractors(prev => 
         prev.map(c => c.id === update.id 
           ? { ...c, position: update.position }
@@ -751,7 +751,7 @@ export const InteractiveContractorMap: React.FC = () => {
 };
 
 // Helper function for priority colors
-function getPriorityColor(priority: string): any {
+function getPriorityColor(priority: string): unknown {
   switch (priority) {
     case 'critical': return 'destructive';
     case 'high': return 'default';

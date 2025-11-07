@@ -54,17 +54,17 @@ export const performanceMonitor = {
     
     console.group('🚀 Performance Metrics');
     if (pageLoad) {
-      console.log('Page Load Time:', pageLoad.pageLoadTime.toFixed(2), 's');
-      console.log('DNS Lookup:', pageLoad.dnsTime.toFixed(3), 's');
-      console.log('TCP Connection:', pageLoad.tcpTime.toFixed(3), 's');
-      console.log('Request Time:', pageLoad.requestTime.toFixed(3), 's');
-      console.log('DOM Processing:', pageLoad.domProcessing.toFixed(3), 's');
+      , 's');
+      , 's');
+      , 's');
+      , 's');
+      , 's');
     }
     if (fcp) {
-      console.log('First Contentful Paint:', fcp.toFixed(2), 's');
+      , 's');
     }
     if (lcp) {
-      console.log('Largest Contentful Paint:', (lcp / 1000).toFixed(2), 's');
+      .toFixed(2), 's');
     }
     console.groupEnd();
     

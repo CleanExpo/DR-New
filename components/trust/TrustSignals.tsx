@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -226,7 +225,7 @@ export default function TrustSignals({
 }
 
 // Floating Trust Bar for bottom of page
-export function FloatingTrustBar() {
+export function FloatingTrustBar(...args: any[]): void {
   return (
     <motion.div
       initial={{ y: 100 }}
@@ -276,7 +275,7 @@ export function FloatingTrustBar() {
 }
 
 // Trust Badges Grid
-export function TrustBadgesGrid() {
+export function TrustBadgesGrid(...args: any[]): void {
   const badges = [
     { name: 'Master Restorer', icon: Trophy, description: 'Highest industry certification' },
     { name: 'IICRC Certified', icon: Award, description: 'International certification' },

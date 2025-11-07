@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest) {
+export async function GET(...args: any[]): Promise<void> {
   try {
     const session = await getServerSession();
     
@@ -182,7 +182,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-function calculateContractorComplianceScore(contractor: any, now: Date): number {
+function calculateContractorComplianceScore(contractor: unknown, now: Date): number {
   let score = 0;
   let maxScore = 1;
 

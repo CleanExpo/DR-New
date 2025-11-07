@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Phone, Shield, MapPin, CheckCircle, AlertTriangle } from 'lucide-react';
 
-export default function LocationServicePageComponent({ data }: { data: any }) {
+export default function LocationServicePageComponent({ data }: { data: unknown }) {
   // Parse the title to extract service type and location
   const title = data.h1 || 'Disaster Recovery Services';
   const description = data.metaDescription || '';

@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest) {
+export async function POST(...args: any[]): Promise<void> {
   try {
     // TODO: Implement when errorLog and auditLog models are added
     return NextResponse.json(
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(...args: any[]): Promise<void> {
   try {
     // TODO: Implement when errorLog model is added
     return NextResponse.json(
@@ -109,7 +109,7 @@ export async function GET(req: NextRequest) {
     const severity = searchParams.get('severity');
     const resolved = searchParams.get('resolved');
 
-    const whereClause: any = {};
+    const whereClause: unknown = {};
     if (severity) whereClause.severity = severity;
     if (resolved !== null) whereClause.resolved = resolved === 'true';
 

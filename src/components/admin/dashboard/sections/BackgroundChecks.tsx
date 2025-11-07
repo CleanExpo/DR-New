@@ -82,7 +82,7 @@ interface Reference {
   verified: boolean;
 }
 
-export function BackgroundChecks() {
+export function BackgroundChecks(...args: any[]): void {
   const [checks, setChecks] = useState<BackgroundCheck[]>([]);
   const [references, setReferences] = useState<Reference[]>([]);
   const [selectedCheck, setSelectedCheck] = useState<BackgroundCheck | null>(null);

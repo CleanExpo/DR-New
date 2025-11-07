@@ -26,7 +26,7 @@ interface ErrorDetails {
   attemptId?: string;
 }
 
-function BookingErrorPageContent() {
+function BookingErrorPageContent(...args: any[]): void {
   const searchParams = useSearchParams();
   const [errorDetails, setErrorDetails] = useState<ErrorDetails | null>(null);
   const [loading, setLoading] = useState(true);

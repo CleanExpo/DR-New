@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 interface Chart3DProps {
   type: 'bar' | 'pie' | 'line' | 'growth';
-  data: any;
+  data: unknown;
   title?: string;
   colors?: string[];
 }
@@ -40,7 +40,7 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
     }
   }, [type, data, colors]);
 
-  const drawBarChart = (ctx: CanvasRenderingContext2D, data: any, colors: string[]) => {
+  const drawBarChart = (ctx: CanvasRenderingContext2D, data: unknown, colors: string[]) => {
     const padding = 40;
     const width = ctx.canvas.width / 2 - padding * 2;
     const height = ctx.canvas.height / 2 - padding * 2;
@@ -105,11 +105,11 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
     });
   };
 
-  const drawPieChart = (ctx: CanvasRenderingContext2D, data: any, colors: string[]) => {
+  const drawPieChart = (ctx: CanvasRenderingContext2D, data: unknown, colors: string[]) => {
     const centerX = ctx.canvas.width / 4;
     const centerY = ctx.canvas.height / 4;
     const radius = Math.min(centerX, centerY) - 40;
-    const total = Object.values(data).reduce((sum: number, val: any) => sum + val, 0);
+    const total = Object.values(data).reduce((sum: number, val: unknown) => sum + val, 0);
     let currentAngle = -Math.PI / 2;
 
     // Draw 3D effect layers
@@ -149,7 +149,7 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
     }
   };
 
-  const drawLineChart = (ctx: CanvasRenderingContext2D, data: any, colors: string[]) => {
+  const drawLineChart = (ctx: CanvasRenderingContext2D, data: unknown, colors: string[]) => {
     const padding = 40;
     const width = ctx.canvas.width / 2 - padding * 2;
     const height = ctx.canvas.height / 2 - padding * 2;
@@ -232,7 +232,7 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
     });
   };
 
-  const drawGrowthChart = (ctx: CanvasRenderingContext2D, data: any, colors: string[]) => {
+  const drawGrowthChart = (ctx: CanvasRenderingContext2D, data: unknown, colors: string[]) => {
     // Similar to line chart but with exponential curve
     drawLineChart(ctx, data, colors);
     

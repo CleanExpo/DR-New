@@ -1,6 +1,6 @@
 // SEO utility functions for generating structured data
 
-export function generateSEO(params: any) {
+export function generateSEO(params: any): any {
   return {
     title: params.title || '',
     description: params.description || '',
@@ -13,7 +13,7 @@ export function generateSEO(params: any) {
   };
 }
 
-export function generateLocalBusinessSchema(businessInfo: any) {
+export function generateLocalBusinessSchema(businessInfo: any): any {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -31,7 +31,7 @@ export function generateLocalBusinessSchema(businessInfo: any) {
   };
 }
 
-export function generateServiceSchema(serviceInfo: any) {
+export function generateServiceSchema(serviceInfo: any): any {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -45,7 +45,7 @@ export function generateServiceSchema(serviceInfo: any) {
   };
 }
 
-export function generateFAQSchema(faqs: any[]) {
+export function generateFAQSchema(faqs: any[]): any {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -60,7 +60,7 @@ export function generateFAQSchema(faqs: any[]) {
   };
 }
 
-export function generateBreadcrumbSchema(items: any[]) {
+export function generateBreadcrumbSchema(items: any[]): any {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -73,12 +73,12 @@ export function generateBreadcrumbSchema(items: any[]) {
   };
 }
 
-export function generateArticleSchema(article: any) {
+export function generateArticleSchema(title: string, description: string, datePublished: string, dateModified: string, url: string, keywords: string[]): any {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: article.title || article.headline,
-    description: article.description,
+    headline: title,
+    description: description,
     author: {
       '@type': 'Organization',
       name: 'Disaster Recovery Brisbane',
@@ -87,7 +87,9 @@ export function generateArticleSchema(article: any) {
       '@type': 'Organization',
       name: 'Disaster Recovery Brisbane',
     },
-    datePublished: article.datePublished || new Date().toISOString(),
-    dateModified: article.dateModified || new Date().toISOString(),
+    datePublished: datePublished || new Date().toISOString(),
+    dateModified: dateModified || new Date().toISOString(),
+    url: url,
+    keywords: keywords,
   };
 }

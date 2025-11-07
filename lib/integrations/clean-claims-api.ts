@@ -38,7 +38,7 @@ export class CleanClaimsAPI {
     };
   }
 
-  async listClaims(filters?: any): Promise<Claim[]> {
+  async listClaims(filters?: unknown): Promise<Claim[]> {
     // Stub implementation
     return [
       {
@@ -56,20 +56,17 @@ export class CleanClaimsAPI {
 
   async updateClaimStatus(claimId: string, status: string): Promise<boolean> {
     // Stub implementation
-    console.log('Updating claim status:', claimId, status);
-    return true;
+        return true;
   }
 
   async assignContractor(claimId: string, contractorId: string): Promise<boolean> {
     // Stub implementation
-    console.log('Assigning contractor:', contractorId, 'to claim:', claimId);
-    return true;
+        return true;
   }
 
-  async uploadDocument(claimId: string, file: any, type: string): Promise<string> {
+  async uploadDocument(claimId: string, file: unknown, type: string): Promise<string> {
     // Stub implementation
-    console.log('Uploading document for claim:', claimId, 'type:', type);
-    return `doc-${Date.now()}`;
+        return `doc-${Date.now()}`;
   }
 
   async getClaimDocuments(claimId: string): Promise<ClaimDocument[]> {
@@ -85,19 +82,17 @@ export class CleanClaimsAPI {
     ];
   }
 
-  async createInvoice(claimId: string, amount: number, items: any[]): Promise<string> {
+  async createInvoice(claimId: string, amount: number, items: unknown[]): Promise<string> {
     // Stub implementation
-    console.log('Creating invoice for claim:', claimId, 'amount:', amount);
-    return `inv-${Date.now()}`;
+        return `inv-${Date.now()}`;
   }
 
-  async submitReport(claimId: string, report: any): Promise<boolean> {
+  async submitReport(claimId: string, report: unknown): Promise<boolean> {
     // Stub implementation
-    console.log('Submitting report for claim:', claimId);
-    return true;
+        return true;
   }
 
-  async getAnalytics(dateRange?: any): Promise<any> {
+  async getAnalytics(dateRange?: unknown): Promise<any> {
     // Stub implementation
     return {
       totalClaims: 150,
@@ -109,10 +104,9 @@ export class CleanClaimsAPI {
     };
   }
 
-  async webhookHandler(event: string, data: any): Promise<void> {
+  async webhookHandler(event: string, data: unknown): Promise<void> {
     // Stub implementation
-    console.log('Webhook event:', event, 'data:', data);
-  }
+      }
 }
 
 export const cleanClaimsAPI = new CleanClaimsAPI();

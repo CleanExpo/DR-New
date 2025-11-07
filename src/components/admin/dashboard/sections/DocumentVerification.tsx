@@ -64,7 +64,7 @@ interface VerificationQueue {
   count: number;
 }
 
-export function DocumentVerification() {
+export function DocumentVerification(...args: any[]): void {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [selectedDocument, setSelectedDocument] = useState<Document | null>(null);
   const [filterType, setFilterType] = useState<string>('all');
@@ -469,7 +469,7 @@ export function DocumentVerification() {
                   <AlertDescription>
                     <strong>AI Analysis:</strong>
                     <ul className="list-disc list-inside mt-2 space-y-1">
-                      {aiSuggestions.checks?.map((check: any, index: number) => (
+                      {aiSuggestions.checks?.map((check: unknown, index: number) => (
                         <li key={index} className="text-sm">
                           {check.passed ? '✅' : '⚠️'} {check.description}
                         </li>

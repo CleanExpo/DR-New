@@ -59,7 +59,7 @@ export function generateHeadingId(text: string): string {
 }
 
 // Helper function for live region announcements
-export function announceToScreenReader(message: string, priority: 'polite' | 'assertive' = 'polite') {
+export function announceToScreenReader(...args: any[]): void {
   if (typeof document === 'undefined') return;
   
   const announcement = document.createElement('div');
@@ -77,7 +77,7 @@ export function announceToScreenReader(message: string, priority: 'polite' | 'as
 }
 
 // Helper function for focus trap
-export function trapFocus(element: HTMLElement) {
+export function trapFocus(...args: any[]): void {
   const focusableElements = element.querySelectorAll(
     'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
   );

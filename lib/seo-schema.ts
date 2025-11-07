@@ -1,4 +1,4 @@
-export function generateSchema(type: string, data: any) {
+export function generateSchema(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': type,
@@ -6,7 +6,7 @@ export function generateSchema(type: string, data: any) {
   };
 }
 
-export function generateAllSchemas(pageType: string, location: string, year: string) {
+export function generateAllSchemas(...args: any[]): void {
   const baseSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',

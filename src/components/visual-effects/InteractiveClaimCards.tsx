@@ -19,7 +19,7 @@ interface InteractiveClaimCardsProps {
   className?: string;
 }
 
-export function InteractiveClaimCards({ claimTypes, className = '' }: InteractiveClaimCardsProps) {
+export function InteractiveClaimCards(...args: any[]): void {
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const cardsRef = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
@@ -135,15 +135,7 @@ export function InteractiveClaimCards({ claimTypes, className = '' }: Interactiv
 }
 
 // Before/After Slider Component
-function BeforeAfterSlider({ 
-  beforeImage, 
-  afterImage, 
-  title 
-}: { 
-  beforeImage: string; 
-  afterImage: string; 
-  title: string;
-}) {
+function BeforeAfterSlider(...args: any[]): void {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
 

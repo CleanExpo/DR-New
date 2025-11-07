@@ -14,17 +14,7 @@ interface OptimizedImageProps {
   caption?: string;
 }
 
-export function OptimizedImage({
-  src,
-  alt,
-  title,
-  width,
-  height,
-  priority = false,
-  className = '',
-  sizes = '100vw',
-  caption
-}: OptimizedImageProps) {
+export function OptimizedImage(...args: any[]): void {
   return (
     <figure className={`image-container ${className}`}>
       <Image
@@ -316,7 +306,7 @@ export const siteImages = {
 };
 
 // Component to render image with full SEO markup
-export function CaseStudyImage({ imageKey }: { imageKey: keyof typeof siteImages }) {
+export function CaseStudyImage(...args: any[]): void {
   const image = siteImages[imageKey];
 
   return (

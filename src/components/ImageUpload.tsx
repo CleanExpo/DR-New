@@ -4,7 +4,7 @@ import React, { useState, useCallback } from 'react';
 import imageCompression from 'browser-image-compression';
 
 interface ImageUploadProps {
-  onUploadSuccess?: (data: any) => void;
+  onUploadSuccess?: (data: unknown) => void;
   onUploadError?: (error: Error) => void;
   maxSizeMB?: number;
   maxWidthOrHeight?: number;
@@ -50,8 +50,7 @@ export default function ImageUpload({
       
       // Show original file size
       const originalSizeKB = (file.size / 1024).toFixed(2);
-      console.log(`Original file size: ${originalSizeKB} KB`);
-
+      
       // Client-side compression options
       const compressionOptions = {
         maxSizeMB,
@@ -66,8 +65,7 @@ export default function ImageUpload({
       // Compress image client-side first
       const compressedFile = await imageCompression(file, compressionOptions);
       const compressedSizeKB = (compressedFile.size / 1024).toFixed(2);
-      console.log(`Client compressed size: ${compressedSizeKB} KB`);
-
+      
       setStatus(prev => ({ ...prev, progress: 50 }));
 
       // Create preview

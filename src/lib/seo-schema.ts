@@ -265,7 +265,7 @@ function getLongitude(location: string): number {
 }
 
 // Generate all schemas for a page
-export function generateAllSchemas(pageType: string, location?: string, postalCode?: string) {
+export function generateAllSchemas(...args: any[]): void {
   const schemas = [];
   
   // Always include organization schema
@@ -294,7 +294,7 @@ export function generateAllSchemas(pageType: string, location?: string, postalCo
 }
 
 // Long-tail keyword generator for location pages
-export function generateLongTailKeywords(location: string, service: string) {
+export function generateLongTailKeywords(...args: any[]): void {
   const templates = [
     `${service} ${location} 24 hours`,
     `emergency ${service} ${location}`,

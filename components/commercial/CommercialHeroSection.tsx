@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Building2, Shield, TrendingUp, Clock, CheckCircle, FileCheck } from 'lucide-react';
 import Image from 'next/image';

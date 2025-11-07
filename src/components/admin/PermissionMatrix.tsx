@@ -31,7 +31,7 @@ import {
   PERMISSION_CATEGORIES
 } from '@/types/rbac';
 
-export function PermissionMatrix() {
+export function PermissionMatrix(...args: any[]): void {
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [selectedRole, setSelectedRole] = useState<UserRole | null>(null);
 

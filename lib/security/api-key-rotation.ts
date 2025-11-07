@@ -55,8 +55,7 @@ export class APIKeyRotationService {
 
   async revokeKey(keyId: string): Promise<boolean> {
     // Stub implementation
-    console.log('Revoking key:', keyId);
-    return true;
+        return true;
   }
 
   async listKeys(service?: string): Promise<APIKey[]> {
@@ -99,14 +98,12 @@ export class APIKeyRotationService {
 
   async sendRotationNotification(keyId: string, daysUntilExpiry: number): Promise<boolean> {
     // Stub implementation
-    console.log(`Notification: Key ${keyId} expires in ${daysUntilExpiry} days`);
-    return true;
+        return true;
   }
 
   async scheduleAutoRotation(service: string, interval: number): Promise<boolean> {
     // Stub implementation
-    console.log(`Scheduled rotation for ${service} every ${interval} days`);
-    return true;
+        return true;
   }
 
   async getKeyUsageStats(keyId: string): Promise<any> {

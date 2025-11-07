@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Validate commit message format
+# Expected format: type(scope): subject
+# Examples:
+#   feat(auth): add login functionality
+#   fix(ui): resolve button alignment issue
+#   docs(readme): update installation steps
+
+commit_msg=$(cat "$1")
+
+# Check commit message format
+if ! echo "$commit_msg" | grep -qE "^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert)(\(.+\))?: .{3,}"; then
+  echo "Error: Invalid commit message format"
+  echo ""
+  echo "Commit message must follow the format:"
+  echo "  type(scope): subject"
+  echo ""
+  echo "Types: feat, fix, docs, style, refactor, perf, test, chore, build, ci, revert"
+  echo ""
+  echo "Examples:"
+  echo "  feat(auth): add login functionality"
+  echo "  fix(ui): resolve button alignment issue"
+  echo "  docs(readme): update installation steps"
+  echo ""
+  exit 1
+fi

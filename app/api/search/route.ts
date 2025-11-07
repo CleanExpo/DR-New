@@ -265,7 +265,7 @@ function sortResults(results: SearchResult[], sortBy: string = 'relevance'): Sea
   });
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(...args: any[]): Promise<void> {
   try {
     const { searchParams } = new URL(request.url);
     
@@ -352,7 +352,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(...args: any[]): Promise<void> {
   try {
     const body = await request.json();
     const params: SearchParams = body;

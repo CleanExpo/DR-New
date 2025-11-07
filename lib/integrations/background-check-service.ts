@@ -7,7 +7,7 @@ export interface BackgroundCheckResult {
   checkId: string;
   status: 'pending' | 'completed' | 'failed';
   score?: number;
-  details?: any;
+  details?: unknown;
 }
 
 export interface LicenseVerificationResult {
@@ -18,7 +18,7 @@ export interface LicenseVerificationResult {
 }
 
 export class BackgroundCheckService {
-  async initiateCheck(contractorId: string, data: any): Promise<BackgroundCheckResult> {
+  async initiateCheck(contractorId: string, data: unknown): Promise<BackgroundCheckResult> {
     // Stub implementation
     return {
       checkId: `check-${Date.now()}`,
@@ -56,8 +56,7 @@ export class BackgroundCheckService {
 
   async verifyInsurance(policyNumber: string, provider: string): Promise<boolean> {
     // Stub implementation
-    console.log('Insurance verification for:', policyNumber, provider);
-    return true;
+        return true;
   }
 
   async checkCompliance(contractorId: string): Promise<any> {
@@ -71,14 +70,12 @@ export class BackgroundCheckService {
 
   async uploadDocument(contractorId: string, documentType: string, frontImage: Buffer, backImage?: Buffer): Promise<string> {
     // Stub implementation
-    console.log('Document upload for contractor:', contractorId, 'type:', documentType);
-    return `doc-${Date.now()}`;
+        return `doc-${Date.now()}`;
   }
 
   async scheduleRecurringCheck(contractorId: string, frequency: string): Promise<boolean> {
     // Stub implementation
-    console.log('Scheduled recurring check for:', contractorId, 'frequency:', frequency);
-    return true;
+        return true;
   }
 
   async exportComplianceReport(contractorId: string): Promise<Buffer> {

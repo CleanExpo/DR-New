@@ -10,18 +10,19 @@ interface SEOMetrics {
   recommendations: string[];
 }
 
-export async function GET(request: NextRequest) {
-  const metrics: Record<string, SEOMetrics> = {
-    contentQuality: {
-      score: 100,
-      category: 'Content Quality',
-      issues: [],
-      recommendations: [
-        'Continue creating location-specific content',
-        'Maintain current keyword density (2-3%)',
-        'Keep Hemingway score at Grade 5-6'
-      ]
-    },
+export async function GET(): Promise<NextResponse> {
+  try {
+    const metrics: Record<string, SEOMetrics> = {
+      contentQuality: {
+        score: 100,
+        category: 'Content Quality',
+        issues: [],
+        recommendations: [
+          'Continue creating location-specific content',
+          'Maintain current keyword density (2-3%)',
+          'Keep Hemingway score at Grade 5-6'
+        ]
+      },
     technicalSEO: {
       score: 100,
       category: 'Technical SEO',
@@ -145,16 +146,22 @@ export async function GET(request: NextRequest) {
   };
 
   return NextResponse.json(report);
+  } catch (error) {
+    console.error('Error in GET:', error);
+    return NextResponse.json(
+      { error: 'Failed to generate SEO report' },
+      { status: 500 }
+    );
+  }
 }
 
 // POST endpoint to track specific metrics
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const data = await request.json();
 
     // Log metrics to monitoring service
-    console.log('SEO Metrics Update:', data);
-
+    
     // In production, send to monitoring service
     if (process.env.MONITORING_ENDPOINT) {
       await fetch(process.env.MONITORING_ENDPOINT, {

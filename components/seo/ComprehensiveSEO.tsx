@@ -9,7 +9,7 @@ interface ComprehensiveSEOProps {
   pageType?: 'home' | 'service' | 'location' | 'contact';
 }
 
-export function ComprehensiveSEO({ location = 'Australia', service, pageType = 'home' }: ComprehensiveSEOProps) {
+export function ComprehensiveSEO(...args: any[]): void {
   const schemas = generateAllSchemas(pageType, location, '2000');
   
   // Enhanced schema for the UBER model
@@ -125,7 +125,7 @@ export function ComprehensiveSEO({ location = 'Australia', service, pageType = '
 }
 
 // Missing phone component
-export function EmergencyContactBar() {
+export function EmergencyContactBar(...args: any[]): void {
   return (
     <div className="fixed top-0 left-0 right-0 bg-red-600 text-white py-2 px-4 z-[9999] shadow-lg">
       <div className="container mx-auto flex items-center justify-between">

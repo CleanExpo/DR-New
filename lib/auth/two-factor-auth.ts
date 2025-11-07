@@ -34,8 +34,7 @@ export class TwoFactorAuthService {
 
   async sendSMSToken(userId: string, phoneNumber: string): Promise<boolean> {
     // Stub implementation
-    console.log('SMS token would be sent to:', phoneNumber);
-    return true;
+        return true;
   }
 
   async verifySMSToken(userId: string, token: string): Promise<TwoFactorVerificationResult> {
@@ -48,8 +47,7 @@ export class TwoFactorAuthService {
 
   async sendEmailToken(userId: string, email: string): Promise<boolean> {
     // Stub implementation
-    console.log('Email token would be sent to:', email);
-    return true;
+        return true;
   }
 
   async verifyEmailToken(userId: string, token: string): Promise<TwoFactorVerificationResult> {

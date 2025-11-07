@@ -49,7 +49,7 @@ interface AuditLog {
   metadata?: Record<string, any>;
 }
 
-export function AuditLogs() {
+export function AuditLogs(...args: any[]): void {
   const [logs, setLogs] = useState<AuditLog[]>([]);
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterSeverity, setFilterSeverity] = useState<string>('all');

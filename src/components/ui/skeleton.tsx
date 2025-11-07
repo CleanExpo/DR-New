@@ -1,9 +1,6 @@
 import { cn } from "@/lib/utils"
 
-function Skeleton({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+function Skeleton(...args: any[]): void {
   return (
     <div
       className={cn("animate-pulse rounded-md bg-gray-200", className)}
@@ -13,7 +10,7 @@ function Skeleton({
 }
 
 // Text skeleton
-function SkeletonText({ lines = 3 }: { lines?: number }) {
+function SkeletonText(...args: any[]): void {
   return (
     <div className="space-y-2">
       {Array.from({ length: lines }).map((_, i) => (
@@ -30,7 +27,7 @@ function SkeletonText({ lines = 3 }: { lines?: number }) {
 }
 
 // Card skeleton
-function SkeletonCard() {
+function SkeletonCard(...args: any[]): void {
   return (
     <div className="rounded-xl border border-gray-200 p-6">
       <Skeleton className="h-12 w-12 rounded-full mb-4" />
@@ -42,7 +39,7 @@ function SkeletonCard() {
 }
 
 // Service card skeleton
-function SkeletonServiceCard() {
+function SkeletonServiceCard(...args: any[]): void {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <Skeleton className="h-16 w-16 rounded-lg mb-4 mx-auto" />
@@ -58,7 +55,7 @@ function SkeletonServiceCard() {
 }
 
 // Blog post skeleton
-function SkeletonBlogPost() {
+function SkeletonBlogPost(...args: any[]): void {
   return (
     <article className="bg-white rounded-xl shadow-lg overflow-hidden">
       <Skeleton className="h-48 w-full" />
@@ -82,7 +79,7 @@ function SkeletonBlogPost() {
 }
 
 // Table skeleton
-function SkeletonTable({ rows = 5, columns = 4 }: { rows?: number; columns?: number }) {
+function SkeletonTable(...args: any[]): void {
   return (
     <div className="w-full">
       <div className="border border-gray-200 rounded-lg overflow-hidden">
@@ -116,7 +113,7 @@ function SkeletonTable({ rows = 5, columns = 4 }: { rows?: number; columns?: num
 }
 
 // Form skeleton
-function SkeletonForm() {
+function SkeletonForm(...args: any[]): void {
   return (
     <div className="space-y-6">
       <div>
@@ -137,7 +134,7 @@ function SkeletonForm() {
 }
 
 // Navigation skeleton
-function SkeletonNavigation() {
+function SkeletonNavigation(...args: any[]): void {
   return (
     <div className="flex items-center space-x-6">
       <Skeleton className="h-8 w-20" />
@@ -150,7 +147,7 @@ function SkeletonNavigation() {
 }
 
 // Stats skeleton
-function SkeletonStats() {
+function SkeletonStats(...args: any[]): void {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {Array.from({ length: 4 }).map((_, i) => (
@@ -165,7 +162,7 @@ function SkeletonStats() {
 }
 
 // Image gallery skeleton
-function SkeletonGallery() {
+function SkeletonGallery(...args: any[]): void {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {Array.from({ length: 6 }).map((_, i) => (

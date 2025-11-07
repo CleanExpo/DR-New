@@ -7,11 +7,7 @@ interface ImageWithFallbackProps extends Omit<ImageProps, 'onError'> {
   fallback?: string;
 }
 
-export function ImageWithFallback({
-  src,
-  fallback = '/images/placeholder.jpg',
-  ...props
-}: ImageWithFallbackProps) {
+export function ImageWithFallback(...args: any[]): void {
   const [imgSrc, setImgSrc] = useState(src);
 
   const handleError = () => {

@@ -9,7 +9,7 @@ export default function InsuranceCalculator() {
   const [propertyType, setPropertyType] = useState('')
   const [coverage, setCoverage] = useState<any>(null)
 
-  const coverageData: any = {
+  const coverageData: unknown = {
     'water-burst': {
       residential: { 
         covered: '90-100%', 

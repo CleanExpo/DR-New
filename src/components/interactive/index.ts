@@ -91,7 +91,7 @@ export const createInteractiveComponent = (
 ) => {
   const { animate = true, performanceMode = 'medium', ...props } = config;
   
-  return React.memo((componentProps: any) => {
+  return React.memo((componentProps: unknown) => {
     const optimizedProps = {
       ...props,
       ...componentProps,
@@ -112,8 +112,7 @@ export const preloadInteractiveComponents = async () => {
   
   try {
     await Promise.all(componentsToPreload.map(loader => loader()));
-    console.log('Interactive components preloaded successfully');
-  } catch (error) {
+      } catch (error) {
     console.warn('Some interactive components failed to preload:', error);
   }
 };

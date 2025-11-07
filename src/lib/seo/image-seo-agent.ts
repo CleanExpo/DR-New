@@ -28,7 +28,7 @@ export interface SEOOptimizedImage {
   
   // Structured data
   schemaType: 'ImageObject' | 'Product' | 'Service' | 'HowTo';
-  schemaData: any;
+  schemaData: unknown;
   
   // Technical SEO
   formats: {
@@ -223,7 +223,7 @@ export class ImageSEOAgent {
   /**
    * Extract relevant keywords based on image category and context
    */
-  private static extractKeywords(image: ImageAsset, context: any) {
+  private static extractKeywords(image: ImageAsset, context: unknown) {
     let primaryKeyword = '';
     let secondaryKeywords: string[] = [];
     let longTailKeywords: string[] = [];
@@ -296,8 +296,8 @@ export class ImageSEOAgent {
    */
   private static generateAltText(
     image: ImageAsset,
-    keywords: any,
-    context: any
+    keywords: unknown,
+    context: unknown
   ): string {
     const templates = {
       'mould-damage': `Professional ${keywords.primaryKeyword} showing ${image.description}. IICRC certified mould remediation specialists providing ${keywords.secondaryKeywords[0]} services`,
@@ -323,8 +323,8 @@ export class ImageSEOAgent {
    */
   private static generateTitle(
     image: ImageAsset,
-    keywords: any,
-    context: any
+    keywords: unknown,
+    context: unknown
   ): string {
     const location = context.location ? ` in ${context.location}` : '';
     return `${keywords.primaryKeyword}${location} | ${image.name} | Professional Restoration Services`;
@@ -335,8 +335,8 @@ export class ImageSEOAgent {
    */
   private static generateCaption(
     image: ImageAsset,
-    keywords: any,
-    context: any
+    keywords: unknown,
+    context: unknown
   ): string {
     const captions = {
       'mould-damage': `Our certified technicians performing ${keywords.primaryKeyword}. We use advanced techniques and equipment for safe, thorough ${keywords.secondaryKeywords[0]}.`,
@@ -355,9 +355,9 @@ export class ImageSEOAgent {
    */
   private static generateSchemaData(
     image: ImageAsset,
-    keywords: any,
-    context: any
-  ): any {
+    keywords: unknown,
+    context: unknown
+  ): unknown {
     return {
       "@context": "https://schema.org",
       "@type": "ImageObject",
@@ -510,7 +510,7 @@ export class ImageSEOAgent {
   /**
    * Batch optimise all images in library
    */
-  static optimizeAllImages(context?: any): SEOOptimizedImage[] {
+  static optimizeAllImages(context?: unknown): SEOOptimizedImage[] {
     return IMAGE_LIBRARY.map(image => this.optimizeImage(image, context));
   }
   

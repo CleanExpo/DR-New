@@ -6,10 +6,9 @@ export default function PerformanceMonitor() {
   useEffect(() => {
     // Report Web Vitals
     if ('web-vital' in window) {
-      const reportWebVitals = (metric: any) => {
+      const reportWebVitals = (metric: unknown) => {
         // Send to analytics
-        console.log(metric);
-      };
+              };
 
       // @ts-ignore
       window['web-vital'].getCLS(reportWebVitals);

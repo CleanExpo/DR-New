@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
-export function Breadcrumbs() {
+export function Breadcrumbs(...args: any[]): void {
   const pathname = usePathname();
   const paths = pathname.split('/').filter(Boolean);
   

@@ -10,15 +10,15 @@ interface PageParams {
   slug: string[];
 }
 
-async function getSEOPage(slug: string) {
+async function getSEOPage(slug: string): Promise<any> {
   // TODO: Implement when sEOLocationPage model is added to schema
   // const page = await prisma.sEOLocationPage.findUnique({
-  //   where: { 
+  //   where: {
   //     slug: slug,
   //     status: 'PUBLISHED'
   //   }
   // });
-  
+
   // if (page) {
   //   // Update view count
   //   await prisma.sEOLocationPage.update({
@@ -31,7 +31,7 @@ async function getSEOPage(slug: string) {
   //     }
   //   });
   // }
-  
+
   // return page;
   return null;
 }
@@ -39,7 +39,7 @@ async function getSEOPage(slug: string) {
 export async function generateMetadata({ params }: { params: PageParams }): Promise<Metadata> {
   const slug = params.slug.join('/');
   const page = await getSEOPage(slug);
-  
+
   if (!page) {
     return {
       title: 'Page Not Found | Disaster Recovery',
@@ -103,11 +103,11 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
 export default async function SEOLocationPage({ params }: { params: PageParams }) {
   const slug = params.slug.join('/');
   const page = await getSEOPage(slug);
-  
+
   if (!page) {
     notFound();
   }
-  
+
   const structuredData = page.structuredData ? JSON.parse(page.structuredData) : null;
   
   return (

@@ -19,7 +19,8 @@ import {
 // Commenting out generateStaticParams to prevent build-time generation
 // export async function generateStaticParams() {
 //   return GMB_CATEGORIES.map((category) => ({
-//     category: category.slug }));
+//     category: category.slug
+//   }));
 // }
 
 // Add ISR revalidation
@@ -30,11 +31,12 @@ export async function generateMetadata(
   { params }: { params: { category: string } }
 ): Promise<Metadata> {
   const category = getCategoryBySlug(params.category);
-  
+
   if (!category) {
     return {
       title: 'Service Not Found',
-      description: 'The requested service page could not be found.' };
+      description: 'The requested service page could not be found.'
+    };
   }
 
   const title = generateCategoryTitle(category);

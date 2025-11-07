@@ -3,7 +3,7 @@
 import Script from 'next/script';
 
 interface SchemaScriptProps {
-  schema: any;
+  schema: unknown;
   id?: string;
 }
 
@@ -11,7 +11,7 @@ interface SchemaScriptProps {
  * Component for rendering JSON-LD schema markup
  * Implements structured data for SEO optimisation
  */
-export function SchemaScript({ schema, id = 'schema-script' }: SchemaScriptProps) {
+export function SchemaScript(...args: any[]): void {
   return (
     <Script
       id={id}
@@ -27,7 +27,7 @@ export function SchemaScript({ schema, id = 'schema-script' }: SchemaScriptProps
 /**
  * Component for multiple schema scripts
  */
-export function MultiSchemaScript({ schemas }: { schemas: any[] }) {
+export function MultiSchemaScript(...args: any[]): void {
   return (
     <>
       {schemas.map((schema, index) => (

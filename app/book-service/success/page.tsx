@@ -34,7 +34,7 @@ interface BookingDetails {
   estimatedResponse: string;
 }
 
-function BookingSuccessPageContent() {
+function BookingSuccessPageContent(...args: any[]): void {
   const searchParams = useSearchParams();
   const [bookingDetails, setBookingDetails] = useState<BookingDetails | null>(null);
   const [loading, setLoading] = useState(true);

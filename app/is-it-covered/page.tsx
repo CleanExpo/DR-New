@@ -229,7 +229,7 @@ export default function CoverageChecker() {
 
   const calculateResult = (allAnswers: Record<string, string>) => {
     let probability = 50; // Start neutral
-    const factors: any[] = [];
+    const factors: unknown[] = [];
     
     // Calculate based on answers
     Object.entries(allAnswers).forEach(([questionId, answer]) => {
@@ -292,7 +292,7 @@ export default function CoverageChecker() {
     }
   };
 
-  const getNextSteps = (probability: number, factors: any[]) => {
+  const getNextSteps = (probability: number, factors: unknown[]) => {
     const steps = [];
     
     if (probability < 80) {
@@ -472,7 +472,7 @@ export default function CoverageChecker() {
                 <div className="mb-8">
                   <h3 className="text-xl font-bold mb-4">Assessment Factors</h3>
                   <div className="space-y-3">
-                    {result.factors.map((factor: any, index: number) => (
+                    {result.factors.map((factor: unknown, index: number) => (
                       <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
                         {factor.impact === 'positive' && <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />}
                         {factor.impact === 'negative' && <XCircle className="w-5 h-5 text-red-500 mt-0.5" />}

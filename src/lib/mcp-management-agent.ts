@@ -37,7 +37,7 @@ interface Workflow {
 
 interface MCPResponse {
   success: boolean;
-  data?: any;
+  data?: unknown;
   error?: string;
   timestamp: Date;
   duration: number;
@@ -75,8 +75,7 @@ export class MCPManagementAgent extends EventEmitter {
       this.initialized = true;
       this.emit('initialized', { timestamp: new Date() });
       
-      console.log('✅ MCP Management Agent initialized successfully');
-    } catch (error) {
+          } catch (error) {
       console.error('❌ Failed to initialize MCP Management Agent:', error);
       throw error;
     }
@@ -111,8 +110,7 @@ export class MCPManagementAgent extends EventEmitter {
       } else {
         // Check if file exists
         await fs.access(path);
-        console.log(`✅ ${name} MCP verified at ${path}`);
-        return true;
+                return true;
       }
     } catch (error) {
       console.warn(`⚠️ ${name} MCP not found at ${path}`);
@@ -123,7 +121,7 @@ export class MCPManagementAgent extends EventEmitter {
   /**
    * Execute a command on a specific MCP
    */
-  async executeMCP(mcpName: string, action: string, params?: any): Promise<MCPResponse> {
+  async executeMCP(mcpName: string, action: string, params?: unknown): Promise<MCPResponse> {
     const startTime = Date.now();
     
     try {
@@ -136,8 +134,7 @@ export class MCPManagementAgent extends EventEmitter {
         throw new Error(`MCP ${mcpName} not found in registry`);
       }
 
-      console.log(`🚀 Executing ${mcpName}.${action}...`);
-      
+            
       // Route to appropriate MCP handler
       let result;
       switch (mcpName) {
@@ -177,7 +174,7 @@ export class MCPManagementAgent extends EventEmitter {
   /**
    * Execute Playwright MCP commands
    */
-  private async executePlaywright(action: string, params: any): Promise<any> {
+  private async executePlaywright(action: string, params: unknown): Promise<any> {
     return new Promise((resolve, reject) => {
       const args = ['@playwright/mcp@latest', action];
       
@@ -221,7 +218,7 @@ export class MCPManagementAgent extends EventEmitter {
   /**
    * Execute Context7 MCP commands
    */
-  private async executeContext7(action: string, params: any): Promise<any> {
+  private async executeContext7(action: string, params: unknown): Promise<any> {
     return new Promise((resolve, reject) => {
       const scriptPath = 'D:\\Disaster Recovery\\context7\\dist\\index.js';
       const args = [scriptPath, action];
@@ -271,7 +268,7 @@ export class MCPManagementAgent extends EventEmitter {
   /**
    * Execute Sequential Thinking MCP commands
    */
-  private async executeSequentialThinking(action: string, params: any): Promise<any> {
+  private async executeSequentialThinking(action: string, params: unknown): Promise<any> {
     return new Promise((resolve, reject) => {
       const scriptPath = 'D:\\Disaster Recovery\\WSL-Deployment-Sequential-Thinking\\dist\\cli.js';
       const args = [scriptPath, action];
@@ -316,7 +313,7 @@ export class MCPManagementAgent extends EventEmitter {
   /**
    * Orchestrate a workflow
    */
-  async orchestrate(workflowName: string, context?: any): Promise<any> {
+  async orchestrate(workflowName: string, context?: unknown): Promise<any> {
     try {
       // Load workflow configuration
       const configContent = await fs.readFile(this.configPath, 'utf-8');
@@ -327,15 +324,12 @@ export class MCPManagementAgent extends EventEmitter {
         throw new Error(`Workflow ${workflowName} not found`);
       }
 
-      console.log(`🎭 Starting orchestration: ${workflowName}`);
-      console.log(`📝 ${workflow.description}`);
-
+            
       const results = [];
       
       // Execute each step
       for (const [index, step] of workflow.steps.entries()) {
-        console.log(`\n📍 Step ${index + 1}/${workflow.steps.length}: ${step.mcp}.${step.action}`);
-        
+                
         // Replace context variables in params
         const params = this.replaceContextVariables(step.params, context, results);
         
@@ -348,11 +342,9 @@ export class MCPManagementAgent extends EventEmitter {
           throw new Error(`Workflow failed at step ${index + 1}: ${result.error}`);
         }
         
-        console.log(`✅ Step completed in ${result.duration}ms`);
-      }
+              }
 
-      console.log(`\n🎉 Orchestration completed successfully!`);
-      return results;
+            return results;
     } catch (error) {
       console.error(`❌ Orchestration failed: ${error.message}`);
       throw error;
@@ -362,7 +354,7 @@ export class MCPManagementAgent extends EventEmitter {
   /**
    * Replace context variables in parameters
    */
-  private replaceContextVariables(params: any, context: any, results: any[]): any {
+  private replaceContextVariables(params: unknown, context: unknown, results: unknown[]): unknown {
     if (!params) return params;
     
     const stringified = JSON.stringify(params);
@@ -456,8 +448,7 @@ export class MCPManagementAgent extends EventEmitter {
    * Troubleshoot MCP issues
    */
   async troubleshoot(mcpName: string): Promise<any> {
-    console.log(`🔧 Troubleshooting ${mcpName}...`);
-    
+        
     const diagnostics = {
       mcp: mcpName,
       timestamp: new Date(),
@@ -520,19 +511,16 @@ export class MCPManagementAgent extends EventEmitter {
    * Cleanup and shutdown
    */
   async shutdown(): Promise<void> {
-    console.log('🛑 Shutting down MCP Management Agent...');
-    
+        
     // Kill all processes
     for (const [name, process] of this.processes.entries()) {
-      console.log(`Terminating ${name} process...`);
-      process.kill();
+            process.kill();
     }
     
     this.processes.clear();
     this.removeAllListeners();
     
-    console.log('✅ MCP Management Agent shut down successfully');
-  }
+      }
 }
 
 // Export singleton instance
@@ -550,30 +538,28 @@ if (require.main === module) {
       switch (command) {
         case 'status':
           const status = await mcpAgent.getStatus();
-          console.log(JSON.stringify(status, null, 2));
+          );
           break;
           
         case 'execute':
           const [mcp, action, ...params] = args;
           const result = await mcpAgent.executeMCP(mcp, action, params[0] ? JSON.parse(params[0]) : undefined);
-          console.log(JSON.stringify(result, null, 2));
+          );
           break;
           
         case 'orchestrate':
           const [workflow, ...context] = args;
           const results = await mcpAgent.orchestrate(workflow, context[0] ? JSON.parse(context[0]) : undefined);
-          console.log(JSON.stringify(results, null, 2));
+          );
           break;
           
         case 'troubleshoot':
           const diagnostics = await mcpAgent.troubleshoot(args[0]);
-          console.log(JSON.stringify(diagnostics, null, 2));
+          );
           break;
           
         default:
-          console.log('Usage: mcp-management-agent <command> [args]');
-          console.log('Commands: status, execute, orchestrate, troubleshoot');
-      }
+                          }
       
       await mcpAgent.shutdown();
     } catch (error) {

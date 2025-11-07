@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 
-export function AudioSystemSimple() {
+export function AudioSystemSimple(...args: any[]): void {
   const [speechEnabled, setSpeechEnabled] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);

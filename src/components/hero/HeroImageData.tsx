@@ -272,7 +272,7 @@ export function getRandomHeroImage(): HeroImageMetadata {
 /**
  * Generate structured data for hero image
  */
-export function generateImageStructuredData(image: HeroImageMetadata) {
+export function generateImageStructuredData(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': 'ImageObject',

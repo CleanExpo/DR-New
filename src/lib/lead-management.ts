@@ -79,7 +79,7 @@ export function calculateLeadValue(factors: LeadValueFactors): number {
 }
 
 // Find and assign lead to best matching partner
-export async function assignLeadToPartner(criteria: PartnerSearchCriteria) {
+export async function assignLeadToPartner(...args: any[]): Promise<void> {
   try {
     // Find all active partners
     const partners = await prisma.partner.findMany({
@@ -175,10 +175,15 @@ export async function assignLeadToPartner(criteria: PartnerSearchCriteria) {
 }
 
 // Validate lead quality
-export async function validateLeadQuality(data: any): Promise<{
+export async function validateLeadQuality(data: unknown): Promise<{
+  try {
   isValid: boolean;
   reasons: string[];
-}> {
+
+  } catch (error) {
+    console.error(`Error in validateLeadQuality:`, error);
+    throw error;
+  }}> {
   const reasons: string[] = [];
   
   // Required fields check
@@ -244,6 +249,7 @@ function containsSpamKeywords(text: string): boolean {
 }
 
 async function isDuplicateSubmission(email: string): Promise<boolean> {
+  try {
   // Check for recent duplicate submissions (within last hour)
   const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
   
@@ -252,7 +258,11 @@ async function isDuplicateSubmission(email: string): Promise<boolean> {
       email: email,
       createdAt: {
         gte: oneHourAgo
-      }
+      
+  } catch (error) {
+    console.error(`Error in isDuplicateSubmission:`, error);
+    throw error;
+  }}
     }
   });
   
@@ -260,11 +270,7 @@ async function isDuplicateSubmission(email: string): Promise<boolean> {
 }
 
 // Track lead events
-export async function trackLeadEvent(
-  leadId: string, 
-  event: string, 
-  metadata?: any
-) {
+export async function trackLeadEvent(...args: any[]): Promise<void> {
   try {
     await prisma.leadTracking.create({
       data: {
@@ -310,8 +316,13 @@ export async function trackLeadEvent(
 }
 
 // Get lead statistics
-export async function getLeadStatistics(partnerId?: string) {
-  const where = partnerId ? { partnerId } : {};
+export async function getLeadStatistics(...args: any[]): Promise<void> {
+  try {
+  const where = partnerId ? { partnerId 
+  } catch (error) {
+    console.error(`Error in getLeadStatistics:`, error);
+    throw error;
+  }} : {};
   
   const [
     totalLeads,

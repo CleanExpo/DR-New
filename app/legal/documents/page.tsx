@@ -193,8 +193,7 @@ export default function LegalDocumentsPage() {
 
   const handleDownload = (docId: string, title: string) => {
     // In production, this would generate/download the actual PDF with NRP branding
-    console.log(`Downloading ${title} with NRP branding...`);
-    // For now, we'll show an alert
+        // For now, we'll show an alert
     alert(`Downloading ${title}\\n\\nThis document includes:\\n• NRP logo and branding\\n• Australian legal compliance\\n• Latest version with all updates\\n• Digital signature fields`);
   };
 

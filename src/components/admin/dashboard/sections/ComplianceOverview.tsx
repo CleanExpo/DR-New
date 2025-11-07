@@ -41,7 +41,7 @@ interface ComplianceMetrics {
   };
 }
 
-export function ComplianceOverview() {
+export function ComplianceOverview(...args: any[]): void {
   const [metrics, setMetrics] = useState<ComplianceMetrics | null>(null);
   const [loading, setLoading] = useState(true);
 

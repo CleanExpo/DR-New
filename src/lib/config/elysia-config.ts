@@ -72,6 +72,6 @@ export const getElysiaConfig = (): ElysiaConfigType => ({
 })
 
 // Validation helper
-export const validateElysiaConfig = (config: any): ElysiaConfigType => {
+export const validateElysiaConfig = (config: unknown): ElysiaConfigType => {
   return ElysiaConfig.static.default(config)
 }

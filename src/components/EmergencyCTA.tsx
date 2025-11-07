@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface EmergencyCTAProps {
   suburb: string;
   message: string;

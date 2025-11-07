@@ -6,7 +6,7 @@ const claims = new Map();
 // Fixed platform fee
 const PLATFORM_FEE = 2750.00;
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
     
@@ -157,40 +157,49 @@ export async function POST(request: NextRequest) {
 }
 
 // Get claim by ID
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const claimId = searchParams.get('id');
-  
-  if (!claimId) {
+export async function GET(request: NextRequest): Promise<NextResponse> {
+  try {
+    const { searchParams } = new URL(request.url);
+    const claimId = searchParams.get('id');
+
+    if (!claimId) {
+      return NextResponse.json({
+        success: false,
+        error: 'Claim ID required'
+      }, { status: 400 });
+    }
+
+    const claim = claims.get(claimId);
+
+    if (!claim) {
+      return NextResponse.json({
+        success: false,
+        error: 'Claim not found'
+      }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      success: true,
+      claim: claim
+    });
+  } catch (error) {
+    console.error('Error in GET:', error);
     return NextResponse.json({
       success: false,
-      error: 'Claim ID required'
-    }, { status: 400 });
+      error: 'Failed to retrieve claim'
+    }, { status: 500 });
   }
-  
-  const claim = claims.get(claimId);
-  
-  if (!claim) {
-    return NextResponse.json({
-      success: false,
-      error: 'Claim not found'
-    }, { status: 404 });
-  }
-  
-  return NextResponse.json({
-    success: true,
-    claim: claim
-  });
 }
 
 // Contractor Assignment (Mock)
-async function assignContractor(claimId: string) {
-  const claim = claims.get(claimId);
-  if (!claim) return;
-  
-  // Mock contractor assignment based on location and service type
-  const contractor = {
-    id: `NRP-CTR-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+async function assignContractor(claimId: string): Promise<void> {
+  try {
+    const claim = claims.get(claimId);
+    if (!claim) return;
+
+    // Mock contractor assignment based on location and service type
+    const contractor = {
+      id: `NRP-CTR-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
     companyName: 'Premium Restoration Services Pty Ltd',
     contactPerson: 'John Anderson',
     directPhone: '0412 345 678',
@@ -214,25 +223,34 @@ async function assignContractor(claimId: string) {
   claim.status = 'CONTRACTOR_ASSIGNED';
   
   claims.set(claimId, claim);
-  
+
   // Simulate contractor accepting job after 30 seconds
   setTimeout(() => contractorAccepts(claimId), 30000);
+  } catch (error) {
+    console.error('Error in assignContractor:', error);
+    throw error;
+  }
 }
 
 // Contractor Acceptance (Mock)
-async function contractorAccepts(claimId: string) {
-  const claim = claims.get(claimId);
-  if (!claim) return;
-  
-  claim.contractor.acceptedAt = new Date().toISOString();
-  claim.workflow.contractorAccepted = true;
-  claim.status = 'CONTRACTOR_ACCEPTED';
-  
-  // Contractor will now:
-  // 1. Call the client directly
-  // 2. Schedule inspection
-  // 3. Handle all further communication
-  // Platform's role is complete at this point
-  
-  claims.set(claimId, claim);
+async function contractorAccepts(claimId: string): Promise<void> {
+  try {
+    const claim = claims.get(claimId);
+    if (!claim) return;
+
+    claim.contractor.acceptedAt = new Date().toISOString();
+    claim.workflow.contractorAccepted = true;
+    claim.status = 'CONTRACTOR_ACCEPTED';
+
+    // Contractor will now:
+    // 1. Call the client directly
+    // 2. Schedule inspection
+    // 3. Handle all further communication
+    // Platform's role is complete at this point
+
+    claims.set(claimId, claim);
+  } catch (error) {
+    console.error('Error in contractorAccepts:', error);
+    throw error;
+  }
 }

@@ -1,4 +1,4 @@
-export function getHeroImageById(id: string) {
+export function getHeroImageById(...args: any[]): void {
   return {
     id,
     src: '/images/hero/default.jpg',

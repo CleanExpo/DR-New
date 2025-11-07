@@ -121,7 +121,7 @@ export const GMB_IMAGE_POSTS = [
 ];
 
 // Function to get today's post
-export function getTodaysGMBImagePost() {
+export function getTodaysGMBImagePost(...args: any[]): void {
   const today = new Date();
   const weekOfMonth = Math.ceil(today.getDate() / 7);
   const dayName = today.toLocaleDateString('en-US', { weekday: 'long' });
@@ -131,7 +131,7 @@ export function getTodaysGMBImagePost() {
 }
 
 // Generate location-specific variations
-export function generateLocationVariation(basePost: any, location: string) {
+export function generateLocationVariation(...args: any[]): void {
   const locationVariations = {
     'Hamilton': 'Servicing Hamilton, Portside, Racecourse Road, and surrounding luxury estates',
     'Ascot': 'Protecting Ascot, Eagle Farm, Clayfield premium properties',

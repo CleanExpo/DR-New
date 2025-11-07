@@ -165,13 +165,7 @@ export default function OptimizedImage({
 }
 
 // Gallery component with optimized images
-export function OptimizedImageGallery({
-  images,
-  columns = 3,
-}: {
-  images: Array<{ src: string; alt: string }>;
-  columns?: number;
-}) {
+export function OptimizedImageGallery(...args: any[]): void {
   return (
     <div 
       className="grid gap-4"
@@ -195,17 +189,7 @@ export function OptimizedImageGallery({
 }
 
 // Hero image component
-export function HeroImage({
-  src,
-  alt,
-  title,
-  subtitle,
-}: {
-  src: string;
-  alt: string;
-  title?: string;
-  subtitle?: string;
-}) {
+export function HeroImage(...args: any[]): void {
   return (
     <div className="relative w-full h-[600px] md:h-[700px] lg:h-[800px]">
       <OptimizedImage

@@ -11,7 +11,7 @@ interface Message {
   options?: string[];
 }
 
-export function EnhancedChatBot() {
+export function EnhancedChatBot(...args: any[]): void {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');

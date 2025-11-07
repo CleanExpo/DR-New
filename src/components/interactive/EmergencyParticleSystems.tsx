@@ -10,7 +10,7 @@ interface ParticleSystemProps {
 }
 
 // CSS-based particle effects  
-export function CSSParticleEffect({ type = 'emergency', intensity = 'medium' }: ParticleSystemProps) {
+export function CSSParticleEffect(...args: any[]): void {
   const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
@@ -70,7 +70,7 @@ export function CSSParticleEffect({ type = 'emergency', intensity = 'medium' }: 
   );
 }
 
-export function WaterParticles({ intensity = 'medium', className = '' }: ParticleSystemProps) {
+export function WaterParticles(...args: any[]): void {
   return (
     <div className={`relative ${className}`}>
       <CSSParticleEffect type="water" intensity={intensity} />
@@ -79,7 +79,7 @@ export function WaterParticles({ intensity = 'medium', className = '' }: Particl
   );
 }
 
-export function FireParticles({ intensity = 'medium', className = '' }: ParticleSystemProps) {
+export function FireParticles(...args: any[]): void {
   return (
     <div className={`relative ${className}`}>
       <CSSParticleEffect type="fire" intensity={intensity} />
@@ -88,7 +88,7 @@ export function FireParticles({ intensity = 'medium', className = '' }: Particle
   );
 }
 
-export function StormParticles({ intensity = 'high', className = '' }: ParticleSystemProps) {
+export function StormParticles(...args: any[]): void {
   return (
     <div className={`relative ${className}`}>
       <CSSParticleEffect type="storm" intensity={intensity} />
@@ -97,7 +97,7 @@ export function StormParticles({ intensity = 'high', className = '' }: ParticleS
   );
 }
 
-export function EmergencyResponseParticles({ intensity = 'medium', className = '' }: ParticleSystemProps) {
+export function EmergencyResponseParticles(...args: any[]): void {
   const [currentType, setCurrentType] = useState<'fire' | 'water'>('fire');
 
   useEffect(() => {

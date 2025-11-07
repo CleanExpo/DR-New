@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
-import { Phone } from 'lucide-react';
+import { Phone, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Header() {
+  const [contractorsOpen, setContractorsOpen] = useState(false);
+
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-6 py-4">
@@ -19,6 +24,55 @@ export default function Header() {
             <Link href="/service-areas" className="text-gray-700 hover:text-blue-600 font-medium">
               Service Areas
             </Link>
+
+            {/* For Contractors Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setContractorsOpen(true)}
+              onMouseLeave={() => setContractorsOpen(false)}
+            >
+              <button className="flex items-center gap-1 text-gray-700 hover:text-blue-600 font-medium">
+                For Contractors
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {contractorsOpen && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                  <Link
+                    href="/nrpg"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    NRPG Resources
+                  </Link>
+                  <Link
+                    href="/carsi"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    CARSI Training
+                  </Link>
+                  <Link
+                    href="/contractor-portal"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    Contractor Portal
+                  </Link>
+                  <Link
+                    href="/training"
+                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    IICRC CECs
+                  </Link>
+                  <div className="border-t border-gray-200 my-2"></div>
+                  <Link
+                    href="/nrpg"
+                    className="block px-4 py-2 text-blue-600 hover:bg-blue-50 font-semibold"
+                  >
+                    Join NRPG
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link href="/contact" className="text-gray-700 hover:text-blue-600 font-medium">
               Contact
             </Link>
@@ -42,6 +96,9 @@ export default function Header() {
         </Link>
         <Link href="/service-areas" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
           Areas
+        </Link>
+        <Link href="/contractor-portal" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
+          Contractors
         </Link>
         <Link href="/contact" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
           Contact

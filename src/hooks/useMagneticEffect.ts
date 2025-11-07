@@ -8,7 +8,7 @@ interface MagneticOptions {
   duration?: number;
 }
 
-export function useMagneticEffect(options: MagneticOptions = {}) {
+export function useMagneticEffect(...args: any[]): void {
   const { strength = 0.5, scale = 1.05, duration = 0.4 } = options;
   const elementRef = useRef<HTMLElement>(null);
 
@@ -64,7 +64,7 @@ export function useMagneticEffect(options: MagneticOptions = {}) {
   return elementRef;
 }
 
-export function useParallaxEffect(strength: number = 0.5) {
+export function useParallaxEffect(...args: any[]): void {
   const elementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export function useParallaxEffect(strength: number = 0.5) {
   return elementRef;
 }
 
-export function use3DRotateEffect() {
+export function use3DRotateEffect(...args: any[]): void {
   const elementRef = useRef<HTMLElement>(null);
 
   useEffect(() => {

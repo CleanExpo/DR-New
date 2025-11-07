@@ -10,8 +10,7 @@ export default function SearchBar() {
     e.preventDefault();
     // Basic search functionality for audit detection
     if (searchTerm.trim()) {
-      console.log('Searching for:', searchTerm);
-      // In a real app, this would trigger actual search
+            // In a real app, this would trigger actual search
       alert(`Searching for: ${searchTerm}`);
     }
   };

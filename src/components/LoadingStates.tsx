@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 export const ServiceCardSkeleton = () => (
   <div 
     className="relative h-full p-6 rounded-2xl animate-pulse"

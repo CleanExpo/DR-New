@@ -5,33 +5,23 @@ import * as MenubarPrimitive from "@radix-ui/react-menubar"
 import { cn } from "@/lib/utils"
 import { CheckIcon, ChevronRightIcon, DotFilledIcon } from "@radix-ui/react-icons"
 
-function MenubarMenu({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Menu>) {
+function MenubarMenu(...args: any[]): void {
   return <MenubarPrimitive.Menu {...props} />
 }
 
-function MenubarGroup({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Group>) {
+function MenubarGroup(...args: any[]): void {
   return <MenubarPrimitive.Group {...props} />
 }
 
-function MenubarPortal({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Portal>) {
+function MenubarPortal(...args: any[]): void {
   return <MenubarPrimitive.Portal {...props} />
 }
 
-function MenubarRadioGroup({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.RadioGroup>) {
+function MenubarRadioGroup(...args: any[]): void {
   return <MenubarPrimitive.RadioGroup {...props} />
 }
 
-function MenubarSub({
-  ...props
-}: React.ComponentProps<typeof MenubarPrimitive.Sub>) {
+function MenubarSub(...args: any[]): void {
   return <MenubarPrimitive.Sub data-slot="menubar-sub" {...props} />
 }
 

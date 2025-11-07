@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface LocationHeroProps {
   suburb: string;
   city: string;

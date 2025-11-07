@@ -161,17 +161,7 @@ export function generateAustralianMetadata({
 }
 
 // Schema.org Generator for Australian Business
-export function generateAustralianSchema({
-  serviceName,
-  serviceType,
-  description,
-  url
-}: {
-  serviceName: string;
-  serviceType: string;
-  description: string;
-  url: string;
-}) {
+export function generateAustralianSchema(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
@@ -325,7 +315,7 @@ export const DataVisualisation = ({
   title 
 }: { 
   type: 'bar' | 'pie' | 'line' | 'progress';
-  data: any;
+  data: unknown;
   title: string;
 }) => {
   switch(type) {
@@ -334,7 +324,7 @@ export const DataVisualisation = ({
         <div className="bg-white/10 rounded-xl p-6 border border-white/10">
           <h3 className="text-xl font-bold text-white mb-4">{title}</h3>
           <div className="space-y-4">
-            {data.map((item: any, idx: number) => (
+            {data.map((item: unknown, idx: number) => (
               <div key={idx}>
                 <div className="flex justify-between mb-2">
                   <span className="text-blue-700">{item.label}</span>

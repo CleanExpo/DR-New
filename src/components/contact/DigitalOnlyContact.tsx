@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { MessageCircle, Globe, Mail, Clock, Zap, ArrowRight, CheckCircle } from 'lucide-react';
 
 // IMPORTANT: NO PHONE NUMBERS - Digital Only Platform
-export function DigitalContactBar() {
+export function DigitalContactBar(...args: any[]): void {
   const [showUrgent, setShowUrgent] = useState(true);
 
   return (
@@ -39,7 +39,7 @@ export function DigitalContactBar() {
   );
 }
 
-export function EmergencyContactOptions() {
+export function EmergencyContactOptions(...args: any[]): void {
   const contactMethods = [
     {
       icon: MessageCircle,
@@ -94,7 +94,7 @@ export function EmergencyContactOptions() {
   );
 }
 
-export function QuickResponseForm() {
+export function QuickResponseForm(...args: any[]): void {
   const [urgency, setUrgency] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
@@ -196,7 +196,7 @@ export function QuickResponseForm() {
 }
 
 // Mobile-optimized digital contact
-export function MobileDigitalContact() {
+export function MobileDigitalContact(...args: any[]): void {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-blue-500 shadow-2xl z-[9990] md:hidden">
       <div className="grid grid-cols-2 gap-1 p-2">

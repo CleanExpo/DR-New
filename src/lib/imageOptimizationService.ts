@@ -99,13 +99,11 @@ export class ImageOptimizationService {
    */
   public async start(directories?: string[]): Promise<void> {
     if (this.isRunning) {
-      console.log('🔄 Image optimization service already running');
-      return;
+            return;
     }
     
     this.isRunning = true;
-    console.log('🚀 Starting autonomous image optimization service...');
-    
+        
     // Default directories to watch
     const watchDirs = directories || [
       path.join(process.cwd(), 'public', 'images'),
@@ -123,13 +121,11 @@ export class ImageOptimizationService {
     });
     
     if (existingDirs.length === 0) {
-      console.log('⚠️ No directories to watch');
-      return;
+            return;
     }
     
     // Initial optimization of existing images
-    console.log('🔍 Scanning existing images...');
-    for (const dir of existingDirs) {
+        for (const dir of existingDirs) {
       await this.optimizeDirectory(dir);
     }
     
@@ -147,9 +143,8 @@ export class ImageOptimizationService {
       .on('add', (filePath) => this.handleFileChange(filePath, 'added'))
       .on('change', (filePath) => this.handleFileChange(filePath, 'changed'))
       .on('error', (error) => console.error('❌ Watcher error:', error));
-    
+
     console.log('✅ Image optimization service started');
-    console.log(`👁️ Watching directories: ${existingDirs.join(', ')}`);
   }
   
   /**
@@ -163,7 +158,7 @@ export class ImageOptimizationService {
     
     await this.queue.onIdle();
     this.isRunning = false;
-    console.log('🛑 Image optimization service stopped');
+    console.log('✅ Image optimization service stopped');
   }
   
   /**
@@ -173,9 +168,9 @@ export class ImageOptimizationService {
     if (!this.shouldOptimize(filePath)) {
       return;
     }
-    
-    console.log(`📸 Image ${event}: ${path.basename(filePath)}`);
-    
+
+    console.log(`📸 ${event}:`, filePath);
+
     // Add to queue for optimization
     this.queue.add(async () => {
       try {
@@ -252,23 +247,23 @@ export class ImageOptimizationService {
       
       // Skip if file is too small
       if (fileSizeKB < IMAGE_OPTIMIZATION_CONFIG.minFileSizeKB) {
-        console.log(`⏭️ Skipping ${path.basename(filePath)} (too small: ${fileSizeKB.toFixed(1)}KB)`);
+        console.log(`⏭️  Skipping ${path.basename(filePath)} (too small: ${fileSizeKB.toFixed(1)}KB)`);
         return;
       }
       
       // Get optimization profile
       const profileName = this.getOptimizationProfile(filePath);
       const profile = IMAGE_OPTIMIZATION_CONFIG.profiles[profileName];
-      
+
       console.log(`🔧 Optimizing ${path.basename(filePath)} with profile: ${profileName}`);
-      
+
       // Read original image
       const buffer = await readFile(filePath);
       
       // Calculate hash to check if already optimized
       const hash = crypto.createHash('md5').update(buffer).digest('hex');
       if (this.optimizedCache.has(hash)) {
-        console.log(`✅ Already optimized: ${path.basename(filePath)}`);
+        console.log(`⏭️  Skipping ${path.basename(filePath)} (already optimized)`);
         return;
       }
       
@@ -335,10 +330,10 @@ export class ImageOptimizationService {
         
         // Cache the optimization
         this.optimizedCache.set(hash, filePath);
-        
+
         console.log(`✅ Optimized ${path.basename(filePath)}: ${originalSizeKB.toFixed(1)}KB → ${optimizedSizeKB.toFixed(1)}KB (-${savings}%)`);
       } else {
-        console.log(`⏭️ Skipping ${path.basename(filePath)} (already optimal)`);
+        console.log(`⏭️  Skipping ${path.basename(filePath)} (already optimal)`);
       }
     } catch (error) {
       console.error(`❌ Error optimizing ${filePath}:`, error);

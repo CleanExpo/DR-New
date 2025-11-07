@@ -28,7 +28,7 @@ interface Service {
   title: string;
   subtitle: string;
   description: string;
-  icon: any;
+  icon: unknown;
   gradient: string;
   features: string[];
   process: string[];

@@ -37,7 +37,7 @@ export const NotificationSystem: React.FC<NotificationSystemProps> = ({
 
   useEffect(() => {
     // WebSocket notification handler
-    const handleNotification = (data: any) => {
+    const handleNotification = (data: unknown) => {
       const notification: Notification = {
         id: data.id || `notif-${Date.now()}`,
         type: data.type || 'info',

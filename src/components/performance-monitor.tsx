@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-export function PerformanceMonitor() {
+export function PerformanceMonitor(...args: any[]): void {
   useEffect(() => {
     // Web Vitals monitoring
     if (typeof window !== 'undefined' && 'performance' in window) {
@@ -31,7 +31,7 @@ export function PerformanceMonitor() {
         // First Input Delay
         const fidObserver = new PerformanceObserver((list) => {
           const entries = list.getEntries();
-          entries.forEach((entry: any) => {
+          entries.forEach((entry: unknown) => {
             if (window.gtag) {
               window.gtag('event', 'web_vitals', {
                 event_category: 'Web Vitals',
@@ -86,6 +86,6 @@ export function PerformanceMonitor() {
 // Declare gtag for TypeScript
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }

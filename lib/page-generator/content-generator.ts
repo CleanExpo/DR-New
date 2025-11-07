@@ -12,9 +12,10 @@ import { formatDistance, formatCurrency, formatResponseTime } from '../utils/for
 export async function generatePageContent(
   context: ContentGenerationContext
 ): Promise<string> {
-  const { location, service, contractors, template, seoData } = context;
+  try {
+    const { location, service, contractors, template, seoData } = context;
 
-  let content = '';
+    let content = '';
 
   // Generate content for each template section
   for (const section of template.sections) {
@@ -46,7 +47,11 @@ export async function generatePageContent(
     }
   }
 
-  return content;
+    return content;
+  } catch (error) {
+    console.error('Error in generatePageContent:', error);
+    throw error;
+  }
 }
 
 /**
@@ -325,7 +330,7 @@ function generateContentSection(context: ContentGenerationContext): string {
 
 // Helper functions
 
-function calculateAverageResponseTime(contractors?: any[]): string {
+function calculateAverageResponseTime(contractors?: unknown[]): string {
   if (!contractors || contractors.length === 0) return '2-4 hrs';
 
   const total = contractors.reduce((sum, c) => sum + c.responseTime.emergency, 0);
@@ -334,14 +339,14 @@ function calculateAverageResponseTime(contractors?: any[]): string {
   return avg < 2 ? '<2 hrs' : `${avg}-${avg + 2} hrs`;
 }
 
-function generateLocationServiceDescription(location: any, service?: any): string {
+function generateLocationServiceDescription(location: unknown, service?: unknown): string {
   if (service) {
     return `Professional ${service.name} services available across ${location.name} and surrounding areas. IICRC-certified contractors ready to respond 24/7 with immediate emergency assistance.`;
   }
   return `Comprehensive disaster recovery services for ${location.name} residents and businesses. Connect with certified restoration specialists for water damage, fire damage, mould remediation, and emergency response.`;
 }
 
-function calculateLocationStats(location: any, contractors?: any[]): any {
+function calculateLocationStats(location: unknown, contractors?: unknown[]): unknown {
   return {
     totalJobs: '2,500+',
     successRate: 94,
@@ -350,7 +355,7 @@ function calculateLocationStats(location: any, contractors?: any[]): any {
   };
 }
 
-function getCommonServices(): any[] {
+function getCommonServices(): unknown[] {
   return [
     {
       name: 'Water Damage Restoration',
@@ -370,7 +375,7 @@ function getCommonServices(): any[] {
   ];
 }
 
-function generateNoContractorsSection(location: any): string {
+function generateNoContractorsSection(location: unknown): string {
   return `
     <section className="contractors-section py-16 bg-gray-50">
       <div className="container mx-auto px-6 text-center">
@@ -394,12 +399,12 @@ function generateStarRating(rating: number): string {
   return `<span className="text-yellow-500">${stars}</span>`;
 }
 
-function calculateDistance(loc1: any, loc2: any): number {
+function calculateDistance(loc1: unknown, loc2: unknown): number {
   // Simplified distance calculation
   return Math.random() * 20 + 5; // Random distance for demo
 }
 
-function generateLocalTestimonials(location: any, service?: any): any[] {
+function generateLocalTestimonials(location: unknown, service?: unknown): unknown[] {
   return [
     {
       text: `Outstanding service! They responded within 2 hours and had our ${service ? service.name.toLowerCase() : 'water damage'} completely resolved. Highly recommend!`,
@@ -419,7 +424,7 @@ function generateLocalTestimonials(location: any, service?: any): any[] {
   ];
 }
 
-function generateLocationServiceFAQs(location: any, service?: any): any[] {
+function generateLocationServiceFAQs(location: unknown, service?: unknown): unknown[] {
   const baseFAQs = [
     {
       question: `How quickly can I get emergency ${service ? service.name.toLowerCase() : 'disaster recovery'} services in ${location.name}?`,
@@ -446,9 +451,9 @@ function generateLocationServiceFAQs(location: any, service?: any): any[] {
   return baseFAQs;
 }
 
-function generateLocationServiceContent(location: any, service?: any): string {
+function generateLocationServiceContent(location: unknown, service?: unknown): string {
   const disasterRisks = location.disasterRisk || [];
-  const highRiskDisasters = disasterRisks.filter((r: any) => r.level === 'high' || r.level === 'extreme');
+  const highRiskDisasters = disasterRisks.filter((r: unknown) => r.level === 'high' || r.level === 'extreme');
 
   return `
     <h2>Comprehensive Disaster Recovery Services in ${location.name}</h2>
@@ -463,7 +468,7 @@ function generateLocationServiceContent(location: any, service?: any): string {
     ${highRiskDisasters.length > 0 ? `
       <h3>Local Disaster Risk Profile</h3>
       <p>
-        ${location.name} faces unique challenges with ${highRiskDisasters.map((r: any) => r.type).join(', ')} risks.
+        ${location.name} faces unique challenges with ${highRiskDisasters.map((r: unknown) => r.type).join(', ')} risks.
         Our contractors are specially trained and equipped to handle these specific local conditions, ensuring
         rapid and effective response when disasters strike.
       </p>

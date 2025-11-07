@@ -18,7 +18,7 @@ if (process.env.GOOGLE_REFRESH_TOKEN) {
 }
 
 export class GMBApiClient {
-  private mybusiness: any;
+  private mybusiness: unknown;
 
   constructor() {
     this.mybusiness = google.mybusinessbusinessinformation({
@@ -52,7 +52,7 @@ export class GMBApiClient {
   }
 
   // Create a new post
-  async createPost(locationId: string, post: any) {
+  async createPost(locationId: string, post: unknown) {
     try {
       const mybusinessposts = google.mybusinessposts({
         version: 'v1',
@@ -110,7 +110,7 @@ export class GMBApiClient {
   }
 
   // Upload a photo
-  async uploadPhoto(locationId: string, photoData: any) {
+  async uploadPhoto(locationId: string, photoData: unknown) {
     try {
       const mybusinessmedia = google.mybusiness({
         version: 'v4',

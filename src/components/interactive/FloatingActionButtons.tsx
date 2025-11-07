@@ -24,14 +24,7 @@ interface FloatingButtonProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-function MagneticFloatingButton({ 
-  icon: Icon, 
-  label, 
-  action, 
-  colour, 
-  delay = 0, 
-  size = 'md'
-}: FloatingButtonProps) {
+function MagneticFloatingButton(...args: any[]): void {
   const [isHovered, setIsHovered] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   
@@ -172,7 +165,7 @@ function MagneticFloatingButton({
 }
 
 // Expandable FAB Menu
-function ExpandableFABMenu() {
+function ExpandableFABMenu(...args: any[]): void {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
@@ -302,7 +295,7 @@ function ExpandableFABMenu() {
 }
 
 // Quick Action Dock (Bottom Centre)
-function QuickActionDock() {
+function QuickActionDock(...args: any[]): void {
   const [isDockVisible, setIsDockVisible] = useState(false);
 
   useEffect(() => {
@@ -386,7 +379,7 @@ function QuickActionDock() {
 }
 
 // Emergency Response Timer Widget
-function EmergencyResponseTimer() {
+function EmergencyResponseTimer(...args: any[]): void {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 

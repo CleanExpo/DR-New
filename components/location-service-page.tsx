@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 
 interface LocationServicePageProps {
-  data: any; // Using any for now to match the generator output
+  data: unknown; // Using any for now to match the generator output
 }
 
 export default function LocationServicePageComponent({ data }: LocationServicePageProps) {

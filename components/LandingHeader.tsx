@@ -1,4 +1,4 @@
-export function LandingHeader() {
+export function LandingHeader(...args: any[]): void {
   return null;
 }
 

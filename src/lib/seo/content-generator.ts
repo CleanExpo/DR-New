@@ -11,7 +11,7 @@ export interface SEOPageContent {
   metaDescription: string;
   h1Title: string;
   content: string;
-  schemaMarkup: any;
+  schemaMarkup: unknown;
   canonicalUrl: string;
 }
 
@@ -395,7 +395,7 @@ export function generateSchemaMarkup(
   service: typeof SERVICE_TYPES[0],
   propertyType: typeof PROPERTY_TYPES[0],
   businessType?: string
-): any {
+): unknown {
   const locationName = location.suburb || location.city;
   
   return {
@@ -488,13 +488,18 @@ export async function generateSEOContent(
   propertyType: typeof PROPERTY_TYPES[0],
   businessType?: string
 ): Promise<SEOPageContent> {
+  try {
   const slug = generateSlug(location, service, propertyType, businessType);
   const title = generateTitle(location, service, propertyType, businessType);
   const metaDescription = generateMetaDescription(location, service, propertyType, businessType);
   const h1Title = generateH1(location, service, propertyType, businessType);
   const content = generateContent(location, service, propertyType, businessType);
   const schemaMarkup = generateSchemaMarkup(location, service, propertyType, businessType);
-  const canonicalUrl = `https://nrpaus.com.au/${slug}`;
+  const canonicalUrl = `https://nrpaus.com.au/${slug
+  } catch (error) {
+    console.error(`Error in generateSEOContent:`, error);
+    throw error;
+  }}`;
 
   return {
     slug,

@@ -232,7 +232,7 @@ export default function BookServicePage() {
       });
       
       router.push(`/book-service/success?${successParams.toString()}`);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Booking error:', error);
       
       // Redirect to error page with error details
@@ -248,7 +248,7 @@ export default function BookServicePage() {
     }
   };
 
-  const updateFormData = (field: keyof FormData, value: any) => {
+  const updateFormData = (field: keyof FormData, value: unknown) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     // Clear error for this field when user starts typing
     if (errors[field]) {

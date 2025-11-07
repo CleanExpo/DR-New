@@ -1,4 +1,3 @@
-import React from 'react';
 import { Clock, Shield, Award, Phone } from 'lucide-react';
 import Link from 'next/link';
 

@@ -180,13 +180,7 @@ export const lighthouseOptimizations = {
       implementation: '<link rel="apple-touch-icon">' } } };
 
 // Helper function to generate optimisation report
-export function generateOptimizationReport(scores: {
-  performance: number;
-  accessibility: number;
-  bestPractices: number;
-  seo: number;
-  pwa?: number;
-}) {
+export function generateOptimizationReport(...args: any[]): void {
   const report = {
     overall: Math.round((scores.performance + scores.accessibility + scores.bestPractices + scores.seo) / 4),
     scores,

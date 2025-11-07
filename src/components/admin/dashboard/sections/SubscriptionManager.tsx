@@ -83,7 +83,7 @@ interface Payment {
   invoiceNumber: string;
 }
 
-export function SubscriptionManager() {
+export function SubscriptionManager(...args: any[]): void {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
   const [selectedSubscription, setSelectedSubscription] = useState<Subscription | null>(null);

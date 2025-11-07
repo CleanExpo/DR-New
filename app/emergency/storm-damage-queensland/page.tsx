@@ -126,7 +126,7 @@ const DecisionTree = () => {
     }
   ];
 
-  const handleDecision = (option: any) => {
+  const handleDecision = (option: unknown) => {
     setDecisions([...decisions, option.value]);
     if (option.next < steps.length) {
       setCurrentStep(option.next);

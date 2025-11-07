@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 
-export function HomepageStructuredData() {
+export function HomepageStructuredData(...args: any[]): void {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organisation",

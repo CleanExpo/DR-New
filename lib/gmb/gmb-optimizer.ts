@@ -2,8 +2,8 @@ import { google } from 'googleapis';
 
 // Initialize the Google My Business API client
 export class GMBOptimizer {
-  private mybusiness: any;
-  private auth: any;
+  private mybusiness: unknown;
+  private auth: unknown;
 
   constructor() {
     this.initializeAuth();

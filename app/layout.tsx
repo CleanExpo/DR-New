@@ -51,14 +51,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
-    default: 'Disaster Recovery Australia | 24/7 Emergency Restoration Services | IICRC Certified',
-    template: '%s | Disaster Recovery Australia'
+    default: 'Water Damage Restoration Brisbane | Master Restorer Phill McGurk | 24/7 Emergency',
+    template: '%s | Master Restorer Brisbane'
   },
-  description: 'Australia\'s leading IICRC-certified disaster restoration specialists. 24/7 emergency response for water damage, fire damage, mould remediation across Sydney, Melbourne, Brisbane, Perth, Adelaide. Insurance approved. <10,000 certified professionals nationwide.',
-  keywords: 'disaster recovery australia, water damage restoration sydney, fire damage melbourne, mould remediation brisbane, emergency restoration perth, flood cleanup adelaide, storm damage repair, biohazard cleanup, IICRC certified, insurance restoration, 24 hour emergency response, commercial restoration, residential restoration',
-  authors: [{ name: 'Disaster Recovery Australia' }],
-  creator: 'Disaster Recovery Australia',
-  publisher: 'Disaster Recovery',
+  description: 'Master Restorer provides 24/7 water damage, fire damage & mould restoration in Brisbane, Ipswich & Logan. 60-minute response. Insurance approved. Call 1300 309 361.',
+  keywords: 'water damage restoration brisbane, emergency water damage brisbane, fire damage restoration brisbane, mould removal brisbane, storm damage repairs brisbane, flood restoration brisbane, master restorer brisbane, phill mcgurk, iicrc certified brisbane, disaster recovery brisbane, water damage ipswich, water damage logan, 24 hour emergency restoration, insurance approved restoration',
+  authors: [{ name: 'Disaster Recovery Brisbane - Master Restorer Phill McGurk' }],
+  creator: 'Master Restorer Phill McGurk',
+  publisher: 'Disaster Recovery Brisbane',
   formatDetection: {
     email: false,
     address: false,
@@ -67,28 +67,28 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Disaster Recovery Australia'
+    title: 'Master Restorer Brisbane'
   },
   openGraph: {
     type: 'website',
     locale: 'en_AU',
     url: 'https://disasterrecovery.com.au',
-    siteName: 'Disaster Recovery Australia',
-    title: 'Disaster Recovery Australia | 24/7 IICRC-Certified Emergency Restoration',
-    description: 'Australia\'s elite network of <10,000 IICRC-certified restoration professionals. 24/7 emergency response prevents 50% of secondary damage. Trusted by major insurers.',
+    siteName: 'Disaster Recovery Brisbane - Master Restorer',
+    title: 'Brisbane Water Damage Restoration | Master Restorer | 60-Min Response',
+    description: 'Brisbane\'s only Master Restorer. 24/7 water damage, fire damage & flood restoration. Serving Brisbane, Ipswich & Logan. Insurance approved. Call 1300 309 361.',
     images: [
       {
         url: '/images/disaster-recovery-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Disaster Recovery Australia - Emergency Restoration Services' }
+        alt: 'Master Restorer Brisbane - Emergency Water Damage Restoration' }
     ] },
   twitter: {
     card: 'summary_large_image',
-    title: 'Disaster Recovery Australia | 24/7 Emergency Restoration',
-    description: 'IICRC-certified disaster recovery. 24-48hr critical response window. Water, fire, mould damage specialists.',
+    title: 'Master Restorer Brisbane | 24/7 Water Damage Emergency',
+    description: 'IICRC Master Restorer. 60-minute emergency response Brisbane, Ipswich & Logan. Water, fire, mould damage specialists.',
     images: ['/images/disaster-recovery-twitter.jpg'],
-    creator: '@DisasterRecovAU' },
+    creator: '@PhillMcGurk' },
   robots: {
     index: true,
     follow: true,
@@ -265,7 +265,7 @@ export default function RootLayout({
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag(...args: any[]): void {dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
             ${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY ? `gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY}');` : ''}

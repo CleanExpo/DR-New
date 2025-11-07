@@ -237,25 +237,40 @@ const RURAL_LOCATIONS: LocationData[] = [
  * Get all Australian locations
  */
 export async function getAustralianLocations(): Promise<LocationData[]> {
+  try {
   // In production, this would fetch from a database
   return [...MAJOR_CITIES, ...REGIONAL_CENTERS, ...RURAL_LOCATIONS];
-}
+
+  } catch (error) {
+    console.error(`Error in getAustralianLocations:`, error);
+    throw error;
+  }}
 
 /**
  * Get locations by state
  */
 export async function getLocationsByState(state: string): Promise<LocationData[]> {
+  try {
   const allLocations = await getAustralianLocations();
   return allLocations.filter(loc => loc.state === state.toUpperCase());
-}
+
+  } catch (error) {
+    console.error(`Error in getLocationsByState:`, error);
+    throw error;
+  }}
 
 /**
  * Get location by slug
  */
 export async function getLocationBySlug(slug: string): Promise<LocationData | null> {
+  try {
   const allLocations = await getAustralianLocations();
   return allLocations.find(loc => loc.slug === slug) || null;
-}
+
+  } catch (error) {
+    console.error(`Error in getLocationBySlug:`, error);
+    throw error;
+  }}
 
 /**
  * Get locations within radius of a point
@@ -264,18 +279,23 @@ export async function getLocationsWithinRadius(
   center: { lat: number; lng: number },
   radiusKm: number
 ): Promise<LocationData[]> {
-  const allLocations = await getAustralianLocations();
+  try {
+    const allLocations = await getAustralianLocations();
 
-  return allLocations.filter(location => {
-    if (!location.coordinates) return false;
+    return allLocations.filter(location => {
+      if (!location.coordinates) return false;
 
-    const distance = calculateDistance(
-      center,
-      location.coordinates
-    );
+      const distance = calculateDistance(
+        center,
+        location.coordinates
+      );
 
-    return distance <= radiusKm;
-  });
+      return distance <= radiusKm;
+    });
+  } catch (error) {
+    console.error('Error in getLocationsWithinRadius:', error);
+    throw error;
+  }
 }
 
 /**
@@ -304,52 +324,63 @@ export async function getLocationsByDisasterRisk(
   disasterType: 'flood' | 'bushfire' | 'cyclone' | 'storm' | 'drought',
   minLevel: 'low' | 'medium' | 'high' | 'extreme' = 'low'
 ): Promise<LocationData[]> {
-  const allLocations = await getAustralianLocations();
-  const levelValues = { low: 1, medium: 2, high: 3, extreme: 4 };
+  try {
+    const allLocations = await getAustralianLocations();
+    const levelValues = { low: 1, medium: 2, high: 3, extreme: 4 };
 
-  return allLocations.filter(location => {
-    if (!location.disasterRisk) return false;
+    return allLocations.filter(location => {
+      if (!location.disasterRisk) return false;
 
-    const risk = location.disasterRisk.find(r => r.type === disasterType);
-    if (!risk) return false;
+      const risk = location.disasterRisk.find(r => r.type === disasterType);
+      if (!risk) return false;
 
-    return levelValues[risk.level] >= levelValues[minLevel];
-  });
+      return levelValues[risk.level] >= levelValues[minLevel];
+    });
+  } catch (error) {
+    console.error('Error in getLocationsByDisasterRisk:', error);
+    throw error;
+  }
 }
 
 /**
  * Get high-risk locations for any disaster type
  */
 export async function getHighRiskLocations(): Promise<LocationData[]> {
-  const allLocations = await getAustralianLocations();
+  try {
+    const allLocations = await getAustralianLocations();
 
-  return allLocations.filter(location => {
-    if (!location.disasterRisk) return false;
+    return allLocations.filter(location => {
+      if (!location.disasterRisk) return false;
 
-    return location.disasterRisk.some(
-      risk => risk.level === 'high' || risk.level === 'extreme'
-    );
-  });
+      return location.disasterRisk.some(
+        risk => risk.level === 'high' || risk.level === 'extreme'
+      );
+    });
+  } catch (error) {
+    console.error('Error in getHighRiskLocations:', error);
+    throw error;
+  }
 }
 
 /**
  * Get suburb data for a city
  */
 export async function getSuburbs(citySlug: string): Promise<LocationData[]> {
-  // In production, this would fetch from a comprehensive suburbs database
-  // For now, return mock suburb data
-  const suburbs: Record<string, LocationData[]> = {
-    'brisbane': [
-      {
-        id: 'brisbane-cbd',
-        name: 'Brisbane CBD',
-        slug: 'brisbane-cbd',
-        state: 'QLD',
-        city: 'Brisbane',
-        suburb: 'CBD',
-        postcode: '4000',
-        coordinates: { lat: -27.4698, lng: 153.0251 }
-      },
+  try {
+    // In production, this would fetch from a comprehensive suburbs database
+    // For now, return mock suburb data
+    const suburbs: Record<string, LocationData[]> = {
+      'brisbane': [
+        {
+          id: 'brisbane-cbd',
+          name: 'Brisbane CBD',
+          slug: 'brisbane-cbd',
+          state: 'QLD',
+          city: 'Brisbane',
+          suburb: 'CBD',
+          postcode: '4000',
+          coordinates: { lat: -27.4698, lng: 153.0251 }
+        },
       {
         id: 'new-farm',
         name: 'New Farm',
@@ -405,7 +436,11 @@ export async function getSuburbs(citySlug: string): Promise<LocationData[]> {
     ]
   };
 
-  return suburbs[citySlug] || [];
+    return suburbs[citySlug] || [];
+  } catch (error) {
+    console.error('Error in getSuburbs:', error);
+    throw error;
+  }
 }
 
 /**
@@ -445,45 +480,60 @@ export function generateLocationVariations(location: LocationData): string[] {
  * Get location demographics
  */
 export async function getLocationDemographics(locationId: string): Promise<Demographics | null> {
-  // In production, this would fetch from ABS data
-  // For now, return mock demographics
-  return {
-    medianAge: 35,
-    medianIncome: 75000,
-    propertyTypes: {
-      residential: 65,
-      commercial: 25,
-      industrial: 10
-    }
-  };
+  try {
+    // In production, this would fetch from ABS data
+    // For now, return mock demographics
+    return {
+      medianAge: 35,
+      medianIncome: 75000,
+      propertyTypes: {
+        residential: 65,
+        commercial: 25,
+        industrial: 10
+      }
+    };
+  } catch (error) {
+    console.error('Error in getLocationDemographics:', error);
+    throw error;
+  }
 }
 
 /**
  * Check if location needs contractors
  */
 export async function locationNeedsContractors(locationId: string): Promise<boolean> {
-  // Check if location has adequate contractor coverage
-  // In production, this would query the contractor database
-  return Math.random() > 0.5; // Mock implementation
+  try {
+    // Check if location has adequate contractor coverage
+    // In production, this would query the contractor database
+    return Math.random() > 0.5; // Mock implementation
+  } catch (error) {
+    console.error('Error in locationNeedsContractors:', error);
+    throw error;
+  }
 }
 
 /**
  * Get underserved locations
  */
 export async function getUnderservedLocations(): Promise<LocationData[]> {
-  const allLocations = await getAustralianLocations();
+  try {
+    const allLocations = await getAustralianLocations();
 
-  // Filter locations that need more contractors
-  const underserved = [];
+    // Filter locations that need more contractors
+    const underserved = [];
 
-  for (const location of allLocations) {
-    const needsContractors = await locationNeedsContractors(location.id);
-    if (needsContractors) {
-      underserved.push(location);
+    for (const location of allLocations) {
+      const needsContractors = await locationNeedsContractors(location.id);
+      if (needsContractors) {
+        underserved.push(location);
+      }
     }
-  }
 
-  return underserved;
+    return underserved;
+  } catch (error) {
+    console.error('Error in getUnderservedLocations:', error);
+    throw error;
+  }
 }
 
 export * from '../page-generator/types';

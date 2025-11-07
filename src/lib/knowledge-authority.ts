@@ -185,7 +185,7 @@ export function convertTechnicalToCommon(technical: string): string {
 /**
  * Generate location-specific content with local authority
  */
-export function generateLocalAuthorityContent(location: string, disaster: string): any {
+export function generateLocalAuthorityContent(location: string, disaster: string): unknown {
   return {
     localWeatherData: `Source: Bureau of Meteorology - ${location} climate data`,
     buildingCodes: `Source: Australian Building Codes - ${location} requirements`,

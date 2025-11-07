@@ -9,8 +9,7 @@ export default function RegisterServiceWorker() {
         navigator.serviceWorker
           .register('/service-worker.js')
           .then(registration => {
-            console.log('ServiceWorker registration successful:', registration.scope);
-
+            
             // Check for updates periodically
             setInterval(() => {
               registration.update();
@@ -38,12 +37,10 @@ export default function RegisterServiceWorker() {
 
       // Handle offline/online events
       window.addEventListener('online', () => {
-        console.log('Back online');
-      });
+              });
 
       window.addEventListener('offline', () => {
-        console.log('Gone offline');
-      });
+              });
     }
   }, []);
 

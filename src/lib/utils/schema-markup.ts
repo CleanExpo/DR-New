@@ -381,6 +381,6 @@ export function generateEmergencyServiceSchema(): EmergencyServiceSchema {
 /**
  * Helper function to inject schema into page head
  */
-export function injectSchema(schema: any): string {
+export function injectSchema(schema: unknown): string {
   return `<script type="application/ld+json">${JSON.stringify(schema, null, 2)}</script>`;
 }

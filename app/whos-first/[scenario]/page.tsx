@@ -13,7 +13,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   // Parse scenario ID to extract components
   const parts = params.scenario.split('-');
-  
+
   // Generate scenario data
   const scenario = WhosFirstGenerator.generateScenario(
     parts[0], // damage type
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 //     'mould-black-mould-just-discovered-residential',
 //     'storm-roof-damage-immediate-residential',
 //   ];
-
+//
 //   return commonScenarios.map((scenario) => ({
 //     scenario,
 //   }));

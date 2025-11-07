@@ -11,7 +11,7 @@ interface SEOConfig {
     images?: { url: string; alt: string }[]
     type?: string
   }
-  structuredData?: any
+  structuredData?: unknown
 }
 
 export function generateSEO(config: SEOConfig): Metadata {
@@ -54,7 +54,7 @@ export function generateSEO(config: SEOConfig): Metadata {
 }
 
 // Schema.org structured data generators
-export const generateLocalBusinessSchema = (businessInfo: any) => ({
+export const generateLocalBusinessSchema = (businessInfo: unknown) => ({
   '@context': 'https://schema.org',
   '@type': 'DamageRestorationService',
   '@id': 'https://disaster-recovery-seven.vercel.app/#organisation',
@@ -158,9 +158,9 @@ export const generateServiceSchema = (service: {
   name: string
   description: string
   image?: string
-  provider?: any
+  provider?: unknown
   areaServed?: string[]
-  availableChannel?: any
+  availableChannel?: unknown
 }) => ({
   '@context': 'https://schema.org',
   '@type': 'Service',

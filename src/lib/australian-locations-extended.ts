@@ -304,7 +304,7 @@ export const internationalLocations: ExtendedLocationData[] = [
 ];
 
 // Generate dynamic location combinations
-export function generateLocationCombinations() {
+export function generateLocationCombinations(...args: any[]): void {
   const combinations: string[] = [];
   
   // Capital + Service combinations

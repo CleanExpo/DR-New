@@ -6,26 +6,108 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
   	container: {
   		center: true,
-  		padding: '2rem',
+  		padding: {
+  			DEFAULT: '1rem',
+  			sm: '1.5rem',
+  			lg: '2rem',
+  		},
   		screens: {
-  			'2xl': '1400px'
+  			sm: '640px',
+  			md: '768px',
+  			lg: '1024px',
+  			xl: '1280px',
+  			'2xl': '1536px'
   		}
   	},
   	extend: {
   		colors: {
+  			// Legacy shadcn colors
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			// Primary Brand Colors - Deep Professional Blue
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				50: '#f0f4ff',
+  				100: '#dce6ff',
+  				200: '#b8ceff',
+  				300: '#8aafff',
+  				400: '#5a8aff',
+  				500: '#2563eb',
+  				600: '#1d4ed8',
+  				700: '#1e40af',
+  				800: '#1e3a8a',
+  				900: '#1e293b',
+  				DEFAULT: '#1d4ed8',
+  				foreground: '#ffffff',
   			},
+  			// Emergency Red
+  			emergency: {
+  				50: '#fff1f0',
+  				100: '#ffe1de',
+  				200: '#ffc7c2',
+  				300: '#ffa09a',
+  				400: '#ff6b60',
+  				500: '#dc2626',
+  				600: '#b91c1c',
+  				700: '#991b1b',
+  				800: '#7f1d1d',
+  				900: '#450a0a',
+  				DEFAULT: '#dc2626',
+  				foreground: '#ffffff',
+  			},
+  			// Success Green
+  			success: {
+  				50: '#f0fdf4',
+  				100: '#dcfce7',
+  				200: '#bbf7d0',
+  				300: '#86efac',
+  				400: '#4ade80',
+  				500: '#16a34a',
+  				600: '#15803d',
+  				700: '#166534',
+  				800: '#14532d',
+  				900: '#052e16',
+  				DEFAULT: '#16a34a',
+  				foreground: '#ffffff',
+  			},
+  			// Premium Gold
+  			premium: {
+  				50: '#fffbeb',
+  				100: '#fef3c7',
+  				200: '#fde68a',
+  				300: '#fcd34d',
+  				400: '#fbbf24',
+  				500: '#d97706',
+  				600: '#b45309',
+  				700: '#92400e',
+  				800: '#78350f',
+  				900: '#451a03',
+  				DEFAULT: '#d97706',
+  				foreground: '#ffffff',
+  			},
+  			// Neutral Grays
+  			neutral: {
+  				50: '#fafafa',
+  				100: '#f5f5f5',
+  				200: '#e5e5e5',
+  				300: '#d4d4d4',
+  				400: '#a3a3a3',
+  				500: '#737373',
+  				600: '#525252',
+  				700: '#404040',
+  				800: '#262626',
+  				900: '#171717',
+  				950: '#0a0a0a',
+  			},
+  			// Legacy compatibility
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
@@ -49,7 +131,7 @@ const config: Config = {
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
-  			}
+  			},
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

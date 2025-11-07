@@ -392,7 +392,7 @@ export class AIService implements IAIService {
     };
   }
 
-  private updateCircuitBreaker(provider: AIProvider, error: any): void {
+  private updateCircuitBreaker(provider: AIProvider, error: unknown): void {
     const breaker = this.circuitBreakers.get(provider);
     if (!breaker) return;
     

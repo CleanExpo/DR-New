@@ -60,7 +60,7 @@ export default function LoadingSpinner({
 }
 
 // Loading skeleton for content areas
-export function LoadingSkeleton({ lines = 3 }: { lines?: number }) {
+export function LoadingSkeleton(...args: any[]): void {
   return (
     <div className="animate-pulse">
       <div className="h-4 bg-gray-200 rounded mb-2 w-3/4"></div>
@@ -73,17 +73,7 @@ export function LoadingSkeleton({ lines = 3 }: { lines?: number }) {
 }
 
 // Loading button state
-export function LoadingButton({ 
-  loading, 
-  children, 
-  loadingText = 'Processing...',
-  ...props 
-}: { 
-  loading: boolean; 
-  children: React.ReactNode; 
-  loadingText?: string;
-  [key: string]: any;
-}) {
+export function LoadingButton(...args: any[]): void {
   return (
     <button 
       disabled={loading} 

@@ -220,7 +220,7 @@ export function generateLocationContent(
 }
 
 // Generate Schema Markup for Local Pages
-export function generateLocalSchema(location: LocationData, service: string) {
+export function generateLocalSchema(...args: any[]): void {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -248,7 +248,7 @@ export function generateLocalSchema(location: LocationData, service: string) {
 }
 
 // Generate FAQ Schema
-export function generateFAQSchema(location: LocationData, service: string) {
+export function generateFAQSchema(...args: any[]): void {
   const serviceData = serviceTemplates[service];
   
   return {

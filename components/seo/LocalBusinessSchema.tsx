@@ -7,7 +7,7 @@ interface LocalBusinessSchemaProps {
   phoneNumber?: string;
 }
 
-export function LocalBusinessSchema({ location = 'Brisbane', phoneNumber = '1300-000-000' }: LocalBusinessSchemaProps) {
+export function LocalBusinessSchema(...args: any[]): void {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",

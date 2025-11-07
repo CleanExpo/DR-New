@@ -10,13 +10,7 @@ interface ExternalLinkProps {
   rel?: string;
 }
 
-export function ExternalLink({
-  href,
-  children,
-  className = '',
-  showIcon = true,
-  rel = 'noopener noreferrer nofollow'
-}: ExternalLinkProps) {
+export function ExternalLink(...args: any[]): void {
   // Track external link clicks for analytics
   const handleClick = () => {
     if (typeof window !== 'undefined' && (window as any).gtag) {

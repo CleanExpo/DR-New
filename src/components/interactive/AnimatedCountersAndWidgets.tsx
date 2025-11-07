@@ -24,7 +24,7 @@ interface AnimatedCounterProps {
   colour?: string;
 }
 
-function AnimatedCounter({ target, duration = 2000, prefix = '', suffix = '', decimals = 0, colour = 'text-blue-600' }: AnimatedCounterProps) {
+function AnimatedCounter(...args: any[]): void {
   const [count, setCount] = useState(0);
   const [ref, inView] = useInView({
     threshold: 0.3,
@@ -78,7 +78,7 @@ function AnimatedCounter({ target, duration = 2000, prefix = '', suffix = '', de
 }
 
 // Live Availability Widget
-function LiveAvailabilityWidget() {
+function LiveAvailabilityWidget(...args: any[]): void {
   const [teamStatus, setTeamStatus] = useState({
     available: true,
     responseTime: 45,
@@ -221,7 +221,7 @@ interface StatCardProps {
   delay?: number;
 }
 
-function StatCard({ icon: Icon, value, label, suffix = '', prefix = '', colour, delay = 0 }: StatCardProps) {
+function StatCard(...args: any[]): void {
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true });
@@ -268,7 +268,7 @@ function StatCard({ icon: Icon, value, label, suffix = '', prefix = '', colour, 
 }
 
 // Real-time Response Map Widget
-function ResponseTimeMap() {
+function ResponseTimeMap(...args: any[]): void {
   const locations = [
     { city: 'Sydney', time: 35, colour: 'from-green-500 to-green-600', lat: -33.8688, lng: 151.2093 },
     { city: 'Melbourne', time: 42, colour: 'from-green-500 to-green-600', lat: -37.8136, lng: 144.9631 },

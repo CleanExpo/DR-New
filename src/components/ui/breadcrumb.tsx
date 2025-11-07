@@ -10,7 +10,7 @@ interface BreadcrumbItem {
   href: string;
 }
 
-export function Breadcrumb() {
+export function Breadcrumb(...args: any[]): void {
   const pathname = usePathname();
   
   // Don't show breadcrumb on homepage

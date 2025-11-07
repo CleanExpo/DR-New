@@ -90,14 +90,14 @@ const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
 
-function dispatch(action: ActionType) {
+function dispatch(...args: any[]): void {
   memoryState = reducer(memoryState, action)
   listeners.forEach((listener) => {
     listener(memoryState)
   })
 }
 
-function toast(props: Omit<ToasterToast, "id">) {
+function toast(...args: any[]): void {
   const id = Date.now().toString()
   
   dispatch({
@@ -111,7 +111,7 @@ function toast(props: Omit<ToasterToast, "id">) {
     dismiss: () => dispatch({ type: "DISMISS_TOAST", toastId: id }) }
 }
 
-function useToast() {
+function useToast(...args: any[]): void {
   const [state, setState] = React.useState<State>(memoryState)
 
   React.useEffect(() => {

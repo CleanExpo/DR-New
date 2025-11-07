@@ -19,17 +19,7 @@ interface ProtectedRouteProps {
   redirectTo?: string;
 }
 
-export function ProtectedRoute({
-  children,
-  permissions = [],
-  roles = [],
-  requireAll = false,
-  resource,
-  resourceId,
-  action,
-  fallback,
-  redirectTo = '/unauthorized'
-}: ProtectedRouteProps) {
+export function ProtectedRoute(...args: any[]): void {
   const router = useRouter();
   const { user, loading, hasAnyPermission, hasAllPermissions, canAccess } = usePermissions();
   const [authorised, setAuthorized] = useState<boolean | null>(null);
@@ -109,7 +99,7 @@ export function ProtectedRoute({
 }
 
 // Convenience components for common access patterns
-export function PortalAdminOnly({ children, fallback }: { children: React.ReactNode; fallback?: React.ReactNode }) {
+export function PortalAdminOnly(...args: any[]): void {
   return (
     <ProtectedRoute roles={['portal_admin']} fallback={fallback}>
       {children}
@@ -117,7 +107,7 @@ export function PortalAdminOnly({ children, fallback }: { children: React.ReactN
   );
 }
 
-export function ContractorAdminOnly({ children, fallback }: { children: React.ReactNode; fallback?: React.ReactNode }) {
+export function ContractorAdminOnly(...args: any[]): void {
   return (
     <ProtectedRoute roles={['contractor_admin']} fallback={fallback}>
       {children}
@@ -125,7 +115,7 @@ export function ContractorAdminOnly({ children, fallback }: { children: React.Re
   );
 }
 
-export function AuditorOnly({ children, fallback }: { children: React.ReactNode; fallback?: React.ReactNode }) {
+export function AuditorOnly(...args: any[]): void {
   return (
     <ProtectedRoute roles={['compliance_auditor']} fallback={fallback}>
       {children}
@@ -133,11 +123,7 @@ export function AuditorOnly({ children, fallback }: { children: React.ReactNode;
   );
 }
 
-export function CompanyMemberOnly({ children, companyId, fallback }: { 
-  children: React.ReactNode; 
-  companyId: string;
-  fallback?: React.ReactNode;
-}) {
+export function CompanyMemberOnly(...args: any[]): void {
   return (
     <ProtectedRoute 
       resource="company" 
@@ -158,12 +144,7 @@ interface ProtectedComponentProps {
   message?: string;
 }
 
-export function ProtectedComponent({
-  children,
-  permission,
-  showMessage = true,
-  message = 'You need additional permissions to view this content'
-}: ProtectedComponentProps) {
+export function ProtectedComponent(...args: any[]): void {
   const { hasPermission } = usePermissions();
   
   if (!permission || hasPermission(permission)) {
@@ -195,15 +176,7 @@ interface ProtectedActionProps {
   onAction: () => void;
 }
 
-export function ProtectedAction({
-  children,
-  permission,
-  resource,
-  resourceId,
-  action,
-  onUnauthorized,
-  onAction
-}: ProtectedActionProps) {
+export function ProtectedAction(...args: any[]): void {
   const { hasPermission, canAccess } = usePermissions();
   const { logAction } = useAuditLog();
   
@@ -245,7 +218,7 @@ export function ProtectedAction({
 }
 
 // Audit logging hook import
-function useAuditLog() {
+function useAuditLog(...args: any[]): void {
   const { user } = usePermissions();
   
   const logAction = async (

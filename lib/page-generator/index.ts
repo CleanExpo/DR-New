@@ -22,7 +22,7 @@ export interface GeneratedPage {
   description: string;
   content: string;
   metadata: PageMetadata;
-  schema: any;
+  schema: unknown;
 }
 
 export interface PageMetadata {
@@ -48,7 +48,8 @@ export interface PageMetadata {
  * Generates complete page data including content, SEO, and schema
  */
 export async function generatePage(config: PageGenerationConfig): Promise<GeneratedPage> {
-  const { location, service, contractors, template } = config;
+  try {
+    const { location, service, contractors, template } = config;
 
   // Generate slug based on location and service
   const slug = generateSlug(location, service);
@@ -92,14 +93,18 @@ export async function generatePage(config: PageGenerationConfig): Promise<Genera
     }
   };
 
-  return {
-    slug,
-    title: seoData.title,
-    description: seoData.description,
-    content,
-    metadata,
-    schema
-  };
+    return {
+      slug,
+      title: seoData.title,
+      description: seoData.description,
+      content,
+      metadata,
+      schema
+    };
+  } catch (error) {
+    console.error('Error in generatePage:', error);
+    throw error;
+  }
 }
 
 /**
@@ -136,16 +141,17 @@ export async function batchGeneratePages(
   contractors: ContractorData[],
   template: PageTemplate
 ): Promise<GeneratedPage[]> {
-  const pages: GeneratedPage[] = [];
+  try {
+    const pages: GeneratedPage[] = [];
 
-  for (const location of locations) {
-    // Generate location-only page
-    const locationPage = await generatePage({
-      location,
-      contractors: filterContractorsByLocation(contractors, location),
-      template
-    });
-    pages.push(locationPage);
+    for (const location of locations) {
+      // Generate location-only page
+      const locationPage = await generatePage({
+        location,
+        contractors: filterContractorsByLocation(contractors, location),
+        template
+      });
+      pages.push(locationPage);
 
     // Generate service-specific pages for this location
     for (const service of services) {
@@ -159,7 +165,11 @@ export async function batchGeneratePages(
     }
   }
 
-  return pages;
+    return pages;
+  } catch (error) {
+    console.error('Error in batchGeneratePages:', error);
+    throw error;
+  }
 }
 
 /**
@@ -223,28 +233,33 @@ export async function generatePagesForNewContractor(
   allServices: ServiceData[],
   template: PageTemplate
 ): Promise<GeneratedPage[]> {
-  const pages: GeneratedPage[] = [];
+  try {
+    const pages: GeneratedPage[] = [];
 
-  // Find locations within contractor's service radius
-  const coveredLocations = allLocations.filter(location => {
-    const distance = calculateDistance(contractor.location, location);
-    return distance <= contractor.serviceRadius;
-  });
+    // Find locations within contractor's service radius
+    const coveredLocations = allLocations.filter(location => {
+      const distance = calculateDistance(contractor.location, location);
+      return distance <= contractor.serviceRadius;
+    });
 
-  // Generate pages for each covered location and service combination
-  for (const location of coveredLocations) {
-    for (const service of contractor.services) {
-      const page = await generatePage({
-        location,
-        service,
-        contractors: [contractor],
-        template
-      });
-      pages.push(page);
+    // Generate pages for each covered location and service combination
+    for (const location of coveredLocations) {
+      for (const service of contractor.services) {
+        const page = await generatePage({
+          location,
+          service,
+          contractors: [contractor],
+          template
+        });
+        pages.push(page);
+      }
     }
-  }
 
-  return pages;
+    return pages;
+  } catch (error) {
+    console.error('Error in generatePagesForNewContractor:', error);
+    throw error;
+  }
 }
 
 export * from './types';

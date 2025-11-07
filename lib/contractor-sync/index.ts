@@ -37,18 +37,23 @@ export async function processContractorWebhook(
   payload: ContractorWebhookPayload,
   config: ContractorSyncConfig = defaultConfig
 ): Promise<void> {
-  const { event, contractor } = payload;
+  try {
+    const { event, contractor } = payload;
 
-  switch (event) {
-    case 'contractor.created':
-      await handleNewContractor(contractor, config);
-      break;
-    case 'contractor.updated':
-      await handleContractorUpdate(contractor, config);
-      break;
-    case 'contractor.deleted':
-      await handleContractorDeletion(contractor);
-      break;
+    switch (event) {
+      case 'contractor.created':
+        await handleNewContractor(contractor, config);
+        break;
+      case 'contractor.updated':
+        await handleContractorUpdate(contractor, config);
+        break;
+      case 'contractor.deleted':
+        await handleContractorDeletion(contractor);
+        break;
+    }
+  } catch (error) {
+    console.error('Error in processContractorWebhook:', error);
+    throw error;
   }
 }
 
@@ -59,53 +64,54 @@ async function handleNewContractor(
   contractor: ContractorData,
   config: ContractorSyncConfig
 ): Promise<void> {
-  if (!config.autoGenerate) return;
+  try {
+    if (!config.autoGenerate) return;
 
-  console.log(`Processing new contractor: ${contractor.businessName}`);
-
-  // Get all locations within service radius
-  const allLocations = await getAustralianLocations();
-  const servableLocations = filterLocationsByRadius(
-    allLocations,
-    contractor.location,
-    contractor.serviceRadius
-  );
-
-  console.log(`Found ${servableLocations.length} locations within ${contractor.serviceRadius}km`);
-
-  // Generate pages for priority services first
-  const priorityServices = contractor.services.filter(
-    service => config.priorityServices.includes(service.slug)
-  );
-
-  if (priorityServices.length > 0) {
-    await generatePagesForServices(
-      contractor,
-      servableLocations,
-      priorityServices,
-      'priority'
+    // Get all locations within service radius
+    const allLocations = await getAustralianLocations();
+    const servableLocations = filterLocationsByRadius(
+      allLocations,
+      contractor.location,
+      contractor.serviceRadius
     );
-  }
 
-  // Generate pages for remaining services
-  const remainingServices = contractor.services.filter(
-    service => !config.priorityServices.includes(service.slug)
-  );
-
-  if (remainingServices.length > 0) {
-    await generatePagesForServices(
-      contractor,
-      servableLocations,
-      remainingServices,
-      'standard'
+    // Generate pages for priority services first
+    const priorityServices = contractor.services.filter(
+      service => config.priorityServices.includes(service.slug)
     );
+
+    if (priorityServices.length > 0) {
+      await generatePagesForServices(
+        contractor,
+        servableLocations,
+        priorityServices,
+        'priority'
+      );
+    }
+
+    // Generate pages for remaining services
+    const remainingServices = contractor.services.filter(
+      service => !config.priorityServices.includes(service.slug)
+    );
+
+    if (remainingServices.length > 0) {
+      await generatePagesForServices(
+        contractor,
+        servableLocations,
+        remainingServices,
+        'standard'
+      );
+    }
+
+    // Update contractor coverage map
+    await updateCoverageMap(contractor, servableLocations);
+
+    // Send notification to contractor
+    await notifyContractorOfPageGeneration(contractor, servableLocations.length);
+  } catch (error) {
+    console.error('Error in handleNewContractor:', error);
+    throw error;
   }
-
-  // Update contractor coverage map
-  await updateCoverageMap(contractor, servableLocations);
-
-  // Send notification to contractor
-  await notifyContractorOfPageGeneration(contractor, servableLocations.length);
 }
 
 /**
@@ -115,47 +121,53 @@ async function handleContractorUpdate(
   contractor: ContractorData,
   config: ContractorSyncConfig
 ): Promise<void> {
-  console.log(`Updating content for contractor: ${contractor.businessName}`);
+  try {
+    // Check what changed
+    const changes = await detectContractorChanges(contractor);
 
-  // Check what changed
-  const changes = await detectContractorChanges(contractor);
+    if (changes.serviceRadiusChanged) {
+      // Regenerate all pages with new radius
+      await handleNewContractor(contractor, config);
+    } else if (changes.servicesChanged) {
+      // Generate pages only for new services
+      const newServices = changes.newServices || [];
+      const allLocations = await getAustralianLocations();
+      const servableLocations = filterLocationsByRadius(
+        allLocations,
+        contractor.location,
+        contractor.serviceRadius
+      );
 
-  if (changes.serviceRadiusChanged) {
-    // Regenerate all pages with new radius
-    await handleNewContractor(contractor, config);
-  } else if (changes.servicesChanged) {
-    // Generate pages only for new services
-    const newServices = changes.newServices || [];
-    const allLocations = await getAustralianLocations();
-    const servableLocations = filterLocationsByRadius(
-      allLocations,
-      contractor.location,
-      contractor.serviceRadius
-    );
+      await generatePagesForServices(
+        contractor,
+        servableLocations,
+        newServices,
+        'update'
+      );
+    }
 
-    await generatePagesForServices(
-      contractor,
-      servableLocations,
-      newServices,
-      'update'
-    );
+    // Update existing pages with new contractor data
+    await updateExistingPages(contractor, changes);
+  } catch (error) {
+    console.error('Error in handleContractorUpdate:', error);
+    throw error;
   }
-
-  // Update existing pages with new contractor data
-  await updateExistingPages(contractor, changes);
 }
 
 /**
  * Handle contractor deletion
  */
 async function handleContractorDeletion(contractor: ContractorData): Promise<void> {
-  console.log(`Removing contractor from pages: ${contractor.businessName}`);
+  try {
+    // Remove contractor from all generated pages
+    await removeContractorFromPages(contractor.id);
 
-  // Remove contractor from all generated pages
-  await removeContractorFromPages(contractor.id);
-
-  // Check if any pages now have no contractors
-  await checkForEmptyPages();
+    // Check if any pages now have no contractors
+    await checkForEmptyPages();
+  } catch (error) {
+    console.error('Error in handleContractorDeletion:', error);
+    throw error;
+  }
 }
 
 /**
@@ -167,21 +179,26 @@ async function generatePagesForServices(
   services: ServiceData[],
   priority: 'priority' | 'standard' | 'update'
 ): Promise<void> {
-  const template = await getPageTemplate(priority);
+  try {
+    const template = await getPageTemplate(priority);
 
-  for (const service of services) {
-    const pages = await batchGeneratePages(
-      locations,
-      [service],
-      [contractor],
-      template
-    );
+    for (const service of services) {
+      const pages = await batchGeneratePages(
+        locations,
+        [service],
+        [contractor],
+        template
+      );
 
-    // Save generated pages
-    await saveGeneratedPages(pages, priority);
+      // Save generated pages
+      await saveGeneratedPages(pages, priority);
 
-    // Index pages for search
-    await indexPagesForSearch(pages);
+      // Index pages for search
+      await indexPagesForSearch(pages);
+    }
+  } catch (error) {
+    console.error('Error in generatePagesForServices:', error);
+    throw error;
   }
 }
 
@@ -224,22 +241,27 @@ async function updateCoverageMap(
   contractor: ContractorData,
   locations: LocationData[]
 ): Promise<void> {
-  const coverageData = {
-    contractorId: contractor.id,
-    businessName: contractor.businessName,
-    centerPoint: contractor.location.coordinates,
-    radius: contractor.serviceRadius,
-    coveredLocations: locations.map(loc => ({
-      id: loc.id,
-      name: loc.name,
-      postcode: loc.postcode
-    })),
-    services: contractor.services.map(s => s.name),
-    lastUpdated: new Date()
-  };
+  try {
+    const coverageData = {
+      contractorId: contractor.id,
+      businessName: contractor.businessName,
+      centerPoint: contractor.location.coordinates,
+      radius: contractor.serviceRadius,
+      coveredLocations: locations.map(loc => ({
+        id: loc.id,
+        name: loc.name,
+        postcode: loc.postcode
+      })),
+      services: contractor.services.map(s => s.name),
+      lastUpdated: new Date()
+    };
 
-  // Save to database or cache
-  await saveCoverageData(coverageData);
+    // Save to database or cache
+    await saveCoverageData(coverageData);
+  } catch (error) {
+    console.error('Error in updateCoverageMap:', error);
+    throw error;
+  }
 }
 
 /**
@@ -249,10 +271,11 @@ async function notifyContractorOfPageGeneration(
   contractor: ContractorData,
   pageCount: number
 ): Promise<void> {
-  const notification = {
-    to: contractor.email || 'admin@example.com',
-    subject: 'Your Service Pages Are Live!',
-    body: `
+  try {
+    const notification = {
+      to: contractor.email || 'admin@example.com',
+      subject: 'Your Service Pages Are Live!',
+      body: `
       Hello ${contractor.businessName},
 
       Great news! We've automatically generated ${pageCount} location-specific pages
@@ -271,24 +294,39 @@ async function notifyContractorOfPageGeneration(
       Best regards,
       National Restoration Platform
     `
-  };
+    };
 
-  await sendNotification(notification);
+    await sendNotification(notification);
+  } catch (error) {
+    console.error('Error in notifyContractorOfPageGeneration:', error);
+    throw error;
+  }
 }
 
 /**
  * Detect what changed in contractor data
  */
-async function detectContractorChanges(contractor: ContractorData): Promise<any> {
-  // This would compare with previous version in database
-  // For now, return mock changes
-  return {
-    serviceRadiusChanged: false,
-    servicesChanged: true,
-    newServices: contractor.services.slice(0, 1),
-    removedServices: [],
-    certificationChanges: false
-  };
+async function detectContractorChanges(contractor: ContractorData): Promise<{
+  serviceRadiusChanged: boolean;
+  servicesChanged: boolean;
+  newServices: ServiceData[];
+  removedServices: ServiceData[];
+  certificationChanges: boolean;
+}> {
+  try {
+    // This would compare with previous version in database
+    // For now, return mock changes
+    return {
+      serviceRadiusChanged: false,
+      servicesChanged: true,
+      newServices: contractor.services.slice(0, 1),
+      removedServices: [],
+      certificationChanges: false
+    };
+  } catch (error) {
+    console.error('Error in detectContractorChanges:', error);
+    throw error;
+  }
 }
 
 /**
@@ -296,74 +334,121 @@ async function detectContractorChanges(contractor: ContractorData): Promise<any>
  */
 async function updateExistingPages(
   contractor: ContractorData,
-  changes: any
+  changes: unknown
 ): Promise<void> {
-  // Update contractor information on all relevant pages
-  console.log(`Updating ${contractor.businessName} on existing pages`);
-  // Implementation would update database records
+  try {
+    // Update contractor information on all relevant pages
+    // Implementation would update database records
+    console.log('Updating pages for contractor:', contractor.id);
+  } catch (error) {
+    console.error('Error in updateExistingPages:', error);
+    throw error;
+  }
 }
 
 /**
  * Remove contractor from all pages
  */
 async function removeContractorFromPages(contractorId: string): Promise<void> {
-  console.log(`Removing contractor ${contractorId} from all pages`);
-  // Implementation would update database records
+  try {
+    // Implementation would update database records
+    console.log('Removing contractor from pages:', contractorId);
+  } catch (error) {
+    console.error('Error in removeContractorFromPages:', error);
+    throw error;
+  }
 }
 
 /**
  * Check for pages with no contractors
  */
 async function checkForEmptyPages(): Promise<void> {
-  console.log('Checking for pages with no contractors');
-  // Implementation would query database and handle empty pages
+  try {
+    // Implementation would query database and handle empty pages
+    console.log('Checking for empty pages');
+  } catch (error) {
+    console.error('Error in checkForEmptyPages:', error);
+    throw error;
+  }
 }
 
 /**
  * Get page template based on priority
  */
-async function getPageTemplate(priority: string): Promise<any> {
-  // Return appropriate template based on priority
-  return {
-    id: 'contractor-service',
-    name: 'Contractor Service Page',
-    type: 'location-service',
-    sections: [],
-    schemaType: 'Service',
-    contentBlocks: []
-  };
+async function getPageTemplate(priority: string): Promise<{
+  id: string;
+  name: string;
+  type: string;
+  sections: unknown[];
+  schemaType: string;
+  contentBlocks: unknown[];
+}> {
+  try {
+    // Return appropriate template based on priority
+    return {
+      id: 'contractor-service',
+      name: 'Contractor Service Page',
+      type: 'location-service',
+      sections: [],
+      schemaType: 'Service',
+      contentBlocks: []
+    };
+  } catch (error) {
+    console.error('Error in getPageTemplate:', error);
+    throw error;
+  }
 }
 
 /**
  * Save generated pages
  */
-async function saveGeneratedPages(pages: any[], priority: string): Promise<void> {
-  console.log(`Saving ${pages.length} ${priority} pages`);
-  // Implementation would save to database
+async function saveGeneratedPages(pages: unknown[], priority: string): Promise<void> {
+  try {
+    // Implementation would save to database
+    console.log('Saving generated pages:', pages.length, priority);
+  } catch (error) {
+    console.error('Error in saveGeneratedPages:', error);
+    throw error;
+  }
 }
 
 /**
  * Index pages for search
  */
-async function indexPagesForSearch(pages: any[]): Promise<void> {
-  console.log(`Indexing ${pages.length} pages for search`);
-  // Implementation would update search index
+async function indexPagesForSearch(pages: unknown[]): Promise<void> {
+  try {
+    // Implementation would update search index
+    console.log('Indexing pages for search:', pages.length);
+  } catch (error) {
+    console.error('Error in indexPagesForSearch:', error);
+    throw error;
+  }
 }
 
 /**
  * Save coverage data
  */
-async function saveCoverageData(data: any): Promise<void> {
-  console.log(`Saving coverage data for ${data.businessName}`);
-  // Implementation would save to database
+async function saveCoverageData(data: unknown): Promise<void> {
+  try {
+    // Implementation would save to database
+    console.log('Saving coverage data:', data);
+  } catch (error) {
+    console.error('Error in saveCoverageData:', error);
+    throw error;
+  }
 }
 
 /**
  * Send notification
  */
-async function sendNotification(notification: any): Promise<void> {
-  console.log(`Sending notification to ${notification.to}`);
-  // Implementation would send email
+async function sendNotification(notification: unknown): Promise<void> {
+  try {
+    // Implementation would send email
+    console.log('Sending notification:', notification);
+  } catch (error) {
+    console.error('Error in sendNotification:', error);
+    throw error;
+  }
 }
 
 /**
@@ -373,39 +458,58 @@ export async function batchProcessContractors(
   contractors: ContractorData[],
   config: ContractorSyncConfig = defaultConfig
 ): Promise<void> {
-  console.log(`Batch processing ${contractors.length} contractors`);
-
-  for (const contractor of contractors) {
-    await handleNewContractor(contractor, config);
+  try {
+    for (const contractor of contractors) {
+      await handleNewContractor(contractor, config);
+    }
+  } catch (error) {
+    console.error('Error in batchProcessContractors:', error);
+    throw error;
   }
 }
 
 /**
  * Generate coverage report
  */
-export async function generateCoverageReport(): Promise<any> {
-  const allLocations = await getAustralianLocations();
-  const coveredLocations = await getCoveredLocations();
+export async function generateCoverageReport(): Promise<{
+  totalLocations: number;
+  coveredLocations: number;
+  coveragePercentage: string;
+  uncoveredLocations: LocationData[];
+  timestamp: Date;
+}> {
+  try {
+    const allLocations = await getAustralianLocations();
+    const coveredLocations = await getCoveredLocations();
 
-  const coverage = {
-    totalLocations: allLocations.length,
-    coveredLocations: coveredLocations.length,
-    coveragePercentage: (coveredLocations.length / allLocations.length * 100).toFixed(2),
-    uncoveredLocations: allLocations.filter(
-      loc => !coveredLocations.find(c => c.id === loc.id)
-    ),
-    timestamp: new Date()
-  };
+    const coverage = {
+      totalLocations: allLocations.length,
+      coveredLocations: coveredLocations.length,
+      coveragePercentage: (coveredLocations.length / allLocations.length * 100).toFixed(2),
+      uncoveredLocations: allLocations.filter(
+        loc => !coveredLocations.find(c => c.id === loc.id)
+      ),
+      timestamp: new Date()
+    };
 
-  return coverage;
+    return coverage;
+  } catch (error) {
+    console.error('Error in generateCoverageReport:', error);
+    throw error;
+  }
 }
 
 /**
  * Get covered locations
  */
 async function getCoveredLocations(): Promise<LocationData[]> {
-  // Implementation would query database
-  return [];
+  try {
+    // Implementation would query database
+    return [];
+  } catch (error) {
+    console.error('Error in getCoveredLocations:', error);
+    throw error;
+  }
 }
 
 export * from '../page-generator/types';

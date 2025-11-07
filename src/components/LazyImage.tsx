@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 // Simple lazy loading image component for audit detection
 export default function LazyImage() {
   return (

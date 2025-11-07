@@ -16,16 +16,7 @@ interface OptimizedImageProps {
   quality?: number;
 }
 
-export function OptimizedImage({
-  src,
-  alt,
-  width,
-  height,
-  priority = false,
-  className,
-  sizes = '100vw',
-  fill = false,
-  quality = 85 }: OptimizedImageProps) {
+export function OptimizedImage(...args: any[]): void {
   const [isLoading, setIsLoading] = useState(true);
 
   return (

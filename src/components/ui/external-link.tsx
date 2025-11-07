@@ -1,12 +1,6 @@
 import { ExternalLink as ExternalLinkIcon } from 'lucide-react';
 
-export function ExternalLink({
-  href,
-  children
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+export function ExternalLink(...args: any[]): void {
   return (
     <a
       href={href}

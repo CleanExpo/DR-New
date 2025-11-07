@@ -245,17 +245,7 @@ export default function OptimizedImage({
 /**
  * Image Gallery Component for displaying multiple optimized images
  */
-export function OptimizedImageGallery({
-  images,
-  className = ''
-}: {
-  images: Array<{
-    service: string;
-    location: string;
-    imageType: 'hero' | 'equipment' | 'process' | 'team';
-  }>;
-  className?: string;
-}) {
+export function OptimizedImageGallery(...args: any[]): void {
   return (
     <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${className}`}>
       {images.map((image, index) => (

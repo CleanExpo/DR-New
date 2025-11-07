@@ -27,11 +27,12 @@ async function getDirectoryStats(dirPath: string): Promise<ImageStats> {
     savedSpace: 0,
     largeImages: [],
     unoptimizedImages: [],
-    breakdown: {} };
+    breakdown: {},
+  };
 
   const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.bmp'];
 
-  async function processDirectory(currentPath: string) {
+  async function processDirectory(currentPath: string): Promise<void> {
     try {
       const entries = await fs.readdir(currentPath, { withFileTypes: true });
 

@@ -2,7 +2,6 @@
 // Logo Integration Component for Disaster Recovery Platform
 // Generated: 2025-08-31 11:26:31
 
-import React from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 

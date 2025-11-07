@@ -101,7 +101,7 @@ class ErrorBoundary extends Component<Props, State> {
     }
   }
 
-  private logToService = async (errorData: any) => {
+  private logToService = async (errorData: unknown) => {
     // In production, send to a real logging service (e.g., Sentry, LogRocket)
     if (process.env.NODE_ENV === 'production') {
       try {

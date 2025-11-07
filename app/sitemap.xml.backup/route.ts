@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(...args: any[]): Promise<void> {
   try {
     // Dynamically import Prisma to avoid build-time issues
     const { PrismaClient } = await import('@prisma/client');
@@ -24,7 +24,7 @@ export async function GET() {
     //     { updatedAt: 'desc' }
     //   ]
     // });
-    const pages: any[] = [];
+    const pages: unknown[] = [];
 
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au';
     

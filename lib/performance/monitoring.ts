@@ -4,7 +4,7 @@
  */
 
 // Core Web Vitals tracking
-export const reportWebVitals = (metric: any) => {
+export const reportWebVitals = (metric: unknown) => {
   // Send to analytics
   if (window.gtag) {
     window.gtag('event', metric.name, {
@@ -17,15 +17,14 @@ export const reportWebVitals = (metric: any) => {
 
   // Log to console in development
   if (process.env.NODE_ENV === 'development') {
-    console.log(metric);
-  }
+      }
 
   // Send to monitoring service
   sendToMonitoring(metric);
 };
 
 // Send metrics to monitoring service
-function sendToMonitoring(metric: any) {
+function sendToMonitoring(...args: any[]): void {
   const endpoint = '/api/monitoring/metrics';
   
   fetch(endpoint, {
@@ -134,7 +133,7 @@ export class PerformanceMonitor {
 }
 
 // Resource timing analysis
-export function analyzeResourceTiming() {
+export function analyzeResourceTiming(...args: any[]): void {
   if (typeof window === 'undefined' || !window.performance) return null;
 
   const resources = window.performance.getEntriesByType('resource');
@@ -183,7 +182,7 @@ export function analyzeResourceTiming() {
 }
 
 // Memory usage monitoring
-export function getMemoryUsage() {
+export function getMemoryUsage(...args: any[]): void {
   if (typeof window === 'undefined') return null;
   
   // @ts-ignore
@@ -201,7 +200,7 @@ export function getMemoryUsage() {
 }
 
 // Connection monitoring
-export function getConnectionInfo() {
+export function getConnectionInfo(...args: any[]): void {
   if (typeof window === 'undefined' || !navigator) return null;
   
   // @ts-ignore
@@ -218,7 +217,7 @@ export function getConnectionInfo() {
 }
 
 // Lazy loading helper
-export function lazyLoadImages() {
+export function lazyLoadImages(...args: any[]): void {
   if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
 
   const images = document.querySelectorAll('img[data-src]');
@@ -238,7 +237,7 @@ export function lazyLoadImages() {
 }
 
 // Debounce utility
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: unknown[]) => any>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
@@ -256,7 +255,7 @@ export function debounce<T extends (...args: any[]) => any>(
 }
 
 // Throttle utility
-export function throttle<T extends (...args: any[]) => any>(
+export function throttle<T extends (...args: unknown[]) => any>(
   func: T,
   limit: number
 ): (...args: Parameters<T>) => void {
@@ -284,10 +283,10 @@ export const requestIdleCallback =
           } as IdleDeadline);
         }, 1);
       })
-    : (cb: any) => setTimeout(cb, 1);
+    : (cb: unknown) => setTimeout(cb, 1);
 
 // Prefetch critical resources
-export function prefetchCriticalResources(urls: string[]) {
+export function prefetchCriticalResources(...args: any[]): void {
   if (typeof window === 'undefined') return;
 
   urls.forEach(url => {
@@ -299,14 +298,13 @@ export function prefetchCriticalResources(urls: string[]) {
 }
 
 // Service Worker registration
-export async function registerServiceWorker() {
+export async function registerServiceWorker(...args: any[]): Promise<void> {
   if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
   
   if (process.env.NODE_ENV === 'production') {
     try {
       const registration = await navigator.serviceWorker.register('/sw.js');
-      console.log('Service Worker registered:', registration);
-    } catch (error) {
+          } catch (error) {
       console.error('Service Worker registration failed:', error);
     }
   }

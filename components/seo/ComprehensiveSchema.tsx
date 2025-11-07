@@ -304,7 +304,7 @@ export const ComprehensiveSchema: React.FC<SchemaProps> = ({
     return stateMap[city] || 'Australia';
   }
 
-  function generateServiceOffers() {
+  function generateServiceOffers(...args: any[]): void {
     const services = [
       'Water Damage Restoration',
       'Fire Damage Restoration',
@@ -323,7 +323,7 @@ export const ComprehensiveSchema: React.FC<SchemaProps> = ({
     }));
   }
 
-  function generateBreadcrumbs(type: string, loc?: string, srv?: string) {
+  function generateBreadcrumbs(...args: any[]): void {
     const breadcrumbs = [
       {
         "@type": "ListItem",
