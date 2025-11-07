@@ -1,5 +1,7 @@
 # CLAUDE.md - Disaster Recovery Local Service
 
+**⚠️ IMPORTANT**: Read `rules.md` first - it contains non-negotiable enforcement guidelines for this project.
+
 ## Project Focus
 
 ### **Local Service Area**
