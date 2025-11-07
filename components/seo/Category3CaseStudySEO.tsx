@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Script from 'next/script';
 
 interface Category3CaseStudySEOProps {
   title?: string;
@@ -228,7 +228,7 @@ export default function Category3CaseStudySEO({
   };
 
   return (
-    <Head>
+    <>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
@@ -261,10 +261,10 @@ export default function Category3CaseStudySEO({
       <meta name="voice:description" content="24 hour Category 3 water damage restoration for Gold Coast high-rise buildings" />
 
       {/* Structured Data */}
-      <script
+      <Script id="category3-case-study-s-e-o"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-    </Head>
+    </>
   );
 }

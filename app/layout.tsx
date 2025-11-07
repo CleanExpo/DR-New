@@ -133,15 +133,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-AU">
-      <head>
-        <meta name="msvalidate.01" content="DB030D197A83DF2F524BF0DFBACDC52C" />
-        <link rel="icon" type="image/png" href="/logos/disaster-recovery-logo.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/logos/disaster-recovery-logo.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/logos/disaster-recovery-logo.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/logos/disaster-recovery-logo.png" />
-        <link rel="shortcut icon" href="/logos/disaster-recovery-logo.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-colour" content="#0052CC" />
+      <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -229,8 +221,6 @@ export default function RootLayout({
             })
           }}
         />
-      </head>
-      <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
           Skip to main content
         </a>

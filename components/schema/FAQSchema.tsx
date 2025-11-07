@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Script from 'next/script';
 
 interface FAQItem {
   question: string;
@@ -24,11 +24,11 @@ export const FAQSchema: React.FC<FAQSchemaProps> = ({ questions }) => {
   };
 
   return (
-    <Head>
-      <script
+    <>
+      <Script id="f-a-q-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-    </Head>
+    </>
   );
 };

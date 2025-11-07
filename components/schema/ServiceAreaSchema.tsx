@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Script from 'next/script';
 
 export const ServiceAreaSchema: React.FC = () => {
   const schema = {
@@ -146,11 +146,10 @@ export const ServiceAreaSchema: React.FC = () => {
   };
 
   return (
-    <Head>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
-    </Head>
+    <Script
+      id="service-area-schema"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 };

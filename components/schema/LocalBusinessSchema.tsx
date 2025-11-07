@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Script from 'next/script';
 
 interface Address {
   streetAddress: string;
@@ -147,11 +147,11 @@ export const LocalBusinessSchema: React.FC<LocalBusinessSchemaProps> = ({
   };
 
   return (
-    <Head>
-      <script
+    <>
+      <Script id="local-business-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-    </Head>
+    </>
   );
 };

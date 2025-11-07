@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Script from 'next/script';
 
 export const MasterRestorerSchema: React.FC = () => {
   const personSchema = {
@@ -187,15 +187,15 @@ export const MasterRestorerSchema: React.FC = () => {
   };
 
   return (
-    <Head>
-      <script
+    <>
+      <Script id="master-restorer-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <script
+      <Script id="master-restorer-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
-    </Head>
+    </>
   );
 };
