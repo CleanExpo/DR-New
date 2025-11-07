@@ -8,7 +8,7 @@ export const siteConfig = {
   address: '4/17 Tile St, Wacol, QLD 4076',
   businessHours: '24/7 Emergency Service',
   masterRestorer: 'Phill McGurk',
-  certifications: ['IICRC Master Restorer', 'RAI Certified'],
+  certifications: ['IICRC Master Restorer'],
   serviceAreas: {
     primary: ['Brisbane', 'Ipswich', 'Logan'],
     suburbs: {

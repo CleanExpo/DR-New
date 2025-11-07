@@ -72,19 +72,13 @@ export const FOOTER_STRUCTURE: Record<string, FooterSection> = {
       {
         label: 'Phill McGurk - Master Restorer',
         href: '/about-phil-mcgurk',
-        title: 'IICRC and RAI certified Master Restorer',
+        title: 'IICRC certified Master Restorer',
         isInternal: true
       },
       {
         label: 'IICRC Certification',
         href: '/about-phil-mcgurk#iicrc',
         title: 'Institute of Inspection, Cleaning and Restoration Certification',
-        isInternal: true
-      },
-      {
-        label: 'RAI Certification',
-        href: '/about-phil-mcgurk#rai',
-        title: 'Restoration Industry Association certification',
         isInternal: true
       }
     ]

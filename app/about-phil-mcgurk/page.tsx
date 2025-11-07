@@ -143,7 +143,7 @@ export default function PhillMcGurkAboutPage() {
                 <div className="flex flex-wrap gap-4">
                   <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
                     <Phone className="mr-2 h-5 w-5" />
-                    Call Phil Now: 1300 000 000
+                    Call Phil Now: 1300 309 361
                   </Button>
                   <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white/20">
                     <Mail className="mr-2 h-5 w-5" />
@@ -510,7 +510,7 @@ export default function PhillMcGurkAboutPage() {
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button size="lg" className="bg-white text-orange-500 hover:bg-gray-100">
                   <Phone className="mr-2" />
-                  Emergency: 1300 000 000
+                  Emergency: 1300 309 361
                 </Button>
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
                   <Mail className="mr-2" />

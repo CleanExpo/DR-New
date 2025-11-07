@@ -138,7 +138,6 @@ export function generateEnhancedLocalBusinessSchema(...args: any[]): void {
     ],
     award: [
       'IICRC Master Restorer Certification',
-      'RAI Certified Restoration Professional',
       'Queensland Emergency Service Excellence Award'
     ],
     founder: {
@@ -152,7 +151,7 @@ export function generateEnhancedLocalBusinessSchema(...args: any[]): void {
         '@type': 'Organization',
         name: 'IICRC'
       },
-      award: ['Master Restorer Certification', 'RAI Certification']
+      award: ['Master Restorer Certification']
     },
     employee: [
       {
@@ -211,15 +210,6 @@ export function generateEnhancedLocalBusinessSchema(...args: any[]): void {
         recognizedBy: {
           '@type': 'Organization',
           name: 'Institute of Inspection, Cleaning and Restoration Certification'
-        }
-      },
-      {
-        '@type': 'EducationalOccupationalCredential',
-        name: 'RAI Certification',
-        credentialCategory: 'Professional Certification',
-        recognizedBy: {
-          '@type': 'Organization',
-          name: 'Restoration Industry Association'
         }
       }
     ],

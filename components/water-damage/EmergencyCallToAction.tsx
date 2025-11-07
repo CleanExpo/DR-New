@@ -98,9 +98,9 @@ export default function EmergencyCallToAction() {
 
       <div className="cta-buttons" role="group" aria-label="Contact options">
         <a
-          href="tel:1300XXXXXX"
+          href="tel:1300309361"
           className="phone-button"
-          aria-label="Call 1300-XXX-XXX for emergency water damage help"
+          aria-label="Call 1300 309 361 for immediate emergency water damage assistance in Brisbane, Ipswich and Logan"
           style={{
             display: 'inline-block',
             backgroundColor: getUrgencyColor(),
@@ -113,7 +113,7 @@ export default function EmergencyCallToAction() {
             marginBottom: '1rem',
           }}
         >
-          📞 1300-XXX-XXX - Call Now
+          📞 1300 309 361 - Call Now
         </a>
 
         <div
@@ -127,18 +127,8 @@ export default function EmergencyCallToAction() {
             <strong>Can't call?</strong>
           </p>
           <a
-            href="sms:0400XXXXXX?body=URGENT%20water%20damage%20at%20"
-            aria-label="Text 0400-XXX-XXX for help"
-            style={{
-              color: '#0066cc',
-              marginRight: '1rem',
-            }}
-          >
-            📱 Text: 0400-XXX-XXX
-          </a>
-          <a
             href="#contact-form"
-            aria-label="Fill emergency form"
+            aria-label="Fill emergency contact form for water damage assistance"
             style={{
               color: '#0066cc',
             }}

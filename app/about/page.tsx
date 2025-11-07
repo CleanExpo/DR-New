@@ -45,7 +45,6 @@ export default function ModernAboutPage() {
 
   const certifications = [
     { name: 'IICRC', desc: 'Institute of Inspection Cleaning and Restoration' },
-    { name: 'RIA', desc: 'Restoration Industry Association' },
     { name: 'EPA', desc: 'Environmental Protection Agency Certified' },
     { name: 'OSHA', desc: 'Occupational Safety and Health Administration' }
   ];

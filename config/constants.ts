@@ -77,10 +77,6 @@ export const CERTIFICATIONS = {
     name: 'IICRC Master Restorer',
     description: 'Institute of Inspection Cleaning and Restoration Certification',
   },
-  rai: {
-    name: 'RAI Master Restorer',
-    description: 'Restoration Industry Association',
-  },
 } as const;
 
 export const RESPONSE_TIME = {

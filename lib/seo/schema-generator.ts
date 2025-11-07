@@ -63,7 +63,7 @@ export function generateLocalBusinessSchema(): LocalBusinessSchemaData {
     '@type': 'EmergencyService',
     '@id': 'https://disasterrecovery.com.au/#organization',
     name: 'Disaster Recovery Brisbane - Phill McGurk Master Restorer',
-    description: 'IICRC & RAI certified Master Restorer providing 24/7 emergency disaster recovery and restoration services. Water damage, fire damage, mould remediation. Brisbane, Ipswich, Logan.',
+    description: 'IICRC Master Restorer providing 24/7 emergency disaster recovery and restoration services. Water damage, fire damage, mould remediation. Brisbane, Ipswich, Logan.',
     image: [
       'https://disasterrecovery.com.au/images/master-restorer-team.jpg',
       'https://disasterrecovery.com.au/images/disaster-recovery-logo.png',

@@ -58,15 +58,15 @@ export default function ModernContactPage() {
     {
       icon: <EnvelopeIcon className="w-6 h-6" />,
       title: 'Email Support',
-      value: 'help@disasterrecoverypro.com.au',
+      value: 'admin@disasterrecovery.com.au',
       subtext: 'Response within 2 hours',
       colour: 'from-blue-500 to-cyan-500'
     },
     {
       icon: <MapPinIcon className="w-6 h-6" />,
       title: 'Service Areas',
-      value: 'Australia Wide',
-      subtext: 'All major cities & regions',
+      value: 'Brisbane, Ipswich & Logan',
+      subtext: 'Local expert service',
       colour: 'from-green-500 to-emerald-500'
     },
     {
