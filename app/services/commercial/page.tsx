@@ -3,7 +3,13 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Commercial Restoration Services Brisbane | 24/7 Business Recovery',
   description: 'Expert commercial disaster recovery for Brisbane businesses. Minimize downtime with 24/7 emergency response. Office buildings, retail, industrial facilities.',
-  keywords: 'commercial restoration brisbane, business disaster recovery, office water damage, retail fire restoration, industrial cleaning'
+  keywords: 'commercial restoration brisbane, business disaster recovery, office water damage, retail fire restoration, industrial cleaning',
+  openGraph: {
+    title: 'Commercial Disaster Recovery Brisbane - IICRC Master Restorer',
+    description: 'Professional commercial disaster recovery for Brisbane businesses. 24/7 emergency response, minimize downtime, direct insurance billing.',
+    images: [{ url: '/images/services/commercial-disaster-recovery.png', alt: 'Commercial Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk' }],
+    type: 'website'
+  }
 };
 
 export default function CommercialRestorationPage() {

@@ -29,16 +29,16 @@ export const metadata: Metadata = {
     description: 'Expert biohazard cleanup services following IICRC S540 standards. Professional crime scene, trauma, and biohazard remediation with 24/7 response.',
     images: [
       {
-        url: '/images/optimised/process/3d-hazardous-cleaning.png',
+        url: '/images/services/biohazard-remediation.png',
         width: 1200,
         height: 630,
-        alt: 'Professional biohazard cleanup service' },
+        alt: 'Biohazard Remediation Brisbane - IICRC Master Restorer Phill McGurk Professional Cleanup' },
     ] },
   twitter: {
     card: 'summary_large_image',
     title: 'Biohazard Cleanup Services | IICRC S540 Certified',
     description: 'Expert biohazard cleanup services. IICRC S540 certified technicians. Professional trauma and crime scene cleanup available 24/7.',
-    images: ['/images/optimised/process/3d-hazardous-cleaning.png'] },
+    images: ['/images/optimized/process/3d-hazardous-cleaning.png'] },
   alternates: {
     canonical: '/services/biohazard-cleanup' },
   other: {
@@ -110,22 +110,22 @@ const relatedServices = [
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimised/process/3d-assessment.png'
+    image: '/images/optimized/process/3d-assessment.png'
   },
   {
     title: 'Mould Remediation',
     href: '/services/mould-remediation',
-    image: '/images/optimised/damage/3D Mould Damage.png'
+    image: '/images/optimized/damage/3D Mould Damage.png'
   },
   {
     title: 'Fire Damage Restoration',
     href: '/services/fire-damage',
-    image: '/images/optimised/damage/3D Fire Damage.png'
+    image: '/images/optimized/damage/3D Fire Damage.png'
   },
   {
     title: 'Water Damage Restoration',
     href: '/services/water-damage-restoration',
-    image: '/images/optimised/damage/3D Water Damage.png'
+    image: '/images/optimized/damage/3D Water Damage.png'
   }
 ];
 
@@ -169,7 +169,7 @@ export default function BiohazardCleanupPage() {
     <ServicePageLayout
       title="Biohazard Cleanup Services"
       description="Professional biohazard cleanup services following IICRC S540 standards. Expert crime scene cleanup, trauma cleaning, blood cleanup, and biohazard remediation with licensed specialists available 24/7."
-      heroImage="/images/optimised/process/3d-hazardous-cleaning.png"
+      heroImage="/images/optimized/process/3d-hazardous-cleaning.png"
       heroImageAlt="Professional biohazard cleanup service showing technicians in full protective equipment safely cleaning contaminated areas"
       certifications={['IICRC S540', 'HAZMAT Licensed', 'OSHA Certified', 'Infectious Disease Certified']}
       responseTime="1-2 Hours"
@@ -202,7 +202,7 @@ export default function BiohazardCleanupPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/process/3d-emergency-squalor-cleanup.png"
+              src="/images/optimized/process/3d-emergency-squalor-cleanup.png"
               alt="Professional biohazard cleanup team with specialised protective equipment"
               width={500}
               height={400}
