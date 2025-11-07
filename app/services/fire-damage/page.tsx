@@ -98,10 +98,6 @@ const schemaData = {
     {
       "@type": "Certification", 
       "name": "IICRC WRT - Water Damage Restoration Technician"
-    },
-    {
-      "@type": "Certification",
-      "name": "RIA - Restoration Industry Association"
     }
   ]
 };
@@ -171,7 +167,7 @@ export default function FireDamagePage() {
       description="Expert fire and smoke damage restoration services following IICRC S700 standards. Professional soot removal, smoke odour elimination, and complete structural fire damage repair with 24/7 emergency response."
       heroImage="/images/optimised/damage/3D image of a house fire.png"
       heroImageAlt="Professional fire damage restoration service showing expert technicians assessing and cleaning fire-damaged property"
-      certifications={['IICRC S700', 'IICRC WRT', 'RIA Certified', 'HAZMAT Licensed', 'OH&S Compliant']}
+      certifications={['IICRC S700', 'IICRC WRT', 'HAZMAT Licensed', 'OH&S Compliant']}
       responseTime="1-2 Hours"
       availability="24/7/365"
       relatedServices={relatedServices}

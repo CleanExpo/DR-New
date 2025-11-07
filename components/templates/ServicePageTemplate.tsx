@@ -54,7 +54,7 @@ export default function ServicePageTemplate({
   process,
   responseTime,
   availability,
-  certifications = ['IICRC Certified', 'RAI Master Restorer'],
+  certifications = ['IICRC Certified', 'IICRC Master Restorer'],
   insurance = ['All Major Insurers Approved'],
   relatedServices,
   faqs,

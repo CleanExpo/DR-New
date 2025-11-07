@@ -209,7 +209,7 @@ export default function FooterEnhanced() {
                 &copy; {currentYear} Disaster Recovery Brisbane. All rights reserved.
               </p>
               <p className="mt-1 text-xs text-neutral-600">
-                IICRC & RAI Master Restorer | ABN: [Your ABN] | QBCC Licence: [Your Licence]
+                IICRC Master Restorer | Brisbane | Ipswich | Logan
               </p>
             </div>
 
