@@ -37,48 +37,58 @@ export default function Header() {
 
             {/* For Contractors Dropdown */}
             <div
-              className="relative"
+              className="relative group"
               onMouseEnter={() => setContractorsOpen(true)}
               onMouseLeave={() => setContractorsOpen(false)}
             >
               <button className="flex items-center gap-1 text-gray-700 hover:text-blue-600 font-medium">
                 For Contractors
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform ${contractorsOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {contractorsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
-                  <Link
-                    href="/nrpg"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-[100]">
+                  <a
+                    href="https://www.nrpg.business"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
-                    NRPG Resources
-                  </Link>
-                  <Link
-                    href="/carsi"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    <div className="font-semibold">NRPG Resources</div>
+                    <div className="text-xs text-gray-500 mt-0.5">National Restoration Professionals</div>
+                  </a>
+                  <a
+                    href="https://www.carsi.com.au"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
-                    CARSI Training
-                  </Link>
+                    <div className="font-semibold">CARSI Training</div>
+                    <div className="text-xs text-gray-500 mt-0.5">IICRC CECs & Restoration Courses</div>
+                  </a>
                   <Link
                     href="/contractor-portal"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
-                    Contractor Portal
+                    <div className="font-semibold">Contractor Portal</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Login to your account</div>
                   </Link>
                   <Link
                     href="/training"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
-                    IICRC CECs
+                    <div className="font-semibold">IICRC CECs</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Continuing education credits</div>
                   </Link>
                   <div className="border-t border-gray-200 my-2"></div>
-                  <Link
-                    href="/nrpg"
-                    className="block px-4 py-2 text-blue-600 hover:bg-blue-50 font-semibold"
+                  <a
+                    href="https://www.nrpg.business"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-4 py-3 text-blue-600 hover:bg-blue-50 font-semibold transition-colors"
                   >
-                    Join NRPG
-                  </Link>
+                    Join NRPG Network →
+                  </a>
                 </div>
               )}
             </div>
@@ -107,9 +117,9 @@ export default function Header() {
         <Link href="/service-areas" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
           Areas
         </Link>
-        <Link href="/contractor-portal" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
-          Contractors
-        </Link>
+        <a href="https://www.nrpg.business" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
+          NRPG
+        </a>
         <Link href="/contact" className="text-sm text-gray-700 hover:text-blue-600 font-medium">
           Contact
         </Link>
