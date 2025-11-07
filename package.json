@@ -80,7 +80,7 @@
     "images:replace": "tsx scripts/replace-image-components.ts",
     "images:optimize:all": "tsx scripts/optimize-all-images.ts",
     "images:optimize": "tsx scripts/optimize-all-images.ts",
-    "prepare": "husky",
+    "prepare": "node -e \"if (process.env.CI === 'true') process.exit(0)\" && husky || true",
     "setup": "node scripts/dev-setup.js",
     "check": "node scripts/dev-check.js",
     "format": "prettier --write .",
