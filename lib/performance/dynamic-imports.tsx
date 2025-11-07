@@ -9,11 +9,13 @@ import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
 
 // Loading component for suspense
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-[200px]">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-  </div>
-);
+const LoadingSpinner = (): JSX.Element => {
+  return (
+    <div className="flex items-center justify-center min-h-[200px]">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+    </div>
+  );
+};
 
 // Analytics Components (load after interaction)
 export const GoogleAnalytics = dynamic(
@@ -45,7 +47,7 @@ export const InteractiveMap = dynamic(
   () => import('@/components/maps/interactive-contractor-map'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -53,7 +55,7 @@ export const Chart3D = dynamic(
   () => import('@/src/components/Chart3D'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -61,7 +63,7 @@ export const ImageUpload = dynamic(
   () => import('@/src/components/ImageUpload'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -70,7 +72,7 @@ export const ReactPlayer = dynamic(
   () => import('react-player/lazy'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -78,7 +80,7 @@ export const YouTubeEmbed = dynamic(
   () => import('react-lite-youtube-embed'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -96,7 +98,7 @@ export const EnhancedChatBot = dynamic(
   () => import('@/src/components/chat/EnhancedChatBot'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -105,7 +107,7 @@ export const AdminDashboard = dynamic(
   () => import('@/src/components/admin/dashboard/AdminDashboard'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -113,7 +115,7 @@ export const AnalyticsDashboard = dynamic(
   () => import('@/src/components/analytics/AnalyticsDashboard'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -138,7 +140,7 @@ export const Interactive3DServiceCards = dynamic(
   () => import('@/src/components/interactive/Interactive3DServiceCards'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -146,7 +148,7 @@ export const InteractiveBeforeAfterSlider = dynamic(
   () => import('@/src/components/interactive/InteractiveBeforeAfterSlider'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -188,7 +190,7 @@ export const InsuranceCalculator = dynamic(
   () => import('@/src/components/emergency/InsuranceCalculator'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -197,7 +199,7 @@ export const SearchBar = dynamic(
   () => import('@/src/components/SearchBar'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -206,7 +208,7 @@ export const Swiper = dynamic(
   () => import('swiper/react').then(mod => mod.Swiper),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 
@@ -223,7 +225,7 @@ export const Recharts = dynamic(
   () => import('recharts'),
   {
     ssr: false,
-    loading: () => <LoadingSpinner />,
+    loading: LoadingSpinner,
   }
 );
 

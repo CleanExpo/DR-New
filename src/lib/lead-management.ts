@@ -175,15 +175,10 @@ export async function assignLeadToPartner(...args: any[]): Promise<void> {
 }
 
 // Validate lead quality
-export async function validateLeadQuality(data: unknown): Promise<{
-  try {
+export async function validateLeadQuality(data: any): Promise<{
   isValid: boolean;
   reasons: string[];
-
-  } catch (error) {
-    console.error(`Error in validateLeadQuality:`, error);
-    throw error;
-  }}> {
+}> {
   const reasons: string[] = [];
   
   // Required fields check

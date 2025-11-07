@@ -392,38 +392,38 @@ export async function generateDynamicMetadata(
   searchParams: { [key: string]: string | string[] | undefined }
 ): Promise<Metadata> {
   try {
-  // Parse the slug to determine page type and parameters
-  const slug = params.slug?.join('/') || '';
+    // Parse the slug to determine page type and parameters
+    const slug = params.slug?.join('/') || '';
 
-  let pageType: PageMetadataInput['type'] = 'home';
-  let metadataParams: PageMetadataInput['params'] = {
+    let pageType: PageMetadataInput['type'] = 'home';
+    let metadataParams: PageMetadataInput['params'] = {};
+
+    // Route parsing logic
+    if (slug.startsWith('services/')) {
+      pageType = 'service';
+      metadataParams.service = slug.replace('services/', '').replace(/-/g, ' ');
+    } else if (slug.startsWith('service-areas/')) {
+      pageType = 'location';
+      metadataParams.location = slug.replace('service-areas/', '').replace(/-/g, ' ');
+    } else if (slug.startsWith('emergency/')) {
+      pageType = 'emergency';
+      metadataParams.time = slug.replace('emergency/', '').replace(/-/g, ' ');
+    } else if (slug.startsWith('guides/')) {
+      pageType = 'guide';
+      metadataParams.topic = slug.replace('guides/', '').replace(/-/g, ' ');
+    } else if (slug.startsWith('insurance/')) {
+      pageType = 'insurance';
+      metadataParams.topic = slug.replace('insurance/', '').replace(/-/g, ' ');
+    } else if (slug === 'about-phil-mcgurk') {
+      pageType = 'about';
+    }
+
+    // Generate and return optimized metadata
+    return generateOptimizedMetadata(pageType, metadataParams);
   } catch (error) {
-    console.error(`Error in generateDynamicMetadata:`, error);
-    throw error;
-  }};
-
-  // Route parsing logic
-  if (slug.startsWith('services/')) {
-    pageType = 'service';
-    metadataParams.service = slug.replace('services/', '').replace(/-/g, ' ');
-  } else if (slug.startsWith('service-areas/')) {
-    pageType = 'location';
-    metadataParams.location = slug.replace('service-areas/', '').replace(/-/g, ' ');
-  } else if (slug.startsWith('emergency/')) {
-    pageType = 'emergency';
-    metadataParams.time = slug.replace('emergency/', '').replace(/-/g, ' ');
-  } else if (slug.startsWith('guides/')) {
-    pageType = 'guide';
-    metadataParams.topic = slug.replace('guides/', '').replace(/-/g, ' ');
-  } else if (slug.startsWith('insurance/')) {
-    pageType = 'insurance';
-    metadataParams.topic = slug.replace('insurance/', '').replace(/-/g, ' ');
-  } else if (slug === 'about-phil-mcgurk') {
-    pageType = 'about';
+    console.error('Error generating dynamic metadata:', error);
+    return generateOptimizedMetadata('home', {});
   }
-
-  // Generate and return optimized metadata
-  return generateOptimizedMetadata(pageType, metadataParams);
 }
 
 // Export metadata presets for common pages

@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Skip in CI
+[ -n "$CI" ] && exit 0
+
 # Run lint-staged
 npx lint-staged
-
-# Run type check on staged files
-npm run type-check

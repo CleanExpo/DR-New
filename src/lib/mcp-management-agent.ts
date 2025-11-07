@@ -538,28 +538,33 @@ if (require.main === module) {
       switch (command) {
         case 'status':
           const status = await mcpAgent.getStatus();
-          );
+          ;
+          console.log(status);
           break;
           
         case 'execute':
           const [mcp, action, ...params] = args;
           const result = await mcpAgent.executeMCP(mcp, action, params[0] ? JSON.parse(params[0]) : undefined);
-          );
+          ;
+          console.log(result);
           break;
           
         case 'orchestrate':
           const [workflow, ...context] = args;
           const results = await mcpAgent.orchestrate(workflow, context[0] ? JSON.parse(context[0]) : undefined);
-          );
+          ;
+          console.log(results);
           break;
           
         case 'troubleshoot':
           const diagnostics = await mcpAgent.troubleshoot(args[0]);
-          );
+          ;
+          console.log(diagnostics);
           break;
           
         default:
-                          }
+          console.log('Unknown command');
+      }
       
       await mcpAgent.shutdown();
     } catch (error) {

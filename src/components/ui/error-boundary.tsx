@@ -261,11 +261,11 @@ export function withErrorBoundary<P extends {}>(
 }
 
 // Hook for manually reporting errors
-export function useErrorHandler(...args: any[]): void {
+export function useErrorHandler() {
   return {
     reportError: (error: Error, context?: string) => {
       console.error(`Manual error report ${context ? `(${context})` : ''}:`, error);
-      
+
       // In production, send to error tracking service
       // Sentry.captureException(error, { tags: { context } });
     }

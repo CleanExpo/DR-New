@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Skip in CI
+[ -n "$CI" ] && exit 0
+
 # Validate commit message format
 # Expected format: type(scope): subject
 # Examples:
@@ -10,19 +13,33 @@
 
 commit_msg=$(cat "$1")
 
-# Check commit message format
+# Check commit message format (allow conventional commits)
 if ! echo "$commit_msg" | grep -qE "^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert)(\(.+\))?: .{3,}"; then
-  echo "Error: Invalid commit message format"
+  echo "========================================"
+  echo "❌ Invalid commit message format"
+  echo "========================================"
   echo ""
   echo "Commit message must follow the format:"
   echo "  type(scope): subject"
   echo ""
-  echo "Types: feat, fix, docs, style, refactor, perf, test, chore, build, ci, revert"
+  echo "Types:"
+  echo "  feat     - New feature"
+  echo "  fix      - Bug fix"
+  echo "  docs     - Documentation changes"
+  echo "  style    - Code style changes (formatting)"
+  echo "  refactor - Code refactoring"
+  echo "  perf     - Performance improvements"
+  echo "  test     - Adding or updating tests"
+  echo "  chore    - Maintenance tasks"
+  echo "  build    - Build system changes"
+  echo "  ci       - CI/CD changes"
+  echo "  revert   - Revert previous commit"
   echo ""
   echo "Examples:"
   echo "  feat(auth): add login functionality"
   echo "  fix(ui): resolve button alignment issue"
   echo "  docs(readme): update installation steps"
+  echo "  refactor(api): simplify error handling"
   echo ""
   exit 1
 fi

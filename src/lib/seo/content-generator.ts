@@ -489,24 +489,25 @@ export async function generateSEOContent(
   businessType?: string
 ): Promise<SEOPageContent> {
   try {
-  const slug = generateSlug(location, service, propertyType, businessType);
-  const title = generateTitle(location, service, propertyType, businessType);
-  const metaDescription = generateMetaDescription(location, service, propertyType, businessType);
-  const h1Title = generateH1(location, service, propertyType, businessType);
-  const content = generateContent(location, service, propertyType, businessType);
-  const schemaMarkup = generateSchemaMarkup(location, service, propertyType, businessType);
-  const canonicalUrl = `https://nrpaus.com.au/${slug
+    const slug = generateSlug(location, service, propertyType, businessType);
+    const title = generateTitle(location, service, propertyType, businessType);
+    const metaDescription = generateMetaDescription(location, service, propertyType, businessType);
+    const h1Title = generateH1(location, service, propertyType, businessType);
+    const content = generateContent(location, service, propertyType, businessType);
+    const schemaMarkup = generateSchemaMarkup(location, service, propertyType, businessType);
+    const canonicalUrl = `https://nrpaus.com.au/${slug}`;
+
+    return {
+      slug,
+      title,
+      metaDescription,
+      h1Title,
+      content,
+      schemaMarkup,
+      canonicalUrl
+    };
   } catch (error) {
     console.error(`Error in generateSEOContent:`, error);
     throw error;
-  }}`;
-
-  return {
-    slug,
-    title,
-    metaDescription,
-    h1Title,
-    content,
-    schemaMarkup,
-    canonicalUrl };
+  }
 }

@@ -159,59 +159,62 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
 /**
  * Get partner details
  */
-export async function getPartnerDetails(...args: any[]): Promise<void> {
+export async function getPartnerDetails(partnerId: string): Promise<any> {
   try {
-  return await prisma.partner.findUnique({
-    where: { id: partnerId 
-  } catch (error) {
-    console.error(`Error in getPartnerDetails:`, error);
-    throw error;
-  }},
-    include: {
-      leads: {
-        take: 10,
-        orderBy: { createdAt: 'desc' }
-      },
-      billing: {
-        take: 10,
-        orderBy: { createdAt: 'desc' }
+    return await prisma.partner.findUnique({
+      where: { id: partnerId },
+      include: {
+        leads: {
+          take: 10,
+          orderBy: { createdAt: 'desc' }
+        },
+        billing: {
+          take: 10,
+          orderBy: { createdAt: 'desc' }
+        }
       }
-    }
-  });
+    });
+  } catch (error) {
+    console.error('Error in getPartnerDetails:', error);
+    throw error;
+  }
 }
 
 /**
  * Update partner credits
  */
-export async function updatePartnerCredits(...args: any[]): Promise<void> {
+export async function updatePartnerCredits(partnerId: string, amount: number): Promise<any> {
   try {
-  return await prisma.partner.update({
-    where: { id: partnerId 
+    return await prisma.partner.update({
+      where: { id: partnerId },
+      data: {
+        leadCredits: { increment: amount },
+        accountBalance: { increment: amount }
+      }
+    });
   } catch (error) {
-    console.error(`Error in updatePartnerCredits:`, error);
+    console.error('Error in updatePartnerCredits:', error);
     throw error;
-  }},
-    data: {
-      leadCredits: { increment: amount },
-      accountBalance: { increment: amount }
-    }
-  });
+  }
 }
 
 /**
  * Get available partners for a location
  */
-export async function getAvailablePartners(...args: any[]): Promise<void> {
+export async function getAvailablePartners(location: string): Promise<any[]> {
   try {
-  const partners = await prisma.partner.findMany({
-    where: {
-      status: 'ACTIVE',
-      leadCredits: { gt: 0 
+    const partners = await prisma.partner.findMany({
+      where: {
+        status: 'ACTIVE',
+        leadCredits: { gt: 0 }
+      }
+    });
+    return partners;
   } catch (error) {
-    console.error(`Error in getAvailablePartners:`, error);
+    console.error('Error in getAvailablePartners:', error);
     throw error;
-  }}
-    }
+  }
+}
   });
 
   // Filter by service area
@@ -224,4 +227,3 @@ export async function getAvailablePartners(...args: any[]): Promise<void> {
       postcode === area
     );
   });
-}

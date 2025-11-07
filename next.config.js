@@ -271,6 +271,10 @@ const nextConfig = {
     // Use a consistent build ID for better caching
     return 'dr-build-' + Date.now();
   },
+
+  // Skip problematic error pages during export
+  skipTrailingSlashRedirect: true,
+  skipMiddlewareUrlNormalize: true,
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

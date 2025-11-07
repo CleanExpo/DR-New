@@ -16,7 +16,8 @@ export class ImageOptimizer {
   private static defaultOptions: ImageOptimizationOptions = {
     quality: 85,
     format: 'webp',
-    maintainAspectRatio: true };
+    maintainAspectRatio: true,
+  };
 
   /**
    * Optimize an image buffer (simplified version without Sharp)
@@ -28,7 +29,7 @@ export class ImageOptimizer {
   ): Promise<Buffer> {
     // For now, return the original buffer
     // In production, use a cloud service like Cloudinary or client-side optimization
-    ');
+    console.log('Image optimization requested:', options);
     return buffer;
   }
 

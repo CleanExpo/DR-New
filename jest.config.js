@@ -19,14 +19,20 @@ const customJestConfig = {
   },
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-    '<rootDir>/src/**/*.{test,spec}.{js,jsx,ts,tsx}'
+    '<rootDir>/src/**/*.{test,spec}.{js,jsx,ts,tsx}',
+    '<rootDir>/__tests__/unit/**/*.{test,spec}.{js,jsx,ts,tsx}',
+    '<rootDir>/__tests__/integration/**/*.test.{js,jsx,ts,tsx}'
   ],
   testPathIgnorePatterns: [
     '<rootDir>/tests/',
     '<rootDir>/context7/',
     '<rootDir>/context7-upstash/',
     '<rootDir>/node_modules/',
-    '<rootDir>/.next/'
+    '<rootDir>/.next/',
+    '<rootDir>/packages/',
+  ],
+  modulePathIgnorePatterns: [
+    '<rootDir>/packages/',
   ],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',

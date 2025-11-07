@@ -1,55 +1,53 @@
 # Disaster Recovery Services - Australia
 
-Professional disaster recovery and restoration services website for water damage, fire damage, mould remediation, and emergency response across Australia.
+Professional disaster recovery and restoration services website for water damage, fire damage, mould remediation, and emergency response across Brisbane, Ipswich, and Logan.
 
-## 🚀 Overview
+## 🚀 Quick Start for Developers
 
-This is a comprehensive disaster recovery and restoration services website featuring:
+**New to this project? Start here:**
 
-- 24/7 Emergency response services
+👉 **[DEVELOPER_QUICK_START.md](./DEVELOPER_QUICK_START.md)** - Get productive in 15 minutes
+
+### Ultra-Quick Setup
+
+```bash
+# 1. Clone and install
+git clone <repository-url>
+cd disaster-recovery
+npm install
+
+# 2. Setup environment
+cp .env.example .env.local
+# Add your NEXTAUTH_SECRET (see .env.example)
+
+# 3. Initialize database
+npx prisma generate
+npx prisma db push
+
+# 4. Start developing
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) - you're ready to code!
+
+## 📖 Documentation
+
+- **[DEVELOPER_QUICK_START.md](./DEVELOPER_QUICK_START.md)** - Complete developer guide
+- **[CLAUDE.md](./CLAUDE.md)** - Project guidelines and focus
+- **[DX_OPTIMIZATION_SUMMARY.md](./DX_OPTIMIZATION_SUMMARY.md)** - DX improvements overview
+
+## 🌟 Overview
+
+This is a local disaster recovery and restoration services website featuring:
+
+- 24/7 Emergency response services in Brisbane, Ipswich, Logan
 - Water damage restoration
 - Fire damage restoration
 - Mould remediation
 - Storm damage repair
-- Biohazard cleaning
-- Insurance claim assistance
-- Location-based services across all Australian states and territories
-
-## 🛠️ Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- PostgreSQL (or SQLite for development)
-- Stripe account (for payment processing)
-
-### Installation
-
-1. **Clone and install:**
-```bash
-git clone https://github.com/CleanExpo/Disaster-Recovery.git
-cd Mass-WebPage-Creations
-npm install
-```
-
-2. **Configure environment:**
-Copy `.env.example` to `.env.local` and set your keys:
-```bash
-cp .env.example .env.local
-```
-
-3. **Set up database:**
-```bash
-npx prisma generate
-npx prisma db push
-```
-
-4. **Run development server:**
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+- Commercial property restoration
+- High-end residential restoration
+- Master Restorer certification (Phill McGurk)
 
 ## 📁 Project Structure
 
@@ -119,15 +117,45 @@ Required environment variables for production:
 - `STRIPE_SECRET_KEY` - Stripe API key (if using payments)
 - `STRIPE_PUBLISHABLE_KEY` - Stripe publishable key
 
-## 🔧 Development Commands
+## 🔧 Essential Commands
 
+### Development
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run type-check   # TypeScript type checking
+npm run dev              # Start development server
+npm run dev:turbo        # Start with Turbo mode (faster)
+npm run dev:debug        # Start with debugger
 ```
+
+### Code Quality
+```bash
+npm run lint             # Run ESLint
+npm run lint:fix         # Auto-fix linting issues
+npm run type-check       # TypeScript type checking
+npm run format           # Format code with Prettier
+npm run validate         # Run all checks
+```
+
+### Testing
+```bash
+npm test                 # Run unit tests
+npm run test:e2e         # Run E2E tests
+npm run test:all         # Run all tests
+```
+
+### Build & Production
+```bash
+npm run build            # Build for production
+npm run build:analyze    # Build with bundle analysis
+npm start                # Start production server
+```
+
+### Utilities
+```bash
+npm run clean            # Clean build artifacts
+npm run verify:dx        # Verify DX setup
+```
+
+See [DEVELOPER_QUICK_START.md](./DEVELOPER_QUICK_START.md) for complete command reference.
 
 ## 📚 Tech Stack
 

@@ -364,11 +364,12 @@ export async function checkSEMrushConnection(): Promise<boolean> {
   try {
   if (!semrushAPI.isConfigured()) {
     return false;
-  
+    }
   } catch (error) {
-    console.error(`Error in checkSEMrushConnection:`, error);
+    console.error('API Error:', error);
     throw error;
-  }}
+  }
+}
   
   // Test with a simple request
   const result = await semrushAPI.getKeywordOverview('disaster recovery');
@@ -384,11 +385,13 @@ export async function getCompetitorAnalysis(...args: any[]): Promise<void> {
   return {
     overview,
     competitors,
-    backlinks 
+    backlinks
+    }
   } catch (error) {
-    console.error(`Error in getCompetitorAnalysis:`, error);
+    console.error('API Error:', error);
     throw error;
-  }};
+  }
+};
 }
 
 export async function getKeywordOpportunities(...args: any[]): Promise<void> {
@@ -403,8 +406,9 @@ export async function getKeywordOpportunities(...args: any[]): Promise<void> {
   );
   
   return opportunities.sort((a, b) => b.volume - a.volume);
-
+    }
   } catch (error) {
-    console.error(`Error in getKeywordOpportunities:`, error);
+    console.error('API Error:', error);
     throw error;
-  }}
+  }
+}
