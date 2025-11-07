@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     description: 'Brisbane\'s only Master Restorer. 24/7 water damage, fire damage & flood restoration. Serving Brisbane, Ipswich & Logan. Insurance approved. Call 1300 309 361.',
     images: [
       {
-        url: '/images/disaster-recovery-og.jpg',
+        url: '/logos/3D Disaster Recovery Logo Image.png',
         width: 1200,
         height: 630,
         alt: 'Master Restorer Brisbane - Emergency Water Damage Restoration' }
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Master Restorer Brisbane | 24/7 Water Damage Emergency',
     description: 'IICRC Master Restorer. 60-minute emergency response Brisbane, Ipswich & Logan. Water, fire, mould damage specialists.',
-    images: ['/images/disaster-recovery-twitter.jpg'],
+    images: ['/logos/3D Disaster Recovery Logo Image.png'],
     creator: '@PhillMcGurk' },
   robots: {
     index: true,

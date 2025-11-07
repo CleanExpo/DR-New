@@ -32,6 +32,8 @@ const nextConfig = {
   // Image optimization with SEO enhancements
   images: {
     domains: [
+      'disasterrecovery.com.au',
+      'www.disasterrecovery.com.au',
       'dr-new-ten.vercel.app',
       'images.unsplash.com',
       'cloudinary.com'
