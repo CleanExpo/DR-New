@@ -29,7 +29,7 @@ export default function HomePage() {
           </h1>
 
           <p className="text-xl md:text-2xl mb-4 max-w-3xl mx-auto font-semibold">
-            Phill McGurk - IICRC & RAI Master Restorer - Restores Hamilton, Ascot, New Farm, Toowong & All Brisbane Properties
+            Phill McGurk - IICRC Master Restorer - Restores Hamilton, Ascot, New Farm, Toowong & All Brisbane Properties
           </p>
 
           <p className="text-lg mb-8 max-w-2xl mx-auto text-gray-200">
@@ -50,7 +50,7 @@ export default function HomePage() {
               href="/book-service"
               className="inline-flex items-center justify-center px-10 py-5 bg-yellow-500 text-black font-bold text-xl rounded-lg hover:bg-yellow-400 transition-all shadow-2xl transform hover:scale-105"
             >
-              Get FREE Quote - 24/7
+              Get Quote - 24/7
             </Link>
           </div>
 
@@ -78,7 +78,7 @@ export default function HomePage() {
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
               <Award className="w-12 h-12 mx-auto mb-3 text-yellow-400" />
               <div className="text-2xl font-bold mb-1">Master Restorer</div>
-              <div className="text-sm opacity-90">IICRC & RAI Certified</div>
+              <div className="text-sm opacity-90">IICRC Certified</div>
               <div className="text-xs mt-2 text-yellow-300">Limited in QLD</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all">
@@ -116,9 +116,9 @@ export default function HomePage() {
             <div className="inline-block mb-4 px-4 py-2 bg-red-100 text-red-700 font-semibold rounded-full">
               🚨 24/7 Brisbane Emergency Service
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Master Restorer Emergency Services</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">IICRC Master Restorer Emergency Services</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              <strong>Phill McGurk - IICRC & RAI Master Restorer</strong> responds to Brisbane, Ipswich & Logan emergencies with proven expertise in water, fire, and storm damage restoration
+              <strong>Phill McGurk - IICRC Master Restorer</strong> responds to Brisbane, Ipswich & Logan emergencies with proven expertise in water, fire, and storm damage restoration
             </p>
           </div>
 
@@ -203,7 +203,7 @@ export default function HomePage() {
               <div>
                 <h3 className="text-xl font-bold mb-2 text-gray-900">Master Restorer Certified - Rare in Brisbane</h3>
                 <p className="text-gray-600">
-                  <strong>Phill McGurk</strong> holds both <strong>IICRC Master Restorer</strong> and <strong>RAI Master Restorer</strong> certifications - the highest credentials in disaster recovery. One of a limited number in Brisbane and QLD. Your high-value property deserves master-level expertise.
+                  <strong>Phill McGurk</strong> holds <strong>IICRC Master Restorer</strong> certification - the highest credential in disaster recovery. One of a limited number in Brisbane and QLD. Your high-value property deserves master-level expertise.
                 </p>
               </div>
             </div>
@@ -340,7 +340,7 @@ export default function HomePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <p className="mt-4 text-gray-700 leading-relaxed">
-                <strong>Phill McGurk is one of Brisbane's limited IICRC and RAI Master Restorer certified professionals</strong> - the highest credentials in disaster recovery. This means your property receives master-level expertise, not basic restoration. Most companies only have technician-level certification. Master Restorers have extensive experience, advanced training, and proven track records on complex high-value property restoration.
+                <strong>Phill McGurk is one of Brisbane's limited IICRC Master Restorer certified professionals</strong> - the highest credential in disaster recovery. This means your property receives master-level expertise, not basic restoration. Most companies only have technician-level certification. Master Restorers have extensive experience, advanced training, and proven track records on complex high-value property restoration.
               </p>
             </details>
 
@@ -428,7 +428,7 @@ export default function HomePage() {
               </div>
               <div>
                 <div className="text-3xl font-bold mb-2">🏆 Master Restorer</div>
-                <div className="text-red-100">IICRC & RAI Certified</div>
+                <div className="text-red-100">IICRC Certified</div>
               </div>
               <div>
                 <div className="text-3xl font-bold mb-2">🛡️ All Insurers</div>

@@ -51,13 +51,13 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
-    default: 'Water Damage Restoration Brisbane | Master Restorer Phill McGurk | 24/7 Emergency',
-    template: '%s | Master Restorer Brisbane'
+    default: 'Water Damage Restoration Brisbane | IICRC Master Restorer Phill McGurk | 24/7 Emergency',
+    template: '%s | IICRC Master Restorer Brisbane'
   },
-  description: 'Master Restorer provides 24/7 water damage, fire damage & mould restoration in Brisbane, Ipswich & Logan. 60-minute response. Insurance approved. Call 1300 309 361.',
-  keywords: 'water damage restoration brisbane, emergency water damage brisbane, fire damage restoration brisbane, mould removal brisbane, storm damage repairs brisbane, flood restoration brisbane, master restorer brisbane, phill mcgurk, iicrc certified brisbane, disaster recovery brisbane, water damage ipswich, water damage logan, 24 hour emergency restoration, insurance approved restoration',
-  authors: [{ name: 'Disaster Recovery Brisbane - Master Restorer Phill McGurk' }],
-  creator: 'Master Restorer Phill McGurk',
+  description: 'IICRC Master Restorer provides 24/7 water damage, fire damage & mould restoration in Brisbane, Ipswich & Logan. 60-minute response. Insurance approved. Call 1300 309 361.',
+  keywords: 'water damage restoration brisbane, emergency water damage brisbane, fire damage restoration brisbane, mould removal brisbane, storm damage repairs brisbane, flood restoration brisbane, iicrc master restorer brisbane, phill mcgurk, iicrc certified brisbane, disaster recovery brisbane, water damage ipswich, water damage logan, 24 hour emergency restoration, insurance approved restoration',
+  authors: [{ name: 'Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk' }],
+  creator: 'IICRC Master Restorer Phill McGurk',
   publisher: 'Disaster Recovery Brisbane',
   formatDetection: {
     email: false,
@@ -67,25 +67,25 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Master Restorer Brisbane'
+    title: 'IICRC Master Restorer Brisbane'
   },
   openGraph: {
     type: 'website',
     locale: 'en_AU',
     url: 'https://disasterrecovery.com.au',
-    siteName: 'Disaster Recovery Brisbane - Master Restorer',
-    title: 'Brisbane Water Damage Restoration | Master Restorer | 60-Min Response',
-    description: 'Brisbane\'s only Master Restorer. 24/7 water damage, fire damage & flood restoration. Serving Brisbane, Ipswich & Logan. Insurance approved. Call 1300 309 361.',
+    siteName: 'Disaster Recovery Brisbane - IICRC Master Restorer',
+    title: 'Brisbane Water Damage Restoration | IICRC Master Restorer | 60-Min Response',
+    description: 'Brisbane IICRC Master Restorer. 24/7 water damage, fire damage & flood restoration. Serving Brisbane, Ipswich & Logan. Insurance approved. Call 1300 309 361.',
     images: [
       {
         url: '/logos/3D Disaster Recovery Logo Image.png',
         width: 1200,
         height: 630,
-        alt: 'Master Restorer Brisbane - Emergency Water Damage Restoration' }
+        alt: 'IICRC Master Restorer Brisbane - Emergency Water Damage Restoration' }
     ] },
   twitter: {
     card: 'summary_large_image',
-    title: 'Master Restorer Brisbane | 24/7 Water Damage Emergency',
+    title: 'IICRC Master Restorer Brisbane | 24/7 Water Damage Emergency',
     description: 'IICRC Master Restorer. 60-minute emergency response Brisbane, Ipswich & Logan. Water, fire, mould damage specialists.',
     images: ['/logos/3D Disaster Recovery Logo Image.png'],
     creator: '@PhillMcGurk' },

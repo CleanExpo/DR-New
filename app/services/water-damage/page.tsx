@@ -6,11 +6,11 @@ import ServicePageLayout from '@/components/services/ServicePageLayout';
 
 export const metadata: Metadata = {
   title: 'Water Damage Restoration Services | 24/7 Online Emergency Response | IICRC S500 Certified',
-  description: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time.',
+  description: 'Professional water damage restoration following ANSI/IICRC S500-2021 standards. Immediate extraction, structural drying, and mould prevention. Available 24/7 with 1-hour response time. Call 1300 309 361.',
   keywords: 'water damage restoration, flood cleanup, water extraction, structural drying, IICRC S500, emergency water removal, burst pipe repair, sewage cleanup, basement flooding, water mitigation',
   openGraph: {
     title: 'Emergency Water Damage Restoration - IICRC Certified Professionals',
-    description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call Get Help Now.',
+    description: 'Immediate response for water damage emergencies. IICRC S500 certified technicians, advanced drying equipment, insurance approved. Call 1300 309 361.',
     images: ['/images/optimised/damage/3D Water Damage.png'],
     type: 'website' },
   alternates: {
