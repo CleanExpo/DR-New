@@ -69,81 +69,110 @@ export default function Header() {
             <span className="text-xl font-bold text-blue-900">Disaster Recovery</span>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/services" className="text-gray-700 hover:text-blue-600 font-medium">
-              Services
-            </Link>
-            <Link href="/service-areas" className="text-gray-700 hover:text-blue-600 font-medium">
-              Service Areas
+          {/* Navigation - Pill Style */}
+          <nav className="hidden lg:flex items-center gap-2">
+            <Link
+              href="/"
+              className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors"
+            >
+              🏠 Home
             </Link>
 
-            {/* For Contractors Dropdown */}
+            {/* Services Dropdown */}
             <div
-              className="relative group"
+              className="relative"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <button
                 onClick={toggleDropdown}
-                className="flex items-center gap-1 text-gray-700 hover:text-blue-600 font-medium cursor-pointer"
+                className="flex items-center gap-1 px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors cursor-pointer"
               >
-                For Contractors
+                Services
                 <ChevronDown className={`w-4 h-4 transition-transform ${contractorsOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {contractorsOpen && (
                 <div
-                  className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-[100]"
+                  className="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 z-[100]"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <a
-                    href="https://www.nrpg.business"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    <div className="font-semibold">NRPG Resources</div>
-                    <div className="text-xs text-gray-500 mt-0.5">National Restoration Professionals</div>
-                  </a>
-                  <a
-                    href="https://www.carsi.com.au"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                  >
-                    <div className="font-semibold">CARSI Training</div>
-                    <div className="text-xs text-gray-500 mt-0.5">IICRC CECs & Restoration Courses</div>
-                  </a>
                   <Link
-                    href="/contractor-portal"
+                    href="/services/water-damage-restoration"
                     className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
-                    <div className="font-semibold">Contractor Portal</div>
-                    <div className="text-xs text-gray-500 mt-0.5">Login to your account</div>
+                    <div className="font-semibold">Water Damage Restoration</div>
+                    <div className="text-xs text-gray-500 mt-0.5">24/7 Emergency Response</div>
                   </Link>
                   <Link
-                    href="/training"
+                    href="/services/fire-damage-restoration"
                     className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
-                    <div className="font-semibold">IICRC CECs</div>
-                    <div className="text-xs text-gray-500 mt-0.5">Continuing education credits</div>
+                    <div className="font-semibold">Fire Damage Restoration</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Smoke & Soot Removal</div>
+                  </Link>
+                  <Link
+                    href="/services/mould-remediation"
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  >
+                    <div className="font-semibold">Mould Remediation</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Safe Mould Removal</div>
+                  </Link>
+                  <Link
+                    href="/services/storm-damage"
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  >
+                    <div className="font-semibold">Storm Damage</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Emergency Storm Response</div>
+                  </Link>
+                  <Link
+                    href="/services/commercial"
+                    className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                  >
+                    <div className="font-semibold">Commercial Services</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Large Scale Projects</div>
                   </Link>
                   <div className="border-t border-gray-200 my-2"></div>
-                  <a
-                    href="https://www.nrpg.business"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href="/services"
                     className="block px-4 py-3 text-blue-600 hover:bg-blue-50 font-semibold transition-colors"
                   >
-                    Join NRPG Network →
-                  </a>
+                    View All Services →
+                  </Link>
                 </div>
               )}
             </div>
 
-            <Link href="/contact" className="text-gray-700 hover:text-blue-600 font-medium">
+            <Link
+              href="/about-phil-mcgurk"
+              className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/pricing"
+              className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors"
+            >
+              Pricing
+            </Link>
+
+            {/* Insurance Dropdown */}
+            <div className="relative group">
+              <Link
+                href="/insurance"
+                className="flex items-center gap-1 px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors"
+              >
+                Insurance
+                <ChevronDown className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <Link
+              href="/contact"
+              className="px-6 py-3 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium transition-colors"
+            >
               Contact
             </Link>
           </nav>
@@ -158,14 +187,14 @@ export default function Header() {
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
-          {/* Emergency CTA - Hidden on mobile */}
+          {/* Emergency CTA - Large Phone Button */}
           <Link
             href="tel:1300309361"
-            className="hidden md:inline-flex items-center px-6 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors"
+            className="hidden lg:inline-flex items-center px-8 py-4 bg-red-600 text-white font-bold text-lg rounded-full hover:bg-red-700 transition-all shadow-lg hover:shadow-xl"
             aria-label="Call 1300 309 361 for immediate emergency assistance"
           >
-            <Phone className="w-4 h-4 mr-2" />
-            1300 309 361
+            <Phone className="w-5 h-5 mr-2" />
+            📞 1300 309 361
           </Link>
         </div>
       </div>

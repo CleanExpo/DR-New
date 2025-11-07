@@ -7,63 +7,47 @@ import { HeroImage } from '@/components/image-optimization';
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-[650px] flex items-center justify-center text-white">
+      {/* Hero Section - Simple Clean Design */}
+      <section className="relative min-h-[600px] flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
           <HeroImage
             src="/images/hero/fire-water-damage-restoration.jpg"
-            alt="Emergency Disaster Recovery Brisbane - Phill McGurk IICRC Master Restorer - 24/7 Water Fire Storm Damage - Hamilton Ascot Toowong Ipswich Logan"
+            alt="Water Damage Restoration Brisbane - IICRC Master Restorer - 24/7 Emergency Response"
             fill
             objectFit="cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/55" />
+          <div className="absolute inset-0 bg-black/70" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 text-center">
-          <div className="inline-block mb-4 px-6 py-2 bg-yellow-500 text-black font-bold rounded-full">
-            ⭐ One of Brisbane's Only IICRC Master Restorers
-          </div>
-
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Brisbane Water & Fire Damage?<br />
-            <span className="text-yellow-400">60-Minute Emergency Response</span>
+            Water Damage Restoration Brisbane | 24/7 Emergency
           </h1>
 
-          <p className="text-xl md:text-2xl mb-4 max-w-3xl mx-auto font-semibold">
-            Phill McGurk - IICRC Master Restorer - Restores Hamilton, Ascot, New Farm, Toowong & All Brisbane Properties
+          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+            24-hour water damage, fire damage, and flood restoration. IICRC certified.<br />
+            Insurance approved. We can be there within 1 hour.
           </p>
 
-          <p className="text-lg mb-8 max-w-2xl mx-auto text-gray-200">
-            24/7 emergency water extraction • Fire & smoke restoration • Storm damage repair<br />
-            Direct insurance billing • No upfront costs • Brisbane, Ipswich & Logan
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link
               href="tel:1300309361"
-              className="inline-flex items-center justify-center px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all shadow-2xl hover:shadow-red-500/50 transform hover:scale-105"
+              className="inline-flex items-center justify-center px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all shadow-2xl"
             >
-              <Phone className="w-6 h-6 mr-2 animate-pulse" />
-              CALL NOW: 1300 309 361
+              <Phone className="w-6 h-6 mr-2" />
+              📞 1300 309 361
             </Link>
 
             <Link
-              href="/book-service"
-              className="inline-flex items-center justify-center px-10 py-5 bg-yellow-500 text-black font-bold text-xl rounded-lg hover:bg-yellow-400 transition-all shadow-2xl transform hover:scale-105"
+              href="/contact"
+              className="inline-flex items-center justify-center px-10 py-5 bg-white text-gray-900 font-bold text-xl rounded-lg hover:bg-gray-100 transition-all shadow-2xl"
             >
-              Get Quote - 24/7
+              Emergency Contact
             </Link>
           </div>
 
-          <div className="flex items-center justify-center gap-4 text-sm">
-            <div className="flex items-center gap-1">
-              <MapPin className="w-4 h-4" />
-              <span>Wacol, QLD</span>
-            </div>
-            <span>•</span>
-            <span>⚡ 60-Min Response Brisbane</span>
-            <span>•</span>
-            <span>🏆 Master Restorer Certified</span>
+          <div className="text-sm md:text-base opacity-90">
+            <span>Office: 4/17 Tile St, Wacol, QLD 4076</span>
           </div>
         </div>
       </section>
