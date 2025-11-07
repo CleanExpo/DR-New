@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Commercial Disaster Recovery Brisbane - IICRC Master Restorer',
     description: 'Professional commercial disaster recovery for Brisbane businesses. 24/7 emergency response, minimize downtime, direct insurance billing.',
-    images: [{ url: '/images/services/commercial-disaster-recovery.png', alt: 'Commercial Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk' }],
+    images: [{ url: '/images/services/water-damage-restoration.webp', alt: 'Commercial Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk' }],
     type: 'website'
   }
 };

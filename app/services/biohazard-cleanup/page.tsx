@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Expert biohazard cleanup services following IICRC S540 standards. Professional crime scene, trauma, and biohazard remediation with 24/7 response.',
     images: [
       {
-        url: '/images/services/biohazard-remediation.png',
+        url: '/images/services/crime-scene-remediation.webp',
         width: 1200,
         height: 630,
         alt: 'Biohazard Remediation Brisbane - IICRC Master Restorer Phill McGurk Professional Cleanup' },

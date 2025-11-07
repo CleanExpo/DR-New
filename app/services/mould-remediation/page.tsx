@@ -34,7 +34,7 @@ export const metadata: Metadata = generateSEO({
   openGraph: {
     title: 'Professional Mould Remediation Brisbane - Safe & Certified Removal',
     description: 'IICRC certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Protect your health - call now.',
-    images: [{ url: '/images/services/mould-remediation.png', alt: 'Mould Remediation Brisbane - IICRC Master Restorer Phill McGurk' }],
+    images: [{ url: '/images/services/mould-remediation.webp', alt: 'Mould Remediation Brisbane - IICRC Master Restorer Phill McGurk' }],
     type: 'website'
   }
 })
@@ -75,7 +75,7 @@ const mouldFAQs = [
 const mouldServiceSchema = generateServiceSchema({
   name: 'Mould Remediation Services',
   description: 'Professional mould inspection, testing, removal and remediation services. IICRC certified technicians providing safe, thorough mould elimination across Brisbane and Queensland.',
-  image: '/images/services/mould-remediation.png',
+  image: '/images/services/mould-remediation.webp',
   areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast', 'Moreton Bay']
 })
 

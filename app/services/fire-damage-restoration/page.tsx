@@ -33,7 +33,7 @@ export const metadata: Metadata = generateSEO({
   openGraph: {
     title: 'Fire & Smoke Damage Restoration Brisbane - 24/7 Emergency Service',
     description: 'Professional fire damage restoration and smoke cleanup in Brisbane. Fast response, insurance approved, complete restoration services.',
-    images: [{ url: '/images/services/fire-smoke-damage.png', alt: 'Fire and Smoke Damage Restoration Brisbane - IICRC Master Restorer' }],
+    images: [{ url: '/images/services/fire-damage-restoration.webp', alt: 'Fire and Smoke Damage Restoration Brisbane - IICRC Master Restorer' }],
     type: 'website'
   }
 })
@@ -70,7 +70,7 @@ const fireDamageFAQs = [
 const fireDamageServiceSchema = generateServiceSchema({
   name: 'Fire Damage Restoration',
   description: 'Complete fire damage restoration including smoke removal, soot cleanup, odour elimination, and structural repairs. 24/7 emergency response across Brisbane and Queensland.',
-  image: '/images/services/fire-smoke-damage.png',
+  image: '/images/services/fire-damage-restoration.webp',
   areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast']
 })
 
