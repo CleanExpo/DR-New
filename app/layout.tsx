@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     description: 'Brisbane IICRC Master Restorer. 24/7 water damage, fire damage & flood restoration. Serving Brisbane, Ipswich & Logan. Insurance approved. Call 1300 309 361.',
     images: [
       {
-        url: '/logos/3D Disaster Recovery Logo Image.png',
+        url: '/logos/3D-Disaster-Recovery-Logo.png',
         width: 1200,
         height: 630,
         alt: 'IICRC Master Restorer Brisbane - Emergency Water Damage Restoration' }
@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'IICRC Master Restorer Brisbane | 24/7 Water Damage Emergency',
     description: 'IICRC Master Restorer. 60-minute emergency response Brisbane, Ipswich & Logan. Water, fire, mould damage specialists.',
-    images: ['/logos/3D Disaster Recovery Logo Image.png'],
+    images: ['/logos/3D-Disaster-Recovery-Logo.png'],
     creator: '@PhillMcGurk' },
   robots: {
     index: true,
@@ -141,11 +141,17 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Disaster Recovery Australia",
+              "name": "Disaster Recovery Brisbane",
               "alternateName": "Disaster Recovery",
               "url": "https://disasterrecovery.com.au",
-              "logo": "https://disasterrecovery.com.au/logos/3D%20Disaster%20Recovery%20Logo%20Image.png",
-              "description": "Australia's elite network of IICRC-certified disaster restoration specialists. 24/7 emergency response preventing secondary damage across all major cities and regional areas.",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://disasterrecovery.com.au/logos/3D-Disaster-Recovery-Logo.png",
+                "width": 1200,
+                "height": 630,
+                "caption": "Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk"
+              },
+              "description": "Brisbane's IICRC Master Restorer providing 24/7 emergency water damage, fire damage, and mould restoration services. Serving Brisbane, Ipswich & Logan.",
               "areaServed": {
                 "@type": "Country",
                 "name": "Australia"

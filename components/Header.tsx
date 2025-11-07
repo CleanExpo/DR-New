@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
@@ -12,8 +13,17 @@ export default function Header() {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-blue-900">
-            Disaster Recovery
+          <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <Image
+              src="/logos/3D-Disaster-Recovery-Logo.png"
+              alt="Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk - 24/7 Emergency Water Damage, Fire Damage & Mould Restoration Services"
+              width={60}
+              height={60}
+              priority
+              className="h-12 w-auto"
+              title="Disaster Recovery Brisbane | IICRC Master Restorer | 1300 309 361"
+            />
+            <span className="text-xl font-bold text-blue-900">Disaster Recovery</span>
           </Link>
 
           {/* Navigation */}
