@@ -259,6 +259,9 @@ const nextConfig = {
   // output: 'standalone', // Disabled - causing SSR issues
   distDir: '.next',
 
+  // Ensure images are served as static files, not bundled
+  outputFileTracing: true,
+
   // Reduce memory usage during build
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,

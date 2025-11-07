@@ -1,40 +1,27 @@
-# Slim deploy: ignore heavy/non-runtime directories
-_archive/
-AI_Bots/
-agents/
-bots/
-CRM_Reference/
-NRP-CRM/
-Portals/
-SITE_DOCUMENTS/
-audio-system.backup/
-audit-reports/
-backup-disabled-slug/
-cli/
-context7/
-context7-upstash/
-debug-screenshots/
-# demo/  # Commented out - we need demo/workflow for the workflow demonstration
-docker/
-docs/
-generated/
-health-check/
-health-reports/
-Mass-WebPage-Creations/
-mcp-agent/
-optimize-images-cli/
-pitch-materials/
-playwright-report/
-reports/
-screenshots/
-sequential-thinking-mcp/
-temp-image-creator/
-test-results/
-tests/
-training-content/
-WSL-Deployment-Sequential-Thinking/
-*.bak
-*.tmp
+# Vercel Ignore - Exclude from serverless function bundle
+
+# Documentation (not needed in production)
+*.md
+!README.md
+
+# Test files
+**/__tests__/**
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Development files
+.vscode
+.idea
 *.log
-.env*
-!.env.example
+.DS_Store
+
+# Scripts not needed in production
+scripts/fix-*.js
+analyze-images.js
+large-images-report.txt
+
+# Backup files
+*.bak
+*.backup
