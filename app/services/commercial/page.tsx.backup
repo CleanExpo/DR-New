@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Professional commercial restoration with minimal business disruption. Expert office, retail, and industrial disaster recovery services available 24/7.',
     images: [
       {
-        url: '/images/optimised/process/3D Assessment.png',
+        url: '/images/optimised/process/3d-assessment.png',
         width: 1200,
         height: 630,
         alt: 'Professional commercial restoration service',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Commercial Restoration Services | Business Continuity',
     description: 'Expert commercial restoration services. Professional office, retail, and industrial disaster recovery available 24/7.',
-    images: ['/images/optimised/process/3D Assessment.png'],
+    images: ['/images/optimised/process/3d-assessment.png'],
   },
   alternates: {
     canonical: '/services/commercial',
@@ -115,7 +115,7 @@ const relatedServices = [
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimised/process/3D Assessment.png'
+    image: '/images/optimised/process/3d-assessment.png'
   },
   {
     title: 'Water Damage Restoration',
@@ -174,7 +174,7 @@ export default function CommercialRestorationPage() {
     <ServicePageLayout
       title="Commercial Restoration Services"
       description="Professional commercial restoration services with business continuity focus. Expert office water damage, retail fire damage, industrial restoration. Minimize business downtime with specialised disaster recovery services available 24/7."
-      heroImage="/images/optimised/process/3D Assessment.png"
+      heroImage="/images/optimised/process/3d-assessment.png"
       heroImageAlt="Professional commercial restoration service showing expert technicians conducting business property assessment and restoration"
       certifications={['IICRC WRT', 'IICRC FSRT', 'Commercial Specialist', 'Business Continuity Certified']}
       responseTime="1 Hour"
@@ -207,7 +207,7 @@ export default function CommercialRestorationPage() {
           
           <div className="relative">
             <SEOImage
-              src="/images/optimised/equipment/3D Industrial Fan.png"
+              src="/images/optimised/equipment/3d-industrial-fan.png"
               alt="Professional commercial restoration equipment including industrial drying systems for business properties"
               width={500}
               height={400}
@@ -452,7 +452,7 @@ export default function CommercialRestorationPage() {
           
           <div className="relative">
             <SEOImage
-              src="/images/optimised/equipment/3D Dehumidifier.png"
+              src="/images/optimised/equipment/3d-dehumidifier.png"
               alt="Professional commercial dehumidification equipment for large-scale business restoration"
               width={500}
               height={600}

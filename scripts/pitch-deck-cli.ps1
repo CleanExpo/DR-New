@@ -282,7 +282,7 @@ function Update-Graphics {
     
     $graphics = @(
         @{Name="3D Disaster Recovery Logo"; Path="/logos/3D Disaster Recovery Logo Image.png"},
-        @{Name="3D NRP Logo"; Path="/logos/3D NRP Logo.png"},
+        @{Name="3D NRP Logo"; Path="/logos/3d-nrp-logo.png"},
         @{Name="3D Clean Claims"; Path="/logos/3D Clean Claims.png"},
         @{Name="Hero Background"; Path="/images/hero-3d-background.webp"},
         @{Name="Market Chart"; Path="/images/market-growth-3d.webp"}

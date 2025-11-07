@@ -1,0 +1,59 @@
+﻿IMAGE FILE RENAMING REPORT - PHASE 2
+Generated: 2025-11-07 19:47:19
+
+SUMMARY
+=======
+Total files processed: 48
+Successfully renamed: 48
+Errors/Skipped: 0
+
+SUCCESSFULLY RENAMED FILES
+==========================
+public\images\optimized\equipment\3D Moisture Meter Reading.png -> 3d-moisture-meter-reading.png
+public\images\optimized\branding\3D CARSI Logo.png -> 3d-carsi-logo.png
+public\images\optimized\equipment\3D Low Profile Air Mover.png -> 3d-low-profile-air-mover.png
+public\images\optimized\damage\3D Water Damage Mould on ceiling.png -> 3d-water-damage-mould-on-ceiling.png
+public\images\optimized\equipment\3D Spotting Machine.png -> 3d-spotting-machine.png
+public\images\optimized\damage\3D Burst Water Pipe.png -> 3d-burst-water-pipe.png
+public\images\optimised\damage\3D Water Damage.png -> 3d-water-damage.png
+public\images\favicons\NRP favicon_48x48.png -> nrp-favicon-48x48.png
+public\images\favicons\NRP favicon_32x32.png -> nrp-favicon-32x32.png
+public\images\optimized\damage\Graphic Crime Scene Cleaning Image.jpeg -> graphic-crime-scene-cleaning-image.jpeg
+public\images\optimized\branding\IICRC logo.png -> iicrc-logo.png
+public\images\optimized\damage\3D Water Damage to a Home.png -> 3d-water-damage-to-a-home.png
+public\images\optimized\thumbnails\3D Hazardous Cleaning.png -> 3d-hazardous-cleaning.png
+public\images\optimized\damage\3D image of a house fire.png -> 3d-image-of-a-house-fire.png
+public\images\optimized\damage\3D Air movement drying carpet.png -> 3d-air-movement-drying-carpet.png
+public\images\optimized\damage\Professional Carpet and Rug Cleaning.png -> professional-carpet-and-rug-cleaning.png
+public\images\optimized\damage\Cat 1 - Water Damage Restoration.png -> cat-1-water-damage-restoration.png
+public\images\optimized\damage\3D Emergency Squalor Cleanup.png -> 3d-emergency-squalor-cleanup.png
+public\images\optimized\equipment\3D Model Dehumidifier.png -> 3d-model-dehumidifier.png
+public\images\optimized\damage\3D Vehicle into Home.png -> 3d-vehicle-into-home.png
+public\images\optimized\equipment\3D Hepa Filters.png -> 3d-hepa-filters.png
+public\images\optimized\damage\3D Mould on Ceiling.png -> 3d-mould-on-ceiling.png
+public\images\optimized\equipment\3d Evolution DH Image.png -> 3d-evolution-dh-image.png
+public\images\optimized\equipment\3D LGR Dehumidifier.png -> 3d-lgr-dehumidifier.png
+public\images\optimised\damage\3D image of a house fire.png -> 3d-image-of-a-house-fire.png
+public\images\optimized\process\3D Emergency Squalor Cleanup.png -> 3d-emergency-squalor-cleanup.png
+public\images\optimised\damage\3D Vehicle into Home.png -> 3d-vehicle-into-home.png
+public\images\optimized\equipment\3D Air Mover.png -> 3d-air-mover.png
+public\images\optimized\branding\3D Disaster Recovery Logo.png -> 3d-disaster-recovery-logo.png
+public\images\optimized\equipment\3d Pheonix AFD flat view.png -> 3d-phoenix-afd-flat-view.png
+public\images\optimized\thumbnails\NRP Logo Hands.png -> nrp-logo-hands.png
+public\images\optimized\branding\Disaster Recovery Logo.png -> disaster-recovery-logo.png
+public\images\optimised\damage\3D Flood Damage.png -> 3d-flood-damage.png
+public\images\optimized\equipment\3D Professional Water Extractor.png -> 3d-professional-water-extractor.png
+public\images\optimized\damage\Timber Floor Drying.png -> timber-floor-drying.png
+public\images\favicons\NRP Favicon.ico -> nrp-favicon.ico
+public\images\optimized\equipment\3D Thermal Fogging.png -> 3d-thermal-fogging.png
+public\images\favicons\NRP favicon_16x16.png -> nrp-favicon-16x16.png
+public\images\optimised\branding\3D Disaster Recovery Logo.png -> 3d-disaster-recovery-logo.png
+public\images\favicons\NRP favicon_512x512.png -> nrp-favicon-512x512.png
+public\images\optimized\damage\Cat 3 Water Damage - Sewage Clean up.png -> cat-3-water-damage-sewage-clean-up.png
+public\images\favicons\NRP favicon_128x128.png -> nrp-favicon-128x128.png
+public\images\optimized\damage\Mould Remediation - Black Mould.png -> mould-remediation-black-mould.png
+public\images\optimized\thumbnails\3D Mould Spores.png -> 3d-mould-spores.png
+public\images\optimised\damage\3D Mould Damage.png -> 3d-mould-damage.png
+public\images\optimized\process\3D Hazardous Cleaning.png -> 3d-hazardous-cleaning.png
+public\images\optimized\damage\3D Kitchen Fire.png -> 3d-kitchen-fire.png
+public\images\optimised\branding\Disaster Recovery Logo.png -> disaster-recovery-logo.png

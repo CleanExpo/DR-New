@@ -128,7 +128,7 @@ function Start-ComprehensiveAudit {
     $logoIssues = @()
     $expectedLogos = @(
         @{Path="/logos/3D Disaster Recovery Logo Image.png"; Usage="Main header, footer"},
-        @{Path="/logos/3D NRP Logo.png"; Usage="NRP sections"},
+        @{Path="/logos/3d-nrp-logo.png"; Usage="NRP sections"},
         @{Path="/logos/3D Clean Claims.png"; Usage="Partner sections"}
     )
     

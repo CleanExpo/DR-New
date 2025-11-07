@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: 'Professional 24/7 emergency response for disaster recovery. Rapid response team available for water, fire, and storm damage emergencies.',
     images: [
       {
-        url: '/images/optimised/process/3D Assessment.png',
+        url: '/images/optimised/process/3d-assessment.png',
         width: 1200,
         height: 630,
         alt: '24/7 emergency response service' },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: '24/7 Online Emergency Response Services | Disaster Recovery',
     description: 'Professional emergency response team available 24/7. 1-hour response time for disaster recovery emergencies.',
-    images: ['/images/optimised/process/3D Assessment.png'] },
+    images: ['/images/optimised/process/3d-assessment.png'] },
   alternates: {
     canonical: '/services/emergency-response' },
   other: {
@@ -125,7 +125,7 @@ const relatedServices = [
   {
     title: 'Structural Drying',
     href: '/services/structural-drying',
-    image: '/images/optimised/equipment/3D Dehumidifier.png'
+    image: '/images/optimised/equipment/3d-dehumidifier.png'
   }
 ];
 
@@ -169,7 +169,7 @@ export default function EmergencyResponsePage() {
     <ServicePageLayout
       title="24/7 Online Emergency Response Services"
       description="Professional 24/7 emergency response services for disaster recovery. Rapid response team available for water damage, fire damage, storm damage, and all disaster emergencies with 1-hour response guarantee."
-      heroImage="/images/optimised/process/3D Assessment.png"
+      heroImage="/images/optimised/process/3d-assessment.png"
       heroImageAlt="24/7 emergency response team conducting rapid disaster assessment and mitigation"
       certifications={['IICRC WRT', 'IICRC FSRT', 'Emergency Response Certified', 'HAZMAT Licensed']}
       responseTime="1 Hour"
@@ -202,7 +202,7 @@ export default function EmergencyResponsePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3D Extraction Unit.png"
+              src="/images/optimised/equipment/3d-extraction-unit.png"
               alt="Emergency water extraction equipment ready for rapid deployment"
               width={500}
               height={400}
@@ -460,7 +460,7 @@ export default function EmergencyResponsePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3D Industrial Fan.png"
+              src="/images/optimised/equipment/3d-industrial-fan.png"
               alt="Industrial emergency response equipment including powerful drying fans"
               width={500}
               height={600}

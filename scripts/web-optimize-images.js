@@ -109,55 +109,55 @@ class WebImageOptimizer {
       {
         id: 'equipment-dehumidifier-001',
         title: '3D Industrial Dehumidifier',
-        filename: '3D Dehumidifier.png',
+        filename: '3d-dehumidifier.png',
         category: 'equipment'
       },
       {
         id: 'equipment-extraction-001',
         title: '3D Water Extraction Unit',
-        filename: '3D Extraction Unit.png',
+        filename: '3d-extraction-unit.png',
         category: 'equipment'
       },
       {
         id: 'equipment-fan-001',
         title: '3D Industrial Drying Fan',
-        filename: '3D Industrial Fan.png',
+        filename: '3d-industrial-fan.png',
         category: 'equipment'
       },
       {
         id: 'equipment-thermal-001',
         title: '3D Thermal Imaging Camera',
-        filename: '3D Thermal Camera.png',
+        filename: '3d-thermal-camera.png',
         category: 'equipment'
       },
       {
         id: 'equipment-moisture-001',
         title: '3D Moisture Detection Meter',
-        filename: '3D Moisture Meter.png',
+        filename: '3d-moisture-meter.png',
         category: 'equipment'
       },
       {
         id: 'process-assessment-001',
         title: '3D Initial Assessment',
-        filename: '3D Assessment.png',
+        filename: '3d-assessment.png',
         category: 'process'
       },
       {
         id: 'process-drying-001',
         title: '3D Structural Drying',
-        filename: '3D Drying Process.png',
+        filename: '3d-drying-process.png',
         category: 'process'
       },
       {
         id: 'process-remediation-001',
         title: '3D Remediation Process',
-        filename: '3D Remediation.png',
+        filename: '3d-remediation.png',
         category: 'process'
       },
       {
         id: 'process-restoration-001',
         title: '3D Complete Restoration',
-        filename: '3D Restoration.png',
+        filename: '3d-restoration.png',
         category: 'process'
       },
       {
@@ -175,7 +175,7 @@ class WebImageOptimizer {
       {
         id: 'equipment-moisture-reading-01',
         title: '3D Moisture Meter Reading',
-        filename: '3D Moisture Meter Reading.png',
+        filename: '3d-moisture-meter-reading.png',
         category: 'equipment'
       },
       {
@@ -193,19 +193,19 @@ class WebImageOptimizer {
       {
         id: 'cleanup-squalor-emergency-01',
         title: '3D Emergency Squalor Cleanup',
-        filename: '3D Emergency Squalor Cleanup.png',
+        filename: '3d-emergency-squalor-cleanup.png',
         category: 'process'
       },
       {
         id: 'equipment-thermal-fogging-01',
         title: '3D Thermal Fogging Equipment',
-        filename: '3D Thermal Fogging.png',
+        filename: '3d-thermal-fogging.png',
         category: 'equipment'
       },
       {
         id: 'cleanup-hazardous-01',
         title: '3D Hazardous Cleaning Services',
-        filename: '3D Hazardous Cleaning.png',
+        filename: '3d-hazardous-cleaning.png',
         category: 'process'
       }
     ];

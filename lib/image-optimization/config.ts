@@ -225,7 +225,7 @@ export const IMAGE_INVENTORY = {
       width: 150,
       height: 150,
     },
-    '3D CARSI Logo.png': {
+    '3d-carsi-logo.png': {
       alt: 'CARSI Member - Catastrophe Adjusters & Restoration Specialists International',
       width: 150,
       height: 150,

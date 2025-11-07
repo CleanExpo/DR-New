@@ -79,12 +79,12 @@ export default function WaterDamageRestorationPage() {
     {
       title: 'Structural Drying',
       href: '/services/structural-drying',
-      image: '/images/optimised/process/3D Drying Process.png'
+      image: '/images/optimised/process/3d-drying-process.png'
     },
     {
       title: 'Emergency Response',
       href: '/services/emergency-response',
-      image: '/images/optimised/process/3D Assessment.png'
+      image: '/images/optimised/process/3d-assessment.png'
     }
   ];
 
@@ -241,7 +241,7 @@ export default function WaterDamageRestorationPage() {
           <div className="r6-card-premium r6-hover-lift r6-glow-subtle overflow-hidden">
             <div className="h-48 relative r6-image-container">
               <Image
-                src="/images/optimised/process/3D Emergency Squalor Cleanup.png"
+                src="/images/optimised/process/3d-emergency-squalor-cleanup.png"
                 alt="Category 3 Black Water Damage"
                 fill
                 className="object-cover r6-scale-hover"
@@ -308,7 +308,7 @@ export default function WaterDamageRestorationPage() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-start">
                     <Image
-                      src="/images/optimised/process/3D Assessment.png"
+                      src="/images/optimised/process/3d-assessment.png"
                       alt="Emergency assessment"
                       width={100}
                       height={100}
@@ -355,7 +355,7 @@ export default function WaterDamageRestorationPage() {
                 <div className="grid md:grid-cols-3 gap-4 mt-6">
                   <div className="text-center">
                     <Image
-                      src="/images/optimised/equipment/3D Thermal Camera.png"
+                      src="/images/optimised/equipment/3d-thermal-camera.png"
                       alt="Thermal imaging"
                       width={80}
                       height={80}
@@ -368,7 +368,7 @@ export default function WaterDamageRestorationPage() {
                   </div>
                   <div className="text-center">
                     <Image
-                      src="/images/optimised/equipment/3D Moisture Meter.png"
+                      src="/images/optimised/equipment/3d-moisture-meter.png"
                       alt="Moisture meters"
                       width={80}
                       height={80}
@@ -381,7 +381,7 @@ export default function WaterDamageRestorationPage() {
                   </div>
                   <div className="text-center">
                     <Image
-                      src="/images/optimised/equipment/3D Moisture Meter Reading.png"
+                      src="/images/optimised/equipment/3d-moisture-meter-reading.png"
                       alt="Hygrometers"
                       width={80}
                       height={80}
@@ -415,7 +415,7 @@ export default function WaterDamageRestorationPage() {
                 <div className="r6-glass-card r6-glow-blue border-l-4 border-electric-blue p-4 mt-4">
                   <div className="flex items-center mb-2">
                     <Image
-                      src="/images/optimised/equipment/3D Extraction Unit.png"
+                      src="/images/optimised/equipment/3d-extraction-unit.png"
                       alt="Extraction equipment"
                       width={60}
                       height={60}
@@ -451,7 +451,7 @@ export default function WaterDamageRestorationPage() {
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
                   <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
-                      src="/images/optimised/equipment/3D Dehumidifier.png"
+                      src="/images/optimised/equipment/3d-dehumidifier.png"
                       alt="Dehumidifier"
                       width={70}
                       height={70}
@@ -466,7 +466,7 @@ export default function WaterDamageRestorationPage() {
                   </div>
                   <div className="flex items-center p-4 r6-glass-subtle rounded-lg r6-hover-glow">
                     <Image
-                      src="/images/optimised/equipment/3D Industrial Fan.png"
+                      src="/images/optimised/equipment/3d-industrial-fan.png"
                       alt="Air movers"
                       width={70}
                       height={70}
@@ -503,7 +503,7 @@ export default function WaterDamageRestorationPage() {
                   <div className="r6-glass-subtle p-4 rounded-lg border border-green-500/20 r6-hover-glow">
                     <div className="flex items-center mb-2">
                       <Image
-                        src="/images/optimised/equipment/3D Thermal Fogging.png"
+                        src="/images/optimised/equipment/3d-thermal-fogging.png"
                         alt="Thermal fogging"
                         width={50}
                         height={50}
@@ -548,7 +548,7 @@ export default function WaterDamageRestorationPage() {
                 </p>
                 <div className="flex items-center justify-center mt-6">
                   <Image
-                    src="/images/optimised/process/3D Restoration.png"
+                    src="/images/optimised/process/3d-restoration.png"
                     alt="Complete restoration"
                     width={200}
                     height={150}
@@ -597,37 +597,37 @@ export default function WaterDamageRestorationPage() {
                 name: "Truck-Mounted Extractors",
                 specs: "40,000 gallons/day capacity",
                 benefit: "Removes water 50% faster",
-                image: "/images/optimised/equipment/3D Extraction Unit.png"
+                image: "/images/optimised/equipment/3d-extraction-unit.png"
               },
               {
                 name: "LGR Dehumidifiers",
                 specs: "185 PPD removal rate",
                 benefit: "Prevents mould in 24-48hrs",
-                image: "/images/optimised/equipment/3D Dehumidifier.png"
+                image: "/images/optimised/equipment/3d-dehumidifier.png"
               },
               {
                 name: "Axial Air Movers",
                 specs: "3,200 CFM airflow",
                 benefit: "Accelerates evaporation",
-                image: "/images/optimised/equipment/3D Industrial Fan.png"
+                image: "/images/optimised/equipment/3d-industrial-fan.png"
               },
               {
                 name: "FLIR Thermal Cameras",
                 specs: "0.05°C sensitivity",
                 benefit: "Finds hidden moisture",
-                image: "/images/optimised/equipment/3D Thermal Camera.png"
+                image: "/images/optimised/equipment/3d-thermal-camera.png"
               },
               {
                 name: "Penetrating Moisture Meters",
                 specs: "0-100% WME range",
                 benefit: "Accurate moisture mapping",
-                image: "/images/optimised/equipment/3D Moisture Meter.png"
+                image: "/images/optimised/equipment/3d-moisture-meter.png"
               },
               {
                 name: "HEPA Air Scrubbers",
                 specs: "99.97% filtration",
                 benefit: "Cleanroom air quality",
-                image: "/images/optimised/equipment/3D Thermal Fogging.png"
+                image: "/images/optimised/equipment/3d-thermal-fogging.png"
               }
             ].map((item, index) => (
               <div key={index} className="r6-card-premium r6-hover-lift p-6">

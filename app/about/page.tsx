@@ -172,7 +172,7 @@ export default function ModernAboutPage() {
             >
               <div className="aspect-video bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-2xl border border-purple-500/30 overflow-hidden flex items-center justify-center">
                 <img
-                  src="/images/team/3D Shane.png"
+                  src="/images/team/3d-shane.png"
                   alt="Shane - Founder and CEO of Disaster Recovery"
                   className="w-full h-full object-contain"
                   style={{

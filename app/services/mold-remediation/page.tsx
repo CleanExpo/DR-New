@@ -120,12 +120,12 @@ const relatedServices = [
   {
     title: 'Indoor Air Quality Testing',
     href: '/services/indoor-air-quality',
-    image: '/images/optimised/equipment/3D Thermal Camera.png'
+    image: '/images/optimised/equipment/3d-thermal-camera.png'
   },
   {
     title: 'Structural Drying',
     href: '/services/structural-drying',
-    image: '/images/optimised/equipment/3D Dehumidifier.png'
+    image: '/images/optimised/equipment/3d-dehumidifier.png'
   }
 ];
 
@@ -202,7 +202,7 @@ export default function MoldRemediationPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/process/3D Remediation.png"
+              src="/images/optimised/process/3d-remediation.png"
               alt="Professional mould remediation process with containment and HEPA filtration"
               width={500}
               height={400}
@@ -431,7 +431,7 @@ export default function MoldRemediationPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3D Moisture Meter Reading.png"
+              src="/images/optimised/equipment/3d-moisture-meter-reading.png"
               alt="Professional moisture meter reading during mould assessment and remediation"
               width={500}
               height={600}

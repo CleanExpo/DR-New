@@ -121,7 +121,7 @@ const relatedServices = [
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimised/process/3D Assessment.png'
+    image: '/images/optimised/process/3d-assessment.png'
   }
 ];
 
@@ -198,7 +198,7 @@ export default function FireDamagePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3D Thermal Fogging.png"
+              src="/images/optimised/equipment/3d-thermal-fogging.png"
               alt="Professional thermal fogging equipment for smoke odour elimination"
               width={500}
               height={400}
@@ -327,7 +327,7 @@ export default function FireDamagePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3D Moisture Meter Reading.png"
+              src="/images/optimised/equipment/3d-moisture-meter-reading.png"
               alt="Professional moisture meter for fire damage assessment and monitoring"
               width={500}
               height={600}

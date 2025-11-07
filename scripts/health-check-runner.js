@@ -184,14 +184,14 @@ async function testAssets() {
   const assets = [
     // Logos
     { path: '/logos/3D Disaster Recovery Logo Image.png', name: 'Main Logo' },
-    { path: '/logos/3D NRP Logo.png', name: 'NRP Logo' },
+    { path: '/logos/3d-nrp-logo.png', name: 'NRP Logo' },
     { path: '/logos/3D Clean Claims.png', name: 'Clean Claims Logo' },
     
     // Social media icons
-    { path: '/images/logos/3D Facebook.png', name: 'Facebook Icon' },
-    { path: '/images/logos/3D Instagram.png', name: 'Instagram Icon' },
-    { path: '/images/logos/3D LinkedIn.png', name: 'LinkedIn Icon' },
-    { path: '/images/logos/3D YouTube.png', name: 'YouTube Icon' },
+    { path: '/images/logos/3d-facebook.png', name: 'Facebook Icon' },
+    { path: '/images/logos/3d-instagram.png', name: 'Instagram Icon' },
+    { path: '/images/logos/3d-linkedin.png', name: 'LinkedIn Icon' },
+    { path: '/images/logos/3d-youtube.png', name: 'YouTube Icon' },
     
     // Other assets
     { path: '/favicon.ico', name: 'Favicon' },

@@ -110,7 +110,7 @@ const relatedServices = [
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimised/process/3D Assessment.png'
+    image: '/images/optimised/process/3d-assessment.png'
   },
   {
     title: 'Water Damage Restoration',
@@ -125,7 +125,7 @@ const relatedServices = [
   {
     title: 'Structural Drying',
     href: '/services/structural-drying',
-    image: '/images/optimised/equipment/3D Dehumidifier.png'
+    image: '/images/optimised/equipment/3d-dehumidifier.png'
   }
 ];
 
@@ -447,7 +447,7 @@ export default function StormDamagePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimised/equipment/3D Thermal Camera.png"
+              src="/images/optimised/equipment/3d-thermal-camera.png"
               alt="Professional thermal imaging equipment for detecting hidden storm damage"
               width={500}
               height={600}

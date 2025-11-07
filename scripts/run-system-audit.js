@@ -130,7 +130,7 @@ async function auditBranding() {
   // Check logos
   const logos = [
     { file: '3D Disaster Recovery Logo Image.png', usage: 'Main' },
-    { file: '3D NRP Logo.png', usage: 'NRP' },
+    { file: '3d-nrp-logo.png', usage: 'NRP' },
     { file: '3D Clean Claims.png', usage: 'Partner' }
   ];
   

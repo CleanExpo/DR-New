@@ -224,12 +224,12 @@ function Test-Assets {
     # Critical assets to check
     $assets = @(
         "/logos/3D Disaster Recovery Logo Image.png",
-        "/logos/3D NRP Logo.png",
+        "/logos/3d-nrp-logo.png",
         "/logos/3D Clean Claims.png",
-        "/images/logos/3D Facebook.png",
-        "/images/logos/3D Instagram.png",
-        "/images/logos/3D LinkedIn.png",
-        "/images/logos/3D YouTube.png",
+        "/images/logos/3d-facebook.png",
+        "/images/logos/3d-instagram.png",
+        "/images/logos/3d-linkedin.png",
+        "/images/logos/3d-youtube.png",
         "/favicon.ico",
         "/manifest.json"
     )
