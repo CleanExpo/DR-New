@@ -255,8 +255,8 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: true,
 
-  // Output configuration - Use default for better compatibility
-  // output: 'standalone', // Disabled - causing SSR issues
+  // Output configuration - Use standalone for Vercel deployment size optimization
+  output: 'standalone',
   distDir: '.next',
 
   // Ensure images are served as static files, not bundled
