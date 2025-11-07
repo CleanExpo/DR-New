@@ -94,7 +94,7 @@ export const MasterRestorerSchema: React.FC = () => {
     "logo": "https://disaster-recovery-seven.vercel.app/images/logo.png",
     "image": "https://disaster-recovery-seven.vercel.app/images/office.webp",
     "telephone": "1300 [NUMBER]",
-    "email": "info@disasterrecoveryqld.com.au",
+    "email": "admin@disasterrecovery.com.au",
     "priceRange": "$$",
     "founder": {
       "@type": "Person",

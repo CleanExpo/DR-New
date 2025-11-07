@@ -7,7 +7,7 @@ export const EmergencyServiceSchema = {
   "description": "24/7 emergency water damage restoration, fire damage recovery, and disaster response services across Brisbane, Ipswich, and Logan by Master Restorer Phill McGurk",
   "url": "https://www.disasterrecovery.com.au",
   "telephone": "+61-1300-000-000",
-  "email": "emergency@disasterrecovery.com.au",
+  "email": "admin@disasterrecovery.com.au",
   "availableLanguage": ["en-AU"],
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",

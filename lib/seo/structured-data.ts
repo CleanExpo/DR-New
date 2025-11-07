@@ -55,10 +55,10 @@ export function generateLocalBusinessSchema(): LocalBusinessSchema {
     '@type': 'EmergencyService',
     '@id': 'https://disasterrecovery.com.au/#organization',
     name: 'Disaster Recovery Brisbane - Master Restorer Phill McGurk',
-    description: 'IICRC & RAI Master Restorer providing 24/7 emergency disaster recovery services across Brisbane, Ipswich & Logan. Water damage, fire damage, mould remediation specialist.',
+    description: 'IICRC Master Restorer providing 24/7 emergency disaster recovery services across Brisbane, Ipswich & Logan. Water damage, fire damage, mould remediation specialist.',
     url: 'https://disasterrecovery.com.au',
     telephone: '+61-1300-309-361',
-    email: 'emergency@disasterrecovery.com.au',
+    email: 'admin@disasterrecovery.com.au',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '4/17 Tile St',

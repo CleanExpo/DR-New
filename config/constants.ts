@@ -6,7 +6,7 @@ export const APP_DESCRIPTION = 'Brisbane, Ipswich & Logan Emergency Restoration 
 export const CONTACT = {
   phone: '1300 309 361',
   phoneLink: 'tel:1300309361',
-  email: 'info@disasterrecovery.com.au',
+  email: 'admin@disasterrecovery.com.au',
   address: '4/17 Tile St, Wacol, QLD 4076',
 } as const;
 

@@ -7,6 +7,26 @@ import { useState } from 'react';
 
 export default function Header() {
   const [contractorsOpen, setContractorsOpen] = useState(false);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = () => {
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
+    setContractorsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => {
+      setContractorsOpen(false);
+    }, 200);
+    setDropdownTimeout(timeout);
+  };
+
+  const toggleDropdown = () => {
+    setContractorsOpen(!contractorsOpen);
+  };
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -38,16 +58,23 @@ export default function Header() {
             {/* For Contractors Dropdown */}
             <div
               className="relative group"
-              onMouseEnter={() => setContractorsOpen(true)}
-              onMouseLeave={() => setContractorsOpen(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
-              <button className="flex items-center gap-1 text-gray-700 hover:text-blue-600 font-medium">
+              <button
+                onClick={toggleDropdown}
+                className="flex items-center gap-1 text-gray-700 hover:text-blue-600 font-medium cursor-pointer"
+              >
                 For Contractors
                 <ChevronDown className={`w-4 h-4 transition-transform ${contractorsOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {contractorsOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-[100]">
+                <div
+                  className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-[100]"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <a
                     href="https://www.nrpg.business"
                     target="_blank"

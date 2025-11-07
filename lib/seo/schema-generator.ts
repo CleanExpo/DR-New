@@ -71,7 +71,7 @@ export function generateLocalBusinessSchema(): LocalBusinessSchemaData {
     ],
     url: 'https://disasterrecovery.com.au',
     telephone: '+61-1300-309-361',
-    email: 'emergency@disasterrecovery.com.au',
+    email: 'admin@disasterrecovery.com.au',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '4/17 Tile Street',
@@ -442,7 +442,7 @@ export function generateLocationSchema(
     ],
     url: `https://disasterrecovery.com.au/locations/${location.toLowerCase()}`,
     telephone: '+61-1300-309-361',
-    email: 'emergency@disasterrecovery.com.au',
+    email: 'admin@disasterrecovery.com.au',
     address: {
       '@type': 'PostalAddress',
       streetAddress: '4/17 Tile Street',

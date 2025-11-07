@@ -324,7 +324,7 @@ export function generateFooterSchema(...args: any[]): void {
     'logo': 'https://disasterrecovery.com.au/logo.png',
     'description': '24/7 IICRC Master Restorer disaster recovery and restoration services',
     'telephone': '1300309361',
-    'email': 'info@disasterrecovery.com.au',
+    'email': 'admin@disasterrecovery.com.au',
     'address': {
       '@type': 'PostalAddress',
       'streetAddress': '4/17 Tile St',
