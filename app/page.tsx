@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, MapPin, Shield, Star, CheckCircle, Clock, ArrowRight, Award, Users, Building2 } from 'lucide-react';
 import { HeroImage } from '@/components/image-optimization';
 
@@ -308,6 +309,106 @@ export default function HomePage() {
           <div className="mt-12 text-center bg-blue-50 rounded-xl p-6 max-w-4xl mx-auto">
             <p className="text-gray-700">
               <strong>Emergency Response Times:</strong> 60 minutes Brisbane CBD & inner suburbs • 90 minutes greater Brisbane, Ipswich, Logan
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile Showcase Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-full">
+              📱 Access Emergency Services Anywhere
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Find Us on Mobile - 24/7 Emergency Response
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Access IICRC Master Restorer Phill McGurk's emergency disaster recovery services from any device - iPhone, Android, tablet, or desktop
+            </p>
+          </div>
+
+          {/* Mobile Showcase Images */}
+          <div className="max-w-6xl mx-auto mb-12">
+            <div className="bg-white rounded-xl p-8 shadow-2xl">
+              <Image
+                src="/images/mobile-showcase.png"
+                alt="Disaster Recovery Brisbane mobile website displayed on iPhone and Android smartphones - IICRC Master Restorer Phill McGurk emergency services accessible 24/7 for water damage, fire damage and mould remediation across Brisbane, Ipswich and Logan"
+                title="Mobile-Friendly Emergency Services | 1300 309 361 | Access Anywhere"
+                width={1200}
+                height={800}
+                loading="lazy"
+                className="rounded-lg shadow-lg w-full h-auto"
+              />
+            </div>
+          </div>
+
+          {/* Feature Graphics */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <Image
+                src="/images/feature-graphic.png"
+                alt="Disaster Recovery Brisbane feature - IICRC Master Restorer emergency restoration services available on all devices for immediate response"
+                title="Emergency Restoration Brisbane | 1300 309 361 | Multi-Device Access"
+                width={800}
+                height={600}
+                loading="lazy"
+                className="rounded-lg w-full h-auto"
+              />
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-lg">
+              <Image
+                src="/images/disaster-response-mobile.png"
+                alt="Disaster Response Brisbane mobile emergency services - Contact IICRC Master Restorer Phill McGurk instantly from smartphone for 24/7 water damage, fire damage restoration across Brisbane, Ipswich, Logan"
+                title="Mobile Emergency Response | 1300 309 361 | Instant Contact"
+                width={800}
+                height={600}
+                loading="lazy"
+                className="rounded-lg w-full h-auto"
+              />
+            </div>
+          </div>
+
+          {/* Mobile Benefits */}
+          <div className="mt-12 grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-4xl mb-3">📱</div>
+              <h3 className="font-bold text-lg mb-2 text-gray-900">Mobile-Optimized</h3>
+              <p className="text-gray-600 text-sm">
+                Fast-loading, responsive design works perfectly on all smartphones and tablets
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-4xl mb-3">⚡</div>
+              <h3 className="font-bold text-lg mb-2 text-gray-900">One-Tap Calling</h3>
+              <p className="text-gray-600 text-sm">
+                Call 1300 309 361 instantly from your mobile device for emergency response
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-4xl mb-3">🏆</div>
+              <h3 className="font-bold text-lg mb-2 text-gray-900">Expert Information</h3>
+              <p className="text-gray-600 text-sm">
+                Access Master Restorer expertise, service details, and emergency guidance on-the-go
+              </p>
+            </div>
+          </div>
+
+          {/* Mobile CTA */}
+          <div className="mt-12 text-center bg-gradient-to-r from-red-600 to-red-700 rounded-xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Emergency? Call Now from Your Mobile
+            </h3>
+            <Link
+              href="tel:1300309361"
+              className="inline-flex items-center justify-center px-10 py-5 bg-white text-red-600 font-bold text-xl rounded-lg hover:bg-gray-100 transition-all shadow-2xl hover:shadow-white/50 transform hover:scale-105"
+            >
+              <Phone className="w-6 h-6 mr-2 animate-pulse" />
+              1300 309 361
+            </Link>
+            <p className="mt-4 text-red-100 text-sm">
+              24/7 Emergency Response • 60-Minute Arrival Brisbane • Master Restorer Certified
             </p>
           </div>
         </div>
