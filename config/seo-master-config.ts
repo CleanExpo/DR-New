@@ -467,8 +467,8 @@ export const contentOptimization = {
       'Logan Central', 'Springwood', 'Shailer Park'
     ],
     certifications: [
-      'IICRC', 'Master Restorer', 'RAI', 'Institute of Inspection Cleaning and Restoration Certification',
-      'Restoration Industry Association', 'Water Damage Restoration Technician',
+      'IICRC', 'Master Restorer', 'Institute of Inspection Cleaning and Restoration Certification',
+      'Water Damage Restoration Technician',
       'Applied Structural Drying', 'Fire and Smoke Restoration Technician'
     ],
     services: [

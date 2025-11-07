@@ -6,30 +6,30 @@ import { Shield, Award, FileCheck, BadgeCheck, Briefcase } from 'lucide-react'
 
 export default function TrustBadges() {
   const certifications = [
-    { 
+    {
       icon: Shield,
       name: 'IICRC Certified',
       description: 'International Certification'
     },
-    { 
-      icon: Award,
-      name: 'RIA Member',
-      description: 'Restoration Industry Association'
-    },
-    { 
+    {
       icon: FileCheck,
       name: 'All Insurers Approved',
       description: 'Preferred Partner Status'
     },
-    { 
+    {
       icon: Briefcase,
       name: 'Government Contractor',
       description: 'Approved Supplier'
     },
-    { 
+    {
       icon: BadgeCheck,
       name: 'WHS Compliant',
       description: 'Safety Certified'
+    },
+    {
+      icon: Award,
+      name: 'Master Restorer',
+      description: 'IICRC Master Certification'
     }
   ]
 

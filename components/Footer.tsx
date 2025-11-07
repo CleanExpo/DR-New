@@ -142,7 +142,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
           <p>&copy; {new Date().getFullYear()} Disaster Recovery. All rights reserved.</p>
           <p className="mt-2 text-sm">
-            IICRC & RAI Master Restorer | Brisbane | Ipswich | Logan
+            IICRC Master Restorer | Brisbane | Ipswich | Logan
           </p>
         </div>
       </div>

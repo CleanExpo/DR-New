@@ -35,7 +35,6 @@ export const AUTHORITATIVE_SOURCES: AuthoritativeSource[] = [
   
   // Industry Standards
   { type: 'industry', name: 'IICRC Standards', credibility: 10, url: 'https://www.iicrc.org' },
-  { type: 'industry', name: 'RIA Guidelines', credibility: 9, url: 'https://www.restorationindustry.org' },
   { type: 'industry', name: 'ABRA Standards', credibility: 9 },
   { type: 'industry', name: 'WHO Guidelines', credibility: 10, url: 'https://www.who.int' },
   

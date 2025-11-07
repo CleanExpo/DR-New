@@ -26,7 +26,7 @@ export default function FooterEnhanced() {
                 </div>
               </div>
               <p className="text-neutral-400 leading-relaxed">
-                IICRC & RAI Master Restorer providing 24/7 emergency restoration services across Brisbane, Ipswich, and Logan.
+                IICRC Master Restorer providing 24/7 emergency restoration services across Brisbane, Ipswich, and Logan.
               </p>
             </div>
 
@@ -37,8 +37,8 @@ export default function FooterEnhanced() {
                 <span className="text-xs font-semibold text-premium-400">IICRC Master</span>
               </div>
               <div className="inline-flex items-center gap-2 px-3 py-2 bg-success-500/10 border border-success-500/20 rounded-lg">
-                <Shield className="w-4 h-4 text-success-400" />
-                <span className="text-xs font-semibold text-success-400">RAI Certified</span>
+                <Clock className="w-4 h-4 text-success-400" />
+                <span className="text-xs font-semibold text-success-400">24/7 Available</span>
               </div>
             </div>
           </div>
