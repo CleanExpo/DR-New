@@ -32,7 +32,12 @@ export const metadata: Metadata = generateSEO({
   openGraph: {
     title: 'Emergency Sewage Cleanup Brisbane - 24/7 Professional Sanitization',
     description: 'Expert sewage cleanup and decontamination services. Fast response, health-certified technicians, complete sanitization. Protect your property and health.',
-    images: [{ url: '/images/services/sewage-sanitisation.webp', alt: 'Professional Sewage Cleanup Service' }],
+    images: [{
+      url: '/images/services/sewage-remediation.png',
+      width: 1200,
+      height: 630,
+      alt: 'Sewage Remediation Brisbane - IICRC Master Restorer Phill McGurk Professional Category 3 Black Water Cleanup Emergency Services'
+    }],
     type: 'website'
   }
 })
@@ -69,7 +74,7 @@ const sewageFAQs = [
 const sewageServiceSchema = generateServiceSchema({
   name: 'Sewage Cleanup and Sanitization',
   description: 'Emergency sewage backup cleanup, removal, and complete sanitization services. 24/7 response for residential and commercial properties across Brisbane and Queensland.',
-  image: '/images/services/sewage-sanitisation.webp',
+  image: '/images/services/sewage-remediation.png',
   areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast']
 })
 
@@ -189,8 +194,9 @@ export default function SewageCleanupPage() {
 
             <div className="relative">
               <Image
-                src="/images/services/sewage-sanitisation.webp"
-                alt="Professional sewage cleanup and sanitization service"
+                src="/images/services/sewage-remediation.png"
+                alt="Sewage Remediation Brisbane - IICRC Master Restorer Phill McGurk Professional Category 3 Black Water Cleanup - Emergency response within 60 minutes for sewage backup, toilet overflow and contamination removal - Health-certified technicians with EPA-approved sanitization equipment serving Brisbane, Ipswich, Logan and Gold Coast"
+                title="Emergency Sewage Cleanup Brisbane | 1300 309 361 | Category 3 Black Water Specialists"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-xl"
