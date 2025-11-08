@@ -279,7 +279,7 @@ const IndoorEnvironmentalHealthPage = () => {
       <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/optimized/damage/Mould Remediation - Black Mould.png"
+            src="/images/optimized/damage/mould-remediation-black-mould.webp"
             alt="Indoor environmental health hazards showing bacteria, air filtration, and human health impacts"
             fill
             className="object-cover"

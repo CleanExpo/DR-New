@@ -320,7 +320,7 @@ export default function HomePage() {
           <div className="max-w-6xl mx-auto mb-12">
             <div className="bg-white rounded-xl p-8 shadow-2xl">
               <Image
-                src="/images/mobile-showcase.png"
+                src="/images/mobile-showcase.webp"
                 alt="Disaster Recovery Brisbane mobile website displayed on iPhone and Android smartphones - IICRC Master Restorer Phill McGurk emergency services accessible 24/7 for water damage, fire damage and mould remediation across Brisbane, Ipswich and Logan"
                 title="Mobile-Friendly Emergency Services | 1300 309 361 | Access Anywhere"
                 width={1200}
@@ -335,7 +335,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div className="bg-white rounded-xl p-6 shadow-lg">
               <Image
-                src="/images/feature-graphic.png"
+                src="/images/optimized/branding/disaster-recovery-logo.webp"
                 alt="Disaster Recovery Brisbane feature - IICRC Master Restorer emergency restoration services available on all devices for immediate response"
                 title="Emergency Restoration Brisbane | 1300 309 361 | Multi-Device Access"
                 width={800}
@@ -346,7 +346,7 @@ export default function HomePage() {
             </div>
             <div className="bg-white rounded-xl p-6 shadow-lg">
               <Image
-                src="/images/disaster-response-mobile.png"
+                src="/images/disaster-response-mobile.webp"
                 alt="Disaster Response Brisbane mobile emergency services - Contact IICRC Master Restorer Phill McGurk instantly from smartphone for 24/7 water damage, fire damage restoration across Brisbane, Ipswich, Logan"
                 title="Mobile Emergency Response | 1300 309 361 | Instant Contact"
                 width={800}

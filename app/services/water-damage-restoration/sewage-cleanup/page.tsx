@@ -171,7 +171,7 @@ export default function SewageCleanupPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/equipment/hazmat-cleanup.png"
+                    src="/images/optimized/equipment/hazmat-cleanup.webp"
                     alt="Hazmat sewage cleanup equipment and protective gear"
                     fill
                     className="object-contain drop-shadow-2xl"

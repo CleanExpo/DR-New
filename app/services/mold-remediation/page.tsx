@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mould Remediation Services | IICRC S520 Certified',
     description: 'Expert mould remediation services. IICRC S520 certified technicians. Professional black mould removal available 24/7.',
-    images: ['/images/optimized/damage/3D Mould Damage.png'] },
+    images: ['/images/optimized/damage/3d-mould-damage.webp'] },
   alternates: {
     canonical: '/services/mould-remediation' },
   other: {
@@ -110,22 +110,22 @@ const relatedServices = [
   {
     title: 'Water Damage Restoration',
     href: '/services/water-damage-restoration',
-    image: '/images/optimized/damage/3D Water Damage.png'
+    image: '/images/optimized/damage/3d-water-damage.webp'
   },
   {
     title: 'Fire Damage Restoration',
     href: '/services/fire-damage',
-    image: '/images/optimized/damage/3D Fire Damage.png'
+    image: '/images/optimized/damage/3d-kitchen-fire.webp'
   },
   {
     title: 'Indoor Air Quality Testing',
     href: '/services/indoor-air-quality',
-    image: '/images/optimized/equipment/3d-thermal-camera.png'
+    image: '/images/optimized/equipment/3d-thermal-camera.webp'
   },
   {
     title: 'Structural Drying',
     href: '/services/structural-drying',
-    image: '/images/optimized/equipment/3d-dehumidifier.png'
+    image: '/images/optimized/equipment/3d-dehumidifier.webp'
   }
 ];
 
@@ -169,7 +169,7 @@ export default function MoldRemediationPage() {
     <ServicePageLayout
       title="Mould Remediation Services"
       description="Professional mould remediation services following IICRC S520 standards. Expert black mould removal, toxic mould cleanup, and comprehensive mould damage restoration with certified technicians available 24/7."
-      heroImage="/images/optimized/damage/3D Mould Damage.png"
+      heroImage="/images/optimized/damage/3d-mould-damage.webp"
       heroImageAlt="Professional mould remediation service showing expert technicians safely removing mould contamination"
       certifications={['IICRC S520', 'IICRC WRT', 'Indoor Environmental Professional', 'HAZMAT Licensed']}
       responseTime="1-2 Hours"
@@ -202,7 +202,7 @@ export default function MoldRemediationPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/process/3d-remediation.png"
+              src="/images/optimized/process/3d-remediation.webp"
               alt="Professional mould remediation process with containment and HEPA filtration"
               width={500}
               height={400}
@@ -431,7 +431,7 @@ export default function MoldRemediationPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/equipment/3d-moisture-meter-reading.png"
+              src="/images/optimized/equipment/3d-moisture-meter-reading.webp"
               alt="Professional moisture meter reading during mould assessment and remediation"
               width={500}
               height={600}

@@ -173,7 +173,7 @@ export default function BurstPipeRepairPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/damage/3D Burst Water Pipe.png"
+                    src="/images/optimized/damage/3d-burst-water-pipe.webp"
                     alt="Burst pipe emergency repair visualization"
                     fill
                     className="object-contain drop-shadow-2xl"

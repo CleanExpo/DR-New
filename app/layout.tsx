@@ -140,9 +140,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "LocalBusiness",
+              "@id": "https://disasterrecovery.com.au/#organization",
               "name": "Disaster Recovery Brisbane",
               "alternateName": "Disaster Recovery",
+              "legalName": "Disaster Recovery Brisbane Pty Ltd",
               "url": "https://disasterrecovery.com.au",
               "logo": {
                 "@type": "ImageObject",
@@ -151,51 +153,116 @@ export default function RootLayout({
                 "height": 630,
                 "caption": "Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk"
               },
-              "description": "Brisbane's IICRC Master Restorer providing 24/7 emergency water damage, fire damage, and mould restoration services. Serving Brisbane, Ipswich & Logan.",
-              "areaServed": {
-                "@type": "Country",
-                "name": "Australia"
+              "image": [
+                "https://disasterrecovery.com.au/logos/3D-Disaster-Recovery-Logo.png",
+                "https://disasterrecovery.com.au/images/team/3d-shane.webp"
+              ],
+              "description": "Brisbane's IICRC Master Restorer providing 24/7 emergency water damage, fire damage, mould restoration, and storm damage services. Serving Brisbane, Ipswich & Logan with 60-minute response time.",
+              "slogan": "Brisbane's Master Restorer - Expert Emergency Response",
+              "priceRange": "$$",
+              "telephone": "+61-1300-309-361",
+              "email": "info@disasterrecoverybrisbane.com.au",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "4/17 Tile St",
+                "addressLocality": "Wacol",
+                "addressRegion": "QLD",
+                "postalCode": "4076",
+                "addressCountry": "AU"
               },
-              "serviceArea": {
-                "@type": "GeoCircle",
-                "geoMidpoint": {
-                  "@type": "GeoCoordinates",
-                  "latitude": -25.2744,
-                  "longitude": 133.7751
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": -27.5969,
+                "longitude": 152.9294
+              },
+              "areaServed": [
+                {
+                  "@type": "City",
+                  "name": "Brisbane",
+                  "sameAs": "https://en.wikipedia.org/wiki/Brisbane"
                 },
-                "geoRadius": "4000000"
-              },
+                {
+                  "@type": "City",
+                  "name": "Ipswich",
+                  "sameAs": "https://en.wikipedia.org/wiki/Ipswich,_Queensland"
+                },
+                {
+                  "@type": "City",
+                  "name": "Logan",
+                  "sameAs": "https://en.wikipedia.org/wiki/City_of_Logan"
+                },
+                {
+                  "@type": "GeoCircle",
+                  "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -27.4698,
+                    "longitude": 153.0251
+                  },
+                  "geoRadius": "50000"
+                }
+              ],
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                  "opens": "00:00",
+                  "closes": "23:59"
+                }
+              ],
               "sameAs": [
                 "https://www.facebook.com/DisasterRecoveryAU",
                 "https://www.linkedin.com/company/disaster-recovery-au",
                 "https://www.instagram.com/disasterrecoveryau",
                 "https://www.youtube.com/@DisasterRecoveryAU"
               ],
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+61-1300-309-361",
-                "contactType": "Emergency Service",
-                "availableLanguage": "English",
-                "areaServed": "AU",
-                "contactOption": "TollFree",
-                "availableHours": "Mo,Tu,We,Th,Fr,Sa,Su 00:00-23:59"
+              "contactPoint": [
+                {
+                  "@type": "ContactPoint",
+                  "telephone": "+61-1300-309-361",
+                  "contactType": "Emergency Service",
+                  "availableLanguage": ["English"],
+                  "areaServed": ["AU"],
+                  "contactOption": "TollFree",
+                  "hoursAvailable": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    "opens": "00:00",
+                    "closes": "23:59"
+                  }
+                },
+                {
+                  "@type": "ContactPoint",
+                  "telephone": "+61-1300-309-361",
+                  "contactType": "Customer Service",
+                  "email": "info@disasterrecoverybrisbane.com.au",
+                  "availableLanguage": ["English"]
+                }
+              ],
+              "founder": {
+                "@type": "Person",
+                "name": "Phill McGurk",
+                "jobTitle": "Master Restorer",
+                "description": "IICRC Master Restorer - One of limited Master Restorers in Queensland"
               },
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "AU",
-                "addressRegion": "QLD",
-                "addressLocality": "Brisbane"
+              "employee": {
+                "@type": "Person",
+                "name": "Phill McGurk",
+                "jobTitle": "Master Restorer & CEO"
               },
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
-                "name": "Disaster Recovery Services",
+                "name": "Emergency Disaster Recovery Services",
                 "itemListElement": [
                   {
                     "@type": "Offer",
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Water Damage Restoration",
-                      "description": "24/7 emergency water damage restoration and flood recovery"
+                      "description": "24/7 emergency water damage restoration, flood recovery, burst pipe repair, and structural drying",
+                      "provider": {
+                        "@id": "https://disasterrecovery.com.au/#organization"
+                      },
+                      "areaServed": ["Brisbane", "Ipswich", "Logan"]
                     }
                   },
                   {
@@ -203,7 +270,11 @@ export default function RootLayout({
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Fire Damage Restoration",
-                      "description": "Complete fire and smoke damage restoration services"
+                      "description": "Complete fire and smoke damage restoration, soot removal, odor elimination",
+                      "provider": {
+                        "@id": "https://disasterrecovery.com.au/#organization"
+                      },
+                      "areaServed": ["Brisbane", "Ipswich", "Logan"]
                     }
                   },
                   {
@@ -211,7 +282,35 @@ export default function RootLayout({
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Mould Remediation",
-                      "description": "Professional mould removal and remediation services"
+                      "description": "Professional mould removal, black mould remediation, and air quality restoration",
+                      "provider": {
+                        "@id": "https://disasterrecovery.com.au/#organization"
+                      },
+                      "areaServed": ["Brisbane", "Ipswich", "Logan"]
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Storm Damage Restoration",
+                      "description": "Emergency storm damage repair, roof tarping, wind and hail damage restoration",
+                      "provider": {
+                        "@id": "https://disasterrecovery.com.au/#organization"
+                      },
+                      "areaServed": ["Brisbane", "Ipswich", "Logan"]
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Commercial Restoration",
+                      "description": "Large-scale commercial property disaster restoration services",
+                      "provider": {
+                        "@id": "https://disasterrecovery.com.au/#organization"
+                      },
+                      "areaServed": ["Brisbane", "Ipswich", "Logan"]
                     }
                   },
                   {
@@ -219,11 +318,49 @@ export default function RootLayout({
                     "itemOffered": {
                       "@type": "Service",
                       "name": "Biohazard Cleanup",
-                      "description": "Specialized biohazard and trauma scene cleanup"
+                      "description": "Specialized biohazard, trauma scene, and sewage cleanup services",
+                      "provider": {
+                        "@id": "https://disasterrecovery.com.au/#organization"
+                      },
+                      "areaServed": ["Brisbane", "Ipswich", "Logan"]
                     }
                   }
                 ]
-              }
+              },
+              "makesOffer": [
+                {
+                  "@type": "Offer",
+                  "name": "24/7 Emergency Response",
+                  "description": "60-minute emergency response time for Brisbane metro area"
+                },
+                {
+                  "@type": "Offer",
+                  "name": "Insurance Direct Billing",
+                  "description": "Direct billing with all major insurance companies - no upfront costs"
+                }
+              ],
+              "knowsAbout": [
+                "Water Damage Restoration",
+                "Fire Damage Restoration",
+                "Mould Remediation",
+                "Storm Damage Repair",
+                "Flood Recovery",
+                "IICRC Standards",
+                "Emergency Response",
+                "Insurance Restoration"
+              ],
+              "award": [
+                "IICRC Master Restorer Certification",
+                "IICRC Certified Water Damage Restoration",
+                "IICRC Certified Fire & Smoke Restoration",
+                "IICRC Certified Mould Remediation"
+              ],
+              "accreditationIdentifier": [
+                "IICRC Master Restorer",
+                "IICRC WRT Certified",
+                "IICRC FSRT Certified",
+                "IICRC AMRT Certified"
+              ]
             })
           }}
         />

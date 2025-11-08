@@ -117,7 +117,7 @@ export default function PremiumHeader() {
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-14 h-14 transition-transform group-hover:scale-105">
                 <Image
-                  src="/logos/3D Disaster Recovery Round Borders.png"
+                  src="/logos/3d-disaster-recovery-round-borders.png"
                   alt="Disaster Recovery QLD"
                   fill
                   className="object-contain rounded-full"
@@ -266,7 +266,7 @@ export default function PremiumHeader() {
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-6 border-b">
               <Image
-                src="/images/optimized/branding/Disaster Recovery Logo.png"
+                src="/images/optimized/branding/disaster-recovery-logo.webp"
                 alt="Disaster Recovery QLD"
                 width={150}
                 height={40}

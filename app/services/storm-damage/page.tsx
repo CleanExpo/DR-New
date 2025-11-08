@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Storm & Natural Disaster Recovery | Emergency Response',
     description: 'Expert storm damage restoration services. Professional cyclone, hail, and wind damage repair available 24/7.',
-    images: ['/images/optimized/damage/3D Hurricane Damage.png'] },
+    images: ['/images/optimized/damage/3D-Storm-Damage.webp'] },
   alternates: {
     canonical: '/services/storm-damage' },
   other: {
@@ -110,22 +110,22 @@ const relatedServices = [
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimized/process/3d-assessment.png'
+    image: '/images/optimized/process/3d-assessment.webp'
   },
   {
     title: 'Water Damage Restoration',
     href: '/services/water-damage-restoration',
-    image: '/images/optimized/damage/3D Water Damage.png'
+    image: '/images/optimized/damage/3d-water-damage.webp'
   },
   {
     title: 'Fire Damage Restoration',
     href: '/services/fire-damage',
-    image: '/images/optimized/damage/3D Fire Damage.png'
+    image: '/images/optimized/damage/3d-kitchen-fire.webp'
   },
   {
     title: 'Structural Drying',
     href: '/services/structural-drying',
-    image: '/images/optimized/equipment/3d-dehumidifier.png'
+    image: '/images/optimized/equipment/3d-dehumidifier.webp'
   }
 ];
 
@@ -169,7 +169,7 @@ export default function StormDamagePage() {
     <ServicePageLayout
       title="Storm & Natural Disaster Recovery"
       description="Professional storm and natural disaster recovery services including cyclone damage repair, hail damage restoration, emergency roof repair, and comprehensive structural restoration with 24/7 emergency response nationwide."
-      heroImage="/images/optimized/damage/3D Hurricane Damage.png"
+      heroImage="/images/optimized/damage/3D-Storm-Damage.webp"
       heroImageAlt="Professional storm damage restoration service showing expert assessment and repair of severe weather damage"
       certifications={['IICRC WRT', 'IICRC FSRT', 'Storm Damage Specialist', 'Emergency Response Certified']}
       responseTime="1-2 Hours"
@@ -202,7 +202,7 @@ export default function StormDamagePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/damage/3D Vehicle into Home.png"
+              src="/images/optimized/damage/3d-vehicle-into-home.webp"
               alt="Professional storm damage assessment showing severe structural damage requiring immediate response"
               width={500}
               height={400}
@@ -447,7 +447,7 @@ export default function StormDamagePage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/equipment/3d-thermal-camera.png"
+              src="/images/optimized/equipment/3d-thermal-camera.webp"
               alt="Professional thermal imaging equipment for detecting hidden storm damage"
               width={500}
               height={600}

@@ -135,7 +135,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative">
                 <Image
-                  src="/logos/3D Disaster Recovery Round Borders.png"
+                  src="/logos/3d-disaster-recovery-round-borders.png"
                   alt="Disaster Recovery"
                   width={50}
                   height={50}

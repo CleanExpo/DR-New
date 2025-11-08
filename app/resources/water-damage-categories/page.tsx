@@ -203,7 +203,7 @@ export default function WaterDamageCategoriesPage() {
             {/* Infographic Image */}
             <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-12">
               <Image
-                src="/images/education/understanding-water-categories.png"
+                src="/images/education/understanding-water-categories.webp"
                 alt="IICRC Water Damage Categories 1, 2, and 3 - Clean Water, Grey Water, and Black Water Classification Guide"
                 width={1200}
                 height={800}

@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Structural Drying Services | Professional Water Extraction',
     description: 'Expert structural drying services. Industrial dehumidifiers, air movers, and professional moisture monitoring available 24/7.',
-    images: ['/images/optimized/equipment/3d-dehumidifier.png'] },
+    images: ['/images/optimized/equipment/3d-dehumidifier.webp'] },
   alternates: {
     canonical: '/services/structural-drying' },
   other: {
@@ -110,22 +110,22 @@ const relatedServices = [
   {
     title: 'Water Damage Restoration',
     href: '/services/water-damage-restoration',
-    image: '/images/optimized/damage/3D Water Damage.png'
+    image: '/images/optimized/damage/3d-water-damage.webp'
   },
   {
     title: 'Mould Remediation',
     href: '/services/mould-remediation',
-    image: '/images/optimized/damage/3D Mould Damage.png'
+    image: '/images/optimized/damage/3d-mould-damage.webp'
   },
   {
     title: 'Emergency Response',
     href: '/services/emergency-response',
-    image: '/images/optimized/process/3d-assessment.png'
+    image: '/images/optimized/process/3d-assessment.webp'
   },
   {
     title: 'Fire Damage Restoration',
     href: '/services/fire-damage',
-    image: '/images/optimized/damage/3D Fire Damage.png'
+    image: '/images/optimized/damage/3d-kitchen-fire.webp'
   }
 ];
 
@@ -169,7 +169,7 @@ export default function StructuralDryingPage() {
     <ServicePageLayout
       title="Structural Drying Services"
       description="Professional structural drying services with industrial dehumidifiers, air movers, and expert moisture monitoring. Complete water extraction and building drying to prevent mould growth and structural damage with 24/7 service availability."
-      heroImage="/images/optimized/equipment/3d-dehumidifier.png"
+      heroImage="/images/optimized/equipment/3d-dehumidifier.webp"
       heroImageAlt="Professional structural drying equipment including industrial dehumidifiers for effective water removal"
       certifications={['IICRC WRT', 'IICRC ASD', 'Certified Drying Specialist', 'Moisture Control Expert']}
       responseTime="1-2 Hours"
@@ -202,7 +202,7 @@ export default function StructuralDryingPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/equipment/3d-industrial-fan.png"
+              src="/images/optimized/equipment/3d-industrial-fan.webp"
               alt="Professional air mover equipment for structural drying and water damage restoration"
               width={500}
               height={400}
@@ -400,7 +400,7 @@ export default function StructuralDryingPage() {
           
           <div className="relative">
             <Image
-              src="/images/optimized/equipment/3d-moisture-meter-reading.png"
+              src="/images/optimized/equipment/3d-moisture-meter-reading.webp"
               alt="Professional moisture meter for monitoring structural drying progress and verification"
               width={500}
               height={600}

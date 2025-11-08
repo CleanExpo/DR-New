@@ -166,7 +166,7 @@ export default function EmergencyWaterExtractionPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/equipment/industrial-water-pump.png"
+                    src="/images/optimized/equipment/industrial-water-pump.webp"
                     alt="Industrial water extraction equipment - emergency pumps"
                     fill
                     className="object-contain drop-shadow-2xl"

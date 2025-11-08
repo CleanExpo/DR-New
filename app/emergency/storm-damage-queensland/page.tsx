@@ -452,7 +452,7 @@ export default function StormDamageQueenslandPage() {
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/storm-damage/storms-ahead.png"
+            src="/images/storm-damage/storms-ahead.webp"
             alt="Storm damage restoration contractor approaching damaged Queenslander home with cyclone and Gold Coast skyline - CURRENT OR PREVIOUS DAMAGE ASSESSMENTS"
             fill
             priority

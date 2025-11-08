@@ -151,7 +151,7 @@ export default function StructuralDryingPage() {
               <div className="relative">
                 <div className="relative w-full h-[500px]">
                   <Image
-                    src="/images/optimized/equipment/dehumidifier-industrial.png"
+                    src="/images/optimized/equipment/dehumidifier-industrial.webp"
                     alt="Industrial LGR dehumidifier for structural drying"
                     fill
                     className="object-contain drop-shadow-2xl"

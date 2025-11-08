@@ -30,7 +30,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Fire & Smoke Restoration",
     description: "Complete fire damage restoration including smoke odour removal, soot cleaning, and structural repairs.",
-    image: "/images/optimized/damage/3D image of a house fire.png",
+    image: "/images/optimized/damage/3d-image-of-a-house-fire.webp",
     href: "/services/fire-damage-restoration",
     category: "fire",
     responseTime: "90 min",
@@ -58,7 +58,7 @@ const services: ServiceCardProps[] = [
   {
     title: "Storm & Flood Damage",
     description: "Comprehensive storm damage recovery including emergency tarping, water extraction, and full restoration.",
-    image: "/images/optimized/damage/3D Vehicle into Home.png",
+    image: "/images/optimized/damage/3d-vehicle-into-home.webp",
     href: "/services/storm-damage",
     category: "storm",
     responseTime: "45 min",
