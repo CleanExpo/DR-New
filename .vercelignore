@@ -25,3 +25,7 @@ large-images-report.txt
 # Backup files
 *.bak
 *.backup
+
+# Image archives and source files (not needed in production)
+image-library/
+public/images/services-original/
