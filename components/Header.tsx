@@ -99,7 +99,7 @@ export default function Header() {
                   onMouseLeave={handleMouseLeave}
                 >
                   <Link
-                    href="/services/water-damage-restoration"
+                    href="/services/water-damage"
                     className="block px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
                   >
                     <div className="font-semibold">Water Damage Restoration</div>
