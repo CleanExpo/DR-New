@@ -5,8 +5,88 @@ import { HeroImage } from '@/components/image-optimization';
 
 // Homepage for Disaster Recovery Brisbane - Full website with header and navigation handled by layout.tsx
 export default function HomePage() {
+  // FAQ Schema Data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How quickly can you respond to water damage emergencies in Brisbane?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We respond to Brisbane water damage emergencies within 60 minutes for Brisbane CBD and inner suburbs like Hamilton, Ascot, New Farm, and Toowong. Greater Brisbane, Ipswich, and Logan receive response within 90 minutes. Call 1300 309 361 24/7 - our Master Restorer team is always ready with industrial water extraction equipment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What makes Phill McGurk different from other Brisbane restoration companies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Phill McGurk is one of Brisbane's limited IICRC Master Restorer certified professionals - the highest credential in disaster recovery. This means your property receives master-level expertise, not basic restoration. Most companies only have technician-level certification. Master Restorers have extensive experience, advanced training, and proven track records on complex high-value property restoration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you work with all insurance companies in Brisbane?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We're approved by all major insurers including Suncorp, RACQ, Allianz, QBE, NRMA, Budget Direct, AAMI, and more. We handle direct billing - no upfront costs for insurance work. Our team manages all documentation, photos, moisture reports, and works directly with your insurance assessor to ensure smooth claim approval."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What areas of Brisbane do you service for emergency restoration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We service all Brisbane suburbs, Ipswich, and Logan. High-value suburbs like Hamilton, Ascot, New Farm, Toowong, Paddington, Bulimba get priority 60-minute response. We also cover Brisbane CBD, West End, Fortitude Valley, Chermside, Carindale, Mt Gravatt, Indooroopilly, Springfield Lakes, Karalee, Brookwater, Logan Central, Springwood, and all surrounding areas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I do immediately after water or fire damage in my Brisbane home?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Call us immediately at 1300 309 361 - even before your insurance company. For water damage: turn off water source if safe, move valuables to dry areas, don't use home appliances. For fire damage: don't enter until cleared by fire services, don't disturb soot or debris. We'll guide you through emergency steps and dispatch our Brisbane team within 60 minutes. Every minute counts in preventing secondary damage and mould growth."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does emergency restoration cost in Brisbane?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Costs vary by damage severity: minor water damage $1,500-$3,500, moderate $3,500-$6,000, major $6,000-$15,000+. Fire damage restoration ranges $2,000-$50,000+ depending on extent. Most Brisbane insurance policies cover disaster restoration costs. We provide free on-site assessments, detailed quotes, and handle direct insurance billing - no upfront payment required for insured work."
+        }
+      }
+    ]
+  };
+
+  // Breadcrumb Schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://disasterrecovery.com.au"
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      {/* Breadcrumb Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Section - Simple Clean Design */}
       <section className="relative min-h-[600px] flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
