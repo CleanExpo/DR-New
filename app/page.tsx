@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, MapPin, Shield, Star, CheckCircle, Clock, ArrowRight, Award, Users, Building2 } from 'lucide-react';
-import { HeroImage } from '@/components/image-optimization';
 
 // Homepage for Disaster Recovery Brisbane - Full website with header and navigation handled by layout.tsx
 export default function HomePage() {
@@ -90,12 +89,13 @@ export default function HomePage() {
       {/* Hero Section - Storm & Fire Landing Page */}
       <section className="relative min-h-[400px] flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
-          <HeroImage
+          <Image
             src="/images/hero/landing-page-hero.png"
             alt="Water Damage Restoration Brisbane - IICRC Master Restorer - 24/7 Emergency Response"
             fill
-            objectFit="cover"
+            style={{ objectFit: 'cover' }}
             priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/20" />
         </div>
