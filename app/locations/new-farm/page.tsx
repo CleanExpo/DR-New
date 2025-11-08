@@ -105,7 +105,7 @@ export default function HamiltonPage() {
                 24/7 Water Damage • Fire Damage • Flood Restoration
               </p>
               <p className="text-lg mb-8 text-gray-200">
-                Serving Hamilton's prestige properties with IICRC-certified emergency restoration
+                Serving Hamilton prestige properties with IICRC-certified emergency restoration
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <a
@@ -159,7 +159,7 @@ export default function HamiltonPage() {
               Emergency Restoration Services in Hamilton
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Specialized disaster recovery for Hamilton's high-value riverside properties
+              Specialized disaster recovery for Hamilton high-value riverside properties
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -321,7 +321,7 @@ export default function HamiltonPage() {
                   Luxury Home Specialists
                 </h3>
                 <p className="text-gray-700">
-                  Extensive experience with Hamilton's prestigious riverside properties.
+                  Extensive experience with Hamilton prestigious riverside properties.
                   Specialized techniques for high-value homes, architectural features, and premium finishes.
                 </p>
               </div>
