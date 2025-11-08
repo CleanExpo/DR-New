@@ -239,14 +239,21 @@ const nextConfig = {
       'recharts',
       'date-fns',
       '@headlessui/react',
-      '@heroicons/react'
+      '@heroicons/react',
+      'react-hook-form',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-select',
+      '@radix-ui/react-toast'
     ],
-    webVitalsAttribution: ['CLS', 'LCP'],
+    webVitalsAttribution: ['CLS', 'LCP', 'FID', 'FCP', 'TTFB', 'INP'],
     // Reduce memory usage during build - Vercel optimized
     workerThreads: false,
     cpus: 1,
     // Use ISR for dynamic pages
     isrFlushToDisk: true,
+    // Enable strict mode for better React 18+ compatibility
+    strictNextHead: true,
   },
 
   // Production optimizations

@@ -9,17 +9,18 @@ export const performanceMonitor = {
       const tcpTime = perfData.connectEnd - perfData.connectStart;
       const requestTime = perfData.responseEnd - perfData.requestStart;
       const domProcessing = perfData.domComplete - perfData.domLoading;
-      
+
       return {
         pageLoadTime: pageLoadTime / 1000, // Convert to seconds
         dnsTime: dnsTime / 1000,
         tcpTime: tcpTime / 1000,
         requestTime: requestTime / 1000,
-        domProcessing: domProcessing / 1000 };
+        domProcessing: domProcessing / 1000
+      };
     }
     return null;
   },
-  
+
   // Measure First Contentful Paint
   measureFCP() {
     if (typeof window !== 'undefined' && window.performance) {
@@ -29,7 +30,7 @@ export const performanceMonitor = {
     }
     return null;
   },
-  
+
   // Measure Largest Contentful Paint
   measureLCP() {
     return new Promise((resolve) => {
@@ -45,29 +46,29 @@ export const performanceMonitor = {
       }
     });
   },
-  
+
   // Log performance metrics
   async logMetrics() {
     const pageLoad = this.measurePageLoad();
     const fcp = this.measureFCP();
     const lcp = await this.measureLCP();
-    
-    console.group('🚀 Performance Metrics');
+
+    console.group('Performance Metrics');
     if (pageLoad) {
-      , 's');
-      , 's');
-      , 's');
-      , 's');
-      , 's');
+      console.log('Page Load Time:', pageLoad.pageLoadTime.toFixed(2), 's');
+      console.log('DNS Time:', pageLoad.dnsTime.toFixed(2), 's');
+      console.log('TCP Time:', pageLoad.tcpTime.toFixed(2), 's');
+      console.log('Request Time:', pageLoad.requestTime.toFixed(2), 's');
+      console.log('DOM Processing:', pageLoad.domProcessing.toFixed(2), 's');
     }
     if (fcp) {
-      , 's');
+      console.log('First Contentful Paint:', fcp.toFixed(2), 's');
     }
     if (lcp) {
-      .toFixed(2), 's');
+      console.log('Largest Contentful Paint:', (lcp as number).toFixed(2), 's');
     }
     console.groupEnd();
-    
+
     return { pageLoad, fcp, lcp };
   }
 };

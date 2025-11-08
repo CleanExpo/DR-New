@@ -5,14 +5,14 @@ const prisma = new PrismaClient();
 /**
  * Calculate lead value based on various factors
  */
-export function calculateLeadValue(leadData: unknown): number {
+export function calculateLeadValue(leadData: any): number {
   let value = 0;
 
   // Base value by damage type
-  const damageTypes = Array.isArray(leadData.damageType) 
-    ? leadData.damageType 
+  const damageTypes = Array.isArray(leadData.damageType)
+    ? leadData.damageType
     : JSON.parse(leadData.damageType || '[]');
-  
+
   damageTypes.forEach((type: string) => {
     switch (type) {
       case 'water': value += 500; break;
@@ -32,7 +32,7 @@ export function calculateLeadValue(leadData: unknown): number {
 
   // Property type multiplier
   if (leadData.isBusinessProperty) value *= 1.6;
-  
+
   // Area affected multiplier
   const areaNum = parseInt(leadData.estimatedAreaAffected) || 0;
   if (areaNum > 100) value *= 1.5;
@@ -69,8 +69,8 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
       // Check service areas (simplified for MVP)
       const serviceAreas = JSON.parse(partner.serviceAreas || '[]');
       const leadLocation = `${lead.suburb}, ${lead.state} ${lead.postcode}`;
-      
-      const areaMatch = serviceAreas.some((area: string) => 
+
+      const areaMatch = serviceAreas.some((area: string) =>
         leadLocation.toLowerCase().includes(area.toLowerCase()) ||
         lead.postcode === area
       );
@@ -78,9 +78,9 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
       // Check specializations
       const specializations = JSON.parse(partner.specializations || '[]');
       const damageTypes = JSON.parse(lead.damageType || '[]');
-      
+
       const specializationMatch = damageTypes.some((damage: string) =>
-        specializations.some((spec: string) => 
+        specializations.some((spec: string) =>
           spec.toLowerCase().includes(damage.toLowerCase())
         )
       );
@@ -89,7 +89,7 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
     });
 
     if (matchingPartners.length === 0) {
-            return null;
+      return null;
     }
 
     // Sort by auto-accept score and available credits
@@ -97,7 +97,7 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
       // Prioritize partners with higher auto-accept scores
       if (lead.leadScore >= a.autoAcceptScore && lead.leadScore < b.autoAcceptScore) return -1;
       if (lead.leadScore >= b.autoAcceptScore && lead.leadScore < a.autoAcceptScore) return 1;
-      
+
       // Then by available credits
       return b.leadCredits - a.leadCredits;
     });
@@ -148,7 +148,7 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
       }
     });
 
-        return selectedPartner.id;
+    return selectedPartner.id;
 
   } catch (error) {
     console.error('Error assigning lead to partner:', error);
@@ -215,15 +215,3 @@ export async function getAvailablePartners(location: string): Promise<any[]> {
     throw error;
   }
 }
-  });
-
-  // Filter by service area
-  return partners.filter(partner => {
-    const serviceAreas = JSON.parse(partner.serviceAreas || '[]');
-    const location = `${suburb}, ${state} ${postcode}`.toLowerCase();
-    
-    return serviceAreas.some((area: string) => 
-      location.includes(area.toLowerCase()) ||
-      postcode === area
-    );
-  });

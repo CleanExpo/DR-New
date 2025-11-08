@@ -74,12 +74,13 @@ class SEMrushAPI {
       key: this.apiKey,
       domain: domain,
       database: this.database,
-      export_columns: 'Or,Ot,Oc,Ad,At,Ac' });
+      export_columns: 'Or,Ot,Oc,Ad,At,Ac'
+    });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
       const text = await response.text();
-      
+
       if (response.ok) {
         const data = this.parseResponse(text);
         if (data.length > 0) {
@@ -91,13 +92,14 @@ class SEMrushAPI {
             organic_cost: parseFloat(row[2] || '0'),
             adwords_keywords: parseInt(row[3] || '0'),
             adwords_traffic: parseInt(row[4] || '0'),
-            adwords_cost: parseFloat(row[5] || '0') };
+            adwords_cost: parseFloat(row[5] || '0')
+          };
         }
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
     }
-    
+
     return null;
   }
 
@@ -112,12 +114,13 @@ class SEMrushAPI {
       key: this.apiKey,
       phrase: keyword,
       database: this.database,
-      export_columns: 'Ph,Nq,Cp,Co,Kd,Td,Sf' });
+      export_columns: 'Ph,Nq,Cp,Co,Kd,Td,Sf'
+    });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
       const text = await response.text();
-      
+
       if (response.ok) {
         const data = this.parseResponse(text);
         if (data.length > 0) {
@@ -129,13 +132,14 @@ class SEMrushAPI {
             competition: parseFloat(row[3] || '0'),
             difficulty: parseFloat(row[4] || '0'),
             trend: row[5] ? row[5].split(',').map(Number) : [],
-            serp_features: row[6] ? row[6].split(',') : [] };
+            serp_features: row[6] ? row[6].split(',') : []
+          };
         }
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
     }
-    
+
     return null;
   }
 
@@ -151,12 +155,13 @@ class SEMrushAPI {
       domain: domain,
       database: this.database,
       display_limit: limit.toString(),
-      export_columns: 'Ph,Po,Nq,Cp,Co,Ur,Tr,Tc,Nr,Td' });
+      export_columns: 'Ph,Po,Nq,Cp,Co,Ur,Tr,Tc,Nr,Td'
+    });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
       const text = await response.text();
-      
+
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
@@ -169,12 +174,13 @@ class SEMrushAPI {
           traffic_percent: parseFloat(row[6] || '0'),
           traffic_cost: parseFloat(row[7] || '0'),
           results: parseInt(row[8] || '0'),
-          trends: row[9] ? row[9].split(',').map(Number) : [] }));
+          trends: row[9] ? row[9].split(',').map(Number) : []
+        }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
     }
-    
+
     return [];
   }
 
@@ -189,12 +195,13 @@ class SEMrushAPI {
       key: this.apiKey,
       target: domain,
       target_type: 'domain',
-      export_columns: 'total,domains_num,ips_num,follows_num,nofollows_num,texts_num,images_num,forms_num,frames_num' });
+      export_columns: 'total,domains_num,ips_num,follows_num,nofollows_num,texts_num,images_num,forms_num,frames_num'
+    });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
       const text = await response.text();
-      
+
       if (response.ok) {
         const data = this.parseResponse(text);
         if (data.length > 0) {
@@ -209,13 +216,14 @@ class SEMrushAPI {
             texts_total: parseInt(row[5] || '0'),
             images_total: parseInt(row[6] || '0'),
             forms_total: parseInt(row[7] || '0'),
-            frames_total: parseInt(row[8] || '0') };
+            frames_total: parseInt(row[8] || '0')
+          };
         }
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
     }
-    
+
     return null;
   }
 
@@ -231,12 +239,13 @@ class SEMrushAPI {
       domain: domain,
       database: this.database,
       display_limit: limit.toString(),
-      export_columns: 'Dn,Cr,Np,Or,Ot,Oc,Ad' });
+      export_columns: 'Dn,Cr,Np,Or,Ot,Oc,Ad'
+    });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
       const text = await response.text();
-      
+
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
@@ -246,12 +255,13 @@ class SEMrushAPI {
           organic_keywords: parseInt(row[3] || '0'),
           organic_traffic: parseInt(row[4] || '0'),
           organic_cost: parseFloat(row[5] || '0'),
-          adwords_keywords: parseInt(row[6] || '0') }));
+          adwords_keywords: parseInt(row[6] || '0')
+        }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
     }
-    
+
     return [];
   }
 
@@ -263,18 +273,19 @@ class SEMrushAPI {
 
     // SEMrush requires special formatting for keyword gap
     const domains = [ourDomain, ...competitorDomains.slice(0, 4)].join('|');
-    
+
     const params = new URLSearchParams({
       type: 'phrase_organic',
       key: this.apiKey,
       phrase: domains,
       database: this.database,
-      export_columns: 'Ph,Nq,Cp,Co,Nr' });
+      export_columns: 'Ph,Nq,Cp,Co,Nr'
+    });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
       const text = await response.text();
-      
+
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
@@ -282,12 +293,13 @@ class SEMrushAPI {
           volume: parseInt(row[1] || '0'),
           cpc: parseFloat(row[2] || '0'),
           competition: parseFloat(row[3] || '0'),
-          results: parseInt(row[4] || '0') }));
+          results: parseInt(row[4] || '0')
+        }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
     }
-    
+
     return [];
   }
 
@@ -302,17 +314,17 @@ class SEMrushAPI {
   // Batch keyword research
   async batchKeywordResearch(keywords: string[]): Promise<KeywordMetrics[]> {
     const results: KeywordMetrics[] = [];
-    
+
     for (const keyword of keywords) {
       const data = await this.getKeywordOverview(keyword);
       if (data) {
         results.push(data);
       }
-      
+
       // Rate limiting - wait 100ms between requests
       await new Promise(resolve => setTimeout(resolve, 100));
     }
-    
+
     return results;
   }
 
@@ -328,24 +340,26 @@ class SEMrushAPI {
       url: `*.${domain}/*`,
       database: this.database,
       display_limit: limit.toString(),
-      export_columns: 'Ur,Pc,Nq,Tr' });
+      export_columns: 'Ur,Pc,Nq,Tr'
+    });
 
     try {
       const response = await fetch(`${this.baseUrl}?${params}`);
       const text = await response.text();
-      
+
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
           url: row[0],
           keywords_count: parseInt(row[1] || '0'),
           traffic: parseInt(row[2] || '0'),
-          traffic_cost: parseFloat(row[3] || '0') }));
+          traffic_cost: parseFloat(row[3] || '0')
+        }));
       }
     } catch (error) {
       console.error('SEMrush API error:', error);
     }
-    
+
     return [];
   }
 }
@@ -357,56 +371,54 @@ export const semrushAPI = new SEMrushAPI();
 export type {
   KeywordMetrics,
   DomainMetrics,
-  BacklinkMetrics };
+  BacklinkMetrics
+};
 
 // Helper functions for the application
 export async function checkSEMrushConnection(): Promise<boolean> {
   try {
-  if (!semrushAPI.isConfigured()) {
+    if (!semrushAPI.isConfigured()) {
+      return false;
+    }
+
+    // Test with a simple request
+    const result = await semrushAPI.getKeywordOverview('disaster recovery');
+    return result !== null;
+  } catch (error) {
+    console.error('API Error:', error);
     return false;
-    }
+  }
+}
+
+export async function getCompetitorAnalysis(domain: string): Promise<any> {
+  try {
+    const competitors = await semrushAPI.getOrganicCompetitors(domain);
+    const overview = await semrushAPI.getDomainOverview(domain);
+    const backlinks = await semrushAPI.getBacklinksOverview(domain);
+
+    return {
+      overview,
+      competitors,
+      backlinks
+    };
   } catch (error) {
     console.error('API Error:', error);
     throw error;
   }
 }
-  
-  // Test with a simple request
-  const result = await semrushAPI.getKeywordOverview('disaster recovery');
-  return result !== null;
-}
 
-export async function getCompetitorAnalysis(...args: any[]): Promise<void> {
+export async function getKeywordOpportunities(domain: string): Promise<any[]> {
   try {
-  const competitors = await semrushAPI.getOrganicCompetitors(domain);
-  const overview = await semrushAPI.getDomainOverview(domain);
-  const backlinks = await semrushAPI.getBacklinksOverview(domain);
-  
-  return {
-    overview,
-    competitors,
-    backlinks
-    }
-  } catch (error) {
-    console.error('API Error:', error);
-    throw error;
-  }
-};
-}
+    const organic = await semrushAPI.getOrganicResults(domain, 50);
 
-export async function getKeywordOpportunities(...args: any[]): Promise<void> {
-  try {
-  const organic = await semrushAPI.getOrganicResults(domain, 50);
-  
-  // Find keywords with good volume but poor rankings
-  const opportunities = organic.filter(k => 
-    k.volume > 100 && 
-    k.position > 10 && 
-    k.position <= 50
-  );
-  
-  return opportunities.sort((a, b) => b.volume - a.volume);
-    }
+    // Find keywords with good volume but poor rankings
+    const opportunities = organic.filter(k =>
+      k.volume > 100 &&
+      k.position > 10 &&
+      k.position <= 50
+    );
+
+    return opportunities.sort((a, b) => b.volume - a.volume);
   } catch (error) {
     console.error('API Error:', error);
     throw error;
