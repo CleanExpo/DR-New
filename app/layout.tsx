@@ -14,22 +14,13 @@ import { Providers } from './providers'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import EmergencyCTA from '@/components/EmergencyCTA'
-// Temporarily disabled to fix prerendering - client components using hooks
-// import { MicrosoftClarity } from '@/components/analytics/MicrosoftClarity'
-// import { GoogleTagManager } from '@/components/analytics/GoogleTagManager'
-// import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
-// import { WebVitalsReporter } from '@/components/seo/WebVitalsReporter'
-// import { LocalBusinessSchema} from '@/components/seo/LocalBusinessSchema'
-// import { BrisbaneLocalSchema } from '@/components/seo/BrisbaneLocalSchema'
-// import { SEOChecklist } from '@/components/seo/SEOChecklist'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 import Breadcrumb from '@/components/Breadcrumb'
 import NavigationIndicator from '@/components/NavigationIndicator'
 import LoadingIndicator from '@/components/LoadingIndicator'
 import ProgressSpinner from '@/components/ProgressSpinner'
 import LazyImage from '@/components/LazyImage'
-// import { LiveChat } from '@/components/support/LiveChat' - Removed duplicate
-// import { AudioSystemSimple } from '@/components/audio/AudioSystemSimple' - Removed non-functioning
+import { MonitoringProvider } from '@/components/monitoring/MonitoringProvider'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -371,25 +362,28 @@ export default function RootLayout({
         {/* <GoogleTagManager /> */}
         {/* <MicrosoftClarity /> */}
         <Providers>
-          <Header />
-          {/* Temporarily disabled to fix prerendering errors - will re-enable after deployment */}
-          {/* <Breadcrumb /> */}
-          {/* <NavigationIndicator /> */}
-          <main id="main-content" className="min-h-screen">
-            {children}
-          </main>
-          <div className="pb-16 lg:pb-0">
-            <Footer />
-          </div>
-          {/* Emergency CTA - appears after scrolling */}
-          <EmergencyCTA />
-          {/* Temporarily disabled to fix prerendering errors */}
-          {/* <MobileEmergencyCTA /> */}
-          {/* <LoadingIndicator /> */}
-          {/* <ProgressSpinner /> */}
-          {/* <LazyImage /> */}
-          {/* <LiveChat /> - Reserved for future version */}
-          {/* <AudioSystemSimple /> - Removed as not functioning properly */}
+          <MonitoringProvider
+            gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
+            clarityId={process.env.NEXT_PUBLIC_CLARITY_ID}
+          >
+            <Header />
+            {/* Temporarily disabled to fix prerendering errors - will re-enable after deployment */}
+            {/* <Breadcrumb /> */}
+            {/* <NavigationIndicator /> */}
+            <main id="main-content" className="min-h-screen">
+              {children}
+            </main>
+            <div className="pb-16 lg:pb-0">
+              <Footer />
+            </div>
+            {/* Emergency CTA - appears after scrolling */}
+            <EmergencyCTA />
+            {/* Temporarily disabled to fix prerendering errors */}
+            {/* <MobileEmergencyCTA /> */}
+            {/* <LoadingIndicator /> */}
+            {/* <ProgressSpinner /> */}
+            {/* <LazyImage /> */}
+          </MonitoringProvider>
         </Providers>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
