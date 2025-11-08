@@ -1,15 +1,35 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, Thermometer, Droplets, Wind, TrendingDown, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Psychrometric Case Studies — Brisbane Water Damage Restoration | IICRC Master Restorer',
   description: 'Real Brisbane water damage restoration case studies showing psychrometry in action. Learn from actual jobs with detailed readings, trends, and outcomes. IICRC S500 compliant.',
-  keywords: 'psychrometry case studies, Brisbane water damage, drying case studies, IICRC S500, restoration examples, moisture control, Australian climate',
+  keywords: 'psychrometry case studies, Brisbane water damage, drying case studies, IICRC S500, restoration examples, moisture control, Australian climate, sub-floor drying, slab drying',
+  authors: [{ name: 'Phill McGurk', url: 'https://dr-new-ten.vercel.app/about-phil-mcgurk' }],
+  publisher: 'Disaster Recovery Brisbane',
   openGraph: {
     title: 'Psychrometric Case Studies — Brisbane Water Damage Restoration',
     description: 'Real-world Brisbane restoration jobs with detailed psychrometric data, trends, and outcomes from Master Restorer Phill McGurk.',
     type: 'article',
+    images: [{
+      url: '/images/commercial-management-brisbane.webp',
+      width: 1200,
+      height: 630,
+      alt: 'Commercial Water Damage Restoration Brisbane - Psychrometry Case Studies'
+    }],
+    publishedTime: '2025-01-08T00:00:00Z',
+    modifiedTime: new Date().toISOString(),
+    authors: ['Phill McGurk'],
+    section: 'Case Studies',
+    tags: ['psychrometry', 'case studies', 'Brisbane', 'water damage', 'IICRC S500'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Psychrometric Case Studies — Brisbane Water Damage',
+    description: 'Real Brisbane restoration jobs with detailed psychrometric data and outcomes.',
+    images: ['/images/commercial-management-brisbane.webp'],
   },
 };
 
