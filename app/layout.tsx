@@ -15,11 +15,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import EmergencyCTA from '@/components/EmergencyCTA'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
-import Breadcrumb from '@/components/Breadcrumb'
-import NavigationIndicator from '@/components/NavigationIndicator'
-import LoadingIndicator from '@/components/LoadingIndicator'
-import ProgressSpinner from '@/components/ProgressSpinner'
-import LazyImage from '@/components/LazyImage'
+import { Breadcrumbs } from '@/components/ui/breadcrumbs'
 import { MonitoringProvider } from '@/components/monitoring/MonitoringProvider'
 
 const inter = Inter({ 
@@ -367,9 +363,7 @@ export default function RootLayout({
             clarityId={process.env.NEXT_PUBLIC_CLARITY_ID}
           >
             <Header />
-            {/* Temporarily disabled to fix prerendering errors - will re-enable after deployment */}
-            {/* <Breadcrumb /> */}
-            {/* <NavigationIndicator /> */}
+            <Breadcrumbs />
             <main id="main-content" className="min-h-screen">
               {children}
             </main>
