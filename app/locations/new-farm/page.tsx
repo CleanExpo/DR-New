@@ -3,16 +3,16 @@ import Link from 'next/link';
 import { PhoneIcon, ClockIcon, ShieldCheckIcon, StarIcon } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
-  title: 'Hamilton Water Damage Restoration | IICRC Master Restorer Brisbane | 24/7 Emergency',
-  description: 'Emergency water damage, fire damage & flood restoration in Hamilton, Brisbane. IICRC Master Restorer Phill McGurk. 30-min response. Insurance approved. Serving high-value Hamilton properties. Call 1300 309 361.',
-  keywords: 'water damage restoration hamilton brisbane, emergency restoration hamilton, flood damage hamilton, fire damage hamilton, master restorer hamilton, luxury home restoration hamilton, mould removal hamilton, 24/7 emergency hamilton brisbane',
+  title: 'New Farm Flood Recovery & Water Damage Restoration | IICRC Master Restorer Brisbane',
+  description: 'Emergency flood recovery, water damage & fire restoration in New Farm, Brisbane. IICRC Master Restorer Phill McGurk. 30-min response. Insurance approved. Serving New Farm riverside properties. Call 1300 309 361.',
+  keywords: 'water damage restoration new farm brisbane, flood recovery new farm, emergency restoration new farm, fire damage new farm, master restorer new farm, riverside property restoration new farm, mould removal new farm, 24/7 emergency new farm brisbane',
   openGraph: {
-    title: 'Hamilton Brisbane Emergency Restoration | Master Restorer 24/7',
-    description: 'IICRC Master Restorer serving Hamilton\'s prestige properties. 30-minute emergency response. Water, fire & flood damage specialists.',
+    title: 'New Farm Brisbane Emergency Restoration | Master Restorer 24/7',
+    description: 'IICRC Master Restorer serving New Farm riverside properties. 30-minute emergency response. Water, fire & flood damage specialists.',
     type: 'website'
   },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/locations/hamilton'
+    canonical: 'https://disasterrecovery.com.au/locations/new-farm'
   }
 };
 
