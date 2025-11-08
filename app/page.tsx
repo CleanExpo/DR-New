@@ -100,39 +100,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/20" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Water Damage Restoration Brisbane | 24/7 Emergency
-          </h1>
-
-          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-            24-hour water damage, fire damage, and flood restoration. IICRC certified.<br />
-            Insurance approved. We can be there within 1 hour of your call.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a
-              href="tel:1300309361"
-              className="inline-flex items-center justify-center px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all shadow-2xl"
-              aria-label="Call 1300 309 361 for emergency service"
-            >
-              <Phone className="w-6 h-6 mr-2" />
-              📞 1300 309 361
-            </a>
-
-            <a
-              href="mailto:info@disasterrecoverybrisbane.com.au"
-              className="inline-flex items-center justify-center px-10 py-5 bg-white text-gray-900 font-bold text-xl rounded-lg hover:bg-gray-100 transition-all shadow-2xl"
-              aria-label="Email us for emergency assistance"
-            >
-              Emergency Email
-            </a>
-          </div>
-
-          <div className="text-sm md:text-base opacity-90">
-            <span>Office: 4/17 Tile St, Wacol, QLD 4076</span>
-          </div>
-        </div>
+        {/* Image already contains text and buttons - no overlay needed */}
       </section>
 
       {/* Trust Indicators */}
