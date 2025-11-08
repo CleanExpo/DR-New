@@ -6,18 +6,90 @@ import { Droplets, Thermometer, Wind, Clock, CheckCircle, ArrowRight, BookOpen }
 export const metadata: Metadata = {
   title: 'Psychrometry for Water Damage Restoration — Australia Edition | IICRC Master Restorer',
   description: 'Clear-language guide to psychrometry for water damage restoration in Australia. Learn moisture control, drying science, and IICRC S500 standards from Brisbane IICRC Master Restorer Phill McGurk.',
-  keywords: 'psychrometry, water damage restoration, IICRC S500, moisture control, drying science, Australia, Brisbane, relative humidity, dew point, vapour pressure',
+  keywords: 'psychrometry, water damage restoration, IICRC S500, moisture control, drying science, Australia, Brisbane, relative humidity, dew point, vapour pressure, humidity ratio, HAT principle',
+  authors: [{ name: 'Phill McGurk', url: 'https://dr-new-ten.vercel.app/about-phil-mcgurk' }],
+  publisher: 'Disaster Recovery Brisbane',
   openGraph: {
     title: 'Psychrometry for Water Damage Restoration — Australia Edition',
     description: 'Master the science of drying with psychrometry. Australian metric units, IICRC S500 standards, practical guidance from Master Restorer Phill McGurk.',
     type: 'article',
-    images: [{ url: '/images/education/understanding-water-categories.webp' }],
+    images: [{
+      url: '/images/education/understanding-water-categories.webp',
+      width: 1200,
+      height: 630,
+      alt: 'Water Damage Categories and Psychrometric Principles'
+    }],
+    publishedTime: '2025-01-08T00:00:00Z',
+    modifiedTime: new Date().toISOString(),
+    authors: ['Phill McGurk'],
+    section: 'Education',
+    tags: ['psychrometry', 'water damage', 'IICRC S500', 'moisture control', 'Brisbane'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Psychrometry for Water Damage Restoration — Australia Edition',
+    description: 'Master the science of drying with psychrometry. IICRC S500 standards from Brisbane Master Restorer.',
+    images: ['/images/education/understanding-water-categories.webp'],
   },
 };
 
 export default function PsychrometryPage() {
+  // Schema.org structured data for SEO
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'EducationalArticle',
+    headline: 'Psychrometry for Water Damage Restoration — Australia Edition',
+    description: 'Clear-language guide to psychrometry for water damage restoration in Australia. Learn moisture control, drying science, and IICRC S500 standards.',
+    image: 'https://dr-new-ten.vercel.app/images/education/understanding-water-categories.webp',
+    author: {
+      '@type': 'Person',
+      name: 'Phill McGurk',
+      url: 'https://dr-new-ten.vercel.app/about-phil-mcgurk',
+      jobTitle: 'IICRC Master Restorer',
+      affiliation: {
+        '@type': 'Organization',
+        name: 'Disaster Recovery Brisbane',
+      },
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Disaster Recovery Brisbane',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://dr-new-ten.vercel.app/logos/3D-Disaster-Recovery-Logo.png',
+      },
+    },
+    datePublished: '2025-01-08',
+    dateModified: new Date().toISOString().split('T')[0],
+    educationalLevel: 'Professional',
+    educationalUse: ['Training', 'Professional Development'],
+    about: {
+      '@type': 'Thing',
+      name: 'Psychrometry',
+      description: 'The science of air and water vapor measurement for water damage restoration',
+    },
+    mentions: [
+      {
+        '@type': 'Thing',
+        name: 'IICRC S500',
+        description: 'Standard for Professional Water Damage Restoration',
+      },
+      {
+        '@type': 'Place',
+        name: 'Brisbane',
+        '@id': 'https://www.wikidata.org/wiki/Q34932',
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
         <div className="container mx-auto px-6">
@@ -61,6 +133,19 @@ export default function PsychrometryPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Why Psychrometry Matters
             </h2>
+
+            {/* Educational Image */}
+            <div className="mb-8 rounded-lg overflow-hidden shadow-xl">
+              <Image
+                src="/images/education/understanding-water-categories.webp"
+                alt="Understanding water damage categories and psychrometric principles for effective drying"
+                width={1200}
+                height={600}
+                className="w-full h-auto"
+                priority
+              />
+            </div>
+
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
               <p className="text-xl mb-6">
                 When a property suffers water damage, the work isn&apos;t just about sucking water out or pointing fans at wet surfaces. The real game is about <strong>moisture in the air and materials</strong>—and how we control it so the building, contents and structure dry safely and thoroughly.
