@@ -87,17 +87,17 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {/* Hero Section - Simple Clean Design */}
-      <section className="relative min-h-[600px] flex items-center justify-center text-white">
+      {/* Hero Section - Dramatic Banner */}
+      <section className="relative min-h-[400px] flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
           <HeroImage
-            src="/images/hero/hero-main.jpg"
+            src="/images/hero/disaster-recovery-banner.png"
             alt="Water Damage Restoration Brisbane - IICRC Master Restorer - 24/7 Emergency Response"
             fill
             objectFit="cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/20" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 text-center">
