@@ -637,6 +637,39 @@ select:focus {
   }
 }
 
+/* CRITICAL ACCESSIBILITY: Reduced Motion Support */
+/* Respects user's preference for reduced motion for vestibular disorders, motion sensitivity */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable specific animations that may cause discomfort */
+  .floating,
+  .pulse-emergency,
+  .emergency-pulse,
+  .fire-glow,
+  .water-wave,
+  .shimmer,
+  .emergency-response,
+  .available-247,
+  .insurance-approved,
+  .response-timer,
+  .certification-glow {
+    animation: none !important;
+  }
+
+  /* Maintain interactivity without motion */
+  .card-hover:hover {
+    transform: none !important;
+  }
+}
+
 /* Mobile Optimizations for Emergency Elements */
 @media (max-width: 768px) {
   .emergency-pulse {
@@ -654,4 +687,63 @@ select:focus {
   .emergency-response {
     animation-duration: 2.5s;
   }
+
+  /* Ensure touch targets remain accessible on mobile */
+  button, a[role="button"], [role="button"] {
+    min-height: 48px !important;
+    min-width: 48px !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  * {
+    border-width: 2px !important;
+  }
+
+  button, a {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .card-hover,
+  .service-card {
+    border: 2px solid currentColor !important;
+  }
+}
+
+/* Enhanced Focus Indicators for Accessibility */
+*:focus-visible {
+  outline: 3px solid #2563eb !important;
+  outline-offset: 2px !important;
+  border-radius: 4px;
+}
+
+/* Ensure emergency buttons have strong focus indicators */
+.emergency-cta:focus-visible,
+a[href^="tel:"]:focus-visible {
+  outline: 4px solid #dc2626 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(220, 38, 38, 0.2) !important;
+}
+
+/* Accessibility: Skip to main content link improvements */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  padding: 16px 24px;
+  background: #1d4ed8;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
 }
