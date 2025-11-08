@@ -1,0 +1,228 @@
+/**
+ * Critical CSS for above-the-fold content
+ * This should be inlined in the <head> for optimal LCP
+ */
+
+/* Font preloading optimization */
+@font-face {
+  font-family: 'Inter var';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-var.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/poppins-var.woff2') format('woff2');
+}
+
+/* Reset and base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  color: #1a202c;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Hero section critical styles */
+.hero-section {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #1a202c; /* Fallback while image loads */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin-bottom: 2rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CTA buttons critical styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-emergency {
+  background-color: #dc2626;
+  color: white;
+  box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.3);
+}
+
+.btn-emergency:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 25px 30px -5px rgba(220, 38, 38, 0.4);
+}
+
+/* Skip to main content */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #2563eb;
+  color: white;
+  padding: 1rem;
+  text-decoration: none;
+  z-index: 9999;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
+/* Layout shifts prevention */
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Grid system */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(
+    90deg,
+    #f3f4f6 25%,
+    #e5e7eb 50%,
+    #f3f4f6 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Prevent CLS for images */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container::before {
+  content: '';
+  display: block;
+  padding-bottom: calc(100% * var(--aspect-ratio, 0.5625)); /* 16:9 default */
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Content visibility for off-screen content */
+.defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
