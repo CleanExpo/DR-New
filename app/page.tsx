@@ -87,11 +87,11 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {/* Hero Section - Dramatic Banner */}
+      {/* Hero Section - Storm & Fire Landing Page */}
       <section className="relative min-h-[400px] flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
           <HeroImage
-            src="/images/hero/disaster-recovery-banner.png"
+            src="/images/hero/landing-page-hero.png"
             alt="Water Damage Restoration Brisbane - IICRC Master Restorer - 24/7 Emergency Response"
             fill
             objectFit="cover"
