@@ -107,7 +107,7 @@ export default function HomePage() {
 
           <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
             24-hour water damage, fire damage, and flood restoration. IICRC certified.<br />
-            Insurance approved. We can be there within 1 hour.
+            Insurance approved. We can be there within 1 hour of your call.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
