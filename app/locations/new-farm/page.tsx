@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Disaster Recovery Hamilton Brisbane",
-  "description": "IICRC Master Restorer providing 24/7 emergency water damage, fire damage, and flood restoration services in Hamilton, Brisbane. Specializing in high-value residential properties.",
+  "name": "Disaster Recovery New Farm Brisbane",
+  "description": "IICRC Master Restorer providing 24/7 emergency water damage, flood recovery, and fire restoration services in New Farm, Brisbane. Specializing in riverside heritage and modern properties.",
   "telephone": "+61-1300-309-361",
   "email": "info@disasterrecoverybrisbane.com.au",
   "address": {
