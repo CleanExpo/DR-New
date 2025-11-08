@@ -11,12 +11,13 @@ export default function HomePage() {
       <section className="relative min-h-[600px] flex items-center justify-center text-white">
         <div className="absolute inset-0 z-0">
           <HeroImage
-            src="/images/hero/fire-water-damage-restoration.jpg"
+            src="/images/hero/hero-main.jpg"
             alt="Water Damage Restoration Brisbane - IICRC Master Restorer - 24/7 Emergency Response"
             fill
             objectFit="cover"
+            priority
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 text-center">
@@ -30,20 +31,22 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link
+            <a
               href="tel:1300309361"
               className="inline-flex items-center justify-center px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all shadow-2xl"
+              aria-label="Call 1300 309 361 for emergency service"
             >
               <Phone className="w-6 h-6 mr-2" />
               📞 1300 309 361
-            </Link>
+            </a>
 
-            <Link
-              href="/contact"
+            <a
+              href="mailto:info@disasterrecoverybrisbane.com.au"
               className="inline-flex items-center justify-center px-10 py-5 bg-white text-gray-900 font-bold text-xl rounded-lg hover:bg-gray-100 transition-all shadow-2xl"
+              aria-label="Email us for emergency assistance"
             >
-              Emergency Contact
-            </Link>
+              Emergency Email
+            </a>
           </div>
 
           <div className="text-sm md:text-base opacity-90">
@@ -176,7 +179,7 @@ export default function HomePage() {
               Why High-Value Brisbane Properties Choose Phill McGurk
             </h2>
             <p className="text-xl text-gray-600">
-              One of Brisbane and Queensland's Limited Master Restorer Certified Professionals
+              One of Brisbane and Queensland&apos;s Limited Master Restorer Certified Professionals
             </p>
           </div>
 
@@ -309,7 +312,7 @@ export default function HomePage() {
               Find Us on Mobile - 24/7 Emergency Response
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Access IICRC Master Restorer Phill McGurk's emergency disaster recovery services from any device - iPhone, Android, tablet, or desktop
+              Access IICRC Master Restorer Phill McGurk&apos;s emergency disaster recovery services from any device - iPhone, Android, tablet, or desktop
             </p>
           </div>
 
@@ -384,13 +387,14 @@ export default function HomePage() {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
               Emergency? Call Now from Your Mobile
             </h3>
-            <Link
+            <a
               href="tel:1300309361"
               className="inline-flex items-center justify-center px-10 py-5 bg-white text-red-600 font-bold text-xl rounded-lg hover:bg-gray-100 transition-all shadow-2xl hover:shadow-white/50 transform hover:scale-105"
+              aria-label="Call 1300 309 361 for emergency service"
             >
               <Phone className="w-6 h-6 mr-2 animate-pulse" />
               1300 309 361
-            </Link>
+            </a>
             <p className="mt-4 text-red-100 text-sm">
               24/7 Emergency Response • 60-Minute Arrival Brisbane • Master Restorer Certified
             </p>
@@ -425,7 +429,7 @@ export default function HomePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <p className="mt-4 text-gray-700 leading-relaxed">
-                <strong>Phill McGurk is one of Brisbane's limited IICRC Master Restorer certified professionals</strong> - the highest credential in disaster recovery. This means your property receives master-level expertise, not basic restoration. Most companies only have technician-level certification. Master Restorers have extensive experience, advanced training, and proven track records on complex high-value property restoration.
+                <strong>Phill McGurk is one of Brisbane&apos;s limited IICRC Master Restorer certified professionals</strong> - the highest credential in disaster recovery. This means your property receives master-level expertise, not basic restoration. Most companies only have technician-level certification. Master Restorers have extensive experience, advanced training, and proven track records on complex high-value property restoration.
               </p>
             </details>
 
@@ -435,7 +439,7 @@ export default function HomePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <p className="mt-4 text-gray-700 leading-relaxed">
-                Yes! We're <strong>approved by all major insurers</strong> including Suncorp, RACQ, Allianz, QBE, NRMA, Budget Direct, AAMI, and more. We handle <strong>direct billing - no upfront costs</strong> for insurance work. Our team manages all documentation, photos, moisture reports, and works directly with your insurance assessor to ensure smooth claim approval.
+                Yes! We&apos;re <strong>approved by all major insurers</strong> including Suncorp, RACQ, Allianz, QBE, NRMA, Budget Direct, AAMI, and more. We handle <strong>direct billing - no upfront costs</strong> for insurance work. Our team manages all documentation, photos, moisture reports, and works directly with your insurance assessor to ensure smooth claim approval.
               </p>
             </details>
 
@@ -455,7 +459,7 @@ export default function HomePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <p className="mt-4 text-gray-700 leading-relaxed">
-                <strong>Call us immediately at 1300 309 361</strong> - even before your insurance company. For water damage: turn off water source if safe, move valuables to dry areas, don't use home appliances. For fire damage: don't enter until cleared by fire services, don't disturb soot or debris. We'll guide you through emergency steps and dispatch our Brisbane team within 60 minutes. Every minute counts in preventing secondary damage and mould growth.
+                <strong>Call us immediately at 1300 309 361</strong> - even before your insurance company. For water damage: turn off water source if safe, move valuables to dry areas, don&apos;t use home appliances. For fire damage: don&apos;t enter until cleared by fire services, don&apos;t disturb soot or debris. We&apos;ll guide you through emergency steps and dispatch our Brisbane team within 60 minutes. Every minute counts in preventing secondary damage and mould growth.
               </p>
             </details>
 
@@ -484,26 +488,28 @@ export default function HomePage() {
               Brisbane Water or Fire Damage Emergency?
             </h2>
             <p className="text-2xl md:text-3xl mb-4 text-red-100 font-semibold">
-              Every Minute Counts - Don't Wait
+              Every Minute Counts - Don&apos;t Wait
             </p>
             <p className="text-xl mb-10 text-red-100 max-w-3xl mx-auto">
               <strong>IICRC Master Restorer Phill McGurk</strong> and team respond within 60 minutes across Brisbane. Industrial equipment. Direct insurance billing. No upfront costs.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-10">
-              <Link
+              <a
                 href="tel:1300309361"
                 className="inline-flex items-center justify-center px-12 py-6 bg-white text-red-600 font-bold text-2xl rounded-lg hover:bg-gray-100 transition-all shadow-2xl hover:shadow-white/50 transform hover:scale-105"
+                aria-label="Call 1300 309 361 for emergency service"
               >
                 <Phone className="w-8 h-8 mr-3 animate-pulse" />
                 1300 309 361
-              </Link>
-              <Link
-                href="/book-service"
+              </a>
+              <a
+                href="mailto:info@disasterrecoverybrisbane.com.au"
                 className="inline-flex items-center justify-center px-12 py-6 bg-yellow-500 text-black font-bold text-2xl rounded-lg hover:bg-yellow-400 transition-all shadow-2xl transform hover:scale-105"
+                aria-label="Email us for service booking"
               >
-                Book FREE Assessment
-              </Link>
+                Email for Assessment
+              </a>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
