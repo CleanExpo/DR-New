@@ -1,28 +1,29 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { PhoneIcon, ClockIcon, ShieldCheckIcon, StarIcon } from '@heroicons/react/24/outline';
+import { PhoneIcon, ClockIcon, ShieldCheckIcon, StarIcon, MapPinIcon } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
-  title: 'Hamilton Water Damage Restoration | IICRC Master Restorer Brisbane | 24/7 Emergency',
-  description: 'Emergency water damage, fire damage & flood restoration in Hamilton, Brisbane. IICRC Master Restorer Phill McGurk. 30-min response. Insurance approved. Serving high-value Hamilton properties. Call 1300 309 361.',
-  keywords: 'water damage restoration hamilton brisbane, emergency restoration hamilton, flood damage hamilton, fire damage hamilton, master restorer hamilton, luxury home restoration hamilton, mould removal hamilton, 24/7 emergency hamilton brisbane',
+  title: 'Toowong Water Damage Restoration | IICRC Master Restorer Brisbane | 24/7 Emergency',
+  description: 'Emergency water damage, fire damage & flood restoration in Toowong, Brisbane. IICRC Master Restorer Phill McGurk. 30-min response. Insurance approved. Serving Toowong properties. Call 1300 309 361.',
+  keywords: 'water damage restoration toowong brisbane, emergency restoration toowong, flood damage toowong, fire damage toowong, master restorer toowong, storm damage toowong, mould removal toowong, 24/7 emergency toowong brisbane',
   openGraph: {
-    title: 'Hamilton Brisbane Emergency Restoration | Master Restorer 24/7',
-    description: 'IICRC Master Restorer serving Hamilton\'s prestige properties. 30-minute emergency response. Water, fire & flood damage specialists.',
+    title: 'Toowong Brisbane Emergency Restoration | Master Restorer 24/7',
+    description: 'IICRC Master Restorer serving Toowong properties. 30-minute emergency response. Water, fire & flood damage specialists.',
     type: 'website'
   },
   alternates: {
-    canonical: 'https://disasterrecovery.com.au/locations/hamilton'
+    canonical: 'https://dr-new-ten.vercel.app/locations/toowong'
   }
 };
 
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "name": "Disaster Recovery Hamilton Brisbane",
-  "description": "IICRC Master Restorer providing 24/7 emergency water damage, fire damage, and flood restoration services in Hamilton, Brisbane. Specializing in high-value residential properties.",
+  "name": "Disaster Recovery Toowong Brisbane",
+  "description": "IICRC Master Restorer providing 24/7 emergency water damage, fire damage, and flood restoration services in Toowong, Brisbane. Rapid emergency response for Toowong properties.",
   "telephone": "+61-1300-309-361",
-  "email": "info@disasterrecoverybrisbane.com.au",
+  "email": "admin@disasterrecovery.com.au",
+  "url": "https://dr-new-ten.vercel.app",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "4/17 Tile St",
@@ -33,7 +34,7 @@ const schemaData = {
   },
   "areaServed": {
     "@type": "City",
-    "name": "Hamilton",
+    "name": "Toowong",
     "containedInPlace": {
       "@type": "City",
       "name": "Brisbane",
@@ -45,8 +46,8 @@ const schemaData = {
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": -27.4380,
-    "longitude": 153.0650
+    "latitude": -27.4850,
+    "longitude": 152.9900
   },
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
@@ -55,24 +56,36 @@ const schemaData = {
     "closes": "23:59"
   },
   "priceRange": "$$",
+  "sameAs": [
+    "https://www.facebook.com/DisasterRecoveryAU",
+    "https://www.linkedin.com/company/disaster-recovery-au"
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Hamilton Emergency Restoration Services",
+    "name": "Toowong Emergency Restoration Services",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Water Damage Restoration Hamilton",
-          "description": "24/7 emergency water extraction, flood recovery, and structural drying for Hamilton properties"
+          "name": "Water Damage Restoration Toowong",
+          "description": "24/7 emergency water extraction, flood recovery, and structural drying for Toowong properties"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Fire Damage Restoration Hamilton",
-          "description": "Complete fire and smoke damage restoration for Hamilton homes and businesses"
+          "name": "Fire Damage Restoration Toowong",
+          "description": "Complete fire and smoke damage restoration for Toowong homes and businesses"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Storm Damage Restoration Toowong",
+          "description": "Emergency storm damage repair and restoration for Toowong Brisbane properties"
         }
       }
     ]
@@ -96,16 +109,16 @@ export default function HamiltonPage() {
                 IICRC MASTER RESTORER BRISBANE
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
-                Hamilton Emergency
+                Toowong Emergency
                 <span className="block text-red-400 mt-2">
                   Disaster Restoration
                 </span>
               </h1>
               <p className="text-xl md:text-2xl mb-4 text-red-100">
-                24/7 Water Damage • Fire Damage • Flood Restoration
+                24/7 Water Damage • Fire Damage • Storm Restoration
               </p>
               <p className="text-lg mb-8 text-gray-200">
-                Serving Hamilton's prestige properties with IICRC-certified emergency restoration
+                Serving Toowong properties with IICRC-certified emergency restoration
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <a
@@ -156,10 +169,10 @@ export default function HamiltonPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">
-              Emergency Restoration Services in Hamilton
+              Emergency Restoration Services in Toowong
             </h2>
             <p className="text-center text-gray-600 mb-12 text-lg">
-              Specialized disaster recovery for Hamilton's high-value riverside properties
+              Rapid disaster recovery for Toowong Brisbane properties - Near Toowong Village, Brisbane River, and Auchenflower
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -290,7 +303,7 @@ export default function HamiltonPage() {
         <section className="py-16">
           <div className="container mx-auto px-4 max-w-6xl">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900">
-              Why Hamilton Property Owners Choose Us
+              Why Toowong Property Owners Choose Us
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-gradient-to-br from-blue-50 to-white rounded-lg p-8 border border-blue-200">
@@ -307,22 +320,22 @@ export default function HamiltonPage() {
               <div className="bg-gradient-to-br from-red-50 to-white rounded-lg p-8 border border-red-200">
                 <div className="text-5xl mb-4">⚡</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  30-Minute Hamilton Response
+                  30-Minute Toowong Response
                 </h3>
                 <p className="text-gray-700">
-                  Located near Hamilton with dedicated emergency dispatch. Average response time under 30 minutes
-                  to minimize damage and protect your property investment.
+                  Centrally located for rapid Toowong emergency dispatch. Average response time under 30 minutes
+                  to minimize damage and protect your Brisbane property investment.
                 </p>
               </div>
 
               <div className="bg-gradient-to-br from-green-50 to-white rounded-lg p-8 border border-green-200">
                 <div className="text-5xl mb-4">💼</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Luxury Home Specialists
+                  Local Toowong Expertise
                 </h3>
                 <p className="text-gray-700">
-                  Extensive experience with Hamilton's prestigious riverside properties.
-                  Specialized techniques for high-value homes, architectural features, and premium finishes.
+                  Extensive experience with Toowong and inner-west Brisbane properties.
+                  Expert knowledge of local Queensland subtropical climate challenges and Brisbane storm patterns.
                 </p>
               </div>
             </div>
@@ -361,10 +374,10 @@ export default function HamiltonPage() {
         <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white">
           <div className="container mx-auto px-4 text-center max-w-4xl">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Hamilton Emergency? Call Now
+              Toowong Emergency? Call Now
             </h2>
             <p className="text-xl mb-8 text-red-100">
-              Available 24/7 for immediate emergency restoration assistance
+              Available 24/7 for immediate emergency restoration assistance in Toowong, Brisbane
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -382,8 +395,93 @@ export default function HamiltonPage() {
               </Link>
             </div>
             <p className="mt-6 text-red-200">
-              Serving Hamilton • Ascot • New Farm • Toowong • All Brisbane
+              Serving Toowong • Taringa • Auchenflower • Indooroopilly • All Brisbane
             </p>
+          </div>
+        </section>
+
+        {/* Google Maps Section - Local SEO Signal */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">
+              Toowong Brisbane Service Area
+            </h2>
+            <p className="text-center text-gray-600 mb-8 text-lg">
+              Rapid 30-minute emergency response to all Toowong properties
+            </p>
+
+            <div className="bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 border border-blue-200 shadow-lg">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <MapPinIcon className="w-8 h-8 text-red-600" />
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900">Toowong, Brisbane QLD 4066</h3>
+                  <p className="text-gray-600">Emergency Response Zone: 30 minutes</p>
+                </div>
+              </div>
+
+              <div className="aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-xl mb-6">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14159.678!2d152.9900!3d-27.4850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b915a2e2e4f9b1f%3A0x502a35af3de8740!2sToowong%20QLD%204066!5e0!3m2!1sen!2sau!4v1234567890">
+                </iframe>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-4 text-center">
+                <div className="bg-white rounded-lg p-4 shadow">
+                  <p className="text-sm text-gray-600 mb-1">Latitude</p>
+                  <p className="text-lg font-bold text-gray-900">-27.4850°</p>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow">
+                  <p className="text-sm text-gray-600 mb-1">Longitude</p>
+                  <p className="text-lg font-bold text-gray-900">152.9900°</p>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow">
+                  <p className="text-sm text-gray-600 mb-1">Response Time</p>
+                  <p className="text-lg font-bold text-red-600">&lt; 30 Minutes</p>
+                </div>
+              </div>
+
+              <div className="mt-6 text-center">
+                <a
+                  href="https://www.google.com/maps/dir//Toowong+QLD+4066"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-800"
+                >
+                  <MapPinIcon className="w-5 h-5" />
+                  Get Directions to Toowong
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-8 bg-gray-50 rounded-xl p-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                Nearby Brisbane Suburbs We Serve
+              </h3>
+              <div className="grid md:grid-cols-4 gap-4 text-center">
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <p className="font-semibold text-gray-900">Taringa</p>
+                  <p className="text-sm text-gray-600">5 min response</p>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <p className="font-semibold text-gray-900">Auchenflower</p>
+                  <p className="text-sm text-gray-600">7 min response</p>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <p className="font-semibold text-gray-900">Indooroopilly</p>
+                  <p className="text-sm text-gray-600">10 min response</p>
+                </div>
+                <div className="bg-white rounded-lg p-4 shadow-sm">
+                  <p className="font-semibold text-gray-900">Milton</p>
+                  <p className="text-sm text-gray-600">12 min response</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>

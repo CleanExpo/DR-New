@@ -62,23 +62,24 @@ export function generatePageMetadata(
 // Location-specific metadata generator
 export function generateLocationMetadata(location: string, service?: string): Metadata {
   const serviceText = service || 'Emergency Restoration';
-  const title = `${serviceText} ${location} | 24/7 Response`;
-  const description = `Professional ${serviceText.toLowerCase()} services in ${location}. ${siteConfig.masterRestorer}, Master Restorer. 60-minute emergency response. Insurance approved. Call ${siteConfig.phone}`;
+  const title = `${serviceText} ${location} Brisbane | IICRC Master Restorer`;
+  const description = `24/7 emergency restoration in ${location}. Phill McGurk - IICRC Master Restorer. Water, fire, mould damage. 60-min response. ${siteConfig.phone}.`;
 
   return generatePageMetadata(
     title,
     description,
     [
-      `${serviceText} ${location}`,
+      `${serviceText.toLowerCase()} ${location}`,
       `emergency restoration ${location}`,
       `water damage ${location}`,
       `fire damage ${location}`,
       `mould removal ${location}`,
-      `disaster recovery ${location}`,
-      'Master Restorer',
-      'IICRC certified',
-      '24/7 emergency',
-      'insurance approved'
+      `${location} disaster recovery`,
+      'IICRC Master Restorer Brisbane',
+      'Phill McGurk restoration',
+      '60 minute response',
+      '24/7 emergency ${location}',
+      'insurance approved ${location}'
     ]
   );
 }
@@ -90,8 +91,8 @@ export function generateServiceMetadata(
   keywords: string[]
 ): Metadata {
   const locations = siteConfig.serviceAreas.primary.join(', ');
-  const title = `${service} | Brisbane, Ipswich & Logan`;
-  const description = `${shortDescription} Master Restorer ${siteConfig.masterRestorer} provides 24/7 ${service.toLowerCase()} across ${locations}. Insurance approved. Call ${siteConfig.phone}`;
+  const title = `${service} Brisbane | IICRC Master Restorer | 60-Min Response`;
+  const description = `IICRC Master Restorer Phill McGurk provides 24/7 ${service.toLowerCase()} in ${locations}. Insurance approved. 60-minute response. Call ${siteConfig.phone}.`;
 
   return generatePageMetadata(
     title,
@@ -99,10 +100,35 @@ export function generateServiceMetadata(
     [
       ...keywords,
       ...siteConfig.serviceAreas.primary.map(area => `${service} ${area}`),
-      'Master Restorer Brisbane',
-      'IICRC certified Queensland',
-      '24 hour emergency service',
-      'insurance restoration specialist'
+      'IICRC Master Restorer Brisbane',
+      'Phill McGurk master restorer',
+      '60 minute emergency response',
+      '24/7 emergency service',
+      'insurance approved restoration'
+    ]
+  );
+}
+
+// Emergency page metadata generator
+export function generateEmergencyMetadata(
+  service: string,
+  location: string = 'Brisbane'
+): Metadata {
+  const title = `EMERGENCY ${service} ${location} | 60-Min Response | Call ${siteConfig.phone}`;
+  const description = `URGENT ${service.toLowerCase()} ${location}. IICRC Master Restorer on-site in 60 minutes. 24/7/365. Call ${siteConfig.phone} NOW.`;
+
+  return generatePageMetadata(
+    title,
+    description,
+    [
+      `emergency ${service.toLowerCase()} ${location}`,
+      `24/7 ${service.toLowerCase()} ${location}`,
+      `urgent ${service.toLowerCase()} ${location}`,
+      `immediate ${service.toLowerCase()} response`,
+      'IICRC Master Restorer emergency',
+      '60 minute response time',
+      'emergency restoration Brisbane',
+      'after hours emergency service'
     ]
   );
 }

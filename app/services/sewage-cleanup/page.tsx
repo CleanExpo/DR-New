@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { HeroSection } from '@/components/hero/HeroImage'
 import { getHeroImageById } from '@/components/hero/HeroImageData'
@@ -91,11 +90,6 @@ export default function SewageCleanupPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Structured Data for SEO */}
-      <StructuredData data={sewageServiceSchema} />
-      <StructuredData data={generateFAQSchema(sewageFAQs)} />
-      <StructuredData data={breadcrumbSchema} />
-
       {/* Emergency Banner */}
       <div className="bg-gradient-to-r from-yellow-600 to-blue-700 text-white py-3 px-4 relative z-30">
         <div className="container mx-auto flex items-center justify-center gap-4">

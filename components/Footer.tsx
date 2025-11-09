@@ -1,17 +1,39 @@
 import Link from 'next/link';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
+/**
+ * FOOTER WITH CONSISTENT NAP
+ * Critical for local SEO - NAP must be identical across all pages
+ */
 export default function Footer() {
+  // MASTER NAP - DO NOT CHANGE
+  const NAP = {
+    businessName: 'Disaster Recovery Brisbane',
+    phone: '1300 309 361',
+    phoneHref: 'tel:1300309361',
+    email: 'admin@disasterrecovery.com.au',
+    address: {
+      street: '4/17 Tile St',
+      locality: 'Wacol',
+      region: 'QLD',
+      postcode: '4076',
+      country: 'Australia'
+    },
+    serviceAreas: ['Brisbane', 'Ipswich', 'Logan', 'QLD']
+  };
+
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 text-white py-12" itemScope itemType="https://schema.org/LocalBusiness">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-5 gap-8">
-          {/* Company Info */}
+          {/* Company Info - Structured Data */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Disaster Recovery</h3>
-            <p className="text-gray-400 mb-4">
+            <h3 className="text-xl font-bold mb-4" itemProp="name">{NAP.businessName}</h3>
+            <p className="text-gray-400 mb-4" itemProp="description">
               IICRC Master Restorer providing 24/7 emergency restoration services across Brisbane, Ipswich, and Logan.
             </p>
+            <meta itemProp="url" content="https://dr-new-ten.vercel.app" />
+            <meta itemProp="priceRange" content="$$" />
           </div>
 
           {/* Quick Links */}
@@ -115,21 +137,36 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Contact */}
-          <div>
+          {/* Contact - NAP Structured Data */}
+          <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <a href="tel:1300309361" className="text-gray-400 hover:text-white">
-                  1300 309 361
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                <a
+                  href={NAP.phoneHref}
+                  className="text-gray-400 hover:text-white"
+                  itemProp="telephone"
+                >
+                  {NAP.phone}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail className="w-4 h-4" aria-hidden="true" />
+                <a
+                  href={`mailto:${NAP.email}`}
+                  className="text-gray-400 hover:text-white"
+                  itemProp="email"
+                >
+                  {NAP.email}
                 </a>
               </li>
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-1" />
+                <MapPin className="w-4 h-4 mt-1" aria-hidden="true" />
                 <span className="text-gray-400">
-                  4/17 Tile St<br />
-                  Wacol, QLD 4076
+                  <span itemProp="streetAddress">{NAP.address.street}</span><br />
+                  <span itemProp="addressLocality">{NAP.address.locality}</span>, <span itemProp="addressRegion">{NAP.address.region}</span> <span itemProp="postalCode">{NAP.address.postcode}</span>
+                  <meta itemProp="addressCountry" content={NAP.address.country} />
                 </span>
               </li>
               <li className="text-yellow-400 font-semibold">
@@ -139,11 +176,51 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Disaster Recovery. All rights reserved.</p>
-          <p className="mt-2 text-sm">
-            IICRC Master Restorer | Brisbane | Ipswich | Logan
-          </p>
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          {/* Service Areas - Local SEO */}
+          <div className="text-center mb-6">
+            <h4 className="text-lg font-semibold text-white mb-3">Service Areas</h4>
+            <div className="flex flex-wrap justify-center gap-2">
+              {[
+                'Hamilton Brisbane',
+                'Ascot Brisbane',
+                'New Farm Brisbane',
+                'Toowong Brisbane',
+                'Karalee Ipswich',
+                'Brookwater Ipswich',
+                'Springfield Lakes',
+                'Logan Central',
+                'Brisbane CBD',
+                'Fortitude Valley',
+                'West End Brisbane',
+                'Indooroopilly',
+                'Paddington Brisbane',
+                'Taringa',
+                'All Brisbane Suburbs',
+                'All Ipswich Suburbs',
+                'All Logan Suburbs'
+              ].map((area) => (
+                <span
+                  key={area}
+                  className="px-3 py-1 bg-gray-800 rounded-full text-xs text-gray-300"
+                  itemProp="areaServed"
+                >
+                  {area}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="text-center text-gray-400">
+            <p>&copy; {new Date().getFullYear()} {NAP.businessName}. All rights reserved.</p>
+            <p className="mt-2 text-sm">
+              IICRC Master Restorer | Brisbane | Ipswich | Logan | Queensland
+            </p>
+            <p className="mt-2 text-xs text-gray-500">
+              Emergency Water Damage | Fire Damage | Flood Recovery | Storm Damage | Mould Remediation
+            </p>
+          </div>
         </div>
       </div>
     </footer>

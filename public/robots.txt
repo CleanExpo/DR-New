@@ -1,21 +1,22 @@
-# Robots.txt for https://disasterrecovery.com.au
+# Robots.txt for https://dr-new-ten.vercel.app
 # PUBLIC SITE - NO AUTHENTICATION REQUIRED
-# Generated: 2025-09-22
+# Generated: 2025-11-09
 
 # Allow all search engines - SITE IS PUBLIC
 User-agent: *
 Allow: /
-Allow: /BingSiteAuth.xml
-Disallow: /api/admin/
-Disallow: /dashboard/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /client-portal/
+Disallow: /contractor-portal/
 
 # Google
 User-agent: Googlebot
 Allow: /
-Allow: /BingSiteAuth.xml
 Crawl-delay: 0
 
-# Bing - EXPLICITLY ALLOW VERIFICATION
+# Bing
 User-agent: Bingbot
 Allow: /
 Allow: /BingSiteAuth.xml
@@ -38,9 +39,7 @@ User-agent: Claude-Web
 Allow: /
 
 # Sitemaps
-Sitemap: https://disasterrecovery.com.au/sitemap.xml
-Sitemap: https://disasterrecovery.com.au/sitemap.txt
-Sitemap: https://www.disasterrecovery.com.au/sitemap.xml
+Sitemap: https://dr-new-ten.vercel.app/sitemap.xml
 
 # Block bad bots
 User-agent: AhrefsBot

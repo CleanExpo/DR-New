@@ -370,3 +370,24 @@ export const commonStyles = {
     muted: `text-neutral-600`,
   },
 };
+
+// ============================================
+// INDIVIDUAL EXPORTS FOR CONVENIENCE
+// ============================================
+
+export const colors = {
+  emergency: designTokens.colors.emergency,
+  storm: designTokens.colors.primary, // Storm blue is primary brand color
+  gold: designTokens.colors.premium, // Gold is premium color
+  success: designTokens.colors.success,
+  neutral: designTokens.colors.neutral,
+};
+
+export const typography = designTokens.typography;
+export const spacing = designTokens.spacing;
+export const borderRadius = designTokens.borderRadius;
+export const shadows = designTokens.shadows;
+export const animations = designTokens.animations;
+export const breakpoints = designTokens.breakpoints;
+export const zIndex = designTokens.zIndex;
+export const componentTokens = designTokens.components;

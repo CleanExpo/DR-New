@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { StructuredData } from '@/components/seo/StructuredData'
 import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import { HeroSection } from '@/components/hero/HeroImage'
 import { getHeroImageById } from '@/components/hero/HeroImageData'
@@ -88,11 +87,6 @@ export default function BiohazardCleaningPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Structured Data for SEO */}
-      <StructuredData data={biohazardServiceSchema} />
-      <StructuredData data={generateFAQSchema(biohazardFAQs)} />
-      <StructuredData data={breadcrumbSchema} />
-
       {/* Discrete Banner */}
       <div className="bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-4 relative z-30">
         <div className="container mx-auto flex items-center justify-center gap-4">

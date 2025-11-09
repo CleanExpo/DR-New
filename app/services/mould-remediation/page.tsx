@@ -1,552 +1,966 @@
-import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { StructuredData } from '@/components/seo/StructuredData'
-import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
-import { HeroSection } from '@/components/hero/HeroImage'
-import { getHeroImageById } from '@/components/hero/HeroImageData'
-import {  Clock, Shield, AlertTriangle, CheckCircle, ArrowRight, Wind, Microscope, Home, Heart, FileCheck, AlertCircle, MessageSquare} from 'lucide-react'
+'use client';
 
-// SEO Metadata with AI optimisation
-export const metadata: Metadata = generateSEO({
-  title: 'Mould Remediation Brisbane | Professional Mould Removal Services | Disaster Recovery',
-  description: 'Expert mould remediation and removal in Brisbane & Queensland. IICRC certified, safe mould inspection, testing & complete removal. Health-focused solutions. Use Our Online Form',
-  keywords: [
-    'mould remediation Brisbane',
-    'mould removal Queensland',
-    'black mould removal Brisbane',
-    'mould inspection services',
-    'mould testing Brisbane',
-    'toxic mould remediation',
-    'bathroom mould removal',
-    'ceiling mould treatment',
-    'mould prevention Brisbane',
-    'IICRC mould certified',
-    'air quality testing mould',
-    'flood mould remediation',
-    'commercial mould removal',
-    'residential mould services'
-  ],
-  canonical: 'https://disasterrecovery.com.au/services/mould-remediation',
-  openGraph: {
-    title: 'Professional Mould Remediation Brisbane - Safe & Certified Removal',
-    description: 'IICRC certified mould remediation experts in Brisbane. Complete mould removal, air quality testing, and prevention. Protect your health - call now.',
-    images: [{ url: '/images/services/mould-remediation.webp', alt: 'Mould Remediation Brisbane - IICRC Master Restorer Phill McGurk' }],
-    type: 'website'
-  }
-})
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import {
+  Shield,
+  Droplets,
+  Wind,
+  Award,
+  Phone,
+  CheckCircle,
+  AlertTriangle,
+  Clock,
+  ArrowRight,
+  MapPin,
+  Microscope,
+  Home,
+  Building2,
+  Heart,
+  Zap,
+} from 'lucide-react';
+import {
+  FluidCTA,
+  FluidCTAGroup,
+  FluidEmergencyBanner,
+  FluidFloatingCTA,
+} from '@/components/fluid-cta';
+import {
+  fadeInUp,
+  fadeIn,
+  staggerContainer,
+  staggerItem,
+  scrollFadeIn,
+  hoverLift,
+  emergencyPulse,
+  colors,
+  typography,
+  spacing,
+} from '@/lib/design-system';
 
-// FAQ data for schema
-const mouldFAQs = [
-  {
-    question: "How do I know if I have a mould problem?",
-    answer: "Common signs include visible mould growth (black, green, or white patches), musty odours, water stains, peeling paint, and health symptoms like allergies or respiratory issues. If you suspect mould, use our online form for immediate assessment."
-  },
-  {
-    question: "Is mould dangerous to my health?",
-    answer: "Yes, mould can cause serious health issues including allergic reactions, asthma attacks, respiratory infections, and toxic effects from certain species like black mould. Children, elderly, and those with compromised immune systems are especially vulnerable. Professional remediation is essential for safety."
-  },
-  {
-    question: "Can I remove mould myself?",
-    answer: "Small areas (less than 1 square meter) might be DIY-manageable, but larger infestations require professional remediation. Improper removal can spread spores throughout your property and worsen the problem. Our certified technicians use containment, HEPA filtration, and proper PPE to safely remove mould."
-  },
-  {
-    question: "How long does mould remediation take?",
-    answer: "Small projects typically take 1-3 days, while extensive remediation can take 5-7 days. The timeline depends on the affected area size, mould type, and necessary repairs. We provide a detailed timeline after our initial assessment."
-  },
-  {
-    question: "Will mould come back after remediation?",
-    answer: "When properly remediated and with moisture sources addressed, mould should not return. We identify and fix the root cause, apply antimicrobial treatments, and provide prevention recommendations to ensure long-lasting results."
-  },
-  {
-    question: "Does insurance cover mould remediation?",
-    answer: "Coverage varies by policy. Mould resulting from covered perils like burst pipes or storms is often covered. We work with insurance companies and can help document your claim for maximum coverage."
-  },
-  {
-    question: "What's the difference between mould removal and remediation?",
-    answer: "Mould removal implies complete elimination, which is impossible as spores exist naturally. Remediation involves reducing mould to safe, natural levels through professional cleaning, removal of contaminated materials, and addressing moisture sources for long-term prevention."
-  }
-]
-
-// Service schema data
-const mouldServiceSchema = generateServiceSchema({
-  name: 'Mould Remediation Services',
-  description: 'Professional mould inspection, testing, removal and remediation services. IICRC certified technicians providing safe, thorough mould elimination across Brisbane and Queensland.',
-  image: '/images/services/mould-remediation.webp',
-  areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast', 'Moreton Bay']
-})
-
-// Breadcrumb schema
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://disasterrecovery.com.au' },
-  { name: 'Services', url: 'https://disasterrecovery.com.au/services' },
-  { name: 'Mould Remediation', url: 'https://disasterrecovery.com.au/services/mould-remediation' }
-])
-
+// Metadata will be generated separately - this is a client component
 export default function MouldRemediationPage() {
-  // Get the mould remediation hero image
-  const mouldHeroImage = getHeroImageById('mould-remediation');
-
   return (
     <div className="min-h-screen">
-      {/* Structured Data for SEO */}
-      <StructuredData data={mouldServiceSchema} />
-      <StructuredData data={generateFAQSchema(mouldFAQs)} />
-      <StructuredData data={breadcrumbSchema} />
-
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-green-700 to-green-600 text-white py-3 px-4 relative z-30">
-        <div className="container mx-auto flex items-center justify-center gap-4">
-          <AlertTriangle className="h-5 w-5 animate-pulse" />
-          <span className="font-bold">Professional Mould Remediation Services</span>
-          <a href="#contact-form" className="font-bold underline">online support</a>
-        </div>
-      </div>
+      <FluidEmergencyBanner
+        phone="1300 309 361"
+        message="24/7 Mould Remediation Emergency - 60-Min Response Brisbane"
+        sticky
+      />
 
-      {/* Hero Section with Professional Mould Remediation Image */}
-      {mouldHeroImage && (
-        <HeroSection
-          image={mouldHeroImage}
-          title="Professional Mould Remediation Services"
-          subtitle="IICRC AMRT-certified specialists providing complete mould inspection, removal, and prevention. Advanced containment and HEPA filtration ensuring safe, healthy environments."
-          ctaText="Get Mould Assessment Now"
-          ctaLink="#contact-form"
-          height="h-[650px]"
-        />
-      )}
+      {/* Hero Section */}
+      <HeroSection />
 
-      {/* Additional Service Details */}
-      <section className="relative bg-gradient-to-b from-green-50 to-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Professional Mould Remediation & Removal in Brisbane
-              </h1>
-              <p className="text-xl text-gray-200 mb-8">
-                IICRC certified mould specialists providing safe, thorough mould inspection, 
-                testing, and complete remediation. Protect your property and health with 
-                Queensland's trusted mould experts.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button size="lg" className="bg-green-600 hover:bg-green-800">
-                      <MessageSquare className="mr-2 h-5 w-5" />
-                      Get Mould Inspection
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>Professional Mould Inspection & Testing</DialogTitle>
-                      <DialogDescription>
-                        Our certified inspectors use advanced equipment to detect and assess mould problems.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="space-y-4 pt-4">
-                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-800">
-                        <MessageSquare className="h-5 w-5" />
-                        Use Our Online Form'
-                      </a>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div className="text-center">
-                          <Microscope className="h-8 w-8 mx-auto mb-1 text-green-600" />
-                          <p className="font-medium">Air Quality Testing</p>
-                          <p className="text-gray-200">Laboratory analysis</p>
-                        </div>
-                        <div className="text-center">
-                          <FileCheck className="h-8 w-8 mx-auto mb-1 text-green-600" />
-                          <p className="font-medium">Detailed Report</p>
-                          <p className="text-gray-200">With remediation plan</p>
-                        </div>
-                      </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-                
-                <Button size="lg" variant="outline">
-                  Free Mould Assessment
-                </Button>
-              </div>
+      {/* Emergency Response Section */}
+      <EmergencyResponseSection />
 
-              <div className="grid grid-cols-3 gap-4">
-                <div className="flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-green-600" />
-                  <span className="text-sm font-medium">IICRC Certified</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-green-600" />
-                  <span className="text-sm font-medium">Health Focused</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                  <span className="text-sm font-medium">Guaranteed Results</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <Image
-                src="/images/services/mould-remediation.webp"
-                alt="Professional mould remediation and removal service in action"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl"
-                priority
-                loading="eager"
-              />
-              <div className="absolute -bottom-4 -right-4 bg-green-700 text-white p-4 rounded-lg shadow-lg">
-                <p className="font-bold text-lg">Air Quality</p>
-                <p className="text-2xl font-bold">Testing Included</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Health Warning Section */}
-      <section className="bg-red-50 border-t-4 border-red-600 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex items-start gap-4">
-            <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-            <div>
-              <h3 className="font-bold text-lg mb-2">Health Warning: Mould Exposure Risks</h3>
-              <div className="grid md:grid-cols-2 gap-4 mt-4">
-                <div>
-                  <p className="font-medium mb-2">Immediate Health Effects:</p>
-                  <ul className="text-sm text-gray-200 space-y-1">
-                    <li>• Allergic reactions & skin irritation</li>
-                    <li>• Respiratory problems & asthma attacks</li>
-                    <li>• Eye, nose, and throat irritation</li>
-                    <li>• Headaches & fatigue</li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="font-medium mb-2">Long-term Exposure Risks:</p>
-                  <ul className="text-sm text-gray-200 space-y-1">
-                    <li>• Chronic respiratory conditions</li>
-                    <li>• Immune system suppression</li>
-                    <li>• Neurological symptoms</li>
-                    <li>• Severe allergic reactions</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Service Types Grid */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Comprehensive Mould Remediation Services
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <Card>
-              <CardHeader>
-                <Microscope className="h-10 w-10 text-green-600 mb-4" />
-                <CardTitle>Mould Inspection & Testing</CardTitle>
-                <CardDescription>
-                  Professional assessment with laboratory analysis
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Visual & moisture inspection</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Air quality testing</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Surface sampling</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Thermal imaging detection</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Laboratory analysis report</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Wind className="h-10 w-10 text-green-600 mb-4" />
-                <CardTitle>Containment & Removal</CardTitle>
-                <CardDescription>
-                  Safe, controlled mould elimination process
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Isolation barriers setup</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Negative air pressure</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">HEPA air filtration</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Safe material disposal</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Antimicrobial treatment</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Home className="h-10 w-10 text-green-600 mb-4" />
-                <CardTitle>Restoration & Prevention</CardTitle>
-                <CardDescription>
-                  Complete restoration with future protection
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Structural drying</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Material replacement</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Moisture control solutions</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Ventilation improvements</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Prevention coating application</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Common Mould Types */}
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <h3 className="text-2xl font-bold mb-6 text-center">Common Mould Types We Remove</h3>
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gray-900 rounded-full mx-auto mb-3"></div>
-                <h4 className="font-bold">Black Mould</h4>
-                <p className="text-sm text-gray-200">Stachybotrys - Highly toxic</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-700 rounded-full mx-auto mb-3"></div>
-                <h4 className="font-bold">Green Mould</h4>
-                <p className="text-sm text-gray-200">Aspergillus - Common allergen</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gray-100 border-2 border-gray-300 rounded-full mx-auto mb-3"></div>
-                <h4 className="font-bold">White Mould</h4>
-                <p className="text-sm text-gray-200">Penicillium - Fast spreading</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 bg-yellow-600 rounded-full mx-auto mb-3"></div>
-                <h4 className="font-bold">Yellow Mould</h4>
-                <p className="text-sm text-gray-200">Serpula - Wood destroyer</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Mould Types Section */}
+      <MouldTypesSection />
 
       {/* Process Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Our 7-Step Mould Remediation Process
-          </h2>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
-              {[
-                {
-                  step: 1,
-                  title: "Initial Assessment & Testing",
-                  description: "Comprehensive inspection, moisture mapping, and air quality testing to determine mould extent.",
-                  time: "Day 1"
-                },
-                {
-                  step: 2,
-                  title: "Containment Setup",
-                  description: "Install physical barriers and negative air pressure to prevent spore spread.",
-                  time: "Day 1"
-                },
-                {
-                  step: 3,
-                  title: "Air Filtration",
-                  description: "Deploy HEPA air scrubbers and filters to capture airborne mould spores.",
-                  time: "Throughout process"
-                },
-                {
-                  step: 4,
-                  title: "Mould Removal",
-                  description: "Safe removal of mould-infested materials using proper PPE and techniques.",
-                  time: "Days 2-3"
-                },
-                {
-                  step: 5,
-                  title: "Cleaning & Sanitization",
-                  description: "HEPA vacuum, antimicrobial treatment, and fogging of affected areas.",
-                  time: "Day 3-4"
-                },
-                {
-                  step: 6,
-                  title: "Drying & Restoration",
-                  description: "Complete drying, repairs, and restoration of affected structures.",
-                  time: "Days 4-5"
-                },
-                {
-                  step: 7,
-                  title: "Post-Remediation Testing",
-                  description: "Final air quality testing to ensure successful remediation.",
-                  time: "Final day"
-                }
-              ].map((item) => (
-                <div key={item.step} className="flex gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-green-700 text-white rounded-full flex items-center justify-center font-bold">
-                      {item.step}
-                    </div>
-                  </div>
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-gray-200 mb-2">{item.description}</p>
-                    <span className="text-sm text-green-600 font-medium">{item.time}</span>
-                  </div>
-                </div>
-              ))}
+      <ProcessSection />
+
+      {/* Why Choose Master Restorer */}
+      <WhyChooseSection />
+
+      {/* Service Areas */}
+      <ServiceAreasSection />
+
+      {/* Visual Process Gallery */}
+      <VisualProcessSection />
+
+      {/* Final CTA */}
+      <FinalCTASection />
+
+      {/* Floating CTA */}
+      <FluidFloatingCTA
+        phone="1300 309 361"
+        showAfterScroll={400}
+        position="bottom-right"
+      />
+    </div>
+  );
+}
+
+// Hero Section Component
+function HeroSection() {
+  return (
+    <motion.section
+      className="relative min-h-[600px] flex items-center justify-center text-white"
+      initial="hidden"
+      animate="visible"
+      variants={fadeIn}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/optimized/damage/3d-mould-on-ceiling.webp"
+          alt="Professional Mould Remediation Brisbane - IICRC Master Restorer - Safe Removal"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-6 text-center">
+        <motion.div variants={fadeInUp} className="max-w-4xl mx-auto">
+          {/* Emergency Badge */}
+          <motion.div
+            className="inline-flex items-center gap-2 px-6 py-3 bg-green-600/90 backdrop-blur-sm rounded-full mb-6"
+            variants={emergencyPulse}
+            animate="animate"
+          >
+            <AlertTriangle className="w-5 h-5" aria-hidden="true" />
+            <span className="font-bold text-lg">Mould Problem? Professional Remediation Available Now!</span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <h1
+            className="mb-6"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['5xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Professional Mould Remediation Brisbane
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-2xl mb-4 text-green-200 font-semibold">
+            Safe, Certified Mould Removal • IICRC Master Restorer • Health-Focused Solutions
+          </p>
+
+          <p className="text-xl mb-10 text-green-100 max-w-3xl mx-auto">
+            <strong>Phill McGurk - Master Restorer</strong> and team provide professional mould inspection, testing, removal and prevention across Brisbane, Ipswich, and Logan. Protecting your health and property.
+          </p>
+
+          {/* CTA Buttons */}
+          <FluidCTAGroup layout="horizontal" spacing="lg" align="center">
+            <FluidCTA
+              text="Call 1300 309 361 Now"
+              href="tel:1300309361"
+              variant="emergency"
+              size="xl"
+              icon="phone"
+              magnetic
+              ripple
+              pulse
+            />
+            <FluidCTA
+              text="Free Mould Assessment"
+              href="/quote"
+              variant="primary"
+              size="xl"
+              icon="arrow"
+              magnetic
+              ripple
+            />
+          </FluidCTAGroup>
+
+          {/* Trust Indicators */}
+          <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-green-100">
+            <div className="flex items-center gap-2">
+              <Award className="w-5 h-5" style={{ color: colors.gold[400] }} aria-hidden="true" />
+              <span>IICRC Master Certified</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-5 h-5" style={{ color: colors.gold[400] }} aria-hidden="true" />
+              <span>Safe Removal Protocols</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Heart className="w-5 h-5" style={{ color: colors.gold[400] }} aria-hidden="true" />
+              <span>Health-Focused Service</span>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+}
 
-      {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Mould Remediation Frequently Asked Questions
-          </h2>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
-            {mouldFAQs.map((faq, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <CardTitle className="text-lg">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-200">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
+// Emergency Response Section
+function EmergencyResponseSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-gray-50">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <div className="inline-block mb-4 px-4 py-2 bg-red-100 text-red-700 font-semibold rounded-full">
+            Health Warning: Mould Exposure Risks
           </div>
-        </div>
-      </section>
-
-      {/* Prevention Tips */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Mould Prevention Tips
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Why Professional Mould Remediation Matters
           </h2>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Control Moisture</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li>• Fix leaks immediately</li>
-                  <li>• Use exhaust fans in bathrooms</li>
-                  <li>• Maintain 30-50% humidity</li>
-                  <li>• Dry wet areas within 24 hours</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Improve Ventilation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li>• Open windows regularly</li>
-                  <li>• Use ceiling fans</li>
-                  <li>• Ensure proper attic ventilation</li>
-                  <li>• Don't block air vents</li>
-                </ul>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Regular Maintenance</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  <li>• Clean gutters regularly</li>
-                  <li>• Check roof for damage</li>
-                  <li>• Inspect plumbing annually</li>
-                  <li>• Monitor problem areas</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-green-600 to-green-700 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            Don't Let Mould Compromise Your Health
-          </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Professional mould remediation protects your property and family. 
-            Our certified experts provide safe, thorough mould removal with guaranteed results.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Mould exposure causes serious health issues including <strong>respiratory problems, allergic reactions, and toxic effects</strong>. DIY removal can spread spores and worsen contamination. Our Master Restorer team uses <strong>containment, HEPA filtration, and safe removal protocols</strong>.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact-form" className="bg-white text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
-              <MessageSquare className="h-5 w-5" />
-              Use Our Online Form'
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              title: "Respiratory Issues",
+              description: "Asthma attacks, chronic coughing, wheezing, difficulty breathing. Especially dangerous for children and elderly.",
+              color: colors.emergency[600],
+              icon: Wind,
+            },
+            {
+              title: "Allergic Reactions",
+              description: "Skin rashes, eye irritation, nasal congestion, severe allergic responses to mould spores.",
+              color: colors.emergency[600],
+              icon: Heart,
+            },
+            {
+              title: "Toxic Effects",
+              description: "Black mould (Stachybotrys) produces mycotoxins causing neurological symptoms, immune suppression.",
+              color: colors.emergency[700],
+              icon: AlertTriangle,
+            },
+            {
+              title: "Property Damage",
+              description: "Structural deterioration, material destruction, decreased property value. Worsens over time.",
+              color: colors.storm[700],
+              icon: Home,
+            },
+          ].map((risk, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="bg-white rounded-xl p-6 shadow-lg text-center"
+              style={{
+                borderTop: `4px solid ${risk.color}`,
+              }}
+            >
+              <div
+                className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: `${risk.color}20` }}
+              >
+                <risk.icon className="w-8 h-8" style={{ color: risk.color }} aria-hidden="true" />
+              </div>
+              <h3 className="text-lg font-bold mb-2 text-gray-900">{risk.title}</h3>
+              <p className="text-sm text-gray-600">{risk.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="mt-12 text-center"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Don't Risk Your Health - Call Professional Mould Remediation Now
+            </h3>
+            <p className="text-lg text-gray-700 mb-6">
+              Our IICRC Master certified team uses containment barriers, negative air pressure, and HEPA filtration to safely remove mould without spreading spores. We identify the moisture source and prevent recurrence.
+            </p>
+            <FluidCTA
+              text="Emergency: 1300 309 361"
+              href="tel:1300309361"
+              variant="emergency"
+              size="lg"
+              icon="phone"
+              magnetic
+              ripple
+              pulse
+            />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Mould Types Section
+function MouldTypesSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Common Mould Problems We Remediate - Brisbane, Ipswich, Logan
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            From black mould to bathroom mould - Master Restorer certified safe removal for all mould types
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+          {/* Image: Black Mould */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/mould-remediation-black-mould.webp"
+                alt="Black mould removal Brisbane - IICRC Master Restorer toxic mould remediation"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Black Mould (Stachybotrys)</h3>
+              <p className="text-gray-600 mb-4">
+                Highly toxic black mould producing mycotoxins. Causes severe health issues including neurological symptoms. Common after water damage, flooding, high humidity. Requires professional containment and removal.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <AlertTriangle className="w-4 h-4" style={{ color: colors.emergency[600] }} aria-hidden="true" />
+                <span><strong>Danger Level: </strong>Extreme - Professional removal essential</span>
+              </div>
+              <Link
+                href="/services/mould-remediation/black-mould"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.success[600] }}
+              >
+                Learn More <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Image: Ceiling Mould */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-water-damage-mould-on-ceiling.webp"
+                alt="Ceiling mould remediation Brisbane - roof leak mould removal"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Ceiling & Roof Leak Mould</h3>
+              <p className="text-gray-600 mb-4">
+                Mould growth from roof leaks, ceiling water damage, poor ventilation. Common in Brisbane humidity and storm damage. Spreads rapidly through ceiling cavities. Thermal imaging to detect hidden growth.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <Microscope className="w-4 h-4" style={{ color: colors.success[600] }} aria-hidden="true" />
+                <span><strong>Detection: </strong>Thermal imaging, moisture mapping, air quality testing</span>
+              </div>
+              <Link
+                href="/services/mould-remediation/ceiling-mould"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.success[600] }}
+              >
+                Ceiling Mould Removal <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Image: General Mould Damage */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-mould-damage.webp"
+                alt="Bathroom and wall mould removal Brisbane - professional remediation"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Bathroom & Wall Mould</h3>
+              <p className="text-gray-600 mb-4">
+                Bathroom mould from poor ventilation, shower leaks, grout deterioration. Wall mould from condensation, plumbing leaks, rising damp. Green, white, or black varieties. Antimicrobial treatment prevents return.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <Shield className="w-4 h-4" style={{ color: colors.success[600] }} aria-hidden="true" />
+                <span><strong>Treatment: </strong>HEPA filtration, antimicrobial coating, moisture control</span>
+              </div>
+              <Link
+                href="/services/mould-remediation/bathroom-mould"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.success[600] }}
+              >
+                Bathroom Mould <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Image: Mould on Ceiling */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-mould-on-ceiling.webp"
+                alt="Flood mould remediation Brisbane - post-flood mould removal"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Flood & Water Damage Mould</h3>
+              <p className="text-gray-600 mb-4">
+                Rapid mould growth after flooding, burst pipes, storm damage. Mould begins within 24-48 hours of water exposure. Brisbane flood zones - Hamilton, New Farm, West End. Complete structural drying prevents recurrence.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <Award className="w-4 h-4" style={{ color: colors.gold[600] }} aria-hidden="true" />
+                <span><strong>Certification: </strong>IICRC Master Restorer - water damage and mould specialist</span>
+              </div>
+              <Link
+                href="/services/mould-remediation/flood-mould"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.success[600] }}
+              >
+                Flood Mould Recovery <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="text-center"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <p className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
+            <strong>Also remediating:</strong> Aspergillus (green mould), Penicillium (white mould), Cladosporium, Alternaria, attic mould, basement mould, crawl space mould, HVAC mould
+          </p>
+          <FluidCTA
+            text="Call for Mould Assessment"
+            href="tel:1300309361"
+            variant="emergency"
+            size="lg"
+            icon="phone"
+            magnetic
+            ripple
+            pulse
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Process Section
+function ProcessSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Our Master Restorer Mould Remediation Process
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            IICRC certified 7-step safe mould removal process developed by Master Restorer Phill McGurk
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              step: "1",
+              title: "Inspection & Testing",
+              description: "Comprehensive mould inspection, moisture mapping, air quality testing. Thermal imaging detects hidden growth.",
+              icon: Microscope,
+            },
+            {
+              step: "2",
+              title: "Containment Setup",
+              description: "Physical barriers isolate affected areas. Negative air pressure prevents spore spread to clean areas.",
+              icon: Shield,
+            },
+            {
+              step: "3",
+              title: "HEPA Filtration",
+              description: "Industrial HEPA air scrubbers capture airborne spores. Continuous filtration throughout remediation.",
+              icon: Wind,
+            },
+            {
+              step: "4",
+              title: "Safe Removal",
+              description: "Careful removal of mould-contaminated materials using proper PPE. Safe disposal following regulations.",
+              icon: CheckCircle,
+            },
+            {
+              step: "5",
+              title: "Antimicrobial Treatment",
+              description: "Professional antimicrobial application kills remaining spores. Prevents regrowth on treated surfaces.",
+              icon: Droplets,
+            },
+            {
+              step: "6",
+              title: "Structural Drying",
+              description: "Complete drying of affected structures. Industrial dehumidifiers eliminate moisture - mould's source.",
+              icon: Zap,
+            },
+            {
+              step: "7",
+              title: "Final Testing",
+              description: "Post-remediation air quality testing verifies successful removal. Master Restorer certification of completion.",
+              icon: Award,
+            },
+            {
+              step: "8",
+              title: "Prevention Plan",
+              description: "Moisture control recommendations, ventilation improvements. Prevent future mould growth with expert guidance.",
+              icon: Home,
+            },
+          ].map((process, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow"
+            >
+              <div
+                className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: colors.success[100] }}
+              >
+                <process.icon className="w-8 h-8" style={{ color: colors.success[700] }} aria-hidden="true" />
+              </div>
+              <div
+                className="text-3xl font-bold mb-2"
+                style={{ color: colors.success[600] }}
+              >
+                {process.step}
+              </div>
+              <h3 className="text-lg font-bold mb-2 text-gray-900">{process.title}</h3>
+              <p className="text-sm text-gray-600">{process.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Why Choose Section
+function WhyChooseSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <div className="inline-block mb-4 px-4 py-2 bg-yellow-100 text-yellow-800 font-semibold rounded-full">
+            IICRC Master Restorer Excellence
+          </div>
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Why Brisbane Trusts Master Restorer Phill McGurk for Mould Remediation
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            One of the limited IICRC Master Restorer certified professionals in Brisbane and Queensland
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              icon: Award,
+              bgColor: colors.gold[500],
+              title: "Master Restorer Mould Certification - Rare in Brisbane",
+              description: "Phill McGurk holds IICRC Master Restorer certification with specialized mould remediation credentials. One of a limited number in Brisbane and QLD. Your health deserves master-level expertise, not basic mould removal.",
+            },
+            {
+              icon: Shield,
+              bgColor: colors.success[600],
+              title: "Safe Containment & HEPA Filtration",
+              description: "Professional containment barriers prevent spore spread. Negative air pressure systems. Industrial HEPA air scrubbers. Proper PPE for all technicians. Safe for occupants during and after remediation.",
+            },
+            {
+              icon: Microscope,
+              bgColor: colors.storm[600],
+              title: "Laboratory Air Quality Testing",
+              description: "Pre-remediation and post-remediation air quality testing. Laboratory analysis identifies mould species and toxicity levels. Certified completion when spore counts return to safe levels.",
+            },
+            {
+              icon: Home,
+              bgColor: colors.emergency[600],
+              title: "Brisbane Local - Humidity & Flood Expertise",
+              description: "Based in Wacol, QLD. Expert in Brisbane's high humidity, flood zones, Queenslander homes, weather patterns. Specialist knowledge of Hamilton, Ascot, New Farm properties affected by floods and mould.",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="flex items-start gap-4 bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <div
+                className="rounded-full p-3 flex-shrink-0"
+                style={{ backgroundColor: item.bgColor }}
+              >
+                <item.icon className="w-8 h-8 text-white" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Service Areas Section
+function ServiceAreasSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Mould Remediation Service Areas - Brisbane, Ipswich, Logan
+          </h2>
+          <p className="text-xl text-gray-600">
+            Professional mould removal across all Brisbane metro areas - residential and commercial properties
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              title: "Brisbane",
+              color: colors.success[600],
+              priority: "Hamilton • Ascot • New Farm • Toowong • Paddington • Bulimba",
+              areas: "Brisbane CBD, West End, Fortitude Valley, Milton, South Bank, Kangaroo Point, Chermside, Carindale, Mt Gravatt, Indooroopilly",
+            },
+            {
+              title: "Ipswich",
+              color: '#9333ea',
+              priority: "Karalee • Brookwater • Springfield Lakes",
+              areas: "Ipswich CBD, Springfield Central, Redbank Plains, Yamanto, Goodna, Booval, Bundamba, Leichhardt",
+            },
+            {
+              title: "Logan",
+              color: '#ea580c',
+              priority: "Logan Central • Industrial Areas",
+              areas: "Springwood, Shailer Park, Browns Plains, Woodridge, Loganholme, Beenleigh, Eagleby",
+            },
+          ].map((area, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="bg-white rounded-xl p-8 shadow-lg"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <MapPin className="w-8 h-8" style={{ color: area.color }} aria-hidden="true" />
+                <h3 className="text-2xl font-bold text-gray-900">{area.title}</h3>
+              </div>
+              <div className="mb-4">
+                <p className="font-semibold mb-2" style={{ color: area.color }}>
+                  High Priority Suburbs:
+                </p>
+                <p className="text-gray-700 text-sm mb-3">{area.priority}</p>
+                <p className="font-semibold text-gray-900 mb-2">All {area.title} Areas:</p>
+                <p className="text-gray-600 text-sm">{area.areas}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Visual Process Section
+function VisualProcessSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Visual Guide: Mould Remediation Process
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            See how our IICRC Master certified process safely removes mould and restores healthy indoor air quality
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-mould-damage.webp"
+                alt="Before mould remediation - Brisbane mould contamination"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="p-6">
+              <div className="inline-block px-3 py-1 bg-red-100 text-red-700 text-sm font-bold rounded-full mb-3">
+                BEFORE
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Mould Contamination</h3>
+              <p className="text-gray-600 text-sm">
+                Visible mould growth, health risks from spore exposure, property damage, musty odors. Requires professional remediation.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-mould-on-ceiling.webp"
+                alt="During mould removal process - HEPA filtration and containment Brisbane"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="p-6">
+              <div className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-sm font-bold rounded-full mb-3">
+                DURING
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Active Remediation</h3>
+              <p className="text-gray-600 text-sm">
+                Containment barriers, negative air pressure, HEPA filtration running. Safe removal by certified technicians with proper PPE.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/branding/disaster-recovery-logo.webp"
+                alt="After mould remediation - Brisbane Master Restorer certified clean air"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="p-6">
+              <div className="inline-block px-3 py-1 bg-green-100 text-green-700 text-sm font-bold rounded-full mb-3">
+                AFTER
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Remediation Complete</h3>
+              <p className="text-gray-600 text-sm">
+                All mould removed, air quality testing confirms safe levels. Master Restorer certified completion. Healthy indoor environment restored.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Final CTA Section
+function FinalCTASection() {
+  return (
+    <section className="py-20 bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-black/20" />
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            className="inline-block mb-4 px-6 py-2 bg-yellow-500 text-black font-bold rounded-full"
+            variants={emergencyPulse}
+            animate="animate"
+          >
+            MOULD PROBLEM? Call Master Restorer NOW
+          </motion.div>
+
+          <h2
+            className="font-bold mb-6"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['5xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Brisbane Mould Remediation Emergency?
+          </h2>
+
+          <p className="text-2xl md:text-3xl mb-4 text-green-100 font-semibold">
+            Protect Your Health - Professional Mould Removal Available Now
+          </p>
+
+          <p className="text-xl mb-10 text-green-100 max-w-3xl mx-auto">
+            <strong>IICRC Master Restorer Phill McGurk</strong> and team provide safe, certified mould remediation. HEPA filtration. Air quality testing. Health-focused solutions. Prevent recurrence.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-10">
+            <FluidCTA
+              text="Call 1300 309 361 Now"
+              href="tel:1300309361"
+              variant="emergency"
+              size="xl"
+              icon="phone"
+              magnetic
+              ripple
+              pulse
+            />
+            <a
+              href="mailto:admin@disasterrecovery.com.au"
+              className="inline-flex items-center justify-center px-12 py-6 bg-yellow-500 text-black font-bold text-2xl rounded-lg hover:bg-yellow-400 transition-all shadow-2xl transform hover:scale-105"
+              aria-label="Email for mould assessment"
+            >
+              Email for Assessment
             </a>
-            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-green-600">
-              Book Mould Inspection
-            </Button>
           </div>
-          <p className="mt-6 text-sm">
-            Serving Brisbane • Gold Coast • Ipswich • Logan City • Toowoomba • Sunshine Coast • Moreton Bay
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div>
+              <div className="text-3xl font-bold mb-2">Master Restorer</div>
+              <div className="text-green-100">IICRC Certified</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">HEPA Filtration</div>
+              <div className="text-green-100">Safe Removal</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">Air Testing</div>
+              <div className="text-green-100">Certified Clean</div>
+            </div>
+          </div>
+
+          <p className="mt-8 text-lg text-green-100">
+            Serving Hamilton • Ascot • New Farm • Toowong • Brisbane CBD • Ipswich • Logan • All Brisbane Suburbs
           </p>
         </div>
-      </section>
-    </div>
-  )
+      </div>
+    </section>
+  );
 }

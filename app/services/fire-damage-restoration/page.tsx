@@ -1,526 +1,969 @@
-import { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { StructuredData } from '@/components/seo/StructuredData'
-import { generateSEO, generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '@/lib/seo'
-import { HeroSection } from '@/components/hero/HeroImage'
-import { getHeroImageById } from '@/components/hero/HeroImageData'
-import { TriageInfoCard } from '@/components/triage/TriageInfoCard'
-import {  Clock, Shield, Flame, Wind, Home, AlertTriangle, CheckCircle, ArrowRight, AlertCircle, Truck, MessageSquare} from 'lucide-react'
+'use client';
 
-// SEO Metadata with AI optimisation
-export const metadata: Metadata = generateSEO({
-  title: 'Fire Damage Restoration Brisbane | Smoke & Soot Cleanup | Disaster Recovery',
-  description: 'Expert fire damage restoration in Brisbane & Queensland. 24/7 emergency response for smoke damage, soot removal, odour elimination. Insurance approved, IICRC certified. Use Our Online Form',
-  keywords: [
-    'fire damage restoration Brisbane',
-    'smoke damage cleanup Queensland',
-    'fire restoration services',
-    'smoke and soot removal',
-    'fire damage repair Brisbane',
-    'odour removal after fire',
-    'fire damage insurance claims',
-    'emergency fire restoration',
-    'IICRC fire damage certified',
-    'structural fire damage repair',
-    'contents restoration fire damage',
-    'commercial fire damage restoration'
-  ],
-  canonical: 'https://disasterrecovery.com.au/services/fire-damage-restoration',
-  openGraph: {
-    title: 'Fire & Smoke Damage Restoration Brisbane - 24/7 Emergency Service',
-    description: 'Professional fire damage restoration and smoke cleanup in Brisbane. Fast response, insurance approved, complete restoration services.',
-    images: [{ url: '/images/services/fire-damage-restoration.webp', alt: 'Fire and Smoke Damage Restoration Brisbane - IICRC Master Restorer' }],
-    type: 'website'
-  }
-})
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import {
+  Flame,
+  Shield,
+  Clock,
+  Award,
+  Phone,
+  CheckCircle,
+  AlertTriangle,
+  Wind,
+  Home,
+  Building2,
+  MapPin,
+  Zap,
+  ArrowRight,
+  Droplets,
+} from 'lucide-react';
+import {
+  FluidCTA,
+  FluidCTAGroup,
+  FluidEmergencyBanner,
+  FluidFloatingCTA,
+} from '@/components/fluid-cta';
+import {
+  fadeInUp,
+  fadeIn,
+  staggerContainer,
+  staggerItem,
+  emergencyPulse,
+  hoverLift,
+  colors,
+  typography,
+  spacing,
+} from '@/lib/design-system';
 
-// FAQ data for schema
-const fireDamageFAQs = [
-  {
-    question: "What should I do immediately after a fire?",
-    answer: "First, ensure everyone is safe and don't re-enter the property until cleared by fire services. Contact your insurance company and call our 24/7 emergency line at online support. We'll secure your property, assess damage, and begin restoration immediately to prevent further damage from smoke and water."
-  },
-  {
-    question: "How long does fire damage restoration take?",
-    answer: "Minor fire damage typically takes 1-2 weeks to restore. Extensive fire damage requiring structural repairs can take 1-3 months. We provide a detailed timeline after our initial assessment and work efficiently to minimize disruption."
-  },
-  {
-    question: "Will insurance cover fire damage restoration?",
-    answer: "Most homeowner and business insurance policies cover fire damage restoration. We work directly with all major insurance companies, document all damage, and help manage your claim to ensure maximum coverage."
-  },
-  {
-    question: "Can smoke damage be completely removed?",
-    answer: "Yes, with professional equipment and techniques, smoke damage and odours can be completely eliminated. We use specialised cleaning agents, ozone treatment, thermal fogging, and air scrubbers to remove all traces of smoke from your property."
-  },
-  {
-    question: "Is it safe to stay in my home after a fire?",
-    answer: "This depends on the extent of damage. Even small fires can produce toxic smoke residues and compromise air quality. We perform air quality testing and recommend temporary relocation if necessary for your safety."
-  },
-  {
-    question: "What items can be restored after fire damage?",
-    answer: "Many items can be restored including furniture, electronics, clothing, documents, and photographs. Our content restoration specialists use ultrasonic cleaning, ozone treatment, and specialised techniques to salvage your valuable possessions."
-  }
-]
-
-// Service schema data
-const fireDamageServiceSchema = generateServiceSchema({
-  name: 'Fire Damage Restoration',
-  description: 'Complete fire damage restoration including smoke removal, soot cleanup, odour elimination, and structural repairs. 24/7 emergency response across Brisbane and Queensland.',
-  image: '/images/services/fire-damage-restoration.webp',
-  areaServed: ['Brisbane', 'Gold Coast', 'Ipswich', 'Logan City', 'Toowoomba', 'Sunshine Coast']
-})
-
-// Breadcrumb schema
-const breadcrumbSchema = generateBreadcrumbSchema([
-  { name: 'Home', url: 'https://disasterrecovery.com.au' },
-  { name: 'Services', url: 'https://disasterrecovery.com.au/services' },
-  { name: 'Fire Damage Restoration', url: 'https://disasterrecovery.com.au/services/fire-damage-restoration' }
-])
-
+// Metadata will be generated separately - this is a client component
 export default function FireDamageRestorationPage() {
-  // Get the fire and smoke restoration hero image
-  const fireHeroImage = getHeroImageById('fire-smoke-restoration');
-
   return (
     <div className="min-h-screen">
-      {/* Structured Data for SEO */}
-      <StructuredData data={fireDamageServiceSchema} />
-      <StructuredData data={generateFAQSchema(fireDamageFAQs)} />
-      <StructuredData data={breadcrumbSchema} />
-
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-blue-700 to-red-600 text-white py-3 px-4 relative z-30">
-        <div className="container mx-auto flex items-center justify-center gap-4">
-          <Flame className="h-5 w-5 animate-pulse" />
-          <span className="font-bold">24/7 Fire Damage Emergency Response</span>
-          <a href="#contact-form" className="font-bold underline">online support</a>
-        </div>
-      </div>
+      <FluidEmergencyBanner
+        phone="1300 309 361"
+        message="24/7 Fire Damage Emergency - 60-Min Response Brisbane"
+        sticky
+      />
 
-      {/* Hero Section with Professional Fire Restoration Image */}
-      {fireHeroImage && (
-        <HeroSection
-          image={fireHeroImage}
-          title="Fire, Smoke & Odour Damage Restoration"
-          subtitle="Expert residential and commercial fire restoration with complete soot removal, smoke odour elimination, and structural repairs. IICRC-certified technicians available 24/7."
-          ctaText="Emergency Fire Response"
-          ctaLink="#contact-form"
-          height="h-[650px]"
-        />
-      )}
+      {/* Hero Section */}
+      <HeroSection />
 
-      {/* Additional Service Details */}
-      <section className="relative bg-gradient-to-b from-orange-50 to-white py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Fire & Smoke Damage Restoration Specialists in Queensland
-              </h1>
-              <p className="text-xl text-gray-700 mb-8">
-                IICRC certified fire restoration experts providing complete fire damage recovery, 
-                smoke removal, and odour elimination. Insurance approved with 25+ years experience.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button size="lg" className="bg-blue-700 hover:bg-orange-700">
-                      <MessageSquare className="mr-2 h-5 w-5" />
-                      Emergency Fire Response
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>24/7 Fire Damage Emergency Service</DialogTitle>
-                      <DialogDescription>
-                        Our fire damage specialists are ready to respond immediately to secure and restore your property.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="space-y-4 pt-4">
-                      <a href="#contact-form" className="flex items-center justify-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700">
-                        <MessageSquare className="h-5 w-5" />
-                        Use Our Online Form'
-                      </a>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div className="text-center">
-                          <Truck className="h-8 w-8 mx-auto mb-1 text-blue-700" />
-                          <p className="font-medium">Rapid Response</p>
-                          <p className="text-gray-700">&lt; 60 minutes</p>
-                        </div>
-                        <div className="text-center">
-                          <Shield className="h-8 w-8 mx-auto mb-1 text-blue-700" />
-                          <p className="font-medium">Insurance Help</p>
-                          <p className="text-gray-700">We manage claims</p>
-                        </div>
-                      </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>
-                
-                <Button size="lg" variant="outline">
-                  Free Fire Damage Assessment
-                </Button>
-              </div>
+      {/* Emergency Response Section */}
+      <EmergencyResponseSection />
 
-              <div className="grid grid-cols-3 gap-4">
-                <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-blue-700" />
-                  <span className="text-sm font-medium">24/7 Response</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-blue-700" />
-                  <span className="text-sm font-medium">Insurance Approved</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-blue-700" />
-                  <span className="text-sm font-medium">IICRC Certified</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <Image
-                src="/images/services/fire-damage-restoration.webp"
-                alt="Professional fire damage restoration and cleanup service"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-xl"
-                priority
-                loading="eager"
-              />
-              <div className="absolute -bottom-4 -right-4 bg-blue-700 text-white p-4 rounded-lg shadow-lg">
-                <p className="font-bold text-lg">Emergency Response</p>
-                <p className="text-2xl font-bold">24/7 Available</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Critical Services Alert */}
-      <section className="bg-red-50 border-t-4 border-red-600 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex items-start gap-4">
-            <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-1" />
-            <div>
-              <h3 className="font-bold text-lg mb-2">Critical: Act Fast to Prevent Secondary Damage</h3>
-              <p className="text-gray-700">
-                Fire damage continues to worsen in the hours and days following a fire. Acidic soot and smoke 
-                residues can permanently damage surfaces, while water from firefighting efforts can cause mould 
-                growth within 24-48 hours. Immediate professional intervention is essential.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Triage System Information */}
-      <section className="py-12 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <TriageInfoCard />
-        </div>
-      </section>
-
-      {/* Service Types Grid */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Comprehensive Fire Damage Restoration Services
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <Card>
-              <CardHeader>
-                <Flame className="h-10 w-10 text-blue-700 mb-4" />
-                <CardTitle>Emergency Board-Up & Securing</CardTitle>
-                <CardDescription>
-                  Immediate property protection to prevent further damage
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">24/7 emergency board-up</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Roof tarping & weatherproofing</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Security fencing installation</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Debris removal & site safety</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Wind className="h-10 w-10 text-blue-700 mb-4" />
-                <CardTitle>Smoke & Soot Removal</CardTitle>
-                <CardDescription>
-                  Advanced cleaning techniques for complete smoke elimination
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">HEPA air filtration systems</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Dry & wet smoke cleaning</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Thermal fogging deodorization</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Ozone odour treatment</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Home className="h-10 w-10 text-blue-700 mb-4" />
-                <CardTitle>Structural Restoration</CardTitle>
-                <CardDescription>
-                  Complete rebuild and repair of fire-damaged structures
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Structural assessment & repairs</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Electrical & plumbing restoration</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Drywall & painting services</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
-                    <span className="text-sm">Flooring replacement</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Additional Services */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle>Contents Restoration</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-700 mb-4">
-                  Professional cleaning and restoration of fire-damaged belongings
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Ultrasonic cleaning for electronics</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Document & photo restoration</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Textile & clothing cleaning</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Furniture restoration</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Water Damage Mitigation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-700 mb-4">
-                  Addressing water damage from firefighting efforts
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Water extraction & drying</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Mould prevention treatment</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Dehumidification services</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="h-4 w-4 text-blue-700 mt-0.5" />
-                    <span className="text-sm">Moisture monitoring</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* Fire Damage Types */}
+      <FireDamageTypesSection />
 
       {/* Process Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Our Fire Damage Restoration Process
-          </h2>
-          
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
-              {[
-                {
-                  step: 1,
-                  title: "Emergency Response & Assessment",
-                  description: "Immediate 24/7 response, property securing, and comprehensive damage assessment.",
-                  time: "Within 1 hour"
-                },
-                {
-                  step: 2,
-                  title: "Board-Up & Tarping Services",
-                  description: "Secure property with emergency board-up, roof tarping to prevent further damage.",
-                  time: "Day 1"
-                },
-                {
-                  step: 3,
-                  title: "Water Removal & Drying",
-                  description: "Extract water from firefighting efforts and thoroughly dry affected areas.",
-                  time: "Days 1-3"
-                },
-                {
-                  step: 4,
-                  title: "Smoke & Soot Removal",
-                  description: "Professional cleaning of all surfaces using specialised equipment and techniques.",
-                  time: "Days 2-5"
-                },
-                {
-                  step: 5,
-                  title: "Odour Removal & Deodorization",
-                  description: "Advanced odour elimination using thermal fogging and ozone treatment.",
-                  time: "Days 4-6"
-                },
-                {
-                  step: 6,
-                  title: "Restoration & Reconstruction",
-                  description: "Complete restoration including repairs, painting, and final reconstruction.",
-                  time: "Week 2 onwards"
-                }
-              ].map((item) => (
-                <div key={item.step} className="flex gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold">
-                      {item.step}
-                    </div>
-                  </div>
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-gray-700 mb-2">{item.description}</p>
-                    <span className="text-sm text-blue-700 font-medium">{item.time}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProcessSection />
 
-      {/* FAQ Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Fire Damage Restoration FAQs
-          </h2>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
-            {fireDamageFAQs.map((faq, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <CardTitle className="text-lg">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700">{faq.answer}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Why Choose Master Restorer */}
+      <WhyChooseSection />
 
-      {/* Insurance Section */}
-      <section className="py-16 bg-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">
-              We Work With All Major Insurance Companies
-            </h2>
-            <p className="text-center text-gray-700 mb-8">
-              Our team assists you throughout the insurance claim process, helping ensure you receive maximum coverage for your fire damage restoration.
-            </p>
-            <div className="grid md:grid-cols-4 gap-4">
-              {['Documentation', 'Claim Filing', 'Adjuster Meeting', 'Direct Billing'].map((service) => (
-                <div key={service} className="bg-white p-4 rounded-lg text-center">
-                  <CheckCircle className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                  <p className="font-medium">{service}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Service Areas */}
+      <ServiceAreasSection />
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-700 to-red-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
-            Fire Damage? We're Here to Help 24/7
-          </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Don't let fire damage devastate your property. Our certified restoration experts 
-            are ready to respond immediately and restore your home or business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact-form" className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 flex items-center justify-center gap-2">
-              <MessageSquare className="h-5 w-5" />
-              Use Our Online Form'
-            </a>
-            <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white bg-transparent text-white ">
-              Schedule Assessment
-            </Button>
-          </div>
-          <p className="mt-6 text-sm">
-            Serving Brisbane • Gold Coast • Ipswich • Logan City • Toowoomba • Sunshine Coast
-          </p>
-        </div>
-      </section>
+      {/* Visual Process Gallery */}
+      <VisualProcessSection />
+
+      {/* Final CTA */}
+      <FinalCTASection />
+
+      {/* Floating CTA */}
+      <FluidFloatingCTA
+        phone="1300 309 361"
+        showAfterScroll={400}
+        position="bottom-right"
+      />
     </div>
-  )
+  );
+}
+
+// Hero Section Component
+function HeroSection() {
+  return (
+    <motion.section
+      className="relative min-h-[600px] flex items-center justify-center text-white"
+      initial="hidden"
+      animate="visible"
+      variants={fadeIn}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/optimized/damage/3d-image-of-a-house-fire.webp"
+          alt="Emergency fire damage restoration Brisbane by IICRC Master Restorer Phill McGurk - 60-minute response for house fires kitchen fires smoke damage soot removal odour elimination Brisbane Ipswich Logan"
+          title="Emergency Fire Damage Restoration Brisbane | Master Restorer 60-Min Response | 1300 309 361"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-6 text-center">
+        <motion.div variants={fadeInUp} className="max-w-4xl mx-auto">
+          {/* Emergency Badge */}
+          <motion.div
+            className="inline-flex items-center gap-2 px-6 py-3 bg-red-600/90 backdrop-blur-sm rounded-full mb-6"
+            variants={emergencyPulse}
+            animate="animate"
+          >
+            <AlertTriangle className="w-5 h-5" aria-hidden="true" />
+            <span className="font-bold text-lg">Fire Damage? Call Now - Every Minute Counts!</span>
+          </motion.div>
+
+          {/* Main Heading */}
+          <h1
+            className="mb-6"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['5xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Fire Damage Restoration & Smoke Remediation Brisbane
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-2xl mb-4 text-orange-200 font-semibold">
+            60-Minute Response • IICRC Master Restorer • Insurance Approved
+          </p>
+
+          <p className="text-xl mb-10 text-orange-100 max-w-3xl mx-auto">
+            <strong>Phill McGurk - Master Restorer</strong> and team provide rapid fire damage restoration, smoke removal, and soot cleanup across Brisbane, Ipswich, and Logan. Available 24/7/365.
+          </p>
+
+          {/* CTA Buttons */}
+          <FluidCTAGroup layout="horizontal" spacing="lg" align="center">
+            <FluidCTA
+              text="Call 1300 309 361 Now"
+              href="tel:1300309361"
+              variant="emergency"
+              size="xl"
+              icon="phone"
+              magnetic
+              ripple
+              pulse
+            />
+            <FluidCTA
+              text="Free Emergency Assessment"
+              href="/quote"
+              variant="primary"
+              size="xl"
+              icon="arrow"
+              magnetic
+              ripple
+            />
+          </FluidCTAGroup>
+
+          {/* Trust Indicators */}
+          <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-orange-100">
+            <div className="flex items-center gap-2">
+              <Award className="w-5 h-5" style={{ color: colors.gold[400] }} aria-hidden="true" />
+              <span>IICRC Master Certified</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Shield className="w-5 h-5" style={{ color: colors.gold[400] }} aria-hidden="true" />
+              <span>All Insurers Approved</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Clock className="w-5 h-5" style={{ color: colors.gold[400] }} aria-hidden="true" />
+              <span>60-Min Emergency Response</span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
+}
+
+// Emergency Response Section
+function EmergencyResponseSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-gray-50">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <div className="inline-block mb-4 px-4 py-2 bg-red-100 text-red-700 font-semibold rounded-full">
+            🚨 Why Immediate Response Matters
+          </div>
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Fire Damage Timeline - Time is Critical
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Fire and smoke damage worsens rapidly. Acidic soot causes permanent staining within <strong>hours</strong>. Our Master Restorer team responds in <strong>60 minutes</strong> to minimize damage and costs.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              time: "0-2 Hours",
+              title: "Soot & Smoke Spread",
+              description: "Acidic soot settles on all surfaces. Smoke odors penetrate porous materials. Metal surfaces begin tarnishing.",
+              color: colors.emergency[600],
+              urgent: true,
+            },
+            {
+              time: "2-6 Hours",
+              title: "Staining Begins",
+              description: "Plastics discolor permanently. Wooden furniture finishes yellow. Fiberglass appliances turn brown. Metals corrode.",
+              color: colors.emergency[700],
+              urgent: true,
+            },
+            {
+              time: "6-24 Hours",
+              title: "Permanent Damage",
+              description: "Extensive soot staining on walls and ceilings. Clothing and fabrics may be unsalvageable. Strong odor sets in.",
+              color: '#dc2626',
+              urgent: true,
+            },
+            {
+              time: "24+ Hours",
+              title: "Severe Contamination",
+              description: "Restoration costs multiply. Items require replacement instead of restoration. Structural damage from water and soot.",
+              color: '#b91c1c',
+              urgent: true,
+            },
+          ].map((stage, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="bg-white rounded-xl p-6 shadow-lg text-center"
+              style={{
+                borderTop: `4px solid ${stage.color}`,
+              }}
+            >
+              <div
+                className="text-2xl font-bold mb-2"
+                style={{ color: stage.color }}
+              >
+                {stage.time}
+              </div>
+              <h3 className="text-lg font-bold mb-2 text-gray-900">{stage.title}</h3>
+              <p className="text-sm text-gray-600">{stage.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="mt-12 text-center"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-8 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              Don't Wait - Call Master Restorer Phill McGurk Immediately
+            </h3>
+            <p className="text-lg text-gray-700 mb-6">
+              Our specialized smoke removal equipment and HEPA filtration systems stop damage progression. We eliminate soot, smoke odors, and water damage from firefighting efforts.
+            </p>
+            <FluidCTA
+              text="Emergency: 1300 309 361"
+              href="tel:1300309361"
+              variant="emergency"
+              size="lg"
+              icon="phone"
+              magnetic
+              ripple
+              pulse
+            />
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Fire Damage Types Section
+function FireDamageTypesSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Fire Damage Emergencies We Handle - Brisbane, Ipswich, Logan
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            From kitchen fires to structural blazes - Master Restorer certified emergency response for all fire damage scenarios
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-12">
+          {/* Image: House Fire */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-image-of-a-house-fire.webp"
+                alt="House fire damage restoration Brisbane - IICRC Master Restorer 60-minute response"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Residential Fire Damage</h3>
+              <p className="text-gray-600 mb-4">
+                Complete restoration for house fires, electrical fires, and structural blazes. Expert in Brisbane Queenslander homes and modern residences. Smoke removal, soot cleanup, and full reconstruction.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <Clock className="w-4 h-4" style={{ color: colors.emergency[600] }} aria-hidden="true" />
+                <span><strong>Response: </strong>Within 60 minutes across Brisbane CBD, Hamilton, Ascot, Toowong</span>
+              </div>
+              <Link
+                href="/services/fire-damage/residential-fire"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.emergency[600] }}
+              >
+                Learn More <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Image: Kitchen Fire */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-kitchen-fire.webp"
+                alt="Kitchen fire damage restoration Brisbane - Master Restorer emergency smoke removal"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Kitchen & Appliance Fires</h3>
+              <p className="text-gray-600 mb-4">
+                Cooking fires, grease fires, electrical appliance fires. Specialized cleaning for cabinets, countertops, and ventilation systems. Complete odor removal from kitchen and adjacent rooms.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <Shield className="w-4 h-4" style={{ color: colors.emergency[600] }} aria-hidden="true" />
+                <span><strong>Insurance: </strong>All major insurers approved - direct billing available</span>
+              </div>
+              <Link
+                href="/services/fire-damage/kitchen-fire"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.emergency[600] }}
+              >
+                Kitchen Fire Recovery <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Image: Smoke Damage */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3D-Storm-Damage.webp"
+                alt="Smoke damage restoration Brisbane - soot removal and odor elimination"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Smoke & Soot Removal</h3>
+              <p className="text-gray-600 mb-4">
+                Complete smoke odor elimination using thermal fogging, ozone treatment, and HEPA filtration. Professional soot cleanup from walls, ceilings, and HVAC systems. Air quality restoration.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <Zap className="w-4 h-4" style={{ color: colors.emergency[600] }} aria-hidden="true" />
+                <span><strong>Technology: </strong>Thermal fogging, ozone treatment, HEPA air scrubbers</span>
+              </div>
+              <Link
+                href="/services/fire-damage/smoke-removal"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.emergency[600] }}
+              >
+                Smoke Removal <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Image: Water Damage from Firefighting */}
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-water-damage.webp"
+                alt="Water damage from firefighting Brisbane - structural drying after fire"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">Water Damage Mitigation</h3>
+              <p className="text-gray-600 mb-4">
+                Firefighting water extraction and structural drying. Prevent secondary damage from water, mould growth prevention. Industrial dehumidifiers and moisture monitoring. IICRC Master certified processes.
+              </p>
+              <div className="flex items-center gap-2 text-sm text-gray-700 mb-4">
+                <Award className="w-4 h-4" style={{ color: colors.gold[600] }} aria-hidden="true" />
+                <span><strong>Certification: </strong>IICRC Master Restorer - highest industry credential</span>
+              </div>
+              <Link
+                href="/services/water-damage-restoration"
+                className="font-bold inline-flex items-center"
+                style={{ color: colors.emergency[600] }}
+              >
+                Water Damage Services <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          className="text-center"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <p className="text-lg text-gray-700 mb-6 max-w-3xl mx-auto">
+            <strong>Also handling:</strong> Electrical fires, vehicle fires, commercial fire damage, industrial fire restoration, contents restoration, document recovery
+          </p>
+          <FluidCTA
+            text="Call for Any Fire Emergency"
+            href="tel:1300309361"
+            variant="emergency"
+            size="lg"
+            icon="phone"
+            magnetic
+            ripple
+            pulse
+          />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Process Section
+function ProcessSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Our Master Restorer Fire Damage Process
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            IICRC certified 8-step emergency fire restoration process developed by Master Restorer Phill McGurk
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              step: "1",
+              title: "Emergency Contact",
+              description: "Call 1300 309 361. Immediate triage and dispatch within minutes. Safety guidance while we travel.",
+              icon: Phone,
+            },
+            {
+              step: "2",
+              title: "60-Min On-Site",
+              description: "Master Restorer team arrives within 60 minutes (Brisbane CBD/inner suburbs). Assess fire and smoke damage severity.",
+              icon: Clock,
+            },
+            {
+              step: "3",
+              title: "Property Securing",
+              description: "Emergency board-up, roof tarping, security measures. Prevent further damage from weather and unauthorized entry.",
+              icon: Shield,
+            },
+            {
+              step: "4",
+              title: "Water Extraction",
+              description: "Remove firefighting water using industrial extractors. Prevent mould growth and secondary water damage.",
+              icon: Droplets,
+            },
+            {
+              step: "5",
+              title: "Soot Removal",
+              description: "Professional soot cleanup from all surfaces. Specialized techniques for different soot types (dry, wet, protein).",
+              icon: Wind,
+            },
+            {
+              step: "6",
+              title: "Smoke Odor Removal",
+              description: "Thermal fogging, ozone treatment, HEPA air scrubbers. Complete smoke odor elimination from property.",
+              icon: Flame,
+            },
+            {
+              step: "7",
+              title: "Structural Drying",
+              description: "Industrial dehumidifiers and air movers dry all affected materials. Daily moisture monitoring.",
+              icon: Home,
+            },
+            {
+              step: "8",
+              title: "Final Restoration",
+              description: "Master Restorer final verification. Complete reconstruction and restoration. Documentation for insurance claim.",
+              icon: CheckCircle,
+            },
+          ].map((process, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="bg-white rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-shadow"
+            >
+              <div
+                className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: colors.emergency[100] }}
+              >
+                <process.icon className="w-8 h-8" style={{ color: colors.emergency[700] }} aria-hidden="true" />
+              </div>
+              <div
+                className="text-3xl font-bold mb-2"
+                style={{ color: colors.emergency[600] }}
+              >
+                {process.step}
+              </div>
+              <h3 className="text-lg font-bold mb-2 text-gray-900">{process.title}</h3>
+              <p className="text-sm text-gray-600">{process.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Why Choose Section
+function WhyChooseSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <div className="inline-block mb-4 px-4 py-2 bg-yellow-100 text-yellow-800 font-semibold rounded-full">
+            ⭐ IICRC Master Restorer Excellence
+          </div>
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Why Brisbane Trusts Master Restorer Phill McGurk
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            One of the limited IICRC Master Restorer certified professionals in Brisbane and Queensland
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              icon: Award,
+              bgColor: colors.gold[500],
+              title: "Master Restorer Certified - Rare in Brisbane",
+              description: "Phill McGurk holds IICRC Master Restorer certification - the highest credential in fire damage restoration. One of a limited number in Brisbane and QLD. Your property deserves master-level expertise, not basic technician work.",
+            },
+            {
+              icon: Clock,
+              bgColor: colors.emergency[600],
+              title: "60-Minute Emergency Response",
+              description: "Call 1300 309 361 - we arrive within 60 minutes across Brisbane CBD, Hamilton, Ascot, New Farm, Toowong. 90 minutes for greater Brisbane, Ipswich, Logan. Fire damage equipment on every truck.",
+            },
+            {
+              icon: Shield,
+              bgColor: colors.storm[600],
+              title: "All Major Insurers - Direct Billing",
+              description: "Approved by Suncorp, RACQ, Allianz, QBE, NRMA, AAMI, Budget Direct. We handle complete claim documentation - damage reports, photos, assessor meetings. No upfront costs for insurance work.",
+            },
+            {
+              icon: Home,
+              bgColor: colors.success[600],
+              title: "Brisbane Local - We Know Your Property",
+              description: "Based in Wacol, QLD. Specialist experience with Brisbane Queenslander homes, building codes, insurance requirements. High-value Hamilton, Ascot, New Farm property expertise.",
+            },
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="flex items-start gap-4 bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <div
+                className="rounded-full p-3 flex-shrink-0"
+                style={{ backgroundColor: item.bgColor }}
+              >
+                <item.icon className="w-8 h-8 text-white" aria-hidden="true" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Service Areas Section
+function ServiceAreasSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Fire Damage Emergency Response - Brisbane, Ipswich, Logan
+          </h2>
+          <p className="text-xl text-gray-600">
+            60-minute response to inner Brisbane suburbs • 90-minute response to greater Brisbane metro
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {[
+            {
+              title: "Brisbane",
+              color: colors.emergency[600],
+              priority: "Hamilton • Ascot • New Farm • Toowong • Paddington • Bulimba",
+              areas: "Brisbane CBD, West End, Fortitude Valley, Milton, South Bank, Kangaroo Point, Chermside, Carindale, Mt Gravatt, Indooroopilly",
+            },
+            {
+              title: "Ipswich",
+              color: '#9333ea',
+              priority: "Karalee • Brookwater • Springfield Lakes",
+              areas: "Ipswich CBD, Springfield Central, Redbank Plains, Yamanto, Goodna, Booval, Bundamba, Leichhardt",
+            },
+            {
+              title: "Logan",
+              color: '#ea580c',
+              priority: "Logan Central • Industrial Areas",
+              areas: "Springwood, Shailer Park, Browns Plains, Woodridge, Loganholme, Beenleigh, Eagleby",
+            },
+          ].map((area, index) => (
+            <motion.div
+              key={index}
+              variants={staggerItem}
+              className="bg-white rounded-xl p-8 shadow-lg"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <MapPin className="w-8 h-8" style={{ color: area.color }} aria-hidden="true" />
+                <h3 className="text-2xl font-bold text-gray-900">{area.title}</h3>
+              </div>
+              <div className="mb-4">
+                <p className="font-semibold mb-2" style={{ color: area.color }}>
+                  60-Min Priority Response:
+                </p>
+                <p className="text-gray-700 text-sm mb-3">{area.priority}</p>
+                <p className="font-semibold text-gray-900 mb-2">All {area.title} Areas:</p>
+                <p className="text-gray-600 text-sm">{area.areas}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Visual Process Section
+function VisualProcessSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  return (
+    <section ref={ref} className="py-20 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <h2
+            className="font-bold text-gray-900 mb-4"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['4xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Visual Guide: Fire Damage Restoration Process
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            See how our IICRC Master certified process transforms fire-damaged properties back to pre-loss condition
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-image-of-a-house-fire.webp"
+                alt="Before fire damage restoration - Brisbane fire emergency"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="p-6">
+              <div className="inline-block px-3 py-1 bg-red-100 text-red-700 text-sm font-bold rounded-full mb-3">
+                BEFORE
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Initial Fire Damage</h3>
+              <p className="text-gray-600 text-sm">
+                Fire damage, smoke contamination, soot on all surfaces. Immediate action required to prevent permanent staining and odor penetration.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/damage/3d-kitchen-fire.webp"
+                alt="During fire restoration process - soot removal and smoke cleaning Brisbane"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="p-6">
+              <div className="inline-block px-3 py-1 bg-orange-100 text-orange-700 text-sm font-bold rounded-full mb-3">
+                DURING
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Active Restoration</h3>
+              <p className="text-gray-600 text-sm">
+                Soot removal, smoke odor elimination, thermal fogging. HEPA air scrubbers working 24/7. Water extraction and structural drying.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="bg-gray-50 rounded-xl overflow-hidden shadow-lg"
+            variants={staggerItem}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <div className="relative h-64">
+              <Image
+                src="/images/optimized/branding/disaster-recovery-logo.webp"
+                alt="After fire damage restoration - Brisbane Master Restorer certified completion"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="p-6">
+              <div className="inline-block px-3 py-1 bg-green-100 text-green-700 text-sm font-bold rounded-full mb-3">
+                AFTER
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-900">Restoration Complete</h3>
+              <p className="text-gray-600 text-sm">
+                Property fully restored to pre-loss condition. No smoke odors, no soot staining. Master Restorer certified completion. Ready for occupancy.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Final CTA Section
+function FinalCTASection() {
+  return (
+    <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-black/20" />
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            className="inline-block mb-4 px-6 py-2 bg-yellow-500 text-black font-bold rounded-full"
+            variants={emergencyPulse}
+            animate="animate"
+          >
+            🚨 FIRE DAMAGE EMERGENCY? Call Master Restorer NOW
+          </motion.div>
+
+          <h2
+            className="font-bold mb-6"
+            style={{
+              fontFamily: typography.fonts.heading,
+              fontSize: typography.sizes['5xl'],
+              fontWeight: typography.weights.bold,
+            }}
+          >
+            Brisbane Fire Damage Emergency?
+          </h2>
+
+          <p className="text-2xl md:text-3xl mb-4 text-red-100 font-semibold">
+            Every Hour Counts - Don't Let Soot Cause Permanent Damage
+          </p>
+
+          <p className="text-xl mb-10 text-red-100 max-w-3xl mx-auto">
+            <strong>IICRC Master Restorer Phill McGurk</strong> and team respond within 60 minutes. Specialized fire damage equipment. Direct insurance billing. No upfront costs for insurance work.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-10">
+            <FluidCTA
+              text="Emergency: 1300 309 361"
+              href="tel:1300309361"
+              variant="emergency"
+              size="xl"
+              icon="phone"
+              magnetic
+              ripple
+              pulse
+            />
+            <a
+              href="mailto:admin@disasterrecovery.com.au"
+              className="inline-flex items-center justify-center px-12 py-6 bg-yellow-500 text-black font-bold text-2xl rounded-lg hover:bg-yellow-400 transition-all shadow-2xl transform hover:scale-105"
+              aria-label="Email for emergency assessment"
+            >
+              Email for Assessment
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div>
+              <div className="text-3xl font-bold mb-2">⚡ 60 Minutes</div>
+              <div className="text-red-100">Emergency Response</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">🏆 Master Restorer</div>
+              <div className="text-red-100">IICRC Certified</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">🛡️ All Insurers</div>
+              <div className="text-red-100">Direct Billing</div>
+            </div>
+          </div>
+
+          <p className="mt-8 text-lg text-red-100">
+            Serving Hamilton • Ascot • New Farm • Toowong • Brisbane CBD • Ipswich • Logan • All Brisbane Suburbs
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }

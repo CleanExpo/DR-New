@@ -300,6 +300,13 @@ const nextConfig = {
     isrFlushToDisk: true,
     // Enable strict mode for better React 18+ compatibility
     strictNextHead: true,
+    // Additional performance optimizations
+    optimisticClientCache: true,
+    turbo: {
+      resolveAlias: {
+        'lodash': 'lodash-es',
+      },
+    },
   },
 
   // Production optimizations

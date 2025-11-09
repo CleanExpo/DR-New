@@ -38,13 +38,13 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
-    default: 'Water Damage Restoration Brisbane | IICRC Master Restorer Phill McGurk | 24/7 Emergency',
+    default: 'Emergency Restoration Brisbane | IICRC Master Restorer | 1300 309 361',
     template: '%s | IICRC Master Restorer Brisbane'
   },
-  description: 'IICRC Master Restorer provides 24/7 water damage, fire damage & mould restoration in Brisbane, Ipswich & Logan. 60-minute response. Insurance approved. Call 1300 309 361.',
-  keywords: 'water damage restoration brisbane, emergency water damage brisbane, fire damage restoration brisbane, mould removal brisbane, storm damage repairs brisbane, flood restoration brisbane, iicrc master restorer brisbane, phill mcgurk, iicrc certified brisbane, disaster recovery brisbane, water damage ipswich, water damage logan, 24 hour emergency restoration, insurance approved restoration',
-  authors: [{ name: 'Disaster Recovery Brisbane - IICRC Master Restorer Phill McGurk' }],
-  creator: 'IICRC Master Restorer Phill McGurk',
+  description: 'Phill McGurk - IICRC Master Restorer. 60-min emergency water, fire, mould & storm damage restoration. Brisbane, Ipswich, Logan. 24/7 response. Insurance approved.',
+  keywords: 'water damage restoration Brisbane, fire damage restoration Brisbane, IICRC master restorer, emergency restoration Brisbane, mould remediation Brisbane, storm damage Brisbane, flood restoration Brisbane, Phill McGurk master restorer, 24 hour emergency Brisbane, insurance approved restoration, water damage Ipswich, water damage Logan, emergency water extraction, fire smoke damage restoration, 60 minute response Brisbane',
+  authors: [{ name: 'Phill McGurk - IICRC Master Restorer' }],
+  creator: 'Phill McGurk - IICRC Master Restorer',
   publisher: 'Disaster Recovery Brisbane',
   formatDetection: {
     email: false,
@@ -54,28 +54,28 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'IICRC Master Restorer Brisbane'
+    title: 'Emergency Restoration Brisbane'
   },
   openGraph: {
     type: 'website',
     locale: 'en_AU',
     url: 'https://disasterrecovery.com.au',
     siteName: 'Disaster Recovery Brisbane - IICRC Master Restorer',
-    title: 'Brisbane Water Damage Restoration | IICRC Master Restorer | 60-Min Response',
-    description: 'Brisbane IICRC Master Restorer. 24/7 water damage, fire damage & flood restoration. Serving Brisbane, Ipswich & Logan. Insurance approved. Call 1300 309 361.',
+    title: 'Emergency Restoration Brisbane | IICRC Master Restorer | 1300 309 361',
+    description: 'Phill McGurk - IICRC Master Restorer. 60-min emergency water, fire, mould & storm damage restoration. Brisbane, Ipswich, Logan. 24/7 response. Insurance approved.',
     images: [
       {
         url: '/logos/3D-Disaster-Recovery-Logo.png',
         width: 1200,
         height: 630,
-        alt: 'IICRC Master Restorer Brisbane - Emergency Water Damage Restoration' }
+        alt: 'Emergency Restoration Brisbane - IICRC Master Restorer Phill McGurk - 24/7 Water Fire Mould Storm Damage' }
     ] },
   twitter: {
     card: 'summary_large_image',
-    title: 'IICRC Master Restorer Brisbane | 24/7 Water Damage Emergency',
-    description: 'IICRC Master Restorer. 60-minute emergency response Brisbane, Ipswich & Logan. Water, fire, mould damage specialists.',
+    title: 'Emergency Restoration Brisbane | IICRC Master Restorer | 1300 309 361',
+    description: 'Phill McGurk - IICRC Master Restorer. 60-min emergency response Brisbane. Water, fire, mould, storm damage. Insurance approved. Call 1300 309 361.',
     images: ['/logos/3D-Disaster-Recovery-Logo.png'],
-    creator: '@PhillMcGurk' },
+    creator: '@DisasterRecoveryBNE' },
   robots: {
     index: true,
     follow: true,
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     canonical: 'https://disasterrecovery.com.au',
     languages: {
       'en-AU': 'https://disasterrecovery.com.au' } },
-  category: 'Disaster Recovery Services' }
+  category: 'Emergency Disaster Recovery Services' }
 
 export const viewport = {
   width: 'device-width',
