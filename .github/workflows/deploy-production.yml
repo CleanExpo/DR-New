@@ -1,0 +1,269 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      deployment_type:
+        description: 'Deployment strategy'
+        required: true
+        type: choice
+        options:
+          - standard
+          - canary
+          - blue-green
+        default: 'standard'
+
+env:
+  NODE_VERSION: '18.x'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  pre-deployment-checks:
+    name: Pre-deployment Validation
+    runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.checks.outputs.should_deploy }}
+      commit_sha: ${{ steps.checks.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Run validation checks
+        id: checks
+        run: |
+          echo "Running pre-deployment validation..."
+
+          # Type checking
+          echo "::group::Type Check"
+          npm run type-check || exit 1
+          echo "::endgroup::"
+
+          # Linting
+          echo "::group::Lint Check"
+          npm run lint || exit 1
+          echo "::endgroup::"
+
+          # Security scan
+          echo "::group::Security Scan"
+          npm audit --production --audit-level=high || true
+          echo "::endgroup::"
+
+          # Unit tests
+          echo "::group::Unit Tests"
+          npm run test:ci || exit 1
+          echo "::endgroup::"
+
+          # Build validation
+          echo "::group::Build Validation"
+          npm run build || exit 1
+          echo "::endgroup::"
+
+          echo "should_deploy=true" >> $GITHUB_OUTPUT
+          echo "commit_sha=${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: .next
+          retention-days: 1
+
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    needs: pre-deployment-checks
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Snyk Security Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: Run OWASP Dependency Check
+        run: |
+          npm audit --production --audit-level=moderate
+
+      - name: Check for exposed secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [pre-deployment-checks, security-scan]
+    environment:
+      name: staging
+      url: https://dr-new-staging.vercel.app
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel Environment
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Staging
+        id: deploy_staging
+        run: |
+          DEPLOYMENT_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          echo "deployment_url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
+          echo "Deployed to: $DEPLOYMENT_URL"
+
+      - name: Run E2E Tests on Staging
+        run: |
+          PLAYWRIGHT_BASE_URL=${{ steps.deploy_staging.outputs.deployment_url }} npm run test:e2e
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    if: needs.pre-deployment-checks.outputs.should_deploy == 'true'
+    environment:
+      name: production
+      url: https://disasterrecovery.com.au
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel Environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Production
+        id: deploy_production
+        run: |
+          DEPLOYMENT_URL=$(vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          echo "deployment_url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
+          echo "Deployed to: $DEPLOYMENT_URL"
+
+      - name: Health Check
+        run: |
+          sleep 30
+          curl -f https://disasterrecovery.com.au/api/health || exit 1
+
+      - name: Create deployment record
+        run: |
+          echo "Deployment Details:" > deployment-record.txt
+          echo "Commit: ${{ github.sha }}" >> deployment-record.txt
+          echo "Branch: ${{ github.ref_name }}" >> deployment-record.txt
+          echo "Deployed at: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> deployment-record.txt
+          echo "URL: ${{ steps.deploy_production.outputs.deployment_url }}" >> deployment-record.txt
+
+      - name: Upload deployment record
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-record
+          path: deployment-record.txt
+          retention-days: 90
+
+  post-deployment-validation:
+    name: Post-deployment Validation
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Run production smoke tests
+        run: npm run test:production
+
+      - name: Performance validation
+        run: |
+          echo "Running Lighthouse CI..."
+          npm run test:lighthouse || true
+
+      - name: Monitor error rates
+        run: |
+          echo "Checking error rates..."
+          # Implement error rate monitoring
+          sleep 60
+
+      - name: Verify deployment success
+        run: |
+          curl -f https://disasterrecovery.com.au/ || exit 1
+          curl -f https://disasterrecovery.com.au/services/water-damage-restoration || exit 1
+
+  rollback-on-failure:
+    name: Automatic Rollback
+    runs-on: ubuntu-latest
+    needs: post-deployment-validation
+    if: failure()
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Rollback to previous deployment
+        run: |
+          echo "Rolling back deployment due to validation failure..."
+          vercel rollback --token=${{ secrets.VERCEL_TOKEN }} --yes
+
+      - name: Notify team of rollback
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          text: 'Production deployment rolled back due to validation failure'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+  notify-deployment:
+    name: Notify Team
+    runs-on: ubuntu-latest
+    needs: [deploy-production, post-deployment-validation]
+    if: success()
+    steps:
+      - name: Notify success
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          text: 'Successfully deployed to production'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}

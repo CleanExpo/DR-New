@@ -1,8 +1,14 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://dr-new-ten.vercel.app';
+  const baseUrl = 'https://disasterrecovery.com.au';
   const currentDate = new Date().toISOString();
+
+  // Image sitemap entries for SEO
+  const imageEntries: MetadataRoute.Sitemap = [];
+
+  // Video sitemap entries (future-ready)
+  const videoEntries: MetadataRoute.Sitemap = [];
 
   // Main pages
   const mainPages = [

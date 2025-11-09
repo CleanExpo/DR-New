@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import React from 'react';
 
 // Code-split heavy libraries for better performance
 
@@ -33,7 +34,7 @@ export const DynamicPieChart = dynamic(
 
 // React Icons - Can be large if importing full sets
 export const DynamicFaIcon = (iconName: string) =>
-  dynamic(() => import('react-icons/fa').then(mod => mod[iconName as keyof typeof mod]), {
+  dynamic(() => import('react-icons/fa').then((mod: any) => mod[iconName]), {
     ssr: true,
   });
 
@@ -49,30 +50,26 @@ export const DynamicJsPDF = dynamic(
   { ssr: false }
 );
 
-// React Dropzone - ~50KB
-export const DynamicDropzone = dynamic(
-  () => import('react-dropzone').then(mod => ({ default: mod.useDropzone })),
+// Framer Motion - ~60KB
+export const DynamicMotion = {
+  div: dynamic(() => import('framer-motion').then(mod => mod.motion.div), { ssr: true }),
+  section: dynamic(() => import('framer-motion').then(mod => mod.motion.section), { ssr: true }),
+  button: dynamic(() => import('framer-motion').then(mod => mod.motion.button), { ssr: true }),
+};
+
+// React Confetti - ~50KB
+export const DynamicConfetti = dynamic(
+  () => import('react-confetti').then(mod => mod.default),
   { ssr: false }
 );
 
-// Swiper - ~120KB
-export const DynamicSwiper = dynamic(
-  () => import('swiper/react').then(mod => mod.Swiper),
-  { ssr: false, loading: () => <div className="h-64 bg-gray-100 animate-pulse rounded" /> }
-);
-
-export const DynamicSwiperSlide = dynamic(
-  () => import('swiper/react').then(mod => mod.SwiperSlide),
+// React PDF - ~200KB
+export const DynamicPDFViewer = dynamic(
+  () => import('@react-pdf/renderer').then(mod => mod.PDFViewer),
   { ssr: false }
 );
 
-// Chart.js - ~200KB
-export const DynamicChartJS = dynamic(
-  () => import('react-chartjs-2').then(mod => mod.Line),
-  { ssr: false, loading: () => <div className="h-64 bg-gray-100 animate-pulse rounded" /> }
-);
-
-// GSAP - ~80KB (animations)
+// GSAP - ~50KB
 export const DynamicGSAP = dynamic(
   () => import('gsap').then(mod => mod.gsap),
   { ssr: false }
@@ -123,3 +120,22 @@ export const DynamicDayPicker = dynamic(
     loading: () => <div className="h-64 bg-gray-100 animate-pulse rounded" />,
   }
 );
+
+export default {
+  DynamicReactPlayer,
+  DynamicLineChart,
+  DynamicBarChart,
+  DynamicPieChart,
+  DynamicFaIcon,
+  DynamicHtml2Canvas,
+  DynamicJsPDF,
+  DynamicMotion,
+  DynamicConfetti,
+  DynamicPDFViewer,
+  DynamicGSAP,
+  DynamicLiteYouTube,
+  DynamicGoogleMap,
+  DynamicMarker,
+  DynamicQRCode,
+  DynamicDayPicker,
+};

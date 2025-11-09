@@ -39,7 +39,9 @@ User-agent: Claude-Web
 Allow: /
 
 # Sitemaps
-Sitemap: https://dr-new-ten.vercel.app/sitemap.xml
+Sitemap: https://disasterrecovery.com.au/sitemap.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-images.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-videos.xml
 
 # Block bad bots
 User-agent: AhrefsBot
