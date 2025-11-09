@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { securityLogger, SecurityEventType, SecuritySeverity } from './lib/security/security-logger';
 
 // Security headers configuration
 const securityHeaders = {
@@ -112,6 +113,15 @@ export async function middleware(request: NextRequest) {
     const isAllowed = checkRateLimit(identifier);
 
     if (!isAllowed) {
+      // Log rate limit violation
+      securityLogger.log({
+        type: SecurityEventType.RATE_LIMIT_EXCEEDED,
+        severity: SecuritySeverity.MEDIUM,
+        ipAddress: ip,
+        resource: pathname,
+        success: false,
+      });
+
       return new NextResponse('Too Many Requests', {
         status: 429,
         headers: {

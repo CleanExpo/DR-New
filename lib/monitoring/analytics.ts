@@ -146,17 +146,36 @@ export function trackConversion(
 }
 
 /**
- * Track emergency phone calls
+ * Track emergency phone calls with full context and persistence
  */
 export function trackEmergencyCall(
   phoneNumber: string,
   location?: string
 ): void {
+  // Original GA4 tracking
   trackConversion(ConversionEvent.EMERGENCY_CALL, 1000, {
     phone_number: phoneNumber,
     call_location: location || 'unknown',
     emergency_type: 'urgent',
     lead_quality: 'high',
+  });
+
+  // NEW: Persist to database for revenue attribution
+  persistConversion({
+    conversionType: 'emergency_call',
+    value: 1000,
+    source: getTrafficSource(),
+    medium: getTrafficMedium(),
+    campaign: getCampaign(),
+    keyword: getReferrerKeyword(),
+    page: typeof window !== 'undefined' ? window.location.pathname : '',
+    referrer: typeof document !== 'undefined' ? document.referrer : '',
+    serviceArea: typeof window !== 'undefined' ? extractServiceArea(window.location.pathname) : null,
+    serviceType: typeof window !== 'undefined' ? extractServiceType(window.location.pathname) : null,
+    leadScore: 90,
+    leadQuality: 'high',
+    urgencyLevel: 'emergency',
+    deviceType: getDeviceTypeUtil(),
   });
 }
 
@@ -507,3 +526,6 @@ export const analytics = {
   setupAutoTracking,
   setConsent: setConsentMode,
 };
+
+// Import conversion tracking utilities
+export * from './conversion-tracking';

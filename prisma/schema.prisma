@@ -7,6 +7,243 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ============================================
+// SEO & Performance Monitoring Models
+// ============================================
+
+model WebVitalMetric {
+  id            String   @id @default(uuid())
+  metricName    String   // LCP, FID, CLS, TTFB, INP, FCP
+  value         Float
+  rating        String   // good, needs-improvement, poor
+  page          String   // URL path
+  deviceType    String   // mobile, desktop, tablet
+  userAgent     String?
+  timestamp     DateTime @default(now())
+
+  @@index([metricName, timestamp])
+  @@index([page, metricName])
+  @@index([rating, timestamp])
+}
+
+model SEOMetric {
+  id                String   @id @default(uuid())
+  date              DateTime @default(now())
+
+  // Search Console Data
+  organicClicks     Int      @default(0)
+  organicImpressions Int     @default(0)
+  organicCTR        Float    @default(0)
+  averagePosition   Float    @default(0)
+
+  // Page-specific (nullable for site-wide metrics)
+  page              String?
+  keyword           String?
+
+  // Geographic segmentation
+  serviceArea       String?  // Brisbane, Ipswich, Logan
+  suburb            String?  // Hamilton, Ascot, New Farm, etc.
+
+  // Metadata
+  timestamp         DateTime @default(now())
+
+  @@index([date])
+  @@index([page, date])
+  @@index([keyword, date])
+  @@index([serviceArea, date])
+}
+
+model ConversionMetric {
+  id              String   @id @default(uuid())
+
+  // Conversion Details
+  conversionType  String   // emergency_call, contact_form, quote_request, insurance_claim
+  value           Float    // AUD value
+
+  // Traffic Attribution
+  source          String   // organic, direct, referral, social
+  medium          String   // organic, cpc, referral, email
+  campaign        String?
+  keyword         String?
+
+  // Page Context
+  page            String   // Landing page
+  referrer        String?
+
+  // Geographic & Service Context
+  serviceArea     String?  // Brisbane, Ipswich, Logan
+  suburb          String?  // Specific suburb if identified
+  serviceType     String?  // water, fire, mould, storm, biohazard
+
+  // Lead Quality
+  leadScore       Int?     // 0-100
+  leadQuality     String?  // high, medium, low
+  urgencyLevel    String?  // emergency, urgent, standard
+
+  // Device & User Context
+  deviceType      String?  // mobile, desktop, tablet
+  userAgent       String?
+  ipAddress       String?
+
+  timestamp       DateTime @default(now())
+
+  @@index([conversionType, timestamp])
+  @@index([source, timestamp])
+  @@index([serviceArea, timestamp])
+  @@index([serviceType, timestamp])
+  @@index([leadQuality, timestamp])
+}
+
+model PagePerformance {
+  id          String   @id @default(uuid())
+  page        String   // URL path
+  date        DateTime @default(now())
+
+  // Aggregated Web Vitals for the day
+  avgLCP      Float?
+  p95LCP      Float?
+  avgFID      Float?
+  avgINP      Float?
+  avgCLS      Float?
+  avgTTFB     Float?
+
+  // Traffic Metrics
+  pageviews   Int      @default(0)
+  uniqueViews Int      @default(0)
+  bounceRate  Float?
+
+  // Engagement Metrics
+  avgTimeOnPage Float?  // seconds
+  scrollDepth75 Int     @default(0)  // Users who scrolled 75%
+  scrollDepth100 Int    @default(0)  // Users who scrolled 100%
+
+  // Device Breakdown
+  mobileViews  Int     @default(0)
+  desktopViews Int     @default(0)
+  tabletViews  Int     @default(0)
+
+  @@unique([page, date])
+  @@index([date])
+  @@index([page])
+}
+
+model KeywordRanking {
+  id            String   @id @default(uuid())
+  keyword       String
+  position      Float
+  previousPosition Float?
+
+  // Context
+  page          String?  // Ranking URL
+  searchVolume  Int?
+  difficulty    Int?     // 0-100 (from SEO tools)
+
+  // Geographic
+  location      String   @default("Brisbane, QLD, Australia")
+  deviceType    String   @default("mobile")  // mobile, desktop
+
+  // Tracking
+  date          DateTime @default(now())
+  source        String   @default("manual")  // manual, api, scraper
+
+  @@index([keyword, date])
+  @@index([date])
+  @@index([position])
+}
+
+model CrawlError {
+  id            String   @id @default(uuid())
+  url           String
+  errorType     String   // 404, 500, redirect_chain, soft_404, etc.
+  statusCode    Int?
+  severity      String   // critical, warning, info
+
+  // Details
+  referrer      String?
+  errorMessage  String?
+  firstDetected DateTime @default(now())
+  lastSeen      DateTime @default(now())
+
+  // Status
+  resolved      Boolean  @default(false)
+  resolvedAt    DateTime?
+  resolvedBy    String?
+
+  @@index([url])
+  @@index([errorType, resolved])
+  @@index([severity, resolved])
+}
+
+model PerformanceAlert {
+  id            String   @id @default(uuid())
+  alertType     String   // web_vital_degradation, organic_traffic_drop, conversion_drop
+  severity      String   // critical, warning, info
+  metric        String   // LCP, organic_clicks, conversion_rate
+  value         Float
+  threshold     Float
+
+  // Context
+  page          String?
+  deviceType    String?
+  timeWindow    String?  // 1h, 24h, 7d
+
+  // Alert Management
+  triggered     Boolean  @default(true)
+  acknowledged  Boolean  @default(false)
+  acknowledgedBy String?
+  acknowledgedAt DateTime?
+  resolved      Boolean  @default(false)
+  resolvedAt    DateTime?
+
+  // Notification
+  notified      Boolean  @default(false)
+  notificationMethod String?  // email, sms, slack
+
+  timestamp     DateTime @default(now())
+
+  @@index([severity, resolved])
+  @@index([alertType, timestamp])
+}
+
+model UserSession {
+  id            String   @id @default(uuid())
+  sessionId     String   @unique
+
+  // Traffic Source
+  source        String?  // organic, direct, referral
+  medium        String?
+  campaign      String?
+  keyword       String?
+  referrer      String?
+
+  // Device & Location
+  deviceType    String?
+  browser       String?
+  os            String?
+  ipAddress     String?
+  city          String?
+  region        String?
+
+  // Session Metrics
+  landingPage   String
+  exitPage      String?
+  pagesViewed   Int      @default(1)
+  duration      Int?     // seconds
+  bounced       Boolean  @default(false)
+
+  // Conversions
+  converted     Boolean  @default(false)
+  conversionType String?
+  conversionValue Float?
+
+  startTime     DateTime @default(now())
+  endTime       DateTime?
+
+  @@index([sessionId])
+  @@index([source, startTime])
+  @@index([converted, startTime])
+}
+
 model Agency {
   id          String   @id @default(cuid())
   name        String

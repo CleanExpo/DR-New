@@ -1,5 +1,8 @@
 /* PREMIUM DESIGN SYSTEM - DISASTER RECOVERY BRISBANE */
-/* Import design system first for proper cascade */
+/* Import design tokens first for proper cascade */
+@import './design-tokens.css';
+
+/* Import design system */
 @import './design-system.css';
 
 /* Import micro-interactions */
@@ -398,6 +401,26 @@
   50% {
     opacity: 0.8;
     transform: scaleY(1.1);
+  }
+}
+
+/* Toast progress animation */
+@keyframes toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Skeleton shimmer animation */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
   }
 }
 

@@ -245,7 +245,7 @@ export class ComprehensiveMonitoring {
   }
 
   /**
-   * Record Web Vital metric
+   * Record Web Vital metric (enhanced with persistence)
    */
   private recordWebVital(metric: Metric): void {
     if (!this.metrics.has('web_vitals')) {
@@ -259,7 +259,7 @@ export class ComprehensiveMonitoring {
       timestamp: Date.now(),
     });
 
-    // Send to backend
+    // Send to backend (in-memory)
     if (this.shouldSample()) {
       this.sendToBackend('/api/monitoring/web-vitals', {
         name: metric.name,
@@ -270,7 +270,46 @@ export class ComprehensiveMonitoring {
         url: window.location.pathname,
         timestamp: new Date().toISOString(),
       });
+
+      // NEW: Persist to database
+      this.persistWebVital(metric);
     }
+  }
+
+  /**
+   * Persist Web Vital to database
+   */
+  private async persistWebVital(metric: Metric): Promise<void> {
+    try {
+      await fetch('/api/monitoring/web-vitals/persist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          metricName: metric.name,
+          value: metric.value,
+          rating: metric.rating,
+          page: window.location.pathname,
+          deviceType: this.getDeviceType(),
+          timestamp: new Date().toISOString(),
+        }),
+        keepalive: true,
+      });
+    } catch (error) {
+      // Fail silently - don't impact user experience
+      if (process.env.NODE_ENV === 'development') {
+        console.error('[Monitoring] Failed to persist web vital:', error);
+      }
+    }
+  }
+
+  /**
+   * Get device type
+   */
+  private getDeviceType(): string {
+    const width = window.innerWidth;
+    if (width < 768) return 'mobile';
+    if (width < 1024) return 'tablet';
+    return 'desktop';
   }
 
   /**

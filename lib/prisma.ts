@@ -1,11 +1,11 @@
-import { PrismaClient } from '@prisma/client';
+/**
+ * Prisma Client - Optimized Connection
+ *
+ * @deprecated Use '@/lib/db/connection' or '@/lib/db' instead
+ * This file is kept for backward compatibility
+ */
 
-declare global {
-  var prisma: PrismaClient | undefined;
-}
-
-export const prisma = global.prisma || new PrismaClient();
-
-if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
+import { prisma } from './db/connection';
 
 export default prisma;
+export { prisma };

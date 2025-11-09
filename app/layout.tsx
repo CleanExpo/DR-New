@@ -10,6 +10,7 @@ import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 import { Breadcrumbs } from '@/components/ui/breadcrumbs'
 import { MonitoringProvider } from '@/components/monitoring/MonitoringProvider'
 import { CriticalCSS } from '@/components/performance/CriticalCSS'
+import { Prefetch } from '@/components/performance/Prefetch'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,15 +19,17 @@ const inter = Inter({
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
   variable: '--font-inter',
-  weight: ['400', '500', '600', '700'], // Optimized: only load needed weights
+  weight: ['400', '500', '600', '700'],
 })
 
 const poppins = Poppins({
-  weight: ['600', '700', '800'], // Optimized: reduced from 6 weights to 3
+  weight: ['600', '700', '800'],
   subsets: ['latin'],
   display: 'swap',
   preload: true,
-  variable: '--font-poppins'
+  fallback: ['system-ui', 'arial'],
+  adjustFontFallback: true,
+  variable: '--font-poppins',
 })
 
 export const metadata: Metadata = {
@@ -121,6 +124,23 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
+
+        {/* Preload critical fonts */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
       </head>
       <CriticalCSS />
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
@@ -365,6 +385,7 @@ export default function RootLayout({
             gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
             clarityId={process.env.NEXT_PUBLIC_CLARITY_ID}
           >
+            <Prefetch />
             <Header />
             <Breadcrumbs />
             <main id="main-content" className="min-h-screen">
@@ -384,15 +405,18 @@ export default function RootLayout({
         </Providers>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(...args: any[]): void {dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
-            ${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY ? `gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY}');` : ''}
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+              send_page_view: false
+            });
+            ${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY ? `gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID_SECONDARY}', { send_page_view: false });` : ''}
           `}
         </Script>
       </body>

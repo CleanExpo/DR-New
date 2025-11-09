@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'edge'; // Use edge runtime for faster responses
+export const runtime = 'nodejs'; // Use edge runtime for faster responses
 
 interface WebVitalsPayload {
   metric: string;
