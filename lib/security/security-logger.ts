@@ -1,4 +1,4 @@
-import { redactSensitiveData } from './encryption';
+import { redactSensitiveData } from './redact';
 
 /**
  * Security Event Logger
