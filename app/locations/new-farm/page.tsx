@@ -129,7 +129,7 @@ export default function NewFarmPage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <motion.div
-                className="inline-block bg-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-6"
+                className="inline-block bg-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
@@ -253,7 +253,7 @@ export default function NewFarmPage() {
 
               <div className="grid md:grid-cols-3 gap-8">
                 <motion.div
-                  className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-blue-600 hover:shadow-xl transition-all"
+                  className="bg-white rounded-xl shadow-lg p-8 border-t-4 border-blue-700 hover:shadow-xl transition-all"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -328,7 +328,7 @@ export default function NewFarmPage() {
 
               <div className="grid md:grid-cols-2 gap-8">
                 <motion.div
-                  className="bg-gradient-to-br from-blue-50 to-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all border-t-4 border-blue-600"
+                  className="bg-gradient-to-br from-blue-50 to-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all border-t-4 border-blue-700"
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -546,7 +546,7 @@ export default function NewFarmPage() {
                 </motion.div>
 
                 <motion.div
-                  className="bg-slate-800 rounded-xl p-8 border border-blue-600 hover:border-blue-400 transition-all"
+                  className="bg-slate-800 rounded-xl p-8 border border-blue-700 hover:border-blue-400 transition-all"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -580,7 +580,7 @@ export default function NewFarmPage() {
         </section>
 
         {/* Final Emergency CTA */}
-        <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-900 text-white relative overflow-hidden">
           {/* Animated background pattern */}
           <motion.div
             className="absolute inset-0 opacity-10"

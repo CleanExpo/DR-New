@@ -174,7 +174,7 @@ export default function EnvironmentalSafetyProtocolsPage() {
         </div>
 
         <div className="mt-6 flex gap-4">
-          <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+          <button className="bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition">
             Download PDF
           </button>
           <button className="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition">

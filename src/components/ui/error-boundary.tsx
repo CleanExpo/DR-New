@@ -188,7 +188,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button 
                       onClick={this.handleRefresh}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 w-full sm:w-auto"
+                      className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 w-full sm:w-auto"
                     >
                       <RefreshCw className="h-4 w-4 mr-2" />
                       Refresh Page

@@ -71,7 +71,7 @@ function BookingSuccessPageContent(...args: any[]): void {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700 mx-auto"></div>
           <p className="mt-4 text-gray-700">Processing your booking...</p>
         </div>
       </div>
@@ -277,7 +277,7 @@ function BookingSuccessPageContent(...args: any[]): void {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center justify-center gap-2">
+          <button className="px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colours flex items-center justify-center gap-2">
             <Download className="h-5 w-5" />
             Download Receipt
           </button>

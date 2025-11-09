@@ -309,7 +309,7 @@ const HealthQuiz: React.FC = () => {
 
   const getRiskColor = (level: string) => {
     switch (level) {
-      case 'critical': return 'bg-red-600'
+      case 'critical': return 'bg-red-700'
       case 'high': return 'bg-orange-600'
       case 'moderate': return 'bg-yellow-600'
       default: return 'bg-green-600'
@@ -382,7 +382,7 @@ const HealthQuiz: React.FC = () => {
             {(quizResult.riskLevel === 'critical' || quizResult.riskLevel === 'high') && (
               <Button
                 size="lg"
-                className="bg-red-600 hover:bg-red-700"
+                className="bg-red-700 hover:bg-red-800"
                 onClick={() => window.location.href = 'tel:1300-DISASTER'}
               >
                 <Phone className="mr-2 h-5 w-5" />

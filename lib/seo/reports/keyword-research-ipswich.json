@@ -1,0 +1,1093 @@
+{
+  "metadata": {
+    "location": "Ipswich, Queensland",
+    "generatedDate": "2025-11-09",
+    "totalKeywords": 156,
+    "targetMarket": "Local disaster recovery and restoration services",
+    "primaryCompetitor": "Local IICRC certified restorers",
+    "focusAreas": [
+      "Ipswich CBD",
+      "Booval",
+      "Goodna",
+      "Ripley",
+      "Karalee",
+      "Brookwater",
+      "Springfield Lakes"
+    ]
+  },
+  "quickWins": [
+    {
+      "keyword": "IICRC Master Restorer Ipswich",
+      "searchVolume": 40,
+      "competition": "Low",
+      "opportunityScore": 92,
+      "intent": "Navigational",
+      "priority": "Rank Tomorrow",
+      "rationale": "Unique certification with minimal competition"
+    },
+    {
+      "keyword": "Master Restorer Brookwater",
+      "searchVolume": 20,
+      "competition": "Very Low",
+      "opportunityScore": 88,
+      "intent": "Navigational",
+      "priority": "Rank Tomorrow",
+      "rationale": "High-value suburb with no certified competitors"
+    },
+    {
+      "keyword": "emergency water damage Karalee",
+      "searchVolume": 30,
+      "competition": "Low",
+      "opportunityScore": 86,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "rationale": "High net worth area with urgent search intent"
+    },
+    {
+      "keyword": "flood damage restoration Springfield Lakes",
+      "searchVolume": 50,
+      "competition": "Low",
+      "opportunityScore": 85,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "rationale": "Flood-prone area with growing population"
+    },
+    {
+      "keyword": "24/7 water damage restoration Ipswich",
+      "searchVolume": 60,
+      "competition": "Medium",
+      "opportunityScore": 78,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "rationale": "Emergency modifier reduces competition"
+    },
+    {
+      "keyword": "certified mold remediation Ipswich",
+      "searchVolume": 45,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "rationale": "Certification emphasis with low competition"
+    },
+    {
+      "keyword": "storm damage repair Goodna",
+      "searchVolume": 35,
+      "competition": "Very Low",
+      "opportunityScore": 84,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "rationale": "Local suburb with minimal competition"
+    },
+    {
+      "keyword": "fire damage restoration Ripley",
+      "searchVolume": 25,
+      "competition": "Very Low",
+      "opportunityScore": 83,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "rationale": "Growing suburb with no established competitors"
+    }
+  ],
+  "primaryKeywords": [
+    {
+      "keyword": "water damage restoration Ipswich",
+      "searchVolume": 320,
+      "competition": "High",
+      "opportunityScore": 68,
+      "intent": "Transactional",
+      "priority": "Month 1-2",
+      "cpc": 28.50,
+      "difficulty": 65
+    },
+    {
+      "keyword": "mold remediation Ipswich",
+      "searchVolume": 210,
+      "competition": "Medium-High",
+      "opportunityScore": 71,
+      "intent": "Transactional",
+      "priority": "Month 1",
+      "cpc": 24.30,
+      "difficulty": 58
+    },
+    {
+      "keyword": "emergency restoration Ipswich",
+      "searchVolume": 180,
+      "competition": "Medium",
+      "opportunityScore": 74,
+      "intent": "Transactional",
+      "priority": "Week 2-3",
+      "cpc": 31.20,
+      "difficulty": 52
+    },
+    {
+      "keyword": "flood damage restoration Ipswich",
+      "searchVolume": 280,
+      "competition": "High",
+      "opportunityScore": 66,
+      "intent": "Transactional",
+      "priority": "Month 1-2",
+      "cpc": 26.80,
+      "difficulty": 68
+    },
+    {
+      "keyword": "emergency water damage Ipswich",
+      "searchVolume": 250,
+      "competition": "Medium-High",
+      "opportunityScore": 70,
+      "intent": "Transactional",
+      "priority": "Month 1",
+      "cpc": 29.40,
+      "difficulty": 60
+    },
+    {
+      "keyword": "fire damage restoration Ipswich",
+      "searchVolume": 150,
+      "competition": "Medium",
+      "opportunityScore": 73,
+      "intent": "Transactional",
+      "priority": "Week 3-4",
+      "cpc": 27.60,
+      "difficulty": 54
+    },
+    {
+      "keyword": "storm damage repair Ipswich",
+      "searchVolume": 190,
+      "competition": "Medium",
+      "opportunityScore": 72,
+      "intent": "Transactional",
+      "priority": "Week 2-3",
+      "cpc": 22.90,
+      "difficulty": 56
+    }
+  ],
+  "emergencyModifiers": [
+    {
+      "keyword": "24/7 emergency water damage Ipswich",
+      "searchVolume": 80,
+      "competition": "Low-Medium",
+      "opportunityScore": 79,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 32.10,
+      "difficulty": 45
+    },
+    {
+      "keyword": "urgent water damage restoration Ipswich",
+      "searchVolume": 65,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 30.50,
+      "difficulty": 42
+    },
+    {
+      "keyword": "fast flood damage restoration Ipswich",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 80,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 28.70,
+      "difficulty": 43
+    },
+    {
+      "keyword": "immediate mold remediation Ipswich",
+      "searchVolume": 40,
+      "competition": "Very Low",
+      "opportunityScore": 85,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "cpc": 26.30,
+      "difficulty": 38
+    },
+    {
+      "keyword": "emergency storm damage Ipswich",
+      "searchVolume": 95,
+      "competition": "Medium",
+      "opportunityScore": 76,
+      "intent": "Transactional",
+      "priority": "Week 1-2",
+      "cpc": 25.80,
+      "difficulty": 48
+    },
+    {
+      "keyword": "24 hour water damage service Ipswich",
+      "searchVolume": 70,
+      "competition": "Low-Medium",
+      "opportunityScore": 78,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 31.40,
+      "difficulty": 46
+    }
+  ],
+  "localAreaKeywords": [
+    {
+      "keyword": "water damage restoration Brookwater",
+      "searchVolume": 45,
+      "competition": "Very Low",
+      "opportunityScore": 87,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "cpc": 29.20,
+      "difficulty": 35
+    },
+    {
+      "keyword": "mold remediation Karalee",
+      "searchVolume": 35,
+      "competition": "Very Low",
+      "opportunityScore": 86,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "cpc": 25.60,
+      "difficulty": 34
+    },
+    {
+      "keyword": "flood damage Springfield Lakes",
+      "searchVolume": 90,
+      "competition": "Low",
+      "opportunityScore": 83,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 27.30,
+      "difficulty": 40
+    },
+    {
+      "keyword": "water damage restoration Goodna",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 24.80,
+      "difficulty": 42
+    },
+    {
+      "keyword": "emergency restoration Ripley",
+      "searchVolume": 40,
+      "competition": "Very Low",
+      "opportunityScore": 85,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "cpc": 28.90,
+      "difficulty": 36
+    },
+    {
+      "keyword": "storm damage Booval",
+      "searchVolume": 50,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 23.40,
+      "difficulty": 41
+    },
+    {
+      "keyword": "fire damage restoration Ipswich CBD",
+      "searchVolume": 60,
+      "competition": "Medium",
+      "opportunityScore": 75,
+      "intent": "Transactional",
+      "priority": "Week 2",
+      "cpc": 26.70,
+      "difficulty": 50
+    },
+    {
+      "keyword": "water damage restoration Springfield Lakes",
+      "searchVolume": 75,
+      "competition": "Low-Medium",
+      "opportunityScore": 80,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 28.10,
+      "difficulty": 44
+    },
+    {
+      "keyword": "mold remediation Brookwater",
+      "searchVolume": 30,
+      "competition": "Very Low",
+      "opportunityScore": 88,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "cpc": 24.50,
+      "difficulty": 32
+    },
+    {
+      "keyword": "restoration services Karalee",
+      "searchVolume": 25,
+      "competition": "Very Low",
+      "opportunityScore": 84,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "cpc": 22.80,
+      "difficulty": 35
+    }
+  ],
+  "certificationKeywords": [
+    {
+      "keyword": "IICRC certified restorer Ipswich",
+      "searchVolume": 50,
+      "competition": "Low",
+      "opportunityScore": 84,
+      "intent": "Navigational",
+      "priority": "Rank Tomorrow",
+      "cpc": 26.40,
+      "difficulty": 38
+    },
+    {
+      "keyword": "certified water damage restoration Ipswich",
+      "searchVolume": 70,
+      "competition": "Low-Medium",
+      "opportunityScore": 79,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 29.80,
+      "difficulty": 46
+    },
+    {
+      "keyword": "professional mold remediation Ipswich",
+      "searchVolume": 85,
+      "competition": "Medium",
+      "opportunityScore": 75,
+      "intent": "Transactional",
+      "priority": "Week 2",
+      "cpc": 25.90,
+      "difficulty": 51
+    },
+    {
+      "keyword": "licensed restoration contractor Ipswich",
+      "searchVolume": 40,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Navigational",
+      "priority": "Week 1",
+      "cpc": 24.20,
+      "difficulty": 40
+    },
+    {
+      "keyword": "Master Restorer Ipswich",
+      "searchVolume": 35,
+      "competition": "Very Low",
+      "opportunityScore": 90,
+      "intent": "Navigational",
+      "priority": "Rank Tomorrow",
+      "cpc": 27.50,
+      "difficulty": 28
+    }
+  ],
+  "commercialKeywords": [
+    {
+      "keyword": "commercial water damage restoration Ipswich",
+      "searchVolume": 95,
+      "competition": "Medium",
+      "opportunityScore": 76,
+      "intent": "Transactional",
+      "priority": "Week 2",
+      "cpc": 35.20,
+      "difficulty": 52
+    },
+    {
+      "keyword": "commercial flood damage Ipswich",
+      "searchVolume": 70,
+      "competition": "Low-Medium",
+      "opportunityScore": 78,
+      "intent": "Transactional",
+      "priority": "Week 1-2",
+      "cpc": 33.60,
+      "difficulty": 48
+    },
+    {
+      "keyword": "office water damage restoration Ipswich",
+      "searchVolume": 45,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 32.40,
+      "difficulty": 43
+    },
+    {
+      "keyword": "warehouse flood restoration Ipswich",
+      "searchVolume": 35,
+      "competition": "Low",
+      "opportunityScore": 83,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 34.80,
+      "difficulty": 40
+    },
+    {
+      "keyword": "commercial mold remediation Ipswich",
+      "searchVolume": 60,
+      "competition": "Medium",
+      "opportunityScore": 74,
+      "intent": "Transactional",
+      "priority": "Week 2",
+      "cpc": 31.90,
+      "difficulty": 53
+    },
+    {
+      "keyword": "strata water damage Ipswich",
+      "searchVolume": 40,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 30.50,
+      "difficulty": 42
+    }
+  ],
+  "residentialKeywords": [
+    {
+      "keyword": "residential water damage Ipswich",
+      "searchVolume": 110,
+      "competition": "Medium",
+      "opportunityScore": 74,
+      "intent": "Transactional",
+      "priority": "Week 2-3",
+      "cpc": 27.80,
+      "difficulty": 54
+    },
+    {
+      "keyword": "home flood restoration Ipswich",
+      "searchVolume": 85,
+      "competition": "Low-Medium",
+      "opportunityScore": 77,
+      "intent": "Transactional",
+      "priority": "Week 1-2",
+      "cpc": 26.40,
+      "difficulty": 48
+    },
+    {
+      "keyword": "house water damage repair Ipswich",
+      "searchVolume": 95,
+      "competition": "Medium",
+      "opportunityScore": 73,
+      "intent": "Transactional",
+      "priority": "Week 2",
+      "cpc": 25.60,
+      "difficulty": 56
+    },
+    {
+      "keyword": "basement flooding Ipswich",
+      "searchVolume": 50,
+      "competition": "Low",
+      "opportunityScore": 80,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 28.30,
+      "difficulty": 44
+    },
+    {
+      "keyword": "ceiling water damage Ipswich",
+      "searchVolume": 65,
+      "competition": "Low-Medium",
+      "opportunityScore": 78,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 24.90,
+      "difficulty": 47
+    }
+  ],
+  "insuranceKeywords": [
+    {
+      "keyword": "insurance water damage claim Ipswich",
+      "searchVolume": 75,
+      "competition": "Medium",
+      "opportunityScore": 72,
+      "intent": "Informational",
+      "priority": "Week 2-3",
+      "cpc": 22.40,
+      "difficulty": 55
+    },
+    {
+      "keyword": "insurance approved restorer Ipswich",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Navigational",
+      "priority": "Week 1",
+      "cpc": 28.70,
+      "difficulty": 42
+    },
+    {
+      "keyword": "flood damage insurance work Ipswich",
+      "searchVolume": 45,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Informational",
+      "priority": "Week 1",
+      "cpc": 26.80,
+      "difficulty": 40
+    },
+    {
+      "keyword": "insurance restoration contractor Ipswich",
+      "searchVolume": 40,
+      "competition": "Low",
+      "opportunityScore": 83,
+      "intent": "Navigational",
+      "priority": "Week 1",
+      "cpc": 29.50,
+      "difficulty": 39
+    }
+  ],
+  "nearMeKeywords": [
+    {
+      "keyword": "water damage restoration near me Ipswich",
+      "searchVolume": 140,
+      "competition": "High",
+      "opportunityScore": 65,
+      "intent": "Transactional",
+      "priority": "Month 1-2",
+      "cpc": 31.20,
+      "difficulty": 70
+    },
+    {
+      "keyword": "emergency restoration near me Ipswich",
+      "searchVolume": 105,
+      "competition": "Medium-High",
+      "opportunityScore": 69,
+      "intent": "Transactional",
+      "priority": "Month 1",
+      "cpc": 32.80,
+      "difficulty": 62
+    },
+    {
+      "keyword": "mold remediation near me Ipswich",
+      "searchVolume": 90,
+      "competition": "Medium",
+      "opportunityScore": 73,
+      "intent": "Transactional",
+      "priority": "Week 2-3",
+      "cpc": 27.60,
+      "difficulty": 58
+    },
+    {
+      "keyword": "flood restoration near me Ipswich",
+      "searchVolume": 85,
+      "competition": "Medium",
+      "opportunityScore": 74,
+      "intent": "Transactional",
+      "priority": "Week 2-3",
+      "cpc": 29.40,
+      "difficulty": 56
+    }
+  ],
+  "costPricingKeywords": [
+    {
+      "keyword": "water damage restoration cost Ipswich",
+      "searchVolume": 120,
+      "competition": "Low-Medium",
+      "opportunityScore": 77,
+      "intent": "Informational",
+      "priority": "Week 1-2",
+      "cpc": 18.50,
+      "difficulty": 48
+    },
+    {
+      "keyword": "flood damage repair cost Ipswich",
+      "searchVolume": 80,
+      "competition": "Low",
+      "opportunityScore": 80,
+      "intent": "Informational",
+      "priority": "Week 1",
+      "cpc": 16.80,
+      "difficulty": 44
+    },
+    {
+      "keyword": "mold remediation price Ipswich",
+      "searchVolume": 65,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Informational",
+      "priority": "Week 1",
+      "cpc": 15.90,
+      "difficulty": 42
+    },
+    {
+      "keyword": "water damage quote Ipswich",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 19.20,
+      "difficulty": 40
+    },
+    {
+      "keyword": "free water damage estimate Ipswich",
+      "searchVolume": 45,
+      "competition": "Very Low",
+      "opportunityScore": 85,
+      "intent": "Transactional",
+      "priority": "Rank Tomorrow",
+      "cpc": 20.30,
+      "difficulty": 36
+    }
+  ],
+  "informationalKeywords": [
+    {
+      "keyword": "how to fix water damage Ipswich",
+      "searchVolume": 95,
+      "competition": "Low",
+      "opportunityScore": 79,
+      "intent": "Informational",
+      "priority": "Week 1",
+      "cpc": 12.40,
+      "difficulty": 45
+    },
+    {
+      "keyword": "water damage drying process Ipswich",
+      "searchVolume": 50,
+      "competition": "Very Low",
+      "opportunityScore": 84,
+      "intent": "Informational",
+      "priority": "Rank Tomorrow",
+      "cpc": 10.80,
+      "difficulty": 38
+    },
+    {
+      "keyword": "what causes mold after flooding Ipswich",
+      "searchVolume": 40,
+      "competition": "Very Low",
+      "opportunityScore": 86,
+      "intent": "Informational",
+      "priority": "Rank Tomorrow",
+      "cpc": 9.50,
+      "difficulty": 34
+    },
+    {
+      "keyword": "signs of water damage Ipswich",
+      "searchVolume": 70,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Informational",
+      "priority": "Week 1",
+      "cpc": 11.20,
+      "difficulty": 42
+    },
+    {
+      "keyword": "flood cleanup steps Ipswich",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Informational",
+      "priority": "Week 1",
+      "cpc": 10.60,
+      "difficulty": 41
+    }
+  ],
+  "seasonalKeywords": [
+    {
+      "keyword": "storm season water damage Ipswich",
+      "searchVolume": 85,
+      "competition": "Low",
+      "opportunityScore": 80,
+      "intent": "Informational",
+      "priority": "Week 1",
+      "cpc": 24.30,
+      "difficulty": 43,
+      "seasonality": "High Oct-Mar"
+    },
+    {
+      "keyword": "cyclone flood damage Ipswich",
+      "searchVolume": 60,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 26.70,
+      "difficulty": 44,
+      "seasonality": "High Dec-Mar"
+    },
+    {
+      "keyword": "heavy rain flooding Ipswich",
+      "searchVolume": 110,
+      "competition": "Medium",
+      "opportunityScore": 73,
+      "intent": "Informational",
+      "priority": "Week 2",
+      "cpc": 18.90,
+      "difficulty": 52,
+      "seasonality": "High Nov-Feb"
+    }
+  ],
+  "longTailKeywords": [
+    {
+      "keyword": "best water damage restoration company Ipswich",
+      "searchVolume": 65,
+      "competition": "Low-Medium",
+      "opportunityScore": 78,
+      "intent": "Navigational",
+      "priority": "Week 1",
+      "cpc": 28.40,
+      "difficulty": 47
+    },
+    {
+      "keyword": "trusted flood restoration service Ipswich",
+      "searchVolume": 45,
+      "competition": "Low",
+      "opportunityScore": 83,
+      "intent": "Navigational",
+      "priority": "Week 1",
+      "cpc": 27.20,
+      "difficulty": 40
+    },
+    {
+      "keyword": "emergency water extraction service Ipswich",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 30.60,
+      "difficulty": 42
+    },
+    {
+      "keyword": "carpet drying after flood Ipswich",
+      "searchVolume": 50,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 23.80,
+      "difficulty": 41
+    },
+    {
+      "keyword": "structural drying specialist Ipswich",
+      "searchVolume": 35,
+      "competition": "Very Low",
+      "opportunityScore": 87,
+      "intent": "Navigational",
+      "priority": "Rank Tomorrow",
+      "cpc": 29.90,
+      "difficulty": 33
+    },
+    {
+      "keyword": "sewage cleanup and restoration Ipswich",
+      "searchVolume": 40,
+      "competition": "Low",
+      "opportunityScore": 84,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 32.50,
+      "difficulty": 39
+    },
+    {
+      "keyword": "smoke and fire damage restoration Ipswich",
+      "searchVolume": 45,
+      "competition": "Low",
+      "opportunityScore": 83,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 28.70,
+      "difficulty": 40
+    },
+    {
+      "keyword": "water damaged ceiling repair Ipswich",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 25.40,
+      "difficulty": 43
+    },
+    {
+      "keyword": "burst pipe water damage repair Ipswich",
+      "searchVolume": 65,
+      "competition": "Low-Medium",
+      "opportunityScore": 79,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 27.60,
+      "difficulty": 46
+    },
+    {
+      "keyword": "leaking roof water damage Ipswich",
+      "searchVolume": 50,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 24.90,
+      "difficulty": 41
+    }
+  ],
+  "competitorBrandKeywords": [
+    {
+      "keyword": "water damage restoration alternative Ipswich",
+      "searchVolume": 30,
+      "competition": "Very Low",
+      "opportunityScore": 88,
+      "intent": "Navigational",
+      "priority": "Rank Tomorrow",
+      "cpc": 26.30,
+      "difficulty": 32
+    },
+    {
+      "keyword": "best alternative to [competitor] Ipswich",
+      "searchVolume": 25,
+      "competition": "Very Low",
+      "opportunityScore": 86,
+      "intent": "Navigational",
+      "priority": "Rank Tomorrow",
+      "cpc": 24.80,
+      "difficulty": 34
+    }
+  ],
+  "problemSolutionKeywords": [
+    {
+      "keyword": "wet carpet emergency Ipswich",
+      "searchVolume": 70,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 26.40,
+      "difficulty": 43
+    },
+    {
+      "keyword": "flooded basement help Ipswich",
+      "searchVolume": 55,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 28.90,
+      "difficulty": 41
+    },
+    {
+      "keyword": "standing water removal Ipswich",
+      "searchVolume": 60,
+      "competition": "Low",
+      "opportunityScore": 81,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 27.30,
+      "difficulty": 42
+    },
+    {
+      "keyword": "musty smell after flood Ipswich",
+      "searchVolume": 45,
+      "competition": "Very Low",
+      "opportunityScore": 85,
+      "intent": "Informational",
+      "priority": "Rank Tomorrow",
+      "cpc": 14.60,
+      "difficulty": 37
+    },
+    {
+      "keyword": "wet wall repair Ipswich",
+      "searchVolume": 50,
+      "competition": "Low",
+      "opportunityScore": 82,
+      "intent": "Transactional",
+      "priority": "Week 1",
+      "cpc": 23.70,
+      "difficulty": 41
+    }
+  ],
+  "contentOpportunities": [
+    {
+      "topic": "Complete guide to water damage restoration process",
+      "targetKeywords": [
+        "water damage drying process Ipswich",
+        "how to fix water damage Ipswich",
+        "water damage restoration steps"
+      ],
+      "contentType": "Pillar page",
+      "estimatedTraffic": 200,
+      "priority": "High"
+    },
+    {
+      "topic": "Ipswich flood zone map and preparation guide",
+      "targetKeywords": [
+        "flood damage Springfield Lakes",
+        "flood zones Ipswich",
+        "flood preparation Ipswich"
+      ],
+      "contentType": "Local resource",
+      "estimatedTraffic": 180,
+      "priority": "High"
+    },
+    {
+      "topic": "Insurance claims process for water damage",
+      "targetKeywords": [
+        "insurance water damage claim Ipswich",
+        "flood damage insurance work Ipswich",
+        "water damage insurance process"
+      ],
+      "contentType": "Guide",
+      "estimatedTraffic": 150,
+      "priority": "Medium"
+    },
+    {
+      "topic": "IICRC Master Restorer certification explained",
+      "targetKeywords": [
+        "IICRC Master Restorer Ipswich",
+        "Master Restorer certification",
+        "IICRC certified restorer Ipswich"
+      ],
+      "contentType": "Authority page",
+      "estimatedTraffic": 120,
+      "priority": "High"
+    },
+    {
+      "topic": "Water damage cost calculator for Ipswich",
+      "targetKeywords": [
+        "water damage restoration cost Ipswich",
+        "flood damage repair cost Ipswich",
+        "mold remediation price Ipswich"
+      ],
+      "contentType": "Interactive tool",
+      "estimatedTraffic": 250,
+      "priority": "High"
+    },
+    {
+      "topic": "Storm season preparation checklist",
+      "targetKeywords": [
+        "storm season water damage Ipswich",
+        "cyclone preparation Ipswich",
+        "heavy rain flooding Ipswich"
+      ],
+      "contentType": "Seasonal guide",
+      "estimatedTraffic": 200,
+      "priority": "Medium"
+    },
+    {
+      "topic": "High-value home water damage protection (Brookwater, Karalee)",
+      "targetKeywords": [
+        "water damage restoration Brookwater",
+        "restoration services Karalee",
+        "luxury home water damage"
+      ],
+      "contentType": "Premium service page",
+      "estimatedTraffic": 100,
+      "priority": "High"
+    }
+  ],
+  "prioritizedActionPlan": {
+    "rankTomorrow": {
+      "keywords": 15,
+      "totalOpportunityScore": 1275,
+      "focus": "Low competition certification and suburb-specific keywords",
+      "quickActions": [
+        "Create Master Restorer landing page",
+        "Optimize Google Business Profile for Brookwater, Karalee",
+        "Add suburb-specific service pages",
+        "Implement local schema markup"
+      ]
+    },
+    "week1": {
+      "keywords": 28,
+      "totalOpportunityScore": 2268,
+      "focus": "Emergency modifiers and cost/pricing informational content",
+      "actions": [
+        "Create 24/7 emergency response page",
+        "Build cost calculator tool",
+        "Write informational blog posts",
+        "Optimize for 'near me' searches"
+      ]
+    },
+    "week2to3": {
+      "keywords": 18,
+      "totalOpportunityScore": 1332,
+      "focus": "Primary services and commercial keywords",
+      "actions": [
+        "Enhance main service pages",
+        "Create commercial services section",
+        "Build suburb comparison pages",
+        "Develop case studies"
+      ]
+    },
+    "month1to2": {
+      "keywords": 12,
+      "totalOpportunityScore": 816,
+      "focus": "High-volume competitive keywords",
+      "actions": [
+        "Build comprehensive backlink strategy",
+        "Create pillar content pages",
+        "Implement advanced schema",
+        "Launch local PR campaign"
+      ]
+    }
+  },
+  "competitiveAnalysis": {
+    "topCompetitors": [
+      {
+        "type": "Local IICRC contractors",
+        "strength": "Established local presence",
+        "weakness": "No Master Restorer certification",
+        "opportunityGap": "Certification differentiation"
+      },
+      {
+        "type": "National franchise operators",
+        "strength": "Brand recognition",
+        "weakness": "Lack of local expertise in high-value suburbs",
+        "opportunityGap": "Premium suburb targeting"
+      },
+      {
+        "type": "General contractors",
+        "strength": "Existing client base",
+        "weakness": "No specialized restoration certification",
+        "opportunityGap": "Technical expertise positioning"
+      }
+    ],
+    "marketGaps": [
+      "IICRC Master Restorer is unique in market",
+      "Limited high-value suburb specialization",
+      "No comprehensive cost transparency tools",
+      "Weak insurance claim assistance content",
+      "Minimal storm season preparation resources"
+    ]
+  },
+  "technicalSEORequirements": {
+    "schemaMarkup": [
+      "LocalBusiness with multiple locations",
+      "Service schema for each restoration type",
+      "Review schema (when available)",
+      "FAQ schema for informational pages",
+      "Emergency service schema",
+      "Professional service certification markup"
+    ],
+    "localSEOElements": [
+      "Google Business Profile optimization for each suburb",
+      "NAP consistency across all platforms",
+      "Local area pages with unique content",
+      "Embedded maps for service areas",
+      "Local business citations",
+      "Suburb-specific landing pages"
+    ],
+    "mobileOptimization": [
+      "Click-to-call buttons",
+      "Emergency contact form",
+      "Fast loading times (<2s)",
+      "Mobile-friendly navigation",
+      "Location-based content delivery"
+    ]
+  },
+  "conversionOptimization": {
+    "primaryCTAs": [
+      "24/7 Emergency Call",
+      "Free Quote Request",
+      "Insurance Claim Assistance",
+      "Schedule Inspection"
+    ],
+    "trustSignals": [
+      "IICRC Master Restorer badge",
+      "Insurance company partnerships",
+      "Before/after galleries",
+      "Response time guarantees",
+      "Certifications display"
+    ],
+    "localTrustBuilders": [
+      "Suburb-specific testimonials",
+      "Local area expertise",
+      "Community involvement",
+      "High-value property portfolio"
+    ]
+  }
+}

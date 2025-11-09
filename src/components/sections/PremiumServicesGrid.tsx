@@ -161,7 +161,7 @@ export default function PremiumServicesGrid({
               
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
                 Professional Restoration
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-600">
                   Services You Can Trust
                 </span>
               </h2>
@@ -183,7 +183,7 @@ export default function PremiumServicesGrid({
                       "px-5 py-2.5 rounded-full font-medium text-sm",
                       "transition-all duration-300 transform hover:scale-105",
                       selectedCategory === category.id
-                        ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg"
+                        ? "bg-gradient-to-r from-blue-700 to-cyan-600 text-white shadow-lg"
                         : "bg-white text-gray-700 border border-gray-200 hover:border-blue-300 hover:text-blue-600"
                     )}
                   >
@@ -256,13 +256,13 @@ export default function PremiumServicesGrid({
               <div className="flex gap-3">
                 <a
                   href="#contact-form"
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-blue-700 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
                 >
                   Use Our Online Form
                 </a>
                 <a
                   href="/services"
-                  className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl border-2 border-blue-600 hover:bg-blue-50 transform hover:scale-105 transition-all"
+                  className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl border-2 border-blue-700 hover:bg-blue-50 transform hover:scale-105 transition-all"
                 >
                   View All Services
                 </a>

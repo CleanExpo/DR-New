@@ -66,7 +66,7 @@ export default function BurstPipeRepairPage() {
 
       <main className="min-h-screen bg-gradient-to-br from-blue-900 via-cyan-900 to-teal-900">
         {/* Emergency Alert Banner */}
-        <section className="bg-red-600 text-white py-4">
+        <section className="bg-red-700 text-white py-4">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-center gap-4 text-center">
               <Droplets className="h-6 w-6 animate-bounce" />
@@ -193,7 +193,7 @@ export default function BurstPipeRepairPage() {
         </section>
 
         {/* Water Damage Prevention Alert */}
-        <section className="bg-blue-900/30 border-y border-blue-600/30 py-6">
+        <section className="bg-blue-900/30 border-y border-blue-700/30 py-6">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-center gap-4 text-center">
               <Clock className="h-6 w-6 text-blue-600 animate-pulse" />
@@ -349,7 +349,7 @@ export default function BurstPipeRepairPage() {
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">{item.cause}</h3>
                     <span className={`px-3 py-1 rounded-full text-sm font-bold ${
-                      item.urgency === 'High' ? 'bg-red-600 text-white' : 'bg-orange-600 text-white'
+                      item.urgency === 'High' ? 'bg-red-700 text-white' : 'bg-orange-600 text-white'
                     }`}>
                       {item.urgency} Risk
                     </span>

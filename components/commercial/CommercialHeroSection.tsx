@@ -40,14 +40,14 @@ const CommercialHeroSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <Badge className="mb-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+          <Badge className="mb-4 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
             <Shield className="w-4 h-4 mr-2" />
             Brisbane's Premier Commercial Restoration Partner
           </Badge>
 
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
             Commercial Property{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-800">
               Disaster Recovery
             </span>
           </h1>
@@ -62,7 +62,7 @@ const CommercialHeroSection = () => {
           <div className="flex flex-wrap gap-4 justify-center mb-8">
             <Button
               size="lg"
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg font-bold"
+              className="bg-red-700 hover:bg-red-800 text-white px-8 py-6 text-lg font-bold"
               onClick={() => window.location.href = 'tel:1300309361'}
             >
               24/7 Emergency Response
@@ -70,7 +70,7 @@ const CommercialHeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg"
+              className="border-2 border-blue-700 text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg"
             >
               Get Commercial Quote
             </Button>
@@ -85,7 +85,7 @@ const CommercialHeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl blur opacity-20"></div>
+            <div className="absolute -inset-2 bg-gradient-to-r from-blue-700 to-blue-800 rounded-xl blur opacity-20"></div>
             <Card className="relative overflow-hidden shadow-2xl">
               <CardContent className="p-0">
                 <Image
@@ -156,7 +156,7 @@ const CommercialHeroSection = () => {
             </Card>
 
             {/* Commercial Focus Areas */}
-            <Card className="border-2 border-blue-600">
+            <Card className="border-2 border-blue-700">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4">
                   <Shield className="w-12 h-12 text-blue-600 flex-shrink-0" />
@@ -214,7 +214,7 @@ const CommercialHeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 text-center bg-blue-600 rounded-2xl p-8"
+          className="mt-12 text-center bg-blue-700 rounded-2xl p-8"
         >
           <h2 className="text-2xl font-bold text-white mb-4">
             Protect Your Commercial Property Investment

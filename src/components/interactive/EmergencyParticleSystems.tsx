@@ -83,7 +83,7 @@ export function FireParticles(...args: any[]): void {
   return (
     <div className={`relative ${className}`}>
       <CSSParticleEffect type="fire" intensity={intensity} />
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-600/10 via-red-500/5 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-blue-700/10 via-red-500/5 to-transparent" />
     </div>
   );
 }

@@ -220,7 +220,7 @@ export default function GMBCategoryPage({ params }: { params: { category: string
               </div>
 
               <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-red-600 rounded-2xl mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-700 to-red-600 rounded-2xl mb-4">
                   <Zap className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">AI Matching</h3>

@@ -125,7 +125,7 @@ export function QueenslandSubtropicalClimateSection() {
               </ul>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-600">
+            <div className="bg-white rounded-xl p-6 shadow-lg border-t-4 border-blue-700">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Tropical Moisture Control</h3>
               <p className="text-gray-700 mb-4">
                 <strong>Queensland wet season</strong> and high humidity require specialized drying techniques

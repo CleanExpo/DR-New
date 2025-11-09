@@ -575,7 +575,7 @@ function MobileShowcaseSection() {
     <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <div className="inline-block mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-full">
+          <div className="inline-block mb-4 px-4 py-2 bg-blue-700 text-white font-semibold rounded-full">
             📱 Access Emergency Services Anywhere
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -653,7 +653,7 @@ function MobileShowcaseSection() {
         </div>
 
         {/* Mobile CTA */}
-        <div className="mt-12 text-center bg-gradient-to-r from-red-600 to-red-700 rounded-xl p-8 max-w-4xl mx-auto">
+        <div className="mt-12 text-center bg-gradient-to-r from-red-700 to-red-800 rounded-xl p-8 max-w-4xl mx-auto">
           <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Emergency? Call Now from Your Mobile
           </h3>
@@ -730,7 +730,7 @@ function FAQSection() {
 // Final CTA Section Component
 function FinalCTASection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-800 text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-black/20"></div>
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">

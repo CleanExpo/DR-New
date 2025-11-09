@@ -475,7 +475,7 @@ export default function FloodDamageRestorationPage() {
               {floodZones.map((zone, index) => (
                 <motion.div
                   key={index}
-                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 border-blue-600"
+                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 border-blue-700"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}

@@ -141,7 +141,7 @@ export function EnhancedChatBot(...args: any[]): void {
             )}
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full p-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 animate-pulse"
+              className="bg-gradient-to-r from-blue-700 to-purple-600 text-white rounded-full p-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 animate-pulse"
               aria-label="Open chat"
             >
               <MessageSquare size={28} />
@@ -155,7 +155,7 @@ export function EnhancedChatBot(...args: any[]): void {
       {isOpen && (
         <div className="fixed bottom-6 right-6 w-96 h-[600px] bg-white rounded-2xl shadow-2xl z-[9999] flex flex-col animate-slideIn">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+          <div className="bg-gradient-to-r from-blue-700 to-purple-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="bg-white/20 p-2 rounded-full">
                 <Bot size={24} />
@@ -200,7 +200,7 @@ export function EnhancedChatBot(...args: any[]): void {
                       <div
                         className={`p-3 rounded-2xl ${
                           message.sender === 'user'
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-blue-700 text-white'
                             : 'bg-gray-100 text-gray-800'
                         }`}
                       >
@@ -221,7 +221,7 @@ export function EnhancedChatBot(...args: any[]): void {
                       )}
                     </div>
                     {message.sender === 'user' && (
-                      <div className="bg-blue-600 p-1.5 rounded-full">
+                      <div className="bg-blue-700 p-1.5 rounded-full">
                         <User size={16} className="text-white" />
                       </div>
                     )}
@@ -256,7 +256,7 @@ export function EnhancedChatBot(...args: any[]): void {
               <button
                 onClick={handleSend}
                 disabled={!input.trim()}
-                className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="bg-blue-700 text-white p-2 rounded-full hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 aria-label="Send message"
               >
                 <Send size={20} />

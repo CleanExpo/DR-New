@@ -193,7 +193,7 @@ export function BeforeAfterSlider({
             quality={85}
           />
           {showLabels && (
-            <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-md font-semibold text-sm shadow-lg">
+            <div className="absolute top-4 left-4 bg-red-700 text-white px-3 py-1 rounded-md font-semibold text-sm shadow-lg">
               Before
             </div>
           )}

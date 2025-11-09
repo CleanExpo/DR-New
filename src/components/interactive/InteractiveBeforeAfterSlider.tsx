@@ -152,7 +152,7 @@ function BeforeAfterSliderCard(...args: any[]): void {
           {/* Before/After Labels */}
           <div className="absolute top-4 left-4">
             <motion.div 
-              className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold"
+              className="bg-red-700 text-white px-3 py-1 rounded-full text-sm font-bold"
               animate={{
                 opacity: sliderPosition > 20 ? 1 : 0.3 }}
             >

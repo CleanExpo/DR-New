@@ -8,7 +8,7 @@ export function DigitalContactBar(...args: any[]): void {
   const [showUrgent, setShowUrgent] = useState(true);
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 z-[10000] shadow-lg">
+    <div className="fixed top-0 left-0 right-0 bg-gradient-to-r from-blue-700 to-purple-600 text-white py-3 px-4 z-[10000] shadow-lg">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3">
           {showUrgent && <span className="animate-pulse">🚨</span>}
@@ -180,7 +180,7 @@ export function QuickResponseForm(...args: any[]): void {
         <button
           type="submit"
           disabled={!urgency}
-          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-blue-700 to-purple-600 text-white py-3 rounded-lg font-semibold hover:shadow-lg transform hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Get Instant Help Online
           <ArrowRight className="inline ml-2 h-5 w-5" />

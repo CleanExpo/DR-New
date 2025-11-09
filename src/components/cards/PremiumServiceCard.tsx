@@ -41,9 +41,9 @@ const categoryConfig = {
   },
   fire: {
     icon: Flame,
-    gradient: 'from-blue-600 to-red-500',
+    gradient: 'from-blue-700 to-red-500',
     shadowColor: 'shadow-blue-600/20',
-    borderColor: 'border-blue-600/20',
+    borderColor: 'border-blue-700/20',
     bgPattern: 'bg-gradient-to-br from-orange-50 to-red-50',
     iconBg: 'bg-gradient-to-br from-orange-100 to-red-100',
     iconColor: 'text-blue-700'

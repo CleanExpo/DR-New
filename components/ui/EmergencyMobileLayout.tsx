@@ -85,7 +85,7 @@ export default function EmergencyMobileLayout({
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -100, opacity: 0 }}
-                className="fixed top-0 left-0 right-0 z-50 bg-red-600 text-white shadow-lg"
+                className="fixed top-0 left-0 right-0 z-50 bg-red-700 text-white shadow-lg"
               >
                 <div className="flex items-center justify-between px-4 py-3">
                   <div className="flex items-center gap-2">
@@ -94,7 +94,7 @@ export default function EmergencyMobileLayout({
                   </div>
                   <button
                     onClick={() => setShowEmergencyBar(false)}
-                    className="p-1 rounded hover:bg-red-700 transition-colors"
+                    className="p-1 rounded hover:bg-red-800 transition-colors"
                     aria-label="Close emergency banner"
                   >
                     <X className="w-4 h-4" />
@@ -114,14 +114,14 @@ export default function EmergencyMobileLayout({
             <Button
               size="lg"
               onClick={handleEmergencyCall}
-              className="bg-red-600 hover:bg-red-700 text-white shadow-2xl rounded-full w-16 h-16 p-0 flex items-center justify-center"
+              className="bg-red-700 hover:bg-red-800 text-white shadow-2xl rounded-full w-16 h-16 p-0 flex items-center justify-center"
               aria-label={`Emergency call ${emergencyNumber}`}
             >
               <Phone className="w-8 h-8" />
             </Button>
 
             {/* Pulse animation for attention */}
-            <div className="absolute inset-0 bg-red-600 rounded-full animate-ping opacity-30" />
+            <div className="absolute inset-0 bg-red-700 rounded-full animate-ping opacity-30" />
           </motion.div>
 
           {/* Quick Action Bar */}
@@ -191,7 +191,7 @@ export default function EmergencyMobileLayout({
                         <Button
                           size="sm"
                           onClick={handleEmergencyCall}
-                          className="bg-red-600 hover:bg-red-700 text-white"
+                          className="bg-red-700 hover:bg-red-800 text-white"
                         >
                           <Phone className="w-4 h-4 mr-2" />
                           Call {emergencyNumber}

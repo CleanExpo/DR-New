@@ -242,7 +242,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-blue-700 hover:bg-blue-800 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5" />
@@ -562,7 +562,7 @@ export default function IndoorEnvironmentalProfessionalPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-blue-700 hover:bg-blue-800"
               onClick={() => setShowQuoteDialog(true)}
             >
               <MessageSquare className="mr-2" />

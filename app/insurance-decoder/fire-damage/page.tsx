@@ -180,7 +180,7 @@ export default function FireDamageInsurancePage() {
       </section>
 
       {/* Critical Alert */}
-      <section className="bg-red-600 text-white py-4">
+      <section className="bg-red-700 text-white py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3">
             <AlertTriangle className="w-6 h-6" />
@@ -285,7 +285,7 @@ export default function FireDamageInsurancePage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className={`bg-white rounded-lg shadow-lg p-6 ${
-                  phase.critical ? 'border-l-4 border-red-600' : 'border-l-4 border-blue-600'
+                  phase.critical ? 'border-l-4 border-red-600' : 'border-l-4 border-blue-700'
                 }`}
               >
                 <div className="flex items-start justify-between">

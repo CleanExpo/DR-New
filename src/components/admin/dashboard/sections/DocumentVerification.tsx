@@ -561,7 +561,7 @@ export function DocumentVerification(...args: any[]): void {
               disabled={verificationAction === 'reject' && !rejectionReason}
               className={
                 verificationAction === 'approve' ? 'bg-green-600 hover:bg-green-800' :
-                verificationAction === 'reject' ? 'bg-red-600 hover:bg-red-700' :
+                verificationAction === 'reject' ? 'bg-red-700 hover:bg-red-800' :
                 ''
               }
             >

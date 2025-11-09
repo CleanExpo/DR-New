@@ -37,7 +37,7 @@ export default function LoadingSpinner({
       <div className="relative">
         <div className={`${sizeClasses[size]} animate-spin`}>
           <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-blue-600 border-t-transparent animate-pulse"></div>
+          <div className="absolute inset-0 rounded-full border-4 border-blue-700 border-t-transparent animate-pulse"></div>
         </div>
       </div>
       {text && (

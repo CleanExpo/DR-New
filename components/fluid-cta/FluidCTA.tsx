@@ -28,15 +28,15 @@ interface FluidCTAProps {
 
 const variantStyles = {
   emergency: {
-    bg: 'bg-gradient-to-r from-red-600 via-red-500 to-red-600',
-    hoverBg: 'hover:from-red-700 hover:via-red-600 hover:to-red-700',
+    bg: 'bg-gradient-to-r from-red-700 via-red-500 to-red-600',
+    hoverBg: 'hover:from-red-700 hover:via-red-600 hover:to-red-800',
     text: 'text-white',
     shadow: 'shadow-lg shadow-red-500/50',
     glow: 'after:bg-red-500/30',
   },
   primary: {
-    bg: 'bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600',
-    hoverBg: 'hover:from-blue-700 hover:via-blue-600 hover:to-blue-700',
+    bg: 'bg-gradient-to-r from-blue-700 via-blue-500 to-blue-600',
+    hoverBg: 'hover:from-blue-700 hover:via-blue-600 hover:to-blue-800',
     text: 'text-white',
     shadow: 'shadow-lg shadow-blue-500/50',
     glow: 'after:bg-blue-500/30',

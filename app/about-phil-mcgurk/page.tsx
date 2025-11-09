@@ -159,7 +159,7 @@ export default function PhillMcGurkAboutPage() {
                 className="relative"
               >
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-[4/5] bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
+                  <div className="aspect-[4/5] bg-gradient-to-br from-blue-700 to-blue-800 flex items-center justify-center">
                     <div className="text-center p-8">
                       <Shield className="w-32 h-32 mx-auto mb-4 text-white/80" />
                       <h3 className="text-2xl font-bold mb-2">Phill McGurk</h3>
@@ -352,7 +352,7 @@ export default function PhillMcGurkAboutPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-r from-blue-900 to-blue-700 rounded-2xl p-8 text-white"
+              className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-2xl p-8 text-white"
             >
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div>

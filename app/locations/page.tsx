@@ -413,7 +413,7 @@ function ResponseTimesSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-800 text-white">
       <div className="container mx-auto px-6">
         <motion.div
           className="max-w-4xl mx-auto text-center"

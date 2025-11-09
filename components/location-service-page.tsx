@@ -46,7 +46,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+      <section className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -84,7 +84,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
       </section>
 
       {/* Emergency Response Banner */}
-      <section className="bg-red-600 text-white py-6">
+      <section className="bg-red-700 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-4">
             <AlertTriangle className="w-8 h-8" />
@@ -147,7 +147,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white rounded-lg shadow-lg p-6 border-t-4 border-blue-600"
+                  className="bg-white rounded-lg shadow-lg p-6 border-t-4 border-blue-700"
                 >
                   <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">
                     {index + 1}
@@ -364,7 +364,7 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

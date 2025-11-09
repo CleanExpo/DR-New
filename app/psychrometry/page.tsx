@@ -171,7 +171,7 @@ export default function PsychrometryPage() {
                   <span>How do we drive moisture out of materials into the air—and then out of the building?</span>
                 </li>
               </ul>
-              <p className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded">
+              <p className="bg-blue-50 border-l-4 border-blue-700 p-6 rounded">
                 <strong>By using psychrometric readings + the correct equipment + a solid process</strong> (as outlined in the IICRC S500 reference guide), your team can dry more efficiently, avoid secondary damage (mould, structural weakening, smells) and document the job thoroughly.
               </p>
             </div>
@@ -315,9 +315,9 @@ export default function PsychrometryPage() {
             </p>
 
             {/* Step 1 */}
-            <div className="mb-8 bg-blue-50 border-l-4 border-blue-600 p-6 rounded">
+            <div className="mb-8 bg-blue-50 border-l-4 border-blue-700 p-6 rounded">
               <h3 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
-                <span className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">1</span>
+                <span className="bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">1</span>
                 Initial Assessment
               </h3>
               <ul className="space-y-2 text-gray-700">
@@ -425,7 +425,7 @@ export default function PsychrometryPage() {
             {/* Step 5 */}
             <div className="bg-red-50 border-l-4 border-red-600 p-6 rounded">
               <h3 className="text-2xl font-bold text-red-900 mb-4 flex items-center gap-3">
-                <span className="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">5</span>
+                <span className="bg-red-700 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">5</span>
                 Close-out and Validation
               </h3>
               <ul className="space-y-2 text-gray-700">
@@ -565,7 +565,7 @@ export default function PsychrometryPage() {
             </h2>
 
             <div className="prose prose-lg max-w-none text-gray-700">
-              <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded mb-6">
+              <div className="bg-blue-50 border-l-4 border-blue-700 p-6 rounded mb-6">
                 <p className="mb-4">S500 emphasises <strong>psychrometry and the science of drying</strong>, not just &quot;blow fans&quot;.</p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-2">

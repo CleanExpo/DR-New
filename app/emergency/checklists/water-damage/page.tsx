@@ -65,7 +65,7 @@ export default function WaterDamageChecklistPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12">
+      <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -98,7 +98,7 @@ export default function WaterDamageChecklistPage() {
       </section>
 
       {/* Critical Alert */}
-      <section className="bg-red-600 text-white py-4">
+      <section className="bg-red-700 text-white py-4">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3">
             <AlertTriangle className="w-6 h-6" />
@@ -268,7 +268,7 @@ export default function WaterDamageChecklistPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/whos-first"
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-800 transition-colors inline-flex items-center justify-center gap-2"
             >
               <Phone className="w-5 h-5" />
               Find Emergency Contractors

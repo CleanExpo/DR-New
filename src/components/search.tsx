@@ -265,7 +265,7 @@ export function Search(...args: any[]): void {
 
                     {isLoading && (
                       <div className="flex items-center justify-center py-8">
-                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-700"></div>
                         <span className="ml-2 text-gray-200">Searching...</span>
                       </div>
                     )}

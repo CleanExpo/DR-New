@@ -113,7 +113,7 @@ export function FluidFloatingCTA({
             {/* Main button */}
             <motion.a
               href={`tel:${phone.replace(/\s/g, '')}`}
-              className="relative flex flex-col items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-red-600 to-red-700 rounded-full shadow-2xl shadow-red-900/50 text-white"
+              className="relative flex flex-col items-center justify-center w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-red-700 to-red-800 rounded-full shadow-2xl shadow-red-900/50 text-white"
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
               aria-label={`Call emergency number ${phone}`}

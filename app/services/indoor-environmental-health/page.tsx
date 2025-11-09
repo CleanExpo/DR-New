@@ -290,7 +290,7 @@ const IndoorEnvironmentalHealthPage = () => {
 
         <div className="relative z-10 container mx-auto px-4 py-16">
           <div className="max-w-4xl">
-            <Badge className="mb-4 bg-red-600 text-white">
+            <Badge className="mb-4 bg-red-700 text-white">
               <AlertTriangle className="mr-2 h-4 w-4" />
               Hidden Dangers Revealed
             </Badge>
@@ -554,7 +554,7 @@ const IndoorEnvironmentalHealthPage = () => {
                   All testing includes comprehensive documentation suitable for submission to
                   healthcare providers, insurance companies, and legal proceedings.
                 </p>
-                <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                <Button variant="outline" className="border-blue-700 text-blue-600 hover:bg-blue-50">
                   Sample Report
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

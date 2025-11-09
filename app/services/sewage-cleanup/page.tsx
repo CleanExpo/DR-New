@@ -91,7 +91,7 @@ export default function SewageCleanupPage() {
   return (
     <div className="min-h-screen">
       {/* Emergency Banner */}
-      <div className="bg-gradient-to-r from-yellow-600 to-blue-700 text-white py-3 px-4 relative z-30">
+      <div className="bg-gradient-to-r from-yellow-600 to-blue-800 text-white py-3 px-4 relative z-30">
         <div className="container mx-auto flex items-center justify-center gap-4">
           <AlertOctagon className="h-5 w-5 animate-pulse" />
           <span className="font-bold">24/7 Emergency Sewage Cleanup</span>
@@ -197,7 +197,7 @@ export default function SewageCleanupPage() {
                 priority
                 loading="eager"
               />
-              <div className="absolute -bottom-4 -right-4 bg-red-600 text-white p-4 rounded-lg shadow-lg">
+              <div className="absolute -bottom-4 -right-4 bg-red-700 text-white p-4 rounded-lg shadow-lg">
                 <p className="font-bold text-lg">BIOHAZARD</p>
                 <p className="text-2xl font-bold">Category 3</p>
               </div>

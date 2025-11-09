@@ -90,7 +90,7 @@ export default function LandingHeader({ demoMode = false, onToggleDemo }: Landin
     <>
       {/* Demo Mode Banner */}
       {demoMode && (
-        <div className="fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r from-blue-600 to-blue-600 text-white py-2 px-4">
+        <div className="fixed top-0 left-0 right-0 z-[1000] bg-gradient-to-r from-blue-700 to-blue-600 text-white py-2 px-4">
           <div className="container mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">

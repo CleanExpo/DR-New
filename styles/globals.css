@@ -43,6 +43,41 @@ a, button, [role="button"] {
   cursor: pointer;
 }
 
+/* WCAG 2.1 AA Focus Indicators - Keyboard Accessibility */
+/* Shows visible focus ring for keyboard navigation only */
+*:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Enhanced focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* Emergency/Critical action focus (red for urgency) */
+button.bg-red-600:focus-visible,
+button.bg-red-700:focus-visible,
+a[href*="tel:"]:focus-visible,
+a[href*="emergency"]:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+}
+
+/* Remove default focus for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Advanced Button Hover States */
 @layer components {
   .btn-primary {

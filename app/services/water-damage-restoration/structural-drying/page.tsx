@@ -66,7 +66,7 @@ export default function StructuralDryingPage() {
 
       <main className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-blue-900">
         {/* Emergency Banner */}
-        <section className="bg-blue-600 text-white py-4">
+        <section className="bg-blue-700 text-white py-4">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-center gap-4 text-center">
               <Wind className="h-6 w-6 animate-spin" />

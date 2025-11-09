@@ -66,12 +66,12 @@ export default function ClientPortalDocumentsPage() {
 
   const getCategoryColor = (category: string) => {
     const colors: Record<string, string> = {
-      'Insurance': 'bg-blue-600',
+      'Insurance': 'bg-blue-700',
       'Assessment': 'bg-purple-600',
       'Photos': 'bg-green-600',
       'Contracts': 'bg-orange-600',
       'Reports': 'bg-indigo-600',
-      'Invoices': 'bg-red-600'
+      'Invoices': 'bg-red-700'
     };
     return colors[category] || 'bg-gray-800';
   };
@@ -97,7 +97,7 @@ export default function ClientPortalDocumentsPage() {
             <Upload className="w-12 h-12 text-gray-300 mx-auto mb-4" />
             <p className="text-white font-semibold mb-2">Drop files here or click to upload</p>
             <p className="text-gray-300 text-sm">Support for PDF, Images, and Documents up to 50MB</p>
-            <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button className="mt-4 px-6 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors">
               Select Files
             </button>
           </div>
@@ -153,7 +153,7 @@ export default function ClientPortalDocumentsPage() {
                 <p>Uploaded: {doc.date}</p>
               </div>
               <div className="flex gap-2">
-                <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-1 text-sm">
+                <button className="flex-1 px-3 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center justify-center gap-1 text-sm">
                   <Eye className="w-4 h-4" />
                   View
                 </button>
@@ -161,7 +161,7 @@ export default function ClientPortalDocumentsPage() {
                   <Download className="w-4 h-4" />
                   Download
                 </button>
-                <button className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                <button className="px-3 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>

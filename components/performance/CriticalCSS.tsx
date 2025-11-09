@@ -43,9 +43,7 @@ export function CriticalCSS() {
           .skeleton{background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 50%,#f3f4f6 75%);background-size:200% 100%;animation:skeleton-loading 1.5s ease infinite}
           @keyframes skeleton-loading{0%{background-position:-200% 0}100%{background-position:200% 0}}
 
-          /* Font Display Optimization */
-          @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:local('Inter'),local('Inter-Regular'),url(https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2) format('woff2')}
-          @font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:local('Poppins Bold'),local('Poppins-Bold'),url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2) format('woff2')}
+          /* Font loading handled by next/font/google - fonts are self-hosted */
 
           /* GPU Acceleration */
           .gpu-accelerated{transform:translateZ(0);backface-visibility:hidden;perspective:1000px}

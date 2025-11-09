@@ -179,7 +179,7 @@ const processCategories: ProcessCategory[] = [
 ];
 
 const priorityColors = {
-  critical: 'bg-red-600 text-white',
+  critical: 'bg-red-700 text-white',
   urgent: 'bg-orange-500 text-white',
   high: 'bg-yellow-500 text-black'
 };
@@ -254,7 +254,7 @@ export default function ProcessShowcase() {
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="flex flex-col items-center gap-2 py-4 px-3 text-center data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                  className="flex flex-col items-center gap-2 py-4 px-3 text-center data-[state=active]:bg-blue-700 data-[state=active]:text-white"
                 >
                   <category.icon className="w-5 h-5" />
                   <span className="text-xs font-medium leading-tight">{category.title}</span>
@@ -318,7 +318,7 @@ export default function ProcessShowcase() {
 
                             {/* Step Number */}
                             <div className="absolute top-4 left-4">
-                              <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                              <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center text-xl font-bold">
                                 {step.step}
                               </div>
                             </div>
@@ -351,7 +351,7 @@ export default function ProcessShowcase() {
                               <ul className="space-y-2">
                                 {step.keyActions.map((action, idx) => (
                                   <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                                    <div className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
+                                    <div className="w-1.5 h-1.5 bg-blue-700 rounded-full" />
                                     {action}
                                   </li>
                                 ))}
@@ -391,7 +391,7 @@ export default function ProcessShowcase() {
 
                             {/* Action Button */}
                             <Button
-                              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold"
+                              className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold"
                               onClick={() => setSelectedStep(step)}
                             >
                               View Process Details
@@ -437,7 +437,7 @@ export default function ProcessShowcase() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-6 left-6 text-white">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                        <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center text-xl font-bold">
                           {selectedStep.step}
                         </div>
                         <div>
@@ -492,7 +492,7 @@ export default function ProcessShowcase() {
                     <div className="mt-8 text-center">
                       <Button
                         size="lg"
-                        className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4"
+                        className="bg-red-700 hover:bg-red-800 text-white font-bold px-8 py-4"
                         onClick={() => window.location.href = 'tel:1300309361'}
                       >
                         <Phone className="w-5 h-5 mr-3" />
@@ -520,7 +520,7 @@ export default function ProcessShowcase() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8">
+          <div className="bg-gradient-to-r from-blue-700 to-purple-600 text-white rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-4">Professional Process, Guaranteed Results</h3>
             <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
               Every step documented, every process certified. Our IICRC trained technicians
@@ -529,7 +529,7 @@ export default function ProcessShowcase() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-xl font-bold"
+                className="bg-red-700 hover:bg-red-800 text-white px-8 py-4 text-xl font-bold"
                 onClick={() => window.location.href = 'tel:1300309361'}
               >
                 <Phone className="w-6 h-6 mr-3" />

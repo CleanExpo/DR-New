@@ -711,7 +711,7 @@ export default function StormDamageGuidePage() {
             <div className="mt-8 text-center">
               <Link
                 href="/insurance-decoder/storm-damage"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
                 <Calculator className="w-5 h-5" />
                 Check Your Storm Coverage
@@ -964,7 +964,7 @@ export default function StormDamageGuidePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-sky-600 to-blue-700 text-white">
+      <section className="py-16 bg-gradient-to-r from-sky-600 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

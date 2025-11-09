@@ -4,7 +4,7 @@ import { BarChart3, FileText, Clock, CheckCircle, TrendingUp, Calendar, DollarSi
 
 export default function ClientPortalDashboardPage() {
   const stats = [
-    { label: 'Active Claims', value: '3', icon: FileText, color: 'bg-blue-600' },
+    { label: 'Active Claims', value: '3', icon: FileText, color: 'bg-blue-700' },
     { label: 'Completed', value: '12', icon: CheckCircle, color: 'bg-green-600' },
     { label: 'In Progress', value: '2', icon: Clock, color: 'bg-yellow-600' },
     { label: 'Total Value', value: '$245K', icon: DollarSign, color: 'bg-purple-600' }
@@ -60,7 +60,7 @@ export default function ClientPortalDashboardPage() {
                 {recentActivity.map((activity) => (
                   <div key={activity.id} className="flex items-start gap-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                     <div className={`p-2 rounded-full ${
-                      activity.status === 'success' ? 'bg-green-600' : 'bg-blue-600'
+                      activity.status === 'success' ? 'bg-green-600' : 'bg-blue-700'
                     }`}>
                       {activity.status === 'success' ? 
                         <CheckCircle className="w-4 h-4 text-white" /> : 
@@ -89,7 +89,7 @@ export default function ClientPortalDashboardPage() {
                   <div key={index} className="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-white font-semibold">{apt.type}</p>
-                      <span className="text-xs px-2 py-1 bg-blue-600 text-white rounded-full">Upcoming</span>
+                      <span className="text-xs px-2 py-1 bg-blue-700 text-white rounded-full">Upcoming</span>
                     </div>
                     <p className="text-gray-700 text-sm mb-1">{apt.date} at {apt.time}</p>
                     <p className="text-gray-700 text-xs">{apt.location}</p>
@@ -108,7 +108,7 @@ export default function ClientPortalDashboardPage() {
           </div>
           <div className="h-64 flex items-center justify-center">
             <div className="text-center">
-              <div className="w-32 h-32 mx-auto mb-4 rounded-full border-8 border-blue-600 border-t-transparent animate-spin"></div>
+              <div className="w-32 h-32 mx-auto mb-4 rounded-full border-8 border-blue-700 border-t-transparent animate-spin"></div>
               <p className="text-gray-700">Loading analytics...</p>
             </div>
           </div>

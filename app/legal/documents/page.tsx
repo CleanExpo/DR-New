@@ -206,7 +206,7 @@ export default function LegalDocumentsPage() {
         </div>
 
         {/* Alert Banner */}
-        <div className="bg-blue-600 text-white rounded-lg p-6 mb-8">
+        <div className="bg-blue-700 text-white rounded-lg p-6 mb-8">
           <div className="flex items-start gap-3">
             <Shield className="w-6 h-6 mt-1" />
             <div>
@@ -263,7 +263,7 @@ export default function LegalDocumentsPage() {
             <h2 className="text-2xl font-semibold text-white mb-4">Featured Documents</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {filteredDocuments.filter(doc => doc.featured).map(doc => (
-                <div key={doc.id} className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6">
+                <div key={doc.id} className="bg-gradient-to-r from-blue-700 to-purple-600 rounded-lg p-6">
                   <div className="flex items-start justify-between mb-4">
                     <doc.icon className="w-8 h-8 text-white" />
                     <span className="px-2 py-1 bg-white/20 text-white text-xs rounded-full">
@@ -298,7 +298,7 @@ export default function LegalDocumentsPage() {
                     </span>
                   )}
                   {doc.required && (
-                    <span className="px-2 py-1 bg-red-600 text-white text-xs rounded-full">
+                    <span className="px-2 py-1 bg-red-700 text-white text-xs rounded-full">
                       Required
                     </span>
                   )}
@@ -326,7 +326,7 @@ export default function LegalDocumentsPage() {
               </div>
               <button
                 onClick={() => handleDownload(doc.id, doc.title)}
-                className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                className="w-full px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center justify-center gap-2"
               >
                 <Download className="w-4 h-4" />
                 Download with NRP Branding

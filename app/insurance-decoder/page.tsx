@@ -148,7 +148,7 @@ export default function InsuranceDecoderHub() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <button className="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition-colors">
+                <button className="bg-blue-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-800 transition-colors">
                   Search
                 </button>
               </div>
@@ -194,7 +194,7 @@ export default function InsuranceDecoderHub() {
                   onClick={() => setSelectedCategory(cat.value as any)}
                   className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
                     selectedCategory === cat.value
-                      ? 'bg-blue-600 text-white shadow-lg'
+                      ? 'bg-blue-700 text-white shadow-lg'
                       : 'bg-gray-100 text-gray-200 hover:bg-gray-200'
                   }`}
                 >
@@ -325,7 +325,7 @@ export default function InsuranceDecoderHub() {
                     ))}
                   </div>
                   
-                  <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                  <button className="mt-4 w-full bg-blue-700 text-white py-2 rounded-lg font-semibold hover:bg-blue-800 transition-colors">
                     Check Your Scenario
                   </button>
                 </Link>
@@ -336,7 +336,7 @@ export default function InsuranceDecoderHub() {
           <div className="text-center mt-8">
             <Link
               href="/is-it-covered"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-700 transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-800 transition-colors shadow-lg"
             >
               <Calculator className="w-6 h-6" />
               Use Coverage Calculator
@@ -413,7 +413,7 @@ export default function InsuranceDecoderHub() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+      <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">
             Do Not Let Confusion Cost You Coverage

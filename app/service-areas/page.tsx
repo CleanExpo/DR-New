@@ -122,7 +122,7 @@ export default function ServiceAreasPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="tel:1300309361"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/50 hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-red-700 text-white font-bold rounded-lg hover:bg-red-800 transition-all shadow-lg hover:shadow-red-500/50 hover:scale-105"
               >
                 <PhoneIcon className="w-5 h-5" />
                 1300 309 361
@@ -170,7 +170,7 @@ export default function ServiceAreasPage() {
             <h2 className="text-4xl font-bold text-gray-900">Brisbane Service Areas</h2>
           </div>
 
-          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-lg">
+          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-700 rounded-lg">
             <h3 className="font-bold text-lg text-blue-900 mb-2">Specializing in High-Value Properties</h3>
             <p className="text-gray-700">
               Master Restorer Phill McGurk provides expert disaster recovery services to Brisbane's premier residential suburbs
@@ -210,7 +210,7 @@ export default function ServiceAreasPage() {
             <h2 className="text-4xl font-bold text-gray-900">Ipswich Service Areas</h2>
           </div>
 
-          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-lg">
+          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-700 rounded-lg">
             <h3 className="font-bold text-lg text-blue-900 mb-2">Premium Residential Restoration</h3>
             <p className="text-gray-700">
               Serving Ipswich's premier communities including Karalee, Brookwater, and Springfield Lakes.
@@ -249,7 +249,7 @@ export default function ServiceAreasPage() {
             <h2 className="text-4xl font-bold text-gray-900">Logan Service Areas</h2>
           </div>
 
-          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded-lg">
+          <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-700 rounded-lg">
             <h3 className="font-bold text-lg text-blue-900 mb-2">Commercial & Residential Restoration</h3>
             <p className="text-gray-700">
               Comprehensive disaster recovery services for Logan Central and surrounding commercial districts.
@@ -361,7 +361,7 @@ export default function ServiceAreasPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+      <section className="py-16 bg-gradient-to-br from-blue-700 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-4">Need Emergency Restoration?</h2>
           <p className="text-xl mb-8 text-blue-100">
@@ -371,7 +371,7 @@ export default function ServiceAreasPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="tel:1300309361"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all shadow-lg hover:shadow-red-500/50 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-red-700 text-white font-bold rounded-lg hover:bg-red-800 transition-all shadow-lg hover:shadow-red-500/50 hover:scale-105"
             >
               <PhoneIcon className="w-6 h-6" />
               Call Now: 1300 309 361

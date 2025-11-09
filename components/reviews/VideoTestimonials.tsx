@@ -178,7 +178,7 @@ export default function VideoTestimonials() {
 
                   {/* Service Badge */}
                   <div className="absolute top-4 left-4 z-20">
-                    <Badge className="bg-blue-600 text-white border-0">
+                    <Badge className="bg-blue-700 text-white border-0">
                       {video.service}
                     </Badge>
                   </div>
@@ -199,7 +199,7 @@ export default function VideoTestimonials() {
                   </div>
 
                   {/* Placeholder for actual video thumbnail */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-700 to-purple-600 opacity-90" />
                 </div>
 
                 <CardContent className="p-6">
@@ -219,7 +219,7 @@ export default function VideoTestimonials() {
                   </div>
 
                   {/* Transcript Highlight */}
-                  <blockquote className="border-l-4 border-blue-600 pl-4 italic text-gray-700 text-sm">
+                  <blockquote className="border-l-4 border-blue-700 pl-4 italic text-gray-700 text-sm">
                     "{video.transcriptHighlight}"
                   </blockquote>
 
@@ -252,7 +252,7 @@ export default function VideoTestimonials() {
             Join thousands of satisfied customers across Brisbane, Ipswich, and Logan
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700">
+            <Button size="lg" className="bg-red-700 hover:bg-red-800">
               Get Emergency Help Now
             </Button>
             <Button size="lg" variant="outline">

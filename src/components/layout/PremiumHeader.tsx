@@ -218,7 +218,7 @@ export default function PremiumHeader() {
                 href="#contact-form"
                 className={cn(
                   "flex items-center gap-2 px-5 py-2.5 rounded-lg",
-                  "bg-gradient-to-r from-red-600 to-red-500",
+                  "bg-gradient-to-r from-red-700 to-red-500",
                   "text-white font-semibold shadow-lg",
                   "hover:shadow-xl hover:scale-105",
                   "transition-all duration-300",
@@ -319,7 +319,7 @@ export default function PremiumHeader() {
             <div className="p-6 border-t space-y-4">
               <a
                 href="#contact-form"
-                className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-gradient-to-r from-red-700 to-red-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
                 <MessageSquare className="w-5 h-5" />
                 <span>Call Emergency: online support</span>

@@ -96,7 +96,7 @@ export function CustomerJourneyWizard(...args: any[]): void {
                 key={step.id}
                 className={`relative flex items-start gap-4 p-6 rounded-xl transition-all cursor-pointer ${
                   currentStep === index + 1
-                    ? 'bg-blue-600 text-white shadow-xl scale-105'
+                    ? 'bg-blue-700 text-white shadow-xl scale-105'
                     : currentStep > index + 1
                     ? 'bg-green-50 text-gray-800'
                     : 'bg-white text-gray-800 hover:shadow-md'
@@ -177,7 +177,7 @@ export function CustomerJourneyWizard(...args: any[]): void {
                         onClick={() => setEmergencyType(type)}
                         className={`p-3 rounded-lg border-2 transition-all ${
                           emergencyType === type
-                            ? 'border-blue-600 bg-blue-50 text-blue-600'
+                            ? 'border-blue-700 bg-blue-50 text-blue-600'
                             : 'border-gray-300 hover:border-gray-400'
                         }`}
                       >
@@ -199,7 +199,7 @@ export function CustomerJourneyWizard(...args: any[]): void {
                         onClick={() => setPropertyType(type)}
                         className={`p-3 rounded-lg border-2 transition-all ${
                           propertyType === type
-                            ? 'border-blue-600 bg-blue-50 text-blue-600'
+                            ? 'border-blue-700 bg-blue-50 text-blue-600'
                             : 'border-gray-300 hover:border-gray-400'
                         }`}
                       >
@@ -242,14 +242,14 @@ export function CustomerJourneyWizard(...args: any[]): void {
                   <button
                     onClick={handleEmergencyStart}
                     disabled={!emergencyType || !propertyType || !urgency}
-                    className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                    className="flex-1 bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                   >
                     Get Immediate Help
                     <ArrowRight className="inline ml-2 h-5 w-5" />
                   </button>
                   <a
                     href="tel:1300347278"
-                    className="flex-1 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors text-center"
+                    className="flex-1 bg-red-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-800 transition-colors text-center"
                   >
                     <Phone className="inline mr-2 h-5 w-5" />
                     Call 1300-DISASTER

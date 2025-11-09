@@ -404,7 +404,7 @@ export function SubscriptionManager(...args: any[]): void {
                               <div className="flex items-center gap-1">
                                 <div className="w-16 bg-gray-200 rounded-full h-1.5">
                                   <div
-                                    className="bg-blue-600 h-1.5 rounded-full"
+                                    className="bg-blue-700 h-1.5 rounded-full"
                                     style={{ 
                                       width: `${(subscription.usage.territories / subscription.usage.maxTerritories) * 100}%` 
                                     }}

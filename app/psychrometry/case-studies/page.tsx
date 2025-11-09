@@ -114,7 +114,7 @@ export default function CaseStudiesPage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="bg-white rounded-lg shadow-xl p-8 border-t-4 border-blue-600">
+            <div className="bg-white rounded-lg shadow-xl p-8 border-t-4 border-blue-700">
               <div className="flex items-start gap-4 mb-6">
                 <div className="bg-blue-100 rounded-full p-4">
                   <Droplets className="w-8 h-8 text-blue-600" />
@@ -143,7 +143,7 @@ export default function CaseStudiesPage() {
               </div>
 
               {/* Initial Conditions */}
-              <div className="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+              <div className="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-700">
                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Initial Conditions</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li><strong>Inside ambient:</strong> 27°C | 80% RH | 19 g/kg</li>
@@ -658,13 +658,13 @@ export default function CaseStudiesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:1300309361"
-                className="inline-flex items-center justify-center px-8 py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-all shadow-lg"
+                className="inline-flex items-center justify-center px-8 py-4 bg-red-700 text-white font-bold rounded-lg hover:bg-red-800 transition-all shadow-lg"
               >
                 Call 1300 309 361
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-all"
+                className="inline-flex items-center justify-center px-8 py-4 bg-blue-700 text-white font-bold rounded-lg hover:bg-blue-800 transition-all"
               >
                 Request Assessment
               </Link>

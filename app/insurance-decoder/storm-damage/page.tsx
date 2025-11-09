@@ -206,7 +206,7 @@ export default function StormDamageInsurancePage() {
 
             {/* Excluded Events */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="bg-red-600 text-white p-6">
+              <div className="bg-red-700 text-white p-6">
                 <XCircle className="w-10 h-10 mb-3" />
                 <h3 className="text-xl font-bold">{stormTypes.excluded.title}</h3>
               </div>

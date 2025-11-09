@@ -145,7 +145,7 @@ export default function PremiumHero({
                 href="#contact-form"
                 className={cn(
                   "group flex items-center justify-center gap-3 px-8 py-4",
-                  "bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600",
+                  "bg-gradient-to-r from-red-700 to-red-500 hover:from-red-500 hover:to-red-600",
                   "text-white font-semibold text-lg rounded-xl",
                   "shadow-2xl hover:shadow-red-500/25",
                   "transform hover:scale-105 transition-all duration-300",

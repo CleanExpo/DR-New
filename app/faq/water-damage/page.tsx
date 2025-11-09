@@ -128,7 +128,7 @@ export default function WaterDamageFAQsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <AlertCircle className="h-16 w-16 mx-auto mb-6" />
           <h2 className="text-3xl font-bold mb-6">

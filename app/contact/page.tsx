@@ -42,7 +42,7 @@ export default function ModernContactPage() {
 
   const urgencyLevels = [
     { value: 'emergency', label: 'Emergency (< 2 hours)', colour: 'from-red-500 to-blue-600' },
-    { value: 'urgent', label: 'Urgent (< 24 hours)', colour: 'from-blue-600 to-blue-600' },
+    { value: 'urgent', label: 'Urgent (< 24 hours)', colour: 'from-blue-700 to-blue-600' },
     { value: 'standard', label: 'Standard (2-3 days)', colour: 'from-blue-500 to-cyan-500' },
     { value: 'quote', label: 'Quote Only', colour: 'from-purple-500 to-indigo-500' }
   ];
@@ -404,9 +404,9 @@ export default function ModernContactPage() {
                       whileTap={{ scale: 0.98 }}
                       className="w-full relative group overflow-hidden"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-xl" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-blue-700 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
-                      <div className="relative bg-gradient-to-r from-red-600 to-blue-700 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-blue-800 rounded-xl" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-blue-800 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
+                      <div className="relative bg-gradient-to-r from-red-700 to-blue-800 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
                         {isSubmitting ? (
                           <>
                             <motion.div
@@ -549,7 +549,7 @@ export default function ModernContactPage() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-blue-600 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
+              className="bg-gradient-to-r from-blue-700 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
             >
               <ChatBubbleOvalLeftEllipsisIcon className="w-5 h-5" />
               Start Live Chat

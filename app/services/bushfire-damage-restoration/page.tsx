@@ -269,7 +269,7 @@ export default function BushfireDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="/claim"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors inline-flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -288,7 +288,7 @@ export default function BushfireDamageRestorationPage() {
               </div>
 
               {/* Critical Warning */}
-              <div className="mt-8 bg-red-600/30 border-2 border-red-400 rounded-lg p-4">
+              <div className="mt-8 bg-red-700/30 border-2 border-red-400 rounded-lg p-4">
                 <p className="font-semibold flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5" />
                   DO NOT enter fire-damaged property until declared safe by authorities

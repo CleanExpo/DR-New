@@ -112,7 +112,7 @@ export default function ClientPortalClaimsPage() {
                   <option value="completed" className="text-gray-900">Completed</option>
                 </select>
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+              <button className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center gap-2">
                 <Download className="w-4 h-4" />
                 Export
               </button>
@@ -142,7 +142,7 @@ export default function ClientPortalClaimsPage() {
                 <div className="text-right">
                   <p className="text-2xl font-bold text-white mb-1">{claim.amount}</p>
                   <p className="text-sm text-gray-700">Last updated {claim.lastUpdate}</p>
-                  <button className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                  <button className="mt-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors text-sm">
                     View Details
                   </button>
                 </div>

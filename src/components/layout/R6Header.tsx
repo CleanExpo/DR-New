@@ -154,7 +154,7 @@ export default function R6Header() {
     <>
       {/* Emergency Alert Banner - Conditional */}
       {emergencyMode && (
-        <div className="bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white relative overflow-hidden animate-pulse">
+        <div className="bg-gradient-to-r from-red-700 via-red-500 to-red-600 text-white relative overflow-hidden animate-pulse">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
           <div className="container mx-auto px-6 relative">
             <div className="flex items-center justify-center py-2">
@@ -171,7 +171,7 @@ export default function R6Header() {
       <div className={cn(
         "hidden lg:block text-white relative overflow-hidden transition-all duration-500",
         emergencyMode 
-          ? "bg-gradient-to-r from-red-600 to-red-700"
+          ? "bg-gradient-to-r from-red-700 to-red-800"
           : "bg-gradient-to-r from-[#131cff] to-[#00a0d2]"
       )}>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
@@ -218,7 +218,7 @@ export default function R6Header() {
                 <MessageSquare className="w-4 h-4 group-hover:rotate-12 transition-transform" />
                 <span>online support</span>
                 {emergencyMode && (
-                  <span className="text-xs bg-red-600 text-white px-2 py-0.5 rounded-full ml-1">
+                  <span className="text-xs bg-red-700 text-white px-2 py-0.5 rounded-full ml-1">
                     EMERGENCY
                   </span>
                 )}
@@ -375,7 +375,7 @@ export default function R6Header() {
                       {emergencyMode ? "EMERGENCY CALL" : "Submit Form Now"}
                     </span>
                     {emergencyMode && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-500 opacity-90 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-500 opacity-90 group-hover:opacity-100 transition-opacity" />
                     )}
                   </R6Button>
                 </a>

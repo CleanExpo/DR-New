@@ -115,7 +115,7 @@ export default function InsuranceClaimsPage() {
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-20">
+        <section className="bg-gradient-to-br from-blue-700 via-blue-700 to-blue-900 text-white py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -180,7 +180,7 @@ export default function InsuranceClaimsPage() {
               <div className="space-y-8">
                 {claimProcess.map((item) => (
                   <div key={item.step} className="flex gap-6 items-start">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold text-xl">
                       {item.step}
                     </div>
                     <div className="flex-grow">
@@ -226,7 +226,7 @@ export default function InsuranceClaimsPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-lg">
+              <div className="bg-blue-50 border-l-4 border-blue-700 p-6 rounded-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Important: Emergency Mitigation
                 </h3>
@@ -253,7 +253,7 @@ export default function InsuranceClaimsPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-blue-600 text-white">
+        <section className="py-16 bg-blue-700 text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Need Help With an Insurance Claim?

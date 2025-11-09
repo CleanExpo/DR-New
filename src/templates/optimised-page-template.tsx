@@ -353,7 +353,7 @@ export const EmergencyCTA = ({
 }) => {
   return (
     <div className="fixed bottom-8 right-8 z-50">
-      <div className="bg-red-600 rounded-2xl p-4 shadow-2xl animate-pulse">
+      <div className="bg-red-700 rounded-2xl p-4 shadow-2xl animate-pulse">
         <p className="text-white font-bold text-sm mb-2">{title}</p>
         <Link
           href="/client/emergency"

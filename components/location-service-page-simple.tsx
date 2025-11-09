@@ -28,7 +28,7 @@ export default function LocationServicePageComponent({ data }: { data: unknown }
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+      <section className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white py-20">
         <div className="absolute inset-0 bg-black opacity-30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -65,7 +65,7 @@ export default function LocationServicePageComponent({ data }: { data: unknown }
       </section>
 
       {/* Emergency Banner */}
-      <section className="bg-red-600 text-white py-6">
+      <section className="bg-red-700 text-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-4">
             <AlertTriangle className="w-8 h-8" />
@@ -196,7 +196,7 @@ export default function LocationServicePageComponent({ data }: { data: unknown }
             
             {/* Testimonial */}
             {data.content?.testimonial && (
-              <div className="bg-gray-50 p-6 rounded-lg mb-8 border-l-4 border-blue-600">
+              <div className="bg-gray-50 p-6 rounded-lg mb-8 border-l-4 border-blue-700">
                 <p className="italic text-lg mb-3">"{data.content.testimonial.text}"</p>
                 <p className="font-semibold">- {data.content.testimonial.author}, {data.content.testimonial.suburb}</p>
               </div>
@@ -260,7 +260,7 @@ export default function LocationServicePageComponent({ data }: { data: unknown }
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

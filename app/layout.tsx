@@ -2,14 +2,6 @@ import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import Script from 'next/script'
 import '@/styles/globals.css'
-import '@/styles/modern-system.css'
-import '@/styles/logo-transparency.css'
-import '@/styles/mobile-responsive.css'
-import '@/styles/mobile-fixes.css'
-import '@/styles/storm-clouds.css'
-import '@/styles/enhanced-storm.css'
-import '@/styles/performance-optimizations.css'
-import '@/styles/mobile-touch-targets.css'
 import { Providers } from './providers'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -17,18 +9,20 @@ import EmergencyCTA from '@/components/EmergencyCTA'
 import MobileEmergencyCTA from '@/components/emergency/MobileEmergencyCTA'
 import { Breadcrumbs } from '@/components/ui/breadcrumbs'
 import { MonitoringProvider } from '@/components/monitoring/MonitoringProvider'
+import { CriticalCSS } from '@/components/performance/CriticalCSS'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   preload: true,
   fallback: ['system-ui', 'arial'],
   adjustFontFallback: true,
-  variable: '--font-inter'
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'], // Optimized: only load needed weights
 })
 
 const poppins = Poppins({
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['600', '700', '800'], // Optimized: reduced from 6 weights to 3
   subsets: ['latin'],
   display: 'swap',
   preload: true,
@@ -120,6 +114,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-AU">
+      <head>
+        {/* Resource Hints - Early DNS resolution and connection establishment */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+      </head>
+      <CriticalCSS />
       <body className={`${poppins.variable} ${inter.variable} font-sans`}>
         <Script
           id="structured-data"
@@ -351,7 +354,7 @@ export default function RootLayout({
             })
           }}
         />
-        <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
+        <a href="#main-content" className="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-[9999] focus:p-4 focus:bg-blue-700 focus:text-white focus:no-underline focus:min-w-[200px] focus:min-h-[44px] focus:text-center focus:flex focus:items-center focus:justify-center">
           Skip to main content
         </a>
         {/* Temporarily disabled to fix prerendering - client components using hooks */}

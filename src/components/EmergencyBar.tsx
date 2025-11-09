@@ -8,7 +8,7 @@ export default function EmergencyBar() {
     <motion.div 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-[10000] bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg"
+      className="fixed top-0 left-0 right-0 z-[10000] bg-gradient-to-r from-red-700 to-red-800 text-white shadow-lg"
     >
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between flex-wrap gap-2">

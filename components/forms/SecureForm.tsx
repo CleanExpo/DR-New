@@ -233,7 +233,7 @@ const SecureForm: React.FC<SecureFormProps> = ({
             transition-all duration-200 focus:outline-none focus:ring-4
             ${isSubmitting
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
+              : 'bg-blue-700 hover:bg-blue-800 focus:ring-blue-500'
             }
           `}
           aria-busy={isSubmitting}

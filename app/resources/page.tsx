@@ -136,7 +136,7 @@ export default function ResourcesPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-2 text-center">
+              <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-2 text-center">
                 <span className="text-white text-sm font-medium">Featured Resource</span>
               </div>
               <Link href="/resources/water-damage-categories" className="block p-8 hover:bg-gray-50 transition-colors">
@@ -307,7 +307,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-700">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-blue-800">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-3xl font-bold mb-4">

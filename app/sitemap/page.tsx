@@ -219,7 +219,7 @@ export default function SitemapPage() {
       </section>
 
       {/* Emergency CTA */}
-      <section className="py-12 bg-red-600 text-white">
+      <section className="py-12 bg-red-700 text-white">
         <div className="container mx-auto px-4 text-center">
           <AlertCircle className="h-12 w-12 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-2">Need Emergency Help?</h2>

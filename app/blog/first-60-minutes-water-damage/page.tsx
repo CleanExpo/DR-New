@@ -85,7 +85,7 @@ export default function First60MinutesWaterDamagePage() {
       />
 
       {/* Emergency Banner */}
-      <div className="bg-red-600 text-white py-4 sticky top-0 z-50">
+      <div className="bg-red-700 text-white py-4 sticky top-0 z-50">
         <div className="container mx-auto px-6 text-center">
           <p className="text-lg font-bold">
             WATER DAMAGE EMERGENCY?
@@ -100,7 +100,7 @@ export default function First60MinutesWaterDamagePage() {
       <header className="bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900 text-white py-16">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full mb-6 font-semibold">
+            <div className="inline-block bg-red-700 text-white px-4 py-2 rounded-full mb-6 font-semibold">
               Emergency Guide - Save This Page
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -156,7 +156,7 @@ export default function First60MinutesWaterDamagePage() {
 
           {/* Minute 0-5: Immediate Safety */}
           <section className="mb-12">
-            <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-8 rounded-xl mb-6">
+            <div className="bg-gradient-to-r from-red-700 to-red-800 text-white p-8 rounded-xl mb-6">
               <h2 className="text-3xl font-bold mb-2">Minutes 0-5: IMMEDIATE SAFETY</h2>
               <p className="text-xl text-red-100">Life safety comes first - always</p>
             </div>
@@ -164,7 +164,7 @@ export default function First60MinutesWaterDamagePage() {
             <div className="space-y-6">
               <div className="bg-white border-l-4 border-red-600 p-6 shadow-lg">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                  <span className="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">1</span>
+                  <span className="bg-red-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">1</span>
                   Assess Personal Safety
                 </h3>
                 <ul className="space-y-3 text-gray-700 text-lg">
@@ -209,7 +209,7 @@ export default function First60MinutesWaterDamagePage() {
 
           {/* Minutes 5-10: Stop the Source */}
           <section className="mb-12">
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8 rounded-xl mb-6">
+            <div className="bg-gradient-to-r from-blue-700 to-blue-800 text-white p-8 rounded-xl mb-6">
               <h2 className="text-3xl font-bold mb-2">Minutes 5-10: STOP THE WATER SOURCE</h2>
               <p className="text-xl text-blue-100">Every additional minute of water flow multiplies damage</p>
             </div>
@@ -260,7 +260,7 @@ export default function First60MinutesWaterDamagePage() {
               </div>
             </div>
 
-            <div className="mt-6 bg-blue-50 border-l-4 border-blue-600 p-6">
+            <div className="mt-6 bg-blue-50 border-l-4 border-blue-700 p-6">
               <h4 className="text-lg font-bold text-blue-900 mb-2">Know Your Water Meter Location</h4>
               <p className="text-gray-800">
                 <strong>Brisbane homes:</strong> Main water meters are typically in the front yard near the property boundary or in the garage. <strong>Apartments/Units:</strong> May be in common areas or on balconies. Locate yours NOW before emergency strikes.
@@ -470,7 +470,7 @@ export default function First60MinutesWaterDamagePage() {
 
           {/* Minutes 45-60: Professional Help */}
           <section className="mb-12">
-            <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-8 rounded-xl mb-6">
+            <div className="bg-gradient-to-r from-red-700 to-red-800 text-white p-8 rounded-xl mb-6">
               <h2 className="text-3xl font-bold mb-2">Minutes 45-60: CALL PROFESSIONALS</h2>
               <p className="text-xl text-red-100">Don't wait - damage accelerates exponentially</p>
             </div>
@@ -502,7 +502,7 @@ export default function First60MinutesWaterDamagePage() {
                 </ul>
               </div>
 
-              <div className="bg-blue-50 border-2 border-blue-600 p-6 rounded-lg">
+              <div className="bg-blue-50 border-2 border-blue-700 p-6 rounded-lg">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">What Happens When We Arrive:</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start gap-2">
@@ -533,7 +533,7 @@ export default function First60MinutesWaterDamagePage() {
               </div>
             </div>
 
-            <div className="mt-8 bg-gradient-to-r from-red-600 to-red-700 text-white p-8 rounded-xl text-center">
+            <div className="mt-8 bg-gradient-to-r from-red-700 to-red-800 text-white p-8 rounded-xl text-center">
               <h3 className="text-3xl font-bold mb-4">Brisbane Emergency Response</h3>
               <p className="text-xl mb-6">
                 60-Minute Response • IICRC Master Restorer • Insurance Approved
@@ -557,7 +557,7 @@ export default function First60MinutesWaterDamagePage() {
             </h2>
 
             <div className="space-y-6">
-              <div className="bg-blue-50 border-l-4 border-blue-600 p-6">
+              <div className="bg-blue-50 border-l-4 border-blue-700 p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Subtropical Climate Challenges</h3>
                 <p className="text-gray-800 mb-4">
                   Brisbane's high humidity (annual average 65%) accelerates mould growth dramatically. While IICRC standards cite 24-48 hours for mould development, Brisbane properties often show growth within 18-24 hours due to ambient moisture.
@@ -668,7 +668,7 @@ export default function First60MinutesWaterDamagePage() {
             </h2>
 
             <div className="space-y-6">
-              <div className="bg-blue-50 border-l-4 border-blue-600 p-6">
+              <div className="bg-blue-50 border-l-4 border-blue-700 p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">Call Restoration Company BEFORE Insurer</h3>
                 <p className="text-gray-800 text-lg mb-4">
                   This surprises many people, but insurance companies expect you to <strong>mitigate damage immediately</strong>. Waiting for insurance approval before calling professionals can result in claim denial due to "failure to mitigate."
@@ -726,7 +726,7 @@ export default function First60MinutesWaterDamagePage() {
 
           {/* Call to Action */}
           <section className="mb-12">
-            <div className="bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white p-12 rounded-2xl text-center">
+            <div className="bg-gradient-to-br from-red-700 via-red-700 to-red-900 text-white p-12 rounded-2xl text-center">
               <h2 className="text-4xl font-bold mb-4">
                 Don't Wait - Every Minute Counts
               </h2>

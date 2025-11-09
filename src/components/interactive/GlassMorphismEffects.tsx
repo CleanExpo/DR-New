@@ -92,7 +92,7 @@ export function NeonGlowButton(...args: any[]): void {
   const getColorClasses = () => {
     const colours = {
       blue: {
-        solid: 'bg-blue-600 text-white border-blue-500 shadow-blue-500/50',
+        solid: 'bg-blue-700 text-white border-blue-500 shadow-blue-500/50',
         outline: 'border-blue-500 text-blue-600 hover:bg-blue-500/10',
         ghost: 'text-blue-600 hover:bg-blue-500/10'
       },
@@ -107,14 +107,14 @@ export function NeonGlowButton(...args: any[]): void {
         ghost: 'text-emerald-600 hover:bg-green-500/10'
       },
       red: {
-        solid: 'bg-red-600 text-white border-red-600 shadow-red-500/50',
+        solid: 'bg-red-700 text-white border-red-600 shadow-red-500/50',
         outline: 'border-red-600 text-red-600 hover:bg-red-500/10',
         ghost: 'text-red-600 hover:bg-red-500/10'
       },
       yellow: {
-        solid: 'bg-yellow-600 text-white border-blue-600 shadow-blue-600/50',
-        outline: 'border-blue-600 text-blue-500 hover:bg-blue-600/10',
-        ghost: 'text-blue-500 hover:bg-blue-600/10'
+        solid: 'bg-yellow-600 text-white border-blue-700 shadow-blue-600/50',
+        outline: 'border-blue-700 text-blue-500 hover:bg-blue-800/10',
+        ghost: 'text-blue-500 hover:bg-blue-800/10'
       },
       pink: {
         solid: 'bg-pink-600 text-white border-pink-500 shadow-pink-500/50',

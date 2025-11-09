@@ -368,7 +368,7 @@ export default function BookServicePage() {
                       step < currentStep
                         ? 'bg-green-500 text-white ring-2 ring-green-200'
                         : step === currentStep
-                        ? 'bg-blue-600 text-white ring-4 ring-blue-200 scale-110'
+                        ? 'bg-blue-700 text-white ring-4 ring-blue-200 scale-110'
                         : 'bg-gray-200 text-gray-600'
                     }`}
                     role="progressbar"
@@ -935,7 +935,7 @@ export default function BookServicePage() {
                     />
                     <button
                       type="button"
-                      className="mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours min-h-[44px] min-w-[44px] p-3"
+                      className="mt-3 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colours min-h-[44px] min-w-[44px] p-3"
                       onClick={() => document.querySelector<HTMLInputElement>('input[type="file"]')?.click()}
                     >
                       Select Photos
@@ -1074,7 +1074,7 @@ export default function BookServicePage() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="ml-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colours flex items-center gap-2"
+                  className="ml-auto px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colours flex items-center gap-2"
                 >
                   Next
                   <ArrowRight className="h-4 w-4" />

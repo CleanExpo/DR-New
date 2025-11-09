@@ -43,7 +43,7 @@ export function EmergencyCallToAction({
   showTrustIndicators = true,
   serviceAreas = 'Serving Hamilton • Ascot • New Farm • Toowong • Brisbane CBD • Ipswich • Logan • All Brisbane Suburbs',
   variant = 'default',
-  gradientFrom = 'from-red-600',
+  gradientFrom = 'from-red-700',
   gradientTo = 'to-red-800',
 }: EmergencyCallToActionProps) {
   const compactMode = variant === 'compact';

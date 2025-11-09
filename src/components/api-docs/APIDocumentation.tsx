@@ -386,7 +386,7 @@ export function APIDocumentation(...args: any[]): void {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <div className="bg-gradient-to-r from-blue-700 to-indigo-700 text-white">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between">
             <div>
@@ -535,7 +535,7 @@ export function APIDocumentation(...args: any[]): void {
                             onClick={() => setSelectedCategory(category)}
                             className={cn(
                               "w-full px-4 py-3 text-left hover:bg-gray-50 transition-colours flex items-center gap-3",
-                              selectedCategory.id === category.id && "bg-blue-50 border-l-4 border-blue-600"
+                              selectedCategory.id === category.id && "bg-blue-50 border-l-4 border-blue-700"
                             )}
                           >
                             {getCategoryIcon(category.icon)}

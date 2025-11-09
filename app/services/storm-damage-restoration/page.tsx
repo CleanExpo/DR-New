@@ -112,7 +112,7 @@ function HeroSection() {
         <motion.div variants={fadeInUp} className="max-w-4xl mx-auto">
           {/* Emergency Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 bg-red-600/90 backdrop-blur-sm rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-red-700/90 backdrop-blur-sm rounded-full mb-6"
             variants={emergencyPulse}
             animate="animate"
           >
@@ -894,7 +894,7 @@ function VisualProcessSection() {
 // Final CTA Section
 function FinalCTASection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-800 text-white relative overflow-hidden">
       <div className="absolute inset-0 bg-black/20" />
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">

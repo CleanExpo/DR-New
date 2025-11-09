@@ -13,7 +13,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
   return (
     <div className="min-h-screen bg-white">
       {/* Emergency Banner */}
-      <div className="bg-red-600 text-white py-3 px-4">
+      <div className="bg-red-700 text-white py-3 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AlertCircle className="w-5 h-5 animate-pulse" />
@@ -24,7 +24,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16 px-4">
+      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -142,7 +142,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
                   transition={{ delay: index * 0.1 }}
                   className="flex items-start gap-4 pb-4 border-b last:border-0"
                 >
-                  <div className="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">
+                  <div className="bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 font-bold">
                     {index + 1}
                   </div>
                   <p className="text-lg text-gray-700">{step}</p>
@@ -343,7 +343,7 @@ export default function WhosFirstScenarioPage({ scenario }: Props) {
       )}
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+      <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Don't Make The Wrong First Call

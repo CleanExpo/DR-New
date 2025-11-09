@@ -229,7 +229,7 @@ export function TestimonialsSection(...args: any[]): void {
         
         {limit && testimonials.length > limit && (
           <div className="text-center mt-8">
-            <a href="/testimonials" className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-medium">
+            <a href="/testimonials" className="inline-flex items-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800 font-medium">
               View All {testimonials.length} Testimonials
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

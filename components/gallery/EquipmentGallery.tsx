@@ -223,7 +223,7 @@ export default function EquipmentGallery() {
                       <ul className="text-xs text-gray-600 space-y-1">
                         {item.capabilities.map((capability, idx) => (
                           <li key={idx} className="flex items-center gap-2">
-                            <div className="w-1 h-1 bg-blue-600 rounded-full" />
+                            <div className="w-1 h-1 bg-blue-700 rounded-full" />
                             {capability}
                           </li>
                         ))}
@@ -285,7 +285,7 @@ export default function EquipmentGallery() {
                       <ul className="text-gray-600 space-y-1">
                         {filteredEquipment[lightboxIndex].capabilities.map((capability, idx) => (
                           <li key={idx} className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-blue-600 rounded-full" />
+                            <div className="w-2 h-2 bg-blue-700 rounded-full" />
                             {capability}
                           </li>
                         ))}
@@ -342,7 +342,7 @@ export default function EquipmentGallery() {
           transition={{ delay: 0.4 }}
           className="text-center mt-16"
         >
-          <div className="bg-blue-600 text-white rounded-2xl p-8">
+          <div className="bg-blue-700 text-white rounded-2xl p-8">
             <h3 className="text-2xl font-bold mb-4">Need Professional Equipment?</h3>
             <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
               Our certified technicians bring this professional-grade equipment directly to your property.

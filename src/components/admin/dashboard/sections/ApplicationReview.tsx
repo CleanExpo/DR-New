@@ -241,7 +241,7 @@ export function ApplicationReview(...args: any[]): void {
                         <div className="flex items-center gap-2">
                           <div className="w-24 bg-gray-200 rounded-full h-2">
                             <div
-                              className="bg-blue-600 h-2 rounded-full"
+                              className="bg-blue-700 h-2 rounded-full"
                               style={{ width: `${(app.completedSteps.length / 7) * 100}%` }}
                             />
                           </div>
@@ -394,7 +394,7 @@ export function ApplicationReview(...args: any[]): void {
               onClick={handleReviewSubmit}
               className={
                 reviewAction === 'approve' ? 'bg-green-600 hover:bg-green-800' :
-                reviewAction === 'reject' ? 'bg-red-600 hover:bg-red-700' :
+                reviewAction === 'reject' ? 'bg-red-700 hover:bg-red-800' :
                 ''
               }
             >

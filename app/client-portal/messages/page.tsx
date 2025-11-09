@@ -120,7 +120,7 @@ export default function ClientPortalMessagesPage() {
                     }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center text-white font-semibold">
                         {conv.avatar}
                       </div>
                       <div className="flex-1">
@@ -131,7 +131,7 @@ export default function ClientPortalMessagesPage() {
                         <p className="text-gray-700 text-sm truncate">{conv.lastMessage}</p>
                       </div>
                       {conv.unread > 0 && (
-                        <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
+                        <span className="bg-blue-700 text-white text-xs px-2 py-1 rounded-full">
                           {conv.unread}
                         </span>
                       )}
@@ -146,7 +146,7 @@ export default function ClientPortalMessagesPage() {
               {/* Header */}
               <div className="p-4 border-b border-white/20">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold">
+                  <div className="w-10 h-10 rounded-full bg-blue-700 flex items-center justify-center text-white font-semibold">
                     {conversations.find(c => c.id === selectedConversation)?.avatar}
                   </div>
                   <div>
@@ -168,7 +168,7 @@ export default function ClientPortalMessagesPage() {
                     <div className={`max-w-[70%] ${message.isMe ? 'order-2' : 'order-1'}`}>
                       <div className={`p-3 rounded-lg ${
                         message.isMe 
-                          ? 'bg-blue-600 text-white' 
+                          ? 'bg-blue-700 text-white' 
                           : 'bg-white/20 text-white'
                       }`}>
                         <p>{message.content}</p>
@@ -200,7 +200,7 @@ export default function ClientPortalMessagesPage() {
                   />
                   <button
                     onClick={sendMessage}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                    className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center gap-2"
                   >
                     <Send className="w-5 h-5" />
                     Send

@@ -124,7 +124,7 @@ export default function NRPGPage() {
         <div className="absolute inset-0 bg-[url('/images/pattern-diagonal.svg')] opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-blue-600 hover:bg-blue-700">
+            <Badge className="mb-4 bg-blue-700 hover:bg-blue-800">
               Est. 2009 - Trusted by 500+ Professionals
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
@@ -187,7 +187,7 @@ export default function NRPGPage() {
               </p>
             </div>
 
-            <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+            <div className="bg-blue-50 border-l-4 border-blue-700 p-6 rounded-r-lg">
               <div className="flex items-start gap-4">
                 <Award className="h-8 w-8 text-blue-600 flex-shrink-0 mt-1" />
                 <div>
@@ -245,10 +245,10 @@ export default function NRPGPage() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {membershipTiers.map((tier, index) => (
-              <Card key={index} className={`relative ${tier.popular ? 'border-blue-600 border-2 shadow-xl' : ''}`}>
+              <Card key={index} className={`relative ${tier.popular ? 'border-blue-700 border-2 shadow-xl' : ''}`}>
                 {tier.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-blue-600">Most Popular</Badge>
+                    <Badge className="bg-blue-700">Most Popular</Badge>
                   </div>
                 )}
                 <CardHeader className="text-center pb-8 pt-6">

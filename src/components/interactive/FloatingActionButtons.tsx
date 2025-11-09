@@ -172,7 +172,7 @@ function ExpandableFABMenu(...args: any[]): void {
     {
       icon: FileText,
       label: 'Submit Claim Form',
-      colour: 'bg-gradient-to-r from-blue-600 to-blue-700',
+      colour: 'bg-gradient-to-r from-blue-700 to-blue-800',
       action: () => window.location.href = '/book-service'
     },
     {
@@ -234,7 +234,7 @@ function ExpandableFABMenu(...args: any[]): void {
 
         {/* Main Toggle Button */}
         <motion.button
-          className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-xl flex items-center justify-center relative overflow-hidden group"
+          className="w-16 h-16 bg-gradient-to-r from-blue-700 to-purple-600 text-white rounded-full shadow-xl flex items-center justify-center relative overflow-hidden group"
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.95 }}
           whileHover={{ scale: 1.05 }}
@@ -243,7 +243,7 @@ function ExpandableFABMenu(...args: any[]): void {
           {/* Pulse animation when closed */}
           {!isOpen && (
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+              className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-600 rounded-full"
               animate={{
                 scale: [1, 1.3, 1],
                 opacity: [0.7, 0, 0.7] }}
@@ -264,7 +264,7 @@ function ExpandableFABMenu(...args: any[]): void {
 
           {/* Glow effect */}
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-lg opacity-50 -z-10"
+            className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-600 rounded-full blur-lg opacity-50 -z-10"
             animate={isOpen ? { scale: 1.2 } : { scale: 1 }}
             transition={{ duration: 0.3 }}
           />

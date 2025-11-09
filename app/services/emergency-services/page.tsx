@@ -278,7 +278,7 @@ export default function EmergencyServicesPage() {
                     <span className="text-sm font-bold text-red-600">{step.time}</span>
                   </div>
                   <div className="flex-shrink-0">
-                    <div className="w-4 h-4 bg-red-600 rounded-full"></div>
+                    <div className="w-4 h-4 bg-red-700 rounded-full"></div>
                     {index < responseProtocol.length - 1 && (
                       <div className="w-0.5 h-24 bg-red-200 mx-auto mt-2"></div>
                     )}
@@ -352,23 +352,23 @@ export default function EmergencyServicesPage() {
                 </h3>
                 <ol className="space-y-3">
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-700 text-white rounded-full flex items-center justify-center font-bold">1</span>
                     <span>Ensure safety - evacuate if necessary</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">2</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-700 text-white rounded-full flex items-center justify-center font-bold">2</span>
                     <span>Call emergency services if life-threatening</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">3</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-700 text-white rounded-full flex items-center justify-center font-bold">3</span>
                     <span>Call us at online support for property emergencies</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">4</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-700 text-white rounded-full flex items-center justify-center font-bold">4</span>
                     <span>Turn off utilities if safe (power, gas, water)</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">5</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-red-700 text-white rounded-full flex items-center justify-center font-bold">5</span>
                     <span>Document damage with photos/videos</span>
                   </li>
                 </ol>
@@ -591,7 +591,7 @@ export default function EmergencyServicesPage() {
                 <span>Available 24/7/365</span>
               </div>
             </div>
-            <Button className="w-full bg-red-600 hover:bg-red-700">
+            <Button className="w-full bg-red-700 hover:bg-red-800">
               Request Emergency Response Now
             </Button>
           </div>

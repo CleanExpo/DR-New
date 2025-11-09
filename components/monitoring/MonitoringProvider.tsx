@@ -7,6 +7,7 @@
 
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import Script from 'next/script';
 import { initMonitoring } from '@/lib/monitoring/comprehensive-monitoring';
 import { analytics } from '@/lib/monitoring/analytics';
 import { setupGlobalErrorHandler } from '@/lib/monitoring/error-tracking';
@@ -41,17 +42,6 @@ export function MonitoringProvider({
 
     // Setup global error handlers
     setupGlobalErrorHandler();
-
-    // Initialize Microsoft Clarity
-    if (clarityId && typeof window !== 'undefined') {
-      (function(c: any, l: any, a: any, r: any, i: any, t: any, y: any){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", clarityId);
-
-      console.log('[MonitoringProvider] Microsoft Clarity initialized:', clarityId);
-    }
   }, [gaId, clarityId]);
 
   // Track page views
@@ -82,7 +72,27 @@ export function MonitoringProvider({
     }
   }, [pathname, searchParams]);
 
-  return <>{children}</>;
+  return (
+    <>
+      {/* Microsoft Clarity - Deferred to not block main thread */}
+      {clarityId && (
+        <Script
+          id="microsoft-clarity"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "${clarityId}");
+            `
+          }}
+        />
+      )}
+      {children}
+    </>
+  );
 }
 
 /**

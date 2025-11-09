@@ -32,7 +32,7 @@ export default function ServicePageLayout({
     <div className={`min-h-screen bg-gray-50 ${className}`}>
       {/* Emergency Banner */}
       {showEmergencyBanner && (
-        <div className="bg-red-600 text-white py-2">
+        <div className="bg-red-700 text-white py-2">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-center gap-2">
               <Phone className="h-4 w-4" />

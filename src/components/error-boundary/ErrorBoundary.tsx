@@ -194,7 +194,7 @@ class ErrorBoundary extends Component<Props, State> {
                 <div className="flex flex-col sm:flex-row gap-3 w-full">
                   <button
                     onClick={this.resetErrorBoundary}
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center justify-center"
+                    className="flex-1 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 flex items-center justify-center"
                   >
                     <RefreshCw className="h-4 w-4 mr-2" />
                     Try Again

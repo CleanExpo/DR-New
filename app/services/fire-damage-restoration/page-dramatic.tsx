@@ -196,7 +196,7 @@ export default function FireDamageRestorationPage() {
               },
             ].map((item, index) => (
               <div key={index} className="flex gap-6 items-start">
-                <div className="flex-shrink-0 w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
+                <div className="flex-shrink-0 w-16 h-16 bg-red-700 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg">
                   {item.step}
                 </div>
                 <div className="flex-1">

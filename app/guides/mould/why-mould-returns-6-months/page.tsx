@@ -343,7 +343,7 @@ export default function WhyMouldReturnsPage() {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="#failure-reasons">
-                <Button size="lg" className="bg-gradient-to-r from-red-500 to-blue-600 hover:from-red-600 hover:to-blue-700">
+                <Button size="lg" className="bg-gradient-to-r from-red-500 to-blue-600 hover:from-red-700 hover:to-blue-800">
                   <Microscope className="mr-2 h-5 w-5" />
                   See The 7 Failure Reasons
                 </Button>
@@ -658,7 +658,7 @@ export default function WhyMouldReturnsPage() {
                 <Card key={idx} className={`p-6 ${item.critical ? 'border-red-200 bg-red-50' : 'border-yellow-200 bg-yellow-50'}`}>
                   <div className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                      item.critical ? 'bg-red-500' : 'bg-blue-600'
+                      item.critical ? 'bg-red-500' : 'bg-blue-700'
                     }`}>
                       {item.critical ? (
                         <AlertCircle className="h-6 w-6 text-white" />

@@ -190,7 +190,7 @@ export default function Header() {
           {/* Emergency CTA - Large Phone Button */}
           <Link
             href="tel:1300309361"
-            className="hidden lg:inline-flex items-center px-8 py-4 bg-red-600 text-white font-bold text-lg rounded-full hover:bg-red-700 transition-all shadow-lg hover:shadow-xl"
+            className="hidden lg:inline-flex items-center px-8 py-4 bg-red-700 text-white font-bold text-lg rounded-full hover:bg-red-800 transition-all shadow-lg hover:shadow-xl"
             aria-label="Call 1300 309 361 for immediate emergency assistance"
           >
             <Phone className="w-5 h-5 mr-2" />
@@ -237,7 +237,7 @@ export default function Header() {
               <Link
                 href="tel:1300309361"
                 onClick={toggleMobileMenu}
-                className="flex items-center justify-center px-6 py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors"
+                className="flex items-center justify-center px-6 py-4 bg-red-700 text-white font-bold rounded-lg hover:bg-red-800 transition-colors"
                 aria-label="Call 1300 309 361 for emergency assistance"
               >
                 <Phone className="w-5 h-5 mr-2" />

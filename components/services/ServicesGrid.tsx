@@ -137,7 +137,7 @@ const services: Service[] = [
 ];
 
 const urgencyColors = {
-  critical: 'bg-red-600 text-white',
+  critical: 'bg-red-700 text-white',
   urgent: 'bg-orange-500 text-white',
   high: 'bg-yellow-500 text-black',
   normal: 'bg-green-500 text-white'
@@ -184,7 +184,7 @@ export default function ServicesGrid() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-red-600 text-white rounded-2xl p-6 max-w-2xl mx-auto"
+            className="bg-red-700 text-white rounded-2xl p-6 max-w-2xl mx-auto"
           >
             <div className="flex items-center justify-center gap-3 mb-3">
               <AlertTriangle className="w-6 h-6" />
@@ -253,7 +253,7 @@ export default function ServicesGrid() {
                   >
                     <Button
                       size="lg"
-                      className="bg-red-600 hover:bg-red-700 text-white font-bold shadow-2xl"
+                      className="bg-red-700 hover:bg-red-800 text-white font-bold shadow-2xl"
                       onClick={() => window.location.href = `tel:${service.phoneNumber}`}
                     >
                       <Phone className="w-5 h-5 mr-2" />
@@ -308,7 +308,7 @@ export default function ServicesGrid() {
                   {/* Action Buttons */}
                   <div className="space-y-3">
                     <Button
-                      className="w-full bg-red-600 hover:bg-red-700 text-white font-bold"
+                      className="w-full bg-red-700 hover:bg-red-800 text-white font-bold"
                       onClick={() => window.location.href = `tel:${service.phoneNumber}`}
                     >
                       <Phone className="w-4 h-4 mr-2" />
@@ -384,7 +384,7 @@ export default function ServicesGrid() {
                           <ol className="space-y-2">
                             {selectedService.processSteps.map((step, idx) => (
                               <li key={idx} className="flex items-center gap-3">
-                                <div className="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                                <div className="w-6 h-6 bg-blue-700 text-white rounded-full flex items-center justify-center text-sm font-bold">
                                   {idx + 1}
                                 </div>
                                 <span className="text-gray-700">{step}</span>
@@ -431,7 +431,7 @@ export default function ServicesGrid() {
                             </div>
                             <Button
                               size="lg"
-                              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold"
+                              className="w-full bg-red-700 hover:bg-red-800 text-white font-bold"
                               onClick={() => window.location.href = `tel:${selectedService.phoneNumber}`}
                             >
                               <Phone className="w-5 h-5 mr-2" />
@@ -460,7 +460,7 @@ export default function ServicesGrid() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-8"
+          className="text-center bg-gradient-to-r from-blue-700 to-purple-600 text-white rounded-2xl p-8"
         >
           <h3 className="text-2xl font-bold mb-4">Emergency Disaster Recovery</h3>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
@@ -470,7 +470,7 @@ export default function ServicesGrid() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-xl font-bold"
+              className="bg-red-700 hover:bg-red-800 text-white px-8 py-4 text-xl font-bold"
               onClick={() => window.location.href = 'tel:1300309361'}
             >
               <Phone className="w-6 h-6 mr-3" />

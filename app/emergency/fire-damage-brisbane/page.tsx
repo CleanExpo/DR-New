@@ -233,7 +233,7 @@ export default function EmergencyFireDamageBrisbanePage() {
             <div className="max-w-5xl mx-auto">
               {/* Emergency Alert Banner */}
               <motion.div 
-                className="bg-red-600/30 border-2 border-red-400 rounded-lg p-4 mb-6 backdrop-blur-sm"
+                className="bg-red-700/30 border-2 border-red-400 rounded-lg p-4 mb-6 backdrop-blur-sm"
                 animate={{ scale: [1, 1.02, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -290,7 +290,7 @@ export default function EmergencyFireDamageBrisbanePage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="tel:1300309361"
-                  className="bg-red-600 text-white px-8 py-5 rounded-lg font-bold text-xl hover:bg-red-700 transition-all inline-flex items-center justify-center gap-3 shadow-lg"
+                  className="bg-red-700 text-white px-8 py-5 rounded-lg font-bold text-xl hover:bg-red-800 transition-all inline-flex items-center justify-center gap-3 shadow-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -502,7 +502,7 @@ export default function EmergencyFireDamageBrisbanePage() {
                           </Badge>
                         </div>
                         {stage.critical && (
-                          <Badge className="bg-red-600 text-white animate-pulse">
+                          <Badge className="bg-red-700 text-white animate-pulse">
                             CRITICAL
                           </Badge>
                         )}

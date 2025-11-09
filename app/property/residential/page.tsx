@@ -473,7 +473,7 @@ export default function ResidentialPropertyPage() {
                   onClick={() => setSelectedPropertyType(key)}
                   className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                     selectedPropertyType === key
-                      ? 'bg-blue-600 text-white shadow-lg'
+                      ? 'bg-blue-700 text-white shadow-lg'
                       : 'bg-white text-gray-200 hover:bg-blue-50 border border-gray-200'
                   }`}
                 >
@@ -629,7 +629,7 @@ export default function ResidentialPropertyPage() {
                   className="relative"
                 >
                   <div className="bg-gradient-to-br from-blue-50 to-white rounded-lg p-6 border-2 border-blue-200 h-full">
-                    <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
+                    <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">
                       {step.step}
                     </div>
                     <h3 className="font-bold mb-2">{step.title}</h3>
@@ -846,7 +846,7 @@ export default function ResidentialPropertyPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-indigo-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -30,7 +30,7 @@ export default function BiohazardPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#contact-form"
-                className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition"
+                className="bg-red-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-800 transition"
               >
                 Emergency: online support</a>
               <a
@@ -124,7 +124,7 @@ export default function BiohazardPage() {
       </section>
 
       {/* Emergency CTA */}
-      <section className="bg-red-600 text-white py-16">
+      <section className="bg-red-700 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">24/7 Emergency Biohazard Response</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">

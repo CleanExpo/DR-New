@@ -116,13 +116,13 @@ export default function UltimateGuide({
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-gray-200">
         <motion.div
-          className="h-full bg-gradient-to-r from-blue-600 to-purple-600"
+          className="h-full bg-gradient-to-r from-blue-700 to-purple-600"
           style={{ width: `${readProgress}%` }}
         />
       </div>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-12 bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 text-white">
+      <section className="pt-20 pb-12 bg-gradient-to-br from-blue-700 via-blue-700 to-purple-700 text-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             {/* Meta Information */}
@@ -460,7 +460,7 @@ export default function UltimateGuide({
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-12"
+              className="text-center bg-gradient-to-r from-blue-700 to-purple-600 text-white rounded-2xl p-12"
             >
               <Award className="w-16 h-16 mx-auto mb-6" />
               <h2 className="text-3xl font-bold mb-4">
@@ -516,7 +516,7 @@ export default function UltimateGuide({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-40"
+            className="fixed bottom-8 right-8 bg-blue-700 text-white p-4 rounded-full shadow-lg hover:bg-blue-800 transition-colors z-40"
           >
             <ArrowUp className="w-6 h-6" />
           </motion.button>

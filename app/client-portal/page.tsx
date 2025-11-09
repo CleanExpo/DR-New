@@ -84,7 +84,7 @@ export default function ClientPortalPage() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 py-4 px-2 border-b-2 transition-colors ${
                   activeTab === tab.id
-                    ? 'border-blue-600 text-blue-600'
+                    ? 'border-blue-700 text-blue-600'
                     : 'border-transparent text-gray-700 hover:text-gray-900'
                 }`}
               >
@@ -157,7 +157,7 @@ export default function ClientPortalPage() {
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div 
-                            className="bg-blue-600 h-2 rounded-full transition-all duration-500"
+                            className="bg-blue-700 h-2 rounded-full transition-all duration-500"
                             style={{ width: `${claim.progress}%` }}
                           />
                         </div>
@@ -177,7 +177,7 @@ export default function ClientPortalPage() {
                       <div className="mt-4 flex gap-3">
                         <Link 
                           href={`/client-portal/claims/${claim.id}`}
-                          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                          className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
                         >
                           View Details
                         </Link>

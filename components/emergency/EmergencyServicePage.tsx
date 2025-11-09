@@ -107,7 +107,7 @@ export default function EmergencyServicePage({
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 via-white to-gray-50">
       {/* Urgent Header Bar */}
-      <div className="bg-red-600 text-white py-2 sticky top-0 z-50">
+      <div className="bg-red-700 text-white py-2 sticky top-0 z-50">
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2">
@@ -190,7 +190,7 @@ export default function EmergencyServicePage({
             >
               <Button
                 size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-xl"
+                className="bg-red-700 hover:bg-red-800 text-white px-8 py-6 text-xl"
                 onClick={() => window.location.href = 'tel:1300309361'}
               >
                 <PhoneCall className="w-6 h-6 mr-2 animate-pulse" />
@@ -199,7 +199,7 @@ export default function EmergencyServicePage({
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-6 text-xl"
+                className="border-2 border-blue-700 text-blue-600 hover:bg-blue-50 px-8 py-6 text-xl"
               >
                 Start Online Claim
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -387,7 +387,7 @@ export default function EmergencyServicePage({
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-gradient-to-r from-red-600 to-red-700 text-white">
+      <section className="py-16 bg-gradient-to-r from-red-700 to-red-800 text-white">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Don\'t Wait - {emergencyType.replace('-', ' ')} Damage Gets Worse Every Hour

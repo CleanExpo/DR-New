@@ -207,7 +207,7 @@ export default function Section54ContractorRightsPage() {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="#action-guide">
-                <Button size="lg" className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600">
+                <Button size="lg" className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-700 hover:to-indigo-600">
                   <Gavel className="mr-2 h-5 w-5" />
                   See Action Guide
                 </Button>
@@ -457,7 +457,7 @@ export default function Section54ContractorRightsPage() {
               </div>
 
               <div className="text-center">
-                <Button className="bg-blue-600 hover:bg-blue-700">
+                <Button className="bg-blue-700 hover:bg-blue-800">
                   <Download className="mr-2 h-4 w-4" />
                   Download Template Document
                 </Button>
@@ -468,7 +468,7 @@ export default function Section54ContractorRightsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-700 to-indigo-600 text-white">
         <div className="container mx-auto px-6 text-center">
           <Building className="h-12 w-12 mx-auto mb-4" />
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">

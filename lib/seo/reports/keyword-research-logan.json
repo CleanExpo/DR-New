@@ -1,0 +1,1343 @@
+{
+  "meta": {
+    "location": "Logan",
+    "generatedDate": "2025-11-09",
+    "totalKeywords": 127,
+    "targetAreas": [
+      "Logan Central",
+      "Waterford",
+      "Marsden",
+      "Beenleigh",
+      "Slacks Creek",
+      "Shailer Park",
+      "Browns Plains",
+      "Loganholme",
+      "Springwood",
+      "Kingston"
+    ],
+    "analysisFramework": "Google Q1-2025 Mobile Ranking Factors"
+  },
+
+  "primaryKeywords": [
+    {
+      "keyword": "water damage restoration Logan",
+      "searchVolume": 480,
+      "competition": "medium",
+      "intent": "transactional",
+      "opportunityScore": 78,
+      "priority": "high",
+      "difficulty": 42,
+      "category": "water-damage",
+      "avgCPC": 18.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "emergency water damage Logan",
+      "searchVolume": 320,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 85,
+      "priority": "high",
+      "difficulty": 35,
+      "category": "emergency",
+      "avgCPC": 22.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "flood damage restoration Logan",
+      "searchVolume": 390,
+      "competition": "medium",
+      "intent": "transactional",
+      "opportunityScore": 76,
+      "priority": "high",
+      "difficulty": 45,
+      "category": "water-damage",
+      "avgCPC": 19.75,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "mold remediation Logan",
+      "searchVolume": 290,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "high",
+      "difficulty": 38,
+      "category": "mold",
+      "avgCPC": 16.25,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "fire damage restoration Logan",
+      "searchVolume": 210,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 79,
+      "priority": "medium",
+      "difficulty": 36,
+      "category": "fire-damage",
+      "avgCPC": 21.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "storm damage repair Logan",
+      "searchVolume": 340,
+      "competition": "medium",
+      "intent": "transactional",
+      "opportunityScore": 74,
+      "priority": "high",
+      "difficulty": 44,
+      "category": "storm-damage",
+      "avgCPC": 17.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "IICRC Master Restorer Logan",
+      "searchVolume": 45,
+      "competition": "very-low",
+      "intent": "navigational",
+      "opportunityScore": 68,
+      "priority": "medium",
+      "difficulty": 22,
+      "category": "certification",
+      "avgCPC": 24.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "emergency restoration Logan",
+      "searchVolume": 280,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 81,
+      "priority": "high",
+      "difficulty": 37,
+      "category": "emergency",
+      "avgCPC": 20.25,
+      "conversionPotential": "very-high"
+    }
+  ],
+
+  "emergencyKeywords": [
+    {
+      "keyword": "24/7 water damage Logan",
+      "searchVolume": 180,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 84,
+      "priority": "high",
+      "difficulty": 32,
+      "category": "emergency",
+      "avgCPC": 23.50,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "emergency water extraction Logan",
+      "searchVolume": 160,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 83,
+      "priority": "high",
+      "difficulty": 33,
+      "category": "emergency",
+      "avgCPC": 21.75,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "urgent flood damage Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "high",
+      "difficulty": 28,
+      "category": "emergency",
+      "avgCPC": 24.50,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "fast water damage repair Logan",
+      "searchVolume": 120,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 81,
+      "priority": "medium",
+      "difficulty": 35,
+      "category": "emergency",
+      "avgCPC": 19.25,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "24 hour restoration Logan",
+      "searchVolume": 140,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "high",
+      "difficulty": 34,
+      "category": "emergency",
+      "avgCPC": 22.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "emergency mold removal Logan",
+      "searchVolume": 85,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 86,
+      "priority": "medium",
+      "difficulty": 29,
+      "category": "emergency",
+      "avgCPC": 18.50,
+      "conversionPotential": "high"
+    }
+  ],
+
+  "localAreaKeywords": [
+    {
+      "keyword": "water damage restoration Logan Central",
+      "searchVolume": 220,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 87,
+      "priority": "high",
+      "difficulty": 31,
+      "category": "local-water-damage",
+      "avgCPC": 19.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "flood restoration Beenleigh",
+      "searchVolume": 190,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 85,
+      "priority": "high",
+      "difficulty": 33,
+      "category": "local-water-damage",
+      "avgCPC": 18.25,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "mold remediation Waterford",
+      "searchVolume": 110,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "high",
+      "difficulty": 26,
+      "category": "local-mold",
+      "avgCPC": 16.75,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "water damage Marsden",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 90,
+      "priority": "high",
+      "difficulty": 24,
+      "category": "local-water-damage",
+      "avgCPC": 17.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "emergency restoration Slacks Creek",
+      "searchVolume": 75,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 91,
+      "priority": "high",
+      "difficulty": 22,
+      "category": "local-emergency",
+      "avgCPC": 20.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "fire damage restoration Shailer Park",
+      "searchVolume": 65,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "medium",
+      "difficulty": 23,
+      "category": "local-fire-damage",
+      "avgCPC": 21.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "storm damage Browns Plains",
+      "searchVolume": 125,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 84,
+      "priority": "high",
+      "difficulty": 35,
+      "category": "local-storm-damage",
+      "avgCPC": 17.25,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "water extraction Loganholme",
+      "searchVolume": 80,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "medium",
+      "difficulty": 25,
+      "category": "local-water-damage",
+      "avgCPC": 18.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "mold removal Springwood",
+      "searchVolume": 105,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 87,
+      "priority": "high",
+      "difficulty": 27,
+      "category": "local-mold",
+      "avgCPC": 16.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "flood damage Kingston Logan",
+      "searchVolume": 90,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "medium",
+      "difficulty": 26,
+      "category": "local-water-damage",
+      "avgCPC": 18.75,
+      "conversionPotential": "high"
+    }
+  ],
+
+  "nearMeKeywords": [
+    {
+      "keyword": "water damage restoration near me Logan",
+      "searchVolume": 420,
+      "competition": "medium",
+      "intent": "transactional",
+      "opportunityScore": 75,
+      "priority": "high",
+      "difficulty": 46,
+      "category": "near-me",
+      "avgCPC": 20.50,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "emergency restoration near me Logan",
+      "searchVolume": 310,
+      "competition": "medium",
+      "intent": "transactional",
+      "opportunityScore": 73,
+      "priority": "high",
+      "difficulty": 47,
+      "category": "near-me",
+      "avgCPC": 21.25,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "mold remediation near me Logan",
+      "searchVolume": 240,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 79,
+      "priority": "high",
+      "difficulty": 39,
+      "category": "near-me",
+      "avgCPC": 17.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "flood restoration nearby Logan",
+      "searchVolume": 180,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "medium",
+      "difficulty": 36,
+      "category": "near-me",
+      "avgCPC": 18.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "local water damage repair Logan",
+      "searchVolume": 160,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 83,
+      "priority": "medium",
+      "difficulty": 34,
+      "category": "near-me",
+      "avgCPC": 19.00,
+      "conversionPotential": "high"
+    }
+  ],
+
+  "commercialKeywords": [
+    {
+      "keyword": "commercial water damage Logan",
+      "searchVolume": 170,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 84,
+      "priority": "high",
+      "difficulty": 33,
+      "category": "commercial",
+      "avgCPC": 26.50,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "commercial flood restoration Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "medium",
+      "difficulty": 28,
+      "category": "commercial",
+      "avgCPC": 28.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "commercial property restoration Logan",
+      "searchVolume": 120,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "medium",
+      "difficulty": 36,
+      "category": "commercial",
+      "avgCPC": 25.75,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "warehouse water damage Logan",
+      "searchVolume": 55,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 86,
+      "priority": "low",
+      "difficulty": 24,
+      "category": "commercial",
+      "avgCPC": 27.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "office flood damage Logan",
+      "searchVolume": 70,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 87,
+      "priority": "low",
+      "difficulty": 25,
+      "category": "commercial",
+      "avgCPC": 26.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "commercial mold remediation Logan",
+      "searchVolume": 85,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "medium",
+      "difficulty": 26,
+      "category": "commercial",
+      "avgCPC": 24.50,
+      "conversionPotential": "high"
+    }
+  ],
+
+  "residentialKeywords": [
+    {
+      "keyword": "residential water damage Logan",
+      "searchVolume": 210,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 81,
+      "priority": "high",
+      "difficulty": 37,
+      "category": "residential",
+      "avgCPC": 17.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "home flood restoration Logan",
+      "searchVolume": 190,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "high",
+      "difficulty": 36,
+      "category": "residential",
+      "avgCPC": 16.75,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "house mold removal Logan",
+      "searchVolume": 150,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 83,
+      "priority": "medium",
+      "difficulty": 35,
+      "category": "residential",
+      "avgCPC": 15.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "basement water damage Logan",
+      "searchVolume": 75,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "low",
+      "difficulty": 27,
+      "category": "residential",
+      "avgCPC": 18.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "ceiling water damage Logan",
+      "searchVolume": 130,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 84,
+      "priority": "medium",
+      "difficulty": 34,
+      "category": "residential",
+      "avgCPC": 16.25,
+      "conversionPotential": "high"
+    }
+  ],
+
+  "insuranceKeywords": [
+    {
+      "keyword": "insurance water damage Logan",
+      "searchVolume": 280,
+      "competition": "medium",
+      "intent": "informational",
+      "opportunityScore": 76,
+      "priority": "high",
+      "difficulty": 43,
+      "category": "insurance",
+      "avgCPC": 15.50,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "insurance approved restoration Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 87,
+      "priority": "medium",
+      "difficulty": 28,
+      "category": "insurance",
+      "avgCPC": 22.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "insurance claim water damage Logan",
+      "searchVolume": 220,
+      "competition": "low",
+      "intent": "informational",
+      "opportunityScore": 78,
+      "priority": "high",
+      "difficulty": 38,
+      "category": "insurance",
+      "avgCPC": 14.75,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "insurance flood restoration Logan",
+      "searchVolume": 160,
+      "competition": "low",
+      "intent": "informational",
+      "opportunityScore": 80,
+      "priority": "medium",
+      "difficulty": 37,
+      "category": "insurance",
+      "avgCPC": 16.00,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "certified restoration Logan insurance",
+      "searchVolume": 65,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "medium",
+      "difficulty": 25,
+      "category": "insurance",
+      "avgCPC": 23.50,
+      "conversionPotential": "very-high"
+    }
+  ],
+
+  "certificationKeywords": [
+    {
+      "keyword": "IICRC certified Logan",
+      "searchVolume": 85,
+      "competition": "very-low",
+      "intent": "navigational",
+      "opportunityScore": 86,
+      "priority": "medium",
+      "difficulty": 26,
+      "category": "certification",
+      "avgCPC": 24.50,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "certified water damage Logan",
+      "searchVolume": 140,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "high",
+      "difficulty": 35,
+      "category": "certification",
+      "avgCPC": 20.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "professional restoration Logan",
+      "searchVolume": 180,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 80,
+      "priority": "medium",
+      "difficulty": 38,
+      "category": "certification",
+      "avgCPC": 19.25,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "licensed mold remediation Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 87,
+      "priority": "medium",
+      "difficulty": 28,
+      "category": "certification",
+      "avgCPC": 17.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "Master Restorer Logan",
+      "searchVolume": 35,
+      "competition": "very-low",
+      "intent": "navigational",
+      "opportunityScore": 72,
+      "priority": "low",
+      "difficulty": 18,
+      "category": "certification",
+      "avgCPC": 26.00,
+      "conversionPotential": "very-high"
+    }
+  ],
+
+  "costKeywords": [
+    {
+      "keyword": "water damage restoration cost Logan",
+      "searchVolume": 310,
+      "competition": "low",
+      "intent": "informational",
+      "opportunityScore": 79,
+      "priority": "high",
+      "difficulty": 36,
+      "category": "pricing",
+      "avgCPC": 12.50,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "flood restoration quote Logan",
+      "searchVolume": 120,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 85,
+      "priority": "high",
+      "difficulty": 30,
+      "category": "pricing",
+      "avgCPC": 18.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "mold remediation price Logan",
+      "searchVolume": 180,
+      "competition": "low",
+      "intent": "informational",
+      "opportunityScore": 81,
+      "priority": "medium",
+      "difficulty": 35,
+      "category": "pricing",
+      "avgCPC": 11.75,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "water damage estimate Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 86,
+      "priority": "medium",
+      "difficulty": 29,
+      "category": "pricing",
+      "avgCPC": 17.25,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "restoration pricing Logan",
+      "searchVolume": 75,
+      "competition": "very-low",
+      "intent": "informational",
+      "opportunityScore": 83,
+      "priority": "low",
+      "difficulty": 31,
+      "category": "pricing",
+      "avgCPC": 10.50,
+      "conversionPotential": "low"
+    },
+    {
+      "keyword": "affordable water damage Logan",
+      "searchVolume": 140,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "medium",
+      "difficulty": 34,
+      "category": "pricing",
+      "avgCPC": 15.50,
+      "conversionPotential": "medium"
+    }
+  ],
+
+  "informationalKeywords": [
+    {
+      "keyword": "how to fix water damage Logan",
+      "searchVolume": 260,
+      "competition": "low",
+      "intent": "informational",
+      "opportunityScore": 77,
+      "priority": "medium",
+      "difficulty": 40,
+      "category": "informational",
+      "avgCPC": 8.50,
+      "conversionPotential": "low"
+    },
+    {
+      "keyword": "what is mold remediation Logan",
+      "searchVolume": 190,
+      "competition": "low",
+      "intent": "informational",
+      "opportunityScore": 75,
+      "priority": "low",
+      "difficulty": 38,
+      "category": "informational",
+      "avgCPC": 7.25,
+      "conversionPotential": "low"
+    },
+    {
+      "keyword": "water damage repair process Logan",
+      "searchVolume": 110,
+      "competition": "very-low",
+      "intent": "informational",
+      "opportunityScore": 80,
+      "priority": "low",
+      "difficulty": 32,
+      "category": "informational",
+      "avgCPC": 9.00,
+      "conversionPotential": "low"
+    },
+    {
+      "keyword": "flood damage cleanup steps Logan",
+      "searchVolume": 85,
+      "competition": "very-low",
+      "intent": "informational",
+      "opportunityScore": 82,
+      "priority": "low",
+      "difficulty": 30,
+      "category": "informational",
+      "avgCPC": 8.75,
+      "conversionPotential": "low"
+    },
+    {
+      "keyword": "signs of water damage Logan",
+      "searchVolume": 150,
+      "competition": "low",
+      "intent": "informational",
+      "opportunityScore": 78,
+      "priority": "low",
+      "difficulty": 36,
+      "category": "informational",
+      "avgCPC": 7.50,
+      "conversionPotential": "low"
+    },
+    {
+      "keyword": "mold health risks Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "informational",
+      "opportunityScore": 79,
+      "priority": "low",
+      "difficulty": 33,
+      "category": "informational",
+      "avgCPC": 6.25,
+      "conversionPotential": "low"
+    }
+  ],
+
+  "specificServiceKeywords": [
+    {
+      "keyword": "carpet water damage Logan",
+      "searchVolume": 180,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 83,
+      "priority": "medium",
+      "difficulty": 34,
+      "category": "specific-service",
+      "avgCPC": 16.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "ceiling leak repair Logan",
+      "searchVolume": 210,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 81,
+      "priority": "high",
+      "difficulty": 36,
+      "category": "specific-service",
+      "avgCPC": 17.25,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "bathroom mold removal Logan",
+      "searchVolume": 160,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "medium",
+      "difficulty": 35,
+      "category": "specific-service",
+      "avgCPC": 15.75,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "burst pipe damage Logan",
+      "searchVolume": 140,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 84,
+      "priority": "medium",
+      "difficulty": 33,
+      "category": "specific-service",
+      "avgCPC": 19.00,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "sewage cleanup Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "low",
+      "difficulty": 27,
+      "category": "specific-service",
+      "avgCPC": 22.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "smoke damage restoration Logan",
+      "searchVolume": 75,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 87,
+      "priority": "low",
+      "difficulty": 28,
+      "category": "specific-service",
+      "avgCPC": 20.75,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "structural drying Logan",
+      "searchVolume": 65,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 86,
+      "priority": "low",
+      "difficulty": 26,
+      "category": "specific-service",
+      "avgCPC": 18.50,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "dehumidification services Logan",
+      "searchVolume": 55,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 85,
+      "priority": "low",
+      "difficulty": 25,
+      "category": "specific-service",
+      "avgCPC": 17.00,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "odor removal Logan",
+      "searchVolume": 110,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 84,
+      "priority": "low",
+      "difficulty": 29,
+      "category": "specific-service",
+      "avgCPC": 14.25,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "water extraction Logan",
+      "searchVolume": 190,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 82,
+      "priority": "medium",
+      "difficulty": 35,
+      "category": "specific-service",
+      "avgCPC": 18.75,
+      "conversionPotential": "high"
+    }
+  ],
+
+  "seasonalKeywords": [
+    {
+      "keyword": "flood season restoration Logan",
+      "searchVolume": 120,
+      "competition": "very-low",
+      "intent": "informational",
+      "opportunityScore": 83,
+      "priority": "low",
+      "difficulty": 31,
+      "category": "seasonal",
+      "avgCPC": 11.50,
+      "conversionPotential": "medium"
+    },
+    {
+      "keyword": "cyclone damage Logan",
+      "searchVolume": 85,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 85,
+      "priority": "low",
+      "difficulty": 29,
+      "category": "seasonal",
+      "avgCPC": 19.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "summer storm damage Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 84,
+      "priority": "low",
+      "difficulty": 30,
+      "category": "seasonal",
+      "avgCPC": 17.75,
+      "conversionPotential": "medium"
+    }
+  ],
+
+  "quickWins": [
+    {
+      "keyword": "emergency restoration Slacks Creek",
+      "searchVolume": 75,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 91,
+      "priority": "high",
+      "difficulty": 22,
+      "category": "local-emergency",
+      "avgCPC": 20.00,
+      "conversionPotential": "very-high",
+      "timeToRank": "1-2 weeks",
+      "reason": "Extremely low competition, specific local area, high conversion intent"
+    },
+    {
+      "keyword": "water damage Marsden",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 90,
+      "priority": "high",
+      "difficulty": 24,
+      "category": "local-water-damage",
+      "avgCPC": 17.50,
+      "conversionPotential": "high",
+      "timeToRank": "1-2 weeks",
+      "reason": "Very low competition, decent volume, specific suburb targeting"
+    },
+    {
+      "keyword": "mold remediation Waterford",
+      "searchVolume": 110,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "high",
+      "difficulty": 26,
+      "category": "local-mold",
+      "avgCPC": 16.75,
+      "conversionPotential": "high",
+      "timeToRank": "1-2 weeks",
+      "reason": "Very low competition, growing area, specific service + location"
+    },
+    {
+      "keyword": "commercial mold remediation Logan",
+      "searchVolume": 85,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "medium",
+      "difficulty": 26,
+      "category": "commercial",
+      "avgCPC": 24.50,
+      "conversionPotential": "high",
+      "timeToRank": "2-3 weeks",
+      "reason": "High value commercial keyword, minimal competition"
+    },
+    {
+      "keyword": "urgent flood damage Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "high",
+      "difficulty": 28,
+      "category": "emergency",
+      "avgCPC": 24.50,
+      "conversionPotential": "very-high",
+      "timeToRank": "1-2 weeks",
+      "reason": "Urgent modifier signals immediate need, low competition"
+    },
+    {
+      "keyword": "water extraction Loganholme",
+      "searchVolume": 80,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "medium",
+      "difficulty": 25,
+      "category": "local-water-damage",
+      "avgCPC": 18.00,
+      "conversionPotential": "high",
+      "timeToRank": "1-2 weeks",
+      "reason": "Specific suburb, specific service, virtually no competition"
+    },
+    {
+      "keyword": "sewage cleanup Logan",
+      "searchVolume": 95,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 88,
+      "priority": "low",
+      "difficulty": 27,
+      "category": "specific-service",
+      "avgCPC": 22.50,
+      "conversionPotential": "high",
+      "timeToRank": "2-3 weeks",
+      "reason": "Emergency service with high urgency, minimal competition"
+    },
+    {
+      "keyword": "flood restoration Beenleigh",
+      "searchVolume": 190,
+      "competition": "low",
+      "intent": "transactional",
+      "opportunityScore": 85,
+      "priority": "high",
+      "difficulty": 33,
+      "category": "local-water-damage",
+      "avgCPC": 18.25,
+      "conversionPotential": "high",
+      "timeToRank": "2-4 weeks",
+      "reason": "Higher volume, flood-prone area, reasonable competition"
+    },
+    {
+      "keyword": "certified restoration Logan insurance",
+      "searchVolume": 65,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 89,
+      "priority": "medium",
+      "difficulty": 25,
+      "category": "insurance",
+      "avgCPC": 23.50,
+      "conversionPotential": "very-high",
+      "timeToRank": "1-3 weeks",
+      "reason": "High-value insurance work, certification differentiator"
+    },
+    {
+      "keyword": "flood restoration quote Logan",
+      "searchVolume": 120,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 85,
+      "priority": "high",
+      "difficulty": 30,
+      "category": "pricing",
+      "avgCPC": 18.00,
+      "conversionPotential": "high",
+      "timeToRank": "2-3 weeks",
+      "reason": "Quote intent signals ready-to-convert, low competition"
+    }
+  ],
+
+  "longTailKeywords": [
+    {
+      "keyword": "emergency water damage restoration Logan 24 hours",
+      "searchVolume": 45,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 87,
+      "priority": "medium",
+      "difficulty": 23,
+      "category": "long-tail",
+      "avgCPC": 25.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "best water damage restoration company Logan",
+      "searchVolume": 55,
+      "competition": "very-low",
+      "intent": "navigational",
+      "opportunityScore": 84,
+      "priority": "low",
+      "difficulty": 27,
+      "category": "long-tail",
+      "avgCPC": 21.50,
+      "conversionPotential": "high"
+    },
+    {
+      "keyword": "certified IICRC water damage Logan",
+      "searchVolume": 35,
+      "competition": "very-low",
+      "intent": "transactional",
+      "opportunityScore": 86,
+      "priority": "medium",
+      "difficulty": 22,
+      "category": "long-tail",
+      "avgCPC": 24.00,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "how much does water damage restoration cost in Logan",
+      "searchVolume": 65,
+      "competition": "very-low",
+      "intent": "informational",
+      "opportunityScore": 81,
+      "priority": "low",
+      "difficulty": 28,
+      "category": "long-tail",
+      "avgCPC": 10.50,
+      "conversionPotential": "medium"
+    }
+  ],
+
+  "competitorKeywords": [
+    {
+      "keyword": "Master Restorer Brisbane Logan",
+      "searchVolume": 25,
+      "competition": "very-low",
+      "intent": "navigational",
+      "opportunityScore": 75,
+      "priority": "low",
+      "difficulty": 20,
+      "category": "competitor",
+      "avgCPC": 26.50,
+      "conversionPotential": "very-high"
+    },
+    {
+      "keyword": "Phill McGurk Logan",
+      "searchVolume": 15,
+      "competition": "very-low",
+      "intent": "navigational",
+      "opportunityScore": 68,
+      "priority": "low",
+      "difficulty": 15,
+      "category": "competitor",
+      "avgCPC": 28.00,
+      "conversionPotential": "very-high"
+    }
+  ],
+
+  "priorityRecommendations": {
+    "immediateActions": [
+      {
+        "action": "Create dedicated Logan Central landing page",
+        "targetKeywords": ["water damage restoration Logan Central", "emergency restoration Logan Central"],
+        "expectedImpact": "high",
+        "timeframe": "1-2 weeks"
+      },
+      {
+        "action": "Develop suburb-specific pages for Beenleigh, Waterford, Marsden",
+        "targetKeywords": ["flood restoration Beenleigh", "mold remediation Waterford", "water damage Marsden"],
+        "expectedImpact": "very-high",
+        "timeframe": "2-3 weeks"
+      },
+      {
+        "action": "Optimize Google Business Profile for Logan area",
+        "targetKeywords": ["near me searches", "local pack inclusion"],
+        "expectedImpact": "very-high",
+        "timeframe": "immediate"
+      },
+      {
+        "action": "Create emergency response focused content",
+        "targetKeywords": ["24/7 water damage Logan", "emergency water extraction Logan", "urgent flood damage Logan"],
+        "expectedImpact": "high",
+        "timeframe": "1 week"
+      }
+    ],
+
+    "contentGaps": [
+      {
+        "topic": "Logan flood preparedness guide",
+        "targetKeywords": ["flood season restoration Logan", "flood damage prevention Logan"],
+        "contentType": "blog/guide",
+        "priority": "medium"
+      },
+      {
+        "topic": "Commercial property restoration in Logan",
+        "targetKeywords": ["commercial water damage Logan", "commercial property restoration Logan"],
+        "contentType": "service page",
+        "priority": "high"
+      },
+      {
+        "topic": "Insurance claims assistance",
+        "targetKeywords": ["insurance water damage Logan", "insurance claim water damage Logan"],
+        "contentType": "resource page",
+        "priority": "medium"
+      }
+    ],
+
+    "localSEOPriorities": [
+      {
+        "priority": "Create citations for Logan-specific directories",
+        "impact": "high",
+        "effort": "medium"
+      },
+      {
+        "priority": "Generate Google reviews from Logan customers",
+        "impact": "very-high",
+        "effort": "low"
+      },
+      {
+        "priority": "Build backlinks from Logan business associations",
+        "impact": "high",
+        "effort": "high"
+      },
+      {
+        "priority": "Optimize NAP consistency across Logan listings",
+        "impact": "medium",
+        "effort": "low"
+      }
+    ]
+  },
+
+  "keywordClusters": {
+    "emergencyServices": {
+      "pillarKeyword": "emergency restoration Logan",
+      "clusterKeywords": [
+        "24/7 water damage Logan",
+        "emergency water extraction Logan",
+        "urgent flood damage Logan",
+        "24 hour restoration Logan",
+        "emergency mold removal Logan"
+      ],
+      "totalVolume": 920,
+      "avgDifficulty": 32,
+      "priority": "critical"
+    },
+
+    "waterDamage": {
+      "pillarKeyword": "water damage restoration Logan",
+      "clusterKeywords": [
+        "flood damage restoration Logan",
+        "emergency water damage Logan",
+        "residential water damage Logan",
+        "commercial water damage Logan",
+        "carpet water damage Logan",
+        "ceiling water damage Logan",
+        "water extraction Logan"
+      ],
+      "totalVolume": 2190,
+      "avgDifficulty": 36,
+      "priority": "critical"
+    },
+
+    "moldRemediation": {
+      "pillarKeyword": "mold remediation Logan",
+      "clusterKeywords": [
+        "emergency mold removal Logan",
+        "commercial mold remediation Logan",
+        "house mold removal Logan",
+        "bathroom mold removal Logan",
+        "licensed mold remediation Logan"
+      ],
+      "totalVolume": 825,
+      "avgDifficulty": 31,
+      "priority": "high"
+    },
+
+    "localSuburbs": {
+      "pillarKeyword": "water damage restoration Logan areas",
+      "clusterKeywords": [
+        "water damage restoration Logan Central",
+        "flood restoration Beenleigh",
+        "mold remediation Waterford",
+        "water damage Marsden",
+        "emergency restoration Slacks Creek",
+        "storm damage Browns Plains",
+        "water extraction Loganholme",
+        "mold removal Springwood"
+      ],
+      "totalVolume": 1115,
+      "avgDifficulty": 28,
+      "priority": "critical"
+    }
+  },
+
+  "bingSpecificOptimizations": [
+    {
+      "keyword": "water damage restoration Logan Queensland",
+      "bingVolume": 180,
+      "googleVolume": 480,
+      "bingDifficulty": 38,
+      "optimization": "Add Queensland state qualifier, focus on exact-match meta titles"
+    },
+    {
+      "keyword": "certified water damage restoration Logan",
+      "bingVolume": 95,
+      "googleVolume": 140,
+      "bingDifficulty": 32,
+      "optimization": "Emphasize certification in meta tags, build .edu backlinks"
+    }
+  ],
+
+  "voiceSearchOptimization": [
+    {
+      "query": "who does water damage restoration in Logan",
+      "targetKeyword": "water damage restoration Logan",
+      "optimization": "FAQ schema, conversational content"
+    },
+    {
+      "query": "where can I get emergency flood help in Logan",
+      "targetKeyword": "emergency restoration Logan",
+      "optimization": "Local business schema, question-based headings"
+    }
+  ]
+}

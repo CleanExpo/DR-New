@@ -20,7 +20,7 @@ export default function CARSIPage() {
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-5xl font-bold mb-6">CARSI Training Coming Soon</h1>
             <p className="text-xl mb-8">IICRC-approved continuing education credits by Master Restorer Phill McGurk</p>
-            <Link href="/for-contractors" className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-lg">
+            <Link href="/for-contractors" className="inline-flex items-center px-8 py-4 bg-blue-700 text-white font-bold rounded-lg">
               View Contractor Resources
               <ArrowRight className="w-5 h-5 ml-2" />
             </Link>

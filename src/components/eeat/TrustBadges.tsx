@@ -152,7 +152,7 @@ export function TrustBadges(...args: any[]): void {
 // Industry statistics component
 export function IndustryStats(...args: any[]): void {
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl p-8">
+    <div className="bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-xl p-8">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
           <div className="text-4xl font-bold mb-2">115,000+</div>

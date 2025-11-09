@@ -5,7 +5,7 @@ interface EmergencyCTAProps {
 
 export const EmergencyCTA: React.FC<EmergencyCTAProps> = ({ suburb, message }) => {
   return (
-    <section className="py-16 bg-red-600 text-white">
+    <section className="py-16 bg-red-700 text-white">
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold mb-4">{message}</h2>
         <p className="text-xl mb-8">Call now for immediate assistance in {suburb}</p>

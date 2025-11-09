@@ -138,7 +138,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition flex items-center justify-center gap-2">
+                  <button className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition flex items-center justify-center gap-2">
                     <MessageSquare className="w-5 h-5" />
                     Get Instant Quote
                   </button>
@@ -231,7 +231,7 @@ export default async function SEOLocationPage({ params }: { params: PageParams }
                       placeholder="Tell us about your damage..."
                     ></textarea>
                   </div>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-semibold transition">
+                  <button className="w-full bg-blue-700 hover:bg-blue-800 text-white py-3 px-6 rounded-lg font-semibold transition">
                     Get Instant Quote
                   </button>
                 </form>

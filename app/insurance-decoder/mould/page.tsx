@@ -194,7 +194,7 @@ export default function MouldInsurancePage() {
 
             {/* Not Covered */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <div className="bg-red-600 text-white p-4">
+              <div className="bg-red-700 text-white p-4">
                 <XCircle className="w-8 h-8 mb-2" />
                 <h3 className="text-xl font-bold">Typically Not Covered</h3>
               </div>

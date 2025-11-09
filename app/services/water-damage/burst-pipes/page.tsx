@@ -164,7 +164,7 @@ export default function BurstPipesPage() {
       <section className="relative bg-gradient-to-r from-blue-900 to-cyan-700 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-red-600/90 px-4 py-2 rounded-full mb-6 animate-pulse">
+            <div className="inline-flex items-center gap-2 bg-red-700/90 px-4 py-2 rounded-full mb-6 animate-pulse">
               <AlertTriangle className="h-5 w-5" />
               <span className="text-sm font-bold">EMERGENCY BURST PIPE RESPONSE</span>
             </div>
@@ -178,7 +178,7 @@ export default function BurstPipesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-red-600 hover:bg-red-700 text-white"
+                className="bg-red-700 hover:bg-red-800 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5 animate-pulse" />
@@ -220,7 +220,7 @@ export default function BurstPipesPage() {
                 <Card key={index} className={`p-4 ${item.critical ? 'border-2 border-red-600 bg-red-50' : ''}`}>
                   <div className="flex items-start gap-3">
                     <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                      item.critical ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
+                      item.critical ? 'bg-red-700 text-white' : 'bg-blue-700 text-white'
                     }`}>
                       {item.step}
                     </div>
@@ -235,7 +235,7 @@ export default function BurstPipesPage() {
             <div className="mt-8 text-center">
               <Button 
                 size="lg"
-                className="bg-red-600 hover:bg-red-700"
+                className="bg-red-700 hover:bg-red-800"
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2" />
@@ -508,7 +508,7 @@ export default function BurstPipesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-red-600 hover:bg-red-700"
+              className="bg-red-700 hover:bg-red-800"
               onClick={() => setShowQuoteDialog(true)}
             >
               <MessageSquare className="mr-2 animate-pulse" />
@@ -560,7 +560,7 @@ export default function BurstPipesPage() {
                 <span>Free damage assessment</span>
               </div>
             </div>
-            <Button className="w-full bg-red-600 hover:bg-red-700">
+            <Button className="w-full bg-red-700 hover:bg-red-800">
               Get Emergency Help Now
             </Button>
           </div>

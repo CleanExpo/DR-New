@@ -205,7 +205,7 @@ export const scrollFadeInVariants = {
  */
 export const motionConfigProps = {
   reducedMotion: 'user', // Respect user preferences
-  transition: optimizedTransion,
+  transition: optimizedTransition,
 };
 
 /**

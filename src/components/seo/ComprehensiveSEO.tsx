@@ -127,7 +127,7 @@ export function ComprehensiveSEO(...args: any[]): void {
 // Missing phone component
 export function EmergencyContactBar(...args: any[]): void {
   return (
-    <div className="fixed top-0 left-0 right-0 bg-red-600 text-white py-2 px-4 z-[9999] shadow-lg">
+    <div className="fixed top-0 left-0 right-0 bg-red-700 text-white py-2 px-4 z-[9999] shadow-lg">
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex items-center gap-4">
           <span className="animate-pulse">🚨</span>

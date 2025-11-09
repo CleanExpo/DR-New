@@ -105,7 +105,7 @@ export default function HamiltonPage() {
         <section className="bg-gradient-to-br from-red-700 via-red-800 to-slate-900 text-white py-24">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center">
-              <div className="inline-block bg-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <div className="inline-block bg-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 IICRC MASTER RESTORER BRISBANE
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
@@ -176,7 +176,7 @@ export default function HamiltonPage() {
             </p>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow border-t-4 border-blue-600">
+              <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow border-t-4 border-blue-700">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   💧 Water Damage Restoration
                 </h3>
@@ -371,7 +371,7 @@ export default function HamiltonPage() {
         </section>
 
         {/* Emergency CTA */}
-        <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white">
+        <section className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-900 text-white">
           <div className="container mx-auto px-4 text-center max-w-4xl">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Toowong Emergency? Call Now

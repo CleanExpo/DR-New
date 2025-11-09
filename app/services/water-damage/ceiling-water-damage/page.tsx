@@ -247,7 +247,7 @@ export default function CeilingWaterDamagePage() {
       </section>
 
       {/* Warning Banner */}
-      <section className="bg-red-600 text-white py-4">
+      <section className="bg-red-700 text-white py-4">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-3">
             <AlertTriangle className="h-6 w-6 animate-pulse" />
@@ -272,8 +272,8 @@ export default function CeilingWaterDamagePage() {
             {ceilingDamageTypes.map((item, index) => (
               <Card key={index} className={`p-6 hover:shadow-xl transition-shadow border-2 ${
                 item.severity === 'Critical' ? 'border-red-600' : 
-                item.severity === 'Serious' ? 'border-blue-600' :
-                item.severity === 'Urgent' ? 'border-blue-600' : 'border-gray-200'
+                item.severity === 'Serious' ? 'border-blue-700' :
+                item.severity === 'Urgent' ? 'border-blue-700' : 'border-gray-200'
               }`}>
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-lg font-bold">{item.type}</h3>
@@ -341,7 +341,7 @@ export default function CeilingWaterDamagePage() {
               {restorationProcess.map((item, index) => (
                 <Card key={index} className="p-6 hover:shadow-xl transition-shadow">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                    <div className="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold">
                       {item.step}
                     </div>
                     <h3 className="text-lg font-bold">{item.title}</h3>

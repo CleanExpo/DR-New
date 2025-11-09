@@ -270,7 +270,7 @@ export function AudioEmergencyProvider(...args: any[]): void {
       {children}
       {emergency && (
         <div 
-          className="fixed top-0 left-0 right-0 z-[9999] bg-red-600 text-white p-4 text-center"
+          className="fixed top-0 left-0 right-0 z-[9999] bg-red-700 text-white p-4 text-center"
           data-audio="emergency"
         >
           <AudioSystem enabled autoPlay voiceType="emergency" />

@@ -115,7 +115,7 @@ export function InteractiveClaimCards(...args: any[]): void {
 
             {/* CTA */}
             <div className="p-4 bg-gray-50">
-              <button className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105">
+              <button className="w-full py-3 px-4 bg-gradient-to-r from-blue-700 to-indigo-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105">
                 Get Emergency Help
               </button>
             </div>

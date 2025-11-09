@@ -117,7 +117,7 @@ export default function AnimatedHero() {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255,0,0,0.6)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-red-600 to-blue-700 text-white font-bold rounded-full flex items-center justify-center space-x-2 text-lg"
+              className="px-8 py-4 bg-gradient-to-r from-red-700 to-blue-800 text-white font-bold rounded-full flex items-center justify-center space-x-2 text-lg"
             >
               <MessageSquare className="h-6 w-6" />
               <span>Call online support</span>
@@ -126,7 +126,7 @@ export default function AnimatedHero() {
             <motion.button
               whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,100,255,0.6)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full text-lg"
+              className="px-8 py-4 bg-gradient-to-r from-blue-700 to-purple-600 text-white font-bold rounded-full text-lg"
             >
               Get Free Quote
             </motion.button>

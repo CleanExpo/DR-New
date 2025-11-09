@@ -66,7 +66,7 @@ export default function SewageCleanupPage() {
 
       <main className="min-h-screen bg-gradient-to-br from-red-900 via-red-800 to-orange-900">
         {/* Emergency Alert Banner */}
-        <section className="bg-red-600 text-white py-4">
+        <section className="bg-red-700 text-white py-4">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-center gap-4 text-center">
               <Biohazard className="h-6 w-6 animate-pulse" />
@@ -376,7 +376,7 @@ export default function SewageCleanupPage() {
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">{scenario.source}</h3>
                     <span className={`px-3 py-1 rounded-full text-sm font-bold ${
-                      scenario.risk === 'Extreme' ? 'bg-red-600 text-white' : 'bg-orange-600 text-white'
+                      scenario.risk === 'Extreme' ? 'bg-red-700 text-white' : 'bg-orange-600 text-white'
                     }`}>
                       {scenario.risk} Risk
                     </span>

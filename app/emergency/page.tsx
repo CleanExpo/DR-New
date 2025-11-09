@@ -84,7 +84,7 @@ export default function EmergencyTimesPage() {
   };
 
   const getColorClass = (level: string) => {
-    if (level === 'Extreme') return 'bg-red-600';
+    if (level === 'Extreme') return 'bg-red-700';
     if (level === 'Critical') return 'bg-blue-700';
     return 'bg-yellow-600';
   };
@@ -203,7 +203,7 @@ export default function EmergencyTimesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-blue-700 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-700 to-blue-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-4xl font-bold mb-6">

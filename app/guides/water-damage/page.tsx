@@ -451,7 +451,7 @@ export default function WaterDamageGuidePage() {
             <div className="mt-8 text-center">
               <Link
                 href="/insurance-decoder/water-damage"
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors"
               >
                 <FileText className="w-5 h-5" />
                 Decode Your Policy Coverage
@@ -509,7 +509,7 @@ export default function WaterDamageGuidePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+      <section className="py-20 px-4 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">
             Experiencing Water Damage Now?

@@ -51,7 +51,7 @@ export function FluidEmergencyBanner({
       className={`
         ${sticky ? 'sticky top-0' : 'relative'}
         z-[1020]
-        bg-gradient-to-r from-red-600 via-red-500 to-red-600
+        bg-gradient-to-r from-red-700 via-red-500 to-red-600
         border-b-4 border-red-700
         shadow-2xl shadow-red-900/50
       `}

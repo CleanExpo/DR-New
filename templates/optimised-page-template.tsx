@@ -133,7 +133,7 @@ export const EmergencyCTA = ({
   subtitle = 'Every minute counts in disaster recovery'
 }) => {
   return (
-    <div className="bg-red-600 text-white py-8 px-6 rounded-lg text-center">
+    <div className="bg-red-700 text-white py-8 px-6 rounded-lg text-center">
       <h3 className="text-2xl font-bold mb-4">{title}</h3>
       <p className="text-lg mb-6">{subtitle}</p>
       <Link href="tel:1300309361" className="inline-flex items-center px-8 py-4 bg-white text-red-600 font-bold text-lg rounded-lg hover:bg-gray-100 transition-colors">

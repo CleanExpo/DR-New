@@ -281,7 +281,7 @@ export default function FireDamageChecklistPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/whos-first"
-              className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-2"
+              className="bg-red-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-800 transition-colors inline-flex items-center justify-center gap-2"
             >
               <Phone className="w-5 h-5" />
               Find Fire Restoration Experts

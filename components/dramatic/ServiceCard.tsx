@@ -31,7 +31,7 @@ const iconColorClasses = {
 };
 
 const borderColorClasses = {
-  blue: 'border-blue-500 hover:border-blue-600',
+  blue: 'border-blue-500 hover:border-blue-700',
   red: 'border-red-500 hover:border-red-600',
   green: 'border-green-500 hover:border-green-600',
   cyan: 'border-cyan-500 hover:border-cyan-600',

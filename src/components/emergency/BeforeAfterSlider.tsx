@@ -148,7 +148,7 @@ export default function BeforeAfterSlider() {
               
               {/* Before Label */}
               <div className="absolute top-4 left-4 z-20">
-                <div className="bg-red-600 text-white px-6 py-3 rounded-lg font-bold text-lg shadow-xl">
+                <div className="bg-red-700 text-white px-6 py-3 rounded-lg font-bold text-lg shadow-xl">
                   {currentCase.beforeTitle}
                 </div>
                 <div className="mt-2 bg-black/80 text-white px-4 py-2 rounded">

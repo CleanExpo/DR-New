@@ -1,0 +1,7 @@
+{
+  "metadata": {
+    "reportDate": "2025-11-09",
+    "reportType": "Competitor Analysis - Ipswich Disaster Recovery Services",
+    "targetMarket": "Ipswich, Queensland, Australia"
+  }
+}

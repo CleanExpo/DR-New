@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function ClaimPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="bg-red-600 text-white py-3">
+      <div className="bg-red-700 text-white py-3">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-3 text-center">
             <ExclamationTriangleIcon className="w-6 h-6 animate-pulse" />
@@ -33,7 +33,7 @@ export default function ClaimPage() {
       <section className="bg-gradient-to-br from-red-700 via-red-800 to-slate-900 text-white py-20">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center">
-            <div className="inline-block bg-red-600 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <div className="inline-block bg-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
               24/7 EMERGENCY CLAIM SUBMISSION
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">

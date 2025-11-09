@@ -82,7 +82,7 @@ export default function EmergencyWaterExtractionPage() {
 
       <main className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900">
         {/* Emergency Alert Banner */}
-        <section className="bg-red-600 text-white py-4">
+        <section className="bg-red-700 text-white py-4">
           <div className="container mx-auto px-6">
             <div className="flex items-center justify-center gap-4 text-center">
               <AlertTriangle className="h-6 w-6 animate-pulse" />
@@ -408,7 +408,7 @@ export default function EmergencyWaterExtractionPage() {
             </div>
 
             <div className="mt-12 text-center">
-              <div className="bg-blue-600/10 rounded-xl p-6 border border-blue-600/30 max-w-4xl mx-auto">
+              <div className="bg-blue-700/10 rounded-xl p-6 border border-blue-700/30 max-w-4xl mx-auto">
                 <h3 className="text-xl font-bold text-white mb-3">
                   Complete Southeast Queensland Coverage
                 </h3>

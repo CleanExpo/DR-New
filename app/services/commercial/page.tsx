@@ -69,7 +69,7 @@ export default function CommercialRestorationPage() {
               'Complete documentation for claims'
             ].map((benefit, index) => (
               <div key={index} className="flex items-center gap-3">
-                <div className="bg-blue-600 text-white rounded-full p-1">
+                <div className="bg-blue-700 text-white rounded-full p-1">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
@@ -102,7 +102,7 @@ export default function CommercialRestorationPage() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-12 text-center">
+        <div className="mt-16 bg-gradient-to-r from-blue-700 to-purple-600 text-white rounded-2xl p-12 text-center">
           <h2 className="text-3xl font-bold mb-4">Minimize Business Downtime</h2>
           <p className="text-xl mb-8">Get your business back to operational status fast with our commercial restoration experts</p>
           <a

@@ -107,7 +107,7 @@ export default function StormDamageChecklistPage() {
       </section>
 
       {/* Critical Alert */}
-      <section className="bg-red-600 text-white py-4">
+      <section className="bg-red-700 text-white py-4">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center gap-3">
             <AlertTriangle className="w-6 h-6" />

@@ -58,17 +58,17 @@ export default function EmergencyChecklistsPage() {
 
   const getUrgencyColor = (urgency: string) => {
     switch(urgency) {
-      case 'IMMEDIATE': return 'bg-red-600 text-white';
+      case 'IMMEDIATE': return 'bg-red-700 text-white';
       case 'URGENT': return 'bg-orange-600 text-white';
       case 'IMPORTANT': return 'bg-yellow-600 text-white';
-      default: return 'bg-blue-600 text-white';
+      default: return 'bg-blue-700 text-white';
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-900 to-red-700 text-white py-16">
+      <section className="bg-gradient-to-r from-red-900 to-red-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -181,7 +181,7 @@ export default function EmergencyChecklistsPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <Link
               href="/whos-first"
-              className="bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-blue-700 text-white py-4 px-6 rounded-lg hover:bg-blue-800 transition-colors"
             >
               Find Emergency Contractors
             </Link>

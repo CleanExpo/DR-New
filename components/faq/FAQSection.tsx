@@ -285,7 +285,7 @@ export default function FAQSection({
               <Badge
                 className={`cursor-pointer px-4 py-2 ${
                   selectedCategory === 'all'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-blue-700 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
                 onClick={() => setSelectedCategory('all')}
@@ -299,7 +299,7 @@ export default function FAQSection({
                     key={category}
                     className={`cursor-pointer px-4 py-2 ${
                       selectedCategory === category
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-blue-700 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                     onClick={() => setSelectedCategory(category)}
@@ -327,7 +327,7 @@ export default function FAQSection({
                   >
                     <Card className="p-4 bg-blue-50 border-blue-200 hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex items-start gap-3">
-                        <div className="bg-blue-600 text-white rounded-full p-2">
+                        <div className="bg-blue-700 text-white rounded-full p-2">
                           <HelpCircle className="w-4 h-4" />
                         </div>
                         <div>
@@ -422,12 +422,12 @@ export default function FAQSection({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => window.location.href = 'tel:1300309361'}
-                className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 bg-red-700 text-white rounded-lg hover:bg-red-800 transition-colors"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call 1300 309 361
               </button>
-              <button className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+              <button className="inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 border-2 border-blue-700 rounded-lg hover:bg-blue-50 transition-colors">
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Start Live Chat
               </button>

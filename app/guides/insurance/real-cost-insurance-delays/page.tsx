@@ -208,7 +208,7 @@ export default function RealCostInsuranceDelaysPage() {
             
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/schedule">
-                <Button size="lg" className="bg-gradient-to-r from-red-500 to-blue-600 hover:from-red-600 hover:to-blue-700">
+                <Button size="lg" className="bg-gradient-to-r from-red-500 to-blue-600 hover:from-red-700 hover:to-blue-800">
                   <MessageSquare className="mr-2 h-5 w-5" />
                   Get Emergency Response Now
                 </Button>

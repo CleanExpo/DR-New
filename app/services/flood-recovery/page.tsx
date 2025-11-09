@@ -84,7 +84,7 @@ export default function FloodRecoveryPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   asChild
-                  className="emergency-contact bg-red-600 hover:bg-red-700 text-white px-8 py-4 text-lg"
+                  className="emergency-contact bg-red-700 hover:bg-red-800 text-white px-8 py-4 text-lg"
                 >
                   <Link href="tel:1300309361">
                     <Phone className="mr-2 h-5 w-5" />

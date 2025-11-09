@@ -14,11 +14,11 @@ export function EmergencyCTA(...args: any[]): void {
   const getButtonStyle = () => {
     switch(variant) {
       case 'urgent':
-        return 'bg-red-600 hover:bg-red-700 text-white animate-pulse';
+        return 'bg-red-700 hover:bg-red-800 text-white animate-pulse';
       case 'hero':
         return 'bg-blue-700 hover:bg-orange-700 text-white text-lg px-8 py-6';
       default:
-        return 'bg-blue-600 hover:bg-blue-700 text-white';
+        return 'bg-blue-700 hover:bg-blue-800 text-white';
     }
   };
 

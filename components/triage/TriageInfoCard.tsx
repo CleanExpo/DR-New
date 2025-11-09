@@ -95,7 +95,7 @@ export function TriageInfoCard(...args: any[]): void {
           </div>
           <a
             href="tel:1300956502"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors"
           >
             <Phone className="h-5 w-5" />
             1300 956 502

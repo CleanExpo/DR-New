@@ -171,7 +171,7 @@ export default function AboutNRPGPage() {
         <div className="absolute inset-0 bg-[url('/images/pattern-diagonal.svg')] opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-blue-600 hover:bg-blue-700">
+            <Badge className="mb-4 bg-blue-700 hover:bg-blue-800">
               Founded 2009
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
@@ -327,7 +327,7 @@ export default function AboutNRPGPage() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <div className="flex justify-center mb-6">
-                <div className="h-20 w-20 bg-blue-600 rounded-full flex items-center justify-center">
+                <div className="h-20 w-20 bg-blue-700 rounded-full flex items-center justify-center">
                   <Globe className="h-10 w-10 text-white" />
                 </div>
               </div>
@@ -447,7 +447,7 @@ export default function AboutNRPGPage() {
               {joinSteps.map((step, index) => (
                 <div key={index} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="h-16 w-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                    <div className="h-16 w-16 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold">
                       {step.step}
                     </div>
                   </div>

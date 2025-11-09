@@ -799,7 +799,7 @@ export default function MouldRemediationGuidePage() {
             <div className="mt-8 text-center">
               <Link
                 href="/insurance-decoder/mould-coverage"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
                 <Calculator className="w-5 h-5" />
                 Check Your Mould Coverage

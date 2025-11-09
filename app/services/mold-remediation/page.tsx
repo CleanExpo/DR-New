@@ -319,7 +319,7 @@ export default function MoldRemediationPage() {
           </div>
           
           <div className="bg-gradient-to-br from-blue-50 to-cyan-100 border border-blue-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-blue-700 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
               </svg>
@@ -358,7 +358,7 @@ export default function MoldRemediationPage() {
           </div>
           
           <div className="bg-gradient-to-br from-red-50 to-pink-100 border border-red-200 rounded-xl p-6">
-            <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 bg-red-700 rounded-lg flex items-center justify-center mb-4">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>

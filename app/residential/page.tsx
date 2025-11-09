@@ -202,7 +202,7 @@ export default function ResidentialPage() {
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-20">
+        <section className="bg-gradient-to-br from-blue-700 via-blue-700 to-blue-900 text-white py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -217,7 +217,7 @@ export default function ResidentialPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/get-help"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors"
+                  className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors"
                 >
                   Get Emergency Help
                 </Link>
@@ -349,7 +349,7 @@ export default function ResidentialPage() {
               <div className="space-y-6">
                 {process.map((item) => (
                   <div key={item.step} className="flex gap-6 items-start bg-white p-6 rounded-lg shadow-md">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold text-xl">
                       {item.step}
                     </div>
                     <div className="flex-grow">
@@ -413,7 +413,7 @@ export default function ResidentialPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-red-600 text-white">
+        <section className="py-16 bg-red-700 text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Home Emergency?

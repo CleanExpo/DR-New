@@ -144,7 +144,7 @@ export default function NavigationIndicator() {
                   key={child.href}
                   className={`h-1 w-8 rounded-full transition-all ${
                     pathname === child.href
-                      ? 'bg-blue-600'
+                      ? 'bg-blue-700'
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                   title={child.label}

@@ -132,7 +132,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 
       {/* Cookie Consent Banner */}
       <div
-        className="fixed bottom-0 left-0 right-0 z-[9999] bg-white border-t-4 border-blue-600 shadow-2xl transform transition-transform"
+        className="fixed bottom-0 left-0 right-0 z-[9999] bg-white border-t-4 border-blue-700 shadow-2xl transform transition-transform"
         role="dialog"
         aria-labelledby="cookie-consent-title"
         aria-describedby="cookie-consent-description"
@@ -278,14 +278,14 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
               {showDetails ? (
                 <button
                   onClick={handleAcceptSelected}
-                  className="px-6 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="px-6 py-3 text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition-colors font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Accept Selected
                 </button>
               ) : (
                 <button
                   onClick={handleAcceptAll}
-                  className="px-6 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="px-6 py-3 text-white bg-blue-700 rounded-lg hover:bg-blue-800 transition-colors font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Accept All
                 </button>

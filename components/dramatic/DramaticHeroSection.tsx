@@ -38,8 +38,8 @@ const overlayClasses = {
 };
 
 const badgeClasses = {
-  red: 'bg-red-600 text-white',
-  blue: 'bg-blue-600 text-white',
+  red: 'bg-red-700 text-white',
+  blue: 'bg-blue-700 text-white',
   green: 'bg-green-600 text-white',
   yellow: 'bg-yellow-500 text-black',
 };
@@ -143,7 +143,7 @@ export function DramaticHeroSection({
             {!showPhoneCTA && ctaLink && (
               <Link
                 href={ctaLink}
-                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all shadow-2xl transform hover:scale-105"
+                className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-red-700 text-white font-bold text-xl rounded-lg hover:bg-red-800 transition-all shadow-2xl transform hover:scale-105"
               >
                 {ctaText}
                 <ArrowRight className="w-5 h-5" />

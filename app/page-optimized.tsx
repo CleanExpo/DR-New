@@ -38,7 +38,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <a
               href="tel:1300309361"
-              className="inline-flex items-center justify-center px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all shadow-2xl"
+              className="inline-flex items-center justify-center px-10 py-5 bg-red-700 text-white font-bold text-xl rounded-lg hover:bg-red-800 transition-all shadow-2xl"
               aria-label="Call 1300 309 361 for emergency service"
             >
               <Phone className="w-6 h-6 mr-2" aria-hidden="true" />
@@ -177,7 +177,7 @@ export default function HomePage() {
       <section className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <div className="inline-block mb-4 px-4 py-2 bg-blue-600 text-white font-semibold rounded-full">
+            <div className="inline-block mb-4 px-4 py-2 bg-blue-700 text-white font-semibold rounded-full">
               📱 Access Emergency Services Anywhere
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -239,7 +239,7 @@ export default function HomePage() {
 
       {/* Rest of homepage remains the same... */}
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">

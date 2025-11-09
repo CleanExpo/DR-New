@@ -40,7 +40,7 @@ export default function ModernAboutPage() {
     {
       title: 'Transparent Process',
       description: 'Clear communication, honest pricing, and detailed documentation throughout.',
-      colour: 'from-blue-600 to-red-500'
+      colour: 'from-blue-700 to-red-500'
     }
   ];
 
@@ -194,7 +194,7 @@ export default function ModernAboutPage() {
                 </div>
               </div>
               <motion.div
-                className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-4 shadow-xl"
+                className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-700 to-cyan-600 rounded-xl p-4 shadow-xl"
                 animate={{ rotate: [0, 5, 0] }}
                 transition={{ duration: 4, repeat: Infinity }}
               >

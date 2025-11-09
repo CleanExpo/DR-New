@@ -478,7 +478,7 @@ export default function CommercialPropertyPage() {
                   onClick={() => setSelectedBusinessType(key)}
                   className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                     selectedBusinessType === key
-                      ? 'bg-blue-600 text-white shadow-lg'
+                      ? 'bg-blue-700 text-white shadow-lg'
                       : 'bg-white text-gray-200 hover:bg-blue-50 border border-gray-200'
                   }`}
                 >
@@ -658,7 +658,7 @@ export default function CommercialPropertyPage() {
             </h2>
             <div className="bg-white rounded-xl shadow-xl overflow-hidden">
               <table className="w-full">
-                <thead className="bg-blue-600 text-white">
+                <thead className="bg-blue-700 text-white">
                   <tr>
                     <th className="px-6 py-4 text-left">Coverage Type</th>
                     <th className="px-6 py-4 text-left">Importance</th>
@@ -691,7 +691,7 @@ export default function CommercialPropertyPage() {
             <div className="mt-6 text-center">
               <Link
                 href="/insurance-decoder/commercial"
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
               >
                 <Calculator className="w-5 h-5" />
                 Check Your Commercial Coverage
@@ -725,7 +725,7 @@ export default function CommercialPropertyPage() {
                   viewport={{ once: true }}
                   className="relative flex items-start mb-8"
                 >
-                  <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm z-10">
+                  <div className="w-16 h-16 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold text-sm z-10">
                     {phase.days}
                   </div>
                   <div className="ml-8 bg-white rounded-lg shadow-lg p-6 flex-grow">

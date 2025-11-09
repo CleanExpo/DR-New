@@ -168,7 +168,7 @@ export default function RotatingHeroBanner() {
                 transition={{ delay: 0.2 }}
                 className="mb-6"
               >
-                <Badge variant="secondary" className="bg-red-600/90 text-white text-sm font-semibold px-4 py-2">
+                <Badge variant="secondary" className="bg-red-700/90 text-white text-sm font-semibold px-4 py-2">
                   <Clock className="w-4 h-4 mr-2" />
                   {banner.urgency}
                 </Badge>
@@ -213,7 +213,7 @@ export default function RotatingHeroBanner() {
               >
                 <Button
                   size="lg"
-                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-xl font-bold shadow-2xl hover:scale-105 transition-all duration-300"
+                  className="bg-red-700 hover:bg-red-800 text-white px-8 py-6 text-xl font-bold shadow-2xl hover:scale-105 transition-all duration-300"
                   onClick={() => window.location.href = banner.ctaUrl}
                 >
                   <Phone className="w-6 h-6 mr-3" />
@@ -287,7 +287,7 @@ export default function RotatingHeroBanner() {
           >
             <a
               href="tel:1300309361"
-              className="bg-red-600/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-red-700 transition-all duration-300 shadow-2xl flex items-center gap-2"
+              className="bg-red-700/90 backdrop-blur-sm text-white px-6 py-3 rounded-full font-bold text-lg hover:bg-red-800 transition-all duration-300 shadow-2xl flex items-center gap-2"
             >
               <Phone className="w-5 h-5" />
               1300 309 361

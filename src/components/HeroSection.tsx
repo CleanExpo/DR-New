@@ -32,7 +32,7 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Animated background gradient */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 animate-gradient-x" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-cyan-600 animate-gradient-x" />
       </div>
       
       {/* Grid pattern overlay */}
@@ -93,11 +93,11 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <a
             href="/emergency"
-            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600 to-blue-700 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/25"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-red-700 to-blue-800 rounded-full text-white font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl hover:shadow-blue-600/25"
           >
             <AlertCircle className="w-6 h-6 animate-pulse" />
             <span>Emergency Help</span>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-blue-700 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-700 to-blue-800 blur-xl opacity-50 group-hover:opacity-80 transition-opacity" />
           </a>
           
           <Link

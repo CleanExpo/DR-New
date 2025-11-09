@@ -48,7 +48,7 @@ export default function EasterWeekendEmergencyRestorationPage() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+              <Button size="lg" className="bg-blue-700 hover:bg-blue-800">
                 Get Immediate Help
               </Button>
               <Button size="lg" className="bg-[#FF0000] hover:bg-[#CC0000] text-white">
@@ -95,25 +95,25 @@ export default function EasterWeekendEmergencyRestorationPage() {
                 <h3 className="text-xl font-semibold mt-8 mb-4">Our Process</h3>
                 <ol className="space-y-4">
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">1</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-700 text-white rounded-full flex items-center justify-center mr-3">1</span>
                     <div>
                       <strong>Initial Assessment:</strong> Comprehensive evaluation of the situation
                     </div>
                   </li>
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">2</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-700 text-white rounded-full flex items-center justify-center mr-3">2</span>
                     <div>
                       <strong>Emergency Response:</strong> Immediate action to prevent further damage
                     </div>
                   </li>
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">3</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-700 text-white rounded-full flex items-center justify-center mr-3">3</span>
                     <div>
                       <strong>Professional Restoration:</strong> Complete restoration using industry-leading equipment
                     </div>
                   </li>
                   <li className="flex">
-                    <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-3">4</span>
+                    <span className="flex-shrink-0 w-8 h-8 bg-blue-700 text-white rounded-full flex items-center justify-center mr-3">4</span>
                     <div>
                       <strong>Quality Assurance:</strong> Final inspection and certification
                     </div>

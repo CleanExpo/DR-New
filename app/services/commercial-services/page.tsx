@@ -145,7 +145,7 @@ export default function CommercialServicesPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white py-24">
+      <section className="relative bg-gradient-to-r from-blue-900 to-blue-800 text-white py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-blue-800/50 px-4 py-2 rounded-full mb-6">
@@ -162,7 +162,7 @@ export default function CommercialServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-blue-700 hover:bg-blue-800 text-white"
                 onClick={() => setShowQuoteDialog(true)}
               >
                 <MessageSquare className="mr-2 h-5 w-5" />
@@ -233,7 +233,7 @@ export default function CommercialServicesPage() {
             {businessContinuitySteps.map((item, index) => (
               <div key={index} className="flex gap-4 mb-8 relative">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                  <div className="w-12 h-12 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold">
                     {item.step}
                   </div>
                   {index < businessContinuitySteps.length - 1 && (
@@ -484,7 +484,7 @@ export default function CommercialServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Protect Your Business with Professional Recovery</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -493,7 +493,7 @@ export default function CommercialServicesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-blue-700 hover:bg-blue-800"
               onClick={() => setShowQuoteDialog(true)}
             >
               <MessageSquare className="mr-2" />
@@ -545,7 +545,7 @@ export default function CommercialServicesPage() {
                 <span>Free commercial assessment</span>
               </div>
             </div>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700">
+            <Button className="w-full bg-blue-700 hover:bg-blue-800">
               Request Immediate Response
             </Button>
           </div>

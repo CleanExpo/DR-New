@@ -13,7 +13,7 @@ export default function SundayNightEmergencyPage() {
   return (
     <div className="min-h-screen">
       {/* Emergency Alert Banner */}
-      <div className="bg-red-600 text-white py-3 animate-pulse">
+      <div className="bg-red-700 text-white py-3 animate-pulse">
         <div className="container mx-auto px-4 flex items-center justify-center">
           <AlertTriangle className="h-5 w-5 mr-2" />
           <span className="font-bold">HIGH EMERGENCY - CALL NOW: Online Form Available 24/7</span>
@@ -53,7 +53,7 @@ export default function SundayNightEmergencyPage() {
                 <p className="text-sm">Insurance Covered</p>
               </Card>
             </div>
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white text-lg px-8 py-6">
+            <Button size="lg" className="bg-red-700 hover:bg-red-800 text-white text-lg px-8 py-6">
               <MessageSquare className="mr-2 h-6 w-6" />
               Call Online Form Available 24/7 - Sunday 6PM - Monday 6AM Service
             </Button>

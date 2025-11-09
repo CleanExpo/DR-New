@@ -170,7 +170,7 @@ export default function LocationPage({ params }: LocationParams) {
 
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white py-20">
+        <section className="bg-gradient-to-br from-red-700 via-red-700 to-red-900 text-white py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
@@ -299,7 +299,7 @@ export default function LocationPage({ params }: LocationParams) {
         </section>
 
         {/* Emergency CTA */}
-        <section className="py-16 bg-red-600 text-white">
+        <section className="py-16 bg-red-700 text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Emergency in {locationData.name}?

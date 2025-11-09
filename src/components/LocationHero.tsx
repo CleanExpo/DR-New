@@ -21,7 +21,7 @@ export const LocationHero: React.FC<LocationHeroProps> = ({
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
         <p className="text-xl text-blue-100">{subtitle}</p>
         <div className="mt-8">
-          <a href="/claim" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg inline-block">
+          <a href="/claim" className="bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-8 rounded-lg inline-block">
             Get Emergency Help Now
           </a>
         </div>

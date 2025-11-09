@@ -47,7 +47,7 @@ export function ServicePageLayout({
 
       {/* Optional Emergency CTA */}
       {showCTA && (
-        <section className="py-16 bg-red-600 text-white">
+        <section className="py-16 bg-red-700 text-white">
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Need Emergency Assistance?

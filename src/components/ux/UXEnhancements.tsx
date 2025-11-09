@@ -10,7 +10,7 @@ export function FloatingEmergencyCTA(...args: any[]): void {
   return (
     <>
       {isVisible && (
-        <div className="fixed top-16 left-0 right-0 bg-gradient-to-r from-red-600 to-orange-600 text-white py-3 px-4 z-[10000] shadow-2xl animate-slideDown">
+        <div className="fixed top-16 left-0 right-0 bg-gradient-to-r from-red-700 to-orange-600 text-white py-3 px-4 z-[10000] shadow-2xl animate-slideDown">
           <div className="container mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <AlertTriangle className="h-5 w-5 animate-pulse" />
@@ -143,11 +143,11 @@ export function LoadingWithProgress(...args: any[]): void {
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[10000]">
       <div className="bg-white rounded-xl p-8 max-w-sm w-full mx-4 shadow-2xl">
         <div className="flex flex-col items-center">
-          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4" />
+          <div className="w-16 h-16 border-4 border-blue-700 border-t-transparent rounded-full animate-spin mb-4" />
           <p className="text-gray-800 font-medium mb-4">{message}</p>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              className="bg-blue-700 h-2 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -186,7 +186,7 @@ export function ImprovedChatButton(...args: any[]): void {
           const event = new CustomEvent('openChat');
           window.dispatchEvent(event);
         }}
-        className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full p-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300"
+        className="relative bg-gradient-to-r from-blue-700 to-purple-600 text-white rounded-full p-4 shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300"
         aria-label="Open live chat"
       >
         <MessageCircle size={28} />
@@ -242,13 +242,13 @@ export function SkipLinks(...args: any[]): void {
     <div className="sr-only focus-within:not-sr-only">
       <a 
         href="#main-content" 
-        className="absolute top-0 left-0 bg-blue-600 text-white px-4 py-2 z-[10000] focus:outline-none"
+        className="absolute top-0 left-0 bg-blue-700 text-white px-4 py-2 z-[10000] focus:outline-none"
       >
         Skip to main content
       </a>
       <a 
         href="#emergency-contact" 
-        className="absolute top-0 left-32 bg-red-600 text-white px-4 py-2 z-[10000] focus:outline-none"
+        className="absolute top-0 left-32 bg-red-700 text-white px-4 py-2 z-[10000] focus:outline-none"
       >
         Skip to emergency contact
       </a>

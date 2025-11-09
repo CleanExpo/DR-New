@@ -255,7 +255,7 @@ export default function SchedulePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <div className="bg-gradient-to-r from-blue-700 to-purple-600 text-white">
         <div className="container mx-auto px-6 py-12">
           <h1 className="text-4xl font-bold mb-2">Schedule Service</h1>
           <p className="text-xl text-white/90">Book your restoration service in minutes</p>
@@ -270,7 +270,7 @@ export default function SchedulePage() {
               <div key={step} className="flex items-center">
                 <div className={`
                   flex items-center justify-center w-10 h-10 rounded-full
-                  ${currentStep === step ? 'bg-blue-600 text-white' : 
+                  ${currentStep === step ? 'bg-blue-700 text-white' : 
                     currentStep > step ? 'bg-green-500 text-white' : 
                     'bg-gray-200 text-gray-700'}
                 `}>
@@ -774,7 +774,7 @@ export default function SchedulePage() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600"
+                      className="flex items-center gap-2 bg-gradient-to-r from-blue-700 to-purple-600"
                     >
                       {isSubmitting ? (
                         <>

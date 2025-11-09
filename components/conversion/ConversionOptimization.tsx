@@ -195,7 +195,7 @@ export default function ConversionOptimization({
                   <div className="space-y-3">
                     <Button
                       size="lg"
-                      className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-xl"
+                      className="w-full bg-red-700 hover:bg-red-800 text-white py-6 text-xl"
                       onClick={() => window.location.href = 'tel:1300309361'}
                     >
                       <PhoneCall className="w-6 h-6 mr-2 animate-pulse" />
@@ -232,7 +232,7 @@ export default function ConversionOptimization({
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
-            className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-2xl"
+            className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-700 to-purple-600 text-white shadow-2xl"
           >
             <div className="container mx-auto px-4 py-4">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -412,7 +412,7 @@ export default function ConversionOptimization({
 
       {/* Urgency Timer Badge (Top of Page) */}
       <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40">
-        <Badge className="bg-red-600 text-white px-4 py-2 text-sm">
+        <Badge className="bg-red-700 text-white px-4 py-2 text-sm">
           <Clock className="w-4 h-4 mr-2 animate-pulse" />
           Offer expires in: {formatTimer(urgencyTimer)}
         </Badge>

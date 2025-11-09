@@ -102,7 +102,7 @@ export function HeroSection(...args: any[]): void {
             {ctaText && ctaLink && (
               <motion.a
                 href={ctaLink}
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+                className="inline-block bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

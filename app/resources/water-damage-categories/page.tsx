@@ -291,7 +291,7 @@ export default function WaterDamageCategoriesPage() {
               {/* Category 3 */}
               <div className="bg-red-50 rounded-xl p-6 border-2 border-red-400">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">3</div>
+                  <div className="bg-red-700 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-lg">3</div>
                   <h3 className="text-xl font-bold text-red-900">Black Water</h3>
                 </div>
                 <p className="text-red-800 mb-4">
@@ -620,7 +620,7 @@ export default function WaterDamageCategoriesPage() {
               </p>
               <Link
                 href="/locations"
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors"
               >
                 <MapPin className="h-5 w-5" />
                 Find Your Local Service
@@ -698,7 +698,7 @@ export default function WaterDamageCategoriesPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -711,7 +711,7 @@ export default function WaterDamageCategoriesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/emergency"
-                className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-red-700 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-red-800 transition-colors"
               >
                 <Phone className="h-6 w-6" />
                 Emergency Response

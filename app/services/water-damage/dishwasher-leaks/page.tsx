@@ -53,7 +53,7 @@ export default function DishwasherLeaksPage() {
             </h3>
             <p className="mb-4">Immediate dishwasher leak cleanup available 24/7</p>
             <a href="tel:1300309361" className="inline-block">
-              <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700">
+              <Button size="lg" className="w-full bg-blue-700 hover:bg-blue-800">
                 Call 1300 309 361 Now
               </Button>
             </a>
@@ -205,7 +205,7 @@ export default function DishwasherLeaksPage() {
             ].map((item) => (
               <div key={item.step} className="flex gap-4">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold">
                     {item.step}
                   </div>
                 </div>
@@ -300,7 +300,7 @@ export default function DishwasherLeaksPage() {
       </Card>
 
       {/* CTA Section */}
-      <Card className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <Card className="bg-gradient-to-r from-blue-700 to-blue-800 text-white">
         <CardContent className="p-8 text-center">
           <h2 className="text-3xl font-bold mb-4">
             Don't Let Dishwasher Leaks Damage Your Kitchen

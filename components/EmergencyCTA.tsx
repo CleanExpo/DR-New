@@ -27,7 +27,7 @@ export default function EmergencyCTA() {
       >
         <Link
           href="tel:1300309361"
-          className="flex flex-col items-center gap-2 bg-red-600 text-white p-4 rounded-l-lg shadow-2xl hover:bg-red-700 transition-all hover:scale-105 group"
+          className="flex flex-col items-center gap-2 bg-red-700 text-white p-4 rounded-l-lg shadow-2xl hover:bg-red-800 transition-all hover:scale-105 group"
         >
           <Phone className="w-8 h-8 animate-pulse group-hover:animate-bounce" />
           <div className="text-center">
@@ -46,7 +46,7 @@ export default function EmergencyCTA() {
       >
         <Link
           href="tel:1300309361"
-          className="flex items-center justify-center gap-3 bg-red-600 text-white py-4 px-6 shadow-2xl active:bg-red-700 transition-colors w-full"
+          className="flex items-center justify-center gap-3 bg-red-700 text-white py-4 px-6 shadow-2xl active:bg-red-700 transition-colors w-full"
         >
           <Phone className="w-6 h-6 animate-pulse" />
           <div className="text-center">

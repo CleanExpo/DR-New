@@ -102,7 +102,7 @@ export default function WhosFirstPage() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800 opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 opacity-90" />
         <div className="relative max-w-7xl mx-auto text-center text-white">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -188,7 +188,7 @@ export default function WhosFirstPage() {
                   className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer"
                   onClick={() => setSelectedScenario(scenario.id)}
                 >
-                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white">
+                  <div className="bg-gradient-to-r from-blue-700 to-blue-800 p-4 text-white">
                     <div className="flex items-center gap-3">
                       <Icon className="w-8 h-8" />
                       <div>
@@ -229,7 +229,7 @@ export default function WhosFirstPage() {
                     <div
                       key={index}
                       className={`flex-1 h-2 mx-1 rounded-full ${
-                        index <= quizStep ? 'bg-blue-600' : 'bg-gray-300'
+                        index <= quizStep ? 'bg-blue-700' : 'bg-gray-300'
                       }`}
                     />
                   ))}
@@ -294,19 +294,19 @@ export default function WhosFirstPage() {
                 </h4>
                 <div className="space-y-3">
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
+                    <span className="bg-blue-700 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
                     <p>Call us immediately at 1800 000 000 for 24/7 response</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
+                    <span className="bg-blue-700 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
                     <p>We'll guide you through emergency mitigation steps</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
+                    <span className="bg-blue-700 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
                     <p>We coordinate all necessary services in the right order</p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
+                    <span className="bg-blue-700 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">4</span>
                     <p>We assist with your insurance claim for maximum coverage</p>
                   </div>
                 </div>

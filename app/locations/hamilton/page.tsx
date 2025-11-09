@@ -149,7 +149,7 @@ function HeroSection() {
         <motion.div variants={fadeInUp} className="max-w-4xl mx-auto">
           {/* Emergency Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 bg-red-600/90 backdrop-blur-sm rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-red-700/90 backdrop-blur-sm rounded-full mb-6"
             variants={emergencyPulse}
             animate="animate"
           >
@@ -270,13 +270,13 @@ function WhyHamiltonSection() {
       icon: Award,
       title: 'Master Restorer Certified',
       description: 'Phill McGurk holds one of the limited Master Restorer certifications in Brisbane and Queensland - the highest professional credential for disaster restoration.',
-      gradient: 'from-blue-500 to-blue-700',
+      gradient: 'from-blue-500 to-blue-800',
     },
     {
       icon: Zap,
       title: '60-Minute Hamilton Response',
       description: 'Priority response for Hamilton properties with dedicated emergency dispatch. Average arrival time under 60 minutes to minimize damage and protect your riverside investment.',
-      gradient: 'from-red-500 to-red-700',
+      gradient: 'from-red-500 to-red-800',
     },
     {
       icon: Home,
@@ -409,7 +409,7 @@ function ServicesSection() {
 
   const colorClasses = {
     blue: {
-      border: 'border-blue-600',
+      border: 'border-blue-700',
       text: 'text-blue-600',
       bg: 'bg-blue-50',
       hover: 'hover:bg-blue-100',
@@ -513,7 +513,7 @@ function LocalResponseSection() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-900 text-white">
       <div className="container mx-auto px-6">
         <motion.div
           className="max-w-4xl mx-auto text-center"
@@ -790,7 +790,7 @@ function FinalCTASection() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-900 text-white">
       <div className="container mx-auto px-6">
         <motion.div
           className="max-w-4xl mx-auto text-center"

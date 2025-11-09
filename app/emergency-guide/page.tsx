@@ -93,7 +93,7 @@ export default function EmergencyGuidePage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
       <div className="container mx-auto px-4 py-8">
         {/* Emergency Alert Banner */}
-        <div className="bg-red-600 text-white rounded-lg p-6 mb-8">
+        <div className="bg-red-700 text-white rounded-lg p-6 mb-8">
           <div className="flex items-center gap-3 mb-3">
             <AlertTriangle className="w-8 h-8" />
             <h1 className="text-3xl font-bold">24/7 Emergency Response Guide</h1>
@@ -126,7 +126,7 @@ export default function EmergencyGuidePage() {
                 <ol className="space-y-2">
                   {steps.map((step, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold">
+                      <span className="flex-shrink-0 w-6 h-6 bg-blue-700 text-white rounded-full flex items-center justify-center text-sm font-semibold">
                         {index + 1}
                       </span>
                       <span className="text-gray-700">{step}</span>

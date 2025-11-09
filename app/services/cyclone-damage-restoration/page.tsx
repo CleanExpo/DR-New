@@ -264,7 +264,7 @@ export default function CycloneDamageRestorationPage() {
           >
             <div className="max-w-5xl mx-auto">
               {/* Cyclone Warning Banner */}
-              <div className="bg-red-600/90 backdrop-blur-sm rounded-lg p-4 mb-6 border-2 border-red-400">
+              <div className="bg-red-700/90 backdrop-blur-sm rounded-lg p-4 mb-6 border-2 border-red-400">
                 <p className="font-bold text-lg flex items-center gap-2">
                   <Wind className="w-6 h-6 animate-spin" />
                   CYCLONE SEASON ACTIVE: November - April | 24/7 Emergency Response Ready
@@ -313,7 +313,7 @@ export default function CycloneDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
                   href="/claim"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors inline-flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -588,7 +588,7 @@ export default function CycloneDamageRestorationPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.a
                   href="/claim"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition-colors inline-flex items-center justify-center gap-2"
+                  className="bg-red-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-800 transition-colors inline-flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -68,7 +68,7 @@ export default function UltraModernServicesPage() {
       subtitle: 'Advanced Hydro Extraction Technology',
       description: 'Cutting-edge water damage restoration using molecular drying technology and advanced moisture mapping.',
       icon: HomeIcon,
-      gradient: 'from-blue-600 via-cyan-500 to-teal-400',
+      gradient: 'from-blue-700 via-cyan-500 to-teal-400',
       features: [
         '24/7 Online Emergency Response',
         'Thermal Imaging Detection',
@@ -278,7 +278,7 @@ export default function UltraModernServicesPage() {
             </nav>
             <Link
               href="/claim"
-              className="neon-button bg-gradient-to-r from-red-600 to-blue-600 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-center gap-2"
+              className="neon-button bg-gradient-to-r from-red-700 to-blue-600 px-6 py-2 rounded-full text-white font-bold hover:shadow-lg hover:shadow-red-500/50 transition-all flex items-center gap-2"
             >
               <ShieldCheckIcon className="w-5 h-5" />
               Emergency Claim
@@ -454,7 +454,7 @@ export default function UltraModernServicesPage() {
                         <div className="flex gap-4">
                           <Link
                             href={`/services/${service.id}`}
-                            className="flex-1 text-center py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+                            className="flex-1 text-center py-3 rounded-xl bg-gradient-to-r from-blue-700 to-purple-600 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
                           >
                             Learn More
                           </Link>
@@ -535,7 +535,7 @@ export default function UltraModernServicesPage() {
             >
               <Link
                 href="/claim"
-                className="flex items-center gap-4 bg-gradient-to-r from-red-600 to-blue-600 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
+                className="flex items-center gap-4 bg-gradient-to-r from-red-700 to-blue-600 px-12 py-6 rounded-full font-bold text-2xl text-white shadow-2xl hover:shadow-red-500/25 transition-all"
               >
                 <ShieldCheckIcon className="w-8 h-8" />
                 Start Online Claim Now

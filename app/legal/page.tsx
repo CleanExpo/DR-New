@@ -80,7 +80,7 @@ export default function LegalDocumentsHub() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-gray-100">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+      <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <FaBalanceScale className="text-6xl mx-auto mb-6 opacity-90" />
@@ -211,7 +211,7 @@ export default function LegalDocumentsHub() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-blue-700 to-blue-800 rounded-xl p-8 text-white text-center">
           <h3 className="text-2xl font-bold mb-4">Need Custom Legal Documents?</h3>
           <p className="mb-6 opacity-90">
             Our legal team can help customize these documents for your specific needs

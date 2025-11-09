@@ -327,7 +327,7 @@ export default function CoverageChecker() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Header */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-12 px-4">
+      <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Calculator className="w-10 h-10" />
@@ -381,7 +381,7 @@ export default function CoverageChecker() {
                   </div>
                   <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
                     <motion.div
-                      className="bg-blue-600 h-full"
+                      className="bg-blue-700 h-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${((step + 1) / questions.length) * 100}%` }}
                       transition={{ duration: 0.3 }}
@@ -494,7 +494,7 @@ export default function CoverageChecker() {
                   <div className="space-y-2">
                     {result.nextSteps.map((step: string, index: number) => (
                       <div key={index} className="flex items-start gap-3">
-                        <span className="bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">
+                        <span className="bg-blue-700 text-white w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">
                           {index + 1}
                         </span>
                         <p className="text-gray-200">{step}</p>

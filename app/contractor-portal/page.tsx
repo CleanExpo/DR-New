@@ -132,7 +132,7 @@ export default function ContractorPortalPage() {
         <div className="absolute inset-0 bg-[url('/images/pattern-diagonal.svg')] opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-4 bg-blue-600 hover:bg-blue-700">
+            <Badge className="mb-4 bg-blue-700 hover:bg-blue-800">
               Professional Resources Hub
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
@@ -145,7 +145,7 @@ export default function ContractorPortalPage() {
 
             {/* Login/Register CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8">
+              <Button size="lg" className="bg-blue-700 hover:bg-blue-800 text-lg px-8">
                 <LogIn className="mr-2 h-5 w-5" />
                 Member Login
               </Button>
@@ -398,7 +398,7 @@ export default function ContractorPortalPage() {
               {/* NRPG Card */}
               <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 transition-all">
                 <CardHeader>
-                  <div className="h-16 w-16 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+                  <div className="h-16 w-16 bg-blue-700 rounded-full flex items-center justify-center mb-4">
                     <Users className="h-8 w-8" />
                   </div>
                   <CardTitle className="text-2xl mb-2">Join NRPG</CardTitle>
@@ -425,7 +425,7 @@ export default function ContractorPortalPage() {
                       <span>Industry advocacy and support</span>
                     </li>
                   </ul>
-                  <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700" asChild>
+                  <Button size="lg" className="w-full bg-blue-700 hover:bg-blue-800" asChild>
                     <Link href="/nrpg">
                       Join NRPG
                       <ArrowRight className="ml-2 h-5 w-5" />

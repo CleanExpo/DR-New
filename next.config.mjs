@@ -29,7 +29,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0'
+            value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800'
           },
           {
             key: 'X-DNS-Prefetch-Control',
@@ -99,10 +99,36 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    optimizeCss: true, // Enable CSS optimization
+    scrollRestoration: true, // Better scroll restoration
+    optimizePackageImports: [
+      'lucide-react',
+      '@radix-ui/react-icons',
+      'react-icons',
+      'recharts',
+      'date-fns',
+    ],
+  },
+
+  // Module optimization for better tree-shaking
+  modularizeImports: {
+    'lucide-react': {
+      transform: 'lucide-react/dist/esm/icons/{{member}}',
+    },
+    'framer-motion': {
+      transform: 'framer-motion/dist/es/{{member}}',
+      skipDefaultConversion: true,
+    },
   },
   
   // Production optimizations
   productionBrowserSourceMaps: false,
+  output: 'standalone',
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
   
   // Webpack configuration
   webpack: (config, { isServer }) => {

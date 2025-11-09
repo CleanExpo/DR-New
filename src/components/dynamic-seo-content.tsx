@@ -27,7 +27,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+      <section className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -40,7 +40,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-blue-700 hover:bg-blue-800"
                 onClick={() => setShowLeadForm(true)}
               >
                 <email className="mr-2" />
@@ -110,7 +110,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
                   { step: 4, title: 'Completion', desc: 'Quality guarantee' }
                 ].map((item, index) => (
                   <Card key={index} className="p-4">
-                    <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold mb-3">
+                    <div className="w-10 h-10 bg-blue-700 text-white rounded-full flex items-center justify-center font-bold mb-3">
                       {item.step}
                     </div>
                     <h3 className="font-bold mb-1">{item.title}</h3>
@@ -169,7 +169,7 @@ export default function DynamicSEOContent({ params }: DynamicPageProps) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-blue-600 hover:bg-blue-700"
+              className="bg-blue-700 hover:bg-blue-800"
               onClick={() => setShowLeadForm(true)}
             >
               <email className="mr-2" />

@@ -65,8 +65,8 @@ export const PageLoader = () => (
 
 export const LoadingDots = () => (
   <span className="inline-flex gap-1">
-    <span className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-    <span className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-    <span className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
+    <span className="w-2 h-2 bg-blue-700 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+    <span className="w-2 h-2 bg-blue-700 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+    <span className="w-2 h-2 bg-blue-700 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
   </span>
 );

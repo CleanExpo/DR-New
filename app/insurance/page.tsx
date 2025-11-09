@@ -134,7 +134,7 @@ export default function InsurancePage() {
               </Card>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+              <Button size="lg" className="bg-blue-700 hover:bg-blue-800">
                 <MessageSquare className="mr-2" />
                 Start Your Claim: Get Help Now
               </Button>
@@ -230,7 +230,7 @@ export default function InsurancePage() {
               {claimsProcess.map((item, index) => (
                 <div key={index} className="flex gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center">
                       <span className="text-2xl font-bold text-white">{item.step}</span>
                     </div>
                   </div>
@@ -415,7 +415,7 @@ export default function InsurancePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
+      <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Need Help With Your Insurance Claim?

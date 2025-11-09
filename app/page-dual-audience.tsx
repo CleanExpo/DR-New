@@ -39,7 +39,7 @@ export default function DualAudienceHomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               href="tel:1300309361"
-              className="inline-flex items-center justify-center px-10 py-5 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all shadow-2xl hover:shadow-red-500/50 transform hover:scale-105"
+              className="inline-flex items-center justify-center px-10 py-5 bg-red-700 text-white font-bold text-xl rounded-lg hover:bg-red-800 transition-all shadow-2xl hover:shadow-red-500/50 transform hover:scale-105"
             >
               <Phone className="w-6 h-6 mr-2 animate-pulse" />
               Emergency: 1300 309 361
@@ -47,7 +47,7 @@ export default function DualAudienceHomePage() {
 
             <Link
               href="/carsi"
-              className="inline-flex items-center justify-center px-10 py-5 bg-blue-600 text-white font-bold text-xl rounded-lg hover:bg-blue-700 transition-all shadow-2xl transform hover:scale-105"
+              className="inline-flex items-center justify-center px-10 py-5 bg-blue-700 text-white font-bold text-xl rounded-lg hover:bg-blue-800 transition-all shadow-2xl transform hover:scale-105"
             >
               <GraduationCap className="w-6 h-6 mr-2" />
               IICRC Training Courses
@@ -74,7 +74,7 @@ export default function DualAudienceHomePage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Client Path */}
-            <div className="bg-gradient-to-br from-red-600 to-red-700 rounded-2xl p-8 hover:scale-105 transition-transform cursor-pointer">
+            <div className="bg-gradient-to-br from-red-700 to-red-800 rounded-2xl p-8 hover:scale-105 transition-transform cursor-pointer">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                   <Phone className="w-8 h-8" />
@@ -112,7 +112,7 @@ export default function DualAudienceHomePage() {
             </div>
 
             {/* Contractor Path */}
-            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 hover:scale-105 transition-transform cursor-pointer">
+            <div className="bg-gradient-to-br from-blue-700 to-blue-800 rounded-2xl p-8 hover:scale-105 transition-transform cursor-pointer">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                   <GraduationCap className="w-8 h-8" />
@@ -418,7 +418,7 @@ export default function DualAudienceHomePage() {
       </section>
 
       {/* Dual CTAs - Final Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 via-purple-600 to-blue-600">
+      <section className="py-20 bg-gradient-to-r from-red-700 via-purple-600 to-blue-600">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Emergency CTA */}
@@ -430,7 +430,7 @@ export default function DualAudienceHomePage() {
               </p>
               <Link
                 href="tel:1300309361"
-                className="inline-flex items-center justify-center w-full px-8 py-4 bg-red-600 text-white font-bold text-xl rounded-lg hover:bg-red-700 transition-all"
+                className="inline-flex items-center justify-center w-full px-8 py-4 bg-red-700 text-white font-bold text-xl rounded-lg hover:bg-red-800 transition-all"
               >
                 <Phone className="w-6 h-6 mr-2 animate-pulse" />
                 1300 309 361
@@ -449,7 +449,7 @@ export default function DualAudienceHomePage() {
               </p>
               <Link
                 href="/for-contractors"
-                className="inline-flex items-center justify-center w-full px-8 py-4 bg-blue-600 text-white font-bold text-xl rounded-lg hover:bg-blue-700 transition-all"
+                className="inline-flex items-center justify-center w-full px-8 py-4 bg-blue-700 text-white font-bold text-xl rounded-lg hover:bg-blue-800 transition-all"
               >
                 <GraduationCap className="w-6 h-6 mr-2" />
                 Explore Training

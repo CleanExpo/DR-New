@@ -220,7 +220,7 @@ function BookingErrorPageContent(...args: any[]): void {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
           <Link 
             href="/book-service"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 min-h-[44px]"
+            className="px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors flex items-center justify-center gap-2 min-h-[44px]"
           >
             <RefreshCw className="h-5 w-5" />
             Try Again

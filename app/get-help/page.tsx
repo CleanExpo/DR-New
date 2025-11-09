@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function GetHelpPage() {
   return (
     <div className="min-h-screen bg-white">
-      <div className="bg-red-600 text-white py-4">
+      <div className="bg-red-700 text-white py-4">
         <div className="container mx-auto px-4">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
             <span className="font-bold text-lg">EMERGENCY ASSISTANCE AVAILABLE 24/7</span>
@@ -59,7 +59,7 @@ export default function GetHelpPage() {
             What To Do Right Now
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg shadow-xl p-8 border-t-4 border-blue-600">
+            <div className="bg-white rounded-lg shadow-xl p-8 border-t-4 border-blue-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className="text-5xl">💧</div>
                 <h3 className="text-2xl font-bold text-gray-900">Water Damage Emergency</h3>
@@ -81,7 +81,7 @@ export default function GetHelpPage() {
               <div className="mt-6 pt-6 border-t">
                 <a
                   href="tel:1300309361"
-                  className="block w-full bg-blue-600 text-white px-6 py-4 rounded-lg font-bold text-center hover:bg-blue-700 transition-all"
+                  className="block w-full bg-blue-700 text-white px-6 py-4 rounded-lg font-bold text-center hover:bg-blue-800 transition-all"
                 >
                   Call Water Damage Team Now
                 </a>
@@ -110,7 +110,7 @@ export default function GetHelpPage() {
               <div className="mt-6 pt-6 border-t">
                 <a
                   href="tel:1300309361"
-                  className="block w-full bg-red-600 text-white px-6 py-4 rounded-lg font-bold text-center hover:bg-red-700 transition-all"
+                  className="block w-full bg-red-700 text-white px-6 py-4 rounded-lg font-bold text-center hover:bg-red-800 transition-all"
                 >
                   Call Fire Damage Team Now
                 </a>
@@ -120,7 +120,7 @@ export default function GetHelpPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white">
+      <section className="py-20 bg-gradient-to-br from-red-700 via-red-700 to-red-900 text-white">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Need Help Right Now?

@@ -199,7 +199,7 @@ export default function InternalLinkingHub() {
                 className={`
                   relative p-4 rounded-lg border-2 hover:shadow-lg transition-all
                   ${location.featured
-                    ? 'border-blue-600 bg-blue-50 hover:bg-blue-100'
+                    ? 'border-blue-700 bg-blue-50 hover:bg-blue-100'
                     : 'border-gray-200 bg-white hover:border-blue-400'
                   }
                 `}
@@ -212,7 +212,7 @@ export default function InternalLinkingHub() {
                   <MapPin className={`w-5 h-5 ${location.featured ? 'text-blue-600' : 'text-gray-400'}`} />
                 </div>
                 {location.featured && (
-                  <Badge className="absolute -top-2 -right-2 bg-blue-600 text-white">
+                  <Badge className="absolute -top-2 -right-2 bg-blue-700 text-white">
                     Primary
                   </Badge>
                 )}
