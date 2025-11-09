@@ -214,10 +214,10 @@ export default function StreamedContent() {
  *
  * export default function Page() {
  *   return (
- *     <div>
- *       <Hero /> {/* Renders immediately */}
- *       <StreamedContent /> {/* Streams progressively */}
- *     </div>
+ *     React.createElement('div', null,
+ *       React.createElement(Hero, null), // Renders immediately
+ *       React.createElement(StreamedContent, null) // Streams progressively
+ *     )
  *   );
  * }
  */

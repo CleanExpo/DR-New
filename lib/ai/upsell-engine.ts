@@ -296,7 +296,7 @@ export function generateUpsellScript(
 export function predictUpsellConversion(
   opportunity: UpsellOpportunity,
   customerProfile: {
-    priceS ensitivity: 'low' | 'medium' | 'high';
+    priceSensitivity: 'low' | 'medium' | 'high';
     previousUpsells: number;
     totalSpend: number;
   }
@@ -304,9 +304,9 @@ export function predictUpsellConversion(
   let probability = opportunity.confidence;
 
   // Adjust for price sensitivity
-  if (customerProfile.priceS ensitivity === 'low') {
+  if (customerProfile.priceSensitivity === 'low') {
     probability *= 1.3;
-  } else if (customerProfile.priceS ensitivity === 'high') {
+  } else if (customerProfile.priceSensitivity === 'high') {
     probability *= 0.7;
   }
 
