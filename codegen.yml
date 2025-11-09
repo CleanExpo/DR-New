@@ -1,0 +1,22 @@
+overwrite: true
+schema: "lib/graphql/schema.ts"
+documents: null
+generates:
+  lib/graphql/generated/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      useIndexSignature: true
+      contextType: "../context#GraphQLContext"
+      mappers:
+        Service: "../dataloaders#Service"
+        Location: "../dataloaders#Location"
+        Booking: "../dataloaders#Booking"
+        Customer: "../dataloaders#Customer"
+        Quote: "../dataloaders#Quote"
+        DamagePhoto: "../dataloaders#DamagePhoto"
+      scalars:
+        DateTime: Date
+        Upload: any
+        JSON: any

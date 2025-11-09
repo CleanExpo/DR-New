@@ -1,8 +1,31 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Skip in CI
-[ -n "$CI" ] && exit 0
+# Run type checking and linting
+echo "Running pre-commit checks..."
 
-# Run lint-staged
-npx lint-staged
+# Type check (fast)
+npm run type-check || {
+  echo "❌ Type check failed. Fix errors before committing."
+  exit 1
+}
+
+# Lint staged files
+npx lint-staged || {
+  echo "❌ Linting failed. Fix errors before committing."
+  exit 1
+}
+
+# Run fast unit tests only (not E2E)
+echo "Running fast unit tests..."
+npm test -- --onlyChanged --passWithNoTests || {
+  echo "❌ Unit tests failed. Fix tests before committing."
+  exit 1
+}
+
+# Security scan
+npm run security:scan || {
+  echo "⚠️  Security scan detected issues. Review before committing."
+}
+
+echo "✅ Pre-commit checks passed!"

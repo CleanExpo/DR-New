@@ -37,6 +37,7 @@
         "./middleware/*"
       ],
       "@/hooks/*": [
+        "./hooks/*",
         "./src/hooks/*"
       ],
       "@/types/*": [
@@ -50,9 +51,18 @@
     "noFallthroughCasesInSwitch": true, // ENABLED: Switch case safety
     "allowUnreachableCode": false, // Phase 1: ENABLED - Errors on unreachable code
     "allowUnusedLabels": false, // Phase 1: ENABLED - Errors on unused labels
-    
+
+    // Strict Mode - Advanced TypeScript Patterns
+    "strictNullChecks": true, // ENABLED: Strict null checking
+    "strictFunctionTypes": true, // ENABLED: Strict function type checking
+    "strictBindCallApply": true, // ENABLED: Strict bind/call/apply
+    "strictPropertyInitialization": true, // ENABLED: Strict property initialization
+    "noImplicitThis": true, // ENABLED: No implicit 'this'
+    "noImplicitAny": true, // ENABLED: No implicit 'any'
+    "alwaysStrict": true, // ENABLED: Always emit 'use strict'
+
     // New helpful flags for gradual migration
-    "noUncheckedIndexedAccess": false, // Phase 3: Adds undefined to index signatures
+    "noUncheckedIndexedAccess": true, // ENABLED: Adds undefined to index signatures
     "exactOptionalPropertyTypes": false, // Phase 4: Stricter optional property handling
     "noPropertyAccessFromIndexSignature": false // Phase 4: Requires bracket notation for index signatures
   },

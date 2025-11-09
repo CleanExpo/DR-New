@@ -1,12 +1,14 @@
 {
-  "*.{js,jsx,ts,tsx}": [
+  "*.{ts,tsx}": [
+    "eslint --fix",
+    "prettier --write",
+    "jest --bail --findRelatedTests --passWithNoTests"
+  ],
+  "*.{js,jsx}": [
     "eslint --fix",
     "prettier --write"
   ],
-  "*.{json,css,scss,md}": [
+  "*.{json,md,yml,yaml}": [
     "prettier --write"
-  ],
-  "*.{ts,tsx}": [
-    "bash -c 'tsc --noEmit'"
   ]
 }

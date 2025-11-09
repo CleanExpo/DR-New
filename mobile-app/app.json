@@ -1,0 +1,93 @@
+{
+  "expo": {
+    "name": "DR Brisbane",
+    "slug": "disaster-recovery-brisbane",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "drbrisbane",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1E40AF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.drbrisbane.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "We need camera access to take photos of damage for your restoration claim.",
+        "NSLocationWhenInUseUsageDescription": "We need your location to provide accurate emergency response times and find the nearest technician.",
+        "NSLocationAlwaysUsageDescription": "We need your location to track job progress and provide real-time updates.",
+        "NSPhotoLibraryUsageDescription": "We need photo library access to upload images of damage.",
+        "NSFaceIDUsageDescription": "Use Face ID to securely access your account.",
+        "UIBackgroundModes": ["location", "remote-notification"]
+      },
+      "config": {
+        "googleMapsApiKey": ""
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1E40AF"
+      },
+      "package": "com.drbrisbane.app",
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT",
+        "VIBRATE"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-camera",
+      "expo-location",
+      "expo-notifications",
+      "expo-local-authentication",
+      "expo-secure-store",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "15.0"
+          },
+          "android": {
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "minSdkVersion": 26
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "disaster-recovery-brisbane"
+      },
+      "apiUrl": "https://disasterrecovery.com.au/api"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/disaster-recovery-brisbane"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}
