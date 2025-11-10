@@ -73,6 +73,30 @@ export default function BrisbaneRegionalPage() {
   {
     "name": "Paddington",
     "slug": "paddington"
+  },
+  {
+    "name": "Brookfield",
+    "slug": "brookfield"
+  },
+  {
+    "name": "Westlake",
+    "slug": "westlake"
+  },
+  {
+    "name": "Chapel Hill",
+    "slug": "chapel-hill"
+  },
+  {
+    "name": "Greenslopes",
+    "slug": "greenslopes"
+  },
+  {
+    "name": "Camp Hill",
+    "slug": "camp-hill"
+  },
+  {
+    "name": "Tarragindi",
+    "slug": "tarragindi"
   }
 ];
 
@@ -99,7 +123,7 @@ export default function BrisbaneRegionalPage() {
               Brisbane Emergency Restoration Services
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-blue-200">
-              Professional disaster recovery serving Brisbane CBD, Hamilton, Ascot, New Farm, Toowong, Mount Cotton, Capalaba, Sheldon, Burbank, Sunnybank, Algester, Bulimba, Teneriffe, West End, Graceville, Pullenvale, Paddington
+              Professional disaster recovery serving Brisbane CBD, Hamilton, Ascot, New Farm, Toowong, Mount Cotton, Capalaba, Sheldon, Burbank, Sunnybank, Algester, Bulimba, Teneriffe, West End, Graceville, Pullenvale, Paddington, Brookfield, Westlake, Chapel Hill, Greenslopes, Camp Hill, Tarragindi
             </p>
             <FluidCTAGroup layout="horizontal" spacing="lg" align="center">
               <FluidCTA

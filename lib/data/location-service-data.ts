@@ -236,6 +236,58 @@ export const LOCATION_MAPPINGS = {
     responseTime: '45-Minute',
     neighborhoods: ['Paddington', 'Red Hill', 'Bardon', 'Milton'],
   },
+
+  // ADDITIONAL WEST BRISBANE PRESTIGE/ACREAGE
+  brookfield: {
+    name: 'Brookfield',
+    slug: 'brookfield',
+    description: 'Brookfield Brisbane acreage prestige property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '75-Minute',
+    neighborhoods: ['Brookfield', 'Upper Brookfield', 'Anstead', 'Pullenvale'],
+  },
+  westlake: {
+    name: 'Westlake',
+    slug: 'westlake',
+    description: 'Westlake Brisbane prestige property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '60-Minute',
+    neighborhoods: ['Westlake', 'Jindalee', 'Mount Ommaney', 'Middle Park'],
+  },
+  chapelHill: {
+    name: 'Chapel Hill',
+    slug: 'chapel-hill',
+    description: 'Chapel Hill Brisbane acreage prestige property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '60-Minute',
+    neighborhoods: ['Chapel Hill', 'Fig Tree Pocket', 'Kenmore', 'Pullenvale'],
+  },
+
+  // INNER SOUTH/EAST BRISBANE
+  greenslopes: {
+    name: 'Greenslopes',
+    slug: 'greenslopes',
+    description: 'Greenslopes Brisbane inner-south property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '45-Minute',
+    neighborhoods: ['Greenslopes', 'Stones Corner', 'Woolloongabba', 'Coorparoo'],
+  },
+  campHill: {
+    name: 'Camp Hill',
+    slug: 'camp-hill',
+    description: 'Camp Hill Brisbane inner-east property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '45-Minute',
+    neighborhoods: ['Camp Hill', 'Carina', 'Coorparoo', 'Seven Hills'],
+  },
+  tarragindi: {
+    name: 'Tarragindi',
+    slug: 'tarragindi',
+    description: 'Tarragindi Brisbane inner-south property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '45-Minute',
+    neighborhoods: ['Tarragindi', 'Holland Park', 'Annerley', 'Moorooka'],
+  },
 };
 
 /**

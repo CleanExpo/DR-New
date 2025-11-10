@@ -39,6 +39,16 @@ const LOCATION_MAPPINGS = {
   // Prestige/Acreage
   pullenvale: { name: 'Pullenvale', slug: 'pullenvale' },
   paddington: { name: 'Paddington', slug: 'paddington' },
+
+  // Additional West Brisbane Prestige/Acreage
+  brookfield: { name: 'Brookfield', slug: 'brookfield' },
+  westlake: { name: 'Westlake', slug: 'westlake' },
+  chapelHill: { name: 'Chapel Hill', slug: 'chapel-hill' },
+
+  // Inner South/East Brisbane
+  greenslopes: { name: 'Greenslopes', slug: 'greenslopes' },
+  campHill: { name: 'Camp Hill', slug: 'camp-hill' },
+  tarragindi: { name: 'Tarragindi', slug: 'tarragindi' },
 };
 
 const SERVICES = {
@@ -278,7 +288,9 @@ function generateAllPages() {
         'brisbane', 'hamilton', 'ascot', 'newFarm', 'toowong',
         'mountCotton', 'capalaba', 'sheldon', 'burbank', 'sunnybank', 'algester',
         'bulimba', 'teneriffe', 'westEnd', 'graceville',
-        'pullenvale', 'paddington'
+        'pullenvale', 'paddington',
+        'brookfield', 'westlake', 'chapelHill',
+        'greenslopes', 'campHill', 'tarragindi'
       ],
     },
     {

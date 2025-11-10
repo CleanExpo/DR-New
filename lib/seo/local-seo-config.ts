@@ -398,6 +398,98 @@ export const GEO_LOCATIONS: Record<string, GeoLocation> = {
       'Paddington prestige home restoration',
       'Paddington Brisbane heritage homes'
     ]
+  },
+
+  // ADDITIONAL PRESTIGE/ACREAGE WEST BRISBANE
+  brookfield: {
+    name: 'Brookfield',
+    latitude: -27.5000,
+    longitude: 152.8600,
+    description: 'Brookfield Brisbane acreage prestige property emergency restoration',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.1!2d152.8600!3d-27.5000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDMwJzAwLjAiUyAxNTLCsDUxJzM2LjAiRQ!5e0!3m2!1sen!2sau!4v1234567890',
+    directionsUrl: 'https://www.google.com/maps/dir//Brookfield+QLD+4069',
+    localKeywords: [
+      'Brookfield acreage restoration',
+      'Brookfield rural property restoration',
+      'Brookfield prestige home restoration',
+      'Brookfield Brisbane acreage'
+    ]
+  },
+
+  westlake: {
+    name: 'Westlake',
+    latitude: -27.5400,
+    longitude: 152.9400,
+    description: 'Westlake Brisbane prestige property emergency restoration',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.5!2d152.9400!3d-27.5400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDMyJzI0LjAiUyAxNTLCsDU2JzI0LjAiRQ!5e0!3m2!1sen!2sau!4v1234567890',
+    directionsUrl: 'https://www.google.com/maps/dir//Westlake+QLD+4074',
+    localKeywords: [
+      'Westlake prestige restoration',
+      'Westlake Brisbane property restoration',
+      'Westlake emergency restoration',
+      'Westlake residential restoration'
+    ]
+  },
+
+  chapelHill: {
+    name: 'Chapel Hill',
+    latitude: -27.5100,
+    longitude: 152.9400,
+    description: 'Chapel Hill Brisbane acreage prestige property emergency restoration',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.2!2d152.9400!3d-27.5100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDMwJzM2LjAiUyAxNTLCsDU2JzI0LjAiRQ!5e0!3m2!1sen!2sau!4v1234567890',
+    directionsUrl: 'https://www.google.com/maps/dir//Chapel+Hill+QLD+4069',
+    localKeywords: [
+      'Chapel Hill acreage restoration',
+      'Chapel Hill prestige home restoration',
+      'Chapel Hill Brisbane property restoration',
+      'Chapel Hill emergency restoration'
+    ]
+  },
+
+  // INNER SOUTH/EAST BRISBANE
+  greenslopes: {
+    name: 'Greenslopes',
+    latitude: -27.5200,
+    longitude: 153.0500,
+    description: 'Greenslopes Brisbane inner-south property emergency restoration',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.3!2d153.0500!3d-27.5200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDMxJzEyLjAiUyAxNTPCsDAzJzAwLjAiRQ!5e0!3m2!1sen!2sau!4v1234567890',
+    directionsUrl: 'https://www.google.com/maps/dir//Greenslopes+QLD+4120',
+    localKeywords: [
+      'Greenslopes water damage restoration',
+      'Greenslopes emergency restoration',
+      'Greenslopes residential restoration',
+      'Greenslopes Brisbane inner-south'
+    ]
+  },
+
+  campHill: {
+    name: 'Camp Hill',
+    latitude: -27.4900,
+    longitude: 153.0800,
+    description: 'Camp Hill Brisbane inner-east property emergency restoration',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.0!2d153.0800!3d-27.4900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDI5JzI0LjAiUyAxNTPCsDA0JzQ4LjAiRQ!5e0!3m2!1sen!2sau!4v1234567890',
+    directionsUrl: 'https://www.google.com/maps/dir//Camp+Hill+QLD+4152',
+    localKeywords: [
+      'Camp Hill water damage restoration',
+      'Camp Hill emergency restoration',
+      'Camp Hill residential restoration',
+      'Camp Hill Brisbane inner-east'
+    ]
+  },
+
+  tarragindi: {
+    name: 'Tarragindi',
+    latitude: -27.5400,
+    longitude: 153.0400,
+    description: 'Tarragindi Brisbane inner-south property emergency restoration',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.5!2d153.0400!3d-27.5400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDMyJzI0LjAiUyAxNTPCsDAyJzI0LjAiRQ!5e0!3m2!1sen!2sau!4v1234567890',
+    directionsUrl: 'https://www.google.com/maps/dir//Tarragindi+QLD+4121',
+    localKeywords: [
+      'Tarragindi water damage restoration',
+      'Tarragindi emergency restoration',
+      'Tarragindi residential restoration',
+      'Tarragindi Brisbane inner-south'
+    ]
   }
 };
 
