@@ -218,13 +218,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7 },
   ];
 
-  // Location Pages
-  const locationPages = [
+  // Regional Hub Pages (High Priority)
+  const regionalHubPages = [
     {
       url: `${baseUrl}/locations/brisbane`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
-      priority: 0.8 },
+      priority: 0.9 },
+    {
+      url: `${baseUrl}/locations/ipswich`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85 },
+    {
+      url: `${baseUrl}/locations/logan`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85 },
+  ];
+
+  // Location Overview Pages
+  const locationOverviewPages = [
     {
       url: `${baseUrl}/locations/gold-coast`,
       lastModified: currentDate,
@@ -236,21 +250,74 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly' as const,
       priority: 0.8 },
     {
-      url: `${baseUrl}/locations/ipswich`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.75 },
-    {
-      url: `${baseUrl}/locations/logan`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
-      priority: 0.75 },
-    {
       url: `${baseUrl}/locations/toowoomba`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.75 },
+    {
+      url: `${baseUrl}/locations/hamilton`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85 },
+    {
+      url: `${baseUrl}/locations/ascot`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85 },
+    {
+      url: `${baseUrl}/locations/new-farm`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85 },
+    {
+      url: `${baseUrl}/locations/toowong`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 },
+    {
+      url: `${baseUrl}/locations/karalee`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 },
+    {
+      url: `${baseUrl}/locations/brookwater`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 },
+    {
+      url: `${baseUrl}/locations/springfield-lakes`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8 },
   ];
+
+  // All 28 location slugs for location-service pages
+  const locationSlugs = [
+    'brisbane', 'hamilton', 'ascot', 'new-farm', 'toowong',
+    'ipswich', 'karalee', 'brookwater', 'springfield-lakes', 'logan',
+    'mount-cotton', 'capalaba', 'sheldon', 'burbank', 'sunnybank', 'algester',
+    'bulimba', 'teneriffe', 'west-end', 'graceville',
+    'pullenvale', 'paddington',
+    'brookfield', 'westlake', 'chapel-hill',
+    'greenslopes', 'camp-hill', 'tarragindi'
+  ];
+
+  const serviceSlugs = [
+    'water-damage-restoration',
+    'fire-damage-restoration',
+    'mould-remediation',
+    'storm-damage-restoration'
+  ];
+
+  // Generate all 112 location-service combination pages (28 locations × 4 services)
+  const locationServicePages = locationSlugs.flatMap(location =>
+    serviceSlugs.map(service => ({
+      url: `${baseUrl}/locations/${location}/${service}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.85
+    }))
+  );
 
   // Case Studies
   const caseStudies = [
@@ -426,7 +493,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...commercialServices,
     ...technicalServices,
     ...standardsPages,
-    ...locationPages,
+    ...regionalHubPages,
+    ...locationOverviewPages,
+    ...locationServicePages,
     ...caseStudies,
     ...certificationPages,
     ...resourcePages,
