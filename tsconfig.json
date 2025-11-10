@@ -90,6 +90,12 @@
     "docker/**",
     "health-check/**",
     "NRP-CRM/**",
-    "Portals/**"
+    "Portals/**",
+    // Exclude test files from main type-check (use tsconfig.test.json)
+    "__tests__/**/*",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }

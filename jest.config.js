@@ -54,12 +54,10 @@ const customJestConfig = {
     },
   },
   transform: {
-    // Handle TypeScript files
+    // Handle TypeScript files - use tsconfig.test.json for relaxed test typing
     '^.+\\.(ts|tsx)$': ['ts-jest', {
       useESM: true,
-      tsconfig: {
-        jsx: 'react-jsx',
-      },
+      tsconfig: 'tsconfig.test.json',
     }],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
