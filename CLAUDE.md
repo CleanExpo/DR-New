@@ -492,6 +492,205 @@ A custom agent skill is available at `.claude/skills/advanced-engineering-skills
 
 ---
 
+## Intelligent Orchestration System
+
+### Overview
+
+The project includes a comprehensive **multi-agent orchestration framework** that intelligently routes tasks to specialized agents and coordinates their collaboration for optimal results.
+
+### 🎯 Core Philosophy
+
+**"Don't just answer—orchestrate intelligently."**
+
+The system knows WHEN to:
+- ✅ Route directly (simple tasks)
+- ✅ Slow down and analyze (complex tasks)
+- ✅ Coordinate multiple agents (cross-domain work)
+- ✅ Apply appropriate quality gates
+
+### Available Skills & Agents
+
+Located in `.claude/skills/`:
+
+1. **Master Orchestrator** - Intelligent task router and multi-agent coordinator
+2. **Advanced Engineering Skills Agent** - 73-point QA validation framework
+3. **Architecture Agent** - System design and technical planning
+4. **Security Agent** - OWASP compliance and vulnerability detection
+5. **Performance Agent** - Core Web Vitals and optimization
+
+### 🚨 Slow-Down Triggers (CRITICAL)
+
+The orchestrator MUST slow down and analyze deeply when encountering:
+
+| Trigger | Action Required |
+|---------|----------------|
+| 🔴 **Security-sensitive** | ALWAYS include Security Agent |
+| 🔴 **Architecture changes** | ALWAYS include Architecture Agent |
+| 🔴 **Cross-domain tasks (3+)** | Full orchestration required |
+| 🔴 **Ambiguous requirements** | Start with consultation pattern |
+| 🔴 **High user impact** | Include Design + Performance agents |
+
+### Quick Agent Selection
+
+**By Keywords:**
+- "design" / "architecture" → Architecture Agent
+- "secure" / "auth" / "PII" → Security Agent ⚠️ CRITICAL
+- "slow" / "performance" → Performance Agent
+- "bug" + context → Route based on location
+- "test" / "QA" → Testing validation
+
+**By Task Type:**
+- New feature → Architecture + relevant specialists
+- Security work → Security Agent (non-negotiable)
+- Performance issue → Performance Agent (investigation)
+- UI change → Frontend + Design agents
+- API work → Backend + Security agents
+
+### Orchestration Patterns
+
+#### 1. Sequential (A → B → C)
+**When:** Tasks have dependencies
+**Example:** Design → Implement → Test → Review
+
+#### 2. Parallel (A + B + C)
+**When:** Tasks are independent
+**Example:** Multiple optimization tasks
+
+#### 3. Iterative (A ⇄ B)
+**When:** Requires feedback and refinement
+**Example:** UI design with user feedback
+
+#### 4. Consultation (A ∩ B → Decision)
+**When:** Need expert decision before proceeding
+**Example:** "Should we use GraphQL or REST?"
+
+### Quality Gates
+
+**Simple Tasks (< 5 min):**
+- Requirements met
+- Code compiles
+
+**Moderate Tasks (15-30 min):**
+- Requirements met
+- Type checks pass
+- Unit tests pass
+- Basic review
+
+**Complex Tasks (1-4 hours):**
+- All requirements met
+- All tests pass (unit + E2E)
+- Security reviewed
+- Performance validated
+- Accessibility checked
+- Documentation complete
+
+### Usage Examples
+
+**Example 1: Simple Task**
+```
+Request: "Update footer copyright to 2025"
+Routing: Direct → Frontend Agent
+Pattern: No orchestration
+Time: < 5 minutes
+```
+
+**Example 2: Moderate Task**
+```
+Request: "Add contact form to contact page"
+Routing: Frontend + Backend + Security
+Pattern: Sequential
+Quality Gate: Level 2
+```
+
+**Example 3: Complex Task**
+```
+Request: "Implement user authentication with OAuth"
+Routing: Architecture → Security → Backend → Frontend → Testing
+Pattern: Sequential with security gates
+Quality Gate: Level 3 (full validation)
+```
+
+**Example 4: Investigation**
+```
+Request: "Homepage loading slowly, investigate"
+Routing: Performance (investigate) → Route based on findings
+Pattern: Iterative investigation
+```
+
+### Decision Flowchart
+
+```
+START
+  ↓
+Is it security-sensitive?
+  ├─ YES → Include Security Agent
+  └─ NO → Continue
+  ↓
+How many domains?
+  ├─ 1 domain → Direct route
+  ├─ 2 domains → Coordinate 2 agents
+  └─ 3+ domains → Full orchestration
+  ↓
+Pattern selection:
+  ├─ Dependencies? → Sequential
+  ├─ Independent? → Parallel
+  ├─ Needs feedback? → Iterative
+  └─ Need decision? → Consultation
+  ↓
+Apply quality gates → Execute → Validate → Done
+```
+
+### Best Practices
+
+1. **Always Analyze First** - Understand scope before acting
+2. **Security is Non-Negotiable** - No shortcuts on security
+3. **Know When to Slow Down** - Complex tasks need planning
+4. **Use Parallel When Possible** - Independent tasks can run simultaneously
+5. **Quality Gates Matter** - Don't skip validation
+6. **Simple is Better** - Don't over-orchestrate simple tasks
+
+### Documentation
+
+**Full Documentation:**
+- Master Orchestrator: `.claude/skills/master-orchestrator/SKILL.md`
+- Decision Matrix: `.claude/docs/AGENT_DECISION_MATRIX.md`
+- Quick Reference: `.claude/docs/ORCHESTRATION_QUICK_REFERENCE.md`
+- Specialist Agents: `.claude/skills/*/SKILL.md`
+
+**Quick Reference Locations:**
+```
+.claude/
+├── skills/
+│   ├── master-orchestrator/        # Main orchestration logic
+│   ├── advanced-engineering-skills-agent/  # QA validation
+│   ├── architecture-agent/         # System design
+│   ├── security-agent/             # OWASP & security
+│   └── performance-agent/          # Optimization
+│
+└── docs/
+    ├── AGENT_DECISION_MATRIX.md    # Comprehensive routing guide
+    └── ORCHESTRATION_QUICK_REFERENCE.md  # Fast lookup
+```
+
+### Common Mistakes to Avoid
+
+❌ **Over-orchestrating simple tasks** - Don't orchestrate typo fixes
+❌ **Under-orchestrating security** - ALWAYS include Security Agent for auth/PII
+❌ **Skipping Architecture on big changes** - New features need design review
+❌ **Forgetting Performance impact** - Consider performance for UI changes
+❌ **Ignoring Accessibility** - All UI changes need WCAG validation
+
+### Success Metrics
+
+Track orchestration effectiveness:
+- ✅ Task completion rate
+- ✅ First-time quality (passing quality gates)
+- ✅ Security issues caught before production
+- ✅ Performance regressions prevented
+- ✅ Correct agent selection rate
+
+---
+
 ## Support & Documentation
 
 ### Project Documentation
@@ -563,5 +762,5 @@ export default function ServicePage() {
 
 ---
 
-**Last Updated:** 2025-11-09
+**Last Updated:** 2025-11-10
 **Maintained by:** Disaster Recovery Brisbane Development Team
