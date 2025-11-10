@@ -85,7 +85,7 @@ export default function Home() {
             <Link href="/services/fire-damage-restoration" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/services/fire-damage-restoration.webp"
-                alt="Fire damage restoration services"
+                alt="IICRC certified fire damage restoration technician performing smoke and soot removal in Brisbane residential property"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"
@@ -104,7 +104,7 @@ export default function Home() {
             <Link href="/services/storm-damage-restoration" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/services/Ascot, Qld Storm.webp"
-                alt="Storm damage recovery and disaster restoration"
+                alt="Severe storm damage aftermath in Ascot Queensland showing emergency restoration team responding to wind and hail damage"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"
@@ -123,7 +123,7 @@ export default function Home() {
             <Link href="/services/mould-remediation" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/services/mould-remediation.webp"
-                alt="Mould remediation services - before and after"
+                alt="Professional mould remediation specialist performing safe black mould removal and air quality restoration in Brisbane home"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"
@@ -142,7 +142,7 @@ export default function Home() {
             <Link href="/services/biohazard-remediation" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/services/crime-scene-remediation.webp"
-                alt="Biohazard cleanup and remediation services"
+                alt="Certified biohazard remediation technician in full protective equipment performing trauma scene cleanup and decontamination"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"
@@ -161,7 +161,7 @@ export default function Home() {
             <Link href="/services/sewage-backup-remediation" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/services/sewage-sanitisation.webp"
-                alt="Sewage backup remediation services"
+                alt="Emergency sewage backup cleanup crew performing Category 3 water extraction and sanitization with industrial equipment"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"
@@ -180,7 +180,7 @@ export default function Home() {
             <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/commercial-management-brisbane.webp"
-                alt="Contents packout and storage services"
+                alt="Professional contents packout service showing systematic inventory and secure climate-controlled storage for water damaged belongings"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"
@@ -199,7 +199,7 @@ export default function Home() {
             <Link href="/services/commercial" className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/services/Commercial Restoration Services.webp"
-                alt="Commercial property restoration services"
+                alt="Large-scale commercial property restoration project showing emergency response team managing business continuity during disaster recovery"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"
@@ -218,7 +218,7 @@ export default function Home() {
             <div className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               <Image
                 src="/images/hero/disaster-recovery-services.webp"
-                alt="Professional property damage assessments"
+                alt="IICRC Master Restorer Phill McGurk conducting comprehensive property damage assessment and insurance documentation for Brisbane client"
                 width={400}
                 height={300}
                 className="w-full h-48 object-cover"

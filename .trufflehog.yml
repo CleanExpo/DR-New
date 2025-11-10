@@ -1,0 +1,94 @@
+# TruffleHog Configuration
+# Documentation: https://github.com/trufflesecurity/trufflehog
+
+# Exclude specific paths from scanning
+exclude_paths:
+  - node_modules/
+  - .next/
+  - dist/
+  - build/
+  - coverage/
+  - .git/
+  - '*.min.js'
+  - '*.map'
+  - package-lock.json
+  - yarn.lock
+  - .env.example
+  - .env.training.example
+  - SECURITY_INCIDENT_*.md
+  - '*.svg'
+  - '*.png'
+  - '*.jpg'
+  - '*.jpeg'
+  - '*.gif'
+  - '*.ico'
+  - '*.woff'
+  - '*.woff2'
+  - '*.ttf'
+  - '*.eot'
+
+# Exclude specific patterns (allowlist)
+allow:
+  # Example API keys in documentation
+  - 'your-api-key-here'
+  - 'your-secret-key-here'
+  - 'your-token-here'
+  - 'example-key-123'
+  - 'sk-1234567890abcdef'
+
+  # Test/mock credentials
+  - 'test-api-key'
+  - 'mock-secret'
+  - 'fake-token'
+
+  # Public/demo credentials (if any)
+  - 'demo-'
+  - 'public-'
+
+# Custom detectors for project-specific secrets
+detectors:
+  - name: NextAuth Secret
+    keywords:
+      - NEXTAUTH_SECRET
+    regex: NEXTAUTH_SECRET\s*=\s*[A-Za-z0-9+/=]{32,}
+
+  - name: Google OAuth
+    keywords:
+      - GOOGLE_CLIENT_SECRET
+    regex: GOOGLE_CLIENT_SECRET\s*=\s*GOCSPX-[A-Za-z0-9_-]+
+
+  - name: Google API Key
+    keywords:
+      - GOOGLE_API_KEY
+      - GOOGLE_MAPS_API_KEY
+    regex: AIza[0-9A-Za-z_-]{35}
+
+  - name: Stripe Secret Key
+    keywords:
+      - STRIPE_SECRET_KEY
+    regex: sk_(test|live)_[A-Za-z0-9]{24,}
+
+  - name: SendGrid API Key
+    keywords:
+      - SENDGRID_API_KEY
+    regex: SG\.[A-Za-z0-9_-]{22}\.[A-Za-z0-9_-]{43}
+
+  - name: Twilio Auth Token
+    keywords:
+      - TWILIO_AUTH_TOKEN
+    regex: '[A-Za-z0-9]{32}'
+
+# Only scan verified secrets (reduces false positives)
+only_verified: true
+
+# Fail on any findings
+fail_on_unverified: false
+
+# Output format (json, yaml, text)
+output_format: json
+
+# Max depth for repository scanning
+max_depth: 50
+
+# Scan archived files
+scan_archives: false
