@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter, Poppins } from 'next/font/google'
 import Script from 'next/script'
 import '@/styles/globals.css'
 import { Providers } from './providers'
@@ -12,25 +11,18 @@ import { MonitoringProvider } from '@/components/monitoring/MonitoringProvider'
 import { CriticalCSS } from '@/components/performance/CriticalCSS'
 import { Prefetch } from '@/components/performance/Prefetch'
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  adjustFontFallback: true,
+// NOTE: Google Fonts disabled for local builds (network access issue)
+// Fonts are loaded via <link> in <head> below for production
+// Using system font fallbacks for local development
+const inter = {
   variable: '--font-inter',
-  weight: ['400', '500', '600', '700'],
-})
+  className: 'font-sans',
+}
 
-const poppins = Poppins({
-  weight: ['600', '700', '800'],
-  subsets: ['latin'],
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial'],
-  adjustFontFallback: true,
+const poppins = {
   variable: '--font-poppins',
-})
+  className: 'font-heading',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecovery.com.au'),
@@ -125,6 +117,12 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
+
+        {/* Google Fonts - Loaded at runtime (not build time) */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
+          rel="stylesheet"
+        />
 
         {/* Preload critical fonts */}
         <link
