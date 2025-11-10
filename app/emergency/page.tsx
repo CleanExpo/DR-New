@@ -2,11 +2,12 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Clock, Calendar, Moon, Sun, AlertTriangle, ArrowRight, DollarSign, MessageSquare} from 'lucide-react';
+import { Clock, Calendar, Moon, Sun, AlertTriangle, ArrowRight, DollarSign, Phone} from 'lucide-react';
+import { EmergencySteps } from '@/components/emergency/EmergencySteps';
 
 export const metadata: Metadata = {
-  title: '24/7 Online Emergency Response Times & Fees | After Hours, Weekends, Holidays',
-  description: 'Emergency disaster recovery available 24/7/365. After hours, weekends, and holiday surcharges explained. Insurance approved.' };
+  title: '24/7 Emergency Response | 60-Min Arrival | Call 1300 309 361 NOW',
+  description: 'URGENT disaster recovery Brisbane. IICRC Master Restorer on-site in 60 minutes. 24/7/365 emergency response. Water, fire, storm damage. Insurance approved.' };
 
 const scenarios = [
   {
@@ -91,22 +92,66 @@ export default function EmergencyTimesPage() {
 
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-b from-orange-900 to-red-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <Clock className="h-16 w-16 text-blue-500 mx-auto mb-6 animate-spin-slow" />
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            24/7/365 Emergency Response
-          </h1>
-          <p className="text-xl max-w-3xl mx-auto mb-8">
-            Disaster doesn't wait for business hours - neither do we. 
-            Transparent pricing for after-hours, weekend, and holiday emergencies.
-          </p>
-          <div className="bg-white/10 backdrop-blur rounded-lg p-6 inline-block">
-            <p className="text-2xl font-bold">Base Fee: $2,200 + Time-Based Surcharge</p>
-            <p className="text-lg mt-2">All fees covered by insurance</p>
+      {/* Emergency Alert Banner */}
+      <div className="bg-red-600 text-white py-4 animate-pulse sticky top-0 z-50 shadow-lg">
+        <div className="container mx-auto px-4 flex items-center justify-center gap-3">
+          <AlertTriangle className="h-6 w-6" />
+          <span className="font-bold text-lg">EMERGENCY - CALL NOW: 1300 309 361</span>
+        </div>
+      </div>
+
+      <section className="bg-gradient-to-br from-red-900 via-orange-800 to-red-900 text-white py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-red-600 px-6 py-3 rounded-full mb-6">
+              <AlertTriangle className="h-5 w-5" />
+              <span className="font-bold uppercase tracking-wide">24/7 Emergency Service</span>
+            </div>
+
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              Emergency Disaster Recovery Brisbane
+            </h1>
+
+            <p className="text-xl md:text-2xl mb-8 text-orange-100">
+              IICRC Master Restorer on-site within 60 minutes. Available 24/7/365 for all emergency restoration needs.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <div className="text-3xl font-bold mb-1">60 Minutes</div>
+                <div className="text-orange-100">Maximum Response Time</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <div className="text-3xl font-bold mb-1">24/7/365</div>
+                <div className="text-orange-100">Always Available</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <div className="text-3xl font-bold mb-1">100%</div>
+                <div className="text-orange-100">Insurance Covered</div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="tel:1300309361"
+                className="inline-flex items-center justify-center px-8 py-5 bg-white text-red-600 rounded-lg font-bold text-xl hover:bg-gray-100 transition-all shadow-2xl hover:shadow-red-500/50 transform hover:scale-105"
+              >
+                <Phone className="mr-3 h-6 w-6" />
+                CALL NOW: 1300 309 361
+              </a>
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-5 bg-orange-600 text-white rounded-lg font-bold text-xl hover:bg-orange-700 transition-all border-2 border-white/30"
+              >
+                Emergency Online Form
+              </a>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Emergency Steps Component */}
+      <EmergencySteps />
       
       <section className="py-16">
         <div className="container mx-auto px-4">
@@ -203,20 +248,31 @@ export default function EmergencyTimesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-700 to-blue-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-700 to-orange-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Emergency Happening Now?
           </h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Every minute counts in disaster recovery. Call now for immediate response, 
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+            Every minute counts in disaster recovery. Call now for immediate response,
             any time, any day. Insurance covers all emergency fees.
           </p>
-          <Button size="lg" className="bg-white text-red-600 hover:bg-gray-100 text-lg px-8 py-6">
-            <MessageSquare className="mr-2 h-6 w-6" />
-            Online Form Available 24/7 - 24/7 Emergency Line
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="tel:1300309361"
+              className="inline-flex items-center justify-center px-8 py-5 bg-white text-red-600 rounded-lg font-bold text-xl hover:bg-gray-100 transition-all shadow-2xl transform hover:scale-105"
+            >
+              <Phone className="mr-3 h-6 w-6" />
+              CALL NOW: 1300 309 361
+            </a>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-5 bg-red-800 text-white rounded-lg font-bold text-xl hover:bg-red-900 transition-all border-2 border-white/30"
+            >
+              Submit Emergency Form
+            </a>
+          </div>
         </div>
       </section>
     </div>

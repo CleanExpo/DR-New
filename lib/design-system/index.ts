@@ -1,131 +1,21 @@
 /**
- * Design System - Main Export
+ * Design System - Central Export
  *
- * Complete design system for Disaster Recovery Brisbane
- * Exports all tokens, motion patterns, and brand guidelines
+ * Single import point for all design system tokens and utilities.
+ * Extracted from reference repository design system.
  *
  * Usage:
  * ```tsx
- * import { colors, typography, fadeInUp, brandGuidelines } from '@/lib/design-system';
+ * import { colors, typography, componentStyles, fadeIn, fadeInUp } from '@/lib/design-system'
  * ```
  */
 
-// ============================================
-// DESIGN TOKENS
-// ============================================
+export * from './colors'
+export * from './typography'
+export * from './components'
+export * from './motion'
 
-export {
-  // Colors
-  colors,
-
-  // Typography
-  typography,
-
-  // Spacing
-  spacing,
-
-  // Border Radius
-  borderRadius,
-
-  // Shadows
-  shadows,
-
-  // Animations
-  animations,
-
-  // Breakpoints
-  breakpoints,
-
-  // Z-Index
-  zIndex,
-
-  // Component Tokens
-  componentTokens,
-} from './tokens';
-
-// ============================================
-// MOTION DESIGN
-// ============================================
-
-export {
-  // Fade Animations
-  fadeIn,
-  fadeInUp,
-  fadeInDown,
-  fadeInLeft,
-  fadeInRight,
-
-  // Scale Animations
-  scaleIn,
-  scaleInBounce,
-
-  // Stagger Animations
-  staggerContainer,
-  staggerItem,
-
-  // Hover Animations
-  hoverScale,
-  hoverLift,
-  hoverGlow,
-
-  // Page Transitions
-  pageTransition,
-
-  // Continuous Animations
-  pulse,
-  float,
-  spin,
-  ping,
-
-  // Emergency Animations
-  emergencyPulse,
-  emergencyGlow,
-
-  // Scroll Animations
-  scrollFadeIn,
-  scrollStagger,
-
-  // Modal Animations
-  modalBackdrop,
-  modalContent,
-
-  // Card Animations
-  cardHover,
-  gridItem,
-
-  // Transition Presets
-  transitions,
-
-  // Utility Functions
-  createStagger,
-  createFadeIn,
-  respectMotionPreference,
-} from './motion';
-
-// ============================================
-// BRAND GUIDELINES
-// ============================================
-
-export {
-  // Complete brand guidelines
-  brandGuidelines,
-
-  // Individual sections
-  brandIdentity,
-  colorUsage,
-  typographyUsage,
-  imageryGuidelines,
-  messaging,
-  animationGuidelines,
-  layoutPatterns,
-  componentPatterns,
-  accessibilityStandards,
-  responsiveDesign,
-  seoGuidelines,
-} from './brand';
-
-// ============================================
-// TYPE EXPORTS
-// ============================================
-
-export type { Variants, Transition } from 'framer-motion';
+// Re-export commonly used items for convenience
+export { colors, gradients, accentColors, serviceColors } from './colors'
+export { typography, fontWeights, lineHeights, letterSpacing } from './typography'
+export { componentStyles, animations, shadows, borderRadius, transitions } from './components'

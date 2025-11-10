@@ -1,9 +1,11 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Shield, FileCheck, CheckCircle2, AlertCircle, Users, Clock, MessageSquare} from 'lucide-react';
+import { Shield, FileCheck, CheckCircle2, AlertCircle, Users, Clock, Phone} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { ClaimsProcess } from '@/components/insurance/ClaimsProcess';
+import { CoveredServices } from '@/components/insurance/CoveredServices';
 
 export const metadata: Metadata = {
   title: 'Insurance Claims Assistance | All Major Australian Insurers | Direct Billing Available',
@@ -105,45 +107,65 @@ export default function InsurancePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-20">
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <Shield className="h-16 w-16 text-blue-600 mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <div className="max-w-5xl mx-auto">
+            {/* Trust Badge */}
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <Shield className="h-12 w-12 text-blue-400" />
+              <span className="text-lg font-semibold bg-blue-700/50 px-4 py-2 rounded-full">
+                Approved Restoration Provider
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
               Insurance Claims Assistance
             </h1>
-            <p className="text-xl mb-8">
-              Expert help navigating disaster recovery insurance claims with all major Australian insurers. 
+
+            <p className="text-xl md:text-2xl text-center mb-10 text-blue-100">
+              Expert help navigating disaster recovery insurance claims with all major Australian insurers.
               Direct billing available - no upfront costs for approved claims.
             </p>
-            <div className="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto mb-8">
-              <Card className="bg-white/10 backdrop-blur p-4">
-                <FileCheck className="h-8 w-8 mx-auto mb-2" />
-                <p className="font-bold">Complete Documentation</p>
-                <p className="text-sm opacity-90">Detailed reports and photos</p>
+
+            {/* Key Benefits Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+              <Card className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 text-center">
+                <FileCheck className="w-10 h-10 text-blue-400 mx-auto mb-3" />
+                <h3 className="font-bold text-lg mb-2">Complete Documentation</h3>
+                <p className="text-sm text-blue-100">Detailed reports and photos</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4">
-                <Users className="h-8 w-8 mx-auto mb-2" />
-                <p className="font-bold">Direct Billing</p>
-                <p className="text-sm opacity-90">No upfront costs</p>
+              <Card className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 text-center">
+                <Users className="w-10 h-10 text-green-400 mx-auto mb-3" />
+                <h3 className="font-bold text-lg mb-2">Direct Billing</h3>
+                <p className="text-sm text-blue-100">No upfront costs</p>
               </Card>
-              <Card className="bg-white/10 backdrop-blur p-4">
-                <Clock className="h-8 w-8 mx-auto mb-2" />
-                <p className="font-bold">Claims Support</p>
-                <p className="text-sm opacity-90">Full process assistance</p>
+              <Card className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 text-center">
+                <Shield className="w-10 h-10 text-orange-400 mx-auto mb-3" />
+                <h3 className="font-bold text-lg mb-2">Claims Support</h3>
+                <p className="text-sm text-blue-100">Full process assistance</p>
               </Card>
             </div>
+
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-blue-700 hover:bg-blue-800">
-                <MessageSquare className="mr-2" />
-                Start Your Claim: Get Help Now
-              </Button>
-              <Link
-                href="/book-service?source=insurance"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-blue-50 transition-colours"
+              <a
+                href="tel:1300309361"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-xl"
               >
-                Submit Insurance Claim
-              </Link>
+                <Phone className="mr-2 h-5 w-5" />
+                Call: 1300 309 361
+              </a>
+              <a
+                href="/contact?insurance=true"
+                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg hover:bg-blue-700 transition-all border-2 border-white/30"
+              >
+                Start Your Claim
+              </a>
+            </div>
+
+            {/* Emergency Notice */}
+            <div className="mt-8 text-center">
+              <p className="text-blue-200 mb-2">Emergency? We're available 24/7</p>
             </div>
           </div>
         </div>
@@ -189,66 +211,11 @@ export default function InsurancePage() {
         </div>
       </section>
 
-      {/* Claim Types */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Types of Claims We Handle
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              {claimTypes.map((claim, index) => (
-                <Card key={index} className="p-6 bg-white shadow-md">
-                  <div className="flex items-start">
-                    <span className="text-4xl mr-4">{claim.icon}</span>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2">{claim.title}</h3>
-                      <p className="text-gray-700 mb-4">{claim.description}</p>
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                        <div className="flex items-start">
-                          <CheckCircle2 className="w-5 h-5 text-green-600 mr-2 mt-0.5" />
-                          <span className="text-sm text-green-800">{claim.coverage}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Covered Services Component */}
+      <CoveredServices providerName="your insurer" />
 
-      {/* Claims Process */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            How We Assist With Your Insurance Claim
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
-              {claimsProcess.map((item, index) => (
-                <div key={index} className="flex gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center">
-                      <span className="text-2xl font-bold text-white">{item.step}</span>
-                    </div>
-                  </div>
-                  <div className="flex-1">
-                    <Card className="p-6">
-                      <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                      <p className="text-gray-700 mb-4">{item.description}</p>
-                      <div className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-lg font-medium">
-                        {item.action}
-                      </div>
-                    </Card>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Claims Process Component */}
+      <ClaimsProcess providerName="your insurance company" />
 
       {/* Documentation We Provide */}
       <section className="py-16 bg-blue-50">
@@ -415,29 +382,30 @@ export default function InsurancePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-800 py-16">
+      <section className="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 py-16">
         <div className="container mx-auto px-4 text-center">
+          <Shield className="w-16 h-16 text-blue-300 mx-auto mb-6" />
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Need Help With Your Insurance Claim?
           </h2>
-          <p className="text-xl text-blue-800 mb-8 max-w-2xl mx-auto">
-            Don't navigate the claims process alone. Our insurance experts are ready to help 
+          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            Don't navigate the claims process alone. Our insurance experts are ready to help
             you get the coverage you deserve.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colours"
+              href="tel:1300309361"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-xl"
             >
-              <MessageSquare className="w-6 h-6 mr-3" />
-              Call: Get Help Now
+              <Phone className="w-6 h-6 mr-3" />
+              Call: 1300 309 361
             </a>
-            <Link
-              href="/book-service?source=insurance"
-              className="inline-flex items-center justify-center px-8 py-4 bg-blue-800 text-white rounded-lg font-bold text-lg hover:bg-blue-900 transition-colours"
+            <a
+              href="/contact?insurance=true"
+              className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg hover:bg-blue-700 transition-all border-2 border-white/30"
             >
               Start Insurance Claim
-            </Link>
+            </a>
           </div>
         </div>
       </section>

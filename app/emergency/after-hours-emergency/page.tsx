@@ -1,65 +1,26 @@
 import { Metadata } from 'next';
-import { Clock, AlertTriangle, DollarSign, Zap, Shield, Calendar, Moon, MessageSquare} from 'lucide-react';
+import { Clock, AlertTriangle, DollarSign, Zap, Shield, Calendar, Moon, Phone} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { EmergencyHero } from '@/components/emergency/EmergencyHero';
 
 export const metadata: Metadata = {
-  title: 'After Hours Emergency Service | 5PM - 9AM Weekdays | $2200 Minimum + $500 Surcharge',
-  description: '24/7 emergency response when disaster strikes outside business hours. 30 minutes response time. Available 5PM - 9AM Weekdays. Insurance approved.',
+  title: 'After Hours Emergency Service | 5PM - 9AM Weekdays | Call 1300 309 361',
+  description: 'URGENT after-hours emergency response. 30 minutes response time. Available 5PM - 9AM Weekdays. IICRC Master Restorer. Insurance approved.',
   keywords: ["after hours emergency","night time disaster recovery","evening emergency service"]
 };
 
 export default function AfterHoursEmergencyServicePage() {
   return (
     <div className="min-h-screen">
-      {/* Emergency Alert Banner */}
-      <div className="bg-red-700 text-white py-3 animate-pulse">
-        <div className="container mx-auto px-4 flex items-center justify-center">
-          <AlertTriangle className="h-5 w-5 mr-2" />
-          <span className="font-bold">CRITICAL EMERGENCY - CALL NOW: Online Form Available 24/7</span>
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <Clock className="h-16 w-16 text-blue-500 animate-spin-slow" />
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              After Hours Emergency Service
-            </h1>
-            <div className="bg-blue-700 text-white inline-block px-6 py-3 rounded-full mb-6">
-              <span className="text-2xl font-bold">5PM - 9AM Weekdays</span>
-            </div>
-            <p className="text-xl mb-8">
-              24/7 emergency response when disaster strikes outside business hours
-            </p>
-            <div className="grid md:grid-cols-3 gap-4 mb-8 max-w-3xl mx-auto">
-              <Card className="bg-white/10 backdrop-blur p-4">
-                <Zap className="h-8 w-8 text-blue-500 mx-auto mb-2" />
-                <p className="text-lg font-bold">30 minutes</p>
-                <p className="text-sm">Response Time</p>
-              </Card>
-              <Card className="bg-white/10 backdrop-blur p-4">
-                <DollarSign className="h-8 w-8 text-emerald-600 mx-auto mb-2" />
-                <p className="text-lg font-bold">$2200 + $500</p>
-                <p className="text-sm">Total Minimum</p>
-              </Card>
-              <Card className="bg-white/10 backdrop-blur p-4">
-                <Shield className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <p className="text-lg font-bold">100%</p>
-                <p className="text-sm">Insurance Covered</p>
-              </Card>
-            </div>
-            <Button size="lg" className="bg-red-700 hover:bg-red-800 text-white text-lg px-8 py-6">
-              <MessageSquare className="mr-2 h-6 w-6" />
-              Call Online Form Available 24/7 - 5PM - 9AM Weekdays Service
-            </Button>
-          </div>
-        </div>
-      </section>
+      <EmergencyHero
+        title="After Hours Emergency Service"
+        subtitle="Critical emergency response when disaster strikes outside business hours"
+        timeframe="5PM - 9AM Weekdays"
+        responseTime="30 Minutes"
+        totalFee="$2,700"
+        urgencyLevel="critical"
+      />
 
       {/* Why We Charge More Section */}
       <section className="py-16">
@@ -207,25 +168,36 @@ export default function AfterHoursEmergencyServicePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-red-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-700 to-orange-600 text-white">
         <div className="container mx-auto px-4 text-center">
-          <Clock className="h-16 w-16 mx-auto mb-6 animate-pulse" />
+          <AlertTriangle className="h-16 w-16 mx-auto mb-6 animate-pulse" />
           <h2 className="text-4xl font-bold mb-6">
-            5PM - 9AM Weekdays Disaster Emergency?
+            After Hours Emergency Happening Now?
           </h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Don't let 5pm - 9am weekdays timing cost you thousands more in damage. 
+            Don't let after-hours timing cost you thousands more in damage.
             Our expert teams are ready NOW with 30 minutes response.
           </p>
           <div className="bg-white/10 backdrop-blur rounded-lg p-6 max-w-2xl mx-auto mb-8">
             <p className="text-2xl font-bold mb-2">Total Emergency Fee:</p>
             <p className="text-3xl font-bold">$2,200 base + $500 = $2,700</p>
-            <p className="text-lg mt-2">Insurance Approved • Direct Billing Available</p>
+            <p className="text-lg mt-2">Insurance Approved - Direct Billing Available</p>
           </div>
-          <Button size="lg" className="bg-white text-blue-700 hover:bg-gray-100 text-lg px-8 py-6">
-            <MessageSquare className="mr-2 h-6 w-6" />
-            Online Form Available 24/7 - 5PM - 9AM Weekdays Emergency
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="tel:1300309361"
+              className="inline-flex items-center justify-center px-8 py-5 bg-white text-red-600 rounded-lg font-bold text-xl hover:bg-gray-100 transition-all shadow-2xl transform hover:scale-105"
+            >
+              <Phone className="mr-3 h-6 w-6" />
+              CALL NOW: 1300 309 361
+            </a>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-5 bg-red-800 text-white rounded-lg font-bold text-xl hover:bg-red-900 transition-all border-2 border-white/30"
+            >
+              Submit Emergency Form
+            </a>
+          </div>
         </div>
       </section>
     </div>

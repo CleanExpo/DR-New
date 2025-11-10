@@ -1,24 +1,18 @@
 import { Metadata } from 'next';
-import { Shield, FileCheck, MessageSquare} from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { InsuranceProviderHero } from '@/components/insurance/InsuranceProviderHero';
+import { ClaimsProcess } from '@/components/insurance/ClaimsProcess';
+import { CoveredServices } from '@/components/insurance/CoveredServices';
 
 export const metadata: Metadata = {
   title: 'QBE Insurance Claims | Approved Restoration Provider | Direct Billing',
-  description: 'Preferred QBE insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call Online Form Available 24/7.' };
+  description: 'Preferred QBE insurance restoration provider. Direct billing, no upfront costs, claim assistance. Call 1300 309 361 for immediate assistance.' };
 
 export default function QBEInsurancePage() {
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-r from-green-800 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <Shield className="h-16 w-16 text-emerald-600 mb-6" />
-          <h1 className="text-4xl font-bold mb-4">QBE Insurance Claims</h1>
-          <p className="text-xl mb-8">Preferred Provider • Direct Billing • No Upfront Costs</p>
-          <Button size="lg" className="bg-green-600 hover:bg-green-800">
-            <MessageSquare className="mr-2" /> Start Your Claim
-          </Button>
-        </div>
-      </section>
+      <InsuranceProviderHero providerName="QBE" />
+      <ClaimsProcess providerName="QBE" />
+      <CoveredServices providerName="QBE" />
     </div>
   );
 }
