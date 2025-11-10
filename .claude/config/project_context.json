@@ -1,0 +1,47 @@
+{
+  "project": {
+    "name": "Disaster Recovery Brisbane",
+    "type": "Local Service Website",
+    "deployment_url": "https://disasterrecovery.com.au",
+    "framework": "Next.js 14.2.32",
+    "runtime": "Node.js 18+",
+    "status": "Production Ready"
+  },
+  "service_focus": {
+    "type": "Direct local service delivery",
+    "areas": ["Brisbane", "Ipswich", "Logan"],
+    "specialization": "IICRC Master Restorer certified services",
+    "restrictions": [
+      "NO national expansion content",
+      "NO CRM or contractor management systems",
+      "NO pitch decks or investor materials",
+      "NO automated claim distribution"
+    ]
+  },
+  "contact_information": {
+    "phone": "1300 309 361",
+    "email": "admin@disasterrecovery.com.au",
+    "service_areas": {
+      "high_net_worth": ["Hamilton", "Ascot", "New Farm", "Toowong", "Karalee", "Brookwater", "Springfield Lakes"],
+      "commercial": ["Brisbane CBD", "Fortitude Valley", "Ipswich", "Logan"]
+    }
+  },
+  "key_differentiator": {
+    "certification": "IICRC Master Restorer (Phill McGurk)",
+    "response_time": "24/7 emergency response",
+    "note": "One of few Master Restorers in Queensland"
+  },
+  "tech_stack": {
+    "frontend": ["React 18", "TypeScript 5.5.4", "Tailwind CSS 3.4.7", "Radix UI", "Framer Motion"],
+    "backend": ["Next.js 14", "Prisma 5.22.0", "NextAuth.js 4.24.7", "PostgreSQL"],
+    "deployment": ["Vercel", "GitHub Actions"],
+    "image_optimization": ["Next.js Image", "Sharp", "Custom scripts"]
+  },
+  "documentation": {
+    "main_guide": "CLAUDE.md",
+    "rules": "rules.md",
+    "readme": "README.md",
+    "guides": "docs/guides/",
+    "archive": "docs/archive/"
+  }
+}

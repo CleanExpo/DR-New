@@ -492,14 +492,71 @@ A custom agent skill is available at `.claude/skills/advanced-engineering-skills
 
 ---
 
-## Support & Documentation
+## Documentation Structure
 
-### Project Documentation
-- **rules.md** - Non-negotiable project constraints
-- **README.md** - Quick start and overview
-- **CLAUDE.md** - This file (technical architecture)
+### Core Documentation (Root Directory)
+
+| Document | Purpose | When to Use |
+|----------|---------|-------------|
+| **README.md** | Main entry point, quick start, project overview | First read for new developers |
+| **CLAUDE.md** | This file - comprehensive project guidelines | Reference for architecture & decisions |
+| **rules.md** | Non-negotiable enforcement rules | Before any task begins |
+| **CONTRIBUTING.md** | Contribution guidelines and code style | Before making contributions |
+| **SECURITY.md** | Security practices and policies | Security-related work |
+
+### Comprehensive Developer Guides (`docs/guides/`)
+
+**All guides are consolidated, up-to-date, and actively maintained:**
+
+| Guide | Coverage | Link |
+|-------|----------|------|
+| **Development** | Setup, workflows, coding standards, common tasks | [docs/guides/development.md](docs/guides/development.md) |
+| **Testing** | Unit tests, E2E tests, coverage strategies | [docs/guides/testing.md](docs/guides/testing.md) |
+| **Deployment** | Vercel deployment, CI/CD, production checklist | [docs/guides/deployment.md](docs/guides/deployment.md) |
+| **Design System** | Colors, typography, components, accessibility | [docs/guides/design-system.md](docs/guides/design-system.md) |
+| **SEO Optimization** | Local SEO, keywords, schema markup, rankings | [docs/guides/seo-optimization.md](docs/guides/seo-optimization.md) |
+
+### Documentation Navigation Hub
+
+📍 **[docs/INDEX.md](docs/INDEX.md)** - Master index for all documentation
+
+The documentation index provides:
+- Clear navigation to all guides
+- Quick reference tables
+- Learning paths for different roles
+- Archive organization
+- Common task lookups
+
+### Archived Documentation (`docs/archive/`)
+
+**Historical documentation preserved but not actively maintained:**
+
+- `2024-implementations/` - Completed feature implementations
+- `audits-and-reports/` - Historical health checks and audits
+- `historical-summaries/` - Project summaries and session notes
+- `deployment-docs/` - Previous deployment documentation
+- `testing-docs/` - Historical testing implementations
+- `design-docs/` - Previous design system work
+- `seo-docs/` - Historical SEO strategies
+- `development-docs/` - Previous development guides
+- `performance-docs/` - Performance optimization history
+
+**Note:** Archives contain valuable historical context but may be outdated. Always use active guides in `docs/guides/` for current work.
+
+### Finding What You Need
+
+| Scenario | Documentation Path |
+|----------|-------------------|
+| **New to project** | README.md → Development Guide → CLAUDE.md |
+| **Daily development** | Development Guide → Design System Guide |
+| **Writing tests** | Testing Guide |
+| **Deploying** | Deployment Guide |
+| **SEO work** | SEO Optimization Guide |
+| **Need historical context** | docs/archive/ |
+| **Can't find something** | docs/INDEX.md |
 
 ### External Resources
+
 - Next.js 14 Docs: https://nextjs.org/docs
 - Prisma Docs: https://www.prisma.io/docs
 - Tailwind CSS: https://tailwindcss.com/docs
@@ -518,6 +575,10 @@ public/images/hero/               # Hero images
 prisma/schema.prisma              # Database schema
 next.config.js                    # Next.js config
 tailwind.config.ts                # Tailwind config
+
+docs/INDEX.md                     # Documentation hub
+docs/guides/                      # Active guides
+docs/archive/                     # Historical docs
 ```
 
 ### Common Patterns
@@ -563,5 +624,6 @@ export default function ServicePage() {
 
 ---
 
-**Last Updated:** 2025-11-09
+**Last Updated:** 2025-11-10
 **Maintained by:** Disaster Recovery Brisbane Development Team
+**Documentation Cleanup:** November 2025 - Consolidated 230+ markdown files into organized structure
