@@ -55,7 +55,9 @@ export const emailSchema = z.string()
     const parts = email.split('@');
     if (parts.length !== 2) {return false;}
 
-    const [local, domain] = parts;
+    const local = parts[0];
+    const domain = parts[1];
+    if (!local || !domain) {return false;}
 
     // Check local part
     if (local.length > 64) {return false;}
@@ -244,7 +246,7 @@ export function sanitizeJSON(input: unknown): unknown {
   }
 
   if (typeof input === 'object' && input !== null) {
-    const sanitized: unknown = {};
+    const sanitized: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(input)) {
       // Sanitize the key as well
       const sanitizedKey = sanitizeText(key);
@@ -315,7 +317,7 @@ export const ipSchema = z.string()
     if (ipv4Regex.test(ip)) {
       const parts = ip.split('.');
       return parts.every(part => {
-        const num = parseInt(part, 10);
+        const num = parseInt(part ?? '0', 10);
         return num >= 0 && num <= 255;
       });
     }

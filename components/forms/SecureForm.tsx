@@ -150,7 +150,8 @@ const SecureForm: React.FC<SecureFormProps> = ({
       setSubmitCount(0);
     } catch (error: unknown) {
       console.error('Form submission error:', error);
-      setErrors({ form: error.message || 'An error occurred. Please try again.' });
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred. Please try again.';
+      setErrors({ form: errorMessage });
     } finally {
       setIsSubmitting(false);
     }

@@ -3,12 +3,37 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Phone, Shield, MapPin, CheckCircle, AlertTriangle } from 'lucide-react';
+import type { LocationServiceData } from '@/types/templates';
 
-export default function LocationServicePageComponent({ data }: { data: unknown }) {
+interface LocationServicePageData {
+  h1?: string;
+  metaDescription?: string;
+  location?: {
+    city?: string;
+    suburbs?: string[];
+  };
+  content?: {
+    intro?: string;
+    keyFeatures?: string[];
+    serviceAreas?: string[];
+    emergencyResponse?: string;
+    localKnowledge?: string[];
+    commonIssues?: string[];
+    insurancePartners?: string[];
+    testimonial?: {
+      text: string;
+      author: string;
+      location?: string;
+    };
+  };
+  faqs?: Array<{ question: string; answer: string; }>;
+}
+
+export default function LocationServicePageComponent({ data }: { data: LocationServicePageData }) {
   // Parse the title to extract service type and location
   const title = data.h1 || 'Disaster Recovery Services';
   const description = data.metaDescription || '';
-  
+
   // Extract city name from data
   const location = data.location || {};
   const city = location.city || 'Your Area';

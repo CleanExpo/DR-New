@@ -63,7 +63,10 @@ export default function BeforeAfterSlider() {
     }
   ]
 
-  const currentCase = cases[activeCase]
+  const currentCase = cases[activeCase];
+  if (!currentCase) {
+    return null;
+  }
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -74,7 +77,9 @@ export default function BeforeAfterSlider() {
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.touches[0].clientX - rect.left
+    const touch = e.touches[0];
+    if (!touch) {return;}
+    const x = touch.clientX - rect.left
     const percentage = (x / rect.width) * 100
     setSliderPosition(Math.min(100, Math.max(0, percentage)))
   }
@@ -107,7 +112,7 @@ export default function BeforeAfterSlider() {
                   : 'bg-gray-700 text-white hover:bg-gray-800'
               }`}
             >
-              {caseItem.disaster.split(' ')[0]}
+              {caseItem.disaster.split(' ')[0] ?? 'Case'}
             </button>
           ))}
         </div>

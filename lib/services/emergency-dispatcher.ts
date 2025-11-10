@@ -274,10 +274,14 @@ export async function dispatchEmergencyJob(
         decisionMaker: true,
         qualityStatus,
         status: 'ASSIGNED',
-        partnerId: assignedContractor.id,
+        partnerId: assignedContractor?.id ?? '',
         assignedAt: new Date(),
       },
     });
+
+    if (!assignedContractor) {
+      throw new Error('No contractor assigned');
+    }
 
     // Create tracking event
     await prisma.leadTracking.create({
@@ -300,8 +304,8 @@ export async function dispatchEmergencyJob(
       jobId: lead.id,
       assignedContractor: {
         id: assignedContractor.id,
-        name: assignedContractor.companyProfile?.companyName || 'Unknown',
-        phone: assignedContractor.mobileNumber,
+        name: assignedContractor.companyProfile?.companyName ?? 'Unknown',
+        phone: assignedContractor.mobileNumber ?? '',
         estimatedArrival,
       },
       fallbackContractors: availableContractors.slice(1, 3).map((c) => ({

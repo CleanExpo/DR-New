@@ -87,12 +87,12 @@ class SEMrushAPI {
           const row = data[0];
           return {
             domain,
-            organic_keywords: parseInt(row[0] || '0'),
-            organic_traffic: parseInt(row[1] || '0'),
-            organic_cost: parseFloat(row[2] || '0'),
-            adwords_keywords: parseInt(row[3] || '0'),
-            adwords_traffic: parseInt(row[4] || '0'),
-            adwords_cost: parseFloat(row[5] || '0')
+            organic_keywords: parseInt(row?.[0] ?? '0'),
+            organic_traffic: parseInt(row?.[1] ?? '0'),
+            organic_cost: parseFloat(row?.[2] ?? '0'),
+            adwords_keywords: parseInt(row?.[3] ?? '0'),
+            adwords_traffic: parseInt(row?.[4] ?? '0'),
+            adwords_cost: parseFloat(row?.[5] ?? '0')
           };
         }
       }
@@ -126,13 +126,13 @@ class SEMrushAPI {
         if (data.length > 0) {
           const row = data[0];
           return {
-            keyword: row[0],
-            volume: parseInt(row[1] || '0'),
-            cpc: parseFloat(row[2] || '0'),
-            competition: parseFloat(row[3] || '0'),
-            difficulty: parseFloat(row[4] || '0'),
-            trend: row[5] ? row[5].split(',').map(Number) : [],
-            serp_features: row[6] ? row[6].split(',') : []
+            keyword: row?.[0] ?? '',
+            volume: parseInt(row?.[1] ?? '0'),
+            cpc: parseFloat(row?.[2] ?? '0'),
+            competition: parseFloat(row?.[3] ?? '0'),
+            difficulty: parseFloat(row?.[4] ?? '0'),
+            trend: row?.[5] ? row[5].split(',').map(Number) : [],
+            serp_features: row?.[6] ? row[6].split(',') : []
           };
         }
       }
@@ -165,16 +165,16 @@ class SEMrushAPI {
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
-          keyword: row[0],
-          position: parseInt(row[1] || '0'),
-          volume: parseInt(row[2] || '0'),
-          cpc: parseFloat(row[3] || '0'),
-          competition: parseFloat(row[4] || '0'),
-          url: row[5],
-          traffic_percent: parseFloat(row[6] || '0'),
-          traffic_cost: parseFloat(row[7] || '0'),
-          results: parseInt(row[8] || '0'),
-          trends: row[9] ? row[9].split(',').map(Number) : []
+          keyword: row?.[0] ?? '',
+          position: parseInt(row?.[1] ?? '0'),
+          volume: parseInt(row?.[2] ?? '0'),
+          cpc: parseFloat(row?.[3] ?? '0'),
+          competition: parseFloat(row?.[4] ?? '0'),
+          url: row?.[5] ?? '',
+          traffic_percent: parseFloat(row?.[6] ?? '0'),
+          traffic_cost: parseFloat(row?.[7] ?? '0'),
+          results: parseInt(row?.[8] ?? '0'),
+          trends: row?.[9] ? row[9].split(',').map(Number) : []
         }));
       }
     } catch (error) {
@@ -208,15 +208,15 @@ class SEMrushAPI {
           const row = data[0];
           return {
             domain,
-            backlinks_total: parseInt(row[0] || '0'),
-            domains_total: parseInt(row[1] || '0'),
-            ips_total: parseInt(row[2] || '0'),
-            follows_total: parseInt(row[3] || '0'),
-            nofollows_total: parseInt(row[4] || '0'),
-            texts_total: parseInt(row[5] || '0'),
-            images_total: parseInt(row[6] || '0'),
-            forms_total: parseInt(row[7] || '0'),
-            frames_total: parseInt(row[8] || '0')
+            backlinks_total: parseInt(row?.[0] ?? '0'),
+            domains_total: parseInt(row?.[1] ?? '0'),
+            ips_total: parseInt(row?.[2] ?? '0'),
+            follows_total: parseInt(row?.[3] ?? '0'),
+            nofollows_total: parseInt(row?.[4] ?? '0'),
+            texts_total: parseInt(row?.[5] ?? '0'),
+            images_total: parseInt(row?.[6] ?? '0'),
+            forms_total: parseInt(row?.[7] ?? '0'),
+            frames_total: parseInt(row?.[8] ?? '0')
           };
         }
       }
@@ -249,13 +249,13 @@ class SEMrushAPI {
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
-          domain: row[0],
-          competition_level: parseFloat(row[1] || '0'),
-          common_keywords: parseInt(row[2] || '0'),
-          organic_keywords: parseInt(row[3] || '0'),
-          organic_traffic: parseInt(row[4] || '0'),
-          organic_cost: parseFloat(row[5] || '0'),
-          adwords_keywords: parseInt(row[6] || '0')
+          domain: row?.[0] ?? '',
+          competition_level: parseFloat(row?.[1] ?? '0'),
+          common_keywords: parseInt(row?.[2] ?? '0'),
+          organic_keywords: parseInt(row?.[3] ?? '0'),
+          organic_traffic: parseInt(row?.[4] ?? '0'),
+          organic_cost: parseFloat(row?.[5] ?? '0'),
+          adwords_keywords: parseInt(row?.[6] ?? '0')
         }));
       }
     } catch (error) {
@@ -289,11 +289,11 @@ class SEMrushAPI {
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
-          keyword: row[0],
-          volume: parseInt(row[1] || '0'),
-          cpc: parseFloat(row[2] || '0'),
-          competition: parseFloat(row[3] || '0'),
-          results: parseInt(row[4] || '0')
+          keyword: row?.[0] ?? '',
+          volume: parseInt(row?.[1] ?? '0'),
+          cpc: parseFloat(row?.[2] ?? '0'),
+          competition: parseFloat(row?.[3] ?? '0'),
+          results: parseInt(row?.[4] ?? '0')
         }));
       }
     } catch (error) {
@@ -350,10 +350,10 @@ class SEMrushAPI {
       if (response.ok) {
         const data = this.parseResponse(text);
         return data.map(row => ({
-          url: row[0],
-          keywords_count: parseInt(row[1] || '0'),
-          traffic: parseInt(row[2] || '0'),
-          traffic_cost: parseFloat(row[3] || '0')
+          url: row?.[0] ?? '',
+          keywords_count: parseInt(row?.[1] ?? '0'),
+          traffic: parseInt(row?.[2] ?? '0'),
+          traffic_cost: parseFloat(row?.[3] ?? '0')
         }));
       }
     } catch (error) {

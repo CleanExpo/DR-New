@@ -2,12 +2,19 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(...args: any[]): Promise<void> {
+interface SEOPage {
+  slug: string;
+  title: string;
+  updatedAt: Date;
+  priorityScore: number;
+}
+
+export async function GET(): Promise<NextResponse> {
   try {
     // Dynamically import Prisma to avoid build-time issues
     const { PrismaClient } = await import('@prisma/client');
     const prisma = new PrismaClient();
-    
+
     // TODO: Fetch all published SEO pages when sEOLocationPage model is added
     // const pages = await prisma.sEOLocationPage.findMany({
     //   where: {
@@ -24,7 +31,7 @@ export async function GET(...args: any[]): Promise<void> {
     //     { updatedAt: 'desc' }
     //   ]
     // });
-    const pages: unknown[] = [];
+    const pages: SEOPage[] = [];
 
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://disasterrecovery.com.au';
     

@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
-import { getCLS, getFCP, getFID, getLCP, getTTFB } from 'web-vitals';
+import { getCLS, getFCP, getFID, getLCP, getTTFB, Metric } from 'web-vitals';
 
 // Reports Core Web Vitals to Google Analytics for SEO monitoring
-export function WebVitalsReporter(...args: any[]): void {
+export function WebVitalsReporter() {
   useEffect(() => {
-    const sendToAnalytics = (metric: unknown) => {
+    const sendToAnalytics = (metric: Metric) => {
       // Send to Google Analytics
       if (typeof window !== 'undefined' && (window as any).gtag) {
         (window as any).gtag('event', metric.name, {
@@ -19,7 +19,7 @@ export function WebVitalsReporter(...args: any[]): void {
 
       // Log to console in development
       if (process.env.NODE_ENV === 'development') {
-        
+
         // Provide performance insights
         const thresholds: Record<string, { good: number; needsImprovement: number }> = {
           CLS: { good: 0.1, needsImprovement: 0.25 },

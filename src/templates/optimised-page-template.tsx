@@ -26,12 +26,19 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { 
-  Shield, Clock, Award, email, CheckCircle, AlertTriangle,
+import {
+  Shield, Clock, Award, Phone, CheckCircle, AlertTriangle,
   TrendingUp, Users, MapPin, BookOpen, GraduationCap,
   Building2, Heart, Zap, Globe, BarChart3, PieChart,
   Activity, FileText, ExternalLink, ArrowRight
 } from 'lucide-react';
+import type {
+  ProgressDataItem,
+  AustralianSchemaParams,
+  SchemaOrganization,
+  PageMetadataParams,
+  isProgressDataArray
+} from '@/types/templates';
 
 // Lazy load components for performance
 const LandingHeader = dynamic(() => import('@/components/LandingHeader'), {
@@ -110,13 +117,7 @@ export function generateAustralianMetadata({
   keywords,
   path,
   image = '/images/optimized/damage/3D image of a house fire.png'
-}: {
-  title: string;
-  description: string;
-  keywords: string[];
-  path: string;
-  image?: string;
-}): Metadata {
+}: PageMetadataParams): Metadata {
   return {
     title: `${title} | Disaster Recovery Australia`,
     description: `${description} 24/7 emergency response across Australia. Insurance approved. CSIRO-backed methods.`,
@@ -161,14 +162,19 @@ export function generateAustralianMetadata({
 }
 
 // Schema.org Generator for Australian Business
-export function generateAustralianSchema(...args: any[]): void {
+export function generateAustralianSchema({
+  serviceName,
+  description,
+  url,
+  serviceType
+}: AustralianSchemaParams): SchemaOrganization {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: serviceName,
     description,
     url,
-    telephone: "",
+    telephone: "1300 309 361",
     areaServed: {
       '@type': 'Country',
       name: 'Australia',
@@ -309,13 +315,13 @@ export const CONTENT_GUIDELINES = {
 };
 
 // Data Visualisation Component
-export const DataVisualisation = ({ 
-  type, 
-  data, 
-  title 
-}: { 
+export const DataVisualisation = ({
+  type,
+  data,
+  title
+}: {
   type: 'bar' | 'pie' | 'line' | 'progress';
-  data: unknown;
+  data: ProgressDataItem[];
   title: string;
 }) => {
   switch(type) {
@@ -324,14 +330,14 @@ export const DataVisualisation = ({
         <div className="bg-white/10 rounded-xl p-6 border border-white/10">
           <h3 className="text-xl font-bold text-white mb-4">{title}</h3>
           <div className="space-y-4">
-            {data.map((item: unknown, idx: number) => (
+            {data.map((item: ProgressDataItem, idx: number) => (
               <div key={idx}>
                 <div className="flex justify-between mb-2">
                   <span className="text-blue-700">{item.label}</span>
                   <span className="text-white font-bold">{item.value}%</span>
                 </div>
                 <div className="w-full bg-white/10 rounded-full h-3">
-                  <div 
+                  <div
                     className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-1000"
                     style={{ width: `${item.value}%` }}
                   />
@@ -359,7 +365,7 @@ export const EmergencyCTA = ({
           href="/client/emergency"
           className="flex items-center gap-2 px-4 py-2 bg-white text-red-600 rounded-lg font-bold hover:bg-gray-100 transition-all"
         >
-          <email className="h-5 w-5" />
+          <Phone className="h-5 w-5" />
           <span>Get Help Now</span>
         </Link>
       </div>

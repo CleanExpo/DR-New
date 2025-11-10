@@ -63,6 +63,9 @@ function firstTouchAttribution(
   conversionValue: number
 ): AttributionModel['attribution'] {
   const first = touchPoints[0];
+  if (!first) {
+    return [];
+  }
 
   return [
     {
@@ -83,6 +86,9 @@ function lastTouchAttribution(
   conversionValue: number
 ): AttributionModel['attribution'] {
   const last = touchPoints[touchPoints.length - 1];
+  if (!last) {
+    return [];
+  }
 
   return [
     {
@@ -144,7 +150,11 @@ function timeDecayAttribution(
   conversionValue: number
 ): AttributionModel['attribution'] {
   const halfLife = 7; // 7 days half-life
-  const now = touchPoints[touchPoints.length - 1].timestamp.getTime();
+  const lastPoint = touchPoints[touchPoints.length - 1];
+  if (!lastPoint) {
+    return [];
+  }
+  const now = lastPoint.timestamp.getTime();
 
   // Calculate weights using exponential decay
   const weights = touchPoints.map((point) => {
@@ -178,8 +188,9 @@ function timeDecayAttribution(
       };
     }
 
-    const credit = (weights[index] / totalWeight) * conversionValue;
-    const percentage = (weights[index] / totalWeight) * 100;
+    const weight = weights[index] ?? 0;
+    const credit = (weight / totalWeight) * conversionValue;
+    const percentage = (weight / totalWeight) * 100;
 
     attributionMap[key].credit += credit;
     attributionMap[key].creditPercentage += percentage;
@@ -200,18 +211,23 @@ function positionBasedAttribution(
   }
 
   if (touchPoints.length === 2) {
+    const first = touchPoints[0];
+    const second = touchPoints[1];
+    if (!first || !second) {
+      return [];
+    }
     return [
       {
-        source: touchPoints[0].source,
-        medium: touchPoints[0].medium,
-        campaign: touchPoints[0].campaign,
+        source: first.source,
+        medium: first.medium,
+        campaign: first.campaign,
         credit: conversionValue * 0.5,
         creditPercentage: 50,
       },
       {
-        source: touchPoints[1].source,
-        medium: touchPoints[1].medium,
-        campaign: touchPoints[1].campaign,
+        source: second.source,
+        medium: second.medium,
+        campaign: second.campaign,
         credit: conversionValue * 0.5,
         creditPercentage: 50,
       },
@@ -231,6 +247,9 @@ function positionBasedAttribution(
 
   // First touch: 40%
   const first = touchPoints[0];
+  if (!first) {
+    return [];
+  }
   const firstKey = `${first.source}_${first.medium}_${first.campaign || 'none'}`;
   attributionMap[firstKey] = {
     source: first.source,
@@ -242,6 +261,9 @@ function positionBasedAttribution(
 
   // Last touch: 40%
   const last = touchPoints[touchPoints.length - 1];
+  if (!last) {
+    return [];
+  }
   const lastKey = `${last.source}_${last.medium}_${last.campaign || 'none'}`;
 
   if (attributionMap[lastKey]) {

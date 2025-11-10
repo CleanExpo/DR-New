@@ -65,7 +65,7 @@ function PaymentPageContent(...args: any[]): void {
   };
 
   const validatePayment = () => {
-    const newErrors: unknown = {};
+    const newErrors: Record<string, string> = {};
 
     if (!cardDetails.number || cardDetails.number.replace(/\s/g, '').length < 16) {
       newErrors.number = 'Valid card number required';

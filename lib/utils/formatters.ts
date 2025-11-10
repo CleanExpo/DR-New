@@ -161,9 +161,11 @@ export function formatBusinessHours(open: string, close: string): string {
  */
 function formatTime(time: string): string {
   const [hours, minutes] = time.split(':').map(Number);
-  const period = hours >= 12 ? 'PM' : 'AM';
-  const displayHours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
-  return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+  const hoursVal = hours ?? 0;
+  const minutesVal = minutes ?? 0;
+  const period = hoursVal >= 12 ? 'PM' : 'AM';
+  const displayHours = hoursVal === 0 ? 12 : hoursVal > 12 ? hoursVal - 12 : hoursVal;
+  return `${displayHours}:${minutesVal.toString().padStart(2, '0')} ${period}`;
 }
 
 /**

@@ -12,6 +12,67 @@ export const typography = {
   fontFamily: {
     sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
     display: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+    heading: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'], // Alias for backward compatibility
+  },
+
+  // Alias for fonts (backward compatibility)
+  fonts: {
+    sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+    display: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+    heading: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+  },
+
+  // Font sizes (alias to fluidFontSizes for backward compatibility)
+  sizes: {
+    xs: 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)',
+    sm: 'clamp(0.875rem, 0.825rem + 0.25vw, 1rem)',
+    base: 'clamp(1rem, 0.95rem + 0.25vw, 1.125rem)',
+    lg: 'clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem)',
+    xl: 'clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem)',
+    '2xl': 'clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem)',
+    '3xl': 'clamp(1.875rem, 1.65rem + 1.125vw, 2.25rem)',
+    '4xl': 'clamp(2.25rem, 1.95rem + 1.5vw, 3rem)',
+    '5xl': 'clamp(3rem, 2.55rem + 2.25vw, 4rem)',
+    '6xl': 'clamp(3.75rem, 3.15rem + 3vw, 5rem)',
+  },
+
+  // Font weights (alias to fontWeights for backward compatibility)
+  weights: {
+    thin: 100,
+    extralight: 200,
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
+    extrabold: 800,
+    black: 900,
+  },
+
+  // Additional aliases for backward compatibility
+  fontSize: {
+    xs: 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)',
+    sm: 'clamp(0.875rem, 0.825rem + 0.25vw, 1rem)',
+    base: 'clamp(1rem, 0.95rem + 0.25vw, 1.125rem)',
+    lg: 'clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem)',
+    xl: 'clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem)',
+    '2xl': 'clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem)',
+    '3xl': 'clamp(1.875rem, 1.65rem + 1.125vw, 2.25rem)',
+    '4xl': 'clamp(2.25rem, 1.95rem + 1.5vw, 3rem)',
+    '5xl': 'clamp(3rem, 2.55rem + 2.25vw, 4rem)',
+    '6xl': 'clamp(3.75rem, 3.15rem + 3vw, 5rem)',
+  },
+
+  fontWeight: {
+    thin: 100,
+    extralight: 200,
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
+    extrabold: 800,
+    black: 900,
   },
 
   // Heading Styles

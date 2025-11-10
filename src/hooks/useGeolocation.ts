@@ -67,7 +67,7 @@ export function useGeolocation(options: GeolocationOptions = {}) {
       return;
     }
 
-    const handleSuccess = (position: GeolocationPosition) => {
+    const handleSuccess = (position: globalThis.GeolocationPosition) => {
       setState({
         location: {
           latitude: position.coords.latitude,

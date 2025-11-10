@@ -9,6 +9,7 @@ export interface LocationData {
   state: string;
   city?: string;
   suburb?: string;
+  suburbs?: string[]; // For areas that service multiple suburbs
   postcode: string;
   coordinates?: {
     lat: number;
@@ -17,6 +18,10 @@ export interface LocationData {
   population?: number;
   disasterRisk?: DisasterRisk[];
   demographics?: Demographics;
+  viewport?: {
+    northeast: { lat: number; lng: number; };
+    southwest: { lat: number; lng: number; };
+  };
 }
 
 export interface DisasterRisk {
@@ -67,6 +72,8 @@ export interface ContractorData {
   id: string;
   businessName: string;
   abn: string;
+  email?: string;
+  phone?: string;
   location: LocationData;
   serviceRadius: number; // in kilometers
   services: ServiceData[];
@@ -86,6 +93,7 @@ export interface ContractorData {
   employees?: number;
   equipment?: string[];
   caseStudies?: CaseStudy[];
+  fraudDetectionLog?: Array<{ timestamp: Date; reason: string; }>;
 }
 
 export interface Certification {

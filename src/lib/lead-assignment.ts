@@ -95,8 +95,9 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
     // Sort by auto-accept score and available credits
     matchingPartners.sort((a, b) => {
       // Prioritize partners with higher auto-accept scores
-      if (lead.leadScore >= a.autoAcceptScore && lead.leadScore < b.autoAcceptScore) {return -1;}
-      if (lead.leadScore >= b.autoAcceptScore && lead.leadScore < a.autoAcceptScore) {return 1;}
+      const leadScore = lead.leadScore ?? 0;
+      if (leadScore >= a.autoAcceptScore && leadScore < b.autoAcceptScore) {return -1;}
+      if (leadScore >= b.autoAcceptScore && leadScore < a.autoAcceptScore) {return 1;}
 
       // Then by available credits
       return b.leadCredits - a.leadCredits;
@@ -104,6 +105,9 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
 
     // Assign to first matching partner
     const selectedPartner = matchingPartners[0];
+    if (!selectedPartner) {
+      return null;
+    }
 
     // Update lead with partner assignment
     await prisma.lead.update({

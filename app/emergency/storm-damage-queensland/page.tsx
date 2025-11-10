@@ -98,11 +98,22 @@ const StormDamageCalculator = () => {
 };
 
 // Restore vs Rebuild Decision Tree Component
+interface DecisionOption {
+  text: string;
+  next: number;
+  value: string;
+}
+
+interface DecisionStep {
+  question: string;
+  options: DecisionOption[];
+}
+
 const DecisionTree = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [decisions, setDecisions] = useState<string[]>([]);
 
-  const steps = [
+  const steps: DecisionStep[] = [
     {
       question: "Is the structural integrity compromised?",
       options: [
@@ -126,7 +137,7 @@ const DecisionTree = () => {
     }
   ];
 
-  const handleDecision = (option: unknown) => {
+  const handleDecision = (option: DecisionOption) => {
     setDecisions([...decisions, option.value]);
     if (option.next < steps.length) {
       setCurrentStep(option.next);

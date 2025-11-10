@@ -1,13 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function POST(...args: any[]): Promise<void> {
+interface AuditLogPayload {
+  action: string;
+  resource: string;
+  details?: Record<string, unknown>;
+  severity?: 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
+}
+
+export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const session = await getServerSession();
-    const { action, resource, details, severity = 'INFO' } = await req.json();
+    const { action, resource, details, severity = 'INFO' } = await req.json() as AuditLogPayload;
 
     if (!action || !resource) {
       return NextResponse.json(
@@ -52,10 +59,25 @@ export async function POST(...args: any[]): Promise<void> {
   }
 }
 
-export async function GET(...args: any[]): Promise<void> {
+interface AuditLogRecord {
+  id: string;
+  action: string;
+  resource: string;
+  details?: string | null;
+  severity: string;
+  userId?: string;
+  timestamp: Date;
+}
+
+interface AuditLogWhereClause {
+  severity?: string;
+  action?: string;
+}
+
+export async function GET(req: NextRequest): Promise<NextResponse> {
   try {
     const session = await getServerSession();
-    
+
     if (!session?.user) {
       return NextResponse.json(
         { logs: [], totalCount: 0, hasMore: false, error: 'Not authenticated' },
@@ -69,14 +91,14 @@ export async function GET(...args: any[]): Promise<void> {
     const severity = searchParams.get('severity');
     const action = searchParams.get('action');
 
-    const whereClause: unknown = {};
+    const whereClause: AuditLogWhereClause = {};
     if (severity) {whereClause.severity = severity;}
     if (action) {whereClause.action = action;}
 
     // TODO: Query audit logs when model is added to schema
-    const logs: unknown[] = [];
+    const logs: AuditLogRecord[] = [];
     const totalCount = 0;
-    
+
     // const logs = await prisma.auditLog.findMany({
     //   where: whereClause,
     //   orderBy: { timestamp: 'desc' },
@@ -87,7 +109,7 @@ export async function GET(...args: any[]): Promise<void> {
     // const totalCount = await prisma.auditLog.count({ where: whereClause });
 
     return NextResponse.json({
-      logs: logs.map(log => ({
+      logs: logs.map((log: AuditLogRecord) => ({
         ...log,
         details: log.details ? JSON.parse(log.details) : null
       })),

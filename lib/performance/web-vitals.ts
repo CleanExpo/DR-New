@@ -142,7 +142,9 @@ export class WebVitalsMonitor {
       const lcpObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries();
         const lastEntry = entries[entries.length - 1];
-        this.recordMetric('LCP', lastEntry.startTime);
+        if (lastEntry) {
+          this.recordMetric('LCP', lastEntry.startTime);
+        }
       });
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
       this.observers.push(lcpObserver);

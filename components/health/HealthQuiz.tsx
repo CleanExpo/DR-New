@@ -192,7 +192,9 @@ const HealthQuiz: React.FC = () => {
   ]
 
   const handleAnswer = (value: string) => {
-    setAnswers({ ...answers, [questions[currentQuestion].id]: value })
+    const currentQ = questions[currentQuestion];
+    if (!currentQ) {return;}
+    setAnswers({ ...answers, [currentQ.id]: value })
   }
 
   const nextQuestion = () => {
@@ -433,7 +435,10 @@ const HealthQuiz: React.FC = () => {
     )
   }
 
-  const currentQ = questions[currentQuestion]
+  const currentQ = questions[currentQuestion];
+  if (!currentQ) {
+    return null;
+  }
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
   return (

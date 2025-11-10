@@ -122,6 +122,9 @@ export default function RotatingHeroBanner() {
   }, [isPlaying]);
 
   const banner = heroBanners[currentBanner];
+  if (!banner) {
+    return null;
+  }
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -272,7 +275,7 @@ export default function RotatingHeroBanner() {
                     ? 'bg-white shadow-lg scale-125'
                     : 'bg-white/50 hover:bg-white/75'
                 }`}
-                aria-label={`View ${heroBanners[index].service} banner`}
+                aria-label={`View ${heroBanners[index]?.service ?? 'service'} banner`}
               />
             ))}
           </div>

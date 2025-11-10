@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Shield, Clock, Award, Phone, GraduationCap } from 'lucide-react';
+import type { PageMetadataParams, AustralianSchemaParams, SchemaOrganization } from '@/types/templates';
 
 export function OptimisedPageTemplate({ children }: { children: React.ReactNode }) {
   return <div>{children}</div>;
@@ -31,13 +32,7 @@ export function generateAustralianMetadata({
   keywords,
   path,
   image = '/images/optimized/damage/3D image of a house fire.png'
-}: {
-  title: string;
-  description: string;
-  keywords: string[];
-  path: string;
-  image?: string;
-}): Metadata {
+}: PageMetadataParams): Metadata {
   return {
     title: `${title} | Disaster Recovery Brisbane`,
     description: `${description} 24/7 emergency response Brisbane, Ipswich, Logan. IICRC Master Restorer approved.`,
@@ -80,12 +75,7 @@ export function generateAustralianSchema({
   serviceType,
   description,
   url
-}: {
-  serviceName: string;
-  serviceType: string;
-  description: string;
-  url: string;
-}) {
+}: AustralianSchemaParams): SchemaOrganization {
   return {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',

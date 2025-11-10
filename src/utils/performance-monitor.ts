@@ -38,7 +38,7 @@ export const performanceMonitor = {
         const observer = new PerformanceObserver((list) => {
           const entries = list.getEntries();
           const lastEntry = entries[entries.length - 1];
-          resolve(lastEntry.renderTime || lastEntry.loadTime);
+          resolve(lastEntry?.renderTime ?? lastEntry?.loadTime ?? 0);
         });
         observer.observe({ entryTypes: ['largest-contentful-paint'] });
       } else {

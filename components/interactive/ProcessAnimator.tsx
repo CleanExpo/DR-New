@@ -126,6 +126,9 @@ export function ProcessAnimator({ className = '' }: { className?: string }) {
   };
 
   const currentStep = RESTORATION_PROCESS[activeStep];
+  if (!currentStep) {
+    return null;
+  }
   const progress = ((activeStep + 1) / RESTORATION_PROCESS.length) * 100;
 
   return (

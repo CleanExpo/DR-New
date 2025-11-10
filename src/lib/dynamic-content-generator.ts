@@ -199,7 +199,10 @@ export function generateLocationContent(
   sections: { [key: string]: string };
 } {
   const serviceData = serviceTemplates[service];
-  
+  if (!serviceData) {
+    throw new Error(`Service template not found for: ${service}`);
+  }
+
   return {
     title: `${serviceData.service} ${location.city} ${location.state} | 24/7 Emergency Response`,
     metaDescription: `Professional ${serviceData.service.toLowerCase()} in ${location.city}, ${location.state}. 24/7 emergency service, insurance approved, rapid response across all ${location.city} suburbs. Call 1300 814 870.`,

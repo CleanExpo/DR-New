@@ -5,10 +5,26 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, AlertCircle, CheckCircle, XCircle, AlertTriangle, FileText, Camera, Clock, Shield, TrendingUp, TrendingDown, Phone } from 'lucide-react';
 import { InsuranceDecoder } from '../../lib/insurance-decoder';
 
+interface AssessmentFactor {
+  id: string;
+  question: string;
+  answer: string;
+  explanation: string;
+  impact: 'positive' | 'negative' | 'neutral';
+}
+
+interface CoverageResult {
+  probability: number;
+  reasoning: string[];
+  factors: AssessmentFactor[];
+  nextSteps: string[];
+  recommendation?: string;
+}
+
 export default function CoverageChecker() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<CoverageResult | null>(null);
   const [selectedScenario, setSelectedScenario] = useState<string>('');
   
   // Scroll to top when step changes
@@ -292,18 +308,18 @@ export default function CoverageChecker() {
     }
   };
 
-  const getNextSteps = (probability: number, factors: unknown[]) => {
+  const getNextSteps = (probability: number, factors: AssessmentFactor[]) => {
     const steps = [];
-    
+
     if (probability < 80) {
       steps.push('Get professional damage assessment immediately');
     }
-    
-    if (factors.some(f => f.id === 'documentation' && f.impact !== 'positive')) {
+
+    if (factors.some((f: AssessmentFactor) => f.id === 'documentation' && f.impact !== 'positive')) {
       steps.push('Document everything with photos, videos, and written notes');
     }
-    
-    if (factors.some(f => f.id === 'notification-timing' && f.answer === 'not-yet')) {
+
+    if (factors.some((f: AssessmentFactor) => f.id === 'notification-timing' && f.answer === 'not-yet')) {
       steps.push('Notify your insurer immediately - delays can void coverage');
     }
     
@@ -472,7 +488,7 @@ export default function CoverageChecker() {
                 <div className="mb-8">
                   <h3 className="text-xl font-bold mb-4">Assessment Factors</h3>
                   <div className="space-y-3">
-                    {result.factors.map((factor: unknown, index: number) => (
+                    {result.factors.map((factor: AssessmentFactor, index: number) => (
                       <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
                         {factor.impact === 'positive' && <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />}
                         {factor.impact === 'negative' && <XCircle className="w-5 h-5 text-red-500 mt-0.5" />}

@@ -2,12 +2,12 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { 
-  Phone, 
-  Clock, 
-  Shield, 
-  MapPin, 
-  CheckCircle, 
+import {
+  Phone,
+  Clock,
+  Shield,
+  MapPin,
+  CheckCircle,
   AlertTriangle,
   Users,
   TrendingUp,
@@ -21,8 +21,46 @@ import {
   FileText
 } from 'lucide-react';
 
+interface LocationServicePageData {
+  h1?: string;
+  title?: string;
+  metaDescription?: string;
+  service?: {
+    name?: string;
+    description?: string;
+  };
+  location?: {
+    city?: string;
+    suburbs?: string[];
+  };
+  city?: string;
+  suburbs?: string[];
+  content?: {
+    intro?: string;
+    emergencyResponse?: string;
+    localKnowledge?: string[];
+    benefits?: string[];
+    process?: Array<{ title: string; description: string; }>;
+    faqs?: Array<{ question: string; answer: string; }>;
+  };
+  emergencyResponse?: string;
+  processSteps?: Array<{ title: string; description: string; }>;
+  whyChooseUs?: Array<{ title: string; description: string; }>;
+  insuranceInfo?: {
+    partners?: string[];
+    process?: string;
+  };
+  faqs?: Array<{ question: string; answer: string; }>;
+  relatedServices?: Array<{ title: string; slug: string; }>;
+  nearbyLocations?: Array<{ name: string; slug: string; }>;
+  cta?: {
+    title?: string;
+    subtitle?: string;
+  };
+}
+
 interface LocationServicePageProps {
-  data: unknown; // Using any for now to match the generator output
+  data: LocationServicePageData;
 }
 
 export default function LocationServicePageComponent({ data }: LocationServicePageProps) {

@@ -89,7 +89,9 @@ async function getDirectoryStats(dirPath: string): Promise<ImageStats> {
   // Calculate averages
   for (const ext in stats.breakdown) {
     const data = stats.breakdown[ext];
-    data.avgSize = data.count > 0 ? Math.round(data.size / data.count) : 0;
+    if (data) {
+      data.avgSize = data.count > 0 ? Math.round(data.size / data.count) : 0;
+    }
   }
 
   return stats;

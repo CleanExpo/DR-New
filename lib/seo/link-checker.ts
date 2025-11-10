@@ -92,7 +92,7 @@ export function validateInternalLink(link: Link): LinkValidationResult {
     '/faq'
   ];
 
-  const url = link.url.split('?')[0].split('#')[0]; // Remove query and hash
+  const url = link.url.split('?')[0]?.split('#')[0] ?? ''; // Remove query and hash
   const isValid = validInternalPaths.some(path => url === path || url.startsWith(`${path  }/`));
 
   if (!isValid) {
@@ -118,7 +118,7 @@ export function validateInternalLink(link: Link): LinkValidationResult {
       link,
       isValid: false,
       error: 'Page not found',
-      suggestion: suggestion ? `Did you mean: ${suggestion}` : 'Check URL path'
+      suggestion: suggestion ?? 'Check URL path'
     };
   }
 
@@ -272,12 +272,13 @@ export function extractLinksFromHTML(html: string, sourceFile: string): Link[] {
     let match;
     while ((match = pattern.exec(html)) !== null) {
       const url = match[1];
+      const matchIndex = match.index ?? 0;
       if (url && !url.startsWith('javascript:') && !url.startsWith('data:')) {
         links.push({
           url,
           type: getLinkType(url),
           sourceFile,
-          lineNumber: html.substring(0, match.index).split('\n').length
+          lineNumber: html.substring(0, matchIndex).split('\n').length
         });
       }
     }
@@ -308,6 +309,7 @@ export function detectDuplicateContent(
     for (let j = i + 1; j < contentHashes.length; j++) {
       const hash1 = contentHashes[i];
       const hash2 = contentHashes[j];
+      if (!hash1 || !hash2) {continue;}
 
       // Check exact duplicates
       if (hash1.contentHash === hash2.contentHash) {
