@@ -1,0 +1,114 @@
+QUICK REFERENCE - IMAGE FOLDER SUMMARY
+======================================
+
+454 TOTAL IMAGES | ~339 MB TOTAL SIZE
+
+ACTIVE FOLDERS (Production Use)
+======================================
+1. public/images/              246 images   80 MB    Production assets
+   ├─ hero/                     18 images   6.6 MB   Hero banners
+   ├─ places/                   17 images   11 MB    3D location renders
+   ├─ services/                 41 images   18 MB    Service photos
+   ├─ suburbs/                  14 images   4.2 MB   Location-specific images
+   ├─ icons/                    11 images   3.6 MB   Service icons
+   ├─ logos/                     8 images   3.9 MB   Logo files
+   ├─ favicons/                 10 images   349 KB   Favicon set
+   ├─ (root level)              44 images   15 MB    OG images, misc
+   ├─ banners/                   2 images   349 KB   Banner graphics
+   ├─ case-studies/              2 images   1.8 MB   Case study images
+   ├─ education/                 2 images   1.4 MB   Educational content
+   ├─ environmental-health/      2 images   1.2 MB   Health hazards
+   ├─ heroes/                    5 images   298 KB   Hero images
+   ├─ logos/nrp/                10 images   349 KB   NRP favicons
+   ├─ optimized/                 8 images   varies   Optimized versions
+   ├─ places/                   17 images   11 MB    3D place renders
+   ├─ storm-damage/              2 images   1.4 MB   Storm damage
+   └─ team/                      2 images   2.4 MB   Team photos
+
+2. mobile-app/assets/           4 images   58 KB    App icons & splash
+   ├─ icon.png                  22 KB
+   ├─ splash-icon.png           18 KB
+   ├─ adaptive-icon.png         18 KB
+   └─ favicon.png                1.5 KB
+
+ARCHIVE/LEGACY FOLDERS (Reference Materials)
+======================================
+3. image-library/              101 images  241 MB    Legacy archive
+   └─ services-archive/        101 images  241 MB    Design alternatives
+       └─ Issues: 36 truncated filenames, 6+ files >6MB
+
+4. public/logos/                28 images  18 MB    DUPLICATES FOUND
+   └─ Note: Contains copies of favicons and logos
+
+DEVELOPMENT ARTIFACTS (Testing/Mockups)
+======================================
+5. ROOT directory               30 images  11 MB    Screenshots & mockups
+   ├─ audit-results/            24 images  various  Page audit screenshots
+   ├─ contractor-*.png          6 images   varies   Contractor UI mockups
+   ├─ redesign screenshots      varies
+   └─ debug images              various
+
+IMAGE FORMAT DISTRIBUTION
+======================================
+PNG    244 files   (53.7%)
+WEBP   175 files   (38.5%)
+JPG     26 files   (5.7%)
+SVG      8 files   (1.8%)
+JPEG    1 file     (0.2%)
+
+TOP 5 LARGEST FILES
+======================================
+1. 7.5 MB  image-library/services-archive/3D
+2. 7.4 MB  image-library/services-archive/3D
+3. 7.3 MB  image-library/services-archive/3D
+4. 7.2 MB  image-library/services-archive/fire-smoke-damage.png
+5. 7.0 MB  image-library/services-archive/3d
+
+CRITICAL FINDINGS
+======================================
+1. DUPLICATE FILES (36 filename conflicts):
+   - Favicons appear in 3 different locations
+   - Some files duplicated across folders
+   - Estimated 20+ MB in unnecessary duplicates
+
+2. OVERSIZED IMAGES:
+   - 880 KB PNG images with 668 KB WEBP equivalents exist
+   - image-library has 100+ MB in oversized 3D renders
+   - Root directory has development artifacts that can be archived
+
+3. FILE NAMING ISSUES:
+   - 36+ files have truncated/corrupted names
+   - Examples: "3D", "Drying", "Disaster", "Commercial"
+   - Located mainly in image-library/services-archive/
+
+CONSOLIDATION OPPORTUNITIES
+======================================
+Option 1: Remove public/logos/              Save 18 MB
+Option 2: Consolidate favicons              Save 2 MB
+Option 3: Archive image-library/            Save 241 MB
+Option 4: Clean root directory              Save 11 MB
+Option 5: Run optimization on PNG files     Save 15-20 MB
+
+QUICK ACTIONS
+======================================
+Check current code imports:
+  $ grep -r "public/logos" app/ components/ lib/
+  
+List duplicates:
+  $ See IMAGE_FOLDER_INVENTORY.md for complete list
+
+Optimize images:
+  $ npm run web-optimise
+
+Archive development images:
+  $ mkdir archive && mv audit-results/ archive/
+
+PRIORITY TASKS
+======================================
+1. Review public/logos/ usage - potential 18 MB saving
+2. Check image-library references - potential 241 MB saving
+3. Consolidate favicon locations - cleanup duplication
+4. Run image optimization - 15-20 MB savings
+5. Clean root directory - move dev artifacts to archive
+
+See IMAGE_FOLDER_INVENTORY.md in project root for complete details.
