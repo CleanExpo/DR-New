@@ -134,6 +134,108 @@ export const LOCATION_MAPPINGS = {
     responseTime: '90-Minute',
     neighborhoods: ['Logan Central', 'Springwood', 'Shailer Park', 'Browns Plains'],
   },
+
+  // BRISBANE SOUTH/EAST
+  mountCotton: {
+    name: 'Mount Cotton',
+    slug: 'mount-cotton',
+    description: 'Mount Cotton acreage property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '75-Minute',
+    neighborhoods: ['Mount Cotton', 'Sheldon', 'Capalaba West', 'Redland Bay'],
+  },
+  capalaba: {
+    name: 'Capalaba',
+    slug: 'capalaba',
+    description: 'Capalaba Brisbane commercial and residential emergency restoration',
+    region: 'Brisbane',
+    responseTime: '60-Minute',
+    neighborhoods: ['Capalaba', 'Alexandra Hills', 'Thornlands', 'Birkdale'],
+  },
+  sheldon: {
+    name: 'Sheldon',
+    slug: 'sheldon',
+    description: 'Sheldon acreage property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '75-Minute',
+    neighborhoods: ['Sheldon', 'Mount Cotton', 'Thorneside', 'Capalaba'],
+  },
+  burbank: {
+    name: 'Burbank',
+    slug: 'burbank',
+    description: 'Burbank Logan residential emergency restoration',
+    region: 'Brisbane',
+    responseTime: '75-Minute',
+    neighborhoods: ['Burbank', 'Parkinson', 'Forest Lake', 'Drewvale'],
+  },
+  sunnybank: {
+    name: 'Sunnybank',
+    slug: 'sunnybank',
+    description: 'Sunnybank Brisbane high-density residential emergency restoration',
+    region: 'Brisbane',
+    responseTime: '60-Minute',
+    neighborhoods: ['Sunnybank', 'Sunnybank Hills', 'Macgregor', 'Robertson'],
+  },
+  algester: {
+    name: 'Algester',
+    slug: 'algester',
+    description: 'Algester Brisbane residential emergency restoration',
+    region: 'Brisbane',
+    responseTime: '60-Minute',
+    neighborhoods: ['Algester', 'Parkinson', 'Calamvale', 'Stretton'],
+  },
+
+  // BRISBANE RIVER (HIGH FLOOD RISK)
+  bulimba: {
+    name: 'Bulimba',
+    slug: 'bulimba',
+    description: 'Bulimba Brisbane riverside prestige property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '60-Minute',
+    neighborhoods: ['Bulimba', 'Hawthorne', 'Balmoral', 'Morningside'],
+  },
+  teneriffe: {
+    name: 'Teneriffe',
+    slug: 'teneriffe',
+    description: 'Teneriffe Brisbane riverside apartment emergency restoration',
+    region: 'Brisbane',
+    responseTime: '45-Minute',
+    neighborhoods: ['Teneriffe', 'Newstead', 'New Farm', 'Fortitude Valley'],
+  },
+  westEnd: {
+    name: 'West End',
+    slug: 'west-end',
+    description: 'West End Brisbane riverside property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '45-Minute',
+    neighborhoods: ['West End', 'South Brisbane', 'Highgate Hill', 'South Bank'],
+  },
+  graceville: {
+    name: 'Graceville',
+    slug: 'graceville',
+    description: 'Graceville Brisbane riverside prestige property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '60-Minute',
+    neighborhoods: ['Graceville', 'Chelmer', 'Sherwood', 'Corinda'],
+  },
+
+  // PRESTIGE/ACREAGE
+  pullenvale: {
+    name: 'Pullenvale',
+    slug: 'pullenvale',
+    description: 'Pullenvale Brisbane acreage prestige property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '75-Minute',
+    neighborhoods: ['Pullenvale', 'Brookfield', 'Kenmore', 'Chapel Hill'],
+  },
+  paddington: {
+    name: 'Paddington',
+    slug: 'paddington',
+    description: 'Paddington Brisbane heritage prestige property emergency restoration',
+    region: 'Brisbane',
+    responseTime: '45-Minute',
+    neighborhoods: ['Paddington', 'Red Hill', 'Bardon', 'Milton'],
+  },
 };
 
 /**

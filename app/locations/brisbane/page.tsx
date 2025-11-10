@@ -25,6 +25,54 @@ export default function BrisbaneRegionalPage() {
   {
     "name": "Toowong",
     "slug": "toowong"
+  },
+  {
+    "name": "Mount Cotton",
+    "slug": "mount-cotton"
+  },
+  {
+    "name": "Capalaba",
+    "slug": "capalaba"
+  },
+  {
+    "name": "Sheldon",
+    "slug": "sheldon"
+  },
+  {
+    "name": "Burbank",
+    "slug": "burbank"
+  },
+  {
+    "name": "Sunnybank",
+    "slug": "sunnybank"
+  },
+  {
+    "name": "Algester",
+    "slug": "algester"
+  },
+  {
+    "name": "Bulimba",
+    "slug": "bulimba"
+  },
+  {
+    "name": "Teneriffe",
+    "slug": "teneriffe"
+  },
+  {
+    "name": "West End",
+    "slug": "west-end"
+  },
+  {
+    "name": "Graceville",
+    "slug": "graceville"
+  },
+  {
+    "name": "Pullenvale",
+    "slug": "pullenvale"
+  },
+  {
+    "name": "Paddington",
+    "slug": "paddington"
   }
 ];
 
@@ -51,7 +99,7 @@ export default function BrisbaneRegionalPage() {
               Brisbane Emergency Restoration Services
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-blue-200">
-              Professional disaster recovery serving Brisbane CBD, Hamilton, Ascot, New Farm, Toowong
+              Professional disaster recovery serving Brisbane CBD, Hamilton, Ascot, New Farm, Toowong, Mount Cotton, Capalaba, Sheldon, Burbank, Sunnybank, Algester, Bulimba, Teneriffe, West End, Graceville, Pullenvale, Paddington
             </p>
             <FluidCTAGroup layout="horizontal" spacing="lg" align="center">
               <FluidCTA

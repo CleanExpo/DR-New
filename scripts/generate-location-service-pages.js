@@ -10,6 +10,7 @@ const path = require('path');
 
 // Location mappings
 const LOCATION_MAPPINGS = {
+  // Original locations
   brisbane: { name: 'Brisbane CBD', slug: 'brisbane' },
   hamilton: { name: 'Hamilton', slug: 'hamilton' },
   ascot: { name: 'Ascot', slug: 'ascot' },
@@ -20,6 +21,24 @@ const LOCATION_MAPPINGS = {
   brookwater: { name: 'Brookwater', slug: 'brookwater' },
   springfieldLakes: { name: 'Springfield Lakes', slug: 'springfield-lakes' },
   logan: { name: 'Logan', slug: 'logan' },
+
+  // Brisbane South/East
+  mountCotton: { name: 'Mount Cotton', slug: 'mount-cotton' },
+  capalaba: { name: 'Capalaba', slug: 'capalaba' },
+  sheldon: { name: 'Sheldon', slug: 'sheldon' },
+  burbank: { name: 'Burbank', slug: 'burbank' },
+  sunnybank: { name: 'Sunnybank', slug: 'sunnybank' },
+  algester: { name: 'Algester', slug: 'algester' },
+
+  // Brisbane River (High Flood Risk)
+  bulimba: { name: 'Bulimba', slug: 'bulimba' },
+  teneriffe: { name: 'Teneriffe', slug: 'teneriffe' },
+  westEnd: { name: 'West End', slug: 'west-end' },
+  graceville: { name: 'Graceville', slug: 'graceville' },
+
+  // Prestige/Acreage
+  pullenvale: { name: 'Pullenvale', slug: 'pullenvale' },
+  paddington: { name: 'Paddington', slug: 'paddington' },
 };
 
 const SERVICES = {
@@ -255,7 +274,12 @@ function generateAllPages() {
   const regionalPages = [
     {
       region: 'Brisbane',
-      locations: ['brisbane', 'hamilton', 'ascot', 'newFarm', 'toowong'],
+      locations: [
+        'brisbane', 'hamilton', 'ascot', 'newFarm', 'toowong',
+        'mountCotton', 'capalaba', 'sheldon', 'burbank', 'sunnybank', 'algester',
+        'bulimba', 'teneriffe', 'westEnd', 'graceville',
+        'pullenvale', 'paddington'
+      ],
     },
     {
       region: 'Ipswich',
