@@ -11,10 +11,10 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/hero/landing-page-hero.png"
-            alt="Emergency Water Damage Restoration Brisbane by IICRC Master Restorer Phill McGurk - 24/7 emergency response for water, fire, and storm damage across Brisbane, Ipswich, and Logan"
+            src="/images/hero/landing-hero-dramatic.png"
+            alt="Emergency disaster scene with lightning and fire - 24/7 Disaster Recovery Brisbane by IICRC Master Restorer Phill McGurk serving Brisbane, Ipswich, and Logan"
             fill
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'contain' }}
             className="opacity-90"
             priority
             sizes="100vw"
