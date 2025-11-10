@@ -138,17 +138,17 @@ export default function BookServicePage() {
         }
         break;
       case 2:
-        if (!formData.propertyAddress) newErrors.propertyAddress = 'Property address is required';
-        if (!formData.suburb) newErrors.suburb = 'Suburb is required';
-        if (!formData.state) newErrors.state = 'State is required';
+        if (!formData.propertyAddress) {newErrors.propertyAddress = 'Property address is required';}
+        if (!formData.suburb) {newErrors.suburb = 'Suburb is required';}
+        if (!formData.state) {newErrors.state = 'State is required';}
         if (!formData.postcode || !validatePostcode(formData.postcode)) {
           newErrors.postcode = 'Valid Australian postcode required (0200-0299 or 0800-9999)';
         }
-        if (!formData.affectedArea) newErrors.affectedArea = 'Affected area description is required';
+        if (!formData.affectedArea) {newErrors.affectedArea = 'Affected area description is required';}
         break;
       case 3:
-        if (!formData.firstName) newErrors.firstName = 'First name is required';
-        if (!formData.lastName) newErrors.lastName = 'Last name is required';
+        if (!formData.firstName) {newErrors.firstName = 'First name is required';}
+        if (!formData.lastName) {newErrors.lastName = 'Last name is required';}
         if (!formData.email || !validateEmail(formData.email)) {
           newErrors.email = 'Please enter a valid email address';
         }
@@ -160,8 +160,8 @@ export default function BookServicePage() {
         }
         break;
       case 5:
-        if (!formData.termsAccepted) newErrors.termsAccepted = 'You must accept the terms and conditions';
-        if (!formData.paymentAuthorized) newErrors.paymentAuthorized = 'Payment authorisation is required';
+        if (!formData.termsAccepted) {newErrors.termsAccepted = 'You must accept the terms and conditions';}
+        if (!formData.paymentAuthorized) {newErrors.paymentAuthorized = 'Payment authorisation is required';}
         break;
     }
 
@@ -183,7 +183,7 @@ export default function BookServicePage() {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateStep(5)) return;
+    if (!validateStep(5)) {return;}
 
     setIsProcessing(true);
 
@@ -221,7 +221,7 @@ export default function BookServicePage() {
       });
       
       // Generate booking ID
-      const bookingId = 'NRP-2024-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+      const bookingId = `NRP-2024-${  Math.random().toString(36).substr(2, 9).toUpperCase()}`;
       
       // Redirect to success page with booking details
       const successParams = new URLSearchParams({
@@ -239,7 +239,7 @@ export default function BookServicePage() {
       const errorParams = new URLSearchParams({
         type: error?.type || 'unknown',
         code: error?.code || 'ERR_UNKNOWN',
-        attempt: 'ATT-' + Math.random().toString(36).substr(2, 9).toUpperCase()
+        attempt: `ATT-${  Math.random().toString(36).substr(2, 9).toUpperCase()}`
       });
       
       router.push(`/book-service/error?${errorParams.toString()}`);

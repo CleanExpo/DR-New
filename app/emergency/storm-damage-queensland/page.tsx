@@ -32,8 +32,8 @@ const StormDamageCalculator = () => {
 
   const calculateRestoreVsRebuild = () => {
     const totalDamage = Object.values(damageFactors).reduce((a, b) => a + b, 0) / 6;
-    if (totalDamage < 40) return { recommendation: 'Restore', percentage: 85, timeFrame: '2-4 weeks' };
-    if (totalDamage < 70) return { recommendation: 'Major Restoration', percentage: 60, timeFrame: '4-8 weeks' };
+    if (totalDamage < 40) {return { recommendation: 'Restore', percentage: 85, timeFrame: '2-4 weeks' };}
+    if (totalDamage < 70) {return { recommendation: 'Major Restoration', percentage: 60, timeFrame: '4-8 weeks' };}
     return { recommendation: 'Consider Rebuild', percentage: 30, timeFrame: '3-6 months' };
   };
 

@@ -183,8 +183,8 @@ export default function ModernContactPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {contactInfo.map((info, i) => {
-              const gradientClassName = 'absolute inset-0 bg-gradient-to-r ' + info.colour + ' rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all';
-              const iconClassName = 'inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ' + info.colour + ' bg-opacity-20';
+              const gradientClassName = `absolute inset-0 bg-gradient-to-r ${  info.colour  } rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`;
+              const iconClassName = `inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${  info.colour  } bg-opacity-20`;
               
               return (
                 <motion.div
@@ -355,7 +355,7 @@ export default function ModernContactPage() {
                           const buttonClassName = formData.urgency === level.value
                             ? 'relative p-3 rounded-xl border transition-all border-purple-500 bg-purple-500/20'
                             : 'relative p-3 rounded-xl border transition-all border-gray-700 bg-gray-900/50 hover:border-gray-600';
-                          const overlayClassName = 'absolute inset-0 bg-gradient-to-r ' + level.colour + ' rounded-xl opacity-20';
+                          const overlayClassName = `absolute inset-0 bg-gradient-to-r ${  level.colour  } rounded-xl opacity-20`;
                           
                           return (
                             <motion.button

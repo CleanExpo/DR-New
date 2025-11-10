@@ -25,7 +25,7 @@ export function InteractiveClaimCards(...args: any[]): void {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, cardId: string) => {
     const card = cardsRef.current[cardId];
-    if (!card) return;
+    if (!card) {return;}
 
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -48,7 +48,7 @@ export function InteractiveClaimCards(...args: any[]): void {
 
   const handleMouseLeave = (cardId: string) => {
     const card = cardsRef.current[cardId];
-    if (!card) return;
+    if (!card) {return;}
 
     gsap.to(card, {
       rotationY: 0,
@@ -140,7 +140,7 @@ function BeforeAfterSlider(...args: any[]): void {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {return;}
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = (x / rect.width) * 100;
@@ -148,7 +148,7 @@ function BeforeAfterSlider(...args: any[]): void {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {return;}
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.touches[0].clientX - rect.left;
     const percentage = (x / rect.width) * 100;

@@ -63,7 +63,7 @@ function generateTitle(location: LocationData, service?: ServiceData): string {
 
   // Ensure title length is optimal
   if (title.length > 60) {
-    title = title.substring(0, 57) + '...';
+    title = `${title.substring(0, 57)  }...`;
   }
 
   return title;
@@ -107,7 +107,7 @@ function generateDescription(
 
   // Ensure description length is optimal
   if (description.length > 160) {
-    description = description.substring(0, 157) + '...';
+    description = `${description.substring(0, 157)  }...`;
   }
 
   return description;

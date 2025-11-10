@@ -119,7 +119,7 @@ export const preloadInteractiveComponents = async () => {
 
 // Performance monitoring utilities
 export const getInteractivePerformanceMetrics = () => {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {return null;}
   
   const now = performance.now();
   const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;

@@ -63,8 +63,8 @@ export function getAIProviderConfig(): AIProviderConfig {
 export function getActiveProvider(): AIProvider {
   const config = getAIProviderConfig();
 
-  if (config.openai.apiKey) return 'openai';
-  if (config.anthropic.apiKey) return 'anthropic';
+  if (config.openai.apiKey) {return 'openai';}
+  if (config.anthropic.apiKey) {return 'anthropic';}
 
   return 'fallback';
 }

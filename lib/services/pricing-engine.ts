@@ -322,10 +322,10 @@ function calculateEstimatedDays(input: PricingInput): number {
  */
 export function calculateInsuranceExcess(total: number): number {
   // Standard excess tiers
-  if (total < 5000) return 500;
-  if (total < 10000) return 1000;
-  if (total < 20000) return 1500;
-  if (total < 50000) return 2500;
+  if (total < 5000) {return 500;}
+  if (total < 10000) {return 1000;}
+  if (total < 20000) {return 1500;}
+  if (total < 50000) {return 2500;}
   return 5000;
 }
 

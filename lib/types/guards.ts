@@ -76,7 +76,7 @@ export function isRecordOf<T>(
   value: unknown,
   guard: (item: unknown) => item is T
 ): value is Record<string, T> {
-  if (!isObject(value)) return false;
+  if (!isObject(value)) {return false;}
   return Object.values(value).every(guard);
 }
 
@@ -135,7 +135,7 @@ export interface ServiceData {
 }
 
 export function isServiceData(value: unknown): value is ServiceData {
-  if (!isObject(value)) return false;
+  if (!isObject(value)) {return false;}
 
   return (
     isString(value.id) &&
@@ -160,7 +160,7 @@ export interface LocationData {
 }
 
 export function isLocationData(value: unknown): value is LocationData {
-  if (!isObject(value)) return false;
+  if (!isObject(value)) {return false;}
 
   const hasRequiredFields = (
     isString(value.id) &&
@@ -170,10 +170,10 @@ export function isLocationData(value: unknown): value is LocationData {
     isString(value.postcode)
   );
 
-  if (!hasRequiredFields) return false;
+  if (!hasRequiredFields) {return false;}
 
   if (value.coordinates !== undefined) {
-    if (!isObject(value.coordinates)) return false;
+    if (!isObject(value.coordinates)) {return false;}
     if (!isNumber(value.coordinates.lat) || !isNumber(value.coordinates.lng)) {
       return false;
     }
@@ -189,7 +189,7 @@ export interface ContactInfo {
 }
 
 export function isContactInfo(value: unknown): value is ContactInfo {
-  if (!isObject(value)) return false;
+  if (!isObject(value)) {return false;}
 
   return (
     isString(value.phone) &&

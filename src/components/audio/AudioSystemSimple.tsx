@@ -10,7 +10,7 @@ export function AudioSystemSimple(...args: any[]): void {
 
   // Text-to-Speech for page content
   const speakText = useCallback((text: string) => {
-    if (!speechEnabled || !window.speechSynthesis) return;
+    if (!speechEnabled || !window.speechSynthesis) {return;}
     
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();

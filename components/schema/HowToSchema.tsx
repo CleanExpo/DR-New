@@ -34,10 +34,10 @@ export const HowToSchema: React.FC<HowToSchemaProps> = ({
   const schema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": name,
-    "description": description,
-    ...(image && { "image": image }),
-    ...(totalTime && { "totalTime": totalTime }),
+    name,
+    description,
+    ...(image && { image }),
+    ...(totalTime && { totalTime }),
     ...(estimatedCost && {
       "estimatedCost": {
         "@type": "MonetaryAmount",

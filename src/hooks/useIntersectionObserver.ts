@@ -31,10 +31,10 @@ export function useIntersectionObserver<T extends Element = HTMLDivElement>({
 
   useEffect(() => {
     const target = targetRef.current;
-    if (!target) return;
+    if (!target) {return;}
 
     // Skip if already intersected and triggerOnce is true
-    if (triggerOnce && hasIntersected) return;
+    if (triggerOnce && hasIntersected) {return;}
 
     const observer = new IntersectionObserver(
       (entries) => {

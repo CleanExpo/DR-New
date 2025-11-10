@@ -293,8 +293,8 @@ export function shouldPrioritize(
   imagePath: string,
   position: 'hero' | 'above-fold' | 'below-fold'
 ): boolean {
-  if (position === 'hero') return true;
-  if (position === 'above-fold') return true;
+  if (position === 'hero') {return true;}
+  if (position === 'above-fold') {return true;}
   return false;
 }
 

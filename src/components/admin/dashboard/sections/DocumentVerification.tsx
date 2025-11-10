@@ -119,7 +119,7 @@ export function DocumentVerification(...args: any[]): void {
   };
 
   const handleVerification = async () => {
-    if (!selectedDocument || !verificationAction) return;
+    if (!selectedDocument || !verificationAction) {return;}
 
     try {
       const response = await fetch(`/api/admin/documents/${selectedDocument.id}/verify`, {

@@ -87,7 +87,7 @@ export default function ServiceCards() {
     );
 
     cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
+      if (card) {observer.observe(card);}
     });
 
     return () => observer.disconnect();

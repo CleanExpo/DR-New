@@ -106,7 +106,7 @@ export function SupportTickets(...args: any[]): void {
   };
 
   const handleReply = async () => {
-    if (!selectedTicket || !replyMessage) return;
+    if (!selectedTicket || !replyMessage) {return;}
 
     try {
       const response = await fetch(`/api/admin/tickets/${selectedTicket.id}/reply`, {

@@ -25,7 +25,7 @@ export function sanitizeHTML(input: string): string {
 
 // XSS Protection - Text Sanitization (escapes HTML entities)
 export function sanitizeText(input: string): string {
-  if (typeof input !== 'string') return '';
+  if (typeof input !== 'string') {return '';}
 
   return input
     .replace(/&/g, '&amp;')
@@ -38,7 +38,7 @@ export function sanitizeText(input: string): string {
 
 // SQL Injection Protection - Parameterized Query Helper
 export function sanitizeSQL(input: string): string {
-  if (typeof input !== 'string') return '';
+  if (typeof input !== 'string') {return '';}
 
   // Remove SQL keywords and dangerous characters
   const dangerous = /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE|UNION|FROM|WHERE|ORDER|GROUP|BY|HAVING|JOIN|INNER|LEFT|RIGHT|OUTER|AND|OR|NOT|IN|EXISTS|BETWEEN|LIKE|IS|NULL|TRUE|FALSE|AS)\b|--|\/\*|\*\/|xp_|sp_|0x|;|'|")/gi;
@@ -53,20 +53,20 @@ export const emailSchema = z.string()
   .refine((email) => {
     // Additional security checks
     const parts = email.split('@');
-    if (parts.length !== 2) return false;
+    if (parts.length !== 2) {return false;}
 
     const [local, domain] = parts;
 
     // Check local part
-    if (local.length > 64) return false;
-    if (local.startsWith('.') || local.endsWith('.')) return false;
-    if (local.includes('..')) return false;
+    if (local.length > 64) {return false;}
+    if (local.startsWith('.') || local.endsWith('.')) {return false;}
+    if (local.includes('..')) {return false;}
 
     // Check domain
-    if (domain.length > 253) return false;
-    if (!domain.includes('.')) return false;
-    if (domain.startsWith('.') || domain.endsWith('.')) return false;
-    if (domain.includes('..')) return false;
+    if (domain.length > 253) {return false;}
+    if (!domain.includes('.')) {return false;}
+    if (domain.startsWith('.') || domain.endsWith('.')) {return false;}
+    if (domain.includes('..')) {return false;}
 
     // Check for dangerous patterns
     const dangerousPatterns = [
@@ -94,7 +94,7 @@ export const phoneSchema = z.string()
   .transform((phone) => {
     // Normalize to international format
     if (phone.startsWith('0')) {
-      return '+61' + phone.slice(1);
+      return `+61${  phone.slice(1)}`;
     }
     return phone;
   });
@@ -184,7 +184,7 @@ export function generateCSRFToken(): string {
 }
 
 export function validateCSRFToken(token: string, sessionToken: string): boolean {
-  if (!token || !sessionToken) return false;
+  if (!token || !sessionToken) {return false;}
 
   // In production, compare with stored session token
   // This is a simplified version
@@ -220,13 +220,13 @@ export const passwordSchema = z.string()
   .max(128, 'Password is too long')
   .refine((password) => {
     // Check for uppercase
-    if (!/[A-Z]/.test(password)) return false;
+    if (!/[A-Z]/.test(password)) {return false;}
     // Check for lowercase
-    if (!/[a-z]/.test(password)) return false;
+    if (!/[a-z]/.test(password)) {return false;}
     // Check for numbers
-    if (!/[0-9]/.test(password)) return false;
+    if (!/[0-9]/.test(password)) {return false;}
     // Check for special characters
-    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) return false;
+    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {return false;}
     // Check for common patterns
     const commonPatterns = ['password', '12345', 'qwerty', 'admin', 'letmein'];
     const passwordLower = password.toLowerCase();
@@ -258,7 +258,7 @@ export function sanitizeJSON(input: unknown): unknown {
 
 // Path Traversal Protection
 export function sanitizePath(path: string): string {
-  if (typeof path !== 'string') return '';
+  if (typeof path !== 'string') {return '';}
 
   // Remove path traversal attempts
   const cleaned = path
@@ -274,7 +274,7 @@ export function sanitizePath(path: string): string {
 
 // Command Injection Protection
 export function sanitizeCommand(input: string): string {
-  if (typeof input !== 'string') return '';
+  if (typeof input !== 'string') {return '';}
 
   // Remove shell metacharacters and dangerous patterns
   const dangerous = /[;&|`$()<>\\*?{}\[\]!#~'"]/g;
@@ -283,7 +283,7 @@ export function sanitizeCommand(input: string): string {
 
 // Header Injection Protection
 export function sanitizeHeader(input: string): string {
-  if (typeof input !== 'string') return '';
+  if (typeof input !== 'string') {return '';}
 
   // Remove line breaks and carriage returns
   return input.replace(/[\r\n]/g, '');

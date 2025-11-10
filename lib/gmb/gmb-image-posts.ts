@@ -144,7 +144,7 @@ export function generateLocationVariation(...args: any[]): void {
   return {
     ...basePost,
     caption: `${basePost.caption} ${locationVariations[location] || ''}`,
-    location: location
+    location
   };
 }
 
@@ -155,7 +155,7 @@ export const IMAGE_POST_ROTATION = {
   priorityLocations: ['Hamilton', 'Ascot', 'New Farm', 'Brisbane CBD'],
   secondaryLocations: ['Springfield Lakes', 'Karalee', 'Logan'],
 
-  getNextPost: function() {
+  getNextPost() {
     const posts = GMB_IMAGE_POSTS.flatMap(week => week.posts);
     const randomIndex = Math.floor(Math.random() * posts.length);
     return posts[randomIndex];

@@ -65,7 +65,7 @@ export function EnhancedChatBot(...args: any[]): void {
   }, [isOpen, messages.length]);
 
   const handleSend = async () => {
-    if (!input.trim()) return;
+    if (!input.trim()) {return;}
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -93,7 +93,7 @@ export function EnhancedChatBot(...args: any[]): void {
 
   const generateBotResponse = (userInput: string): Message => {
     const input = userInput.toLowerCase();
-    let response = {
+    const response = {
       text: '',
       options: [] as string[]
     };

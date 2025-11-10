@@ -14,11 +14,11 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current) {return;}
     
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!ctx) {return;}
 
     // Set canvas size
     canvas.width = canvas.offsetWidth * 2;
@@ -183,8 +183,8 @@ export default function Chart3D({ type, data, title, colors = ['#3B82F6', '#10B9
 
     // Create gradient fill
     const gradient = ctx.createLinearGradient(0, padding, 0, padding + height);
-    gradient.addColorStop(0, colors[0] + '80');
-    gradient.addColorStop(1, colors[0] + '00');
+    gradient.addColorStop(0, `${colors[0]  }80`);
+    gradient.addColorStop(1, `${colors[0]  }00`);
     
     // Fill area under line
     ctx.lineTo(padding + width, padding + height);

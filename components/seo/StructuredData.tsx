@@ -192,9 +192,9 @@ export function ServiceSchema({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": name,
-    "description": description,
-    "serviceType": serviceType,
+    name,
+    description,
+    serviceType,
     "provider": {
       "@id": "https://disasterrecovery.com.au/#organization"
     },
@@ -373,9 +373,9 @@ export function HowToSchema({ name, description, totalTime, steps }: HowToSchema
   const schema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": name,
-    "description": description,
-    "totalTime": totalTime,
+    name,
+    description,
+    totalTime,
     "step": steps.map((step, index) => ({
       "@type": "HowToStep",
       "position": index + 1,
@@ -505,15 +505,15 @@ export function AggregateRatingSchema({
   worstRating = 1
 }: AggregateRatingSchemaProps) {
   // Only render if we have reviews
-  if (reviewCount === 0) return null;
+  if (reviewCount === 0) {return null;}
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "AggregateRating",
-    "ratingValue": ratingValue,
-    "reviewCount": reviewCount,
-    "bestRating": bestRating,
-    "worstRating": worstRating
+    ratingValue,
+    reviewCount,
+    bestRating,
+    worstRating
   };
 
   return (

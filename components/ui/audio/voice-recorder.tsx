@@ -159,7 +159,7 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
 
   // Pause/Resume recording
   const togglePause = () => {
-    if (!mediaRecorderRef.current) return;
+    if (!mediaRecorderRef.current) {return;}
 
     if (isPaused) {
       mediaRecorderRef.current.resume();

@@ -17,7 +17,7 @@ export function useMediaQuery(query: string): boolean {
     setMounted(true);
 
     // Prevent SSR mismatch
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     const mediaQuery = window.matchMedia(query);
     setMatches(mediaQuery.matches);

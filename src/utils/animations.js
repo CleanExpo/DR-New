@@ -91,7 +91,7 @@ export class ScrollAnimations {
   }
   
   observe(element, callback = null) {
-    if (!element) return;
+    if (!element) {return;}
     
     if (this.observer) {
       this.observer.observe(element);
@@ -127,7 +127,7 @@ export class ScrollAnimations {
   }
   
   setupMutationObserver() {
-    if (!('MutationObserver' in window)) return;
+    if (!('MutationObserver' in window)) {return;}
     
     const mutationObserver = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
@@ -243,7 +243,7 @@ export class MagneticEffect {
   }
   
   handleMouseMove(e) {
-    if (!this.rect) return;
+    if (!this.rect) {return;}
     
     const x = e.clientX - this.rect.left;
     const y = e.clientY - this.rect.top;
@@ -348,7 +348,7 @@ export class SmoothScroll {
       ? document.querySelector(target) 
       : target;
       
-    if (!targetElement) return;
+    if (!targetElement) {return;}
     
     const targetPosition = targetElement.offsetTop - offset;
     const startPosition = window.pageYOffset;
@@ -362,7 +362,7 @@ export class SmoothScroll {
     };
     
     const animation = currentTime => {
-      if (startTime === null) startTime = currentTime;
+      if (startTime === null) {startTime = currentTime;}
       const timeElapsed = currentTime - startTime;
       const progress = Math.min(timeElapsed / duration, 1);
       
@@ -382,13 +382,13 @@ export class SmoothScroll {
   static initSmoothScrollLinks(selector = 'a[href^="#"]') {
     document.addEventListener('click', e => {
       const link = e.target.closest(selector);
-      if (!link) return;
+      if (!link) {return;}
       
       const href = link.getAttribute('href');
-      if (href === '#') return;
+      if (href === '#') {return;}
       
       const target = document.querySelector(href);
-      if (!target) return;
+      if (!target) {return;}
       
       e.preventDefault();
       this.scrollTo(target);

@@ -42,7 +42,7 @@ export function CSSParticleEffect(...args: any[]): void {
 
   const style = getParticleStyle();
 
-  if (!mounted) return null;
+  if (!mounted) {return null;}
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">

@@ -78,8 +78,8 @@ export function ComplianceOverview(...args: any[]): void {
 
   const complianceRate = (metrics.compliantContractors / metrics.totalContractors) * 100;
   const getComplianceColor = (rate: number) => {
-    if (rate >= 90) return 'text-green-600';
-    if (rate >= 70) return 'text-yellow-600';
+    if (rate >= 90) {return 'text-green-600';}
+    if (rate >= 70) {return 'text-yellow-600';}
     return 'text-red-600';
   };
 

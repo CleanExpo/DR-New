@@ -84,7 +84,7 @@ function calculateWebVitalsSummary(metrics: any[]) {
   const summary: Record<string, any> = {};
 
   Object.entries(byMetric).forEach(([name, values]) => {
-    if (values.length === 0) return;
+    if (values.length === 0) {return;}
 
     const sorted = [...values].sort((a, b) => a - b);
     summary[name] = {

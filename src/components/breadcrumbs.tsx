@@ -8,7 +8,7 @@ export function Breadcrumbs(...args: any[]): void {
   const pathname = usePathname();
   const paths = pathname.split('/').filter(Boolean);
   
-  if (paths.length === 0) return null;
+  if (paths.length === 0) {return null;}
   
   const breadcrumbs = paths.map((path, index) => {
     const href = `/${paths.slice(0, index + 1).join('/')}`;

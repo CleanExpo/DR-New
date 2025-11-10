@@ -49,7 +49,7 @@ export function LazyImage({
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!imgRef.current) return;
+    if (!imgRef.current) {return;}
 
     // Check if IntersectionObserver is supported
     if (!('IntersectionObserver' in window)) {

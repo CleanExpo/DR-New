@@ -372,7 +372,7 @@ ${urlElements}
  */
 export function getPriorityForPath(path: string): number {
   // Home
-  if (path === '/') return PRIORITY_GUIDELINES.homepage;
+  if (path === '/') {return PRIORITY_GUIDELINES.homepage;}
 
   // Primary services
   if (path.match(/^\/services\/(water-damage|fire-damage|mould-remediation|storm-damage|commercial|emergency-services)$/)) {

@@ -16,7 +16,7 @@ export function LazyLoadImage(...args: any[]): void {
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (priority) return;
+    if (priority) {return;}
 
     const observer = new IntersectionObserver(
       ([entry]) => {

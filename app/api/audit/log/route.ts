@@ -70,8 +70,8 @@ export async function GET(...args: any[]): Promise<void> {
     const action = searchParams.get('action');
 
     const whereClause: unknown = {};
-    if (severity) whereClause.severity = severity;
-    if (action) whereClause.action = action;
+    if (severity) {whereClause.severity = severity;}
+    if (action) {whereClause.action = action;}
 
     // TODO: Query audit logs when model is added to schema
     const logs: unknown[] = [];

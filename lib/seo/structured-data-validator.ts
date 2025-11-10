@@ -212,7 +212,7 @@ function validatePostalAddress(
 
 // Check if business is marked as always open
 function isAlwaysOpen(hours: unknown[]): boolean {
-  if (!hours || hours.length === 0) return false;
+  if (!hours || hours.length === 0) {return false;}
 
   const hasAllDays = hours.some(h =>
     h.dayOfWeek &&

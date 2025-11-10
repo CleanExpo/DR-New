@@ -359,7 +359,7 @@ export function getNearbyLocations(city: string, state: string): string[] {
   const stateData = [...capitalCities, ...regionalCities].filter(loc => loc.state === state);
   const currentCity = stateData.find(loc => loc.city === city);
   
-  if (!currentCity) return [];
+  if (!currentCity) {return [];}
   
   // Return suburbs if capital city, otherwise return nearby cities
   if (capitalCities.some(c => c.city === city)) {

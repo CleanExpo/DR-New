@@ -178,11 +178,11 @@ export function formatAddress(address: {
 }): string {
   const parts = [];
 
-  if (address.street) parts.push(address.street);
-  if (address.suburb) parts.push(address.suburb);
-  if (address.city && address.city !== address.suburb) parts.push(address.city);
-  if (address.state) parts.push(address.state);
-  if (address.postcode) parts.push(address.postcode);
+  if (address.street) {parts.push(address.street);}
+  if (address.suburb) {parts.push(address.suburb);}
+  if (address.city && address.city !== address.suburb) {parts.push(address.city);}
+  if (address.state) {parts.push(address.state);}
+  if (address.postcode) {parts.push(address.postcode);}
 
   return parts.join(', ');
 }
@@ -200,8 +200,8 @@ export function formatRating(rating: number, maxRating: number = 5): string {
  * Truncate text with ellipsis
  */
 export function truncateText(text: string, maxLength: number): string {
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength - 3) + '...';
+  if (text.length <= maxLength) {return text;}
+  return `${text.substring(0, maxLength - 3)  }...`;
 }
 
 /**

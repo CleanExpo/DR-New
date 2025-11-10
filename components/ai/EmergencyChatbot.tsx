@@ -41,7 +41,7 @@ export function EmergencyChatbot() {
   }, [messages]);
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading) {return;}
 
     const userMessage: Message = {
       id: Date.now().toString(),

@@ -184,7 +184,7 @@ export async function GET(...args: any[]): Promise<void> {
 
 function calculateContractorComplianceScore(contractor: unknown, now: Date): number {
   let score = 0;
-  let maxScore = 1;
+  const maxScore = 1;
 
   // Training completion
   if (contractor.onboardingStep >= 14) {

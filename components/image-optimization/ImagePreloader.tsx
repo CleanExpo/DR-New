@@ -28,7 +28,7 @@ export function ImagePreloader({
   strategy = 'immediate',
 }: ImagePreloaderProps) {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     const preloadImages = () => {
       images.forEach((image) => {

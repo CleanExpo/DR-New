@@ -38,7 +38,7 @@ export function EnhancedInput({
 
   // Validate on value change
   useEffect(() => {
-    if (!isTouched || validationRules.length === 0) return;
+    if (!isTouched || validationRules.length === 0) {return;}
 
     setIsValidating(true);
     const validationErrors: string[] = [];
@@ -76,10 +76,10 @@ export function EnhancedInput({
   };
 
   const getValidationState = () => {
-    if (!isTouched || !showValidation) return null;
-    if (isValidating) return 'validating';
-    if (errors.length > 0) return 'error';
-    if (isValid) return 'success';
+    if (!isTouched || !showValidation) {return null;}
+    if (isValidating) {return 'validating';}
+    if (errors.length > 0) {return 'error';}
+    if (isValid) {return 'success';}
     return null;
   };
 
@@ -227,7 +227,7 @@ export function EnhancedTextarea({
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
-    if (!isTouched || validationRules.length === 0) return;
+    if (!isTouched || validationRules.length === 0) {return;}
 
     const validationErrors: string[] = [];
     validationRules.forEach((rule) => {
@@ -244,7 +244,7 @@ export function EnhancedTextarea({
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
-    if (maxCharacters && newValue.length > maxCharacters) return;
+    if (maxCharacters && newValue.length > maxCharacters) {return;}
 
     setValue(newValue);
     if (props.onChange) {

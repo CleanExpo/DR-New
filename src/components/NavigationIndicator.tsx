@@ -81,7 +81,7 @@ export default function NavigationIndicator() {
         }
       }
       // Check if pathname starts with section href
-      if (pathname.startsWith(section.href + '/')) {
+      if (pathname.startsWith(`${section.href  }/`)) {
         return { section, subsection: null };
       }
     }
@@ -90,7 +90,7 @@ export default function NavigationIndicator() {
 
   const { section, subsection } = getCurrentSection();
 
-  if (!section) return null;
+  if (!section) {return null;}
 
   return (
     <div className="bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200">

@@ -547,7 +547,7 @@ export const QUEENSLAND_LOCAL_KEYWORDS = {
  */
 export function getGoogleMapsEmbed(locationKey: string, width: number = 600, height: number = 450): string {
   const location = GEO_LOCATIONS[locationKey];
-  if (!location) return '';
+  if (!location) {return '';}
 
   return `<iframe
     width="${width}"

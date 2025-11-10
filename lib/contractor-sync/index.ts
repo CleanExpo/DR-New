@@ -65,7 +65,7 @@ async function handleNewContractor(
   config: ContractorSyncConfig
 ): Promise<void> {
   try {
-    if (!config.autoGenerate) return;
+    if (!config.autoGenerate) {return;}
 
     // Get all locations within service radius
     const allLocations = await getAustralianLocations();
@@ -220,7 +220,7 @@ function filterLocationsByRadius(
  * Calculate distance between two locations
  */
 function calculateDistance(loc1: LocationData, loc2: LocationData): number {
-  if (!loc1.coordinates || !loc2.coordinates) return Infinity;
+  if (!loc1.coordinates || !loc2.coordinates) {return Infinity;}
 
   const R = 6371; // Earth's radius in km
   const dLat = (loc2.coordinates.lat - loc1.coordinates.lat) * Math.PI / 180;

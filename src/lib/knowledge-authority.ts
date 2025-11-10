@@ -142,7 +142,7 @@ export function verifyInformation(claim: string, sources: string[]): boolean {
  * Get credibility score for content
  */
 export function getCredibilityScore(sources: string[]): number {
-  if (sources.length === 0) return 0;
+  if (sources.length === 0) {return 0;}
   
   const scores = sources.map(source => {
     const authSource = AUTHORITATIVE_SOURCES.find(auth => auth.name === source);

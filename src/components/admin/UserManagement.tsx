@@ -119,7 +119,7 @@ export function UserManagement(...args: any[]): void {
   };
 
   const updateUser = async () => {
-    if (!selectedUser) return;
+    if (!selectedUser) {return;}
 
     try {
       const response = await fetch(`/api/users/${selectedUser.id}`, {
@@ -139,7 +139,7 @@ export function UserManagement(...args: any[]): void {
   };
 
   const deleteUser = async (userId: string) => {
-    if (!confirm('Are you sure you want to delete this user?')) return;
+    if (!confirm('Are you sure you want to delete this user?')) {return;}
 
     try {
       const response = await fetch(`/api/users/${userId}`, {
@@ -598,7 +598,7 @@ export function UserManagement(...args: any[]): void {
                       p.startsWith(category)
                     );
 
-                    if (categoryPermissions.length === 0) return null;
+                    if (categoryPermissions.length === 0) {return null;}
 
                     return (
                       <div key={category} className="border rounded-lg p-3">

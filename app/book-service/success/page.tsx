@@ -41,11 +41,11 @@ function BookingSuccessPageContent(...args: any[]): void {
 
   useEffect(() => {
     // In production, fetch booking details from API using booking ID
-    const bookingId = searchParams?.get('booking') || 'NRP-2024-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    const bookingId = searchParams?.get('booking') || `NRP-2024-${  Math.random().toString(36).substr(2, 9).toUpperCase()}`;
     
     // Mock booking details
     const mockBooking: BookingDetails = {
-      bookingId: bookingId,
+      bookingId,
       serviceType: searchParams?.get('service') || 'Water Damage Restoration',
       urgencyLevel: searchParams?.get('urgency') || 'emergency',
       customerName: 'John Smith',

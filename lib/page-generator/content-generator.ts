@@ -331,7 +331,7 @@ function generateContentSection(context: ContentGenerationContext): string {
 // Helper functions
 
 function calculateAverageResponseTime(contractors?: unknown[]): string {
-  if (!contractors || contractors.length === 0) return '2-4 hrs';
+  if (!contractors || contractors.length === 0) {return '2-4 hrs';}
 
   const total = contractors.reduce((sum, c) => sum + c.responseTime.emergency, 0);
   const avg = Math.round(total / contractors.length);

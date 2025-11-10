@@ -88,8 +88,8 @@ export function scoreLead(lead: Lead): LeadScore {
 
   // Determine tier
   let tier: 'hot' | 'warm' | 'cold' = 'cold';
-  if (score >= 70) tier = 'hot';
-  else if (score >= 40) tier = 'warm';
+  if (score >= 70) {tier = 'hot';}
+  else if (score >= 40) {tier = 'warm';}
 
   // Estimate job value
   const estimatedValue = estimateJobValue(lead);
@@ -133,9 +133,9 @@ function calculatePropertyScore(
 
   // High-value residential properties score higher
   if (propertyType === 'residential' && propertyValue) {
-    if (propertyValue > 2000000) score = 15; // High net worth
-    else if (propertyValue > 1000000) score = 12;
-    else if (propertyValue > 500000) score = 10;
+    if (propertyValue > 2000000) {score = 15;} // High net worth
+    else if (propertyValue > 1000000) {score = 12;}
+    else if (propertyValue > 500000) {score = 10;}
   }
 
   return score;
@@ -168,23 +168,23 @@ function calculateTimingScore(lead: Lead): number {
 
   // Response time bonus
   if (lead.responseTime !== undefined) {
-    if (lead.responseTime < 5) score += 5; // Very quick response
-    else if (lead.responseTime < 15) score += 3;
-    else if (lead.responseTime > 60) score -= 3; // Late response penalty
+    if (lead.responseTime < 5) {score += 5;} // Very quick response
+    else if (lead.responseTime < 15) {score += 3;}
+    else if (lead.responseTime > 60) {score -= 3;} // Late response penalty
   }
 
   // Time of day factor
   if (lead.additionalInfo?.timeOfDay !== undefined) {
     const hour = lead.additionalInfo.timeOfDay;
     // Emergency hours (evening/weekend) indicate higher urgency
-    if (hour < 8 || hour > 18) score += 2;
+    if (hour < 8 || hour > 18) {score += 2;}
   }
 
   // Day of week factor
   if (lead.additionalInfo?.dayOfWeek !== undefined) {
     const day = lead.additionalInfo.dayOfWeek;
     // Weekend emergencies score higher
-    if (day === 0 || day === 6) score += 2;
+    if (day === 0 || day === 6) {score += 2;}
   }
 
   return Math.min(10, score);
@@ -252,8 +252,8 @@ function estimateJobValue(lead: Lead): number {
 
   // Adjust for property value (residential)
   if (lead.propertyType === 'residential' && lead.propertyValue) {
-    if (lead.propertyValue > 2000000) value *= 1.5;
-    else if (lead.propertyValue > 1000000) value *= 1.3;
+    if (lead.propertyValue > 2000000) {value *= 1.5;}
+    else if (lead.propertyValue > 1000000) {value *= 1.3;}
   }
 
   return Math.round(value);

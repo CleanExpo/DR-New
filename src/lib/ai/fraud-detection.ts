@@ -434,8 +434,8 @@ Focus on identifying:
   }
 
   private getRiskLevel(confidenceScore: number): string {
-    if (confidenceScore >= 80) return 'LOW';
-    if (confidenceScore >= 60) return 'MEDIUM';
+    if (confidenceScore >= 80) {return 'LOW';}
+    if (confidenceScore >= 60) {return 'MEDIUM';}
     return 'HIGH';
   }
 }

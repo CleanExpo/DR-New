@@ -66,7 +66,7 @@ export function UrgencyTimer({
 
   // Badge variant - small floating badge
   if (variant === 'badge') {
-    if (isExpired) return null;
+    if (isExpired) {return null;}
 
     return (
       <motion.div
@@ -164,7 +164,7 @@ export function UrgencyTimer({
   }
 
   // Banner variant (default) - full-width banner
-  if (isExpired) return null;
+  if (isExpired) {return null;}
 
   return (
     <motion.div

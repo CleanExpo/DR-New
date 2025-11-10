@@ -180,9 +180,9 @@ export class MCPManagementAgent extends EventEmitter {
       
       // Add parameters
       if (params) {
-        if (params.url) args.push(params.url);
-        if (params.viewport) args.push(`--viewport-size=${params.viewport.join(',')}`);
-        if (params.headless) args.push('--headless');
+        if (params.url) {args.push(params.url);}
+        if (params.viewport) {args.push(`--viewport-size=${params.viewport.join(',')}`);}
+        if (params.headless) {args.push('--headless');}
       }
 
       const process = spawn('npx', args, {
@@ -355,7 +355,7 @@ export class MCPManagementAgent extends EventEmitter {
    * Replace context variables in parameters
    */
   private replaceContextVariables(params: unknown, context: unknown, results: unknown[]): unknown {
-    if (!params) return params;
+    if (!params) {return params;}
     
     const stringified = JSON.stringify(params);
     let replaced = stringified;

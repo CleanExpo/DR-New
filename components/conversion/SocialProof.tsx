@@ -99,7 +99,7 @@ export function SocialProof({
   const [notificationQueue, setNotificationQueue] = useState<Notification[]>([...SAMPLE_NOTIFICATIONS]);
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled) {return;}
 
     const showNextNotification = () => {
       if (notificationQueue.length === 0) {
@@ -163,7 +163,7 @@ export function SocialProof({
     'bottom-right': 'bottom-6 right-6',
   };
 
-  if (!enabled) return null;
+  if (!enabled) {return null;}
 
   return (
     <AnimatePresence>

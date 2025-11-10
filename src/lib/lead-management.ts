@@ -29,20 +29,20 @@ export function calculateLeadValue(factors: LeadValueFactors): number {
 
   // Property value adjustment
   const propertyValueNum = parseInt(factors.propertyValue) || 0;
-  if (propertyValueNum >= 2000000) baseValue += 200;
-  else if (propertyValueNum >= 1000000) baseValue += 150;
-  else if (propertyValueNum >= 750000) baseValue += 100;
-  else if (propertyValueNum >= 500000) baseValue += 50;
+  if (propertyValueNum >= 2000000) {baseValue += 200;}
+  else if (propertyValueNum >= 1000000) {baseValue += 150;}
+  else if (propertyValueNum >= 750000) {baseValue += 100;}
+  else if (propertyValueNum >= 500000) {baseValue += 50;}
 
   // Insurance bonus (insured leads are more valuable)
-  if (factors.hasInsurance) baseValue += 100;
+  if (factors.hasInsurance) {baseValue += 100;}
 
   // Urgency premium
-  if (factors.urgencyLevel === 'emergency') baseValue += 150;
-  else if (factors.urgencyLevel === 'urgent') baseValue += 75;
+  if (factors.urgencyLevel === 'emergency') {baseValue += 150;}
+  else if (factors.urgencyLevel === 'urgent') {baseValue += 75;}
 
   // Business property premium
-  if (factors.isBusinessProperty) baseValue += 200;
+  if (factors.isBusinessProperty) {baseValue += 200;}
 
   // Area affected adjustment
   if (factors.estimatedAreaAffected === 'entire_property' ||
@@ -113,7 +113,7 @@ export async function assignLeadToPartner(criteria: PartnerSearchCriteria): Prom
       score += matchingSpecs.length * 20;
 
       // Insurance approved bonus
-      if (partner.insuranceApproved) score += 15;
+      if (partner.insuranceApproved) {score += 15;}
 
       // Commercial capability
       if (criteria.propertyType === 'commercial' && partner.receiveCommercial) {
@@ -126,7 +126,7 @@ export async function assignLeadToPartner(criteria: PartnerSearchCriteria): Prom
       }
 
       // Account standing (prefer partners with good payment history)
-      if (partner.accountBalance >= 0) score += 10;
+      if (partner.accountBalance >= 0) {score += 10;}
 
       return { partner, score };
     });
@@ -250,7 +250,7 @@ async function isDuplicateSubmission(email: string, phone: string): Promise<bool
 
     const duplicate = await prisma.lead.findFirst({
       where: {
-        email: email,
+        email,
         createdAt: {
           gte: oneHourAgo
         }

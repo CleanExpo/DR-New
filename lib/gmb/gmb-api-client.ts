@@ -99,7 +99,7 @@ export class GMBApiClient {
       const res = await mybusinessreviews.accounts.locations.reviews.updateReply({
         name: reviewName,
         requestBody: {
-          comment: comment
+          comment
         }
       });
       return res.data;

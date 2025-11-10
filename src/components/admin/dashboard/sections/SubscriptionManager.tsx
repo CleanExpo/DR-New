@@ -171,7 +171,7 @@ export function SubscriptionManager(...args: any[]): void {
   };
 
   const handleRefund = async () => {
-    if (!selectedSubscription || !refundAmount || !refundReason) return;
+    if (!selectedSubscription || !refundAmount || !refundReason) {return;}
 
     try {
       const response = await fetch(`/api/admin/subscriptions/${selectedSubscription.id}/refund`, {

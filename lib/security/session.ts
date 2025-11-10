@@ -268,7 +268,7 @@ export async function validateCSRFToken(
 ): Promise<boolean> {
   try {
     const sessionData = await validateSession(headers);
-    if (!sessionData) return false;
+    if (!sessionData) {return false;}
 
     return sessionData.csrfToken === token;
   } catch (error) {
@@ -281,7 +281,7 @@ export async function validateCSRFToken(
 export async function updateSessionActivity(headers: Headers): Promise<void> {
   try {
     const sessionData = await validateSession(headers);
-    if (!sessionData) return;
+    if (!sessionData) {return;}
 
     const updatedSession: SessionData = {
       ...sessionData,
@@ -305,7 +305,7 @@ export async function updateSessionActivity(headers: Headers): Promise<void> {
 export async function isSessionExpiring(headers: Headers): Promise<boolean> {
   try {
     const sessionData = await validateSession(headers);
-    if (!sessionData) return false;
+    if (!sessionData) {return false;}
 
     const timeRemaining = sessionData.expiresAt - Date.now();
     return timeRemaining < 5 * 60 * 1000; // Less than 5 minutes

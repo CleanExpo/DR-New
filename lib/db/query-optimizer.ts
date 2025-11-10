@@ -25,7 +25,7 @@ export class DataLoader<T> {
 
   load(id: string): Promise<T | null> {
     const cached = this.cache.get(id);
-    if (cached) return cached;
+    if (cached) {return cached;}
 
     const promise = new Promise<T | null>((resolve, reject) => {
       this.queue.push(id);
@@ -45,7 +45,7 @@ export class DataLoader<T> {
     this.scheduledCallback = null;
 
     const ids = this.queue.splice(0, this.maxBatchSize);
-    if (ids.length === 0) return;
+    if (ids.length === 0) {return;}
 
     try {
       const results = await this.batchFn(ids);
@@ -279,8 +279,8 @@ export class OptimizedQueryBuilder {
 
     if (from || to) {
       filter[field] = {};
-      if (from) filter[field].gte = from;
-      if (to) filter[field].lte = to;
+      if (from) {filter[field].gte = from;}
+      if (to) {filter[field].lte = to;}
     }
 
     return filter;

@@ -43,7 +43,7 @@ export async function persistConversion(data: ConversionData): Promise<void> {
  * Get traffic source from URL parameters or referrer
  */
 export function getTrafficSource(): string {
-  if (typeof window === 'undefined') return 'direct';
+  if (typeof window === 'undefined') {return 'direct';}
 
   const params = new URLSearchParams(window.location.search);
 
@@ -54,17 +54,17 @@ export function getTrafficSource(): string {
 
   // Referrer-based detection
   const referrer = document.referrer;
-  if (!referrer) return 'direct';
+  if (!referrer) {return 'direct';}
 
   try {
     const referrerHost = new URL(referrer).hostname;
 
-    if (referrerHost.includes('google')) return 'google';
-    if (referrerHost.includes('facebook')) return 'facebook';
-    if (referrerHost.includes('instagram')) return 'instagram';
-    if (referrerHost.includes('linkedin')) return 'linkedin';
-    if (referrerHost.includes('bing')) return 'bing';
-    if (referrerHost.includes('yahoo')) return 'yahoo';
+    if (referrerHost.includes('google')) {return 'google';}
+    if (referrerHost.includes('facebook')) {return 'facebook';}
+    if (referrerHost.includes('instagram')) {return 'instagram';}
+    if (referrerHost.includes('linkedin')) {return 'linkedin';}
+    if (referrerHost.includes('bing')) {return 'bing';}
+    if (referrerHost.includes('yahoo')) {return 'yahoo';}
 
     return 'referral';
   } catch (e) {
@@ -76,7 +76,7 @@ export function getTrafficSource(): string {
  * Get traffic medium
  */
 export function getTrafficMedium(): string {
-  if (typeof window === 'undefined') return 'none';
+  if (typeof window === 'undefined') {return 'none';}
 
   const params = new URLSearchParams(window.location.search);
 
@@ -85,8 +85,8 @@ export function getTrafficMedium(): string {
   }
 
   const source = getTrafficSource();
-  if (source === 'google' || source === 'bing' || source === 'yahoo') return 'organic';
-  if (source === 'direct') return 'none';
+  if (source === 'google' || source === 'bing' || source === 'yahoo') {return 'organic';}
+  if (source === 'direct') {return 'none';}
 
   return 'referral';
 }
@@ -95,7 +95,7 @@ export function getTrafficMedium(): string {
  * Get campaign name
  */
 export function getCampaign(): string | null {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {return null;}
 
   const params = new URLSearchParams(window.location.search);
   return params.get('utm_campaign');
@@ -105,10 +105,10 @@ export function getCampaign(): string | null {
  * Extract keyword from referrer (Google search)
  */
 export function getReferrerKeyword(): string | null {
-  if (typeof window === 'undefined' || typeof document === 'undefined') return null;
+  if (typeof window === 'undefined' || typeof document === 'undefined') {return null;}
 
   const referrer = document.referrer;
-  if (!referrer) return null;
+  if (!referrer) {return null;}
 
   try {
     const url = new URL(referrer);
@@ -132,11 +132,11 @@ export function getReferrerKeyword(): string | null {
  * Get device type
  */
 export function getDeviceTypeUtil(): string {
-  if (typeof window === 'undefined') return 'unknown';
+  if (typeof window === 'undefined') {return 'unknown';}
 
   const width = window.innerWidth;
-  if (width < 768) return 'mobile';
-  if (width < 1024) return 'tablet';
+  if (width < 768) {return 'mobile';}
+  if (width < 1024) {return 'tablet';}
   return 'desktop';
 }
 
@@ -205,25 +205,25 @@ export function calculateLeadScore(data: {
   let score = 50; // Base score
 
   // Conversion type scoring
-  if (data.conversionType === 'emergency_call') score += 40;
-  else if (data.conversionType === 'contact_form') score += 20;
-  else if (data.conversionType === 'quote_request') score += 30;
+  if (data.conversionType === 'emergency_call') {score += 40;}
+  else if (data.conversionType === 'contact_form') {score += 20;}
+  else if (data.conversionType === 'quote_request') {score += 30;}
 
   // Urgency scoring
-  if (data.urgencyLevel === 'emergency') score += 30;
-  else if (data.urgencyLevel === 'urgent') score += 20;
+  if (data.urgencyLevel === 'emergency') {score += 30;}
+  else if (data.urgencyLevel === 'urgent') {score += 20;}
 
   // Service area scoring (Brisbane is highest priority)
-  if (data.serviceArea === 'brisbane') score += 10;
-  else if (data.serviceArea === 'ipswich') score += 8;
-  else if (data.serviceArea === 'logan') score += 8;
+  if (data.serviceArea === 'brisbane') {score += 10;}
+  else if (data.serviceArea === 'ipswich') {score += 8;}
+  else if (data.serviceArea === 'logan') {score += 8;}
 
   // Service type scoring (water and fire are highest value)
-  if (data.serviceType === 'water' || data.serviceType === 'fire') score += 10;
+  if (data.serviceType === 'water' || data.serviceType === 'fire') {score += 10;}
 
   // Traffic source scoring
-  if (data.source === 'google' || data.source === 'bing') score += 10;
-  else if (data.source === 'direct') score += 5;
+  if (data.source === 'google' || data.source === 'bing') {score += 10;}
+  else if (data.source === 'direct') {score += 5;}
 
   return Math.min(100, score);
 }
@@ -232,9 +232,9 @@ export function calculateLeadScore(data: {
  * Determine lead quality
  */
 export function determineLeadQuality(leadScore: number): string {
-  if (leadScore >= 80) return 'very_high';
-  if (leadScore >= 65) return 'high';
-  if (leadScore >= 50) return 'medium';
-  if (leadScore >= 35) return 'low';
+  if (leadScore >= 80) {return 'very_high';}
+  if (leadScore >= 65) {return 'high';}
+  if (leadScore >= 50) {return 'medium';}
+  if (leadScore >= 35) {return 'low';}
   return 'very_low';
 }

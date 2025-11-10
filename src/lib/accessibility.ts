@@ -60,7 +60,7 @@ export function generateHeadingId(text: string): string {
 
 // Helper function for live region announcements
 export function announceToScreenReader(...args: any[]): void {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') {return;}
   
   const announcement = document.createElement('div');
   announcement.setAttribute('role', 'status');
@@ -87,7 +87,7 @@ export function trapFocus(...args: any[]): void {
   element.addEventListener('keydown', (e) => {
     const isTabPressed = e.key === 'Tab';
     
-    if (!isTabPressed) return;
+    if (!isTabPressed) {return;}
     
     if (e.shiftKey) {
       if (document.activeElement === firstFocusableElement) {

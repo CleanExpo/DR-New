@@ -25,7 +25,7 @@ export function ProtectedRoute(...args: any[]): void {
   const [authorised, setAuthorized] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (loading) return;
+    if (loading) {return;}
 
     if (!user) {
       router.push('/login');
@@ -181,8 +181,8 @@ export function ProtectedAction(...args: any[]): void {
   const { logAction } = useAuditLog();
   
   const checkAccess = (): boolean => {
-    if (permission && !hasPermission(permission)) return false;
-    if (resource && !canAccess(resource, action, resourceId)) return false;
+    if (permission && !hasPermission(permission)) {return false;}
+    if (resource && !canAccess(resource, action, resourceId)) {return false;}
     return true;
   };
   
@@ -227,7 +227,7 @@ function useAuditLog(...args: any[]): void {
     resourceId?: string,
     metadata?: Record<string, any>
   ) => {
-    if (!user) return;
+    if (!user) {return;}
     
     try {
       await fetch('/api/audit/log', {

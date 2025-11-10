@@ -137,18 +137,18 @@ export class LeadRepository extends BaseRepository<Lead> {
   async search(filters: LeadFilters, page: number = 1, pageSize: number = 20) {
     const where: any = {};
 
-    if (filters.status) where.status = filters.status;
-    if (filters.partnerId) where.partnerId = filters.partnerId;
-    if (filters.qualityStatus) where.qualityStatus = filters.qualityStatus;
-    if (filters.suburb) where.suburb = { contains: filters.suburb };
+    if (filters.status) {where.status = filters.status;}
+    if (filters.partnerId) {where.partnerId = filters.partnerId;}
+    if (filters.qualityStatus) {where.qualityStatus = filters.qualityStatus;}
+    if (filters.suburb) {where.suburb = { contains: filters.suburb };}
     if (filters.damageType) {
       where.damageType = { contains: filters.damageType };
     }
 
     if (filters.dateFrom || filters.dateTo) {
       where.createdAt = {};
-      if (filters.dateFrom) where.createdAt.gte = filters.dateFrom;
-      if (filters.dateTo) where.createdAt.lte = filters.dateTo;
+      if (filters.dateFrom) {where.createdAt.gte = filters.dateFrom;}
+      if (filters.dateTo) {where.createdAt.lte = filters.dateTo;}
     }
 
     return this.paginate({

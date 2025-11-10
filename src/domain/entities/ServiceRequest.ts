@@ -167,7 +167,7 @@ export class ServiceRequest extends AggregateRoot<string> {
       occurredAt: new Date(),
       aggregateId: this.id,
       eventType: 'ServiceScheduled',
-      scheduledDate: scheduledDate,
+      scheduledDate,
     } as ServiceScheduledEvent);
 
     return Result.ok(undefined);
@@ -254,7 +254,7 @@ export class ServiceRequest extends AggregateRoot<string> {
       occurredAt: new Date(),
       aggregateId: this.id,
       eventType: 'ServiceCancelled',
-      reason: reason,
+      reason,
     } as ServiceCancelledEvent);
 
     return Result.ok(undefined);

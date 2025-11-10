@@ -430,7 +430,7 @@ export function generateMetaTitles(keyword: string, location?: string): string[]
     `${keyword} | 24/7 Emergency Service | Use Our Online Form`,
     `${keyword} - Same Day Response ${location ? `in ${location}` : ''} | Free Quote`,
     `Professional ${keyword} | Insurance Approved | Available Now`,
-    `${keyword} Experts | ${location ? location + ' ' : ''}Certified & Insured`,
+    `${keyword} Experts | ${location ? `${location  } ` : ''}Certified & Insured`,
     `Emergency ${keyword} | Open Now | Direct Insurance Billing`,
     `${keyword} Near Me | 5-Star Rated | 30min Response`,
     `#1 ${keyword} Service ${location ? `in ${location}` : ''} | Submit Form Now`,
@@ -445,7 +445,7 @@ export function generateMetaDescriptions(keyword: string, location?: string): st
   const templates = [
     `Professional ${keyword} services ${location ? `in ${location}` : ''}. 24/7 emergency response, insurance approved, certified technicians. Use Our Online Form`,
     `Need ${keyword}? Same-day service, free quotes, direct insurance billing. ${location ? `Servicing all ${location} areas` : 'nationwide coverage'}. Available now - 1300 814 870.`,
-    `Expert ${keyword} with 30-minute response time. IICRC certified, 100% guarantee, insurance claims handled. ${location ? location + ' locals' : 'Australian'} trust us. Use Our Online Form`,
+    `Expert ${keyword} with 30-minute response time. IICRC certified, 100% guarantee, insurance claims handled. ${location ? `${location  } locals` : 'Australian'} trust us. Use Our Online Form`,
     `Emergency ${keyword} available 24/7. Professional assessment, competitive pricing, insurance approved. ${location ? `All ${location} suburbs` : 'All areas'} covered. 1300 814 870.`,
     `Fast, reliable ${keyword} service. Free inspection, written quotes, direct insurance billing. ${location ? `${location}'s` : "Australia's"} trusted restoration experts. Get Help Now 1300 814 870.`
   ];

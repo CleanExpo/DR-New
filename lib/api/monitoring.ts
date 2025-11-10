@@ -201,7 +201,7 @@ export function getPerformanceInsights(timeWindowMs: number = 3600000): {
  * Calculate percentile
  */
 function percentile(values: number[], p: number): number {
-  if (values.length === 0) return 0;
+  if (values.length === 0) {return 0;}
 
   const sorted = [...values].sort((a, b) => a - b);
   const index = Math.ceil((p / 100) * sorted.length) - 1;

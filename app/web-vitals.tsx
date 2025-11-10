@@ -68,7 +68,7 @@ export function WebVitals() {
         onFID(sendMetric);
         onLCP(sendMetric);
         onTTFB(sendMetric);
-        if (onINP) onINP(sendMetric);
+        if (onINP) {onINP(sendMetric);}
       } catch (error) {
         console.error('Failed to initialize Web Vitals:', error);
       }

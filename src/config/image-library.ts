@@ -671,7 +671,7 @@ export const getOptimizedImageSrc = (
   format?: 'webp' | 'avif' | 'jpg' | 'png'
 ): string => {
   const image = IMAGE_LIBRARY.find(img => img.id === imageId);
-  if (!image) return '/images/placeholder.jpg';
+  if (!image) {return '/images/placeholder.jpg';}
 
   // Try to get the requested format and size
   if (format && image.formats[format]) {

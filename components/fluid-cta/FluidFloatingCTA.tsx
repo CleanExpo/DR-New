@@ -64,7 +64,7 @@ export function FluidFloatingCTA({
     'top-left': 'top-6 left-6',
   };
 
-  if (isDismissed) return null;
+  if (isDismissed) {return null;}
 
   return (
     <AnimatePresence>

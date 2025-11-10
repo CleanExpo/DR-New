@@ -59,7 +59,7 @@ function PaymentPageContent(...args: any[]): void {
   const formatExpiry = (value: string) => {
     const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
     if (v.length >= 2) {
-      return v.substring(0, 2) + '/' + v.substring(2, 4);
+      return `${v.substring(0, 2)  }/${  v.substring(2, 4)}`;
     }
     return v;
   };
@@ -97,7 +97,7 @@ function PaymentPageContent(...args: any[]): void {
   };
 
   const handlePayment = async () => {
-    if (!validatePayment()) return;
+    if (!validatePayment()) {return;}
 
     setIsProcessing(true);
 

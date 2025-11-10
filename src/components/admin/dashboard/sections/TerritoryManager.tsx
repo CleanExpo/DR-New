@@ -105,7 +105,7 @@ export function TerritoryManager(...args: any[]): void {
   };
 
   const handleResolveConflict = async () => {
-    if (!selectedConflict) return;
+    if (!selectedConflict) {return;}
 
     try {
       const response = await fetch(`/api/admin/territories/conflicts/${selectedConflict.id}/resolve`, {

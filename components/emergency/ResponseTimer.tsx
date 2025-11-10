@@ -27,7 +27,7 @@ export function ResponseTimer({
   const progress = (elapsedSeconds / targetSeconds) * 100;
 
   useEffect(() => {
-    if (!isRunning) return;
+    if (!isRunning) {return;}
 
     const interval = setInterval(() => {
       setElapsedSeconds((prev) => {

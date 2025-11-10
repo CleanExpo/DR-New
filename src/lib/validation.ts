@@ -223,7 +223,7 @@ export const CustomValidators = {
     const phoneDigits = hasCountryCode ? cleaned.substring(2) : cleaned;
 
     // Check if it starts with 0 for domestic numbers
-    const normalised = phoneDigits.startsWith('0') ? phoneDigits : '0' + phoneDigits;
+    const normalised = phoneDigits.startsWith('0') ? phoneDigits : `0${  phoneDigits}`;
 
     // Validate length (10 digits for Australian numbers)
     if (normalised.length !== 10) {

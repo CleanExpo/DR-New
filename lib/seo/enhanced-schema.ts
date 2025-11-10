@@ -334,7 +334,7 @@ export function generateServiceSchema(...args: any[]): void {
     '@type': 'Service',
     '@id': `https://disasterrecovery.com.au/#service-${serviceName.toLowerCase().replace(/\s+/g, '-')}`,
     name: `${serviceName} ${location}`,
-    description: description,
+    description,
     provider: {
       '@id': 'https://disasterrecovery.com.au/#organization'
     },
@@ -373,7 +373,7 @@ export function generateServiceSchema(...args: any[]): void {
     },
     offers: {
       '@type': 'Offer',
-      url: url,
+      url,
       priceCurrency: 'AUD',
       availability: 'https://schema.org/InStock',
       validFrom: '2025-01-01'
@@ -443,8 +443,8 @@ export function generateReviewSchema(...args: any[]): void {
       '@type': 'Person',
       name: author
     },
-    datePublished: datePublished,
-    reviewBody: reviewBody,
+    datePublished,
+    reviewBody,
     reviewRating: {
       '@type': 'Rating',
       ratingValue: rating.toString(),
@@ -464,8 +464,8 @@ export function generateHowToSchema(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: name,
-    description: description,
+    name,
+    description,
     totalTime: 'PT1H',
     estimatedCost: {
       '@type': 'MonetaryAmount',
@@ -497,7 +497,7 @@ export function generateEmergencyEventSchema(...args: any[]): void {
     '@type': 'Event',
     name: `Emergency ${eventType} Response - ${location}`,
     description: `24/7 emergency ${eventType.toLowerCase()} response service available in ${location}`,
-    startDate: startDate,
+    startDate,
     endDate: startDate,
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -544,7 +544,7 @@ export function generateSpeakableSchema(...args: any[]): void {
         "//*[@class='emergency-number']"
       ]
     },
-    headline: headline,
+    headline,
     description: summary
   };
 }
@@ -556,13 +556,13 @@ export function generateVideoSchema(...args: any[]): void {
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: name,
-    description: description,
-    thumbnailUrl: thumbnailUrl,
-    contentUrl: contentUrl,
+    name,
+    description,
+    thumbnailUrl,
+    contentUrl,
     embedUrl: contentUrl,
     uploadDate: '2025-01-01',
-    duration: duration,
+    duration,
     publisher: {
       '@id': 'https://disasterrecovery.com.au/#organization'
     },

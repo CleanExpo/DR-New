@@ -61,7 +61,7 @@ export function generateMetaDescription(
 
   // Ensure within character limit
   if (description.length > maxLength) {
-    description = description.substring(0, maxLength - 3) + '...';
+    description = `${description.substring(0, maxLength - 3)  }...`;
   }
 
   return description;
@@ -228,13 +228,13 @@ function extractDescriptionFromContent(
   for (const sentence of sentences) {
     const trimmed = sentence.trim();
     if (trimmed.length > 50 && trimmed.length < maxLength) {
-      description = trimmed + '.';
+      description = `${trimmed  }.`;
       break;
     }
   }
 
   if (!description && textOnly.length > 0) {
-    description = textOnly.substring(0, maxLength - 3) + '...';
+    description = `${textOnly.substring(0, maxLength - 3)  }...`;
   }
 
   return description;

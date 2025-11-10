@@ -283,7 +283,7 @@ export async function getLocationsWithinRadius(
     const allLocations = await getAustralianLocations();
 
     return allLocations.filter(location => {
-      if (!location.coordinates) return false;
+      if (!location.coordinates) {return false;}
 
       const distance = calculateDistance(
         center,
@@ -329,10 +329,10 @@ export async function getLocationsByDisasterRisk(
     const levelValues = { low: 1, medium: 2, high: 3, extreme: 4 };
 
     return allLocations.filter(location => {
-      if (!location.disasterRisk) return false;
+      if (!location.disasterRisk) {return false;}
 
       const risk = location.disasterRisk.find(r => r.type === disasterType);
-      if (!risk) return false;
+      if (!risk) {return false;}
 
       return levelValues[risk.level] >= levelValues[minLevel];
     });
@@ -350,7 +350,7 @@ export async function getHighRiskLocations(): Promise<LocationData[]> {
     const allLocations = await getAustralianLocations();
 
     return allLocations.filter(location => {
-      if (!location.disasterRisk) return false;
+      if (!location.disasterRisk) {return false;}
 
       return location.disasterRisk.some(
         risk => risk.level === 'high' || risk.level === 'extreme'

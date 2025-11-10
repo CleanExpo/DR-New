@@ -99,8 +99,8 @@ export function KPIPerformanceDashboard(...args: any[]): void {
   };
 
   const getPerformanceColor = (score: number) => {
-    if (score >= 90) return 'text-green-600';
-    if (score >= 70) return 'text-yellow-600';
+    if (score >= 90) {return 'text-green-600';}
+    if (score >= 70) {return 'text-yellow-600';}
     return 'text-red-600';
   };
 
@@ -116,7 +116,7 @@ export function KPIPerformanceDashboard(...args: any[]): void {
   };
 
   const generateCSVReport = (data: KPIMetrics | null) => {
-    if (!data) return '';
+    if (!data) {return '';}
     
     const rows = [
       ['KPI Performance Report'],

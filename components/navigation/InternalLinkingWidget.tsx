@@ -16,7 +16,7 @@ export const InternalLinkingWidget: React.FC<InternalLinkingWidgetProps> = ({
 }) => {
   const relatedLinks = getRelatedLinks(currentUrl, maxLinks);
 
-  if (relatedLinks.length === 0) return null;
+  if (relatedLinks.length === 0) {return null;}
 
   return (
     <div className={`r6-glass-card p-6 rounded-lg ${className}`}>

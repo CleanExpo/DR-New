@@ -10,7 +10,7 @@ import { useEffect } from 'react';
  */
 export function FontOptimization() {
   useEffect(() => {
-    if (typeof window === 'undefined' || !('fonts' in document)) return;
+    if (typeof window === 'undefined' || !('fonts' in document)) {return;}
 
     // Define critical fonts to preload
     const criticalFonts = [

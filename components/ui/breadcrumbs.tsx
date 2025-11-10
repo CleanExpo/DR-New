@@ -17,7 +17,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
   const pathname = usePathname();
 
   // Don't show breadcrumbs on homepage
-  if (pathname === '/') return null;
+  if (pathname === '/') {return null;}
 
   // Auto-generate breadcrumbs if not provided
   const breadcrumbs = items || generateBreadcrumbs(pathname);
@@ -100,7 +100,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
 
   // Build breadcrumbs from URL segments
   segments.forEach((segment, index) => {
-    const href = '/' + segments.slice(0, index + 1).join('/');
+    const href = `/${  segments.slice(0, index + 1).join('/')}`;
     const isLast = index === segments.length - 1;
 
     // Format segment name
@@ -260,9 +260,9 @@ function formatSegmentName(segment: string, segments: string[], index: number): 
 
   // Location-specific context
   if (parent === 'brisbane' || parent === 'ipswich' || parent === 'logan') {
-    if (segment === 'water-damage') return 'Water Damage';
-    if (segment === 'fire-damage') return 'Fire Damage';
-    if (segment === 'emergency') return 'Emergency Services';
+    if (segment === 'water-damage') {return 'Water Damage';}
+    if (segment === 'fire-damage') {return 'Fire Damage';}
+    if (segment === 'emergency') {return 'Emergency Services';}
   }
 
   // Service type context

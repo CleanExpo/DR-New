@@ -43,12 +43,12 @@ export const PersonSchema: React.FC<PersonSchemaProps> = ({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": name,
-    "jobTitle": jobTitle,
-    ...(description && { "description": description }),
-    ...(email && { "email": email }),
-    ...(telephone && { "telephone": telephone }),
-    ...(url && { "url": url }),
+    name,
+    jobTitle,
+    ...(description && { description }),
+    ...(email && { email }),
+    ...(telephone && { telephone }),
+    ...(url && { url }),
     ...(image && {
       "image": {
         "@type": "ImageObject",
@@ -68,7 +68,7 @@ export const PersonSchema: React.FC<PersonSchemaProps> = ({
       }))
     }),
     ...(awards && awards.length > 0 && { "award": awards }),
-    ...(knowsAbout && knowsAbout.length > 0 && { "knowsAbout": knowsAbout }),
+    ...(knowsAbout && knowsAbout.length > 0 && { knowsAbout }),
     ...(memberOf && memberOf.length > 0 && {
       "memberOf": memberOf.map(org => ({
         "@type": "Organization",
@@ -76,7 +76,7 @@ export const PersonSchema: React.FC<PersonSchemaProps> = ({
         ...(org.url && { "url": org.url })
       }))
     }),
-    ...(sameAs && sameAs.length > 0 && { "sameAs": sameAs }),
+    ...(sameAs && sameAs.length > 0 && { sameAs }),
     "hasCredential": [
       {
         "@type": "EducationalOccupationalCredential",

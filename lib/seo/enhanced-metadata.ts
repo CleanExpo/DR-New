@@ -85,7 +85,7 @@ export function generateEnhancedMetadata(config: PageSEOConfig): Metadata {
 
   // Ensure description is 155-160 chars
   if (optimizedDescription.length > 160) {
-    optimizedDescription = optimizedDescription.substring(0, 157) + '...';
+    optimizedDescription = `${optimizedDescription.substring(0, 157)  }...`;
   }
 
   // Add location-based keywords
@@ -209,7 +209,7 @@ function getCurrentPath(config: PageSEOConfig): string {
  * Get geo position for location
  */
 function getGeoPosition(location?: string): string {
-  if (!location) return '-27.4705;153.0260'; // Brisbane default
+  if (!location) {return '-27.4705;153.0260';} // Brisbane default
 
   const coords = localSEOConfig.geoCoordinates;
 

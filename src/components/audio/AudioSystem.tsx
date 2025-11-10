@@ -23,7 +23,7 @@ export function AudioSystem(...args: any[]): void {
 
   // Text-to-Speech for page content
   const speakText = useCallback((text: string) => {
-    if (!speechEnabled || !window.speechSynthesis) return;
+    if (!speechEnabled || !window.speechSynthesis) {return;}
     
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
@@ -36,9 +36,9 @@ export function AudioSystem(...args: any[]): void {
     // Select voice based on type
     const voices = window.speechSynthesis.getVoices();
     const preferredVoice = voices.find(voice => {
-      if (voiceType === 'emergency') return voice.name.includes('Microsoft David');
-      if (voiceType === 'contractor') return voice.name.includes('Microsoft Mark');
-      if (voiceType === 'learning') return voice.name.includes('Microsoft Zira');
+      if (voiceType === 'emergency') {return voice.name.includes('Microsoft David');}
+      if (voiceType === 'contractor') {return voice.name.includes('Microsoft Mark');}
+      if (voiceType === 'learning') {return voice.name.includes('Microsoft Zira');}
       return voice.name.includes('Microsoft Hazel'); // Default client voice
     });
     
@@ -90,7 +90,7 @@ export function AudioSystem(...args: any[]): void {
 
   // Audio feedback for button clicks
   const playClickSound = useCallback(() => {
-    if (isMuted) return;
+    if (isMuted) {return;}
     
     const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBzCH0fPTgjMGHm7A7+OZURE');
     audio.volume = volume * 0.3;
@@ -113,7 +113,7 @@ export function AudioSystem(...args: any[]): void {
 
   // Background ambient sound for focus
   const playAmbientSound = useCallback(() => {
-    if (!enabled || isMuted) return;
+    if (!enabled || isMuted) {return;}
     
     // Create or get ambient audio element
     let ambient = document.getElementById('ambient-audio') as HTMLAudioElement;
@@ -164,7 +164,7 @@ export function AudioSystem(...args: any[]): void {
     }
   };
 
-  if (!enabled) return null;
+  if (!enabled) {return null;}
 
   return (
     <>
@@ -290,7 +290,7 @@ export function useAudio(...args: any[]): void {
   }, []);
   
   const speak = useCallback((text: string, options?: SpeechSynthesisUtterance) => {
-    if (!isSupported) return;
+    if (!isSupported) {return;}
     
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
@@ -299,7 +299,7 @@ export function useAudio(...args: any[]): void {
   }, [isSupported]);
   
   const stop = useCallback(() => {
-    if (!isSupported) return;
+    if (!isSupported) {return;}
     window.speechSynthesis.cancel();
   }, [isSupported]);
   

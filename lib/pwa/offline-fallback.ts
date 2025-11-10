@@ -75,7 +75,7 @@ export class OfflineFormQueue {
 
   async processQueue() {
     const queue = this.getQueue();
-    if (queue.length === 0) return;
+    if (queue.length === 0) {return;}
 
     const results = await Promise.allSettled(
       queue.map(async (item: any) => {

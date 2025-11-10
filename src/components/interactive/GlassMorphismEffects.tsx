@@ -35,7 +35,7 @@ export function GlassMorphismCard(...args: any[]): void {
   };
 
   const getGlowClass = () => {
-    if (!glow) return '';
+    if (!glow) {return '';}
     
     switch (glowColor) {
       case 'blue': return 'shadow-blue-500/25';

@@ -109,9 +109,9 @@ export function calculateLeadScore(input: LeadScoringInput): LeadScore {
   // 5. Project size (15 points max)
   let sizePoints = 8; // Default
   if (input.estimatedArea) {
-    if (input.estimatedArea > 200) sizePoints = 15;
-    else if (input.estimatedArea > 100) sizePoints = 12;
-    else if (input.estimatedArea > 50) sizePoints = 10;
+    if (input.estimatedArea > 200) {sizePoints = 15;}
+    else if (input.estimatedArea > 100) {sizePoints = 12;}
+    else if (input.estimatedArea > 50) {sizePoints = 10;}
   }
 
   score += sizePoints;
@@ -174,10 +174,10 @@ export function calculateLeadScore(input: LeadScoringInput): LeadScore {
   let responsePoints = 0;
   if (input.responseTime !== undefined) {
     const minutesSinceSubmission = input.responseTime / (1000 * 60);
-    if (minutesSinceSubmission < 5) responsePoints = 5;
-    else if (minutesSinceSubmission < 15) responsePoints = 3;
-    else if (minutesSinceSubmission < 60) responsePoints = 1;
-    else responsePoints = -2; // Penalty for slow response
+    if (minutesSinceSubmission < 5) {responsePoints = 5;}
+    else if (minutesSinceSubmission < 15) {responsePoints = 3;}
+    else if (minutesSinceSubmission < 60) {responsePoints = 1;}
+    else {responsePoints = -2;} // Penalty for slow response
 
     factors.push({
       factor: 'Response Timeliness',

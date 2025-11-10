@@ -31,13 +31,13 @@ function AnimatedCounter(...args: any[]): void {
     triggerOnce: true });
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView) {return;}
 
     let startTime: number;
     let animationFrame: number;
 
     const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
+      if (!startTime) {startTime = currentTime;}
       
       const progress = Math.min((currentTime - startTime) / duration, 1);
       const easeProgress = 1 - Math.pow(1 - progress, 3); // Ease out cubic

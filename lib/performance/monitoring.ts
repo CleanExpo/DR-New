@@ -78,7 +78,7 @@ export class PerformanceMonitor {
   // Get metric statistics
   getMetricStats(name: string) {
     const values = this.metrics.get(name);
-    if (!values || values.length === 0) return null;
+    if (!values || values.length === 0) {return null;}
 
     const sorted = [...values].sort((a, b) => a - b);
     
@@ -134,7 +134,7 @@ export class PerformanceMonitor {
 
 // Resource timing analysis
 export function analyzeResourceTiming(...args: any[]): void {
-  if (typeof window === 'undefined' || !window.performance) return null;
+  if (typeof window === 'undefined' || !window.performance) {return null;}
 
   const resources = window.performance.getEntriesByType('resource');
   
@@ -183,10 +183,10 @@ export function analyzeResourceTiming(...args: any[]): void {
 
 // Memory usage monitoring
 export function getMemoryUsage(...args: any[]): void {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {return null;}
   
   // @ts-ignore
-  if (!window.performance || !window.performance.memory) return null;
+  if (!window.performance || !window.performance.memory) {return null;}
   
   // @ts-ignore
   const memory = window.performance.memory;
@@ -201,12 +201,12 @@ export function getMemoryUsage(...args: any[]): void {
 
 // Connection monitoring
 export function getConnectionInfo(...args: any[]): void {
-  if (typeof window === 'undefined' || !navigator) return null;
+  if (typeof window === 'undefined' || !navigator) {return null;}
   
   // @ts-ignore
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   
-  if (!connection) return null;
+  if (!connection) {return null;}
   
   return {
     effectiveType: connection.effectiveType,
@@ -218,7 +218,7 @@ export function getConnectionInfo(...args: any[]): void {
 
 // Lazy loading helper
 export function lazyLoadImages(...args: any[]): void {
-  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {return;}
 
   const images = document.querySelectorAll('img[data-src]');
   
@@ -287,7 +287,7 @@ export const requestIdleCallback =
 
 // Prefetch critical resources
 export function prefetchCriticalResources(...args: any[]): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   urls.forEach(url => {
     const link = document.createElement('link');
@@ -299,7 +299,7 @@ export function prefetchCriticalResources(...args: any[]): void {
 
 // Service Worker registration
 export async function registerServiceWorker(...args: any[]): Promise<void> {
-  if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
+  if (typeof window === 'undefined' || !('serviceWorker' in navigator)) {return;}
   
   if (process.env.NODE_ENV === 'production') {
     try {

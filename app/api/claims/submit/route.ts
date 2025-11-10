@@ -129,7 +129,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     
     return NextResponse.json({
       success: true,
-      claimId: claimId,
+      claimId,
       message: 'Claim submitted successfully. Payment of $2,750 processed.',
       nextSteps: [
         'Your claim is being matched with a certified NRP contractor',
@@ -180,7 +180,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 
     return NextResponse.json({
       success: true,
-      claim: claim
+      claim
     });
   } catch (error) {
     console.error('Error in GET:', error);
@@ -195,7 +195,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 async function assignContractor(claimId: string): Promise<void> {
   try {
     const claim = claims.get(claimId);
-    if (!claim) return;
+    if (!claim) {return;}
 
     // Mock contractor assignment based on location and service type
     const contractor = {
@@ -236,7 +236,7 @@ async function assignContractor(claimId: string): Promise<void> {
 async function contractorAccepts(claimId: string): Promise<void> {
   try {
     const claim = claims.get(claimId);
-    if (!claim) return;
+    if (!claim) {return;}
 
     claim.contractor.acceptedAt = new Date().toISOString();
     claim.workflow.contractorAccepted = true;

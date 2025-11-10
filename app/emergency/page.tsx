@@ -78,15 +78,15 @@ const scenarios = [
 
 export default function EmergencyTimesPage() {
   const getIcon = (name: string) => {
-    if (name.includes('Weekend')) return Sun;
-    if (name.includes('Night') || name.includes('Midnight')) return Moon;
-    if (name.includes('Holiday') || name.includes('Christmas') || name.includes('Year')) return Calendar;
+    if (name.includes('Weekend')) {return Sun;}
+    if (name.includes('Night') || name.includes('Midnight')) {return Moon;}
+    if (name.includes('Holiday') || name.includes('Christmas') || name.includes('Year')) {return Calendar;}
     return Clock;
   };
 
   const getColorClass = (level: string) => {
-    if (level === 'Extreme') return 'bg-red-700';
-    if (level === 'Critical') return 'bg-blue-700';
+    if (level === 'Extreme') {return 'bg-red-700';}
+    if (level === 'Critical') {return 'bg-blue-700';}
     return 'bg-yellow-600';
   };
 

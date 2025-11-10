@@ -44,7 +44,7 @@ export function Prefetch() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!pathname) return;
+    if (!pathname) {return;}
 
     // Get routes to prefetch based on current path
     const routesToPrefetch = PREFETCH_ROUTES[pathname as keyof typeof PREFETCH_ROUTES] || [];
@@ -80,11 +80,11 @@ export function Prefetch() {
 // Hook for programmatic prefetching
 export function usePrefetch() {
   const prefetchRoute = (route: string) => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     // Check if already prefetched
     const existing = document.querySelector(`link[href="${route}"][rel="prefetch"]`);
-    if (existing) return;
+    if (existing) {return;}
 
     const link = document.createElement('link');
     link.rel = 'prefetch';

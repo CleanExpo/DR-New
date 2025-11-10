@@ -222,7 +222,7 @@ export class ReviewMonitoringSystem {
 
     // Add special alerts
     if (analysis.alerts.length > 0) {
-      message += '\n' + analysis.alerts.map(a => `  • ${a}`).join('\n');
+      message += `\n${  analysis.alerts.map(a => `  • ${a}`).join('\n')}`;
     }
 
     return {

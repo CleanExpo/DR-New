@@ -112,7 +112,7 @@ export const InteractiveContractorMap: React.FC = () => {
 
   // Load contractors and emergencies
   useEffect(() => {
-    if (!connected) return undefined;
+    if (!connected) {return undefined;}
 
     const handleContractorUpdate = (data: Contractor[]) => {
       setContractors(data);
@@ -234,9 +234,9 @@ export const InteractiveContractorMap: React.FC = () => {
 
   // Filter contractors based on filters
   const filteredContractors = contractors.filter(contractor => {
-    if (!filters.showAvailable && contractor.status === 'available') return false;
-    if (!filters.showBusy && contractor.status === 'busy') return false;
-    if (!filters.showOffline && contractor.status === 'offline') return false;
+    if (!filters.showAvailable && contractor.status === 'available') {return false;}
+    if (!filters.showBusy && contractor.status === 'busy') {return false;}
+    if (!filters.showOffline && contractor.status === 'offline') {return false;}
     
     if (filters.specialtyFilter !== 'all' && 
         !contractor.specialty.includes(filters.specialtyFilter)) {
@@ -284,7 +284,7 @@ export const InteractiveContractorMap: React.FC = () => {
 
   // Calculate route
   const calculateRoute = async (contractor: Contractor, emergency: EmergencyJob) => {
-    if (!window.google) return;
+    if (!window.google) {return;}
 
     const directionsService = new google.maps.DirectionsService();
     
@@ -342,7 +342,7 @@ export const InteractiveContractorMap: React.FC = () => {
   const findNearestContractor = (emergency: EmergencyJob) => {
     const available = contractors.filter(c => c.status === 'available');
     
-    if (available.length === 0) return null;
+    if (available.length === 0) {return null;}
     
     let nearest = available[0];
     let minDistance = google.maps.geometry.spherical.computeDistanceBetween(

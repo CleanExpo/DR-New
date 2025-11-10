@@ -262,7 +262,7 @@ export function optimizeChannelMix(
 
     remainingBudget -= recommendedSpend;
 
-    if (remainingBudget <= 0) break;
+    if (remainingBudget <= 0) {break;}
   }
 
   return recommendations;

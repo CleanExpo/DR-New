@@ -47,7 +47,7 @@ function MagneticFloatingButton(...args: any[]): void {
   };
 
   const handleMouseMove = (event: React.MouseEvent) => {
-    if (!buttonRef.current) return;
+    if (!buttonRef.current) {return;}
 
     const rect = buttonRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;

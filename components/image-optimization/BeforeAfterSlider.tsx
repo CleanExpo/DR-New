@@ -49,7 +49,7 @@ export function BeforeAfterSlider({
 
   // Handle mouse/touch move
   const handleMove = (clientX: number, clientY: number) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {return;}
 
     const rect = containerRef.current.getBoundingClientRect();
     let newPosition: number;
@@ -71,13 +71,13 @@ export function BeforeAfterSlider({
   const handleMouseDown = () => setIsDragging(true);
   const handleMouseUp = () => setIsDragging(false);
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    if (!isDragging) {return;}
     handleMove(e.clientX, e.clientY);
   };
 
   // Touch events
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return;
+    if (!isDragging) {return;}
     const touch = e.touches[0];
     handleMove(touch.clientX, touch.clientY);
   };

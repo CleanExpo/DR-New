@@ -91,28 +91,28 @@ export default function LeadCaptureForm() {
     let score = 0;
     
     // Insurance (30 points)
-    if (formData.hasInsurance) score += 30;
+    if (formData.hasInsurance) {score += 30;}
     
     // Urgency (20 points)
-    if (formData.urgencyLevel === 'emergency') score += 20;
-    else if (formData.urgencyLevel === 'urgent') score += 15;
-    else if (formData.urgencyLevel === 'soon') score += 10;
+    if (formData.urgencyLevel === 'emergency') {score += 20;}
+    else if (formData.urgencyLevel === 'urgent') {score += 15;}
+    else if (formData.urgencyLevel === 'soon') {score += 10;}
     
     // Property Value (20 points)
     const value = parseInt(formData.propertyValue);
-    if (value > 1000000) score += 20;
-    else if (value > 500000) score += 15;
-    else if (value > 250000) score += 10;
+    if (value > 1000000) {score += 20;}
+    else if (value > 500000) {score += 15;}
+    else if (value > 250000) {score += 10;}
     
     // Business Property (15 points)
-    if (formData.isBusinessProperty) score += 15;
+    if (formData.isBusinessProperty) {score += 15;}
     
     // Ready to Start (10 points)
-    if (formData.readyToStart === 'immediately') score += 10;
-    else if (formData.readyToStart === 'within_week') score += 7;
+    if (formData.readyToStart === 'immediately') {score += 10;}
+    else if (formData.readyToStart === 'within_week') {score += 7;}
     
     // Decision Maker (5 points)
-    if (formData.decisionMaker) score += 5;
+    if (formData.decisionMaker) {score += 5;}
     
     setLeadScore(score);
     return score;

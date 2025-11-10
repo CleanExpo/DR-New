@@ -322,9 +322,9 @@ export function validateMetadata(metadata: ExtendedMetadata): MetadataValidation
     warnings.push('Missing OpenGraph metadata');
     score -= 10;
   } else {
-    if (!metadata.openGraph.title) warnings.push('Missing OG title');
-    if (!metadata.openGraph.description) warnings.push('Missing OG description');
-    if (!metadata.openGraph.url) warnings.push('Missing OG URL');
+    if (!metadata.openGraph.title) {warnings.push('Missing OG title');}
+    if (!metadata.openGraph.description) {warnings.push('Missing OG description');}
+    if (!metadata.openGraph.url) {warnings.push('Missing OG URL');}
     if (!metadata.openGraph.images || metadata.openGraph.images.length === 0) {
       warnings.push('Missing OG image');
       score -= 5;
@@ -396,7 +396,7 @@ export async function generateDynamicMetadata(
     const slug = params.slug?.join('/') || '';
 
     let pageType: PageMetadataInput['type'] = 'home';
-    let metadataParams: PageMetadataInput['params'] = {};
+    const metadataParams: PageMetadataInput['params'] = {};
 
     // Route parsing logic
     if (slug.startsWith('services/')) {

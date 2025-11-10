@@ -57,7 +57,7 @@ export function QuickActionBar(...args: any[]): void {
         <button 
           onClick={() => {
             const chatBtn = document.querySelector('[class*="chat"]');
-            if (chatBtn) (chatBtn as HTMLElement).click();
+            if (chatBtn) {(chatBtn as HTMLElement).click();}
           }}
           className="flex flex-col items-center justify-center py-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
         >
@@ -132,7 +132,7 @@ export function LoadingWithProgress(...args: any[]): void {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress(prev => {
-        if (prev >= 90) return prev;
+        if (prev >= 90) {return prev;}
         return prev + Math.random() * 15;
       });
     }, 500);

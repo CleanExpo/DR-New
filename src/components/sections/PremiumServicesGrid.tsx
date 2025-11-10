@@ -126,8 +126,8 @@ export default function PremiumServicesGrid({
   }, []);
 
   const filteredServices = services.filter(service => {
-    if (filterCategory) return service.category === filterCategory;
-    if (selectedCategory === 'all') return true;
+    if (filterCategory) {return service.category === filterCategory;}
+    if (selectedCategory === 'all') {return true;}
     return service.category === selectedCategory;
   }).slice(0, maxItems);
 

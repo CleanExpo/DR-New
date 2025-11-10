@@ -51,14 +51,14 @@ function BeforeAfterSliderCard(...args: any[]): void {
   
   const x = useMotionValue(0);
   const sliderPercentage = useTransform(x, (value) => {
-    if (!containerRef.current) return 50;
+    if (!containerRef.current) {return 50;}
     const containerWidth = containerRef.current.offsetWidth;
     const percentage = ((value + containerWidth / 2) / containerWidth) * 100;
     return Math.max(0, Math.min(100, percentage));
   });
 
   const handlePan = useCallback((event: unknown, info: PanInfo) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {return;}
     
     const containerWidth = containerRef.current.offsetWidth;
     const newX = info.point.x - containerRef.current.offsetLeft;

@@ -46,7 +46,7 @@ export function MonitoringProvider({
 
   // Track page views
   useEffect(() => {
-    if (!pathname) return;
+    if (!pathname) {return;}
 
     const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
 
@@ -99,14 +99,14 @@ export function MonitoringProvider({
  * Get page category from pathname
  */
 function getPageCategory(pathname: string): string | undefined {
-  if (pathname === '/') return 'home';
-  if (pathname.startsWith('/services')) return 'services';
-  if (pathname.startsWith('/about')) return 'about';
-  if (pathname.startsWith('/contact')) return 'contact';
-  if (pathname.startsWith('/emergency')) return 'emergency';
-  if (pathname.startsWith('/areas')) return 'service-areas';
-  if (pathname.startsWith('/insurance')) return 'insurance';
-  if (pathname.startsWith('/commercial')) return 'commercial';
+  if (pathname === '/') {return 'home';}
+  if (pathname.startsWith('/services')) {return 'services';}
+  if (pathname.startsWith('/about')) {return 'about';}
+  if (pathname.startsWith('/contact')) {return 'contact';}
+  if (pathname.startsWith('/emergency')) {return 'emergency';}
+  if (pathname.startsWith('/areas')) {return 'service-areas';}
+  if (pathname.startsWith('/insurance')) {return 'insurance';}
+  if (pathname.startsWith('/commercial')) {return 'commercial';}
   return undefined;
 }
 

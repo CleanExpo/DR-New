@@ -132,7 +132,7 @@ export const FocusManager = {
     const lastFocusable = focusableElements[focusableElements.length - 1];
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
+      if (e.key !== 'Tab') {return;}
 
       if (e.shiftKey) {
         if (document.activeElement === firstFocusable) {
@@ -184,7 +184,7 @@ export const KeyboardNav = {
       case 'ArrowUp':
         if (orientation !== 'horizontal') {
           newIndex = currentIndex - 1;
-          if (newIndex < 0) newIndex = wrap ? items.length - 1 : 0;
+          if (newIndex < 0) {newIndex = wrap ? items.length - 1 : 0;}
           e.preventDefault();
         }
         break;
@@ -192,7 +192,7 @@ export const KeyboardNav = {
       case 'ArrowDown':
         if (orientation !== 'horizontal') {
           newIndex = currentIndex + 1;
-          if (newIndex >= items.length) newIndex = wrap ? 0 : items.length - 1;
+          if (newIndex >= items.length) {newIndex = wrap ? 0 : items.length - 1;}
           e.preventDefault();
         }
         break;
@@ -200,7 +200,7 @@ export const KeyboardNav = {
       case 'ArrowLeft':
         if (orientation !== 'vertical') {
           newIndex = currentIndex - 1;
-          if (newIndex < 0) newIndex = wrap ? items.length - 1 : 0;
+          if (newIndex < 0) {newIndex = wrap ? items.length - 1 : 0;}
           e.preventDefault();
         }
         break;
@@ -208,7 +208,7 @@ export const KeyboardNav = {
       case 'ArrowRight':
         if (orientation !== 'vertical') {
           newIndex = currentIndex + 1;
-          if (newIndex >= items.length) newIndex = wrap ? 0 : items.length - 1;
+          if (newIndex >= items.length) {newIndex = wrap ? 0 : items.length - 1;}
           e.preventDefault();
         }
         break;
@@ -281,7 +281,7 @@ export const ScreenReaderUtils = {
 
 // High contrast mode detection
 export function isHighContrastMode(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
 
   const testElement = document.createElement('div');
   testElement.style.backgroundColor = 'rgb(255, 255, 255)';
@@ -297,7 +297,7 @@ export function isHighContrastMode(): boolean {
 
 // Reduced motion preference
 export function prefersReducedMotion(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 

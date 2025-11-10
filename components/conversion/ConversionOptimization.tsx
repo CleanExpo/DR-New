@@ -33,7 +33,7 @@ export default function ConversionOptimization({
 
   // Exit intent detection
   useEffect(() => {
-    if (!showExitIntent) return;
+    if (!showExitIntent) {return;}
 
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && !sessionStorage.getItem('exitIntentShown')) {
@@ -48,7 +48,7 @@ export default function ConversionOptimization({
 
   // Sticky bar scroll detection
   useEffect(() => {
-    if (!showStickyBar) return;
+    if (!showStickyBar) {return;}
 
     const handleScroll = () => {
       const scrolled = window.scrollY > 500;
@@ -63,7 +63,7 @@ export default function ConversionOptimization({
   useEffect(() => {
     const timer = setInterval(() => {
       setUrgencyTimer(prev => {
-        if (prev <= 0) return 900; // Reset
+        if (prev <= 0) {return 900;} // Reset
         return prev - 1;
       });
     }, 1000);
@@ -73,7 +73,7 @@ export default function ConversionOptimization({
 
   // Live visitor counter simulation
   useEffect(() => {
-    if (!showLiveCounter) return;
+    if (!showLiveCounter) {return;}
 
     const interval = setInterval(() => {
       setLiveVisitors(prev => {
@@ -87,7 +87,7 @@ export default function ConversionOptimization({
 
   // Social proof notifications
   useEffect(() => {
-    if (!showSocialProof) return;
+    if (!showSocialProof) {return;}
 
     const activities = [
       { type: 'claim', location: 'Brisbane CBD', service: 'Water Damage', time: 'just now' },

@@ -390,7 +390,7 @@ export function generateServiceVariations(service: ServiceData): string[] {
  */
 export function getRelatedServices(serviceSlug: string): ServiceData[] {
   const service = SERVICES.find(s => s.slug === serviceSlug);
-  if (!service) return [];
+  if (!service) {return [];}
 
   // Get services from same category
   const sameCategory = SERVICES.filter(
@@ -438,8 +438,8 @@ export async function getServiceAvailability(
   // In production, this would check contractor availability
   // For now, return mock availability
   const random = Math.random();
-  if (random > 0.7) return 'available';
-  if (random > 0.3) return 'limited';
+  if (random > 0.7) {return 'available';}
+  if (random > 0.3) {return 'limited';}
   return 'unavailable';
 
   } catch (error) {

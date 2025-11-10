@@ -227,7 +227,7 @@ export class MemoryMonitor {
   }
 
   private getMemoryUsage(): number {
-    if (!this.supportsMemoryAPI()) return 0;
+    if (!this.supportsMemoryAPI()) {return 0;}
     return (performance as any).memory.usedJSHeapSize;
   }
 }
@@ -286,7 +286,7 @@ export class RequestBatcher<T, R> {
   }
 
   async flush(): Promise<R[]> {
-    if (this.batch.length === 0) return [];
+    if (this.batch.length === 0) {return [];}
 
     const currentBatch = [...this.batch];
     this.batch = [];

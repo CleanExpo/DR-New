@@ -114,7 +114,7 @@ export class AIService implements IAIService {
 
   private getFromCache(key: string): AICacheEntry | null {
     const entry = this.cache.get(key);
-    if (!entry) return null;
+    if (!entry) {return null;}
     
     if (entry.expiresAt < new Date()) {
       this.cache.delete(key);
@@ -127,7 +127,7 @@ export class AIService implements IAIService {
   }
 
   private setCache(key: string, response: AIResponse): void {
-    if (!this.config.cache.enabled) return;
+    if (!this.config.cache.enabled) {return;}
     
     const entry: AICacheEntry = {
       key,
@@ -155,7 +155,7 @@ export class AIService implements IAIService {
       return this.getDefaultProvidersForTask(context);
     }
 
-    let providers: AIProvider[] = [];
+    const providers: AIProvider[] = [];
     
     // Add preferred provider first if specified and available
     if (preferredProvider && this.isProviderAvailable(preferredProvider)) {
@@ -201,10 +201,10 @@ export class AIService implements IAIService {
 
   private isProviderAvailable(provider: AIProvider): boolean {
     const config = this.config.providers.find(p => p.provider === provider);
-    if (!config || !config.enabled) return false;
+    if (!config || !config.enabled) {return false;}
     
     const breaker = this.circuitBreakers.get(provider);
-    if (!breaker) return true;
+    if (!breaker) {return true;}
     
     // Check if circuit breaker is open
     if (breaker.isOpen) {
@@ -394,7 +394,7 @@ export class AIService implements IAIService {
 
   private updateCircuitBreaker(provider: AIProvider, error: unknown): void {
     const breaker = this.circuitBreakers.get(provider);
-    if (!breaker) return;
+    if (!breaker) {return;}
     
     breaker.failures++;
     breaker.lastFailure = new Date();
@@ -510,7 +510,7 @@ export class AIService implements IAIService {
             retriesLeft: maxRetries - attempt - 1
           });
           
-          if (!lastError.retryable) break;
+          if (!lastError.retryable) {break;}
         }
       }
       

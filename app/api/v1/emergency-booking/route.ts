@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
 
       // Send email to contractor
       sendEmergencyJobNotification(
-        dispatchResult.assignedContractor.phone.replace(/^\+?61/, '0') + '@disasterrecovery.com.au', // Placeholder email
+        `${dispatchResult.assignedContractor.phone.replace(/^\+?61/, '0')  }@disasterrecovery.com.au`, // Placeholder email
         jobDetails
       ).catch((error) => console.error('[API] Email send error:', error));
 

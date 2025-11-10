@@ -23,10 +23,10 @@ const THRESHOLDS = {
 
 function getRating(name: string, value: number): 'good' | 'needs-improvement' | 'poor' {
   const threshold = THRESHOLDS[name as keyof typeof THRESHOLDS];
-  if (!threshold) return 'good';
+  if (!threshold) {return 'good';}
 
-  if (value <= threshold.good) return 'good';
-  if (value <= threshold.poor) return 'needs-improvement';
+  if (value <= threshold.good) {return 'good';}
+  if (value <= threshold.poor) {return 'needs-improvement';}
   return 'poor';
 }
 
@@ -76,7 +76,7 @@ function sendToAnalytics(metric: WebVitalsMetric) {
 
 export function AdvancedWebVitals() {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     // Import web-vitals library dynamically
     import('web-vitals').then(({ onCLS, onFID, onFCP, onLCP, onTTFB, onINP }) => {

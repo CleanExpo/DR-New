@@ -44,7 +44,7 @@ export function FluidEmergencyBanner({
   const y = useTransform(scrollY, [0, 100], [0, -10]);
   const opacity = useTransform(scrollY, [0, 50, 100], [1, 0.8, 1]);
 
-  if (!show) return null;
+  if (!show) {return null;}
 
   return (
     <motion.div

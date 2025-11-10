@@ -90,7 +90,7 @@ export function getPerformanceMetrics() {
 export function getAverageRenderTime(componentId: string) {
   const componentMetrics = metrics.filter((m) => m.id === componentId);
 
-  if (componentMetrics.length === 0) return 0;
+  if (componentMetrics.length === 0) {return 0;}
 
   const total = componentMetrics.reduce((sum, m) => sum + m.actualDuration, 0);
   return total / componentMetrics.length;

@@ -24,14 +24,14 @@ export const VideoObjectSchema: React.FC<VideoObjectSchemaProps> = ({
   const schema = {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "name": name,
-    "description": description,
-    "thumbnailUrl": thumbnailUrl,
-    "uploadDate": uploadDate,
-    ...(duration && { "duration": duration }),
-    ...(contentUrl && { "contentUrl": contentUrl }),
-    ...(embedUrl && { "embedUrl": embedUrl }),
-    ...(transcript && { "transcript": transcript })
+    name,
+    description,
+    thumbnailUrl,
+    uploadDate,
+    ...(duration && { duration }),
+    ...(contentUrl && { contentUrl }),
+    ...(embedUrl && { embedUrl }),
+    ...(transcript && { transcript })
   };
 
   return (

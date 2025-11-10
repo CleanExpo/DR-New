@@ -26,7 +26,7 @@ export function BeforeAfterSlider({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMove = (clientX: number) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {return;}
 
     const rect = containerRef.current.getBoundingClientRect();
     const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
@@ -39,12 +39,12 @@ export function BeforeAfterSlider({
   const handleMouseUp = () => setIsDragging(false);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    if (!isDragging) {return;}
     handleMove(e.clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return;
+    if (!isDragging) {return;}
     handleMove(e.touches[0].clientX);
   };
 

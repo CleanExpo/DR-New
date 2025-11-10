@@ -15,7 +15,7 @@ export function ExitIntent({ enabled = true, delay = 3000, onClose }: ExitIntent
   const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
-    if (!enabled || hasShown) return;
+    if (!enabled || hasShown) {return;}
 
     let timeout: NodeJS.Timeout;
 

@@ -186,7 +186,7 @@ export default function ModernAboutPage() {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const fallback = document.getElementById('founder-fallback');
-                    if (fallback) fallback.style.display = 'flex';
+                    if (fallback) {fallback.style.display = 'flex';}
                   }}
                 />
                 <div id="founder-fallback" className="hidden w-full h-full items-center justify-center bg-gradient-to-r from-purple-500/20 to-indigo-500/20">

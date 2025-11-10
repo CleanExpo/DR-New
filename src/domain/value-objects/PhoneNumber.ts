@@ -59,10 +59,10 @@ export class PhoneNumber extends ValueObject {
    */
   private static detectPhoneType(number: string): PhoneType {
     // Mobile: starts with 4
-    if (number.startsWith('4')) return 'mobile';
+    if (number.startsWith('4')) {return 'mobile';}
 
     // Emergency: 000, 131444 (SES), etc.
-    if (number.startsWith('000') || number.startsWith('131')) return 'emergency';
+    if (number.startsWith('000') || number.startsWith('131')) {return 'emergency';}
 
     // Default to landline
     return 'landline';

@@ -148,7 +148,7 @@ export function optimizeDescription(
 
   // Trim if exceeds max
   if (description.length > maxChars) {
-    description = description.substring(0, maxChars - 3) + '...';
+    description = `${description.substring(0, maxChars - 3)  }...`;
   }
 
   // Pad to optimal 155-160 if under

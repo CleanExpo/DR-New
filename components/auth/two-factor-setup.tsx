@@ -187,8 +187,8 @@ export const TwoFactorSetup: React.FC<TwoFactorSetupProps> = ({
   const downloadBackupCodes = () => {
     const content = `NRP Disaster Recovery - 2FA Backup Codes\n` +
       `Generated: ${new Date().toLocaleString()}\n\n` +
-      `Keep these codes safe. Each code can only be used once.\n\n` +
-      backupCodes.join('\n');
+      `Keep these codes safe. Each code can only be used once.\n\n${ 
+      backupCodes.join('\n')}`;
 
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);

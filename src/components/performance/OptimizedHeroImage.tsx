@@ -63,7 +63,7 @@ export function OptimizedHeroImage({
         placeholder={placeholder}
         blurDataURL={blurDataURL}
         style={{
-          objectFit: objectFit,
+          objectFit,
           transition: 'opacity 0.3s ease-in-out',
           opacity: isLoaded ? 1 : 0.9,
         }}

@@ -17,7 +17,7 @@ export function useOnlineStatus(): boolean {
   );
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
@@ -56,7 +56,7 @@ export function useNetworkQuality(): NetworkQuality {
   });
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     const connection = (navigator as any).connection ||
                       (navigator as any).mozConnection ||
@@ -103,7 +103,7 @@ export function useOfflineQueue<T>(
 
   // Process queue when online
   useEffect(() => {
-    if (!isOnline || queue.length === 0 || processing) return;
+    if (!isOnline || queue.length === 0 || processing) {return;}
 
     const processQueue = async () => {
       setProcessing(true);

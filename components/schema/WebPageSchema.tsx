@@ -41,14 +41,14 @@ export const WebPageSchema: FC<WebPageSchemaProps> = ({
       {
         "@type": "WebPage",
         "@id": `${url}#webpage`,
-        "url": url,
+        url,
         "name": title,
-        "description": description,
+        description,
         "isPartOf": {
           "@id": "https://www.disasterrecovery.com.au/#website"
         },
         "datePublished": "2024-01-01T00:00:00+10:00",
-        "dateModified": dateModified,
+        dateModified,
         "inLanguage": "en-AU",
         "potentialAction": {
           "@type": "ReadAction",

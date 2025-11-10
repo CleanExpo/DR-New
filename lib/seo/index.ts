@@ -78,7 +78,7 @@ export function generateArticleSchema(title: string, description: string, datePu
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
-    description: description,
+    description,
     author: {
       '@type': 'Organization',
       name: 'Disaster Recovery Brisbane',
@@ -89,7 +89,7 @@ export function generateArticleSchema(title: string, description: string, datePu
     },
     datePublished: datePublished || new Date().toISOString(),
     dateModified: dateModified || new Date().toISOString(),
-    url: url,
-    keywords: keywords,
+    url,
+    keywords,
   };
 }

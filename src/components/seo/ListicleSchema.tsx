@@ -11,7 +11,7 @@ export default function ListicleSchema({
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": title,
-    "description": description,
+    description,
     "numberOfItems": items.length,
     "itemListElement": items.map((item, index) => ({
       "@type": "ListItem",

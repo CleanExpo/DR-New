@@ -40,7 +40,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   // Generate audio from text
   const generateAudio = async () => {
-    if (!text) return;
+    if (!text) {return;}
     
     setIsLoading(true);
     setError(null);
@@ -97,7 +97,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
   // Setup audio event listeners
   const setupAudioListeners = () => {
-    if (!audioRef.current) return;
+    if (!audioRef.current) {return;}
 
     const audio = audioRef.current;
 

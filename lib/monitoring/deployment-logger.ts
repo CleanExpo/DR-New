@@ -55,14 +55,14 @@ export class DeploymentLogger {
   }
 
   private formatLogEntry(entry: LogEntry): string {
-    return JSON.stringify({
+    return `${JSON.stringify({
       ...entry,
       deployment: {
         id: this.deploymentId,
         environment: this.environment,
         ...entry.deployment
       }
-    }) + '\n';
+    })  }\n`;
   }
 
   private writeLog(level: LogLevel, message: string, context?: Record<string, any>): void {
@@ -216,7 +216,7 @@ export class DeploymentLogger {
     cutoffDate.setDate(cutoffDate.getDate() - daysToKeep);
 
     files.forEach(file => {
-      if (!file.startsWith('deployment-')) return;
+      if (!file.startsWith('deployment-')) {return;}
 
       const filePath = path.join(this.logDir, file);
       const stats = fs.statSync(filePath);

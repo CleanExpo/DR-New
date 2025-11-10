@@ -4,8 +4,8 @@
  */
 
 // Buttons
-export { Button, buttonVariants, type ButtonProps } from './Button'
-export { Button as ButtonEnhanced } from './ButtonEnhanced'
+export { Button, buttonVariants, type ButtonProps } from './button'
+export { Button as ButtonEnhanced } from './button-enhanced'
 
 // Cards
 export {
@@ -15,7 +15,7 @@ export {
   CardTitle,
   CardDescription,
   CardContent,
-} from './Card'
+} from './card'
 
 export {
   Card as CardEnhanced,
@@ -26,7 +26,7 @@ export {
   CardContent as CardContentEnhanced,
   ServiceCard,
   StatsCard,
-} from './CardEnhanced'
+} from './card-enhanced'
 
 // Forms
 export {
@@ -39,7 +39,7 @@ export {
   FormSuccess,
   FormError,
   FormSubmit,
-} from './Form'
+} from './form'
 
 // Modals
 export {
@@ -55,7 +55,7 @@ export {
   ModalDescription,
   ModalBody,
   ConfirmationModal,
-} from './Modal'
+} from './modal'
 
 // Toasts
 export {
@@ -64,7 +64,7 @@ export {
   toast,
   type Toast,
   type ToastVariant,
-} from './Toast'
+} from './toast'
 
 // Loading States
 export {
@@ -78,7 +78,7 @@ export {
   CircularProgress,
   DotsLoader,
   PulseLoader,
-} from './LoadingStates'
+} from './loading-states'
 
 // Empty States
 export {
@@ -92,7 +92,7 @@ export {
   PermissionDenied,
   UnderConstruction,
   InlineEmptyState,
-} from './EmptyStates'
+} from './empty-states'
 
 // Existing shadcn components
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion'

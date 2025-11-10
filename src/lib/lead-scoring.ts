@@ -147,9 +147,9 @@ export function calculateLeadScore(data: LeadData): number {
  * @returns Priority level
  */
 export function getLeadPriority(score: number): 'critical' | 'high' | 'medium' | 'low' {
-  if (score >= 80) return 'critical';
-  if (score >= 60) return 'high';
-  if (score >= 40) return 'medium';
+  if (score >= 80) {return 'critical';}
+  if (score >= 60) {return 'high';}
+  if (score >= 40) {return 'medium';}
   return 'low';
 }
 
@@ -159,9 +159,9 @@ export function getLeadPriority(score: number): 'critical' | 'high' | 'medium' |
  * @returns Recommended response time in minutes
  */
 export function getResponseTime(score: number): number {
-  if (score >= 80) return 15; // 15 minutes
-  if (score >= 60) return 30; // 30 minutes
-  if (score >= 40) return 60; // 1 hour
+  if (score >= 80) {return 15;} // 15 minutes
+  if (score >= 60) {return 30;} // 30 minutes
+  if (score >= 40) {return 60;} // 1 hour
   return 240; // 4 hours
 }
 
@@ -195,13 +195,13 @@ export function formatLeadScore(score: number): {
  */
 export function getConversionProbability(score: number): number {
   // Based on historical data, higher scores have better conversion rates
-  if (score >= 90) return 95;
-  if (score >= 80) return 85;
-  if (score >= 70) return 70;
-  if (score >= 60) return 55;
-  if (score >= 50) return 40;
-  if (score >= 40) return 25;
-  if (score >= 30) return 15;
+  if (score >= 90) {return 95;}
+  if (score >= 80) {return 85;}
+  if (score >= 70) {return 70;}
+  if (score >= 60) {return 55;}
+  if (score >= 50) {return 40;}
+  if (score >= 40) {return 25;}
+  if (score >= 30) {return 15;}
   return 10;
 }
 

@@ -87,9 +87,9 @@ export async function GET(...args: any[]): Promise<void> {
       
       // Calculate changefreq based on priority score
       let changefreq = 'monthly';
-      if (page.priorityScore >= 90) changefreq = 'weekly';
-      else if (page.priorityScore >= 80) changefreq = 'monthly';
-      else changefreq = 'yearly';
+      if (page.priorityScore >= 90) {changefreq = 'weekly';}
+      else if (page.priorityScore >= 80) {changefreq = 'monthly';}
+      else {changefreq = 'yearly';}
 
       xml += `
   <url>

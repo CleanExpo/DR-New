@@ -24,19 +24,19 @@ export function calculateLeadValue(leadData: any): number {
   });
 
   // Urgency multiplier
-  if (leadData.urgencyLevel === 'IMMEDIATE') value *= 1.5;
-  if (leadData.urgencyLevel === 'HIGH') value *= 1.3;
+  if (leadData.urgencyLevel === 'IMMEDIATE') {value *= 1.5;}
+  if (leadData.urgencyLevel === 'HIGH') {value *= 1.3;}
 
   // Insurance multiplier
-  if (leadData.hasInsurance) value *= 1.4;
+  if (leadData.hasInsurance) {value *= 1.4;}
 
   // Property type multiplier
-  if (leadData.isBusinessProperty) value *= 1.6;
+  if (leadData.isBusinessProperty) {value *= 1.6;}
 
   // Area affected multiplier
   const areaNum = parseInt(leadData.estimatedAreaAffected) || 0;
-  if (areaNum > 100) value *= 1.5;
-  else if (areaNum > 50) value *= 1.3;
+  if (areaNum > 100) {value *= 1.5;}
+  else if (areaNum > 50) {value *= 1.3;}
 
   return Math.round(value);
 }
@@ -95,8 +95,8 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
     // Sort by auto-accept score and available credits
     matchingPartners.sort((a, b) => {
       // Prioritize partners with higher auto-accept scores
-      if (lead.leadScore >= a.autoAcceptScore && lead.leadScore < b.autoAcceptScore) return -1;
-      if (lead.leadScore >= b.autoAcceptScore && lead.leadScore < a.autoAcceptScore) return 1;
+      if (lead.leadScore >= a.autoAcceptScore && lead.leadScore < b.autoAcceptScore) {return -1;}
+      if (lead.leadScore >= b.autoAcceptScore && lead.leadScore < a.autoAcceptScore) {return 1;}
 
       // Then by available credits
       return b.leadCredits - a.leadCredits;
@@ -120,7 +120,7 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
     await prisma.partnerBilling.create({
       data: {
         partnerId: selectedPartner.id,
-        leadId: leadId,
+        leadId,
         amount: leadValue,
         dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
         status: 'PENDING'
@@ -138,12 +138,12 @@ export async function assignLeadToPartner(leadId: string): Promise<string | null
     // Create tracking record
     await prisma.leadTracking.create({
       data: {
-        leadId: leadId,
+        leadId,
         event: 'ASSIGNED',
         metadata: JSON.stringify({
           partnerId: selectedPartner.id,
           partnerName: selectedPartner.businessName,
-          leadValue: leadValue
+          leadValue
         })
       }
     });

@@ -91,7 +91,7 @@ export function LogoStructuredData({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: organizationName,
-    url: url,
+    url,
     logo: {
       '@type': 'ImageObject',
       url: fullLogoUrl,

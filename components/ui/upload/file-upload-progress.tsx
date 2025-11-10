@@ -58,28 +58,28 @@ export const FileUploadProgress: React.FC<FileUploadProgressProps> = ({
 
   // File icon based on type
   const getFileIcon = (type: string) => {
-    if (type.startsWith('image/')) return <Image className="w-5 h-5" />;
-    if (type.startsWith('video/')) return <Video className="w-5 h-5" />;
-    if (type.startsWith('audio/')) return <Music className="w-5 h-5" />;
-    if (type.includes('pdf')) return <FileText className="w-5 h-5" />;
-    if (type.includes('zip') || type.includes('rar')) return <Archive className="w-5 h-5" />;
+    if (type.startsWith('image/')) {return <Image className="w-5 h-5" />;}
+    if (type.startsWith('video/')) {return <Video className="w-5 h-5" />;}
+    if (type.startsWith('audio/')) {return <Music className="w-5 h-5" />;}
+    if (type.includes('pdf')) {return <FileText className="w-5 h-5" />;}
+    if (type.includes('zip') || type.includes('rar')) {return <Archive className="w-5 h-5" />;}
     return <File className="w-5 h-5" />;
   };
 
   // Format file size
   const formatSize = (bytes: number) => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) {return '0 Bytes';}
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+    return `${Math.round((bytes / Math.pow(k, i)) * 100) / 100  } ${  sizes[i]}`;
   };
 
   // Format time remaining
   const formatTime = (seconds?: number) => {
-    if (!seconds) return '--';
-    if (seconds < 60) return `${Math.round(seconds)}s`;
-    if (seconds < 3600) return `${Math.round(seconds / 60)}m`;
+    if (!seconds) {return '--';}
+    if (seconds < 60) {return `${Math.round(seconds)}s`;}
+    if (seconds < 3600) {return `${Math.round(seconds / 60)}m`;}
     return `${Math.round(seconds / 3600)}h`;
   };
 

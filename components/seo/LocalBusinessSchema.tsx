@@ -16,7 +16,7 @@ export function LocalBusinessSchema(...args: any[]): void {
     "alternateName": "Master Restorer - Phill McGurk",
     "description": "24/7 emergency disaster recovery and restoration services. IICRC certified Master Restorer with 25+ years experience. Water damage, fire damage, mould remediation specialist.",
     "url": "https://disaster-recovery-seven.vercel.app",
-    "telephone": "+61-" + phoneNumber,
+    "telephone": `+61-${  phoneNumber}`,
     "priceRange": "$330+",
     "address": {
       "@type": "PostalAddress",

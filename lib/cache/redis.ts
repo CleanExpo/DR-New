@@ -114,7 +114,7 @@ export class CacheClient {
 
     try {
       const keys = await this.redis.keys(this.prefixKey(pattern));
-      if (keys.length === 0) return 0;
+      if (keys.length === 0) {return 0;}
 
       await this.redis.del(...keys);
       return keys.length;
@@ -300,7 +300,7 @@ export class CacheClient {
   }
 
   private async storeTags(key: string, tags: string[]): Promise<void> {
-    if (!this.redis) return;
+    if (!this.redis) {return;}
 
     try {
       const pipeline = this.redis.pipeline();

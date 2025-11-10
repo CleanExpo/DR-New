@@ -156,7 +156,7 @@ export function sanitizeURL(url: string): string {
  */
 export function sanitizeCSS(css: string): string {
   // Remove dangerous CSS properties
-  let sanitized = css
+  const sanitized = css
     .replace(/expression\s*\(/gi, '')
     .replace(/javascript:/gi, '')
     .replace(/vbscript:/gi, '')

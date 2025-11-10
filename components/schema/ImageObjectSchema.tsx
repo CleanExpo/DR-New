@@ -25,9 +25,9 @@ export const ImageObjectSchema: React.FC<ImageObjectSchemaProps> = ({
   const schema = {
     "@context": "https://schema.org",
     "@type": "ImageObject",
-    "contentUrl": contentUrl,
-    "name": name,
-    ...(description && { "description": description }),
+    contentUrl,
+    name,
+    ...(description && { description }),
     ...(author && {
       "author": {
         "@type": "Person",
@@ -35,9 +35,9 @@ export const ImageObjectSchema: React.FC<ImageObjectSchemaProps> = ({
         ...(author.url && { "url": author.url })
       }
     }),
-    ...(license && { "license": license }),
-    ...(acquireLicensePage && { "acquireLicensePage": acquireLicensePage }),
-    ...(creditText && { "creditText": creditText })
+    ...(license && { license }),
+    ...(acquireLicensePage && { acquireLicensePage }),
+    ...(creditText && { creditText })
   };
 
   return (

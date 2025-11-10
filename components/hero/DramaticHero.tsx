@@ -129,7 +129,7 @@ export function DramaticHero({
   const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
 
   React.useEffect(() => {
-    if (!enableSpotlight) return
+    if (!enableSpotlight) {return}
 
     const handleMouseMove = (e: MouseEvent) => {
       // Throttle updates for performance

@@ -81,7 +81,7 @@ export class AsyncQueue {
     }
 
     const task = this.tasks.shift();
-    if (!task) return;
+    if (!task) {return;}
 
     this.running++;
 
@@ -164,7 +164,7 @@ export class AsyncQueue {
    * Wait for queue to be idle
    */
   async onIdle(): Promise<void> {
-    if (this.isIdle()) return;
+    if (this.isIdle()) {return;}
 
     return new Promise((resolve) => {
       const check = setInterval(() => {

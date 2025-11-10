@@ -78,7 +78,7 @@ export function validateABN(abn: string): boolean {
  */
 export function formatABN(abn: string): string {
   const clean = abn.replace(/\D/g, '');
-  if (clean.length !== 11) return abn;
+  if (clean.length !== 11) {return abn;}
   
   return `${clean.slice(0, 2)} ${clean.slice(2, 5)} ${clean.slice(5, 8)} ${clean.slice(8, 11)}`;
 }
@@ -212,7 +212,7 @@ export function validatePostcode(postcode: string, state?: string): boolean {
   
   if (state) {
     const stateRanges = ranges[state.toUpperCase()];
-    if (!stateRanges) return false;
+    if (!stateRanges) {return false;}
     
     return stateRanges.some(([min, max]) => num >= min && num <= max);
   }

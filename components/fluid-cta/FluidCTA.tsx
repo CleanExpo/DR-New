@@ -113,7 +113,7 @@ export function FluidCTA({
   const styles = variantStyles[variant];
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!magnetic) return;
+    if (!magnetic) {return;}
 
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -133,7 +133,7 @@ export function FluidCTA({
   };
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!ripple) return;
+    if (!ripple) {return;}
 
     const rect = e.currentTarget.getBoundingClientRect();
     const rippleX = e.clientX - rect.left;

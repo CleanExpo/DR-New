@@ -14,7 +14,7 @@ export default function ProgressSpinner() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!isVisible) return null;
+  if (!isVisible) {return null;}
 
   return (
     <div 

@@ -108,10 +108,10 @@ export function AuditLogs(...args: any[]): void {
   };
 
   const getActionColor = (action: string, success: boolean) => {
-    if (!success) return 'text-red-600';
-    if (action.includes('delete') || action.includes('remove')) return 'text-blue-700';
-    if (action.includes('create') || action.includes('add')) return 'text-green-600';
-    if (action.includes('update') || action.includes('modify')) return 'text-blue-600';
+    if (!success) {return 'text-red-600';}
+    if (action.includes('delete') || action.includes('remove')) {return 'text-blue-700';}
+    if (action.includes('create') || action.includes('add')) {return 'text-green-600';}
+    if (action.includes('update') || action.includes('modify')) {return 'text-blue-600';}
     return 'text-gray-700';
   };
 

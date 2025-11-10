@@ -93,13 +93,13 @@ export async function routeLead(input: LeadRoutingInput): Promise<RoutingResult>
     // Filter available team members
     const availableTeam = TEAM.filter((member) => {
       // Must be available or busy (not offline)
-      if (member.availability === 'offline') return false;
+      if (member.availability === 'offline') {return false;}
 
       // Must have capacity
-      if (member.currentActiveLeads >= member.maxActiveLeads) return false;
+      if (member.currentActiveLeads >= member.maxActiveLeads) {return false;}
 
       // Must have specialization
-      if (!member.specializations.includes(input.serviceType)) return false;
+      if (!member.specializations.includes(input.serviceType)) {return false;}
 
       // Must serve the area
       const servesArea = member.serviceAreas.some((area) => {
@@ -108,7 +108,7 @@ export async function routeLead(input: LeadRoutingInput): Promise<RoutingResult>
           input.location.postcode.startsWith(area)
         );
       });
-      if (!servesArea) return false;
+      if (!servesArea) {return false;}
 
       return true;
     });
@@ -146,7 +146,7 @@ export async function routeLead(input: LeadRoutingInput): Promise<RoutingResult>
       // Urgency-based routing
       if (input.urgencyLevel === 'critical') {
         // Critical leads go to Master Restorer
-        if (member.role === 'master_restorer') score += 50;
+        if (member.role === 'master_restorer') {score += 50;}
       } else if (input.leadScore >= 80) {
         // High-value leads go to senior team
         if (member.role === 'master_restorer' || member.role === 'project_manager') {
@@ -311,7 +311,7 @@ export async function updateAvailability(
   availability: 'available' | 'busy' | 'offline'
 ): Promise<boolean> {
   const member = TEAM.find((m) => m.id === memberId);
-  if (!member) return false;
+  if (!member) {return false;}
 
   member.availability = availability;
   return true;
@@ -325,7 +325,7 @@ export async function updateActiveLeadCount(
   increment: number
 ): Promise<boolean> {
   const member = TEAM.find((m) => m.id === memberId);
-  if (!member) return false;
+  if (!member) {return false;}
 
   member.currentActiveLeads = Math.max(0, member.currentActiveLeads + increment);
   return true;

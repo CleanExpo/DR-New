@@ -40,12 +40,12 @@ export function useDebouncedCallback<T extends (...args: any[]) => any>(
 
   useEffect(() => {
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {clearTimeout(timeoutId);}
     };
   }, [timeoutId]);
 
   return (...args: Parameters<T>) => {
-    if (timeoutId) clearTimeout(timeoutId);
+    if (timeoutId) {clearTimeout(timeoutId);}
 
     const newTimeoutId = setTimeout(() => {
       callback(...args);

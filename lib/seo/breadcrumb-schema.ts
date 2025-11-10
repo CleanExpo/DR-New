@@ -34,7 +34,7 @@ export function generateBreadcrumbSchema(
       // Generate intermediate path
       const pathParts = currentPath.split('/').filter(Boolean);
       const intermediateIndex = Math.floor((index / breadcrumbs.length) * pathParts.length);
-      const intermediatePath = '/' + pathParts.slice(0, intermediateIndex + 1).join('/');
+      const intermediatePath = `/${  pathParts.slice(0, intermediateIndex + 1).join('/')}`;
       item = `${BASE_URL}${intermediatePath}`;
     }
 

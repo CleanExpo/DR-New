@@ -48,15 +48,15 @@ export interface DuplicateContent {
 
 // Parse link type
 export function getLinkType(url: string): LinkType {
-  if (url.startsWith('tel:')) return 'tel';
-  if (url.startsWith('mailto:')) return 'mailto';
-  if (url.startsWith('#')) return 'anchor';
+  if (url.startsWith('tel:')) {return 'tel';}
+  if (url.startsWith('mailto:')) {return 'mailto';}
+  if (url.startsWith('#')) {return 'anchor';}
   if (url.startsWith('http://') || url.startsWith('https://')) {
     const urlObj = new URL(url);
     return urlObj.hostname === new URL(siteConfig.url).hostname ? 'internal' : 'external';
   }
-  if (url.startsWith('/')) return 'internal';
-  if (url.match(/\.(css|js|jpg|jpeg|png|gif|webp|svg|pdf|doc|docx)$/i)) return 'asset';
+  if (url.startsWith('/')) {return 'internal';}
+  if (url.match(/\.(css|js|jpg|jpeg|png|gif|webp|svg|pdf|doc|docx)$/i)) {return 'asset';}
   return 'internal';
 }
 
@@ -93,7 +93,7 @@ export function validateInternalLink(link: Link): LinkValidationResult {
   ];
 
   const url = link.url.split('?')[0].split('#')[0]; // Remove query and hash
-  const isValid = validInternalPaths.some(path => url === path || url.startsWith(path + '/'));
+  const isValid = validInternalPaths.some(path => url === path || url.startsWith(`${path  }/`));
 
   if (!isValid) {
     // Check if it's a common mistake
@@ -134,7 +134,7 @@ export function validatePhoneLink(link: Link): LinkValidationResult {
   const phone = link.url.replace('tel:', '').replace(/[^\d+]/g, '');
   const expectedPhone = siteConfig.phone.replace(/[^\d]/g, '');
 
-  if (!phone.includes(expectedPhone) && phone !== '+61' + expectedPhone) {
+  if (!phone.includes(expectedPhone) && phone !== `+61${  expectedPhone}`) {
     return {
       link,
       isValid: false,

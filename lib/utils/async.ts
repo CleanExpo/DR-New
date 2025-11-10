@@ -302,10 +302,10 @@ export function cancelablePromise<T>(
   const wrappedPromise = new Promise<T>((resolve, reject) => {
     promise
       .then((value) => {
-        if (!isCanceled) resolve(value);
+        if (!isCanceled) {resolve(value);}
       })
       .catch((error) => {
-        if (!isCanceled) reject(error);
+        if (!isCanceled) {reject(error);}
       });
   });
 

@@ -10,13 +10,13 @@ export function isValidPhone(phone: string): boolean {
   const cleaned = phone.replace(/\D/g, '');
 
   // Mobile: 04XX XXX XXX
-  if (/^04\d{8}$/.test(cleaned)) return true;
+  if (/^04\d{8}$/.test(cleaned)) {return true;}
 
   // Landline: (0X) XXXX XXXX
-  if (/^0[2378]\d{8}$/.test(cleaned)) return true;
+  if (/^0[2378]\d{8}$/.test(cleaned)) {return true;}
 
   // 1300/1800: 1X00 XXX XXX
-  if (/^1[38]00\d{6}$/.test(cleaned)) return true;
+  if (/^1[38]00\d{6}$/.test(cleaned)) {return true;}
 
   return false;
 }
@@ -28,7 +28,7 @@ export function isValidPostcode(postcode: string | number): boolean {
 
 export function isValidABN(abn: string): boolean {
   const cleaned = abn.replace(/\s/g, '');
-  if (!/^\d{11}$/.test(cleaned)) return false;
+  if (!/^\d{11}$/.test(cleaned)) {return false;}
 
   // ABN checksum validation
   const weights = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
@@ -44,8 +44,8 @@ export function isValidABN(abn: string): boolean {
 }
 
 export function validateRequired(value: string | number | null | undefined): boolean {
-  if (value === null || value === undefined) return false;
-  if (typeof value === 'string') return value.trim().length > 0;
+  if (value === null || value === undefined) {return false;}
+  if (typeof value === 'string') {return value.trim().length > 0;}
   return true;
 }
 

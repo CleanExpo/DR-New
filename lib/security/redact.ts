@@ -54,7 +54,7 @@ export function redactSensitiveData(data: any): any {
  */
 export function maskEmail(email: string): string {
   const [local, domain] = email.split('@');
-  if (!local || !domain) return email;
+  if (!local || !domain) {return email;}
 
   const maskedLocal = local.length > 2
     ? local[0] + '*'.repeat(local.length - 2) + local[local.length - 1]
@@ -65,13 +65,13 @@ export function maskEmail(email: string): string {
 
 export function maskPhone(phone: string): string {
   // Show only last 4 digits
-  if (phone.length <= 4) return phone;
+  if (phone.length <= 4) {return phone;}
   return '*'.repeat(phone.length - 4) + phone.slice(-4);
 }
 
 export function maskCreditCard(cardNumber: string): string {
   // Show only last 4 digits
   const cleaned = cardNumber.replace(/\D/g, '');
-  if (cleaned.length <= 4) return cleaned;
+  if (cleaned.length <= 4) {return cleaned;}
   return '*'.repeat(cleaned.length - 4) + cleaned.slice(-4);
 }

@@ -20,10 +20,10 @@ export function WaterRippleHero(...args: any[]): void {
   useEffect(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
-    if (!canvas || !container) return;
+    if (!canvas || !container) {return;}
 
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!ctx) {return;}
 
     // Set canvas size
     const resizeCanvas = () => {
@@ -83,7 +83,7 @@ export function WaterRippleHero(...args: any[]): void {
         ripple.radius += 2;
         ripple.opacity -= 0.005;
 
-        if (ripple.opacity <= 0) return false;
+        if (ripple.opacity <= 0) {return false;}
 
         ctx.beginPath();
         ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);

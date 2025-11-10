@@ -21,7 +21,7 @@ export default function Category3CaseStudySEO({
         '@type': 'Article',
         '@id': `${url}#article`,
         headline: title,
-        description: description,
+        description,
         image: {
           '@type': 'ImageObject',
           url: image,

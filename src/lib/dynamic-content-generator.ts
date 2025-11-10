@@ -120,14 +120,14 @@ export function generateCommonIssuesSection(location: LocationData): string {
 
 export function generateServiceAreas(location: LocationData): string {
   const suburbs = location.suburbs.slice(0, 5);
-  const suburbList = suburbs.slice(0, -1).join(', ') + ', and ' + suburbs.slice(-1)[0];
+  const suburbList = `${suburbs.slice(0, -1).join(', ')  }, and ${  suburbs.slice(-1)[0]}`;
   
   return `Our ${location.city} restoration services cover all metropolitan areas including ${suburbList}. We maintain rapid response times across all ${location.state} service zones, ensuring help arrives when you need it most.`;
 }
 
 export function generateLocalRegulations(location: LocationData, service: string): string {
   const serviceData = serviceTemplates[service];
-  if (!serviceData) return '';
+  if (!serviceData) {return '';}
   
   return `${location.city} ${serviceData.service.toLowerCase()} must comply with ${location.state} regulations and local council requirements. Our certified technicians ensure all work meets current building codes and insurance standards specific to the ${location.city} area.`;
 }

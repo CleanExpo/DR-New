@@ -24,7 +24,7 @@ export default function LoadingSpinner({
     }
   }, [delay]);
   
-  if (!show) return null;
+  if (!show) {return null;}
   
   const sizeClasses = {
     small: 'w-6 h-6',

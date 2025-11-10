@@ -25,7 +25,7 @@ export function useBundleMonitor() {
   const [stats, setStats] = useState<BundleStats | null>(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !performance.getEntriesByType) return;
+    if (typeof window === 'undefined' || !performance.getEntriesByType) {return;}
 
     const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
 
@@ -68,7 +68,7 @@ export function useBundleMonitor() {
 export function BundleSizeWarning({ threshold = 500 * 1024 }: { threshold?: number }) {
   const stats = useBundleMonitor();
 
-  if (!stats || stats.totalSize < threshold) return null;
+  if (!stats || stats.totalSize < threshold) {return null;}
 
   return (
     <div
@@ -96,7 +96,7 @@ export function BundleSizeWarning({ threshold = 500 * 1024 }: { threshold?: numb
  * Format bytes to human-readable
  */
 function formatBytes(bytes: number): string {
-  if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) {return '0 Bytes';}
 
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];

@@ -18,11 +18,11 @@ interface WebVitalData {
  * Get device type based on viewport width
  */
 function getDeviceType(): string {
-  if (typeof window === 'undefined') return 'unknown';
+  if (typeof window === 'undefined') {return 'unknown';}
 
   const width = window.innerWidth;
-  if (width < 768) return 'mobile';
-  if (width < 1024) return 'tablet';
+  if (width < 768) {return 'mobile';}
+  if (width < 1024) {return 'tablet';}
   return 'desktop';
 }
 
@@ -76,7 +76,7 @@ async function sendToAnalytics(metric: Metric): Promise<void> {
  * Track Core Web Vitals with dual persistence
  */
 export async function trackWebVitals(): Promise<void> {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   try {
     const { onCLS, onLCP, onFCP, onINP, onTTFB } = await import('web-vitals');
@@ -112,7 +112,7 @@ export async function trackWebVitals(): Promise<void> {
     onCLS(handleMetric);
     onLCP(handleMetric);
     onFCP(handleMetric);
-    if (onINP) onINP(handleMetric);
+    if (onINP) {onINP(handleMetric);}
     onTTFB(handleMetric);
 
     console.log('[Web Vitals] Tracking initialized');
@@ -135,10 +135,10 @@ export function getPerformanceRating(metricName: string, value: number): string 
   };
 
   const threshold = thresholds[metricName];
-  if (!threshold) return 'unknown';
+  if (!threshold) {return 'unknown';}
 
-  if (value <= threshold.good) return 'good';
-  if (value <= threshold.poor) return 'needs-improvement';
+  if (value <= threshold.good) {return 'good';}
+  if (value <= threshold.poor) {return 'needs-improvement';}
   return 'poor';
 }
 

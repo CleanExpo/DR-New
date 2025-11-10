@@ -113,9 +113,9 @@ export async function GET(request: NextRequest) {
 
     // Format sizes for readability
     const formatSize = (bytes: number) => {
-      if (bytes < 1024) return bytes + ' B';
-      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
-      return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+      if (bytes < 1024) {return `${bytes  } B`;}
+      if (bytes < 1024 * 1024) {return `${(bytes / 1024).toFixed(2)  } KB`;}
+      return `${(bytes / (1024 * 1024)).toFixed(2)  } MB`;
     };
 
     const response = {

@@ -14,7 +14,7 @@ export function Breadcrumb(...args: any[]): void {
   const pathname = usePathname();
   
   // Don't show breadcrumb on homepage
-  if (pathname === '/') return null;
+  if (pathname === '/') {return null;}
   
   // Generate breadcrumb items from pathname
   const generateBreadcrumbs = (): BreadcrumbItem[] => {

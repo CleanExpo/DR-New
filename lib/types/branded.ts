@@ -111,7 +111,7 @@ export const PhoneNumber = {
     return cleaned as PhoneNumber;
   },
   validate: (value: unknown): value is PhoneNumber => {
-    if (typeof value !== 'string') return false;
+    if (typeof value !== 'string') {return false;}
     const cleaned = value.replace(/\s+/g, '');
     return /^1300\d{6}$|^\+?\d{10,12}$/.test(cleaned);
   }
@@ -126,7 +126,7 @@ export const EmailAddress = {
     return value.toLowerCase() as EmailAddress;
   },
   validate: (value: unknown): value is EmailAddress => {
-    if (typeof value !== 'string') return false;
+    if (typeof value !== 'string') {return false;}
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   }
 };
@@ -152,7 +152,7 @@ export const ABN = {
     return cleaned as ABN;
   },
   validate: (value: unknown): value is ABN => {
-    if (typeof value !== 'string') return false;
+    if (typeof value !== 'string') {return false;}
     const cleaned = value.replace(/\s+/g, '');
     return /^\d{11}$/.test(cleaned);
   }
@@ -201,7 +201,7 @@ export const URL = {
     }
   },
   validate: (value: unknown): value is URL => {
-    if (typeof value !== 'string') return false;
+    if (typeof value !== 'string') {return false;}
     try {
       new globalThis.URL(value);
       return true;
@@ -220,7 +220,7 @@ export const ISO8601String = {
     return date.toISOString() as ISO8601String;
   },
   validate: (value: unknown): value is ISO8601String => {
-    if (typeof value !== 'string') return false;
+    if (typeof value !== 'string') {return false;}
     const date = new Date(value);
     return !isNaN(date.getTime());
   }

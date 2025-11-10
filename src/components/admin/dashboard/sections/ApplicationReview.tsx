@@ -88,11 +88,11 @@ export function ApplicationReview(...args: any[]): void {
     
     // No flags (20 points)
     const hasFlags = autoFlags.some(flag => flag.applicationId === app.id);
-    if (!hasFlags) score += 20;
+    if (!hasFlags) {score += 20;}
     
     // Submission timeliness (10 points)
     const daysSinceSubmission = Math.floor((Date.now() - new Date(app.submittedAt).getTime()) / (1000 * 60 * 60 * 24));
-    if (daysSinceSubmission < 7) score += 10;
+    if (daysSinceSubmission < 7) {score += 10;}
     
     return Math.round(score);
   };
@@ -118,7 +118,7 @@ export function ApplicationReview(...args: any[]): void {
   };
 
   const handleReviewSubmit = async () => {
-    if (!selectedApplication || !reviewAction) return;
+    if (!selectedApplication || !reviewAction) {return;}
 
     try {
       const response = await fetch(`/api/admin/applications/${selectedApplication.id}/review`, {

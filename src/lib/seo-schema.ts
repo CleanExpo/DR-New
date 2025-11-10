@@ -14,7 +14,7 @@ export const generateLocalBusinessSchema = (location: string, postalCode: string
     "@type": "PostalAddress",
     "addressLocality": location,
     "addressRegion": getRegionFromLocation(location),
-    "postalCode": postalCode,
+    postalCode,
     "addressCountry": "AU"
   },
   "geo": {

@@ -59,7 +59,7 @@ export function PerformanceMonitor() {
   async function fetchMonitoringData() {
     try {
       const response = await fetch('/api/monitoring?days=7');
-      if (!response.ok) throw new Error('Failed to fetch monitoring data');
+      if (!response.ok) {throw new Error('Failed to fetch monitoring data');}
       const data = await response.json();
       setData(data);
       setError(null);
@@ -89,7 +89,7 @@ export function PerformanceMonitor() {
     );
   }
 
-  if (!data) return null;
+  if (!data) {return null;}
 
   return (
     <div className="space-y-6">
@@ -166,8 +166,8 @@ export function PerformanceMonitor() {
 
 function getRatingColor(metric: string, value: number): string {
   const rating = getRatingLabel(metric, value);
-  if (rating === 'Good') return 'bg-green-100 text-green-800';
-  if (rating === 'Needs Improvement') return 'bg-yellow-100 text-yellow-800';
+  if (rating === 'Good') {return 'bg-green-100 text-green-800';}
+  if (rating === 'Needs Improvement') {return 'bg-yellow-100 text-yellow-800';}
   return 'bg-red-100 text-red-800';
 }
 
@@ -182,10 +182,10 @@ function getRatingLabel(metric: string, value: number): string {
   };
 
   const threshold = thresholds[metric];
-  if (!threshold) return 'Unknown';
+  if (!threshold) {return 'Unknown';}
 
-  if (value <= threshold.good) return 'Good';
-  if (value <= threshold.poor) return 'Needs Improvement';
+  if (value <= threshold.good) {return 'Good';}
+  if (value <= threshold.poor) {return 'Needs Improvement';}
   return 'Poor';
 }
 

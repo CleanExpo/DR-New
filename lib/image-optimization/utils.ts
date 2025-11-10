@@ -294,7 +294,7 @@ export function validateDimensions(
  * Convert file size to human-readable format
  */
 export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) {return '0 Bytes';}
 
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
@@ -344,7 +344,7 @@ export function generateImageStructuredData(metadata: ImageMetadata) {
  * Check if browser supports WebP
  */
 export function supportsWebP(): boolean {
-  if (typeof window === 'undefined') return true; // SSR default
+  if (typeof window === 'undefined') {return true;} // SSR default
 
   const canvas = document.createElement('canvas');
   if (canvas.getContext && canvas.getContext('2d')) {
@@ -357,7 +357,7 @@ export function supportsWebP(): boolean {
  * Check if browser supports AVIF
  */
 export function supportsAVIF(): boolean {
-  if (typeof window === 'undefined') return true; // SSR default
+  if (typeof window === 'undefined') {return true;} // SSR default
 
   const canvas = document.createElement('canvas');
   if (canvas.getContext && canvas.getContext('2d')) {
@@ -370,8 +370,8 @@ export function supportsAVIF(): boolean {
  * Get best supported format
  */
 export function getBestFormat(): 'avif' | 'webp' | 'jpeg' {
-  if (supportsAVIF()) return 'avif';
-  if (supportsWebP()) return 'webp';
+  if (supportsAVIF()) {return 'avif';}
+  if (supportsWebP()) {return 'webp';}
   return 'jpeg';
 }
 
@@ -379,7 +379,7 @@ export function getBestFormat(): 'avif' | 'webp' | 'jpeg' {
  * Preload critical images
  */
 export function preloadImage(src: string, as: 'image' = 'image'): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   const link = document.createElement('link');
   link.rel = 'preload';
@@ -392,7 +392,7 @@ export function preloadImage(src: string, as: 'image' = 'image'): void {
  * Prefetch image for next navigation
  */
 export function prefetchImage(src: string): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   const link = document.createElement('link');
   link.rel = 'prefetch';

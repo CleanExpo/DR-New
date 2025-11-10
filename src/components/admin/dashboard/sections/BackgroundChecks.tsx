@@ -135,21 +135,21 @@ export function BackgroundChecks(...args: any[]): void {
   };
 
   const getRiskColor = (score?: number) => {
-    if (!score) return 'text-gray-700';
-    if (score <= 30) return 'text-green-600';
-    if (score <= 60) return 'text-yellow-600';
+    if (!score) {return 'text-gray-700';}
+    if (score <= 30) {return 'text-green-600';}
+    if (score <= 60) {return 'text-yellow-600';}
     return 'text-red-600';
   };
 
   const getRiskLabel = (score?: number) => {
-    if (!score) return 'Pending';
-    if (score <= 30) return 'Low Risk';
-    if (score <= 60) return 'Medium Risk';
+    if (!score) {return 'Pending';}
+    if (score <= 30) {return 'Low Risk';}
+    if (score <= 60) {return 'Medium Risk';}
     return 'High Risk';
   };
 
   const initiateBackgroundCheck = async () => {
-    if (!selectedContractor) return;
+    if (!selectedContractor) {return;}
 
     try {
       const response = await fetch('/api/admin/background-checks/initiate', {
@@ -173,7 +173,7 @@ export function BackgroundChecks(...args: any[]): void {
   };
 
   const handleReview = async () => {
-    if (!selectedCheck) return;
+    if (!selectedCheck) {return;}
 
     try {
       const response = await fetch(`/api/admin/background-checks/${selectedCheck.id}/review`, {

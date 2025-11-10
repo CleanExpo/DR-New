@@ -38,7 +38,7 @@ export const LoadingOverlay = ({
   message = 'Loading...',
   className,
 }: LoadingOverlayProps) => {
-  if (!isLoading) return null;
+  if (!isLoading) {return null;}
 
   return (
     <div

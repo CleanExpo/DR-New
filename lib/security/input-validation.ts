@@ -90,7 +90,7 @@ export function validatePhoneNumber(phone: string): { valid: boolean; sanitized:
   // Normalize to international format
   let sanitized = cleaned;
   if (sanitized.startsWith('0')) {
-    sanitized = '+61' + sanitized.substring(1);
+    sanitized = `+61${  sanitized.substring(1)}`;
   }
 
   return { valid: true, sanitized };
@@ -197,7 +197,7 @@ export function sanitizeFileName(fileName: string): string {
 
   // Ensure it doesn't start with a dot (hidden file)
   if (sanitized.startsWith('.')) {
-    sanitized = '_' + sanitized.substring(1);
+    sanitized = `_${  sanitized.substring(1)}`;
   }
 
   return sanitized;
@@ -208,7 +208,7 @@ export function sanitizeFileName(fileName: string): string {
  */
 export function validateFileType(fileName: string, allowedTypes: string[]): boolean {
   const extension = fileName.split('.').pop()?.toLowerCase();
-  if (!extension) return false;
+  if (!extension) {return false;}
 
   return allowedTypes.includes(extension);
 }

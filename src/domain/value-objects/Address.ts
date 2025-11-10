@@ -78,9 +78,9 @@ export class Address extends ValueObject {
   private static getCityFromPostcode(postcode: string): string {
     const code = parseInt(postcode, 10);
 
-    if (code >= 4000 && code <= 4179) return 'Brisbane';
-    if (code >= 4300 && code <= 4306) return 'Ipswich';
-    if (code >= 4114 && code <= 4133) return 'Logan';
+    if (code >= 4000 && code <= 4179) {return 'Brisbane';}
+    if (code >= 4300 && code <= 4306) {return 'Ipswich';}
+    if (code >= 4114 && code <= 4133) {return 'Logan';}
 
     return 'Brisbane'; // Default
   }
@@ -90,7 +90,7 @@ export class Address extends ValueObject {
    */
   private static getStateFromPostcode(postcode: string): string {
     const code = parseInt(postcode, 10);
-    if (code >= 4000 && code <= 4999) return 'QLD';
+    if (code >= 4000 && code <= 4999) {return 'QLD';}
     return 'QLD'; // Default for this service
   }
 

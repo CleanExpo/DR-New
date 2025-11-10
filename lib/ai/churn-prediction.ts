@@ -70,8 +70,8 @@ export function predictChurn(customer: Customer): ChurnPrediction {
 
   // Determine risk level
   let riskLevel: 'high' | 'medium' | 'low' = 'low';
-  if (churnProbability >= 0.6) riskLevel = 'high';
-  else if (churnProbability >= 0.35) riskLevel = 'medium';
+  if (churnProbability >= 0.6) {riskLevel = 'high';}
+  else if (churnProbability >= 0.35) {riskLevel = 'medium';}
 
   // Calculate lifetime value
   const estimatedLifetimeValue = calculateLifetimeValue(customer);
@@ -102,10 +102,10 @@ export function predictChurn(customer: Customer): ChurnPrediction {
  */
 function calculateRecencyScore(daysSinceLastJob: number): number {
   // More days = higher churn risk
-  if (daysSinceLastJob > 365) return 40; // Very high risk
-  if (daysSinceLastJob > 180) return 30; // High risk
-  if (daysSinceLastJob > 90) return 20; // Medium risk
-  if (daysSinceLastJob > 30) return 10; // Low risk
+  if (daysSinceLastJob > 365) {return 40;} // Very high risk
+  if (daysSinceLastJob > 180) {return 30;} // High risk
+  if (daysSinceLastJob > 90) {return 20;} // Medium risk
+  if (daysSinceLastJob > 30) {return 10;} // Low risk
 
   return 0; // Recent customer
 }
@@ -117,13 +117,13 @@ function calculateEngagementScore(customer: Customer): number {
   let score = 0;
 
   // Job frequency (lower frequency = higher churn)
-  if (customer.jobFrequency < 0.5) score += 15; // Less than 1 job every 2 years
-  else if (customer.jobFrequency < 1) score += 10;
-  else if (customer.jobFrequency < 2) score += 5;
+  if (customer.jobFrequency < 0.5) {score += 15;} // Less than 1 job every 2 years
+  else if (customer.jobFrequency < 1) {score += 10;}
+  else if (customer.jobFrequency < 2) {score += 5;}
 
   // Follow-up response rate (lower response = higher churn)
-  if (customer.responseToFollowups < 0.2) score += 10;
-  else if (customer.responseToFollowups < 0.5) score += 5;
+  if (customer.responseToFollowups < 0.2) {score += 10;}
+  else if (customer.responseToFollowups < 0.5) {score += 5;}
 
   return score;
 }
@@ -136,10 +136,10 @@ function calculateSatisfactionScore(customer: Customer): number {
 
   // Satisfaction rating
   if (customer.satisfactionScore !== undefined) {
-    if (customer.satisfactionScore <= 2) score += 20; // Very dissatisfied
-    else if (customer.satisfactionScore <= 3) score += 10;
-    else if (customer.satisfactionScore === 4) score += 0;
-    else score -= 5; // Very satisfied (reduces churn)
+    if (customer.satisfactionScore <= 2) {score += 20;} // Very dissatisfied
+    else if (customer.satisfactionScore <= 3) {score += 10;}
+    else if (customer.satisfactionScore === 4) {score += 0;}
+    else {score -= 5;} // Very satisfied (reduces churn)
   }
 
   // Complaints
@@ -156,10 +156,10 @@ function calculateSatisfactionScore(customer: Customer): number {
  */
 function calculateValueScore(customer: Customer): number {
   // Higher value customers are less likely to churn
-  if (customer.totalRevenue > 50000) return 0;
-  if (customer.totalRevenue > 20000) return 3;
-  if (customer.totalRevenue > 10000) return 5;
-  if (customer.totalRevenue > 5000) return 8;
+  if (customer.totalRevenue > 50000) {return 0;}
+  if (customer.totalRevenue > 20000) {return 3;}
+  if (customer.totalRevenue > 10000) {return 5;}
+  if (customer.totalRevenue > 5000) {return 8;}
 
   return 15; // Low value = higher churn risk
 }

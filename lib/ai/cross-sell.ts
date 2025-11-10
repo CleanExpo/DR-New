@@ -256,24 +256,24 @@ function calculateSeasonalRelevance(
   if (
     ['storm-damage', 'roof-inspection', 'emergency-tarping'].includes(service)
   ) {
-    if (isStormSeason) boost += 20;
-    if (weatherForecast === 'storm') boost += 30;
+    if (isStormSeason) {boost += 20;}
+    if (weatherForecast === 'storm') {boost += 30;}
   }
 
   // Water damage (higher in storm season)
   if (service === 'water-damage') {
-    if (isStormSeason) boost += 15;
-    if (weatherForecast === 'rain' || weatherForecast === 'storm') boost += 20;
+    if (isStormSeason) {boost += 15;}
+    if (weatherForecast === 'rain' || weatherForecast === 'storm') {boost += 20;}
   }
 
   // Mould (higher in humid months)
   if (['mould-remediation', 'dehumidification'].includes(service)) {
-    if (!isWinter) boost += 15; // Less mould in winter
+    if (!isWinter) {boost += 15;} // Less mould in winter
   }
 
   // Fire safety (higher in dry season)
   if (service === 'fire-safety-upgrades') {
-    if (isWinter) boost += 10; // Dry season = fire risk
+    if (isWinter) {boost += 10;} // Dry season = fire risk
   }
 
   return boost;

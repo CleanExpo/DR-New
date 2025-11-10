@@ -37,9 +37,9 @@ export abstract class ValueObject {
    * Value objects are equal if all their properties are equal
    */
   equals(other: ValueObject): boolean {
-    if (!other) return false;
-    if (!(other instanceof ValueObject)) return false;
-    if (this.constructor !== other.constructor) return false;
+    if (!other) {return false;}
+    if (!(other instanceof ValueObject)) {return false;}
+    if (this.constructor !== other.constructor) {return false;}
 
     const thisComponents = this.getEqualityComponents();
     const otherComponents = other.getEqualityComponents();
@@ -58,10 +58,10 @@ export abstract class ValueObject {
    */
   private deepEquals(a: unknown, b: unknown): boolean {
     // Same reference
-    if (a === b) return true;
+    if (a === b) {return true;}
 
     // Both null or undefined
-    if (a == null || b == null) return a === b;
+    if (a == null || b == null) {return a === b;}
 
     // Both are value objects
     if (a instanceof ValueObject && b instanceof ValueObject) {
@@ -70,7 +70,7 @@ export abstract class ValueObject {
 
     // Both are arrays
     if (Array.isArray(a) && Array.isArray(b)) {
-      if (a.length !== b.length) return false;
+      if (a.length !== b.length) {return false;}
       return a.every((item, index) => this.deepEquals(item, b[index]));
     }
 
@@ -78,7 +78,7 @@ export abstract class ValueObject {
     if (typeof a === 'object' && typeof b === 'object') {
       const aKeys = Object.keys(a);
       const bKeys = Object.keys(b);
-      if (aKeys.length !== bKeys.length) return false;
+      if (aKeys.length !== bKeys.length) {return false;}
       return aKeys.every(key =>
         this.deepEquals((a as Record<string, unknown>)[key], (b as Record<string, unknown>)[key])
       );

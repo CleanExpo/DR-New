@@ -92,7 +92,7 @@ export function ThirdPartyScripts() {
         .sort((a, b) => a.priority - b.priority);
 
       for (const config of sortedScripts) {
-        if (loadedScripts.has(config.id)) continue;
+        if (loadedScripts.has(config.id)) {continue;}
 
         // Apply delay if specified
         if (config.delay) {
@@ -246,8 +246,8 @@ export function ThirdPartyScripts() {
 
       {/* Load configured scripts */}
       {scriptConfigs.map(config => {
-        if (!loadedScripts.has(config.id)) return null;
-        if (config.condition && !config.condition()) return null;
+        if (!loadedScripts.has(config.id)) {return null;}
+        if (config.condition && !config.condition()) {return null;}
 
         if (config.src) {
           return (

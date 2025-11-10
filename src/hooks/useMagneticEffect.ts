@@ -14,7 +14,7 @@ export function useMagneticEffect(...args: any[]): void {
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element) {return;}
 
     let animationFrameId: number;
 
@@ -69,7 +69,7 @@ export function useParallaxEffect(...args: any[]): void {
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element) {return;}
 
     let ticking = false;
 
@@ -99,7 +99,7 @@ export function use3DRotateEffect(...args: any[]): void {
 
   useEffect(() => {
     const element = elementRef.current;
-    if (!element) return;
+    if (!element) {return;}
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = element.getBoundingClientRect();

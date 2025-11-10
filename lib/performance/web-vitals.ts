@@ -29,10 +29,10 @@ function getRating(
   value: number
 ): 'good' | 'needs-improvement' | 'poor' {
   const thresholds = VITALS_THRESHOLDS[name as keyof typeof VITALS_THRESHOLDS];
-  if (!thresholds) return 'good';
+  if (!thresholds) {return 'good';}
 
-  if (value <= thresholds.good) return 'good';
-  if (value <= thresholds.poor) return 'needs-improvement';
+  if (value <= thresholds.good) {return 'good';}
+  if (value <= thresholds.poor) {return 'needs-improvement';}
   return 'poor';
 }
 
@@ -105,7 +105,7 @@ export function reportWebVitals(metric: Metric) {
 
 // Initialize Web Vitals monitoring
 export async function initWebVitals() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   try {
     const { onCLS, onFID, onLCP, onTTFB, onINP } = await import('web-vitals');

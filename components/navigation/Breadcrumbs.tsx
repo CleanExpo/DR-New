@@ -13,7 +13,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
 }) => {
   const breadcrumbs = getBreadcrumbPath(currentUrl);
 
-  if (breadcrumbs.length <= 1) return null;
+  if (breadcrumbs.length <= 1) {return null;}
 
   return (
     <>

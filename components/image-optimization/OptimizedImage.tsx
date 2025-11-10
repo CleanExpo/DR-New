@@ -113,7 +113,7 @@ export function OptimizedImage({
 
   // Get dimensions from imageType if not provided
   const dimensions = React.useMemo(() => {
-    if (fill) return null;
+    if (fill) {return null;}
 
     if (width && height) {
       return { width, height };
@@ -135,8 +135,8 @@ export function OptimizedImage({
 
   // Generate blur placeholder if enabled
   const blurPlaceholder = React.useMemo(() => {
-    if (placeholder === 'empty') return undefined;
-    if (blurDataURL) return blurDataURL;
+    if (placeholder === 'empty') {return undefined;}
+    if (blurDataURL) {return blurDataURL;}
     if (IMAGE_CONFIG.blur.enabled && dimensions) {
       return generateBlurDataURL(dimensions.width, dimensions.height);
     }
@@ -167,7 +167,7 @@ export function OptimizedImage({
 
   // Generate sizes attribute if not provided
   const sizesAttr = React.useMemo(() => {
-    if (sizes) return sizes;
+    if (sizes) {return sizes;}
 
     switch (imageType) {
       case 'hero':
@@ -189,7 +189,7 @@ export function OptimizedImage({
 
   // Generate image metadata for SEO
   const metadata: ImageMetadata | null = React.useMemo(() => {
-    if (!dimensions) return null;
+    if (!dimensions) {return null;}
     return generateImageMetadata(
       imgSrc,
       alt,
@@ -201,7 +201,7 @@ export function OptimizedImage({
 
   // Container styles
   const containerStyles = React.useMemo(() => {
-    if (fill) return 'relative w-full h-full';
+    if (fill) {return 'relative w-full h-full';}
     if (aspectRatio) {
       return `relative w-full overflow-hidden ${containerClassName}`;
     }

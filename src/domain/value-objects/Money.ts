@@ -237,7 +237,7 @@ export class Money extends ValueObject {
 
     return new Intl.NumberFormat(locale, {
       style: 'currency',
-      currency: currency,
+      currency,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(amount);

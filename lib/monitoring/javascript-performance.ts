@@ -50,7 +50,7 @@ export class JavaScriptPerformanceMonitor {
    * Initialize error tracking
    */
   private initErrorTracking(): void {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     // Track uncaught errors
     window.addEventListener('error', (event) => {

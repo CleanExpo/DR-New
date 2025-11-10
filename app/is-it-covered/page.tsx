@@ -238,9 +238,9 @@ export default function CoverageChecker() {
       
       if (option) {
         let impact = 0;
-        if (option.impact === 'positive') impact = 15;
-        if (option.impact === 'negative') impact = -20;
-        if (option.impact === 'neutral') impact = 0;
+        if (option.impact === 'positive') {impact = 15;}
+        if (option.impact === 'negative') {impact = -20;}
+        if (option.impact === 'neutral') {impact = 0;}
         
         probability += impact;
         

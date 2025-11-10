@@ -269,7 +269,7 @@ export function ServiceCategoryNav(...args: any[]): void {
  * Shows contextual related content
  */
 export function RelatedLinks(...args: any[]): void {
-  if (!links || links.length === 0) return null;
+  if (!links || links.length === 0) {return null;}
 
   return (
     <section className={className}>

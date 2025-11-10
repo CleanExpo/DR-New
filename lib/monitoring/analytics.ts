@@ -52,7 +52,7 @@ declare global {
  * Initialize Google Analytics 4
  */
 export function initGA4(measurementId: string): void {
-  if (!measurementId || typeof window === 'undefined') return;
+  if (!measurementId || typeof window === 'undefined') {return;}
 
   // Initialize dataLayer
   window.dataLayer = window.dataLayer || [];
@@ -82,7 +82,7 @@ export function initGA4(measurementId: string): void {
  * Track page views
  */
 export function trackPageView(url: string, title?: string): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   window.gtag('event', 'page_view', {
     page_title: title || document.title,
@@ -102,7 +102,7 @@ export function trackEvent(
   eventName: string,
   parameters?: Record<string, any>
 ): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   window.gtag('event', eventName, {
     ...parameters,
@@ -122,7 +122,7 @@ export function trackConversion(
   value?: number,
   metadata?: Record<string, any>
 ): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   // Track as conversion event
   window.gtag('event', conversionEvent, {
@@ -136,7 +136,7 @@ export function trackConversion(
   // Also track in dataLayer for GTM
   window.dataLayer?.push({
     event: conversionEvent,
-    value: value,
+    value,
     ...metadata,
   });
 
@@ -334,7 +334,7 @@ export function trackError(
  * Track Web Vitals to GA4
  */
 export function trackWebVitals(metric: Metric): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   // Determine rating
   const rating = metric.rating || 'unknown';
@@ -364,7 +364,7 @@ export function trackWebVitals(metric: Metric): void {
  * Set custom dimensions
  */
 export function setCustomDimensions(dimensions: CustomDimensions): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   window.gtag('set', 'user_properties', dimensions);
 
@@ -395,7 +395,7 @@ export function trackTiming(
  * Set user ID for cross-device tracking
  */
 export function setUserId(userId: string): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   window.gtag('set', 'user_id', userId);
 }
@@ -408,13 +408,13 @@ export function trackTransaction(
   value: number,
   items: any[]
 ): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   window.gtag('event', 'purchase', {
     transaction_id: transactionId,
-    value: value,
+    value,
     currency: 'AUD',
-    items: items,
+    items,
   });
 }
 
@@ -436,7 +436,7 @@ export function trackInsuranceClaim(
  * Setup automated event tracking
  */
 export function setupAutoTracking(): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   // Track scroll depth
   let maxScroll = 0;
@@ -474,7 +474,7 @@ export function setupAutoTracking(): void {
   });
 
   // Track time on page
-  let startTime = Date.now();
+  const startTime = Date.now();
   window.addEventListener('beforeunload', () => {
     const timeOnPage = Math.round((Date.now() - startTime) / 1000);
     trackTiming('engagement', 'time_on_page', timeOnPage, window.location.pathname);
@@ -490,7 +490,7 @@ export function setConsentMode(
   analytics: boolean,
   advertising: boolean
 ): void {
-  if (!window.gtag) return;
+  if (!window.gtag) {return;}
 
   (window.gtag as any)('consent', 'update', {
     analytics_storage: analytics ? 'granted' : 'denied',
@@ -520,7 +520,7 @@ export const analytics = {
   webVitals: trackWebVitals,
   setDimensions: setCustomDimensions,
   timing: trackTiming,
-  setUserId: setUserId,
+  setUserId,
   transaction: trackTransaction,
   insuranceClaim: trackInsuranceClaim,
   setupAutoTracking,

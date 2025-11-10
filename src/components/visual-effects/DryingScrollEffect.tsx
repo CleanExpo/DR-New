@@ -21,7 +21,7 @@ export function DryingScrollEffect(...args: any[]): void {
     const moistureOverlay = moistureOverlayRef.current;
     const content = contentRef.current;
     
-    if (!container || !moistureOverlay || !content) return;
+    if (!container || !moistureOverlay || !content) {return;}
 
     // Initial wet state
     gsap.set(moistureOverlay, {

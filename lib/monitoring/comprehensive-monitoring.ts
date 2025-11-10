@@ -119,8 +119,8 @@ export class ComprehensiveMonitoring {
       onCLS(handleMetric);
       onLCP(handleMetric);
       onTTFB(handleMetric);
-      if (onINP) onINP(handleMetric);
-      if (onFCP) onFCP(handleMetric);
+      if (onINP) {onINP(handleMetric);}
+      if (onFCP) {onFCP(handleMetric);}
 
       console.log('[Monitoring] Web Vitals initialized');
     } catch (error) {
@@ -132,7 +132,7 @@ export class ComprehensiveMonitoring {
    * Initialize performance monitoring
    */
   private initPerformanceMonitoring(): void {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     // Monitor navigation timing
     window.addEventListener('load', () => {
@@ -188,7 +188,7 @@ export class ComprehensiveMonitoring {
    * Initialize error tracking
    */
   private initErrorTracking(): void {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     // Global error handler
     window.addEventListener('error', (event) => {
@@ -307,8 +307,8 @@ export class ComprehensiveMonitoring {
    */
   private getDeviceType(): string {
     const width = window.innerWidth;
-    if (width < 768) return 'mobile';
-    if (width < 1024) return 'tablet';
+    if (width < 768) {return 'mobile';}
+    if (width < 1024) {return 'tablet';}
     return 'desktop';
   }
 
@@ -339,7 +339,7 @@ export class ComprehensiveMonitoring {
    */
   private checkPerformanceThreshold(metric: Metric): void {
     const thresholds = this.config.alertThresholds[metric.name as keyof typeof PERFORMANCE_THRESHOLDS];
-    if (!thresholds) return;
+    if (!thresholds) {return;}
 
     const value = metric.value;
     const { good, poor, critical } = thresholds;
@@ -347,14 +347,14 @@ export class ComprehensiveMonitoring {
     if (value > critical) {
       this.sendAlert('critical', `${metric.name} is critical: ${Math.round(value)}`, {
         metric: metric.name,
-        value: value,
+        value,
         threshold: critical,
         page: window.location.pathname,
       });
     } else if (value > poor) {
       this.sendAlert('warning', `${metric.name} is poor: ${Math.round(value)}`, {
         metric: metric.name,
-        value: value,
+        value,
         threshold: poor,
         page: window.location.pathname,
       });
@@ -372,13 +372,13 @@ export class ComprehensiveMonitoring {
     if (value > thresholds.critical) {
       this.sendAlert('critical', `${name} is critical: ${Math.round(value)}ms`, {
         metric: name,
-        value: value,
+        value,
         threshold: thresholds.critical,
       });
     } else if (value > thresholds.poor) {
       this.sendAlert('warning', `${name} is poor: ${Math.round(value)}ms`, {
         metric: name,
-        value: value,
+        value,
         threshold: thresholds.poor,
       });
     }
@@ -392,12 +392,12 @@ export class ComprehensiveMonitoring {
     message: string,
     context: Record<string, any>
   ): void {
-    if (!this.config.enableAlerts) return;
+    if (!this.config.enableAlerts) {return;}
 
     const alertKey = `${level}:${message}`;
 
     // Prevent duplicate alerts within 5 minutes
-    if (this.alertsSent.has(alertKey)) return;
+    if (this.alertsSent.has(alertKey)) {return;}
 
     this.alertsSent.add(alertKey);
     setTimeout(() => this.alertsSent.delete(alertKey), 5 * 60 * 1000);
@@ -491,7 +491,7 @@ export class ComprehensiveMonitoring {
     const summary: Record<string, any> = {};
 
     this.metrics.forEach((values, name) => {
-      if (values.length === 0) return;
+      if (values.length === 0) {return;}
 
       const numericValues = values
         .map(v => typeof v.value === 'number' ? v.value : 0)

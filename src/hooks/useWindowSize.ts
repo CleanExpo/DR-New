@@ -27,13 +27,13 @@ export function useWindowSize(): WindowSize {
   });
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     let timeoutId: NodeJS.Timeout | null = null;
 
     const handleResize = () => {
       // Debounce resize events
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {clearTimeout(timeoutId);}
 
       timeoutId = setTimeout(() => {
         const width = window.innerWidth;
@@ -55,7 +55,7 @@ export function useWindowSize(): WindowSize {
     handleResize();
 
     return () => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {clearTimeout(timeoutId);}
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -71,11 +71,11 @@ export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export function useBreakpoint(): Breakpoint {
   const { width } = useWindowSize();
 
-  if (width < 640) return 'xs';
-  if (width < 768) return 'sm';
-  if (width < 1024) return 'md';
-  if (width < 1280) return 'lg';
-  if (width < 1536) return 'xl';
+  if (width < 640) {return 'xs';}
+  if (width < 768) {return 'sm';}
+  if (width < 1024) {return 'md';}
+  if (width < 1280) {return 'lg';}
+  if (width < 1536) {return 'xl';}
   return '2xl';
 }
 
@@ -99,7 +99,7 @@ export function useScrollPosition() {
   });
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {return;}
 
     let ticking = false;
 

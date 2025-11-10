@@ -41,7 +41,7 @@ export function LazyImage({
 
   // Intersection Observer for lazy loading
   useEffect(() => {
-    if (priority || isInView) return;
+    if (priority || isInView) {return;}
 
     const observer = new IntersectionObserver(
       (entries) => {

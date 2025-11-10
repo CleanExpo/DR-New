@@ -165,7 +165,7 @@ function getHistoricalPattern(
     );
   });
 
-  if (similarDays.length === 0) return 1.0;
+  if (similarDays.length === 0) {return 1.0;}
 
   const avgSimilar =
     similarDays.reduce((sum, d) => sum + d.calls, 0) / similarDays.length;
@@ -180,9 +180,9 @@ function getHistoricalPattern(
  * Calculate prediction confidence
  */
 function calculateConfidence(historicalData: HistoricalData[]): number {
-  if (historicalData.length < 30) return 0.5; // Low confidence
-  if (historicalData.length < 90) return 0.7; // Medium confidence
-  if (historicalData.length < 365) return 0.85; // High confidence
+  if (historicalData.length < 30) {return 0.5;} // Low confidence
+  if (historicalData.length < 90) {return 0.7;} // Medium confidence
+  if (historicalData.length < 365) {return 0.85;} // High confidence
 
   return 0.95; // Very high confidence with 1+ year of data
 }
@@ -261,7 +261,7 @@ export function analyzeServiceTypeDemand(
       (d) => d.serviceType === serviceType
     );
 
-    if (serviceData.length === 0) continue;
+    if (serviceData.length === 0) {continue;}
 
     const totalCalls = serviceData.reduce((sum, d) => sum + d.calls, 0);
     const averagePerDay = totalCalls / serviceData.length;
@@ -276,8 +276,8 @@ export function analyzeServiceTypeDemand(
       olderData.reduce((sum, d) => sum + d.calls, 0) / olderData.length;
 
     let trend: 'increasing' | 'stable' | 'decreasing' = 'stable';
-    if (recentAvg > olderAvg * 1.1) trend = 'increasing';
-    else if (recentAvg < olderAvg * 0.9) trend = 'decreasing';
+    if (recentAvg > olderAvg * 1.1) {trend = 'increasing';}
+    else if (recentAvg < olderAvg * 0.9) {trend = 'decreasing';}
 
     // Find peak month
     const monthCounts: Record<number, number> = {};

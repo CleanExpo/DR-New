@@ -27,11 +27,11 @@ export function formatDate(date: Date | string, format: 'short' | 'long' | 'rela
     const diff = now.getTime() - dateObj.getTime();
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    if (days === 0) return 'Today';
-    if (days === 1) return 'Yesterday';
-    if (days < 7) return `${days} days ago`;
-    if (days < 30) return `${Math.floor(days / 7)} weeks ago`;
-    if (days < 365) return `${Math.floor(days / 30)} months ago`;
+    if (days === 0) {return 'Today';}
+    if (days === 1) {return 'Yesterday';}
+    if (days < 7) {return `${days} days ago`;}
+    if (days < 30) {return `${Math.floor(days / 7)} weeks ago`;}
+    if (days < 365) {return `${Math.floor(days / 30)} months ago`;}
     return `${Math.floor(days / 365)} years ago`;
   }
 
@@ -56,7 +56,7 @@ export function formatPostcode(postcode: string | number): string {
 }
 
 export function truncate(text: string, length: number = 100, suffix: string = '...'): string {
-  if (text.length <= length) return text;
+  if (text.length <= length) {return text;}
   return text.substring(0, length - suffix.length) + suffix;
 }
 
@@ -74,6 +74,6 @@ export function capitalize(text: string): string {
 }
 
 export function pluralize(count: number, singular: string, plural?: string): string {
-  if (count === 1) return singular;
+  if (count === 1) {return singular;}
   return plural || `${singular}s`;
 }

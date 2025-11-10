@@ -119,7 +119,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
     onDecline?.();
   }, [saveCookiePreferences, onDecline]);
 
-  if (!isVisible) return null;
+  if (!isVisible) {return null;}
 
   return (
     <>

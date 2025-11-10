@@ -273,7 +273,7 @@ export const CustomValidators = {
    */
   abn: (value: string): boolean => {
     const cleaned = value.replace(/\s+/g, '');
-    if (!/^\d{11}$/.test(cleaned)) return false;
+    if (!/^\d{11}$/.test(cleaned)) {return false;}
 
     // ABN checksum validation
     const weights = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19];

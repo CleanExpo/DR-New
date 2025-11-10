@@ -7,7 +7,7 @@
  * Detect if device is mobile
  */
 export function isMobileDevice(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
 
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
     navigator.userAgent
@@ -18,7 +18,7 @@ export function isMobileDevice(): boolean {
  * Detect if device is iOS
  */
 export function isIOS(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
 
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
 }
@@ -27,7 +27,7 @@ export function isIOS(): boolean {
  * Detect if device is standalone PWA
  */
 export function isStandalone(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
 
   return (
     window.matchMedia('(display-mode: standalone)').matches ||
@@ -58,7 +58,7 @@ export function getSafeAreaInsets() {
  * Prevent body scroll (for modals)
  */
 export function disableBodyScroll() {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') {return;}
 
   const scrollY = window.scrollY;
   document.body.style.position = 'fixed';
@@ -70,7 +70,7 @@ export function disableBodyScroll() {
  * Re-enable body scroll
  */
 export function enableBodyScroll() {
-  if (typeof document === 'undefined') return;
+  if (typeof document === 'undefined') {return;}
 
   const scrollY = document.body.style.top;
   document.body.style.position = '';
@@ -83,10 +83,10 @@ export function enableBodyScroll() {
  * Haptic feedback (iOS only)
  */
 export function hapticFeedback(type: 'light' | 'medium' | 'heavy' = 'medium') {
-  if (typeof window === 'undefined' || !isIOS()) return;
+  if (typeof window === 'undefined' || !isIOS()) {return;}
 
   const generator = (window as any).navigator?.vibrate;
-  if (!generator) return;
+  if (!generator) {return;}
 
   const patterns = {
     light: [10],
@@ -101,13 +101,13 @@ export function hapticFeedback(type: 'light' | 'medium' | 'heavy' = 'medium') {
  * Check if network is slow (2G/3G)
  */
 export function isSlowNetwork(): boolean {
-  if (typeof navigator === 'undefined') return false;
+  if (typeof navigator === 'undefined') {return false;}
 
   const connection = (navigator as any).connection ||
                      (navigator as any).mozConnection ||
                      (navigator as any).webkitConnection;
 
-  if (!connection) return false;
+  if (!connection) {return false;}
 
   return connection.effectiveType === 'slow-2g' ||
          connection.effectiveType === '2g' ||
@@ -165,7 +165,7 @@ export function throttle<T extends (...args: any[]) => any>(
       func.apply(this, args);
       lastRan = now;
     } else {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {clearTimeout(timeoutId);}
 
       timeoutId = setTimeout(() => {
         if (now - lastRan >= delay) {
@@ -196,7 +196,7 @@ export function debounce<T extends (...args: any[]) => any>(
  * Request idle callback wrapper
  */
 export function requestIdleCallback(callback: () => void, options?: { timeout?: number }) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   if ('requestIdleCallback' in window) {
     window.requestIdleCallback(callback, options);
@@ -212,7 +212,7 @@ export function createLazyObserver(
   callback: (entry: IntersectionObserverEntry) => void,
   options?: IntersectionObserverInit
 ) {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {return null;}
 
   const defaultOptions: IntersectionObserverInit = {
     root: null,
@@ -234,13 +234,13 @@ export function createLazyObserver(
  * Smooth scroll to element
  */
 export function smoothScrollTo(element: HTMLElement | string, offset: number = 0) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {return;}
 
   const target = typeof element === 'string'
     ? document.querySelector(element)
     : element;
 
-  if (!target) return;
+  if (!target) {return;}
 
   const targetPosition = (target as HTMLElement).getBoundingClientRect().top + window.pageYOffset - offset;
 
@@ -254,7 +254,7 @@ export function smoothScrollTo(element: HTMLElement | string, offset: number = 0
  * Check if element is in viewport
  */
 export function isInViewport(element: HTMLElement): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
 
   const rect = element.getBoundingClientRect();
   return (
@@ -269,7 +269,7 @@ export function isInViewport(element: HTMLElement): boolean {
  * Get device pixel ratio
  */
 export function getDevicePixelRatio(): number {
-  if (typeof window === 'undefined') return 1;
+  if (typeof window === 'undefined') {return 1;}
   return window.devicePixelRatio || 1;
 }
 
@@ -277,7 +277,7 @@ export function getDevicePixelRatio(): number {
  * Detect touch support
  */
 export function hasTouchSupport(): boolean {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
 
   return (
     'ontouchstart' in window ||

@@ -57,20 +57,20 @@ export function calculateLeadScore(request: EmergencyJobRequest): number {
   let score = 50; // Base score
 
   // Urgency scoring
-  if (request.urgencyLevel === 'critical') score += 25;
-  else if (request.urgencyLevel === 'urgent') score += 15;
+  if (request.urgencyLevel === 'critical') {score += 25;}
+  else if (request.urgencyLevel === 'urgent') {score += 15;}
 
   // Property type scoring
-  if (request.propertyType === 'commercial') score += 15;
+  if (request.propertyType === 'commercial') {score += 15;}
 
   // Insurance scoring
-  if (request.hasInsurance) score += 10;
+  if (request.hasInsurance) {score += 10;}
 
   // Area size scoring
   if (request.estimatedArea) {
-    if (request.estimatedArea > 200) score += 15;
-    else if (request.estimatedArea > 100) score += 10;
-    else if (request.estimatedArea > 50) score += 5;
+    if (request.estimatedArea > 200) {score += 15;}
+    else if (request.estimatedArea > 100) {score += 10;}
+    else if (request.estimatedArea > 50) {score += 5;}
   }
 
   // Service type scoring (complexity)
@@ -199,8 +199,8 @@ export async function dispatchEmergencyJob(
 
     // Determine quality status
     let qualityStatus = 'STANDARD';
-    if (leadScore >= 80) qualityStatus = 'HIGH_VALUE';
-    else if (leadScore >= 60) qualityStatus = 'QUALIFIED';
+    if (leadScore >= 80) {qualityStatus = 'HIGH_VALUE';}
+    else if (leadScore >= 60) {qualityStatus = 'QUALIFIED';}
 
     // Find available contractors
     const availableContractors = await findAvailableContractors(request);

@@ -52,8 +52,8 @@ export async function GET(request: NextRequest) {
       timestamp: { gte: startDate }
     };
 
-    if (conversionType) where.conversionType = conversionType;
-    if (serviceArea) where.serviceArea = serviceArea;
+    if (conversionType) {where.conversionType = conversionType;}
+    if (serviceArea) {where.serviceArea = serviceArea;}
 
     const conversions = await prisma.conversionMetric.findMany({
       where,

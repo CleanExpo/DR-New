@@ -499,7 +499,7 @@ export class LocationServiceGenerator {
   private static getNearbySuburbs(location: unknown, suburb: string): string[] {
     // Return suburbs near the given suburb
     const index = location.suburbs.indexOf(suburb);
-    if (index === -1) return location.suburbs.slice(0, 5);
+    if (index === -1) {return location.suburbs.slice(0, 5);}
     
     const nearby = [];
     for (let i = Math.max(0, index - 2); i < Math.min(location.suburbs.length, index + 3); i++) {

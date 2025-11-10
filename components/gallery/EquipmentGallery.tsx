@@ -119,7 +119,7 @@ export default function EquipmentGallery() {
   };
 
   const navigateLightbox = (direction: 'prev' | 'next') => {
-    if (lightboxIndex === null) return;
+    if (lightboxIndex === null) {return;}
 
     const maxIndex = filteredEquipment.length - 1;
     if (direction === 'prev') {

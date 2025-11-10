@@ -77,7 +77,7 @@ export function LiveChat({ className = '' }: { className?: string }) {
   };
 
   const handleSendMessage = (text: string) => {
-    if (!text.trim()) return;
+    if (!text.trim()) {return;}
 
     // Add user message
     setMessages((prev) => [
@@ -96,14 +96,14 @@ export function LiveChat({ className = '' }: { className?: string }) {
     let response = AUTO_RESPONSES.default;
     const lowerText = text.toLowerCase();
 
-    if (lowerText.includes('water')) response = AUTO_RESPONSES.water;
-    else if (lowerText.includes('fire')) response = AUTO_RESPONSES.fire;
+    if (lowerText.includes('water')) {response = AUTO_RESPONSES.water;}
+    else if (lowerText.includes('fire')) {response = AUTO_RESPONSES.fire;}
     else if (lowerText.includes('mould') || lowerText.includes('mold'))
-      response = AUTO_RESPONSES.mould;
+      {response = AUTO_RESPONSES.mould;}
     else if (lowerText.includes('quote') || lowerText.includes('price'))
-      response = AUTO_RESPONSES.quote;
+      {response = AUTO_RESPONSES.quote;}
     else if (lowerText.includes('insurance') || lowerText.includes('claim'))
-      response = AUTO_RESPONSES.insurance;
+      {response = AUTO_RESPONSES.insurance;}
 
     addAgentMessage(response);
   };
@@ -259,7 +259,7 @@ export function LiveChat({ className = '' }: { className?: string }) {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => {
-                    if (e.key === 'Enter') handleSendMessage(inputValue);
+                    if (e.key === 'Enter') {handleSendMessage(inputValue);}
                   }}
                   placeholder="Type your message..."
                   className="flex-1 px-4 py-2 border-2 border-neutral-300 rounded-full focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors text-sm"

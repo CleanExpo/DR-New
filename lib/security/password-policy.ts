@@ -149,9 +149,9 @@ export function calculatePasswordStrength(password: string): PasswordStrength {
   let score = 0;
 
   // Length scoring
-  if (password.length >= 8) score++;
-  if (password.length >= 12) score++;
-  if (password.length >= 16) score++;
+  if (password.length >= 8) {score++;}
+  if (password.length >= 12) {score++;}
+  if (password.length >= 16) {score++;}
 
   // Character variety
   if (/[a-z]/.test(password) && /[A-Z]/.test(password)) {

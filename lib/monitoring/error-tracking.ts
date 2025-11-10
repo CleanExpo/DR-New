@@ -319,7 +319,7 @@ export class PerformanceMonitor {
 
   static getAverageMetric(name: string): number | null {
     const values = this.metrics.get(name);
-    if (!values || values.length === 0) return null;
+    if (!values || values.length === 0) {return null;}
 
     return values.reduce((a, b) => a + b, 0) / values.length;
   }

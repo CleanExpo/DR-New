@@ -35,7 +35,7 @@ function BookingErrorPageContent(...args: any[]): void {
     // Parse error details from URL parameters
     const errorType = (searchParams?.get('type') as ErrorType) || 'unknown';
     const errorCode = searchParams?.get('code') || 'ERR_UNKNOWN';
-    const attemptId = searchParams?.get('attempt') || 'ATT-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+    const attemptId = searchParams?.get('attempt') || `ATT-${  Math.random().toString(36).substr(2, 9).toUpperCase()}`;
     
     // Map error types to user-friendly messages
     const errorMessages: Record<ErrorType, string> = {
@@ -52,7 +52,7 @@ function BookingErrorPageContent(...args: any[]): void {
       message: errorMessages[errorType],
       code: errorCode,
       timestamp: new Date().toISOString(),
-      attemptId: attemptId
+      attemptId
     };
 
     setTimeout(() => {

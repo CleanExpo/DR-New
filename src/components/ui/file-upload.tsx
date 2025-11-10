@@ -22,22 +22,22 @@ const getFileIcon = (file: File) => {
   const type = file.type.toLowerCase();
   const name = file.name.toLowerCase();
   
-  if (type.startsWith('image/')) return <Image className="h-5 w-5 text-blue-500" />;
-  if (type.startsWith('video/')) return <Film className="h-5 w-5 text-purple-500" />;
-  if (type.startsWith('audio/')) return <Music className="h-5 w-5 text-green-500" />;
-  if (type.includes('pdf')) return <FileText className="h-5 w-5 text-red-500" />;
+  if (type.startsWith('image/')) {return <Image className="h-5 w-5 text-blue-500" />;}
+  if (type.startsWith('video/')) {return <Film className="h-5 w-5 text-purple-500" />;}
+  if (type.startsWith('audio/')) {return <Music className="h-5 w-5 text-green-500" />;}
+  if (type.includes('pdf')) {return <FileText className="h-5 w-5 text-red-500" />;}
   if (type.includes('zip') || type.includes('rar') || type.includes('7z')) 
-    return <Archive className="h-5 w-5 text-blue-600" />;
+    {return <Archive className="h-5 w-5 text-blue-600" />;}
   
   return <FileText className="h-5 w-5 text-gray-700" />;
 };
 
 const formatFileSize = (bytes: number) => {
-  if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) {return '0 Bytes';}
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))  } ${  sizes[i]}`;
 };
 
 export default function FileUpload({
@@ -90,7 +90,7 @@ export default function FileUpload({
     e.preventDefault();
     setDragOver(false);
     
-    if (disabled) return;
+    if (disabled) {return;}
     
     const droppedFiles = validateFiles(e.dataTransfer.files);
     if (droppedFiles.length > 0) {
@@ -132,7 +132,7 @@ export default function FileUpload({
         onDrop={handleDrop}
         onDragOver={(e) => {
           e.preventDefault();
-          if (!disabled) setDragOver(true);
+          if (!disabled) {setDragOver(true);}
         }}
         onDragLeave={() => setDragOver(false)}
         onClick={() => !disabled && fileInputRef.current?.click()}

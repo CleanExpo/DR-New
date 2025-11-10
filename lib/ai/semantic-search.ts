@@ -160,7 +160,7 @@ function generateFallbackEmbedding(text: string): number[] {
  * Calculate cosine similarity between two embeddings
  */
 function cosineSimilarity(a: number[], b: number[]): number {
-  if (a.length !== b.length) return 0;
+  if (a.length !== b.length) {return 0;}
 
   let dotProduct = 0;
   let magnitudeA = 0;
@@ -175,7 +175,7 @@ function cosineSimilarity(a: number[], b: number[]): number {
   magnitudeA = Math.sqrt(magnitudeA);
   magnitudeB = Math.sqrt(magnitudeB);
 
-  if (magnitudeA === 0 || magnitudeB === 0) return 0;
+  if (magnitudeA === 0 || magnitudeB === 0) {return 0;}
 
   return dotProduct / (magnitudeA * magnitudeB);
 }
@@ -262,7 +262,7 @@ function extractHighlights(query: string, content: string): string[] {
 
     if (matches > 0) {
       highlights.push(sentence.trim());
-      if (highlights.length >= 3) break;
+      if (highlights.length >= 3) {break;}
     }
   }
 
@@ -397,12 +397,12 @@ function keywordSearch(
 
     // Title matches (highest weight)
     queryWords.forEach((word) => {
-      if (titleWords.includes(word)) score += 0.3;
+      if (titleWords.includes(word)) {score += 0.3;}
     });
 
     // Keyword matches
     queryWords.forEach((word) => {
-      if (keywordWords.some((k) => k.includes(word))) score += 0.2;
+      if (keywordWords.some((k) => k.includes(word))) {score += 0.2;}
     });
 
     // Content matches

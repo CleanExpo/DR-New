@@ -461,13 +461,13 @@ export class CDNManager {
     
     const params = new URLSearchParams();
     
-    if (options?.width) params.append('w', options.width.toString());
-    if (options?.height) params.append('h', options.height.toString());
-    if (options?.quality) params.append('q', options.quality.toString());
-    if (options?.format) params.append('f', options.format);
-    if (options?.fit) params.append('fit', options.fit);
+    if (options?.width) {params.append('w', options.width.toString());}
+    if (options?.height) {params.append('h', options.height.toString());}
+    if (options?.quality) {params.append('q', options.quality.toString());}
+    if (options?.format) {params.append('f', options.format);}
+    if (options?.fit) {params.append('fit', options.fit);}
     
     const queryString = params.toString();
-    return `${this.CDN_BASE}${imagePath}${queryString ? '?' + queryString : ''}`;
+    return `${this.CDN_BASE}${imagePath}${queryString ? `?${  queryString}` : ''}`;
   }
 }

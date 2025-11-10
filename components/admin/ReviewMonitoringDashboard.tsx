@@ -57,8 +57,8 @@ export default function ReviewMonitoringDashboard({ initialReviews = [] }: Revie
 
   // Filter reviews
   const filteredReviews = reviews.filter(r => {
-    if (filter === 'urgent') return r.rating <= 2;
-    if (filter === 'pending') return !hasResponse(r);
+    if (filter === 'urgent') {return r.rating <= 2;}
+    if (filter === 'pending') {return !hasResponse(r);}
     return true;
   });
 

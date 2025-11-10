@@ -33,7 +33,7 @@ const Navigation = forwardRef(({
   
   // Handle scroll effect
   useEffect(() => {
-    if (!sticky) return;
+    if (!sticky) {return;}
     
     const handleScroll = () => {
       const scrollPosition = window.scrollY;

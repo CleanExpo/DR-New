@@ -175,11 +175,11 @@ export class ReviewSentimentAnalyzer {
     hasMasterRestorer: boolean
   ): string {
     if (rating === 5) {
-      if (hasEmergency) return 'positive_emergency_response';
-      if (serviceType === 'water') return 'positive_water_damage';
-      if (serviceType === 'fire') return 'positive_fire_damage';
-      if (hasInsurance) return 'positive_insurance_claim';
-      if (hasMasterRestorer) return 'positive_master_restorer';
+      if (hasEmergency) {return 'positive_emergency_response';}
+      if (serviceType === 'water') {return 'positive_water_damage';}
+      if (serviceType === 'fire') {return 'positive_fire_damage';}
+      if (hasInsurance) {return 'positive_insurance_claim';}
+      if (hasMasterRestorer) {return 'positive_master_restorer';}
       return 'positive_general';
     }
 
@@ -188,13 +188,13 @@ export class ReviewSentimentAnalyzer {
     }
 
     if (rating === 3) {
-      if (hasInsurance) return 'neutral_insurance_expensive';
+      if (hasInsurance) {return 'neutral_insurance_expensive';}
       return 'neutral_general';
     }
 
     // Rating 1-2
-    if (hasInsurance) return 'negative_insurance_coverage';
-    if (hasMasterRestorer) return 'negative_expectations';
+    if (hasInsurance) {return 'negative_insurance_coverage';}
+    if (hasMasterRestorer) {return 'negative_expectations';}
 
     const lowerService = serviceType?.toLowerCase() || '';
     if (lowerService.includes('expensive') || lowerService.includes('cost')) {

@@ -130,7 +130,7 @@ async function sendWithSendGrid(
 }
 
 function generateTextFromTemplate(template?: string, data?: Record<string, any>): string {
-  if (!template) return '';
+  if (!template) {return '';}
   
   // Simple template generation for text emails
   const templates: Record<string, string> = {
@@ -145,7 +145,7 @@ function generateTextFromTemplate(template?: string, data?: Record<string, any>)
 }
 
 function generateHtmlFromTemplate(template?: string, data?: Record<string, any>): string {
-  if (!template) return '';
+  if (!template) {return '';}
   
   // Simple HTML template generation
   const baseTemplate = `

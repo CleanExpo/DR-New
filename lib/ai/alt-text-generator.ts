@@ -130,10 +130,10 @@ function parseFilename(filename: string): {
   let type: string | undefined;
 
   // Detect service
-  if (lower.includes('water')) service = 'water-damage';
-  if (lower.includes('fire') || lower.includes('smoke')) service = 'fire-damage';
-  if (lower.includes('mould') || lower.includes('mold')) service = 'mould';
-  if (lower.includes('storm')) service = 'storm-damage';
+  if (lower.includes('water')) {service = 'water-damage';}
+  if (lower.includes('fire') || lower.includes('smoke')) {service = 'fire-damage';}
+  if (lower.includes('mould') || lower.includes('mold')) {service = 'mould';}
+  if (lower.includes('storm')) {service = 'storm-damage';}
 
   // Detect location
   const locations = [
@@ -153,11 +153,11 @@ function parseFilename(filename: string): {
   }
 
   // Detect type
-  if (lower.includes('hero') || lower.includes('banner')) type = 'hero';
-  if (lower.includes('process') || lower.includes('step')) type = 'process';
-  if (lower.includes('team') || lower.includes('technician')) type = 'team';
-  if (lower.includes('equipment') || lower.includes('tool')) type = 'equipment';
-  if (lower.includes('before') || lower.includes('after') || lower.includes('result')) type = 'result';
+  if (lower.includes('hero') || lower.includes('banner')) {type = 'hero';}
+  if (lower.includes('process') || lower.includes('step')) {type = 'process';}
+  if (lower.includes('team') || lower.includes('technician')) {type = 'team';}
+  if (lower.includes('equipment') || lower.includes('tool')) {type = 'equipment';}
+  if (lower.includes('before') || lower.includes('after') || lower.includes('result')) {type = 'result';}
 
   return { service, location, type };
 }

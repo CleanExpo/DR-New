@@ -99,7 +99,7 @@ export async function processAutomatedFollowUps(
 
     // Find next automated step that needs to be executed
     for (const step of sequence) {
-      if (!step.automated || step.completed) continue;
+      if (!step.automated || step.completed) {continue;}
 
       const triggerTime = new Date(
         (lead.lastContactAt || lead.createdAt).getTime() + step.delayHours * 60 * 60 * 1000

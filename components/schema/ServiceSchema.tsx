@@ -41,8 +41,8 @@ export const ServiceSchema: React.FC<ServiceSchemaProps> = ({
     "@context": "https://schema.org",
     "@type": serviceType,
     "name": serviceName,
-    "description": description,
-    "url": url,
+    description,
+    url,
     "provider": {
       "@type": "LocalBusiness",
       "@id": "https://disasterrecovery.com.au/#organization",

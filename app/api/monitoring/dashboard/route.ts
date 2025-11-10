@@ -56,8 +56,8 @@ function calculateHealthScore(
 
   // Deduct for poor performance
   Object.values(performanceMetrics).forEach((metric: any) => {
-    if (metric.avg > 3000) score -= 10;
-    else if (metric.avg > 2000) score -= 5;
+    if (metric.avg > 3000) {score -= 10;}
+    else if (metric.avg > 2000) {score -= 5;}
   });
 
   return Math.max(score, 0);

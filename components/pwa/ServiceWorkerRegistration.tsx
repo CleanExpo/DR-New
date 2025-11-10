@@ -31,7 +31,7 @@ export default function ServiceWorkerRegistration() {
       // Listen for updates
       reg.addEventListener('updatefound', () => {
         const newWorker = reg.installing;
-        if (!newWorker) return;
+        if (!newWorker) {return;}
 
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {

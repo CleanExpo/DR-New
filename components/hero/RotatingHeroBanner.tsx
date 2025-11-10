@@ -112,7 +112,7 @@ export default function RotatingHeroBanner() {
   const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying) {return;}
 
     const interval = setInterval(() => {
       setCurrentBanner((prev) => (prev + 1) % heroBanners.length);

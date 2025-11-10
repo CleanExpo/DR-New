@@ -76,7 +76,7 @@ export class WorkerPool {
   private getAvailableWorker(): WorkerInstance | null {
     // Try to find idle worker
     const idle = this.workers.find((w) => !w.busy);
-    if (idle) return idle;
+    if (idle) {return idle;}
 
     // Create new worker if under limit
     if (this.workers.length < this.maxWorkers) {
@@ -114,13 +114,13 @@ export class WorkerPool {
    * Process queued tasks
    */
   private processQueue(): void {
-    if (this.queue.length === 0) return;
+    if (this.queue.length === 0) {return;}
 
     const worker = this.getAvailableWorker();
-    if (!worker) return;
+    if (!worker) {return;}
 
     const task = this.queue.shift();
-    if (!task) return;
+    if (!task) {return;}
 
     this.executeTask(worker, task);
 
@@ -154,10 +154,10 @@ export class WorkerPool {
       const { type, data, error } = event.data;
 
       // Ignore progress messages
-      if (type.includes('PROGRESS')) return;
+      if (type.includes('PROGRESS')) {return;}
 
       // Clear timeout
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {clearTimeout(timeoutId);}
 
       // Remove listener
       worker.removeEventListener('message', handleMessage);
@@ -292,9 +292,9 @@ export async function runWorkerTask<T = any>(
     worker.addEventListener('message', (event) => {
       const { type: messageType, data: responseData, error } = event.data;
 
-      if (messageType === 'READY') return;
+      if (messageType === 'READY') {return;}
 
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {clearTimeout(timeoutId);}
 
       worker.terminate();
 
@@ -306,7 +306,7 @@ export async function runWorkerTask<T = any>(
     });
 
     worker.addEventListener('error', (error) => {
-      if (timeoutId) clearTimeout(timeoutId);
+      if (timeoutId) {clearTimeout(timeoutId);}
       worker.terminate();
       reject(error);
     });

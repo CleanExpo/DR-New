@@ -33,11 +33,11 @@ export default function LocationServicePageComponent({ data }: LocationServicePa
   const suburbs = data.location?.suburbs || [];
   
   const getServiceIcon = (title: string) => {
-    if (title.includes('Water')) return '💧';
-    if (title.includes('Fire')) return '🔥';
-    if (title.includes('Storm')) return '⛈️';
-    if (title.includes('Mould')) return '🦠';
-    if (title.includes('Flood')) return '🌊';
+    if (title.includes('Water')) {return '💧';}
+    if (title.includes('Fire')) {return '🔥';}
+    if (title.includes('Storm')) {return '⛈️';}
+    if (title.includes('Mould')) {return '🦠';}
+    if (title.includes('Flood')) {return '🌊';}
     return '🚨';
   };
 

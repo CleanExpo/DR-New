@@ -97,7 +97,7 @@ const SecureForm: React.FC<SecureFormProps> = ({
       // Extract and sanitize form data
       formData.forEach((value, key) => {
         // Skip honeypot field
-        if (key === 'website') return;
+        if (key === 'website') {return;}
 
         // Sanitize text inputs
         if (typeof value === 'string') {
@@ -215,7 +215,7 @@ const SecureForm: React.FC<SecureFormProps> = ({
 
       {/* Field-level errors */}
       {Object.entries(errors).map(([field, message]) => {
-        if (field === 'form') return null;
+        if (field === 'form') {return null;}
         return (
           <div key={field} className="mt-1 text-red-600 text-sm">
             {field}: {message}

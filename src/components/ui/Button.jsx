@@ -49,8 +49,8 @@ const Button = forwardRef(({
     sizeClasses[size],
     {
       'btn-full': fullWidth,
-      'disabled': disabled,
-      'loading': loading },
+      disabled,
+      loading },
     className
   );
   

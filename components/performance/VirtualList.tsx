@@ -46,7 +46,7 @@ export function VirtualList<T>({
   // Handle scroll
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {return;}
 
     const handleScroll = () => {
       setScrollTop(container.scrollTop);
@@ -134,7 +134,7 @@ export function VirtualGrid<T>({
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {return;}
 
     const handleScroll = () => {
       setScrollTop(container.scrollTop);

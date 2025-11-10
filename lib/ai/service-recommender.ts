@@ -74,7 +74,7 @@ export function recommendServices(
     const priorityOrder = { high: 3, medium: 2, low: 1 };
     const priorityDiff =
       priorityOrder[b.priority] - priorityOrder[a.priority];
-    if (priorityDiff !== 0) return priorityDiff;
+    if (priorityDiff !== 0) {return priorityDiff;}
     return b.relevanceScore - a.relevanceScore;
   });
 }

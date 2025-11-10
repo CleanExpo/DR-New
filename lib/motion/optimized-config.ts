@@ -10,7 +10,7 @@ import { MotionConfig, Variant, Transition } from 'framer-motion';
  * Respects user's prefers-reduced-motion setting
  */
 export const prefersReducedMotion = () => {
-  if (typeof window === 'undefined') return false;
+  if (typeof window === 'undefined') {return false;}
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 

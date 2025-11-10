@@ -39,7 +39,7 @@ export default function ImageUpload({
 
   const handleFileSelect = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-    if (!files || files.length === 0) return;
+    if (!files || files.length === 0) {return;}
 
     setStatus({ isUploading: true, progress: 10, error: null, success: false });
     setStats(null);

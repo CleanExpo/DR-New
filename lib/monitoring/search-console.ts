@@ -191,7 +191,7 @@ export class SEOPerformanceTracker {
   getPerformanceSummary(page?: string): SearchPerformance | null {
     const metrics = this.getMetrics(page);
 
-    if (metrics.length === 0) return null;
+    if (metrics.length === 0) {return null;}
 
     const totalClicks = metrics.reduce((sum, m) => sum + m.clicks, 0);
     const totalImpressions = metrics.reduce((sum, m) => sum + m.impressions, 0);

@@ -72,7 +72,7 @@ class SEMrushAPI {
     const params = new URLSearchParams({
       type: 'domain_ranks',
       key: this.apiKey,
-      domain: domain,
+      domain,
       database: this.database,
       export_columns: 'Or,Ot,Oc,Ad,At,Ac'
     });
@@ -86,7 +86,7 @@ class SEMrushAPI {
         if (data.length > 0) {
           const row = data[0];
           return {
-            domain: domain,
+            domain,
             organic_keywords: parseInt(row[0] || '0'),
             organic_traffic: parseInt(row[1] || '0'),
             organic_cost: parseFloat(row[2] || '0'),
@@ -152,7 +152,7 @@ class SEMrushAPI {
     const params = new URLSearchParams({
       type: 'domain_organic',
       key: this.apiKey,
-      domain: domain,
+      domain,
       database: this.database,
       display_limit: limit.toString(),
       export_columns: 'Ph,Po,Nq,Cp,Co,Ur,Tr,Tc,Nr,Td'
@@ -207,7 +207,7 @@ class SEMrushAPI {
         if (data.length > 0) {
           const row = data[0];
           return {
-            domain: domain,
+            domain,
             backlinks_total: parseInt(row[0] || '0'),
             domains_total: parseInt(row[1] || '0'),
             ips_total: parseInt(row[2] || '0'),
@@ -236,7 +236,7 @@ class SEMrushAPI {
     const params = new URLSearchParams({
       type: 'domain_organic_organic',
       key: this.apiKey,
-      domain: domain,
+      domain,
       database: this.database,
       display_limit: limit.toString(),
       export_columns: 'Dn,Cr,Np,Or,Ot,Oc,Ad'

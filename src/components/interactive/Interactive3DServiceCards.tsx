@@ -40,7 +40,7 @@ function Interactive3DCard(...args: any[]): void {
   );
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current) {return;}
 
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;

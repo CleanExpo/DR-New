@@ -99,7 +99,7 @@ export async function GET(request: NextRequest) {
 }
 
 function calculateStats(metrics: WebVitalMetric[]) {
-  if (metrics.length === 0) return null;
+  if (metrics.length === 0) {return null;}
 
   const values = metrics.map(m => m.value).sort((a, b) => a - b);
 

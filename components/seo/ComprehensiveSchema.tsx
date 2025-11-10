@@ -88,7 +88,7 @@ export const ComprehensiveSchema: React.FC<SchemaProps> = ({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": `Disaster Recovery ${location}`,
-    "image": "https://disaster-recovery-seven.vercel.app/images/locations/" + location.toLowerCase() + ".jpg",
+    "image": `https://disaster-recovery-seven.vercel.app/images/locations/${  location.toLowerCase()  }.jpg`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": location,
@@ -128,22 +128,22 @@ export const ComprehensiveSchema: React.FC<SchemaProps> = ({
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
-      "name": service + " Services",
+      "name": `${service  } Services`,
       "itemListElement": [
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Emergency " + service,
-            "description": "24/7 emergency response for " + service.toLowerCase()
+            "name": `Emergency ${  service}`,
+            "description": `24/7 emergency response for ${  service.toLowerCase()}`
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Insurance " + service,
-            "description": "Insurance approved " + service.toLowerCase() + " services"
+            "name": `Insurance ${  service}`,
+            "description": `Insurance approved ${  service.toLowerCase()  } services`
           }
         }
       ]

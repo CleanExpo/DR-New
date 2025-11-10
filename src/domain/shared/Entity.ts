@@ -61,8 +61,8 @@ export abstract class Entity<ID = string> {
    * Entities are equal if they have the same ID
    */
   equals(other: Entity<ID>): boolean {
-    if (!other) return false;
-    if (!(other instanceof Entity)) return false;
+    if (!other) {return false;}
+    if (!(other instanceof Entity)) {return false;}
     return this._id === other._id;
   }
 
