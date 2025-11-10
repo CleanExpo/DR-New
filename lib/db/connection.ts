@@ -7,7 +7,13 @@ class DatabaseConnection {
   private static connectionCount = 0;
   private static readonly MAX_CONNECTIONS = 10;
 
-  static getInstance(): PrismaClient {
+  static getInstance(): PrismaClient | null {
+    // Don't initialize if DATABASE_URL is not set (e.g., during build)
+    if (!process.env.DATABASE_URL) {
+      console.warn('[DB] DATABASE_URL not set, database connection unavailable');
+      return null as any; // Return null to allow build to proceed
+    }
+
     if (!this.instance) {
       this.instance = new PrismaClient({
         log: process.env.NODE_ENV === 'development'
@@ -103,11 +109,7 @@ class RedisConnection {
   }
 }
 
-// Export singleton instances
-export const prisma = DatabaseConnection.getInstance();
-export const redis = RedisConnection.getInstance();
-
-// Export utility functions
+// Export utility functions (lazy initialization)
 export const db = {
   getInstance: () => DatabaseConnection.getInstance(),
   disconnect: () => DatabaseConnection.disconnect(),
@@ -119,6 +121,30 @@ export const cache = {
   disconnect: () => RedisConnection.disconnect(),
   isAvailable: () => RedisConnection.isAvailable(),
 };
+
+// Lazy getter for prisma instance
+let _prismaInstance: PrismaClient | null | undefined;
+export const getPrisma = () => {
+  if (_prismaInstance === undefined) {
+    _prismaInstance = DatabaseConnection.getInstance();
+  }
+  return _prismaInstance;
+};
+
+// For backward compatibility - but uses lazy initialization
+export const prisma = new Proxy({} as PrismaClient, {
+  get(target, prop) {
+    const instance = getPrisma();
+    if (!instance) {
+      console.warn('[DB] Attempted to use Prisma client but DATABASE_URL not configured');
+      return undefined;
+    }
+    return (instance as any)[prop];
+  }
+});
+
+// Export singleton instances (lazy)
+export const redis = RedisConnection.getInstance();
 
 // Global cleanup on process exit
 if (typeof process !== 'undefined') {
