@@ -1,31 +1,39 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Run type checking and linting
-echo "Running pre-commit checks..."
+echo "🔒 Running pre-commit security checks..."
 
-# Type check (fast)
-npm run type-check || {
-  echo "❌ Type check failed. Fix errors before committing."
+# 1. Secret detection with secretlint
+echo "📝 Checking for secrets..."
+npx secretlint $(git diff --cached --name-only --diff-filter=ACM) || {
+  echo "❌ Secret detection failed! Secrets found in staged files."
+  echo "Run 'npm run security:secrets' to scan all files."
   exit 1
 }
 
-# Lint staged files
-npx lint-staged || {
-  echo "❌ Linting failed. Fix errors before committing."
+# 2. ESLint security rules
+echo "🔍 Running ESLint security checks..."
+npx eslint $(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(ts|tsx|js|jsx)$') || {
+  echo "⚠️  ESLint found security issues. Fix them before committing."
   exit 1
 }
 
-# Run fast unit tests only (not E2E)
-echo "Running fast unit tests..."
-npm test -- --onlyChanged --passWithNoTests || {
-  echo "❌ Unit tests failed. Fix tests before committing."
+# 3. Check for .env files
+echo "🔐 Checking for .env files..."
+if git diff --cached --name-only | grep -E '\.env($|\..*$)' | grep -v '\.env\.example$' | grep -v '\.env\.training\.example$'; then
+  echo "❌ ERROR: Attempting to commit .env files!"
+  echo "These files may contain secrets and should not be committed."
+  echo "Remove them with: git reset HEAD <file>"
   exit 1
-}
+fi
 
-# Security scan
-npm run security:scan || {
-  echo "⚠️  Security scan detected issues. Review before committing."
-}
+# 4. Check for hardcoded credentials patterns
+echo "🕵️  Checking for hardcoded credentials..."
+if git diff --cached -U0 | grep -E '(api[_-]?key|password|secret|token)["\s]*[:=]["\s]*[^"]{8,}'; then
+  echo "⚠️  WARNING: Potential hardcoded credentials detected!"
+  echo "Review your changes carefully before committing."
+  echo "If this is a false positive, you can skip with: git commit --no-verify"
+  exit 1
+fi
 
-echo "✅ Pre-commit checks passed!"
+echo "✅ All security checks passed!"

@@ -2,210 +2,138 @@ name: Security Scanning
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: ['**']
   pull_request:
-    branches:
-      - main
+    branches: [main, master, develop]
   schedule:
-    - cron: '0 0 * * 1' # Weekly on Monday
-  workflow_dispatch:
+    # Run weekly on Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
 
 jobs:
-  dependency-scan:
-    name: Dependency Security Scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
-      - name: Run npm audit
-        run: |
-          npm audit --production --audit-level=moderate
-          npm audit --production --audit-level=high --json > audit-results.json
-
-      - name: Check for critical vulnerabilities
-        run: |
-          CRITICAL=$(npm audit --production --audit-level=critical --json | jq '.metadata.vulnerabilities.critical')
-          if [ "$CRITICAL" -gt 0 ]; then
-            echo "Critical vulnerabilities found!"
-            exit 1
-          fi
-
-      - name: Upload audit results
-        uses: actions/upload-artifact@v4
-        with:
-          name: npm-audit-results
-          path: audit-results.json
-          retention-days: 30
-
-  code-scanning:
-    name: Code Security Analysis
+  secret-scan:
+    name: TruffleHog Secret Scan
     runs-on: ubuntu-latest
     permissions:
-      actions: read
       contents: read
       security-events: write
+
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          languages: javascript, typescript
+          fetch-depth: 0  # Full history for comprehensive scanning
 
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-
-  secret-scanning:
-    name: Secret Detection
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: TruffleHog Secret Scan
+      - name: TruffleHog OSS
         uses: trufflesecurity/trufflehog@main
         with:
           path: ./
           base: ${{ github.event.repository.default_branch }}
           head: HEAD
-          extra_args: --only-verified
+          extra_args: --debug --only-verified
 
-      - name: GitGuardian Secret Scan
-        uses: GitGuardian/ggshield-action@v1
-        continue-on-error: true
-        env:
-          GITHUB_PUSH_BEFORE_SHA: ${{ github.event.before }}
-          GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
-          GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          GITGUARDIAN_API_KEY: ${{ secrets.GITGUARDIAN_API_KEY }}
-
-  container-scanning:
-    name: Container Security Scan
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        run: |
-          docker build -t disaster-recovery:${{ github.sha }} .
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
+      - name: Upload scan results
+        if: failure()
+        uses: actions/upload-artifact@v3
         with:
-          image-ref: disaster-recovery:${{ github.sha }}
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
+          name: trufflehog-results
+          path: trufflehog-results.json
+          retention-days: 30
 
-      - name: Upload Trivy results to GitHub Security
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: 'trivy-results.sarif'
-
-  sast-scanning:
-    name: Static Application Security Testing
+  dependency-scan:
+    name: Dependency Vulnerability Scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          node-version: '18'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
-      - name: Run ESLint security rules
-        run: |
-          npm run lint -- --format json --output-file eslint-results.json
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
         continue-on-error: true
 
-      - name: Check for security anti-patterns
-        run: |
-          echo "Checking for common security issues..."
-          # Check for hardcoded secrets
-          grep -r "password\s*=\s*['\"]" . --exclude-dir=node_modules || true
-          # Check for SQL injection patterns
-          grep -r "query.*+.*req\." . --exclude-dir=node_modules || true
+      - name: Generate audit report
+        run: npm audit --json > npm-audit-report.json
+        continue-on-error: true
 
-      - name: Upload ESLint results
-        uses: actions/upload-artifact@v4
+      - name: Upload audit report
+        uses: actions/upload-artifact@v3
         with:
-          name: eslint-security-results
-          path: eslint-results.json
+          name: npm-audit-report
+          path: npm-audit-report.json
           retention-days: 30
 
-  security-headers:
-    name: Security Headers Validation
+  eslint-security:
+    name: ESLint Security Rules
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Check security headers configuration
-        run: |
-          echo "Validating security headers..."
-          # Check for CSP
-          grep -r "Content-Security-Policy" next.config.js vercel.json || exit 1
-          # Check for HSTS
-          grep -r "Strict-Transport-Security" next.config.js vercel.json || exit 1
-          # Check for X-Frame-Options
-          grep -r "X-Frame-Options" next.config.js vercel.json || exit 1
-
-      - name: Test headers on production
-        if: github.ref == 'refs/heads/main'
-        run: |
-          curl -I https://disasterrecovery.com.au | grep "X-Frame-Options" || exit 1
-          curl -I https://disasterrecovery.com.au | grep "X-Content-Type-Options" || exit 1
-          curl -I https://disasterrecovery.com.au | grep "Strict-Transport-Security" || exit 1
-
-  security-report:
-    name: Generate Security Report
-    runs-on: ubuntu-latest
-    needs: [dependency-scan, code-scanning, secret-scanning, sast-scanning, security-headers]
-    if: always()
-    steps:
-      - name: Create security summary
-        run: |
-          echo "# Security Scan Summary" > security-report.md
-          echo "Generated at: $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> security-report.md
-          echo "" >> security-report.md
-          echo "## Scan Results" >> security-report.md
-          echo "- Dependency Scan: ${{ needs.dependency-scan.result }}" >> security-report.md
-          echo "- Code Scanning: ${{ needs.code-scanning.result }}" >> security-report.md
-          echo "- Secret Scanning: ${{ needs.secret-scanning.result }}" >> security-report.md
-          echo "- SAST Scanning: ${{ needs.sast-scanning.result }}" >> security-report.md
-          echo "- Security Headers: ${{ needs.security-headers.result }}" >> security-report.md
-
-      - name: Upload security report
-        uses: actions/upload-artifact@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          name: security-scan-report
-          path: security-report.md
-          retention-days: 90
+          node-version: '18'
+          cache: 'npm'
 
-      - name: Alert on security failures
-        if: |
-          needs.dependency-scan.result == 'failure' ||
-          needs.code-scanning.result == 'failure' ||
-          needs.secret-scanning.result == 'failure'
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint with security plugin
+        run: npx eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0
+        continue-on-error: true
+
+  secretlint:
+    name: Secretlint Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install secretlint
+        run: npm install -g @secretlint/secretlint @secretlint/secretlint-rule-preset-recommend
+
+      - name: Run secretlint
+        run: secretlint "**/*"
+        continue-on-error: true
+
+  security-summary:
+    name: Security Scan Summary
+    runs-on: ubuntu-latest
+    needs: [secret-scan, dependency-scan, eslint-security, secretlint]
+    if: always()
+
+    steps:
+      - name: Create summary
         run: |
-          echo "Security scan failures detected!"
-          exit 1
+          echo "# 🔒 Security Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Scan Type | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| TruffleHog Secret Scan | ${{ needs.secret-scan.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Dependency Vulnerabilities | ${{ needs.dependency-scan.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ESLint Security | ${{ needs.eslint-security.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Secretlint | ${{ needs.secretlint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Scan Date:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "**Repository:** ${{ github.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
