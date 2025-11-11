@@ -12,6 +12,7 @@ export function ProfessionalMembershipsSection() {
       icon: Building2,
       color: "text-blue-600",
       bgColor: "bg-blue-50",
+      link: "https://carsi.com.au/",
     },
     {
       name: "IICRC",
@@ -20,6 +21,7 @@ export function ProfessionalMembershipsSection() {
       icon: Award,
       color: "text-primary",
       bgColor: "bg-primary/10",
+      link: "https://iicrc.org/",
     },
     {
       name: "Clean Claims",
@@ -28,6 +30,7 @@ export function ProfessionalMembershipsSection() {
       icon: Shield,
       color: "text-accent",
       bgColor: "bg-accent/10",
+      link: "https://www.cleanclaims.com/",
     },
   ]
 
@@ -61,12 +64,18 @@ export function ProfessionalMembershipsSection() {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {memberships.map((membership, index) => (
-            <Card
+            <a
               key={index}
-              className="hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-primary/30 animate-slide-up group overflow-hidden"
-              style={{ animationDelay: `${index * 0.15}s` }}
+              href={membership.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
             >
-              <CardContent className="p-8 relative">
+              <Card
+                className="hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-2 border-transparent hover:border-primary/30 animate-slide-up group overflow-hidden cursor-pointer h-full"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <CardContent className="p-8 relative">
                 {/* Animated Background Gradient */}
                 <div
                   className={`absolute inset-0 ${membership.bgColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -104,6 +113,7 @@ export function ProfessionalMembershipsSection() {
                 </div>
               </CardContent>
             </Card>
+            </a>
           ))}
         </div>
       </div>
