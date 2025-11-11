@@ -48,7 +48,7 @@ export default function About() {
             </div>
             <div className="relative">
               <img
-                src="/professional-master-restorer-portrait.jpg"
+                src="/profile.jpeg"
                 alt="Phill McGurk, IICRC Master Restorer"
                 className="rounded-lg shadow-xl w-full"
               />

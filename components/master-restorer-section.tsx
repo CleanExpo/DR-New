@@ -49,7 +49,7 @@ export function MasterRestorerSection() {
                 {/* Image Section */}
                 <div className="relative h-full min-h-[500px] md:min-h-[600px] overflow-hidden group">
                   <img 
-                    src="/professional-master-restorer-portrait.jpg" 
+                    src="/profile.jpeg" 
                     alt="Phill McGurk - Master Restorer" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                   />
