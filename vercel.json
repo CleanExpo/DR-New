@@ -1,5 +1,5 @@
 {
-  "buildCommand": "next build",
+  "buildCommand": "unset NODE_OPTIONS && next build",
   "framework": "nextjs"
 }
 
