@@ -1,7 +1,7 @@
 {
-  "buildCommand": "NODE_OPTIONS='' npm run build",
+  "buildCommand": "rm -rf node_modules .next && NODE_OPTIONS='' npm ci && NODE_OPTIONS='' npm run build",
   "devCommand": "npm run dev",
-  "installCommand": "NODE_OPTIONS='' npm install",
+  "installCommand": "NODE_OPTIONS='' npm ci",
   "framework": "nextjs"
 }
 
