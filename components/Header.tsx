@@ -1,322 +1,309 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
+import { useState, useEffect, useRef } from "react"
+import { Phone, Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/src/components/ui/sheet"
-import { Menu, Phone, ChevronDown } from "lucide-react"
 
-export default function Header() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+export function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const [insuranceOpen, setInsuranceOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
 
-  const handleMouseEnter = (dropdown: string) => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current)
-      timeoutRef.current = null
-    }
-    setActiveDropdown(dropdown)
-  }
-
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null)
-    }, 150)
-  }
-
+  // Close dropdowns when clicking outside
   useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setServicesOpen(false)
+        setInsuranceOpen(false)
       }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white backdrop-blur supports-[backdrop-filter]:bg-white/95">
-      <div className="container flex h-20 items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link href="/" className="flex items-center space-x-2" aria-label="Disaster Recovery Homepage">
-            <Image
-              src="/logos/3D-Disaster-Recovery-Logo.png"
-              alt="Disaster Recovery Brisbane - IICRC Master Restorer"
-              width={60}
-              height={60}
-              priority
-              className="h-14 w-auto"
-            />
-          </Link>
-          <span className="text-xl font-bold text-gray-900 hidden sm:block">Disaster Recovery</span>
-        </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-8" aria-label="Main Navigation">
-          {/* Services Dropdown */}
-          <div className="relative" onMouseEnter={() => handleMouseEnter("services")} onMouseLeave={handleMouseLeave}>
-            <button className="text-sm font-medium transition-colors hover:text-red-600 flex items-center gap-1">
-              Services <ChevronDown className="h-4 w-4" />
-            </button>
-            {activeDropdown === "services" && (
-              <div
-                className="absolute top-full left-0 mt-2 w-72 bg-white border border-gray-200 rounded-lg shadow-lg py-2 max-h-96 overflow-y-auto"
-                onMouseEnter={() => handleMouseEnter("services")}
-                onMouseLeave={handleMouseLeave}
-              >
-                <Link
-                  href="/services/water-damage-restoration"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Water Damage Restoration
-                </Link>
-                <Link
-                  href="/services/mould-remediation"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Mould Remediation
-                </Link>
-                <Link
-                  href="/services/fire-damage-restoration"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Fire Damage Restoration
-                </Link>
-                <Link
-                  href="/services/storm-damage-restoration"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Storm Damage Restoration
-                </Link>
-                <Link
-                  href="/services/sewage-remediation"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Sewage Remediation
-                </Link>
-                <Link
-                  href="/services/flood-water-restoration"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Flood Water Restoration
-                </Link>
-                <Link
-                  href="/services/burst-pipe-restoration"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Burst Pipe Restoration
-                </Link>
-                <Link
-                  href="/services/commercial-water-damage"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Commercial Water Damage
-                </Link>
-                <Link
-                  href="/services/24-7-emergency-water-damage"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  24/7 Emergency Response
-                </Link>
-              </div>
-            )}
+    <header className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center">
+            <a href="/" className="text-xl font-bold text-foreground">
+              Disaster Recovery
+            </a>
           </div>
 
-          {/* Locations Dropdown */}
-          <div className="relative" onMouseEnter={() => handleMouseEnter("locations")} onMouseLeave={handleMouseLeave}>
-            <button className="text-sm font-medium transition-colors hover:text-red-600 flex items-center gap-1">
-              Locations <ChevronDown className="h-4 w-4" />
-            </button>
-            {activeDropdown === "locations" && (
-              <div
-                className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg py-2"
-                onMouseEnter={() => handleMouseEnter("locations")}
-                onMouseLeave={handleMouseLeave}
+          {/* Desktop Navigation */}
+          <nav ref={navRef} className="hidden md:flex items-center gap-1">
+            {/* Services */}
+            <div className="relative">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setServicesOpen(!servicesOpen)
+                  setInsuranceOpen(false)
+                }}
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-foreground transition-colors"
               >
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">Brisbane</div>
-                <Link
-                  href="/locations/hamilton"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
+                Services
+                <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {servicesOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-1 w-[280px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  Hamilton
-                </Link>
-                <Link
-                  href="/locations/ascot"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Ascot
-                </Link>
-                <Link
-                  href="/locations/new-farm"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  New Farm
-                </Link>
-                <Link
-                  href="/locations/brisbane"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  All Brisbane Suburbs
-                </Link>
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase mt-2">Ipswich</div>
-                <Link
-                  href="/locations/ipswich"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  All Ipswich Suburbs
-                </Link>
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase mt-2">Logan</div>
-                <Link
-                  href="/locations/logan"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  All Logan Suburbs
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Insurance Dropdown */}
-          <div className="relative" onMouseEnter={() => handleMouseEnter("insurance")} onMouseLeave={handleMouseLeave}>
-            <button className="text-sm font-medium transition-colors hover:text-red-600 flex items-center gap-1">
-              Insurance <ChevronDown className="h-4 w-4" />
-            </button>
-            {activeDropdown === "insurance" && (
-              <div
-                className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg py-2 max-h-96 overflow-y-auto"
-                onMouseEnter={() => handleMouseEnter("insurance")}
-                onMouseLeave={handleMouseLeave}
-              >
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase">Residential Insurance</div>
-                <Link
-                  href="/insurance/allianz"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Allianz
-                </Link>
-                <Link
-                  href="/insurance/suncorp"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Suncorp
-                </Link>
-                <Link
-                  href="/insurance/racq"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  RACQ
-                </Link>
-                <Link
-                  href="/insurance/aami"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  AAMI
-                </Link>
-                <Link
-                  href="/insurance/nrma"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  NRMA Insurance
-                </Link>
-                <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase mt-2">
-                  Commercial Insurance
-                </div>
-                <Link
-                  href="/insurance/qbe"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  QBE Insurance
-                </Link>
-                <Link
-                  href="/insurance/vero"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Vero Insurance
-                </Link>
-                <Link
-                  href="/insurance/zurich"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-red-600"
-                >
-                  Zurich Insurance
-                </Link>
-              </div>
-            )}
-          </div>
-
-          <Link href="/about-phil-mcgurk" className="text-sm font-medium transition-colors hover:text-red-600">
-            About
-          </Link>
-          <Link href="/contact" className="text-sm font-medium transition-colors hover:text-red-600">
-            Contact
-          </Link>
-        </nav>
-
-        <div className="flex items-center gap-4">
-          <Button className="hidden md:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white" asChild>
-            <Link href="tel:1300309361">
-              <Phone className="h-4 w-4" />
-              1300 309 361
-            </Link>
-          </Button>
-
-          {/* Mobile Menu */}
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="outline" size="icon" aria-label="Open Menu">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col gap-4 mt-8" aria-label="Mobile Navigation">
-                <div className="flex flex-col gap-2">
-                  <span className="text-sm font-semibold text-gray-500">Services</span>
-                  <Link href="/services/water-damage-restoration" className="text-base pl-4" onClick={() => setIsOpen(false)}>
-                    Water Damage
-                  </Link>
-                  <Link href="/services/fire-damage-restoration" className="text-base pl-4" onClick={() => setIsOpen(false)}>
-                    Fire Damage
-                  </Link>
-                  <Link href="/services/mould-remediation" className="text-base pl-4" onClick={() => setIsOpen(false)}>
+                  <a
+                    href="/services/water-damage-restoration"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-blue-100 transition-colors rounded-md"
+                  >
+                    Water Damage Restoration
+                  </a>
+                  <a
+                    href="/services/mould-remediation"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
                     Mould Remediation
-                  </Link>
-                  <Link href="/services/storm-damage-restoration" className="text-base pl-4" onClick={() => setIsOpen(false)}>
-                    Storm Damage
-                  </Link>
+                  </a>
+                  <a
+                    href="/services/fire-damage-restoration"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
+                    Fire Damage Restoration
+                  </a>
+                  <a
+                    href="/services/storm-damage-restoration"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
+                    Storm Damage Restoration
+                  </a>
+                  <a
+                    href="/services/sewage-remediation"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
+                    Sewage Remediation
+                  </a>
+                  <a
+                    href="/services/flood-water-restoration"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
+                    Flood Water Restoration
+                  </a>
+                  <a
+                    href="/services/burst-pipe-restoration"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
+                    Burst Pipe Restoration
+                  </a>
+                  <a
+                    href="/services/commercial-water-damage"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
+                    Commercial Water Damage
+                  </a>
+                  <a
+                    href="/services/emergency-response"
+                    className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                  >
+                    24/7 Emergency Response
+                  </a>
                 </div>
+              )}
+            </div>
 
-                <div className="flex flex-col gap-2 mt-4">
-                  <span className="text-sm font-semibold text-gray-500">Locations</span>
-                  <Link href="/locations/brisbane" className="text-base pl-4" onClick={() => setIsOpen(false)}>
-                    Brisbane
-                  </Link>
-                  <Link href="/locations/ipswich" className="text-base pl-4" onClick={() => setIsOpen(false)}>
-                    Ipswich
-                  </Link>
-                  <Link href="/locations/logan" className="text-base pl-4" onClick={() => setIsOpen(false)}>
-                    Logan
-                  </Link>
+            {/* Insurance */}
+            <div className="relative">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setInsuranceOpen(!insuranceOpen)
+                  setServicesOpen(false)
+                }}
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-foreground transition-colors"
+              >
+                Insurance
+                <ChevronDown className={`h-4 w-4 transition-transform ${insuranceOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {insuranceOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-1 w-[280px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Residential Insurance Section */}
+                  <div className="mb-4">
+                    <h3 className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                      RESIDENTIAL INSURANCE
+                    </h3>
+                    <div className="space-y-1">
+                      <a
+                        href="/insurance/allianz"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        Allianz
+                      </a>
+                      <a
+                        href="/insurance/suncorp"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        Suncorp
+                      </a>
+                      <a
+                        href="/insurance/racq"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        RACQ
+                      </a>
+                      <a
+                        href="/insurance/aami"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        AAMI
+                      </a>
+                      <a
+                        href="/insurance/nrma"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        NRMA Insurance
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Commercial Insurance Section */}
+                  <div>
+                    <h3 className="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">
+                      COMMERCIAL INSURANCE
+                    </h3>
+                    <div className="space-y-1">
+                      <a
+                        href="/insurance/qbe"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        QBE Insurance
+                      </a>
+                      <a
+                        href="/insurance/vero"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        Vero Insurance
+                      </a>
+                      <a
+                        href="/insurance/zurich"
+                        className="block px-3 py-2 text-sm text-gray-900 hover:bg-slate-100 transition-colors rounded-md"
+                      >
+                        Zurich Insurance
+                      </a>
+                    </div>
+                  </div>
                 </div>
+              )}
+            </div>
 
-                <Link href="/insurance" className="text-lg font-medium mt-4" onClick={() => setIsOpen(false)}>
-                  Insurance
-                </Link>
-                <Link href="/about-phil-mcgurk" className="text-lg font-medium" onClick={() => setIsOpen(false)}>
-                  About
-                </Link>
-                <Link href="/contact" className="text-lg font-medium" onClick={() => setIsOpen(false)}>
-                  Contact
-                </Link>
-                <Button className="mt-4 bg-red-600 hover:bg-red-700 text-white" asChild>
-                  <Link href="tel:1300309361">
-                    <Phone className="mr-2 h-4 w-4" />
-                    1300 309 361
-                  </Link>
-                </Button>
-              </nav>
-            </SheetContent>
-          </Sheet>
+            {/* Locations */}
+            <a
+              href="/locations"
+              className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-foreground transition-colors"
+            >
+              Locations
+            </a>
+
+            {/* About */}
+            <a
+              href="/about"
+              className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-foreground transition-colors"
+            >
+              About
+            </a>
+
+            {/* Contact */}
+            <a
+              href="/contact"
+              className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-foreground transition-colors"
+            >
+              Contact
+            </a>
+          </nav>
+
+          {/* Phone Button */}
+          <div className="flex items-center gap-4">
+            <Button
+              asChild
+              className="bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg transition-all duration-200 rounded-md px-4 py-2"
+            >
+              <a href="tel:+611300309361" className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                <span className="font-semibold">+61 1300 309 361</span>
+              </a>
+            </Button>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 text-slate-700 hover:text-foreground"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t bg-white py-4">
+            <nav className="flex flex-col gap-2">
+              <a
+                href="#services"
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Services
+              </a>
+              <a
+                href="/locations"
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Locations
+              </a>
+              <a
+                href="#insurance"
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Insurance
+              </a>
+              <a
+                href="/water-damage-restoration"
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Water Damage Restoration
+              </a>
+              <a
+                href="/about"
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a
+                href="/contact"
+                className="px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )
 }
+

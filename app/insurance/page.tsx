@@ -1,414 +1,473 @@
-import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Shield, FileCheck, CheckCircle2, AlertCircle, Users, Clock, Phone} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { ClaimsProcess } from '@/components/insurance/ClaimsProcess';
-import { CoveredServices } from '@/components/insurance/CoveredServices';
-
-export const metadata: Metadata = {
-  title: 'Insurance Claims Assistance | All Major Australian Insurers | Direct Billing Available',
-  description: 'Expert insurance claims assistance for disaster recovery. Work with NRMA, Suncorp, AAMI, QBE, Allianz and all major Australian insurers. Direct billing available.',
-  keywords: [
-    'insurance claims assistance',
-    'disaster recovery insurance',
-    'NRMA insurance claims',
-    'Suncorp insurance claims',
-    'AAMI insurance claims',
-    'direct insurance billing',
-    'insurance approved contractors',
-    'water damage insurance',
-    'fire damage insurance',
-    'storm damage insurance',
-    'mould insurance coverage',
-    'insurance claim documentation',
-    'restoration insurance claims'
-  ],
-  openGraph: {
-    title: 'Insurance Claims Assistance | All Major Australian Insurers',
-    description: 'Expert help with disaster recovery insurance claims. Direct billing available. Work with all major Australian insurance companies.',
-    type: 'website',
-    images: ['/images/optimized/process/3d-assessment.webp'] },
-  alternates: {
-    canonical: 'https://disasterrecovery.com.au/insurance' }
-};
-
-const majorInsurers = [
-  { name: 'NRMA Insurance', href: '/insurance/nrma', logo: 'nrma' },
-  { name: 'Suncorp', href: '/insurance/suncorp', logo: 'suncorp' },
-  { name: 'AAMI', href: '/insurance/aami', logo: 'aami' },
-  { name: 'QBE Insurance', href: '/insurance/qbe', logo: 'qbe' },
-  { name: 'Allianz', href: '/insurance/allianz', logo: 'allianz' },
-  { name: 'CGU Insurance', href: '/insurance/cgu', logo: 'cgu' },
-  { name: 'GIO', href: '/insurance/gio', logo: 'gio' },
-  { name: 'Budget Direct', href: '/insurance/budget-direct', logo: 'budget-direct' },
-  { name: 'RACV', href: '/insurance/racv', logo: 'racv' },
-  { name: 'RAA', href: '/insurance/raa', logo: 'raa' },
-  { name: 'RAC', href: '/insurance/rac', logo: 'rac' },
-  { name: 'RACQ', href: '/insurance/racq', logo: 'racq' }
-];
-
-const claimTypes = [
-  {
-    title: 'Water Damage Claims',
-    description: 'Burst pipes, appliance leaks, storm flooding, and water extraction services',
-    coverage: 'Typically covered when sudden and accidental',
-    icon: '💧'
-  },
-  {
-    title: 'Fire & Smoke Damage',
-    description: 'Structural fire damage, smoke cleanup, soot removal, and contents restoration',
-    coverage: 'Usually fully covered under comprehensive policies',
-    icon: '🔥'
-  },
-  {
-    title: 'Storm Damage',
-    description: 'Wind damage, hail damage, fallen trees, and emergency repairs',
-    coverage: 'Covered under most home and contents policies',
-    icon: '🌪️'
-  },
-  {
-    title: 'Mould Remediation',
-    description: 'Mould removal following water damage or sudden moisture events',
-    coverage: 'Coverage depends on cause - sudden events usually covered',
-    icon: '🦠'
-  }
-];
-
-const claimsProcess = [
-  {
-    step: 1,
-    title: 'Emergency Contact',
-    description: 'Call us immediately after damage occurs. We coordinate with your insurer.',
-    action: 'Call Get Help Now'
-  },
-  {
-    step: 2,
-    title: 'Initial Assessment',
-    description: 'Our certified technicians assess damage and document everything for your claim.',
-    action: 'Professional documentation'
-  },
-  {
-    step: 3,
-    title: 'Insurance Coordination',
-    description: 'We liaise with your insurance company and adjuster throughout the process.',
-    action: 'Direct insurance communication'
-  },
-  {
-    step: 4,
-    title: 'Restoration Work',
-    description: 'Complete restoration work with detailed progress reports to your insurer.',
-    action: 'Professional restoration'
-  }
-];
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Phone, CheckCircle, FileText, Shield, Clock, AlertCircle } from 'lucide-react'
+import { Footer } from '@/components/footer'
+import { insuranceCompanies, getInsuranceByType } from '@/lib/insurance-data'
+import Link from 'next/link'
 
 export default function InsurancePage() {
-  return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 md:py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            {/* Trust Badge */}
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <Shield className="h-12 w-12 text-blue-400" />
-              <span className="text-lg font-semibold bg-blue-700/50 px-4 py-2 rounded-full">
-                Approved Restoration Provider
-              </span>
-            </div>
+  const residentialInsurers = getInsuranceByType('residential')
+  const commercialInsurers = getInsuranceByType('commercial')
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center">
+  return (
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800">
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center text-white space-y-6">
+            <div className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold mb-4">
+              Approved Restoration Provider
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
               Insurance Claims Assistance
             </h1>
-
-            <p className="text-xl md:text-2xl text-center mb-10 text-blue-100">
-              Expert help navigating disaster recovery insurance claims with all major Australian insurers.
-              Direct billing available - no upfront costs for approved claims.
+            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+              Expert help navigating disaster recovery insurance claims with all major Australian insurers. Direct billing available - no upfront costs for approved claims.
             </p>
-
-            {/* Key Benefits Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-              <Card className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 text-center">
-                <FileCheck className="w-10 h-10 text-blue-400 mx-auto mb-3" />
-                <h3 className="font-bold text-lg mb-2">Complete Documentation</h3>
-                <p className="text-sm text-blue-100">Detailed reports and photos</p>
-              </Card>
-              <Card className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 text-center">
-                <Users className="w-10 h-10 text-green-400 mx-auto mb-3" />
-                <h3 className="font-bold text-lg mb-2">Direct Billing</h3>
-                <p className="text-sm text-blue-100">No upfront costs</p>
-              </Card>
-              <Card className="bg-white/10 backdrop-blur-sm border border-white/20 p-6 text-center">
-                <Shield className="w-10 h-10 text-orange-400 mx-auto mb-3" />
-                <h3 className="font-bold text-lg mb-2">Claims Support</h3>
-                <p className="text-sm text-blue-100">Full process assistance</p>
-              </Card>
+            <div className="flex flex-wrap justify-center gap-4 pt-6">
+              <div className="flex items-center space-x-2 text-sm bg-white/10 backdrop-blur-sm p-3 rounded-lg">
+                <FileText className="h-5 w-5" />
+                <span>Complete Documentation</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm bg-white/10 backdrop-blur-sm p-3 rounded-lg">
+                <Shield className="h-5 w-5" />
+                <span>Direct Billing</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm bg-white/10 backdrop-blur-sm p-3 rounded-lg">
+                <CheckCircle className="h-5 w-5" />
+                <span>Claims Support</span>
+              </div>
             </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
               <a
-                href="tel:1300309361"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-xl"
+                href="tel:+611300309361"
+                className="inline-flex items-center justify-center h-10 rounded-md px-8 py-6 bg-white text-blue-600 hover:bg-gray-100 font-semibold text-lg"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 Call: 1300 309 361
               </a>
-              <a
-                href="/contact?insurance=true"
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg hover:bg-blue-700 transition-all border-2 border-white/30"
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold text-lg px-8 py-6 bg-transparent"
               >
                 Start Your Claim
-              </a>
+              </Button>
             </div>
-
-            {/* Emergency Notice */}
-            <div className="mt-8 text-center">
-              <p className="text-blue-200 mb-2">Emergency? We're available 24/7</p>
-            </div>
+            <p className="text-sm text-blue-200 pt-4">
+              Emergency? We're available 24/7
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Major Insurance Companies */}
-      <section className="py-16">
+      {/* Insurance Companies Section */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            We Work With All Major Australian Insurers
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              We Work With All Major Australian Insurers
+            </h2>
+          </div>
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-              {majorInsurers.map((insurer, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {insuranceCompanies.map((insurer) => (
                 <Link
-                  key={index}
-                  href={insurer.href}
+                  key={insurer.id}
+                  href={`/insurance/${insurer.id}`}
                   className="group"
                 >
-                  <Card className="p-6 text-center hover:shadow-lg transition-shadow group-hover:bg-blue-50">
-                    <div className="h-16 flex items-center justify-center mb-3">
-                      <span className="text-2xl font-bold text-blue-600 group-hover:text-blue-800">
-                        {insurer.name.split(' ')[0]}
-                      </span>
-                    </div>
-                    <h3 className="font-semibold text-sm">{insurer.name}</h3>
+                  <Card className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 text-center h-full">
+                    <CardHeader>
+                      <CardTitle className="text-lg font-bold group-hover:text-blue-600 transition-colors">
+                        {insurer.name}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-gray-600">{insurer.fullName}</p>
+                    </CardContent>
                   </Card>
                 </Link>
               ))}
             </div>
-            <div className="text-center">
-              <p className="text-gray-700 mb-4">
+            <div className="text-center mt-8">
+              <p className="text-gray-600 mb-4">
                 Don't see your insurer? We work with all Australian insurance companies.
               </p>
-              <Link
-                href="/contact"
-                className="text-blue-600 font-medium hover:text-blue-800"
-              >
-                Contact us about your specific insurer →
-              </Link>
+              <Button variant="outline" asChild>
+                <a href="#contact">Contact us about your specific insurer →</a>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Covered Services Component */}
-      <CoveredServices providerName="your insurer" />
-
-      {/* Claims Process Component */}
-      <ClaimsProcess providerName="your insurance company" />
-
-      {/* Documentation We Provide */}
-      <section className="py-16 bg-blue-50">
+      {/* Services Covered Section */}
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Insurance Documentation We Provide
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-bold mb-6">Assessment & Documentation</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Pre-loss condition photographs and videos</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Detailed damage assessment reports</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Moisture readings and thermal imaging</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Scope of work and repair estimates</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Material lists and labour breakdowns</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-6">Progress & Completion</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Daily work progress reports</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Equipment placement diagrams</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Moisture monitoring logs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Final completion certificates</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-green-600 mr-3 mt-0.5" />
-                    <span>Post-remediation verification tests</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Services Covered by Insurance
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              We handle all types of disaster recovery and restoration services covered under your insurance policy.
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* Benefits of Working With Us */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Why Choose Our Insurance Claims Service
-          </h2>
           <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="p-6 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Insurance Approved</h3>
-                <p className="text-gray-700">
-                  Pre-approved by major insurers with established relationships and preferred provider status
-                </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Water Damage Restoration</CardTitle>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Burst pipes, flooding, appliance leaks, storm water intrusion
+                  </p>
+                  <p className="text-xs text-blue-600 font-semibold mt-2">
+                    Typically covered when sudden and accidental
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm font-semibold mb-2">Services Include:</p>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>• Emergency water extraction</li>
+                    <li>• Structural drying</li>
+                    <li>• Dehumidification</li>
+                    <li>• Moisture monitoring</li>
+                    <li>• Damage repair</li>
+                  </ul>
+                </CardContent>
               </Card>
-              <Card className="p-6 text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <FileCheck className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Expert Documentation</h3>
-                <p className="text-gray-700">
-                  Comprehensive documentation that meets insurance requirements and maximizes claim approval
-                </p>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Fire & Smoke Damage</CardTitle>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Fire damage, smoke cleanup, soot removal, odor elimination
+                  </p>
+                  <p className="text-xs text-blue-600 font-semibold mt-2">
+                    Usually fully covered under comprehensive policies
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm font-semibold mb-2">Services Include:</p>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>• Smoke & soot cleanup</li>
+                    <li>• Odor removal</li>
+                    <li>• Structural repairs</li>
+                    <li>• Content restoration</li>
+                    <li>• Board-up services</li>
+                  </ul>
+                </CardContent>
               </Card>
-              <Card className="p-6 text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Direct Billing</h3>
-                <p className="text-gray-700">
-                  No upfront costs - we bill your insurance company directly for approved claims
-                </p>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Storm Damage</CardTitle>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Wind damage, hail damage, fallen trees, emergency repairs
+                  </p>
+                  <p className="text-xs text-blue-600 font-semibold mt-2">
+                    Covered under most home insurance policies
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm font-semibold mb-2">Services Include:</p>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>• Emergency tarping</li>
+                    <li>• Tree removal</li>
+                    <li>• Roof repairs</li>
+                    <li>• Window replacement</li>
+                    <li>• Structural restoration</li>
+                  </ul>
+                </CardContent>
               </Card>
-              <Card className="p-6 text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Clock className="w-8 h-8 text-blue-700" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Claims Advocacy</h3>
-                <p className="text-gray-700">
-                  We advocate for you throughout the claims process, ensuring fair treatment and full coverage
-                </p>
-              </Card>
-              <Card className="p-6 text-center">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <AlertCircle className="w-8 h-8 text-red-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Emergency Response</h3>
-                <p className="text-gray-700">
-                  24/7 emergency response to prevent further damage and document initial conditions immediately
-                </p>
-              </Card>
-              <Card className="p-6 text-center">
-                <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-8 h-8 text-indigo-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-3">Guaranteed Work</h3>
-                <p className="text-gray-700">
-                  All restoration work is guaranteed and warranty-backed for your peace of mind
-                </p>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Mould Remediation</CardTitle>
+                  <p className="text-sm text-gray-600 mt-2">
+                    Mould removal following water damage or moisture events
+                  </p>
+                  <p className="text-xs text-blue-600 font-semibold mt-2">
+                    Coverage depends on cause - sudden events usually covered
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm font-semibold mb-2">Services Include:</p>
+                  <ul className="space-y-1 text-sm text-gray-700">
+                    <li>• Mould inspection</li>
+                    <li>• Containment</li>
+                    <li>• Safe removal</li>
+                    <li>• HEPA air filtration</li>
+                    <li>• Prevention measures</li>
+                  </ul>
+                </CardContent>
               </Card>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Important Information */}
-      <section className="py-16 bg-yellow-50 border-t-4 border-blue-500">
+      {/* Coverage Information */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-start">
-              <AlertCircle className="w-8 h-8 text-yellow-600 mr-4 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-xl font-bold text-yellow-800 mb-3">
-                  Important Information About Insurance Coverage
-                </h3>
-                <div className="space-y-3 text-yellow-800">
-                  <p>
-                    <strong>Time is Critical:</strong> Contact us immediately after damage occurs. 
-                    Delays can affect coverage and lead to secondary damage.
-                  </p>
-                  <p>
-                    <strong>Coverage Varies:</strong> Not all damage is covered by insurance. 
-                    Sudden and accidental events are typically covered, while gradual damage may not be.
-                  </p>
-                  <p>
-                    <strong>Document Everything:</strong> Take photos and videos before we arrive, 
-                    but don't attempt cleanup as this may affect your claim.
-                  </p>
-                  <p>
-                    <strong>Professional Assessment Required:</strong> Insurance companies typically 
-                    require professional assessment and restoration for coverage approval.
-                  </p>
-                </div>
-              </div>
+            <Card className="border-blue-200 bg-blue-50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-blue-900">
+                  <AlertCircle className="h-6 w-6" />
+                  Important Coverage Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-800">
+                  Coverage varies by policy. Sudden and accidental damage is typically covered by your insurer. Gradual damage or lack of maintenance may not be covered. Contact us immediately after damage occurs for best coverage outcomes. We'll help determine if your damage is covered.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              How We Handle Your Insurance Claim
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              We make the insurance claims process simple and stress-free. Here's our step-by-step approach.
+            </p>
+          </div>
+          <div className="max-w-5xl mx-auto">
+            <div className="space-y-6">
+              {[
+                {
+                  step: 1,
+                  title: "Contact Us Immediately",
+                  description: "Call us as soon as damage occurs. We will guide you through the initial steps and coordinate with your insurer.",
+                  detail: "Call 1300 309 361 or submit online form"
+                },
+                {
+                  step: 2,
+                  title: "Professional Assessment",
+                  description: "Our IICRC Master Restorer arrives on-site to assess damage, take photos, and create detailed documentation.",
+                  detail: "Comprehensive damage assessment"
+                },
+                {
+                  step: 3,
+                  title: "Insurance Coordination",
+                  description: "We communicate directly with your insurance adjuster, provide all required documentation, and handle the claim process.",
+                  detail: "Direct insurer communication"
+                },
+                {
+                  step: 4,
+                  title: "Restoration Work",
+                  description: "Approved restoration work begins. We provide regular updates to you and your insurer throughout the process.",
+                  detail: "Professional restoration services"
+                },
+                {
+                  step: 5,
+                  title: "Claim Completion",
+                  description: "Final inspection, completion certificate, and direct billing to your insurance company. No upfront costs.",
+                  detail: "Direct billing to insurer"
+                }
+              ].map((item) => (
+                <Card key={item.step} className="border-l-4 border-l-blue-600">
+                  <CardContent className="p-6">
+                    <div className="flex gap-6">
+                      <div className="shrink-0">
+                        <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xl">
+                          {item.step}
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                        <p className="text-gray-700 mb-2">{item.description}</p>
+                        <p className="text-sm text-blue-600 font-semibold">{item.detail}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <Shield className="w-16 h-16 text-blue-300 mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Need Help With Your Insurance Claim?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Don't navigate the claims process alone. Our insurance experts are ready to help
-            you get the coverage you deserve.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:1300309361"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-xl"
-            >
-              <Phone className="w-6 h-6 mr-3" />
-              Call: 1300 309 361
-            </a>
-            <a
-              href="/contact?insurance=true"
-              className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-lg font-bold text-lg hover:bg-blue-700 transition-all border-2 border-white/30"
-            >
-              Start Insurance Claim
-            </a>
+      {/* Documentation Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Complete Documentation Provided
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              We provide all documentation required by your insurance company including detailed damage assessments, moisture readings, photographic evidence, scope of work, and progress reports. Our comprehensive documentation helps ensure smooth claim approval.
+            </p>
+          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Assessment & Documentation</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>• Pre-loss condition photographs and videos</li>
+                    <li>• Detailed damage assessment reports</li>
+                    <li>• Moisture readings and thermal imaging</li>
+                    <li>• Scope of work and repair estimates</li>
+                    <li>• Material lists and labour breakdowns</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl">Progress & Completion</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>• Daily work progress reports</li>
+                    <li>• Equipment placement diagrams</li>
+                    <li>• Moisture monitoring logs</li>
+                    <li>• Final completion certificates</li>
+                    <li>• Post-remediation verification tests</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
-    </div>
-  );
+
+      {/* Why Choose Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Why Choose Our Insurance Claims Service
+            </h2>
+          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: Shield,
+                  title: "Insurance Approved",
+                  description: "Pre-approved by major insurers with established relationships and preferred provider status"
+                },
+                {
+                  icon: FileText,
+                  title: "Expert Documentation",
+                  description: "Comprehensive documentation that meets insurance requirements and maximizes claim approval"
+                },
+                {
+                  icon: CheckCircle,
+                  title: "Direct Billing",
+                  description: "No upfront costs - we bill your insurance company directly for approved claims"
+                },
+                {
+                  icon: Shield,
+                  title: "Claims Advocacy",
+                  description: "We advocate for you throughout the claims process, ensuring fair treatment and full coverage"
+                },
+                {
+                  icon: Clock,
+                  title: "Emergency Response",
+                  description: "24/7 emergency response to prevent further damage and document initial conditions immediately"
+                },
+                {
+                  icon: CheckCircle,
+                  title: "Guaranteed Work",
+                  description: "All restoration work is guaranteed and warranty-backed for your peace of mind"
+                }
+              ].map((item, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex items-center gap-3 mb-2">
+                      <item.icon className="h-6 w-6 text-blue-600" />
+                      <CardTitle className="text-lg">{item.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-700">{item.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Important Information Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-orange-200 bg-orange-50">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-orange-900">
+                  <AlertCircle className="h-6 w-6" />
+                  Important Information About Insurance Coverage
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <p className="font-semibold text-orange-900 mb-1">Time is Critical:</p>
+                  <p className="text-gray-800">Contact us immediately after damage occurs. Delays can affect coverage and lead to secondary damage.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-orange-900 mb-1">Coverage Varies:</p>
+                  <p className="text-gray-800">Not all damage is covered by insurance. Sudden and accidental events are typically covered, while gradual damage may not be.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-orange-900 mb-1">Document Everything:</p>
+                  <p className="text-gray-800">Take photos and videos before we arrive, but don't attempt cleanup as this may affect your claim.</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-orange-900 mb-1">Professional Assessment Required:</p>
+                  <p className="text-gray-800">Insurance companies typically require professional assessment and restoration for coverage approval.</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <h2 className="text-3xl md:text-5xl font-bold">
+              Need Help With Your Insurance Claim?
+            </h2>
+            <p className="text-xl text-blue-100">
+              Don't navigate the claims process alone. Our insurance experts are ready to help you get the coverage you deserve.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="tel:+611300309361"
+                className="inline-flex items-center justify-center h-10 rounded-md px-8 py-6 bg-white text-blue-600 hover:bg-gray-100 font-semibold text-lg"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Call: 1300 309 361
+              </a>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold text-lg px-8 py-6 bg-transparent"
+              >
+                Start Insurance Claim
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  )
 }
+

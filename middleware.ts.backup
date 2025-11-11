@@ -1,2 +1,0 @@
-// This is a backup of the current middleware.ts
-// Created to test if removing auth requirements fixes the 401 error

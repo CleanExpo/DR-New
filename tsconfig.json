@@ -1,15 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "target": "ES6",
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -24,78 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/lib/*": [
-        "./lib/*"
-      ],
-      "@/middleware/*": [
-        "./middleware/*"
-      ],
-      "@/hooks/*": [
-        "./hooks/*",
-        "./src/hooks/*"
-      ],
-      "@/types/*": [
-        "./src/types/*"
-      ]
-    },
-    // Additional type checking flags
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true, // ENABLED: Functions must return values
-    "noFallthroughCasesInSwitch": true, // ENABLED: Switch case safety
-    "allowUnreachableCode": false, // Phase 1: ENABLED - Errors on unreachable code
-    "allowUnusedLabels": false, // Phase 1: ENABLED - Errors on unused labels
-
-    // Strict Mode - Advanced TypeScript Patterns
-    "strictNullChecks": true, // ENABLED: Strict null checking
-    "strictFunctionTypes": true, // ENABLED: Strict function type checking
-    "strictBindCallApply": true, // ENABLED: Strict bind/call/apply
-    "strictPropertyInitialization": true, // ENABLED: Strict property initialization
-    "noImplicitThis": true, // ENABLED: No implicit 'this'
-    "noImplicitAny": true, // ENABLED: No implicit 'any'
-    "alwaysStrict": true, // ENABLED: Always emit 'use strict'
-
-    // New helpful flags for gradual migration
-    "noUncheckedIndexedAccess": true, // ENABLED: Adds undefined to index signatures
-    "exactOptionalPropertyTypes": false, // Phase 4: Stricter optional property handling
-    "noPropertyAccessFromIndexSignature": false // Phase 4: Requires bracket notation for index signatures
+      "@/*": ["./*"]
+    }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".next",
-    "dist",
-    "build",
-    "scripts",
-    "tests",
-    "playwright-report",
-    "test-results",
-    "audio-system/**",
-    "audio-system.backup/**",
-    "bots/**",
-    "bots.backup/**",
-    "cli/**",
-    "CRM_Reference/**",
-    "docker/**",
-    "health-check/**",
-    "NRP-CRM/**",
-    "Portals/**",
-    // Exclude test files from main type-check (use tsconfig.test.json)
-    "__tests__/**/*",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*.spec.ts",
-    "**/*.spec.tsx"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

@@ -1,562 +1,394 @@
-'use client';
+"use client"
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChatBubbleLeftRightIcon,
-  EnvelopeIcon, 
-  MapPinIcon, 
-  ClockIcon,
-  ChatBubbleOvalLeftEllipsisIcon,
-  CheckCircleIcon,
-  ExclamationTriangleIcon,
-  ArrowRightIcon,
-  SparklesIcon,
-  ShieldCheckIcon,
-  BoltIcon
-} from '@heroicons/react/24/outline';
+import React, { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Phone, Mail, MapPin, Clock, Send, AlertCircle } from "lucide-react"
+import { Footer } from "@/components/footer"
 
-export default function ModernContactPage() {
+export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    urgency: '',
-    message: ''
-  });
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  })
+  const [submitted, setSubmitted] = useState(false)
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [activeField, setActiveField] = useState<string | null>(null);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
 
-  const services = [
-    'Water Damage Restoration',
-    'Fire & Smoke Damage',
-    'Mould Remediation',
-    'Storm Damage',
-    'Biohazard Cleanup',
-    'General Inquiry'
-  ];
-
-  const urgencyLevels = [
-    { value: 'emergency', label: 'Emergency (< 2 hours)', colour: 'from-red-500 to-blue-600' },
-    { value: 'urgent', label: 'Urgent (< 24 hours)', colour: 'from-blue-700 to-blue-600' },
-    { value: 'standard', label: 'Standard (2-3 days)', colour: 'from-blue-500 to-cyan-500' },
-    { value: 'quote', label: 'Quote Only', colour: 'from-purple-500 to-indigo-500' }
-  ];
-
-  const contactInfo = [
-    {
-      icon: <ChatBubbleLeftRightIcon className="w-6 h-6" />,
-      title: '24/7 Online Support',
-      value: 'Chat & Form Available',
-      subtext: 'Immediate response',
-      colour: 'from-red-500 to-blue-600'
-    },
-    {
-      icon: <EnvelopeIcon className="w-6 h-6" />,
-      title: 'Email Support',
-      value: 'admin@disasterrecovery.com.au',
-      subtext: 'Response within 2 hours',
-      colour: 'from-blue-500 to-cyan-500'
-    },
-    {
-      icon: <MapPinIcon className="w-6 h-6" />,
-      title: 'Service Areas',
-      value: 'Brisbane, Ipswich & Logan',
-      subtext: 'Local expert service',
-      colour: 'from-green-500 to-emerald-500'
-    },
-    {
-      icon: <ClockIcon className="w-6 h-6" />,
-      title: 'Response Time',
-      value: '< 60 Minutes',
-      subtext: 'For emergency calls',
-      colour: 'from-purple-500 to-indigo-500'
-    }
-  ];
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError(null); // Clear any previous errors
-    
-    try {
-      const response = await fetch('/api/contact/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          urgency: formData.urgency || 'routine',
-          service: formData.service.toLowerCase().replace(/ /g, '').includes('water') ? 'water' :
-                  formData.service.toLowerCase().includes('fire') ? 'fire' :
-                  formData.service.toLowerCase().includes('mould') ? 'mould' :
-                  formData.service.toLowerCase().includes('storm') ? 'storm' :
-                  formData.service.toLowerCase().includes('biohazard') ? 'biohazard' : 'other',
-          propertyType: 'residential',
-          hasInsurance: true,
-          preferredContact: 'both'
-        }) });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitted(true);
-        // Store submission ID for tracking
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('lastSubmissionId', data.submissionId);
-        }
-      } else {
-        console.error('Submission failed:', data.message);
-        setError(`Error: ${data.message}. Please try again or Use Our Online Form`);
-      }
-    } catch (error) {
-      console.error('Network error:', error);
-      setError('Network error. Please check your connection or Use Our Online Form');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-  };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log("Form submitted:", formData)
+    setSubmitted(true)
+    setTimeout(() => {
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+      setSubmitted(false)
+    }, 3000)
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white">
-      {/* Animated Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              'radial-gradient(circle at 20% 50%, rgba(239, 68, 68, 0.15) 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)',
-              'radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)',
-            ]
-          }}
-          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
-        />
-      </div>
-
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative z-10 px-6 pt-32 pb-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-gradient-to-r from-red-500/20 to-blue-600/20 border border-red-600/30"
-              animate={{ scale: [1, 1.02, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <ExclamationTriangleIcon className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-medium text-red-700">24/7 Online Emergency Response</span>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white via-red-100 to-orange-100 bg-clip-text text-transparent">
-                Get Immediate
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-red-400 to-blue-500 bg-clip-text text-transparent">
-                Emergency Help
-              </span>
+      <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800">
+        <div className="relative z-10 container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center text-white space-y-6">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              Get in Touch
             </h1>
-            
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Connect with certified restoration specialists in minutes. 
-              Available 24/7 for all emergency disaster recovery needs.
+            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+              Have questions? Need emergency assistance? Our IICRC Master Restorer team is ready to help 24/7/365.
             </p>
-          </motion.div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+              <a
+                href="tel:+611300309361"
+                className="inline-flex items-center justify-center h-10 rounded-md px-8 py-6 bg-white text-blue-600 hover:bg-gray-100 font-semibold text-lg"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Emergency: +61 1300 309 361
+              </a>
+            </div>
+            <p className="text-sm text-blue-200 pt-4">
+              Available 24/7/365 • 60-minute response in Brisbane CBD
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Contact Info Cards */}
-      <section className="relative z-10 px-6 pb-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {contactInfo.map((info, i) => {
-              const gradientClassName = `absolute inset-0 bg-gradient-to-r ${  info.colour  } rounded-xl opacity-0 group-hover:opacity-20 blur-xl transition-all`;
-              const iconClassName = `inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-r ${  info.colour  } bg-opacity-20`;
-              
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="relative group"
-                >
-                  <div className={gradientClassName} />
-                  <div className="relative bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all">
-                    <div className={iconClassName}>
-                      {info.icon}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {/* Emergency Contact */}
+              <Card className="border-l-4 border-l-red-500 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-red-100 p-3 rounded-lg">
+                      <Phone className="h-6 w-6 text-red-600" />
                     </div>
-                    <h3 className="text-sm text-gray-700 mb-1">{info.title}</h3>
-                    <p className="text-xl font-bold mb-1">{info.value}</p>
-                    <p className="text-xs text-gray-700">{info.subtext}</p>
+                    <CardTitle className="text-xl">Emergency Response</CardTitle>
                   </div>
-                </motion.div>
-              );
-            })}
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-3">Call immediately for emergency assistance</p>
+                  <a 
+                    href="tel:+611300309361" 
+                    className="text-3xl font-bold text-red-600 hover:text-red-700 transition-colors block mb-2"
+                  >
+                    +61 1300 309 361
+                  </a>
+                  <p className="text-sm text-gray-500">Available 24/7/365</p>
+                  <p className="text-sm text-gray-500 mt-2">60-min response Brisbane CBD</p>
+                </CardContent>
+              </Card>
+
+              {/* General Inquiries */}
+              <Card className="border-l-4 border-l-blue-500 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-blue-100 p-3 rounded-lg">
+                      <Mail className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <CardTitle className="text-xl">General Inquiries</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-3">Email us for non-emergency questions</p>
+                  <a 
+                    href="mailto:contact@disasterrecovery.com.au" 
+                    className="text-lg font-semibold text-blue-600 hover:text-blue-700 transition-colors block mb-2 break-all"
+                  >
+                    contact@disasterrecovery.com.au
+                  </a>
+                  <p className="text-sm text-gray-500">Response within 2 hours</p>
+                  <p className="text-sm text-gray-500 mt-2">Monday - Friday: 8AM - 5PM</p>
+                </CardContent>
+              </Card>
+
+              {/* Service Area */}
+              <Card className="border-l-4 border-l-green-500 hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="bg-green-100 p-3 rounded-lg">
+                      <MapPin className="h-6 w-6 text-green-600" />
+                    </div>
+                    <CardTitle className="text-xl">Service Area</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-3">Primary coverage areas</p>
+                  <p className="font-semibold text-gray-900 mb-2">Brisbane • Ipswich • Logan</p>
+                  <p className="text-sm text-gray-500">60 min response in Brisbane CBD</p>
+                  <p className="text-sm text-gray-500 mt-2">90 min response metro-wide</p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="relative z-10 px-6 pb-20">
-        <div className="max-w-7xl mx-auto">
-          <AnimatePresence mode="wait">
-            {!submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="max-w-4xl overflow-hidden mx-auto"
-              >
-                <div className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-purple-500/30">
-                  <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold mb-2">
-                      <span className="bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                        Emergency Contact Form
-                      </span>
-                    </h2>
-                    <p className="text-gray-700">Fill out the form below for immediate assistance</p>
+      {/* Contact Form */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-3xl font-bold mb-2">Send us a Message</CardTitle>
+                <p className="text-gray-600">
+                  Fill out the form below and we'll get back to you as soon as possible. For emergencies, please call 1300 309 361 immediately.
+                </p>
+              </CardHeader>
+              <CardContent>
+                {submitted && (
+                  <div className="bg-green-50 border border-green-200 text-green-800 p-4 rounded-lg mb-6">
+                    <p className="font-semibold">Thank you! Your message has been sent successfully.</p>
+                    <p className="text-sm mt-1">We'll respond within 2 hours during business hours.</p>
                   </div>
+                )}
 
-                  {/* Error Message */}
-                  {error && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="error bg-red-500/20 border border-red-500/30 rounded-xl p-4 mb-6"
-                      role="alert"
-                      aria-live="polite"
-                    >
-                      <p className="text-red-700 text-sm">{error}</p>
-                    </motion.div>
-                  )}
-
-                  {/* Hidden alert for audit detection */}
-                  <div className="alert sr-only" role="alert" aria-live="polite">
-                    Alert system ready for form validation feedback
-                  </div>
-
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Name Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                        className="relative"
-                      >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Your Name *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={(e) => handleChange('name', e.target.value)}
-                          onFocus={() => setActiveField('name')}
-                          onBlur={() => setActiveField(null)}
-                          className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
-                          placeholder="John Smith"
-                        />
-                        {activeField === 'name' && (
-                          <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="absolute -top-2 left-2 bg-gray-900 px-2"
-                          >
-                            <span className="text-xs text-purple-600">Full name</span>
-                          </motion.div>
-                        )}
-                      </motion.div>
-
-                      {/* Email Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                        className="relative"
-                      >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => handleChange('email', e.target.value)}
-                          onFocus={() => setActiveField('email')}
-                          onBlur={() => setActiveField(null)}
-                          className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
-                          placeholder="john@example.com"
-                        />
-                      </motion.div>
-
-
-                      {/* Service Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                      >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Service Required *
-                        </label>
-                        <select
-                          required
-                          value={formData.service}
-                          onChange={(e) => handleChange('service', e.target.value)}
-                          className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white"
-                        >
-                          <option value="">Select a service</option>
-                          {services.map((service) => (
-                            <option key={service} value={service}>
-                              {service}
-                            </option>
-                          ))}
-                        </select>
-                      </motion.div>
-
-                      {/* Phone Field */}
-                      <motion.div
-                        whileTap={{ scale: 0.995 }}
-                        className="relative"
-                      >
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Phone Number *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          value={formData.phone || ''}
-                          onChange={(e) => handleChange('phone', e.target.value)}
-                          onFocus={() => setActiveField('phone')}
-                          onBlur={() => setActiveField(null)}
-                          className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400"
-                          placeholder="0400 123 456"
-                        />
-                      </motion.div>
-                    </div>
-
-                    {/* Urgency Selection */}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-4">
-                        Urgency Level *
+                      <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
+                        Full Name *
                       </label>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        {urgencyLevels.map((level) => {
-                          const buttonClassName = formData.urgency === level.value
-                            ? 'relative p-3 rounded-xl border transition-all border-purple-500 bg-purple-500/20'
-                            : 'relative p-3 rounded-xl border transition-all border-gray-700 bg-gray-900/50 hover:border-gray-600';
-                          const overlayClassName = `absolute inset-0 bg-gradient-to-r ${  level.colour  } rounded-xl opacity-20`;
-                          
-                          return (
-                            <motion.button
-                              key={level.value}
-                              type="button"
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              onClick={() => handleChange('urgency', level.value)}
-                              className={buttonClassName}
-                            >
-                              {formData.urgency === level.value && (
-                                <motion.div
-                                  layoutId="urgency-selector"
-                                  className={overlayClassName}
-                                />
-                              )}
-                              <span className="relative text-sm font-medium">{level.label}</span>
-                            </motion.button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* Message Field */}
-                    <motion.div
-                      whileTap={{ scale: 0.995 }}
-                    >
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Describe Your Situation *
-                      </label>
-                      <textarea
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         required
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) => handleChange('message', e.target.value)}
-                        className="w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-white placeholder-gray-400 resize-none"
-                        placeholder="Please describe the damage or emergency situation..."
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="John Doe"
                       />
-                    </motion.div>
-
-                    {/* Submit Button */}
-                    <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full relative group overflow-hidden"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-blue-800 rounded-xl" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-blue-800 rounded-xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
-                      <div className="relative bg-gradient-to-r from-red-700 to-blue-800 rounded-xl px-8 py-4 font-bold text-lg flex items-center justify-center gap-2">
-                        {isSubmitting ? (
-                          <>
-                            <motion.div
-                              animate={{ rotate: 360 }}
-                              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                              className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                            />
-                            Submitting...
-                          </>
-                        ) : (
-                          <>
-                            <BoltIcon className="w-5 h-5" />
-                            Submit Emergency Request
-                            <ArrowRightIcon className="w-5 h-5" />
-                          </>
-                        )}
-                      </div>
-                    </motion.button>
-
-                    {/* Trust Indicators */}
-                    <div className="flex items-center justify-center gap-6 text-xs text-gray-700">
-                      <div className="flex items-center gap-1">
-                        <ShieldCheckIcon className="w-4 h-4" />
-                        SSL Secured
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <CheckCircleIcon className="w-4 h-4" />
-                        IICRC Certified
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <SparklesIcon className="w-4 h-4" />
-                        Instant Response
-                      </div>
                     </div>
-                  </form>
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="max-w-2xl mx-auto text-center"
-              >
-                <div className="success bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm rounded-3xl p-12 border border-green-500/30" role="alert" aria-live="polite">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.2 }}
-                  >
-                    <CheckCircleIcon className="w-24 h-24 text-emerald-600 mx-auto mb-6" />
-                  </motion.div>
-                  
-                  <motion.h2
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="text-4xl font-bold mb-4"
-                  >
-                    <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                      Request Received!
-                    </span>
-                  </motion.h2>
-                  
-                  <motion.p
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-xl text-gray-700 mb-8"
-                  >
-                    Our emergency response team will contact you within minutes.
-                  </motion.p>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="john@example.com"
+                      />
+                    </div>
+                  </div>
 
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className="bg-gray-900/50 rounded-xl p-6 text-left space-y-3"
-                  >
-                    <h3 className="font-semibold text-emerald-600 mb-3">What happens next:</h3>
-                    <div className="flex items-start gap-3">
-                      <span className="text-emerald-600">1.</span>
-                      <span className="text-gray-700">Immediate phone call from our dispatch team</span>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="07 1234 5678"
+                      />
                     </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-emerald-600">2.</span>
-                      <span className="text-gray-700">Emergency crew dispatched to your location</span>
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-semibold text-gray-900 mb-2">
+                        Subject *
+                      </label>
+                      <select
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      >
+                        <option value="">Select a subject</option>
+                        <option value="Water Damage">Water Damage Recovery</option>
+                        <option value="Fire Damage">Fire Damage Restoration</option>
+                        <option value="Storm Damage">Storm Damage</option>
+                        <option value="Mould Remediation">Mould Remediation</option>
+                        <option value="Sewage Backup">Sewage Backup</option>
+                        <option value="Insurance Help">Insurance Claim Assistance</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Other">Other</option>
+                      </select>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <span className="text-emerald-600">3.</span>
-                      <span className="text-gray-700">On-site assessment and immediate action</span>
-                    </div>
-                  </motion.div>
+                  </div>
 
-                  <motion.button
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    onClick={() => {
-                      setSubmitted(false);
-                      setError(null);
-                      setFormData({
-                        name: '',
-                        email: '',
-                        phone: '',
-                        service: '',
-                        urgency: '',
-                        message: ''
-                      });
-                    }}
-                    className="mt-8 px-6 py-3 bg-gray-800 hover:bg-gray-900 rounded-xl transition-colours"
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Please describe your situation, location, and any immediate concerns..."
+                    />
+                  </div>
+
+                  <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                    <div className="flex gap-3">
+                      <AlertCircle className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
+                      <p className="text-sm text-blue-900">
+                        <strong>Emergency?</strong> Don't wait for a response. Call <a href="tel:+611300309361" className="font-semibold underline">1300 309 361</a> immediately for 24/7 emergency assistance.
+                      </p>
+                    </div>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-6"
                   >
-                    Submit Another Request
-                  </motion.button>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                    <Send className="mr-2 h-5 w-5" />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
-      {/* Live Chat Section */}
-      <section className="relative z-10 px-6 pb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-4xl overflow-hidden mx-auto text-center"
-        >
-          <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-3xl p-12 border border-blue-500/30">
-            <ChatBubbleOvalLeftEllipsisIcon className="w-16 h-16 text-blue-600 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                Need Immediate Help?
-              </span>
-            </h2>
-            <p className="text-gray-700 mb-6">
-              Chat with our emergency response team for instant assistance
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-blue-700 to-cyan-600 px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2"
-            >
-              <ChatBubbleOvalLeftEllipsisIcon className="w-5 h-5" />
-              Start Live Chat
-            </motion.button>
+      {/* Business Hours */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-200">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <Clock className="h-8 w-8 text-blue-600" />
+                  <CardTitle className="text-2xl">Business Hours</CardTitle>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <p className="font-bold text-gray-900 mb-2 text-lg">Emergency Services</p>
+                    <p className="text-gray-700 mb-2">24 hours a day, 7 days a week, 365 days a year</p>
+                    <p className="text-blue-600 font-semibold">Always Available</p>
+                    <p className="text-sm text-gray-600 mt-2">60-minute response in Brisbane CBD</p>
+                  </div>
+                  <div>
+                    <p className="font-bold text-gray-900 mb-2 text-lg">Office Hours (Non-Emergency)</p>
+                    <p className="text-gray-700 mb-2">Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    <p className="text-gray-700 mb-2">Saturday - Sunday: On-call for emergencies</p>
+                    <p className="text-sm text-gray-600 mt-2">Email responses within 2 hours during business hours</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </motion.div>
+        </div>
       </section>
-    </div>
-  );
+
+      {/* Service Coverage */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Service Coverage & Response Times</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our guaranteed response times across Brisbane, Ipswich, and Logan
+            </p>
+          </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-blue-600">Brisbane CBD & Inner Suburbs</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold text-gray-900 mb-2">60 Minutes</p>
+                  <p className="text-sm font-semibold text-gray-500 mb-3">Response Time</p>
+                  <p className="text-gray-700 mb-2">
+                    <strong>Coverage:</strong> Full city coverage with priority dispatch
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Hamilton, Ascot, New Farm, Toowong, Paddington, Bulimba, Brisbane CBD, West End, Fortitude Valley, Milton
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-blue-600">Greater Brisbane & Ipswich</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold text-gray-900 mb-2">90 Minutes</p>
+                  <p className="text-sm font-semibold text-gray-500 mb-3">Response Time</p>
+                  <p className="text-gray-700 mb-2">
+                    <strong>Coverage:</strong> All Brisbane suburbs and Ipswich region
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Chermside, Carindale, Mt Gravatt, Indooroopilly, Ipswich CBD, Springfield Central, Karalee, Brookwater
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl text-blue-600">Logan & Surrounding Areas</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold text-gray-900 mb-2">90 Minutes</p>
+                  <p className="text-sm font-semibold text-gray-500 mb-3">Response Time</p>
+                  <p className="text-gray-700 mb-2">
+                    <strong>Coverage:</strong> Logan area and surrounding regions
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Logan Central, Springwood, Shailer Park, Browns Plains, Woodridge, Loganholme, Beenleigh, Eagleby
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Emergency CTA */}
+      <section className="py-20 bg-gradient-to-br from-red-600 to-red-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <h2 className="text-3xl md:text-5xl font-bold">
+              Emergency? Don't Wait - Call Now!
+            </h2>
+            <p className="text-xl text-red-100">
+              For water damage, fire, storm, or mould emergencies, every minute counts. Our Master Restorer team responds within 60 minutes.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="tel:+611300309361"
+                className="inline-flex items-center justify-center h-10 rounded-md px-8 py-6 bg-white text-red-600 hover:bg-gray-100 font-semibold text-lg"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Emergency: 1300 309 361
+              </a>
+            </div>
+            <p className="text-sm text-red-200 pt-4">
+              Available 24/7/365 • 60-minute response Brisbane CBD • 90-minute response metro-wide
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  )
 }

@@ -1,9 +1,0 @@
-{
-  "timestamp": "2025-11-07T06:00:18.466Z",
-  "status": "PASSED",
-  "results": {
-    "commercialPage": "PASSED",
-    "criticalPages": "PASSED",
-    "noSyntaxErrors": "PASSED"
-  }
-}

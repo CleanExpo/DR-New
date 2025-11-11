@@ -1,692 +1,125 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-/* Enhanced CSS Variables for Theming */
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --emergency-gradient: linear-gradient(135deg, #f93b1d 0%, #ea1e63 100%);
-  --success-gradient: linear-gradient(135deg, #13ce66 0%, #00d4ff 100%);
-  --dark-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  
-  /* Animation Timings */
-  --animation-fast: 0.2s;
-  --animation-normal: 0.3s;
-  --animation-slow: 0.5s;
-  --animation-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 40px rgba(37, 99, 235, 0.3);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
-/* Enhanced Body Styles */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  background: linear-gradient(to bottom, #f8fafc, #ffffff);
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Micro-interactions for all interactive elements */
-a, button, [role="button"] {
-  position: relative;
-  transition: all var(--animation-normal) var(--animation-smooth);
-  cursor: pointer;
-}
-
-/* WCAG 2.1 AA Focus Indicators - Keyboard Accessibility */
-/* Shows visible focus ring for keyboard navigation only */
-*:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Enhanced focus for interactive elements */
-a:focus-visible,
-button:focus-visible,
-[role="button"]:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
-
-/* Emergency/Critical action focus (red for urgency) */
-button.bg-red-600:focus-visible,
-button.bg-red-700:focus-visible,
-a[href*="tel:"]:focus-visible,
-a[href*="emergency"]:focus-visible {
-  outline: 2px solid #dc2626;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
-}
-
-/* Remove default focus for mouse users */
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Advanced Button Hover States */
-@layer components {
-  .btn-primary {
-    @apply relative overflow-hidden transition-all duration-300;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-  }
-  
-  .btn-primary:hover::before {
-    width: 300px;
-    height: 300px;
-  }
-  
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-  }
-  
-  .btn-primary:active {
-    transform: translateY(0);
-  }
-}
-
-/* Card Hover Effects with Lift Animation */
-.card-hover {
-  @apply transition-all duration-300 ease-in-out;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.card-hover:hover {
-  transform: translateY(-8px) rotateX(-2deg);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    0 10px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* Gradient Text Animation */
-.gradient-text {
-  background: var(--primary-gradient);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 3s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Pulsing Animation for Emergency Elements */
-.pulse-emergency {
-  animation: pulseRed 2s infinite;
-}
-
-@keyframes pulseRed {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-  }
-  50% {
-    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
-  }
-}
-
-/* Floating Animation */
-.floating {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Shimmer Loading Effect */
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 100%;
-  bottom: 0;
-  left: -100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(200%);
-  }
-}
-
-/* Glass Morphism Effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Service Card Advanced Hover */
-.service-card {
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.service-card:hover::before {
-  opacity: 1;
-}
-
-.service-card:hover {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.15),
-    0 0 60px rgba(37, 99, 235, 0.2);
-}
-
-/* Smooth Reveal Animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: reveal 0.6s forwards;
-}
-
-@keyframes reveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Gradient Overlay for Hero Sections */
-.hero-gradient-overlay {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-gradient-overlay::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.1) 0%,
-    rgba(147, 51, 234, 0.1) 50%,
-    rgba(236, 72, 153, 0.1) 100%
-  );
-  z-index: 1;
-}
-
-.hero-gradient-overlay > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Advanced Link Hover with Underline Animation */
-.link-hover {
-  position: relative;
-  display: inline-block;
-}
-
-.link-hover::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-gradient);
-  transition: width 0.3s ease;
-}
-
-.link-hover:hover::after {
-  width: 100%;
-}
-
-/* Stagger Animation for Lists */
-.stagger-item {
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: staggerIn 0.4s forwards;
-}
-
-.stagger-item:nth-child(1) { animation-delay: 0.1s; }
-.stagger-item:nth-child(2) { animation-delay: 0.2s; }
-.stagger-item:nth-child(3) { animation-delay: 0.3s; }
-.stagger-item:nth-child(4) { animation-delay: 0.4s; }
-.stagger-item:nth-child(5) { animation-delay: 0.5s; }
-
-@keyframes staggerIn {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Rotating Border Gradient */
-.border-gradient {
-  position: relative;
-  background: white;
-  border-radius: 8px;
-  padding: 3px;
-}
-
-.border-gradient::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
-  background-size: 400% 400%;
-  border-radius: 8px;
-  z-index: -1;
-  animation: borderRotate 3s linear infinite;
-}
-
-@keyframes borderRotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Glow Effect on Focus */
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  box-shadow: 
-    0 0 0 3px rgba(37, 99, 235, 0.1),
-    0 0 20px rgba(37, 99, 235, 0.2);
-  transition: all 0.3s ease;
-}
-
-/* Loading Spinner */
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(37, 99, 235, 0.2);
-  border-top-color: #2563eb;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Skeleton Loading */
-.skeleton {
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
-  background-size: 200% 100%;
-  animation: skeletonLoading 1.5s infinite;
-}
-
-@keyframes skeletonLoading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Responsive Typography Enhancement */
-@media (min-width: 768px) {
-  .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 1.1;
-  }
-}
-
-/* Performance Optimizations */
-* {
-  will-change: auto;
-}
-
-.will-animate {
-  will-change: transform, opacity;
-}
-
-/* Accessibility Improvements */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #2563eb, #1d4ed8);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #1d4ed8, #1e40af);
-}
-
-/* Emergency and Disaster Recovery Specific Animations */
-.emergency-pulse {
-  animation: emergencyPulse 1.5s infinite;
-}
-
-@keyframes emergencyPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8);
-    background-color: #dc2626;
-  }
-  50% {
-    box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
-    background-color: #ef4444;
-  }
-}
-
-/* Water Damage Wave Effect */
-.water-wave {
-  position: relative;
-  overflow: hidden;
-}
-
-.water-wave::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
-  animation: waterFlow 3s infinite;
-}
-
-@keyframes waterFlow {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(200%); }
-}
-
-/* Fire Damage Glow Effect */
-.fire-glow {
-  position: relative;
-  overflow: hidden;
-}
-
-.fire-glow::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.3) 0%, rgba(245, 101, 101, 0.2) 30%, transparent 70%);
-  animation: fireFlicker 2s infinite alternate;
-}
-
-@keyframes fireFlicker {
-  0% { opacity: 0.7; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.1); }
-}
-
-/* Emergency Response Animation */
-.emergency-response {
-  animation: emergencyResponse 2s infinite;
-}
-
-@keyframes emergencyResponse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
-  }
-  25% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0.3);
-  }
-  50% {
-    transform: scale(1.1);
-    box-shadow: 0 0 0 20px rgba(220, 38, 38, 0.1);
-  }
-  75% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0.3);
-  }
-}
-
-/* 24/7 Availability Animation */
-.available-247 {
-  animation: available247 3s infinite;
-}
-
-@keyframes available247 {
-  0%, 100% {
-    color: #10b981;
-    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
-  }
-  50% {
-    color: #059669;
-    text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
-  }
-}
-
-/* Insurance Approved Badge Animation */
-.insurance-approved {
-  animation: insuranceApproved 4s infinite;
-}
-
-@keyframes insuranceApproved {
-  0%, 100% {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
-  }
-  50% {
-    background: linear-gradient(135deg, #1d4ed8, #1e40af);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
-  }
-}
-
-/* Response Time Counter Animation */
-.response-timer {
-  animation: responseTimer 1s infinite;
-}
-
-@keyframes responseTimer {
-  0%, 100% {
-    color: #dc2626;
-    transform: scale(1);
-  }
-  50% {
-    color: #ef4444;
-    transform: scale(1.1);
-  }
-}
-
-/* Professional Certification Glow */
-.certification-glow {
-  animation: certificationGlow 3s infinite;
-}
-
-@keyframes certificationGlow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
-    border-color: #22c55e;
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
-    border-color: #16a34a;
-  }
-}
-
-/* Damage Assessment Reveal */
-.damage-reveal {
-  opacity: 0;
-  transform: translateY(30px) rotateX(-15deg);
-  animation: damageReveal 0.8s forwards;
-}
-
-@keyframes damageReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0) rotateX(0);
-  }
-}
-
-/* Emergency Contact Button */
-.emergency-contact {
-  position: relative;
-  overflow: hidden;
-}
-
-.emergency-contact::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: emergencyShine 2s infinite;
-}
-
-@keyframes emergencyShine {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-/* Service Area Coverage Map Animation */
-.coverage-expand {
-  animation: coverageExpand 3s infinite;
-}
-
-@keyframes coverageExpand {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-}
-
-/* Restoration Progress Animation */
-.restoration-progress {
-  position: relative;
-  overflow: hidden;
-}
-
-.restoration-progress::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, transparent 0%, rgba(34, 197, 94, 0.3) 50%, transparent 100%);
-  animation: restorationProgress 2s infinite;
-}
-
-@keyframes restorationProgress {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* Dark Mode Support for Emergency Elements */
-@media (prefers-color-scheme: dark) {
-  .emergency-pulse {
-    box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.8);
-  }
-
-  .fire-glow::before {
-    background: radial-gradient(circle, rgba(248, 113, 113, 0.4) 0%, rgba(252, 165, 165, 0.3) 30%, transparent 70%);
-  }
-
-  .water-wave::before {
-    background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.4), transparent);
-  }
-}
-
-/* Mobile Optimizations for Emergency Elements */
-@media (max-width: 768px) {
-  .emergency-pulse {
-    animation-duration: 2s;
-  }
-
-  .fire-glow::before {
-    animation-duration: 3s;
-  }
-
-  .water-wave::before {
-    animation-duration: 4s;
-  }
-
-  .emergency-response {
-    animation-duration: 2.5s;
+  body {
+    @apply bg-background text-foreground;
   }
 }
