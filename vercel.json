@@ -1,10 +1,7 @@
 {
-  "buildCommand": "unset NODE_OPTIONS; npm run build",
+  "buildCommand": "NODE_OPTIONS='' npm run build",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "framework": "nextjs",
-  "env": {
-    "NODE_OPTIONS": ""
-  }
+  "installCommand": "NODE_OPTIONS='' npm install",
+  "framework": "nextjs"
 }
 
