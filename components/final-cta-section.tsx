@@ -77,13 +77,13 @@ export function FinalCTASection() {
             </div>
             <div className="flex flex-col items-center space-y-2">
               <MessageCircle className="h-8 w-8 text-primary" />
-              <span className="text-white font-semibold">Chat</span>
+              <span className="text-white font-semibold">Chat (Coming Soon)</span>
               <span className="text-gray-300 text-sm">Instant AI assistant</span>
             </div>
             <div className="flex flex-col items-center space-y-2">
               <Mail className="h-8 w-8 text-primary" />
               <span className="text-white font-semibold">Email</span>
-              <span className="text-gray-300 text-sm">help@disasterrecovery.com.au</span>
+              <span className="text-gray-300 text-sm">admin@disasterrecovery.com.au</span>
             </div>
           </div>
         </div>
