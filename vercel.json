@@ -1,0 +1,11 @@
+{
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "framework": "nextjs",
+  "nodeVersion": "20.x",
+  "env": {
+    "NODE_OPTIONS": ""
+  }
+}
+
