@@ -99,6 +99,13 @@ export default async function InsuranceCompanyPage({ params }: PageProps) {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6">
               <Card>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.05.42.jpeg" 
+                    alt="Water Damage Restoration" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-xl">Water Damage Restoration</CardTitle>
                   <p className="text-sm text-gray-600 mt-2">
@@ -121,6 +128,13 @@ export default async function InsuranceCompanyPage({ params }: PageProps) {
               </Card>
 
               <Card>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.05.43.jpeg" 
+                    alt="Fire & Smoke Damage" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-xl">Fire & Smoke Damage</CardTitle>
                   <p className="text-sm text-gray-600 mt-2">
@@ -143,6 +157,13 @@ export default async function InsuranceCompanyPage({ params }: PageProps) {
               </Card>
 
               <Card>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.05.44.jpeg" 
+                    alt="Storm Damage" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-xl">Storm Damage</CardTitle>
                   <p className="text-sm text-gray-600 mt-2">
@@ -165,6 +186,13 @@ export default async function InsuranceCompanyPage({ params }: PageProps) {
               </Card>
 
               <Card>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.06.29.jpeg" 
+                    alt="Mould Remediation" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-xl">Mould Remediation</CardTitle>
                   <p className="text-sm text-gray-600 mt-2">
@@ -223,42 +251,51 @@ export default async function InsuranceCompanyPage({ params }: PageProps) {
             </p>
           </div>
           <div className="max-w-5xl mx-auto">
-            <div className="space-y-6">
-              {[
-                {
-                  step: 1,
-                  title: "Contact Us Immediately",
-                  description: `Call us as soon as damage occurs. We will guide you through the initial steps and coordinate with ${insurance.fullName}.`,
-                  detail: "Call 1300 309 361 or submit online form"
-                },
-                {
-                  step: 2,
-                  title: "Professional Assessment",
-                  description: "Our IICRC Master Restorer arrives on-site to assess damage, take photos, and create detailed documentation.",
-                  detail: "Comprehensive damage assessment"
-                },
-                {
-                  step: 3,
-                  title: "Insurance Coordination",
-                  description: `We communicate directly with your ${insurance.fullName} adjuster, provide all required documentation, and handle the claim process.`,
-                  detail: "Direct insurer communication"
-                },
-                {
-                  step: 4,
-                  title: "Restoration Work",
-                  description: `Approved restoration work begins. We provide regular updates to you and ${insurance.fullName} throughout the process.`,
-                  detail: "Professional restoration services"
-                },
-                {
-                  step: 5,
-                  title: "Claim Completion",
-                  description: `Final inspection, completion certificate, and direct billing to ${insurance.fullName}. No upfront costs.`,
-                  detail: "Direct billing to insurer"
-                }
-              ].map((item) => (
-                <Card key={item.step} className="border-l-4 border-l-blue-600">
-                  <CardContent className="p-6">
-                    <div className="flex gap-6">
+              <div className="space-y-6">
+                {[
+                  {
+                    step: 1,
+                    title: "Contact Us Immediately",
+                    description: `Call us as soon as damage occurs. We will guide you through the initial steps and coordinate with ${insurance.fullName}.`,
+                    detail: "Call 1300 309 361 or submit online form"
+                  },
+                  {
+                    step: 2,
+                    title: "Professional Assessment",
+                    description: "Our IICRC Master Restorer arrives on-site to assess damage, take photos, and create detailed documentation.",
+                    detail: "Comprehensive damage assessment"
+                  },
+                  {
+                    step: 3,
+                    title: "Insurance Coordination",
+                    description: `We communicate directly with your ${insurance.fullName} adjuster, provide all required documentation, and handle the claim process.`,
+                    detail: "Direct insurer communication"
+                  },
+                  {
+                    step: 4,
+                    title: "Restoration Work",
+                    description: `Approved restoration work begins. We provide regular updates to you and ${insurance.fullName} throughout the process.`,
+                    detail: "Professional restoration services"
+                  },
+                  {
+                    step: 5,
+                    title: "Claim Completion",
+                    description: `Final inspection, completion certificate, and direct billing to ${insurance.fullName}. No upfront costs.`,
+                    detail: "Direct billing to insurer"
+                  }
+                ].map((item) => (
+                  <Card key={item.step} className="border-l-4 border-l-blue-600">
+                    <CardContent className="p-6">
+                      <div className="grid md:grid-cols-3 gap-6 items-center">
+                        <div className="md:col-span-1">
+                          <img 
+                            src={`/images/WhatsApp Image 2025-11-11 at 08.06.${30 + (item.step % 3)}.jpeg`}
+                            alt={item.title}
+                            className="w-full h-32 object-cover rounded-lg"
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                      <div className="flex gap-6">
                       <div className="shrink-0">
                         <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xl">
                           {item.step}
@@ -269,14 +306,16 @@ export default async function InsuranceCompanyPage({ params }: PageProps) {
                         <p className="text-gray-700 mb-2">{item.description}</p>
                         <p className="text-sm text-blue-600 font-semibold">{item.detail}</p>
                       </div>
-                    </div>
-                  </CardContent>
+                      </div>
+                        </div>
+                      </div>
+                    </CardContent>
                 </Card>
               ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Documentation Section */}
       <section className="py-16 bg-gray-50">

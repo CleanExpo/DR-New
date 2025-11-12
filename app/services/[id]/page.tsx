@@ -117,20 +117,29 @@ export default async function ServicePage({ params }: PageProps) {
       {service.whyProfessional && (
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                {service.whyProfessional.title}
-              </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
-                {service.whyProfessional.description}
-              </p>
-              <a
+            <div className="max-w-4xl mx-auto">
+              <div className="mb-8">
+                <img 
+                  src="/images/WhatsApp Image 2025-11-11 at 08.05.42 (1).jpeg" 
+                  alt="Professional service" 
+                  className="w-full h-64 object-cover rounded-lg shadow-lg"
+                />
+              </div>
+              <div className="text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                  {service.whyProfessional.title}
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+                  {service.whyProfessional.description}
+                </p>
+                <a
                 href={`tel:+61${service.phoneNumber.replace(/\s/g, '')}`}
                 className="inline-flex items-center justify-center h-10 rounded-md px-4 py-2 bg-primary hover:bg-primary/90 text-white font-semibold"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 Emergency: {service.phoneNumber}
-              </a>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -151,6 +160,13 @@ export default async function ServicePage({ params }: PageProps) {
             <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
               {service.commonProblems.map((problem, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <div className="relative h-40 overflow-hidden rounded-t-lg">
+                    <img 
+                      src={`/images/WhatsApp Image 2025-11-11 at 08.06.${30 + (index % 3)}.jpeg`}
+                      alt={problem.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <CardHeader>
                     <CardTitle className="text-xl">{problem.title}</CardTitle>
                   </CardHeader>
@@ -206,6 +222,15 @@ export default async function ServicePage({ params }: PageProps) {
                 {service.process.map((step, index) => (
                   <Card key={index} className="border-l-4 border-l-primary">
                     <CardContent className="p-6">
+                      <div className="grid md:grid-cols-3 gap-6 items-center">
+                        <div className="md:col-span-1">
+                          <img 
+                            src={`/images/WhatsApp Image 2025-11-11 at 08.06.${31 + (index % 2)}.jpeg`}
+                            alt={step.title}
+                            className="w-full h-32 object-cover rounded-lg"
+                          />
+                        </div>
+                        <div className="md:col-span-2">
                       <div className="flex gap-6">
                         <div className="shrink-0">
                           <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl">
@@ -215,6 +240,8 @@ export default async function ServicePage({ params }: PageProps) {
                         <div className="flex-1">
                           <h3 className="text-xl font-bold mb-2">{step.title}</h3>
                           <p className="text-gray-700 dark:text-gray-300">{step.description}</p>
+                        </div>
+                      </div>
                         </div>
                       </div>
                     </CardContent>
@@ -239,6 +266,13 @@ export default async function ServicePage({ params }: PageProps) {
               <div className="grid md:grid-cols-2 gap-6">
                 {service.excellence.points.map((point, index) => (
                   <Card key={index} className="hover:shadow-lg transition-shadow">
+                    <div className="relative h-40 overflow-hidden rounded-t-lg">
+                      <img 
+                        src={`/images/WhatsApp Image 2025-11-11 at 08.06.${32 + (index % 2)}.jpeg`}
+                        alt={point.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     <CardHeader>
                       <CardTitle className="text-xl">{point.title}</CardTitle>
                     </CardHeader>

@@ -125,7 +125,7 @@ export function MasterRestorerSection() {
                       </div>
                       <div>
                         <p className="text-xs text-white/90 mb-1">Emergency Response</p>
-                        <p className="text-2xl font-bold">+61 1300 309 361</p>
+                        <p className="text-2xl font-bold">1300 309 361</p>
                       </div>
                     </div>
                   </div>

@@ -52,7 +52,7 @@ export default function Contact() {
                 className="inline-flex items-center justify-center h-10 rounded-md px-8 py-6 bg-white text-blue-600 hover:bg-gray-100 font-semibold text-lg"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Emergency: +61 1300 309 361
+                Emergency: 1300 309 361
               </a>
             </div>
             <p className="text-sm text-blue-200 pt-4">
@@ -69,6 +69,13 @@ export default function Contact() {
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {/* Emergency Contact */}
               <Card className="border-l-4 border-l-red-500 hover:shadow-lg transition-shadow">
+                <div className="relative h-40 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.05.42.jpeg" 
+                    alt="Emergency Response" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="bg-red-100 p-3 rounded-lg">
@@ -83,7 +90,7 @@ export default function Contact() {
                     href="tel:+611300309361" 
                     className="text-3xl font-bold text-red-600 hover:text-red-700 transition-colors block mb-2"
                   >
-                    +61 1300 309 361
+                    1300 309 361
                   </a>
                   <p className="text-sm text-gray-500">Available 24/7/365</p>
                   <p className="text-sm text-gray-500 mt-2">60-min response Brisbane CBD</p>
@@ -92,6 +99,13 @@ export default function Contact() {
 
               {/* General Inquiries */}
               <Card className="border-l-4 border-l-blue-500 hover:shadow-lg transition-shadow">
+                <div className="relative h-40 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.05.43.jpeg" 
+                    alt="General Inquiries" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="bg-blue-100 p-3 rounded-lg">
@@ -115,6 +129,13 @@ export default function Contact() {
 
               {/* Service Area */}
               <Card className="border-l-4 border-l-green-500 hover:shadow-lg transition-shadow">
+                <div className="relative h-40 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.05.44.jpeg" 
+                    alt="Service Area" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="bg-green-100 p-3 rounded-lg">

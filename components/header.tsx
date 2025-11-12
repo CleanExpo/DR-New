@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Phone, Menu, X, ChevronDown, Shield, Droplets, Flame } from "lucide-react"
+import { Phone, Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Header() {
@@ -31,30 +31,12 @@ export function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center gap-3 group">
-              {/* Logo Icon with Pattern */}
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-red-600 rounded-lg blur-sm opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                <div className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-red-600 p-2.5 rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="relative w-8 h-8">
-                    {/* Shield Icon */}
-                    <Shield className="w-full h-full text-white" strokeWidth={2.5} fill="currentColor" />
-                    {/* Water Droplet Overlay */}
-                    <Droplets className="absolute -top-1 -right-1 w-3 h-3 text-blue-200" fill="currentColor" />
-                    {/* Fire Icon Overlay */}
-                    <Flame className="absolute -bottom-1 -left-1 w-3 h-3 text-red-200" fill="currentColor" />
-                  </div>
-                </div>
-              </div>
-              {/* Logo Text */}
-              <div className="flex flex-col">
-                <span className="text-lg font-bold bg-gradient-to-r from-blue-600 via-blue-500 to-red-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:to-red-700 transition-all duration-300">
-                  Disaster Recovery
-                </span>
-                <span className="text-[10px] text-gray-500 font-medium -mt-0.5">
-                  Master Restorer
-                </span>
-              </div>
+            <a href="/" className="flex items-center group">
+              <img 
+                src="/logo1.jpeg" 
+                alt="Disaster Recovery - Master Restorer" 
+                className="h-12 w-auto object-contain group-hover:opacity-90 transition-opacity duration-300"
+              />
             </a>
           </div>
 
@@ -256,7 +238,7 @@ export function Header() {
             >
               <a href="tel:+611300309361" className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
-                <span className="font-semibold">+61 1300 309 361</span>
+                <span className="font-semibold">1300 309 361</span>
               </a>
             </Button>
 

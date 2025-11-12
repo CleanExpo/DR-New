@@ -1,4 +1,4 @@
-import { Shield, Award, Star, Phone, Droplets, Flame } from "lucide-react"
+import { Shield, Award, Star, Phone } from "lucide-react"
 
 export function Footer() {
   return (
@@ -6,30 +6,12 @@ export function Footer() {
       <div className="container mx-auto px-4">
         {/* Logo */}
         <div className="flex justify-center mb-12">
-          <a href="/" className="flex items-center gap-3 group">
-            {/* Logo Icon with Pattern */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-500 to-red-600 rounded-lg blur-sm opacity-50 group-hover:opacity-75 transition-opacity"></div>
-              <div className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-red-600 p-2.5 rounded-lg shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <div className="relative w-8 h-8">
-                  {/* Shield Icon */}
-                  <Shield className="w-full h-full text-white" strokeWidth={2.5} fill="currentColor" />
-                  {/* Water Droplet Overlay */}
-                  <Droplets className="absolute -top-1 -right-1 w-3 h-3 text-blue-200" fill="currentColor" />
-                  {/* Fire Icon Overlay */}
-                  <Flame className="absolute -bottom-1 -left-1 w-3 h-3 text-red-200" fill="currentColor" />
-                </div>
-              </div>
-            </div>
-            {/* Logo Text */}
-            <div className="flex flex-col">
-              <span className="text-lg font-bold bg-gradient-to-r from-blue-400 via-blue-300 to-red-400 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-red-300 transition-all duration-300">
-                Disaster Recovery
-              </span>
-              <span className="text-[10px] text-gray-300 font-medium -mt-0.5">
-                Master Restorer
-              </span>
-            </div>
+          <a href="/" className="flex items-center group">
+            <img 
+              src="/logo1.jpeg" 
+              alt="Disaster Recovery - Master Restorer" 
+              className="h-16 w-auto object-contain group-hover:opacity-90 transition-opacity duration-300"
+            />
           </a>
         </div>
 
@@ -60,7 +42,7 @@ export function Footer() {
               <div className="flex items-start space-x-2">
                 <Phone className="h-4 w-4 text-accent mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold">Emergency: +61 1300 309 361</p>
+                  <p className="text-sm font-semibold">Emergency: 1300 309 361</p>
                   <p className="text-xs text-gray-300">24/7 Available</p>
                 </div>
               </div>

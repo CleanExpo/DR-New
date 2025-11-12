@@ -49,6 +49,13 @@ export default function LocationsPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {/* Brisbane */}
               <Card className="hover:shadow-lg transition-shadow">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.06.29.jpeg" 
+                    alt="Brisbane Service Area" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center gap-2">
                     <MapPin className="h-6 w-6 text-blue-600" />
@@ -77,6 +84,13 @@ export default function LocationsPage() {
 
               {/* Ipswich */}
               <Card className="hover:shadow-lg transition-shadow">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.06.30.jpeg" 
+                    alt="Ipswich Service Area" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center gap-2">
                     <MapPin className="h-6 w-6 text-blue-600" />
@@ -105,6 +119,13 @@ export default function LocationsPage() {
 
               {/* Logan */}
               <Card className="hover:shadow-lg transition-shadow">
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.06.31.jpeg" 
+                    alt="Logan Service Area" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="text-2xl flex items-center gap-2">
                     <MapPin className="h-6 w-6 text-blue-600" />

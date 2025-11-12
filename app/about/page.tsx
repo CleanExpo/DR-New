@@ -148,6 +148,13 @@ export default function About() {
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
+                    <div className="mb-6">
+                      <img 
+                        src="/images/WhatsApp Image 2025-11-11 at 08.05.42.jpeg" 
+                        alt="Master Restorer at work" 
+                        className="w-full h-48 object-cover rounded-lg shadow-md"
+                      />
+                    </div>
                     <h3 className="text-2xl font-bold mb-4">Master Restorer Credentials</h3>
                     <ul className="space-y-3">
                       <li className="flex items-start gap-3">
@@ -188,6 +195,13 @@ export default function About() {
                     </ul>
                   </div>
                   <div>
+                    <div className="mb-6">
+                      <img 
+                        src="/images/WhatsApp Image 2025-11-11 at 08.05.43.jpeg" 
+                        alt="Professional restoration work" 
+                        className="w-full h-48 object-cover rounded-lg shadow-md"
+                      />
+                    </div>
                     <h3 className="text-2xl font-bold mb-4">Why Master Restorer Matters</h3>
                     <p className="text-gray-700 mb-4">
                       The IICRC Master Restorer certification is the highest credential in the disaster restoration industry. Only a limited number of professionals in Brisbane and Queensland hold this certification.
@@ -218,6 +232,13 @@ export default function About() {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
               <Card>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.05.44.jpeg" 
+                    alt="Certifications" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <Shield className="h-10 w-10 text-blue-600 mb-4" />
                   <CardTitle className="text-xl">Certifications</CardTitle>
@@ -249,6 +270,13 @@ export default function About() {
               </Card>
 
               <Card>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.06.29.jpeg" 
+                    alt="Service Record" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <Award className="h-10 w-10 text-blue-600 mb-4" />
                   <CardTitle className="text-xl">Service Record</CardTitle>
@@ -280,6 +308,13 @@ export default function About() {
               </Card>
 
               <Card>
+                <div className="relative h-48 overflow-hidden rounded-t-lg">
+                  <img 
+                    src="/images/WhatsApp Image 2025-11-11 at 08.06.30.jpeg" 
+                    alt="Insurance Partnerships" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <FileText className="h-10 w-10 text-blue-600 mb-4" />
                   <CardTitle className="text-xl">Insurance Partnerships</CardTitle>
@@ -327,6 +362,13 @@ export default function About() {
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="border-l-4 border-l-blue-600">
                 <CardContent className="p-6">
+                  <div className="mb-4">
+                    <img 
+                      src="/images/WhatsApp Image 2025-11-11 at 08.06.31.jpeg" 
+                      alt="Local Expert" 
+                      className="w-full h-40 object-cover rounded-lg"
+                    />
+                  </div>
                   <div className="flex gap-4">
                     <MapPin className="h-8 w-8 text-blue-600 shrink-0" />
                     <div>
@@ -341,6 +383,13 @@ export default function About() {
 
               <Card className="border-l-4 border-l-blue-600">
                 <CardContent className="p-6">
+                  <div className="mb-4">
+                    <img 
+                      src="/images/WhatsApp Image 2025-11-11 at 08.06.31 (1).jpeg" 
+                      alt="Always Available" 
+                      className="w-full h-40 object-cover rounded-lg"
+                    />
+                  </div>
                   <div className="flex gap-4">
                     <Clock className="h-8 w-8 text-blue-600 shrink-0" />
                     <div>
@@ -355,6 +404,13 @@ export default function About() {
 
               <Card className="border-l-4 border-l-blue-600">
                 <CardContent className="p-6">
+                  <div className="mb-4">
+                    <img 
+                      src="/images/WhatsApp Image 2025-11-11 at 08.06.32.jpeg" 
+                      alt="Master Restorer Certified" 
+                      className="w-full h-40 object-cover rounded-lg"
+                    />
+                  </div>
                   <div className="flex gap-4">
                     <Award className="h-8 w-8 text-blue-600 shrink-0" />
                     <div>
@@ -369,6 +425,13 @@ export default function About() {
 
               <Card className="border-l-4 border-l-blue-600">
                 <CardContent className="p-6">
+                  <div className="mb-4">
+                    <img 
+                      src="/images/WhatsApp Image 2025-11-11 at 08.06.32 (1).jpeg" 
+                      alt="Insurance Approved" 
+                      className="w-full h-40 object-cover rounded-lg"
+                    />
+                  </div>
                   <div className="flex gap-4">
                     <Shield className="h-8 w-8 text-blue-600 shrink-0" />
                     <div>

@@ -10,7 +10,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/emergency-response-team-helping-flood-damaged-home.jpg')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/hero.jpeg')`,
         }}
       />
 
@@ -83,7 +83,7 @@ export function HeroSection() {
               >
                 <span className="relative z-10 flex items-center">
                   <Phone className="mr-2 h-5 w-5 group-hover:animate-spin" />
-                  Call Now: +61 1300 309 361
+                  Call Now: 1300 309 361
                 </span>
                 <div className="absolute inset-0 bg-accent/20 animate-pulse" />
               </a>

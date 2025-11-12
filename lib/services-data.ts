@@ -70,8 +70,8 @@ export const servicesData: ServiceContent[] = [
     heroTitle: "Professional Mould Remediation Brisbane",
     heroSubtitle: "Safe, Certified Mould Removal • IICRC Master Restorer • Health-Focused Solutions",
     heroDescription: "Phill McGurk - Master Restorer and team provide professional mould inspection, testing, removal and prevention across Brisbane, Ipswich, and Logan. Protecting your health and property.",
-    phoneNumber: "+61 1300 309 361",
-    ctaText: "Call +61 1300 309 361 Now",
+    phoneNumber: "1300 309 361",
+    ctaText: "Call 1300 309 361 Now",
     heroImage: "/professional-mould-remediation-specialist-performi.jpg",
     healthWarning: {
       title: "Health Warning: Mould Exposure Risks",
@@ -244,8 +244,8 @@ export const servicesData: ServiceContent[] = [
     heroTitle: "Emergency Water Damage Restoration Brisbane",
     heroSubtitle: "60-Minute Response • IICRC Master Restorer • Insurance Approved",
     heroDescription: "Phill McGurk - Master Restorer and team provide rapid water extraction, structural drying, and mould prevention across Brisbane, Ipswich, and Logan. Available 24/7/365.",
-    phoneNumber: "+61 1300 309 361",
-    ctaText: "Call +61 1300 309 361 Now",
+    phoneNumber: "1300 309 361",
+    ctaText: "Call 1300 309 361 Now",
     heroImage: "/professional-water-extraction-team-responding-to-f.jpg",
     healthWarning: {
       title: "🚨 Why Immediate Response Matters",
@@ -299,7 +299,7 @@ export const servicesData: ServiceContent[] = [
       {
         step: 1,
         title: "Emergency Contact",
-        description: "Call +61 1300 309 361. Immediate triage and dispatch within minutes. Safety guidance while we travel."
+        description: "Call 1300 309 361. Immediate triage and dispatch within minutes. Safety guidance while we travel."
       },
       {
         step: 2,
@@ -346,7 +346,7 @@ export const servicesData: ServiceContent[] = [
         },
         {
           title: "60-Minute Emergency Response",
-          description: "Call +61 1300 309 361 - we arrive within 60 minutes across Brisbane CBD, Hamilton, Ascot, New Farm, Toowong. 90 minutes for greater Brisbane, Ipswich, Logan. Industrial extraction equipment on every truck."
+          description: "Call 1300 309 361 - we arrive within 60 minutes across Brisbane CBD, Hamilton, Ascot, New Farm, Toowong. 90 minutes for greater Brisbane, Ipswich, Logan. Industrial extraction equipment on every truck."
         },
         {
           title: "All Major Insurers - Direct Billing",
@@ -418,8 +418,8 @@ export const servicesData: ServiceContent[] = [
     heroTitle: "Fire Damage Restoration & Smoke Remediation Brisbane",
     heroSubtitle: "60-Minute Response • IICRC Master Restorer • Insurance Approved",
     heroDescription: "Phill McGurk - Master Restorer and team provide rapid fire damage restoration, smoke removal, and soot cleanup across Brisbane, Ipswich, and Logan. Available 24/7/365.",
-    phoneNumber: "+61 1300 309 361",
-    ctaText: "Call +61 1300 309 361 Now",
+    phoneNumber: "1300 309 361",
+    ctaText: "Call 1300 309 361 Now",
     heroImage: "/iicrc-certified-fire-damage-restoration-technician.jpg",
     healthWarning: {
       title: "🚨 Why Immediate Response Matters",
@@ -473,7 +473,7 @@ export const servicesData: ServiceContent[] = [
       {
         step: 1,
         title: "Emergency Contact",
-        description: "Call +61 1300 309 361. Immediate triage and dispatch within minutes. Safety guidance while we travel."
+        description: "Call 1300 309 361. Immediate triage and dispatch within minutes. Safety guidance while we travel."
       },
       {
         step: 2,
@@ -520,7 +520,7 @@ export const servicesData: ServiceContent[] = [
         },
         {
           title: "60-Minute Emergency Response",
-          description: "Call +61 1300 309 361 - we arrive within 60 minutes across Brisbane CBD, Hamilton, Ascot, New Farm, Toowong. 90 minutes for greater Brisbane, Ipswich, Logan. Fire damage equipment on every truck."
+          description: "Call 1300 309 361 - we arrive within 60 minutes across Brisbane CBD, Hamilton, Ascot, New Farm, Toowong. 90 minutes for greater Brisbane, Ipswich, Logan. Fire damage equipment on every truck."
         },
         {
           title: "All Major Insurers - Direct Billing",
@@ -592,8 +592,8 @@ export const servicesData: ServiceContent[] = [
     heroTitle: "Emergency Storm Damage Restoration Brisbane",
     heroSubtitle: "60-Minute Response • IICRC Master Restorer • Insurance Approved",
     heroDescription: "Phill McGurk - Master Restorer and team provide rapid storm damage assessment, emergency tarping, structural repairs, and complete restoration across Brisbane, Ipswich, and Logan. Available 24/7/365.",
-    phoneNumber: "+61 1300 309 361",
-    ctaText: "Call +61 1300 309 361 Now",
+    phoneNumber: "1300 309 361",
+    ctaText: "Call 1300 309 361 Now",
     heroImage: "/severe-storm-damage-aftermath-with-emergency-resto.jpg",
     healthWarning: {
       title: "🚨 Why Immediate Response Matters",
@@ -647,7 +647,7 @@ export const servicesData: ServiceContent[] = [
       {
         step: 1,
         title: "Emergency Contact",
-        description: "Call +61 1300 309 361. Immediate safety triage and dispatch within minutes. Guidance on temporary safety measures."
+        description: "Call 1300 309 361. Immediate safety triage and dispatch within minutes. Guidance on temporary safety measures."
       },
       {
         step: 2,
@@ -694,7 +694,7 @@ export const servicesData: ServiceContent[] = [
         },
         {
           title: "60-Minute Storm Emergency Response",
-          description: "Call +61 1300 309 361 - we arrive within 60 minutes across Brisbane CBD, Hamilton, Ascot, New Farm, Toowong. 90 minutes for greater Brisbane, Ipswich, Logan. Emergency tarping equipment on every truck."
+          description: "Call 1300 309 361 - we arrive within 60 minutes across Brisbane CBD, Hamilton, Ascot, New Farm, Toowong. 90 minutes for greater Brisbane, Ipswich, Logan. Emergency tarping equipment on every truck."
         },
         {
           title: "All Major Insurers - Direct Billing",
