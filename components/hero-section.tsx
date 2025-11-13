@@ -133,11 +133,11 @@ export function HeroSection() {
                 </div>
               </div>
               
-              {/* Live Support Badge */}
-              <div className="absolute -top-4 -right-4 bg-accent text-foreground px-4 py-2 rounded-full text-sm font-semibold animate-bounce shadow-lg">
-                Live Support
+              {/* Attention Badge */}
+              {/* <div className="absolute -top-4 -right-4 bg-gradient-to-r from-blue-600 to-red-600 text-white px-5 py-2.5 rounded-full text-sm font-bold animate-pulse shadow-xl border-2 border-white/50">
+                ⚡ 60-Min Response
               </div>
-              
+               */}
               {/* Rotating Icons Around Circle */}
               {[...Array(6)].map((_, i) => (
                 <div
