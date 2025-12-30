@@ -1,0 +1,2222 @@
+// Disaster Recovery SaaS Platform - Unified Schema
+// Combines multi-tenant infrastructure with Australian disaster recovery services
+// Learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ============================================================================
+// ENUMS - AUSTRALIAN LOCALIZATION & MULTI-TENANT
+// ============================================================================
+
+enum UserType {
+  CLIENT
+  CONTRACTOR
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum AustralianState {
+  NSW // New South Wales
+  VIC // Victoria
+  QLD // Queensland
+  WA // Western Australia
+  SA // South Australia
+  TAS // Tasmania
+  ACT // Australian Capital Territory
+  NT // Northern Territory
+}
+
+enum IICRCCertificationLevel {
+  TECHNICIAN
+  SUPERVISOR
+  INSPECTOR
+  MASTER
+}
+
+enum AustralianServiceType {
+  // Residential Services
+  WATER_DAMAGE
+  FIRE_DAMAGE
+  SMOKE_DAMAGE
+  MOULD_REMEDIATION
+  ODOUR_REMEDIATION
+  CARPET_CLEANING
+
+  // Commercial Services
+  COMMERCIAL_WATER_DAMAGE
+  COMMERCIAL_FIRE_DAMAGE
+  COMMERCIAL_MOULD
+  COMMERCIAL_ODOUR
+
+  // Specialized/Biohazard Services
+  CRIME_SCENE_CLEANING
+  BIOHAZARD_REMEDIATION
+  HOARDING_CLEANUP
+  VANDALISM_CLEANUP
+
+  // General
+  GENERAL_RESTORATION
+}
+
+enum EmergencyResponseLevel {
+  URGENT // < 2 hours
+  HIGH // Same day
+  STANDARD // Next business day
+  SCHEDULED // Pre-arranged appointment
+}
+
+enum InsuranceProviderType {
+  NRMA
+  SUNCORP
+  ALLIANZ
+  QBE
+  IAG
+  CGU
+  MEDIBANK
+  OTHER
+}
+
+enum InsuranceClaimStatus {
+  DRAFT
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  PARTIALLY_APPROVED
+  DENIED
+  PAYMENT_PROCESSED
+  CLOSED
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  DISPUTED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum ServiceStatus {
+  PENDING
+  MATCHED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum AvailabilityStatus {
+  AVAILABLE
+  BUSY
+  UNAVAILABLE
+}
+
+enum MatchStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  EXPIRED
+}
+
+enum MessageType {
+  GENERAL
+  MATCH_NOTIFICATION
+  PROJECT_UPDATE
+  PAYMENT_REMINDER
+  SYSTEM_NOTIFICATION
+  INITIATE_CHAT
+  BID_ACCEPTED
+  BID_REJECTED
+}
+
+// ============================================================================
+// MULTI-TENANT CORE MODELS
+// ============================================================================
+
+model Tenant {
+  id             String   @id @default(cuid())
+  name           String
+  domain         String?  @unique
+  subdomain      String?  @unique
+  logo           String?
+  primaryColor   String?
+  secondaryColor String?
+  customCss      String?
+  industry       String?
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relations
+  contractorProfiles ContractorProfile[]
+  messages           Message[]
+  serviceRequests    ServiceRequest[]
+  configurations     TenantConfiguration[]
+  users              User[]
+
+  @@map("tenants")
+}
+
+model TenantConfiguration {
+  id        String   @id @default(cuid())
+  tenantId  String
+  key       String
+  value     String
+  type      String   @default("string")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@unique([tenantId, key])
+  @@map("tenant_configurations")
+}
+
+// ============================================================================
+// CORE MODELS - USERS & AUTHENTICATION
+// ============================================================================
+
+model User {
+  id       String   @id @default(cuid())
+  email    String   @unique
+  name     String?
+  password String?
+  userType UserType @default(CLIENT)
+  googleId String?  @unique
+  avatar   String?
+
+  // Australian Contact Info
+  australianPhoneNumber String?
+  australianPostcode    String?
+  australianState       AustralianState?
+  suburb                String?
+  streetAddress         String?
+
+  // Account Status
+  isEmailVerified              Boolean   @default(false)
+  emailVerificationToken       String?
+  emailVerificationTokenExpiry DateTime?
+  isActive                     Boolean   @default(true)
+  isBlocked                    Boolean   @default(false)
+  lastLoginAt                  DateTime?
+
+  tenantId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  tenant                Tenant?                @relation(fields: [tenantId], references: [id])
+  contractor            Contractor?
+  contractorProfile     ContractorProfile?
+  contractorPreferences ContractorPreferences?
+  receivedMessages      Message[]              @relation("MessageReceiver")
+  sentMessages          Message[]              @relation("MessageSender")
+  serviceRequests       ServiceRequest[]
+  preferences           UserPreferences?
+  bookings              Booking[]              @relation("ClientBookings")
+  payments              Payment[]
+  auClaims              InsuranceClaimAU[]     @relation("ClientClaims")
+  auInvoices            InvoiceAU[]            @relation("ClientInvoices")
+  loginAttempts         LoginAttempt[]
+  verificationTokens    VerificationToken[]
+  ratings               Rating[]
+
+  // CRM Relations
+  lifecycle             CustomerLifecycle?  @relation("CustomerLifecycle")
+  activitiesPerformed   Activity[]          @relation("ActivityPerformer")
+  activitiesAsCustomer  Activity[]          @relation("ActivityCustomer")
+  tasksAssigned         Task[]              @relation("TaskAssignee")
+  tasksCreated          Task[]              @relation("TaskCreator")
+  businessRules         BusinessRule[]      @relation("BusinessRuleOwner")
+
+  // NRPG Inspection Relations
+  inspectionReports         InspectionReport[] @relation("InspectorReports")
+  technicalReviews          InspectionReport[] @relation("TechnicalReviews")
+  managerReviews            InspectionReport[] @relation("ManagerReviews")
+  finalApprovals            InspectionReport[] @relation("FinalApprovals")
+  createdReports            InspectionReport[] @relation("CreatedReports")
+  reportRevisions           ReportRevision[]   @relation("ReportRevisions")
+
+  @@index([email])
+  @@index([userType])
+  @@index([australianState])
+  @@index([isActive])
+  @@map("users")
+}
+
+model UserPreferences {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  interests            String[]
+  serviceTypes         String[]
+  budgetRange          String?
+  urgencyLevel         String?
+  communicationStyle   String?
+  notificationSettings Json?
+  dashboardLayout      Json?
+  themePreferences     Json?
+  isOnboardingComplete Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  brandingColor        String?
+  selectedTheme        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_preferences")
+}
+
+model LoginAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  ipAddress   String
+  userAgent   String
+  success     Boolean
+  attemptedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([ipAddress])
+  @@index([attemptedAt])
+}
+
+model VerificationToken {
+  id        String    @id @default(cuid())
+  userId    String
+  token     String    @unique
+  type      String // "EMAIL_VERIFICATION", "PASSWORD_RESET", "2FA"
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+}
+
+// ============================================================================
+// CONTRACTOR & CERTIFICATIONS
+// ============================================================================
+
+model Contractor {
+  id String @id @default(cuid())
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Business Information
+  businessName             String
+  abnNumber                String?   @unique // Australian Business Number
+  acnNumber                String?   @unique // Australian Company Number
+  businessRegistrationDate DateTime?
+
+  // Location Information
+  primaryPostcode String?
+  primaryState    AustralianState?
+  operatingStates AustralianState[]
+
+  // IICRC Certifications
+  iicrcCertifications IICRCCertification[] @relation("ContractorCertifications")
+
+  // Service Areas
+  serviceAreas ContractorServiceArea[] @relation("ServiceAreas")
+
+  // NRPG Membership
+  nrpgMemberId          String?   @unique // National Restoration Professionals Group
+  nrpgVerifiedAt        DateTime?
+  nrpgVerificationLevel String? // "VERIFIED", "PENDING", "SUSPENDED", "REJECTED"
+
+  // Australian Service Specialties
+  australianSpecialties    AustralianServiceType[]
+  supportedEmergencyLevels EmergencyResponseLevel[]
+
+  // Insurance Details
+  publicLiabilityPolicyNumber String?
+  publicLiabilityExpiryDate   DateTime?
+  workCoverNumber             String?
+  workCoverExpiryDate         DateTime?
+
+  // Performance Metrics
+  completedJobs              Int       @default(0)
+  averageRating              Decimal   @default(0.00) // 0-5 stars
+  averageResponseTimeMinutes Int       @default(0)
+  isVerified                 Boolean   @default(false)
+  verificationDate           DateTime?
+
+  // Background Check
+  lastBackgroundCheckDate DateTime?
+  backgroundCheckStatus   String? // "PASS", "FAIL", "PENDING"
+
+  // Status
+  isActive         Boolean @default(true)
+  isSuspended      Boolean @default(false)
+  suspensionReason String?
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  bookings   Booking[]   @relation("ContractorBookings")
+  payments   Payment[]   @relation("ContractorPayments")
+  auInvoices InvoiceAU[] @relation("ContractorInvoices")
+  ratings    Rating[]
+
+  // CRM Relations
+  opportunities Opportunity[] @relation("OpportunityContractor")
+  activities    Activity[]    @relation("ActivityContractor")
+
+  @@index([businessName])
+  @@index([primaryState])
+  @@index([nrpgMemberId])
+  @@index([isVerified])
+  @@index([isActive])
+  @@index([abnNumber])
+}
+
+model IICRCCertification {
+  id String @id @default(cuid())
+
+  contractorId String
+  contractor   Contractor @relation("ContractorCertifications", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Certification Details
+  certificationLevel IICRCCertificationLevel
+  certificationCode  String                  @unique
+  certificationDate  DateTime
+  expiryDate         DateTime
+  verificationDate   DateTime?
+
+  // Status
+  isActive   Boolean @default(true)
+  verifiedBy String?
+
+  // Documentation
+  certificatePdfUrl   String?
+  certificateFileName String?
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([contractorId, certificationLevel, certificationCode])
+  @@index([contractorId])
+  @@index([certificationCode])
+  @@index([expiryDate])
+  @@index([isActive])
+}
+
+model ContractorServiceArea {
+  id String @id @default(cuid())
+
+  contractorId String
+  contractor   Contractor @relation("ServiceAreas", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Postcode Information (4 digits in Australia)
+  postcode String // e.g., "2000", "3141"
+  state    AustralianState
+
+  // Service Details
+  isActive            Boolean @default(true)
+  responseTimeMinutes Int
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([contractorId, postcode])
+  @@index([postcode])
+  @@index([state])
+  @@index([contractorId])
+}
+
+// ============================================================================
+// ADMIN SERVICE MANAGEMENT
+// ============================================================================
+
+model AdminServiceCategory {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  icon        String?
+  theme       String
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  services AdminService[]
+
+  @@map("admin_service_categories")
+}
+
+model AdminService {
+  id          String   @id @default(cuid())
+  categoryId  String
+  name        String
+  description String?
+  icon        String?
+  theme       String
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  category AdminServiceCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, name])
+  @@map("admin_services")
+}
+
+model AdminTheme {
+  id              String   @id @default(cuid())
+  name            String
+  identifier      String   @unique
+  primaryColor    String
+  secondaryColor  String
+  accentColor     String
+  backgroundColor String
+  textColor       String
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("admin_themes")
+}
+
+// ============================================================================
+// SERVICE REQUESTS & MATCHING (MULTI-TENANT)
+// ============================================================================
+
+model ServiceRequest {
+  id              String        @id @default(cuid())
+  userId          String
+  serviceCategory String
+  urgency         String
+  serviceTitle    String
+  description     String
+  location        String
+  budget          String?
+  phone           String?
+  preferredTime   String?
+  insurance       Boolean       @default(false)
+  urgentResponse  Boolean       @default(false)
+  status          ServiceStatus @default(PENDING)
+  leadScore       Float?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  tenantId        String?
+
+  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant  Tenant?           @relation(fields: [tenantId], references: [id])
+  matches ContractorMatch[]
+
+  // CRM Relations
+  opportunity Opportunity? @relation("OpportunityServiceRequest")
+
+  @@map("service_requests")
+}
+
+model ContractorProfile {
+  id                String             @id @default(cuid())
+  userId            String             @unique
+  businessName      String?
+  phone             String?
+  address           String?
+  city              String?
+  state             String?
+  zipCode           String?
+  licenseNumber     String?
+  insuranceProvider String?
+  insuranceExpiry   DateTime?
+  services          String[]
+  serviceAreas      String[]
+  hourlyRate        Float?
+  experience        Int                @default(0)
+  rating            Float              @default(0.0)
+  totalJobs         Int                @default(0)
+  bio               String?
+  availability      AvailabilityStatus @default(AVAILABLE)
+  isVerified        Boolean            @default(false)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  tenantId          String?
+
+  user    User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant  Tenant?           @relation(fields: [tenantId], references: [id])
+  matches ContractorMatch[]
+
+  @@map("contractor_profiles")
+}
+
+model ContractorMatch {
+  id                String      @id @default(cuid())
+  contractorId      String
+  serviceRequestId  String
+  matchScore        Float
+  status            MatchStatus @default(PENDING)
+  contractorMessage String?
+  clientMessage     String?
+  budget            String?
+  timeline          String?
+  startDate         String?
+  estimatedHours    String?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  contractor     ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  serviceRequest ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_matches")
+}
+
+model ContractorPreferences {
+  id                   String   @id @default(cuid())
+  userId               String   @unique
+  serviceCategories    String[]
+  locations            String[]
+  experience           String?
+  expertise            String[]
+  background           String?
+  hourlyRate           String?
+  availability         String?
+  maxDistance          String?
+  selectedTheme        String?
+  brandingColor        String?
+  isOnboardingComplete Boolean  @default(false)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_preferences")
+}
+
+// ============================================================================
+// BOOKINGS & JOBS
+// ============================================================================
+
+model Booking {
+  id String @id @default(cuid())
+
+  clientId String
+  client   User   @relation("ClientBookings", fields: [clientId], references: [id], onDelete: Cascade)
+
+  contractorId String?
+  contractor   Contractor? @relation("ContractorBookings", fields: [contractorId], references: [id], onDelete: SetNull)
+
+  // Service Information
+  australianServiceType      AustralianServiceType
+  description                String
+  estimatedDamagePhotosCount Int                   @default(0)
+
+  // Location (Australian-specific)
+  servicePostcode String
+  serviceState    AustralianState
+  serviceSuburb   String
+  streetAddress   String
+
+  // Status & Timeline
+  status                 BookingStatus          @default(PENDING)
+  emergencyResponseLevel EmergencyResponseLevel @default(STANDARD)
+  scheduledDate          DateTime?
+  startedAt              DateTime?
+  completedAt            DateTime?
+
+  // Financial
+  estimatedCostAUD Decimal
+  finalCostAUD     Decimal?
+
+  // Notes
+  notes         String?
+  internalNotes String?
+  clientNotes   String?
+
+  // Media
+  damagePhotos String[] // Array of image URLs
+
+  // Insurance Claim Integration
+  auClaims InsuranceClaimAU[] @relation("BookingClaims")
+
+  // Relations
+  payments Payment[] @relation("BookingPayments")
+  ratings  Rating[]
+
+  // CRM Relations
+  opportunity Opportunity? @relation("OpportunityBooking")
+  activities  Activity[]   @relation("ActivityBooking")
+
+  // NRPG Inspection Relations
+  inspectionReports InspectionReport[] @relation("InspectionReportBooking")
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([clientId])
+  @@index([contractorId])
+  @@index([servicePostcode])
+  @@index([serviceState])
+  @@index([status])
+  @@index([emergencyResponseLevel])
+}
+
+// ============================================================================
+// PAYMENTS & INVOICING
+// ============================================================================
+
+model Payment {
+  id String @id @default(cuid())
+
+  bookingId String
+  booking   Booking @relation("BookingPayments", fields: [bookingId], references: [id], onDelete: Cascade)
+
+  clientId String
+  client   User   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  contractorId String?
+  contractor   Contractor? @relation("ContractorPayments", fields: [contractorId], references: [id], onDelete: SetNull)
+
+  // Payment Details (AUD)
+  amountAUD             Decimal // Total amount
+  platformFeeAUD        Decimal
+  platformFeePercentage Decimal @default(15.00)
+  gstAUD                Decimal // 10% GST
+  netAmountAUD          Decimal // Amount to contractor after fees
+
+  // Payment Method
+  paymentMethod         String // "CREDIT_CARD", "BANK_TRANSFER", "CASH", "CHECK", "INSURANCE"
+  stripePaymentIntentId String?
+  transactionId         String? @unique
+
+  // Status
+  status        PaymentStatus @default(PENDING)
+  processedAt   DateTime?
+  failureReason String?
+
+  // Receipt/Invoice
+  receiptUrl    String?
+  invoiceNumber String? @unique
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  auInvoice InvoiceAU?
+
+  @@index([bookingId])
+  @@index([clientId])
+  @@index([contractorId])
+  @@index([status])
+  @@index([invoiceNumber])
+}
+
+model InvoiceAU {
+  id String @id @default(cuid())
+
+  paymentId String  @unique
+  payment   Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  contractorId String
+  contractor   Contractor @relation("ContractorInvoices", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  clientId String
+  client   User   @relation("ClientInvoices", fields: [clientId], references: [id], onDelete: Cascade)
+
+  // Invoice Details
+  invoiceNumber String   @unique
+  dateIssued    DateTime @default(now())
+  dateDue       DateTime
+
+  // Amounts (AUD)
+  subtotalAUD Decimal
+  gstAUD      Decimal // 10% GST
+  totalAUD    Decimal
+
+  // Status
+  isPaid   Boolean   @default(false)
+  paidDate DateTime?
+
+  // Description
+  description String
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([invoiceNumber])
+  @@index([contractorId])
+  @@index([clientId])
+  @@index([isPaid])
+}
+
+// ============================================================================
+// INSURANCE CLAIMS
+// ============================================================================
+
+model InsuranceProvider {
+  id String @id @default(cuid())
+
+  // Provider Information
+  name         String // "NRMA", "Suncorp", etc.
+  providerType InsuranceProviderType
+  code         String                @unique
+
+  // Contact
+  contactEmail String
+  contactPhone String
+
+  // API Configuration
+  apiEndpoint String?
+  apiKey      String? // Encrypted via environment
+  webhookUrl  String?
+
+  // Coverage
+  supportedStates AustralianState[]
+
+  // Status
+  isActive          Boolean @default(true)
+  isVerified        Boolean @default(false)
+  verificationNotes String?
+
+  // Relations
+  claims InsuranceClaimAU[]
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([code])
+  @@index([isActive])
+  @@index([providerType])
+}
+
+model InsuranceClaimAU {
+  id String @id @default(cuid())
+
+  // Relationships
+  bookingId String
+  booking   Booking @relation("BookingClaims", fields: [bookingId], references: [id], onDelete: Cascade)
+
+  clientId String
+  client   User   @relation("ClientClaims", fields: [clientId], references: [id], onDelete: Cascade)
+
+  insuranceProviderId String
+  insuranceProvider   InsuranceProvider @relation(fields: [insuranceProviderId], references: [id])
+
+  // Insurance Details
+  policyNumber String
+  claimNumber  String?
+
+  // Financial (AUD)
+  totalClaimAmountAUD Decimal
+  approvedAmountAUD   Decimal?
+  paymentAmountAUD    Decimal?
+
+  // Claim Status
+  status InsuranceClaimStatus @default(DRAFT)
+
+  // Documentation
+  damageDescription   String
+  damagePhotos        String[] // URLs
+  invoiceUrl          String?
+  estimateUrl         String?
+  additionalDocuments String[]
+
+  // Submission Timeline
+  submittedAt DateTime?
+  reviewedAt  DateTime?
+  approvedAt  DateTime?
+  paidAt      DateTime?
+
+  // Rejection Details
+  denialReason String?
+  deniedAt     DateTime?
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // CRM Relations
+  activities Activity[] @relation("ActivityClaim")
+
+  // NRPG Inspection Relations
+  inspectionReports InspectionReport[] @relation("InspectionReportClaim")
+
+  @@index([bookingId])
+  @@index([clientId])
+  @@index([insuranceProviderId])
+  @@index([policyNumber])
+  @@index([claimNumber])
+  @@index([status])
+}
+
+// ============================================================================
+// RATINGS & REVIEWS
+// ============================================================================
+
+model Rating {
+  id String @id @default(cuid())
+
+  bookingId String
+  booking   Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+
+  contractorId String
+  contractor   Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  clientId String
+  client   User   @relation(fields: [clientId], references: [id])
+
+  // Rating Details
+  rating         Int // 1-5 stars
+  comment        String?
+  wouldRecommend Boolean @default(true)
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([bookingId, contractorId])
+  @@index([contractorId])
+  @@index([clientId])
+  @@index([rating])
+}
+
+// ============================================================================
+// MESSAGING
+// ============================================================================
+
+model Message {
+  id          String      @id @default(cuid())
+  senderId    String
+  receiverId  String
+  requestId   String?
+  subject     String?
+  content     String
+  messageType MessageType @default(GENERAL)
+  isRead      Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  tenantId    String?
+
+  sender   User    @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User    @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  tenant   Tenant? @relation(fields: [tenantId], references: [id])
+
+  @@map("messages")
+}
+
+// ============================================================================
+// AUDIT & COMPLIANCE
+// ============================================================================
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  action      String // "CREATE", "UPDATE", "DELETE", "APPROVE", "REJECT"
+  entityType  String // "Booking", "Payment", "Contractor", etc.
+  entityId    String
+  performedBy String? // User ID
+  oldValues   Json?
+  newValues   Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+
+  @@index([entityType])
+  @@index([entityId])
+  @@index([performedBy])
+  @@index([createdAt])
+}
+
+// ============================================================================
+// ADDITIONAL MODELS FOR FUTURE EXPANSION
+// ============================================================================
+
+model RiskAssessment {
+  id             String   @id @default(cuid())
+  bookingId      String   @unique
+  riskScore      Decimal // 0-100
+  riskFactors    String[]
+  recommendation String // "APPROVE", "REVIEW", "REJECT"
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([bookingId])
+  @@index([riskScore])
+}
+
+model DisasterAlert {
+  id                String            @id @default(cuid())
+  // Disaster Information
+  disasterType      String // "FLOOD", "FIRE", "STORM", "CYCLONE"
+  severity          String // "LOW", "MEDIUM", "HIGH", "CRITICAL"
+  affectedPostcodes String[]
+  affectedStates    AustralianState[]
+  description       String
+  alertUrl          String?
+  // Timeline
+  startDate         DateTime
+  endDate           DateTime?
+  // Status
+  isActive          Boolean           @default(true)
+  isResolved        Boolean           @default(false)
+  // Audit
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@index([disasterType])
+  @@index([severity])
+  @@index([isActive])
+  @@index([startDate])
+}
+
+// ============================================================================
+// CONTRACTOR ONBOARDING SYSTEM - Phase 24
+// ============================================================================
+
+enum OnboardingStatus {
+  PENDING_START
+  IN_PROGRESS
+  PAUSED
+  COMPLETED
+  EXPIRED
+}
+
+enum ModuleStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+enum CertificationLevel {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+}
+
+model ContractorOnboarding {
+  id                   String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  contractorId         String           @unique @db.Uuid
+  specialization       String           @db.VarChar(50)
+  assessmentScore      Int?
+  recommendedModules   Json?            @db.JsonB
+  startDate            DateTime?
+  targetCompletionDate DateTime?
+  actualCompletionDate DateTime?
+  status               OnboardingStatus @default(PENDING_START)
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  moduleProgress ContractorModuleProgress[]
+  assessments    ContractorAssessment[]
+
+  @@index([status], name: "idx_contractor_status")
+  @@index([specialization], name: "idx_contractor_specialization")
+  @@index([contractorId], name: "idx_contractor_id_onboarding")
+  @@map("contractor_onboarding")
+}
+
+model ContractorModuleProgress {
+  id           String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  onboardingId String       @db.Uuid
+  moduleId     String       @db.VarChar(100)
+  courseName   String?      @db.VarChar(255)
+  startedAt    DateTime?
+  completedAt  DateTime?
+  completed    Boolean      @default(false)
+  status       ModuleStatus @default(NOT_STARTED)
+  progress     Int          @default(0)
+  createdAt    DateTime     @default(now())
+
+  onboarding ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+
+  @@index([onboardingId, status], name: "idx_module_progress")
+  @@map("contractor_module_progress")
+}
+
+model ContractorAssessment {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  onboardingId   String    @db.Uuid
+  moduleId       String    @db.VarChar(100)
+  assessmentType String?   @db.VarChar(50)
+  score          Int?
+  maxScore       Int       @default(100)
+  completedAt    DateTime?
+  feedback       String?   @db.Text
+  createdAt      DateTime  @default(now())
+
+  onboarding ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+
+  @@map("contractor_assessments")
+}
+
+model ContractorCertification {
+  id                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  contractorId       String    @db.Uuid
+  certificationName  String    @db.VarChar(255)
+  certificationLevel Int?
+  issueDate          DateTime?
+  expiryDate         DateTime?
+  specializations    String[]
+  verified           Boolean   @default(false)
+  createdAt          DateTime  @default(now())
+
+  @@index([contractorId], name: "idx_contractor_id_cert")
+  @@map("contractor_certifications")
+}
+
+// ============================================================================
+// COMPETITOR ANALYSIS & SEO INTELLIGENCE
+// Added for Phase 1 - Designer-Ranking-Branch
+// ============================================================================
+
+enum CompetitorCategory {
+  RESTORATION_COMPANY // Direct competitors (ServiceMaster, BELFOR, etc.)
+  INSURANCE_NETWORK // Insurance company networks (NRMA, Suncorp, etc.)
+  CONTRACTOR_MARKETPLACE // Marketplaces (hipages, ServiceSeeking, etc.)
+  INDUSTRY_ASSOCIATION // Industry bodies (IICRC, AREMA, etc.)
+}
+
+model Competitor {
+  id       String             @id @default(cuid())
+  domain   String             @unique
+  name     String
+  category CompetitorCategory
+  priority Int                @default(5) // 1-10 scale
+  isActive Boolean            @default(true)
+
+  // Business info
+  businessModel   String? // "Direct", "Aggregator", "Association"
+  targetMarket    String? // "Residential", "Commercial", "Both"
+  geographicFocus String[] // States/regions covered
+
+  // Metadata
+  contactInfo    Json?
+  socialProfiles Json?
+  notes          String? @db.Text
+
+  // Relationships
+  analyses     CompetitorAnalysis[]
+  keywords     CompetitorKeyword[]
+  backlinks    Backlink[]
+  swotAnalyses SWOTAnalysis[]
+
+  discoveredAt   DateTime  @default(now())
+  lastAnalyzedAt DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([category])
+  @@index([isActive])
+  @@index([lastAnalyzedAt])
+  @@map("competitors")
+}
+
+model CompetitorAnalysis {
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  // Traffic Metrics
+  organicTraffic  Int? // Monthly organic visits
+  paidTraffic     Int?
+  totalKeywords   Int?
+  organicKeywords Int?
+  paidKeywords    Int?
+
+  // Authority Metrics
+  domainRating Float? // Domain authority score
+  trustFlow    Float?
+  citationFlow Float?
+
+  // Backlink Metrics
+  totalBacklinks   Int?
+  referringDomains Int?
+
+  // Technical SEO
+  pageSpeed     Float? // Google PageSpeed score
+  mobileScore   Float?
+  coreWebVitals Json? // LCP, FID, CLS
+
+  // Content
+  totalPages   Int?
+  blogPosts    Int?
+  servicePages Int?
+
+  // Raw Data
+  analysisDate DateTime @default(now())
+  dataSource   String // "SEMRUSH", "DataForSEO", "Combined"
+  rawData      Json?    @db.JsonB
+
+  createdAt DateTime @default(now())
+
+  @@index([competitorId])
+  @@index([analysisDate])
+  @@map("competitor_analyses")
+}
+
+model CompetitorKeyword {
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  keyword      String
+  searchVolume Int? // Monthly searches (Australia)
+  difficulty   Float? // 0-100 scale
+  cpc          Float? // Cost per click (AUD)
+
+  // Rankings
+  position         Int? // Current SERP position
+  previousPosition Int?
+  url              String? // Ranking URL
+
+  // Classification
+  intent   String? // "informational", "commercial", "transactional"
+  category String? // "water damage", "fire restoration", etc.
+
+  // Opportunity Analysis
+  opportunityScore Float? // Custom calculated score
+  difficultyTier   String? // "easy", "medium", "hard"
+
+  lastChecked DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([competitorId, keyword])
+  @@index([competitorId])
+  @@index([difficultyTier])
+  @@index([opportunityScore])
+  @@map("competitor_keywords")
+}
+
+model Backlink {
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  sourceUrl    String @db.Text
+  targetUrl    String @db.Text
+  sourceDomain String
+
+  anchorText   String? @db.Text
+  linkType     String? // "dofollow", "nofollow"
+  domainRating Float?
+  traffic      Int?
+
+  firstSeen DateTime?
+  lastSeen  DateTime  @default(now())
+  isActive  Boolean   @default(true)
+
+  createdAt DateTime @default(now())
+
+  @@index([competitorId])
+  @@index([sourceDomain])
+  @@index([isActive])
+  @@map("backlinks")
+}
+
+model SWOTAnalysis {
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+
+  strengths     Json @db.JsonB // Array of strength items
+  weaknesses    Json @db.JsonB // Array of weakness items
+  opportunities Json @db.JsonB // Array of opportunity items
+  threats       Json @db.JsonB // Array of threat items
+
+  // AI-generated insights
+  summary               String? @db.Text
+  recommendations       Json?   @db.JsonB // Actionable recommendations
+  competitiveAdvantages Json?   @db.JsonB // What competitor does better
+
+  generatedAt DateTime @default(now())
+  generatedBy String? // "AI", "Manual", "Hybrid"
+
+  @@index([competitorId])
+  @@index([generatedAt])
+  @@map("swot_analyses")
+}
+
+model KeywordOpportunity {
+  id      String @id @default(cuid())
+  keyword String @unique
+
+  searchVolume Int
+  difficulty   Float
+  cpc          Float?
+
+  // Opportunity metrics
+  competitorCount Int // How many competitors rank
+  averagePosition Float // Average competitor position
+  gapScore        Float // Opportunity gap score
+  difficultyTier  String // "easy", "medium", "hard"
+
+  // Classification
+  category    String?
+  intent      String?
+  competitors Json    @db.JsonB // Array of ranking competitors
+
+  identifiedAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([difficultyTier])
+  @@index([gapScore])
+  @@index([category])
+  @@map("keyword_opportunities")
+}
+
+// ============================================================================
+// CONTENT MARKETING & SEO - BLOG, FAQ, CASE STUDIES
+// ============================================================================
+
+enum BlogCategory {
+  EMERGENCY_GUIDE // "What to do after flood"
+  INSURANCE_CLAIM // "How to file claim"
+  PREVENTION // "Prevent mold growth"
+  INDUSTRY_INSIGHT // "Contractor empowerment"
+  CASE_STUDY // Customer success stories
+  RESOURCE // Tools and calculators
+}
+
+enum PostStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum FAQCategory {
+  EMERGENCY_RESPONSE
+  PRICING_QUOTES
+  INSURANCE_CLAIMS
+  SERVICE_SPECIFIC
+  CONTRACTOR_NETWORK
+  PLATFORM_USAGE
+  PREVENTION_TIPS
+  SAFETY_HEALTH
+}
+
+model BlogPost {
+  id       String       @id @default(cuid())
+  title    String
+  slug     String       @unique
+  excerpt  String       @db.Text
+  content  String       @db.Text
+  category BlogCategory
+  tags     String[]
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  keywords        String[]
+
+  // Author
+  authorId   String
+  authorName String
+  authorBio  String?
+
+  // Publishing
+  status       PostStatus @default(DRAFT)
+  publishedAt  DateTime?
+  scheduledFor DateTime?
+
+  // Engagement
+  viewCount  Int @default(0)
+  shareCount Int @default(0)
+
+  // Featured
+  isFeatured    Boolean @default(false)
+  featuredImage String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  faqs BlogFAQ[]
+
+  @@index([slug])
+  @@index([category])
+  @@index([status])
+  @@index([publishedAt])
+  @@map("blog_posts")
+}
+
+model BlogFAQ {
+  id         String   @id @default(cuid())
+  blogPostId String
+  blogPost   BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+  question   String   @db.Text
+  answer     String   @db.Text
+  order      Int
+
+  @@index([blogPostId])
+  @@map("blog_faqs")
+}
+
+model FAQ {
+  id          String      @id @default(cuid())
+  question    String      @db.Text
+  answer      String      @db.Text
+  category    FAQCategory
+  tags        String[]
+  serviceType String? // "water damage", "fire damage", etc.
+  location    String? // "Sydney", "Melbourne", etc.
+
+  // SEO
+  keywords     String[]
+  searchVolume Int?
+
+  // Engagement
+  viewCount  Int @default(0)
+  helpful    Int @default(0)
+  notHelpful Int @default(0)
+
+  order       Int     @default(0)
+  isPublished Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([serviceType])
+  @@index([location])
+  @@map("faqs")
+}
+
+model CaseStudy {
+  id           String @id @default(cuid())
+  title        String
+  slug         String @unique
+  customerName String
+  customerType String // "Homeowner", "Strata Manager", etc.
+
+  // Incident
+  serviceType  String // "Water Damage", "Fire", etc.
+  location     String // "Sydney, NSW"
+  incidentDate DateTime
+
+  // Story
+  challenge   String  @db.Text
+  solution    String  @db.Text
+  results     String  @db.Text
+  testimonial String? @db.Text
+
+  // Media
+  beforeImages String[]
+  afterImages  String[]
+  videoUrl     String?
+
+  // Metrics
+  projectCost    Float?
+  responseTime   Int? // minutes
+  completionTime Int? // days
+  customerRating Float?
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([serviceType])
+  @@index([location])
+  @@map("case_studies")
+}
+
+// ============================================================================
+// CRM CORE MODELS - Project Vend Phase 2 Integration
+// Added: 2025-12-29 - Single Source of Truth for Customer/Opportunity/Activity
+// ============================================================================
+
+enum CustomerLifecycleStage {
+  LEAD              // Initial inquiry
+  QUALIFIED_LEAD    // Passed lead scoring
+  OPPORTUNITY       // Active sales discussion
+  CUSTOMER          // Won deal, active customer
+  AT_RISK           // Low engagement signals
+  CHURNED           // Lost customer
+  ADVOCATE          // Promoter, referral source
+}
+
+enum OpportunityStage {
+  DISCOVERY         // Initial conversation
+  ASSESSMENT        // NRPG inspection scheduled
+  PROPOSAL          // Quote/estimate sent
+  NEGOTIATION       // Discussing terms
+  CLOSED_WON        // Deal won
+  CLOSED_LOST       // Deal lost
+}
+
+enum ActivityType {
+  EMAIL             // Email communication
+  CALL              // Phone call
+  MEETING           // In-person/virtual meeting
+  NOTE              // Internal note
+  INSPECTION        // NRPG site inspection
+  QUOTE_SENT        // Quote/proposal sent
+  CONTRACT_SIGNED   // Contract executed
+  BOOKING_CREATED   // Service booking initiated
+  PAYMENT_RECEIVED  // Payment processed
+  CLAIM_SUBMITTED   // Insurance claim filed
+  CLAIM_APPROVED    // Insurance claim approved
+  FOLLOW_UP         // Follow-up action
+  COMPLAINT         // Customer complaint
+  REVIEW_RECEIVED   // Customer review/rating
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  WAITING
+  COMPLETED
+  CANCELLED
+}
+
+enum MetricType {
+  CONVERSION_RATE
+  RESPONSE_TIME
+  CUSTOMER_SATISFACTION
+  REVENUE_TARGET
+  CHURN_RATE
+}
+
+enum AlertSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+// ============================================================================
+// NRPG INSPECTION REPORT ENUMS
+// Added: 2025-12-29 - For NRPG inspection report generation system
+// ============================================================================
+
+enum InspectionStatus {
+  SCHEDULED
+  IN_PROGRESS
+  DATA_COLLECTION_COMPLETE
+  DRAFT_GENERATED
+  TECHNICAL_REVIEW
+  MANAGER_REVIEW
+  APPROVED
+  SENT_TO_CLIENT
+  SENT_TO_INSURER
+  REVISED
+  CANCELLED
+}
+
+enum DamageCategory {
+  CATEGORY_1 // Clean water
+  CATEGORY_2 // Grey water
+  CATEGORY_3 // Black water (sewage)
+  CATEGORY_4 // Specialty drying
+}
+
+enum IICRCStandard {
+  S500_WATER_DAMAGE
+  S520_MOLD_REMEDIATION
+  S800_BIOHAZARD
+  WRT_WATER_RESTORATION
+  AMRT_APPLIED_MICROBIAL
+  FSRT_FIRE_SMOKE
+}
+
+enum ReportApprovalStatus {
+  PENDING_REVIEW
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  REVISION_REQUESTED
+}
+
+model CustomerLifecycle {
+  id String @id @default(cuid())
+
+  // Customer Reference
+  userId String @unique
+  user   User   @relation("CustomerLifecycle", fields: [userId], references: [id], onDelete: Cascade)
+
+  // Lifecycle Stage
+  currentStage      CustomerLifecycleStage @default(LEAD)
+  previousStage     CustomerLifecycleStage?
+  stageChangedAt    DateTime               @default(now())
+
+  // Engagement Metrics
+  totalInteractions    Int      @default(0)
+  lastInteractionDate  DateTime?
+  daysSinceLastContact Int      @default(0)
+
+  // Value Metrics
+  lifetimeValueAUD   Decimal @default(0) @db.Decimal(10, 2)
+  averageJobValueAUD Decimal @default(0) @db.Decimal(10, 2)
+  totalJobsCompleted Int     @default(0)
+
+  // Health Score (0-100)
+  healthScore       Int     @default(50)
+  healthScoreReason String? @db.Text
+
+  // Churn Risk Indicators
+  churnRiskScore Int      @default(0) // 0-100 scale
+  isAtRisk       Boolean  @default(false)
+  atRiskReasons  String[] // ["low_engagement", "payment_issues", "poor_rating"]
+
+  // Customer Success
+  assignedCSMId      String? // Customer Success Manager
+  nextTouchpointDate DateTime?
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  opportunities Opportunity[]
+  activities    Activity[]
+  tasks         Task[]
+
+  @@index([currentStage])
+  @@index([healthScore])
+  @@index([churnRiskScore])
+  @@index([isAtRisk])
+  @@index([lastInteractionDate])
+  @@map("customer_lifecycle")
+}
+
+model Opportunity {
+  id String @id @default(cuid())
+
+  // Customer Reference
+  customerLifecycleId String
+  customerLifecycle   CustomerLifecycle @relation(fields: [customerLifecycleId], references: [id], onDelete: Cascade)
+
+  // Link to existing ServiceRequest
+  serviceRequestId String?         @unique
+  serviceRequest   ServiceRequest? @relation("OpportunityServiceRequest", fields: [serviceRequestId], references: [id])
+
+  // Link to Booking if converted
+  bookingId String?  @unique
+  booking   Booking? @relation("OpportunityBooking", fields: [bookingId], references: [id])
+
+  // Opportunity Details
+  name               String // "Water Damage - 123 Smith St"
+  stage              OpportunityStage @default(DISCOVERY)
+  estimatedValueAUD  Decimal          @db.Decimal(10, 2)
+  probabilityPercent Int              @default(50) // 0-100
+
+  // Service Details
+  australianServiceType AustralianServiceType
+  urgencyLevel          EmergencyResponseLevel
+  serviceState          AustralianState
+  servicePostcode       String
+
+  // Timeline
+  expectedCloseDate DateTime?
+  actualCloseDate   DateTime?
+
+  // Assignment
+  assignedContractorId String?
+  assignedContractor   Contractor? @relation("OpportunityContractor", fields: [assignedContractorId], references: [id])
+
+  // Close Reason (if lost)
+  closeReason      String? // "price_too_high", "chose_competitor", "timeline_mismatch"
+  competitorChosen String? // Name of competitor if applicable
+
+  // Forecast
+  forecastCategory String? // "commit", "best_case", "pipeline"
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  activities Activity[]
+  tasks      Task[]
+
+  @@index([stage])
+  @@index([expectedCloseDate])
+  @@index([australianServiceType])
+  @@index([serviceState])
+  @@index([assignedContractorId])
+  @@map("opportunities")
+}
+
+model Activity {
+  id String @id @default(cuid())
+
+  // Customer Reference
+  customerLifecycleId String?
+  customerLifecycle   CustomerLifecycle? @relation(fields: [customerLifecycleId], references: [id], onDelete: Cascade)
+
+  // Opportunity Reference
+  opportunityId String?
+  opportunity   Opportunity? @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+
+  // Booking Reference (for post-sale activities)
+  bookingId String?
+  booking   Booking? @relation("ActivityBooking", fields: [bookingId], references: [id])
+
+  // Claim Reference
+  claimId         String?
+  insuranceClaim  InsuranceClaimAU? @relation("ActivityClaim", fields: [claimId], references: [id])
+
+  // Activity Details
+  type        ActivityType
+  subject     String // "Follow-up call with John"
+  description String? @db.Text
+  outcome     String? @db.Text // Result of the activity
+
+  // Participants
+  performedById String // User who performed activity
+  performedBy   User   @relation("ActivityPerformer", fields: [performedById], references: [id])
+
+  customerId String? // Customer involved
+  customer   User?   @relation("ActivityCustomer", fields: [customerId], references: [id])
+
+  contractorId String?
+  contractor   Contractor? @relation("ActivityContractor", fields: [contractorId], references: [id])
+
+  // Timing
+  activityDate    DateTime @default(now())
+  durationMinutes Int?     // For calls/meetings
+
+  // Attachments
+  attachments String[] // URLs to documents, recordings, etc.
+
+  // Sentiment Analysis
+  sentiment      String? // "positive", "neutral", "negative"
+  sentimentScore Float?  // -1.0 to 1.0
+
+  // Follow-up
+  requiresFollowUp Boolean   @default(false)
+  followUpDate     DateTime?
+  followUpTaskId   String?
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([customerLifecycleId])
+  @@index([opportunityId])
+  @@index([type])
+  @@index([activityDate])
+  @@index([performedById])
+  @@index([requiresFollowUp])
+  @@map("activities")
+}
+
+model Task {
+  id String @id @default(cuid())
+
+  // Customer Context
+  customerLifecycleId String?
+  customerLifecycle   CustomerLifecycle? @relation(fields: [customerLifecycleId], references: [id], onDelete: Cascade)
+
+  // Opportunity Context
+  opportunityId String?
+  opportunity   Opportunity? @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+
+  // Task Details
+  title       String
+  description String? @db.Text
+
+  // Assignment
+  assignedToId String
+  assignedTo   User   @relation("TaskAssignee", fields: [assignedToId], references: [id], onDelete: Cascade)
+
+  createdById String
+  createdBy   User   @relation("TaskCreator", fields: [createdById], references: [id])
+
+  // Status & Priority
+  status   TaskStatus   @default(TODO)
+  priority TaskPriority @default(MEDIUM)
+
+  // Timeline
+  dueDate     DateTime?
+  completedAt DateTime?
+
+  // Reminders
+  reminderDate DateTime?
+  isOverdue    Boolean  @default(false)
+
+  // Linked Entity
+  relatedEntityType String? // "Booking", "Claim", "Opportunity"
+  relatedEntityId   String?
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([assignedToId])
+  @@index([status])
+  @@index([priority])
+  @@index([dueDate])
+  @@index([isOverdue])
+  @@map("tasks")
+}
+
+model BusinessRule {
+  id String @id @default(cuid())
+
+  name        String
+  description String @db.Text
+
+  // Rule Definition
+  ruleType   String     // "RESPONSE_TIME", "CONVERSION_THRESHOLD", "CHURN_PREVENTION"
+  metric     MetricType
+  threshold  Decimal    @db.Decimal(10, 2)
+  comparison String     // "greater_than", "less_than", "equals"
+
+  // Actions
+  actionOnViolation String[] // ["send_alert", "create_task", "notify_manager"]
+
+  // Assignment
+  ownerId String // Manager/owner of this rule
+  owner   User   @relation("BusinessRuleOwner", fields: [ownerId], references: [id])
+
+  // Status
+  isActive Boolean @default(true)
+
+  // Audit
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  violations BusinessRuleViolation[]
+
+  @@index([ruleType])
+  @@index([isActive])
+  @@map("business_rules")
+}
+
+model BusinessRuleViolation {
+  id String @id @default(cuid())
+
+  businessRuleId String
+  businessRule   BusinessRule @relation(fields: [businessRuleId], references: [id], onDelete: Cascade)
+
+  // Violation Details
+  entityType String // "Opportunity", "CustomerLifecycle", "Booking"
+  entityId   String
+
+  actualValue   Decimal @db.Decimal(10, 2)
+  expectedValue Decimal @db.Decimal(10, 2)
+  severity      AlertSeverity
+
+  // Resolution
+  isResolved     Boolean   @default(false)
+  resolvedAt     DateTime?
+  resolvedById   String?
+  resolutionNote String?   @db.Text
+
+  // Audit
+  detectedAt DateTime @default(now())
+
+  @@index([businessRuleId])
+  @@index([isResolved])
+  @@index([severity])
+  @@map("business_rule_violations")
+}
+
+// ============================================================================
+// NRPG INSPECTION REPORT MODELS
+// Added: 2025-12-29 - Complete inspection report generation system
+// ============================================================================
+
+model InspectionReport {
+  id String @id @default(cuid())
+
+  reportNumber String @unique // NRPG-2025-0001
+
+  // Linkages
+  bookingId        String
+  booking          Booking          @relation("InspectionReportBooking", fields: [bookingId], references: [id])
+  insuranceClaimId String?
+  insuranceClaim   InsuranceClaimAU? @relation("InspectionReportClaim", fields: [insuranceClaimId], references: [id])
+
+  // Inspection Details
+  inspectionDate DateTime
+  inspectorId    String
+  inspector      User     @relation("InspectorReports", fields: [inspectorId], references: [id])
+
+  // Jurisdiction & Standards
+  jurisdiction      AustralianState
+  applicableCodes   String[] // ["NCC 2022", "QLD Building Code"]
+  iicrcStandards    IICRCStandard[]
+
+  // Status & Workflow
+  status    InspectionStatus @default(SCHEDULED)
+  version   Int              @default(1)
+  isDraft   Boolean          @default(true)
+
+  // Approval Chain
+  technicalReviewerId  String?
+  technicalReviewer    User?    @relation("TechnicalReviews", fields: [technicalReviewerId], references: [id])
+  technicalReviewDate  DateTime?
+  technicalReviewNotes String?  @db.Text
+
+  managerReviewerId  String?
+  managerReviewer    User?    @relation("ManagerReviews", fields: [managerReviewerId], references: [id])
+  managerReviewDate  DateTime?
+  managerReviewNotes String?  @db.Text
+
+  finalApproverId   String?
+  finalApprover     User?    @relation("FinalApprovals", fields: [finalApproverId], references: [id])
+  finalApprovalDate DateTime?
+
+  // Report Content
+  executiveSummary String? @db.Text
+  scopeOfWork      String  @db.Text
+  findings         String  @db.Text
+  recommendations  String  @db.Text
+  limitations      String? @db.Text
+
+  // Damage Assessment
+  damageAreas      DamageArea[]
+  moistureReadings MoistureReading[]
+  photos           InspectionPhoto[]
+
+  // Cost Estimation
+  costEstimate CostEstimate?
+
+  // PDF Generation
+  pdfUrl         String?
+  pdfGeneratedAt DateTime?
+  pdfVersion     Int      @default(0)
+
+  // Compliance Validation
+  complianceChecks ComplianceCheck[]
+  complianceStatus String? // "COMPLIANT", "NON_COMPLIANT", "REQUIRES_REVIEW"
+
+  // Audit Trail
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  createdBy String
+  creator   User            @relation("CreatedReports", fields: [createdBy], references: [id])
+  revisions ReportRevision[]
+
+  @@index([bookingId])
+  @@index([status])
+  @@index([jurisdiction])
+  @@index([reportNumber])
+  @@index([inspectorId])
+  @@map("inspection_reports")
+}
+
+model DamageArea {
+  id       String           @id @default(cuid())
+  reportId String
+  report   InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  // Location
+  areaName String // "Master Bedroom", "Kitchen"
+  floor    String // "Ground Floor", "First Floor"
+  roomType String // "Bedroom", "Kitchen", "Bathroom"
+
+  // Damage Assessment
+  damageCategory    DamageCategory
+  affectedArea      Float          // Square meters
+  affectedMaterials String[] // ["Carpet", "Drywall", "Timber flooring"]
+
+  // Moisture Content
+  initialMoistureLevel Float? // %
+  targetMoistureLevel  Float? // %
+
+  // Observations
+  description String
+  severity    String // "Minor", "Moderate", "Severe", "Critical"
+  photos      InspectionPhoto[] @relation("AreaPhotos")
+
+  // Required Actions
+  requiredActions     String[] // ["Remove carpet", "Dry wall cavity"]
+  equipmentNeeded     String[] // ["Air mover", "Dehumidifier"]
+  estimatedDryingTime Int? // Hours
+
+  // Cost Tracking
+  estimatedCost Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([reportId])
+  @@map("damage_areas")
+}
+
+model MoistureReading {
+  id       String           @id @default(cuid())
+  reportId String
+  report   InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  // Reading Details
+  readingDate DateTime
+  location    String // "Master Bedroom - North Wall"
+  material    String // "Drywall", "Concrete slab", "Timber"
+
+  // Measurements
+  moistureContent    Float  // % moisture content
+  ambientTemperature Float? // Celsius
+  ambientHumidity    Float? // % relative humidity
+
+  // Equipment
+  meterType    String // "Pin-type", "Pinless", "Thermal camera"
+  readingDepth String? // "Surface", "12mm", "25mm"
+
+  // GPS Location (optional)
+  latitude  Float?
+  longitude Float?
+
+  // Notes
+  notes String?
+
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+  @@index([readingDate])
+  @@map("moisture_readings")
+}
+
+model InspectionPhoto {
+  id       String           @id @default(cuid())
+  reportId String
+  report   InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  damageAreaId String?
+  damageArea   DamageArea? @relation("AreaPhotos", fields: [damageAreaId], references: [id])
+
+  // Photo Metadata
+  photoUrl     String // S3/CloudFlare URL
+  thumbnailUrl String?
+  filename     String
+  fileSize     Int    // Bytes
+  mimeType     String // "image/jpeg"
+
+  // Categorization
+  photoType   String // "BEFORE", "DURING", "AFTER", "EQUIPMENT", "DAMAGE_DETAIL"
+  caption     String
+  description String?
+
+  // EXIF Data
+  capturedAt  DateTime
+  gpsLatitude  Float?
+  gpsLongitude Float?
+  deviceModel  String?
+
+  // Display Order
+  sortOrder Int @default(0)
+
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+  @@index([damageAreaId])
+  @@index([photoType])
+  @@map("inspection_photos")
+}
+
+model CostEstimate {
+  id       String           @id @default(cuid())
+  reportId String           @unique
+  report   InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  // Labor Costs
+  laborLineItems  LaborLineItem[]
+  totalLaborHours Float
+  totalLaborCost  Float
+
+  // Material Costs
+  materialLineItems MaterialLineItem[]
+  totalMaterialCost Float
+
+  // Equipment Costs
+  equipmentLineItems EquipmentLineItem[]
+  totalEquipmentCost Float
+
+  // Subtotals
+  subtotal  Float
+  gst       Float // 10% in Australia
+  totalCost Float
+
+  // Pricing Metadata
+  pricingDate   DateTime        @default(now())
+  jurisdiction  AustralianState
+  pricingSource String // "NRPG_2025_Q1_RATES"
+
+  // Contingency
+  contingencyPercent Float @default(10)
+  contingencyAmount  Float
+
+  // Notes
+  assumptions    String? @db.Text
+  exclusions     String? @db.Text
+  validityPeriod Int     @default(30) // Days
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([reportId])
+  @@map("cost_estimates")
+}
+
+model LaborLineItem {
+  id             String       @id @default(cuid())
+  costEstimateId String
+  costEstimate   CostEstimate @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
+
+  description String // "Water extraction - Category 1"
+  taskCode    String // "WE-C1"
+
+  // Labor Details
+  iicrcLevel String // "WRT", "AMRT", "Technician"
+  hours      Float
+  hourlyRate Float
+
+  // Calculation
+  subtotal Float
+
+  // Metadata
+  jurisdiction      AustralianState
+  rateEffectiveDate DateTime
+
+  createdAt DateTime @default(now())
+
+  @@index([costEstimateId])
+  @@map("labor_line_items")
+}
+
+model MaterialLineItem {
+  id             String       @id @default(cuid())
+  costEstimateId String
+  costEstimate   CostEstimate @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
+
+  description  String // "Antimicrobial treatment - 50L"
+  materialCode String // "AM-50L"
+
+  // Material Details
+  quantity  Float
+  unit      String // "L", "kg", "m2", "each"
+  unitPrice Float
+
+  // Supplier
+  supplierName String?
+  supplierSKU  String?
+
+  // Calculation
+  subtotal Float
+
+  // Metadata
+  jurisdiction       AustralianState
+  priceEffectiveDate DateTime
+
+  createdAt DateTime @default(now())
+
+  @@index([costEstimateId])
+  @@map("material_line_items")
+}
+
+model EquipmentLineItem {
+  id             String       @id @default(cuid())
+  costEstimateId String
+  costEstimate   CostEstimate @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
+
+  description   String // "Commercial dehumidifier - 7 days"
+  equipmentCode String // "DEHUM-COM"
+
+  // Rental Details
+  quantity   Int
+  rentalDays Int
+  dailyRate  Float
+
+  // Calculation
+  subtotal Float
+
+  // Metadata
+  jurisdiction      AustralianState
+  rateEffectiveDate DateTime
+
+  createdAt DateTime @default(now())
+
+  @@index([costEstimateId])
+  @@map("equipment_line_items")
+}
+
+model ComplianceCheck {
+  id       String           @id @default(cuid())
+  reportId String
+  report   InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  // Check Details
+  checkName    String          // "QLD Building Code 2022 - Water Damage"
+  checkCode    String          // "QLD-BC-2022-WD"
+  jurisdiction AustralianState
+
+  // Compliance Result
+  status   String  // "PASS", "FAIL", "NOT_APPLICABLE", "REQUIRES_REVIEW"
+  required Boolean @default(true)
+
+  // Evidence
+  evidence         String? @db.Text // How compliance was achieved
+  referenceSection String? // "Section 4.2.3"
+
+  // Validation
+  validatedBy String?
+  validatedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+  @@index([status])
+  @@map("compliance_checks")
+}
+
+model ReportRevision {
+  id       String           @id @default(cuid())
+  reportId String
+  report   InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  version        Int
+  revisionReason String // "Client requested changes", "Compliance update"
+  changedBy      String
+  changedByUser  User   @relation("ReportRevisions", fields: [changedBy], references: [id])
+
+  // Snapshot
+  snapshotData Json // Full report state at this version
+  pdfUrl       String?
+
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+  @@index([version])
+  @@map("report_revisions")
+}
