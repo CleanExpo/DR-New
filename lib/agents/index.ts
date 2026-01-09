@@ -71,6 +71,15 @@ import './workflows/contractor-matching';
 import './workflows/inspection-report';
 import './workflows/customer-support';
 
+// Super-Orchestrator (planned meta-agent feature)
+export {
+  executeManualWorkflow,
+  getDailyReport,
+  getWeeklyReport,
+  runSelfImprovement,
+  type AgentEvent,
+} from './super-orchestrator';
+
 // Re-export workflow functions for direct use
 export {
   createDisasterAnalysisGraph,
