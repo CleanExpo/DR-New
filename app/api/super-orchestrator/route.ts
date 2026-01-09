@@ -8,14 +8,34 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  executeManualWorkflow,
-  getDailyReport,
-  getWeeklyReport,
-  runSelfImprovement,
-  type AgentEvent
-} from '@/lib/agents';
 import { logger } from '@/lib/logger';
+
+// Type stub for AgentEvent (from incomplete super-orchestrator module)
+interface AgentEvent {
+  id: string;
+  type: string;
+  timestamp: Date;
+  source: 'github' | 'cicd' | 'monitoring' | 'scheduler' | 'manual';
+  data: any;
+  priority: 'low' | 'medium' | 'high' | 'critical';
+}
+
+// Function stubs for incomplete features
+async function executeManualWorkflow(workflowType: string, data: any) {
+  throw new Error('Super-Orchestrator meta-agent features are not yet implemented. Use the standard orchestrator instead.');
+}
+
+async function getDailyReport() {
+  throw new Error('Reporting features are not yet implemented.');
+}
+
+async function getWeeklyReport() {
+  throw new Error('Reporting features are not yet implemented.');
+}
+
+async function runSelfImprovement() {
+  throw new Error('Self-improvement features are not yet implemented.');
+}
 
 /**
  * POST /api/super-orchestrator
