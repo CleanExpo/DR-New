@@ -11,7 +11,7 @@
  * Schedule: Daily at 3 AM (after competitor analysis job)
  */
 
-import { prisma } from '@/lib/database/prisma-client';
+import { prisma } from '@/lib/prisma';
 import {
   emitCompetitorActivity,
   emitJobComplete,

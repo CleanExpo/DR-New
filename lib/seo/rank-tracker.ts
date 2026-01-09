@@ -11,7 +11,7 @@
  * - SERP feature tracking (featured snippets, local pack)
  */
 
-import { prisma } from '@/lib/database/prisma-client';
+import { prisma } from '@/lib/prisma';
 
 // SERP Feature Types
 export enum SerpFeature {

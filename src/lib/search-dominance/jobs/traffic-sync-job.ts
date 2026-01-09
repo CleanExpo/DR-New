@@ -10,7 +10,7 @@
  * Schedule: Every 1 hour
  */
 
-import { prisma } from '@/lib/database/prisma-client';
+import { prisma } from '@/lib/prisma';
 import {
   emitTrafficUpdate,
   emitTrafficAnomaly,
