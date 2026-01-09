@@ -1,0 +1,106 @@
+# Dependencies and build artifacts
+node_modules
+.npm
+.next
+.build
+dist
+out
+
+# Development files
+.env.local
+.env.*.local
+.env*.example
+.env.test
+.env.development
+
+# Version control
+.git
+.gitignore
+.gitattributes
+.github
+
+# CI/CD
+.circleci
+.gitlab-ci.yml
+.travis.yml
+.github/workflows
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+.sublime-project
+.sublime-workspace
+*.iml
+*.code-workspace
+
+# Testing
+.jest
+coverage
+.nyc_output
+junit.xml
+*.lcov
+
+# Documentation
+docs
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-entrypoint.sh
+
+# Performance and analysis
+.lighthouse
+lighthouserc*.js
+performance-budget.json
+bundle-analysis.json
+
+# Package managers
+npm-debug.log
+npm-error.log
+yarn.lock
+yarn-error.log
+pnpm-lock.yaml
+
+# Temporary files
+tmp
+temp
+.cache
+*.tmp
+
+# OS files
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Storybook
+.storybook
+storybook-static
+
+# Playwright
+test-results
+playwright-report
+
+# Analytics and logging
+.pendo
+
+# Local development utilities
+scripts/local-dev
+docker/entrypoint.sh.bak
+
+# Monorepo tools
+lerna.json
+
+# Turborepo
+.turbo
+
+# Build system artifacts
+vercel.json (excluded only for COPY, can be included in CI)
