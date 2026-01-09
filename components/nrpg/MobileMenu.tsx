@@ -23,7 +23,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { X, ChevronRight, Phone } from 'lucide-react';
+import { X, ChevronRight } from 'lucide-react';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -298,8 +298,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
         {/* Emergency CTA - Sticky Bottom */}
         <div className="sticky bottom-0 bg-gradient-to-t from-white dark:from-slate-900 via-white dark:via-slate-900 to-transparent px-6 py-6 border-t border-slate-200 dark:border-slate-800">
-          <a
-            href="tel:1300309361"
+          <button
+            onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
             className="
               flex items-center justify-center gap-3
               w-full py-4 px-6
@@ -314,11 +314,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
             </span>
-            <Phone className="w-5 h-5" />
-            <span className="text-xl">1300 309 361</span>
-          </a>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8m0 8l-6-4m6 4l6-4" />
+            </svg>
+            <span className="text-xl">Request Service</span>
+          </button>
           <p className="text-center text-xs text-slate-500 dark:text-slate-400 mt-3 font-bold uppercase tracking-wider">
-            24/7 Emergency Dispatch
+            $2,750 Emergency Dispatch • 24/7
           </p>
         </div>
       </div>
