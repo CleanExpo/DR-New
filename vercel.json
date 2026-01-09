@@ -65,10 +65,6 @@
   ],
 
   "functions": {
-    "api/ai/**/*.ts": {
-      "memory": 3008,
-      "maxDuration": 60
-    },
     "api/agents/**/*.ts": {
       "memory": 3008,
       "maxDuration": 60
