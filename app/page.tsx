@@ -41,7 +41,8 @@ import {
   SERVICE_PILLARS,
   CLIENT_SECTORS,
   AUSTRALIAN_LOCATIONS,
-  EMERGENCY_PHONE,
+  EMERGENCY_CONTACT,
+  EMERGENCY_PRICING,
 } from '@/lib/design-tokens';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
 
@@ -250,31 +251,31 @@ export default function HomePage() {
                 </Link>
               </div>
 
-              {/* Right Side: Emergency Number + CTA */}
+              {/* Right Side: Emergency Pricing + CTA */}
               <div className="flex items-center gap-4">
-                {/* Emergency Number Display - Desktop Only */}
+                {/* Emergency Pricing Display - Desktop Only */}
                 <div className="hidden xl:flex flex-col items-end">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
-                    Emergency Dispatch
+                    Emergency Service
                   </span>
-                  <a
-                    href={EMERGENCY_PHONE.href}
-                    className="font-display text-2xl font-black text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    {EMERGENCY_PHONE.number}
-                  </a>
+                  <div className="font-display text-2xl font-black text-red-600 dark:text-red-400">
+                    {EMERGENCY_PRICING.display}
+                  </div>
+                  <span className="text-xs text-slate-400">inc GST</span>
                 </div>
 
-                {/* Emergency CTA Button */}
-                <a
-                  href={EMERGENCY_PHONE.href}
+                {/* Emergency Request CTA Button */}
+                <button
+                  onClick={() => {
+                    window.location.href = '/claim/step-1?pricing_disclosed=true';
+                  }}
                   className="hidden md:inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl shadow-lg shadow-red-600/30 transition-all"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8m0 8l-6-4m6 4l6-4" />
                   </svg>
-                  Emergency
-                </a>
+                  Request Service
+                </button>
 
                 {/* Mobile Menu Toggle */}
                 <HamburgerButton
@@ -325,18 +326,18 @@ export default function HomePage() {
                     <PriorityCard
                       priority="critical"
                       title="Report Emergency"
-                      onClick={() => window.location.href = EMERGENCY_PHONE.href}
+                      onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
                       className="cursor-pointer hover:scale-105 transition-transform"
                     >
                       <div className="text-sm">
-                        24/7 immediate dispatch for active disasters
+                        {EMERGENCY_PRICING.display} - 24/7 dispatch for active disasters
                       </div>
                     </PriorityCard>
 
                     <PriorityCard
                       priority="high"
-                      title="Find Contractor"
-                      onClick={() => window.location.href = '/claim/step-1'}
+                      title="Get Quote"
+                      onClick={() => window.location.href = '/get-started'}
                       className="cursor-pointer hover:scale-105 transition-transform"
                     >
                       <div className="text-sm">
@@ -365,25 +366,32 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Right: Emergency Contact Card */}
+                {/* Right: Emergency Service Pricing Card */}
                 <div className="lg:col-span-5">
                   <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-8 border-2 border-slate-200 dark:border-slate-800">
                     <div className="space-y-6">
-                      {/* Emergency Hotline */}
+                      {/* Emergency Pricing Display */}
                       <div className="text-center p-8 bg-red-50 dark:bg-red-900/20 rounded-2xl border-2 border-red-600">
                         <div className="flex items-center justify-center gap-2 text-red-600 dark:text-red-400 font-black text-sm uppercase tracking-wider mb-4">
                           <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-                          24/7 Emergency Line
+                          Emergency Service Pricing
                         </div>
-                        <a
-                          href={EMERGENCY_PHONE.href}
-                          className="block font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-2"
-                        >
-                          {EMERGENCY_PHONE.display}
-                        </a>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">
-                          Immediate dispatch available
+                        <div className="font-display text-5xl md:text-6xl font-black text-red-600 dark:text-red-400 mb-2">
+                          {EMERGENCY_PRICING.display}
+                        </div>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                          {EMERGENCY_PRICING.description}
                         </p>
+                        <ul className="text-sm text-slate-700 dark:text-slate-300 space-y-2">
+                          {EMERGENCY_PRICING.includes.map((item, idx) => (
+                            <li key={idx}>✓ {item}</li>
+                          ))}
+                        </ul>
+                        {EMERGENCY_PRICING.gstInclusive && (
+                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 pt-3 border-t border-slate-300 dark:border-slate-700">
+                            GST Inclusive • No Hidden Fees
+                          </p>
+                        )}
                       </div>
 
                       {/* Quick Stats */}
@@ -394,7 +402,7 @@ export default function HomePage() {
                         </div>
                         <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
                           <div className="font-display text-3xl font-black text-blue-600 mb-1">500+</div>
-                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">Contractors</div>
+                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">Vetted Firms</div>
                         </div>
                         <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
                           <div className="font-display text-3xl font-black text-blue-600 mb-1">100%</div>
@@ -402,23 +410,23 @@ export default function HomePage() {
                         </div>
                       </div>
 
-                      {/* Secondary Actions */}
+                      {/* Primary and Secondary Actions */}
                       <div className="space-y-3 pt-2">
                         <Button
                           variant="primary"
                           size="lg"
                           className="w-full"
-                          onClick={() => window.location.href = '/intake'}
+                          onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
                         >
-                          Start Emergency Intake Form
+                          Request Emergency Service
                         </Button>
                         <Button
                           variant="outline"
                           size="lg"
                           className="w-full"
-                          onClick={() => window.location.href = '/services'}
+                          onClick={() => window.location.href = '/get-started'}
                         >
-                          View All Services
+                          Get Free Quote (Non-Emergency)
                         </Button>
                       </div>
                     </div>
@@ -550,15 +558,15 @@ export default function HomePage() {
                   Australia's premier IICRC-certified disaster recovery network. Professional standards. Nationwide coverage. 24/7 emergency response.
                 </p>
                 <div className="pt-4">
-                  <a
-                    href={EMERGENCY_PHONE.href}
+                  <button
+                    onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
                     className="inline-flex items-center gap-3 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-black rounded-xl transition-all"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8m0 8l-6-4m6 4l6-4" />
                     </svg>
-                    {EMERGENCY_PHONE.display}
-                  </a>
+                    Request Emergency Service
+                  </button>
                 </div>
               </div>
 

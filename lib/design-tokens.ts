@@ -157,20 +157,47 @@ export const designTokens = {
   },
 } as const;
 
-// Phone Number as Brand Element
+// Emergency Contact - Email First (NEW)
+export const EMERGENCY_CONTACT = {
+  email: 'support@disasterrecovery.com.au',
+  href: 'mailto:support@disasterrecovery.com.au',
+  display: 'Email Support',
+  labels: {
+    primary: 'Emergency Support',
+    secondary: 'Online Request Available',
+    cta: 'Request Service',
+    footer: 'National Support Ready',
+  },
+} as const;
+
+// Emergency Pricing - $2750 Callout Fee (NEW)
+export const EMERGENCY_PRICING = {
+  total: 2750,
+  display: '$2,750 AUD',
+  description: 'Emergency Callout & Make-Safe',
+  breakdown: {
+    platform: 550,
+    contractor: 2200,
+  },
+  gstInclusive: true,
+  includes: [
+    '24/7 Emergency Dispatch',
+    'IICRC-Certified Contractor',
+    'Initial Assessment',
+    'Make-Safe Work',
+  ],
+} as const;
+
+// Legacy Phone Number (DEPRECATED - for backward compatibility only)
 export const EMERGENCY_PHONE = {
   number: '1300 309 361',
   href: 'tel:1300309361',
   display: '1300 309 361',
-
-  // Number storytelling
   parts: {
-    national: '1300',      // National toll-free prefix
-    protocols: '309',      // Second segment of 1300 number
-    care: '361',          // Third segment of 1300 number
+    national: '1300',
+    protocols: '309',
+    care: '361',
   },
-
-  // Copy variations
   labels: {
     primary: 'Emergency Dispatch',
     secondary: 'Immediate Response',

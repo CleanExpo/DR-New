@@ -11,25 +11,23 @@
  */
 
 import * as React from 'react';
-import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '../Button/Button';
-import { Phone, MessageSquare, Zap, CheckCircle } from 'lucide-react';
+import { MessageSquare, Zap } from 'lucide-react';
+import { EMERGENCY_PRICING } from '@/lib/design-tokens';
 
 export interface EmergencyCTAProps {
-  phoneNumber?: string;
   onlineHelpUrl?: string;
   className?: string;
 }
 
 export function EmergencyCTA({
-  phoneNumber = '1300 309 361',
-  onlineHelpUrl = '/dashboard/client/requests/new?emergency=true',
+  onlineHelpUrl = '/claim/step-1?pricing_disclosed=true',
   className,
 }: EmergencyCTAProps) {
   return (
-    <div className={cn('grid grid-cols-1 md:grid-cols-2 gap-4', className)}>
-      {/* Emergency Service Card (Red - Call Now) */}
+    <div className={cn('w-full', className)}>
+      {/* Emergency Service Card - Online Request Only */}
       <Card className="border-red-500 hover:border-red-600 transition-colors cursor-pointer group">
         <CardContent className="pt-6">
           <div className="flex items-center gap-4 mb-3">
@@ -38,49 +36,25 @@ export function EmergencyCTA({
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-red-600">🚨 EMERGENCY SERVICE</h3>
-              <p className="text-sm text-muted-foreground">Get Help Now</p>
+              <p className="text-sm text-muted-foreground">{EMERGENCY_PRICING.display}</p>
             </div>
           </div>
           <p className="text-sm text-muted-foreground mb-3">
-            Fast-track: Name, Phone, Address only (3 min)
+            {EMERGENCY_PRICING.description} - Available 24/7
           </p>
+          <ul className="text-xs text-muted-foreground mb-4 space-y-1">
+            {EMERGENCY_PRICING.includes.map((item, idx) => (
+              <li key={idx}>✓ {item}</li>
+            ))}
+          </ul>
           <Button
             variant="emergency-primary"
             size="crisis-full"
             className="w-full"
-            onClick={() => window.location.href = `tel:${phoneNumber.replace(/\s/g, '')}`}
+            onClick={() => window.location.href = onlineHelpUrl}
           >
-            <Phone className="mr-2 h-5 w-5" />
-            Call {phoneNumber}
-          </Button>
-        </CardContent>
-      </Card>
-
-      {/* Complete Profile Card (Green - Online Help) */}
-      <Card className="border-green-500 hover:border-green-600 transition-colors cursor-pointer group">
-        <CardContent className="pt-6">
-          <div className="flex items-center gap-4 mb-3">
-            <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-              <CheckCircle className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-bold text-green-600">Complete Your Profile</h3>
-              <p className="text-sm text-muted-foreground">Recommended</p>
-            </div>
-          </div>
-          <p className="text-sm text-muted-foreground mb-3">
-            Full setup: Better matching, priority support (15 min)
-          </p>
-          <Button
-            variant="education-primary"
-            size="lg"
-            className="w-full"
-            asChild
-          >
-            <Link href={onlineHelpUrl}>
-              <MessageSquare className="mr-2 h-5 w-5" />
-              Get Help Online
-            </Link>
+            <MessageSquare className="mr-2 h-5 w-5" />
+            Request Emergency Service
           </Button>
         </CardContent>
       </Card>
@@ -92,17 +66,17 @@ export function EmergencyCTA({
  * Mobile-optimized Emergency CTA (sticky bottom)
  * Use on emergency intake forms for persistent access
  */
-export function StickyEmergencyCTA({ phoneNumber = '1300 309 361' }: { phoneNumber?: string }) {
+export function StickyEmergencyCTA({ onlineHelpUrl = '/claim/step-1?pricing_disclosed=true' }: { onlineHelpUrl?: string }) {
   return (
     <div className="fixed bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white via-white to-transparent shadow-lg z-50 md:hidden">
       <Button
         variant="emergency-primary"
         size="crisis-full"
         className="w-full"
-        onClick={() => window.location.href = `tel:${phoneNumber.replace(/\s/g, '')}`}
+        onClick={() => window.location.href = onlineHelpUrl}
       >
-        <Phone className="mr-2 h-5 w-5" />
-        Call Emergency: {phoneNumber}
+        <MessageSquare className="mr-2 h-5 w-5" />
+        Request Emergency Service - {EMERGENCY_PRICING.display}
       </Button>
     </div>
   );

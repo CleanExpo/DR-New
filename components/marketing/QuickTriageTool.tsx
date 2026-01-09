@@ -16,7 +16,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/src/design-system';
-import { EMERGENCY_PHONE } from '@/lib/design-tokens';
+import { EMERGENCY_PRICING } from '@/lib/design-tokens';
 
 interface DisasterOption {
   id: string;
@@ -217,20 +217,20 @@ export function QuickTriageTool({ onComplete, className = '' }: QuickTriageToolP
             <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-600 rounded-2xl p-6 space-y-4">
               <div className="flex items-center justify-center gap-2 text-red-600 dark:text-red-400 font-black text-sm uppercase tracking-wider">
                 <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-                Emergency Dispatch Required
+                Emergency Service Required
               </div>
               <p className="text-slate-700 dark:text-slate-300 font-medium">
-                Call our 24/7 emergency line for immediate assistance
+                {EMERGENCY_PRICING.display} for emergency dispatch and make-safe work
               </p>
-              <a
-                href={EMERGENCY_PHONE.href}
+              <button
+                onClick={() => window.location.href = `/claim/step-1?emergency=true&disaster=${selectedDisaster.id}&pricing_disclosed=true`}
                 className="inline-flex items-center justify-center gap-3 w-full px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl shadow-lg shadow-red-600/30 transition-all text-lg"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8m0 8l-6-4m6 4l6-4" />
                 </svg>
-                {EMERGENCY_PHONE.display}
-              </a>
+                Request Emergency Service
+              </button>
             </div>
           ) : (
             <div className="space-y-3">
@@ -238,9 +238,9 @@ export function QuickTriageTool({ onComplete, className = '' }: QuickTriageToolP
                 variant="primary"
                 size="lg"
                 className="w-full"
-                onClick={() => window.location.href = '/intake'}
+                onClick={() => window.location.href = `/get-started?priority=${severityLevel}&disaster=${selectedDisaster.id}`}
               >
-                Start Emergency Intake Form
+                {severityLevel === 'urgent' ? 'Schedule Urgent Service' : 'Get Free Quote'}
               </Button>
               <Button
                 variant="outline"
