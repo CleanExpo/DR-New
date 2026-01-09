@@ -10,16 +10,19 @@
  * - dominance-aggregation: Daily 1 AM
  * - blue-ocean-scan: Weekly Monday 1 AM
  * - algorithm-monitor: Every 6 hours
+ *
+ * NOTE: Search Dominance system is under development
+ * These jobs require external API integrations (DataForSEO, SEMrush) to be configured
  */
 
 import { NextResponse } from 'next/server';
 
-// Import job processors
-import { processRankTracking } from '@/lib/search-dominance/jobs/rank-tracking-job';
-import { processTrafficSync } from '@/lib/search-dominance/jobs/traffic-sync-job';
-import { processCompetitorSnapshot } from '@/lib/search-dominance/jobs/competitor-snapshot-job';
-import { processDominanceAggregation } from '@/lib/search-dominance/jobs/dominance-aggregation-job';
-import { processBlueOceanScan } from '@/lib/search-dominance/jobs/blue-ocean-job';
+// Job processors (TODO: implement when external APIs are configured)
+// import { processRankTracking } from '@/lib/search-dominance/jobs/rank-tracking-job';
+// import { processTrafficSync } from '@/lib/search-dominance/jobs/traffic-sync-job';
+// import { processCompetitorSnapshot } from '@/lib/search-dominance/jobs/competitor-snapshot-job';
+// import { processDominanceAggregation } from '@/lib/search-dominance/jobs/dominance-aggregation-job';
+// import { processBlueOceanScan } from '@/lib/search-dominance/jobs/blue-ocean-job';
 
 export const maxDuration = 300; // 5 minutes max execution time
 
@@ -63,62 +66,19 @@ export async function GET(
       );
     }
 
-    let result;
-
-    // Execute the appropriate job
-    switch (job) {
-      case 'rank-tracking':
-        result = await processRankTracking();
-        break;
-
-      case 'traffic-sync':
-        result = await processTrafficSync();
-        break;
-
-      case 'competitor-snapshot':
-        result = await processCompetitorSnapshot();
-        break;
-
-      case 'dominance-aggregation':
-        result = await processDominanceAggregation();
-        break;
-
-      case 'blue-ocean-scan':
-        result = await processBlueOceanScan();
-        break;
-
-      case 'algorithm-monitor':
-        // TODO: Implement when Algorithm monitor is complete
-        result = {
-          success: false,
-          recordsProcessed: 0,
-          recordsCreated: 0,
-          errors: ['Algorithm monitor not yet implemented'],
-          warnings: [],
-          duration: 0,
-          completedAt: new Date(),
-        };
-        break;
-
-      default:
-        return NextResponse.json(
-          { error: `Unknown job: ${job}` },
-          { status: 400 }
-        );
-    }
-
-    console.log(`[Cron] Job ${job} completed:`, result);
-
+    // Search Dominance system is under development
+    // All jobs currently return "not implemented" status
     return NextResponse.json({
-      success: result.success,
+      success: false,
       job,
-      recordsProcessed: result.recordsProcessed,
-      recordsCreated: result.recordsCreated,
-      errors: result.errors,
-      warnings: result.warnings,
-      duration: result.duration,
-      completedAt: result.completedAt,
-    });
+      recordsProcessed: 0,
+      recordsCreated: 0,
+      errors: ['Search Dominance system is under development. External API integrations need to be configured.'],
+      warnings: ['This cron job is disabled until DataForSEO and SEMrush APIs are configured'],
+      duration: 0,
+      completedAt: new Date(),
+      status: 'NOT_IMPLEMENTED',
+    }, { status: 501 });
   } catch (error) {
     console.error('[Cron] Job failed:', error);
     return NextResponse.json(

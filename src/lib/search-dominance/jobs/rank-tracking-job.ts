@@ -12,7 +12,7 @@
  * Schedule: Every 6 hours
  */
 
-import { prisma } from '@/lib/database/prisma-client';
+import { prisma } from '@/lib/prisma';
 import { RankTracker } from '@/lib/seo/rank-tracker';
 import {
   emitRankingUpdate,

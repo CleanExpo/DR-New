@@ -13,7 +13,7 @@
  * Schedule: Daily at 1 AM
  */
 
-import { prisma } from '@/lib/database/prisma-client';
+import { prisma } from '@/lib/prisma';
 import {
   emitDominanceUpdate,
   emitJobComplete,
