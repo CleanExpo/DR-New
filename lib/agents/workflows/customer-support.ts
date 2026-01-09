@@ -64,13 +64,14 @@ const CustomerSupportAnnotation = Annotation.Root({
 
 type CustomerSupportState = typeof CustomerSupportAnnotation.State;
 
-// Minimal system prompt - knowledge loaded via skills
+// Minimal system prompt - knowledge loaded via skills (Snake Build Pattern)
 const SYSTEM_PROMPT = `You are a customer support specialist for an Australian disaster recovery platform.
 Use Australian English and professional, empathetic tone.
-Consult /disaster-recovery-domain skill for technical knowledge.
-Consult /fact-checker skill to verify information accuracy.
+Consult /disaster-recovery-domain skill for platform knowledge.
+Consult /australian-insurance-standards for insurance coverage and consumer rights queries.
+Consult /fact-checker to verify information accuracy.
 Consult /australian-business-validator for business hours and compliance.
-Return structured JSON responses.`;
+Return structured JSON responses with consumer rights when relevant.`;
 
 /**
  * Create the customer support workflow graph
@@ -94,11 +95,17 @@ Query: "${query.query}"
 Category: ${query.category || 'general'}
 ${historyContext}
 
-Detect the query intent (claim_status, contractor_issue, billing, technical, complaint, feature_request, account, general).
-Detect sentiment (positive, neutral, negative, urgent).
+Task:
+1. Detect the query intent: claim_status, contractor_issue, billing, technical, complaint, feature_request, account,
+   insurance_coverage_question, insurance_rights_question, policy_exclusion_question, or general.
+2. Detect sentiment: positive, neutral, negative, or urgent.
+3. If insurance-related (keywords: claim, coverage, excluded, AFCA, policy, insurer):
+   - Reference /australian-insurance-standards for accurate information
+   - Flag if it's about consumer rights or coverage disputes
 
-Consult /disaster-recovery-domain for platform context and common issues.
-Return JSON: {intent: "string", sentiment: "positive|neutral|negative|urgent", category: "string", confidence: 0-100}`;
+Consult /disaster-recovery-domain for platform context.
+Consult /australian-insurance-standards for insurance-specific queries.
+Return JSON: {intent: "string", sentiment: "positive|neutral|negative|urgent", category: "string", isInsuranceQuery: boolean, confidence: 0-100}`;
 
     const response = await model.invoke([
       new SystemMessage(SYSTEM_PROMPT),
@@ -115,7 +122,7 @@ Return JSON: {intent: "string", sentiment: "positive|neutral|negative|urgent", c
         messages: [new AIMessage(content)],
         intent: parsed.intent || 'general_inquiry',
         sentiment: parsed.sentiment || 'neutral',
-        category: parsed.category || query.category || 'general',
+        category: parsed.category || query.category || (parsed.isInsuranceQuery ? 'insurance_query' : 'general'),
       };
     } catch {
       return {
@@ -140,8 +147,18 @@ Query Intent: ${state.intent}
 Query Category: ${state.category}
 Query Text: "${query.query.substring(0, 100)}..."
 
-Consult /disaster-recovery-domain for knowledge articles related to: ${state.intent}, ${state.category}.
-Return JSON: {articles: ["article1", "article2", "article3"], relevance: "high|medium|low", keywords: ["key1", "key2"]}`;
+Task:
+${state.category === 'insurance_query' ? `
+1. Consult /australian-insurance-standards for:
+   - Mandatory vs optional coverage information
+   - Code of Practice timeframes (3-day ack, 10-day response, 20-day updates, 4-month decision, 30-day complaint)
+   - Consumer rights (AFCA escalation, cooling-off period, policy exclusions)
+   - Specific insurer information
+` : `
+1. Consult /disaster-recovery-domain for knowledge articles related to: ${state.intent}, ${state.category}.
+`}
+2. Return JSON: {articles: ["article1", "article2", "article3"], relevance: "high|medium|low", keywords: ["key1", "key2"]}
+3. If insurance-related, include consumer rights information in articles list`;
 
     const response = await model.invoke([
       new SystemMessage(SYSTEM_PROMPT),
@@ -189,11 +206,21 @@ Sentiment: ${state.sentiment}
 Category: ${state.category}
 ${articlesText}
 
-Use /disaster-recovery-domain for platform knowledge.
-Use /fact-checker to verify accuracy before responding.
-Tone: Professional, empathetic, Australian English.
-If query is about claim status, direct to dashboard. If about contractors, reference matching process.
-Return JSON: {response: "helpful response text", confidence: 0-100, needs_escalation_hint: boolean}`;
+Task:
+1. Use /disaster-recovery-domain for platform knowledge.
+${state.category === 'insurance_query' ? `
+2. Use /australian-insurance-standards for insurance accuracy:
+   - Reference Code of Practice timeframes if discussing claim timelines
+   - Include consumer rights if discussing coverage disputes or complaints
+   - Reference AFCA availability (after 30 days without resolution)
+   - Mention cooling-off period rights if relevant
+3. Tone: Professional, empathetic, reassuring. Empower client with knowledge of rights.
+` : `
+2. Use /fact-checker to verify accuracy before responding.
+3. Tone: Professional, empathetic, Australian English.
+`}
+4. If query is about claim status, direct to dashboard. If about contractors, reference matching process.
+5. Return JSON: {response: "helpful response text", confidence: 0-100, includesConsumerRights: boolean, needs_escalation_hint: boolean}`;
 
     const response = await model.invoke([
       new SystemMessage(SYSTEM_PROMPT),
@@ -241,10 +268,17 @@ Escalation triggers:
 - Sentiment is "negative" + complaint → escalate
 - Complex technical issues (beyond FAQ level) → escalate
 - Billing disputes → escalate
+${state.category === 'insurance_query' ? `
+- Insurance coverage disputes → ESCALATE (may need AFCA discussion)
+- Claims not progressing per Code of Practice timelines → ESCALATE
+- Customer discussing AFCA complaint → ESCALATE (critical)
+- Questions about consumer rights/cooling-off period → May escalate if complex
+` : ''}
 - Legal/compliance matters → escalate
 - Contractor safety concerns → escalate immediately
 
 Consult /disaster-recovery-domain for escalation policies.
+${state.category === 'insurance_query' ? 'Consult /australian-insurance-standards for Code of Practice and consumer rights escalation requirements.' : ''}
 Return JSON: {escalate: boolean, reason: "brief reason if true", urgency: "low|medium|high|critical"}`;
 
     const response = await model.invoke([
