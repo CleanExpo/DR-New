@@ -12,6 +12,18 @@ export default function ClientOnboardingWelcomePage() {
   const { data: session, status } = useSession();
   const [starting, setStarting] = useState(false);
   const [flowType, setFlowType] = useState<'standard' | 'fast_track'>('standard');
+  const [sessionTimeout, setSessionTimeout] = useState(false);
+
+  useEffect(() => {
+    // Add timeout for session loading - if session doesn't resolve in 5 seconds, redirect to login
+    if (status === 'loading') {
+      const timeoutId = setTimeout(() => {
+        setSessionTimeout(true);
+        router.push('/login');
+      }, 5000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [status, router]);
 
   useEffect(() => {
     // Check if onboarding already started

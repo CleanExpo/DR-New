@@ -138,34 +138,66 @@ export async function POST(request: NextRequest) {
     // 5. Generate claim ID
     const claimId = `CLM-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
 
-    // 6. In production, this would:
-    // - Save claim to database (Prisma)
-    // - Match with contractors using NRPG dispatch algorithm
-    // - Send email/SMS to client
-    // - Notify contractors via SMS/email
-    // - Create incident tracking record
+    // 6. REAL IMPLEMENTATION: Save claim to database
+    let savedClaim;
+    try {
+      // Import Prisma at the top of the file
+      const { prisma } = await import('@/lib/prisma');
 
-    // Mock contractor matching
-    const contractorCount = Math.floor(Math.random() * 3) + 1; // 1-3 contractors
+      savedClaim = await prisma.insuranceClaimAU.create({
+        data: {
+          claimNumber: claimId,
+          clientName: validatedData.step2.name,
+          clientEmail: validatedData.step2.email,
+          clientPhone: validatedData.step2.phone,
+          propertyAddress: validatedData.step2.propertyAddress,
+          suburb: validatedData.step2.suburb,
+          postcode: validatedData.step2.postcode,
+          disasterType: validatedData.step1.disasterType.toUpperCase().replace('-', '_'),
+          description: validatedData.step3.damageDescription,
+          damageDescription: validatedData.step3.damageDescription,
+          incidentDate: new Date(validatedData.step1.incidentDate),
+          isOngoing: validatedData.step1.isOngoing === 'yes',
+          isEmergency: validatedData.step1.isEmergency === 'yes',
+          hasInsurance: validatedData.step3.hasInsurance === 'yes',
+          insuranceProvider: validatedData.step3.insuranceProvider || undefined,
+          status: 'DRAFT',
+          priority: priority as 'critical' | 'high' | 'medium' | 'low',
+          createdAt: new Date(),
+        },
+      });
+
+      console.log('=== CLAIM SAVED TO DATABASE ===');
+      console.log('Claim ID:', claimId);
+      console.log('Database Record ID:', savedClaim.id);
+      console.log('Priority:', priority);
+      console.log('Client:', validatedData.step2.name, validatedData.step2.email);
+      console.log('Location:', validatedData.step2.suburb, validatedData.step2.postcode);
+      console.log('Disaster Type:', validatedData.step1.disasterType);
+      console.log('Has Insurance:', validatedData.step3.hasInsurance);
+      console.log('================================');
+    } catch (dbError) {
+      console.error('Database error saving claim:', dbError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Failed to save claim to database',
+        },
+        { status: 500 }
+      );
+    }
+
+    // 7. Contractor matching (will be implemented in next phase with real algorithm)
+    const contractorCount = Math.floor(Math.random() * 3) + 1; // 1-3 contractors for now
     const estimatedResponseTime = priority === 'critical' ? '15 minutes' : '30 minutes';
 
-    // 7. Mock email notification
-    console.log('=== CLAIM SUBMITTED ===');
-    console.log('Claim ID:', claimId);
-    console.log('Priority:', priority);
-    console.log('Client:', validatedData.step2.name, validatedData.step2.email);
-    console.log('Location:', validatedData.step2.suburb, validatedData.step2.postcode);
-    console.log('Disaster Type:', validatedData.step1.disasterType);
-    console.log('Has Insurance:', validatedData.step3.hasInsurance);
-    console.log('Contractors Matched:', contractorCount);
-    console.log('=======================');
-
-    // 8. Return success response
+    // 8. Return success response with saved claim data
     return NextResponse.json(
       {
         success: true,
         claimId,
-        message: 'Claim submitted successfully',
+        databaseId: savedClaim?.id,
+        message: 'Claim submitted successfully and saved to database',
         estimatedContractorCalls: contractorCount,
         estimatedResponseTime,
         priority,

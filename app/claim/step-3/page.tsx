@@ -59,6 +59,7 @@ export default function ClaimStep3Page() {
     formState: { errors },
     watch,
     setValue,
+    getValues,
   } = useForm<DetailsInsuranceData>({
     resolver: zodResolver(detailsInsuranceSchema),
     defaultValues: existingState?.step3 || {
@@ -154,18 +155,12 @@ export default function ClaimStep3Page() {
   };
 
   const handleBack = () => {
-    // Save current data before going back
-    const data = {
-      damageDescription: damageDescription || '',
-      hasInsurance: hasInsurance as 'yes' | 'no',
-      insuranceProvider: (document.getElementById('insurance-provider') as HTMLInputElement)?.value || '',
-      policyNumber: (document.getElementById('policy-number') as HTMLInputElement)?.value || '',
-      photoUrls: uploadedPhotos,
-    };
+    // Save current form data (using React Hook Form state, not DOM)
+    const formData = getValues();
 
     const formState: ClaimFormState = {
       ...existingState,
-      step3: data as DetailsInsuranceData,
+      step3: formData,
       currentStep: 2,
       startedAt: existingState?.startedAt || new Date().toISOString(),
       lastUpdatedAt: new Date().toISOString(),

@@ -44,7 +44,7 @@ export const locationContactSchema = z.object({
     .length(4, 'Postcode must be 4 digits'),
   name: z.string().min(2, 'Please enter your name'),
   phone: z.string()
-    .regex(/^(?:\+61|0)[2-478](?:[ -]?[0-9]){8}$/, 'Please enter a valid Australian phone number')
+    .regex(/^(?:\+61|0)[2-8](?:[ -]?[0-9]){8}$/, 'Please enter a valid Australian phone number')
     .transform((val) => val.replace(/\s|-/g, '')), // Normalize phone format
   email: z.string().email('Please enter a valid email address'),
 });
