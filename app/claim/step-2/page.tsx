@@ -52,6 +52,8 @@ export default function ClaimStep2Page() {
     handleSubmit,
     formState: { errors },
     setValue,
+    watch,
+    getValues,
   } = useForm<LocationContactData>({
     resolver: zodResolver(locationContactSchema),
     defaultValues: existingState?.step2 || {
@@ -118,19 +120,12 @@ export default function ClaimStep2Page() {
   };
 
   const handleBack = () => {
-    // Save current data before going back
-    const data = {
-      propertyAddress: (document.getElementById('property-address') as HTMLInputElement)?.value || '',
-      suburb: (document.getElementById('suburb') as HTMLInputElement)?.value || '',
-      postcode: (document.getElementById('postcode') as HTMLInputElement)?.value || '',
-      name: (document.getElementById('name') as HTMLInputElement)?.value || '',
-      phone: (document.getElementById('phone') as HTMLInputElement)?.value || '',
-      email: (document.getElementById('email') as HTMLInputElement)?.value || '',
-    };
+    // Save current form data (using React Hook Form state, not DOM)
+    const formData = getValues();
 
     const formState: ClaimFormState = {
       ...existingState,
-      step2: data as LocationContactData,
+      step2: formData,
       currentStep: 1,
       startedAt: existingState?.startedAt || new Date().toISOString(),
       lastUpdatedAt: new Date().toISOString(),
