@@ -200,7 +200,7 @@ export default function PricingPage() {
               <p className="text-sm text-gray-600 mb-4">Professional water removal and drying setup</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
-                  <span>Small area (< 50m²):</span>
+                  <span>Small area (&lt; 50m²):</span>
                   <span className="font-bold">$800–$1,500</span>
                 </div>
                 <div className="flex justify-between">
@@ -208,7 +208,7 @@ export default function PricingPage() {
                   <span className="font-bold">$1,500–$3,500</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Large area (> 150m²):</span>
+                  <span>Large area (&gt; 150m²):</span>
                   <span className="font-bold">Quote required</span>
                 </div>
               </div>
@@ -242,7 +242,7 @@ export default function PricingPage() {
               <p className="text-sm text-gray-600 mb-4">Mould detection and professional removal</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
-                  <span>Small area (< 1m²):</span>
+                  <span>Small area (&lt; 1m²):</span>
                   <span className="font-bold">$500–$1,000</span>
                 </div>
                 <div className="flex justify-between">
@@ -250,7 +250,7 @@ export default function PricingPage() {
                   <span className="font-bold">$1,500–$3,000</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Large area (> 10m²):</span>
+                  <span>Large area (&gt; 10m²):</span>
                   <span className="font-bold">Quote required</span>
                 </div>
               </div>

@@ -1,12 +1,3 @@
-/**
- * useCSRFToken Hook
- *
- * React hook for managing CSRF tokens in forms
- * Automatically generates, caches, and rotates tokens
- *
- * Returns csrfToken, loading state, error, and refreshToken function
- */
-
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -23,7 +14,6 @@ export function useCsrfToken(): UseCsrfTokenResult {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Generate or retrieve CSRF token
   const generateToken = useCallback(async () => {
     try {
       setLoading(true);
@@ -49,7 +39,6 @@ export function useCsrfToken(): UseCsrfTokenResult {
     }
   }, []);
 
-  // Generate token on mount
   useEffect(() => {
     generateToken();
   }, [generateToken]);
@@ -62,9 +51,6 @@ export function useCsrfToken(): UseCsrfTokenResult {
   };
 }
 
-/**
- * Hook for forms that need to verify CSRF tokens
- */
 export function useCsrfProtectedForm() {
   const { csrfToken, loading, error } = useCsrfToken();
 

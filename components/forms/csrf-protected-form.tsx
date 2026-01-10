@@ -5,19 +5,15 @@
  * Handles token refresh and error cases transparently
  *
  * Usage:
- * ```tsx
+ * @example
  * <CsrfProtectedForm
  *   onSubmit={handleSubmit}
  *   className="space-y-4"
  * >
  *   {(csrfToken) => (
- *     <>
- *       <input type="hidden" name="csrfToken" value={csrfToken} />
- *       {/* form fields */}
- *     </>
+ *     // form content here
  *   )}
  * </CsrfProtectedForm>
- * ```
  */
 
 'use client';

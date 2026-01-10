@@ -3,13 +3,9 @@
  * Automatically publishes scheduled articles
  * Runs every 30 minutes via Vercel cron
  *
- * Configuration in vercel.json:
- * {
- *   "crons": [{
- *     "path": "/api/blog/cron/publish",
- *     "schedule": "0 */30 * * * *"
- *   }]
- * }
+ * Add to vercel.json crons array:
+ * path: /api/blog/cron/publish
+ * schedule: every 30 minutes
  */
 
 import { NextRequest, NextResponse } from 'next/server';
