@@ -7,15 +7,8 @@ import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode, ConflictError } from '@/lib/api-errors';
 import { applyRateLimit } from '@/src/lib/security/rate-limit';
-import { z, ZodError } from 'zod';
-
-const bidSchema = z.object({
-  budget: z.string().min(1),
-  timeline: z.string().min(1),
-  message: z.string().min(1).max(5000),
-  startDate: z.string().optional(),
-  estimatedHours: z.string().optional(),
-});
+import { bidValidationSchema } from '@/src/lib/validation/bid-validation';
+import { ZodError } from 'zod';
 
 export async function POST(
   request: NextRequest,
@@ -51,7 +44,7 @@ export async function POST(
     }
 
     const body = await request.json();
-    const { budget, timeline, message, startDate, estimatedHours } = bidSchema.parse(body);
+    const { budget, timeline, message, startDate, estimatedHours } = await bidValidationSchema.parseAsync(body);
 
     // Get contractor profile
     const contractorProfile = await prisma.contractorProfile.findUnique({
