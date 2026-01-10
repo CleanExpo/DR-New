@@ -3,6 +3,9 @@
   "framework": "nextjs",
   "installCommand": "npm ci --legacy-peer-deps",
   "outputDirectory": ".next",
+  "env": {
+    "NODE_OPTIONS": ""
+  },
 
   "headers": [
     {
