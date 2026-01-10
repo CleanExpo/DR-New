@@ -290,151 +290,113 @@ export default function HomePage() {
 
         {/* Main Content - Add top padding for fixed header */}
         <main className="pt-20">
-          {/* 1. HERO SECTION - Emergency CTA with 3 Paths */}
-          <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-blue-950 py-16 md:py-24 overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle, #3b82f6 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+          {/* 1. HERO SECTION - Emergency-First Design */}
+          <section className="relative bg-gradient-to-br from-red-50 via-white to-red-50 dark:from-red-950 dark:via-slate-900 dark:to-red-950 py-16 md:py-32 overflow-hidden">
+            {/* Background Emergency Pattern */}
+            <div className="absolute inset-0 opacity-3" style={{ backgroundImage: 'radial-gradient(circle, #dc2626 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
             <div className="container mx-auto px-6 relative z-10">
-              <div className="grid lg:grid-cols-12 gap-12 items-center">
-                {/* Left: Hero Content */}
-                <div className="lg:col-span-7 space-y-8">
-                  {/* Trust Badge */}
-                  <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
-                    <span className="text-sm font-black text-blue-900 dark:text-blue-400 uppercase tracking-wider">
-                      Australia's IICRC-Certified Network
-                    </span>
-                  </div>
+              <div className="max-w-4xl mx-auto space-y-8">
+                {/* Trust Badge - Smaller than before */}
+                <div className="inline-flex items-center gap-2 bg-red-100 dark:bg-red-900/30 px-4 py-2 rounded-full">
+                  <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
+                  <span className="text-sm font-black text-red-900 dark:text-red-400 uppercase tracking-wider">
+                    🚨 ACTIVE DISASTER? GET HELP NOW
+                  </span>
+                </div>
 
-                  {/* Headline */}
-                  <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 dark:text-white leading-[1.1]">
-                    Professional Disaster Recovery.
-                    <br />
-                    <span className="text-blue-600">One Call Away.</span>
-                  </h1>
+                {/* Main Headline - Bold, Large, Urgent */}
+                <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white leading-[0.95] text-center">
+                  Disaster Recovery
+                  <br />
+                  <span className="text-red-600 dark:text-red-400">In 60 Minutes.</span>
+                </h1>
 
-                  {/* Subheadline */}
-                  <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl">
-                    24/7 emergency response connecting you with IICRC-certified contractors for{' '}
-                    <strong className="text-slate-900 dark:text-white">water damage</strong>,{' '}
-                    <strong className="text-slate-900 dark:text-white">fire restoration</strong>,{' '}
-                    <strong className="text-slate-900 dark:text-white">mold remediation</strong>, and more.
-                  </p>
+                {/* Subheadline - Emphasize emergency response */}
+                <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed text-center max-w-3xl mx-auto">
+                  24/7 emergency dispatch connecting you with IICRC-certified contractors for water damage, fire restoration, mold remediation, and bio cleaning.
+                </p>
 
-                  {/* 3-Path Emergency CTA */}
-                  <div className="grid sm:grid-cols-3 gap-4">
-                    <PriorityCard
-                      priority="critical"
-                      title="Report Emergency"
-                      onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
-                      className="cursor-pointer hover:scale-105 transition-transform"
-                    >
-                      <div className="text-sm">
-                        {EMERGENCY_PRICING.display} - 24/7 dispatch for active disasters
-                      </div>
-                    </PriorityCard>
+                {/* PRIMARY CTA - 70% Visual Weight */}
+                <div className="flex flex-col gap-6 pt-4">
+                  {/* Emergency Button - Dominant */}
+                  <button
+                    onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
+                    className="w-full group relative py-8 px-12 bg-gradient-to-r from-red-600 to-red-700 dark:from-red-600 dark:to-red-700 hover:from-red-700 hover:to-red-800 text-white font-black text-2xl md:text-3xl rounded-2xl shadow-2xl transition-all duration-200 transform hover:scale-105 active:scale-95 min-h-[80px] flex items-center justify-center gap-4"
+                  >
+                    <span className="text-3xl">🚨</span>
+                    <span className="leading-tight">Report Emergency Disaster</span>
+                    <span className="absolute top-2 right-4 text-xs font-bold bg-white/20 px-3 py-1 rounded-full">{EMERGENCY_PRICING.display}</span>
+                  </button>
 
-                    <PriorityCard
-                      priority="high"
-                      title="Get Quote"
-                      onClick={() => window.location.href = '/get-started'}
-                      className="cursor-pointer hover:scale-105 transition-transform"
-                    >
-                      <div className="text-sm">
-                        Schedule certified restoration services
-                      </div>
-                    </PriorityCard>
-
-                    <PriorityCard
-                      priority="medium"
-                      title="Join Network"
-                      onClick={() => window.location.href = '/contractor/join'}
-                      className="cursor-pointer hover:scale-105 transition-transform"
-                    >
-                      <div className="text-sm">
-                        IICRC contractors apply here
-                      </div>
-                    </PriorityCard>
-                  </div>
-
-                  {/* IICRC Badges */}
-                  <div className="pt-4">
-                    <p className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-3 uppercase tracking-wider">
-                      Certified to IICRC Standards
+                  {/* Secondary Section - 20% Weight: Scheduled Services */}
+                  <div className="pt-4 border-t-2 border-slate-200 dark:border-slate-700">
+                    <p className="text-sm md:text-base text-slate-700 dark:text-slate-400 mb-4 font-bold uppercase tracking-wide">
+                      Not an active emergency?
                     </p>
-                    <IICRCBadgeGroup codes={['S500', 'S520', 'FSRT', 'S800']} />
+                    <button
+                      onClick={() => window.location.href = '/get-started'}
+                      className="w-full group py-4 px-8 bg-semantic-primary hover:bg-semantic-primary-hover text-white font-bold text-lg rounded-xl transition-all duration-200 transform hover:scale-102 active:scale-95"
+                    >
+                      Get Free Restoration Quote
+                    </button>
+                  </div>
+
+                  {/* Tertiary - 10% Weight: Contractor Link */}
+                  <div className="pt-2 text-center">
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      IICRC-certified contractor?{' '}
+                      <a
+                        href="/contractor/join"
+                        className="font-bold text-semantic-primary hover:text-semantic-primary-hover underline"
+                      >
+                        Join our network →
+                      </a>
+                    </p>
                   </div>
                 </div>
 
-                {/* Right: Emergency Service Pricing Card */}
-                <div className="lg:col-span-5">
-                  <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-8 border-2 border-slate-200 dark:border-slate-800">
-                    <div className="space-y-6">
-                      {/* Emergency Pricing Display */}
-                      <div className="text-center p-8 bg-red-50 dark:bg-red-900/20 rounded-2xl border-2 border-red-600">
-                        <div className="flex items-center justify-center gap-2 text-red-600 dark:text-red-400 font-black text-sm uppercase tracking-wider mb-4">
-                          <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-                          Emergency Service Pricing
-                        </div>
-                        <div className="font-display text-5xl md:text-6xl font-black text-red-600 dark:text-red-400 mb-2">
-                          {EMERGENCY_PRICING.display}
-                        </div>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                          {EMERGENCY_PRICING.description}
-                        </p>
-                        <ul className="text-sm text-slate-700 dark:text-slate-300 space-y-2">
-                          {EMERGENCY_PRICING.includes.map((item, idx) => (
-                            <li key={idx}>✓ {item}</li>
-                          ))}
-                        </ul>
-                        {EMERGENCY_PRICING.gstInclusive && (
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 pt-3 border-t border-slate-300 dark:border-slate-700">
-                            GST Inclusive • No Hidden Fees
-                          </p>
-                        )}
-                      </div>
+                {/* Quick Trust Signals Below CTA */}
+                <div className="pt-8 grid grid-cols-3 gap-4 md:gap-6 text-center">
+                  <div>
+                    <div className="font-display text-2xl md:text-3xl font-black text-red-600 dark:text-red-400">&lt;60min</div>
+                    <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1 font-bold uppercase">Response Time</div>
+                  </div>
+                  <div>
+                    <div className="font-display text-2xl md:text-3xl font-black text-red-600 dark:text-red-400">500+</div>
+                    <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1 font-bold uppercase">IICRC Contractors</div>
+                  </div>
+                  <div>
+                    <div className="font-display text-2xl md:text-3xl font-black text-red-600 dark:text-red-400">100%</div>
+                    <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1 font-bold uppercase">Certified</div>
+                  </div>
+                </div>
 
-                      {/* Quick Stats */}
-                      <div className="grid grid-cols-3 gap-4 text-center">
-                        <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
-                          <div className="font-display text-3xl font-black text-blue-600 mb-1">&lt;60min</div>
-                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">Response Time</div>
-                        </div>
-                        <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
-                          <div className="font-display text-3xl font-black text-blue-600 mb-1">500+</div>
-                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">Vetted Firms</div>
-                        </div>
-                        <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
-                          <div className="font-display text-3xl font-black text-blue-600 mb-1">100%</div>
-                          <div className="text-xs text-slate-600 dark:text-slate-400 uppercase tracking-wider">IICRC Certified</div>
-                        </div>
-                      </div>
-
-                      {/* Primary and Secondary Actions */}
-                      <div className="space-y-3 pt-2">
-                        <Button
-                          variant="primary"
-                          size="lg"
-                          className="w-full"
-                          onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
-                        >
-                          Request Emergency Service
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="lg"
-                          className="w-full"
-                          onClick={() => window.location.href = '/get-started'}
-                        >
-                          Get Free Quote (Non-Emergency)
-                        </Button>
-                      </div>
-                    </div>
+                {/* IICRC Badges */}
+                <div className="pt-4">
+                  <p className="text-xs font-bold text-slate-600 dark:text-slate-400 mb-3 uppercase tracking-wider text-center">
+                    Certified to IICRC Standards
+                  </p>
+                  <div className="flex justify-center">
+                    <IICRCBadgeGroup codes={['S500', 'S520', 'FSRT', 'S800']} />
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Mobile Emergency Sticky CTA (Only on mobile, fixed at bottom) */}
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-white dark:bg-slate-900 shadow-2xl z-40 md:hidden border-t-4 border-red-600">
+              <button
+                onClick={() => window.location.href = '/claim/step-1?pricing_disclosed=true'}
+                className="w-full py-4 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-black text-lg rounded-xl transition-all active:scale-95 flex items-center justify-center gap-2"
+              >
+                <span>🚨</span>
+                <span>Report Emergency Now</span>
+              </button>
+            </div>
+
+            {/* Mobile padding for sticky CTA */}
+            <div className="h-24 md:h-0" />
           </section>
 
           {/* 1.5 TRUST SIGNALS BAND - Insurance Partners */}
