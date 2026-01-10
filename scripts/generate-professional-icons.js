@@ -37,238 +37,331 @@ if (!GEMINI_API_KEY) {
   process.exit(1);
 }
 
-// Icon definitions following "Pop-Out" Layered 3D Style (High-Fidelity)
+// Icon definitions - PHOTOREALISTIC 3D RENDERED IMAGES (PNG/JPEG)
+// NOT SVG! These generate actual rendered images with photorealism
 const ICONS_TO_GENERATE = [
   {
     name: 'water-damage',
     category: 'Service Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Water Damage'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Water Damage Restoration'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI render with photorealistic lighting and materials.
 
-Front Layer: A clean, minimalist architectural structure of a building foundation (white matte finish, geometric).
+Composition:
+- Center: A two-story residential house (white exterior with black trim/windows) partially submerged in realistic water
+- The house shows clear water damage - water level approximately 40% up the structure
+- Water: Realistic blue water with wave textures and splashes, showing depth and movement
+- Sky: Dark teal/navy gradient background suggesting crisis situation
+- Framing: The icon is contained within a rounded rectangle frame with subtle border
+- Subtle atmospheric elements: Water droplets, mist effects
 
-Middle Layer: Stylised, intense cyan and deep blue water waves surging from behind the building structure, with realistic water splash geometry.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Professional studio lighting with rim light on the house
+- Realistic water physics and reflections
+- High contrast and clarity
+- PNG format, transparent background
+- 512x512px canvas with padding for the frame
+- Color palette: Blues (#0047FF, #00BFA6), whites, dark navy background
 
-Back Layer: Volumetric water droplets and mist extending upwards.
-
-The 'Pop-out' Effect: The large water droplets and splash should extend slightly outside the imaginary upper border of the icon's bounding box, creating a depth effect where the flood element breaks the frame.
-
-Style: Engineered 3D. Use a premium matte material with satin lustre. No glossy plastic. Hard, defined edges with slight filleting (rounded corners). Colour: Deep Blue (#0047FF) and Cyan (#00BFA6) gradient. Lighting: Cinematic rim lighting to separate the layers, cool blue volumetric light. Background: Dark Navy (#111827).
-
-Constraint: No cartoon features, no low-poly shapes, no clay texture. Must look like a serious SaaS interface element.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, serious, showing the severity of water damage
+Quality: Production-ready, suitable for SaaS dashboard
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D image.`,
   },
   {
     name: 'fire-smoke',
     category: 'Service Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Fire Damage'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Fire Damage Restoration'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI render with photorealistic lighting and materials.
 
-Front Layer: A clean, minimalist architectural structure of a house (white matte finish).
+Composition:
+- Center: A two-story residential house (white exterior with black trim/windows) engulfed in intense orange and red flames
+- The house shows clear fire damage - flames rising dramatically from the roof and walls
+- Flames: Realistic orange to red flames with flickering details, realistic fire geometry and heat effects
+- Smoke: Dark grey to black smoke billowing upward from the burning structure, volumetric movement
+- Sky: Dark navy/teal gradient background showing nighttime crisis
+- Workers: One or two professional firefighters or restoration workers visible (silhouette or suited), suggesting emergency response
+- Equipment: Fire hoses or emergency equipment suggesting active response
+- Framing: The icon is contained within a rounded rectangle frame with subtle border
+- Atmospheric: Glow effects from fire, heat distortion, embers
 
-Middle Layer: Stylised, intense orange and amber flames rising from behind the house structure with realistic fire geometry and crackling edges.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Professional lighting with warm orange glow from flames and rim light on house
+- Realistic fire physics and smoke dynamics
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Orange (#F59E0B), Red (#DC2626), dark greys, dark navy background
 
-Back Layer: Volumetric dark grey smoke billowing upwards with turbulent, organic volumetric movement.
-
-The 'Pop-out' Effect: The dark smoke should extend slightly outside the imaginary upper border of the icon's bounding box, creating a depth effect where the element breaks the frame.
-
-Style: Engineered 3D. Use a premium matte material with satin lustre. No glossy plastic. Hard, defined edges with slight filleting (rounded corners). Colour: Orange (#F59E0B) to Red (#DC2626) gradient. Lighting: Cinematic rim lighting with warm golden highlights to separate the layers. Background: Dark Navy (#111827).
-
-Constraint: No cartoon eyes, no low-poly shapes, no clay texture. Must look like a serious SaaS interface element.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Urgent, serious, showing active fire crisis
+Quality: Production-ready, suitable for SaaS dashboard
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D image with realistic fire and smoke.`,
   },
   {
     name: 'mould-remediation',
     category: 'Service Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Mould Remediation'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Mould Remediation'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI render with photorealistic lighting and materials.
 
-Front Layer: A clean, minimalist architectural wall structure (white matte finish, geometric).
+Composition:
+- Center: A two-story residential house (white exterior with black trim/windows) showing dark mould patches and discoloration across walls
+- Mould: Visible dark green/black mould growth spreading across exterior walls and foundation, realistic contamination patterns
+- Remediation: Professional remediation workers in protective equipment (suits, masks, respirators) using cleaning equipment and spray systems
+- Equipment: HEPA filters, spray equipment, containment barriers visible in the scene
+- Sky: Dark navy/teal gradient background suggesting damp crisis conditions
+- Framing: The icon is contained within a rounded rectangle frame with subtle border
+- Atmospheric: Mist or spray effects from remediation equipment, professional containment setup
 
-Middle Layer: Stylised mould growth pattern spreading across the wall in dark green, with crystalline geometric structures representing contamination spreading.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Professional lighting with clinical blue-green tones highlighting the remediation process
+- Realistic mould texture and professional equipment detail
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Dark green (#10b981), Teal (#00BFA6), whites, dark navy background
 
-Back Layer: Volumetric containment/remediation shield or barrier with light containment rays breaking through.
-
-The 'Pop-out' Effect: The mould growth and remediation barrier should extend slightly outside the imaginary border, creating a depth effect where the hazard and solution break the frame.
-
-Style: Engineered 3D. Use a premium matte material with satin lustre. Hard, defined edges with slight filleting. Colour: Green (#10b981) to Blue (#0047FF) gradient with clinical teal accents. Lighting: Cinematic rim lighting with cool blue-green volumetric highlights. Background: Dark Navy (#111827).
-
-Constraint: No cute mushrooms, no cartoon features, no organic blobs. Must look clinical and professional.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, clinical, showing expert remediation solution
+Quality: Production-ready, suitable for SaaS dashboard
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D image showing professional mould remediation.`,
   },
   {
     name: 'bio-forensic',
     category: 'Service Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Bio-Forensic Cleaning'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Bio-Forensic Cleaning'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI render with photorealistic lighting and materials.
 
-Front Layer: A minimalist geometric shield or containment structure (white matte finish, protective shape).
+Composition:
+- Center: Interior crime scene or biohazard situation showing professional containment and cleaning
+- Scene: Dark room with biohazard warning signs, forensic markers, evidence tape visible
+- Workers: Professional forensic cleaning team in full protective gear (hazmat suits, respirators, goggles) performing specialized cleaning with professional equipment
+- Equipment: HEPA vacuums, specialized cleaning agents, biohazard containment equipment, sterilization gear visible
+- Contamination: Evidence of biohazard (represented clinically, not graphically) being professionally remediated
+- Sky/Background: Dark navy background with clinical lighting suggesting sterile professional environment
+- Framing: The icon is contained within a rounded rectangle frame with subtle border
+- Atmospheric: Professional sterilization glow, clinical lighting, evidence of expertise and precision
 
-Middle Layer: Stylised biohazard/contamination pattern with geometric molecular structures or hazmat symbols, represented in deep purple and violet.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Professional lighting with scientific clinical tones (cool blues, purples) suggesting sterilization
+- Realistic equipment and protective gear detail
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Purple (#8b5cf6), Blue (#0047FF), whites, dark navy background
 
-Back Layer: Volumetric cleaning/remediation rays or sterilization light breaking through from behind, with energy-like geometric patterns.
-
-The 'Pop-out' Effect: The sterilization rays and cleaning energy should extend slightly outside the icon's borders, breaking the frame to create depth.
-
-Style: Engineered 3D. Use a premium matte material with satin lustre. Hard, defined edges with slight filleting. Colour: Purple (#8b5cf6) to Blue (#0047FF) gradient with white sterilization accents. Lighting: Cinematic rim lighting with scientific precision, volumetric light rays. Background: Dark Navy (#111827).
-
-Constraint: No cartoon biohazard symbols, no low-poly shapes, no playful elements. Must look scientific and serious.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, scientific, showing specialized expertise and complete scene restoration
+Quality: Production-ready, suitable for SaaS dashboard
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D image showing professional forensic cleaning scene.`,
   },
   {
     name: 'iicrc-badge',
     category: 'Trust Badge',
-    basePrompt: `Generate a professional 3D UI icon for 'IICRC Certification'.
+    basePrompt: `Generate a professional photorealistic 3D rendered certification badge for 'IICRC Certification'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI rendered badge with photorealistic lighting and premium materials.
 
-Front Layer: A minimalist shield or seal shape with clean geometric edges (white matte finish).
+Composition:
+- Center: A professional shield or seal badge shape (matte finish, geometric edges)
+- Badge Body: Primary blue (#0047FF) with gold (#FFD700) certification ribbons and accents
+- Certification Details: Official IICRC certification markings, "CERTIFIED" text clearly visible
+- Ribbons: Gold certification ribbons wrapping around the shield with official seal appearance
+- Lighting: Professional rim lighting creating depth and premium appearance
+- Background: Dark navy gradient background (#111827)
+- Framing: Contained within a rounded rectangle frame with subtle border
+- Atmospheric: Subtle volumetric rays or glow effects suggesting authority and trustworthiness
 
-Middle Layer: Layered certification ribbons and security patterns in Gold (#FFD700) wrapping around the shield, with official certification markings.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Premium matte finish with satin lustre (not glossy plastic)
+- Professional lighting with rim light on the badge
+- Hard, defined edges with slight filleting
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Blue (#0047FF), Gold (#FFD700), dark navy background
 
-Back Layer: Volumetric light rays emanating from behind the shield, suggesting authority and trust.
-
-The 'Pop-out' Effect: The certification light rays and ribbon should extend slightly outside the icon's borders, creating a depth effect where the authority symbol breaks the frame.
-
-Style: Engineered 3D with Glassmorphism elements. Premium matte material with satin lustre. Hard, defined edges with slight filleting. Colour: Primary Blue (#0047FF) with Gold (#FFD700) accents. Lighting: Cinematic rim lighting with volumetric trust rays. Background: Dark Navy (#111827).
-
-Constraint: No cheap plastic look, no cartoon features, no emojis. Must look premium, authoritative, and trustworthy.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, authoritative, institutional trust signal
+Quality: Production-ready, suitable for SaaS dashboard trust badge display
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D badge showing premium certification authority.`,
   },
   {
     name: 'verified-badge',
     category: 'Trust Badge',
-    basePrompt: `Generate a professional 3D UI icon for 'Verified Professional'.
+    basePrompt: `Generate a professional photorealistic 3D rendered verification badge for 'Verified Professional'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI rendered badge with photorealistic lighting and premium materials.
 
-Front Layer: A minimalist shield or badge shape with clean geometric lines (white matte finish).
+Composition:
+- Center: A professional badge or shield shape (matte finish, geometric edges)
+- Badge Body: Green (#10b981) to Teal (#00BFA6) gradient coloring
+- Verification Mark: A large, prominent checkmark rendered in vibrant green/teal emerging from the badge
+- Checkmark Details: Geometric precision, clean lines showing validation and confirmation
+- Lighting: Professional rim lighting creating depth and verification authority
+- Background: Dark navy gradient background (#111827)
+- Framing: Contained within a rounded rectangle frame with subtle border
+- Atmospheric: Subtle verification glow or confidence rays suggesting professional validation
 
-Middle Layer: A large checkmark with geometric precision, rendered in vibrant green and teal, appearing to emerge from the shield.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Premium matte finish with satin lustre (not glossy plastic)
+- Professional lighting with rim light on the badge
+- Hard, defined edges with slight filleting
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Green (#10b981), Teal (#00BFA6), dark navy background
 
-Back Layer: Volumetric verification light or energy rays bursting outward, suggesting confirmation and trust.
-
-The 'Pop-out' Effect: The checkmark and verification rays should extend slightly outside the icon's borders, breaking the frame to emphasize validation.
-
-Style: Engineered 3D. Premium matte material with satin lustre. Hard, defined edges with slight filleting. Colour: Green (#10b981) to Teal (#00BFA6) gradient. Lighting: Cinematic rim lighting with bright verification highlights. Background: Dark Navy (#111827).
-
-Constraint: No cartoon features, no inflated shapes, no emojis. Must look professional and trustworthy.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, validating, confirming trustworthiness
+Quality: Production-ready, suitable for SaaS dashboard verification badge display
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D badge showing professional verification and validation.`,
   },
   {
     name: 'emergency-alert',
     category: 'Action Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Emergency Alert'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Emergency Alert'.
 
-Composition: A stacked, layered composition with urgency.
+Style: High-quality 3D CGI render with photorealistic lighting and urgent visual impact.
 
-Front Layer: A minimalist geometric alert triangle with sharp, defined edges (white matte finish).
+Composition:
+- Center: A large alert/warning symbol - triangle or exclamation mark rendered with sharp, angular precision
+- Alert Base: Orange (#F59E0B) to Red (#DC2626) gradient coloring showing maximum urgency
+- Emergency Elements: Flashing warning lights, emergency beacon effects, red alert pulsing animations represented visually
+- Background: Dark navy background (#111827) creating high contrast
+- Framing: Contained within a rounded rectangle frame with subtle border
+- Atmospheric: Urgent glow effects, warning light pulses, emergency response indication
 
-Middle Layer: Intense warning patterns and exclamation marks in orange and red, radiating from the triangle with crackling energy geometry.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Professional lighting with urgent amber and red highlights suggesting crisis
+- Sharp, angular precision with minimal soft edges (convey urgency)
+- High contrast and maximum clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Orange (#F59E0B), Red (#DC2626), dark navy background
 
-Back Layer: Volumetric danger waves or alert pulses bursting outward in dark red, suggesting immediate urgency.
-
-The 'Pop-out' Effect: The alert waves and danger pulses should extend significantly outside the icon's borders, breaking the frame to convey urgency and draw attention.
-
-Style: Engineered 3D with angular precision. Premium matte material. Hard, defined edges with minimal filleting (angular corners). Colour: Orange (#F59E0B) to Red (#DC2626) gradient. Lighting: Cinematic rim lighting with urgent amber highlights. Background: Dark Navy (#111827).
-
-Constraint: No cartoon features, no rounded softness, no emojis. Must look urgent and serious.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Maximum urgency, commanding immediate attention, crisis alert
+Quality: Production-ready, suitable for SaaS dashboard emergency notification
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D icon showing urgent emergency alert with maximum impact.`,
   },
   {
     name: 'phone-call',
     category: 'Action Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Phone Support'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Phone Support'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI render with photorealistic lighting and communication emphasis.
 
-Front Layer: A minimalist phone handset or receiver shape with geometric precision (white matte finish).
+Composition:
+- Center: A modern phone handset or telephone receiver rendered with geometric precision
+- Phone: Teal (#00BFA6) to Blue (#0047FF) gradient coloring
+- Communication: Visible sound waves or signal rings emanating from the phone outward
+- Waves: Concentric communication waves/signal rings showing active connection
+- Background: Dark navy background (#111827) creating professional appearance
+- Framing: Contained within a rounded rectangle frame with subtle border
+- Atmospheric: Professional communication glow, active connection signals, outreach indication
 
-Middle Layer: Communication waves or signal rings emanating from the phone in teal and blue, suggesting active communication.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Premium matte finish with satin lustre
+- Professional lighting with cool communication tones (blues, teals)
+- Hard, defined edges with slight filleting
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Teal (#00BFA6), Blue (#0047FF), dark navy background
 
-Back Layer: Volumetric connection rays or sound waves bursting outward from the handset in lighter blue tones.
-
-The 'Pop-out' Effect: The communication waves and connection rays should extend slightly outside the icon's borders, breaking the frame to suggest outreach and connectivity.
-
-Style: Engineered 3D. Premium matte material with satin lustre. Hard, defined edges with slight filleting. Colour: Teal (#00BFA6) to Blue (#0047FF) gradient. Lighting: Cinematic rim lighting with cool communication highlights. Background: Dark Navy (#111827).
-
-Constraint: No cartoon features, no inflated shapes, no emojis. Must look professional and accessible.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, accessible, suggesting active helpful communication
+Quality: Production-ready, suitable for SaaS dashboard support action button
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D icon showing professional phone support capability.`,
   },
   {
     name: 'chat-message',
     category: 'Action Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Chat Support'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Chat Support'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI render with photorealistic lighting and interactive communication emphasis.
 
-Front Layer: A minimalist speech bubble or message shape with clean geometric lines (white matte finish).
+Composition:
+- Center: A modern speech bubble or message window shape with clean geometric lines
+- Bubble: Blue (#0047FF) to Purple (#8b5cf6) gradient coloring
+- Messages: Visible message text lines or conversation patterns inside and around the bubble showing dialogue
+- Conversation: Multiple message indicators suggesting interactive back-and-forth communication
+- Background: Dark navy background (#111827) creating modern appearance
+- Framing: Contained within a rounded rectangle frame with subtle border
+- Atmospheric: Interactive communication glow, dialogue indicators, active engagement signals
 
-Middle Layer: Message text lines or communication patterns inside and around the bubble in blue and purple, suggesting conversation flow.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Premium matte finish with satin lustre
+- Professional lighting with cool interactive tones (blues, purples)
+- Hard, defined edges with slight filleting
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Blue (#0047FF), Purple (#8b5cf6), dark navy background
 
-Back Layer: Volumetric conversation rays or interactive energy bursting from behind the bubble in lighter purple tones.
-
-The 'Pop-out' Effect: The conversation rays and communication energy should extend slightly outside the icon's borders, breaking the frame to suggest active dialogue.
-
-Style: Engineered 3D. Premium matte material with satin lustre. Hard, defined edges with slight filleting. Colour: Blue (#0047FF) to Purple (#8b5cf6) gradient. Lighting: Cinematic rim lighting with interactive communication highlights. Background: Dark Navy (#111827).
-
-Constraint: No cartoon features, no inflated bubbles, no emojis. Must look professional and modern.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, modern, suggesting active helpful dialogue and engagement
+Quality: Production-ready, suitable for SaaS dashboard chat support action button
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D icon showing professional chat support communication.`,
   },
   {
     name: 'schedule-calendar',
     category: 'Action Icon',
-    basePrompt: `Generate a professional 3D UI icon for 'Schedule Appointment'.
+    basePrompt: `Generate a professional photorealistic 3D rendered icon for 'Schedule Appointment'.
 
-Composition: A stacked, layered composition.
+Style: High-quality 3D CGI render with photorealistic lighting and scheduling organization emphasis.
 
-Front Layer: A minimalist calendar grid or date selector with geometric precision (white matte finish).
+Composition:
+- Center: A modern calendar grid or appointment scheduler rendered with geometric precision
+- Calendar: Blue (#0047FF) to Teal (#00BFA6) gradient coloring
+- Scheduling: Visible calendar dates, time indicators, appointment checkmarks showing organization
+- Dates: Clear date selectors and time scheduling elements indicating professional appointment management
+- Background: Dark navy background (#111827) creating organized appearance
+- Framing: Contained within a rounded rectangle frame with subtle border
+- Atmospheric: Professional scheduling glow, time indicators, planning and forward-movement signals
 
-Middle Layer: Date indicators, check marks, or time elements rendered in blue and teal, showing scheduling information.
+Technical Requirements:
+- Photorealistic 3D rendering quality
+- Premium matte finish with satin lustre
+- Professional lighting with cool organizational tones (blues, teals)
+- Hard, defined edges with slight filleting
+- High contrast and clarity
+- PNG format, transparent or dark background
+- 512x512px canvas with padding for the frame
+- Color palette: Blue (#0047FF), Teal (#00BFA6), dark navy background
 
-Back Layer: Volumetric time rays or scheduling energy emanating outward in lighter teal tones, suggesting time and organization.
-
-The 'Pop-out' Effect: The time rays and scheduling energy should extend slightly outside the icon's borders, breaking the frame to suggest planning and forward movement.
-
-Style: Engineered 3D. Premium matte material with satin lustre. Hard, defined edges with slight filleting. Colour: Blue (#0047FF) to Teal (#00BFA6) gradient. Lighting: Cinematic rim lighting with time-precision highlights. Background: Dark Navy (#111827).
-
-Constraint: No cartoon features, no inflated shapes, no emojis. Must look professional and precise.
-
-Output: SVG 512x512px, transparent background.`,
+Mood: Professional, organized, suggesting efficient appointment scheduling and time management
+Quality: Production-ready, suitable for SaaS dashboard appointment scheduling action button
+Constraint: NO cartoon style, NO vector graphics, NO SVG code. Must be rendered photorealistic 3D icon showing professional calendar appointment scheduling.`,
   },
 ];
 
 async function generateIcon(iconDef) {
   console.log(`⏳ Generating: ${iconDef.name} (${iconDef.category})...`);
 
-  const prompt = `Generate a professional UI icon following these specifications:
+  const prompt = `Generate a professional photorealistic 3D rendered image icon following these specifications:
 
 ${iconDef.basePrompt}
 
 CRITICAL CONSTRAINTS (Apply to ALL):
+- NO vector graphics, NO SVG code, NO geometric shapes only
+- NO SVG output, NO code output - MUST be PNG/JPEG image
 - NO claymorphism, soft 3D, inflated shapes
 - NO emojis, cartoonish styles, playful aesthetics
 - NO rounded blobs, toy textures, cute features
+- YES: Photorealistic 3D CGI render
 - YES: Sharp edges, precision, professional mood
 - YES: Industrial, serious, trusted appearance
 - YES: High contrast, technical clarity
+- YES: Professional lighting and realistic materials
 
-This is for a professional disaster recovery platform. The aesthetic must be enterprise-grade, not playful.
+This is for a professional disaster recovery platform. The aesthetic must be enterprise-grade photorealistic 3D rendering, not vector graphics or playful designs.
 
-OUTPUT ONLY: Valid SVG code, no additional text or markdown formatting.`;
+OUTPUT ONLY: Generate as a PNG/JPEG image. Do not output code or text. Generate the actual image.`;
 
   try {
     const client = new GoogleGenerativeAI(GEMINI_API_KEY);
@@ -279,32 +372,48 @@ OUTPUT ONLY: Valid SVG code, no additional text or markdown formatting.`;
     const result = await model.generateContent(prompt);
 
     if (result && result.response) {
-      const responseText = result.response.text();
+      const responseData = result.response;
 
-      // Save SVG response to file
+      // Get image data from the response
+      let imageData = null;
+      if (responseData.candidates && responseData.candidates[0]) {
+        const candidate = responseData.candidates[0];
+        if (candidate.content && candidate.content.parts) {
+          for (const part of candidate.content.parts) {
+            if (part.inlineData) {
+              imageData = Buffer.from(part.inlineData.data, 'base64');
+              break;
+            }
+          }
+        }
+      }
+
+      if (!imageData) {
+        console.log(`⚠️  No image data in response for ${iconDef.name}`);
+        return {
+          name: iconDef.name,
+          success: false,
+          reason: 'No image data in API response',
+        };
+      }
+
+      // Save image to file
       const assetDir = path.join(process.cwd(), 'public', 'generated-assets');
       if (!fs.existsSync(assetDir)) {
         fs.mkdirSync(assetDir, { recursive: true });
       }
 
-      const filename = `${iconDef.name}.svg`;
+      const filename = `${iconDef.name}.png`;
       const filepath = path.join(assetDir, filename);
 
-      // Extract SVG content if wrapped in markdown code blocks
-      let svgContent = responseText;
-      const svgMatch = responseText.match(/<svg[\s\S]*<\/svg>/);
-      if (svgMatch) {
-        svgContent = svgMatch[0];
-      }
-
-      fs.writeFileSync(filepath, svgContent, 'utf-8');
+      fs.writeFileSync(filepath, imageData);
 
       console.log(`✅ Generated: ${iconDef.name} → ${filepath}`);
       return {
         name: iconDef.name,
         success: true,
         filepath,
-        size: svgContent.length,
+        size: imageData.length,
       };
     } else {
       console.log(`⚠️  No response from API for ${iconDef.name}`);
@@ -326,11 +435,11 @@ OUTPUT ONLY: Valid SVG code, no additional text or markdown formatting.`;
 }
 
 async function generateAllIcons() {
-  console.log('🎨 NRPG Professional Icon Generator - "Pop-Out" Layered 3D');
-  console.log('=========================================================\n');
-  console.log(`Generating ${ICONS_TO_GENERATE.length} professional icons...`);
-  console.log(`Style: "Pop-Out" Layered 3D Composition`);
-  console.log(`Aesthetic: Multi-layered SaaS icons with frame-breaking depth effects\n`);
+  console.log('🎨 NRPG Professional Icon Generator - Photorealistic 3D Rendering');
+  console.log('================================================================\n');
+  console.log(`Generating ${ICONS_TO_GENERATE.length} professional photorealistic 3D rendered icons...`);
+  console.log(`Style: Professional 3D CGI Rendering`);
+  console.log(`Aesthetic: High-quality photorealistic 3D images with professional materials and lighting\n`);
 
   const results = [];
 
@@ -370,29 +479,23 @@ async function generateAllIcons() {
     });
   }
 
-  console.log('\n📝 Important Notes:\n');
-  console.log('Gemini 2.5 Flash does NOT support image/icon generation.');
-  console.log('To generate production-grade professional icons, you need:');
+  console.log('\n📝 Photorealistic 3D Icon Generation Summary:\n');
+  console.log('✅ Model: Gemini 3 Pro Image Preview (gemini-3-pro-image-preview)');
+  console.log('✅ Output Format: PNG/JPEG photorealistic 3D images');
+  console.log('✅ Resolution: 512x512px with professional framing');
+  console.log('✅ Style: High-quality 3D CGI render with photorealistic materials and lighting');
   console.log('');
-  console.log('Option 1: Upgrade to Gemini 3 Pro API');
-  console.log('  - Higher capability model with image generation');
-  console.log('  - Cost: ~$0.005 per image');
-  console.log('  - Update: lib/ai/design-generator.service.ts line 106');
-  console.log('');
-  console.log('Option 2: Use Google Imagen API');
-  console.log('  - Dedicated image generation model');
-  console.log('  - Separate API integration required');
-  console.log('');
-  console.log('Option 3: Manual Icon Design');
-  console.log('  - Use Figma, Sketch, or Adobe XD');
-  console.log('  - Follow ICON_STYLE_GUIDE.md specifications');
-  console.log('  - Export as SVG');
+  console.log('Generated Icons:');
+  successful.forEach((r) => {
+    console.log(`  • ${r.name}: ${r.size} bytes`);
+  });
   console.log('');
   console.log('Next Steps:');
-  console.log('1. Decide on icon generation approach');
-  console.log('2. If using Gemini 3 Pro: Update model and re-run');
-  console.log('3. If manual design: Use ICON_STYLE_GUIDE.md as reference');
-  console.log('4. Deploy placeholder SVG icons in meantime');
+  console.log('1. Review generated PNG images in public/generated-assets/');
+  console.log('2. Verify quality matches reference standards');
+  console.log('3. Integrate icons into dashboard components');
+  console.log('4. Update image imports from .svg to .png');
+  console.log('5. Commit changes and deploy to production');
   console.log('');
 }
 
