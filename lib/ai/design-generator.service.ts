@@ -101,9 +101,10 @@ class DesignGeneratorService {
     }
 
     this.client = new GoogleGenerativeAI(this.apiKey);
-    // ✅ UPGRADED: Now using Gemini 3 Pro for image generation capability
+    // ✅ UPGRADED: Now using Gemini 3 Pro Image Preview for image generation
     // This enables professional-grade icon, portrait, and asset generation
-    this.model = this.client.getGenerativeModel({ model: 'gemini-3-pro' });
+    // Model: gemini-3-pro-image-preview (supports both image generation and understanding)
+    this.model = this.client.getGenerativeModel({ model: 'gemini-3-pro-image-preview' });
 
     this.assetDir = assetDir || path.join(process.cwd(), 'public', 'generated-assets');
     this.ensureAssetDir();
