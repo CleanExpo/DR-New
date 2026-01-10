@@ -129,7 +129,7 @@ GOOGLE_CLIENT_SECRET=<google-secret>
 # Security
 CSRF_SECRET=<generated-secret>
 JWT_SECRET=<generated-secret>
-SECURITY_ALERT_EMAIL=security@disasterrecovery.com.au
+SECURITY_ALERT_EMAIL=admin@disasterrecovery.com.au
 
 # Email
 SENDGRID_API_KEY=<key>
@@ -501,9 +501,9 @@ Monthly:
 
 ## Support & Escalation
 
-**On-Call Engineering**: security@disasterrecovery.com.au
+**On-Call Engineering**: admin@disasterrecovery.com.au
 **Emergency Contact**: +61-2-XXXX-XXXX
-**Sentry Alerts**: Automatic to security email
+**Sentry Alerts**: Automatic to admin email
 **Slack Alerts**: #disaster-recovery-alerts channel
 
 ---
