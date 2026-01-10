@@ -16,6 +16,8 @@ import { LiveCounter } from '@/components/visualizations/LiveCounter';
 import { TrendIndicator } from '@/components/visualizations/TrendIndicator';
 import { TimeSeriesPoint, CategoryPoint, PieData } from '@/lib/charts/chart-types';
 import { chartColors } from '@/lib/charts/chart-config';
+import { streamClient, type RealtimeMetrics } from '@/lib/analytics/stream-client';
+import { Wifi, WifiOff } from 'lucide-react';
 
 export default function AnalyticsDashboardPage() {
   const [jobsData, setJobsData] = useState<TimeSeriesPoint[]>([]);
@@ -24,12 +26,14 @@ export default function AnalyticsDashboardPage() {
   const [serviceTypeData, setServiceTypeData] = useState<PieData[]>([]);
   const [revenueData, setRevenueData] = useState<TimeSeriesPoint[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [realtimeMetrics, setRealtimeMetrics] = useState<RealtimeMetrics | null>(null);
+  const [streamConnected, setStreamConnected] = useState(false);
 
-  // Load mock data
+  // Load static data
   useEffect(() => {
     setIsLoading(true);
 
-    // Generate mock data
+    // Generate static data for charts
     const today = new Date();
     const jobsHistory = Array.from({ length: 30 }, (_, i) => ({
       date: new Date(today.getTime() - (30 - i) * 24 * 60 * 60 * 1000),
@@ -69,11 +73,27 @@ export default function AnalyticsDashboardPage() {
     setIsLoading(false);
   }, []);
 
-  const liveJobCount = jobsData.length > 0 ? jobsData[jobsData.length - 1].value : 0;
+  // Subscribe to real-time metrics stream
+  useEffect(() => {
+    const unsubscribe = streamClient.start((metrics) => {
+      setRealtimeMetrics(metrics);
+      setStreamConnected(streamClient.isConnectedNow());
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // Use real-time metrics when available, fallback to chart data
+  const liveJobCount = realtimeMetrics?.activeJobs ?? (jobsData.length > 0 ? jobsData[jobsData.length - 1].value : 0);
   const previousJobCount = jobsData.length > 1 ? jobsData[jobsData.length - 2].value : 0;
 
-  const liveResponseTime = responseTimeData.length > 0 ? responseTimeData[responseTimeData.length - 1].value : 0;
+  const liveResponseTime = realtimeMetrics?.averageResponseTime ?? (responseTimeData.length > 0 ? responseTimeData[responseTimeData.length - 1].value : 0);
   const previousResponseTime = responseTimeData.length > 1 ? responseTimeData[responseTimeData.length - 2].value : 0;
+
+  const liveErrorRate = realtimeMetrics?.errorRate ?? 0;
+  const liveConnections = realtimeMetrics?.activeConnections ?? 0;
 
   if (isLoading) {
     return (
@@ -97,9 +117,24 @@ export default function AnalyticsDashboardPage() {
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Platform Analytics</h1>
-          <p className="mt-2 text-gray-600">Real-time insights and performance metrics</p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Platform Analytics</h1>
+            <p className="mt-2 text-gray-600">Real-time insights and performance metrics</p>
+          </div>
+          <div className="flex items-center space-x-2">
+            {streamConnected ? (
+              <>
+                <Wifi className="h-5 w-5 text-green-600" />
+                <span className="text-sm font-medium text-green-600">Live Stream</span>
+              </>
+            ) : (
+              <>
+                <WifiOff className="h-5 w-5 text-gray-400" />
+                <span className="text-sm font-medium text-gray-600">Offline</span>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Key Metrics */}
@@ -138,6 +173,51 @@ export default function AnalyticsDashboardPage() {
               format="currency"
               higherIsBetter={true}
             />
+          </div>
+
+          {/* System Health */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4 lg:col-span-1">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium text-gray-700">System Health</span>
+              <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded">
+                {realtimeMetrics?.systemHealth &&
+                  Object.values(realtimeMetrics.systemHealth).every(s => s === 'healthy')
+                  ? 'All Good'
+                  : 'Check Status'}
+              </span>
+            </div>
+            <div className="space-y-2 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Database</span>
+                <span className={`font-medium ${
+                  realtimeMetrics?.systemHealth?.database === 'healthy'
+                    ? 'text-green-600'
+                    : 'text-orange-600'
+                }`}>
+                  {realtimeMetrics?.systemHealth?.database || 'Unknown'}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Redis</span>
+                <span className={`font-medium ${
+                  realtimeMetrics?.systemHealth?.redis === 'healthy'
+                    ? 'text-green-600'
+                    : 'text-orange-600'
+                }`}>
+                  {realtimeMetrics?.systemHealth?.redis || 'Unknown'}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-600">Socket.io</span>
+                <span className={`font-medium ${
+                  realtimeMetrics?.systemHealth?.socketio === 'healthy'
+                    ? 'text-green-600'
+                    : 'text-orange-600'
+                }`}>
+                  {realtimeMetrics?.systemHealth?.socketio || 'Unknown'}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
