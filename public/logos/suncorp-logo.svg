@@ -1,0 +1,14 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#ffffff"/>
+
+  <!-- Multi-color design -->
+  <circle cx="60" cy="70" r="25" fill="#FF6B35"/>
+  <circle cx="100" cy="70" r="25" fill="#F7931E"/>
+  <circle cx="140" cy="70" r="25" fill="#1E90FF"/>
+
+  <!-- White text -->
+  <text x="100" y="145" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#333333">
+    Suncorp
+  </text>
+</svg>

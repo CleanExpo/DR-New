@@ -11,13 +11,28 @@
 export const designTokens = {
   // NRPG Brand Colors
   colors: {
-    // Primary Brand - National Blue
+    // PRIMARY BRAND COLOR (All audiences, all CTAs)
+    primary: '#0047FF',           // NRPG National Blue
+    primaryHover: '#0039CC',
+    primaryLight: '#3B82F6',      // Softer variant for backgrounds
+    primaryBg: '#EFF6FF',
+
+    // EMERGENCY COLOR (Crisis scenarios ONLY)
+    emergency: '#DC2626',         // Updated to stronger red for urgency
+    emergencyHover: '#B91C1C',
+    emergencyLight: '#FEE2E2',    // Light variant for backgrounds
+    emergencyBg: '#FEF2F2',
+
+    // CONTRACTOR ACCENT (Sub-brand, secondary actions)
+    contractorAccent: '#00BFA6',  // Teal accent for contractor-specific UI
+    contractorAccentHover: '#00A693',
+    contractorAccentBg: '#F0FDFA',
+
+    // LEGACY ALIASES (for backward compatibility during migration)
     nrpgBlue: '#0047FF',
     nrpgBlueHover: '#0039CC',
     nrpgBlueSofter: '#3B82F6',
-
-    // Emergency/CTA - Red
-    nrpgRed: '#E11D48',
+    nrpgRed: '#E11D48',           // Deprecated: use emergency instead
     nrpgRedHover: '#BE123C',
     nrpgRedSofter: '#F43F5E',
 
@@ -46,11 +61,11 @@ export const designTokens = {
     protocolGreen: '#4ADE80',   // S520 Mold Remediation
     protocolRed: '#F87171',     // S540/S800 Bio/Forensic
 
-    // Semantic
+    // Semantic (mapped to primary colors)
     success: '#10B981',
     warning: '#F59E0B',
-    error: '#DC2626',
-    info: '#3B82F6',
+    error: '#DC2626',        // Maps to emergency red
+    info: '#0047FF',         // Maps to primary blue
   },
 
   // Typography

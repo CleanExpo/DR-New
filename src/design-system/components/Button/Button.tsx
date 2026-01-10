@@ -32,6 +32,12 @@ const buttonVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
 
+        // NEW: Semantic Color System (2026)
+        'primary': 'bg-semantic-primary text-white hover:bg-semantic-primary-hover',
+        'emergency': 'bg-semantic-emergency text-white hover:bg-semantic-emergency-hover transition-none',
+        'emergency-outline': 'border-2 border-semantic-emergency text-semantic-emergency hover:bg-semantic-emergency-bg transition-none',
+        'contractor-accent': 'bg-semantic-contractor text-white hover:bg-semantic-contractor-hover',
+
         // DesignOS: Emergency variants (no transition animations)
         'emergency-primary': 'bg-dr-emergency text-white hover:bg-dr-emergency-hover transition-none',
         'emergency-secondary': 'border-2 border-dr-emergency text-dr-emergency hover:bg-dr-emergency-bg transition-none',
