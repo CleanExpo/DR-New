@@ -39,6 +39,10 @@
 
   "crons": [
     {
+      "path": "/api/webhooks/cron/health-check",
+      "schedule": "*/5 * * * *"
+    },
+    {
       "path": "/api/search-dominance/cron/rank-tracking",
       "schedule": "0 */6 * * *"
     },
