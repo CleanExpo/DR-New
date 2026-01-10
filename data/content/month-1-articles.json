@@ -1,0 +1,291 @@
+{
+  "month": 1,
+  "target_articles": 20,
+  "service_pillars": [
+    {
+      "serviceName": "Water Damage Restoration",
+      "templateType": "service-pillar",
+      "tone": "professional",
+      "targetAudience": "mixed",
+      "includePricing": true,
+      "includeEstimates": true,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Water Restorer",
+        "IICRC Master Fire & Smoke Restorer",
+        "15+ years disaster recovery experience",
+        "Founder of NRPG network (500+ contractors)"
+      ]
+    },
+    {
+      "serviceName": "Fire & Smoke Restoration",
+      "templateType": "service-pillar",
+      "tone": "professional",
+      "targetAudience": "mixed",
+      "includePricing": true,
+      "includeEstimates": true,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Fire & Smoke Restorer",
+        "IICRC Master Water Restorer",
+        "15+ years disaster recovery experience",
+        "Founder of NRPG network (500+ contractors)"
+      ]
+    },
+    {
+      "serviceName": "Mould Remediation",
+      "templateType": "service-pillar",
+      "tone": "professional",
+      "targetAudience": "mixed",
+      "includePricing": true,
+      "includeEstimates": true,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Mould Remediator",
+        "IICRC Master Water Restorer",
+        "15+ years disaster recovery experience",
+        "Founder of NRPG network (500+ contractors)"
+      ]
+    },
+    {
+      "serviceName": "Storm Damage Restoration",
+      "templateType": "service-pillar",
+      "tone": "professional",
+      "targetAudience": "mixed",
+      "includePricing": true,
+      "includeEstimates": true,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Water Restorer",
+        "IICRC Master Fire & Smoke Restorer",
+        "15+ years disaster recovery experience",
+        "Founder of NRPG network (500+ contractors)"
+      ]
+    },
+    {
+      "serviceName": "Sewage Cleanup",
+      "templateType": "service-pillar",
+      "tone": "professional",
+      "targetAudience": "mixed",
+      "includePricing": true,
+      "includeEstimates": true,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Water Restorer",
+        "Biohazard Specialist",
+        "15+ years disaster recovery experience",
+        "Founder of NRPG network (500+ contractors)"
+      ]
+    },
+    {
+      "serviceName": "Biohazard Cleanup",
+      "templateType": "service-pillar",
+      "tone": "professional",
+      "targetAudience": "mixed",
+      "includePricing": true,
+      "includeEstimates": true,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Biohazard Technician",
+        "IICRC Master Water Restorer",
+        "15+ years disaster recovery experience",
+        "Founder of NRPG network (500+ contractors)"
+      ]
+    }
+  ],
+  "emergency_guides": [
+    {
+      "serviceName": "After a Flood",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "After a Fire",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Fire & Smoke Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "After Pipe Burst",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Water Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "After Storm Damage",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "After Sewage Backup",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Water Restorer",
+        "Biohazard Specialist",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "After Mould Discovery",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Mould Remediator",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "Emergency Water Extraction",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Water Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "Emergency Fire Damage Response",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Fire & Smoke Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "Emergency Mould Containment",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Mould Remediator",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "First 24 Hours After Disaster",
+      "templateType": "emergency-guide",
+      "tone": "urgent",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "Insurance Claim Emergency Checklist",
+      "templateType": "emergency-guide",
+      "tone": "helpful",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Restorer",
+        "Insurance coordination specialist",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "IICRC Certified Contractor Selection",
+      "templateType": "emergency-guide",
+      "tone": "professional",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Restorer",
+        "15+ years emergency response experience",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "Water Damage Prevention Winter Guide",
+      "templateType": "emergency-guide",
+      "tone": "educational",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Water Restorer",
+        "Disaster prevention specialist",
+        "Director of NRPG Network"
+      ]
+    },
+    {
+      "serviceName": "Fire Safety & Prevention Checklist",
+      "templateType": "emergency-guide",
+      "tone": "educational",
+      "targetAudience": "homeowners",
+      "includePricing": false,
+      "authorName": "Phil McGurk",
+      "authorCredentials": [
+        "IICRC Master Fire & Smoke Restorer",
+        "Fire safety specialist",
+        "Director of NRPG Network"
+      ]
+    }
+  ],
+  "publishing_schedule": {
+    "week_1": ["Water Damage Restoration", "After a Flood", "After a Fire"],
+    "week_2": ["Fire & Smoke Restoration", "After Pipe Burst", "After Storm Damage"],
+    "week_3": ["Mould Remediation", "After Sewage Backup", "After Mould Discovery"],
+    "week_4": ["Storm Damage Restoration", "Emergency Water Extraction", "Emergency Fire Damage Response"],
+    "week_5": ["Sewage Cleanup", "Emergency Mould Containment", "First 24 Hours After Disaster"],
+    "week_6": ["Biohazard Cleanup", "Insurance Claim Emergency Checklist", "IICRC Certified Contractor Selection"],
+    "week_7": ["Water Damage Prevention Winter Guide", "Fire Safety & Prevention Checklist"]
+  },
+  "notes": "20 total articles: 6 service pillars (2500 words) + 14 emergency guides (1500 words) = ~48,000 words of production-ready content. Articles will be published staggered over 7 weeks starting February 2026. All articles follow IICRC standards and include E-E-A-T signals with Phil McGurk author credentials."
+}

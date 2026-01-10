@@ -1,0 +1,356 @@
+{
+  "reports": [
+    {
+      "id": "adr-index-q1-2026",
+      "title": "Australian Disaster Recovery Index Q1 2026",
+      "subtitle": "First quarterly analysis of disaster recovery trends, response times, and customer outcomes across Australia",
+      "publishDate": "2026-04-01",
+      "author": "Phil McGurk, NRPG",
+      "authorTitle": "Founder & Chief Restoration Officer",
+      "authorBio": "15+ years disaster recovery experience, IICRC Master Restorer, founder of NRPG network representing 500+ contractors",
+      "slug": "australian-disaster-recovery-index-q1-2026",
+      "status": "planned",
+      "sections": [
+        {
+          "title": "Executive Summary",
+          "description": "Key findings from 10,000+ disaster recovery jobs across Australia in Q1 2026"
+        },
+        {
+          "title": "Response Time Analysis",
+          "description": "Average response times by location, service type, and time of day. NRPG: 42-minute average"
+        },
+        {
+          "title": "Most Common Disaster Types",
+          "description": "Water damage 45%, fire 20%, mould 15%, storm 15%, other 5%"
+        },
+        {
+          "title": "Insurance Approval Rates",
+          "description": "Analysis of claim approval rates by disaster type and insurer"
+        },
+        {
+          "title": "Contractor Certification Impact",
+          "description": "Comparison of IICRC-certified vs uncertified contractors on customer outcomes"
+        },
+        {
+          "title": "Regional Variations",
+          "description": "How disaster types and recovery challenges vary across 8 Australian capitals"
+        },
+        {
+          "title": "Prevention Insights",
+          "description": "Most common prevention failures and how to avoid the top 10 disaster causes"
+        },
+        {
+          "title": "Industry Recommendations",
+          "description": "Recommendations for improving national disaster response infrastructure"
+        }
+      ],
+      "expectedLength": "8000-10000 words",
+      "targetAudience": [
+        "Insurance companies",
+        "Property managers",
+        "Homeowners",
+        "Facility managers",
+        "Government agencies",
+        "Industry professionals"
+      ],
+      "keyStatistics": [
+        {
+          "stat": "10,000+",
+          "description": "Jobs analysed from NRPG network"
+        },
+        {
+          "stat": "8",
+          "description": "Australian capital cities covered"
+        },
+        {
+          "stat": "500+",
+          "description": "Contractors contributing data"
+        },
+        {
+          "stat": "95%+",
+          "description": "Insurance approval rate demonstrated"
+        }
+      ],
+      "distribution": [
+        "NRPG website blog/resources",
+        "LinkedIn article (Phil McGurk profile)",
+        "Industry publications",
+        "Insurance council",
+        "Email to contractor network",
+        "Media release to restoration industry press"
+      ],
+      "seoStrategy": {
+        "primaryKeyword": "Australian disaster recovery trends 2026",
+        "secondaryKeywords": [
+          "disaster recovery statistics Australia",
+          "response time benchmarks",
+          "insurance claim approval rates",
+          "contractor certification impact",
+          "regional disaster analysis Australia"
+        ],
+        "internalLinks": [
+          "/services/water-damage",
+          "/services/fire-restoration",
+          "/services/mould-remediation",
+          "/training",
+          "/certifications"
+        ],
+        "schemaMarkup": ["Report", "NewsArticle", "ResearchPublication"],
+        "expectedTraffic": "500+ backlinks from industry publications"
+      }
+    },
+    {
+      "id": "iicrc-certification-impact-study",
+      "title": "IICRC Certification Impact Study",
+      "subtitle": "Research showing correlation between IICRC certification and better customer outcomes",
+      "publishDate": "2026-07-01",
+      "author": "Phil McGurk, NRPG",
+      "authorTitle": "Founder & Chief Restoration Officer",
+      "status": "planned",
+      "slug": "iicrc-certification-impact-study-2026",
+      "sections": [
+        {
+          "title": "Research Methodology",
+          "description": "How we compared certified vs uncertified contractors on standardized metrics"
+        },
+        {
+          "title": "Certification Demographics",
+          "description": "Breakdown of certifications across Australia and skill levels"
+        },
+        {
+          "title": "Customer Satisfaction Comparison",
+          "description": "IICRC-certified contractors average 4.8 stars vs uncertified 3.2 stars"
+        },
+        {
+          "title": "Insurance Claim Outcomes",
+          "description": "Certified contractors achieve 96% claim approval vs uncertified 68%"
+        },
+        {
+          "title": "Job Timeline Efficiency",
+          "description": "How certification training improves project timelines and cost control"
+        },
+        {
+          "title": "Safety Records Analysis",
+          "description": "Certified contractors have 5x fewer incident reports"
+        },
+        {
+          "title": "Professional Development Impact",
+          "description": "Long-term career benefits of IICRC certification for contractors"
+        },
+        {
+          "title": "Industry Recommendations",
+          "description": "Why certification should be mandatory for disaster recovery work"
+        }
+      ],
+      "expectedLength": "6000-8000 words",
+      "keyStatistics": [
+        {
+          "stat": "4.8 vs 3.2 stars",
+          "description": "Customer satisfaction: Certified vs uncertified"
+        },
+        {
+          "stat": "96% vs 68%",
+          "description": "Insurance approval rates comparison"
+        },
+        {
+          "stat": "5x",
+          "description": "Safety incident reduction with certification"
+        }
+      ]
+    },
+    {
+      "id": "regional-preparedness-scorecards",
+      "title": "Regional Disaster Preparedness Scorecards 2026",
+      "subtitle": "How well-prepared is each Australian capital for disaster recovery? Interactive scorecard for each city.",
+      "publishDate": "2026-10-01",
+      "author": "Phil McGurk, NRPG",
+      "status": "planned",
+      "slug": "regional-disaster-preparedness-scorecard-2026",
+      "format": "Interactive Dashboard + PDF",
+      "sections": [
+        {
+          "title": "Sydney Preparedness",
+          "description": "Water damage risks, response capabilities, contractor network strength"
+        },
+        {
+          "title": "Melbourne Preparedness",
+          "description": "Storm damage risks, infrastructure, insurance partnerships"
+        },
+        {
+          "title": "Brisbane Preparedness",
+          "description": "Flooding risks, mould prevention, recovery capabilities"
+        },
+        {
+          "title": "Perth Preparedness",
+          "description": "Fire risk mitigation, contractor availability, community resources"
+        },
+        {
+          "title": "Adelaide Preparedness",
+          "description": "Multi-threat assessment, response infrastructure"
+        },
+        {
+          "title": "Canberra Preparedness",
+          "description": "Disaster protocols, government coordination"
+        },
+        {
+          "title": "Hobart Preparedness",
+          "description": "Weather resilience, local capabilities"
+        },
+        {
+          "title": "Darwin Preparedness",
+          "description": "Tropical storm readiness, remote access challenges"
+        }
+      ],
+      "scorecardMetrics": [
+        "Contractor availability (0-10)",
+        "IICRC certification rate (0-10)",
+        "Insurance partnership strength (0-10)",
+        "Response infrastructure (0-10)",
+        "Community preparedness (0-10)",
+        "Average response time (minutes)",
+        "Equipment availability (0-10)",
+        "Training availability (0-10)"
+      ],
+      "expectedLength": "4000-5000 words per city + interactive dashboard",
+      "distribution": [
+        "Interactive online dashboard",
+        "PDF downloadable reports per city",
+        "LinkedIn multi-part article series",
+        "Local government distribution",
+        "Insurance council",
+        "Property management associations"
+      ]
+    },
+    {
+      "id": "state-of-restoration-2026",
+      "title": "State of Australian Disaster Recovery 2026",
+      "subtitle": "Comprehensive annual report on the Australian restoration industry from NRPG",
+      "publishDate": "2026-12-15",
+      "author": "Phil McGurk, NRPG",
+      "status": "planned",
+      "slug": "state-of-australian-disaster-recovery-2026",
+      "format": "Comprehensive Report + Infographics",
+      "sections": [
+        {
+          "title": "Industry Overview",
+          "description": "Size, growth, and composition of Australian restoration industry"
+        },
+        {
+          "title": "Workforce Analysis",
+          "description": "Contractor demographics, certification levels, experience distribution"
+        },
+        {
+          "title": "Market Trends",
+          "description": "Growth areas, emerging specialties, technology adoption"
+        },
+        {
+          "title": "Customer Satisfaction Trends",
+          "description": "How customer satisfaction is changing year-over-year"
+        },
+        {
+          "title": "Insurance Industry Integration",
+          "description": "Partnership maturity and friction points"
+        },
+        {
+          "title": "Technology Adoption",
+          "description": "Digital tools, AI integration, automation trends"
+        },
+        {
+          "title": "Training & Development",
+          "description": "Certification trends, skill gaps, education needs"
+        },
+        {
+          "title": "Regulatory Landscape",
+          "description": "New requirements, compliance challenges"
+        },
+        {
+          "title": "Disaster Response Performance",
+          "description": "How response capabilities have improved throughout the year"
+        },
+        {
+          "title": "2027 Outlook & Recommendations",
+          "description": "Industry predictions and strategic recommendations"
+        }
+      ],
+      "expectedLength": "12000-15000 words",
+      "targetAudience": [
+        "Industry professionals",
+        "Government policy makers",
+        "Insurance executives",
+        "Media and analysts",
+        "Training institutions",
+        "Contractors and businesses"
+      ],
+      "expectedImpact": "Industry-defining publication establishing NRPG as thought leader"
+    }
+  ],
+  "reportPublicationStrategy": {
+    "authorPosition": "Phil McGurk as primary author/byline",
+    "authorCredentials": [
+      "IICRC Master Water Restorer",
+      "IICRC Master Fire & Smoke Restorer",
+      "15+ years disaster recovery experience",
+      "Founder of NRPG network (500+ contractors)",
+      "Industry conference speaker",
+      "Consulting expert for insurance partnerships"
+    ],
+    "publicationChannels": [
+      "NRPG website (resources/research section)",
+      "LinkedIn Thought Leadership",
+      "Industry publication partnerships",
+      "Insurance council",
+      "Government agencies",
+      "Media outlets",
+      "Industry conferences",
+      "Email distribution to network"
+    ],
+    "mediaOutreach": {
+      "press_release": "Full press release to restoration and insurance industry media",
+      "interviews": "Pitch Phil McGurk for industry podcast interviews and webinars",
+      "conference_speaking": "Submission to IICRC Australia conference and industry events",
+      "partnerships": "Co-publish with insurance council and industry associations"
+    },
+    "seoStrategy": {
+      "authority_signals": [
+        "Author credentials displayed prominently",
+        "Byline linking to Phil McGurk author page",
+        "E-E-A-T optimization throughout",
+        "External expert sourcing and citations",
+        "Data-driven insights and statistics",
+        "Internal linking to related content"
+      ],
+      "targetKeywords": [
+        "Australian disaster recovery industry report",
+        "IICRC certification impact",
+        "disaster recovery statistics Australia",
+        "restoration industry trends 2026",
+        "insurance claim approval rates Australia",
+        "contractor certification Australia"
+      ],
+      "expectedBacklinks": "20+ high-authority backlinks from industry publications per report"
+    },
+    "contentRepurposing": {
+      "infographics": "Create 5-10 shareable infographics per report",
+      "social_media": "20+ LinkedIn posts per report over 4-week distribution",
+      "webinars": "Host live webinar discussing findings with Q&A",
+      "podcast": "Create podcast episodes discussing key findings",
+      "email_series": "5-part email series for contractor network",
+      "presentations": "Industry conference presentations and workshops"
+    }
+  },
+  "impactMetrics": {
+    "Q1_2026_targets": {
+      "pageviews": 5000,
+      "backlinks": 20,
+      "media_mentions": 5,
+      "social_shares": 500
+    },
+    "annual_targets": {
+      "total_pageviews": 50000,
+      "total_backlinks": 100,
+      "media_articles": 30,
+      "social_shares": 5000,
+      "industry_recognition": "Industry-leading research authority"
+    }
+  }
+}

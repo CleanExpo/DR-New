@@ -1,0 +1,305 @@
+{
+  "citationDirectories": [
+    {
+      "category": "Tier 1: National High-Authority",
+      "priority": "critical",
+      "directories": [
+        {
+          "name": "Yellow Pages Australia",
+          "url": "https://www.yellowpages.com.au",
+          "domain_authority": 85,
+          "businessCategory": "Restoration Services",
+          "submissionUrl": "https://www.yellowpages.com.au/business/add",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Water Damage Restoration", "Fire Damage Restoration", "Mould Remediation"]
+        },
+        {
+          "name": "True Local",
+          "url": "https://www.truelocal.com.au",
+          "domain_authority": 78,
+          "businessCategory": "Restoration Services",
+          "submissionUrl": "https://www.truelocal.com.au/add-business",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Emergency Services", "Water Damage"]
+        },
+        {
+          "name": "Yelp Australia",
+          "url": "https://www.yelp.com.au",
+          "domain_authority": 92,
+          "businessCategory": "Restoration Services",
+          "submissionUrl": "https://biz.yelp.com/,
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Home Services", "Disaster Recovery"]
+        },
+        {
+          "name": "Start Local",
+          "url": "https://www.startlocal.com.au",
+          "domain_authority": 72,
+          "businessCategory": "Restoration Services",
+          "submissionUrl": "https://www.startlocal.com.au/business/add",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Emergency Services", "Building & Construction"]
+        },
+        {
+          "name": "Local.com",
+          "url": "https://www.local.com.au",
+          "domain_authority": 75,
+          "businessCategory": "Restoration Services",
+          "submissionUrl": "https://www.local.com.au/add-business",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Professional Services"]
+        }
+      ]
+    },
+    {
+      "category": "Tier 2: Industry-Specific Directories",
+      "priority": "high",
+      "directories": [
+        {
+          "name": "IICRC Certified Firms Directory",
+          "url": "https://www.iicrc.org/en-US/Find-a-Professional",
+          "domain_authority": 88,
+          "businessCategory": "IICRC Certified Contractors",
+          "submissionUrl": "https://www.iicrc.org/en-US/Find-a-Professional/Submit-Your-Business",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Water Damage", "Fire Damage", "Mould Remediation"],
+          "note": "CRITICAL - Highest authority in disaster recovery industry"
+        },
+        {
+          "name": "Master Builders Association Directory",
+          "url": "https://www.masterbuilders.com.au",
+          "domain_authority": 65,
+          "businessCategory": "Building & Construction",
+          "submissionUrl": "https://www.masterbuilders.com.au/find-a-member",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Restoration", "Construction Services"]
+        },
+        {
+          "name": "Insurance Council of Australia",
+          "url": "https://www.insurancecouncil.com.au",
+          "domain_authority": 82,
+          "businessCategory": "Insurance Approved Contractors",
+          "submissionUrl": "https://www.insurancecouncil.com.au/contact",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Insurance Approved Services"]
+        },
+        {
+          "name": "Property Owners Association Australia",
+          "url": "https://www.poaa.com.au",
+          "domain_authority": 58,
+          "businessCategory": "Property Services",
+          "submissionUrl": "https://www.poaa.com.au/find-services",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["Property Restoration"]
+        },
+        {
+          "name": "Restoration Industry Association",
+          "url": "https://www.restorers.org",
+          "domain_authority": 76,
+          "businessCategory": "Professional Restorers",
+          "submissionUrl": "https://www.restorers.org/membership",
+          "status": "not_submitted",
+          "napRequired": true,
+          "phone_required": true,
+          "categorySupport": ["All Restoration Services"]
+        }
+      ]
+    },
+    {
+      "category": "Tier 3: State-Specific & Regional",
+      "priority": "high",
+      "directories": [
+        {
+          "state": "NSW",
+          "directories": [
+            {
+              "name": "NSW Small Business Connect",
+              "url": "https://www.smallbusiness.nsw.gov.au",
+              "domain_authority": 68,
+              "submissionUrl": "https://www.smallbusiness.nsw.gov.au/business-directory"
+            },
+            {
+              "name": "Sydney Inner City Directory",
+              "url": "https://www.sydneyinnerwest.com.au",
+              "domain_authority": 52
+            }
+          ]
+        },
+        {
+          "state": "VIC",
+          "directories": [
+            {
+              "name": "Victoria State Business Directory",
+              "url": "https://www.business.vic.gov.au",
+              "domain_authority": 71
+            },
+            {
+              "name": "Melbourne Local Services",
+              "url": "https://www.melbournebusiness.com.au",
+              "domain_authority": 54
+            }
+          ]
+        },
+        {
+          "state": "QLD",
+          "directories": [
+            {
+              "name": "Queensland Business Directory",
+              "url": "https://www.business.qld.gov.au",
+              "domain_authority": 70
+            },
+            {
+              "name": "Brisbane Services Directory",
+              "url": "https://www.brisbane.com.au/business",
+              "domain_authority": 56
+            }
+          ]
+        },
+        {
+          "state": "WA",
+          "directories": [
+            {
+              "name": "Western Australia Business Hub",
+              "url": "https://www.business.wa.gov.au",
+              "domain_authority": 69
+            },
+            {
+              "name": "Perth Local Directory",
+              "url": "https://www.perthbusiness.com.au",
+              "domain_authority": 51
+            }
+          ]
+        },
+        {
+          "state": "SA",
+          "directories": [
+            {
+              "name": "South Australia Business Directory",
+              "url": "https://www.business.sa.gov.au",
+              "domain_authority": 67
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Tier 4: General Business Directories",
+      "priority": "medium",
+      "directories": [
+        {
+          "name": "Google My Business",
+          "url": "https://www.google.com/business",
+          "domain_authority": 100,
+          "note": "PRIMARY - Most important for local SEO"
+        },
+        {
+          "name": "Facebook Business",
+          "url": "https://www.facebook.com/business",
+          "domain_authority": 96,
+          "note": "SECONDARY - Social proof & engagement"
+        },
+        {
+          "name": "LinkedIn Company Pages",
+          "url": "https://www.linkedin.com",
+          "domain_authority": 94,
+          "note": "B2B authority & thought leadership"
+        },
+        {
+          "name": "Apple Maps",
+          "url": "https://maps.apple.com",
+          "domain_authority": 87
+        },
+        {
+          "name": "Bing Places",
+          "url": "https://www.bingplaces.com",
+          "domain_authority": 81
+        }
+      ]
+    }
+  ],
+  "NAP_Standards": {
+    "businessName": "NRPG - National Restoration Professionals Group",
+    "address": "Level 12, 680 George Street, Sydney NSW 2000",
+    "phone": "1300 309 361",
+    "website": "https://disasterrecovery.com.au",
+    "email": "support@disasterrecovery.com.au",
+    "note": "ALL citations must use consistent NAP (Name, Address, Phone)"
+  },
+  "citationSubmissionChecklist": [
+    {
+      "task": "Prepare NAP consistency sheet",
+      "status": "pending",
+      "priority": "critical"
+    },
+    {
+      "task": "Submit to Tier 1 directories (5 total)",
+      "status": "pending",
+      "priority": "critical",
+      "count": 5
+    },
+    {
+      "task": "Submit to IICRC directory",
+      "status": "pending",
+      "priority": "critical"
+    },
+    {
+      "task": "Submit to Insurance Council of Australia",
+      "status": "pending",
+      "priority": "critical"
+    },
+    {
+      "task": "Submit to Tier 2 industry directories (5 total)",
+      "status": "pending",
+      "priority": "high",
+      "count": 5
+    },
+    {
+      "task": "Submit to state-specific directories (25+ locations)",
+      "status": "pending",
+      "priority": "high",
+      "count": 25
+    },
+    {
+      "task": "Submit to Tier 4 general directories",
+      "status": "pending",
+      "priority": "medium",
+      "count": 15
+    },
+    {
+      "task": "Monitor all citations for consistency",
+      "status": "pending",
+      "priority": "high"
+    },
+    {
+      "task": "Update citations when address/phone changes",
+      "status": "pending",
+      "priority": "medium"
+    }
+  ],
+  "citationStrategy": {
+    "timeline": "Month 2 of Phase 2 (Weeks 5-8)",
+    "target": "100+ quality citations",
+    "expectedImpact": "20-30 ranking positions increase",
+    "expectedReviewBoost": "10+ additional reviews per location",
+    "estimatedTimePerDirectory": "5-15 minutes",
+    "totalEstimatedTime": "12-25 hours for complete rollout"
+  }
+}

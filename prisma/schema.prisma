@@ -668,6 +668,8 @@ model ContractorMatch {
   contractor     ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
   serviceRequest ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
 
+  // Ensure each contractor can only have one bid per service request
+  @@unique([contractorId, serviceRequestId])
   @@map("contractor_matches")
 }
 

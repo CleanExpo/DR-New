@@ -35,6 +35,12 @@ export class BadRequestError extends APIError {
   }
 }
 
+export class ConflictError extends APIError {
+  constructor(message: string = 'Resource conflict') {
+    super(message, 409, 'CONFLICT');
+  }
+}
+
 export enum ErrorCode {
   VALIDATION_ERROR = 'VALIDATION_ERROR',
   NOT_FOUND = 'NOT_FOUND',
@@ -45,6 +51,12 @@ export enum ErrorCode {
   INTERNAL_ERROR = 'INTERNAL_ERROR',
   INVALID_INPUT = 'INVALID_INPUT',
   MISSING_FIELDS = 'MISSING_FIELDS',
+  // Phase 3: Security & Production Hardening
+  CONFLICT = 'CONFLICT',
+  DUPLICATE_BID = 'DUPLICATE_BID',
+  CONTRACTOR_INELIGIBLE = 'CONTRACTOR_INELIGIBLE',
+  BID_SUBMISSION_RATE_LIMITED = 'BID_SUBMISSION_RATE_LIMITED',
+  STRIPE_WEBHOOK_SIGNATURE_INVALID = 'STRIPE_WEBHOOK_SIGNATURE_INVALID',
 }
 
 export function handleAPIError(error: unknown) {
