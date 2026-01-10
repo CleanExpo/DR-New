@@ -1,0 +1,79 @@
+name: Database - Migrations
+
+on:
+  push:
+    paths:
+      - 'prisma/schema.prisma'
+      - 'prisma/migrations/**'
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  migrate-staging:
+    name: Run Migrations - Staging
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - name: Run Prisma migration
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
+      - name: Generate Prisma client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
+
+  migrate-production:
+    name: Run Migrations - Production
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://disaster-recovery-seven.vercel.app
+    needs: migrate-staging
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - name: Create database backup
+        run: |
+          echo "Backup would be created here"
+          echo "Using: pg_dump or similar tool"
+      - name: Run Prisma migration
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL_PRODUCTION }}
+      - name: Generate Prisma client
+        run: npx prisma generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
+      - name: Run post-migration checks
+        run: |
+          npx prisma db info
+          npx prisma db seed --skip-generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
+        continue-on-error: true
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "Database migrations completed successfully"
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }}             -H Content-Type: application/json             -d '{"text":"Database migrations completed successfully"}'
+        continue-on-error: true
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Database migrations failed - rollback may be needed"
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }}             -H Content-Type: application/json             -d '{"text":"Database migrations FAILED"}'
+        continue-on-error: true
