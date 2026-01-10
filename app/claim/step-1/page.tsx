@@ -36,6 +36,7 @@ import {
 export default function ClaimStep1Page() {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
 
   // Load existing progress
   const existingState = React.useMemo(() => loadClaimProgress(), []);
@@ -43,10 +44,12 @@ export default function ClaimStep1Page() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
+    trigger,
   } = useForm<TriageData>({
     resolver: zodResolver(triageSchema),
+    mode: 'onBlur', // Validate on blur to provide real-time feedback
     defaultValues: existingState?.step1 || {
       disasterType: undefined,
       incidentDate: '',
@@ -58,10 +61,29 @@ export default function ClaimStep1Page() {
   // Watch emergency status for conditional UI
   const isEmergency = watch('isEmergency');
 
+  // Debug: Log validation errors whenever they change
+  React.useEffect(() => {
+    if (Object.keys(errors).length > 0) {
+      console.log('Form validation errors:', errors);
+    }
+  }, [errors]);
+
   const onSubmit = async (data: TriageData) => {
     setIsLoading(true);
+    setSubmitError(null);
+    console.log('Form submitted with data:', data);
 
     try {
+      // Validate data one more time before submit
+      const validationResult = triageSchema.safeParse(data);
+      if (!validationResult.success) {
+        const errors = validationResult.error.flatten();
+        setSubmitError('Please check all required fields are filled correctly');
+        console.error('Validation failed:', errors);
+        setIsLoading(false);
+        return;
+      }
+
       // Save progress to localStorage
       const formState: ClaimFormState = {
         ...existingState,
@@ -72,14 +94,19 @@ export default function ClaimStep1Page() {
         lastUpdatedAt: new Date().toISOString(),
       };
 
+      console.log('Saving form state:', formState);
       saveClaimProgress(formState);
+      console.log('Form state saved successfully');
 
       // Navigate to step 2
-      router.push('/claim/step-2');
+      console.log('Navigating to /claim/step-2');
+      await router.push('/claim/step-2');
+      console.log('Navigation completed');
     } catch (error) {
       console.error('Failed to save progress:', error);
+      setSubmitError('Failed to save progress. Please try again.');
       // Continue anyway - don't block user
-      router.push('/claim/step-2');
+      await router.push('/claim/step-2');
     } finally {
       setIsLoading(false);
     }
@@ -107,6 +134,14 @@ export default function ClaimStep1Page() {
               <strong>Emergency Detected:</strong> Your claim will be marked as critical priority.
               Contractors will be notified immediately.
             </AlertDescription>
+          </Alert>
+        )}
+
+        {/* Submit Error */}
+        {submitError && (
+          <Alert className="mb-6 border-red-600 bg-red-50">
+            <AlertCircle className="h-5 w-5 text-red-600" />
+            <AlertDescription className="text-red-900">{submitError}</AlertDescription>
           </Alert>
         )}
 
@@ -223,10 +258,12 @@ export default function ClaimStep1Page() {
                 variant="emergency-primary"
                 size="crisis"
                 loading={isLoading}
+                disabled={isLoading || Object.keys(errors).length > 0}
                 icon={<ChevronRight className="h-5 w-5" />}
                 iconPosition="right"
+                title={Object.keys(errors).length > 0 ? 'Please fill in all required fields' : ''}
               >
-                Next: Location & Contact
+                {isLoading ? 'Processing...' : 'Next: Location & Contact'}
               </Button>
             </div>
           </form>
