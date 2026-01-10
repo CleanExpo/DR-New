@@ -217,6 +217,12 @@ model User {
   isBlocked                    Boolean   @default(false)
   lastLoginAt                  DateTime?
 
+  // Two-Factor Authentication (2FA)
+  twoFactorSecret       String?   // TOTP secret key
+  twoFactorEnabled      Boolean   @default(false)
+  twoFactorBackupCodes  String[]  // Encrypted backup codes
+  twoFactorSetupAt      DateTime? // When 2FA was enabled
+
   tenantId  String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
