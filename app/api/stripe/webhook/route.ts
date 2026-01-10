@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { constructWebhookEvent } from '@/lib/stripe';
 import { getNrpgCalloutSplit } from '@/lib/pricing/nrpg-callout';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
+import { retryPrismaOperation } from '@/src/lib/stripe/webhook-retry';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -33,52 +34,69 @@ async function markCalloutPaidBySession(session: Stripe.Checkout.Session): Promi
 
   if (!serviceRequestId || !clientId) return;
 
-  const serviceRequest = await prisma.serviceRequest.findUnique({
-    where: { id: serviceRequestId },
-    select: { userId: true },
-  });
+  // Retry with exponential backoff for database queries
+  const serviceRequest = await retryPrismaOperation(
+    'databaseQuery',
+    () =>
+      prisma.serviceRequest.findUnique({
+        where: { id: serviceRequestId },
+        select: { userId: true },
+      }),
+    `find service request ${serviceRequestId}`
+  );
 
   if (!serviceRequest || serviceRequest.userId !== clientId) return;
 
   const split = getNrpgCalloutSplit(getCalloutGstOptionsFromEnv());
 
-  await prisma.serviceRequestCalloutPayment.upsert({
-    where: { serviceRequestId },
-    create: {
-      serviceRequestId,
-      clientId,
-      totalAUD: split.total.totalAUD,
-      totalExGstAUD: split.total.exGstAUD,
-      gstAUD: split.total.gstAUD,
-      platformFeeAUD: split.platformFee.totalAUD,
-      platformFeeExGstAUD: split.platformFee.exGstAUD,
-      platformFeeGstAUD: split.platformFee.gstAUD,
-      contractorEntitlementAUD: split.contractorEntitlement.totalAUD,
-      contractorEntitlementExGstAUD: split.contractorEntitlement.exGstAUD,
-      contractorEntitlementGstAUD: split.contractorEntitlement.gstAUD,
-      gstInclusive: split.total.gstInclusive,
-      status: 'PAID',
-      stripeCheckoutSessionId: session.id,
-      stripePaymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : null,
-    },
-    update: {
-      status: 'PAID',
-      stripeCheckoutSessionId: session.id,
-      stripePaymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : undefined,
-    },
-  });
+  // Retry critical payment operation with more aggressive retry strategy
+  await retryPrismaOperation(
+    'criticalPayment',
+    () =>
+      prisma.serviceRequestCalloutPayment.upsert({
+        where: { serviceRequestId },
+        create: {
+          serviceRequestId,
+          clientId,
+          totalAUD: split.total.totalAUD,
+          totalExGstAUD: split.total.exGstAUD,
+          gstAUD: split.total.gstAUD,
+          platformFeeAUD: split.platformFee.totalAUD,
+          platformFeeExGstAUD: split.platformFee.exGstAUD,
+          platformFeeGstAUD: split.platformFee.gstAUD,
+          contractorEntitlementAUD: split.contractorEntitlement.totalAUD,
+          contractorEntitlementExGstAUD: split.contractorEntitlement.exGstAUD,
+          contractorEntitlementGstAUD: split.contractorEntitlement.gstAUD,
+          gstInclusive: split.total.gstInclusive,
+          status: 'PAID',
+          stripeCheckoutSessionId: session.id,
+          stripePaymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : null,
+        },
+        update: {
+          status: 'PAID',
+          stripeCheckoutSessionId: session.id,
+          stripePaymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : undefined,
+        },
+      }),
+    `upsert callout payment for session ${session.id}`
+  );
 }
 
 async function markCalloutPaidByPaymentIntent(paymentIntent: Stripe.PaymentIntent): Promise<void> {
-  await prisma.serviceRequestCalloutPayment.updateMany({
-    where: {
-      stripePaymentIntentId: paymentIntent.id,
-      status: { in: ['CREATED', 'CHECKOUT_CREATED'] },
-    },
-    data: {
-      status: 'PAID',
-    },
-  });
+  await retryPrismaOperation(
+    'criticalPayment',
+    () =>
+      prisma.serviceRequestCalloutPayment.updateMany({
+        where: {
+          stripePaymentIntentId: paymentIntent.id,
+          status: { in: ['CREATED', 'CHECKOUT_CREATED'] },
+        },
+        data: {
+          status: 'PAID',
+        },
+      }),
+    `update payment status for intent ${paymentIntent.id}`
+  );
 }
 
 export async function POST(request: NextRequest) {
