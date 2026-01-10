@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,8 +19,11 @@ import {
   User,
   Lock,
   Star,
-  ArrowLeft
+  ArrowLeft,
+  Wifi,
+  WifiOff
 } from 'lucide-react';
+import { socketClient } from '@/lib/websocket/socket-client';
 
 interface EnhancedChatWidgetProps {
   user?: {
@@ -61,6 +64,13 @@ interface Message {
   messageType: string;
 }
 
+interface TypingIndicator {
+  userId: string;
+  userName: string;
+  roomId: string;
+  isTyping: boolean;
+}
+
 export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
   const { data: session } = useSession();
   const userId = user?.id ?? session?.user?.id ?? null;
@@ -73,6 +83,76 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
   const [newMessage, setNewMessage] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isSocketConnected, setIsSocketConnected] = useState(false);
+  const [typingUsers, setTypingUsers] = useState<Map<string, TypingIndicator>>(new Map());
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const socketInitializedRef = useRef(false);
+
+  // Initialize Socket.io connection
+  useEffect(() => {
+    if (!userId || socketInitializedRef.current) return;
+
+    const initSocket = async () => {
+      try {
+        // Get JWT token for authentication
+        const response = await fetch('/api/auth/session');
+        const sessionData = await response.json();
+
+        if (sessionData && sessionData.user) {
+          socketInitializedRef.current = true;
+
+          // Connect to WebSocket server
+          await socketClient.connect({
+            token: sessionData.user.email || 'anonymous',
+            userId: userId,
+            userName: sessionData.user.name || 'Anonymous',
+            userRole: userType || 'user',
+            email: sessionData.user.email,
+          });
+
+          setIsSocketConnected(true);
+          console.log('[Chat] Socket.io connected');
+
+          // Listen for real-time messages
+          socketClient.on('chat:message', (message: Message) => {
+            setMessages((prev) => [...prev, message]);
+          });
+
+          // Listen for typing indicators
+          socketClient.on('chat:typing', (payload: TypingIndicator) => {
+            setTypingUsers((prev) => {
+              const updated = new Map(prev);
+              updated.set(payload.userId, payload);
+              return updated;
+            });
+          });
+
+          // Listen for typing stop
+          socketClient.on('chat:typing_stop', (payload: { userId: string; roomId: string }) => {
+            setTypingUsers((prev) => {
+              const updated = new Map(prev);
+              updated.delete(payload.userId);
+              return updated;
+            });
+          });
+
+          // Listen for connection state changes
+          socketClient.onConnectionStateChange((state) => {
+            setIsSocketConnected(state.connected);
+          });
+        }
+      } catch (error) {
+        console.error('[Chat] Socket initialization failed:', error);
+        setIsSocketConnected(false);
+      }
+    };
+
+    initSocket();
+
+    return () => {
+      socketClient.cleanup();
+    };
+  }, [userId, userType]);
 
   const fetchConnections = useCallback(async () => {
     try {
@@ -124,13 +204,49 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
 
     try {
       setSendingMessage(true);
+      const messageContent = newMessage.trim();
+
+      // Stop typing indicator
+      if (selectedConnection) {
+        socketClient.stopTyping(selectedConnection.id);
+      }
+
+      // Send via WebSocket if connected, fallback to REST API
+      if (isSocketConnected) {
+        socketClient.sendMessage(
+          selectedConnection.id,
+          messageContent,
+          (error) => {
+            if (error) {
+              console.error('[Chat] Failed to send message via WebSocket:', error);
+              // Fallback to REST API
+              sendViaREST(messageContent);
+            } else {
+              setNewMessage('');
+            }
+          }
+        );
+      } else {
+        // Fallback to REST API
+        sendViaREST(messageContent);
+      }
+    } catch (error) {
+      console.error('Failed to send message:', error);
+    } finally {
+      setSendingMessage(false);
+    }
+  };
+
+  const sendViaREST = async (messageContent: string) => {
+    if (!selectedConnection) return;
+    try {
       const response = await fetch(`/api/chat/connections/${selectedConnection.id}/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          content: newMessage.trim()
+          content: messageContent
         })
       });
 
@@ -139,9 +255,26 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
         fetchMessages(selectedConnection.id);
       }
     } catch (error) {
-      console.error('Failed to send message:', error);
-    } finally {
-      setSendingMessage(false);
+      console.error('Failed to send message via REST API:', error);
+    }
+  };
+
+  const handleMessageInput = (value: string) => {
+    setNewMessage(value);
+
+    // Send typing indicator
+    if (selectedConnection && isSocketConnected) {
+      socketClient.startTyping(selectedConnection.id);
+
+      // Clear previous timeout
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+
+      // Stop typing after 2 seconds of inactivity
+      typingTimeoutRef.current = setTimeout(() => {
+        socketClient.stopTyping(selectedConnection.id);
+      }, 2000);
     }
   };
 
@@ -204,14 +337,27 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
                   {connections.length} {connections.length === 1 ? 'connection' : 'connections'}
                 </p>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsOpen(false)}
-                className="text-white hover:bg-white/20"
-              >
-                <X className="h-4 w-4" />
-              </Button>
+              <div className="flex items-center space-x-2">
+                {isSocketConnected ? (
+                  <div className="flex items-center space-x-1">
+                    <Wifi className="h-4 w-4" />
+                    <span className="text-xs">Live</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-1">
+                    <WifiOff className="h-4 w-4" />
+                    <span className="text-xs">Offline</span>
+                  </div>
+                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setIsOpen(false)}
+                  className="text-white hover:bg-white/20"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -377,12 +523,28 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
                   )}
                 </div>
 
+                {/* Typing Indicator */}
+                {typingUsers.size > 0 && (
+                  <div className="px-4 py-2 text-xs text-gray-500">
+                    {Array.from(typingUsers.values()).map((user) => (
+                      <div key={user.userId} className="flex items-center space-x-1">
+                        <span>{user.userName} is typing</span>
+                        <div className="flex space-x-1">
+                          <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                          <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                          <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {/* Message Input */}
                 <div className="p-4 border-t bg-gray-50">
                   <div className="flex items-center space-x-2">
                     <Input
                       value={newMessage}
-                      onChange={(e) => setNewMessage(e.target.value)}
+                      onChange={(e) => handleMessageInput(e.target.value)}
                       placeholder="Type a message..."
                       onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
                       disabled={sendingMessage}
