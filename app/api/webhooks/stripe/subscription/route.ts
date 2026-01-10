@@ -15,6 +15,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
+import { retryPrismaOperation } from '@/src/lib/stripe/webhook-retry';
 
 export const dynamic = 'force-dynamic';
 
@@ -117,104 +118,159 @@ export async function POST(request: NextRequest) {
 // ============================================================================
 
 async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
-  const workspace = await prisma.workspace.findUnique({
-    where: { stripeCustomerId: subscription.customer as string },
-  });
+  const workspace = await retryPrismaOperation(
+    'databaseQuery',
+    () =>
+      prisma.workspace.findUnique({
+        where: { stripeCustomerId: subscription.customer as string },
+      }),
+    `find workspace for customer ${subscription.customer}`
+  );
 
   if (!workspace) return;
 
-  await prisma.workspace.update({
-    where: { id: workspace.id },
-    data: {
-      stripeSubscriptionId: subscription.id,
-      subscriptionStatus: 'ACTIVE',
-      currentPeriodStart: new Date(subscription.current_period_start * 1000),
-      currentPeriodEnd: new Date(subscription.current_period_end * 1000),
-    },
-  });
+  await retryPrismaOperation(
+    'criticalPayment',
+    () =>
+      prisma.workspace.update({
+        where: { id: workspace.id },
+        data: {
+          stripeSubscriptionId: subscription.id,
+          subscriptionStatus: 'ACTIVE',
+          currentPeriodStart: new Date(subscription.current_period_start * 1000),
+          currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+        },
+      }),
+    `activate subscription ${subscription.id}`
+  );
 
-  // Audit log
-  await prisma.auditLog.create({
-    data: {
-      workspaceId: workspace.id,
-      action: 'subscription_created',
-      entityType: 'subscription',
-      entityId: subscription.id,
-      metadata: {
-        tier: workspace.subscriptionTier,
-        amount: subscription.items.data[0]?.price.unit_amount,
-      },
-    },
-  });
+  // Audit log (non-critical)
+  await retryPrismaOperation(
+    'nonCritical',
+    () =>
+      prisma.auditLog.create({
+        data: {
+          workspaceId: workspace.id,
+          action: 'subscription_created',
+          entityType: 'subscription',
+          entityId: subscription.id,
+          metadata: {
+            tier: workspace.subscriptionTier,
+            amount: subscription.items.data[0]?.price.unit_amount,
+          },
+        },
+      }),
+    `create audit log for subscription ${subscription.id}`
+  );
 }
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
-  const workspace = await prisma.workspace.findUnique({
-    where: { stripeSubscriptionId: subscription.id },
-  });
+  const workspace = await retryPrismaOperation(
+    'databaseQuery',
+    () =>
+      prisma.workspace.findUnique({
+        where: { stripeSubscriptionId: subscription.id },
+      }),
+    `find workspace for subscription ${subscription.id}`
+  );
 
   if (!workspace) return;
 
-  await prisma.workspace.update({
-    where: { id: workspace.id },
-    data: {
-      subscriptionStatus: subscription.status === 'active' ? 'ACTIVE' : 'PAST_DUE',
-      currentPeriodStart: new Date(subscription.current_period_start * 1000),
-      currentPeriodEnd: new Date(subscription.current_period_end * 1000),
-    },
-  });
+  await retryPrismaOperation(
+    'criticalPayment',
+    () =>
+      prisma.workspace.update({
+        where: { id: workspace.id },
+        data: {
+          subscriptionStatus: subscription.status === 'active' ? 'ACTIVE' : 'PAST_DUE',
+          currentPeriodStart: new Date(subscription.current_period_start * 1000),
+          currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+        },
+      }),
+    `update subscription status to ${subscription.status}`
+  );
 }
 
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
-  const workspace = await prisma.workspace.findUnique({
-    where: { stripeSubscriptionId: subscription.id },
-  });
+  const workspace = await retryPrismaOperation(
+    'databaseQuery',
+    () =>
+      prisma.workspace.findUnique({
+        where: { stripeSubscriptionId: subscription.id },
+      }),
+    `find workspace for subscription ${subscription.id}`
+  );
 
   if (!workspace) return;
 
-  await prisma.workspace.update({
-    where: { id: workspace.id },
-    data: {
-      subscriptionStatus: 'CANCELLED',
-      cancelledAt: new Date(),
-      isActive: false,
-    },
-  });
+  await retryPrismaOperation(
+    'criticalPayment',
+    () =>
+      prisma.workspace.update({
+        where: { id: workspace.id },
+        data: {
+          subscriptionStatus: 'CANCELLED',
+          cancelledAt: new Date(),
+          isActive: false,
+        },
+      }),
+    `cancel subscription ${subscription.id}`
+  );
 
-  // Audit log
-  await prisma.auditLog.create({
-    data: {
-      workspaceId: workspace.id,
-      action: 'subscription_cancelled',
-      entityType: 'subscription',
-      entityId: subscription.id,
-    },
-  });
+  // Audit log (non-critical)
+  await retryPrismaOperation(
+    'nonCritical',
+    () =>
+      prisma.auditLog.create({
+        data: {
+          workspaceId: workspace.id,
+          action: 'subscription_cancelled',
+          entityType: 'subscription',
+          entityId: subscription.id,
+        },
+      }),
+    `create audit log for subscription cancellation ${subscription.id}`
+  );
 }
 
 async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
-  const workspace = await prisma.workspace.findUnique({
-    where: { stripeCustomerId: invoice.customer as string },
-  });
+  const workspace = await retryPrismaOperation(
+    'databaseQuery',
+    () =>
+      prisma.workspace.findUnique({
+        where: { stripeCustomerId: invoice.customer as string },
+      }),
+    `find workspace for customer ${invoice.customer}`
+  );
 
   if (!workspace) return;
 
   // Update subscription status to active
-  await prisma.workspace.update({
-    where: { id: workspace.id },
-    data: {
-      subscriptionStatus: 'ACTIVE',
-    },
-  });
+  await retryPrismaOperation(
+    'criticalPayment',
+    () =>
+      prisma.workspace.update({
+        where: { id: workspace.id },
+        data: {
+          subscriptionStatus: 'ACTIVE',
+        },
+      }),
+    `mark payment succeeded for invoice ${invoice.id}`
+  );
 
   // Send payment confirmation email (non-blocking)
   // await sendPaymentConfirmationEmail(workspace);
 }
 
 async function handlePaymentFailed(invoice: Stripe.Invoice) {
-  const workspace = await prisma.workspace.findUnique({
-    where: { stripeCustomerId: invoice.customer as string },
-  });
+  const workspace = await retryPrismaOperation(
+    'databaseQuery',
+    () =>
+      prisma.workspace.findUnique({
+        where: { stripeCustomerId: invoice.customer as string },
+      }),
+    `find workspace for customer ${invoice.customer}`
+  );
 
   if (!workspace) return;
 
@@ -222,27 +278,37 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
   // Stripe handles auto-retry (Day 1, 2, 3)
   // We just update status and send warning emails
 
-  await prisma.workspace.update({
-    where: { id: workspace.id },
-    data: {
-      subscriptionStatus: 'PAST_DUE',
-    },
-  });
+  await retryPrismaOperation(
+    'criticalPayment',
+    () =>
+      prisma.workspace.update({
+        where: { id: workspace.id },
+        data: {
+          subscriptionStatus: 'PAST_DUE',
+        },
+      }),
+    `mark payment failed for invoice ${invoice.id}`
+  );
 
   // Send payment failed email (non-blocking)
   // await sendPaymentFailedEmail(workspace, invoice.attempt_count);
 
-  // Audit log
-  await prisma.auditLog.create({
-    data: {
-      workspaceId: workspace.id,
-      action: 'payment_failed',
-      entityType: 'subscription',
-      entityId: invoice.id,
-      metadata: {
-        attemptCount: invoice.attempt_count,
-        amountDue: invoice.amount_due,
-      },
-    },
-  });
+  // Audit log (non-critical)
+  await retryPrismaOperation(
+    'nonCritical',
+    () =>
+      prisma.auditLog.create({
+        data: {
+          workspaceId: workspace.id,
+          action: 'payment_failed',
+          entityType: 'subscription',
+          entityId: invoice.id,
+          metadata: {
+            attemptCount: invoice.attempt_count,
+            amountDue: invoice.amount_due,
+          },
+        },
+      }),
+    `create audit log for failed payment ${invoice.id}`
+  );
 }
