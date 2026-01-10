@@ -101,9 +101,9 @@ class DesignGeneratorService {
     }
 
     this.client = new GoogleGenerativeAI(this.apiKey);
-    // Note: Using Gemini 2.5 Flash for now
-    // TODO: Upgrade to gemini-3-pro when available
-    this.model = this.client.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    // ✅ UPGRADED: Now using Gemini 3 Pro for image generation capability
+    // This enables professional-grade icon, portrait, and asset generation
+    this.model = this.client.getGenerativeModel({ model: 'gemini-3-pro' });
 
     this.assetDir = assetDir || path.join(process.cwd(), 'public', 'generated-assets');
     this.ensureAssetDir();
