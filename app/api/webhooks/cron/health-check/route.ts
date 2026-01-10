@@ -4,11 +4,9 @@
  * Runs periodically to check webhook processing health and trigger alerts
  * if critical issues are detected.
  *
- * Add to vercel.json:
- * {
- *   "path": "/api/webhooks/cron/health-check",
- *   "schedule": "*/5 * * * *"  // Every 5 minutes
- * }
+ * Add to vercel.json crons array:
+ * path: /api/webhooks/cron/health-check
+ * schedule: every 5 minutes
  */
 
 import { NextRequest, NextResponse } from 'next/server';

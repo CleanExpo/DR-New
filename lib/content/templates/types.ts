@@ -113,7 +113,7 @@ export interface TemplateInput {
 
   // SEO preferences
   primaryKeyword?: string;
-  includeCase studies?: boolean;
+  includeCaseStudies?: boolean;
   includePricing?: boolean;
 
   // Author
