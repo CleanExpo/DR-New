@@ -51,7 +51,41 @@ const mockUsers = [
   }
 ];
 
+// Mock claims data
+const mockClaims: any[] = [];
+
 export const mockPrisma = {
+  insuranceClaimAU: {
+    create: async ({ data }: any) => {
+      const claim = {
+        id: `claim-${Date.now()}`,
+        ...data,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      mockClaims.push(claim);
+      return claim;
+    },
+    findUnique: async ({ where }: any) => {
+      return mockClaims.find(c => c.id === where.id || c.claimNumber === where.claimNumber) || null;
+    },
+    findMany: async () => mockClaims,
+    update: async ({ where, data }: any) => {
+      const claim = mockClaims.find(c => c.id === where.id);
+      if (claim) {
+        Object.assign(claim, data, { updatedAt: new Date() });
+        return claim;
+      }
+      return null;
+    },
+    delete: async ({ where }: any) => {
+      const index = mockClaims.findIndex(c => c.id === where.id);
+      if (index >= 0) {
+        return mockClaims.splice(index, 1)[0];
+      }
+      return null;
+    }
+  },
   user: {
     findUnique: async ({ where }: any) => {
       if (where.email) {
