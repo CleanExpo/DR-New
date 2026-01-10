@@ -14,7 +14,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const https = require('https');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 // Read API key from .env.local
 let GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -181,90 +181,35 @@ CRITICAL CONSTRAINTS (Apply to ALL):
 This is for a professional disaster recovery platform. The aesthetic must be enterprise-grade, not playful.`;
 
   try {
-    const requestBody = {
-      contents: [
-        {
-          parts: [
-            {
-              text: prompt,
-            },
-          ],
-        },
-      ],
-    };
+    const client = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-    const options = {
-      hostname: 'generativelanguage.googleapis.com',
-      path: `/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(JSON.stringify(requestBody)),
-      },
-    };
+    // Use the latest available model (gemini-3-pro or newer)
+    const model = client.getGenerativeModel({ model: 'gemini-3-pro' });
 
-    return new Promise((resolve, reject) => {
-      const req = https.request(options, (res) => {
-        let data = '';
+    const result = await model.generateContent(prompt);
 
-        res.on('data', (chunk) => {
-          data += chunk;
-        });
-
-        res.on('end', () => {
-          try {
-            if (res.statusCode === 403) {
-              reject(new Error('API key rejected (403)'));
-              return;
-            }
-
-            if (res.statusCode !== 200) {
-              console.log(
-                `⚠️  API returned ${res.statusCode} for ${iconDef.name}. Gemini 2.5 Flash may not support image generation.`
-              );
-              resolve({
-                name: iconDef.name,
-                success: false,
-                reason: 'Gemini 2.5 Flash does not support image generation',
-              });
-              return;
-            }
-
-            const response = JSON.parse(data);
-
-            if (response.error) {
-              console.log(`⚠️  API Error for ${iconDef.name}: ${response.error.message}`);
-              resolve({
-                name: iconDef.name,
-                success: false,
-                reason: response.error.message,
-              });
-              return;
-            }
-
-            console.log(`⚠️  Note: Gemini 2.5 Flash is not ideal for image generation.`);
-            console.log(`    Upgrade to Gemini 3 Pro for production icon generation.`);
-
-            resolve({
-              name: iconDef.name,
-              success: false,
-              reason: 'Gemini 2.5 Flash - upgrade to 3 Pro for image generation',
-            });
-          } catch (err) {
-            reject(err);
-          }
-        });
+    if (result && result.response) {
+      console.log(`✅ Generated: ${iconDef.name}`);
+      return {
+        name: iconDef.name,
+        success: true,
+        content: result.response.text(),
+      };
+    } else {
+      console.log(`⚠️  No response from API for ${iconDef.name}`);
+      resolve({
+        name: iconDef.name,
+        success: false,
+        reason: 'No response content from API',
       });
-
-      req.on('error', reject);
-      req.write(JSON.stringify(requestBody));
-      req.end();
-    });
+    }
   } catch (error) {
+    const errorMsg = error.message || String(error);
+    console.log(`⚠️  Error generating ${iconDef.name}: ${errorMsg}`);
     return {
       name: iconDef.name,
       success: false,
-      reason: error.message,
+      reason: errorMsg,
     };
   }
 }
