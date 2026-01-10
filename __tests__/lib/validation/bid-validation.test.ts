@@ -168,7 +168,8 @@ describe('Bid Validation - Start Date', () => {
 
   describe('parseStartDate', () => {
     it('should parse ISO dates', () => {
-      expect(parseStartDate('2025-02-15')).toBe('2025-02-15');
+      // Use a future date (March 2026 is after Jan 10, 2026)
+      expect(parseStartDate('2026-03-15')).toBe('2026-03-15');
     });
 
     it('should return null for invalid dates', () => {
@@ -185,7 +186,7 @@ describe('Bid Validation - Schema Validation', () => {
         budget: '$5000',
         timeline: 'ASAP',
         message: 'This is a test bid with sufficient content for validation.',
-        startDate: '2025-02-15',
+        startDate: '2026-03-15',
         estimatedHours: '40',
       };
 
@@ -254,14 +255,14 @@ describe('Bid Validation - Schema Validation', () => {
         budget: '$5,000',
         timeline: 'ASAP',
         message: 'This is a comprehensive test bid with all fields.',
-        startDate: '2025-02-15',
+        startDate: '2026-03-15',
         estimatedHours: '40',
       };
 
       const result = await validateAndParseBid(bid);
       expect(result.budget).toBe(5000); // Numeric
       expect(result.estimatedHours).toBe(40); // Numeric
-      expect(result.startDate).toBe('2025-02-15'); // ISO format
+      expect(result.startDate).toBe('2026-03-15'); // ISO format
     });
   });
 });

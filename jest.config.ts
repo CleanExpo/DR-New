@@ -37,7 +37,9 @@ const config: Config = {
   // Test paths
   testMatch: [
     '<rootDir>/tests/**/*.test.ts',
-    '<rootDir>/tests/**/*.test.tsx'
+    '<rootDir>/tests/**/*.test.tsx',
+    '<rootDir>/__tests__/**/*.test.ts',
+    '<rootDir>/__tests__/**/*.test.tsx'
   ],
 
   // Files to collect coverage from
