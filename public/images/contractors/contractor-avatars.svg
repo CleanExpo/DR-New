@@ -1,0 +1,145 @@
+<svg viewBox="0 0 2000 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shared Defs -->
+  <defs>
+    <style>
+      .contractor-label { font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 600; fill: #1e293b; }
+      .contractor-specialty { font-family: 'Inter', sans-serif; font-size: 16px; fill: #64748b; }
+      .badge { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; fill: white; }
+    </style>
+    <linearGradient id="avatar-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0047FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0039CC;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Card 1: Michael Chen - Water Damage -->
+  <g>
+    <!-- Background Card -->
+    <rect x="20" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+    <!-- Avatar Circle -->
+    <circle cx="130" cy="90" r="45" fill="url(#avatar-bg)"/>
+    <text x="130" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">MC</text>
+
+    <!-- IICRC Badge -->
+    <rect x="100" y="125" width="60" height="24" rx="6" fill="#00BFA6"/>
+    <text x="130" y="142" text-anchor="middle" class="badge">IICRC</text>
+
+    <!-- Name -->
+    <text x="130" y="170" text-anchor="middle" class="contractor-label">Michael Chen</text>
+
+    <!-- Specialty -->
+    <text x="130" y="210" text-anchor="middle" class="contractor-specialty">Water Damage</text>
+    <text x="130" y="230" text-anchor="middle" class="contractor-specialty">Restoration</text>
+
+    <!-- Stats -->
+    <text x="25" y="270" class="contractor-specialty" font-weight="700">Sydney, NSW</text>
+    <text x="25" y="290" class="contractor-specialty">25 jobs/month</text>
+    <text x="25" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$2.04M annual</text>
+  </g>
+
+  <!-- Card 2: Lisa Thompson - Fire -->
+  <g>
+    <rect x="270" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="380" cy="90" r="45" fill="#DC2626"/>
+    <text x="380" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">LT</text>
+    <rect x="350" y="125" width="60" height="24" rx="6" fill="#00BFA6"/>
+    <text x="380" y="142" text-anchor="middle" class="badge">IICRC</text>
+    <text x="380" y="170" text-anchor="middle" class="contractor-label">Lisa Thompson</text>
+    <text x="380" y="210" text-anchor="middle" class="contractor-specialty">Fire & Smoke</text>
+    <text x="380" y="230" text-anchor="middle" class="contractor-specialty">Restoration</text>
+    <text x="275" y="270" class="contractor-specialty" font-weight="700">Melbourne, VIC</text>
+    <text x="275" y="290" class="contractor-specialty">22 jobs/month</text>
+    <text x="275" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$1.88M annual</text>
+  </g>
+
+  <!-- Card 3: James Okafor - Mold -->
+  <g>
+    <rect x="520" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="630" cy="90" r="45" fill="#00BFA6"/>
+    <text x="630" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">JO</text>
+    <rect x="600" y="125" width="60" height="24" rx="6" fill="#0047FF"/>
+    <text x="630" y="142" text-anchor="middle" class="badge">IICRC</text>
+    <text x="630" y="170" text-anchor="middle" class="contractor-label">James Okafor</text>
+    <text x="630" y="210" text-anchor="middle" class="contractor-specialty">Mold</text>
+    <text x="630" y="230" text-anchor="middle" class="contractor-specialty">Remediation</text>
+    <text x="525" y="270" class="contractor-specialty" font-weight="700">Brisbane, QLD</text>
+    <text x="525" y="290" class="contractor-specialty">20 jobs/month</text>
+    <text x="525" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$1.72M annual</text>
+  </g>
+
+  <!-- Card 4: Sarah Martinez - Bio Cleaning -->
+  <g>
+    <rect x="770" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="880" cy="90" r="45" fill="#8b5cf6"/>
+    <text x="880" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">SM</text>
+    <rect x="850" y="125" width="60" height="24" rx="6" fill="#00BFA6"/>
+    <text x="880" y="142" text-anchor="middle" class="badge">IICRC</text>
+    <text x="880" y="170" text-anchor="middle" class="contractor-label">Sarah Martinez</text>
+    <text x="880" y="210" text-anchor="middle" class="contractor-specialty">Bio & Forensic</text>
+    <text x="880" y="230" text-anchor="middle" class="contractor-specialty">Cleaning</text>
+    <text x="775" y="270" class="contractor-specialty" font-weight="700">Perth, WA</text>
+    <text x="775" y="290" class="contractor-specialty">18 jobs/month</text>
+    <text x="775" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$1.54M annual</text>
+  </g>
+
+  <!-- Card 5: David Kumar -->
+  <g>
+    <rect x="1020" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="1130" cy="90" r="45" fill="#f59e0b"/>
+    <text x="1130" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">DK</text>
+    <rect x="1100" y="125" width="60" height="24" rx="6" fill="#0047FF"/>
+    <text x="1130" y="142" text-anchor="middle" class="badge">IICRC</text>
+    <text x="1130" y="170" text-anchor="middle" class="contractor-label">David Kumar</text>
+    <text x="1130" y="210" text-anchor="middle" class="contractor-specialty">Structural Water</text>
+    <text x="1130" y="230" text-anchor="middle" class="contractor-specialty">Damage</text>
+    <text x="1025" y="270" class="contractor-specialty" font-weight="700">Adelaide, SA</text>
+    <text x="1025" y="290" class="contractor-specialty">19 jobs/month</text>
+    <text x="1025" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$1.63M annual</text>
+  </g>
+
+  <!-- Card 6: Emma Anderson -->
+  <g>
+    <rect x="1270" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="1380" cy="90" r="45" fill="#06b6d4"/>
+    <text x="1380" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">EA</text>
+    <rect x="1350" y="125" width="60" height="24" rx="6" fill="#00BFA6"/>
+    <text x="1380" y="142" text-anchor="middle" class="badge">IICRC</text>
+    <text x="1380" y="170" text-anchor="middle" class="contractor-label">Emma Anderson</text>
+    <text x="1380" y="210" text-anchor="middle" class="contractor-specialty">Contents</text>
+    <text x="1380" y="230" text-anchor="middle" class="contractor-specialty">Restoration</text>
+    <text x="1275" y="270" class="contractor-specialty" font-weight="700">Hobart, TAS</text>
+    <text x="1275" y="290" class="contractor-specialty">17 jobs/month</text>
+    <text x="1275" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$1.46M annual</text>
+  </g>
+
+  <!-- Card 7: Ahmed Hassan -->
+  <g>
+    <rect x="1520" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="1630" cy="90" r="45" fill="#ec4899"/>
+    <text x="1630" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">AH</text>
+    <rect x="1600" y="125" width="60" height="24" rx="6" fill="#0047FF"/>
+    <text x="1630" y="142" text-anchor="middle" class="badge">IICRC</text>
+    <text x="1630" y="170" text-anchor="middle" class="contractor-label">Ahmed Hassan</text>
+    <text x="1630" y="210" text-anchor="middle" class="contractor-specialty">Emergency</text>
+    <text x="1630" y="230" text-anchor="middle" class="contractor-specialty">Response</text>
+    <text x="1525" y="270" class="contractor-specialty" font-weight="700">Canberra, ACT</text>
+    <text x="1525" y="290" class="contractor-specialty">21 jobs/month</text>
+    <text x="1525" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$1.80M annual</text>
+  </g>
+
+  <!-- Card 8: Jessica Lee -->
+  <g>
+    <rect x="1770" y="20" width="220" height="320" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <circle cx="1880" cy="90" r="45" fill="#14b8a6"/>
+    <text x="1880" y="100" text-anchor="middle" class="contractor-label" fill="white" font-size="32">JL</text>
+    <rect x="1850" y="125" width="60" height="24" rx="6" fill="#00BFA6"/>
+    <text x="1880" y="142" text-anchor="middle" class="badge">IICRC</text>
+    <text x="1880" y="170" text-anchor="middle" class="contractor-label">Jessica Lee</text>
+    <text x="1880" y="210" text-anchor="middle" class="contractor-specialty">Project</text>
+    <text x="1880" y="230" text-anchor="middle" class="contractor-specialty">Lead</text>
+    <text x="1775" y="270" class="contractor-specialty" font-weight="700">Darwin, NT</text>
+    <text x="1775" y="290" class="contractor-specialty">23 jobs/month</text>
+    <text x="1775" y="310" class="contractor-specialty" fill="#0047FF" font-weight="600">$1.97M annual</text>
+  </g>
+</svg>
