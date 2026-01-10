@@ -37,128 +37,118 @@ if (!GEMINI_API_KEY) {
   process.exit(1);
 }
 
-// Icon definitions following Option A: Modern SaaS style
+// Icon definitions following Premium Industrial 3D Style (High-Fidelity)
 const ICONS_TO_GENERATE = [
   {
     name: 'water-damage',
     category: 'Service Icon',
-    basePrompt: `Professional UI icon for water damage restoration.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Geometric water droplet with wave.
-Lines: Precise thin strokes (1-2px), sharp edges.
-Fill: Gradient from teal #00BFA6 to blue #0047FF.
-Mood: Professional, technical, engineered.
-Constraints: NO rounded blobs, NO playful, NO 3D.
+    basePrompt: `Subject: A single, distinct 3D icon representing 'Water Damage' (a stylised water droplet or flood wave).
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte resin or satin-finished metal. Lighting: Professional studio lighting with soft shadows to emphasise the 3D form. Colour: Deep Blue (#0047FF) and Cyan (#00BFA6) gradient. Background: Dark Navy (#111827).
+
+Negative Constraint: Do NOT use claymorphism, inflated balloon shapes, emojis, or cartoon features. No low-resolution textures. Must look realistic and professional.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'fire-smoke',
     category: 'Service Icon',
-    basePrompt: `Professional UI icon for fire and smoke restoration.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Geometric flame shape with angular edges.
-Lines: Precise thin strokes (1-2px), sharp geometry.
-Fill: Gradient from orange #F59E0B to red #DC2626.
-Mood: Urgent but professional, technical.
-Constraints: NO soft curves, NO playful, NO rounded.
+    basePrompt: `Subject: A single, distinct 3D icon representing 'Fire & Smoke Damage' (a stylised flame with smoke wisps).
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte resin with subtle satin lustre. Lighting: Professional studio lighting with warm golden highlights and deep shadows. Colour: Orange (#F59E0B) to Red (#DC2626) gradient with depth shading. Background: Dark Navy (#111827).
+
+Negative Constraint: Do NOT use claymorphism, inflated balloon shapes, emojis, or cartoon features. No puffy clouds. Must look realistic and urgent.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
-    name: 'mold-remediation',
+    name: 'mould-remediation',
     category: 'Service Icon',
-    basePrompt: `Professional UI icon for mold remediation.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Geometric growth pattern with clean lines.
-Lines: Precise thin strokes (1-2px), mathematical.
-Fill: Gradient from green #10b981 to blue #0047FF.
-Mood: Clinical, professional, remediation-focused.
-Constraints: NO cute mushrooms, NO playful, NO organic curves.
+    basePrompt: `Subject: A single, distinct 3D icon representing 'Mould Remediation' (a geometric containment symbol or remediation shield).
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte engineering plastic. Lighting: Professional studio lighting with cool blue-green highlights. Colour: Green (#10b981) to Blue (#0047FF) gradient with depth shading. Background: Dark Navy (#111827).
+
+Negative Constraint: Do NOT use claymorphism, inflated shapes, emojis, cartoons, or cute mushrooms. Must look clinical and professional.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'bio-forensic',
     category: 'Service Icon',
-    basePrompt: `Professional UI icon for bio and forensic cleaning.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Clean checkmark or molecular structure.
-Lines: Precise thin strokes (1-2px), technical precision.
-Fill: Gradient from purple #8b5cf6 to blue #0047FF.
-Mood: Serious, professional, scientific.
-Constraints: NO cartoons, NO playful, NO simplified.
+    basePrompt: `Subject: A single, distinct 3D icon representing 'Bio-Forensic Cleaning' (a molecular structure or scientific shield).
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte metal or resin with subtle industrial finish. Lighting: Professional studio lighting with scientific precision highlights. Colour: Purple (#8b5cf6) to Blue (#0047FF) gradient with depth shading. Background: Dark Navy (#111827).
+
+Negative Constraint: Do NOT use claymorphism, inflated shapes, emojis, cartoons, or toy aesthetics. Must look scientific and serious.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'iicrc-badge',
-    category: 'Trust Badge - Option B (Glassmorphism)',
-    basePrompt: `Professional certification badge for IICRC.
-Style: Frosted glass (Glassmorphism aesthetic).
-Design: Shield or seal shape.
-Material: Translucent matte glass appearance.
-Lighting: Rim light, subtle subsurface scattering.
-Geometry: Sharp, angular (NOT rounded).
-Text: "IICRC" integrated into design.
-Colors: Primary blue #0047FF with gold accents.
-Mood: Premium, authoritative, earned credential.
+    category: 'Trust Badge',
+    basePrompt: `Subject: A professional 3D IICRC certification badge/seal.
+
+Style: 3D Glassmorphism Icon. Details: The object should feature layered depth with thick, frosted glass elements. Use rounded edges on all geometric shapes. Include realistic light refraction and soft internal glows to show volume. The style should be architectural and premium.
+
+Design: Shield or seal shape with "IICRC" text integrated. Colour: Primary Blue (#0047FF) with Gold (#FFD700) accents. Lighting: Volumetric lighting highlighting edges and curves. Background: Dark Navy (#111827).
+
+Negative Constraint: Do NOT use claymorphism, emojis, cartoons, or cheap plastic look. Must look premium and authoritative.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'verified-badge',
     category: 'Trust Badge',
-    basePrompt: `Professional verified badge for contractor.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Checkmark with geometric precision.
-Lines: Precise thin strokes (1-2px).
-Fill: Gradient from green #10b981 to teal #00BFA6.
-Mood: Professional, verified, trustworthy.
-Constraints: NO playful, NO rounded, NO 3D.
+    basePrompt: `Subject: A professional 3D verified/checkmark badge.
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte resin with satin finish. Lighting: Professional studio lighting with clear shadows. Colour: Green (#10b981) to Teal (#00BFA6) gradient with depth shading. Background: Dark Navy (#111827).
+
+Design: Shield or badge shape with integrated checkmark. Negative Constraint: Do NOT use claymorphism, inflated shapes, emojis, or cartoons. Must look professional and trustworthy.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'emergency-alert',
     category: 'Action Icon',
-    basePrompt: `Professional emergency alert icon.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Alert triangle with exclamation.
-Lines: Precise thin strokes (1-2px), sharp geometry.
-Fill: Gradient from orange #F59E0B to red #DC2626.
-Mood: Urgent, professional, clear.
-Constraints: NO rounded, NO playful, NO soft.
+    basePrompt: `Subject: A professional 3D emergency alert icon.
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte resin or warning-grade plastic. Lighting: Professional studio lighting with urgent amber/red highlights. Colour: Orange (#F59E0B) to Red (#DC2626) gradient. Background: Dark Navy (#111827).
+
+Design: Alert triangle with exclamation mark. Negative Constraint: Do NOT use claymorphism, inflated shapes, emojis, or cartoons. Must look urgent but professional.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'phone-call',
     category: 'Action Icon',
-    basePrompt: `Professional phone/call icon.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Phone handset with geometric precision.
-Lines: Precise thin strokes (1-2px).
-Fill: Gradient from teal #00BFA6 to blue #0047FF.
-Mood: Professional, accessible, clear.
-Constraints: NO bubbly, NO playful, NO rounded.
+    basePrompt: `Subject: A professional 3D phone/call icon.
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte metal or resin with satin lustre. Lighting: Professional studio lighting with cool highlights. Colour: Teal (#00BFA6) to Blue (#0047FF) gradient. Background: Dark Navy (#111827).
+
+Design: Phone handset or handset receiver. Negative Constraint: Do NOT use claymorphism, inflated shapes, emojis, or cartoons. Must look professional and accessible.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'chat-message',
     category: 'Action Icon',
-    basePrompt: `Professional chat/message icon.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Speech bubble with geometric precision.
-Lines: Precise thin strokes (1-2px).
-Fill: Gradient from blue #0047FF to purple #8b5cf6.
-Mood: Professional communication, accessible.
-Constraints: NO rounded bubbles, NO playful, NO soft.
+    basePrompt: `Subject: A professional 3D chat/message icon.
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte resin. Lighting: Professional studio lighting with soft shadows. Colour: Blue (#0047FF) to Purple (#8b5cf6) gradient. Background: Dark Navy (#111827).
+
+Design: Speech bubble or message chat symbol. Negative Constraint: Do NOT use claymorphism, inflated shapes, emojis, cartoons, or soft rounded bubbles. Must look professional and modern.
+
 Output: SVG 512x512px, transparent background.`,
   },
   {
     name: 'schedule-calendar',
     category: 'Action Icon',
-    basePrompt: `Professional schedule/calendar icon.
-Style: Thin gradient line art (Modern SaaS aesthetic).
-Design: Calendar grid with geometric precision.
-Lines: Precise thin strokes (1-2px).
-Fill: Gradient from blue #0047FF to teal #00BFA6.
-Mood: Professional, technical, precise.
-Constraints: NO playful, NO rounded, NO simplified.
+    basePrompt: `Subject: A professional 3D schedule/calendar icon.
+
+Style: High-Fidelity 3D Product Design. Details: The object should have depth and volume with smooth, rounded edges. The material should look like premium matte metal or resin. Lighting: Professional studio lighting with geometric precision. Colour: Blue (#0047FF) to Teal (#00BFA6) gradient. Background: Dark Navy (#111827).
+
+Design: Calendar grid or date selector. Negative Constraint: Do NOT use claymorphism, inflated shapes, emojis, or cartoons. Must look professional and precise.
+
 Output: SVG 512x512px, transparent background.`,
   },
 ];
@@ -178,7 +168,9 @@ CRITICAL CONSTRAINTS (Apply to ALL):
 - YES: Industrial, serious, trusted appearance
 - YES: High contrast, technical clarity
 
-This is for a professional disaster recovery platform. The aesthetic must be enterprise-grade, not playful.`;
+This is for a professional disaster recovery platform. The aesthetic must be enterprise-grade, not playful.
+
+OUTPUT ONLY: Valid SVG code, no additional text or markdown formatting.`;
 
   try {
     const client = new GoogleGenerativeAI(GEMINI_API_KEY);
@@ -189,19 +181,40 @@ This is for a professional disaster recovery platform. The aesthetic must be ent
     const result = await model.generateContent(prompt);
 
     if (result && result.response) {
-      console.log(`✅ Generated: ${iconDef.name}`);
+      const responseText = result.response.text();
+
+      // Save SVG response to file
+      const assetDir = path.join(process.cwd(), 'public', 'generated-assets');
+      if (!fs.existsSync(assetDir)) {
+        fs.mkdirSync(assetDir, { recursive: true });
+      }
+
+      const filename = `${iconDef.name}.svg`;
+      const filepath = path.join(assetDir, filename);
+
+      // Extract SVG content if wrapped in markdown code blocks
+      let svgContent = responseText;
+      const svgMatch = responseText.match(/<svg[\s\S]*<\/svg>/);
+      if (svgMatch) {
+        svgContent = svgMatch[0];
+      }
+
+      fs.writeFileSync(filepath, svgContent, 'utf-8');
+
+      console.log(`✅ Generated: ${iconDef.name} → ${filepath}`);
       return {
         name: iconDef.name,
         success: true,
-        content: result.response.text(),
+        filepath,
+        size: svgContent.length,
       };
     } else {
       console.log(`⚠️  No response from API for ${iconDef.name}`);
-      resolve({
+      return {
         name: iconDef.name,
         success: false,
         reason: 'No response content from API',
-      });
+      };
     }
   } catch (error) {
     const errorMsg = error.message || String(error);
@@ -215,11 +228,11 @@ This is for a professional disaster recovery platform. The aesthetic must be ent
 }
 
 async function generateAllIcons() {
-  console.log('🎨 NRPG Professional Icon Generator');
-  console.log('=====================================\n');
+  console.log('🎨 NRPG Professional Icon Generator - High-Fidelity 3D');
+  console.log('=====================================================\n');
   console.log(`Generating ${ICONS_TO_GENERATE.length} professional icons...`);
-  console.log(`Style: Option A - Modern SaaS (thin gradient line art)`);
-  console.log(`Aesthetic: Enterprise-grade (NO playful/toy styles)\n`);
+  console.log(`Style: Premium Industrial 3D Product Design`);
+  console.log(`Aesthetic: High-fidelity realistic icons with matte finish\n`);
 
   const results = [];
 
