@@ -3,6 +3,7 @@ import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
 import { constructWebhookEvent } from '@/lib/stripe';
 import { getNrpgCalloutSplit } from '@/lib/pricing/nrpg-callout';
+import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -103,6 +104,23 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // Check if this event has already been processed (idempotency)
+  try {
+    const alreadyProcessed = await isEventProcessed(event.id);
+    if (alreadyProcessed) {
+      console.info(`Webhook event ${event.id} already processed, skipping`);
+      return NextResponse.json({ received: true });
+    }
+  } catch (error) {
+    console.error('Error checking webhook event idempotency:', error);
+    // Don't block the response, but let Stripe know we had trouble
+    // Stripe will retry on the next attempt
+    return NextResponse.json(
+      { error: 'Idempotency check failed', message: error instanceof Error ? error.message : 'Idempotency check failed' },
+      { status: 503 }
+    );
+  }
+
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
@@ -116,11 +134,20 @@ export async function POST(request: NextRequest) {
         break;
       }
       default:
+        // Unknown event type - still record it
         break;
     }
+
+    // Record successful processing
+    await recordWebhookEvent(event.id, event.type, 200);
   } catch (error) {
+    // Record failed processing
+    const errorMessage = error instanceof Error ? error.message : 'Webhook handler error';
+    await recordWebhookEvent(event.id, event.type, 500, errorMessage);
+
+    console.error('Webhook handler error:', error);
     return NextResponse.json(
-      { error: 'Webhook handler error', message: error instanceof Error ? error.message : 'Webhook handler error' },
+      { error: 'Webhook handler error', message: errorMessage },
       { status: 500 }
     );
   }
