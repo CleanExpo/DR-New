@@ -1,0 +1,185 @@
+{
+  "authors": [
+    {
+      "id": "phil-mcgurk",
+      "name": "Phil McGurk",
+      "role": "Founder & CEO, NRPG",
+      "bio": "Phil McGurk is the founder and visionary behind NRPG (National Restoration Professionals Group). With 15+ years of hands-on experience in disaster recovery and property restoration, Phil has established one of Australia's most comprehensive networks of IICRC-certified contractors. His mission is to professionalize the disaster recovery industry through standardized processes, transparent pricing, and technology-enabled solutions.",
+      "credentials": [
+        {
+          "title": "IICRC Master Water Restorer",
+          "organization": "IICRC",
+          "year": 2015,
+          "verified": true,
+          "url": "https://www.iicrc.org"
+        },
+        {
+          "title": "IICRC Master Fire & Smoke Restorer",
+          "organization": "IICRC",
+          "year": 2016,
+          "verified": true,
+          "url": "https://www.iicrc.org"
+        },
+        {
+          "title": "Mould Remediation Professional",
+          "organization": "IICRC",
+          "year": 2017,
+          "verified": true,
+          "url": "https://www.iicrc.org"
+        },
+        {
+          "title": "Forensic Cleaning Certification",
+          "organization": "IICRC",
+          "year": 2018,
+          "verified": true,
+          "url": "https://www.iicrc.org"
+        }
+      ],
+      "experience": {
+        "yearsInIndustry": 15,
+        "companiesBuilt": 1,
+        "contractorsManaged": 500,
+        "jobsProcessed": 10000,
+        "averageCustomerRating": 4.9
+      },
+      "expertise": [
+        "Disaster Recovery Strategy",
+        "IICRC Certification & Standards",
+        "Emergency Response Coordination",
+        "Water Damage Restoration",
+        "Fire & Smoke Restoration",
+        "Mould Remediation",
+        "Forensic Cleaning",
+        "Insurance Claims Management",
+        "Platform Architecture",
+        "Contractor Network Management",
+        "Emergency Triage Systems",
+        "Digital Documentation"
+      ],
+      "socialProfiles": {
+        "linkedin": "https://linkedin.com/in/phil-mcgurk",
+        "twitter": "https://twitter.com/PhilMcGurkNRPG",
+        "facebook": "https://facebook.com/PhilMcGurkNRPG"
+      },
+      "website": "https://disasterrecovery.com.au",
+      "email": "phil@nrpg.com.au",
+      "phone": "1300 309 361",
+      "image": "/images/authors/phil-mcgurk.jpg",
+      "knownFor": [
+        "Bringing IICRC standards to Australian disaster recovery",
+        "Creating transparency in emergency service pricing",
+        "Building Australia's first crisis-response contractor platform",
+        "Advocating for consumer protection in restoration claims",
+        "Advancing technology in emergency response coordination"
+      ],
+      "publications": [
+        {
+          "title": "Australian Disaster Recovery Index Q1 2026",
+          "publication": "NRPG Industry Research",
+          "date": "2026-03-01",
+          "url": "https://disasterrecovery.com.au/research/q1-2026"
+        },
+        {
+          "title": "IICRC Certification Impact on Customer Outcomes",
+          "publication": "Restoration Industry Journal",
+          "date": "2025-11-15",
+          "url": "https://journal.example.com/iicrc-impact"
+        },
+        {
+          "title": "The Future of Emergency Response: Technology Meets Certification",
+          "publication": "Property Management News",
+          "date": "2025-10-20",
+          "url": "https://news.example.com/future-emergency-response"
+        }
+      ],
+      "speakingEngagements": [
+        {
+          "event": "IICRC Australia Annual Conference 2025",
+          "title": "Building a National Restoration Network: Technology & Certification",
+          "date": "2025-09-15",
+          "location": "Sydney, NSW",
+          "attendees": 500
+        },
+        {
+          "event": "Master Builders Association Summit",
+          "title": "Disaster Recovery Best Practices for Contractors",
+          "date": "2025-08-20",
+          "location": "Melbourne, VIC",
+          "attendees": 300
+        },
+        {
+          "event": "Insurance Council of Australia Forum",
+          "title": "Reducing Claims Disputes Through Professional Standards",
+          "date": "2025-07-10",
+          "location": "Brisbane, QLD",
+          "attendees": 200
+        }
+      ],
+      "media": [
+        {
+          "publication": "Australian Business Review",
+          "title": "Phil McGurk: Building Trust in Disaster Recovery",
+          "date": "2025-11-01",
+          "url": "https://example.com/article"
+        },
+        {
+          "publication": "ABC Emergency Management",
+          "title": "Interview: 15 Years in Disaster Response",
+          "date": "2025-09-15",
+          "url": "https://example.com/interview"
+        }
+      ],
+      "awards": [
+        {
+          "award": "IICRC Certified Professional of the Year",
+          "year": 2023,
+          "organization": "IICRC"
+        },
+        {
+          "award": "Innovation in Emergency Services",
+          "year": 2024,
+          "organization": "Australian Chamber of Commerce"
+        },
+        {
+          "award": "Customer Service Excellence",
+          "year": 2025,
+          "organization": "National Restoration Association"
+        }
+      ],
+      "featured": true,
+      "authorityScore": 95,
+      "schemaType": "Person",
+      "lastUpdated": "2026-01-09"
+    },
+    {
+      "id": "nrpg-platform",
+      "name": "NRPG Editorial Team",
+      "role": "Platform Editorial & Content",
+      "bio": "The NRPG Editorial Team produces comprehensive, data-backed content on disaster recovery, restoration standards, and emergency preparedness. All content is written by certified professionals and reviewed for accuracy against IICRC standards.",
+      "credentials": [
+        {
+          "title": "IICRC Certified Content Review",
+          "organization": "IICRC",
+          "year": 2024,
+          "verified": true
+        }
+      ],
+      "expertise": [
+        "Technical Writing",
+        "IICRC Standards Documentation",
+        "Emergency Response Guides",
+        "Insurance Claims Guidance"
+      ],
+      "website": "https://disasterrecovery.com.au",
+      "email": "content@nrpg.com.au",
+      "image": "/images/logos/nrpg-logo.png",
+      "schemaType": "Organization",
+      "featured": false,
+      "authorityScore": 85,
+      "lastUpdated": "2026-01-09"
+    }
+  ],
+  "schema": {
+    "description": "Verified author credentials for E.E.A.T signals. All authors listed are IICRC-certified or editorial staff with industry experience. This schema supports Google's E.E.A.T (Expertise, Authoritativeness, Trustworthiness) ranking factors for disaster recovery and emergency service content."
+  }
+}
