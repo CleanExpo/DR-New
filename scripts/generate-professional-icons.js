@@ -183,8 +183,8 @@ This is for a professional disaster recovery platform. The aesthetic must be ent
   try {
     const client = new GoogleGenerativeAI(GEMINI_API_KEY);
 
-    // Use the latest available model (gemini-3-pro or newer)
-    const model = client.getGenerativeModel({ model: 'gemini-3-pro' });
+    // Use Gemini 3 Pro Image Preview (the latest image generation model in January 2026)
+    const model = client.getGenerativeModel({ model: 'gemini-3-pro-image-preview' });
 
     const result = await model.generateContent(prompt);
 

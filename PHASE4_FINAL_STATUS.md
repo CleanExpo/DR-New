@@ -170,14 +170,28 @@ node scripts/generate-professional-icons.js
 # 📁 Saved to: public/generated-assets/
 ```
 
-### Why Icon Generation is Pending
+### Why Icon Generation is Pending - CRITICAL: API Key Compromised
 
-Professional icon generation requires **Gemini 3 Pro API access**, which is not currently available with the provided API key:
+Professional icon generation is **BLOCKED** due to a **critical security issue**:
 
-**API Status**:
-- **Model Name**: `gemini-3-pro` (confirmed in codebase, line 106 of lib/ai/design-generator.service.ts)
-- **Current Status**: 404 Not Found - Model not available through current API access tier
-- **API Key**: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM` (from .env.local, line 19)
+**API Security Status** ⚠️ **URGENT**:
+- **Model Name**: `gemini-3-pro-image-preview` (correct model for January 2026)
+- **Current Status**: 403 Forbidden - API key reported as leaked
+- **API Key**: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM` (from .env.local, line 19) - **DISABLED BY GOOGLE**
+- **Error Message**: "Your API key was reported as leaked. Please use another API key."
+
+**IMMEDIATE ACTION REQUIRED**:
+1. **Regenerate API Key** (URGENT)
+   - Go to: Google Cloud Console → APIs & Services → Credentials
+   - Delete compromised key: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM`
+   - Create new API key with Gemini API access
+
+2. **Update .env.local**
+   - Replace line 19 with new API key
+   - **DO NOT commit this file** - it contains secrets
+
+3. **Re-run Icon Generation**
+   - Once new key is active: `node scripts/generate-professional-icons.js`
 
 **Required to Enable Icon Generation**:
 1. **Option A: Upgrade API Key Permissions**
