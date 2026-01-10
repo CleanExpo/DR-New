@@ -1,5 +1,5 @@
 {
-  "buildCommand": "unset NODE_OPTIONS && npm run build",
+  "buildCommand": "sh -c 'unset NODE_OPTIONS && npm run build'",
   "framework": "nextjs",
   "installCommand": "npm ci --legacy-peer-deps",
   "outputDirectory": ".next",
