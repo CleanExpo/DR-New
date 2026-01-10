@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
 
   return {
     title: `Disaster Recovery ${city.city}, ${city.state} | Emergency Restoration | NRPG`,
-    description: `Professional disaster recovery services in ${city.city}, ${city.state}. Water damage, fire restoration, mold remediation, storm damage. 24/7 emergency response. Call 1300 309 361.`,
+    description: `Professional disaster recovery services in ${city.city}, ${city.state}. Water damage, fire restoration, mold remediation, storm damage. 24/7 emergency response.`,
     alternates: {
       canonical: canonicalUrl,
     },

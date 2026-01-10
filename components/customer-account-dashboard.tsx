@@ -171,11 +171,11 @@ export default function CustomerAccountDashboard() {
             finalCostAUD: 2_650,
             contractor: {
               name: 'David Chen',
-              company: 'Mold Solutions Sydney',
+              company: 'Mould Solutions Sydney',
               rating: 4.6,
               phone: '0413 444 555',
             },
-            description: 'Mold growth in basement',
+            description: 'Mould growth in basement',
             damagePhotos: ['https://via.placeholder.com/200'],
           },
         ],
@@ -217,7 +217,7 @@ export default function CustomerAccountDashboard() {
             approvedAmountAUD: 2_650,
             submittedDate: '2025-10-08',
             approvalDate: '2025-10-15',
-            damageDescription: 'Mold remediation',
+            damageDescription: 'Mould remediation',
           },
         ],
         insuranceDetails: [

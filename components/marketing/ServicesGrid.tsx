@@ -52,12 +52,12 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
   },
   {
     id: 'mold',
-    title: 'Mold & Air Quality',
-    description: 'Professional mold remediation and indoor air quality restoration',
+    title: 'Mould & Air Quality',
+    description: 'Professional mould remediation and indoor air quality restoration',
     icon: '🦠',
-    image: '/images/services/mold-remediation.jpg',
+    image: '/images/services/mould-remediation.jpg',
     iicrcCodes: ['S520'],
-    href: '/services/mold-air-quality',
+    href: '/services/mould-air-quality',
     color: 'green',
   },
   {

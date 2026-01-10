@@ -572,7 +572,7 @@ Use this checklist for every piece of content:
 | Organic traffic drop | >20% week-over-week | Investigate immediately (algorithm update? technical issue?) |
 | Indexation drop | >10% of pages deindexed | Check robots.txt, sitemap, server errors |
 | Keyword ranking drop | Top 10 keyword drops >5 positions | Review content, update, add backlinks |
-| Core Web Vitals fail | LCP >2.5s, CLS >0.1 | Optimize images, lazy loading, layout shift fixes |
+| Core Web Vitals fail | LCP >2.5s, CLS >0.1 | Optimise images, lazy loading, layout shift fixes |
 | Crawl errors spike | >50 errors | Fix broken links, server errors, redirects |
 
 ### Link Building Tracker
@@ -711,7 +711,7 @@ Option C: Database connection failure
 Option A: Slow database queries
 1. Identify slow queries in Prisma logs
 2. Add database indexes if missing
-3. Optimize query (reduce joins, add select fields)
+3. Optimise query (reduce joins, add select fields)
 4. Deploy fix
 5. ETA: 30-60 minutes
 

@@ -43,10 +43,10 @@ const DISASTER_OPTIONS: DisasterOption[] = [
   },
   {
     id: 'mold',
-    label: 'Mold / Biological',
+    label: 'Mould / Biological',
     icon: '🦠',
     severity: 'urgent',
-    description: 'Mold growth or biohazard contamination',
+    description: 'Mould growth or biohazard contamination',
   },
   {
     id: 'storm',

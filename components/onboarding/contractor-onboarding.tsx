@@ -53,7 +53,7 @@ interface ContractorPreferences {
 const SERVICE_CATEGORIES = [
   { id: 'water-damage', name: 'Water Damage Restoration', icon: Droplets, description: 'Emergency water damage cleanup and restoration' },
   { id: 'fire-damage', name: 'Fire Damage Restoration', icon: Flame, description: 'Fire damage cleanup and restoration services' },
-  { id: 'mold-remediation', name: 'Mold Remediation', icon: Shield, description: 'Professional mold removal and prevention' },
+  { id: 'mold-remediation', name: 'Mould Remediation', icon: Shield, description: 'Professional mould removal and prevention' },
   { id: 'storm-damage', name: 'Storm Damage Repair', icon: CloudRain, description: 'Storm and weather damage repair' },
   { id: 'home-maintenance', name: 'Home Maintenance', icon: Home, description: 'Regular home maintenance and repair' },
   { id: 'emergency-services', name: 'Emergency Services', icon: Zap, description: '24/7 emergency response services' },

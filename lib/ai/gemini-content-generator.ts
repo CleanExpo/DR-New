@@ -212,7 +212,7 @@ AUDIENCE: ${audience.toUpperCase()}
 
 REQUIREMENTS:
 1. Keep same core message but vary psychological appeal
-2. Optimize for different decision triggers:
+2. Optimise for different decision triggers:
    - Variant A: Urgency/FOMO (for emergency: 60min, now, limited)
    - Variant B: Trust/Authority (for contractor: exclusive, vetted, certified)
    - Variant C: Value/ROI (highlight benefit/savings/reward)

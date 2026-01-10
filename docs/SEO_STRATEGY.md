@@ -918,7 +918,7 @@ Sitemap: https://disasterrecovery.com.au/sitemap-index.xml
 - "emergency water removal melbourne"
 - "mold remediation brisbane"
 
-**Strategy:** Optimize Google My Business, local citations, reviews
+**Strategy:** Optimise Google My Business, local citations, reviews
 
 **People Also Ask (Target 50+ PAA Boxes):**
 - Identify common questions in target keywords

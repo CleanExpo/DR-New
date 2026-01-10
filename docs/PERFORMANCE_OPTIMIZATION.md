@@ -198,7 +198,7 @@ headers: [
    )
    ```
 
-2. **Minimize JavaScript**
+2. **Minimise JavaScript**
    ```javascript
    // next.config.mjs
    swcMinify: true,
@@ -258,7 +258,7 @@ headers: [
    <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'" />
    ```
 
-3. **Optimize Third-Party Scripts**
+3. **Optimise Third-Party Scripts**
    ```typescript
    <Script
      src="https://analytics.com/script.js"
@@ -542,7 +542,7 @@ npm run perf:analyze
 - Inline critical CSS
 - Defer non-critical CSS
 - Use CSS modules
-- Minimize CSS
+- Minimise CSS
 
 ❌ **DON'T:**
 - Load large CSS files synchronously
@@ -552,7 +552,7 @@ npm run perf:analyze
 ### 5. JavaScript Optimization
 
 ✅ **DO:**
-- Minimize bundle size
+- Minimise bundle size
 - Use tree-shaking
 - Remove console.logs in production
 - Use production builds
@@ -590,7 +590,7 @@ npm run start              # Start production server
 ### Issue: LCP > 2.5s
 
 **Solutions:**
-1. Optimize hero image
+1. Optimise hero image
 2. Inline critical CSS
 3. Preload fonts
 4. Use priority loading
@@ -600,7 +600,7 @@ npm run start              # Start production server
 **Solutions:**
 1. Code split large components
 2. Remove render-blocking scripts
-3. Optimize event handlers
+3. Optimise event handlers
 4. Use web workers
 
 ### Issue: CLS > 0.1

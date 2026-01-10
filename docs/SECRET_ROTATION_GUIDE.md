@@ -667,7 +667,7 @@ Consider implementing automated rotation for:
 **Benefits**:
 - Reduces manual effort
 - Ensures consistent rotation
-- Minimizes human error
+- Minimises human error
 - Provides audit trail
 
 ---

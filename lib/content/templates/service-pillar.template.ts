@@ -585,7 +585,7 @@ Direct billing available. Payment plans for uninsured damage.`,
       heading: `Get Professional Help Today`,
       content: `Don't wait for damage to worsen. Contact NRPG for immediate professional assessment and restoration.
 
-**24/7 Emergency Response**: Call 1300 309 361
+**24/7 Emergency Response**: Contact us for service
 **Emergency Fee**: $2,750 (includes immediate response, assessment, and make-safe work)
 **Average Response Time**: 42 minutes across Australian capitals
 **Insurance Approved**: Direct billing with major Australian insurers

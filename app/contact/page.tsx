@@ -10,7 +10,7 @@ export default function ContactPage() {
       name: "Platform Support",
       description: "General platform questions, user onboarding, and platform feature assistance",
       email: "nrpg.team@gmail.com",
-      phone: "1300 309 361",
+      phone: "Contact us",
       icon: Headphones,
       color: "text-[#00BFA6]",
     },
@@ -18,7 +18,7 @@ export default function ContactPage() {
       name: "Technical Support",
       description: "Platform technical issues, API integration, and system troubleshooting",
       email: "nrpg.team@gmail.com",
-      phone: "1300 309 361",
+      phone: "Contact us",
       icon: Shield,
       color: "text-[#2196F3]",
     },
@@ -26,7 +26,7 @@ export default function ContactPage() {
       name: "Partnership & Licensing",
       description: "White-label licensing, contractor partnerships, and business collaborations",
       email: "nrpg.team@gmail.com",
-      phone: "1300 309 361",
+      phone: "Contact us",
       icon: Users,
       color: "text-[#7C4DFF]",
     },
@@ -34,7 +34,7 @@ export default function ContactPage() {
       name: "Enterprise Sales",
       description: "Enterprise platform solutions, custom integrations, and large-scale deployments",
       email: "nrpg.team@gmail.com",
-      phone: "1300 309 361",
+      phone: "Contact us",
       icon: Globe,
       color: "text-[#FF9800]",
     },
@@ -130,11 +130,11 @@ export default function ContactPage() {
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
                 <div className="flex items-center mb-4">
                   <Phone className="h-6 w-6 text-[#00BFA6] mr-3" />
-                  <h3 className="font-poppins font-semibold text-xl text-white">Phone</h3>
+                  <h3 className="font-poppins font-semibold text-xl text-white">Contact Form</h3>
                 </div>
                 <p className="text-[#9CA3AF] mb-2">General Inquiries</p>
-                <p className="text-[#00BFA6] font-semibold text-lg">1300 309 361</p>
-                <p className="text-[#9CA3AF] text-sm">Available 24/7</p>
+                <p className="text-[#00BFA6] font-semibold text-lg">Complete the intake form</p>
+                <p className="text-[#9CA3AF] text-sm">Response within 24 hours</p>
               </div>
 
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
@@ -222,8 +222,8 @@ export default function ContactPage() {
             <p className="text-[#9CA3AF] mb-6">For urgent platform issues or emergency restoration needs, our support team is available around the clock</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold">
-                <Phone className="h-4 w-4 mr-2" />
-                Call 1300 309 361
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Complete Intake Form
               </Button>
               <Button variant="outline" className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] bg-transparent">
                 <MessageSquare className="h-4 w-4 mr-2" />

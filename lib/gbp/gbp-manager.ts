@@ -101,7 +101,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 12, 680 George Street',
     postalCode: '2000',
-    phone: '1300 309 361',
+    phone: '',
     email: 'sydney@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: {
@@ -166,7 +166,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 5, 250 Flinders Street',
     postalCode: '3000',
-    phone: '1300 309 361',
+    phone: '',
     email: 'melbourne@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: { dayOfWeek: 'Everyday', opens: '00:00', closes: '23:59', isOpen: true },
@@ -202,7 +202,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 3, 120 Edward Street',
     postalCode: '4000',
-    phone: '1300 309 361',
+    phone: '',
     email: 'brisbane@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: { dayOfWeek: 'Everyday', opens: '00:00', closes: '23:59', isOpen: true },
@@ -237,7 +237,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 2, 55 St Georges Terrace',
     postalCode: '6000',
-    phone: '1300 309 361',
+    phone: '',
     email: 'perth@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: { dayOfWeek: 'Everyday', opens: '00:00', closes: '23:59', isOpen: true },
@@ -272,7 +272,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 1, 50 Wauwi Street',
     postalCode: '5000',
-    phone: '1300 309 361',
+    phone: '',
     email: 'adelaide@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: { dayOfWeek: 'Everyday', opens: '00:00', closes: '23:59', isOpen: true },
@@ -307,7 +307,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 1, 82 London Circuit',
     postalCode: '2601',
-    phone: '1300 309 361',
+    phone: '',
     email: 'canberra@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: { dayOfWeek: 'Everyday', opens: '00:00', closes: '23:59', isOpen: true },
@@ -342,7 +342,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 2, 15 Murray Street',
     postalCode: '7000',
-    phone: '1300 309 361',
+    phone: '',
     email: 'hobart@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: { dayOfWeek: 'Everyday', opens: '00:00', closes: '23:59', isOpen: true },
@@ -377,7 +377,7 @@ export const GBP_LOCATIONS: GBPLocation[] = [
     businessName: 'NRPG - National Restoration Professionals Group',
     address: 'Level 1, 19 The Mall',
     postalCode: '0800',
-    phone: '1300 309 361',
+    phone: '',
     email: 'darwin@nrpg.com.au',
     website: 'https://disasterrecovery.com.au',
     businessHours: { dayOfWeek: 'Everyday', opens: '00:00', closes: '23:59', isOpen: true },
@@ -444,8 +444,8 @@ export class GBPManagerService {
     if (!location.phone) errors.push('Phone number missing');
 
     // Check for inconsistencies
-    if (location.phone !== '1300 309 361') {
-      errors.push('Phone number should be standard: 1300 309 361');
+    if (location.phone !== '') {
+      errors.push('Phone number should be standard: ');
     }
 
     return {

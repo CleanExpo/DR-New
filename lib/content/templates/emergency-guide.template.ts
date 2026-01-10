@@ -18,7 +18,7 @@ const EMERGENCY_TEMPLATES: Record<string, any> = {
     ],
     first24: [
       'Contact your insurance company and file a claim',
-      'Call a professional water damage restoration team (NRPG: 1300 309 361)',
+      'Call a professional water damage restoration team (NRPG)',
       'Remove excess water manually if safe (mop, bucket)',
       'Open windows and doors for ventilation',
       'Move furniture and contents to higher ground',
@@ -52,7 +52,7 @@ const EMERGENCY_TEMPLATES: Record<string, any> = {
       'Document external damage with photos (from safe distance)',
       'Arrange temporary accommodation',
       'Notify your mortgage lender and landlord',
-      'Contact NRPG (1300 309 361) for professional assessment'
+      'Contact NRPG () for professional assessment'
     ],
     whatNotToDo: [
       'Don\'t re-enter damaged properties',
@@ -75,7 +75,7 @@ const EMERGENCY_TEMPLATES: Record<string, any> = {
       'Document mould location and extent with photos'
     ],
     first24: [
-      'Contact a mould remediation specialist (NRPG: 1300 309 361)',
+      'Contact a mould remediation specialist (NRPG)',
       'Request professional mould inspection ($300-$500)',
       'Have mould tested to determine species and toxicity',
       'Identify moisture source causing mould growth',
@@ -105,7 +105,7 @@ const EMERGENCY_TEMPLATES: Record<string, any> = {
     ],
     first24: [
       'File insurance claim with damage documentation',
-      'Call NRPG (1300 309 361) for professional assessment',
+      'Call NRPG () for professional assessment',
       'Obtain detailed damage report and cost estimate',
       'Make emergency temporary repairs (boarding windows, tarping roof)',
       'List all damaged items for insurance',
@@ -129,7 +129,7 @@ const EMERGENCY_TEMPLATES: Record<string, any> = {
       'Don\'t use toilets, sinks, or showers',
       'Evacuate affected areas',
       'Avoid contact with sewage (serious health risk)',
-      'Call 1300 309 361 for emergency sewage cleanup',
+      'Contact us for service for emergency sewage cleanup',
       'Contact your insurance company',
       'Document with photos (from safe distance)'
     ],
@@ -191,7 +191,7 @@ export function generateEmergencyGuide(input: TemplateInput): GeneratedArticle {
   // Generate SEO metadata
   const seo: SEOMetadata = {
     title: `${guideName} - Emergency Guide | NRPG`,
-    metaDescription: `Immediate action guide for ${guideName.toLowerCase()}. Step-by-step instructions for safety and recovery. Call NRPG 1300 309 361.`,
+    metaDescription: `Immediate action guide for ${guideName.toLowerCase()}. Step-by-step instructions for safety and recovery. Contact NRPG.`,
     keywords: [primaryKeyword, ...secondaryKeywords],
     primaryKeyword,
     secondaryKeywords,
@@ -240,7 +240,7 @@ function generateEmergencySections(guideName: string, template: any): ArticleSec
 When disaster strikes, the first few hours are critical. This guide provides step-by-step actions to protect your safety, document damage, and begin recovery. For life-threatening situations, call 000 immediately.
 
 **NRPG provides 24/7 emergency response across Australia:**
-- Emergency phone: **1300 309 361**
+- Emergency phone: Contact us
 - Average response time: **42 minutes**
 - IICRC-certified professionals
 - Emergency response fee: **$2,750** (includes assessment and make-safe work)`,
@@ -333,7 +333,7 @@ Let professionals handle the recovery.`,
    - Regular monitoring and verification
    - Final inspection and handover
 
-**Call NRPG: 1300 309 361**
+**Call NRPG: **
 - Available 24/7
 - Immediate response dispatch
 - Free consultation
@@ -417,7 +417,7 @@ NRPG coordinates directly with insurers and handles documentation on your behalf
 1. **Act Immediately**: The first 24 hours are critical
 2. **Prioritize Safety**: Never put yourself at risk
 3. **Document Everything**: Photos for insurance
-4. **Call Professionals**: NRPG 1300 309 361
+4. **Call Professionals**: NRPG 
 5. **Notify Insurance**: Within 24 hours
 6. **Avoid DIY**: Professional restoration is essential
 7. **Follow Guidance**: Trust IICRC-certified professionals

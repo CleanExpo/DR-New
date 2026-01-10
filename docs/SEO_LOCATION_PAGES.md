@@ -503,7 +503,7 @@ npm run dev
 
 #### Slow Page Load
 - Enable ISR instead of SSR
-- Optimize images (WebP format)
+- Optimise images (WebP format)
 - Reduce JavaScript bundle size
 
 ## Support

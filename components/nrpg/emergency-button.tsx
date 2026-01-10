@@ -2,7 +2,7 @@
  * Emergency Button Component - NRPG Brand
  *
  * Distinctive emergency CTA button matching Phil McGurk's 15-year brand
- * Prominently displays 1300 309 361 with emergency red styling
+ * Displays emergency request option with emergency red styling
  */
 
 import * as React from 'react';

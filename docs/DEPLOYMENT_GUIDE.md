@@ -367,7 +367,7 @@ pg_dump $DATABASE_URL > backup_$(date +%Y%m%d).sql
 # Restore database
 psql $DATABASE_URL < backup_20260102.sql
 
-# Optimize database
+# Optimise database
 npm run db:studio
 # Run VACUUM ANALYZE in Prisma Studio
 ```
@@ -456,9 +456,9 @@ npm run type-check
 **Problem**: Vercel deployment times out
 
 **Solution**:
-1. Check build command is optimized
+1. Check build command is optimised
 2. Reduce bundle size
-3. Optimize database queries
+3. Optimise database queries
 4. Contact Vercel support if issue persists
 
 ### Performance Issues
@@ -467,7 +467,7 @@ npm run type-check
 
 **Solutions**:
 - Enable caching (Redis)
-- Optimize images (use Next.js Image)
+- Optimise images (use Next.js Image)
 - Reduce JavaScript bundle size
 - Enable CDN caching
 - Use ISR (Incremental Static Regeneration)
@@ -476,7 +476,7 @@ npm run type-check
 
 **Solutions**:
 - Add database indexes
-- Optimize queries
+- Optimise queries
 - Use connection pooling
 - Enable query caching
 

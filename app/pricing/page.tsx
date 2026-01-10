@@ -377,10 +377,10 @@ export default function PricingPage() {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-black mb-4">Ready for Professional Help?</h2>
           <p className="text-lg text-blue-100 mb-8">
-            Need damage assessment? Call our emergency line 24/7.
+            Need damage assessment? Contact us for 24/7 emergency service.
           </p>
           <button className="px-8 py-4 bg-yellow-400 text-blue-900 font-bold rounded-lg hover:bg-yellow-300 transition-colors text-lg">
-            Call 1300 309 361
+            Request Service
           </button>
         </div>
       </section>

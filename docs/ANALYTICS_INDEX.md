@@ -223,9 +223,9 @@ Google Tag Manager setup:
    - Create custom reports
    - Set up alerts
 
-3. **Month 1**: Optimization
-   - Analyze user journeys
-   - Optimize conversions
+3. **Month 1**: Optimisation
+   - Analyse user journeys
+   - Optimise conversions
    - A/B testing setup
 
 ---

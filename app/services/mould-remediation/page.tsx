@@ -23,11 +23,10 @@ export default function MouldRemediationPillarPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
-                <Phone className="mr-2 h-5 w-5" />
-                Call 1300 309 361
+                Request Service
               </Button>
               <Button variant="outline" className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] px-8 py-3 text-lg bg-transparent">
-                Request Service Quote
+                Get a Quote
               </Button>
             </div>
           </div>
@@ -156,11 +155,10 @@ export default function MouldRemediationPillarPage() {
               Emergency Mould Remediation Services?
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              24/7 emergency response. Call now for immediate assistance.
+              24/7 emergency response. Request service now for immediate assistance.
             </p>
             <Button className="bg-white hover:bg-white/90 text-[#EF4444] font-bold text-xl px-12 py-4">
-              <Phone className="mr-2 h-6 w-6" />
-              1300 309 361
+              Request Emergency Service
             </Button>
           </div>
         </section>
