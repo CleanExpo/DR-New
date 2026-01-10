@@ -418,7 +418,7 @@ VIRUS_SCAN_API_KEY=your_virustotal_api_key
 
 ### Security Monitoring & Alerts
 ```env
-SECURITY_ALERT_EMAIL=security@disasterrecovery.com.au
+SECURITY_ALERT_EMAIL=admin@disasterrecovery.com.au
 FAILED_LOGIN_THRESHOLD=5
 SUSPICIOUS_ACTIVITY_ALERT=true
 ```

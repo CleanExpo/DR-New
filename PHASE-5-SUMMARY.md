@@ -71,7 +71,7 @@ Integration Points:
 - Prometheus scraper (every 15 seconds)
 - Grafana dashboards
 - Sentry.io error tracking
-- Email alerts to security@disasterrecovery.com.au
+- Email alerts to admin@disasterrecovery.com.au
 - Slack webhooks
 
 ---
@@ -192,4 +192,4 @@ Next Steps:
 Status: APPROVED FOR PRODUCTION DEPLOYMENT
 Date: January 11, 2026
 Security Review: PASSED
-Contact: security@disasterrecovery.com.au
+Contact: admin@disasterrecovery.com.au or accounts@disasterrecovery.com.au
