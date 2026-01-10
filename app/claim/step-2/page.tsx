@@ -36,6 +36,7 @@ export default function ClaimStep2Page() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isDetectingLocation, setIsDetectingLocation] = React.useState(false);
   const [locationError, setLocationError] = React.useState<string | null>(null);
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
 
   // Load existing progress
   const existingState = React.useMemo(() => loadClaimProgress(), []);
@@ -50,12 +51,14 @@ export default function ClaimStep2Page() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     setValue,
     watch,
     getValues,
+    trigger,
   } = useForm<LocationContactData>({
     resolver: zodResolver(locationContactSchema),
+    mode: 'onBlur', // Validate on blur for real-time feedback
     defaultValues: existingState?.step2 || {
       propertyAddress: '',
       suburb: '',
@@ -94,8 +97,20 @@ export default function ClaimStep2Page() {
 
   const onSubmit = async (data: LocationContactData) => {
     setIsLoading(true);
+    setSubmitError(null);
+    console.log('Step 2 form submitted with data:', data);
 
     try {
+      // Validate data one more time before submit
+      const validationResult = locationContactSchema.safeParse(data);
+      if (!validationResult.success) {
+        const errors = validationResult.error.flatten();
+        setSubmitError('Please check all required fields are filled correctly');
+        console.error('Validation failed:', errors);
+        setIsLoading(false);
+        return;
+      }
+
       // Save progress to localStorage
       const formState: ClaimFormState = {
         ...existingState,
@@ -106,14 +121,17 @@ export default function ClaimStep2Page() {
         lastUpdatedAt: new Date().toISOString(),
       };
 
+      console.log('Saving step 2 progress:', formState);
       saveClaimProgress(formState);
 
       // Navigate to step 3
-      router.push('/claim/step-3');
+      console.log('Navigating to /claim/step-3');
+      await router.push('/claim/step-3');
     } catch (error) {
       console.error('Failed to save progress:', error);
+      setSubmitError('Failed to save progress. Please try again.');
       // Continue anyway
-      router.push('/claim/step-3');
+      await router.push('/claim/step-3');
     } finally {
       setIsLoading(false);
     }
@@ -154,6 +172,14 @@ export default function ClaimStep2Page() {
           <h2 className="text-xl font-semibold text-gray-900 mb-6">
             Location & Contact Information
           </h2>
+
+          {/* Submit Error */}
+          {submitError && (
+            <Alert className="mb-6 border-red-600 bg-red-50">
+              <AlertCircle className="h-5 w-5 text-red-600" />
+              <AlertDescription className="text-red-900">{submitError}</AlertDescription>
+            </Alert>
+          )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* GPS Location Detection */}
@@ -292,10 +318,12 @@ export default function ClaimStep2Page() {
                 variant="emergency-primary"
                 size="crisis"
                 loading={isLoading}
+                disabled={isLoading || Object.keys(errors).length > 0}
                 icon={<ChevronRight className="h-5 w-5" />}
                 iconPosition="right"
+                title={Object.keys(errors).length > 0 ? 'Please fill in all required fields' : ''}
               >
-                Next: Damage Details
+                {isLoading ? 'Processing...' : 'Next: Damage Details'}
               </Button>
             </div>
           </form>
