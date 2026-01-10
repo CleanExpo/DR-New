@@ -1,0 +1,163 @@
+{
+  "name": "Disaster Recovery NRPG",
+  "description": "Australian Disaster Recovery & Insurance Claims Management Platform",
+  "version": "1.0.0",
+  "productionBranch": "main",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "env": {
+    "DATABASE_URL": {
+      "description": "PostgreSQL connection string (cloud)",
+      "required": true
+    },
+    "DIRECT_URL": {
+      "description": "Direct PostgreSQL connection for migrations",
+      "required": true
+    },
+    "NEXTAUTH_URL": {
+      "description": "NextAuth callback URL",
+      "required": true
+    },
+    "NEXTAUTH_SECRET": {
+      "description": "NextAuth secret (generate with: openssl rand -base64 32)",
+      "required": true
+    },
+    "UPSTASH_REDIS_REST_URL": {
+      "description": "Upstash Redis REST API endpoint",
+      "required": true
+    },
+    "UPSTASH_REDIS_REST_TOKEN": {
+      "description": "Upstash Redis authentication token",
+      "required": true
+    },
+    "GOOGLE_CLIENT_ID": {
+      "description": "Google OAuth client ID",
+      "required": true
+    },
+    "GOOGLE_CLIENT_SECRET": {
+      "description": "Google OAuth client secret",
+      "required": true
+    },
+    "CSRF_SECRET": {
+      "description": "CSRF protection secret (min 32 chars)",
+      "required": true
+    },
+    "SENDGRID_API_KEY": {
+      "description": "SendGrid API key for email",
+      "required": true
+    },
+    "SENDGRID_FROM_EMAIL": {
+      "description": "Sender email address",
+      "required": true
+    },
+    "TWILIO_ACCOUNT_SID": {
+      "description": "Twilio account SID",
+      "required": false
+    },
+    "TWILIO_AUTH_TOKEN": {
+      "description": "Twilio auth token",
+      "required": false
+    },
+    "TWILIO_PHONE_NUMBER": {
+      "description": "Twilio phone number for SMS",
+      "required": false
+    },
+    "SENTRY_DSN": {
+      "description": "Sentry error tracking DSN",
+      "required": true
+    },
+    "NEXT_PUBLIC_GA4_MEASUREMENT_ID": {
+      "description": "Google Analytics 4 measurement ID",
+      "required": false
+    },
+    "VIRUS_SCAN_API_KEY": {
+      "description": "VirusTotal API key (optional)",
+      "required": false
+    }
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1",
+      "methods": ["GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH", "DELETE"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(self), microphone=(), camera=(), payment=()"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/terms",
+      "destination": "/terms-of-service",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/socket",
+      "destination": "/api/socket.io"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/backup",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/cleanup",
+      "schedule": "0 3 * * *"
+    }
+  ],
+  "functions": {
+    "api/**.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  }
+}
