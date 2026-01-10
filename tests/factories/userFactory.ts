@@ -69,7 +69,7 @@ export const createMockContractor = (overrides: Partial<MockContractor> = {}): M
   licenseNumber: faker.string.alphanumeric(10).toUpperCase(),
   insuranceExpiry: faker.date.future(),
   serviceArea: [faker.location.zipCode(), faker.location.zipCode(), faker.location.zipCode()],
-  specialties: ['Water Damage', 'Fire Restoration', 'Mold Remediation'],
+  specialties: ['Water Damage', 'Fire Restoration', 'Mould Remediation'],
   rating: faker.number.float({ min: 3.5, max: 5, fractionDigits: 1 }),
   completedJobs: faker.number.int({ min: 0, max: 500 }),
   isVerified: true,

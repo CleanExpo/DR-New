@@ -428,7 +428,7 @@ Generate ONLY the JSON object, no markdown or explanation.
     const services = [
       { name: 'Water Damage Restoration', type: 'Restoration Service' },
       { name: 'Fire & Smoke Restoration', type: 'Restoration Service' },
-      { name: 'Mold Remediation', type: 'Remediation Service' },
+      { name: 'Mould Remediation', type: 'Remediation Service' },
       { name: 'Bio & Forensic Cleaning', type: 'Cleaning Service' },
     ];
 

@@ -23,11 +23,11 @@ export default function SupportPage() {
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
               <div className="flex items-center mb-4">
                 <Phone className="h-8 w-8 text-[#00BFA6] mr-3" />
-                <h3 className="font-poppins font-semibold text-xl text-white">Phone Support</h3>
+                <h3 className="font-poppins font-semibold text-xl text-white">Request Service</h3>
               </div>
-              <p className="text-[#9CA3AF] mb-4">Speak directly with our support team</p>
-              <p className="text-[#00BFA6] font-semibold text-lg">1300 309 361</p>
-              <p className="text-[#9CA3AF] text-sm">Available 24/7</p>
+              <p className="text-[#9CA3AF] mb-4">Complete our intake form for support</p>
+              <p className="text-[#00BFA6] font-semibold text-lg">Complete the intake form</p>
+              <p className="text-[#9CA3AF] text-sm">Response within 24 hours</p>
             </div>
 
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
@@ -111,9 +111,9 @@ export default function SupportPage() {
                 <h3 className="font-poppins font-semibold text-2xl text-white">Emergency Support</h3>
               </div>
               <p className="text-white/90 mb-4">
-                24/7 emergency line available for urgent restoration needs and critical system issues.
+                24/7 emergency response available for urgent restoration needs and critical system issues.
               </p>
-              <p className="text-white font-bold text-2xl mb-2">1300 309 361</p>
+              <p className="text-white font-bold text-lg mb-2">Request Emergency Service</p>
               <p className="text-white/80 text-sm">
                 For water damage, fire damage, or other restoration emergencies requiring immediate attention.
               </p>

@@ -134,7 +134,7 @@ Why NRPG?
 → 24/7 availability
 
 NEED HELP NOW?
-Emergency line: 1300 309 361
+Emergency line: 
 
 #DisasterRecovery #Emergency #${location.state.replace(/\\s/g, '')}
     `.trim(),
@@ -202,7 +202,7 @@ $2,750 emergency service includes:
 • Insurance documentation
 
 DON'T WAIT - call now
-📞 1300 309 361
+📞 
 
 #DisasterRecovery #Weekend #24/7Available
     `.trim(),

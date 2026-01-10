@@ -245,7 +245,7 @@ test.describe('Claim Intake Wizard - Edge Cases', () => {
     await helper.nav.goToClaimIntake();
 
     // Fill form data
-    await helper.form.selectOption('Damage Type', 'Mold');
+    await helper.form.selectOption('Damage Type', 'Mould');
 
     // Simulate session timeout (clear cookies)
     await page.context().clearCookies();

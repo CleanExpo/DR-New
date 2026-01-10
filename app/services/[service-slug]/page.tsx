@@ -234,7 +234,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                     {
                       step: 1,
                       title: 'Emergency Contact',
-                      description: 'Call 1300 309 361 for immediate dispatch. Our operators answer 24/7/365.',
+                      description: 'Request emergency service for immediate dispatch. Our team responds 24/7/365.',
                     },
                     {
                       step: 2,

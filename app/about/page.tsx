@@ -353,8 +353,8 @@ export default function AboutPage() {
             <div className="max-w-2xl mx-auto">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151] text-center">
                 <MapPin className="h-12 w-12 text-[#00BFA6] mb-6 mx-auto" />
-                <h3 className="font-poppins font-semibold text-2xl text-white mb-4">National Emergency Line</h3>
-                <p className="text-3xl font-bold text-[#00BFA6] mb-4">1300 309 361</p>
+                <h3 className="font-poppins font-semibold text-2xl text-white mb-4">Request Emergency Service</h3>
+                <p className="text-[#00BFA6] text-sm mb-4">Contact us for 24/7 emergency restoration</p>
                 <p className="text-[#9CA3AF] text-sm">Available 24/7 for emergency restoration services in major Australian cities</p>
               </div>
             </div>

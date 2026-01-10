@@ -557,7 +557,7 @@ export const EmergencyPrimary: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Emergency buttons use red color and transition-none for immediate response feel. Optimized for stressed users during disasters.',
+        story: 'Emergency buttons use red color and transition-none for immediate response feel. Optimised for stressed users during disasters.',
       },
     },
   },

@@ -59,7 +59,7 @@ export const testClaims = {
     urgency: 'Critical',
   },
   moldInfestation: {
-    type: 'Mold',
+    type: 'Mould',
     severity: 'Moderate',
     description: 'Black mold discovered in basement',
     affectedAreas: ['Basement'],

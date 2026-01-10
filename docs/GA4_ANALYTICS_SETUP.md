@@ -472,7 +472,7 @@ Create funnels in GA4 Explorations:
 4. **Performance**
    - Lazy load analytics when possible
    - Batch events when appropriate
-   - Minimize tracking calls
+   - Minimise tracking calls
 
 ---
 

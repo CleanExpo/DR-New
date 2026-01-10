@@ -196,7 +196,7 @@ export default function ContractorsPage() {
               <TestimonialCard
                 type="growth"
                 name="James Taylor"
-                business="Brisbane Mold Specialists"
+                business="Brisbane Mould Specialists"
                 location="Brisbane, QLD"
                 quote="Hired 2 new technicians in 6 months thanks to NRPG. The consistent lead flow allowed me to scale with confidence."
                 metric={{

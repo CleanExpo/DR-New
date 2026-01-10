@@ -96,7 +96,7 @@ export class PageGenerator {
       stateCode: city.stateCode,
       slug: city.slug,
       metaTitle: `Emergency Disaster Recovery ${city.city}, ${city.state} | 24/7 Response | NRPG`,
-      metaDescription: `Professional disaster recovery services in ${city.city}, ${city.state}. 24/7 emergency response for water damage, fire restoration, flood cleanup. Call 1300 309 361.`,
+      metaDescription: `Professional disaster recovery services in ${city.city}, ${city.state}. 24/7 emergency response for water damage, fire restoration, flood cleanup. Contact us for service.`,
       h1: `Emergency Disaster Recovery in ${city.city}, ${city.state}`,
       description: this.generateLocationDescription(city),
       population: city.population,
@@ -124,7 +124,7 @@ export class PageGenerator {
           stateCode: city.stateCode,
           locationSlug: city.slug,
           metaTitle: `${service.title} ${city.city} | 24/7 Emergency Response | NRPG`,
-          metaDescription: `Expert ${service.title.toLowerCase()} services in ${city.city}, ${city.state}. 24/7 emergency response, IICRC certified technicians. Call 1300 309 361 now.`,
+          metaDescription: `Expert ${service.title.toLowerCase()} services in ${city.city}, ${city.state}. 24/7 emergency response, IICRC certified technicians. Contact us for service now.`,
           h1: `${service.title} in ${city.city}, ${city.state}`,
           description: this.generateServiceLocationDescription(service, city),
           keywords: [

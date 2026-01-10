@@ -237,7 +237,7 @@ export function generateCityServicePageData(
 
   // Generate SEO metadata
   const metaTitle = `${serviceData.title} ${cityName} | 24/7 Emergency Response | NRPG`;
-  const metaDescription = `Expert ${serviceData.title.toLowerCase()} in ${cityName}, ${state}. 24/7 emergency response, IICRC certified technicians, all insurers accepted. Call 1300 309 361 now.`;
+  const metaDescription = `Expert ${serviceData.title.toLowerCase()} in ${cityName}, ${state}. 24/7 emergency response, IICRC certified technicians, all insurers accepted. Contact us for service now.`;
   const h1 = `${serviceData.title} in ${cityName}, ${state}`;
 
   const description = isSuburb

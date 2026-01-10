@@ -205,19 +205,19 @@ export const EMERGENCY_PRICING = {
 
 // Legacy Phone Number (DEPRECATED - for backward compatibility only)
 export const EMERGENCY_PHONE = {
-  number: '1300 309 361',
-  href: 'tel:1300309361',
-  display: '1300 309 361',
+  number: '',
+  href: '',
+  display: 'Contact us for service',
   parts: {
-    national: '1300',
-    protocols: '309',
-    care: '361',
+    national: '',
+    protocols: '',
+    care: '',
   },
   labels: {
-    primary: 'Emergency Dispatch',
+    primary: 'Request Service',
     secondary: 'Immediate Response',
-    cta: 'Call Command',
-    footer: 'National Dispatch Ready',
+    cta: 'Request Command',
+    footer: 'Emergency Service Ready',
   },
 } as const;
 

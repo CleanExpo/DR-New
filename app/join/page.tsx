@@ -93,7 +93,7 @@ export default function JoinPage() {
   const specializationOptions = [
     { value: 'water', label: 'Water Damage Restoration' },
     { value: 'fire', label: 'Fire & Smoke Restoration' },
-    { value: 'mold', label: 'Mold Remediation' },
+    { value: 'mold', label: 'Mould Remediation' },
     { value: 'storm', label: 'Storm Damage Repair' },
     { value: 'sewage', label: 'Sewage Cleanup' },
     { value: 'biohazard', label: 'Biohazard Restoration' },
@@ -101,7 +101,7 @@ export default function JoinPage() {
 
   const certificationOptions = [
     { value: 'S500', label: 'IICRC S500 - Water Damage Restoration' },
-    { value: 'S520', label: 'IICRC S520 - Mold Remediation' },
+    { value: 'S520', label: 'IICRC S520 - Mould Remediation' },
     { value: 'WRT', label: 'IICRC WRT - Water Damage Restoration Technician' },
     { value: 'FSRT', label: 'IICRC FSRT - Fire & Smoke Restoration Technician' },
     { value: 'ASD', label: 'IICRC ASD - Applied Structural Drying' },

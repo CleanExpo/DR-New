@@ -24,10 +24,10 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecoverynrpg.com.au'),
   title: {
-    default: "NRPG | 1300 309 361 | National Restoration Professionals Group Australia",
+    default: "NRPG | National Restoration Professionals Group Australia",
     template: "%s | NRPG Disaster Recovery Australia",
   },
-  description: "24/7 emergency disaster recovery in major Australian cities. Connect with IICRC-certified restoration contractors for flood, fire, storm & water damage. Professional restoration standards. Call 1300 309 361.",
+  description: "24/7 emergency disaster recovery in major Australian cities. Connect with IICRC-certified restoration contractors for flood, fire, storm & water damage. Professional restoration standards.",
   keywords: [
     // Primary Australian keywords
     "disaster recovery australia",
@@ -57,7 +57,6 @@ export const metadata: Metadata = {
     // Brand
     "NRPG",
     "National Restoration Professionals Group",
-    "1300 309 361",
   ],
   authors: [
     { name: "NRPG Unite Group Australia", url: "https://disasterrecoverynrpg.com.au" }
@@ -80,8 +79,8 @@ export const metadata: Metadata = {
     locale: "en_AU",
     url: "https://disasterrecoverynrpg.com.au",
     siteName: "NRPG - National Restoration Professionals Group",
-    title: "NRPG | 1300 309 361 | Australia's Emergency Restoration Network",
-    description: "24/7 disaster recovery. IICRC-certified contractors. Flood, fire, storm & water damage restoration in major cities. Professional standards. Call 1300 309 361.",
+    title: "NRPG | Australia's Emergency Restoration Network",
+    description: "24/7 disaster recovery. IICRC-certified contractors. Flood, fire, storm & water damage restoration in major cities. Professional standards.",
     images: [
       {
         url: "/images/og-nrpg-main.jpg",
@@ -93,8 +92,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NRPG | Emergency Restoration Australia | 1300 309 361",
-    description: "24/7 disaster recovery. Verified contractors. Flood, fire, storm damage restoration in major cities. Call 1300 309 361.",
+    title: "NRPG | Emergency Restoration Australia",
+    description: "24/7 disaster recovery. Verified contractors. Flood, fire, storm damage restoration in major cities.",
     images: ["/images/twitter-nrpg.jpg"],
     creator: "@NRPGAustralia",
   },
@@ -123,7 +122,6 @@ export default function RootLayout({
     "url": "https://disasterrecoverynrpg.com.au",
     "logo": "https://disasterrecoverynrpg.com.au/images/nrpg-logo.png",
     "description": "24/7 emergency disaster recovery in major Australian cities. Connect with IICRC-certified restoration contractors for flood, fire, storm & water damage.",
-    "telephone": "1300-309-361",
     "email": "nrpg.team@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -137,7 +135,6 @@ export default function RootLayout({
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "1300-309-361",
       "contactType": "Emergency Service",
       "areaServed": "AU",
       "availableLanguage": "English"

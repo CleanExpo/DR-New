@@ -345,8 +345,8 @@ const handleAnalyze = async (competitorId: string) => {
 - **useMemo**: Memoize expensive calculations
 - **useCallback**: Stable function references
 
-### API Optimization
-- **Database Indexing**: Optimized queries with indexes
+### API Optimisation
+- **Database Indexing**: Optimised queries with indexes
 - **Selective Loading**: Only fetch required data
 - **Pagination**: Limit result sets
 

@@ -811,13 +811,13 @@ export default function ClientDashboard() {
     },
     {
       id: 3,
-      title: 'Mold Remediation',
+      title: 'Mould Remediation',
       category: 'restoration',
-      description: 'Professional mold inspection, removal, and prevention services',
+      description: 'Professional mould inspection, removal, and prevention services',
       price: '$1,500 - $8,000',
       rating: 4.7,
       reviews: 156,
-      contractor: 'Mold-Free Solutions',
+      contractor: 'Mould-Free Solutions',
       contractorId: 'contractor-3',
       contractorLocation: 'Brisbane, QLD',
       location: 'Brisbane, QLD',
@@ -2859,7 +2859,7 @@ export default function ClientDashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-2xl font-bold text-white">Settings & Preferences</h3>
-                <p className="text-gray-400 mt-1">Customize your experience and manage your account</p>
+                <p className="text-gray-400 mt-1">Customise your experience and manage your account</p>
               </div>
             </div>
 

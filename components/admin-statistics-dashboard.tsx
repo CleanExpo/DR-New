@@ -97,7 +97,7 @@ export default function AdminStatisticsDashboard() {
             { type: 'Water Damage', count: 380 },
             { type: 'Fire Damage', count: 210 },
             { type: 'Storm Damage', count: 305 },
-            { type: 'Mold', count: 187 },
+            { type: 'Mould', count: 187 },
             { type: 'Others', count: 175 },
           ],
           byEmergencyLevel: [

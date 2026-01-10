@@ -87,7 +87,7 @@ export default function ContractorPerformanceDashboard() {
               { type: 'Water Damage', count: 89 },
               { type: 'Fire Damage', count: 45 },
               { type: 'Storm Damage', count: 67 },
-              { type: 'Mold', count: 33 },
+              { type: 'Mould', count: 33 },
             ],
             monthlyTrend: [
               { month: 'Aug', jobs: 18, revenue: 9_200 },
@@ -119,7 +119,7 @@ export default function ContractorPerformanceDashboard() {
             lastActiveDate: '2025-12-22',
             jobsByType: [
               { type: 'Water Damage', count: 78 },
-              { type: 'Mold', count: 42 },
+              { type: 'Mould', count: 42 },
               { type: 'Storm Damage', count: 54 },
               { type: 'Fire Damage', count: 24 },
             ],
@@ -154,7 +154,7 @@ export default function ContractorPerformanceDashboard() {
             jobsByType: [
               { type: 'Storm Damage', count: 67 },
               { type: 'Water Damage', count: 52 },
-              { type: 'Mold', count: 28 },
+              { type: 'Mould', count: 28 },
               { type: 'Fire Damage', count: 9 },
             ],
             monthlyTrend: [
