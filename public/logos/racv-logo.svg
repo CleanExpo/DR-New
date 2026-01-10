@@ -1,0 +1,12 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#ffffff"/>
+
+  <!-- Dark blue background -->
+  <circle cx="100" cy="100" r="80" fill="#1a3a70"/>
+
+  <!-- White text -->
+  <text x="100" y="115" font-family="Arial, sans-serif" font-size="40" font-weight="bold" text-anchor="middle" fill="white">
+    RACV
+  </text>
+</svg>

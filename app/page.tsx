@@ -34,6 +34,7 @@ import {
   ServicesGrid,
   ResourcesHub,
   JoinNRPGSection,
+  InsurancePartners,
 } from '@/components/marketing';
 import { MegaMenu, useMegaMenu } from '@/components/nrpg/mega-menu';
 import { MobileMenu, HamburgerButton } from '@/components/nrpg/MobileMenu';
@@ -433,6 +434,13 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+
+          {/* 1.5 TRUST SIGNALS BAND - Insurance Partners */}
+          <section className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900 py-12 md:py-16">
+            <div className="container mx-auto px-6">
+              <InsurancePartners />
             </div>
           </section>
 

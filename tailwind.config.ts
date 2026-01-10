@@ -113,6 +113,25 @@ const config: Config = {
           text: '#065F46',
         },
 
+        // NRPG Brand Colors (Semantic - New Standard)
+        'semantic-primary': {
+          DEFAULT: '#0047FF',
+          hover: '#0039CC',
+          light: '#3B82F6',
+          bg: '#EFF6FF',
+        },
+        'semantic-emergency': {
+          DEFAULT: '#DC2626',
+          hover: '#B91C1C',
+          light: '#FEE2E2',
+          bg: '#FEF2F2',
+        },
+        'semantic-contractor': {
+          DEFAULT: '#00BFA6',
+          hover: '#00A693',
+          bg: '#F0FDFA',
+        },
+
         // NRPG Brand Colors (Legacy - keeping for compatibility)
         'nrpg-blue': '#0047FF',
         'nrpg-red': '#E11D48',

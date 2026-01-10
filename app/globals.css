@@ -24,9 +24,18 @@
   --secondary-foreground: #0f172a;
 
   /* NRPG Emergency Red - Accent/CTA */
-  --accent: #e11d48;
+  --accent: #dc2626;
   --accent-foreground: #ffffff;
-  --accent-hover: #be123c;
+  --accent-hover: #b91c1c;
+
+  /* NEW: Semantic Color System */
+  --semantic-emergency: #dc2626;
+  --semantic-emergency-hover: #b91c1c;
+  --semantic-emergency-bg: #fef2f2;
+
+  --semantic-contractor: #00bfa6;
+  --semantic-contractor-hover: #00a693;
+  --semantic-contractor-bg: #f0fdfa;
 
   /* Muted - Subtle backgrounds and text */
   --muted: #f8fafc;
@@ -93,9 +102,18 @@
   --secondary-foreground: #f8fafc;
 
   /* NRPG Emergency Red */
-  --accent: #e11d48;
+  --accent: #dc2626;
   --accent-foreground: #ffffff;
-  --accent-hover: #be123c;
+  --accent-hover: #b91c1c;
+
+  /* NEW: Semantic Color System (Dark Mode) */
+  --semantic-emergency: #dc2626;
+  --semantic-emergency-hover: #ef4444;
+  --semantic-emergency-bg: #7f1d1d;
+
+  --semantic-contractor: #00bfa6;
+  --semantic-contractor-hover: #14b8a6;
+  --semantic-contractor-bg: #134e4a;
 
   /* Muted - Dark */
   --muted: #1e293b;
