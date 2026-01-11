@@ -23,7 +23,7 @@ import { buttonPressAnimation, rippleVariants, rippleTransition } from '@/lib/an
 
 const buttonVariants = cva(
   // Base styles (all buttons)
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-95 active:transition-transform active:duration-100 active:ease-out',
   {
     variants: {
       variant: {
@@ -55,11 +55,13 @@ const buttonVariants = cva(
         'nrpg-outline': 'border border-nrpg-border text-nrpg-text hover:bg-nrpg-bg',
       },
       size: {
-        default: 'h-10 px-4 py-2',
-        sm: 'h-9 rounded-md px-3',
-        lg: 'h-11 rounded-md px-8',
-        xl: 'h-14 rounded-lg px-10 text-lg', // Larger for emphasis
-        icon: 'h-10 w-10',
+        // Mobile-optimized: 48px minimum touch targets (Android Material Design guideline)
+        // Desktop: 40px standard size
+        default: 'sm:h-10 h-12 px-4 py-2 sm:py-2 py-3',
+        sm: 'sm:h-9 h-10 rounded-md px-3',
+        lg: 'sm:h-11 h-12 rounded-md px-8',
+        xl: 'sm:h-14 h-14 rounded-lg px-10 text-lg', // Larger for emphasis
+        icon: 'sm:h-10 sm:w-10 h-12 w-12', // 48x48 on mobile, 40x40 on desktop
 
         // DesignOS: Crisis-optimized (large tap targets)
         crisis: 'h-14 px-8 text-lg min-h-[56px]', // 56px minimum for panic users
@@ -88,9 +90,10 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, loading, icon, iconPosition = 'left', children, disabled, ...props }, ref) => {
     const Comp = asChild ? Slot : motion.button;
-    const { isAnimationEnabled } = useAnimation();
+    const { isAnimationEnabled, isMobile } = useAnimation();
     const [isRippling, setIsRippling] = React.useState(false);
     const [ripplePos, setRipplePos] = React.useState({ x: 0, y: 0 });
+    const [isPressed, setIsPressed] = React.useState(false);
 
     const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
       if (!isAnimationEnabled || disabled || loading) return;
@@ -105,12 +108,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       setTimeout(() => setIsRippling(false), 600);
     };
 
+    const handleTouchStart = () => {
+      if (disabled || loading) return;
+      setIsPressed(true);
+    };
+
+    const handleTouchEnd = () => {
+      setIsPressed(false);
+    };
+
     const motionProps = isAnimationEnabled && !disabled && !loading
       ? {
           ...buttonPressAnimation,
           onMouseDown: handleMouseDown,
+          onTouchStart: handleTouchStart,
+          onTouchEnd: handleTouchEnd,
         }
-      : {};
+      : {
+          onTouchStart: handleTouchStart,
+          onTouchEnd: handleTouchEnd,
+        };
 
     return (
       <Comp

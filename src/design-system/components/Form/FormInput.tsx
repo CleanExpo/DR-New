@@ -95,9 +95,17 @@ const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
             'disabled:cursor-not-allowed disabled:opacity-50',
 
-            // Emergency context: Larger for easier tapping
-            isEmergency && 'h-14 text-base px-4',
-            !isEmergency && 'h-10',
+            // iOS-safe input styling: Prevent auto-zoom and default styling
+            '-webkit-appearance-none appearance-none',
+            'text-base sm:text-sm', // 16px base (prevents iOS zoom), 14px on larger screens
+            'sm:py-2 py-3', // More padding on mobile for fat-finger friendliness
+
+            // Mobile touch target: Minimum 44px height (iOS guidelines)
+            'sm:h-10 h-12', // 48px on mobile (includes padding), 40px on desktop
+
+            // Emergency context: Even larger for easier tapping
+            isEmergency && 'sm:h-14 h-14 text-base px-4',
+            !isEmergency && 'sm:px-3 px-3',
 
             // Error state
             error && 'border-destructive focus-visible:ring-destructive',
