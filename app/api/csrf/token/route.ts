@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateCsrfToken } from '@/src/lib/security/csrf';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * GET /api/csrf/token
  * Generate a new CSRF token for client-side form submissions

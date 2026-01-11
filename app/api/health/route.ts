@@ -12,6 +12,8 @@ import { prisma } from '@/lib/db';
 import { redis } from '@/lib/config/redis.config';
 import { logInfo, logError } from '@/lib/logger/helpers';
 
+export const dynamic = 'force-dynamic';
+
 interface ServiceHealth {
   status: 'healthy' | 'degraded' | 'unhealthy';
   latency: number;

@@ -31,6 +31,8 @@ import { prisma } from '@/lib/db';
 import { logInfo, logError, logWarn } from '@/lib/logger/helpers';
 import { createHash } from 'crypto';
 
+export const dynamic = 'force-dynamic';
+
 interface VerifyRequest {
   email: string;
   secret: string;
