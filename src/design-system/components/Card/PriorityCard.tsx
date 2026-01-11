@@ -11,9 +11,12 @@
  */
 
 import * as React from 'react';
+import { motion } from 'framer-motion';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { Flame, Clock, Circle, CheckCircle } from 'lucide-react';
+import { useAnimation } from '@/lib/hooks/useAnimation';
+import { cardVariants, cardTransition } from '@/lib/animations';
 
 type Priority = 'critical' | 'high' | 'medium' | 'low';
 
@@ -63,12 +66,17 @@ const PriorityCard = React.forwardRef<HTMLDivElement, PriorityCardProps>(
   ({ className, priority = 'medium', showPriorityIcon = true, showPriorityLabel = true, children, ...props }, ref) => {
     const Icon = priorityIcons[priority];
     const iconColorClass = priorityIconColors[priority];
+    const { isAnimationEnabled } = useAnimation();
 
     return (
-      <div
+      <motion.div
         ref={ref}
         className={cn(priorityCardVariants({ priority }), className)}
         data-priority={priority} // For sorting
+        initial={isAnimationEnabled ? { opacity: 0, y: 10 } : { opacity: 1 }}
+        animate={isAnimationEnabled ? { opacity: 1, y: 0 } : { opacity: 1 }}
+        whileHover={isAnimationEnabled ? { y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.12)' } : {}}
+        transition={isAnimationEnabled ? cardTransition : { duration: 0 }}
         {...props}
       >
         {/* Priority indicator badge (top-right) */}
@@ -93,7 +101,7 @@ const PriorityCard = React.forwardRef<HTMLDivElement, PriorityCardProps>(
 
         {/* Card content */}
         {children}
-      </div>
+      </motion.div>
     );
   }
 );

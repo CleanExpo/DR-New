@@ -1,3 +1,10 @@
+/**
+ * NRPG Contractor Join Page - CONTRACTOR PORTAL ONLY
+ *
+ * This page is for contractors to join the NRPG network.
+ * It is separate from the public Disaster Recovery Australia website (/app/page.tsx)
+ */
+
 'use client';
 
 import React from 'react';

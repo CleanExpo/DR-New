@@ -24,8 +24,8 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL('https://disasterrecoverynrpg.com.au'),
   title: {
-    default: "NRPG | National Restoration Professionals Group Australia",
-    template: "%s | NRPG Disaster Recovery Australia",
+    default: "Disaster Recovery Australia | 24/7 Emergency Restoration",
+    template: "%s | Disaster Recovery Australia",
   },
   description: "24/7 emergency disaster recovery in major Australian cities. Connect with IICRC-certified restoration contractors for flood, fire, storm & water damage. Professional restoration standards.",
   keywords: [

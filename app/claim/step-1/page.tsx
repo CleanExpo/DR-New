@@ -21,6 +21,7 @@ import { FormInput } from '@/src/design-system/components/Form/FormInput';
 import { FormSelect } from '@/src/design-system/components/Form/FormSelect';
 import { Button } from '@/src/design-system/components/Button/Button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { PageTransition, AnimatedItem } from '@/src/design-system/components/Layout/PageTransition';
 
 import {
   type TriageData,
@@ -113,6 +114,7 @@ export default function ClaimStep1Page() {
   };
 
   return (
+    <PageTransition variant="fadeInUp">
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
@@ -277,5 +279,6 @@ export default function ClaimStep1Page() {
         </div>
       </div>
     </div>
+    </PageTransition>
   );
 }

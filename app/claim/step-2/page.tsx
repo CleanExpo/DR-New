@@ -19,6 +19,7 @@ import { ChevronRight, ChevronLeft, MapPin, Loader2 } from 'lucide-react';
 import { FormInput } from '@/src/design-system/components/Form/FormInput';
 import { Button } from '@/src/design-system/components/Button/Button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { PageTransition } from '@/src/design-system/components/Layout/PageTransition';
 
 import {
   type LocationContactData,
@@ -154,6 +155,7 @@ export default function ClaimStep2Page() {
   };
 
   return (
+    <PageTransition variant="fadeInUp">
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
@@ -337,5 +339,6 @@ export default function ClaimStep2Page() {
         </div>
       </div>
     </div>
+    </PageTransition>
   );
 }

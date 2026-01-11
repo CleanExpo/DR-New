@@ -17,6 +17,9 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useAnimation } from '@/lib/hooks/useAnimation';
+import { buttonPressAnimation, rippleVariants, rippleTransition } from '@/lib/animations';
 
 const buttonVariants = cva(
   // Base styles (all buttons)
@@ -84,27 +87,76 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, loading, icon, iconPosition = 'left', children, disabled, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button';
+    const Comp = asChild ? Slot : motion.button;
+    const { isAnimationEnabled } = useAnimation();
+    const [isRippling, setIsRippling] = React.useState(false);
+    const [ripplePos, setRipplePos] = React.useState({ x: 0, y: 0 });
+
+    const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (!isAnimationEnabled || disabled || loading) return;
+
+      const rect = e.currentTarget.getBoundingClientRect();
+      setRipplePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+      setIsRippling(true);
+
+      setTimeout(() => setIsRippling(false), 600);
+    };
+
+    const motionProps = isAnimationEnabled && !disabled && !loading
+      ? {
+          ...buttonPressAnimation,
+          onMouseDown: handleMouseDown,
+        }
+      : {};
 
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          'relative overflow-hidden'
+        )}
         ref={ref}
         disabled={disabled || loading}
+        {...motionProps}
         {...props}
       >
-        {loading ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            {children}
-          </>
-        ) : (
-          <>
-            {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
-            {children}
-            {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
-          </>
+        {/* Ripple effect */}
+        {isRippling && isAnimationEnabled && (
+          <motion.span
+            className="absolute bg-white rounded-full pointer-events-none"
+            style={{
+              left: ripplePos.x,
+              top: ripplePos.y,
+              width: 20,
+              height: 20,
+              marginLeft: -10,
+              marginTop: -10,
+            }}
+            variants={rippleVariants}
+            initial="initial"
+            animate="animate"
+            transition={rippleTransition}
+          />
         )}
+
+        {/* Button content */}
+        <span className="relative z-10 flex items-center">
+          {loading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              {children}
+            </>
+          ) : (
+            <>
+              {icon && iconPosition === 'left' && <span className="mr-2">{icon}</span>}
+              {children}
+              {icon && iconPosition === 'right' && <span className="ml-2">{icon}</span>}
+            </>
+          )}
+        </span>
       </Comp>
     );
   }
