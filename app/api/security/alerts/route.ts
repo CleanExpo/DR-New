@@ -16,6 +16,8 @@ import { securityMonitor, SecurityEvent } from '@/lib/security/security-monitor'
 import { alertService } from '@/lib/security/alert-service';
 import { logError, logInfo, logWarn } from '@/lib/logger/helpers';
 
+export const dynamic = 'force-dynamic';
+
 /**
  * GET /api/security/alerts
  * Retrieve security alerts and monitoring statistics

@@ -30,6 +30,8 @@ import { twoFactorService } from '@/lib/auth/two-factor';
 import { prisma } from '@/lib/db';
 import { logInfo, logError } from '@/lib/logger/helpers';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     // Verify authentication
