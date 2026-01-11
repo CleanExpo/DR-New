@@ -1,5 +1,8 @@
 /**
- * NRPG Homepage - National Restoration Professionals Group
+ * Disaster Recovery Australia Homepage - PUBLIC CLIENT SITE
+ *
+ * This is the public-facing emergency disaster recovery platform for clients.
+ * For contractors: see /contractor/portal (NRPG contractor-only portal)
  *
  * Complete Specification Implementation:
  * 1. Emergency CTA (3 paths: Report Claim / Find Contractor / Join NRPG)
@@ -16,6 +19,7 @@
  * - DesignOS components throughout
  *
  * SEO: Schema.org markup, semantic HTML, optimized meta tags
+ * Branding: "Disaster Recovery Australia" (NOT NRPG - that's contractor-only)
  */
 
 'use client';
@@ -46,6 +50,8 @@ import {
   EMERGENCY_PRICING,
 } from '@/lib/design-tokens';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
+import { PageTransition, AnimatedContent, AnimatedItem } from '@/src/design-system/components/Layout/PageTransition';
+import { ScrollReveal, ScrollRevealGroup, ScrollRevealItem } from '@/src/design-system/components/Layout/ScrollReveal';
 
 export default function HomePage() {
   // Navigation state
@@ -291,6 +297,7 @@ export default function HomePage() {
         {/* Main Content - Add top padding for fixed header */}
         <main className="pt-20">
           {/* 1. HERO SECTION - Emergency-First Design */}
+          <PageTransition variant="fadeInUp">
           <section className="relative bg-gradient-to-br from-red-50 via-white to-red-50 dark:from-red-950 dark:via-slate-900 dark:to-red-950 py-16 md:py-32 overflow-hidden">
             {/* Background Emergency Pattern */}
             <div className="absolute inset-0 opacity-3" style={{ backgroundImage: 'radial-gradient(circle, #dc2626 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
@@ -398,20 +405,26 @@ export default function HomePage() {
             {/* Mobile padding for sticky CTA */}
             <div className="h-24 md:h-0" />
           </section>
+          </PageTransition>
 
           {/* 1.5 TRUST SIGNALS BAND - Insurance Partners */}
+          <ScrollReveal>
           <section className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900 py-12 md:py-16">
             <div className="container mx-auto px-6">
               <InsurancePartners />
             </div>
           </section>
+          </ScrollReveal>
 
           {/* 2. QUICK TRIAGE TOOL - Interactive Assessment */}
+          <ScrollReveal>
           <section className="container mx-auto px-6 py-16 md:py-24">
             <QuickTriageTool />
           </section>
+          </ScrollReveal>
 
           {/* 3. SERVICES GRID - Visual Disaster Types */}
+          <ScrollReveal>
           <section className="bg-slate-50 dark:bg-slate-900 py-16 md:py-24">
             <div className="container mx-auto px-6">
               <ServicesGrid
@@ -422,8 +435,10 @@ export default function HomePage() {
               />
             </div>
           </section>
+          </ScrollReveal>
 
           {/* 4. RESOURCES HUB - Featured Content */}
+          <ScrollReveal>
           <section className="container mx-auto px-6 py-16 md:py-24">
             <ResourcesHub
               title="Knowledge Center"
@@ -431,8 +446,10 @@ export default function HomePage() {
               maxItems={6}
             />
           </section>
+          </ScrollReveal>
 
           {/* Trust & Credibility Section */}
+          <ScrollReveal>
           <section className="bg-gradient-to-br from-blue-600 to-blue-700 py-16 md:py-24">
             <div className="container mx-auto px-6">
               <div className="text-center mb-12">
@@ -489,13 +506,17 @@ export default function HomePage() {
               </div>
             </div>
           </section>
+          </ScrollReveal>
 
           {/* 5. JOIN NRPG SECTION - Contractor Recruitment */}
+          <ScrollReveal>
           <section className="container mx-auto px-6 py-16 md:py-24">
             <JoinNRPGSection variant="default" />
           </section>
+          </ScrollReveal>
 
           {/* Final Emergency CTA */}
+          <ScrollReveal>
           <section className="container mx-auto px-6 py-16">
             <EmergencyCTA
               title="Disaster Doesn't Wait. Neither Do We."
@@ -503,6 +524,7 @@ export default function HomePage() {
               variant="default"
             />
           </section>
+          </ScrollReveal>
         </main>
 
         {/* Footer */}

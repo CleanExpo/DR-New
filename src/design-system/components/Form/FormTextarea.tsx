@@ -6,7 +6,9 @@
  */
 
 import * as React from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useAnimation } from '@/lib/hooks/useAnimation';
 
 export interface FormTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
@@ -39,6 +41,8 @@ const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>(
     const textareaId = id || label.toLowerCase().replace(/\s+/g, '-');
     const helpTextId = `${textareaId}-help`;
     const errorId = `${textareaId}-error`;
+    const [isFocused, setIsFocused] = React.useState(false);
+    const { isAnimationEnabled } = useAnimation();
 
     const isEmergency = context === 'emergency';
     const charCount = typeof value === 'string' ? value.length : 0;
@@ -48,17 +52,27 @@ const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>(
         {/* Label */}
         {showLabel && (
           <div className="flex items-center justify-between">
-            <label
+            <motion.label
               htmlFor={textareaId}
               className={cn(
-                'block font-medium',
+                'block font-medium transition-colors',
                 isEmergency ? 'text-base' : 'text-sm',
-                error ? 'text-destructive' : 'text-foreground'
+                isFocused
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : error
+                    ? 'text-destructive'
+                    : 'text-foreground'
               )}
+              animate={
+                isAnimationEnabled && isFocused
+                  ? { y: 0, opacity: 1 }
+                  : { y: 0, opacity: 1 }
+              }
+              transition={{ duration: 0.2 }}
             >
               {label}
               {required && <span className="text-destructive ml-1">*</span>}
-            </label>
+            </motion.label>
 
             {/* Character count */}
             {showCharCount && maxLength && (
@@ -77,7 +91,7 @@ const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>(
         )}
 
         {/* Textarea */}
-        <textarea
+        <motion.textarea
           id={textareaId}
           ref={ref}
           maxLength={maxLength}
@@ -85,7 +99,7 @@ const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>(
           className={cn(
             // Base styles
             'flex w-full rounded-md border bg-background px-3 py-2',
-            'text-sm ring-offset-background',
+            'text-sm ring-offset-background transition-all duration-200',
             'placeholder:text-muted-foreground',
             'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
             'disabled:cursor-not-allowed disabled:opacity-50',
@@ -97,13 +111,24 @@ const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>(
 
             // Error state
             error && 'border-destructive focus-visible:ring-destructive',
-            !error && 'border-input',
+            !error && isFocused && 'border-blue-500 shadow-sm shadow-blue-500/20',
+            !error && !isFocused && 'border-input',
 
             className
           )}
           aria-required={required}
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={cn(helpText && helpTextId, error && errorId)}
+          onFocus={(e) => {
+            setIsFocused(true);
+            props.onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            setIsFocused(false);
+            props.onBlur?.(e);
+          }}
+          animate={isAnimationEnabled && isFocused ? { boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)' } : {}}
+          transition={{ duration: 0.2 }}
           {...props}
         />
 
@@ -119,14 +144,21 @@ const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaProps>(
 
         {/* Error Message */}
         {error && (
-          <p
+          <motion.div
             id={errorId}
-            className={cn('text-destructive font-medium', isEmergency ? 'text-sm' : 'text-xs')}
             role="alert"
             aria-live="assertive"
+            initial={isAnimationEnabled ? { opacity: 0, height: 0 } : { opacity: 1 }}
+            animate={isAnimationEnabled ? { opacity: 1, height: 'auto' } : { opacity: 1 }}
+            exit={isAnimationEnabled ? { opacity: 0, height: 0 } : { opacity: 1 }}
+            transition={isAnimationEnabled ? { duration: 0.2 } : { duration: 0 }}
           >
-            {error}
-          </p>
+            <p
+              className={cn('text-destructive font-medium', isEmergency ? 'text-sm' : 'text-xs')}
+            >
+              {error}
+            </p>
+          </motion.div>
         )}
       </div>
     );

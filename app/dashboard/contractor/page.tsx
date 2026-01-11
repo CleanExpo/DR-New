@@ -1,3 +1,21 @@
+/**
+ * Contractor Dashboard - AUTHENTICATED NRPG PORTAL ONLY
+ *
+ * Protected route requiring:
+ * - Valid NextAuth session
+ * - userType === 'CONTRACTOR' OR 'ADMIN' OR 'SUPER_ADMIN'
+ *
+ * This page shows contractor-specific features:
+ * - Available job requests
+ * - Submitted bids
+ * - Active projects
+ * - Performance analytics
+ * - Account settings
+ *
+ * NO emergency CTAs or public client elements on this page.
+ * This is contractor-only NRPG portal content.
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';

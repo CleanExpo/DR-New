@@ -1,3 +1,14 @@
+/**
+ * NRPG Contractor Portal Login - CONTRACTOR PORTAL ONLY
+ *
+ * This is the login/authentication page for the NRPG contractor portal.
+ * This page has NO emergency buttons or public crisis CTAs.
+ * Contractors sign in here to access their dashboard and job management.
+ *
+ * Public clients should visit: / (Disaster Recovery Australia homepage)
+ * Contractors who aren't members: /contractor/join (NRPG onboarding)
+ */
+
 'use client';
 
 import Link from 'next/link';
