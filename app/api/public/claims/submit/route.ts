@@ -138,32 +138,38 @@ export async function POST(request: NextRequest) {
     // 5. Generate claim ID
     const claimId = `CLM-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
 
-    // 6. REAL IMPLEMENTATION: Save claim to database
+    // 6. REAL IMPLEMENTATION: Save claim to database using PublicClaim model
     let savedClaim;
     try {
       // Import Prisma at the top of the file
       const { prisma } = await import('@/lib/prisma');
 
-      savedClaim = await prisma.insuranceClaimAU.create({
+      // Create a public claim record (pre-authentication intake)
+      savedClaim = await prisma.publicClaim.create({
         data: {
-          claimNumber: claimId,
+          // Client Information
           clientName: validatedData.step2.name,
           clientEmail: validatedData.step2.email,
           clientPhone: validatedData.step2.phone,
           propertyAddress: validatedData.step2.propertyAddress,
           suburb: validatedData.step2.suburb,
           postcode: validatedData.step2.postcode,
-          disasterType: validatedData.step1.disasterType.toUpperCase().replace('-', '_'),
-          description: validatedData.step3.damageDescription,
-          damageDescription: validatedData.step3.damageDescription,
+
+          // Incident Details
+          disasterType: validatedData.step1.disasterType,
           incidentDate: new Date(validatedData.step1.incidentDate),
           isOngoing: validatedData.step1.isOngoing === 'yes',
           isEmergency: validatedData.step1.isEmergency === 'yes',
+
+          // Damage Details
+          damageDescription: validatedData.step3.damageDescription,
           hasInsurance: validatedData.step3.hasInsurance === 'yes',
-          insuranceProvider: validatedData.step3.insuranceProvider || undefined,
-          status: 'DRAFT',
-          priority: priority as 'critical' | 'high' | 'medium' | 'low',
-          createdAt: new Date(),
+          insuranceProvider: validatedData.step3.insuranceProvider || null,
+          policyNumber: validatedData.step3.policyNumber || null,
+
+          // Assessment
+          priority: priority.charAt(0).toUpperCase() + priority.slice(1), // Convert to Title Case
+          status: 'PENDING',
         },
       });
 
