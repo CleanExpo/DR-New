@@ -1,0 +1,727 @@
+# Phase 5 API Documentation
+
+## Overview
+
+Phase 5 introduces 8 new API endpoints for advanced platform features:
+- CSRF token generation and validation
+- Two-Factor Authentication setup and verification
+- Real-time analytics and metrics
+- Security alerts management
+- Health checks and system monitoring
+- WebSocket server initialization
+
+## Authentication
+
+All endpoints except `/api/csrf/token` and `/api/socket` require authentication via NextAuth.js session:
+
+```javascript
+// Headers required for authenticated endpoints
+Authorization: Bearer {session_token}
+Content-Type: application/json
+```
+
+## CSRF Protection
+
+### GET /api/csrf/token
+
+Generate a new CSRF token for form submissions.
+
+**Endpoint**: `GET /api/csrf/token`
+
+**Authentication**: Not required
+
+**Query Parameters**: None
+
+**Response**:
+```json
+{
+  "token": "abc123def456...xyz789",
+  "expiresIn": 86400000
+}
+```
+
+**Status Codes**:
+- `200` - Token generated successfully
+- `500` - CSRF configuration error (missing CSRF_SECRET environment variable)
+
+**Response Headers**:
+- `Set-Cookie: csrfToken=...` - HTTP-only secure cookie
+
+**Example Usage**:
+
+```javascript
+// Fetch CSRF token
+const response = await fetch('/api/csrf/token');
+const { token } = await response.json();
+
+// Use in form submission
+const formData = new FormData();
+formData.append('csrfToken', token);
+formData.append('email', user.email);
+
+fetch('/api/some-form', {
+  method: 'POST',
+  headers: {
+    'X-CSRF-Token': token,
+  },
+  body: formData,
+});
+```
+
+**Notes**:
+- Token valid for 1 hour
+- Tokens are HMAC-SHA256 signed
+- Use `Set-Cookie` automatically sets HTTP-only cookie
+- Cookie requires same-site validation
+
+---
+
+## Two-Factor Authentication (2FA)
+
+### POST /api/auth/2fa/setup
+
+Initiate 2FA setup for authenticated user. Returns QR code and backup codes.
+
+**Endpoint**: `POST /api/auth/2fa/setup`
+
+**Authentication**: Required (NextAuth session)
+
+**Request Body**:
+```json
+{
+  "email": "user@example.com"
+}
+```
+
+**Response** (Success):
+```json
+{
+  "success": true,
+  "secret": "JBSWY3DPEBLW64TMMQQQ",
+  "qrCode": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
+  "backupCodes": [
+    "ABCD-EFGH-IJKL",
+    "MNOP-QRST-UVWX",
+    "XYZA-BCDE-FGHI",
+    ...
+  ],
+  "manualEntryKey": "JBSWY3DPEBLW64TMMQQQ",
+  "instructions": [
+    "1. Open your authenticator app",
+    "2. Scan the QR code above",
+    "3. Or enter the manual entry key",
+    "4. Enter the 6-digit code to verify"
+  ]
+}
+```
+
+**Status Codes**:
+- `200` - Setup initiated successfully
+- `401` - Unauthorized (not logged in)
+- `403` - Email mismatch with authenticated user
+
+**Response Details**:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `secret` | string | Base32-encoded TOTP secret (32 characters) |
+| `qrCode` | string | Data URI of QR code image (PNG) |
+| `backupCodes` | array | Array of 10 backup codes (format: XXXX-XXXX-XXXX) |
+| `manualEntryKey` | string | Base32 secret for manual entry into authenticator |
+| `instructions` | array | Setup step-by-step instructions |
+
+**Example Usage**:
+
+```javascript
+// Request 2FA setup
+const response = await fetch('/api/auth/2fa/setup', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email: 'user@example.com' }),
+});
+
+const { secret, qrCode, backupCodes } = await response.json();
+
+// Display QR code in UI
+document.getElementById('qr-code').src = qrCode;
+
+// Save backup codes
+console.log('Your backup codes:', backupCodes);
+```
+
+---
+
+### POST /api/auth/2fa/verify
+
+Verify TOTP code and enable 2FA. Must be called after `/api/auth/2fa/setup`.
+
+**Endpoint**: `POST /api/auth/2fa/verify`
+
+**Authentication**: Required (NextAuth session)
+
+**Request Body**:
+```json
+{
+  "email": "user@example.com",
+  "secret": "JBSWY3DPEBLW64TMMQQQ",
+  "code": "123456",
+  "backupCodes": [
+    "ABCD-EFGH-IJKL",
+    "MNOP-QRST-UVWX",
+    ...
+  ]
+}
+```
+
+**Response** (Success):
+```json
+{
+  "success": true,
+  "message": "2FA enabled successfully",
+  "twoFactorEnabled": true
+}
+```
+
+**Status Codes**:
+- `200` - 2FA verified and enabled
+- `401` - Unauthorized
+- `400` - Invalid TOTP code or backup codes
+- `403` - Email mismatch
+
+**Validation Rules**:
+- TOTP code must be exactly 6 digits
+- Code must match current time-based code (±1 time window)
+- Backup codes must be valid 12-character format
+
+**Example Usage**:
+
+```javascript
+// User enters 6-digit code from authenticator app
+const code = prompt('Enter 6-digit code from authenticator app:');
+
+// Verify and enable 2FA
+const response = await fetch('/api/auth/2fa/verify', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    email: 'user@example.com',
+    secret: savedSecret,
+    code: code,
+    backupCodes: savedBackupCodes,
+  }),
+});
+
+if (response.ok) {
+  alert('2FA enabled! Save your backup codes in a safe place.');
+}
+```
+
+---
+
+### DELETE /api/auth/2fa/verify
+
+Disable 2FA for authenticated user.
+
+**Endpoint**: `DELETE /api/auth/2fa/verify`
+
+**Authentication**: Required
+
+**Response** (Success):
+```json
+{
+  "success": true,
+  "message": "2FA disabled successfully",
+  "twoFactorEnabled": false
+}
+```
+
+**Status Codes**:
+- `200` - 2FA disabled
+- `401` - Unauthorized
+- `404` - 2FA not enabled
+
+---
+
+## Real-Time Analytics
+
+### GET /api/analytics/realtime
+
+Stream real-time system metrics via Server-Sent Events (SSE) or JSON snapshot.
+
+**Endpoint**: `GET /api/analytics/realtime`
+
+**Authentication**: Not required
+
+**Query Parameters**:
+- `format` (string): `sse` (default) or `json`
+
+**JSON Response** (format=json):
+```json
+{
+  "timestamp": 1673520000000,
+  "activeUsers": 42,
+  "activeSessions": 58,
+  "messagesPerMinute": 127,
+  "activeConnections": 12,
+  "systemLatency": 45,
+  "errorRate": 0.8,
+  "databaseConnections": 5,
+  "memoryUsage": {
+    "heapUsed": 245,
+    "heapTotal": 512,
+    "external": 12
+  }
+}
+```
+
+**SSE Response** (format=sse):
+
+Streams JSON metrics every 5 seconds:
+
+```
+data: {"timestamp": 1673520000000, "activeUsers": 42, ...}
+
+data: {"timestamp": 1673520005000, "activeUsers": 43, ...}
+
+data: {"timestamp": 1673520010000, "activeUsers": 42, ...}
+```
+
+**Status Codes**:
+- `200` - Metrics retrieved/streaming
+- `500` - Metrics service error
+
+**Metrics Definitions**:
+
+| Metric | Unit | Normal Range | Alert Threshold |
+|--------|------|--------------|-----------------|
+| activeUsers | count | 10-100 | > 500 |
+| activeSessions | count | 20-200 | > 1000 |
+| messagesPerMinute | count | 10-100 | > 500 or < 1 |
+| systemLatency | ms | 20-100 | > 500 |
+| errorRate | percentage | 0-1% | > 5% |
+
+**Example Usage**:
+
+```javascript
+// Get single snapshot
+fetch('/api/analytics/realtime?format=json')
+  .then(r => r.json())
+  .then(metrics => {
+    console.log(`Active users: ${metrics.activeUsers}`);
+    console.log(`Latency: ${metrics.systemLatency}ms`);
+  });
+
+// Stream metrics with EventSource
+const eventSource = new EventSource('/api/analytics/realtime?format=sse');
+
+eventSource.onmessage = (event) => {
+  const metrics = JSON.parse(event.data);
+  updateDashboard(metrics);
+};
+
+eventSource.onerror = () => {
+  console.error('Stream closed');
+  eventSource.close();
+};
+```
+
+---
+
+## Security Monitoring
+
+### GET /api/security/alerts
+
+Retrieve security alerts and monitoring statistics.
+
+**Endpoint**: `GET /api/security/alerts`
+
+**Authentication**: Required (Admin only)
+
+**Query Parameters**:
+- `severity` (string): Filter by severity (CRITICAL, HIGH, MEDIUM, LOW)
+- `limit` (number): Max results (default: 50, max: 1000)
+- `stats` (boolean): Include statistics summary (default: true)
+
+**Response**:
+```json
+{
+  "events": [
+    {
+      "id": "evt_abc123",
+      "type": "BRUTE_FORCE",
+      "severity": "HIGH",
+      "email": "user@example.com",
+      "ipAddress": "192.168.1.100",
+      "timestamp": "2026-01-11T14:35:22Z",
+      "description": "5 failed login attempts in 15 minutes",
+      "resolved": false,
+      "resolvedBy": null,
+      "resolvedAt": null,
+      "notes": []
+    },
+    {
+      "id": "evt_def456",
+      "type": "UNUSUAL_ACCESS",
+      "severity": "MEDIUM",
+      "email": "contractor@example.com",
+      "ipAddress": "203.45.67.89",
+      "location": "London, UK",
+      "timestamp": "2026-01-11T13:20:15Z",
+      "description": "Access from new location",
+      "resolved": false
+    }
+  ],
+  "stats": {
+    "total": 42,
+    "unresolved": 8,
+    "criticalCount": 0,
+    "highCount": 3,
+    "mediumCount": 5,
+    "lowCount": 34,
+    "last24Hours": 18,
+    "last7Days": 42,
+    "resolutionRate": 0.81
+  }
+}
+```
+
+**Status Codes**:
+- `200` - Alerts retrieved
+- `401` - Unauthorized (not logged in)
+- `403` - Forbidden (not admin)
+- `500` - Alert service error
+
+**Event Types**:
+
+| Type | Severity | Description |
+|------|----------|-------------|
+| BRUTE_FORCE | HIGH | Multiple failed login attempts |
+| UNUSUAL_ACCESS | MEDIUM | Access from new location/IP |
+| FILE_UPLOAD_BLOCKED | CRITICAL | Dangerous file detected |
+| CUSTOM | Variable | Admin-created alert |
+
+**Example Usage**:
+
+```javascript
+// Get unresolved HIGH severity alerts
+const response = await fetch(
+  '/api/security/alerts?severity=HIGH&limit=20',
+  { headers: { /* auth headers */ } }
+);
+
+const { events, stats } = await response.json();
+
+console.log(`Critical alerts: ${stats.criticalCount}`);
+events.forEach(event => {
+  console.log(`${event.type}: ${event.description}`);
+});
+```
+
+---
+
+### POST /api/security/alerts
+
+Create a manual security alert (admin only).
+
+**Endpoint**: `POST /api/security/alerts`
+
+**Authentication**: Required (Admin only)
+
+**Request Body**:
+```json
+{
+  "type": "CUSTOM",
+  "severity": "HIGH",
+  "subject": "Suspicious activity detected",
+  "description": "Multiple API key requests from same user",
+  "affectedUsers": ["user@example.com"],
+  "notes": "Possible credential compromise"
+}
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "alertId": "alert_xyz789",
+  "created": "2026-01-11T15:45:30Z"
+}
+```
+
+**Status Codes**:
+- `201` - Alert created
+- `401` - Unauthorized
+- `403` - Forbidden (not admin)
+- `400` - Invalid request body
+
+---
+
+## Health Check
+
+### GET /api/health
+
+Check system health and component status.
+
+**Endpoint**: `GET /api/health`
+
+**Authentication**: Not required
+
+**Query Parameters**: None
+
+**Response** (Healthy):
+```json
+{
+  "status": "healthy",
+  "timestamp": "2026-01-11T15:45:30Z",
+  "uptime": 3600000,
+  "services": {
+    "database": {
+      "status": "healthy",
+      "latency": 12,
+      "lastChecked": "2026-01-11T15:45:30Z"
+    },
+    "redis": {
+      "status": "healthy",
+      "latency": 8,
+      "lastChecked": "2026-01-11T15:45:30Z"
+    },
+    "externalApis": {
+      "sendgrid": {
+        "status": "healthy",
+        "latency": 0,
+        "lastChecked": "2026-01-11T15:45:30Z"
+      },
+      "twilio": {
+        "status": "healthy",
+        "latency": 0,
+        "lastChecked": "2026-01-11T15:45:30Z"
+      },
+      "sentry": {
+        "status": "healthy",
+        "latency": 0,
+        "lastChecked": "2026-01-11T15:45:30Z"
+      }
+    }
+  }
+}
+```
+
+**Response** (Degraded):
+```json
+{
+  "status": "degraded",
+  "timestamp": "2026-01-11T15:45:30Z",
+  "services": {
+    "database": {
+      "status": "degraded",
+      "latency": 2450,
+      "error": "Slow response time"
+    },
+    "redis": {
+      "status": "healthy",
+      "latency": 8
+    }
+  }
+}
+```
+
+**Status Codes**:
+- `200` - System healthy or degraded
+- `503` - System unhealthy (critical service down)
+
+**Service Status Codes**:
+- `healthy` - Service operational, normal latency
+- `degraded` - Service responsive, high latency or configuration issue
+- `unhealthy` - Service unavailable or connection failed
+
+**Example Usage**:
+
+```javascript
+// Health check with monitoring
+setInterval(async () => {
+  const response = await fetch('/api/health');
+  const health = await response.json();
+
+  if (health.status === 'unhealthy') {
+    sendAlert('CRITICAL: System health check failed');
+  } else if (health.status === 'degraded') {
+    console.warn('Degraded services:', health.services);
+  }
+}, 60000); // Check every minute
+```
+
+---
+
+## WebSocket (Socket.io)
+
+### GET /api/socket
+
+WebSocket server status and configuration (informational endpoint).
+
+**Endpoint**: `GET /api/socket`
+
+**Authentication**: Not required
+
+**Response** (Development):
+```json
+{
+  "status": "ok",
+  "message": "WebSocket server initialized",
+  "socketUrl": "http://localhost:3000",
+  "documentation": "See /api/socket/route.ts for setup instructions"
+}
+```
+
+**Response** (Production - Not Configured):
+```json
+{
+  "status": "error",
+  "message": "WebSocket server not configured for this environment",
+  "recommendation": "Use a managed WebSocket service (Ably, Pusher) or deploy with a custom Node.js server"
+}
+```
+
+**Status Codes**:
+- `200` - WebSocket available
+- `501` - WebSocket not implemented (production)
+
+**Notes**:
+- WebSocket requires persistent HTTP server (not available on Vercel serverless)
+- Use Server-Sent Events (SSE) for streaming on Vercel
+- Custom Node.js server required for production WebSocket support
+
+---
+
+## Error Handling
+
+All endpoints follow standard HTTP error codes:
+
+| Status | Meaning | Handling |
+|--------|---------|----------|
+| 200 | OK | Success |
+| 201 | Created | Resource created successfully |
+| 204 | No Content | Success with no response body |
+| 400 | Bad Request | Invalid parameters or request body |
+| 401 | Unauthorized | Missing or invalid authentication |
+| 403 | Forbidden | Authenticated but insufficient permissions |
+| 404 | Not Found | Resource not found |
+| 429 | Too Many Requests | Rate limit exceeded |
+| 500 | Server Error | Internal server error |
+| 503 | Service Unavailable | Service temporarily unavailable |
+
+**Error Response Format**:
+```json
+{
+  "error": "Error message",
+  "status": 400,
+  "details": {
+    "field": "email",
+    "message": "Email is required"
+  }
+}
+```
+
+---
+
+## Rate Limiting
+
+Rate limits apply to specific endpoints:
+
+| Endpoint | Limit | Window |
+|----------|-------|--------|
+| /api/csrf/token | 100 | Per minute |
+| /api/auth/2fa/* | 10 | Per minute |
+| /api/analytics/realtime | 1000 | Per minute |
+| /api/security/alerts | 100 | Per hour |
+| /api/health | 1000 | Per minute |
+
+Rate limit headers included in response:
+
+```
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 87
+X-RateLimit-Reset: 1673520060
+```
+
+---
+
+## Implementation Examples
+
+### React Hook: Fetch CSRF Token
+
+```javascript
+import { useState, useEffect } from 'react';
+
+export function useCsrfToken() {
+  const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/csrf/token')
+      .then(r => r.json())
+      .then(({ token }) => {
+        setToken(token);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  return { token, loading, error };
+}
+```
+
+### React Hook: 2FA Setup
+
+```javascript
+export function useTwoFactorSetup() {
+  const [setup, setSetup] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const initiate = async (email) => {
+    setLoading(true);
+    const response = await fetch('/api/auth/2fa/setup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await response.json();
+    setSetup(data);
+    setLoading(false);
+    return data;
+  };
+
+  const verify = async (code) => {
+    const response = await fetch('/api/auth/2fa/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: setup.email,
+        secret: setup.secret,
+        code,
+        backupCodes: setup.backupCodes,
+      }),
+    });
+    return response.ok;
+  };
+
+  return { initiate, verify, setup, loading };
+}
+```
+
+---
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | 2026-01-11 | Initial release |
+
+**Last Updated**: January 2026
+
+---
+
+**Questions?** Contact: api-support@disasterrecovery.com.au
