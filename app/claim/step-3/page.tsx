@@ -16,7 +16,7 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ChevronLeft, Upload, X, Image as ImageIcon, CheckCircle } from 'lucide-react';
+import { ChevronLeft, Upload, X, Image as ImageIcon, CheckCircle, AlertCircle } from 'lucide-react';
 
 import { FormInput } from '@/src/design-system/components/Form/FormInput';
 import { FormTextarea } from '@/src/design-system/components/Form/FormTextarea';
@@ -43,6 +43,7 @@ export default function ClaimStep3Page() {
   const [uploadedPhotos, setUploadedPhotos] = React.useState<string[]>([]);
   const [captchaToken, setCaptchaToken] = React.useState<string>('');
   const [showCaptcha, setShowCaptcha] = React.useState(false);
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
 
   // Load existing progress
   const existingState = React.useMemo(() => loadClaimProgress(), []);
@@ -57,12 +58,13 @@ export default function ClaimStep3Page() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
     setValue,
     getValues,
   } = useForm<DetailsInsuranceData>({
     resolver: zodResolver(detailsInsuranceSchema),
+    mode: 'onChange', // Validate as user types for real-time feedback
     defaultValues: existingState?.step3 || {
       damageDescription: '',
       hasInsurance: undefined,
@@ -124,32 +126,75 @@ export default function ClaimStep3Page() {
       // Calculate priority
       const priority = calculatePriority(existingState!);
 
-      // Submit to API
-      const response = await fetch('/api/public/claims/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...completeData,
-          priority,
-        }),
-      });
+      // Submit to API with timeout
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-      if (!response.ok) {
-        throw new Error('Failed to submit claim');
+      try {
+        const response = await fetch('/api/public/claims/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...completeData,
+            priority,
+          }),
+          signal: controller.signal,
+        });
+
+        clearTimeout(timeout);
+
+        // Handle rate limiting
+        if (response.status === 429) {
+          setSubmitError(
+            'Too many claim submissions from your location. Please wait an hour before submitting another claim.'
+          );
+          setIsLoading(false);
+          return;
+        }
+
+        // Handle validation errors
+        if (response.status === 400) {
+          const errorData = await response.json();
+          setSubmitError(
+            errorData.error || 'Please check all required fields are filled correctly.'
+          );
+          setIsLoading(false);
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        // Clear saved progress
+        clearClaimProgress();
+
+        // Navigate to success page
+        router.push(`/claim/success?claimId=${result.claimId}`);
+      } catch (fetchError) {
+        clearTimeout(timeout);
+
+        if (fetchError instanceof TypeError && fetchError.message === 'Failed to fetch') {
+          setSubmitError(
+            'Network connection failed. Please check your internet connection and try again.'
+          );
+        } else if (fetchError instanceof Error && fetchError.name === 'AbortError') {
+          setSubmitError(
+            'Request timeout. Your connection may be slow. Please check your connection and try again.'
+          );
+        } else {
+          setSubmitError(
+            'Failed to submit claim. Please check your connection and try again.'
+          );
+        }
       }
-
-      const result = await response.json();
-
-      // Clear saved progress
-      clearClaimProgress();
-
-      // Navigate to success page
-      router.push(`/claim/success?claimId=${result.claimId}`);
     } catch (error) {
-      console.error('Failed to submit claim:', error);
-      alert('Failed to submit claim. Please try again.');
+      console.error('Unexpected error during claim submission:', error);
+      setSubmitError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -191,6 +236,14 @@ export default function ClaimStep3Page() {
           <h2 className="text-xl font-semibold text-gray-900 mb-6">
             Damage Details & Insurance
           </h2>
+
+          {/* Submit Error */}
+          {submitError && (
+            <Alert className="mb-6 border-red-600 bg-red-50">
+              <AlertCircle className="h-5 w-5 text-red-600" />
+              <AlertDescription className="text-red-900">{submitError}</AlertDescription>
+            </Alert>
+          )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             {/* Damage Description */}
@@ -370,7 +423,8 @@ export default function ClaimStep3Page() {
                 variant="emergency-primary"
                 size="crisis"
                 loading={isLoading}
-                disabled={!captchaToken && !showCaptcha}
+                disabled={isLoading || !isValid || !captchaToken}
+                title={!isValid ? 'Please fill in all required fields' : !captchaToken ? 'Please complete CAPTCHA verification' : ''}
               >
                 {isLoading ? 'Submitting...' : 'Submit Claim'}
               </Button>
