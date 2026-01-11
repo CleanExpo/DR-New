@@ -115,21 +115,21 @@ export default function HomePage() {
       />
 
       <div className="min-h-screen bg-white dark:bg-slate-950">
-        {/* Fixed Header Navigation */}
+        {/* Fixed Header Navigation - PUBLIC DISASTER RECOVERY SITE */}
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-sm">
           <nav className="container mx-auto px-6" aria-label="Main navigation">
             <div className="flex items-center justify-between h-20">
-              {/* Logo */}
+              {/* Logo - Disaster Recovery Australia (NOT NRPG) */}
               <Link href="/" className="flex items-center gap-3 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:shadow-blue-600/50 transition-all duration-300">
-                  <span className="text-white font-black text-2xl font-display">N</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-600/30 group-hover:shadow-emerald-600/50 transition-all duration-300">
+                  <span className="text-white font-black text-2xl font-display">DR</span>
                 </div>
                 <div className="hidden md:block">
                   <div className="font-display font-black text-xl text-slate-900 dark:text-white leading-tight">
-                    NRPG
+                    Disaster Recovery
                   </div>
                   <div className="text-[10px] font-black text-slate-500 tracking-[0.2em] uppercase">
-                    National Restoration
+                    Australia
                   </div>
                 </div>
               </Link>
