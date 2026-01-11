@@ -11,6 +11,13 @@ const JWT_SECRET =
   process.env.NEXTAUTH_SECRET ||
   (process.env.NODE_ENV === 'test' ? 'test-only-jwt-secret' : undefined);
 
+// Validate NEXTAUTH_SECRET exists in production
+if (!process.env.NEXTAUTH_SECRET && process.env.NODE_ENV === 'production') {
+  console.error('CRITICAL: NEXTAUTH_SECRET is not set in production environment');
+  console.error('This will cause session initialization to fail and dashboard to display infinite loading');
+  console.error('Please set NEXTAUTH_SECRET in your Vercel environment variables');
+}
+
 function requireJwtSecret(): string {
   if (!JWT_SECRET) {
     throw new Error('Missing JWT_SECRET (or NEXTAUTH_SECRET fallback)');

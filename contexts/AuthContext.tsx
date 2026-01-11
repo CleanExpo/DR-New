@@ -1,7 +1,8 @@
 'use client';
 
-import React, { createContext, useCallback, useContext, useMemo, type ReactNode } from 'react'
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 interface User {
   id: string
@@ -15,6 +16,7 @@ interface AuthContextType {
   user: User | null
   isAuthenticated: boolean
   loading: boolean
+  sessionError: boolean
   login: (email: string, password: string) => Promise<void>
   logout: () => void
   register: (
@@ -48,6 +50,31 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { data: session, status } = useSession()
+  const router = useRouter()
+  const [loading, setLoading] = useState(true)
+  const [sessionError, setSessionError] = useState(false)
+
+  // Handle session timeout to prevent infinite loading
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (status === 'loading') {
+        console.error('Session initialization timeout: NextAuth failed to initialize after 10 seconds')
+        setSessionError(true)
+        setLoading(false)
+        // Redirect to login with error message
+        router.push('/auth/login?error=session_timeout')
+      }
+    }, 10000) // 10 second timeout
+
+    // Clear timeout if status changes
+    if (status !== 'loading') {
+      clearTimeout(timeoutId)
+      setLoading(false)
+      setSessionError(false)
+    }
+
+    return () => clearTimeout(timeoutId)
+  }, [status, router])
 
   const user = useMemo<User | null>(() => {
     if (!session?.user) return null
@@ -70,8 +97,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       avatar: sessionUser.avatar ?? null,
     }
   }, [session])
-
-  const loading = status === 'loading'
 
   const login = useCallback(async (email: string, password: string): Promise<void> => {
     const result = await signIn('credentials', {
@@ -144,11 +169,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       user,
       isAuthenticated,
       loading,
+      sessionError,
       login,
       logout,
       register,
     }
-  }, [user, isAuthenticated, loading])
+  }, [user, isAuthenticated, loading, sessionError])
 
   return (
     <AuthContext.Provider value={value}>
