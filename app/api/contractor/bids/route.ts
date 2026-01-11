@@ -108,6 +108,11 @@ export async function POST(request: NextRequest) {
         contractorMessage: validatedData.message,
         updatedAt: new Date(),
       },
+      include: {
+        serviceRequest: {
+          select: { id: true },
+        },
+      },
     });
 
     console.log('=== BID SUBMITTED ===');
@@ -115,6 +120,38 @@ export async function POST(request: NextRequest) {
     console.log('Match ID:', validatedData.matchId);
     console.log('Budget:', validatedData.proposedBudget);
     console.log('Hours:', validatedData.estimatedHours);
+
+    // 7. Get booking and contractor info for event emission
+    const contractorInfo = await prisma.contractor.findUnique({
+      where: { id: contractor.id },
+      select: { businessName: true },
+    });
+
+    const booking = await prisma.booking.findUnique({
+      where: { id: updatedMatch.serviceRequest.id },
+      select: { clientId: true },
+    });
+
+    // 8. Emit bid submitted event
+    if (contractorInfo && booking) {
+      try {
+        const { emitBidSubmitted } = await import('@/lib/realtime/emit-handlers');
+        await emitBidSubmitted(
+          updatedMatch.serviceRequest.id,
+          validatedData.matchId,
+          contractor.id,
+          session.user.name || 'Contractor',
+          contractorInfo.businessName,
+          validatedData.proposedBudget,
+          validatedData.estimatedHours || null,
+          validatedData.message || null,
+          booking.clientId
+        );
+      } catch (eventError) {
+        console.error('Failed to emit bid submitted event:', eventError);
+        // Don't fail the request
+      }
+    }
 
     return NextResponse.json(
       {
