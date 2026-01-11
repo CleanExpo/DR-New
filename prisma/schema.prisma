@@ -274,6 +274,9 @@ model User {
   // Agent Orchestration Relations
   agentJobs           AgentJob[]
 
+  // Training Relations
+  trainingProgress    TrainingModuleProgress[]
+
   @@index([email])
   @@index([userType])
   @@index([australianState])
@@ -3649,4 +3652,154 @@ model StripeWebhookEvent {
   @@index([stripeEventId])
   @@index([eventType])
   @@map("stripe_webhook_events")
+}
+
+// ============================================================================
+// NEWSLETTER & COMMUNICATIONS
+// ============================================================================
+
+model NewsletterSubscriber {
+  id                 String   @id @default(cuid())
+  email              String   @unique
+  firstName          String?
+  lastName           String?
+  interests          String[] // Service types they're interested in
+  source             String   @default("website") // Where they subscribed from
+  isActive           Boolean  @default(true)
+  confirmed          Boolean  @default(false)
+  confirmationToken  String?
+  confirmedAt        DateTime?
+  subscribedAt       DateTime @default(now())
+  unsubscribedAt     DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([email])
+  @@index([isActive])
+  @@index([subscribedAt])
+  @@map("newsletter_subscribers")
+}
+
+model ClientFeedback {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  feedbackType String // COMPLAINT, SUGGESTION, PRAISE, BUG_REPORT
+  message      String   @db.Text
+  rating       Int? // 1-5 stars
+  serviceName  String? // Which service/page they're providing feedback about
+  isResolved   Boolean  @default(false)
+  resolution   String?  @db.Text
+  submittedAt  DateTime @default(now())
+  resolvedAt   DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([email])
+  @@index([feedbackType])
+  @@index([isResolved])
+  @@index([submittedAt])
+  @@map("client_feedback")
+}
+
+model ResourceDownload {
+  id           String   @id @default(cuid())
+  resourceId   String
+  resourceType String // guide, checklist, template, whitepaper
+  resourceName String?
+  userId       String? // Optional if user is logged in
+  ipAddress    String?
+  userAgent    String?  @db.Text
+  downloadedAt DateTime @default(now())
+  createdAt    DateTime @default(now())
+
+  @@index([resourceId])
+  @@index([resourceType])
+  @@index([userId])
+  @@index([downloadedAt])
+  @@map("resource_downloads")
+}
+
+model SearchAnalytics {
+  id           String   @id @default(cuid())
+  query        String
+  resultsCount Int
+  category     String? // services, resources, blog, etc.
+  userId       String?
+  ipAddress    String?
+  searchedAt   DateTime @default(now())
+  createdAt    DateTime @default(now())
+
+  @@index([query])
+  @@index([userId])
+  @@index([searchedAt])
+  @@map("search_analytics")
+}
+
+model ClientAnalytics {
+  id        String   @id @default(cuid())
+  eventType String // PAGE_VIEW, BUTTON_CLICK, FORM_SUBMIT, CTA_CLICK
+  eventName String?
+  eventData Json?    @db.JsonB // Additional event-specific data
+  userId    String?
+  sessionId String?
+  ipAddress String?
+  userAgent String?  @db.Text
+  pageUrl   String?
+  referrer  String?
+  recordedAt DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([eventType])
+  @@index([userId])
+  @@index([sessionId])
+  @@index([recordedAt])
+  @@map("client_analytics")
+}
+
+model TrainingModule {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  content     String   @db.Text // Markdown or HTML
+  duration    Int // Minutes
+  category    String // contractor-onboarding, safety, certification, etc.
+  level       String   @default("beginner") // beginner, intermediate, advanced
+  isPublished Boolean  @default(false)
+  isDeleted   Boolean  @default(false)
+  viewCount   Int      @default(0)
+  createdBy   String?
+  publishedAt DateTime?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  progress TrainingModuleProgress[]
+
+  @@index([category])
+  @@index([isPublished])
+  @@index([isDeleted])
+  @@index([createdAt])
+  @@map("training_modules")
+}
+
+model TrainingModuleProgress {
+  id         String   @id @default(cuid())
+  moduleId   String
+  module     TrainingModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completed  Boolean  @default(false)
+  completedAt DateTime?
+  progress   Int      @default(0) // 0-100 percentage
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([moduleId, userId])
+  @@index([userId])
+  @@index([moduleId])
+  @@index([completed])
+  @@map("training_module_progress")
 }

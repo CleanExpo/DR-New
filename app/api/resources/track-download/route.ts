@@ -20,24 +20,42 @@ export async function POST(request: NextRequest) {
       referrer: body.referrer || request.headers.get('referer') || undefined,
     };
 
-    // TODO: Store download event in database
-    // Example with Prisma:
-    // await prisma.downloadEvent.create({
-    //   data: {
-    //     resourceId: downloadEvent.resourceId,
-    //     userId: downloadEvent.userId,
-    //     sessionId: downloadEvent.sessionId,
-    //     timestamp: downloadEvent.timestamp,
-    //     userAgent: downloadEvent.userAgent,
-    //     referrer: downloadEvent.referrer,
-    //   },
-    // });
+    // Store download event in database
+    try {
+      const { prisma } = await import('@/lib/prisma');
+      const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+                        request.headers.get('x-real-ip') ||
+                        'unknown';
 
-    // TODO: Update resource download count
-    // await prisma.resource.update({
-    //   where: { id: downloadEvent.resourceId },
-    //   data: { downloadCount: { increment: 1 } },
-    // });
+      const savedDownload = await prisma.resourceDownload.create({
+        data: {
+          resourceId: downloadEvent.resourceId,
+          resourceType: body.resourceType || 'unknown',
+          resourceName: body.resourceName,
+          userId: downloadEvent.userId,
+          ipAddress,
+          userAgent: downloadEvent.userAgent,
+          downloadedAt: downloadEvent.timestamp,
+        },
+      });
+
+      console.log('=== RESOURCE DOWNLOAD TRACKED ===');
+      console.log('Download ID:', savedDownload.id);
+      console.log('Resource ID:', downloadEvent.resourceId);
+      console.log('User ID:', downloadEvent.userId || 'Anonymous');
+      console.log('IP Address:', ipAddress);
+      console.log('Timestamp:', downloadEvent.timestamp);
+      console.log('=================================');
+    } catch (dbError) {
+      console.error('Database error tracking download:', dbError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Failed to track download in database',
+        },
+        { status: 500 }
+      );
+    }
 
     // TODO: Send to analytics platform (Google Analytics, Mixpanel, etc.)
     // await analytics.track('Resource Downloaded', {
@@ -45,8 +63,6 @@ export async function POST(request: NextRequest) {
     //   userId: downloadEvent.userId,
     //   timestamp: downloadEvent.timestamp,
     // });
-
-    console.log('Download tracked:', downloadEvent);
 
     return NextResponse.json(
       { success: true, message: 'Download tracked successfully' },
