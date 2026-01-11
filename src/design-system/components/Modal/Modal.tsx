@@ -52,6 +52,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       xl: 'max-w-xl',
     };
 
+    // Mobile-optimized: Ensure modal fits in viewport
+    const modalMaxHeight = 'max-h-[90vh] sm:max-h-[calc(100vh-4rem)]';
+
     const handleClose = () => {
       onClose?.();
       onOpenChange(false);
@@ -93,10 +96,14 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             />
 
             {/* Modal Content */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none overflow-y-auto">
               <motion.div
                 ref={ref}
-                className={`pointer-events-auto bg-white rounded-lg shadow-lg ${sizeClasses[size]} ${className}`}
+                className={`pointer-events-auto bg-white rounded-lg shadow-lg ${sizeClasses[size]} ${modalMaxHeight} overflow-y-auto ${className}`}
+                style={{
+                  // Safe area for notched devices (iPhone X+, Android)
+                  paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))',
+                }}
                 initial={isAnimationEnabled ? 'initial' : 'animate'}
                 animate={isAnimationEnabled ? 'animate' : 'animate'}
                 exit={isAnimationEnabled ? 'exit' : 'animate'}
@@ -111,7 +118,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               >
                 {/* Header */}
                 {(title || showCloseButton) && (
-                  <div className="flex items-center justify-between p-6 border-b">
+                  <div className="flex items-center justify-between p-6 border-b sticky top-0 bg-white z-10">
                     <div>
                       {title && (
                         <h2 className="text-lg font-semibold">{title}</h2>
@@ -125,7 +132,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     {showCloseButton && (
                       <button
                         onClick={handleClose}
-                        className="ml-4 text-gray-400 hover:text-gray-600"
+                        className="ml-4 text-gray-400 hover:text-gray-600 active:text-gray-700 transition-colors"
                         aria-label="Close modal"
                       >
                         <X className="w-5 h-5" />
@@ -134,7 +141,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   </div>
                 )}
 
-                {/* Body */}
+                {/* Body - scrollable content */}
                 <div className="p-6">{children}</div>
               </motion.div>
             </div>

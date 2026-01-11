@@ -547,3 +547,194 @@ export const easings = {
   exit: [0.7, 0, 0.84, 0], // Exit easing
   emphasized: [0.2, 0, 0, 1], // Emphasized easing
 };
+
+// ============================================================================
+// MOBILE DEVICE DETECTION & OPTIMIZATION
+// ============================================================================
+
+/**
+ * Detect if running on mobile device
+ * Checks user-agent and media queries
+ */
+export const isMobileDevice = (): boolean => {
+  if (typeof window === 'undefined') return false;
+
+  // Check media query first (most reliable)
+  const isMobileMediaQuery = window.matchMedia('(max-width: 768px)').matches;
+
+  // Fallback to user-agent
+  const mobileUserAgentPattern = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+  const isMobileUserAgent = mobileUserAgentPattern.test(navigator.userAgent.toLowerCase());
+
+  return isMobileMediaQuery || isMobileUserAgent;
+};
+
+/**
+ * Detect if device prefers reduced motion
+ */
+export const prefersReducedMotion = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
+/**
+ * Animation quality presets for different devices
+ * Reduces complexity on mobile/low-end devices
+ */
+export const animationQuality = {
+  // Reduced: Minimal animations, 100ms duration
+  reduced: {
+    duration: 0.1,
+    pageTransitionDuration: 0.15,
+    componentTransitionDuration: 0.1,
+  },
+  // Mobile: Balanced animations, 200ms duration
+  mobile: {
+    duration: 0.2,
+    pageTransitionDuration: 0.25,
+    componentTransitionDuration: 0.2,
+  },
+  // Desktop: Full animations, 400ms duration
+  desktop: {
+    duration: 0.4,
+    pageTransitionDuration: 0.4,
+    componentTransitionDuration: 0.3,
+  },
+};
+
+/**
+ * Get appropriate animation quality based on device
+ */
+export const getAnimationQuality = (): 'reduced' | 'mobile' | 'desktop' => {
+  if (prefersReducedMotion()) return 'reduced';
+  if (isMobileDevice()) return 'mobile';
+  return 'desktop';
+};
+
+// ============================================================================
+// MOBILE-OPTIMIZED ANIMATION VARIANTS
+// ============================================================================
+
+/**
+ * Page transitions optimized for mobile
+ * Reduced duration and movement on mobile devices
+ */
+export const mobilePageTransitions = {
+  fadeInUp: {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+    transition: { duration: 0.2, ease: 'easeOut' },
+  },
+  fadeInDown: {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 20 },
+    transition: { duration: 0.2, ease: 'easeOut' },
+  },
+  fadeInLeft: {
+    initial: { opacity: 0, x: -20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 20 },
+    transition: { duration: 0.2, ease: 'easeOut' },
+  },
+  fadeInRight: {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 },
+    transition: { duration: 0.2, ease: 'easeOut' },
+  },
+  scaleIn: {
+    initial: { opacity: 0, scale: 0.95 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.95 },
+    transition: { duration: 0.2, ease: 'easeOut' },
+  },
+} as const;
+
+/**
+ * Card hover effect: Convert to tap feedback on mobile
+ * Desktop: Lift and shadow
+ * Mobile: Subtle scale and background change
+ */
+export const getCardVariants = (isMobile: boolean): Variants => {
+  if (isMobile) {
+    // Mobile: Subtle tap feedback instead of hover
+    return {
+      initial: { opacity: 0, y: 10 },
+      animate: { opacity: 1, y: 0 },
+      tap: { scale: 0.98 },
+      transition: { duration: 0.2 },
+    };
+  }
+
+  // Desktop: Hover lift effect
+  return {
+    initial: { opacity: 0, y: 10 },
+    animate: { opacity: 1, y: 0 },
+    hover: { y: -5, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' },
+    transition: { duration: 0.3 },
+  };
+};
+
+/**
+ * Button press animation: Simpler on mobile
+ * Mobile: Simple scale tap
+ * Desktop: Scale + ripple effect
+ */
+export const getMobileButtonAnimation = (isMobile: boolean) => {
+  if (isMobile) {
+    return {
+      whileTap: { scale: 0.95 },
+      transition: { duration: 0.1 },
+    };
+  }
+
+  return {
+    whileTap: { scale: 0.95 },
+    whileHover: { scale: 1.05 },
+    transition: { type: 'spring', stiffness: 400, damping: 17 },
+  };
+};
+
+/**
+ * Scroll reveal animations: DISABLED on mobile
+ * Mobile has battery/performance concerns with scroll listeners
+ * Use simple fade-in instead
+ */
+export const getMobileScrollReveal = (isMobile: boolean): Variants => {
+  if (isMobile) {
+    // No scroll animation - just fade in
+    return {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 },
+    };
+  }
+
+  // Desktop: Full scroll reveal
+  return {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+};
+
+/**
+ * Get optimized page transition based on device
+ */
+export const getOptimizedPageTransition = (variant: keyof typeof pageTransitions) => {
+  const isMobile = isMobileDevice();
+  const quality = getAnimationQuality();
+
+  if (quality === 'reduced') {
+    return {
+      ...mobilePageTransitions[variant],
+      transition: { duration: 0.1, ease: 'easeOut' },
+    };
+  }
+
+  if (isMobile) {
+    return mobilePageTransitions[variant];
+  }
+
+  return pageTransitions[variant];
+};

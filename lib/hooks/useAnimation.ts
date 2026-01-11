@@ -4,26 +4,48 @@
  * Provides context-aware animation utilities
  * Automatically disables animations in emergency context
  * Respects user's prefers-reduced-motion preference
+ * Mobile-aware: Reduces animation complexity on mobile devices
  */
 
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useEffect, useState } from 'react';
 import { useIsEmergency } from './useIsEmergency';
 import {
   shouldAnimateInContext,
   getContextAwareVariants,
   getContextAwareTransition,
+  isMobileDevice,
+  prefersReducedMotion,
+  getAnimationQuality,
   Variants,
 } from '@/lib/animations';
 
 interface UseAnimationOptions {
   context?: string;
   disabled?: boolean;
+  reduceMotion?: boolean;
 }
 
 export function useAnimation(options: UseAnimationOptions = {}) {
   const isEmergency = useIsEmergency();
   const context = options.context || (isEmergency ? 'emergency' : 'default');
-  const disabled = options.disabled || !shouldAnimateInContext(context);
+  const [isMobile, setIsMobile] = useState(false);
+  const [animationQuality, setAnimationQuality] = useState<'reduced' | 'mobile' | 'desktop'>('desktop');
+
+  // Detect mobile device on mount and on resize
+  useEffect(() => {
+    const detectMobile = () => {
+      setIsMobile(isMobileDevice());
+      setAnimationQuality(getAnimationQuality());
+    };
+
+    detectMobile();
+
+    // Re-check on resize (window orientation change)
+    window.addEventListener('resize', detectMobile);
+    return () => window.removeEventListener('resize', detectMobile);
+  }, []);
+
+  const disabled = options.disabled || !shouldAnimateInContext(context) || options.reduceMotion;
 
   // Check if animations should be enabled
   const isAnimationEnabled = useMemo(() => {
@@ -59,6 +81,8 @@ export function useAnimation(options: UseAnimationOptions = {}) {
   return {
     isAnimationEnabled,
     context,
+    isMobile,
+    animationQuality,
     wrapVariants,
     wrapTransition,
     // Convenience methods
@@ -68,16 +92,47 @@ export function useAnimation(options: UseAnimationOptions = {}) {
 }
 
 /**
- * useScrollAnimation Hook
+ * useMobileAnimation Hook
  *
- * Provides scroll-triggered animation utilities
+ * Specialized hook for mobile-aware animations
+ * Returns appropriate variants based on device type
  */
-
-export function useScrollAnimation() {
-  const { isAnimationEnabled } = useAnimation();
+export function useMobileAnimation() {
+  const { isAnimationEnabled, isMobile } = useAnimation();
 
   return {
     isAnimationEnabled,
+    isMobile,
+    // Mobile-aware variants
+    cardVariants: isMobile
+      ? { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, tap: { scale: 0.98 } }
+      : { initial: { opacity: 0, y: 10 }, animate: { opacity: 1, y: 0 }, hover: { y: -5, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' } },
+    buttonAnimation: isMobile
+      ? { whileTap: { scale: 0.95 }, transition: { duration: 0.1 } }
+      : { whileTap: { scale: 0.95 }, whileHover: { scale: 1.05 }, transition: { type: 'spring', stiffness: 400, damping: 17 } },
+    // Disable scroll animations on mobile
+    scrollRevealVariants: isMobile
+      ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+      : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } },
+  };
+}
+
+/**
+ * useScrollAnimation Hook
+ *
+ * Provides scroll-triggered animation utilities
+ * DISABLED on mobile (battery/performance concerns)
+ */
+
+export function useScrollAnimation() {
+  const { isAnimationEnabled, isMobile } = useAnimation();
+
+  // Disable scroll animations on mobile - use simple fade instead
+  const shouldScroll = isAnimationEnabled && !isMobile;
+
+  return {
+    isAnimationEnabled: shouldScroll,
+    isMobile,
     viewportConfig: {
       once: true,
       amount: 0.2 as const,
