@@ -26,9 +26,9 @@ import {
   Mail,
   DollarSign,
   ArrowRight,
-  CheckCircle,
   Zap,
 } from 'lucide-react';
+import { VerifiedBadge } from '@/icons';
 
 export default function HowItWorksPage() {
   const pricingTiers = [
@@ -233,15 +233,15 @@ export default function HowItWorksPage() {
           <div className="mt-12 text-center">
             <div className="inline-flex flex-col gap-2 text-sm text-gray-400">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500" />
+                <VerifiedBadge size="md" gradient="primary" className="flex-shrink-0" aria-hidden="true" />
                 <span>No setup fees or onboarding costs</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500" />
+                <VerifiedBadge size="md" gradient="primary" className="flex-shrink-0" aria-hidden="true" />
                 <span>Cancel anytime, no lock-in contracts</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500" />
+                <VerifiedBadge size="md" gradient="primary" className="flex-shrink-0" aria-hidden="true" />
                 <span>Keep 100% of your job earnings</span>
               </div>
             </div>

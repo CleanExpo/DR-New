@@ -1,6 +1,7 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Shield, CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { MouldRemediation } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -12,6 +13,9 @@ export default function MouldRemediationPillarPage() {
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <MouldRemediation size="hero" gradient="mould" aria-label="Mould Remediation" />
+            </div>
             <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
               IICRC S520
             </div>
@@ -63,7 +67,7 @@ export default function MouldRemediationPillarPage() {
             
             <Link href="/services/mould-remediation/black-mould-removal">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <MouldRemediation size="lg" gradient="mould" className="text-[#22C55E] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Black Mould Removal
                 </h3>
@@ -80,7 +84,7 @@ export default function MouldRemediationPillarPage() {
 
             <Link href="/services/mould-remediation/mould-inspection">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <MouldRemediation size="lg" gradient="mould" className="text-[#22C55E] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Mould Inspection
                 </h3>
@@ -97,7 +101,7 @@ export default function MouldRemediationPillarPage() {
 
             <Link href="/services/mould-remediation/mould-testing">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <MouldRemediation size="lg" gradient="mould" className="text-[#22C55E] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Mould Testing
                 </h3>
@@ -114,7 +118,7 @@ export default function MouldRemediationPillarPage() {
 
             <Link href="/services/mould-remediation/mould-prevention">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <MouldRemediation size="lg" gradient="mould" className="text-[#22C55E] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Mould Prevention
                 </h3>
@@ -131,7 +135,7 @@ export default function MouldRemediationPillarPage() {
 
             <Link href="/services/mould-remediation/commercial-mould-remediation">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <MouldRemediation size="lg" gradient="mould" className="text-[#22C55E] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Commercial Mould Remediation
                 </h3>

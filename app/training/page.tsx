@@ -12,7 +12,8 @@
  */
 
 import { Metadata } from 'next';
-import { Award, BookOpen, Users, Zap, CheckCircle, ArrowRight } from 'lucide-react';
+import { Award, BookOpen, Users, Zap, ArrowRight } from 'lucide-react';
+import { VerifiedBadge, WaterDamage, FireSmoke, MouldRemediation, BioForensic } from '@/icons';
 
 export const metadata: Metadata = {
   title: 'IICRC Training & Certifications | NRPG',
@@ -58,7 +59,7 @@ export default function TrainingPage() {
           <div className="border-2 border-blue-200 rounded-xl p-8 hover:shadow-lg transition-shadow">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">💧</span>
+                <WaterDamage size="md" gradient="water" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Water Damage</h3>
             </div>
@@ -67,19 +68,19 @@ export default function TrainingPage() {
             </p>
             <div className="space-y-3 mb-6">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">48-hour response protocols</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Moisture detection & monitoring</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Drying techniques & equipment</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Insurance documentation</span>
               </div>
             </div>
@@ -95,7 +96,7 @@ export default function TrainingPage() {
           <div className="border-2 border-orange-200 rounded-xl p-8 hover:shadow-lg transition-shadow">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🔥</span>
+                <FireSmoke size="md" gradient="fire" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Fire & Smoke</h3>
             </div>
@@ -104,19 +105,19 @@ export default function TrainingPage() {
             </p>
             <div className="space-y-3 mb-6">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Smoke damage assessment</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Odour elimination</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Content restoration</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Structural assessment</span>
               </div>
             </div>
@@ -132,7 +133,7 @@ export default function TrainingPage() {
           <div className="border-2 border-green-200 rounded-xl p-8 hover:shadow-lg transition-shadow">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">🦠</span>
+                <MouldRemediation size="md" gradient="mould" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Mould Remediation</h3>
             </div>
@@ -141,19 +142,19 @@ export default function TrainingPage() {
             </p>
             <div className="space-y-3 mb-6">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Mould identification & growth</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Containment strategies</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Air quality monitoring</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Health & safety protocols</span>
               </div>
             </div>
@@ -169,7 +170,7 @@ export default function TrainingPage() {
           <div className="border-2 border-red-200 rounded-xl p-8 hover:shadow-lg transition-shadow">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                <span className="text-2xl">☣️</span>
+                <BioForensic size="md" gradient="bio" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Biohazard Cleaning</h3>
             </div>
@@ -178,19 +179,19 @@ export default function TrainingPage() {
             </p>
             <div className="space-y-3 mb-6">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Bloodborne pathogen training</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">PPE & safety protocols</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Biohazard disposal</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Trauma cleanup regulations</span>
               </div>
             </div>
@@ -215,19 +216,19 @@ export default function TrainingPage() {
             </p>
             <div className="space-y-3 mb-6">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Crime scene protocol</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Evidence preservation</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Advanced decontamination</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Law enforcement coordination</span>
               </div>
             </div>
@@ -252,19 +253,19 @@ export default function TrainingPage() {
             </p>
             <div className="space-y-3 mb-6">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Minimum 3 IICRC certifications</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">5+ years field experience</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Leadership certifications</span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="sm" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span className="text-sm">Continuing education requirement</span>
               </div>
             </div>

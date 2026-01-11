@@ -13,8 +13,9 @@
 import * as React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '../Button/Button';
-import { MessageSquare, Zap } from 'lucide-react';
+import { EmergencyAlert, ChatMessage } from '@/icons';
 import { EMERGENCY_PRICING } from '@/lib/design-tokens';
+import { cn } from '@/lib/utils';
 
 export interface EmergencyCTAProps {
   onlineHelpUrl?: string;
@@ -32,7 +33,7 @@ export function EmergencyCTA({
         <CardContent className="pt-6">
           <div className="flex items-center gap-4 mb-3">
             <div className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-              <Zap className="h-6 w-6 text-white" />
+              <EmergencyAlert size="lg" className="text-white" gradient="emergency" />
             </div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-red-600">🚨 EMERGENCY SERVICE</h3>
@@ -53,7 +54,7 @@ export function EmergencyCTA({
             className="w-full"
             onClick={() => window.location.href = onlineHelpUrl}
           >
-            <MessageSquare className="mr-2 h-5 w-5" />
+            <ChatMessage size="md" className="mr-2" />
             Request Emergency Service
           </Button>
         </CardContent>
@@ -75,14 +76,9 @@ export function StickyEmergencyCTA({ onlineHelpUrl = '/claim/step-1?pricing_disc
         className="w-full"
         onClick={() => window.location.href = onlineHelpUrl}
       >
-        <MessageSquare className="mr-2 h-5 w-5" />
+        <ChatMessage size="md" className="mr-2" />
         Request Emergency Service - {EMERGENCY_PRICING.display}
       </Button>
     </div>
   );
-}
-
-// Import cn utility if not exists
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
 }

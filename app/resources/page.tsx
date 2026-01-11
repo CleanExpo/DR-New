@@ -25,13 +25,10 @@ import {
   Clock,
   Filter,
   ArrowRight,
-  Droplet,
-  Flame,
-  Shield,
   Cloud,
-  AlertTriangle,
-  Biohazard
+  AlertTriangle
 } from 'lucide-react';
+import { WaterDamage, FireSmoke, MouldRemediation, BioForensic } from '@/icons';
 import { ResourceCard } from '@/components/resources/ResourceCard';
 import { FeaturedResourceCarousel } from '@/components/resources/FeaturedResourceCarousel';
 import { NewsletterSignup } from '@/components/resources/NewsletterSignup';
@@ -54,14 +51,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CATEGORY_ICONS: Record<DisasterCategory, React.ElementType> = {
-  'water-damage': Droplet,
-  'fire-damage': Flame,
-  'mold-remediation': Shield,
-  'storm-damage': Cloud,
-  'sewage-cleanup': AlertTriangle,
-  'biohazard-cleanup': Biohazard,
-};
+// Category icon mapping moved to render-time conditional
 
 export default function ResourcesPage() {
   const featuredResources = getFeaturedResources();
@@ -148,7 +138,6 @@ export default function ResourcesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.values(RESOURCE_CATEGORIES).map((category) => {
-              const Icon = CATEGORY_ICONS[category.id];
               const categoryResourceCount = SAMPLE_RESOURCES.filter(
                 (r) => r.category === category.id
               ).length;
@@ -162,7 +151,12 @@ export default function ResourcesPage() {
                   <Card className="h-full hover:shadow-lg transition-all hover:border-dr-education">
                     <CardHeader>
                       <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${category.gradient} mb-4`}>
-                        <Icon className="h-8 w-8 text-white" />
+                        {category.id === 'water-damage' && <WaterDamage size="lg" className="text-white" aria-hidden="true" />}
+                        {category.id === 'fire-damage' && <FireSmoke size="lg" className="text-white" aria-hidden="true" />}
+                        {category.id === 'mold-remediation' && <MouldRemediation size="lg" className="text-white" aria-hidden="true" />}
+                        {category.id === 'biohazard-cleanup' && <BioForensic size="lg" className="text-white" aria-hidden="true" />}
+                        {category.id === 'storm-damage' && <Cloud className="h-8 w-8 text-white" />}
+                        {category.id === 'sewage-cleanup' && <AlertTriangle className="h-8 w-8 text-white" />}
                       </div>
                       <CardTitle className="group-hover:text-dr-education transition-colors">
                         {category.name}

@@ -170,6 +170,57 @@ export const designTokens = {
     xl: '1280px',
     '2xl': '1536px',
   },
+
+  // Icon System (Custom NRPG disaster recovery icons)
+  iconSizes: {
+    // Standard UI icon sizes
+    xs: '12px',
+    sm: '16px',
+    md: '20px',
+    lg: '24px',
+    xl: '32px',
+    '2xl': '40px',
+    '3xl': '48px',
+
+    // Context-aware sizes
+    emergency: '40px',  // Large tap targets for crisis users
+    service: '64px',    // Service card icons
+    hero: '80px',       // Hero section icons
+  },
+
+  // Icon Gradients (Linear gradients for Modern SaaS aesthetic)
+  iconGradients: {
+    water: {
+      from: '#3B82F6',      // Blue
+      to: '#0EA5E9',        // Cyan
+      name: 'water-gradient',
+    },
+    fire: {
+      from: '#F97316',      // Orange
+      to: '#EF4444',        // Red
+      name: 'fire-gradient',
+    },
+    mould: {
+      from: '#22C55E',      // Green
+      to: '#10B981',        // Emerald
+      name: 'mould-gradient',
+    },
+    bio: {
+      from: '#EF4444',      // Red
+      to: '#DC2626',        // Dark Red
+      name: 'bio-gradient',
+    },
+    emergency: {
+      from: '#DC2626',      // Red
+      to: '#B91C1C',        // Dark Red
+      name: 'emergency-gradient',
+    },
+    primary: {
+      from: '#0047FF',      // NRPG Blue
+      to: '#0039CC',        // Darker Blue
+      name: 'primary-gradient',
+    },
+  } as const,
 } as const;
 
 // Emergency Contact - Email First (NEW)

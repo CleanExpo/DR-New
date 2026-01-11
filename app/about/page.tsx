@@ -1,6 +1,7 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Shield, Users, Award, Target, MapPin, Calendar, TrendingUp, Heart, Star, CheckCircle, Building2, Zap, Globe, Code, BarChart3, Smartphone } from "lucide-react"
+import { Users, Award, Target, MapPin, TrendingUp, Heart, Star, Building2, Zap, Globe, Code, BarChart3, Smartphone } from "lucide-react"
+import { VerifiedBadge, IICRCBadge, ScheduleCalendar } from "@/icons"
 
 export default function AboutPage() {
   return (
@@ -41,7 +42,7 @@ export default function AboutPage() {
           <section className="mb-16">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
-                <Shield className="h-12 w-12 text-[#00BFA6] mb-4" />
+                <IICRCBadge size="lg" gradient="primary" className="mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-2xl text-white mb-4">Our Mission</h3>
                 <p className="text-[#9CA3AF] leading-relaxed mb-4">
                   To revolutionize the restoration industry through our marketplace-as-a-service platform, providing transparency, reliability, and trust between clients and contractors through innovative technology solutions and automated workflows.
@@ -116,7 +117,7 @@ export default function AboutPage() {
                 <div className="flex items-start space-x-6">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 bg-[#00BFA6] rounded-full flex items-center justify-center">
-                      <Calendar className="h-6 w-6 text-[#0F1115]" />
+                      <ScheduleCalendar size="md" className="text-[#0F1115]" aria-hidden="true" />
                     </div>
                   </div>
                   <div>
@@ -246,7 +247,7 @@ export default function AboutPage() {
             <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Our Core Values</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] text-center">
-                <Shield className="h-12 w-12 text-[#00BFA6] mx-auto mb-4" />
+                <IICRCBadge size="lg" gradient="primary" className="mx-auto mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">Trust</h3>
                 <p className="text-[#9CA3AF] text-sm">
                   Building lasting relationships through transparency and reliability
@@ -280,7 +281,7 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-8 w-8 text-[#00BFA6] mt-1 flex-shrink-0" />
+                  <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <h4 className="font-semibold text-xl text-white mb-2">Verified Contractors</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
@@ -291,7 +292,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-8 w-8 text-[#2196F3] mt-1 flex-shrink-0" />
+                  <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <h4 className="font-semibold text-xl text-white mb-2">Quality Assurance</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
@@ -302,7 +303,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-8 w-8 text-[#00BFA6] mt-1 flex-shrink-0" />
+                  <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <h4 className="font-semibold text-xl text-white mb-2">Transparent Pricing</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
@@ -314,7 +315,7 @@ export default function AboutPage() {
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-8 w-8 text-[#2196F3] mt-1 flex-shrink-0" />
+                  <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <h4 className="font-semibold text-xl text-white mb-2">Insurance Support</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
@@ -324,7 +325,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-8 w-8 text-[#00BFA6] mt-1 flex-shrink-0" />
+                  <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <h4 className="font-semibold text-xl text-white mb-2">24/7 Emergency Response</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
@@ -334,7 +335,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <CheckCircle className="h-8 w-8 text-[#2196F3] mt-1 flex-shrink-0" />
+                  <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <h4 className="font-semibold text-xl text-white mb-2">Project Management</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
@@ -352,7 +353,7 @@ export default function AboutPage() {
             </h2>
             <div className="max-w-2xl mx-auto">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151] text-center">
-                <MapPin className="h-12 w-12 text-[#00BFA6] mb-6 mx-auto" />
+                <IICRCBadge size="lg" gradient="primary" className="mb-6 mx-auto" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-2xl text-white mb-4">Request Emergency Service</h3>
                 <p className="text-[#00BFA6] text-sm mb-4">Contact us for 24/7 emergency restoration</p>
                 <p className="text-[#9CA3AF] text-sm">Available 24/7 for emergency restoration services in major Australian cities</p>

@@ -1,7 +1,8 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Mail, Phone, Clock, MessageSquare, Users, Shield, Headphones, Globe, Zap, BarChart3, Smartphone } from "lucide-react"
+import { Mail, Phone, Clock, Users, Shield, Headphones, Globe, Zap, BarChart3, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { ChatMessage, PhoneCall } from "@/icons"
 
 export default function ContactPage() {
 
@@ -119,7 +120,7 @@ export default function ContactPage() {
                   ></textarea>
                 </div>
                 <Button className="w-full bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold py-3">
-                  <MessageSquare className="h-4 w-4 mr-2" />
+                  <ChatMessage size="sm" className="mr-2" aria-hidden="true" />
                   Send Message
                 </Button>
               </form>
@@ -129,7 +130,7 @@ export default function ContactPage() {
             <div className="space-y-8">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
                 <div className="flex items-center mb-4">
-                  <Phone className="h-6 w-6 text-[#00BFA6] mr-3" />
+                  <PhoneCall size="lg" className="mr-3" aria-hidden="true" />
                   <h3 className="font-poppins font-semibold text-xl text-white">Contact Form</h3>
                 </div>
                 <p className="text-[#9CA3AF] mb-2">General Inquiries</p>
@@ -222,11 +223,11 @@ export default function ContactPage() {
             <p className="text-[#9CA3AF] mb-6">For urgent platform issues or emergency restoration needs, our support team is available around the clock</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold">
-                <MessageSquare className="h-4 w-4 mr-2" />
+                <ChatMessage size="sm" className="mr-2" aria-hidden="true" />
                 Complete Intake Form
               </Button>
               <Button variant="outline" className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] bg-transparent">
-                <MessageSquare className="h-4 w-4 mr-2" />
+                <ChatMessage size="sm" className="mr-2" aria-hidden="true" />
                 Live Chat Support
               </Button>
             </div>

@@ -18,8 +18,9 @@
  */
 
 import { Metadata } from 'next';
-import { Search, MapPin, Clock, DollarSign, Filter, ChevronRight } from 'lucide-react';
+import { Search, MapPin, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { WaterDamage, FireSmoke, MouldRemediation, BioForensic } from '@/icons';
 
 export const metadata: Metadata = {
   title: 'Real Restoration Case Studies | NRPG',
@@ -222,8 +223,12 @@ export default async function CaseStudiesPage() {
 
               {/* Content */}
               <div className="p-6">
-                {/* Service Badge */}
-                <div className="mb-3">
+                {/* Service Badge with Icon */}
+                <div className="mb-3 flex items-center gap-2">
+                  {cs.serviceType === 'Water' && <WaterDamage size="md" gradient="water" aria-hidden="true" />}
+                  {cs.serviceType === 'Fire' && <FireSmoke size="md" gradient="fire" aria-hidden="true" />}
+                  {cs.serviceType === 'Mould' && <MouldRemediation size="md" gradient="mould" aria-hidden="true" />}
+                  {cs.serviceType === 'Bio' && <BioForensic size="md" gradient="bio" aria-hidden="true" />}
                   <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white bg-blue-600">
                     {SERVICE_TYPES.find(s => s.type === cs.serviceType)?.label}
                   </span>
@@ -294,9 +299,15 @@ export default async function CaseStudiesPage() {
 
               {/* Content */}
               <div className="p-6">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white bg-slate-600 mb-3">
-                  {SERVICE_TYPES.find(s => s.type === cs.serviceType)?.label}
-                </span>
+                <div className="mb-3 flex items-center gap-2">
+                  {cs.serviceType === 'Water' && <WaterDamage size="md" gradient="water" aria-hidden="true" />}
+                  {cs.serviceType === 'Fire' && <FireSmoke size="md" gradient="fire" aria-hidden="true" />}
+                  {cs.serviceType === 'Mould' && <MouldRemediation size="md" gradient="mould" aria-hidden="true" />}
+                  {cs.serviceType === 'Bio' && <BioForensic size="md" gradient="bio" aria-hidden="true" />}
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white bg-slate-600">
+                    {SERVICE_TYPES.find(s => s.type === cs.serviceType)?.label}
+                  </span>
+                </div>
 
                 <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
                   {cs.title}
