@@ -25,5 +25,9 @@ jobs:
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
           NEXTAUTH_URL: https://disaster-recovery-seven.vercel.app
           NODE_ENV: production
+          TWILIO_ACCOUNT_SID: ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          TWILIO_AUTH_TOKEN: dummy_token_for_build
+          TWILIO_PHONE_NUMBER: +61000000000
+          DATABASE_URL: postgresql://dummy:dummy@localhost/dummy
       - name: Deploy to Vercel
         run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --project-id=${{ secrets.VERCEL_PROJECT_ID }} --scope=${{ secrets.VERCEL_SCOPE }}
