@@ -58,7 +58,7 @@ export default function ClaimStep2Page() {
     trigger,
   } = useForm<LocationContactData>({
     resolver: zodResolver(locationContactSchema),
-    mode: 'onBlur', // Validate on blur for real-time feedback
+    mode: 'onChange', // Changed from 'onBlur' to validate as user types
     defaultValues: existingState?.step2 || {
       propertyAddress: '',
       suburb: '',
@@ -318,10 +318,10 @@ export default function ClaimStep2Page() {
                 variant="emergency-primary"
                 size="crisis"
                 loading={isLoading}
-                disabled={isLoading || Object.keys(errors).length > 0}
+                disabled={isLoading || !isValid}
                 icon={<ChevronRight className="h-5 w-5" />}
                 iconPosition="right"
-                title={Object.keys(errors).length > 0 ? 'Please fill in all required fields' : ''}
+                title={!isValid ? 'Please fill in all required fields' : ''}
               >
                 {isLoading ? 'Processing...' : 'Next: Damage Details'}
               </Button>

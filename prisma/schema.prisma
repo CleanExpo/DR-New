@@ -1370,6 +1370,58 @@ model InsuranceClaimAU {
 }
 
 // ============================================================================
+// PUBLIC CLAIM SUBMISSIONS (Pre-authenticated claim intake)
+// ============================================================================
+// Stores public claims submitted via the claim wizard before user authentication
+// These are later linked to authenticated insurance claims or converted to new claims
+
+model PublicClaim {
+  id String @id @default(cuid())
+
+  // Client Information
+  clientName    String
+  clientEmail   String
+  clientPhone   String
+  propertyAddress String
+  suburb        String
+  postcode      String
+
+  // Incident Details
+  disasterType  String
+  incidentDate  DateTime
+  isOngoing     Boolean @default(false)
+  isEmergency   Boolean @default(false)
+
+  // Damage Details
+  damageDescription String
+  hasInsurance  Boolean @default(false)
+  insuranceProvider String?
+  policyNumber  String?
+
+  // Assessment
+  priority      String @default("MEDIUM") // HIGH, MEDIUM, LOW
+  status        String @default("PENDING") // PENDING, REVIEWED, CONVERTED, DUPLICATE
+
+  // Conversion Tracking
+  convertedToClaimId String?
+  convertedToBookingId String?
+  conversionNotes    String?
+  convertedAt        DateTime?
+
+  // Audit Fields
+  submittedAt   DateTime @default(now())
+  reviewedAt    DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Indexes for efficient querying
+  @@index([clientEmail])
+  @@index([submittedAt])
+  @@index([status])
+  @@index([disasterType])
+}
+
+// ============================================================================
 // RATINGS & REVIEWS
 // ============================================================================
 

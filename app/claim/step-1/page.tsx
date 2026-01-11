@@ -49,12 +49,12 @@ export default function ClaimStep1Page() {
     trigger,
   } = useForm<TriageData>({
     resolver: zodResolver(triageSchema),
-    mode: 'onBlur', // Validate on blur to provide real-time feedback
+    mode: 'onChange', // Changed from 'onBlur' to validate as user types
     defaultValues: existingState?.step1 || {
-      disasterType: undefined,
+      disasterType: '', // Changed from undefined to empty string
       incidentDate: '',
-      isOngoing: undefined,
-      isEmergency: undefined,
+      isOngoing: 'no', // Changed from undefined to default value
+      isEmergency: 'no', // Changed from undefined to default value
     },
   });
 
@@ -258,10 +258,10 @@ export default function ClaimStep1Page() {
                 variant="emergency-primary"
                 size="crisis"
                 loading={isLoading}
-                disabled={isLoading || Object.keys(errors).length > 0}
+                disabled={isLoading || !isValid}
                 icon={<ChevronRight className="h-5 w-5" />}
                 iconPosition="right"
-                title={Object.keys(errors).length > 0 ? 'Please fill in all required fields' : ''}
+                title={!isValid ? 'Please fill in all required fields' : ''}
               >
                 {isLoading ? 'Processing...' : 'Next: Location & Contact'}
               </Button>
