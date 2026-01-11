@@ -180,6 +180,7 @@
     "react-instantsearch-dom": "^6.40.4",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.4",
+    "resend": "^6.7.0",
     "sharp": "^0.34.5",
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
