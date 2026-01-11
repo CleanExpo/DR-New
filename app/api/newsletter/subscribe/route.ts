@@ -83,10 +83,64 @@ export async function POST(request: NextRequest) {
       confirmationToken: generateConfirmationToken(),
     };
 
-    // TODO: Store subscription in database
-    // await prisma.newsletterSubscription.create({
-    //   data: subscription,
-    // });
+    // Store subscription in database
+    try {
+      const { prisma } = await import('@/lib/prisma');
+
+      // Check for existing subscription
+      const existingSubscriber = await prisma.newsletterSubscriber.findUnique({
+        where: { email: subscription.email },
+      });
+
+      if (existingSubscriber && existingSubscriber.isActive) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'This email is already subscribed to our newsletter',
+          },
+          { status: 409 }
+        );
+      }
+
+      // Create or update subscription
+      const savedSubscription = await prisma.newsletterSubscriber.upsert({
+        where: { email: subscription.email },
+        update: {
+          isActive: true,
+          confirmedAt: null,
+          confirmed: false,
+          confirmationToken: subscription.confirmationToken,
+          unsubscribedAt: null,
+          subscribedAt: new Date(),
+        },
+        create: {
+          email: subscription.email,
+          firstName: subscription.firstName,
+          lastName: subscription.lastName,
+          interests: subscription.interests,
+          source: subscription.source,
+          confirmed: false,
+          confirmationToken: subscription.confirmationToken,
+          isActive: true,
+        },
+      });
+
+      console.log('=== NEWSLETTER SUBSCRIPTION SAVED ===');
+      console.log('Email:', savedSubscription.email);
+      console.log('Name:', savedSubscription.firstName, savedSubscription.lastName);
+      console.log('Source:', savedSubscription.source);
+      console.log('Interests:', savedSubscription.interests);
+      console.log('======================================');
+    } catch (dbError) {
+      console.error('Database error saving newsletter subscription:', dbError);
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Failed to save subscription to database',
+        },
+        { status: 500 }
+      );
+    }
 
     // Subscribe to email service provider
     await subscribeToEmailService(subscription);

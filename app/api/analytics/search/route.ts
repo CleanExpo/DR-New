@@ -25,15 +25,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Store in database (optional - you may want to use a time-series DB or analytics service)
-    // For now, we'll just log it
-    console.log('[Analytics] Search event:', event);
+    // Store in database
+    try {
+      const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+                        request.headers.get('x-real-ip') ||
+                        'unknown';
 
-    // In production, you might want to:
-    // 1. Store in a time-series database (InfluxDB, TimescaleDB)
-    // 2. Send to analytics service (Google Analytics, Mixpanel)
-    // 3. Store in Algolia Analytics (already done via Insights API)
-    // 4. Store aggregated metrics in PostgreSQL
+      const savedAnalytics = await prisma.searchAnalytics.create({
+        data: {
+          query: event.query,
+          resultsCount: event.resultsCount || 0,
+          category: event.index || 'general', // Use index as category
+          userId: event.userId,
+          ipAddress,
+          searchedAt: new Date(event.timestamp || Date.now()),
+        },
+      });
+
+      console.log('=== SEARCH ANALYTICS TRACKED ===');
+      console.log('Search ID:', savedAnalytics.id);
+      console.log('Query:', event.query);
+      console.log('Results Count:', event.resultsCount);
+      console.log('Index/Category:', event.index);
+      console.log('User ID:', event.userId || 'Anonymous');
+      console.log('================================');
+    } catch (dbError) {
+      console.error('[Analytics] Database error storing search event:', dbError);
+      return NextResponse.json(
+        {
+          error: 'Failed to store search analytics to database',
+        },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
