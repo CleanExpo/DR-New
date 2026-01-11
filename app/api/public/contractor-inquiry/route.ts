@@ -28,6 +28,8 @@ import {
   APIError,
 } from '@/lib/api/error-handler';
 
+export const dynamic = 'force-dynamic';
+
 const prisma = new PrismaClient();
 
 // Strict rate limit for contractor inquiries
