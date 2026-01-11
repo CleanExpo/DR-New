@@ -15,6 +15,12 @@ import {
   matchContractorsToBooking,
   notifyContractorsOfNewJob,
 } from '@/lib/claim-intake';
+import {
+  emitBookingCreated,
+  emitContractorsAvailable,
+  emitContractorMatched,
+} from '@/lib/realtime/emit-handlers';
+import { prisma } from '@/lib/prisma';
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,20 +45,74 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Convert PublicClaim to Booking
+    // 3. Get the original PublicClaim
+    const publicClaim = await prisma.publicClaim.findUnique({
+      where: { id: publicClaimId },
+    });
+
+    if (!publicClaim) {
+      return NextResponse.json(
+        { error: 'Claim not found' },
+        { status: 404 }
+      );
+    }
+
+    // 4. Convert PublicClaim to Booking
     const convertedBooking = await convertPublicClaimToBooking(publicClaimId);
 
-    // 4. Match contractors
+    // 5. Match contractors
     const matches = await matchContractorsToBooking(convertedBooking.bookingId);
 
-    // 5. Notify matched contractors
+    // 6. Emit real-time events
+    try {
+      // Emit booking created event
+      await emitBookingCreated(
+        convertedBooking.bookingId,
+        publicClaimId,
+        convertedBooking.clientId,
+        convertedBooking.clientName,
+        publicClaim.disasterType,
+        `${publicClaim.suburb}, ${publicClaim.postcode}`,
+        parseFloat(publicClaim.priority || '1000'),
+        matches.length
+      );
+
+      // Emit contractors available event
+      if (matches.length > 0) {
+        await emitContractorsAvailable(
+          convertedBooking.bookingId,
+          matches.length,
+          matches.slice(0, 3).map((m) => ({
+            contractorId: m.contractorId,
+            businessName: m.businessName,
+            matchScore: m.matchScore,
+          }))
+        );
+      }
+
+      // Emit individual contractor matched events
+      for (const match of matches.slice(0, 5)) {
+        await emitContractorMatched(
+          convertedBooking.bookingId,
+          match.contractorId,
+          match.contractorName,
+          match.businessName,
+          match.matchScore
+        );
+      }
+    } catch (eventError) {
+      console.error('Failed to emit events:', eventError);
+      // Don't fail the request if event emission fails
+    }
+
+    // 7. Notify matched contractors
     const contractorIds = matches.map((m) => m.contractorId);
     const notifications = await notifyContractorsOfNewJob(
       convertedBooking.bookingId,
       contractorIds
     );
 
-    // 6. Log conversion for audit
+    // 8. Log conversion for audit
     console.log('=== CLAIM CONVERSION SUCCESSFUL ===');
     console.log('Public Claim ID:', publicClaimId);
     console.log('Booking ID:', convertedBooking.bookingId);
@@ -61,7 +121,7 @@ export async function POST(request: NextRequest) {
     console.log('Notifications sent:', notifications.successCount);
     console.log('Notifications failed:', notifications.failureCount);
 
-    // 7. Return success response
+    // 9. Return success response
     return NextResponse.json(
       {
         success: true,
