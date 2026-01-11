@@ -1,0 +1,346 @@
+'use client';
+
+import * as React from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import {
+  ChevronLeft,
+  AlertCircle,
+  CheckCircle,
+  Users,
+  MapPin,
+  Phone,
+  Mail,
+  Calendar,
+  TrendingUp,
+  Loader,
+} from 'lucide-react';
+import { Button } from '@/src/design-system/components/Button/Button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+
+interface PublicClaim {
+  id: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  propertyAddress: string;
+  suburb: string;
+  postcode: string;
+  disasterType: string;
+  incidentDate: string;
+  isOngoing: boolean;
+  isEmergency: boolean;
+  damageDescription: string;
+  hasInsurance: boolean;
+  insuranceProvider: string | null;
+  policyNumber: string | null;
+  priority: string;
+  submittedAt: string;
+}
+
+interface ContractorMatch {
+  contractorId: string;
+  contractorName: string;
+  businessName: string;
+  matchScore: number;
+  reason: string[];
+  rating: number;
+  completedJobs: number;
+}
+
+export default function ClaimDetailPage() {
+  const params = useParams();
+  const router = useRouter();
+  const claimId = params.claimId as string;
+
+  const [claim, setClaim] = React.useState<PublicClaim | null>(null);
+  const [matches, setMatches] = React.useState<ContractorMatch[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [converting, setConverting] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
+  // Load claim details
+  React.useEffect(() => {
+    const fetchClaim = async () => {
+      try {
+        const response = await fetch(`/api/admin/claims/convert?claimId=${claimId}`);
+        if (!response.ok) throw new Error('Failed to fetch claim');
+
+        const data = await response.json();
+        const claimData = data.claims?.find((c: PublicClaim) => c.id === claimId);
+
+        if (!claimData) throw new Error('Claim not found');
+
+        setClaim(claimData);
+        setError(null);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load claim');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (claimId) {
+      fetchClaim();
+    }
+  }, [claimId]);
+
+  // Convert claim and show matches
+  const handleConvertClaim = async () => {
+    setConverting(true);
+    try {
+      const response = await fetch('/api/admin/claims/convert', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ publicClaimId: claimId }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Conversion failed');
+      }
+
+      const result = await response.json();
+      setMatches(result.matches || []);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Conversion failed');
+    } finally {
+      setConverting(false);
+    }
+  };
+
+  const formatDate = (date: string) => {
+    return new Date(date).toLocaleString('en-AU', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader className="h-8 w-8 animate-spin text-gray-600" />
+      </div>
+    );
+  }
+
+  if (!claim) {
+    return (
+      <div className="space-y-6">
+        <Button variant="outline" onClick={() => router.back()}>
+          <ChevronLeft className="h-4 w-4" />
+          Back
+        </Button>
+        <Alert className="border-red-600 bg-red-50">
+          <AlertCircle className="h-5 w-5 text-red-600" />
+          <AlertDescription className="text-red-900">Claim not found</AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div>
+        <Button variant="outline" size="sm" onClick={() => router.back()}>
+          <ChevronLeft className="h-4 w-4" />
+          Back
+        </Button>
+        <h1 className="text-3xl font-bold text-gray-900 mt-4">{claim.clientName}</h1>
+        <p className="text-gray-600 mt-2">Claim ID: {claim.id}</p>
+      </div>
+
+      {/* Error Alert */}
+      {error && (
+        <Alert className="border-red-600 bg-red-50">
+          <AlertCircle className="h-5 w-5 text-red-600" />
+          <AlertDescription className="text-red-900">{error}</AlertDescription>
+        </Alert>
+      )}
+
+      <div className="grid grid-cols-3 gap-6">
+        {/* Main Content */}
+        <div className="col-span-2 space-y-6">
+          {/* Client Information */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Client Information</h2>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <Mail className="h-5 w-5 text-gray-600" />
+                <div>
+                  <p className="text-sm text-gray-600">Email</p>
+                  <p className="font-medium text-gray-900">{claim.clientEmail}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="h-5 w-5 text-gray-600" />
+                <div>
+                  <p className="text-sm text-gray-600">Phone</p>
+                  <p className="font-medium text-gray-900">{claim.clientPhone}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="h-5 w-5 text-gray-600" />
+                <div>
+                  <p className="text-sm text-gray-600">Property Address</p>
+                  <p className="font-medium text-gray-900">
+                    {claim.propertyAddress}, {claim.suburb} {claim.postcode}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Incident Details */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Incident Details</h2>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-600 uppercase font-medium">Disaster Type</p>
+                  <p className="text-lg font-semibold text-gray-900 capitalize mt-1">
+                    {claim.disasterType.replace('-', ' ')}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 uppercase font-medium">Date</p>
+                  <p className="text-lg font-semibold text-gray-900 mt-1">
+                    {formatDate(claim.incidentDate)}
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-600 uppercase font-medium">Ongoing</p>
+                  <p className="text-lg font-semibold text-gray-900 mt-1">
+                    {claim.isOngoing ? '🔴 Yes' : '✅ No'}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 uppercase font-medium">Emergency</p>
+                  <p className="text-lg font-semibold text-gray-900 mt-1">
+                    {claim.isEmergency ? '🚨 Yes' : '✅ No'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Damage Description */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Damage Description</h2>
+            <p className="text-gray-700 leading-relaxed">{claim.damageDescription}</p>
+          </div>
+
+          {/* Insurance Information */}
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Insurance Information</h2>
+            <div className="space-y-3">
+              <div>
+                <p className="text-sm text-gray-600 uppercase font-medium">Has Insurance</p>
+                <p className="text-lg font-semibold text-gray-900 mt-1">
+                  {claim.hasInsurance ? '✅ Yes' : '❌ No'}
+                </p>
+              </div>
+              {claim.hasInsurance && (
+                <>
+                  <div>
+                    <p className="text-sm text-gray-600 uppercase font-medium">Provider</p>
+                    <p className="text-lg font-semibold text-gray-900 mt-1">
+                      {claim.insuranceProvider || 'Not specified'}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 uppercase font-medium">Policy Number</p>
+                    <p className="text-lg font-semibold text-gray-900 mt-1">
+                      {claim.policyNumber || 'Not provided'}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Sidebar */}
+        <div className="space-y-6">
+          {/* Submission Info */}
+          <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Submission Info</h3>
+            <div className="space-y-3">
+              <div>
+                <p className="text-xs text-gray-600 uppercase font-medium">Submitted</p>
+                <p className="text-sm font-medium text-gray-900 mt-1">{formatDate(claim.submittedAt)}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-600 uppercase font-medium">Priority</p>
+                <div className="mt-1">
+                  <span className={`inline-block px-3 py-1 rounded-full font-semibold text-sm ${
+                    claim.priority === 'critical' ? 'bg-red-100 text-red-800' :
+                    claim.priority === 'urgent' ? 'bg-orange-100 text-orange-800' :
+                    'bg-blue-100 text-blue-800'
+                  }`}>
+                    {claim.priority.toUpperCase()}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Button */}
+          {matches.length === 0 && (
+            <Button
+              variant="emergency-primary"
+              size="lg"
+              onClick={handleConvertClaim}
+              loading={converting}
+              className="w-full"
+            >
+              <CheckCircle className="h-5 w-5 mr-2" />
+              Convert to Booking
+            </Button>
+          )}
+
+          {/* Matched Contractors */}
+          {matches.length > 0 && (
+            <div className="bg-white rounded-lg border border-gray-200 p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Users className="h-5 w-5 text-gray-600" />
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Matched Contractors ({matches.length})
+                </h3>
+              </div>
+              <div className="space-y-3">
+                {matches.slice(0, 5).map((match) => (
+                  <div key={match.contractorId} className="border border-gray-200 rounded-lg p-3">
+                    <div className="flex items-start justify-between mb-2">
+                      <div>
+                        <p className="font-semibold text-gray-900 text-sm">{match.businessName}</p>
+                        <p className="text-xs text-gray-600">{match.contractorName}</p>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <TrendingUp className="h-4 w-4 text-green-600" />
+                        <span className="text-sm font-bold text-green-600">{match.matchScore}</span>
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      ⭐ {match.rating}/5 • {match.completedJobs} jobs
+                    </div>
+                  </div>
+                ))}
+                {matches.length > 5 && (
+                  <p className="text-xs text-gray-600 text-center">
+                    +{matches.length - 5} more contractors
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
