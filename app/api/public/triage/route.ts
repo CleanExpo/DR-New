@@ -27,6 +27,8 @@ import {
   ValidationError,
 } from '@/lib/api/error-handler';
 
+export const dynamic = 'force-dynamic';
+
 const prisma = new PrismaClient();
 
 // Custom rate limit for triage (more lenient than lead capture)
