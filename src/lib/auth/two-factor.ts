@@ -32,10 +32,12 @@
  * ```
  */
 
-import { authenticator } from 'otplib';
+import * as OTPLib from 'otplib';
 import { toDataURL } from 'qrcode';
 import { createHash, randomBytes } from 'crypto';
 import { logError, logInfo, logWarn } from '@/lib/logger/helpers';
+
+const { authenticator } = OTPLib;
 
 export interface TOTPSetup {
   secret: string;
