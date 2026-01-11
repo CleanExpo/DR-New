@@ -228,3 +228,13 @@ export const getRedisSubscriber = () => redisManager.getSubscriber();
 export const getRedisPublisher = () => redisManager.getPublisher();
 export const redisHealthCheck = () => redisManager.healthCheck();
 export const closeRedisConnections = () => redisManager.closeAll();
+
+export const redis = {
+  getClient: getRedisClient,
+  getSubscriber: getRedisSubscriber,
+  getPublisher: getRedisPublisher,
+  healthCheck: redisHealthCheck,
+  closeAll: closeRedisConnections,
+};
+
+export { RedisConnectionManager };

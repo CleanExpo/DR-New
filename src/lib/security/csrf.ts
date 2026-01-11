@@ -289,3 +289,11 @@ export const csrfProtection = new CSRFProtection();
  * Export class for testing
  */
 export { CSRFProtection };
+
+export function generateCsrfToken(secret?: string): string {
+  return csrfProtection.generateToken();
+}
+
+export function verifyCsrfToken(token: string): boolean {
+  return csrfProtection.verifyToken(token);
+}
