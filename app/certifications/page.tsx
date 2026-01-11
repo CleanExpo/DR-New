@@ -11,7 +11,8 @@
  */
 
 import { Metadata } from 'next';
-import { Award, Shield, CheckCircle, Building2, Users, Zap } from 'lucide-react';
+import { Award, Shield, Building2, Users, Zap } from 'lucide-react';
+import { VerifiedBadge, IICRCBadge } from '@/icons';
 
 export const metadata: Metadata = {
   title: 'Certifications & Partnerships | NRPG',
@@ -44,35 +45,35 @@ export default function CertificationsPage() {
             <h3 className="text-2xl font-bold mb-6">Why IICRC Certification Matters</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="lg" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <div className="font-bold">International Standard</div>
                   <div className="text-sm text-gray-600">Recognized globally by insurance companies and regulatory bodies</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="lg" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <div className="font-bold">Rigorous Training</div>
                   <div className="text-sm text-gray-600">40+ hours of classroom training and hands-on assessment required</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="lg" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <div className="font-bold">Ongoing Education</div>
                   <div className="text-sm text-gray-600">Continuing education credits required annually to maintain certification</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="lg" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <div className="font-bold">Ethical Standards</div>
                   <div className="text-sm text-gray-600">Code of conduct ensures professional and customer-focused service</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 mt-0.5 flex-shrink-0" />
+                <VerifiedBadge size="lg" gradient="primary" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <div>
                   <div className="font-bold">Consumer Protection</div>
                   <div className="text-sm text-gray-600">Insurance and bonding requirements protect customers</div>

@@ -1,6 +1,7 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Shield, CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -12,6 +13,9 @@ export default function WaterDamagePillarPage() {
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <WaterDamage size="hero" gradient="water" aria-label="Water Damage Restoration" />
+            </div>
             <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
               IICRC S500
             </div>
@@ -63,7 +67,7 @@ export default function WaterDamagePillarPage() {
             
             <Link href="/services/water-damage/basement-flooding">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <WaterDamage size="lg" gradient="water" className="text-[#3B82F6] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Basement Flooding
                 </h3>
@@ -80,7 +84,7 @@ export default function WaterDamagePillarPage() {
 
             <Link href="/services/water-damage/burst-pipe-repair">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <WaterDamage size="lg" gradient="water" className="text-[#3B82F6] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Burst Pipe Repair
                 </h3>
@@ -97,7 +101,7 @@ export default function WaterDamagePillarPage() {
 
             <Link href="/services/water-damage/flood-restoration">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <WaterDamage size="lg" gradient="water" className="text-[#3B82F6] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Flood Restoration
                 </h3>
@@ -114,7 +118,7 @@ export default function WaterDamagePillarPage() {
 
             <Link href="/services/water-damage/ceiling-water-damage">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <WaterDamage size="lg" gradient="water" className="text-[#3B82F6] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Ceiling Water Damage
                 </h3>
@@ -131,7 +135,7 @@ export default function WaterDamagePillarPage() {
 
             <Link href="/services/water-damage/carpet-water-damage">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <WaterDamage size="lg" gradient="water" className="text-[#3B82F6] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Carpet Water Damage
                 </h3>
@@ -148,7 +152,7 @@ export default function WaterDamagePillarPage() {
 
             <Link href="/services/water-damage/commercial-water-damage">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <WaterDamage size="lg" gradient="water" className="text-[#3B82F6] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Commercial Water Damage
                 </h3>
@@ -165,7 +169,7 @@ export default function WaterDamagePillarPage() {
 
             <Link href="/services/water-damage/structural-drying">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <WaterDamage size="lg" gradient="water" className="text-[#3B82F6] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Structural Drying
                 </h3>

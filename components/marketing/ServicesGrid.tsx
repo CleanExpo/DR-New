@@ -17,12 +17,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { IICRCBadge } from '@/src/design-system';
+import { WaterDamage, FireSmoke, MouldRemediation, BioForensic } from '@/icons';
+
+type ServiceIconComponent = React.ComponentType<{ size?: string; gradient?: string; className?: string }>;
 
 interface ServiceCategory {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icon: ServiceIconComponent;
   image: string;
   iicrcCodes: string[];
   href: string;
@@ -34,7 +37,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
     id: 'water',
     title: 'Water & Flood Restoration',
     description: 'Emergency water extraction, structural drying, and flood damage recovery',
-    icon: '💧',
+    icon: WaterDamage,
     image: '/images/services/water-damage.jpg',
     iicrcCodes: ['S500'],
     href: '/services/water-flood-restoration',
@@ -44,7 +47,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
     id: 'fire',
     title: 'Fire & Smoke Remediation',
     description: 'Fire damage restoration, smoke odor removal, and structural cleaning',
-    icon: '🔥',
+    icon: FireSmoke,
     image: '/images/services/fire-smoke.jpg',
     iicrcCodes: ['FSRT'],
     href: '/services/fire-smoke-remediation',
@@ -54,7 +57,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
     id: 'mold',
     title: 'Mould & Air Quality',
     description: 'Professional mould remediation and indoor air quality restoration',
-    icon: '🦠',
+    icon: MouldRemediation,
     image: '/images/services/mould-remediation.jpg',
     iicrcCodes: ['S520'],
     href: '/services/mould-air-quality',
@@ -64,7 +67,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
     id: 'bio',
     title: 'Biohazard & Forensic Cleaning',
     description: 'Crime scene cleanup, trauma decontamination, and biohazard removal',
-    icon: '🧬',
+    icon: BioForensic,
     image: '/images/services/biohazard.jpg',
     iicrcCodes: ['S540'],
     href: '/services/bio-forensic-cleaning',
@@ -151,9 +154,12 @@ function ServiceCard({
 
         {/* Icon Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-7xl opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300">
-            {service.icon}
-          </span>
+          <service.icon
+            size="hero"
+            gradient={service.color === 'blue' ? 'water' : service.color === 'orange' ? 'fire' : service.color === 'green' ? 'mould' : 'bio'}
+            className="opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300"
+            aria-hidden="true"
+          />
         </div>
 
         {/* IICRC Badges - Top Right */}
@@ -211,7 +217,11 @@ export function ServicesGridCompact({ className = '' }: { className?: string }) 
           href={service.href}
           className="group flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
         >
-          <span className="text-2xl" aria-hidden="true">{service.icon}</span>
+          <service.icon
+            size="lg"
+            className="flex-shrink-0 text-slate-600 dark:text-slate-400"
+            aria-hidden="true"
+          />
           <div className="flex-1 min-w-0">
             <div className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
               {service.title}

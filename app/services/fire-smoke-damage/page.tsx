@@ -1,6 +1,7 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Shield, CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { FireSmoke } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -12,6 +13,9 @@ export default function FireSmokeDamagePillarPage() {
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <FireSmoke size="hero" gradient="fire" aria-label="Fire & Smoke Restoration" />
+            </div>
             <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
               IICRC FSRT
             </div>
@@ -63,7 +67,7 @@ export default function FireSmokeDamagePillarPage() {
             
             <Link href="/services/fire-smoke-damage/fire-damage-restoration">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <FireSmoke size="lg" gradient="fire" className="text-[#F97316] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Fire Damage Restoration
                 </h3>
@@ -80,7 +84,7 @@ export default function FireSmokeDamagePillarPage() {
 
             <Link href="/services/fire-smoke-damage/smoke-damage-restoration">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <FireSmoke size="lg" gradient="fire" className="text-[#F97316] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Smoke Damage Restoration
                 </h3>
@@ -97,7 +101,7 @@ export default function FireSmokeDamagePillarPage() {
 
             <Link href="/services/fire-smoke-damage/soot-removal">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <FireSmoke size="lg" gradient="fire" className="text-[#F97316] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Soot Removal
                 </h3>
@@ -114,7 +118,7 @@ export default function FireSmokeDamagePillarPage() {
 
             <Link href="/services/fire-smoke-damage/smoke-odor-removal">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <FireSmoke size="lg" gradient="fire" className="text-[#F97316] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Smoke Odor Removal
                 </h3>
@@ -131,7 +135,7 @@ export default function FireSmokeDamagePillarPage() {
 
             <Link href="/services/fire-smoke-damage/commercial-fire-damage">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <FireSmoke size="lg" gradient="fire" className="text-[#F97316] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Commercial Fire Damage
                 </h3>

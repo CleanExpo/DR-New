@@ -1,6 +1,7 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Shield, CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { BioForensic } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -12,6 +13,9 @@ export default function BiohazardCleanupPillarPage() {
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <BioForensic size="hero" gradient="bio" aria-label="Biohazard & Forensic Cleaning" />
+            </div>
             <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
               IICRC S540 / S800
             </div>
@@ -63,7 +67,7 @@ export default function BiohazardCleanupPillarPage() {
             
             <Link href="/services/biohazard-cleanup/crime-scene-cleanup">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <BioForensic size="lg" gradient="bio" className="text-[#EF4444] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Crime Scene Cleanup
                 </h3>
@@ -80,7 +84,7 @@ export default function BiohazardCleanupPillarPage() {
 
             <Link href="/services/biohazard-cleanup/trauma-cleanup">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <BioForensic size="lg" gradient="bio" className="text-[#EF4444] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Trauma Cleanup
                 </h3>
@@ -97,7 +101,7 @@ export default function BiohazardCleanupPillarPage() {
 
             <Link href="/services/biohazard-cleanup/meth-lab-decontamination">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <BioForensic size="lg" gradient="bio" className="text-[#EF4444] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Meth Lab Decontamination
                 </h3>
@@ -114,7 +118,7 @@ export default function BiohazardCleanupPillarPage() {
 
             <Link href="/services/biohazard-cleanup/sewage-cleanup">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <BioForensic size="lg" gradient="bio" className="text-[#EF4444] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Sewage Cleanup
                 </h3>
@@ -131,7 +135,7 @@ export default function BiohazardCleanupPillarPage() {
 
             <Link href="/services/biohazard-cleanup/hoarding-cleanup">
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
-                <CheckCircle className="h-8 w-8 text-[#00BFA6] mb-4" />
+                <BioForensic size="lg" gradient="bio" className="text-[#EF4444] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
                   Hoarding Cleanup
                 </h3>
