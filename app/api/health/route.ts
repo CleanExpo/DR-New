@@ -2,15 +2,18 @@
  * Health Check Endpoint - GET /api/health
  *
  * Simple health check for monitoring and uptime checks.
- * Does NOT require database connection to respond.
- * Updated: 2026-01-13 - Force clean rebuild
+ * Updated: 2026-01-13 - Added auth imports to match working routes
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { prisma } from '@/lib/prisma';
+import { authOptions } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Health check - always responds, no auth required
   const response = {
     status: 'healthy',
     timestamp: new Date().toISOString(),
