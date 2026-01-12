@@ -1,8 +1,13 @@
 {
-  "buildCommand": "NODE_OPTIONS='--max-old-space-size=4096' npm run build",
+  "buildCommand": "npm run build",
   "framework": "nextjs",
   "installCommand": "npm ci --legacy-peer-deps",
   "outputDirectory": ".next",
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=4096"
+    }
+  },
 
   "headers": [
     {
