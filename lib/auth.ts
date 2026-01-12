@@ -5,17 +5,31 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { randomInt } from 'crypto';
+import { validateSecrets } from '@/lib/config/secrets-validation';
+
+// Validate all critical secrets at module load time
+// This ensures the app fails fast if required secrets are missing
+validateSecrets();
 
 const JWT_SECRET =
   process.env.JWT_SECRET ||
   process.env.NEXTAUTH_SECRET ||
   (process.env.NODE_ENV === 'test' ? 'test-only-jwt-secret' : undefined);
 
-// Validate NEXTAUTH_SECRET exists in production
-if (!process.env.NEXTAUTH_SECRET && process.env.NODE_ENV === 'production') {
-  console.error('CRITICAL: NEXTAUTH_SECRET is not set in production environment');
-  console.error('This will cause session initialization to fail and dashboard to display infinite loading');
-  console.error('Please set NEXTAUTH_SECRET in your Vercel environment variables');
+// Validate NEXTAUTH_SECRET exists - CRITICAL for security
+// This validation runs at startup to catch configuration errors early
+if (!process.env.NEXTAUTH_SECRET) {
+  const errorMessage =
+    process.env.NODE_ENV === 'production'
+      ? 'CRITICAL: NEXTAUTH_SECRET environment variable is not set. This is required for secure session management. Please set NEXTAUTH_SECRET in your production environment (e.g., Vercel secrets).'
+      : 'WARNING: NEXTAUTH_SECRET not set. Sessions will use default insecure behavior in development. Set NEXTAUTH_SECRET for secure session handling.';
+
+  if (process.env.NODE_ENV === 'production') {
+    // FAIL FAST in production - don't allow app to start without NEXTAUTH_SECRET
+    throw new Error(errorMessage);
+  } else {
+    console.warn(errorMessage);
+  }
 }
 
 function requireJwtSecret(): string {
