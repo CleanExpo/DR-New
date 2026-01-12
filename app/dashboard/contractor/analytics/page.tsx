@@ -1,282 +1,318 @@
 'use client';
 
-/**
- * Contractor Analytics Dashboard
- *
- * Individual contractor performance metrics and insights
- * Shows job history, ratings, revenue, and specializations
- */
+import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-import React, { useState, useEffect } from 'react';
-import { LineChart } from '@/components/charts/LineChart';
-import { BarChart } from '@/components/charts/BarChart';
-import { PieChart } from '@/components/charts/PieChart';
-import { Sparkline } from '@/components/charts/Sparkline';
-import { TrendIndicator } from '@/components/visualizations/TrendIndicator';
-import { TimeSeriesPoint, CategoryPoint, PieData } from '@/lib/charts/chart-types';
-import { chartColors } from '@/lib/charts/chart-config';
-import { Star, Clock, DollarSign, AlertCircle } from 'lucide-react';
+interface ContractorAnalyticsData {
+  success: boolean;
+  overview: {
+    totalEarnings: number;
+    monthlyEarnings: number;
+    averagePerJob: number;
+    completedJobs: number;
+    activeJobs: number;
+  };
+  performance: {
+    averageRating: number;
+    ratingsCount: number;
+    acceptanceRate: number;
+    completionRate: number;
+  };
+  earnings: {
+    byServiceType: Array<{
+      serviceType: string;
+      amount: number;
+      count: number;
+    }>;
+    pendingPayouts: number;
+    lastPayoutDate: string | null;
+  };
+}
 
-export default function ContractorAnalyticsDashboardPage() {
-  const [revenueData, setRevenueData] = useState<TimeSeriesPoint[]>([]);
-  const [jobCompletionData, setJobCompletionData] = useState<CategoryPoint[]>([]);
-  const [specializationData, setSpecializationData] = useState<PieData[]>([]);
-  const [ratingTrend, setRatingTrend] = useState<number[]>([]);
-  const [responseTimes, setResponseTimes] = useState<number[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function ContractorAnalyticsDashboard() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<ContractorAnalyticsData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // Load mock data
   useEffect(() => {
-    setIsLoading(true);
+    // Redirect if not authenticated
+    if (status === 'unauthenticated') {
+      router.push('/auth/login');
+    } else if (status === 'authenticated') {
+      const user = session?.user as any;
+      if (user.role !== 'CONTRACTOR') {
+        router.push('/dashboard');
+      } else {
+        fetchDashboardData();
+      }
+    }
+  }, [status, session, router]);
 
-    // Revenue by month
-    const today = new Date();
-    const revenue = Array.from({ length: 12 }, (_, i) => ({
-      date: new Date(today.getFullYear(), i, 1),
-      value: Math.floor(Math.random() * 10000) + 20000 + i * 500,
-    }));
+  const fetchDashboardData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-    // Jobs by type
-    const jobsByType: CategoryPoint[] = [
-      { category: 'Water Damage', value: 45 },
-      { category: 'Fire Restoration', value: 32 },
-      { category: 'Mold Remediation', value: 28 },
-      { category: 'Biohazard', value: 8 },
-    ];
+      const response = await fetch('/api/contractor/analytics/dashboard');
 
-    // Specialization breakdown
-    const specializations: PieData[] = [
-      { name: 'Water Damage', value: 45, color: chartColors.services.water },
-      { name: 'Fire Restoration', value: 32, color: chartColors.services.fire },
-      { name: 'Mold Remediation', value: 28, color: chartColors.services.mold },
-      { name: 'Biohazard', value: 8, color: chartColors.services.biohazard },
-    ];
+      if (!response.ok) {
+        throw new Error('Failed to fetch dashboard data');
+      }
 
-    // Rating trend (0-5 scale)
-    const ratings = Array.from({ length: 30 }, () => Math.random() * 0.5 + 4.2);
+      const dashboardData = await response.json();
+      setData(dashboardData);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error');
+      console.error('Error fetching dashboard data:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    // Response times (minutes)
-    const times = Array.from({ length: 24 }, () => Math.random() * 10 + 15);
-
-    setRevenueData(revenue);
-    setJobCompletionData(jobsByType);
-    setSpecializationData(specializations);
-    setRatingTrend(ratings);
-    setResponseTimes(times);
-    setIsLoading(false);
-  }, []);
-
-  if (isLoading) {
+  if (status === 'loading' || loading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2 mb-8"></div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="h-32 bg-gray-200 rounded"></div>
-              ))}
-            </div>
-          </div>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading your analytics...</p>
         </div>
       </div>
     );
   }
 
+  if (!session || (session.user as any).role !== 'CONTRACTOR') {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-red-600">Unauthorized access</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-2xl">
-              👨‍🔧
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">John Smith</h1>
-              <p className="text-gray-600">IICRC Professional • Sydney, NSW</p>
-            </div>
-          </div>
+          <h1 className="text-3xl font-bold text-gray-900">Your Analytics</h1>
+          <p className="text-gray-600 mt-2">Track your earnings, performance, and job metrics</p>
         </div>
 
-        {/* Key Metrics */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-yellow-100 rounded-lg">
-                <Star className="h-5 w-5 text-yellow-600" />
+        {/* Error Alert */}
+        {error && (
+          <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
+            <p className="font-medium">Error</p>
+            <p className="text-sm">{error}</p>
+          </div>
+        )}
+
+        {data && !error && (
+          <>
+            {/* Earnings Overview Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+              {/* Total Earnings Card */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <p className="text-gray-600 text-sm font-medium">Total Earnings</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  ${data.overview.totalEarnings.toLocaleString('en-AU', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </p>
+                <p className="text-xs text-gray-600 mt-1">All-time earnings</p>
               </div>
-              <span className="text-sm font-medium text-gray-700">Average Rating</span>
-            </div>
-            <p className="text-2xl font-bold text-gray-900">4.8/5.0</p>
-            <p className="text-xs text-gray-600">Based on 127 reviews</p>
-          </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <Clock className="h-5 w-5 text-blue-600" />
+              {/* This Month Card */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <p className="text-gray-600 text-sm font-medium">This Month</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  ${data.overview.monthlyEarnings.toLocaleString('en-AU', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </p>
+                <p className="text-xs text-gray-600 mt-1">Current month earnings</p>
               </div>
-              <span className="text-sm font-medium text-gray-700">Avg Response</span>
-            </div>
-            <p className="text-2xl font-bold text-gray-900">18 min</p>
-            <div className="mt-2">
-              <Sparkline
-                data={responseTimes}
-                width={200}
-                height={30}
-                color={chartColors.primary}
-                showCurve={true}
-                showDots={false}
-              />
-            </div>
-          </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-green-100 rounded-lg">
-                <DollarSign className="h-5 w-5 text-green-600" />
+              {/* Average Per Job Card */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <p className="text-gray-600 text-sm font-medium">Avg Per Job</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">
+                  ${data.overview.averagePerJob.toLocaleString('en-AU', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                </p>
+                <p className="text-xs text-gray-600 mt-1">Average job value</p>
               </div>
-              <span className="text-sm font-medium text-gray-700">Month Revenue</span>
-            </div>
-            <p className="text-2xl font-bold text-gray-900">$24,500</p>
-            <p className="text-xs text-green-600">+15% vs last month</p>
-          </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2 bg-purple-100 rounded-lg">
-                <AlertCircle className="h-5 w-5 text-purple-600" />
+              {/* Completed Jobs Card */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <p className="text-gray-600 text-sm font-medium">Completed Jobs</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">{data.overview.completedJobs}</p>
+                <p className="text-xs text-gray-600 mt-1">Total completed</p>
               </div>
-              <span className="text-sm font-medium text-gray-700">Jobs (30d)</span>
-            </div>
-            <p className="text-2xl font-bold text-gray-900">113</p>
-            <p className="text-xs text-gray-600">Completion rate: 98.2%</p>
-          </div>
-        </div>
 
-        {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {/* Revenue Trend */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Monthly Revenue</h2>
-            <LineChart
-              data={revenueData}
-              color={chartColors.success}
-              showDots={true}
-              dotSize={4}
-              showGrid={true}
-              xAxisLabel="Month"
-              yAxisLabel="Revenue (AUD)"
-              height={300}
-            />
-          </div>
-
-          {/* Rating Trend */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Rating Trend (30 Days)</h2>
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <p className="text-3xl font-bold text-gray-900">4.8</p>
-                <p className="text-sm text-yellow-600">Based on latest reviews</p>
+              {/* Active Jobs Card */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <p className="text-gray-600 text-sm font-medium">Active Jobs</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">{data.overview.activeJobs}</p>
+                <p className="text-xs text-gray-600 mt-1">In progress</p>
               </div>
-              <Sparkline
-                data={ratingTrend}
-                width={150}
-                height={50}
-                color={chartColors.primary}
-                showCurve={true}
-                showDots={false}
-              />
             </div>
-          </div>
 
-          {/* Jobs by Type */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Jobs by Type</h2>
-            <BarChart
-              data={jobCompletionData}
-              color={chartColors.primary}
-              showValue={true}
-              orientation="vertical"
-              yAxisLabel="Jobs Completed"
-            />
-          </div>
+            {/* Performance & Payout Status */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              {/* Performance Metrics */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <h2 className="text-lg font-bold text-gray-900 mb-4">Performance Metrics</h2>
+                <div className="space-y-4">
+                  {/* Average Rating */}
+                  <div className="border-b pb-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-gray-600 font-medium">Average Rating</span>
+                      <span className="text-2xl font-bold text-yellow-500">
+                        {data.performance.averageRating.toFixed(1)}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-5 h-5 ${
+                            i < Math.round(data.performance.averageRating) ? 'text-yellow-400' : 'text-gray-300'
+                          }`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-xs text-gray-600 mt-2">Based on {data.performance.ratingsCount} ratings</p>
+                  </div>
 
-          {/* Specialization */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Specialization Breakdown</h2>
-            <PieChart
-              data={specializationData}
-              showPercentage={true}
-              showLegend={true}
-            />
-          </div>
-        </div>
+                  {/* Acceptance Rate */}
+                  <div className="border-b pb-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-600 font-medium">Acceptance Rate</span>
+                      <span className="text-xl font-bold text-gray-900">
+                        {data.performance.acceptanceRate.toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-green-600 h-2 rounded-full"
+                        style={{ width: `${data.performance.acceptanceRate}%` }}
+                      ></div>
+                    </div>
+                  </div>
 
-        {/* Performance Trends */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h3>
-            <div className="space-y-4">
-              <TrendIndicator
-                current={95}
-                previous={92}
-                label="Completion Rate"
-                format="percent"
-                higherIsBetter={true}
-              />
-              <TrendIndicator
-                current={18}
-                previous={22}
-                label="Avg Response Time"
-                unit="minutes"
-                format="number"
-                higherIsBetter={false}
-              />
-              <TrendIndicator
-                current={24500}
-                previous={21300}
-                label="Monthly Revenue"
-                format="currency"
-                higherIsBetter={true}
-              />
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Certifications</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-3">
-                <span className="text-lg">✓</span>
-                <div>
-                  <p className="font-medium text-gray-900">IICRC Professional</p>
-                  <p className="text-xs text-gray-600">Expires: Jun 30, 2025</p>
+                  {/* Completion Rate */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-600 font-medium">Completion Rate</span>
+                      <span className="text-xl font-bold text-gray-900">
+                        {data.performance.completionRate.toFixed(1)}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-blue-600 h-2 rounded-full"
+                        style={{ width: `${data.performance.completionRate}%` }}
+                      ></div>
+                    </div>
+                  </div>
                 </div>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="text-lg">✓</span>
-                <div>
-                  <p className="font-medium text-gray-900">Water Damage Specialist</p>
-                  <p className="text-xs text-gray-600">Expires: Dec 15, 2025</p>
-                </div>
-              </li>
-              <li className="flex items-center gap-3">
-                <span className="text-lg">✓</span>
-                <div>
-                  <p className="font-medium text-gray-900">Mold Remediation Expert</p>
-                  <p className="text-xs text-gray-600">Expires: Mar 30, 2026</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+              </div>
 
-        {/* Footer */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-900">
-          <p><strong>Last updated:</strong> {new Date().toLocaleString('en-AU')}</p>
-        </div>
+              {/* Payout Status */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <h2 className="text-lg font-bold text-gray-900 mb-4">Payout Status</h2>
+                <div className="space-y-4">
+                  {/* Pending Payouts */}
+                  <div className="border-b pb-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-gray-600 font-medium">Pending Payouts</span>
+                      <span className="text-2xl font-bold text-gray-900">
+                        ${data.earnings.pendingPayouts.toLocaleString('en-AU', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
+                    </div>
+                    {data.earnings.pendingPayouts > 0 ? (
+                      <div className="bg-yellow-50 border border-yellow-200 rounded p-3 text-sm text-yellow-800">
+                        <p className="font-medium">Awaiting processing</p>
+                        <p className="text-xs mt-1">Payouts typically process within 3-5 business days</p>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-600">No pending payouts</p>
+                    )}
+                  </div>
+
+                  {/* Last Payout */}
+                  <div>
+                    <span className="text-gray-600 font-medium block mb-2">Last Payout</span>
+                    {data.earnings.lastPayoutDate ? (
+                      <p className="text-lg font-semibold text-gray-900">
+                        {new Date(data.earnings.lastPayoutDate).toLocaleDateString('en-AU', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </p>
+                    ) : (
+                      <p className="text-sm text-gray-600">No payouts yet</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Earnings by Service Type */}
+            <div className="bg-white rounded-lg shadow p-6 mb-8">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">Earnings by Service Type</h2>
+              {data.earnings.byServiceType.length > 0 ? (
+                <div className="space-y-3">
+                  {data.earnings.byServiceType.map((item, idx) => (
+                    <div key={idx} className="flex justify-between items-center pb-3 border-b last:border-b-0">
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">{item.serviceType}</p>
+                        <p className="text-xs text-gray-600">{item.count} job{item.count !== 1 ? 's' : ''}</p>
+                      </div>
+                      <span className="font-bold text-gray-900">
+                        ${item.amount.toLocaleString('en-AU', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-gray-600">No earnings data available</p>
+              )}
+            </div>
+
+            {/* Detailed Analytics Link */}
+            <div className="mb-8">
+              <Link
+                href="/dashboard/contractor/analytics/performance"
+                className="block bg-white hover:bg-gray-50 border border-gray-300 rounded-lg p-6 transition-colors"
+              >
+                <p className="text-lg font-bold text-gray-900">Detailed Performance Analysis</p>
+                <p className="text-sm text-gray-600 mt-2">
+                  View rating distribution, monthly trends, completion time metrics, and historical data
+                </p>
+                <p className="text-xs text-blue-600 mt-3 font-medium">View Details →</p>
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
