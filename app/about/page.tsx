@@ -1,6 +1,6 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Users, Award, Target, MapPin, TrendingUp, Heart, Star, Building2, Zap, Globe, Code, BarChart3, Smartphone } from "lucide-react"
+import { Users, Award, Target, MapPin, TrendingUp, Heart, Star, Building2, Zap, Globe, Code, BarChart3, Smartphone, Shield } from "lucide-react"
 import { VerifiedBadge, IICRCBadge, ScheduleCalendar } from "@/icons"
 
 export default function AboutPage() {
