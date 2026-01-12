@@ -3,6 +3,7 @@
  *
  * Simple health check for monitoring and uptime checks.
  * Does NOT require database connection to respond.
+ * Updated: 2026-01-13 - Force clean rebuild
  */
 
 import { NextResponse } from 'next/server';
