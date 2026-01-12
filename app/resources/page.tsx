@@ -43,7 +43,7 @@ import { DisasterCategory, ContentType } from '@/lib/resources/types';
 
 export const metadata: Metadata = {
   title: 'Resource Hub | Disaster Recovery Education & Guides',
-  description: 'Comprehensive disaster recovery resources including articles, guides, videos, and tools for water damage, fire restoration, mold remediation, and more.',
+  description: 'Comprehensive disaster recovery resources including articles, guides, videos, and tools for water damage, fire restoration, mould remediation, and more.',
   openGraph: {
     title: 'Resource Hub | Disaster Recovery Education',
     description: 'Expert guides and resources for disaster recovery professionals',
@@ -77,7 +77,7 @@ export default function ResourcesPage() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
               <Input
                 type="search"
-                placeholder="Search resources... (e.g., 'water damage restoration', 'mold remediation')"
+                placeholder="Search resources... (e.g., 'water damage restoration', 'mould remediation')"
                 className="pl-12 pr-4 py-6 text-lg bg-white text-gray-900"
               />
               <Button
@@ -98,7 +98,7 @@ export default function ResourcesPage() {
                 Fire Restoration
               </Button>
               <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-                Mold Remediation
+                Mould Remediation
               </Button>
               <Button variant="outline" size="sm" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
                 IICRC Standards

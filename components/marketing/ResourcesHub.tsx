@@ -69,8 +69,8 @@ const FEATURED_RESOURCES: Resource[] = [
   {
     id: 'mold-prevention',
     type: 'guide',
-    title: 'Mold Prevention Guide',
-    description: 'Keep your property mold-free with these expert tips',
+    title: 'Mould Prevention Guide',
+    description: 'Keep your property mould-free with these expert tips',
     icon: '🦠',
     href: '/resources/mold-prevention',
     readTime: '6 min',
