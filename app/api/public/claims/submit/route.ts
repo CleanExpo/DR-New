@@ -14,6 +14,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
 import { completeClaimSchema, calculatePriority } from '@/lib/claim-wizard/types';
+import { verifyCaptcha } from '@/lib/services/captcha.service';
 
 // Initialize Resend email service
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -58,15 +59,11 @@ function checkRateLimit(key: string): { allowed: boolean; remainingRequests: num
   return { allowed: true, remainingRequests: RATE_LIMIT_MAX_REQUESTS - record.count };
 }
 
-// ============================================================================
-// CAPTCHA Verification (Mock)
-// ============================================================================
-
-async function verifyCaptcha(token: string): Promise<boolean> {
-  // In production, verify with hCaptcha or reCAPTCHA API
-  // For demo, accept any token that looks valid
-  return token.startsWith('captcha_') && token.length > 20;
-}
+// Note: CAPTCHA verification is now handled by the captcha.service.ts
+// The verifyCaptcha function is imported from there and handles:
+// - Production: Always requires valid hCaptcha token
+// - Development: Uses hCaptcha if configured, otherwise logs warning
+// - Testing: Allows test tokens only in test environment
 
 // ============================================================================
 // Email Notification Service
