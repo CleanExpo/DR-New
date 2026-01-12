@@ -2,23 +2,25 @@
  * NRPG Contractor Join Page - CONTRACTOR PORTAL ONLY
  *
  * This page is for contractors to join the NRPG network.
- * It is separate from the public Disaster Recovery Australia website (/app/page.tsx)
+ * It is separate from the public Disaster Recovery Australia website.
+ *
+ * Header and footer are provided by the (contractor) layout.
  */
 
-'use client';
+'use client'
 
-import React from 'react';
+import React from 'react'
+import { ContractorHero } from '@/src/components/contractor/sections/ContractorHero'
 import {
-  JoinNRPGSection,
   ROICalculator,
   InsurancePartners,
-} from '@/components/marketing';
+} from '@/components/marketing'
 
 export default function ContractorJoinPage() {
   return (
     <main className="min-h-screen">
-      {/* Premium Network Hero Section */}
-      <JoinNRPGSection variant="detailed" />
+      {/* Premium Network Hero Section with Metrics */}
+      <ContractorHero />
 
       {/* Interactive Income Calculator */}
       <ROICalculator />
@@ -30,6 +32,5 @@ export default function ContractorJoinPage() {
         </div>
       </section>
     </main>
-  );
+  )
 }
-

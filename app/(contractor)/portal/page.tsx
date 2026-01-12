@@ -7,6 +7,9 @@
  *
  * Public clients should visit: / (Disaster Recovery Australia homepage)
  * Contractors who aren't members: /contractor/join (NRPG onboarding)
+ *
+ * NOTE: This page now lives in (contractor) route group.
+ * Header/footer provided by (contractor)/layout.tsx
  */
 
 'use client';
@@ -56,4 +59,3 @@ export default function ContractorPortalPage() {
     </div>
   );
 }
-
