@@ -175,16 +175,26 @@ export function addRateLimitHeaders(
 
 /**
  * Production-ready Redis rate limiter (Upstash)
- * Uncomment and configure when deploying to production
+ * ENABLED FOR PRODUCTION - Uses distributed rate limiting via Upstash Redis
+ *
+ * For production deployments, ensure these environment variables are set:
+ * - UPSTASH_REDIS_REST_URL
+ * - UPSTASH_REDIS_REST_TOKEN
  */
-/*
+
 import { Redis } from '@upstash/redis';
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
+const redis = process.env.UPSTASH_REDIS_REST_URL
+  ? new Redis({
+      url: process.env.UPSTASH_REDIS_REST_URL!,
+      token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+    })
+  : null;
 
+/**
+ * Redis-based rate limiting for production
+ * Fails open (allows request) if Redis is unavailable
+ */
 export async function redisRateLimit(
   config: RateLimitConfig & { identifier: string }
 ) {
@@ -192,38 +202,47 @@ export async function redisRateLimit(
   const key = `rate-limit:${identifier}`;
   const now = Date.now();
 
-  // Increment counter
-  const count = await redis.incr(key);
+  try {
+    if (!redis) {
+      throw new Error('Redis not configured');
+    }
 
-  // Set expiry on first request
-  if (count === 1) {
-    await redis.pexpire(key, windowMs);
-  }
+    // Increment counter
+    const count = await redis.incr(key);
 
-  // Get TTL
-  const ttl = await redis.pttl(key);
-  const resetTime = now + (ttl > 0 ? ttl : windowMs);
+    // Set expiry on first request
+    if (count === 1) {
+      await redis.pexpire(key, windowMs);
+    }
 
-  if (count > maxRequests) {
-    const retryAfter = Math.ceil(ttl / 1000);
+    // Get TTL
+    const ttl = await redis.pttl(key);
+    const resetTime = now + (ttl > 0 ? ttl : windowMs);
 
-    return NextResponse.json(
-      {
-        error: 'Too many requests',
-        retryAfter,
-      },
-      {
-        status: 429,
-        headers: {
-          'Retry-After': retryAfter.toString(),
-          'X-RateLimit-Limit': maxRequests.toString(),
-          'X-RateLimit-Remaining': '0',
-          'X-RateLimit-Reset': new Date(resetTime).toISOString(),
+    if (count > maxRequests) {
+      const retryAfter = Math.ceil(ttl / 1000);
+
+      return NextResponse.json(
+        {
+          error: 'Too many requests',
+          retryAfter,
         },
-      }
-    );
-  }
+        {
+          status: 429,
+          headers: {
+            'Retry-After': retryAfter.toString(),
+            'X-RateLimit-Limit': maxRequests.toString(),
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(resetTime).toISOString(),
+          },
+        }
+      );
+    }
 
-  return null;
+    return null;
+  } catch (error) {
+    // Fail open - if Redis is unavailable, allow the request
+    console.error('Redis rate limit check failed:', error);
+    return null;
+  }
 }
-*/
