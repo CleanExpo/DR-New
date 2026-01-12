@@ -222,6 +222,10 @@ model User {
   lockedUntil         DateTime?               // When account will be unlocked (30 min after 5 failed attempts)
   lastFailedLoginAt   DateTime?               // Timestamp of last failed login attempt
 
+  // Password Rotation Policy
+  lastPasswordChangeAt DateTime?              // When password was last changed (for 90-day rotation)
+  passwordHistory      String[]   @default([]) // History of old password hashes (prevent reuse)
+
   // Two-Factor Authentication (2FA)
   twoFactorSecret       String?   // TOTP secret key
   twoFactorEnabled      Boolean   @default(false)

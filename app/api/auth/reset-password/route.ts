@@ -4,6 +4,7 @@ import { hashPassword, generateResetToken, verifyToken } from '@/lib/auth';
 import { findUserByEmail, prisma } from '@/lib/db';
 import { validateRequest, formatZodErrors, passwordSchema } from '@/lib/validation';
 import { authRateLimiter } from '@/lib/api/redis-rate-limit';
+import { updatePasswordWithHistory, isPasswordAlreadyUsed } from '@/lib/services/password-policy.service';
 
 const requestResetSchema = z.object({
   email: z.string().email(),
@@ -125,17 +126,33 @@ export async function PUT(request: NextRequest) {
     // Hash new password
     const hashedPassword = await hashPassword(password);
 
-    // Update password and mark token as used
-    await prisma.$transaction([
-      prisma.user.update({
-        where: { id: decoded.userId },
-        data: { password: hashedPassword },
-      }),
-      prisma.passwordResetToken.update({
-        where: { id: storedToken.id },
-        data: { usedAt: new Date() },
-      }),
-    ]);
+    // Check if password was already used (password policy)
+    const isReused = await isPasswordAlreadyUsed(decoded.userId, password);
+    if (isReused) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'This password was recently used. Please choose a different password.',
+        },
+        { status: 400 }
+      );
+    }
+
+    // Update password with history and mark token as used
+    const passwordUpdated = await updatePasswordWithHistory(decoded.userId, hashedPassword);
+
+    if (!passwordUpdated) {
+      return NextResponse.json(
+        { success: false, error: 'Failed to update password' },
+        { status: 500 }
+      );
+    }
+
+    // Mark reset token as used
+    await prisma.passwordResetToken.update({
+      where: { id: storedToken.id },
+      data: { usedAt: new Date() },
+    });
 
     return NextResponse.json({
       success: true,
