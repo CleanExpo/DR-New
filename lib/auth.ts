@@ -7,6 +7,7 @@ import bcrypt from 'bcryptjs';
 import { randomInt } from 'crypto';
 import { validateSecrets } from '@/lib/config/secrets-validation';
 import { isAccountLocked, recordFailedLoginAttempt, recordSuccessfulLogin } from '@/lib/services/lockout.service';
+import { logLoginAttempt, logAccountLockout } from '@/lib/services/audit.service';
 
 // Validate all critical secrets at module load time
 // This ensures the app fails fast if required secrets are missing
@@ -111,7 +112,8 @@ export const authOptions: NextAuthOptions = {
 
         // Check if account is locked (before attempting password verification)
         if (user && user.lockedUntil && new Date() < user.lockedUntil) {
-          // Account is still locked - reject login
+          // Account is still locked - log and reject login
+          await logAccountLockout(user.id, ip, userAgent);
           return null;
         }
 
@@ -120,20 +122,25 @@ export const authOptions: NextAuthOptions = {
         const isValidPassword = await verifyPasswordSafe(password, hashedPassword);
 
         if (!user || !user.password || !isValidPassword) {
-          // Invalid credentials - record failed attempt and potentially lock account
+          // Invalid credentials - record failed attempt and log event
           if (user) {
-            await recordFailedLoginAttempt(user.id, ip, userAgent);
+            const { locked } = await recordFailedLoginAttempt(user.id, ip, userAgent);
+            await logLoginAttempt(user.id, false, ip, userAgent, { locked });
           }
           return null;
         }
 
         // Check account status
         if (!user.isActive || user.isBlocked) {
+          await logLoginAttempt(user.id, false, ip, userAgent, {
+            reason: 'account_inactive_or_blocked',
+          });
           return null;
         }
 
         // Successful login - reset failed attempts and record login
         await recordSuccessfulLogin(user.id, ip, userAgent);
+        await logLoginAttempt(user.id, true, ip, userAgent);
 
         return {
           id: user.id,

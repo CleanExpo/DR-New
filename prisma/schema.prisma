@@ -252,6 +252,7 @@ model User {
   loginAttempts         LoginAttempt[]
   verificationTokens    VerificationToken[]
   csrfTokens            CSRFToken[]            // CSRF protection tokens
+  auditLogs             AuditLog[]             // Security audit trail
   ratings               Rating[]
 
   // CRM Relations
@@ -359,6 +360,27 @@ model CSRFToken {
   @@index([userId])
   @@index([token])
   @@index([expiresAt])
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String   // User who performed the action
+  action      String   // e.g., "LOGIN", "PASSWORD_CHANGED", "RESOURCE_ACCESSED"
+  resourceId  String?  // ID of resource affected (booking, payment, etc.)
+  resourceType String? // Type of resource (booking, payment, user, etc.)
+  status      String   // "SUCCESS" | "FAILURE"
+  details     String?  // JSON details about the action
+  ipAddress   String   // IP address of the request
+  userAgent   String   // User agent string
+  createdAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@index([ipAddress])
+  @@index([resourceId])
 }
 
 // ============================================================================
