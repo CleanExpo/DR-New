@@ -70,18 +70,14 @@ export function validateSecrets(): void {
     }
   }
 
-  // Check important secrets
+  // Check important secrets (warnings only - features will handle missing secrets gracefully)
   for (const secret of importantSecrets) {
     if (!secret.env && (secret.production || isProduction)) {
-      if (isProduction) {
-        errors.push(
-          `Missing important secret in production: ${secret.name} (${secret.description})`
-        );
-      } else {
-        warnings.push(
-          `Missing recommended secret: ${secret.name} (${secret.description})`
-        );
-      }
+      // Important secrets are warnings, not errors - allows app to start
+      // Individual features should handle missing secrets gracefully
+      warnings.push(
+        `Missing ${isProduction ? 'important' : 'recommended'} secret: ${secret.name} (${secret.description})`
+      );
     }
   }
 
