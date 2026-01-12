@@ -3855,3 +3855,142 @@ model TrainingModuleProgress {
   @@index([completed])
   @@map("training_module_progress")
 }
+
+// ============================================================================
+// ANALYTICS & BUSINESS INTELLIGENCE (Phase 05)
+// ============================================================================
+
+model DailyMetrics {
+  id String @id @default(cuid())
+  date DateTime @unique
+
+  // Financial metrics
+  totalRevenue Decimal @default(0) @db.Decimal(19, 2)
+  platformFees Decimal @default(0) @db.Decimal(19, 2)
+  contractorPayouts Decimal @default(0) @db.Decimal(19, 2)
+
+  // Operational metrics
+  jobsCompleted Int @default(0)
+  jobsRequested Int @default(0)
+  avgCompletionTime Int @default(0) // in minutes
+  paymentSuccessRate Float @default(0) // 0-100
+  paymentFailureCount Int @default(0)
+
+  // User metrics
+  activeContractors Int @default(0)
+  activeClients Int @default(0)
+  newContractors Int @default(0)
+  newClients Int @default(0)
+  avgContractorEarnings Decimal @default(0) @db.Decimal(19, 2)
+  avgClientSpend Decimal @default(0) @db.Decimal(19, 2)
+
+  // Service metrics
+  totalJobsInProgress Int @default(0)
+  avgJobValue Decimal @default(0) @db.Decimal(19, 2)
+  totalServiceRequests Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([date])
+  @@index([createdAt])
+  @@map("daily_metrics")
+}
+
+model WeeklyReport {
+  id String @id @default(cuid())
+  weekStartDate DateTime
+  weekEndDate DateTime
+
+  // Aggregate metrics
+  totalRevenue Decimal @default(0) @db.Decimal(19, 2)
+  platformFees Decimal @default(0) @db.Decimal(19, 2)
+  jobsCompleted Int @default(0)
+  avgCompletionTime Int @default(0)
+  paymentSuccessRate Float @default(0)
+
+  // Trend analysis
+  metrics Json @db.Json
+  trendAnalysis Json @db.Json
+  insights String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([weekStartDate])
+  @@index([createdAt])
+  @@map("weekly_reports")
+}
+
+model MonthlyMetrics {
+  id String @id @default(cuid())
+  month Int
+  year Int
+
+  // Aggregate metrics
+  totalRevenue Decimal @default(0) @db.Decimal(19, 2)
+  platformFees Decimal @default(0) @db.Decimal(19, 2)
+  jobsCompleted Int @default(0)
+  avgCompletionTime Int @default(0)
+  paymentSuccessRate Float @default(0)
+
+  // Detailed metrics
+  metrics Json @db.Json
+  summary String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([month, year])
+  @@index([createdAt])
+  @@map("monthly_metrics")
+}
+
+model ScheduledReport {
+  id String @id @default(cuid())
+  name String
+  description String?
+  createdBy String
+
+  reportType String // "financial", "operational", "performance", "comprehensive"
+  frequency String // "daily", "weekly", "monthly"
+  recipients String[] // email addresses
+
+  lastGeneratedAt DateTime?
+  nextGenerationAt DateTime
+
+  isActive Boolean @default(true)
+  isDeleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdBy])
+  @@index([frequency])
+  @@index([isActive])
+  @@map("scheduled_reports")
+}
+
+model CustomReport {
+  id String @id @default(cuid())
+  createdBy String
+  name String
+  description String?
+
+  metrics String[] // Array of metric identifiers
+  filters Json @db.Json // Date range, service type, etc.
+  visualization String // "line", "bar", "pie", "table", "heatmap", "map"
+
+  isPublished Boolean @default(false)
+  isDeleted Boolean @default(false)
+
+  viewCount Int @default(0)
+  lastViewedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdBy])
+  @@index([isPublished])
+  @@map("custom_reports")
+}
