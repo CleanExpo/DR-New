@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "NODE_OPTIONS='--max-old-space-size=4096' npm run build",
   "framework": "nextjs",
   "installCommand": "npm ci --legacy-peer-deps",
   "outputDirectory": ".next",
