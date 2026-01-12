@@ -12,7 +12,7 @@
  */
 
 import { Metadata } from 'next';
-import { Award, BookOpen, Users, Zap, ArrowRight } from 'lucide-react';
+import { Award, BookOpen, Users, Zap, ArrowRight, CheckCircle } from 'lucide-react';
 import { VerifiedBadge, WaterDamage, FireSmoke, MouldRemediation, BioForensic } from '@/icons';
 
 export const metadata: Metadata = {
