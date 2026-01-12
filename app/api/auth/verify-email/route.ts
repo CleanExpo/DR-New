@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { verifyToken, generateVerificationToken } from '@/lib/auth';
 import { prisma, findUserByEmail } from '@/lib/db';
 import { validateRequest, formatZodErrors } from '@/lib/validation';
+import { authRateLimiter } from '@/lib/api/redis-rate-limit';
 
 const verifyEmailSchema = z.object({
   token: z.string().min(1),
@@ -15,6 +16,10 @@ const resendVerificationSchema = z.object({
 // Verify email with token
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - prevent brute force verification attempts
+    const rateLimitResult = await authRateLimiter(request);
+    if (rateLimitResult) return rateLimitResult;
+
     const body = await request.json();
 
     const validation = validateRequest(verifyEmailSchema, body);
@@ -83,6 +88,10 @@ export async function POST(request: NextRequest) {
 // Resend verification email
 export async function PUT(request: NextRequest) {
   try {
+    // Rate limiting - prevent email spam
+    const rateLimitResult = await authRateLimiter(request);
+    if (rateLimitResult) return rateLimitResult;
+
     const body = await request.json();
 
     const validation = validateRequest(resendVerificationSchema, body);

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { hashPassword, generateResetToken, verifyToken } from '@/lib/auth';
 import { findUserByEmail, prisma } from '@/lib/db';
 import { validateRequest, formatZodErrors, passwordSchema } from '@/lib/validation';
+import { authRateLimiter } from '@/lib/api/redis-rate-limit';
 
 const requestResetSchema = z.object({
   email: z.string().email(),
@@ -16,6 +17,10 @@ const resetPasswordSchema = z.object({
 // Request password reset
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - prevent abuse of password reset
+    const rateLimitResult = await authRateLimiter(request);
+    if (rateLimitResult) return rateLimitResult;
+
     const body = await request.json();
 
     const validation = validateRequest(requestResetSchema, body);
@@ -71,6 +76,10 @@ export async function POST(request: NextRequest) {
 // Reset password with token
 export async function PUT(request: NextRequest) {
   try {
+    // Rate limiting - prevent brute force password reset attempts
+    const rateLimitResult = await authRateLimiter(request);
+    if (rateLimitResult) return rateLimitResult;
+
     const body = await request.json();
 
     const validation = validateRequest(resetPasswordSchema, body);

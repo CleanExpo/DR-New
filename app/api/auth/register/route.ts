@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma';
 import { registerSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { ZodError } from 'zod';
+import { authRateLimiter } from '@/lib/api/redis-rate-limit';
 
 /**
  * POST /api/auth/register
@@ -17,6 +18,10 @@ import { ZodError } from 'zod';
  */
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - prevent brute force registration attempts
+    const rateLimitResult = await authRateLimiter(request);
+    if (rateLimitResult) return rateLimitResult;
+
     // Parse and validate request body
     const body = await request.json();
     const validatedData = registerSchema.parse(body);
