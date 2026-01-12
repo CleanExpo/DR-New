@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
 
   return {
     title: `Disaster Recovery ${city.city}, ${city.state} | Emergency Restoration | NRPG`,
-    description: `Professional disaster recovery services in ${city.city}, ${city.state}. Water damage, fire restoration, mold remediation, storm damage. 24/7 emergency response.`,
+    description: `Professional disaster recovery services in ${city.city}, ${city.state}. Water damage, fire restoration, mould remediation, storm damage. 24/7 emergency response.`,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -102,7 +102,7 @@ export default function CityPage({ params }: CityPageProps) {
   const categoryNames: Record<string, string> = {
     water: 'Water & Flood Damage',
     fire: 'Fire & Smoke Damage',
-    mould: 'Mold Remediation',
+    mould: 'Mould Remediation',
     bio: 'Biohazard Cleanup',
     storm: 'Storm Damage',
   };

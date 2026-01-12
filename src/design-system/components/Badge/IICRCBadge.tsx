@@ -87,14 +87,14 @@ const iicrcStandards: Record<IICRCCode, IICRCStandard> = {
   },
   S520: {
     code: 'S520',
-    name: 'Mold Remediation',
-    description: 'Standard for professional mold remediation including assessment, containment, and removal.',
+    name: 'Mould Remediation',
+    description: 'Standard for professional mould remediation including assessment, containment, and removal.',
     learnMoreUrl: '/standards/iicrc-s520',
   },
   S530: {
     code: 'S530',
-    name: 'Indoor Environment Assessment for Mold',
-    description: 'Standard for indoor environment assessment for suspected mold contaminated structures.',
+    name: 'Indoor Environment Assessment for Mould',
+    description: 'Standard for indoor environment assessment for suspected mould contaminated structures.',
     learnMoreUrl: '/standards/iicrc-s530',
   },
   S540: {
@@ -106,7 +106,7 @@ const iicrcStandards: Record<IICRCCode, IICRCStandard> = {
   S590: {
     code: 'S590',
     name: 'HVAC Systems Assessment',
-    description: 'Standard for professional assessment of HVAC systems following water, fire, or mold damage.',
+    description: 'Standard for professional assessment of HVAC systems following water, fire, or mould damage.',
     learnMoreUrl: '/standards/iicrc-s590',
   },
   S700: {
