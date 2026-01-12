@@ -14,6 +14,9 @@ import { Metadata } from 'next';
 import { BarChart3, TrendingUp, MessageSquare, Heart, AlertCircle, CheckCircle } from 'lucide-react';
 import { GBP_LOCATIONS, gbpManager } from '@/lib/gbp/gbp-manager';
 
+// Force dynamic rendering to avoid build-time timeout
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'GBP Analytics Dashboard | NRPG Admin',
   description: 'Real-time monitoring of Google Business Profile performance across all Australian capitals',
