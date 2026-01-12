@@ -16,8 +16,18 @@ import { Resend } from 'resend';
 import { completeClaimSchema, calculatePriority } from '@/lib/claim-wizard/types';
 import { verifyCaptcha } from '@/lib/services/captcha.service';
 
-// Initialize Resend email service
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy-initialize Resend email service to avoid errors when API key is missing
+let resendClient: Resend | null = null;
+
+function getResendClient(): Resend | null {
+  if (!process.env.RESEND_API_KEY) {
+    return null;
+  }
+  if (!resendClient) {
+    resendClient = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resendClient;
+}
 
 // Rate limiting storage (in-memory for demo, use Redis in production)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
@@ -78,8 +88,9 @@ async function sendClaimConfirmationEmail(
   priority: string
 ): Promise<boolean> {
   try {
-    if (!process.env.RESEND_API_KEY) {
-      console.warn('RESEND_API_KEY not configured, skipping email');
+    const resend = getResendClient();
+    if (!resend) {
+      console.warn('⚠️ RESEND_API_KEY not configured, skipping email');
       return false;
     }
 

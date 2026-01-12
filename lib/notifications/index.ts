@@ -17,8 +17,18 @@ import {
   getWorkCompletedTemplate,
 } from './templates';
 
-// Initialize Resend email service
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy-initialize Resend email service to avoid errors when API key is missing
+let resendClient: Resend | null = null;
+
+function getResendClient(): Resend | null {
+  if (!process.env.RESEND_API_KEY) {
+    return null;
+  }
+  if (!resendClient) {
+    resendClient = new Resend(process.env.RESEND_API_KEY);
+  }
+  return resendClient;
+}
 
 // ============================================================================
 // Types
@@ -88,6 +98,14 @@ export async function sendNotification(options: SendNotificationOptions) {
     }
 
     // 4. Send email via Resend
+    const resend = getResendClient();
+    if (!resend) {
+      console.warn('⚠️ Resend API key not configured, skipping email send');
+      // Still create in-app notification even without email
+      await createInAppNotification(userId, type, subject, data);
+      return;
+    }
+
     const response = await resend.emails.send({
       from: 'Disaster Recovery Australia <claims@disasterrecovery.com.au>',
       to: userEmail,
