@@ -6,12 +6,17 @@ import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { randomInt } from 'crypto';
 import { validateSecrets } from '@/lib/config/secrets-validation';
+import { validateProductionDefaults } from '@/lib/config/development-defaults';
 import { isAccountLocked, recordFailedLoginAttempt, recordSuccessfulLogin } from '@/lib/services/lockout.service';
 import { logLoginAttempt, logAccountLockout } from '@/lib/services/audit.service';
 
 // Validate all critical secrets at module load time
 // This ensures the app fails fast if required secrets are missing
 validateSecrets();
+
+// Validate that no development defaults leak into production
+// This prevents accidental security issues from dev configs
+validateProductionDefaults();
 
 const JWT_SECRET =
   process.env.JWT_SECRET ||
