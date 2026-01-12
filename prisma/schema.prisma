@@ -217,6 +217,11 @@ model User {
   isBlocked                    Boolean   @default(false)
   lastLoginAt                  DateTime?
 
+  // Account Lockout (Brute Force Prevention)
+  failedLoginAttempts Int        @default(0)  // Number of failed login attempts
+  lockedUntil         DateTime?               // When account will be unlocked (30 min after 5 failed attempts)
+  lastFailedLoginAt   DateTime?               // Timestamp of last failed login attempt
+
   // Two-Factor Authentication (2FA)
   twoFactorSecret       String?   // TOTP secret key
   twoFactorEnabled      Boolean   @default(false)

@@ -6,6 +6,7 @@ import { prisma } from '@/lib/prisma';
 import bcrypt from 'bcryptjs';
 import { randomInt } from 'crypto';
 import { validateSecrets } from '@/lib/config/secrets-validation';
+import { isAccountLocked, recordFailedLoginAttempt, recordSuccessfulLogin } from '@/lib/services/lockout.service';
 
 // Validate all critical secrets at module load time
 // This ensures the app fails fast if required secrets are missing
@@ -80,7 +81,7 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         const email = credentials?.email?.toLowerCase().trim();
         const password = credentials?.password ?? '';
 
@@ -88,25 +89,51 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
+        // Get IP and user agent for audit logging
+        const forwarded = req?.headers?.get('x-forwarded-for');
+        const ip = forwarded ? forwarded.split(',')[0] : 'unknown';
+        const userAgent = req?.headers?.get('user-agent') || 'unknown';
+
         const user = await prisma.user.findUnique({
           where: { email },
+          select: {
+            id: true,
+            email: true,
+            password: true,
+            name: true,
+            userType: true,
+            avatar: true,
+            isActive: true,
+            isBlocked: true,
+            lockedUntil: true,
+          },
         });
 
+        // Check if account is locked (before attempting password verification)
+        if (user && user.lockedUntil && new Date() < user.lockedUntil) {
+          // Account is still locked - reject login
+          return null;
+        }
+
+        // Verify password (using timing-safe comparison)
         const hashedPassword = user?.password || '$2a$10$dummyhashtopreventtimingleak';
         const isValidPassword = await verifyPasswordSafe(password, hashedPassword);
 
         if (!user || !user.password || !isValidPassword) {
+          // Invalid credentials - record failed attempt and potentially lock account
+          if (user) {
+            await recordFailedLoginAttempt(user.id, ip, userAgent);
+          }
           return null;
         }
 
+        // Check account status
         if (!user.isActive || user.isBlocked) {
           return null;
         }
 
-        await prisma.user.update({
-          where: { id: user.id },
-          data: { lastLoginAt: new Date() },
-        });
+        // Successful login - reset failed attempts and record login
+        await recordSuccessfulLogin(user.id, ip, userAgent);
 
         return {
           id: user.id,
