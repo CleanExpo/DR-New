@@ -51,6 +51,25 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // NRPG Growth Portal Design System
+        'earth': {
+          'primary': '#7A5C58',
+          'secondary': '#C89F97',
+          'light': '#E8DCD8',
+        },
+        'nrpg-teal': {
+          DEFAULT: '#20B2AA',
+          'light': '#4ECDC4',
+          'dark': '#178F89',
+        },
+        'portal': {
+          'bg': '#FDFBF8',
+          'card': '#FFFFFF',
+          'text': '#333333',
+          'muted': '#6B7280',
+          'border': '#E5E7EB',
+          'success': '#34D399',
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -74,6 +93,11 @@ module.exports = {
       fontFamily: {
         poppins: ['var(--font-poppins)', 'sans-serif'],
         inter: ['var(--font-inter)', 'sans-serif'],
+        // NRPG Growth Portal fonts
+        'outfit': ['Outfit', 'var(--font-space-grotesk)', 'sans-serif'],
+        'lora': ['Lora', 'var(--font-jakarta)', 'serif'],
+        'heading': ['Outfit', 'var(--font-space-grotesk)', 'sans-serif'],
+        'body': ['Lora', 'var(--font-jakarta)', 'serif'],
       },
     },
   },
