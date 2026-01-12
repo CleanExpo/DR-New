@@ -1,169 +1,71 @@
 /**
  * Health Check Endpoint - GET /api/health
  *
- * Comprehensive health status for all system components:
- * - Database connectivity
- * - Redis/Cache connectivity
- * - External service integrations
+ * Provides health status for monitoring and uptime checks.
+ * Checks database connectivity and reports service status.
  */
 
-import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
-import { redis } from '@/lib/config/redis.config';
-import { logInfo, logError } from '@/lib/logger/helpers';
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
-interface ServiceHealth {
-  status: 'healthy' | 'degraded' | 'unhealthy';
-  latency: number;
-  lastChecked: string;
-  error?: string;
-}
-
-interface HealthStatus {
-  status: 'healthy' | 'degraded' | 'unhealthy';
-  timestamp: string;
-  uptime: number;
-  services: {
-    database: ServiceHealth;
-    redis: ServiceHealth;
-    externalApis: {
-      sendgrid: ServiceHealth;
-      twilio?: ServiceHealth;
-      sentry?: ServiceHealth;
-    };
-  };
-}
-
 const startTime = Date.now();
 
-async function checkDatabase(): Promise<ServiceHealth> {
-  const start = Date.now();
+export async function GET() {
+  const checks: Record<string, { status: string; latency?: number; error?: string }> = {};
+  let overallStatus: 'healthy' | 'degraded' | 'unhealthy' = 'healthy';
+
+  // Check database connectivity
+  const dbStart = Date.now();
   try {
-    await prisma.$queryRaw`SELECT NOW()`;
-    return {
+    await prisma.$queryRaw`SELECT 1`;
+    checks.database = {
       status: 'healthy',
-      latency: Date.now() - start,
-      lastChecked: new Date().toISOString(),
+      latency: Date.now() - dbStart,
     };
   } catch (error) {
-    logError(error, { context: 'health_check_database' });
-    return {
+    checks.database = {
       status: 'unhealthy',
-      latency: Date.now() - start,
-      lastChecked: new Date().toISOString(),
-      error: error instanceof Error ? error.message : 'Unknown error',
+      latency: Date.now() - dbStart,
+      error: error instanceof Error ? error.message : 'Database connection failed',
     };
-  }
-}
-
-async function checkRedis(): Promise<ServiceHealth> {
-  const start = Date.now();
-  try {
-    const result = await redis.ping();
-    return {
-      status: result === 'PONG' ? 'healthy' : 'degraded',
-      latency: Date.now() - start,
-      lastChecked: new Date().toISOString(),
-    };
-  } catch (error) {
-    logError(error, { context: 'health_check_redis' });
-    return {
-      status: 'unhealthy',
-      latency: Date.now() - start,
-      lastChecked: new Date().toISOString(),
-      error: error instanceof Error ? error.message : 'Unknown error',
-    };
-  }
-}
-
-async function checkSendGrid(): Promise<ServiceHealth> {
-  const start = Date.now();
-  const apiKey = process.env.SENDGRID_API_KEY;
-  const latency = Date.now() - start;
-
-  if (!apiKey || apiKey.length < 10) {
-    return {
-      status: 'degraded',
-      latency,
-      lastChecked: new Date().toISOString(),
-      error: 'API key not configured',
-    };
+    overallStatus = 'unhealthy';
   }
 
-  return {
-    status: 'healthy',
-    latency,
-    lastChecked: new Date().toISOString(),
+  // Check Redis (Upstash) - optional
+  if (process.env.UPSTASH_REDIS_REST_URL) {
+    checks.redis = { status: 'configured' };
+  } else {
+    checks.redis = { status: 'not_configured' };
+    if (overallStatus === 'healthy') overallStatus = 'degraded';
+  }
+
+  // Check critical environment variables
+  const criticalEnvVars = ['NEXTAUTH_SECRET', 'DATABASE_URL'];
+  const missingVars = criticalEnvVars.filter(v => !process.env[v]);
+
+  checks.environment = {
+    status: missingVars.length === 0 ? 'healthy' : 'unhealthy',
+    ...(missingVars.length > 0 && { error: `Missing: ${missingVars.join(', ')}` }),
   };
-}
 
-async function checkTwilio(): Promise<ServiceHealth | undefined> {
-  if (!process.env.TWILIO_ACCOUNT_SID) return undefined;
-
-  const hasAll =
-    !!process.env.TWILIO_ACCOUNT_SID &&
-    !!process.env.TWILIO_AUTH_TOKEN &&
-    !!process.env.TWILIO_PHONE_NUMBER;
-
-  return {
-    status: hasAll ? 'healthy' : 'degraded',
-    latency: 0,
-    lastChecked: new Date().toISOString(),
-  };
-}
-
-async function checkSentry(): Promise<ServiceHealth | undefined> {
-  if (!process.env.SENTRY_DSN) return undefined;
-
-  return {
-    status: 'healthy',
-    latency: 0,
-    lastChecked: new Date().toISOString(),
-  };
-}
-
-export async function GET(request: NextRequest) {
-  try {
-    const [db, redisHealth] = await Promise.all([
-      checkDatabase(),
-      checkRedis(),
-    ]);
-
-    const [sendgrid, twilio, sentry] = await Promise.all([
-      checkSendGrid(),
-      checkTwilio(),
-      checkSentry(),
-    ]);
-
-    const isUnhealthy = [db, redisHealth].some(s => s.status === 'unhealthy');
-    const isDegraded = [db, redisHealth].some(s => s.status === 'degraded');
-    const status = isUnhealthy ? 'unhealthy' : isDegraded ? 'degraded' : 'healthy';
-
-    const response: HealthStatus = {
-      status: status as any,
-      timestamp: new Date().toISOString(),
-      uptime: Date.now() - startTime,
-      services: {
-        database: db,
-        redis: redisHealth,
-        externalApis: {
-          sendgrid,
-          ...(twilio && { twilio }),
-          ...(sentry && { sentry }),
-        },
-      },
-    };
-
-    logInfo('Health check performed', { status });
-
-    const statusCode = status === 'unhealthy' ? 503 : 200;
-    return NextResponse.json(response, { status: statusCode });
-  } catch (error) {
-    logError(error, { context: 'health_endpoint' });
-    return NextResponse.json({ status: 'unhealthy' }, { status: 503 });
+  if (missingVars.length > 0) {
+    overallStatus = 'unhealthy';
   }
+
+  // Build response
+  const response = {
+    status: overallStatus,
+    timestamp: new Date().toISOString(),
+    uptime: Math.floor((Date.now() - startTime) / 1000),
+    version: process.env.APP_VERSION || '1.0.0',
+    environment: process.env.NODE_ENV || 'unknown',
+    checks,
+  };
+
+  const statusCode = overallStatus === 'unhealthy' ? 503 : 200;
+  return NextResponse.json(response, { status: statusCode });
 }
 
 export async function OPTIONS() {
