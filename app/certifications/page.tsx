@@ -11,7 +11,7 @@
  */
 
 import { Metadata } from 'next';
-import { Award, Shield, Building2, Users, Zap } from 'lucide-react';
+import { Award, Shield, Building2, Users, Zap, CheckCircle } from 'lucide-react';
 import { VerifiedBadge, IICRCBadge } from '@/icons';
 
 export const metadata: Metadata = {
