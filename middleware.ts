@@ -114,8 +114,9 @@ export function middleware(request: NextRequest) {
 
   // Check if the current path is a dashboard route
   if (pathname.startsWith('/dashboard')) {
-    // For dashboard routes, we'll let the client-side handle authentication
-    // The AuthContext will redirect unauthenticated users
+    // Dashboard routes are now protected by server-side authentication in layout.tsx
+    // The layout will redirect unauthenticated users to /login
+    // This middleware allows the request to proceed to the layout handler
     return response;
   }
 
