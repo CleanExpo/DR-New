@@ -16,6 +16,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { checkResourceAccess } from '@/lib/services/authorization.service';
 
 export async function GET(request: NextRequest) {
   try {
@@ -25,6 +26,15 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
+      );
+    }
+
+    // Verify user role is CLIENT (resource-level authorization)
+    const userRole = (session.user as any).role;
+    if (userRole !== 'CLIENT' && userRole !== 'ADMIN' && userRole !== 'SUPER_ADMIN') {
+      return NextResponse.json(
+        { error: 'Forbidden - insufficient permissions' },
+        { status: 403 }
       );
     }
 
