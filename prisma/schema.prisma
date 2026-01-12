@@ -1522,28 +1522,6 @@ model Message {
 }
 
 // ============================================================================
-// AUDIT & COMPLIANCE
-// ============================================================================
-
-model AuditLog {
-  id          String   @id @default(cuid())
-  action      String // "CREATE", "UPDATE", "DELETE", "APPROVE", "REJECT"
-  entityType  String // "Booking", "Payment", "Contractor", etc.
-  entityId    String
-  performedBy String? // User ID
-  oldValues   Json?
-  newValues   Json?
-  ipAddress   String?
-  userAgent   String?
-  createdAt   DateTime @default(now())
-
-  @@index([entityType])
-  @@index([entityId])
-  @@index([performedBy])
-  @@index([createdAt])
-}
-
-// ============================================================================
 // ADDITIONAL MODELS FOR FUTURE EXPANSION
 // ============================================================================
 
