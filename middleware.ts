@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { getCORSHeaders, handleCORSPreflight, logCORSViolation, isOriginAllowed } from '@/lib/config/cors.config';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -74,13 +75,31 @@ export function middleware(request: NextRequest) {
   }
 
   // ============================================================================
-  // CORS for Public APIs
+  // CORS for Public APIs (Production-Ready with Whitelist)
   // ============================================================================
 
   if (isApi && pathname.startsWith('/api/public')) {
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    const origin = request.headers.get('origin');
+
+    if (isOriginAllowed(origin)) {
+      // Origin is allowed - apply CORS headers
+      const corsHeaders = getCORSHeaders(origin);
+      Object.entries(corsHeaders).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+    } else if (origin) {
+      // Origin is not allowed - log violation
+      logCORSViolation(origin, pathname);
+    }
+
+    // Handle preflight requests
+    if (request.method === 'OPTIONS') {
+      const preflightHeaders = handleCORSPreflight(origin);
+      return new NextResponse(null, {
+        status: 204,
+        headers: preflightHeaders,
+      });
+    }
   }
 
   // Check if the current path is a public route or claim route
