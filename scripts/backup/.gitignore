@@ -1,0 +1,17 @@
+# Backup files (never commit backups to git)
+*.sql.gz
+*.sql.gz.metadata
+*.log
+
+# Local backups directory
+/backups/
+/backups/*
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
