@@ -282,7 +282,7 @@ Run on first Monday of each month:
 
 ```bash
 # 1. Get latest backup
-aws s3 ls s3://dr-platform-backups/database/ --region us-east-1 | tail -1
+aws s3 ls s3://dr-platform-backups/database/ --region ap-southeast-2 | tail -1
 
 # 2. Download (if not using S3 path)
 aws s3 cp s3://dr-platform-backups/database/<backup-file> ./

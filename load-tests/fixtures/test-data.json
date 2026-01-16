@@ -1,0 +1,64 @@
+{
+  "testUsers": [
+    {
+      "email": "admin@test.disasterrecovery.com.au",
+      "password": "TestAdmin123!",
+      "role": "ADMIN"
+    },
+    {
+      "email": "contractor@test.disasterrecovery.com.au",
+      "password": "TestContractor123!",
+      "role": "CONTRACTOR"
+    },
+    {
+      "email": "client@test.disasterrecovery.com.au",
+      "password": "TestClient123!",
+      "role": "CLIENT"
+    }
+  ],
+  "sampleClaims": [
+    {
+      "disasterType": "water-damage",
+      "suburb": "Sydney",
+      "postcode": "2000",
+      "state": "NSW",
+      "description": "Pipe burst in kitchen causing extensive water damage to floors and walls"
+    },
+    {
+      "disasterType": "fire-damage",
+      "suburb": "Melbourne",
+      "postcode": "3000",
+      "state": "VIC",
+      "description": "Kitchen fire resulting in smoke and heat damage to multiple rooms"
+    },
+    {
+      "disasterType": "flood-damage",
+      "suburb": "Brisbane",
+      "postcode": "4000",
+      "state": "QLD",
+      "description": "Flash flooding from recent storms causing basement flooding"
+    }
+  ],
+  "performanceTargets": {
+    "claimSubmission": {
+      "p50": 200,
+      "p95": 500,
+      "p99": 800
+    },
+    "contractorMatching": {
+      "p50": 300,
+      "p95": 800,
+      "p99": 1200
+    },
+    "authentication": {
+      "p50": 50,
+      "p95": 150,
+      "p99": 300
+    },
+    "databaseQuery": {
+      "p50": 50,
+      "p95": 100,
+      "p99": 200
+    }
+  }
+}

@@ -1,0 +1,3 @@
+# Load test reports directory
+# JSON and HTML reports are generated here during test runs
+# These files are gitignored but the directory is preserved
