@@ -1,0 +1,89 @@
+{
+  "buildCommand": "cd ../.. && pnpm run build:web",
+  "framework": "nextjs",
+  "installCommand": "cd ../.. && pnpm install",
+  "outputDirectory": ".next",
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=4096"
+    }
+  },
+
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/_next/static/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+
+  "crons": [
+    {
+      "path": "/api/cron/health-check",
+      "schedule": "*/10 * * * *"
+    },
+    {
+      "path": "/api/cron/cleanup-old-runs",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/daily-report",
+      "schedule": "0 6 * * *"
+    },
+    {
+      "path": "/api/webhooks/cron/health-check",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/rank-tracking",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/traffic-sync",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/competitor-snapshot",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/dominance-aggregation",
+      "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/search-dominance/cron/blue-ocean-scan",
+      "schedule": "0 1 * * 1"
+    },
+    {
+      "path": "/api/search-dominance/cron/algorithm-monitor",
+      "schedule": "0 */6 * * *"
+    }
+  ],
+
+  "regions": ["syd1"]
+}
