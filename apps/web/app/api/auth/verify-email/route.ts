@@ -4,6 +4,7 @@ import { verifyToken, generateVerificationToken } from '@/lib/auth';
 import { prisma, findUserByEmail } from '@/lib/db';
 import { validateRequest, formatZodErrors } from '@/lib/validation';
 import { authRateLimiter } from '@/lib/api/redis-rate-limit';
+import { sendVerificationEmail } from '@/lib/email/resend';
 
 const verifyEmailSchema = z.object({
   token: z.string().min(1),
@@ -141,8 +142,12 @@ export async function PUT(request: NextRequest) {
       },
     });
 
-    // TODO: Send verification email
-    // await sendVerificationEmail(user.email, verificationToken);
+    // Send verification email
+    const emailResult = await sendVerificationEmail(user.email, verificationToken, user.name || undefined);
+    if (!emailResult.success) {
+      console.warn('Verification email could not be sent:', emailResult.error);
+      // Still return success to avoid revealing if email exists
+    }
 
     return NextResponse.json({
       success: true,

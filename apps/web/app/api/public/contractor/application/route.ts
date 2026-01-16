@@ -7,6 +7,11 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import {
+  contractorApplicationReceived,
+  adminNewApplication,
+  sendTemplateEmail,
+} from '@/lib/email/templates';
 
 // Validation schema
 const applicationSchema = z.object({
@@ -77,40 +82,43 @@ export async function POST(request: NextRequest) {
  * Send application confirmation emails
  */
 async function sendApplicationEmails(data: any, applicationId: string) {
-  // TODO: Integrate with email service (SendGrid, AWS SES, etc.)
+  // Email 1: Send confirmation to contractor
+  const contractorTemplate = contractorApplicationReceived({
+    businessName: data.businessName,
+    contactName: data.primaryContactName,
+    applicationId,
+    tier: data.selectedTier,
+  });
 
-  // Email 1: Contractor confirmation
-  const contractorEmail = {
+  const contractorResult = await sendTemplateEmail({
     to: data.primaryContactEmail,
-    subject: 'NRPG Application Received',
-    template: 'contractor-application-received',
-    data: {
-      businessName: data.businessName,
-      contactName: data.primaryContactName,
-      applicationId,
-      tier: data.selectedTier,
-    },
-  };
+    subject: contractorTemplate.subject,
+    htmlContent: contractorTemplate.htmlContent,
+    textContent: contractorTemplate.textContent,
+  });
 
-  // Email 2: Admin notification
-  const adminEmail = {
-    to: 'applications@nrpg.com.au',
-    subject: `New Contractor Application: ${data.businessName}`,
-    template: 'admin-new-application',
-    data: {
-      businessName: data.businessName,
-      abn: data.abn,
-      contactName: data.primaryContactName,
-      contactEmail: data.primaryContactEmail,
-      tier: data.selectedTier,
-      applicationId,
-    },
-  };
+  if (!contractorResult.success) {
+    console.warn('Failed to send contractor confirmation email:', contractorResult.error);
+  }
 
-  // Placeholder for actual email sending
-  console.log('Would send emails:', { contractorEmail, adminEmail });
+  // Email 2: Send notification to admin
+  const adminTemplate = adminNewApplication({
+    businessName: data.businessName,
+    abn: data.abn,
+    contactName: data.primaryContactName,
+    contactEmail: data.primaryContactEmail,
+    tier: data.selectedTier,
+    applicationId,
+  });
 
-  // TODO: Uncomment when email service is configured
-  // await emailService.send(contractorEmail);
-  // await emailService.send(adminEmail);
+  const adminResult = await sendTemplateEmail({
+    to: process.env.ADMIN_EMAIL || 'applications@disasterrecovery.com.au',
+    subject: adminTemplate.subject,
+    htmlContent: adminTemplate.htmlContent,
+    textContent: adminTemplate.textContent,
+  });
+
+  if (!adminResult.success) {
+    console.warn('Failed to send admin notification email:', adminResult.error);
+  }
 }

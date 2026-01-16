@@ -27,6 +27,7 @@ import {
   ValidationError,
   APIError,
 } from '@/lib/api/error-handler';
+import { sendNewsletterWelcomeEmail } from '@/lib/email/resend';
 
 export const dynamic = 'force-dynamic';
 
@@ -123,7 +124,11 @@ async function handleNewsletterSubscription(req: NextRequest) {
 
       logger.info('Newsletter subscription reactivated', { email: data.email });
 
-      // TODO: Send welcome back email
+      // Send welcome back email
+      const welcomeResult = await sendNewsletterWelcomeEmail(data.email, data.firstName);
+      if (!welcomeResult.success) {
+        logger.warn('Failed to send newsletter welcome email', { error: welcomeResult.error });
+      }
 
       const response = successResponse(
         {
@@ -178,18 +183,13 @@ async function handleNewsletterSubscription(req: NextRequest) {
       email: data.email,
     });
 
-    // 9. TODO: Email marketing integration
-    // - Send to Mailchimp/SendGrid/etc.
-    // - Send welcome email with double opt-in confirmation
-    // - Add to appropriate email lists based on interests
-    // - Tag subscriber based on state/postcode for localized content
+    // 9. Send welcome email
+    const welcomeResult = await sendNewsletterWelcomeEmail(data.email, data.firstName);
+    if (!welcomeResult.success) {
+      logger.warn('Failed to send newsletter welcome email', { error: welcomeResult.error });
+    }
 
-    // 10. TODO: CRM integration
-    // - Create/update contact in CRM
-    // - Add tags based on interests
-    // - Trigger welcome automation workflow
-
-    // 11. Return success response
+    // 10. Return success response
     const response = successResponse(
       {
         message: 'Successfully subscribed to newsletter! Check your email to confirm.',
