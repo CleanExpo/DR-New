@@ -302,7 +302,27 @@ function getTierBenefits(tier: string): string {
 }
 
 /**
- * Send email helper (placeholder for actual email service)
+ * Send email using the unified Resend service
+ */
+export async function sendTemplateEmail(params: {
+  to: string;
+  subject: string;
+  htmlContent: string;
+  textContent: string;
+}): Promise<{ success: boolean; error?: string }> {
+  // Import dynamically to avoid circular dependency
+  const { sendEmail: sendViaResend } = await import('./resend');
+
+  return sendViaResend({
+    to: params.to,
+    subject: params.subject,
+    html: params.htmlContent,
+    text: params.textContent,
+  });
+}
+
+/**
+ * @deprecated Use sendTemplateEmail instead
  */
 export async function sendEmail(params: {
   to: string;
@@ -310,17 +330,5 @@ export async function sendEmail(params: {
   htmlContent: string;
   textContent: string;
 }) {
-  // TODO: Integrate with email service (SendGrid, AWS SES, etc.)
-  console.log('Email to send:', params);
-
-  // Example SendGrid integration:
-  // const sgMail = require('@sendgrid/mail');
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  // await sgMail.send({
-  //   to: params.to,
-  //   from: 'noreply@nrpg.com.au',
-  //   subject: params.subject,
-  //   text: params.textContent,
-  //   html: params.htmlContent,
-  // });
+  return sendTemplateEmail(params);
 }

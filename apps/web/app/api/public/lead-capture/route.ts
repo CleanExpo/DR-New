@@ -27,6 +27,7 @@ import {
   ValidationError,
   APIError,
 } from '@/lib/api/error-handler';
+import { sendLeadConfirmationEmail } from '@/lib/email/resend';
 
 export const dynamic = 'force-dynamic';
 
@@ -141,17 +142,20 @@ async function handleLeadCapture(req: NextRequest) {
 
     logger.info('Lead created successfully', { leadId: lead.id });
 
-    // 8. TODO: Send notification emails
-    // - Send confirmation email to customer
-    // - Send notification to sales team
-    // - Create task in CRM
+    // 8. Send confirmation email to customer
+    const emailResult = await sendLeadConfirmationEmail(data.email, {
+      firstName: data.firstName,
+      leadId: lead.id,
+      damageType: data.damageType,
+      suburb: data.suburb,
+      urgency: data.urgency,
+    });
 
-    // 9. TODO: Trigger automation workflows
-    // - Add to email marketing list (if consent given)
-    // - Create follow-up tasks
-    // - Send SMS confirmation (if urgent)
+    if (!emailResult.success) {
+      logger.warn('Failed to send lead confirmation email', { error: emailResult.error });
+    }
 
-    // 10. Return success response
+    // 9. Return success response
     const response = successResponse(
       {
         message: 'Your claim has been submitted successfully',

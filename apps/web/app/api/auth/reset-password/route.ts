@@ -5,6 +5,7 @@ import { findUserByEmail, prisma } from '@/lib/db';
 import { validateRequest, formatZodErrors, passwordSchema } from '@/lib/validation';
 import { authRateLimiter } from '@/lib/api/redis-rate-limit';
 import { updatePasswordWithHistory, isPasswordAlreadyUsed } from '@/lib/services/password-policy.service';
+import { sendPasswordResetEmail } from '@/lib/email/resend';
 
 const requestResetSchema = z.object({
   email: z.string().email(),
@@ -58,8 +59,12 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // TODO: Send email with reset link
-    // await sendPasswordResetEmail(user.email, resetToken);
+    // Send password reset email
+    const emailResult = await sendPasswordResetEmail(user.email, resetToken, user.name || undefined);
+    if (!emailResult.success) {
+      console.warn('Password reset email could not be sent:', emailResult.error);
+      // Still return success to avoid revealing if email exists
+    }
 
     return NextResponse.json({
       success: true,
