@@ -45,7 +45,7 @@ if [[ $BACKUP_FILE == s3://* ]]; then
     # Download backup
     TEMP_BACKUP="/tmp/verify-backup-$$.sql.gz"
     log "Downloading from S3..."
-    aws s3 cp "${BACKUP_FILE}" "${TEMP_BACKUP}" --region us-east-1
+    aws s3 cp "${BACKUP_FILE}" "${TEMP_BACKUP}" --region "${AWS_REGION:-ap-southeast-2}"
     BACKUP_PATH="${TEMP_BACKUP}"
 else
     BACKUP_PATH="${BACKUP_DIR}/${BACKUP_FILE}"

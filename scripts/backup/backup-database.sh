@@ -92,7 +92,7 @@ log "Uploading to S3..."
 S3_PATH="s3://${S3_BACKUP_BUCKET}/${S3_BACKUP_PREFIX}/${BACKUP_FILE}"
 
 aws s3 cp "${BACKUP_PATH}" "${S3_PATH}" \
-    --region us-east-1 \
+    --region "${AWS_REGION:-ap-southeast-2}" \
     --storage-class STANDARD_IA \
     --metadata "backup-date=${TIMESTAMP},database=${DB_NAME}" \
     >> "${LOG_FILE}" 2>&1
@@ -106,7 +106,7 @@ log "Successfully uploaded to ${S3_PATH}"
 
 # Verify upload
 log "Verifying S3 upload..."
-if aws s3 ls "${S3_PATH}" --region us-east-1 > /dev/null 2>&1; then
+if aws s3 ls "${S3_PATH}" --region "${AWS_REGION:-ap-southeast-2}" > /dev/null 2>&1; then
     log "S3 upload verified successfully"
 else
     log "ERROR: S3 upload verification failed"
@@ -131,7 +131,7 @@ EOF
 
 # Upload metadata
 aws s3 cp "${METADATA_FILE}" "s3://${S3_BACKUP_BUCKET}/${S3_BACKUP_PREFIX}/${BACKUP_FILE}.metadata" \
-    --region us-east-1 \
+    --region "${AWS_REGION:-ap-southeast-2}" \
     >> "${LOG_FILE}" 2>&1
 
 log "Backup metadata saved"
@@ -142,7 +142,7 @@ find "${BACKUP_DIR}" -name "dr-platform-backup-*.sql.gz" -mtime +7 -delete
 
 # Cleanup old S3 backups (keep 30 days)
 log "Cleaning up old S3 backups..."
-aws s3 ls "s3://${S3_BACKUP_BUCKET}/${S3_BACKUP_PREFIX}/" --region us-east-1 | while read -r date time size file; do
+aws s3 ls "s3://${S3_BACKUP_BUCKET}/${S3_BACKUP_PREFIX}/" --region "${AWS_REGION:-ap-southeast-2}" | while read -r date time size file; do
     FILE_DATE=$(echo $file | grep -oP 'backup-\K[0-9]{8}' || true)
     if [ -n "$FILE_DATE" ]; then
         FILE_TIMESTAMP=$(date -d "${FILE_DATE}" +%s 2>/dev/null || echo 0)
@@ -150,7 +150,7 @@ aws s3 ls "s3://${S3_BACKUP_BUCKET}/${S3_BACKUP_PREFIX}/" --region us-east-1 | w
 
         if [ $FILE_TIMESTAMP -lt $CUTOFF_TIMESTAMP ]; then
             aws s3 rm "s3://${S3_BACKUP_BUCKET}/${S3_BACKUP_PREFIX}/${file}" \
-                --region us-east-1 \
+                --region "${AWS_REGION:-ap-southeast-2}" \
                 >> "${LOG_FILE}" 2>&1
             log "Removed old backup: ${file}"
         fi

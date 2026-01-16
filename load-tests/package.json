@@ -1,0 +1,20 @@
+{
+  "name": "disaster-recovery-load-tests",
+  "version": "1.0.0",
+  "description": "k6 load testing infrastructure for Disaster Recovery NRPG Platform",
+  "scripts": {
+    "smoke": "k6 run scenarios/smoke.js",
+    "load": "k6 run scenarios/claim-submission.js",
+    "stress": "k6 run stress/api-endpoints-full.js",
+    "spike": "k6 run scenarios/disaster-surge.js",
+    "soak": "k6 run scenarios/sustained-load.js",
+    "matching": "k6 run scenarios/contractor-matching.js",
+    "auth": "k6 run scenarios/authentication.js",
+    "payments": "k6 run scenarios/payment-stripe.js",
+    "database": "k6 run stress/database-pooling.js",
+    "redis": "k6 run stress/redis-cache.js"
+  },
+  "keywords": ["k6", "load-testing", "stress-testing", "performance"],
+  "author": "Disaster Recovery Team",
+  "license": "MIT"
+}

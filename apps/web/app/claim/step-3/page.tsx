@@ -16,13 +16,15 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ChevronLeft, Upload, X, Image as ImageIcon, CheckCircle, AlertCircle } from 'lucide-react';
+import { ChevronLeft, CheckCircle, AlertCircle } from 'lucide-react';
 
 import { FormInput } from '@/src/design-system/components/Form/FormInput';
 import { FormTextarea } from '@/src/design-system/components/Form/FormTextarea';
 import { Button } from '@/src/design-system/components/Button/Button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { PageTransition } from '@/src/design-system/components/Layout/PageTransition';
+import { HCaptcha } from '@/components/captcha/HCaptcha';
+import { PhotoUpload, type UploadedPhoto } from '@/components/upload/PhotoUpload';
 
 import {
   type DetailsInsuranceData,
@@ -40,7 +42,7 @@ import {
 export default function ClaimStep3Page() {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
-  const [uploadedPhotos, setUploadedPhotos] = React.useState<string[]>([]);
+  const [uploadedPhotos, setUploadedPhotos] = React.useState<UploadedPhoto[]>([]);
   const [captchaToken, setCaptchaToken] = React.useState<string>('');
   const [showCaptcha, setShowCaptcha] = React.useState(false);
   const [submitError, setSubmitError] = React.useState<string | null>(null);
@@ -77,32 +79,28 @@ export default function ClaimStep3Page() {
   const hasInsurance = watch('hasInsurance');
   const damageDescription = watch('damageDescription');
 
-  // Handle photo upload (mock implementation - would use actual upload service)
-  const handlePhotoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    if (!files || files.length === 0) return;
-
-    // In production, upload to cloud storage (S3, Cloudinary, etc.)
-    // For now, create mock URLs
-    const newPhotoUrls = Array.from(files).map((file) => URL.createObjectURL(file));
-    const updatedPhotos = [...uploadedPhotos, ...newPhotoUrls].slice(0, 5); // Max 5 photos
-
-    setUploadedPhotos(updatedPhotos);
-    setValue('photoUrls', updatedPhotos);
+  // Handle photo changes from PhotoUpload component
+  const handlePhotosChange = (photos: UploadedPhoto[]) => {
+    setUploadedPhotos(photos);
+    // Store URLs for form submission
+    setValue('photoUrls', photos.map((p) => p.url));
   };
 
-  const removePhoto = (index: number) => {
-    const updatedPhotos = uploadedPhotos.filter((_, i) => i !== index);
-    setUploadedPhotos(updatedPhotos);
-    setValue('photoUrls', updatedPhotos);
-  };
-
-  // Mock CAPTCHA verification
-  const verifyCaptcha = () => {
-    // In production, use hCaptcha or reCAPTCHA
-    const mockToken = `captcha_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    setCaptchaToken(mockToken);
+  // Handle CAPTCHA verification
+  const handleCaptchaVerify = (token: string) => {
+    setCaptchaToken(token);
     setShowCaptcha(false);
+  };
+
+  // Handle CAPTCHA expiry
+  const handleCaptchaExpire = () => {
+    setCaptchaToken('');
+  };
+
+  // Handle CAPTCHA error
+  const handleCaptchaError = (error: string) => {
+    console.error('CAPTCHA error:', error);
+    setSubmitError('Verification failed. Please try again.');
   };
 
   const onSubmit = async (data: DetailsInsuranceData) => {
@@ -269,46 +267,12 @@ export default function ClaimStep3Page() {
                 Photos help contractors assess the damage faster. You can upload up to 5 photos.
               </p>
 
-              {/* Photo Grid */}
-              {uploadedPhotos.length > 0 && (
-                <div className="grid grid-cols-3 gap-3 mb-3">
-                  {uploadedPhotos.map((photo, index) => (
-                    <div key={index} className="relative group">
-                      <img
-                        src={photo}
-                        alt={`Damage photo ${index + 1}`}
-                        className="w-full h-32 object-cover rounded-lg border border-gray-300"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removePhoto(index)}
-                        className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <X className="h-4 w-4" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Upload Button */}
-              {uploadedPhotos.length < 5 && (
-                <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
-                  <div className="flex flex-col items-center justify-center py-4">
-                    <Upload className="h-8 w-8 text-gray-500 mb-2" />
-                    <p className="text-sm text-gray-600">
-                      Click to upload photos ({uploadedPhotos.length}/5)
-                    </p>
-                  </div>
-                  <input
-                    type="file"
-                    className="hidden"
-                    accept="image/*"
-                    multiple
-                    onChange={handlePhotoUpload}
-                  />
-                </label>
-              )}
+              <PhotoUpload
+                photos={uploadedPhotos}
+                onPhotosChange={handlePhotosChange}
+                maxPhotos={5}
+                folder="claims"
+              />
             </div>
 
             {/* Insurance Information */}
@@ -377,21 +341,19 @@ export default function ClaimStep3Page() {
               )}
             </div>
 
-            {/* CAPTCHA (Mock) */}
+            {/* CAPTCHA Verification */}
             {showCaptcha && !captchaToken && (
-              <div className="bg-gray-100 border border-gray-300 rounded-lg p-6 text-center">
-                <p className="text-sm text-gray-700 mb-4">
+              <div className="border border-gray-300 rounded-lg p-6">
+                <p className="text-sm text-gray-700 mb-4 text-center">
                   Please verify you're human before submitting
                 </p>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="lg"
-                  onClick={verifyCaptcha}
-                  icon={<CheckCircle className="h-5 w-5" />}
-                >
-                  I'm not a robot
-                </Button>
+                <HCaptcha
+                  onVerify={handleCaptchaVerify}
+                  onExpire={handleCaptchaExpire}
+                  onError={handleCaptchaError}
+                  theme="light"
+                  size="normal"
+                />
               </div>
             )}
 
@@ -400,7 +362,7 @@ export default function ClaimStep3Page() {
               <Alert className="border-green-600 bg-green-50">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 <AlertDescription className="text-green-900">
-                  CAPTCHA verified. You can now submit your claim.
+                  Verification complete. You can now submit your claim.
                 </AlertDescription>
               </Alert>
             )}
