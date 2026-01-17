@@ -182,6 +182,106 @@ export async function emitPaymentFailed(
 }
 
 /**
+ * Emit payment refunded event
+ */
+export async function emitPaymentRefunded(
+  paymentId: string,
+  bookingId: string,
+  clientId: string,
+  contractorId: string | null,
+  refundAmount: number,
+  originalAmount: number,
+  stripeRefundId: string,
+  isPartialRefund: boolean,
+  currency: string = 'AUD'
+) {
+  try {
+    const refundType = isPartialRefund ? 'partial' : 'full';
+
+    // Event for client
+    const clientEvent: RealtimeEvent = {
+      type: 'payment:refunded',
+      id: paymentId,
+      timestamp: new Date(),
+      data: {
+        paymentId,
+        bookingId,
+        clientId,
+        refundAmount,
+        originalAmount,
+        stripeRefundId,
+        refundType,
+        currency,
+        message: isPartialRefund
+          ? `Partial refund of $${refundAmount.toFixed(2)} ${currency} has been processed`
+          : `Full refund of $${refundAmount.toFixed(2)} ${currency} has been processed`,
+      },
+      channel: `booking:${bookingId}`,
+      priority: 'high',
+    };
+
+    await emitEvent(clientEvent);
+
+    // Send client notification
+    await sendNotification({
+      userId: clientId,
+      type: 'payment_refunded',
+      title: isPartialRefund ? 'Partial Refund Processed' : 'Refund Processed',
+      message: isPartialRefund
+        ? `A partial refund of $${refundAmount.toFixed(2)} ${currency} has been processed for your booking. The refund will appear in your account within 5-10 business days.`
+        : `Your refund of $${refundAmount.toFixed(2)} ${currency} has been processed. The refund will appear in your account within 5-10 business days.`,
+      data: {
+        paymentId,
+        bookingId,
+        refundAmount,
+        stripeRefundId,
+      },
+    });
+
+    // Notify contractor about refund (affects their payout)
+    if (contractorId) {
+      const contractorEvent: RealtimeEvent = {
+        type: 'payment:refunded',
+        id: paymentId,
+        timestamp: new Date(),
+        data: {
+          paymentId,
+          bookingId,
+          refundAmount,
+          originalAmount,
+          refundType,
+          currency,
+          message: isPartialRefund
+            ? `Partial refund issued - payout will be adjusted`
+            : `Full refund issued - payout cancelled`,
+        },
+        channel: `booking:${bookingId}`,
+        priority: 'high',
+      };
+
+      await emitEvent(contractorEvent);
+
+      // Send contractor notification
+      await sendNotification({
+        userId: contractorId,
+        type: 'payment_refunded',
+        title: isPartialRefund ? 'Partial Refund Issued' : 'Refund Issued',
+        message: isPartialRefund
+          ? `A partial refund of $${refundAmount.toFixed(2)} ${currency} has been issued for a booking. Your payout will be adjusted accordingly.`
+          : `A full refund has been issued for a booking. The scheduled payout for this booking has been cancelled.`,
+        data: {
+          paymentId,
+          bookingId,
+          refundAmount,
+        },
+      });
+    }
+  } catch (error) {
+    console.error('Failed to emit payment:refunded event:', error);
+  }
+}
+
+/**
  * Emit invoice generated event
  */
 export async function emitInvoiceGenerated(

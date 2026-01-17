@@ -1247,6 +1247,12 @@ model Payment {
   gstAUD                Decimal // 10% GST
   netAmountAUD          Decimal // Amount to contractor after fees
 
+  // Non-Refundable Marketing Fee (Disaster Recovery Platform Fee)
+  // $550 GST-inclusive marketing fee retained by Disaster Recovery - NOT refundable
+  marketingFeeAUD       Decimal @default(500.00) // Base fee (ex-GST)
+  marketingFeeGSTAUD    Decimal @default(50.00)  // 10% GST on marketing fee
+  refundableAmountAUD   Decimal? // Amount eligible for refund (total - $550 marketing fee)
+
   // Payment Method
   paymentMethod         String // "CREDIT_CARD", "BANK_TRANSFER", "CASH", "CHECK", "INSURANCE"
   stripePaymentIntentId String?
@@ -1256,6 +1262,12 @@ model Payment {
   status        PaymentStatus @default(PENDING)
   processedAt   DateTime?
   failureReason String?
+
+  // Refund Tracking
+  stripeRefundId String?   // Stripe refund ID for tracking
+  refundAmount   Decimal?  // Amount refunded (supports partial refunds)
+  refundedAt     DateTime? // When the refund was processed
+  refundReason   String?   // Reason for the refund
 
   // Receipt/Invoice
   receiptUrl    String?

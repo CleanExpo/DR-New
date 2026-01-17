@@ -1,11 +1,23 @@
 /**
  * Refund & Dispute Handling System
  *
- * Manages refund requests and disputes:
+ * CRITICAL BUSINESS RULE:
+ * - Disaster Recovery retains $550 (GST-inclusive) marketing fee - NOT REFUNDABLE
+ * - Only the contractor portion ($2200 of initial $2750 payment) is refundable
+ * - Refunds are between Consumer and Approved Contractor for remaining amount
+ * - This must be transparent throughout transaction, onboarding, and training
+ *
+ * Payment Breakdown Example ($2750 total):
+ * - Disaster Recovery Marketing Fee: $550 (non-refundable)
+ *   - Base: $500
+ *   - GST: $50
+ * - Contractor Portion: $2200 (refundable if disputed)
+ *
+ * Workflow:
  * 1. 30-day dispute window after payment
  * 2. Initiate refund request (client)
  * 3. Admin review and approval
- * 4. Process refund via Stripe
+ * 4. Process refund via Stripe (max: total - $550 marketing fee)
  * 5. Reverse contractor payout if necessary
  */
 
@@ -18,6 +30,11 @@ const stripe = process.env.STRIPE_SECRET_KEY
     })
   : null;
 
+// Non-refundable marketing fee constants ($550 GST-inclusive)
+export const MARKETING_FEE_AUD = 500.00; // Platform marketing fee (ex-GST)
+export const MARKETING_FEE_GST_AUD = 50.00; // 10% GST on marketing fee
+export const TOTAL_MARKETING_FEE_AUD = 550.00; // $550 total (GST-inclusive)
+
 export const DISPUTE_WINDOW_DAYS = 30;
 export enum DisputeStatus {
   OPEN = 'OPEN',
@@ -28,12 +45,38 @@ export enum DisputeStatus {
 }
 
 export enum RefundType {
-  FULL = 'FULL',
-  PARTIAL = 'PARTIAL',
+  FULL = 'FULL', // Full refundable amount (excludes marketing fee)
+  PARTIAL = 'PARTIAL', // Partial refundable amount
+}
+
+/**
+ * Calculate refund breakdown for transparency
+ * Shows exactly what is refundable vs retained
+ */
+export function calculateRefundBreakdown(
+  totalAmountAUD: number,
+  marketingFeeAUD: number = MARKETING_FEE_AUD,
+  marketingFeeGSTAUD: number = MARKETING_FEE_GST_AUD
+) {
+  const totalMarketingFee = marketingFeeAUD + marketingFeeGSTAUD;
+  const maxRefundableAmount = Math.max(0, totalAmountAUD - totalMarketingFee);
+
+  return {
+    totalPayment: totalAmountAUD,
+    marketingFee: marketingFeeAUD,
+    marketingFeeGST: marketingFeeGSTAUD,
+    totalMarketingFee,
+    nonRefundableAmount: totalMarketingFee,
+    maxRefundableAmount,
+    contractorPortion: maxRefundableAmount,
+  };
 }
 
 /**
  * Initiate a refund/dispute for a payment
+ *
+ * IMPORTANT: The $550 + GST ($605) marketing fee is NON-REFUNDABLE
+ * Maximum refund = Total Payment - Marketing Fee
  */
 export async function initiateDispute(
   paymentId: string,
@@ -87,14 +130,34 @@ export async function initiateDispute(
     (
       parseFloat(payment.amountAUD.toString()) +
       parseFloat(payment.gstAUD.toString())
-    ).toString()
+    ).toFixed(2)
   );
 
-  const refundAmount = requestedRefundAmount || totalAmount;
-  const refundType =
-    refundAmount < totalAmount ? RefundType.PARTIAL : RefundType.FULL;
+  // Get marketing fee from payment record or use default
+  const marketingFee = payment.marketingFeeAUD
+    ? parseFloat(payment.marketingFeeAUD.toString())
+    : MARKETING_FEE_AUD;
+  const marketingFeeGST = payment.marketingFeeGSTAUD
+    ? parseFloat(payment.marketingFeeGSTAUD.toString())
+    : MARKETING_FEE_GST_AUD;
 
-  // Create dispute record (simulated - would be in separate Dispute table)
+  // Calculate refund breakdown for transparency
+  const breakdown = calculateRefundBreakdown(totalAmount, marketingFee, marketingFeeGST);
+
+  // Validate requested refund amount doesn't exceed maximum refundable
+  let refundAmount = requestedRefundAmount || breakdown.maxRefundableAmount;
+  if (refundAmount > breakdown.maxRefundableAmount) {
+    console.warn(
+      `Requested refund $${refundAmount} exceeds maximum refundable $${breakdown.maxRefundableAmount}. ` +
+      `$${breakdown.totalMarketingFee} marketing fee is non-refundable.`
+    );
+    refundAmount = breakdown.maxRefundableAmount;
+  }
+
+  const refundType =
+    refundAmount < breakdown.maxRefundableAmount ? RefundType.PARTIAL : RefundType.FULL;
+
+  // Create dispute record with full transparency
   const disputeRecord = {
     paymentId,
     clientId,
@@ -103,6 +166,10 @@ export async function initiateDispute(
     refundType,
     requestedAmount: refundAmount,
     totalAmount,
+    // Transparency fields
+    marketingFeeRetained: breakdown.totalMarketingFee,
+    maxRefundableAmount: breakdown.maxRefundableAmount,
+    contractorPortion: breakdown.contractorPortion,
     createdAt: new Date(),
   };
 
@@ -110,14 +177,21 @@ export async function initiateDispute(
   console.log('Payment ID:', paymentId);
   console.log('Client ID:', clientId);
   console.log('Reason:', reason);
-  console.log('Requested Refund:', refundAmount);
-  console.log('Total Amount:', totalAmount);
+  console.log('--- REFUND BREAKDOWN ---');
+  console.log('Total Payment:', `$${totalAmount.toFixed(2)}`);
+  console.log('Marketing Fee (Non-Refundable):', `$${breakdown.totalMarketingFee.toFixed(2)}`);
+  console.log('  - Base Fee:', `$${breakdown.marketingFee.toFixed(2)}`);
+  console.log('  - GST:', `$${breakdown.marketingFeeGST.toFixed(2)}`);
+  console.log('Max Refundable (Contractor Portion):', `$${breakdown.maxRefundableAmount.toFixed(2)}`);
+  console.log('Requested Refund:', `$${refundAmount.toFixed(2)}`);
 
   return disputeRecord;
 }
 
 /**
  * Admin reviews and approves/rejects dispute
+ *
+ * IMPORTANT: Maximum approvable refund is capped at (total - marketing fee)
  */
 export async function reviewDispute(
   paymentId: string,
@@ -147,30 +221,49 @@ export async function reviewDispute(
     (
       parseFloat(payment.amountAUD.toString()) +
       parseFloat(payment.gstAUD.toString())
-    ).toString()
+    ).toFixed(2)
   );
+
+  // Get marketing fee from payment record or use default
+  const marketingFee = payment.marketingFeeAUD
+    ? parseFloat(payment.marketingFeeAUD.toString())
+    : MARKETING_FEE_AUD;
+  const marketingFeeGST = payment.marketingFeeGSTAUD
+    ? parseFloat(payment.marketingFeeGSTAUD.toString())
+    : MARKETING_FEE_GST_AUD;
+
+  // Calculate maximum refundable amount
+  const breakdown = calculateRefundBreakdown(totalAmount, marketingFee, marketingFeeGST);
 
   let statusUpdate = DisputeStatus.REJECTED;
   let refundAmount = 0;
 
   if (decision === 'APPROVED') {
     statusUpdate = DisputeStatus.APPROVED;
-    refundAmount = totalAmount;
+    // Full approval = max refundable amount (NOT total amount)
+    refundAmount = breakdown.maxRefundableAmount;
   } else if (decision === 'PARTIAL' && approvedAmount) {
     statusUpdate = DisputeStatus.APPROVED;
-    refundAmount = approvedAmount;
+    // Enforce maximum limit on partial refund
+    refundAmount = Math.min(approvedAmount, breakdown.maxRefundableAmount);
   }
 
   console.log('=== DISPUTE REVIEWED ===');
   console.log('Payment ID:', paymentId);
   console.log('Decision:', decision);
-  console.log('Approved Amount:', refundAmount);
+  console.log('--- REFUND LIMITS ---');
+  console.log('Total Payment:', `$${totalAmount.toFixed(2)}`);
+  console.log('Marketing Fee (Non-Refundable):', `$${breakdown.totalMarketingFee.toFixed(2)}`);
+  console.log('Max Refundable:', `$${breakdown.maxRefundableAmount.toFixed(2)}`);
+  console.log('Approved Amount:', `$${refundAmount.toFixed(2)}`);
   console.log('Notes:', notes);
 
   return {
     paymentId,
     status: statusUpdate,
     approvedAmount: refundAmount,
+    maxRefundableAmount: breakdown.maxRefundableAmount,
+    marketingFeeRetained: breakdown.totalMarketingFee,
     reviewedBy: adminId,
     reviewedAt: new Date(),
     notes,
@@ -179,6 +272,9 @@ export async function reviewDispute(
 
 /**
  * Process refund via Stripe
+ *
+ * CRITICAL: Enforces maximum refund limit (total - marketing fee)
+ * The $550 + GST marketing fee is NEVER refunded
  */
 export async function processRefund(
   paymentId: string,
@@ -188,7 +284,7 @@ export async function processRefund(
     throw new Error('Stripe is not configured');
   }
 
-  // Get payment
+  // Get payment with marketing fee details
   const payment = await prisma.payment.findUnique({
     where: { id: paymentId },
     select: {
@@ -197,6 +293,8 @@ export async function processRefund(
       gstAUD: true,
       clientId: true,
       contractorId: true,
+      marketingFeeAUD: true,
+      marketingFeeGSTAUD: true,
     },
   });
 
@@ -213,8 +311,28 @@ export async function processRefund(
       (
         parseFloat(payment.amountAUD.toString()) +
         parseFloat(payment.gstAUD.toString())
-      ).toString()
+      ).toFixed(2)
     );
+
+    // Get marketing fee from payment record or use default
+    const marketingFee = payment.marketingFeeAUD
+      ? parseFloat(payment.marketingFeeAUD.toString())
+      : MARKETING_FEE_AUD;
+    const marketingFeeGST = payment.marketingFeeGSTAUD
+      ? parseFloat(payment.marketingFeeGSTAUD.toString())
+      : MARKETING_FEE_GST_AUD;
+
+    // Calculate maximum refundable amount
+    const breakdown = calculateRefundBreakdown(totalAmount, marketingFee, marketingFeeGST);
+
+    // CRITICAL: Enforce maximum refund limit
+    if (refundAmount > breakdown.maxRefundableAmount) {
+      console.warn(
+        `Refund amount $${refundAmount} exceeds maximum $${breakdown.maxRefundableAmount}. ` +
+        `Capping at max refundable amount. $${breakdown.totalMarketingFee} marketing fee is non-refundable.`
+      );
+      refundAmount = breakdown.maxRefundableAmount;
+    }
 
     // Get Stripe charge ID from payment intent
     const paymentIntent = await stripe.paymentIntents.retrieve(
@@ -226,22 +344,34 @@ export async function processRefund(
       throw new Error('No charge ID found for payment intent');
     }
 
-    // Process refund
+    // Process refund via Stripe
     const refundInCents = Math.round(refundAmount * 100);
     const refund = await stripe.refunds.create({
       charge: chargeId,
       amount: refundInCents,
+      metadata: {
+        paymentId,
+        marketingFeeRetained: breakdown.totalMarketingFee.toFixed(2),
+        maxRefundableAmount: breakdown.maxRefundableAmount.toFixed(2),
+        reason: 'Contractor dispute resolution',
+      },
     });
 
-    console.log('=== REFUND PROCESSED ===');
+    console.log('=== REFUND PROCESSED VIA STRIPE ===');
     console.log('Payment ID:', paymentId);
     console.log('Stripe Refund ID:', refund.id);
-    console.log('Amount:', refundAmount);
+    console.log('--- REFUND BREAKDOWN ---');
+    console.log('Total Payment:', `$${totalAmount.toFixed(2)}`);
+    console.log('Marketing Fee (Retained):', `$${breakdown.totalMarketingFee.toFixed(2)}`);
+    console.log('Max Refundable:', `$${breakdown.maxRefundableAmount.toFixed(2)}`);
+    console.log('Amount Refunded:', `$${refundAmount.toFixed(2)}`);
 
     return {
       stripeRefundId: refund.id,
       amount: refundAmount,
       status: refund.status,
+      marketingFeeRetained: breakdown.totalMarketingFee,
+      maxRefundableAmount: breakdown.maxRefundableAmount,
     };
   } catch (error) {
     console.error('Stripe refund failed:', error);
@@ -255,27 +385,68 @@ export async function processRefund(
 
 /**
  * Complete refund and update records
+ * Updates payment with refund details and triggers contractor payout reversal
  */
 export async function completeRefund(
   paymentId: string,
   refundAmount: number,
-  stripeRefundId: string
+  stripeRefundId: string,
+  refundReason?: string
 ) {
-  // Update payment status
+  // Get payment to access marketing fee details
+  const payment = await prisma.payment.findUnique({
+    where: { id: paymentId },
+    select: {
+      amountAUD: true,
+      gstAUD: true,
+      marketingFeeAUD: true,
+      marketingFeeGSTAUD: true,
+      contractorId: true,
+    },
+  });
+
+  if (!payment) {
+    throw new Error(`Payment not found: ${paymentId}`);
+  }
+
+  const totalAmount = parseFloat(
+    (
+      parseFloat(payment.amountAUD.toString()) +
+      parseFloat(payment.gstAUD.toString())
+    ).toFixed(2)
+  );
+
+  // Get marketing fee values
+  const marketingFee = payment.marketingFeeAUD
+    ? parseFloat(payment.marketingFeeAUD.toString())
+    : MARKETING_FEE_AUD;
+  const marketingFeeGST = payment.marketingFeeGSTAUD
+    ? parseFloat(payment.marketingFeeGSTAUD.toString())
+    : MARKETING_FEE_GST_AUD;
+
+  const breakdown = calculateRefundBreakdown(totalAmount, marketingFee, marketingFeeGST);
+
+  // Update payment status with full refund tracking
   const updatedPayment = await prisma.payment.update({
     where: { id: paymentId },
     data: {
       status: 'REFUNDED',
+      stripeRefundId,
+      refundAmount,
+      refundedAt: new Date(),
+      refundReason: refundReason || 'Dispute resolution - consumer/contractor agreement',
+      refundableAmountAUD: breakdown.maxRefundableAmount,
       updatedAt: new Date(),
     },
   });
 
   // If refunding contractor payout, reverse earnings
   if (updatedPayment.contractorId) {
+    console.log('=== CONTRACTOR PAYOUT REVERSAL REQUIRED ===');
+    console.log('Contractor ID:', updatedPayment.contractorId);
+    console.log('Refund Amount:', `$${refundAmount.toFixed(2)}`);
+    console.log('Marketing Fee (Retained by Platform):', `$${breakdown.totalMarketingFee.toFixed(2)}`);
     // This would be handled by a separate function to reverse payout
-    console.log(
-      `Marking contractor payout reversal needed for: ${updatedPayment.contractorId}`
-    );
   }
 
   return {
@@ -284,11 +455,14 @@ export async function completeRefund(
     stripeRefundId,
     status: DisputeStatus.REFUNDED,
     completedAt: new Date(),
+    marketingFeeRetained: breakdown.totalMarketingFee,
+    contractorPayoutReversed: !!updatedPayment.contractorId,
   };
 }
 
 /**
- * Get dispute details
+ * Get dispute details with refund breakdown
+ * Provides full transparency on refundable vs non-refundable amounts
  */
 export async function getDisputeDetails(paymentId: string) {
   const payment = await prisma.payment.findUnique({
@@ -326,8 +500,19 @@ export async function getDisputeDetails(paymentId: string) {
     (
       parseFloat(payment.amountAUD.toString()) +
       parseFloat(payment.gstAUD.toString())
-    ).toString()
+    ).toFixed(2)
   );
+
+  // Get marketing fee values for transparency
+  const marketingFee = payment.marketingFeeAUD
+    ? parseFloat(payment.marketingFeeAUD.toString())
+    : MARKETING_FEE_AUD;
+  const marketingFeeGST = payment.marketingFeeGSTAUD
+    ? parseFloat(payment.marketingFeeGSTAUD.toString())
+    : MARKETING_FEE_GST_AUD;
+
+  // Calculate refund breakdown
+  const breakdown = calculateRefundBreakdown(totalAmount, marketingFee, marketingFeeGST);
 
   // Calculate days since payment
   const daysSincePayment = payment.processedAt
@@ -343,6 +528,18 @@ export async function getDisputeDetails(paymentId: string) {
   return {
     payment,
     totalAmount,
+    // Refund transparency breakdown
+    refundBreakdown: {
+      totalPayment: breakdown.totalPayment,
+      marketingFee: breakdown.marketingFee,
+      marketingFeeGST: breakdown.marketingFeeGST,
+      totalMarketingFee: breakdown.totalMarketingFee,
+      nonRefundableAmount: breakdown.nonRefundableAmount,
+      maxRefundableAmount: breakdown.maxRefundableAmount,
+      contractorPortion: breakdown.contractorPortion,
+      refundableExplanation: `The $${breakdown.totalMarketingFee.toFixed(2)} marketing fee is non-refundable. ` +
+        `Maximum refund available: $${breakdown.maxRefundableAmount.toFixed(2)} (contractor portion).`,
+    },
     daysSincePayment,
     daysRemaining,
     canDispute,
