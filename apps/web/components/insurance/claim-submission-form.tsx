@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -36,6 +36,7 @@ import {
   DollarSign,
   FileCheck,
 } from 'lucide-react';
+import ClaimAssistant from '@/components/ai/claim-assistant';
 
 // Australian insurance providers
 const INSURANCE_PROVIDERS = [
@@ -97,6 +98,18 @@ export default function ClaimSubmissionForm({
   const [uploadedPhotos, setUploadedPhotos] = useState<string[]>([]);
   const [selectedProvider, setSelectedProvider] = useState<(typeof INSURANCE_PROVIDERS)[0] | null>(
     null
+  );
+  const [currentDescription, setCurrentDescription] = useState('');
+
+  // Handle AI suggestion application
+  const handleAISuggestion = useCallback(
+    (field: string, value: unknown) => {
+      if (field === 'totalClaimAmountAUD') {
+        form.setValue('totalClaimAmountAUD', value as string);
+        toast.success('Claim amount updated from AI suggestion');
+      }
+    },
+    [form]
   );
 
   const form = useForm<ClaimSubmissionValues>({
@@ -399,35 +412,51 @@ export default function ClaimSubmissionForm({
                 />
               </div>
 
-              {/* Damage Description */}
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-4">Damage Description</h3>
+              {/* Damage Description with AI Assistant */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <h3 className="text-lg font-semibold text-white mb-4">Damage Description</h3>
 
-                <FormField
-                  control={form.control}
-                  name="damageDescription"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-300">Detailed Damage Description</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Provide a comprehensive description of the damage, including:
+                  <FormField
+                    control={form.control}
+                    name="damageDescription"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-300">Detailed Damage Description</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Provide a comprehensive description of the damage, including:
 - Type of damage
 - Areas affected
 - Estimated cause
 - Actions taken so far
 - Any repairs already started"
-                          className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 min-h-40"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription className="text-gray-400">
-                        Be thorough - this helps your insurance company process the claim faster
-                      </FormDescription>
-                      <FormMessage className="text-red-400" />
-                    </FormItem>
-                  )}
-                />
+                            className="bg-gray-700 border-gray-600 text-white placeholder-gray-400 min-h-40"
+                            {...field}
+                            onChange={(e) => {
+                              field.onChange(e);
+                              setCurrentDescription(e.target.value);
+                            }}
+                          />
+                        </FormControl>
+                        <FormDescription className="text-gray-400">
+                          Be thorough - this helps your insurance company process the claim faster
+                        </FormDescription>
+                        <FormMessage className="text-red-400" />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* AI Claim Assistant Panel */}
+                <div className="lg:col-span-1">
+                  <ClaimAssistant
+                    description={currentDescription}
+                    insuranceProvider={selectedProvider?.code}
+                    onSuggestion={handleAISuggestion}
+                    className="sticky top-4"
+                  />
+                </div>
               </div>
 
               {/* Damage Photos */}

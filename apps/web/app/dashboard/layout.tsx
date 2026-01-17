@@ -9,6 +9,7 @@ import { ReactNode } from 'react';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
+import { AIChatWidget } from '@/components/ai';
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -23,6 +24,22 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
     redirect('/login');
   }
 
+  // Map user type
+  const userType = session.user.userType === 'CONTRACTOR'
+    ? 'contractor'
+    : session.user.userType === 'ADMIN'
+    ? 'admin'
+    : 'homeowner';
+
   // The user is authenticated and can access dashboard
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      {/* AI Support Chat Widget */}
+      <AIChatWidget
+        userId={session.user.id}
+        userType={userType}
+      />
+    </>
+  );
 }

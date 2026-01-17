@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,7 +29,11 @@ import {
   MessageSquare,
   Phone,
   Clock,
+  Sparkles,
+  ToggleLeft,
+  ToggleRight,
 } from 'lucide-react';
+import SemanticSearchInput from '@/components/ai/semantic-search-input';
 
 // Australian states for postcode validation
 const AUSTRALIAN_STATES: Record<string, { name: string; postcodeRange: [number, number] }> = {
@@ -91,6 +95,8 @@ export default function ContractorSearchInterface({
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
   const [selectedContractor, setSelectedContractor] = useState<Contractor | null>(null);
+  const [useAISearch, setUseAISearch] = useState(true);
+  const [aiSearchQuery, setAISearchQuery] = useState('');
 
   const getStateFromPostcode = (code: string): string | null => {
     const num = parseInt(code, 10);
@@ -155,21 +161,137 @@ export default function ContractorSearchInterface({
       .replace(/\b\w/g, (l) => l.toUpperCase());
   };
 
+  // Handle AI semantic search
+  const handleSemanticSearch = useCallback(
+    async (
+      query: string,
+      filters: {
+        serviceTypes: string[];
+        urgencyLevel: string;
+        location: { suburb?: string; state?: string; postcode?: string; city?: string };
+      },
+      parsed: { intent: string; confidence: number }
+    ) => {
+      setAISearchQuery(query);
+      setLoading(true);
+      setSearched(true);
+
+      try {
+        // Apply parsed filters to state
+        if (filters.serviceTypes.length > 0) {
+          setServiceType(filters.serviceTypes[0]);
+        }
+
+        if (filters.location.postcode) {
+          setPostcode(filters.location.postcode);
+        }
+
+        // Map urgency level to emergency level
+        const urgencyMap: Record<string, string> = {
+          EMERGENCY: 'URGENT',
+          URGENT: 'URGENT',
+          HIGH: 'HIGH',
+          STANDARD: 'STANDARD',
+          FLEXIBLE: 'SCHEDULED',
+        };
+        if (filters.urgencyLevel) {
+          setEmergencyLevel(urgencyMap[filters.urgencyLevel] || 'STANDARD');
+        }
+
+        // Build search params from AI-parsed filters
+        const searchParams = new URLSearchParams({
+          ...(filters.location.postcode && { postcode: filters.location.postcode }),
+          ...(filters.location.state && { state: filters.location.state }),
+          ...(filters.serviceTypes.length > 0 && { serviceType: filters.serviceTypes[0] }),
+          ...(filters.urgencyLevel && { emergencyLevel: urgencyMap[filters.urgencyLevel] || 'STANDARD' }),
+          ...(minRating && { minRating: minRating.toString() }),
+          aiQuery: query, // Include original query for backend logging/ML
+        });
+
+        const response = await fetch(`/api/contractors/search?${searchParams}`, {
+          cache: 'no-store',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to search contractors');
+        }
+
+        const result = await response.json();
+        setContractors(result.contractors || []);
+
+        if (result.contractors.length === 0) {
+          toast.info('No contractors found. Try adjusting your search.');
+        } else {
+          toast.success(
+            `Found ${result.contractors.length} contractor${result.contractors.length !== 1 ? 's' : ''} matching your needs`
+          );
+        }
+      } catch (error) {
+        console.error('AI Search error:', error);
+        toast.error(error instanceof Error ? error.message : 'Search failed');
+      } finally {
+        setLoading(false);
+      }
+    },
+    [minRating]
+  );
+
   return (
     <div className="w-full space-y-6">
       {/* Search Form Card */}
       <Card className="bg-gray-800 border-gray-700">
         <CardHeader className="bg-gradient-to-r from-[#00BFA6] to-[#3B82F6]">
-          <CardTitle className="text-white text-2xl flex items-center gap-2">
-            <Search className="h-6 w-6" />
-            Find Qualified Contractors
-          </CardTitle>
-          <CardDescription className="text-gray-100">
-            Search for verified NRPG contractors in your area
-          </CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-white text-2xl flex items-center gap-2">
+                {useAISearch ? (
+                  <Sparkles className="h-6 w-6" />
+                ) : (
+                  <Search className="h-6 w-6" />
+                )}
+                Find Qualified Contractors
+              </CardTitle>
+              <CardDescription className="text-gray-100">
+                {useAISearch
+                  ? 'Describe what you need in plain English'
+                  : 'Search for verified NRPG contractors in your area'}
+              </CardDescription>
+            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setUseAISearch(!useAISearch)}
+              className="text-white hover:bg-white/20 flex items-center gap-2"
+            >
+              {useAISearch ? (
+                <ToggleRight className="h-5 w-5" />
+              ) : (
+                <ToggleLeft className="h-5 w-5" />
+              )}
+              <span className="text-sm">{useAISearch ? 'AI Search' : 'Classic'}</span>
+            </Button>
+          </div>
         </CardHeader>
 
         <CardContent className="pt-6 space-y-6">
+          {/* AI Semantic Search */}
+          {useAISearch && (
+            <div className="space-y-4">
+              <SemanticSearchInput
+                onSearch={handleSemanticSearch}
+                placeholder="e.g., 'Water damage in Sydney, need help today' or 'Mould removal Melbourne urgent'"
+                showFiltersPreview={true}
+              />
+              <div className="flex items-center justify-center">
+                <div className="flex items-center gap-2 text-gray-400 text-sm">
+                  <div className="h-px bg-gray-600 w-12" />
+                  <span>or use manual filters below</span>
+                  <div className="h-px bg-gray-600 w-12" />
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Location Input */}
           <div className="space-y-2">
             <label className="text-gray-300 font-medium flex items-center gap-2">
