@@ -4,6 +4,7 @@
 
 import { BaseAIProvider } from './base-provider';
 import { AnthropicProvider } from './anthropic-provider';
+import { OpenAIProvider } from './openai-provider';
 import { OllamaProvider } from './ollama-provider';
 import {
   AIProviderConfig,
@@ -21,7 +22,7 @@ const providerConstructors: Record<
   new (config?: Partial<AIProviderConfig>) => BaseAIProvider
 > = {
   anthropic: AnthropicProvider,
-  openai: AnthropicProvider, // TODO: Implement OpenAI provider
+  openai: OpenAIProvider,
   ollama: OllamaProvider,
 };
 
@@ -62,7 +63,7 @@ export function getDefaultProvider(): BaseAIProvider {
  * Get the first available provider from a priority list
  */
 export async function getFirstAvailableProvider(
-  priority: AIProviderType[] = ['anthropic', 'ollama']
+  priority: AIProviderType[] = ['anthropic', 'openai', 'ollama']
 ): Promise<BaseAIProvider> {
   for (const type of priority) {
     try {
@@ -90,7 +91,7 @@ export async function checkAllProvidersHealth(): Promise<
   Record<AIProviderType, ProviderHealth>
 > {
   const results: Partial<Record<AIProviderType, ProviderHealth>> = {};
-  const typesToCheck: AIProviderType[] = ['anthropic', 'ollama'];
+  const typesToCheck: AIProviderType[] = ['anthropic', 'openai', 'ollama'];
 
   await Promise.all(
     typesToCheck.map(async (type) => {
@@ -120,4 +121,5 @@ export function clearProviders(): void {
 // Export provider classes for direct use if needed
 export { BaseAIProvider } from './base-provider';
 export { AnthropicProvider } from './anthropic-provider';
+export { OpenAIProvider } from './openai-provider';
 export { OllamaProvider } from './ollama-provider';
