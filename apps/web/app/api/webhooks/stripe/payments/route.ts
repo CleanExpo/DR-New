@@ -17,6 +17,7 @@ import {
 import {
   emitPaymentSucceeded,
   emitPaymentFailed,
+  emitPaymentRefunded,
 } from '@/lib/realtime/payment-events';
 
 export const dynamic = 'force-dynamic';
@@ -206,12 +207,88 @@ async function handlePaymentIntentFailed(
 
 /**
  * Handle charge refunded
- * NOTE: For Phase 04 Task 7 (Refunds) - will implement later
+ * Processes refund webhook from Stripe and updates payment records
  */
 async function handleChargeRefunded(charge: Stripe.Charge) {
-  console.log('Charge refunded:', charge.id);
-  console.log('Refund amount:', charge.amount_refunded);
+  const paymentIntentId = typeof charge.payment_intent === 'string'
+    ? charge.payment_intent
+    : charge.payment_intent?.id;
 
-  // TODO: Handle refund logic in Task 7
-  // For now, just log the event
+  if (!paymentIntentId) {
+    console.log('Charge refund without payment intent:', charge.id);
+    return;
+  }
+
+  try {
+    // Find the payment by Stripe payment intent ID
+    const payment = await prisma.payment.findFirst({
+      where: { stripePaymentIntentId: paymentIntentId },
+      include: {
+        booking: true,
+        client: true,
+        contractor: true,
+      },
+    });
+
+    if (!payment) {
+      console.log('Payment not found for refund:', paymentIntentId);
+      return;
+    }
+
+    // Calculate refund amounts (Stripe uses cents)
+    const refundAmountAUD = charge.amount_refunded / 100;
+    const originalAmountAUD = parseFloat(
+      (
+        parseFloat(payment.amountAUD.toString()) +
+        parseFloat(payment.gstAUD.toString())
+      ).toFixed(2)
+    );
+    const isPartialRefund = refundAmountAUD < originalAmountAUD;
+
+    // Get the latest refund ID from the charge
+    const latestRefund = charge.refunds?.data?.[0];
+    const stripeRefundId = latestRefund?.id || `refund_${charge.id}`;
+
+    // Update the payment record with refund details
+    await prisma.payment.update({
+      where: { id: payment.id },
+      data: {
+        status: 'REFUNDED',
+        stripeRefundId,
+        refundAmount: refundAmountAUD,
+        refundedAt: new Date(),
+        refundReason: latestRefund?.reason || 'Refund processed via Stripe',
+        updatedAt: new Date(),
+      },
+    });
+
+    // Emit real-time events for client and contractor
+    await emitPaymentRefunded(
+      payment.id,
+      payment.bookingId,
+      payment.clientId,
+      payment.contractorId,
+      refundAmountAUD,
+      originalAmountAUD,
+      stripeRefundId,
+      isPartialRefund,
+      'AUD'
+    );
+
+    // Log successful refund
+    console.log(`=== REFUND PROCESSED ===`);
+    console.log('Payment ID:', payment.id);
+    console.log('Booking ID:', payment.bookingId);
+    console.log('Stripe Refund ID:', stripeRefundId);
+    console.log('Refund Amount:', refundAmountAUD);
+    console.log('Original Amount:', originalAmountAUD);
+    console.log('Partial Refund:', isPartialRefund);
+    console.log('Client:', payment.client?.email);
+    if (payment.contractor) {
+      console.log('Contractor:', payment.contractor.businessName);
+    }
+  } catch (error) {
+    console.error('Error handling charge refund:', error);
+    throw error; // Re-throw to trigger webhook retry
+  }
 }
