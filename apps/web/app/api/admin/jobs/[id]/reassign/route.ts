@@ -4,6 +4,7 @@ import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/li
 import { handleUnexpectedError } from '@/lib/api-errors'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { RealtimeJobEvent } from '@/lib/supabase/types'
+import { logClaimAction } from '@/lib/services/audit.service'
 
 export const dynamic = 'force-dynamic'
 
@@ -125,25 +126,19 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           data: { status: 'PENDING' },
         })
       }
+    })
 
-      // Log the reassignment
-      await tx.auditLog.create({
-        data: {
-          action: 'JOB_REASSIGNED',
-          entityType: 'ServiceRequest',
-          entityId: jobId,
-          userId: user.id,
-          oldValues: oldContractor ? {
-            contractorId: oldContractor.id,
-            contractorName: oldContractor.user.name,
-          } : null,
-          newValues: {
-            contractorId: newContractorId,
-            contractorName: newContractor.user.name,
-            reason,
-          },
-        },
-      })
+    // Log the reassignment (outside transaction for proper audit service usage)
+    await logClaimAction(request, user.id, jobId, 'BOOKING_REASSIGNED', {
+      previousContractor: oldContractor ? {
+        id: oldContractor.id,
+        name: oldContractor.user.name,
+      } : null,
+      newContractor: {
+        id: newContractorId,
+        name: newContractor.user.name,
+      },
+      reason,
     })
 
     // Broadcast reassignment event via Supabase

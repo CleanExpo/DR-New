@@ -21,6 +21,7 @@ import {
   emitContractorMatched,
 } from '@/lib/realtime/emit-handlers';
 import { prisma } from '@/lib/prisma';
+import { logClaimAction } from '@/lib/services/audit.service';
 
 export async function POST(request: NextRequest) {
   try {
@@ -113,13 +114,13 @@ export async function POST(request: NextRequest) {
     );
 
     // 8. Log conversion for audit
-    console.log('=== CLAIM CONVERSION SUCCESSFUL ===');
-    console.log('Public Claim ID:', publicClaimId);
-    console.log('Booking ID:', convertedBooking.bookingId);
-    console.log('Client:', convertedBooking.clientName);
-    console.log('Matched contractors:', matches.length);
-    console.log('Notifications sent:', notifications.successCount);
-    console.log('Notifications failed:', notifications.failureCount);
+    await logClaimAction(request, session.user.id, publicClaimId, 'CLAIM_CONVERTED', {
+      bookingId: convertedBooking.bookingId,
+      clientName: convertedBooking.clientName,
+      matchedContractors: matches.length,
+      notificationsSent: notifications.successCount,
+      notificationsFailed: notifications.failureCount,
+    });
 
     // 9. Return success response
     return NextResponse.json(
