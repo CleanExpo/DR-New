@@ -1,180 +1,538 @@
 /**
- * Super-Orchestrator API Endpoint
+ * Super-Orchestrator API
  *
- * POST /api/super-orchestrator - Execute manual workflows
- * GET /api/super-orchestrator/daily-report - Get daily report
- * GET /api/super-orchestrator/weekly-report - Get weekly report
- * POST /api/super-orchestrator/self-improve - Run self-improvement analysis
+ * Phase E.1: Meta-agent coordination API
+ * - POST: Execute workflow chains, parallel workflows, or operations
+ * - GET: Get status, metrics, history, or configuration
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { logger } from '@/lib/logger';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import {
+  getSuperOrchestrator,
+  WorkflowChains,
+  type WorkflowChainStep,
+  type DailyOperationConfig,
+} from '@/lib/agents/super-orchestrator';
+import type { WorkflowType } from '@/lib/agents/types';
 
-// Type stub for AgentEvent (from incomplete super-orchestrator module)
-interface AgentEvent {
-  id: string;
-  type: string;
-  timestamp: Date;
-  source: 'github' | 'cicd' | 'monitoring' | 'scheduler' | 'manual';
-  data: any;
-  priority: 'low' | 'medium' | 'high' | 'critical';
+export const dynamic = 'force-dynamic';
+
+// Request types
+interface ChainExecutionRequest {
+  action: 'execute-chain';
+  name: string;
+  steps: WorkflowChainStep[];
+  contextData?: Record<string, unknown>;
 }
 
-// Function stubs for incomplete features
-async function executeManualWorkflow(workflowType: string, data: any) {
-  throw new Error('Super-Orchestrator meta-agent features are not yet implemented. Use the standard orchestrator instead.');
+interface ParallelExecutionRequest {
+  action: 'execute-parallel';
+  workflows: Array<{
+    workflowType: WorkflowType;
+    input: Record<string, unknown>;
+    priority?: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+  }>;
 }
 
-async function getDailyReport() {
-  throw new Error('Reporting features are not yet implemented.');
+interface PrebuiltChainRequest {
+  action: 'prebuilt-chain';
+  chainType: 'claim-to-contractor' | 'disaster-response' | 'support-escalation';
+  data: Record<string, unknown>;
 }
 
-async function getWeeklyReport() {
-  throw new Error('Reporting features are not yet implemented.');
+interface OperationRequest {
+  action: 'run-operation';
+  operation:
+    | 'morning-claims'
+    | 'continuous-matching'
+    | 'evening-reports'
+    | 'weekly-summary'
+    | 'self-improvement';
+  options?: Record<string, unknown>;
 }
 
-async function runSelfImprovement() {
-  throw new Error('Self-improvement features are not yet implemented.');
+interface SchedulerRequest {
+  action: 'scheduler';
+  command: 'start' | 'stop' | 'status';
 }
 
-/**
- * POST /api/super-orchestrator
- * Execute manual workflow
- */
+interface ConfigRequest {
+  action: 'update-config';
+  config: Partial<DailyOperationConfig>;
+}
+
+interface CancelRequest {
+  action: 'cancel-chain';
+  chainId: string;
+}
+
+type SuperOrchestratorRequest =
+  | ChainExecutionRequest
+  | ParallelExecutionRequest
+  | PrebuiltChainRequest
+  | OperationRequest
+  | SchedulerRequest
+  | ConfigRequest
+  | CancelRequest;
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { workflowType, data } = body;
-
-    if (!workflowType) {
+    // Verify admin authentication
+    const session = await getServerSession(authOptions);
+    if (!session?.user || session.user.userType !== 'ADMIN') {
       return NextResponse.json(
-        { error: 'workflowType is required' },
-        { status: 400 }
+        { success: false, error: 'Unauthorised - Admin access required' },
+        { status: 401 }
       );
     }
 
-    const validTypes = ['mergance', 'phase23', 'feature', 'refactor'];
-    if (!validTypes.includes(workflowType)) {
-      return NextResponse.json(
-        { error: `Invalid workflowType. Must be one of: ${validTypes.join(', ')}` },
-        { status: 400 }
-      );
+    const body: SuperOrchestratorRequest = await request.json();
+    const orchestrator = getSuperOrchestrator();
+
+    switch (body.action) {
+      case 'execute-chain': {
+        const { name, steps, contextData } = body;
+
+        if (!name || !steps || steps.length === 0) {
+          return NextResponse.json(
+            { success: false, error: 'name and steps are required' },
+            { status: 400 }
+          );
+        }
+
+        const chain = await orchestrator.executeChain(name, steps, contextData);
+
+        return NextResponse.json({
+          success: true,
+          action: 'execute-chain',
+          chain: {
+            id: chain.id,
+            name: chain.name,
+            status: chain.status,
+            stepsTotal: chain.steps.length,
+            stepsCompleted: Array.from(chain.results.values()).filter(
+              (r) => r.status === 'COMPLETED'
+            ).length,
+            startedAt: chain.startedAt,
+            completedAt: chain.completedAt,
+            results: Object.fromEntries(
+              Array.from(chain.results.entries()).map(([id, result]) => [
+                id,
+                {
+                  status: result.status,
+                  jobId: result.jobId,
+                  durationMs: result.durationMs,
+                  error: result.error,
+                },
+              ])
+            ),
+          },
+        });
+      }
+
+      case 'execute-parallel': {
+        const { workflows } = body;
+
+        if (!workflows || workflows.length === 0) {
+          return NextResponse.json(
+            { success: false, error: 'workflows array is required' },
+            { status: 400 }
+          );
+        }
+
+        const result = await orchestrator.executeParallel(workflows);
+
+        return NextResponse.json({
+          success: true,
+          action: 'execute-parallel',
+          execution: {
+            id: result.executionId,
+            totalWorkflows: workflows.length,
+            completed: result.results.filter((r) => r.status === 'COMPLETED').length,
+            failed: result.results.filter((r) => r.status === 'FAILED').length,
+            durationMs: result.totalDurationMs,
+            results: result.results,
+          },
+        });
+      }
+
+      case 'prebuilt-chain': {
+        const { chainType, data } = body;
+
+        let steps: WorkflowChainStep[];
+        let chainName: string;
+
+        switch (chainType) {
+          case 'claim-to-contractor':
+            chainName = 'Claim to Contractor Assignment';
+            steps = WorkflowChains.createClaimToContractorChain(
+              data.claim as Record<string, unknown>,
+              data.matchingRequirements as Record<string, unknown>
+            );
+            break;
+
+          case 'disaster-response':
+            chainName = 'Disaster Response Chain';
+            steps = WorkflowChains.createDisasterResponseChain(
+              data.disaster as Record<string, unknown>,
+              data.inspection as Record<string, unknown> | undefined
+            );
+            break;
+
+          case 'support-escalation':
+            chainName = 'Support Escalation';
+            steps = WorkflowChains.createSupportEscalationChain(
+              data.query as Record<string, unknown>
+            );
+            break;
+
+          default:
+            return NextResponse.json(
+              { success: false, error: `Unknown chain type: ${chainType}` },
+              { status: 400 }
+            );
+        }
+
+        const chain = await orchestrator.executeChain(chainName, steps, data);
+
+        return NextResponse.json({
+          success: true,
+          action: 'prebuilt-chain',
+          chainType,
+          chain: {
+            id: chain.id,
+            name: chain.name,
+            status: chain.status,
+            stepsTotal: chain.steps.length,
+            stepsCompleted: Array.from(chain.results.values()).filter(
+              (r) => r.status === 'COMPLETED'
+            ).length,
+            completedAt: chain.completedAt,
+          },
+        });
+      }
+
+      case 'run-operation': {
+        const { operation, options } = body;
+
+        let result: Record<string, unknown>;
+
+        switch (operation) {
+          case 'morning-claims':
+            result = await orchestrator.processMorningClaims();
+            break;
+
+          case 'continuous-matching':
+            result = await orchestrator.processContinuousMatching();
+            break;
+
+          case 'evening-reports':
+            result = await orchestrator.generateEveningReports();
+            break;
+
+          case 'weekly-summary':
+            result = await orchestrator.generateWeeklySummary();
+            break;
+
+          case 'self-improvement':
+            const periodDays = (options?.periodDays as number) || 7;
+            result = await orchestrator.runSelfImprovement(periodDays);
+            break;
+
+          default:
+            return NextResponse.json(
+              { success: false, error: `Unknown operation: ${operation}` },
+              { status: 400 }
+            );
+        }
+
+        return NextResponse.json({
+          success: true,
+          action: 'run-operation',
+          operation,
+          result,
+        });
+      }
+
+      case 'scheduler': {
+        const { command } = body;
+
+        switch (command) {
+          case 'start':
+            orchestrator.startAutomatedOperations();
+            return NextResponse.json({
+              success: true,
+              action: 'scheduler',
+              command: 'start',
+              message: 'Automated operations started',
+              isRunning: orchestrator.isOperationsRunning(),
+            });
+
+          case 'stop':
+            orchestrator.stopAutomatedOperations();
+            return NextResponse.json({
+              success: true,
+              action: 'scheduler',
+              command: 'stop',
+              message: 'Automated operations stopped',
+              isRunning: orchestrator.isOperationsRunning(),
+            });
+
+          case 'status':
+            return NextResponse.json({
+              success: true,
+              action: 'scheduler',
+              command: 'status',
+              isRunning: orchestrator.isOperationsRunning(),
+              config: orchestrator.getConfig(),
+            });
+
+          default:
+            return NextResponse.json(
+              { success: false, error: `Unknown scheduler command: ${command}` },
+              { status: 400 }
+            );
+        }
+      }
+
+      case 'update-config': {
+        const { config } = body;
+
+        orchestrator.updateConfig(config);
+
+        return NextResponse.json({
+          success: true,
+          action: 'update-config',
+          message: 'Configuration updated',
+          newConfig: orchestrator.getConfig(),
+        });
+      }
+
+      case 'cancel-chain': {
+        const { chainId } = body;
+
+        if (!chainId) {
+          return NextResponse.json(
+            { success: false, error: 'chainId is required' },
+            { status: 400 }
+          );
+        }
+
+        const cancelled = await orchestrator.cancelChain(chainId);
+
+        return NextResponse.json({
+          success: true,
+          action: 'cancel-chain',
+          chainId,
+          cancelled,
+          message: cancelled ? 'Chain cancelled' : 'Chain not found or already completed',
+        });
+      }
+
+      default:
+        return NextResponse.json(
+          { success: false, error: 'Unknown action' },
+          { status: 400 }
+        );
     }
-
-    logger.info('Super-Orchestrator API: Executing manual workflow', {
-      workflowType,
-      data
-    });
-
-    const result = await executeManualWorkflow(workflowType, data);
-
-    return NextResponse.json({
-      success: true,
-      workflow: result
-    }, { status: 200 });
-
   } catch (error) {
-    logger.error('Super-Orchestrator API: Execution failed', { error });
-
+    console.error('Super-orchestrator API error:', error);
     return NextResponse.json(
       {
-        error: 'Workflow execution failed',
-        details: error instanceof Error ? error.message : String(error)
+        success: false,
+        error: error instanceof Error ? error.message : 'Operation failed',
       },
       { status: 500 }
     );
   }
 }
 
-/**
- * GET /api/super-orchestrator
- * Get API documentation
- */
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  const action = searchParams.get('action');
-
   try {
-    // Daily report
-    if (action === 'daily-report') {
-      const report = await getDailyReport();
-      return NextResponse.json({ report }, { status: 200 });
+    // Verify authentication
+    const session = await getServerSession(authOptions);
+    if (!session?.user) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorised' },
+        { status: 401 }
+      );
     }
 
-    // Weekly report
-    if (action === 'weekly-report') {
-      const report = await getWeeklyReport();
-      return NextResponse.json({ report }, { status: 200 });
+    // Only admins can access super-orchestrator
+    if (session.user.userType !== 'ADMIN') {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorised - Admin access required' },
+        { status: 403 }
+      );
     }
 
-    // Self-improvement report
-    if (action === 'self-improve') {
-      const report = await runSelfImprovement();
-      return NextResponse.json({ report }, { status: 200 });
+    const { searchParams } = new URL(request.url);
+    const mode = searchParams.get('mode') || 'status';
+    const chainId = searchParams.get('chainId');
+    const limit = parseInt(searchParams.get('limit') || '50', 10);
+    const periodDays = parseInt(searchParams.get('periodDays') || '7', 10);
+
+    const orchestrator = getSuperOrchestrator();
+
+    // Get specific chain status
+    if (chainId) {
+      const chain = orchestrator.getChainStatus(chainId);
+
+      if (!chain) {
+        return NextResponse.json({
+          success: true,
+          chainId,
+          found: false,
+          message: 'Chain not found',
+        });
+      }
+
+      return NextResponse.json({
+        success: true,
+        chainId,
+        found: true,
+        chain: {
+          id: chain.id,
+          name: chain.name,
+          status: chain.status,
+          stepsTotal: chain.steps.length,
+          currentStepIndex: chain.currentStepIndex,
+          startedAt: chain.startedAt,
+          completedAt: chain.completedAt,
+          error: chain.error,
+          steps: chain.steps.map((step) => {
+            const result = chain.results.get(step.id);
+            return {
+              id: step.id,
+              workflowType: step.workflowType,
+              dependsOn: step.dependsOn,
+              priority: step.priority,
+              status: result?.status || 'PENDING',
+              jobId: result?.jobId,
+              durationMs: result?.durationMs,
+              error: result?.error,
+            };
+          }),
+        },
+      });
     }
 
-    // API documentation
-    return NextResponse.json({
-      name: 'Super-Orchestrator API',
-      version: '1.0.0',
-      description: 'Meta-agent that coordinates all 24 agents for autonomous codebase operations',
-      endpoints: {
-        'POST /api/super-orchestrator': {
-          description: 'Execute manual workflow',
-          body: {
-            workflowType: 'mergance | phase23 | feature | refactor',
-            data: 'Workflow-specific data object'
+    switch (mode) {
+      case 'status':
+        return NextResponse.json({
+          success: true,
+          mode: 'status',
+          status: {
+            isRunning: orchestrator.isOperationsRunning(),
+            activeChains: orchestrator.getActiveChains().length,
+            config: orchestrator.getConfig(),
           },
-          example: {
-            workflowType: 'mergance',
-            data: {
-              sourceRepo: 'DR-New',
-              targetRepo: 'NRPG',
-              factsToApply: 202,
-              imagesToTransfer: 24
-            }
-          }
-        },
-        'GET /api/super-orchestrator?action=daily-report': {
-          description: 'Get daily activity report',
-          response: 'Daily metrics and completed workflows'
-        },
-        'GET /api/super-orchestrator?action=weekly-report': {
-          description: 'Get weekly performance report',
-          response: 'Weekly metrics, agent performance, improvements'
-        },
-        'GET /api/super-orchestrator?action=self-improve': {
-          description: 'Run self-improvement analysis',
-          response: 'Self-improvement report with pattern analysis and updates'
-        }
-      },
-      workflows: {
-        feature_development: 'Autonomous feature development from GitHub issue',
-        bug_fix: 'Autonomous bug fixing from error alerts or issues',
-        security_fix: 'Autonomous security vulnerability remediation',
-        performance_investigation: 'Autonomous performance optimization',
-        refactoring: 'Scheduled code quality improvements',
-        deployment: 'Automated deployment workflows',
-        mergance_integration: 'Merge DR-New + NRPG platforms (4-7 hours)',
-        phase23_infrastructure: 'Deploy cloud infrastructure (8-12 weeks)'
-      },
-      agents: {
-        total: 24,
-        development_lifecycle: 7,
-        mergance_integration: 4,
-        phase23_infrastructure: 8,
-        meta: 1
-      },
-      status: 'Class 3 Autonomous Codebase - Codebase Singularity Achieved'
-    }, { status: 200 });
+        });
 
+      case 'active':
+        const activeChains = orchestrator.getActiveChains();
+        return NextResponse.json({
+          success: true,
+          mode: 'active',
+          activeChains: activeChains.map((chain) => ({
+            id: chain.id,
+            name: chain.name,
+            status: chain.status,
+            stepsTotal: chain.steps.length,
+            stepsCompleted: Array.from(chain.results.values()).filter(
+              (r) => r.status === 'COMPLETED'
+            ).length,
+            startedAt: chain.startedAt,
+          })),
+          total: activeChains.length,
+        });
+
+      case 'history':
+        const history = orchestrator.getExecutionHistory(limit);
+        return NextResponse.json({
+          success: true,
+          mode: 'history',
+          history: history.map((chain) => ({
+            id: chain.id,
+            name: chain.name,
+            status: chain.status,
+            stepsTotal: chain.steps.length,
+            stepsCompleted: Array.from(chain.results.values()).filter(
+              (r) => r.status === 'COMPLETED'
+            ).length,
+            stepsFailed: Array.from(chain.results.values()).filter(
+              (r) => r.status === 'FAILED'
+            ).length,
+            startedAt: chain.startedAt,
+            completedAt: chain.completedAt,
+            error: chain.error,
+          })),
+          total: history.length,
+          limit,
+        });
+
+      case 'metrics':
+        const metrics = orchestrator.getPerformanceMetrics(periodDays);
+        return NextResponse.json({
+          success: true,
+          mode: 'metrics',
+          periodDays,
+          metrics: {
+            totalExecutions: metrics.totalExecutions,
+            successfulExecutions: metrics.successfulExecutions,
+            failedExecutions: metrics.failedExecutions,
+            successRate:
+              metrics.totalExecutions > 0
+                ? Math.round(
+                    (metrics.successfulExecutions / metrics.totalExecutions) * 100
+                  )
+                : 100,
+            averageDurationMs: Math.round(metrics.averageDurationMs),
+            p95DurationMs: Math.round(metrics.p95DurationMs),
+            averageStepsPerChain: Math.round(metrics.averageStepsPerChain * 10) / 10,
+            bottlenecks: metrics.bottlenecks.map((b) => ({
+              location: b.location,
+              severity: b.severity,
+              averageDelayMs: Math.round(b.averageDelayMs),
+              occurrences: b.occurrences,
+              suggestedFix: b.suggestedFix,
+            })),
+            workflowMetrics: Object.fromEntries(
+              Array.from(metrics.workflowMetrics.entries()).map(([type, wm]) => [
+                type,
+                {
+                  totalExecutions: wm.totalExecutions,
+                  successRate: Math.round(wm.successRate),
+                  averageDurationMs: Math.round(wm.averageDurationMs),
+                  p95DurationMs: Math.round(wm.p95DurationMs),
+                },
+              ])
+            ),
+            lastUpdated: metrics.lastUpdated,
+          },
+        });
+
+      case 'config':
+        return NextResponse.json({
+          success: true,
+          mode: 'config',
+          config: orchestrator.getConfig(),
+        });
+
+      default:
+        return NextResponse.json(
+          { success: false, error: `Unknown mode: ${mode}` },
+          { status: 400 }
+        );
+    }
   } catch (error) {
-    logger.error('Super-Orchestrator API: Request failed', { error });
-
+    console.error('Super-orchestrator GET error:', error);
     return NextResponse.json(
       {
-        error: 'Request failed',
-        details: error instanceof Error ? error.message : String(error)
+        success: false,
+        error: error instanceof Error ? error.message : 'Failed to get orchestrator data',
       },
       { status: 500 }
     );
