@@ -10,8 +10,15 @@
  */
 export function validateSecrets(): void {
   const isProduction = process.env.NODE_ENV === 'production';
+  const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
   const errors: string[] = [];
   const warnings: string[] = [];
+
+  // Skip validation during build phase - secrets are not required for static generation
+  if (isBuildPhase) {
+    console.info('⏩ Skipping secrets validation during build phase');
+    return;
+  }
 
   // Critical secrets (application will not start without these)
   const criticalSecrets = [

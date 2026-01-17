@@ -25,7 +25,9 @@ const JWT_SECRET =
 
 // Validate NEXTAUTH_SECRET exists - CRITICAL for security
 // This validation runs at startup to catch configuration errors early
-if (!process.env.NEXTAUTH_SECRET) {
+// Skip during build phase - secrets are not available during static generation
+const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
+if (!process.env.NEXTAUTH_SECRET && !isBuildPhase) {
   const errorMessage =
     process.env.NODE_ENV === 'production'
       ? 'CRITICAL: NEXTAUTH_SECRET environment variable is not set. This is required for secure session management. Please set NEXTAUTH_SECRET in your production environment (e.g., Vercel secrets).'

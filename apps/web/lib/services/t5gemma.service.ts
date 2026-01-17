@@ -21,18 +21,23 @@ let transformersEnv: any = null;
 async function loadTransformers(): Promise<boolean> {
   if (pipelineFn) return true;
 
+  // Use variable to prevent webpack from statically analyzing the import
+  const hfPackage = '@huggingface/transformers';
+  const xenovaPackage = '@xenova/transformers';
+
   try {
     // Dynamic import to avoid build errors if not installed
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const transformers = await (import('@huggingface/transformers') as Promise<any>);
+    // Using eval to prevent webpack from bundling the optional dependency
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-eval
+    const transformers = await eval(`import('${hfPackage}')`);
     pipelineFn = transformers.pipeline;
     transformersEnv = transformers.env;
     return true;
   } catch {
     // Try alternative package name
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const transformers = await (import('@xenova/transformers') as Promise<any>);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-eval
+      const transformers = await eval(`import('${xenovaPackage}')`);
       pipelineFn = transformers.pipeline;
       transformersEnv = transformers.env;
       return true;
