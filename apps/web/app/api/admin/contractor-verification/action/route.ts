@@ -7,6 +7,7 @@ import {
   sendVerificationRejectedEmail,
   sendRequestMoreInfoEmail,
 } from '@/lib/services/email.service';
+import { logContractorVerification } from '@/lib/services/audit.service';
 import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -77,15 +78,14 @@ export async function POST(request: NextRequest) {
         });
 
         // Create audit trail
-        await prisma.$executeRaw`
-          INSERT INTO contractor_verification_audit
-          (contractor_id, action, performed_by, reason, created_at)
-          VALUES (${contractorId}, 'APPROVED', ${user.id}, ${reason || 'Approved by admin'}, NOW())
-          ON CONFLICT DO NOTHING
-        `.catch(() => {
-          // Audit table might not exist yet, ignore for now
-          console.log('Audit trail skipped - table not created');
-        });
+        await logContractorVerification(
+          request,
+          user.id,
+          contractorId,
+          'CONTRACTOR_APPROVED',
+          reason || 'Approved by admin',
+          { businessName: contractor.businessName }
+        );
 
         // Send approval email notification
         await sendVerificationApprovedEmail({
@@ -121,14 +121,14 @@ export async function POST(request: NextRequest) {
         });
 
         // Create audit trail
-        await prisma.$executeRaw`
-          INSERT INTO contractor_verification_audit
-          (contractor_id, action, performed_by, reason, created_at)
-          VALUES (${contractorId}, 'REJECTED', ${user.id}, ${reason}, NOW())
-          ON CONFLICT DO NOTHING
-        `.catch(() => {
-          console.log('Audit trail skipped - table not created');
-        });
+        await logContractorVerification(
+          request,
+          user.id,
+          contractorId,
+          'CONTRACTOR_REJECTED',
+          reason,
+          { businessName: contractor.businessName }
+        );
 
         // Send rejection email notification
         await sendVerificationRejectedEmail({
@@ -163,14 +163,14 @@ export async function POST(request: NextRequest) {
         });
 
         // Create audit trail
-        await prisma.$executeRaw`
-          INSERT INTO contractor_verification_audit
-          (contractor_id, action, performed_by, reason, created_at)
-          VALUES (${contractorId}, 'INFO_REQUESTED', ${user.id}, ${reason}, NOW())
-          ON CONFLICT DO NOTHING
-        `.catch(() => {
-          console.log('Audit trail skipped - table not created');
-        });
+        await logContractorVerification(
+          request,
+          user.id,
+          contractorId,
+          'CONTRACTOR_INFO_REQUESTED',
+          reason,
+          { businessName: contractor.businessName }
+        );
 
         // Send info request email notification
         await sendRequestMoreInfoEmail({

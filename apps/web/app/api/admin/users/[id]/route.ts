@@ -4,6 +4,7 @@ import { authOptions, isAdmin, isSuperAdmin } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
 import { validateRequest, formatZodErrors } from '@/lib/validation';
+import { logUserManagement } from '@/lib/services/audit.service';
 
 interface RouteParams {
   params: { id: string };
@@ -167,6 +168,21 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       },
     });
 
+    // Audit log the update
+    const auditAction = validation.data.role && validation.data.role !== targetUser.role
+      ? 'USER_ROLE_CHANGED'
+      : validation.data.isActive === false
+        ? 'USER_DEACTIVATED'
+        : validation.data.isActive === true && targetUser.isActive === false
+          ? 'USER_REACTIVATED'
+          : 'RESOURCE_UPDATED';
+
+    await logUserManagement(request, currentUser.id, id, auditAction, {
+      changes: validation.data,
+      previousRole: targetUser.role,
+      previousActive: targetUser.isActive,
+    });
+
     return NextResponse.json({
       success: true,
       data: updatedUser,
@@ -227,6 +243,12 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
         isActive: false,
         email: `deleted_${Date.now()}_${targetUser.email}`,
       },
+    });
+
+    // Audit log the deletion
+    await logUserManagement(request, currentUser.id, id, 'USER_DELETED', {
+      deletedUserEmail: targetUser.email,
+      deletedUserRole: targetUser.role,
     });
 
     return NextResponse.json({
