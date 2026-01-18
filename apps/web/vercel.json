@@ -1,7 +1,7 @@
 {
   "buildCommand": "cd ../.. && pnpm run build:web",
   "framework": "nextjs",
-  "installCommand": "cd ../.. && pnpm install",
+  "installCommand": "cd ../.. && pnpm install --prod=false",
   "outputDirectory": ".next",
   "build": {
     "env": {
