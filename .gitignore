@@ -119,3 +119,4 @@ australia-3d-map/
 .vercel
 
 .vercel
+.env*.local
