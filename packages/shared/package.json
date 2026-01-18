@@ -13,12 +13,13 @@
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "echo 'Using pre-built dist files'",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "clean": "rm -rf dist",
+    "rebuild": "tsup src/index.ts --format cjs,esm --dts",
     "type-check": "tsc --noEmit"
   },
-  "dependencies": {
+  "devDependencies": {
     "tsup": "^8.0.0",
     "typescript": "^5.3.3"
   }
