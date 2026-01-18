@@ -1,0 +1,2 @@
+# Include the dist folder (override root .gitignore)
+!dist/
