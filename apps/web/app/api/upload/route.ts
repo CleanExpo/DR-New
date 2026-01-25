@@ -1,24 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
+import { getServerClient, isSupabaseConfigured } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
+
+// Storage bucket mapping
+const STORAGE_BUCKETS = {
+  'damage-photos': 'damage-photos',
+  'documents': 'documents',
+  'certificates': 'certificates',
+  'progress-photos': 'progress-photos',
+  'avatars': 'avatars',
+} as const;
+
+type BucketName = keyof typeof STORAGE_BUCKETS;
 
 /**
  * File Upload API
  *
- * Handles document uploads for contractor verification:
+ * Handles document uploads using Supabase Storage:
  * - IICRC certificates
  * - Insurance COI documents
- * - Other compliance documents
- *
- * In production, this would integrate with:
- * - AWS S3
- * - Cloudinary
- * - Azure Blob Storage
- * - Google Cloud Storage
- *
- * For now, this is a placeholder that simulates upload
+ * - Damage photos
+ * - Progress photos
+ * - User avatars
  */
 export async function POST(request: NextRequest) {
   try {
@@ -30,9 +36,18 @@ export async function POST(request: NextRequest) {
 
     const { user } = authResult.context;
 
+    // Check if Supabase is configured
+    if (!isSupabaseConfigured()) {
+      return NextResponse.json(
+        { success: false, message: 'Storage service not configured' },
+        { status: 503 }
+      );
+    }
+
     // Get form data
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
+    const bucketParam = formData.get('bucket') as string | null;
 
     if (!file) {
       return NextResponse.json(
@@ -41,67 +56,81 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate file size (5MB limit)
-    const maxSize = 5 * 1024 * 1024;
+    // Determine bucket (default to documents)
+    const bucket: BucketName = (bucketParam && bucketParam in STORAGE_BUCKETS)
+      ? bucketParam as BucketName
+      : 'documents';
+
+    // Validate file size based on bucket
+    const maxSizes: Record<BucketName, number> = {
+      'damage-photos': 10 * 1024 * 1024, // 10MB for photos
+      'documents': 5 * 1024 * 1024,       // 5MB for documents
+      'certificates': 5 * 1024 * 1024,    // 5MB for certificates
+      'progress-photos': 10 * 1024 * 1024, // 10MB for photos
+      'avatars': 2 * 1024 * 1024,          // 2MB for avatars
+    };
+
+    const maxSize = maxSizes[bucket];
     if (file.size > maxSize) {
       return NextResponse.json(
-        { success: false, message: 'File size exceeds 5MB limit' },
+        { success: false, message: `File size exceeds ${maxSize / (1024 * 1024)}MB limit` },
         { status: 400 }
       );
     }
 
-    // Validate file type
-    const allowedTypes = [
-      'application/pdf',
-      'image/jpeg',
-      'image/jpg',
-      'image/png',
-    ];
+    // Validate file type based on bucket
+    const allowedTypes: Record<BucketName, string[]> = {
+      'damage-photos': ['image/jpeg', 'image/jpg', 'image/png', 'image/heic', 'image/heif'],
+      'documents': ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'],
+      'certificates': ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'],
+      'progress-photos': ['image/jpeg', 'image/jpg', 'image/png', 'image/heic', 'image/heif'],
+      'avatars': ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
+    };
 
-    if (!allowedTypes.includes(file.type)) {
+    if (!allowedTypes[bucket].includes(file.type)) {
       return NextResponse.json(
         {
           success: false,
-          message: 'Invalid file type. Allowed: PDF, JPG, PNG'
+          message: `Invalid file type for ${bucket}. Allowed: ${allowedTypes[bucket].join(', ')}`
         },
         { status: 400 }
       );
     }
 
-    // TODO: In production, upload to cloud storage
-    // For now, generate a placeholder URL
+    // Generate unique filename
     const timestamp = Date.now();
-    const filename = `${user.id}-${timestamp}-${file.name}`;
-    const placeholderUrl = `/uploads/${filename}`;
+    const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const filePath = `${user.id}/${timestamp}-${sanitizedName}`;
 
-    // In production, you would:
-    // 1. Upload file to S3/Cloudinary/etc
-    // 2. Get the permanent URL
-    // 3. Optionally store metadata in database
-    // 4. Return the URL
-
-    /*
-    Example S3 upload:
-
-    import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-
-    const s3Client = new S3Client({ region: process.env.AWS_REGION });
+    // Upload to Supabase Storage
+    const supabase = getServerClient();
     const buffer = await file.arrayBuffer();
 
-    const command = new PutObjectCommand({
-      Bucket: process.env.S3_BUCKET,
-      Key: filename,
-      Body: Buffer.from(buffer),
-      ContentType: file.type,
-    });
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .upload(filePath, buffer, {
+        contentType: file.type,
+        upsert: false,
+      });
 
-    await s3Client.send(command);
-    const url = `https://${process.env.S3_BUCKET}.s3.amazonaws.com/${filename}`;
-    */
+    if (error) {
+      console.error('Supabase Storage upload error:', error);
+      return NextResponse.json(
+        { success: false, message: `Upload failed: ${error.message}` },
+        { status: 500 }
+      );
+    }
+
+    // Get public URL
+    const { data: urlData } = supabase.storage
+      .from(bucket)
+      .getPublicUrl(data.path);
 
     return NextResponse.json({
       success: true,
-      url: placeholderUrl,
+      url: urlData.publicUrl,
+      path: data.path,
+      bucket: bucket,
       filename: file.name,
       size: file.size,
       type: file.type,
