@@ -103,10 +103,11 @@ export default function ContractorDashboardPage() {
 
   const fetchDashboardData = async () => {
     try {
-      // Fetch contractor stats
-      const [statsResponse, projectsResponse] = await Promise.all([
+      // Fetch contractor stats and available opportunities
+      const [statsResponse, projectsResponse, opportunitiesResponse] = await Promise.all([
         fetch('/api/contractor/profile', { cache: 'no-store' }),
         fetch('/api/contractor/active-projects', { cache: 'no-store' }),
+        fetch('/api/contractor/available-requests', { cache: 'no-store' }),
       ]);
 
       if (statsResponse.ok) {
@@ -128,41 +129,50 @@ export default function ContractorDashboardPage() {
         }));
       }
 
-      // Set sample opportunities for demo
-      setOpportunities([
-        {
-          id: '1',
-          type: 'Commercial Water Damage',
-          priority: 'Elite',
-          location: 'Sydney CBD, NSW',
-          distance: '12 km away',
-          potentialValue: '$45,000 - $65,000',
-        },
-        {
-          id: '2',
-          type: 'Residential Mould Remediation',
-          priority: 'Strategic',
-          location: 'Parramatta, NSW',
-          distance: '8 km away',
-          potentialValue: '$12,000 - $18,000',
-        },
-        {
-          id: '3',
-          type: 'Fire & Smoke Restoration',
-          priority: 'New Market',
-          location: 'Newcastle, NSW',
-          distance: '95 km away',
-          potentialValue: '$85,000 - $120,000',
-        },
-        {
-          id: '4',
-          type: 'Storm Damage Assessment',
-          priority: 'Standard',
-          location: 'Wollongong, NSW',
-          distance: '45 km away',
-          potentialValue: '$8,000 - $15,000',
-        },
-      ]);
+      // Fetch real opportunities from API
+      if (opportunitiesResponse.ok) {
+        const data = await opportunitiesResponse.json();
+        const availableRequests = data.data || [];
+
+        // Map API response to opportunity format
+        const mappedOpportunities: Opportunity[] = availableRequests.slice(0, 10).map((req: any) => ({
+          id: req.id,
+          type: req.type || req.serviceTitle || 'Service Request',
+          priority: req.priority || 'Standard',
+          location: req.location || 'Location not specified',
+          distance: req.distance || 'Distance unknown',
+          potentialValue: req.potentialValue || 'Quote Required',
+          imageUrl: undefined,
+        }));
+
+        if (mappedOpportunities.length > 0) {
+          setOpportunities(mappedOpportunities);
+          setStats((prev) => ({
+            ...prev,
+            activeOpportunities: mappedOpportunities.length,
+          }));
+        } else {
+          // Fallback to sample data if no real opportunities exist
+          setOpportunities([
+            {
+              id: '1',
+              type: 'Commercial Water Damage',
+              priority: 'Elite',
+              location: 'Sydney CBD, NSW',
+              distance: '12 km away',
+              potentialValue: '$45,000 - $65,000',
+            },
+            {
+              id: '2',
+              type: 'Residential Mould Remediation',
+              priority: 'Strategic',
+              location: 'Parramatta, NSW',
+              distance: '8 km away',
+              potentialValue: '$12,000 - $18,000',
+            },
+          ]);
+        }
+      }
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     }

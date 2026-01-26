@@ -189,11 +189,7 @@ export default function HomePage() {
         {/* 8. FINAL EMERGENCY CTA */}
         <ScrollReveal>
           <section className="container mx-auto px-6 py-16">
-            <EmergencyCTA
-              title="Disaster Doesn't Wait. Neither Do We."
-              description="24/7 emergency dispatch connecting you with IICRC-certified professionals"
-              variant="default"
-            />
+            <EmergencyCTA />
           </section>
         </ScrollReveal>
       </div>
