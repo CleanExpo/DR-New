@@ -4,6 +4,7 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Shield, Search, Thermometer, Fil
 import { MouldRemediation } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -117,8 +118,20 @@ export default function MouldInspectionPage() {
         </section>
 
         {/* Hero Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative overflow-hidden mb-16">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/services/mould-remediation/mould-inspection-hero.webp"
+              alt="Mould inspection with thermal imaging and moisture detection"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0F1115]/70 via-[#0F1115]/50 to-[#0F1115]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-6 pt-16 pb-8">
+            <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <MouldRemediation size="hero" gradient="mould" aria-label="Mould Inspection" />
             </div>
@@ -143,6 +156,7 @@ export default function MouldInspectionPage() {
                 Get a Free Quote
               </Button>
             </div>
+          </div>
           </div>
         </section>
 

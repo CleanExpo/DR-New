@@ -3,6 +3,7 @@ import Footer from "@/components/footer"
 import { CheckCircle, ArrowLeft, AlertTriangle, CloudLightning, Shield, ArrowRight, Clock, Wrench } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -139,8 +140,20 @@ export default function EmergencyRoofTarpingPage() {
         </section>
 
         {/* Hero Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative overflow-hidden mb-16">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/services/storm-damage/emergency-roof-tarping-hero.webp"
+              alt="Emergency roof tarping with UV-stabilised tarpaulins"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0F1115]/70 via-[#0F1115]/50 to-[#0F1115]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-6 pt-16 pb-8">
+            <div className="max-w-4xl mx-auto text-center">
             <CloudLightning className="h-16 w-16 text-[#7C4DFF] mx-auto mb-6" />
             <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
               IICRC S500 Water Damage Certified
@@ -163,6 +176,7 @@ export default function EmergencyRoofTarpingPage() {
                 Get a Free Quote
               </Button>
             </div>
+          </div>
           </div>
         </section>
 

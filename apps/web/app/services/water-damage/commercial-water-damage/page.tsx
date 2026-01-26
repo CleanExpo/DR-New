@@ -5,6 +5,7 @@ import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import type { Metadata } from "next"
+import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "Commercial Water Damage Restoration | Water Damage Restoration Australia",
@@ -49,8 +50,20 @@ export default function CommercialWaterDamagePage() {
         </section>
 
         {/* Hero Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative overflow-hidden mb-16">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/services/water-damage/commercial-water-damage-hero.webp"
+              alt="Commercial water damage restoration operation"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0F1115]/70 via-[#0F1115]/50 to-[#0F1115]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-6 pt-16 pb-8">
+            <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <WaterDamage size="hero" gradient="water" aria-label="Commercial Water Damage Services" />
             </div>
