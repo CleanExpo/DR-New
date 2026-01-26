@@ -3,7 +3,7 @@
  *
  * GET /api/contractor/available-requests
  * Returns list of jobs available for the contractor to bid on
- * (Bookings with ContractorMatches where contractor has not yet bid)
+ * Uses ServiceRequest model with correct field mappings
  *
  * Required role: CONTRACTOR
  */
@@ -44,49 +44,39 @@ export async function GET(request: NextRequest) {
       userId = user.id;
     }
 
-    // Get contractor record
-    const contractor = await prisma.contractor.findUnique({
+    // Get contractor profile
+    const contractorProfile = await prisma.contractorProfile.findUnique({
       where: { userId },
       select: {
         id: true,
         businessName: true,
-        averageRating: true,
-        completedJobs: true,
+        rating: true,
+        totalJobs: true,
       },
     });
 
-    if (!contractor) {
-      return NextResponse.json(
-        { success: true, data: [], total: 0 },
-        { status: 200 }
-      );
+    if (!contractorProfile) {
+      // Return sample data if no contractor profile exists
+      return NextResponse.json({
+        success: true,
+        data: [],
+        total: 0,
+        contractor: null,
+        message: 'Please complete your contractor profile to see available requests',
+      });
     }
 
-    // Get available job requests (ContractorMatches with PENDING status)
-    const availableMatches = await prisma.contractorMatch.findMany({
+    // Get available service requests (all pending requests for now)
+    // In production, this would be filtered by contractor's service areas and specialisations
+    const availableRequests = await prisma.serviceRequest.findMany({
       where: {
-        contractorId: contractor.id,
-        status: 'PENDING',
+        status: { in: ['PENDING', 'MATCHED'] },
       },
       include: {
-        serviceRequest: {
+        user: {
           select: {
-            id: true,
-            australianServiceType: true,
-            description: true,
-            servicePostcode: true,
-            serviceSuburb: true,
-            serviceState: true,
-            status: true,
-            emergencyResponseLevel: true,
-            estimatedCostAUD: true,
-            client: {
-              select: {
-                name: true,
-                email: true,
-              },
-            },
-            createdAt: true,
+            name: true,
+            email: true,
           },
         },
       },
@@ -94,36 +84,51 @@ export async function GET(request: NextRequest) {
       take: 50,
     });
 
-    // Format response
-    const availableRequests = availableMatches.map((match) => ({
-      matchId: match.id,
-      requestId: match.serviceRequest.id,
-      matchScore: match.matchScore,
-      disasterType: match.serviceRequest.australianServiceType,
-      description: match.serviceRequest.description,
-      location: {
-        suburb: match.serviceRequest.serviceSuburb,
-        postcode: match.serviceRequest.servicePostcode,
-        state: match.serviceRequest.serviceState,
-      },
-      estimatedBudget: Number(match.serviceRequest.estimatedCostAUD),
-      emergencyLevel: match.serviceRequest.emergencyResponseLevel,
-      status: match.serviceRequest.status,
-      clientName: match.serviceRequest.client.name,
-      postedAt: match.serviceRequest.createdAt,
-      hoursPosted: Math.floor(
-        (Date.now() - new Date(match.serviceRequest.createdAt).getTime()) / (1000 * 60 * 60)
-      ),
-    }));
+    // Format response with correct field mappings
+    const formattedRequests = availableRequests.map((request) => {
+      // Calculate hours since posted
+      const hoursPosted = Math.floor(
+        (Date.now() - new Date(request.createdAt).getTime()) / (1000 * 60 * 60)
+      );
+
+      // Determine priority based on urgency
+      const priorityMap: Record<string, 'Elite' | 'Strategic' | 'New Market' | 'Standard'> = {
+        'Emergency': 'Elite',
+        'High': 'Strategic',
+        'Medium': 'New Market',
+        'Low': 'Standard',
+      };
+
+      return {
+        id: request.id,
+        requestId: request.id,
+        type: request.serviceCategory,
+        serviceTitle: request.serviceTitle,
+        description: request.description,
+        priority: priorityMap[request.urgency] || 'Standard',
+        location: request.location,
+        distance: `${Math.floor(Math.random() * 50) + 5} km away`, // TODO: Calculate real distance
+        potentialValue: request.budget || 'Quote Required',
+        urgency: request.urgency,
+        insurance: request.insurance,
+        urgentResponse: request.urgentResponse,
+        status: request.status,
+        clientName: request.user?.name || 'Anonymous',
+        postedAt: request.createdAt,
+        hoursPosted,
+        leadScore: request.leadScore,
+      };
+    });
 
     return NextResponse.json({
       success: true,
-      data: availableRequests,
-      total: availableRequests.length,
+      data: formattedRequests,
+      total: formattedRequests.length,
       contractor: {
-        name: contractor.businessName,
-        rating: Number(contractor.averageRating),
-        completedJobs: contractor.completedJobs,
+        id: contractorProfile.id,
+        name: contractorProfile.businessName,
+        rating: contractorProfile.rating,
+        completedJobs: contractorProfile.totalJobs,
       },
     });
   } catch (error) {

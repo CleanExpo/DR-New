@@ -637,3 +637,396 @@ Australia's #1 Disaster Recovery Platform
     text,
   });
 }
+
+// ============================================================================
+// Job Notification Email Templates (Sprint 2)
+// ============================================================================
+
+/**
+ * Send new job alert to contractor
+ */
+export async function sendNewJobAlertEmail(
+  email: string,
+  data: {
+    contractorName: string;
+    jobType: string;
+    location: string;
+    urgency: string;
+    potentialValue: string;
+    jobId: string;
+  }
+): Promise<{ success: boolean; error?: string }> {
+  const viewJobUrl = `${EMAIL_CONFIG.baseUrl}/dashboard/contractor/opportunities/${data.jobId}`;
+  const urgencyColors: Record<string, string> = {
+    'Emergency': '#dc2626',
+    'High': '#f59e0b',
+    'Medium': '#3b82f6',
+    'Low': '#22c55e',
+  };
+  const urgencyColor = urgencyColors[data.urgency] || '#3b82f6';
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+    .button { display: inline-block; background: #059669; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: 600; }
+    .job-card { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid ${urgencyColor}; }
+    .job-detail { margin: 10px 0; }
+    .job-label { font-weight: 600; color: #666; font-size: 12px; text-transform: uppercase; }
+    .job-value { font-size: 16px; color: #333; margin-top: 4px; }
+    .urgency-badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; background: ${urgencyColor}; color: white; }
+    .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🔔 New Job Opportunity</h1>
+    </div>
+    <div class="content">
+      <p>Hi ${data.contractorName},</p>
+
+      <p>Great news! A new job matching your profile is available in your area.</p>
+
+      <div class="job-card">
+        <div class="job-detail">
+          <div class="job-label">Service Type</div>
+          <div class="job-value">${data.jobType}</div>
+        </div>
+
+        <div class="job-detail">
+          <div class="job-label">Location</div>
+          <div class="job-value">${data.location}</div>
+        </div>
+
+        <div class="job-detail">
+          <div class="job-label">Urgency</div>
+          <div class="job-value"><span class="urgency-badge">${data.urgency}</span></div>
+        </div>
+
+        <div class="job-detail">
+          <div class="job-label">Estimated Value</div>
+          <div class="job-value">${data.potentialValue}</div>
+        </div>
+      </div>
+
+      <p style="text-align: center;">
+        <a href="${viewJobUrl}" class="button">View & Submit Quote</a>
+      </p>
+
+      <p><strong>⏱️ Act Fast!</strong> Early responses have higher acceptance rates.</p>
+
+      <p>If you have questions, contact us at <a href="mailto:${EMAIL_CONFIG.supportEmail}">${EMAIL_CONFIG.supportEmail}</a></p>
+    </div>
+    <div class="footer">
+      <p>Disaster Recovery Australia<br>
+      Australia's #1 Disaster Recovery Platform</p>
+      <p>This email was sent to ${email}</p>
+      <p><a href="${EMAIL_CONFIG.baseUrl}/dashboard/contractor/settings/notifications">Manage notification preferences</a></p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+  const text = `
+New Job Opportunity
+
+Hi ${data.contractorName},
+
+Great news! A new job matching your profile is available in your area.
+
+Job Details:
+- Service Type: ${data.jobType}
+- Location: ${data.location}
+- Urgency: ${data.urgency}
+- Estimated Value: ${data.potentialValue}
+
+View and submit your quote: ${viewJobUrl}
+
+Act Fast! Early responses have higher acceptance rates.
+
+Questions? Contact us at ${EMAIL_CONFIG.supportEmail}
+
+---
+Disaster Recovery Australia
+Australia's #1 Disaster Recovery Platform
+  `;
+
+  return sendEmail({
+    to: email,
+    subject: `🔔 New ${data.urgency} Job: ${data.jobType} in ${data.location}`,
+    html,
+    text,
+  });
+}
+
+/**
+ * Send job status update to contractor
+ */
+export async function sendJobStatusUpdateEmail(
+  email: string,
+  data: {
+    contractorName: string;
+    jobType: string;
+    location: string;
+    status: 'ACCEPTED' | 'REJECTED' | 'COMPLETED';
+    clientName?: string;
+    jobId: string;
+    message?: string;
+  }
+): Promise<{ success: boolean; error?: string }> {
+  const dashboardUrl = `${EMAIL_CONFIG.baseUrl}/dashboard/contractor`;
+
+  const statusConfig = {
+    ACCEPTED: {
+      emoji: '✅',
+      title: 'Quote Accepted!',
+      color: '#22c55e',
+      message: 'Congratulations! Your quote has been accepted by the client.',
+    },
+    REJECTED: {
+      emoji: '❌',
+      title: 'Quote Not Selected',
+      color: '#ef4444',
+      message: 'Unfortunately, the client chose a different contractor for this job.',
+    },
+    COMPLETED: {
+      emoji: '🎉',
+      title: 'Job Completed',
+      color: '#3b82f6',
+      message: 'The job has been marked as completed. Great work!',
+    },
+  };
+
+  const config = statusConfig[data.status];
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: ${config.color}; color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+    .button { display: inline-block; background: #059669; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: 600; }
+    .status-box { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid ${config.color}; }
+    .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>${config.emoji} ${config.title}</h1>
+    </div>
+    <div class="content">
+      <p>Hi ${data.contractorName},</p>
+
+      <p>${config.message}</p>
+
+      <div class="status-box">
+        <strong>Job Details:</strong><br>
+        <strong>Service:</strong> ${data.jobType}<br>
+        <strong>Location:</strong> ${data.location}<br>
+        ${data.clientName ? `<strong>Client:</strong> ${data.clientName}<br>` : ''}
+        ${data.message ? `<br><strong>Message:</strong> ${data.message}` : ''}
+      </div>
+
+      ${data.status === 'ACCEPTED' ? `
+      <p><strong>Next Steps:</strong></p>
+      <ul>
+        <li>Contact the client to confirm scheduling</li>
+        <li>Review the job requirements</li>
+        <li>Prepare your equipment and team</li>
+      </ul>
+      ` : ''}
+
+      <p style="text-align: center;">
+        <a href="${dashboardUrl}" class="button">Go to Dashboard</a>
+      </p>
+
+      <p>If you have questions, contact us at <a href="mailto:${EMAIL_CONFIG.supportEmail}">${EMAIL_CONFIG.supportEmail}</a></p>
+    </div>
+    <div class="footer">
+      <p>Disaster Recovery Australia<br>
+      Australia's #1 Disaster Recovery Platform</p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+  const text = `
+${config.title}
+
+Hi ${data.contractorName},
+
+${config.message}
+
+Job Details:
+- Service: ${data.jobType}
+- Location: ${data.location}
+${data.clientName ? `- Client: ${data.clientName}` : ''}
+${data.message ? `\nMessage: ${data.message}` : ''}
+
+Visit your dashboard: ${dashboardUrl}
+
+Questions? Contact us at ${EMAIL_CONFIG.supportEmail}
+
+---
+Disaster Recovery Australia
+Australia's #1 Disaster Recovery Platform
+  `;
+
+  return sendEmail({
+    to: email,
+    subject: `${config.emoji} ${config.title}: ${data.jobType}`,
+    html,
+    text,
+  });
+}
+
+/**
+ * Send claim status update to client
+ */
+export async function sendClaimStatusEmail(
+  email: string,
+  data: {
+    clientName: string;
+    claimId: string;
+    status: string;
+    serviceType: string;
+    message?: string;
+    contractorName?: string;
+    eta?: string;
+  }
+): Promise<{ success: boolean; error?: string }> {
+  const trackUrl = `${EMAIL_CONFIG.baseUrl}/dashboard/client/claims/${data.claimId}`;
+
+  const statusMessages: Record<string, { emoji: string; title: string; description: string }> = {
+    'MATCHED': {
+      emoji: '🔍',
+      title: 'Contractors Found',
+      description: 'We\'ve found qualified contractors in your area who can help.',
+    },
+    'QUOTE_RECEIVED': {
+      emoji: '💰',
+      title: 'Quote Received',
+      description: 'A contractor has submitted a quote for your review.',
+    },
+    'SCHEDULED': {
+      emoji: '📅',
+      title: 'Work Scheduled',
+      description: 'Your restoration work has been scheduled.',
+    },
+    'IN_PROGRESS': {
+      emoji: '🔧',
+      title: 'Work In Progress',
+      description: 'The contractor is actively working on your property.',
+    },
+    'COMPLETED': {
+      emoji: '✅',
+      title: 'Job Completed',
+      description: 'The restoration work has been completed.',
+    },
+  };
+
+  const statusInfo = statusMessages[data.status] || {
+    emoji: '📋',
+    title: 'Status Update',
+    description: 'There\'s an update on your claim.',
+  };
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+    .button { display: inline-block; background: #059669; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: 600; }
+    .status-box { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #059669; }
+    .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>${statusInfo.emoji} ${statusInfo.title}</h1>
+    </div>
+    <div class="content">
+      <p>Hi ${data.clientName},</p>
+
+      <p>${statusInfo.description}</p>
+
+      <div class="status-box">
+        <strong>Claim Details:</strong><br>
+        <strong>Reference:</strong> ${data.claimId}<br>
+        <strong>Service:</strong> ${data.serviceType}<br>
+        ${data.contractorName ? `<strong>Contractor:</strong> ${data.contractorName}<br>` : ''}
+        ${data.eta ? `<strong>ETA:</strong> ${data.eta}<br>` : ''}
+        ${data.message ? `<br><strong>Notes:</strong> ${data.message}` : ''}
+      </div>
+
+      <p style="text-align: center;">
+        <a href="${trackUrl}" class="button">Track Your Claim</a>
+      </p>
+
+      <p>If you have questions, contact us at <a href="mailto:${EMAIL_CONFIG.supportEmail}">${EMAIL_CONFIG.supportEmail}</a></p>
+    </div>
+    <div class="footer">
+      <p>Disaster Recovery Australia<br>
+      Australia's #1 Disaster Recovery Platform</p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+  const text = `
+${statusInfo.title}
+
+Hi ${data.clientName},
+
+${statusInfo.description}
+
+Claim Details:
+- Reference: ${data.claimId}
+- Service: ${data.serviceType}
+${data.contractorName ? `- Contractor: ${data.contractorName}` : ''}
+${data.eta ? `- ETA: ${data.eta}` : ''}
+${data.message ? `\nNotes: ${data.message}` : ''}
+
+Track your claim: ${trackUrl}
+
+Questions? Contact us at ${EMAIL_CONFIG.supportEmail}
+
+---
+Disaster Recovery Australia
+Australia's #1 Disaster Recovery Platform
+  `;
+
+  return sendEmail({
+    to: email,
+    subject: `${statusInfo.emoji} ${statusInfo.title} - Claim #${data.claimId}`,
+    html,
+    text,
+  });
+}

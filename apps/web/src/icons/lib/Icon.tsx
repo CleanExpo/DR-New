@@ -37,7 +37,7 @@ export interface IconProps extends VariantProps<typeof iconVariants> {
   gradient?: keyof typeof designTokens.iconGradients;
   strokeWidth?: number;
   'aria-label'?: string;
-  'aria-hidden'?: boolean;
+  'aria-hidden'?: boolean | 'true' | 'false';
   children?: React.ReactNode;
 }
 
