@@ -4,6 +4,7 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Flame, ShieldAlert, Droplets } f
 import { FireSmoke } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {

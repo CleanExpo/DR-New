@@ -4,6 +4,7 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Shield, Fan, Droplets, Eye } fro
 import { MouldRemediation } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
