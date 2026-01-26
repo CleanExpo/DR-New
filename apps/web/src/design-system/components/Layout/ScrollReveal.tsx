@@ -5,7 +5,7 @@
  * Perfect for hero sections, feature lists, testimonials
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView, useAnimation, Variants } from 'framer-motion';
 import { useAnimation as useAnimationHook } from '@/lib/hooks/useAnimation';
 import { scrollRevealVariants, scrollRevealTransition } from '@/lib/animations';
@@ -29,12 +29,13 @@ export const ScrollReveal = React.forwardRef<HTMLDivElement, ScrollRevealProps>(
       variants: customVariants,
       amount = 0.2,
     },
-    ref
+    forwardedRef
   ) => {
     const { isAnimationEnabled } = useAnimationHook();
     const controls = useAnimation();
-    const { ref: inViewRef, inView } = useInView({
-      threshold: typeof amount === 'number' ? amount : 0.2,
+    const internalRef = useRef<HTMLDivElement>(null);
+    const inView = useInView(internalRef, {
+      amount: typeof amount === 'number' ? amount : 0.2,
       once: true,
     });
 
@@ -48,7 +49,7 @@ export const ScrollReveal = React.forwardRef<HTMLDivElement, ScrollRevealProps>(
 
     if (!isAnimationEnabled) {
       return (
-        <div ref={ref} className={className}>
+        <div ref={forwardedRef} className={className}>
           {children}
         </div>
       );
@@ -56,7 +57,7 @@ export const ScrollReveal = React.forwardRef<HTMLDivElement, ScrollRevealProps>(
 
     return (
       <motion.div
-        ref={ref || inViewRef}
+        ref={internalRef}
         className={className}
         initial="hidden"
         animate={controls}
@@ -99,12 +100,13 @@ export const ScrollRevealGroup = React.forwardRef<
       staggerChildren = 0.1,
       delayChildren = 0.2,
     },
-    ref
+    forwardedRef
   ) => {
     const { isAnimationEnabled } = useAnimationHook();
     const controls = useAnimation();
-    const { ref: inViewRef, inView } = useInView({
-      threshold: 0.2,
+    const internalRef = useRef<HTMLDivElement>(null);
+    const inView = useInView(internalRef, {
+      amount: 0.2,
       once: true,
     });
 
@@ -116,7 +118,7 @@ export const ScrollRevealGroup = React.forwardRef<
 
     if (!isAnimationEnabled) {
       return (
-        <div ref={ref} className={className}>
+        <div ref={forwardedRef} className={className}>
           {children}
         </div>
       );
@@ -124,7 +126,7 @@ export const ScrollRevealGroup = React.forwardRef<
 
     return (
       <motion.div
-        ref={ref || inViewRef}
+        ref={internalRef}
         className={className}
         initial="hidden"
         animate={controls}
