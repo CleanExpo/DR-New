@@ -4,6 +4,7 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Flame, Building2, FileCheck } fr
 import { FireSmoke } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -117,31 +118,44 @@ export default function CommercialFireDamagePage() {
         </section>
 
         {/* Hero Section */}
-        <section className="container mx-auto px-6 mb-16">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <FireSmoke size="hero" gradient="fire" aria-label="Commercial Fire Damage Restoration" />
-            </div>
-            <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
-              IICRC FSRT Certified
-            </div>
-            <h1 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
-              Commercial Fire Damage <span className="text-[#00BFA6]">Restoration</span>
-            </h1>
-            <p className="text-xl text-[#9CA3AF] mb-8 max-w-3xl mx-auto">
-              Large-scale commercial fire restoration with 60-minute emergency response. Full regulatory
-              compliance, business continuity planning, and insurance coordination across Australia.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
-                Request Emergency Service
-              </Button>
-              <Button
-                variant="outline"
-                className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] px-8 py-3 text-lg bg-transparent"
-              >
-                Get a Quote
-              </Button>
+        <section className="relative overflow-hidden mb-16">
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/services/fire-smoke-damage/commercial-fire-damage-hero.webp"
+              alt="Commercial fire damage restoration equipment"
+              fill
+              priority
+              className="object-cover opacity-20"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0F1115]/70 via-[#0F1115]/50 to-[#0F1115]" />
+          </div>
+          <div className="relative z-10 container mx-auto px-6 pt-16 pb-8">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="flex justify-center mb-6">
+                <FireSmoke size="hero" gradient="fire" aria-label="Commercial Fire Damage Restoration" />
+              </div>
+              <div className="inline-flex items-center px-4 py-2 bg-[#00BFA6]/10 border border-[#00BFA6]/30 rounded-full text-[#00BFA6] text-sm font-medium mb-6">
+                IICRC FSRT Certified
+              </div>
+              <h1 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
+                Commercial Fire Damage <span className="text-[#00BFA6]">Restoration</span>
+              </h1>
+              <p className="text-xl text-[#9CA3AF] mb-8 max-w-3xl mx-auto">
+                Large-scale commercial fire restoration with 60-minute emergency response. Full regulatory
+                compliance, business continuity planning, and insurance coordination across Australia.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
+                  Request Emergency Service
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] px-8 py-3 text-lg bg-transparent"
+                >
+                  Get a Quote
+                </Button>
+              </div>
             </div>
           </div>
         </section>
