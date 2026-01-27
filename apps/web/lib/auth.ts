@@ -52,6 +52,7 @@ export interface JWTPayload {
   userId: string;
   email?: string;
   userType?: 'ADMIN' | 'CONTRACTOR' | 'CLIENT' | 'SUPER_ADMIN';
+  tenantId?: string | null;
   type?: 'auth' | 'password-reset' | 'email-verification' | '2fa';
   iat?: number;
   exp?: number;
@@ -62,6 +63,7 @@ export function generateToken(user: User): string {
     userId: user.id,
     email: user.email,
     userType: user.userType,
+    tenantId: user.tenantId,
     type: 'auth',
   };
 
@@ -114,6 +116,7 @@ export const authOptions: NextAuthOptions = {
             isActive: true,
             isBlocked: true,
             lockedUntil: true,
+            tenantId: true,
           },
         });
 
@@ -155,6 +158,7 @@ export const authOptions: NextAuthOptions = {
           name: user.name,
           userType: user.userType,
           avatar: user.avatar,
+          tenantId: user.tenantId,
         } as any;
       },
     }),
@@ -174,6 +178,7 @@ export const authOptions: NextAuthOptions = {
         token.userType = (user as any).userType;
         token.role = (user as any).userType;
         token.avatar = (user as any).avatar ?? null;
+        token.tenantId = (user as any).tenantId ?? null;
       }
       return token;
     },
@@ -183,6 +188,7 @@ export const authOptions: NextAuthOptions = {
         (session.user as any).userType = (token as any).userType;
         (session.user as any).role = (token as any).userType;
         (session.user as any).avatar = (token as any).avatar ?? null;
+        (session.user as any).tenantId = (token as any).tenantId ?? null;
       }
       return session;
     },

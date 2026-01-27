@@ -9,6 +9,7 @@ import { ErrorCode } from '@/lib/api-errors';
 export interface AuthContext {
   user: User;
   decoded: JWTPayload;
+  tenantId: string | null;
 }
 
 export interface AuthenticateRequestOptions {
@@ -50,8 +51,10 @@ export async function authenticateRequest(
               userId: user.id,
               email: user.email,
               userType: user.userType,
+              tenantId: user.tenantId,
               type: 'auth',
             },
+            tenantId: user.tenantId ?? null,
           },
         };
       }
@@ -126,7 +129,11 @@ export async function authenticateRequest(
 
     return {
       success: true,
-      context: { user, decoded },
+      context: {
+        user,
+        decoded,
+        tenantId: user.tenantId ?? decoded.tenantId ?? null,
+      },
     };
   } catch (error) {
     console.error('[AUTH_MIDDLEWARE] Database error:', error);
