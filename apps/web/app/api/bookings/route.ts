@@ -6,9 +6,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { prisma } from '@/lib/prisma';
-import { authOptions } from '@/lib/auth';
 import {
   BookingStatus,
   AustralianServiceType,
@@ -26,26 +26,16 @@ import {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // Get user
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
+    const { user } = authResult.context;
 
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Parse query parameters
     const searchParams = request.nextUrl.searchParams;
@@ -69,9 +59,9 @@ export async function GET(request: NextRequest) {
       where.serviceState = state as AustralianState;
     }
 
-    // Fetch bookings
+    // Fetch bookings - automatically tenant-scoped
     const [bookings, total] = await Promise.all([
-      prisma.booking.findMany({
+      db.booking.findMany({
         where,
         include: {
           contractor: {
@@ -87,7 +77,7 @@ export async function GET(request: NextRequest) {
         skip: offset,
         take: limit,
       }),
-      prisma.booking.count({ where }),
+      db.booking.count({ where }),
     ]);
 
     return NextResponse.json({
@@ -115,26 +105,16 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // Get user
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
+    const { user } = authResult.context;
 
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Parse request body
     const body = await request.json();
@@ -159,8 +139,8 @@ export async function POST(request: NextRequest) {
       body.estimatedDamageAUD || 5000
     );
 
-    // Create booking
-    const booking = await prisma.booking.create({
+    // Create booking - automatically tenant-scoped
+    const booking = await db.booking.create({
       data: {
         clientId: user.id,
         australianServiceType: body.serviceType as AustralianServiceType,
@@ -179,8 +159,8 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Log audit
-    await prisma.auditLog.create({
+    // Log audit - automatically tenant-scoped
+    await db.auditLog.create({
       data: {
         action: 'CREATE',
         entityType: 'Booking',
