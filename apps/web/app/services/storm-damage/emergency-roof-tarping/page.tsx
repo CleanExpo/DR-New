@@ -4,13 +4,17 @@ import { CheckCircle, ArrowLeft, AlertTriangle, CloudLightning, Shield, ArrowRig
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import type { Metadata } from "next"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Emergency Roof Tarping Services | Storm Damage Restoration Australia",
-  description:
-    "Emergency roof tarping services across Australia. 2-hour rapid deployment of heavy-duty UV-stabilised tarps. Professional installation, multi-storey capability, and 24/7 after-hours availability. Insurance documentation included.",
-}
+  description: "Emergency roof tarping services across Australia. 2-hour rapid deployment of heavy-duty UV-stabilised tarps. Professional installation, multi-storey capability, and 24/7 after-hours availability. Insurance documentation included.",
+  keywords: ['emergency roof tarping', 'roof tarp', 'temporary roof cover', 'storm roof protection', 'emergency roof repair', 'make safe', 'Australia'],
+  slug: 'emergency-roof-tarping',
+  parentSlug: 'storm-damage',
+  parentName: 'Storm Damage',
+  serviceName: 'Emergency Roof Tarping',
+})
 
 const processSteps = [
   {
@@ -127,6 +131,20 @@ export default function EmergencyRoofTarpingPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'emergency-roof-tarping',
+  parentSlug: 'storm-damage',
+  parentName: 'Storm Damage',
+  serviceName: 'Emergency Roof Tarping',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

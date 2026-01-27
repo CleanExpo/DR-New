@@ -4,11 +4,33 @@ import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
 import { BioForensic } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import type { Metadata } from "next"
+import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
+
+
+export const metadata: Metadata = generateCategoryMetadata({
+  title: "Biohazard Cleanup Services | NRPG Australia",
+  description: "Professional biohazard cleanup services across Australia. Crime scene, trauma, meth lab decontamination, sewage, hoarding cleanup. Certified and discreet.",
+  keywords: ['biohazard cleanup', 'crime scene cleanup', 'trauma cleanup', 'meth decontamination', 'sewage cleanup', 'hoarding cleanup', 'forensic cleaning', 'Australia'],
+  slug: 'biohazard-cleanup',
+  categoryName: 'Biohazard Cleanup',
+});
 
 export default function BiohazardCleanupPillarPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateCategorySchemas({
+  title: 'Biohazard Cleanup Services | NRPG Australia',
+  description: 'Professional biohazard cleanup services across Australia. Crime scene, trauma, meth lab decontamination, sewage, hoarding cleanup. Certified and discreet.',
+  keywords: [],
+  slug: 'biohazard-cleanup',
+  categoryName: 'Biohazard Cleanup',
+})) }}
+      />
       <main className="py-24">
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">

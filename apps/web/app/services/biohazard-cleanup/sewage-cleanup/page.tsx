@@ -5,13 +5,17 @@ import { BioForensic } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import type { Metadata } from "next"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Sewage Cleanup Services | Biohazard Cleanup Australia",
-  description:
-    "Professional sewage cleanup and Category 3 water damage restoration. IICRC S500/S540-certified technicians. 24/7 emergency response for sewage overflows and contamination across Australia.",
-}
+  description: "Professional sewage cleanup and Category 3 water damage restoration. IICRC S500/S540-certified technicians. 24/7 emergency response for sewage overflows and contamination across Australia.",
+  keywords: ['sewage cleanup', 'sewage overflow', 'black water cleanup', 'sewage contamination', 'sewage restoration', 'category 3 water', 'Australia'],
+  slug: 'sewage-cleanup',
+  parentSlug: 'biohazard-cleanup',
+  parentName: 'Biohazard Cleanup',
+  serviceName: 'Sewage Cleanup',
+})
 
 const processSteps = [
   {
@@ -105,6 +109,20 @@ export default function SewageCleanupPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'sewage-cleanup',
+  parentSlug: 'biohazard-cleanup',
+  parentName: 'Biohazard Cleanup',
+  serviceName: 'Sewage Cleanup',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

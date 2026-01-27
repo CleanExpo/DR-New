@@ -5,13 +5,17 @@ import { FireSmoke } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import type { Metadata } from "next"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Smoke Damage Restoration Services | Fire & Smoke Damage Australia",
-  description:
-    "Professional smoke damage restoration services across Australia. IICRC FSRT-certified technicians specialising in all smoke types, HVAC decontamination, and air quality verification. 24/7 response.",
-}
+  description: "Professional smoke damage restoration services across Australia. IICRC FSRT-certified technicians specialising in all smoke types, HVAC decontamination, and air quality verification. 24/7 response.",
+  keywords: ['smoke damage restoration', 'smoke cleanup', 'smoke stain removal', 'smoke remediation', 'soot damage', 'Australia'],
+  slug: 'smoke-damage-restoration',
+  parentSlug: 'fire-smoke-damage',
+  parentName: 'Fire & Smoke Damage',
+  serviceName: 'Smoke Damage Restoration',
+})
 
 const processSteps = [
   {
@@ -105,6 +109,20 @@ export default function SmokeDamageRestorationPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'smoke-damage-restoration',
+  parentSlug: 'fire-smoke-damage',
+  parentName: 'Fire & Smoke Damage',
+  serviceName: 'Smoke Damage Restoration',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

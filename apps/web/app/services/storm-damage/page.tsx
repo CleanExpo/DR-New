@@ -3,11 +3,33 @@ import Footer from "@/components/footer"
 import { Shield, CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import type { Metadata } from "next"
+import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
+
+
+export const metadata: Metadata = generateCategoryMetadata({
+  title: "Storm Damage Restoration Services | NRPG Australia",
+  description: "Professional storm damage restoration across Australia. Roof damage, wind damage, hail damage, tree cleanup, emergency tarping. 24/7 emergency response.",
+  keywords: ['storm damage restoration', 'storm damage repair', 'roof damage', 'wind damage', 'hail damage', 'tree damage', 'emergency tarping', 'Australia'],
+  slug: 'storm-damage',
+  categoryName: 'Storm Damage Restoration',
+});
 
 export default function StormDamagePillarPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateCategorySchemas({
+  title: 'Storm Damage Restoration Services | NRPG Australia',
+  description: 'Professional storm damage restoration across Australia. Roof damage, wind damage, hail damage, tree cleanup, emergency tarping. 24/7 emergency response.',
+  keywords: [],
+  slug: 'storm-damage',
+  categoryName: 'Storm Damage Restoration',
+})) }}
+      />
       <main className="py-24">
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">

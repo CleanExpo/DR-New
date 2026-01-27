@@ -4,13 +4,18 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Droplets, Clock, Shield, ArrowRi
 import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import type { Metadata } from "next"
 import Image from "next/image"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Burst Pipe Repair & Water Damage | Water Damage Restoration Australia",
   description: "Emergency burst pipe repair and water damage restoration across Australia. Rapid shutoff, pipe repair coordination, and complete water extraction. IICRC S500 certified. 24/7 response.",
-}
+  keywords: ['burst pipe repair', 'broken pipe', 'pipe leak damage', 'emergency plumbing', 'water damage pipe', 'pipe restoration', 'Australia'],
+  slug: 'burst-pipe-repair',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Burst Pipe Repair',
+})
 
 const processSteps = [
   { step: 1, title: "Emergency Shutoff & Containment", description: "Our team locates and isolates the burst pipe, shutting off water supply to prevent further damage while containing the spread of water." },
@@ -40,6 +45,20 @@ export default function BurstPipeRepairPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'burst-pipe-repair',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Burst Pipe Repair',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

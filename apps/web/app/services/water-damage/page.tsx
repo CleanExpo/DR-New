@@ -4,11 +4,33 @@ import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
 import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import type { Metadata } from "next"
+import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
+
+
+export const metadata: Metadata = generateCategoryMetadata({
+  title: "Water Damage Restoration Services | NRPG Australia",
+  description: "Professional water damage restoration services across Australia. Basement flooding, burst pipes, flood restoration, structural drying. IICRC S500 certified. 24/7 emergency response.",
+  keywords: ['water damage restoration', 'water damage repair', 'flood damage', 'water extraction', 'structural drying', 'burst pipe', 'basement flooding', 'IICRC S500', 'Australia'],
+  slug: 'water-damage',
+  categoryName: 'Water Damage Restoration',
+});
 
 export default function WaterDamagePillarPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateCategorySchemas({
+  title: 'Water Damage Restoration Services | NRPG Australia',
+  description: 'Professional water damage restoration services across Australia. Basement flooding, burst pipes, flood restoration, structural drying. IICRC S500 certified. 24/7 emergency response.',
+  keywords: [],
+  slug: 'water-damage',
+  categoryName: 'Water Damage Restoration',
+})) }}
+      />
       <main className="py-24">
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">
