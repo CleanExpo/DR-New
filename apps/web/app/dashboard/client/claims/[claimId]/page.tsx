@@ -96,6 +96,11 @@ export default function ClaimDetailPage() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [acceptingBid, setAcceptingBid] = React.useState<string | null>(null);
+  const [showMessageForm, setShowMessageForm] = React.useState(false);
+  const [messageText, setMessageText] = React.useState('');
+  const [sendingMessage, setSendingMessage] = React.useState(false);
+  const [downloadingInvoice, setDownloadingInvoice] = React.useState(false);
+  const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
 
   // Load claim details
   React.useEffect(() => {
@@ -122,14 +127,120 @@ export default function ClaimDetailPage() {
   const handleAcceptBid = async (matchId: string) => {
     setAcceptingBid(matchId);
     try {
-      // TODO: Implement API endpoint to accept bid
-      // const response = await fetch(`/api/client/claims/${claimId}/accept-bid`, {
-      //   method: 'POST',
-      //   body: JSON.stringify({ matchId }),
-      // });
-      console.log('Accepting bid:', matchId);
+      const response = await fetch(`/api/client/claims/${claimId}/accept-bid`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ matchId }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to accept bid');
+        return;
+      }
+
+      setSuccessMessage('Bid accepted! Your contractor has been assigned.');
+      // Refresh claim data
+      const refreshResponse = await fetch(`/api/client/claims/${claimId}`);
+      if (refreshResponse.ok) {
+        const refreshData = await refreshResponse.json();
+        setClaim(refreshData.claim);
+      }
+    } catch {
+      setError('Failed to accept bid. Please try again.');
     } finally {
       setAcceptingBid(null);
+    }
+  };
+
+  const handleSendMessage = async () => {
+    if (!messageText.trim()) return;
+    setSendingMessage(true);
+    try {
+      const response = await fetch(`/api/client/claims/${claimId}/message`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: messageText }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to send message');
+        return;
+      }
+
+      setSuccessMessage('Message sent to contractor.');
+      setMessageText('');
+      setShowMessageForm(false);
+    } catch {
+      setError('Failed to send message. Please try again.');
+    } finally {
+      setSendingMessage(false);
+    }
+  };
+
+  const handleDownloadInvoice = async () => {
+    setDownloadingInvoice(true);
+    try {
+      const response = await fetch(`/api/client/claims/${claimId}/invoice`);
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Failed to generate invoice');
+        return;
+      }
+
+      // Open invoice data in a new tab for printing
+      const invoiceWindow = window.open('', '_blank');
+      if (invoiceWindow) {
+        const inv = data.invoice;
+        invoiceWindow.document.write(`
+          <html><head><title>Invoice ${inv.invoiceNumber}</title>
+          <style>
+            body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+            h1 { font-size: 24px; margin-bottom: 4px; }
+            .header { display: flex; justify-content: space-between; margin-bottom: 32px; }
+            .section { margin-bottom: 24px; }
+            .label { font-size: 12px; color: #666; text-transform: uppercase; font-weight: 600; }
+            table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+            th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; }
+            th { background: #f9fafb; font-size: 12px; text-transform: uppercase; color: #666; }
+            .total { font-size: 20px; font-weight: bold; }
+            .footer { margin-top: 40px; font-size: 12px; color: #999; border-top: 1px solid #e5e7eb; padding-top: 16px; }
+            @media print { body { margin: 0; } }
+          </style></head><body>
+          <div class="header">
+            <div><h1>Invoice</h1><p style="color:#666">${inv.invoiceNumber}</p></div>
+            <div style="text-align:right"><strong>${inv.company.name}</strong><br/>${inv.company.email}</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px" class="section">
+            <div><p class="label">Bill To</p><p><strong>${inv.client.name}</strong><br/>${inv.client.email}</p></div>
+            <div><p class="label">Service Address</p><p>${inv.booking.address}</p></div>
+          </div>
+          ${inv.contractor ? `<div class="section"><p class="label">Contractor</p><p><strong>${inv.contractor.businessName}</strong><br/>${inv.contractor.contactName}${inv.contractor.abn ? '<br/>ABN: ' + inv.contractor.abn : ''}</p></div>` : ''}
+          <table>
+            <thead><tr><th>Description</th><th>Date</th><th style="text-align:right">Amount</th></tr></thead>
+            <tbody>
+            ${inv.lineItems.map((item: { description: string; date: string; amount: number }) => `<tr><td>${item.description}</td><td>${item.date ? new Date(item.date).toLocaleDateString('en-AU') : '-'}</td><td style="text-align:right">$${item.amount.toFixed(2)}</td></tr>`).join('')}
+            ${inv.lineItems.length === 0 ? '<tr><td colspan="3" style="text-align:center;color:#999">No payments recorded yet</td></tr>' : ''}
+            </tbody>
+          </table>
+          <div style="text-align:right">
+            <p>Subtotal: $${inv.summary.subtotal.toFixed(2)}</p>
+            <p>GST (10%): $${inv.summary.gst.toFixed(2)}</p>
+            <p class="total">Total: $${inv.summary.total.toFixed(2)} AUD</p>
+          </div>
+          <div class="footer"><p>${inv.company.name} | ${inv.company.email}</p></div>
+          </body></html>
+        `);
+        invoiceWindow.document.close();
+      }
+    } catch {
+      setError('Failed to download invoice. Please try again.');
+    } finally {
+      setDownloadingInvoice(false);
     }
   };
 
@@ -201,6 +312,14 @@ export default function ClaimDetailPage() {
           {claim.location.address}, {claim.location.suburb} {claim.location.postcode}
         </p>
       </div>
+
+      {/* Success Alert */}
+      {successMessage && (
+        <Alert className="border-green-600 bg-green-50">
+          <CheckCircle className="h-5 w-5 text-green-600" />
+          <AlertDescription className="text-green-900">{successMessage}</AlertDescription>
+        </Alert>
+      )}
 
       {/* Error Alert */}
       {error && (
@@ -296,10 +415,31 @@ export default function ClaimDetailPage() {
                     </p>
                   </div>
 
-                  <Button variant="outline" size="sm" className="mt-4 w-full">
+                  <Button variant="outline" size="sm" className="mt-4 w-full" onClick={() => setShowMessageForm(!showMessageForm)}>
                     <MessageCircle className="h-4 w-4 mr-2" />
                     Message Contractor
                   </Button>
+
+                  {showMessageForm && (
+                    <div className="mt-3 space-y-2">
+                      <textarea
+                        value={messageText}
+                        onChange={(e) => setMessageText(e.target.value)}
+                        placeholder="Write a message to your contractor..."
+                        className="w-full p-3 border border-gray-300 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        rows={3}
+                        maxLength={2000}
+                      />
+                      <div className="flex gap-2">
+                        <Button variant="primary" size="sm" onClick={handleSendMessage} loading={sendingMessage} className="flex-1">
+                          Send
+                        </Button>
+                        <Button variant="outline" size="sm" onClick={() => setShowMessageForm(false)}>
+                          Cancel
+                        </Button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -475,11 +615,11 @@ export default function ClaimDetailPage() {
           {/* Quick Actions */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
             <h3 className="font-semibold text-blue-900 mb-3">Need Help?</h3>
-            <Button variant="outline" size="sm" className="w-full mb-2">
+            <Button variant="outline" size="sm" className="w-full mb-2" onClick={handleDownloadInvoice} loading={downloadingInvoice}>
               <FileText className="h-4 w-4 mr-2" />
               Download Invoice
             </Button>
-            <Button variant="outline" size="sm" className="w-full">
+            <Button variant="outline" size="sm" className="w-full" onClick={() => router.push('/support')}>
               <MessageCircle className="h-4 w-4 mr-2" />
               Contact Support
             </Button>
