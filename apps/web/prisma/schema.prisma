@@ -2052,6 +2052,65 @@ model BetaNPSSurvey {
   @@map("beta_nps_surveys")
 }
 
+// ─── Public Claim Intake (pre-authentication) ───────────────────────────────
+// Created by /api/public/claims/submit for property owners before they have an account.
+model PublicClaim {
+  id               String   @id @default(cuid())
+  clientName       String
+  clientEmail      String
+  clientPhone      String
+  propertyAddress  String
+  suburb           String
+  postcode         String
+  disasterType     String
+  incidentDate     DateTime
+  isOngoing        Boolean  @default(false)
+  isEmergency      Boolean  @default(false)
+  damageDescription String
+  hasInsurance     Boolean  @default(false)
+  insuranceProvider String?
+  policyNumber     String?
+  priority         String   @default("Medium")
+  status           String   @default("PENDING")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([status])
+  @@index([postcode])
+  @@index([disasterType])
+  @@index([isEmergency])
+  @@index([createdAt])
+  @@map("public_claims")
+}
+
+// ─── Triage Assessment ───────────────────────────────────────────────────────
+// Created by /api/public/triage when a property owner completes the triage questionnaire.
+model TriageAssessment {
+  id               String   @id @default(cuid())
+  email            String
+  phone            String
+  postcode         String
+  state            String
+  responses        Json
+  urgencyScore     Int
+  urgencyLevel     String
+  estimatedCost    Int      @default(0)
+  recommendations  String[]
+  requiredServices String[]
+  triageSessionId  String   @unique
+  completedAt      DateTime @default(now())
+  ipAddress        String?
+  userAgent        String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([urgencyLevel])
+  @@index([postcode])
+  @@index([triageSessionId])
+  @@index([createdAt])
+  @@map("triage_assessments")
+}
+
 enum UserType {
   CLIENT
   CONTRACTOR
