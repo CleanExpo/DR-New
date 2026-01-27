@@ -158,6 +158,7 @@ export default function CommercialFireDamagePage() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

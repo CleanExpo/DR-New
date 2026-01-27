@@ -85,6 +85,7 @@ export default function BurstPipeRepairPage() {
               </Button>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

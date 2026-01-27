@@ -85,6 +85,7 @@ export default function StructuralDryingPage() {
               </Button>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

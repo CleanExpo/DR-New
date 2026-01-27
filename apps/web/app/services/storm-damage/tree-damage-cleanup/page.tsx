@@ -178,6 +178,7 @@ export default function TreeDamageCleanupPage() {
             </div>
           </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

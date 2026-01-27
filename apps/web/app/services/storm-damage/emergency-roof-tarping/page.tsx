@@ -178,6 +178,7 @@ export default function EmergencyRoofTarpingPage() {
             </div>
           </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

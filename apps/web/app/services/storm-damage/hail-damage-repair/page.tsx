@@ -178,6 +178,7 @@ export default function HailDamageRepairPage() {
             </div>
           </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

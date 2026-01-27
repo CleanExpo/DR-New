@@ -85,6 +85,7 @@ export default function CarpetWaterDamagePage() {
               </Button>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}
