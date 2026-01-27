@@ -4,7 +4,27 @@ import { getCORSHeaders, handleCORSPreflight, logCORSViolation, isOriginAllowed 
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const response = NextResponse.next();
+
+  // Extract hostname for tenant resolution in API routes
+  // Edge Runtime cannot call Prisma directly, so we forward hostname to API routes
+  const hostname = request.headers.get('x-forwarded-host') || request.headers.get('host');
+
+  const requestHeaders = new Headers(request.headers);
+  if (hostname) {
+    requestHeaders.set('x-tenant-hostname', hostname);
+  }
+
+  // Pass through x-tenant-id header if present (for explicit tenant selection)
+  const tenantIdHeader = request.headers.get('x-tenant-id');
+  if (tenantIdHeader) {
+    requestHeaders.set('x-tenant-id', tenantIdHeader);
+  }
+
+  const response = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 
   // Public routes that don't require authentication
   const publicRoutes = [

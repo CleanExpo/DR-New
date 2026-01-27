@@ -5,6 +5,7 @@ import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { User } from '@prisma/client';
 import { ErrorCode } from '@/lib/api-errors';
+import { resolveTenant } from '@/lib/tenant-resolver';
 
 export interface AuthContext {
   user: User;
@@ -43,6 +44,15 @@ export async function authenticateRequest(
       });
 
       if (user) {
+        // Resolve tenantId from hostname if user doesn't have one assigned
+        let resolvedTenantId = user.tenantId;
+        if (!resolvedTenantId) {
+          const hostname = request.headers.get('x-tenant-hostname');
+          const tenantIdHeader = request.headers.get('x-tenant-id');
+          const resolution = await resolveTenant(hostname, tenantIdHeader);
+          resolvedTenantId = resolution?.tenantId ?? null;
+        }
+
         return {
           success: true,
           context: {
@@ -51,10 +61,10 @@ export async function authenticateRequest(
               userId: user.id,
               email: user.email,
               userType: user.userType,
-              tenantId: user.tenantId,
+              tenantId: resolvedTenantId,
               type: 'auth',
             },
-            tenantId: user.tenantId ?? null,
+            tenantId: resolvedTenantId,
           },
         };
       }
@@ -127,12 +137,21 @@ export async function authenticateRequest(
       };
     }
 
+    // Resolve tenantId with fallback chain: user.tenantId > decoded.tenantId > hostname resolution
+    let resolvedTenantId = user.tenantId ?? decoded.tenantId ?? null;
+    if (!resolvedTenantId) {
+      const hostname = request.headers.get('x-tenant-hostname');
+      const tenantIdHeader = request.headers.get('x-tenant-id');
+      const resolution = await resolveTenant(hostname, tenantIdHeader);
+      resolvedTenantId = resolution?.tenantId ?? null;
+    }
+
     return {
       success: true,
       context: {
         user,
         decoded,
-        tenantId: user.tenantId ?? decoded.tenantId ?? null,
+        tenantId: resolvedTenantId,
       },
     };
   } catch (error) {
