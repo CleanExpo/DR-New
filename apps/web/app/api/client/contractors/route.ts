@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-export const dynamic = 'force-dynamic';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
@@ -19,6 +20,9 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
     const requestId = searchParams.get('requestId');
     const page = parseInt(searchParams.get('page') || '1');
@@ -32,8 +36,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Get the service request to verify ownership
-    const serviceRequest = await prisma.serviceRequest.findFirst({
+    // Get the service request to verify ownership - automatically tenant-scoped
+    const serviceRequest = await db.serviceRequest.findFirst({
       where: {
         id: requestId,
         userId: user.id

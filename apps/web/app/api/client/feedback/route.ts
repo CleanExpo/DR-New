@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
-import { prisma } from '@/lib/prisma';
 import { z, ZodError } from 'zod';
 
 const feedbackSchema = z.object({
@@ -26,11 +26,14 @@ export async function POST(request: NextRequest) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const { requestId, rating, review, contractorId } = feedbackSchema.parse(body);
 
-    // Verify the request belongs to the user
-    const serviceRequest = await prisma.serviceRequest.findFirst({
+    // Verify the request belongs to the user - automatically tenant-scoped
+    const serviceRequest = await db.serviceRequest.findFirst({
       where: {
         id: requestId,
         userId: user.id,
@@ -49,15 +52,15 @@ export async function POST(request: NextRequest) {
     // In a real app, you would create a feedback/rating table
     // For now, we'll just return success
 
-    // Update contractor rating (mock calculation)
-    const contractor = await prisma.contractorProfile.findUnique({
+    // Update contractor rating (mock calculation) - automatically tenant-scoped
+    const contractor = await db.contractorProfile.findUnique({
       where: { id: contractorId }
     });
 
     if (contractor) {
       // Simple rating update (in real app, use proper averaging)
       const newRating = (contractor.rating + rating) / 2;
-      await prisma.contractorProfile.update({
+      await db.contractorProfile.update({
         where: { id: contractorId },
         data: {
           rating: newRating,
