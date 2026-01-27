@@ -319,7 +319,7 @@ export function ContractorFooter() {
               </li>
               <li>
                 <Link
-                  href="/contractor/directory"
+                  href="/contractors/directory"
                   className="text-slate-300 hover:text-teal-400 transition-colors duration-200 text-sm flex items-center group"
                 >
                   <CheckCircle2 className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
