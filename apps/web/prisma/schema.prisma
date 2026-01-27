@@ -160,21 +160,46 @@ model VerificationToken {
 }
 
 model AuditLog {
-  id          String   @id @default(cuid())
-  action      String
-  entityType  String
-  entityId    String
-  performedBy String?
-  oldValues   Json?
-  newValues   Json?
-  ipAddress   String?
-  userAgent   String?
-  createdAt   DateTime @default(now())
+  id           String   @id @default(cuid())
+  action       String
+
+  // Entity fields (inspection reports, bookings, claims pattern)
+  entityType   String?
+  entityId     String?
+  performedBy  String?
+  oldValues    Json?
+  newValues    Json?
+
+  // Resource fields (audit.service.ts, enhanced-audit-logging.ts pattern)
+  userId       String?
+  userEmail    String?
+  resourceType String?
+  resourceId   String?
+  status       String?
+  details      String?
+  errorMessage String?
+  severity     String?
+
+  // Workspace/subscription fields
+  workspaceId  String?
+  metadata     Json?
+
+  // Realtime status change fields
+  changes      Json?
+  timestamp    DateTime?
+
+  // Request context
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime @default(now())
 
   @@index([createdAt])
   @@index([entityId])
   @@index([entityType])
   @@index([performedBy])
+  @@index([userId])
+  @@index([workspaceId])
+  @@index([action])
 }
 
 model Contractor {
