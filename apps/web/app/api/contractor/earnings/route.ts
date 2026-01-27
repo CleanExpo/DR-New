@@ -13,29 +13,30 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   getContractorEarnings,
   calculatePayoutAmount,
   CONTRACTOR_PAYOUT_PERCENTAGE,
 } from '@/lib/payments/contractor-payout';
-import { prisma } from '@/lib/prisma';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // Get contractor profile
-    const contractor = await prisma.contractor.findUnique({
-      where: { userId: session.user.id },
+    const { user } = authResult.context;
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // Get contractor profile - automatically tenant-scoped
+    const contractor = await db.contractor.findUnique({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -77,7 +78,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [payments, totalPayments] = await Promise.all([
-      prisma.payment.findMany({
+      db.payment.findMany({
         where: whereClause,
         include: {
           booking: {
@@ -94,7 +95,7 @@ export async function GET(request: NextRequest) {
         take: limit,
         skip: offset,
       }),
-      prisma.payment.count({ where: whereClause }),
+      db.payment.count({ where: whereClause }),
     ]);
 
     // Calculate period-specific earnings

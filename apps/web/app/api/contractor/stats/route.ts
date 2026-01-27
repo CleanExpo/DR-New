@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
 export const dynamic = 'force-dynamic';
@@ -20,8 +20,11 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
-    // Get contractor profile
-    const contractorProfile = await prisma.contractorProfile.findUnique({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // Get contractor profile - automatically tenant-scoped
+    const contractorProfile = await db.contractorProfile.findUnique({
       where: { userId: user.id }
     });
 
@@ -33,8 +36,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Get contractor matches (active projects)
-    const activeMatches = await prisma.contractorMatch.findMany({
+    // Get contractor matches (active projects) - automatically tenant-scoped
+    const activeMatches = await db.contractorMatch.findMany({
       where: {
         contractorId: contractorProfile.id,
         status: 'ACCEPTED'
@@ -44,8 +47,8 @@ export async function GET(request: NextRequest) {
       }
     });
 
-    // Get completed jobs (matches with completed service requests)
-    const completedMatches = await prisma.contractorMatch.findMany({
+    // Get completed jobs (matches with completed service requests) - automatically tenant-scoped
+    const completedMatches = await db.contractorMatch.findMany({
       where: {
         contractorId: contractorProfile.id,
         serviceRequest: {
@@ -60,11 +63,11 @@ export async function GET(request: NextRequest) {
     const totalEarnings = completedJobs * (contractorProfile.hourlyRate || 0) * 8; // Assuming 8 hours per job
     const rating = contractorProfile.rating || 0;
 
-    // Get today's opportunities (service requests in contractor's service areas)
+    // Get today's opportunities (service requests in contractor's service areas) - automatically tenant-scoped
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
-    const todaysOpportunities = await prisma.serviceRequest.count({
+
+    const todaysOpportunities = await db.serviceRequest.count({
       where: {
         status: 'PENDING',
         serviceCategory: {
