@@ -11,9 +11,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 
 // Validation schema for bid submission
@@ -30,19 +29,20 @@ type BidSubmission = z.infer<typeof submitBidSchema>;
 // POST: Submit a bid
 export async function POST(request: NextRequest) {
   try {
-    // 1. Verify contractor authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // 1. Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // 2. Get contractor record
-    const contractor = await prisma.contractor.findUnique({
-      where: { userId: session.user.id },
+    const { user } = authResult.context;
+
+    // 2. Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // 3. Get contractor record - automatically tenant-scoped
+    const contractor = await db.contractor.findUnique({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Parse and validate request body
+    // 4. Parse and validate request body
     const body = await request.json();
 
     let validatedData: BidSubmission;
@@ -72,8 +72,8 @@ export async function POST(request: NextRequest) {
       throw error;
     }
 
-    // 4. Get the ContractorMatch record
-    const match = await prisma.contractorMatch.findUnique({
+    // 5. Get the ContractorMatch record - automatically tenant-scoped
+    const match = await db.contractorMatch.findUnique({
       where: { id: validatedData.matchId },
       include: {
         contractor: {
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 5. Verify contractor owns this match
+    // 6. Verify contractor owns this match
     if (match.contractorId !== contractor.id) {
       return NextResponse.json(
         { error: 'Unauthorized - You do not own this match' },
@@ -97,8 +97,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 6. Update ContractorMatch with bid details
-    const updatedMatch = await prisma.contractorMatch.update({
+    // 7. Update ContractorMatch with bid details - automatically tenant-scoped
+    const updatedMatch = await db.contractorMatch.update({
       where: { id: validatedData.matchId },
       data: {
         status: 'ACCEPTED', // Mark as bid submitted
@@ -121,18 +121,18 @@ export async function POST(request: NextRequest) {
     console.log('Budget:', validatedData.proposedBudget);
     console.log('Hours:', validatedData.estimatedHours);
 
-    // 7. Get booking and contractor info for event emission
-    const contractorInfo = await prisma.contractor.findUnique({
+    // 8. Get booking and contractor info for event emission - automatically tenant-scoped
+    const contractorInfo = await db.contractor.findUnique({
       where: { id: contractor.id },
       select: { businessName: true },
     });
 
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: updatedMatch.serviceRequest.id },
       select: { clientId: true },
     });
 
-    // 8. Emit bid submitted event
+    // 9. Emit bid submitted event
     if (contractorInfo && booking) {
       try {
         const { emitBidSubmitted } = await import('@/lib/realtime/emit-handlers');
@@ -140,7 +140,7 @@ export async function POST(request: NextRequest) {
           updatedMatch.serviceRequest.id,
           validatedData.matchId,
           contractor.id,
-          session.user.name || 'Contractor',
+          user.name || 'Contractor',
           contractorInfo.businessName,
           validatedData.proposedBudget,
           validatedData.estimatedHours || null,
@@ -184,19 +184,20 @@ export async function POST(request: NextRequest) {
 // GET: Get contractor's submitted bids
 export async function GET(request: NextRequest) {
   try {
-    // 1. Verify contractor authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // 1. Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // 2. Get contractor record
-    const contractor = await prisma.contractor.findUnique({
-      where: { userId: session.user.id },
+    const { user } = authResult.context;
+
+    // 2. Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // 3. Get contractor record - automatically tenant-scoped
+    const contractor = await db.contractor.findUnique({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -207,8 +208,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // 3. Get contractor's bids (submitted matches)
-    const bids = await prisma.contractorMatch.findMany({
+    // 4. Get contractor's bids (submitted matches) - automatically tenant-scoped
+    const bids = await db.contractorMatch.findMany({
       where: {
         contractorId: contractor.id,
         status: 'ACCEPTED', // Only submitted bids
