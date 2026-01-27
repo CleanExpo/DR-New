@@ -178,7 +178,6 @@ export default function RoofStormDamagePage() {
             </div>
           </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}

@@ -158,7 +158,6 @@ export default function MouldPreventionPage() {
               </div>
             </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}

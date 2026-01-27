@@ -158,7 +158,6 @@ export default function SewageCleanupPage() {
               </div>
             </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}

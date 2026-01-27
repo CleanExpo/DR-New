@@ -158,7 +158,6 @@ export default function MethLabDecontaminationPage() {
               </div>
             </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}

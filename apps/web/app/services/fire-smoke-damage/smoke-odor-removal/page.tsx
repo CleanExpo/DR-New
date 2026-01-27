@@ -158,7 +158,6 @@ export default function SmokeOdourRemovalPage() {
             </div>
           </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}

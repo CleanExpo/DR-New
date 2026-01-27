@@ -158,7 +158,6 @@ export default function MouldInspectionPage() {
             </div>
           </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}
