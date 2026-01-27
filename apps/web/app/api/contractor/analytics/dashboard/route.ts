@@ -4,25 +4,25 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const contractorId = session.user.id;
+    const { user } = authResult.context;
+    const contractorId = user.id;
 
-    // Verify user is a contractor
-    const contractor = await prisma.contractor.findUnique({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // Verify user is a contractor - automatically tenant-scoped
+    const contractor = await db.contractor.findUnique({
       where: { id: contractorId },
     });
 
@@ -33,8 +33,8 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Earnings overview (all-time)
-    const allPayments = await prisma.payment.findMany({
+    // Earnings overview (all-time) - automatically tenant-scoped
+    const allPayments = await db.payment.findMany({
       where: {
         booking: {
           contractorId,
@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
     const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
     const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 
-    const monthlyPayments = await prisma.payment.findMany({
+    const monthlyPayments = await db.payment.findMany({
       where: {
         booking: {
           contractorId,
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
     const monthlyEarnings = monthlyPayments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
 
     // Jobs completed
-    const completedJobs = await prisma.booking.count({
+    const completedJobs = await db.booking.count({
       where: {
         contractorId,
         status: 'COMPLETED',
@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Jobs in progress
-    const activeJobs = await prisma.booking.count({
+    const activeJobs = await db.booking.count({
       where: {
         contractorId,
         status: {
@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Pending payouts
-    const pendingPayments = await prisma.payment.findMany({
+    const pendingPayments = await db.payment.findMany({
       where: {
         booking: {
           contractorId,
@@ -99,7 +99,7 @@ export async function GET(request: NextRequest) {
     const pendingPayouts = pendingPayments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
 
     // Performance metrics
-    const completedBookings = await prisma.booking.findMany({
+    const completedBookings = await db.booking.findMany({
       where: {
         contractorId,
         status: 'COMPLETED',
@@ -116,13 +116,13 @@ export async function GET(request: NextRequest) {
         : 0;
 
     // Job acceptance rate
-    const receivedJobs = await prisma.contractorMatch.count({
+    const receivedJobs = await db.contractorMatch.count({
       where: {
         contractorId,
       },
     });
 
-    const acceptedJobs = await prisma.booking.count({
+    const acceptedJobs = await db.booking.count({
       where: {
         contractorId,
         status: {
@@ -134,7 +134,7 @@ export async function GET(request: NextRequest) {
     const acceptanceRate = receivedJobs > 0 ? (acceptedJobs / receivedJobs) * 100 : 0;
 
     // Earnings by service type (top 5)
-    const earningsByServiceType = await prisma.booking.groupBy({
+    const earningsByServiceType = await db.booking.groupBy({
       by: ['australianServiceType'],
       _sum: {
         finalPrice: true,

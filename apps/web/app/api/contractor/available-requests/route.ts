@@ -9,44 +9,29 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    // Use NextAuth session if available, otherwise fall back to custom auth middleware
-    let userId: string | null = null;
+    // Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
+    const { user } = authResult.context;
 
-    try {
-      const session = await getServerSession(authOptions);
-      if (session?.user?.id) {
-        userId = session.user.id;
-      }
-    } catch {
-      // Fallback to custom auth middleware
+    if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
-    // If NextAuth didn't work, use custom middleware
-    if (!userId) {
-      const authResult = await authenticateRequest(request);
-      if (!authResult.success) return authResult.response;
-      const { user } = authResult.context;
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
-      if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
-        return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
-      }
-
-      userId = user.id;
-    }
-
-    // Get contractor profile
-    const contractorProfile = await prisma.contractorProfile.findUnique({
-      where: { userId },
+    // Get contractor profile - automatically tenant-scoped
+    const contractorProfile = await db.contractorProfile.findUnique({
+      where: { userId: user.id },
       select: {
         id: true,
         businessName: true,
@@ -66,9 +51,9 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Get available service requests (all pending requests for now)
+    // Get available service requests (all pending requests for now) - automatically tenant-scoped
     // In production, this would be filtered by contractor's service areas and specialisations
-    const availableRequests = await prisma.serviceRequest.findMany({
+    const availableRequests = await db.serviceRequest.findMany({
       where: {
         status: { in: ['PENDING', 'MATCHED'] },
       },
