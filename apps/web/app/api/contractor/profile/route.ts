@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { contractorProfileCreateSchema, contractorProfileUpdateSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError, handleDatabaseError } from '@/lib/api-errors';
 import { ZodError } from 'zod';
@@ -22,8 +22,11 @@ export async function GET(request: NextRequest) {
     }
     const { user } = authResult.context;
 
-    // Get contractor profile
-    const profile = await prisma.contractorProfile.findUnique({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // Get contractor profile - automatically tenant-scoped
+    const profile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
       include: {
         user: {
@@ -90,12 +93,15 @@ export async function POST(request: NextRequest) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     // Parse and validate request body
     const body = await request.json();
     const validatedData = contractorProfileCreateSchema.parse(body);
 
-    // Create or update profile
-    const profile = await prisma.contractorProfile.upsert({
+    // Create or update profile - automatically tenant-scoped
+    const profile = await db.contractorProfile.upsert({
       where: { userId: user.id },
       update: {
         ...validatedData,
@@ -166,12 +172,15 @@ export async function PUT(request: NextRequest) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     // Parse and validate request body
     const body = await request.json();
     const validatedData = contractorProfileUpdateSchema.parse(body);
 
-    // Update profile
-    const profile = await prisma.contractorProfile.update({
+    // Update profile - automatically tenant-scoped
+    const profile = await db.contractorProfile.update({
       where: { userId: user.id },
       data: {
         ...validatedData,

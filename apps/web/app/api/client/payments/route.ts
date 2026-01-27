@@ -13,37 +13,37 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { checkResourceAccess } from '@/lib/services/authorization.service';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+
     // Verify user role is CLIENT (resource-level authorization)
-    const userRole = (session.user as any).role;
-    if (userRole !== 'CLIENT' && userRole !== 'ADMIN' && userRole !== 'SUPER_ADMIN') {
+    if (user.userType !== 'CLIENT' && user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN') {
       return NextResponse.json(
         { error: 'Forbidden - insufficient permissions' },
         { status: 403 }
       );
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get('limit') || '20');
     const offset = parseInt(searchParams.get('offset') || '0');
     const status = searchParams.get('status');
 
-    const clientId = session.user.id;
+    const clientId = user.id;
 
     // Build where clause
     const where: any = { clientId };
@@ -51,9 +51,9 @@ export async function GET(request: NextRequest) {
       where.status = status;
     }
 
-    // Get paginated payments with related data
+    // Get paginated payments with related data - automatically tenant-scoped
     const [payments, total] = await Promise.all([
-      prisma.payment.findMany({
+      db.payment.findMany({
         where,
         include: {
           booking: {
@@ -82,7 +82,7 @@ export async function GET(request: NextRequest) {
         take: limit,
         skip: offset,
       }),
-      prisma.payment.count({ where }),
+      db.payment.count({ where }),
     ]);
 
     // Calculate summary statistics
