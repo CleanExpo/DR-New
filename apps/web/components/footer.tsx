@@ -26,28 +26,28 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link href="/services" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Request Service</Link></li>
               <li><Link href="/contractors/directory" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Find a Contractor</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Track Progress</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Reviews</Link></li>
+              <li><Link href="/claim/step-1" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Submit a Claim</Link></li>
+              <li><Link href="/how-it-works" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">How It Works</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="font-semibold text-[#F9FAFB] mb-4">For Contractors</h4>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Get More Jobs</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Grow Your Business</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Manage Projects</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Get Paid Fast</Link></li>
+              <li><Link href="/contractors" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Join Our Network</Link></li>
+              <li><Link href="/certifications" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">IICRC Certification</Link></li>
+              <li><Link href="/training" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Training</Link></li>
+              <li><Link href="/resources" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Resources</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="font-semibold text-[#F9FAFB] mb-4">Company</h4>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">About Us</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Careers</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Contact</Link></li>
-              <li><Link href="#" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Blog</Link></li>
+              <li><Link href="/about" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">About Us</Link></li>
+              <li><Link href="/contact" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Contact</Link></li>
+              <li><Link href="/resources" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Blog</Link></li>
+              <li><Link href="/support" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors">Support</Link></li>
             </ul>
           </div>
         </div>

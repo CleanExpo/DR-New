@@ -8,9 +8,8 @@ import {
   MapPin,
   Clock,
   Facebook,
-  Twitter,
   Linkedin,
-  Instagram,
+  Youtube,
   Shield,
   CheckCircle2,
   AlertCircle,
@@ -35,40 +34,38 @@ const companyLinks: FooterLink[] = [
   { label: 'How It Works', href: '/how-it-works' },
   { label: 'IICRC Certified', href: '/certifications' },
   { label: 'Blog & Resources', href: '/resources' },
-  { label: 'Careers', href: '/careers' }
+  { label: 'Contact Us', href: '/contact' }
 ]
 
 const serviceLinks: FooterLink[] = [
   { label: 'Water Damage', href: '/services/water-damage' },
-  { label: 'Fire Damage', href: '/services/fire-damage' },
+  { label: 'Fire & Smoke Damage', href: '/services/fire-smoke-damage' },
   { label: 'Storm Damage', href: '/services/storm-damage' },
-  { label: 'Mould Remediation', href: '/services/mould' },
-  { label: 'Emergency Services', href: '/services/emergency' },
-  { label: 'Flood Recovery', href: '/services/flood' }
+  { label: 'Mould Remediation', href: '/services/mould-remediation' },
+  { label: 'Biohazard Cleanup', href: '/services/biohazard-cleanup' },
+  { label: 'All Services', href: '/services' }
 ]
 
 const locationLinks: FooterLink[] = [
-  { label: 'Sydney', href: '/locations/sydney' },
-  { label: 'Melbourne', href: '/locations/melbourne' },
-  { label: 'Brisbane', href: '/locations/brisbane' },
-  { label: 'Perth', href: '/locations/perth' },
-  { label: 'Adelaide', href: '/locations/adelaide' },
-  { label: 'All Locations', href: '/locations' }
+  { label: 'Sydney', href: '/locations/nsw/sydney' },
+  { label: 'Melbourne', href: '/locations/vic/melbourne' },
+  { label: 'Brisbane', href: '/locations/qld/brisbane' },
+  { label: 'Perth', href: '/locations/wa/perth' },
+  { label: 'Adelaide', href: '/locations/sa/adelaide' },
+  { label: 'Gold Coast', href: '/locations/qld/gold-coast' }
 ]
 
 const supportLinks: FooterLink[] = [
   { label: 'Contact Us', href: '/contact' },
-  { label: 'FAQs', href: '/faq' },
-  { label: 'Help Centre', href: '/help' },
-  { label: 'Insurance Partners', href: '/insurance' },
-  { label: 'Submit a Claim', href: '/claim' }
+  { label: 'Support', href: '/support' },
+  { label: 'Find a Contractor', href: '/contractors/directory' },
+  { label: 'Training', href: '/training' },
+  { label: 'Submit a Claim', href: '/claim/step-1' }
 ]
 
 const legalLinks: FooterLink[] = [
-  { label: 'Terms of Service', href: '/legal/terms' },
-  { label: 'Privacy Policy', href: '/legal/privacy' },
-  { label: 'Accessibility', href: '/legal/accessibility' },
-  { label: 'Contractor Agreement', href: '/legal/contractor' }
+  { label: 'Terms of Service', href: '/terms' },
+  { label: 'Privacy Policy', href: '/privacy' },
 ]
 
 export function PublicFooter() {
@@ -272,40 +269,31 @@ export function PublicFooter() {
             <div className="flex items-center gap-4">
               <span className="text-gray-400 text-sm font-medium">Follow us:</span>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/disasterrecoveryau"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 hover:bg-emerald-600 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Facebook"
+                aria-label="Follow us on Facebook"
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://www.linkedin.com/in/phill-mcgurk-drq/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 hover:bg-emerald-600 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 hover:bg-emerald-600 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="LinkedIn"
+                aria-label="Follow us on LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.youtube.com/channel/UCc9RuDsvlEXr8ymzIbQqRCQ"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-white/10 hover:bg-emerald-600 rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Instagram"
+                aria-label="Subscribe on YouTube"
               >
-                <Instagram className="w-5 h-5" />
+                <Youtube className="w-5 h-5" />
               </a>
             </div>
 

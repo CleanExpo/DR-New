@@ -193,7 +193,7 @@ export function EmergencyHero() {
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-16 px-4 sm:px-0"
           >
             {/* Report a Claim - Emergency Red */}
-            <Link href="/claim/submit" className="flex-1 sm:flex-initial">
+            <Link href="/claim/step-1" className="flex-1 sm:flex-initial">
               <Button
                 size="xl"
                 variant="emergency"
@@ -221,7 +221,7 @@ export function EmergencyHero() {
             </Link>
 
             {/* Get a Quote - Blue Outline */}
-            <Link href="/quote" className="flex-1 sm:flex-initial">
+            <Link href="/claim/step-1" className="flex-1 sm:flex-initial">
               <Button
                 size="xl"
                 variant="outline"
