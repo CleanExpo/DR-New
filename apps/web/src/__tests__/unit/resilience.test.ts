@@ -30,14 +30,25 @@ describe('Graceful Degradation Service', () => {
     )
   })
 
-  it('should update degradation level', () => {
+  it('should update degradation level to degraded when one service is down', () => {
     gracefulDegradation.markServiceDown('database')
-    gracefulDegradation.markServiceDown('redis')
 
     const level = gracefulDegradation.getDegradationLevel()
 
     expect(level.level).toBe('degraded')
     expect(level.cacheEnabled).toBe(true)
+    expect(level.readOnlyMode).toBe(false)
+  })
+
+  it('should update degradation level to minimal when most services are down', () => {
+    gracefulDegradation.markServiceDown('database')
+    gracefulDegradation.markServiceDown('redis')
+
+    const level = gracefulDegradation.getDegradationLevel()
+
+    expect(level.level).toBe('minimal')
+    expect(level.cacheEnabled).toBe(true)
+    expect(level.readOnlyMode).toBe(true)
   })
 
   it('should check feature availability', () => {
@@ -111,6 +122,7 @@ describe('Retry Strategy Service', () => {
 describe('Fallback Cache Service', () => {
   beforeEach(() => {
     fallbackCache.clear()
+    fallbackCache.resetStats()
   })
 
   it('should cache data with TTL', () => {
