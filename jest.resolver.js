@@ -18,10 +18,12 @@ module.exports = (request, options) => {
   // Extract the path after @/
   const importPath = request.substring(2); // Remove '@/'
 
-  // Define search paths in priority order (root first, then src)
+  // Define search paths in priority order (root first, then src, then apps/web)
   const searchPaths = [
     path.join(options.rootDir, importPath),
-    path.join(options.rootDir, 'src', importPath)
+    path.join(options.rootDir, 'src', importPath),
+    path.join(options.rootDir, 'apps', 'web', importPath),
+    path.join(options.rootDir, 'apps', 'web', 'src', importPath)
   ];
 
   // Try each path with common extensions

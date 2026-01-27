@@ -4,7 +4,6 @@
  * Tests for Socket.io server initialization, authentication, and event handling
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { createServer } from 'http';
 import { Server as SocketIOServer, Socket } from 'socket.io';
 import { SocketServer } from '@/lib/websocket/socket-server';
