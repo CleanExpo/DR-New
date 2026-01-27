@@ -4,25 +4,25 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    // Authenticate and get tenant context
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const clientId = session.user.id;
+    const { user } = authResult.context;
+    const clientId = user.id;
 
-    // Spending overview
-    const allPayments = await prisma.payment.findMany({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // Spending overview - automatically tenant-scoped
+    const allPayments = await db.payment.findMany({
       where: {
         clientId,
         status: 'COMPLETED',
@@ -32,16 +32,16 @@ export async function GET(request: NextRequest) {
     const totalSpent = allPayments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
     const averageSpend = allPayments.length > 0 ? totalSpent / allPayments.length : 0;
 
-    // Jobs completed
-    const completedJobs = await prisma.booking.count({
+    // Jobs completed - automatically tenant-scoped
+    const completedJobs = await db.booking.count({
       where: {
         clientId,
         status: 'COMPLETED',
       },
     });
 
-    // Service requests
-    const activeServiceRequests = await prisma.serviceRequest.count({
+    // Service requests - automatically tenant-scoped
+    const activeServiceRequests = await db.serviceRequest.count({
       where: {
         clientId,
         status: {
@@ -50,8 +50,8 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Upcoming bookings
-    const upcomingBookings = await prisma.booking.count({
+    // Upcoming bookings - automatically tenant-scoped
+    const upcomingBookings = await db.booking.count({
       where: {
         clientId,
         status: {
@@ -60,8 +60,8 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Spending by month (last 12 months)
-    const monthlySpending = await prisma.payment.groupBy({
+    // Spending by month (last 12 months) - automatically tenant-scoped
+    const monthlySpending = await db.payment.groupBy({
       by: [],
       _sum: {
         amountAUD: true,
@@ -75,8 +75,8 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Spending by service type
-    const spendingByServiceType = await prisma.booking.groupBy({
+    // Spending by service type - automatically tenant-scoped
+    const spendingByServiceType = await db.booking.groupBy({
       by: ['australianServiceType'],
       _sum: {
         finalPrice: true,
@@ -88,8 +88,8 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Service quality metrics
-    const bookingsWithRatings = await prisma.booking.findMany({
+    // Service quality metrics - automatically tenant-scoped
+    const bookingsWithRatings = await db.booking.findMany({
       where: {
         clientId,
         status: 'COMPLETED',
@@ -106,8 +106,8 @@ export async function GET(request: NextRequest) {
           bookingsWithRatings.length
         : 0;
 
-    // Refunds/disputes
-    const disputedPayments = await prisma.payment.count({
+    // Refunds/disputes - automatically tenant-scoped
+    const disputedPayments = await db.payment.count({
       where: {
         clientId,
         status: 'REFUNDED',
