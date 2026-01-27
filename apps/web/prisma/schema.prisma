@@ -10,23 +10,77 @@ datasource db {
 }
 
 model Tenant {
-  id                 String                @id @default(cuid())
-  name               String
-  domain             String?               @unique
-  subdomain          String?               @unique
-  logo               String?
-  primaryColor       String?
-  secondaryColor     String?
-  customCss          String?
-  industry           String?
-  isActive           Boolean               @default(true)
-  createdAt          DateTime              @default(now())
-  updatedAt          DateTime              @updatedAt
-  contractorProfiles ContractorProfile[]
-  messages           Message[]
-  serviceRequests    ServiceRequest[]
-  configurations     TenantConfiguration[]
-  users              User[]
+  id                   String                   @id @default(cuid())
+  name                 String
+  domain               String?                  @unique
+  subdomain            String?                  @unique
+  logo                 String?
+  primaryColor         String?
+  secondaryColor       String?
+  customCss            String?
+  industry             String?
+  isActive             Boolean                  @default(true)
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  // Stripe subscription fields
+  stripeCustomerId     String?                  @unique
+  stripeSubscriptionId String?                  @unique
+  subscriptionTier     SubscriptionTier         @default(BASIC)
+  subscriptionStatus   SubscriptionStatus       @default(TRIAL)
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  trialEndsAt          DateTime?
+  seatLimit            Int                      @default(5)
+  monthlyRequestLimit  Int                      @default(50)
+  // Relations
+  contractorProfiles   ContractorProfile[]
+  messages             Message[]
+  serviceRequests      ServiceRequest[]
+  configurations       TenantConfiguration[]
+  users                User[]
+  bookings             Booking[]
+  payments             Payment[]
+  invoices             InvoiceAU[]
+  activities           Activity[]
+  tasks                Task[]
+  contractors          Contractor[]
+  clientProfiles       ClientProfile[]
+  clientProperties     ClientProperty[]
+  clientInsurance      ClientInsurance[]
+  clientPayments       ClientPayment[]
+  clientOnboarding     ClientOnboarding[]
+  contractorMatches    ContractorMatch[]
+  auditLogs            AuditLog[]
+  ratings              Rating[]
+  inspectionReports    InspectionReport[]
+  damageAreas          DamageArea[]
+  inspectionPhotos     InspectionPhoto[]
+  moistureReadings     MoistureReading[]
+  costEstimates        CostEstimate[]
+  laborLineItems       LaborLineItem[]
+  materialLineItems    MaterialLineItem[]
+  equipmentLineItems   EquipmentLineItem[]
+  complianceChecks     ComplianceCheck[]
+  reportRevisions      ReportRevision[]
+  opportunities        Opportunity[]
+  customerLifecycles   CustomerLifecycle[]
+  blogPosts            BlogPost[]
+  faqs                 FAQ[]
+  caseStudies          CaseStudy[]
+  insuranceClaims      InsuranceClaimAU[]
+  insuranceProviders   InsuranceProvider[]
+  betaPrograms         BetaProgram[]
+  betaEnrollments      BetaEnrollment[]
+  betaFeedback         BetaFeedback[]
+  betaNpsSurveys       BetaNPSSurvey[]
+  publicClaims         PublicClaim[]
+  triageAssessments    TriageAssessment[]
+  loginAttempts        LoginAttempt[]
+  verificationTokens   VerificationToken[]
+  contractorOnboarding ContractorOnboarding[]
+  contractorAssessments ContractorAssessment[]
+  contractorModuleProgress ContractorModuleProgress[]
+  contractorCertifications ContractorCertification[]
 
   @@map("tenants")
 }
@@ -136,12 +190,15 @@ model LoginAttempt {
   ipAddress   String
   userAgent   String
   success     Boolean
+  tenantId    String?
   attemptedAt DateTime @default(now())
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant      Tenant?  @relation(fields: [tenantId], references: [id])
 
   @@index([userId])
   @@index([ipAddress])
   @@index([attemptedAt])
+  @@index([tenantId])
 }
 
 model VerificationToken {
@@ -151,12 +208,15 @@ model VerificationToken {
   type      String
   expiresAt DateTime
   usedAt    DateTime?
+  tenantId  String?
   createdAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant    Tenant?   @relation(fields: [tenantId], references: [id])
 
   @@index([userId])
   @@index([token])
   @@index([expiresAt])
+  @@index([tenantId])
 }
 
 model AuditLog {
@@ -191,7 +251,9 @@ model AuditLog {
   // Request context
   ipAddress    String?
   userAgent    String?
+  tenantId     String?
   createdAt    DateTime @default(now())
+  tenant       Tenant?  @relation(fields: [tenantId], references: [id])
 
   @@index([createdAt])
   @@index([entityId])
@@ -200,6 +262,7 @@ model AuditLog {
   @@index([userId])
   @@index([workspaceId])
   @@index([action])
+  @@index([tenantId])
 }
 
 model Contractor {
@@ -232,10 +295,12 @@ model Contractor {
   isActive                      Boolean                  @default(true)
   isSuspended                   Boolean                  @default(false)
   suspensionReason              String?
+  tenantId                      String?
   createdAt                     DateTime                 @default(now())
   updatedAt                     DateTime                 @updatedAt
   bookings                      Booking[]                @relation("ContractorBookings")
   user                          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant                        Tenant?                  @relation(fields: [tenantId], references: [id])
   serviceAreas                  ContractorServiceArea[]  @relation("ServiceAreas")
   iicrcCertifications           IICRCCertification[]     @relation("ContractorCertifications")
   auInvoices                    InvoiceAU[]              @relation("ContractorInvoices")
@@ -255,6 +320,7 @@ model Contractor {
   @@index([isVerified])
   @@index([isActive])
   @@index([abnNumber])
+  @@index([tenantId])
 }
 
 model IICRCCertification {
@@ -448,11 +514,14 @@ model ContractorMatch {
   timeline          String?
   startDate         String?
   estimatedHours    String?
+  tenantId          String?
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
   contractor        ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
   serviceRequest    ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  tenant            Tenant?           @relation(fields: [tenantId], references: [id])
 
+  @@index([tenantId])
   @@map("contractor_matches")
 }
 
@@ -496,6 +565,7 @@ model ClientProfile {
   riskAssessmentCompleted Boolean                  @default(false)
   flaggedForReview        Boolean                  @default(false)
   flagReason              String?
+  tenantId                String?
   createdAt               DateTime                 @default(now())
   updatedAt               DateTime                 @updatedAt
   emergencyContacts       ClientEmergencyContact[]
@@ -503,11 +573,13 @@ model ClientProfile {
   onboarding              ClientOnboarding?
   payment                 ClientPayment?
   user                    User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant                  Tenant?                  @relation(fields: [tenantId], references: [id])
   properties              ClientProperty[]
 
   @@index([tier])
   @@index([riskZone])
   @@index([flaggedForReview])
+  @@index([tenantId])
   @@map("client_profiles")
 }
 
@@ -532,13 +604,16 @@ model ClientProperty {
   petDetails          String?
   recommendedServices String[]
   isPrimary           Boolean         @default(false)
+  tenantId            String?
   createdAt           DateTime        @default(now())
   updatedAt           DateTime        @updatedAt
   clientProfile       ClientProfile   @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+  tenant              Tenant?         @relation(fields: [tenantId], references: [id])
 
   @@index([clientProfileId])
   @@index([postcode])
   @@index([state])
+  @@index([tenantId])
   @@map("client_properties")
 }
 
@@ -558,12 +633,15 @@ model ClientInsurance {
   lastClaimDate         DateTime?
   preferredContractors  String[]
   restrictedContractors String[]
+  tenantId              String?
   createdAt             DateTime      @default(now())
   updatedAt             DateTime      @updatedAt
   clientProfile         ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+  tenant                Tenant?       @relation(fields: [tenantId], references: [id])
 
   @@index([policyExpiryDate])
   @@index([policyVerified])
+  @@index([tenantId])
   @@map("client_insurance")
 }
 
@@ -585,12 +663,15 @@ model ClientPayment {
   invoiceDeliveryMethod String           @default("email")
   taxInvoiceRecipient   String?
   abnNumber             String?
+  tenantId              String?
   createdAt             DateTime         @default(now())
   updatedAt             DateTime         @updatedAt
   clientProfile         ClientProfile    @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+  tenant                Tenant?          @relation(fields: [tenantId], references: [id])
 
   @@index([stripeCustomerId])
   @@index([cardExpiryMonth, cardExpiryYear])
+  @@index([tenantId])
   @@map("client_payments")
 }
 
@@ -635,15 +716,18 @@ model ClientOnboarding {
   abandonedAt           DateTime?
   abandonedPhase        String?
   reminderSentAt        DateTime?
+  tenantId              String?
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   moduleProgress        ClientModuleProgress[]
   clientProfile         ClientProfile          @relation(fields: [clientId], references: [userId], onDelete: Cascade)
+  tenant                Tenant?                @relation(fields: [tenantId], references: [id])
 
   @@index([status])
   @@index([currentPhase])
   @@index([flowVariant])
   @@index([lastActivityAt])
+  @@index([tenantId])
   @@map("client_onboarding")
 }
 
@@ -795,10 +879,12 @@ model Booking {
   internalNotes              String?
   clientNotes                String?
   damagePhotos               String[]
+  tenantId                   String?
   createdAt                  DateTime               @default(now())
   updatedAt                  DateTime               @updatedAt
   client                     User                   @relation("ClientBookings", fields: [clientId], references: [id], onDelete: Cascade)
   contractor                 Contractor?            @relation("ContractorBookings", fields: [contractorId], references: [id])
+  tenant                     Tenant?                @relation(fields: [tenantId], references: [id])
   auClaims                   InsuranceClaimAU[]     @relation("BookingClaims")
   payments                   Payment[]              @relation("BookingPayments")
   ratings                    Rating[]
@@ -812,6 +898,7 @@ model Booking {
   @@index([serviceState])
   @@index([status])
   @@index([emergencyResponseLevel])
+  @@index([tenantId])
 }
 
 model Payment {
@@ -832,18 +919,21 @@ model Payment {
   failureReason         String?
   receiptUrl            String?
   invoiceNumber         String?       @unique
+  tenantId              String?
   createdAt             DateTime      @default(now())
   updatedAt             DateTime      @updatedAt
   auInvoice             InvoiceAU?
   booking               Booking       @relation("BookingPayments", fields: [bookingId], references: [id], onDelete: Cascade)
   client                User          @relation(fields: [clientId], references: [id], onDelete: Cascade)
   contractor            Contractor?   @relation("ContractorPayments", fields: [contractorId], references: [id])
+  tenant                Tenant?       @relation(fields: [tenantId], references: [id])
 
   @@index([bookingId])
   @@index([clientId])
   @@index([contractorId])
   @@index([status])
   @@index([invoiceNumber])
+  @@index([tenantId])
 }
 
 model InvoiceAU {
@@ -860,13 +950,16 @@ model InvoiceAU {
   isPaid        Boolean    @default(false)
   paidDate      DateTime?
   description   String
+  tenantId      String?
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
   client        User       @relation("ClientInvoices", fields: [clientId], references: [id], onDelete: Cascade)
   contractor    Contractor @relation("ContractorInvoices", fields: [contractorId], references: [id], onDelete: Cascade)
   payment       Payment    @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  tenant        Tenant?    @relation(fields: [tenantId], references: [id])
 
   @@index([invoiceNumber])
+  @@index([tenantId])
   @@index([contractorId])
   @@index([clientId])
   @@index([isPaid])
@@ -886,13 +979,16 @@ model InsuranceProvider {
   isActive          Boolean               @default(true)
   isVerified        Boolean               @default(false)
   verificationNotes String?
+  tenantId          String?
   createdAt         DateTime              @default(now())
   updatedAt         DateTime              @updatedAt
   claims            InsuranceClaimAU[]
+  tenant            Tenant?               @relation(fields: [tenantId], references: [id])
 
   @@index([code])
   @@index([isActive])
   @@index([providerType])
+  @@index([tenantId])
 }
 
 model InsuranceClaimAU {
@@ -917,11 +1013,13 @@ model InsuranceClaimAU {
   paidAt              DateTime?
   denialReason        String?
   deniedAt            DateTime?
+  tenantId            String?
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
   booking             Booking              @relation("BookingClaims", fields: [bookingId], references: [id], onDelete: Cascade)
   client              User                 @relation("ClientClaims", fields: [clientId], references: [id], onDelete: Cascade)
   insuranceProvider   InsuranceProvider    @relation(fields: [insuranceProviderId], references: [id])
+  tenant              Tenant?              @relation(fields: [tenantId], references: [id])
   activities          Activity[]           @relation("ActivityClaim")
   inspectionReports   InspectionReport[]   @relation("InspectionReportClaim")
 
@@ -931,6 +1029,7 @@ model InsuranceClaimAU {
   @@index([policyNumber])
   @@index([claimNumber])
   @@index([status])
+  @@index([tenantId])
 }
 
 model Rating {
@@ -941,16 +1040,19 @@ model Rating {
   rating         Int
   comment        String?
   wouldRecommend Boolean    @default(true)
+  tenantId       String?
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
   booking        Booking    @relation(fields: [bookingId], references: [id], onDelete: Cascade)
   client         User       @relation(fields: [clientId], references: [id])
   contractor     Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  tenant         Tenant?    @relation(fields: [tenantId], references: [id])
 
   @@unique([bookingId, contractorId])
   @@index([contractorId])
   @@index([clientId])
   @@index([rating])
+  @@index([tenantId])
 }
 
 model Message {
@@ -1015,14 +1117,17 @@ model ContractorOnboarding {
   targetCompletionDate DateTime?
   actualCompletionDate DateTime?
   status               OnboardingStatus           @default(PENDING_START)
+  tenantId             String?
   createdAt            DateTime                   @default(now())
   updatedAt            DateTime                   @updatedAt
   assessments          ContractorAssessment[]
   moduleProgress       ContractorModuleProgress[]
+  tenant               Tenant?                    @relation(fields: [tenantId], references: [id])
 
   @@index([status], map: "idx_contractor_status")
   @@index([specialization], map: "idx_contractor_specialization")
   @@index([contractorId], map: "idx_contractor_id_onboarding")
+  @@index([tenantId])
   @@map("contractor_onboarding")
 }
 
@@ -1036,10 +1141,13 @@ model ContractorModuleProgress {
   completed    Boolean              @default(false)
   status       ModuleStatus         @default(NOT_STARTED)
   progress     Int                  @default(0)
+  tenantId     String?
   createdAt    DateTime             @default(now())
   onboarding   ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+  tenant       Tenant?              @relation(fields: [tenantId], references: [id])
 
   @@index([onboardingId, status], map: "idx_module_progress")
+  @@index([tenantId])
   @@map("contractor_module_progress")
 }
 
@@ -1052,9 +1160,12 @@ model ContractorAssessment {
   maxScore       Int                  @default(100)
   completedAt    DateTime?
   feedback       String?
+  tenantId       String?
   createdAt      DateTime             @default(now())
   onboarding     ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
+  tenant         Tenant?              @relation(fields: [tenantId], references: [id])
 
+  @@index([tenantId])
   @@map("contractor_assessments")
 }
 
@@ -1067,9 +1178,12 @@ model ContractorCertification {
   expiryDate         DateTime?
   specializations    String[]
   verified           Boolean   @default(false)
+  tenantId           String?
   createdAt          DateTime  @default(now())
+  tenant             Tenant?   @relation(fields: [tenantId], references: [id])
 
   @@index([contractorId], map: "idx_contractor_id_cert")
+  @@index([tenantId])
   @@map("contractor_certifications")
 }
 
@@ -1374,14 +1488,17 @@ model BlogPost {
   shareCount      Int          @default(0)
   isFeatured      Boolean      @default(false)
   featuredImage   String?
+  tenantId        String?
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
   faqs            BlogFAQ[]
+  tenant          Tenant?      @relation(fields: [tenantId], references: [id])
 
   @@index([slug])
   @@index([category])
   @@index([status])
   @@index([publishedAt])
+  @@index([tenantId])
   @@map("blog_posts")
 }
 
@@ -1412,12 +1529,15 @@ model FAQ {
   notHelpful   Int         @default(0)
   order        Int         @default(0)
   isPublished  Boolean     @default(true)
+  tenantId     String?
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
+  tenant       Tenant?     @relation(fields: [tenantId], references: [id])
 
   @@index([category])
   @@index([serviceType])
   @@index([location])
+  @@index([tenantId])
   @@map("faqs")
 }
 
@@ -1445,12 +1565,15 @@ model CaseStudy {
   metaDescription String?
   isPublished     Boolean   @default(false)
   publishedAt     DateTime?
+  tenantId        String?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  tenant          Tenant?   @relation(fields: [tenantId], references: [id])
 
   @@index([slug])
   @@index([serviceType])
   @@index([location])
+  @@index([tenantId])
   @@map("case_studies")
 }
 
@@ -1473,10 +1596,12 @@ model CustomerLifecycle {
   atRiskReasons        String[]
   assignedCSMId        String?
   nextTouchpointDate   DateTime?
+  tenantId             String?
   createdAt            DateTime                @default(now())
   updatedAt            DateTime                @updatedAt
   activities           Activity[]
   user                 User                    @relation("CustomerLifecycle", fields: [userId], references: [id], onDelete: Cascade)
+  tenant               Tenant?                 @relation(fields: [tenantId], references: [id])
   opportunities        Opportunity[]
   tasks                Task[]
 
@@ -1485,6 +1610,7 @@ model CustomerLifecycle {
   @@index([churnRiskScore])
   @@index([isAtRisk])
   @@index([lastInteractionDate])
+  @@index([tenantId])
   @@map("customer_lifecycle")
 }
 
@@ -1507,6 +1633,7 @@ model Opportunity {
   closeReason           String?
   competitorChosen      String?
   forecastCategory      String?
+  tenantId              String?
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
   activities            Activity[]
@@ -1514,6 +1641,7 @@ model Opportunity {
   booking               Booking?               @relation("OpportunityBooking", fields: [bookingId], references: [id])
   customerLifecycle     CustomerLifecycle      @relation(fields: [customerLifecycleId], references: [id], onDelete: Cascade)
   serviceRequest        ServiceRequest?        @relation("OpportunityServiceRequest", fields: [serviceRequestId], references: [id])
+  tenant                Tenant?                @relation(fields: [tenantId], references: [id])
   tasks                 Task[]
 
   @@index([stage])
@@ -1521,6 +1649,7 @@ model Opportunity {
   @@index([australianServiceType])
   @@index([serviceState])
   @@index([assignedContractorId])
+  @@index([tenantId])
   @@map("opportunities")
 }
 
@@ -1545,6 +1674,7 @@ model Activity {
   requiresFollowUp    Boolean            @default(false)
   followUpDate        DateTime?
   followUpTaskId      String?
+  tenantId            String?
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @updatedAt
   booking             Booking?           @relation("ActivityBooking", fields: [bookingId], references: [id])
@@ -1554,6 +1684,7 @@ model Activity {
   customerLifecycle   CustomerLifecycle? @relation(fields: [customerLifecycleId], references: [id], onDelete: Cascade)
   opportunity         Opportunity?       @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
   performedBy         User               @relation("ActivityPerformer", fields: [performedById], references: [id])
+  tenant              Tenant?            @relation(fields: [tenantId], references: [id])
 
   @@index([customerLifecycleId])
   @@index([opportunityId])
@@ -1561,6 +1692,7 @@ model Activity {
   @@index([activityDate])
   @@index([performedById])
   @@index([requiresFollowUp])
+  @@index([tenantId])
   @@map("activities")
 }
 
@@ -1580,18 +1712,21 @@ model Task {
   isOverdue           Boolean            @default(false)
   relatedEntityType   String?
   relatedEntityId     String?
+  tenantId            String?
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @updatedAt
   assignedTo          User               @relation("TaskAssignee", fields: [assignedToId], references: [id], onDelete: Cascade)
   createdBy           User               @relation("TaskCreator", fields: [createdById], references: [id])
   customerLifecycle   CustomerLifecycle? @relation(fields: [customerLifecycleId], references: [id], onDelete: Cascade)
   opportunity         Opportunity?       @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  tenant              Tenant?            @relation(fields: [tenantId], references: [id])
 
   @@index([assignedToId])
   @@index([status])
   @@index([priority])
   @@index([dueDate])
   @@index([isOverdue])
+  @@index([tenantId])
   @@map("tasks")
 }
 
@@ -1667,6 +1802,7 @@ model InspectionReport {
   pdfGeneratedAt       DateTime?
   pdfVersion           Int               @default(0)
   complianceStatus     String?
+  tenantId             String?
   createdAt            DateTime          @default(now())
   updatedAt            DateTime          @updatedAt
   createdBy            String
@@ -1681,6 +1817,7 @@ model InspectionReport {
   insuranceClaim       InsuranceClaimAU? @relation("InspectionReportClaim", fields: [insuranceClaimId], references: [id])
   managerReviewer      User?             @relation("ManagerReviews", fields: [managerReviewerId], references: [id])
   technicalReviewer    User?             @relation("TechnicalReviews", fields: [technicalReviewerId], references: [id])
+  tenant               Tenant?           @relation(fields: [tenantId], references: [id])
   moistureReadings     MoistureReading[]
   revisions            ReportRevision[]
 
@@ -1689,6 +1826,7 @@ model InspectionReport {
   @@index([jurisdiction])
   @@index([reportNumber])
   @@index([inspectorId])
+  @@index([tenantId])
   @@map("inspection_reports")
 }
 
@@ -1709,12 +1847,15 @@ model DamageArea {
   equipmentNeeded      String[]
   estimatedDryingTime  Int?
   estimatedCost        Float?
+  tenantId             String?
   createdAt            DateTime          @default(now())
   updatedAt            DateTime          @updatedAt
   report               InspectionReport  @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant               Tenant?           @relation(fields: [tenantId], references: [id])
   photos               InspectionPhoto[] @relation("AreaPhotos")
 
   @@index([reportId])
+  @@index([tenantId])
   @@map("damage_areas")
 }
 
@@ -1732,11 +1873,14 @@ model MoistureReading {
   latitude           Float?
   longitude          Float?
   notes              String?
+  tenantId           String?
   createdAt          DateTime         @default(now())
   report             InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant             Tenant?          @relation(fields: [tenantId], references: [id])
 
   @@index([reportId])
   @@index([readingDate])
+  @@index([tenantId])
   @@map("moisture_readings")
 }
 
@@ -1757,13 +1901,16 @@ model InspectionPhoto {
   gpsLongitude Float?
   deviceModel  String?
   sortOrder    Int              @default(0)
+  tenantId     String?
   createdAt    DateTime         @default(now())
   damageArea   DamageArea?      @relation("AreaPhotos", fields: [damageAreaId], references: [id])
   report       InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant       Tenant?          @relation(fields: [tenantId], references: [id])
 
   @@index([reportId])
   @@index([damageAreaId])
   @@index([photoType])
+  @@index([tenantId])
   @@map("inspection_photos")
 }
 
@@ -1785,14 +1932,17 @@ model CostEstimate {
   assumptions        String?
   exclusions         String?
   validityPeriod     Int                 @default(30)
+  tenantId           String?
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
   report             InspectionReport    @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant             Tenant?             @relation(fields: [tenantId], references: [id])
   equipmentLineItems EquipmentLineItem[]
   laborLineItems     LaborLineItem[]
   materialLineItems  MaterialLineItem[]
 
   @@index([reportId])
+  @@index([tenantId])
   @@map("cost_estimates")
 }
 
@@ -1807,10 +1957,13 @@ model LaborLineItem {
   subtotal          Float
   jurisdiction      AustralianState
   rateEffectiveDate DateTime
+  tenantId          String?
   createdAt         DateTime        @default(now())
   costEstimate      CostEstimate    @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
+  tenant            Tenant?         @relation(fields: [tenantId], references: [id])
 
   @@index([costEstimateId])
+  @@index([tenantId])
   @@map("labor_line_items")
 }
 
@@ -1827,10 +1980,13 @@ model MaterialLineItem {
   subtotal           Float
   jurisdiction       AustralianState
   priceEffectiveDate DateTime
+  tenantId           String?
   createdAt          DateTime        @default(now())
   costEstimate       CostEstimate    @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
+  tenant             Tenant?         @relation(fields: [tenantId], references: [id])
 
   @@index([costEstimateId])
+  @@index([tenantId])
   @@map("material_line_items")
 }
 
@@ -1845,10 +2001,13 @@ model EquipmentLineItem {
   subtotal          Float
   jurisdiction      AustralianState
   rateEffectiveDate DateTime
+  tenantId          String?
   createdAt         DateTime        @default(now())
   costEstimate      CostEstimate    @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
+  tenant            Tenant?         @relation(fields: [tenantId], references: [id])
 
   @@index([costEstimateId])
+  @@index([tenantId])
   @@map("equipment_line_items")
 }
 
@@ -1864,11 +2023,14 @@ model ComplianceCheck {
   referenceSection String?
   validatedBy      String?
   validatedAt      DateTime?
+  tenantId         String?
   createdAt        DateTime         @default(now())
   report           InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant           Tenant?          @relation(fields: [tenantId], references: [id])
 
   @@index([reportId])
   @@index([status])
+  @@index([tenantId])
   @@map("compliance_checks")
 }
 
@@ -1880,12 +2042,15 @@ model ReportRevision {
   changedBy      String
   snapshotData   Json
   pdfUrl         String?
+  tenantId       String?
   createdAt      DateTime         @default(now())
   changedByUser  User             @relation("ReportRevisions", fields: [changedBy], references: [id])
   report         InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant         Tenant?          @relation(fields: [tenantId], references: [id])
 
   @@index([reportId])
   @@index([version])
+  @@index([tenantId])
   @@map("report_revisions")
 }
 
@@ -1994,14 +2159,17 @@ model BetaProgram {
   endDate         DateTime
   isActive        Boolean          @default(true)
   maxParticipants Int              @default(10)
+  tenantId        String?
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
   enrollments     BetaEnrollment[]
   feedback        BetaFeedback[]
   npsSurveys      BetaNPSSurvey[]
+  tenant          Tenant?          @relation(fields: [tenantId], references: [id])
 
   @@index([isActive])
   @@index([featureArea])
+  @@index([tenantId])
   @@map("beta_programs")
 }
 
@@ -2018,14 +2186,17 @@ model BetaEnrollment {
   withdrawnAt    DateTime?
   withdrawReason String?
   adminNotes     String?
+  tenantId       String?
   createdAt      DateTime             @default(now())
   updatedAt      DateTime             @updatedAt
   contractor     Contractor           @relation("ContractorBetaEnrollments", fields: [contractorId], references: [id], onDelete: Cascade)
   program        BetaProgram          @relation(fields: [programId], references: [id], onDelete: Cascade)
+  tenant         Tenant?              @relation(fields: [tenantId], references: [id])
 
   @@unique([programId, contractorId])
   @@index([status])
   @@index([contractorId])
+  @@index([tenantId])
   @@map("beta_enrollments")
 }
 
@@ -2047,15 +2218,18 @@ model BetaFeedback {
   adminResponse String?
   priority      String?
   status        String               @default("new")
+  tenantId      String?
   createdAt     DateTime             @default(now())
   updatedAt     DateTime             @updatedAt
   contractor    Contractor           @relation("ContractorBetaFeedback", fields: [contractorId], references: [id], onDelete: Cascade)
   program       BetaProgram          @relation(fields: [programId], references: [id], onDelete: Cascade)
+  tenant        Tenant?              @relation(fields: [tenantId], references: [id])
 
   @@index([programId])
   @@index([contractorId])
   @@index([category])
   @@index([status])
+  @@index([tenantId])
   @@map("beta_feedback")
 }
 
@@ -2067,13 +2241,16 @@ model BetaNPSSurvey {
   followUpAnswer String?
   surveyTrigger  String?
   featureContext String?
+  tenantId       String?
   createdAt      DateTime    @default(now())
   contractor     Contractor  @relation("ContractorBetaNPSSurveys", fields: [contractorId], references: [id], onDelete: Cascade)
   program        BetaProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+  tenant         Tenant?     @relation(fields: [tenantId], references: [id])
 
   @@index([programId])
   @@index([contractorId])
   @@index([score])
+  @@index([tenantId])
   @@map("beta_nps_surveys")
 }
 
@@ -2097,14 +2274,17 @@ model PublicClaim {
   policyNumber     String?
   priority         String   @default("Medium")
   status           String   @default("PENDING")
+  tenantId         String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+  tenant           Tenant?  @relation(fields: [tenantId], references: [id])
 
   @@index([status])
   @@index([postcode])
   @@index([disasterType])
   @@index([isEmergency])
   @@index([createdAt])
+  @@index([tenantId])
   @@map("public_claims")
 }
 
@@ -2126,13 +2306,16 @@ model TriageAssessment {
   completedAt      DateTime @default(now())
   ipAddress        String?
   userAgent        String?
+  tenantId         String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
+  tenant           Tenant?  @relation(fields: [tenantId], references: [id])
 
   @@index([urgencyLevel])
   @@index([postcode])
   @@index([triageSessionId])
   @@index([createdAt])
+  @@index([tenantId])
   @@map("triage_assessments")
 }
 

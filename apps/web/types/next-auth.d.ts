@@ -10,6 +10,7 @@ declare module 'next-auth' {
       image?: string | null;
       role?: string;
       userType?: UserType;
+      tenantId?: string | null;
     };
   }
 
@@ -20,6 +21,7 @@ declare module 'next-auth' {
     image?: string | null;
     role?: string;
     userType?: UserType;
+    tenantId?: string | null;
   }
 }
 
@@ -29,5 +31,6 @@ declare module 'next-auth/jwt' {
     email: string;
     role?: string;
     userType?: UserType;
+    tenantId?: string | null;
   }
 }

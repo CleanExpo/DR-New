@@ -7,12 +7,14 @@ declare module 'next-auth' {
       userType?: 'CLIENT' | 'CONTRACTOR' | 'ADMIN' | 'SUPER_ADMIN'
       role?: string
       avatar?: string | null
+      tenantId?: string | null
     } & DefaultSession['user']
   }
 
   interface User {
     userType?: 'CLIENT' | 'CONTRACTOR' | 'ADMIN' | 'SUPER_ADMIN'
     avatar?: string | null
+    tenantId?: string | null
   }
 }
 
@@ -22,6 +24,7 @@ declare module 'next-auth/jwt' {
     userType?: 'CLIENT' | 'CONTRACTOR' | 'ADMIN' | 'SUPER_ADMIN'
     role?: string
     avatar?: string | null
+    tenantId?: string | null
   }
 }
 
