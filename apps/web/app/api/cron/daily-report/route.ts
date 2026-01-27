@@ -98,7 +98,27 @@ export async function GET(request: NextRequest) {
     // Log report for monitoring
     console.log('Daily report generated:', JSON.stringify(report, null, 2));
 
-    // TODO: Send report via email or store for dashboard
+    // Store report in cloud storage for dashboard access
+    try {
+      const { uploadFile } = await import('@/lib/storage/cloud-storage');
+      const reportKey = `reports/daily/${report.date}.json`;
+      const reportContent = JSON.stringify(report, null, 2);
+
+      await uploadFile(reportKey, reportContent, {
+        contentType: 'application/json',
+        cacheControl: 'private, max-age=86400', // 24 hours
+        metadata: {
+          type: 'daily-report',
+          date: report.date,
+          generatedAt: report.generatedAt,
+        },
+      });
+
+      console.log(`[Daily Report] Stored report to ${reportKey}`);
+    } catch (storageError) {
+      // Log error but don't fail the cron job
+      console.error('[Daily Report] Error storing report:', storageError);
+    }
 
     return NextResponse.json({
       success: true,
