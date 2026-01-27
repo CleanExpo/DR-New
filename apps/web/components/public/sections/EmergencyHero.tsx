@@ -207,7 +207,7 @@ export function EmergencyHero() {
             </Link>
 
             {/* Find a Contractor - Emerald Green */}
-            <Link href="/find-contractor" className="flex-1 sm:flex-initial">
+            <Link href="/contractors/directory" className="flex-1 sm:flex-initial">
               <Button
                 size="xl"
                 variant="contractor-accent"
