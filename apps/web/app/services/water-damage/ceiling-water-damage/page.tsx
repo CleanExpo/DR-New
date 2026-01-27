@@ -85,6 +85,7 @@ export default function CeilingWaterDamagePage() {
               </Button>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

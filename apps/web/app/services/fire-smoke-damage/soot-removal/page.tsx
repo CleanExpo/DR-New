@@ -158,6 +158,7 @@ export default function SootRemovalPage() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

@@ -178,6 +178,7 @@ export default function WindDamageRestorationPage() {
             </div>
           </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

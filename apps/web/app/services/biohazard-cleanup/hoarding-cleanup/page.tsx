@@ -158,6 +158,7 @@ export default function HoardingCleanupPage() {
               </div>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}

@@ -85,6 +85,7 @@ export default function FloodRestorationPage() {
               </Button>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Quick Stats */}
