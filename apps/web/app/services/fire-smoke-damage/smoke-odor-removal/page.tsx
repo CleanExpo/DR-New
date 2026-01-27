@@ -125,7 +125,7 @@ export default function SmokeOdourRemovalPage() {
               alt="Smoke odour removal with ozone and hydroxyl equipment"
               fill
               priority
-              className="object-cover opacity-20"
+              className="object-cover opacity-30"
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#0F1115]/70 via-[#0F1115]/50 to-[#0F1115]" />
