@@ -67,6 +67,47 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: page.priority,
   }));
 
+  // Sub-service pages (e.g. /services/water-damage/basement-flooding)
+  const subServicePages: MetadataRoute.Sitemap = [
+    // Water Damage
+    'water-damage/basement-flooding',
+    'water-damage/burst-pipe-repair',
+    'water-damage/flood-restoration',
+    'water-damage/ceiling-water-damage',
+    'water-damage/carpet-water-damage',
+    'water-damage/commercial-water-damage',
+    'water-damage/structural-drying',
+    // Fire & Smoke Damage
+    'fire-smoke-damage/fire-damage-restoration',
+    'fire-smoke-damage/smoke-damage-restoration',
+    'fire-smoke-damage/soot-removal',
+    'fire-smoke-damage/smoke-odor-removal',
+    'fire-smoke-damage/commercial-fire-damage',
+    // Mould Remediation
+    'mould-remediation/black-mould-removal',
+    'mould-remediation/mould-inspection',
+    'mould-remediation/mould-testing',
+    'mould-remediation/mould-prevention',
+    'mould-remediation/commercial-mould-remediation',
+    // Storm Damage
+    'storm-damage/wind-damage-restoration',
+    'storm-damage/roof-storm-damage',
+    'storm-damage/tree-damage-cleanup',
+    'storm-damage/emergency-roof-tarping',
+    'storm-damage/hail-damage-repair',
+    // Biohazard Cleanup
+    'biohazard-cleanup/meth-lab-decontamination',
+    'biohazard-cleanup/sewage-cleanup',
+    'biohazard-cleanup/trauma-cleanup',
+    'biohazard-cleanup/crime-scene-cleanup',
+    'biohazard-cleanup/hoarding-cleanup',
+  ].map((path) => ({
+    url: `${baseUrl}/services/${path}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
+
   const locationPages: MetadataRoute.Sitemap = sitemapStructure.locations.map((page) => ({
     url: `${baseUrl}${page.url}`,
     lastModified: currentDate,
@@ -111,6 +152,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...servicePages,
+    ...subServicePages,
     ...locationPages,
     ...serviceLocationPages,
     ...cityOverviewPages,

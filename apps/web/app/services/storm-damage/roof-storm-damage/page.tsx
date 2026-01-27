@@ -4,13 +4,17 @@ import { CheckCircle, ArrowLeft, AlertTriangle, CloudLightning, Shield, ArrowRig
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import type { Metadata } from "next"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Roof Storm Damage Repair | Storm Damage Restoration Australia",
-  description:
-    "Emergency roof storm damage repair across Australia. IICRC-certified professionals provide emergency tarping, tile and metal roof repair, structural assessment, and full insurance documentation. 24/7 response.",
-}
+  description: "Emergency roof storm damage repair across Australia. IICRC-certified professionals provide emergency tarping, tile and metal roof repair, structural assessment, and full insurance documentation. 24/7 response.",
+  keywords: ['roof storm damage', 'storm roof repair', 'roof leak storm', 'roof restoration', 'damaged roof tiles', 'Colorbond repair', 'Australia'],
+  slug: 'roof-storm-damage',
+  parentSlug: 'storm-damage',
+  parentName: 'Storm Damage',
+  serviceName: 'Roof Storm Damage',
+})
 
 const processSteps = [
   {
@@ -127,6 +131,20 @@ export default function RoofStormDamagePage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'roof-storm-damage',
+  parentSlug: 'storm-damage',
+  parentName: 'Storm Damage',
+  serviceName: 'Roof Storm Damage',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

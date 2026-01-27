@@ -4,11 +4,33 @@ import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
 import { MouldRemediation } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import type { Metadata } from "next"
+import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
+
+
+export const metadata: Metadata = generateCategoryMetadata({
+  title: "Mould Remediation Services | NRPG Australia",
+  description: "Professional mould remediation services across Australia. Black mould removal, mould inspection, testing, prevention. IICRC S520 certified. Safe and thorough mould cleanup.",
+  keywords: ['mould remediation', 'mould removal', 'black mould', 'mould inspection', 'mould testing', 'mould prevention', 'IICRC S520', 'Australia'],
+  slug: 'mould-remediation',
+  categoryName: 'Mould Remediation',
+});
 
 export default function MouldRemediationPillarPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateCategorySchemas({
+  title: 'Mould Remediation Services | NRPG Australia',
+  description: 'Professional mould remediation services across Australia. Black mould removal, mould inspection, testing, prevention. IICRC S520 certified. Safe and thorough mould cleanup.',
+  keywords: [],
+  slug: 'mould-remediation',
+  categoryName: 'Mould Remediation',
+})) }}
+      />
       <main className="py-24">
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">

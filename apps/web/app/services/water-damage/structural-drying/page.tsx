@@ -4,13 +4,18 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Droplets, Clock, Shield, ArrowRi
 import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import type { Metadata } from "next"
 import Image from "next/image"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Structural Drying Services | Water Damage Restoration Australia",
   description: "Professional structural drying services across Australia. Thermal imaging, desiccant dehumidification, Injectidry cavity drying, and daily moisture monitoring. IICRC S500 certified.",
-}
+  keywords: ['structural drying', 'dehumidification', 'moisture removal', 'building drying', 'injectidry', 'desiccant drying', 'drying program', 'Australia'],
+  slug: 'structural-drying',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Structural Drying',
+})
 
 const processSteps = [
   { step: 1, title: "Moisture Mapping", description: "Comprehensive moisture mapping using thermal imaging cameras and pin/pinless moisture meters to identify all affected areas, including hidden moisture in cavities and subfloors." },
@@ -40,6 +45,20 @@ export default function StructuralDryingPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'structural-drying',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Structural Drying',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

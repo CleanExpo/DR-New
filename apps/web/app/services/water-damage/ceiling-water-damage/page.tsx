@@ -4,13 +4,18 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Droplets, Clock, Shield, ArrowRi
 import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import type { Metadata } from "next"
 import Image from "next/image"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Ceiling Water Damage Repair | Water Damage Restoration Australia",
   description: "Professional ceiling water damage repair and restoration across Australia. Leak source tracing, plasterboard replacement, and mould prevention. IICRC S500 certified. Same-day service available.",
-}
+  keywords: ['ceiling water damage', 'ceiling leak repair', 'water stain ceiling', 'ceiling restoration', 'roof leak damage', 'plaster repair', 'Australia'],
+  slug: 'ceiling-water-damage',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Ceiling Water Damage',
+})
 
 const processSteps = [
   { step: 1, title: "Source Identification", description: "Our technicians use moisture meters and thermal imaging to trace the water source, whether from a roof leak, burst pipe, overflowing fixture, or condensation issue." },
@@ -40,6 +45,20 @@ export default function CeilingWaterDamagePage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'ceiling-water-damage',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Ceiling Water Damage',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

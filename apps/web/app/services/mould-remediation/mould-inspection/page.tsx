@@ -5,13 +5,17 @@ import { MouldRemediation } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
-import type { Metadata } from "next"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Mould Inspection Services | Mould Remediation Australia",
-  description:
-    "Professional mould inspection and assessment with thermal imaging, air quality sampling, and laboratory analysis. IICRC S520 certified inspectors across Australia.",
-}
+  description: "Professional mould inspection and assessment with thermal imaging, air quality sampling, and laboratory analysis. IICRC S520 certified inspectors across Australia.",
+  keywords: ['mould inspection', 'mould assessment', 'mould testing', 'thermal imaging mould', 'moisture inspection', 'mould survey', 'Australia'],
+  slug: 'mould-inspection',
+  parentSlug: 'mould-remediation',
+  parentName: 'Mould Remediation',
+  serviceName: 'Mould Inspection',
+})
 
 const processSteps = [
   {
@@ -105,6 +109,20 @@ export default function MouldInspectionPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'mould-inspection',
+  parentSlug: 'mould-remediation',
+  parentName: 'Mould Remediation',
+  serviceName: 'Mould Inspection',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

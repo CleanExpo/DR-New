@@ -4,13 +4,18 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Droplets, Clock, Shield, ArrowRi
 import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import type { Metadata } from "next"
 import Image from "next/image"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Basement Flooding Services | Water Damage Restoration Australia",
   description: "Professional basement flooding restoration across Australia. Submersible pump extraction, foundation waterproofing, and sewage contamination handling. IICRC S500 certified. 60-minute emergency response.",
-}
+  keywords: ['basement flooding', 'basement water damage', 'flooded basement', 'basement restoration', 'water extraction basement', 'sump pump', 'basement waterproofing', 'Australia'],
+  slug: 'basement-flooding',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Basement Flooding',
+})
 
 const processSteps = [
   { step: 1, title: "Assessment & Water Extraction", description: "Our technicians assess contamination category and water depth, then deploy submersible pumps for rapid extraction of standing water from your basement." },
@@ -40,6 +45,20 @@ export default function BasementFloodingPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'basement-flooding',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Basement Flooding',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

@@ -4,11 +4,33 @@ import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
 import { FireSmoke } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import type { Metadata } from "next"
+import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
+
+
+export const metadata: Metadata = generateCategoryMetadata({
+  title: "Fire & Smoke Damage Restoration | NRPG Australia",
+  description: "Professional fire and smoke damage restoration across Australia. Fire damage cleanup, smoke remediation, soot removal, odour elimination. IICRC certified. 24/7 emergency response.",
+  keywords: ['fire damage restoration', 'smoke damage', 'fire cleanup', 'soot removal', 'smoke odour removal', 'fire recovery', 'IICRC certified', 'Australia'],
+  slug: 'fire-smoke-damage',
+  categoryName: 'Fire & Smoke Damage Restoration',
+});
 
 export default function FireSmokeDamagePillarPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateCategorySchemas({
+  title: 'Fire & Smoke Damage Restoration | NRPG Australia',
+  description: 'Professional fire and smoke damage restoration across Australia. Fire damage cleanup, smoke remediation, soot removal, odour elimination. IICRC certified. 24/7 emergency response.',
+  keywords: [],
+  slug: 'fire-smoke-damage',
+  categoryName: 'Fire & Smoke Damage Restoration',
+})) }}
+      />
       <main className="py-24">
         {/* Hero Section */}
         <section className="container mx-auto px-6 mb-16">

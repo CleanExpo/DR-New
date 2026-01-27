@@ -4,13 +4,18 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Droplets, Clock, Shield, ArrowRi
 import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import type { Metadata } from "next"
 import Image from "next/image"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Commercial Water Damage Restoration | Water Damage Restoration Australia",
   description: "Professional commercial water damage restoration across Australia. Server room recovery, large-area extraction, business continuity planning, and commercial insurance claims. IICRC S500 certified. 60-minute response.",
-}
+  keywords: ['commercial water damage', 'office water damage', 'business flood damage', 'commercial restoration', 'industrial water damage', 'Australia'],
+  slug: 'commercial-water-damage',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Commercial Water Damage',
+})
 
 const processSteps = [
   { step: 1, title: "Business Impact Assessment", description: "Our commercial response team assesses the scope of water damage, identifies critical business assets at risk, and develops a prioritised recovery plan to minimise downtime." },
@@ -40,6 +45,20 @@ export default function CommercialWaterDamagePage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'commercial-water-damage',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Commercial Water Damage',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">

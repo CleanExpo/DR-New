@@ -4,13 +4,18 @@ import { CheckCircle, ArrowLeft, AlertTriangle, Droplets, Clock, Shield, ArrowRi
 import { WaterDamage } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import type { Metadata } from "next"
 import Image from "next/image"
+import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
 
-export const metadata: Metadata = {
+export const metadata = generateServiceMetadata({
   title: "Carpet Water Damage Restoration | Water Damage Restoration Australia",
   description: "Professional carpet water damage restoration across Australia. Hot water extraction, carpet lifting, underlay replacement, and odour treatment. IICRC S500 compliant. 4-hour emergency response.",
-}
+  keywords: ['carpet water damage', 'wet carpet', 'carpet drying', 'carpet restoration', 'carpet flood damage', 'carpet extraction', 'Australia'],
+  slug: 'carpet-water-damage',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Carpet Water Damage',
+})
 
 const processSteps = [
   { step: 1, title: "Water Category Assessment", description: "Our technicians assess the water contamination category to determine whether your carpet can be salvaged. Category 1 (clean water) is salvageable; Category 2-3 may require disposal." },
@@ -40,6 +45,20 @@ export default function CarpetWaterDamagePage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
       <Header />
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateServiceSchemas({
+  title: metadata.title as string,
+  description: metadata.description as string,
+  keywords: [],
+  slug: 'carpet-water-damage',
+  parentSlug: 'water-damage',
+  parentName: 'Water Damage',
+  serviceName: 'Carpet Water Damage',
+  faqs,
+})) }}
+      />
       <main className="py-24">
         {/* Breadcrumb */}
         <section className="container mx-auto px-6 mb-8">
