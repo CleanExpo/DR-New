@@ -107,16 +107,14 @@ _archive/
 .env.*.backup*
 ~$*
 
-.vercel
-.env*.local
+# Turborepo
+.turbo/
 
 # Auto Claude data directory
 .auto-claude/
 .worktrees/
 nul
+
+# Excluded projects/directories
 australia-3d-map/
-
-.vercel
-
-.vercel
-.env*.local
+NodeJS-Starter-V1/
