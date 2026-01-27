@@ -158,7 +158,6 @@ export default function FireDamageRestorationPage() {
             </div>
           </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}

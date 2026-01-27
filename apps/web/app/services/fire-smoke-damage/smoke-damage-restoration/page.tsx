@@ -158,7 +158,6 @@ export default function SmokeDamageRestorationPage() {
             </div>
           </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}

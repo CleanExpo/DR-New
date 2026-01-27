@@ -158,7 +158,6 @@ export default function MouldTestingPage() {
             </div>
           </div>
           </div>
-          </div>
         </section>
 
         {/* Quick Stats */}
