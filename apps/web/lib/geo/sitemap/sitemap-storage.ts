@@ -180,24 +180,26 @@ async function writeToS3(
   content: string,
   config: SitemapStorageConfig
 ): Promise<void> {
-  // TODO: Implement S3 upload
-  // Requires: @aws-sdk/client-s3
+  const { uploadFile } = await import('@/lib/storage/cloud-storage');
 
-  /*
-  const { S3Client, PutObjectCommand } = await import('@aws-sdk/client-s3');
+  const storageConfig = {
+    type: 's3' as const,
+    region: config.region || process.env.STORAGE_REGION || 'ap-southeast-2',
+    accessKeyId: process.env.STORAGE_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.STORAGE_SECRET_ACCESS_KEY || '',
+    bucketName: config.bucketName || process.env.STORAGE_BUCKET_NAME || '',
+    endpoint: process.env.STORAGE_ENDPOINT, // Supports DigitalOcean Spaces
+  };
 
-  const client = new S3Client({ region: config.region || 'ap-southeast-2' });
+  const key = `${config.basePath}/${filename}`;
 
-  await client.send(new PutObjectCommand({
-    Bucket: config.bucketName,
-    Key: `${config.basePath}/${filename}`,
-    Body: content,
-    ContentType: 'application/xml',
-    CacheControl: 'public, max-age=3600',
-  }));
-  */
+  await uploadFile(key, content, {
+    contentType: 'application/xml',
+    cacheControl: 'public, max-age=3600',
+    acl: 'public-read',
+  }, storageConfig);
 
-  console.log(`[S3] Would upload ${filename} to bucket ${config.bucketName}`);
+  console.log(`[S3] Uploaded ${filename} to bucket ${storageConfig.bucketName}`);
 }
 
 /**
@@ -208,8 +210,10 @@ async function writeToGCS(
   content: string,
   config: SitemapStorageConfig
 ): Promise<void> {
-  // TODO: Implement GCS upload
-  // Requires: @google-cloud/storage
+  // Implementation note: To enable GCS support:
+  // 1. Install: npm install @google-cloud/storage
+  // 2. Set environment: GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+  // 3. Uncomment implementation below
 
   /*
   const { Storage } = await import('@google-cloud/storage');
@@ -224,28 +228,35 @@ async function writeToGCS(
       cacheControl: 'public, max-age=3600',
     },
   });
+
+  console.log(`[GCS] Uploaded ${filename} to bucket ${config.bucketName}`);
   */
 
-  console.log(`[GCS] Would upload ${filename} to bucket ${config.bucketName}`);
+  throw new Error('[GCS] Google Cloud Storage not configured. Install @google-cloud/storage and set GOOGLE_APPLICATION_CREDENTIALS.');
 }
 
 /**
  * Write to Vercel Blob Storage
  */
 async function writeToVercelBlob(filename: string, content: string): Promise<void> {
-  // TODO: Implement Vercel Blob upload
-  // Requires: @vercel/blob
+  // Implementation note: To enable Vercel Blob support:
+  // 1. Install: npm install @vercel/blob
+  // 2. Set environment: BLOB_READ_WRITE_TOKEN (from Vercel dashboard)
+  // 3. Uncomment implementation below
 
   /*
   const { put } = await import('@vercel/blob');
 
-  await put(filename, content, {
+  const result = await put(filename, content, {
     access: 'public',
     contentType: 'application/xml',
+    addRandomSuffix: false,
   });
+
+  console.log(`[Vercel Blob] Uploaded ${filename} to ${result.url}`);
   */
 
-  console.log(`[Vercel Blob] Would upload ${filename}`);
+  throw new Error('[Vercel Blob] Vercel Blob Storage not configured. Install @vercel/blob and set BLOB_READ_WRITE_TOKEN.');
 }
 
 // ============================================
@@ -314,21 +325,74 @@ async function readFromFilesystem(filename: string, basePath: string): Promise<s
 }
 
 async function readFromS3(filename: string, config: SitemapStorageConfig): Promise<string | null> {
-  // TODO: Implement S3 read
-  console.log(`[S3] Would read ${filename} from bucket ${config.bucketName}`);
-  return null;
+  const { downloadFileAsString } = await import('@/lib/storage/cloud-storage');
+
+  const storageConfig = {
+    type: 's3' as const,
+    region: config.region || process.env.STORAGE_REGION || 'ap-southeast-2',
+    accessKeyId: process.env.STORAGE_ACCESS_KEY_ID || '',
+    secretAccessKey: process.env.STORAGE_SECRET_ACCESS_KEY || '',
+    bucketName: config.bucketName || process.env.STORAGE_BUCKET_NAME || '',
+    endpoint: process.env.STORAGE_ENDPOINT, // Supports DigitalOcean Spaces
+  };
+
+  const key = `${config.basePath}/${filename}`;
+
+  try {
+    const content = await downloadFileAsString(key, 'utf-8', storageConfig);
+    console.log(`[S3] Read ${filename} from bucket ${storageConfig.bucketName}`);
+    return content;
+  } catch (error) {
+    console.error(`[S3] Error reading ${filename}:`, error);
+    return null;
+  }
 }
 
 async function readFromGCS(filename: string, config: SitemapStorageConfig): Promise<string | null> {
-  // TODO: Implement GCS read
-  console.log(`[GCS] Would read ${filename} from bucket ${config.bucketName}`);
-  return null;
+  // Implementation note: To enable GCS support:
+  // 1. Install: npm install @google-cloud/storage
+  // 2. Set environment: GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+  // 3. Uncomment implementation below
+
+  /*
+  const { Storage } = await import('@google-cloud/storage');
+
+  const storage = new Storage();
+  const bucket = storage.bucket(config.bucketName!);
+  const file = bucket.file(`${config.basePath}/${filename}`);
+
+  const [content] = await file.download();
+  console.log(`[GCS] Read ${filename} from bucket ${config.bucketName}`);
+  return content.toString('utf-8');
+  */
+
+  throw new Error('[GCS] Google Cloud Storage not configured. Install @google-cloud/storage and set GOOGLE_APPLICATION_CREDENTIALS.');
 }
 
 async function readFromVercelBlob(filename: string): Promise<string | null> {
-  // TODO: Implement Vercel Blob read
-  console.log(`[Vercel Blob] Would read ${filename}`);
-  return null;
+  // Implementation note: To enable Vercel Blob support:
+  // 1. Install: npm install @vercel/blob
+  // 2. Set environment: BLOB_READ_WRITE_TOKEN (from Vercel dashboard)
+  // 3. Uncomment implementation below
+
+  /*
+  const { head, download } = await import('@vercel/blob');
+
+  try {
+    const blob = await head(filename);
+    if (!blob) return null;
+
+    const response = await download(filename);
+    const content = await response.text();
+    console.log(`[Vercel Blob] Read ${filename}`);
+    return content;
+  } catch (error) {
+    console.error(`[Vercel Blob] Error reading ${filename}:`, error);
+    return null;
+  }
+  */
+
+  throw new Error('[Vercel Blob] Vercel Blob Storage not configured. Install @vercel/blob and set BLOB_READ_WRITE_TOKEN.');
 }
 
 // ============================================
