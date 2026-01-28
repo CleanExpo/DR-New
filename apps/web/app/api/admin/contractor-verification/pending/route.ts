@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
@@ -23,8 +23,11 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     // Fetch pending contractors
-    const contractors = await prisma.contractor.findMany({
+    const contractors = await db.contractor.findMany({
       where: {
         nrpgVerificationLevel: 'PENDING',
       },

@@ -15,7 +15,10 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
-    const contractors = await prisma.contractorProfile.findMany({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    const contractors = await db.contractorProfile.findMany({
       include: {
         user: {
           select: {
