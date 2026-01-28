@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
@@ -21,6 +21,8 @@ export async function POST(request: NextRequest) {
 
     const { user } = authResult.context;
 
+    const db = getTenantDb(authResult.context);
+
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
@@ -38,7 +40,7 @@ export async function POST(request: NextRequest) {
       return createErrorResponse(ErrorCode.FORBIDDEN, 'Unauthorized assessment submission', 403);
     }
 
-    const onboarding = await prisma.contractorOnboarding.findUnique({
+    const onboarding = await db.contractorOnboarding.findUnique({
       where: { contractorId: effectiveContractorId },
       include: { moduleProgress: true },
     });
@@ -71,7 +73,7 @@ export async function POST(request: NextRequest) {
     const passingScore = 70;
     const passed = score >= passingScore;
 
-    await prisma.$transaction(async (tx) => {
+    await db.$transaction(async (tx) => {
       await tx.contractorAssessment.create({
         data: {
           onboardingId: onboarding.id,

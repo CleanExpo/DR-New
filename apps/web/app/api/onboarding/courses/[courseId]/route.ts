@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { getCourseInfo, calculateCourseProgress } from '@/lib/nrpg/course-loader';
 
 // GET /api/onboarding/courses/[courseId]
@@ -11,14 +10,13 @@ export async function GET(
   { params }: { params: { courseId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { courseId } = params;
 
@@ -41,8 +39,8 @@ export async function GET(
     }
 
     // Get contractor profile
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId: session.user.id },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -56,7 +54,7 @@ export async function GET(
 
     if (contractor) {
       // Get training progress for this course's modules
-      const progress = await prisma.nRPGTrainingProgress.findMany({
+      const progress = await db.nRPGTrainingProgress.findMany({
         where: {
           contractorId: contractor.id,
           moduleId: { startsWith: courseId },

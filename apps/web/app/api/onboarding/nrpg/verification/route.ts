@@ -5,22 +5,23 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 // GET /api/onboarding/nrpg/verification
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const userId = (session.user as any).id;
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -29,12 +30,12 @@ export async function GET(request: NextRequest) {
     }
 
     // Get or create phase record (contains verification data)
-    let phases = await prisma.nRPGOnboardingPhase.findUnique({
+    let phases = await db.nRPGOnboardingPhase.findUnique({
       where: { contractorId: contractor.id },
     });
 
     if (!phases) {
-      phases = await prisma.nRPGOnboardingPhase.create({
+      phases = await db.nRPGOnboardingPhase.create({
         data: {
           contractorId: contractor.id,
           phase1Status: 'NOT_STARTED',
@@ -113,12 +114,14 @@ export async function GET(request: NextRequest) {
 // Initiate a background check
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const userId = (session.user as any).id;
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const { checkType } = body;
 
@@ -131,8 +134,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -174,7 +177,7 @@ export async function POST(request: NextRequest) {
     updateData.backgroundCheckInitiated = true;
 
     // Update the phase record
-    await prisma.nRPGOnboardingPhase.update({
+    await db.nRPGOnboardingPhase.update({
       where: { contractorId: contractor.id },
       data: updateData,
     });

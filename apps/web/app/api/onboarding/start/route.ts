@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { loadNrpgTrainingIndex, parseNrpgModuleNumber } from '@/lib/training/nrp-training';
@@ -76,6 +76,8 @@ export async function POST(request: NextRequest) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
 
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const validation = onboardingStartSchema.safeParse(body);
     if (!validation.success) {
@@ -89,7 +91,7 @@ export async function POST(request: NextRequest) {
       return createErrorResponse(ErrorCode.FORBIDDEN, 'Unauthorized contractor onboarding start', 403);
     }
 
-    const existing = await prisma.contractorOnboarding.findUnique({
+    const existing = await db.contractorOnboarding.findUnique({
       where: { contractorId },
     });
 
@@ -102,7 +104,7 @@ export async function POST(request: NextRequest) {
       return createErrorResponse(ErrorCode.INTERNAL_ERROR, 'No training modules available', 500);
     }
 
-    const onboarding = await prisma.$transaction(async (tx) => {
+    const onboarding = await db.$transaction(async (tx) => {
       const created = await tx.contractorOnboarding.create({
         data: {
           contractorId,

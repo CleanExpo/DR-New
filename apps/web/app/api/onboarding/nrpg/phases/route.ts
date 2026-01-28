@@ -5,21 +5,22 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const userId = (session.user as any).id;
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -28,12 +29,12 @@ export async function GET(request: NextRequest) {
     }
 
     // Get or create phase record
-    let phases = await prisma.nRPGOnboardingPhase.findUnique({
+    let phases = await db.nRPGOnboardingPhase.findUnique({
       where: { contractorId: contractor.id },
     });
 
     if (!phases) {
-      phases = await prisma.nRPGOnboardingPhase.create({
+      phases = await db.nRPGOnboardingPhase.create({
         data: {
           contractorId: contractor.id,
           phase1Status: 'NOT_STARTED',
@@ -123,16 +124,18 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const userId = (session.user as any).id;
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
 
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -166,7 +169,7 @@ export async function PATCH(request: NextRequest) {
     if (body.fullCertificationGranted !== undefined) updateData.fullCertificationGranted = body.fullCertificationGranted;
 
     // Update phase
-    const phases = await prisma.nRPGOnboardingPhase.update({
+    const phases = await db.nRPGOnboardingPhase.update({
       where: { contractorId: contractor.id },
       data: updateData,
     });
@@ -175,7 +178,7 @@ export async function PATCH(request: NextRequest) {
     await updatePhaseStatuses(contractor.id);
 
     // Fetch updated record
-    const updatedPhases = await prisma.nRPGOnboardingPhase.findUnique({
+    const updatedPhases = await db.nRPGOnboardingPhase.findUnique({
       where: { contractorId: contractor.id },
     });
 
@@ -224,7 +227,7 @@ function calculateOverallProgress(phases: any): number {
 }
 
 async function updatePhaseStatuses(contractorId: string) {
-  const phases = await prisma.nRPGOnboardingPhase.findUnique({
+  const phases = await db.nRPGOnboardingPhase.findUnique({
     where: { contractorId },
   });
 
@@ -279,7 +282,7 @@ async function updatePhaseStatuses(contractorId: string) {
   }
 
   if (Object.keys(updates).length > 0) {
-    await prisma.nRPGOnboardingPhase.update({
+    await db.nRPGOnboardingPhase.update({
       where: { contractorId },
       data: updates,
     });

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
@@ -19,6 +19,8 @@ export async function POST(request: NextRequest) {
 
     const { user } = authResult.context;
 
+    const db = getTenantDb(authResult.context);
+
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
@@ -29,7 +31,7 @@ export async function POST(request: NextRequest) {
       return handleValidationError(validation.error);
     }
 
-    const onboarding = await prisma.contractorOnboarding.findUnique({
+    const onboarding = await db.contractorOnboarding.findUnique({
       where: { contractorId: user.id },
       include: { moduleProgress: true },
     });
@@ -44,7 +46,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (moduleProgress.status === 'NOT_STARTED') {
-      await prisma.contractorModuleProgress.update({
+      await db.contractorModuleProgress.update({
         where: { id: moduleProgress.id },
         data: {
           status: 'IN_PROGRESS',
