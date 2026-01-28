@@ -1,7 +1,7 @@
 # Project Backlog - Disaster Recovery NRPG Platform
 ## Updated: 2026-01-28
 
-**Current Status:** 160/286 API routes converted (55.9%)
+**Current Status:** 163/286 API routes converted (57.0%)
 **Active Epic:** UNI-157 - V2.0 Multi-tenant SaaS Conversion
 **Build Status:** ✅ Passing (797 routes generated)
 
@@ -9,9 +9,9 @@
 
 ## 🔥 P0 - Critical (Blocking Production)
 
-### UNI-157 Phase 7: Complete API Route Conversion (126 routes remaining)
-**Status:** In Progress (55.9% complete)
-**Remaining Work:** 126 routes across 5 batches
+### UNI-157 Phase 7: Complete API Route Conversion (123 routes remaining)
+**Status:** In Progress (57.0% complete)
+**Remaining Work:** 123 routes across 4 batches
 **Estimated Effort:** 8-12 hours
 
 #### ✅ Batch 4b: Content & Case Studies Routes (4 routes) - COMPLETED
@@ -32,13 +32,12 @@
 - [x] `messages/initiate/route.ts` (POST) - Start conversation
 - [x] `notifications/route.ts` (GET, PATCH, POST) - Notification management
 
-#### Batch 4e: Invoices & Projects Routes (3 routes)
-- [ ] `invoices/route.ts` (GET) - Invoice listing
-- [ ] `invoices/[invoiceId]/route.ts` (GET, PATCH) - Single invoice
-- [ ] `projects/route.ts` (GET, POST, PATCH) - Project management
+#### ✅ Batch 4e: Invoices & Projects Routes (3 routes) - COMPLETED
+- [x] `invoices/route.ts` (GET) - Invoice listing
+- [x] `invoices/[invoiceId]/route.ts` (GET, DELETE) - Single invoice
+- [x] `projects/route.ts` (GET) - Project management
 
-**Dependencies:** None
-**Risk:** Low
+**Note:** invoices/[invoiceId]/route.ts has GET and DELETE methods (not PATCH as originally listed)
 
 #### Batch 4f: Public API Routes (10 routes)
 - [ ] `public/analytics/events/route.ts` (POST) - Event tracking
@@ -250,34 +249,33 @@ Includes: auth, workspace, webhooks, competitor analysis, CRM, cron jobs, fraud 
 
 ## 📊 Current Sprint Velocity
 
-**Routes Converted This Session:** 9 routes (Batches 4b, 4c, 4d)
-**Average per Batch:** 3-4 routes
-**Current Progress:** 160/286 (55.9%)
+**Routes Converted This Session:** 12 routes (Batches 4b, 4c, 4d, 4e)
+**Average per Batch:** 3 routes
+**Current Progress:** 163/286 (57.0%)
 **Estimated Completion (Phase 7):** 2-3 more sessions
-**Total Remaining Effort (Phase 7):** 8-12 hours
+**Total Remaining Effort (Phase 7):** 7-11 hours
 
 ---
 
 ## 🎯 Next Steps (Immediate Priority)
 
-1. **Complete Batch 4e** (Invoices & Projects) - 3 routes - 1 hour
-2. **Complete Batch 4f** (Public API) - 10 routes - 2 hours
-3. **Complete Batch 4g** (Analytics) - 15 routes - 3 hours
-4. **Complete Batch 4h** (Search Dominance) - 9 routes - 2 hours
-5. **Complete Batch 4i** (Remaining misc) - 89 routes - 6 hours
+1. **Complete Batch 4f** (Public API) - 10 routes - 2 hours
+2. **Complete Batch 4g** (Analytics) - 15 routes - 3 hours
+3. **Complete Batch 4h** (Search Dominance) - 9 routes - 2 hours
+4. **Complete Batch 4i** (Remaining misc) - 89 routes - 6 hours
 
-**Next Milestone:** 60% completion (172 routes) - Within reach!
+**Next Milestone:** 60% completion (172 routes) - 9 routes away!
 
 ---
 
 ## 📋 Definition of Done (UNI-157 Phase 7)
 
-- [x] 160/286 routes converted to authenticateRequest() pattern ✅
+- [x] 163/286 routes converted to authenticateRequest() pattern ✅
 - [x] All routes use getTenantDb() for tenant isolation ✅
 - [x] Build passes without errors ✅
 - [x] Public routes use basePrisma appropriately ✅
 - [x] Removed fallback auth patterns (getServerSession) ✅
-- [ ] All 286 routes converted (44% remaining)
+- [ ] All 286 routes converted (43% remaining)
 - [ ] Integration tests pass
 - [ ] No type errors
 - [ ] Documentation updated
