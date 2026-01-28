@@ -13,6 +13,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { Resend } from 'resend';
+import { basePrisma } from '@/lib/prisma';
 import { completeClaimSchema, calculatePriority } from '@/lib/claim-wizard/types';
 import { verifyCaptcha } from '@/lib/services/captcha.service';
 
@@ -266,11 +267,8 @@ export async function POST(request: NextRequest) {
     // 6. REAL IMPLEMENTATION: Save claim to database using PublicClaim model
     let savedClaim;
     try {
-      // Import Prisma at the top of the file
-      const { prisma } = await import('@/lib/prisma');
-
       // Create a public claim record (pre-authentication intake)
-      savedClaim = await prisma.publicClaim.create({
+      savedClaim = await basePrisma.publicClaim.create({
         data: {
           // Client Information
           clientName: validatedData.step2.name,

@@ -9,6 +9,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { basePrisma } from '@/lib/prisma';
 
 // Validation schema for client feedback
 const clientFeedbackSchema = z.object({
@@ -46,9 +47,7 @@ export async function POST(request: NextRequest) {
 
     // Save feedback to database
     try {
-      const { prisma } = await import('@/lib/prisma');
-
-      const savedFeedback = await prisma.clientFeedback.create({
+      const savedFeedback = await basePrisma.clientFeedback.create({
         data: {
           name: validatedData.name,
           email: validatedData.email,

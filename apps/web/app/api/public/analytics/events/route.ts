@@ -12,6 +12,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { basePrisma } from '@/lib/prisma';
 
 // Validation schema for analytics events
 const analyticsEventSchema = z.object({
@@ -47,13 +48,12 @@ export async function POST(request: NextRequest) {
 
     // Track event in database
     try {
-      const { prisma } = await import('@/lib/prisma');
       const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] ||
                         request.headers.get('x-real-ip') ||
                         'unknown';
       const userAgent = request.headers.get('user-agent');
 
-      const savedEvent = await prisma.clientAnalytics.create({
+      const savedEvent = await basePrisma.clientAnalytics.create({
         data: {
           eventType: validatedData.eventType,
           eventName: validatedData.eventName,
