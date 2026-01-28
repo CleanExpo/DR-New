@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   authenticateRequest,
   requireRole,
@@ -66,6 +66,9 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
     const period = searchParams.get('period') || 'day';
 
@@ -107,7 +110,7 @@ export async function GET(request: NextRequest) {
     // Fetch AI job metrics from database
     const [aiJobs, jobStats, workflowStats] = await Promise.all([
       // Recent jobs
-      prisma.agentJob.findMany({
+      db.agentJob.findMany({
         where: {
           createdAt: { gte: startDate },
         },
@@ -124,7 +127,7 @@ export async function GET(request: NextRequest) {
         },
       }),
       // Aggregate stats
-      prisma.agentJob.aggregate({
+      db.agentJob.aggregate({
         where: {
           createdAt: { gte: startDate },
         },
@@ -139,7 +142,7 @@ export async function GET(request: NextRequest) {
         },
       }),
       // Stats by workflow type
-      prisma.agentJob.groupBy({
+      db.agentJob.groupBy({
         by: ['workflowType'],
         where: {
           createdAt: { gte: startDate },

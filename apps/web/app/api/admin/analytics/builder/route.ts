@@ -14,9 +14,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { REPORT_TEMPLATES } from '@/lib/analytics/report-builder';
 
 /**
@@ -105,23 +104,19 @@ function buildWhereClause(status: StatusFilter) {
 export async function GET(request: NextRequest): Promise<NextResponse<ReportBuilderResponse | ErrorResponse>> {
   try {
     // 1. Check authorization - Admin only
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user) {
-      return NextResponse.json(
-        { error: 'Unauthorized - Authentication required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const userRole = (session.user as any).role || (session.user as any).userType;
+    const { user } = authResult.context;
 
-    if (!isAdmin(userRole)) {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 403 }
-      );
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // 2. Get query parameters
     const { searchParams } = new URL(request.url);
@@ -141,7 +136,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<ReportBuil
     const whereClause = buildWhereClause(status);
 
     // 5. Fetch custom reports from database
-    const customReports = await prisma.customReport.findMany({
+    const customReports = await db.customReport.findMany({
       where: whereClause,
       orderBy: { createdAt: 'desc' },
       select: {

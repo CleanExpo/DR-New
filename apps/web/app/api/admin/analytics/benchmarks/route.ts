@@ -31,9 +31,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   calculateContractorTier,
   calculatePlatformMetrics,
@@ -60,14 +59,19 @@ function isBenchmarkType(value: string): value is BenchmarkType {
 export async function GET(request: NextRequest) {
   try {
     // 1. Authorization check - Admin only
-    const session = await getServerSession(authOptions);
-
-    if (!session || (session.user as any).role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // 2. Parse and validate query parameters
     const { searchParams } = new URL(request.url);
@@ -75,7 +79,7 @@ export async function GET(request: NextRequest) {
     const benchmarkType: BenchmarkType = isBenchmarkType(typeParam) ? typeParam : 'all';
 
     // 3. Fetch contractors with their performance data
-    const contractors = await prisma.contractor.findMany({
+    const contractors = await db.contractor.findMany({
       include: {
         user: {
           select: {
@@ -146,7 +150,7 @@ export async function GET(request: NextRequest) {
 
     if (benchmarkType === 'all' || benchmarkType === 'service') {
       // Group bookings by service type
-      const serviceTypeData = await prisma.booking.groupBy({
+      const serviceTypeData = await db.booking.groupBy({
         by: ['australianServiceType'],
         _count: {
           id: true,
@@ -165,7 +169,7 @@ export async function GET(request: NextRequest) {
           const serviceType = serviceGroup.australianServiceType;
 
           // Get all bookings for this service type
-          const bookings = await prisma.booking.findMany({
+          const bookings = await db.booking.findMany({
             where: {
               australianServiceType: serviceType,
             },
@@ -213,7 +217,7 @@ export async function GET(request: NextRequest) {
 
     if (benchmarkType === 'all' || benchmarkType === 'regional') {
       // Group bookings by state
-      const stateData = await prisma.booking.groupBy({
+      const stateData = await db.booking.groupBy({
         by: ['serviceState'],
         _count: {
           id: true,
@@ -232,7 +236,7 @@ export async function GET(request: NextRequest) {
           const region = stateGroup.serviceState;
 
           // Get completed bookings for this state
-          const completedBookings = await prisma.booking.findMany({
+          const completedBookings = await db.booking.findMany({
             where: {
               serviceState: region,
               status: 'COMPLETED',
@@ -257,7 +261,7 @@ export async function GET(request: NextRequest) {
             : 0;
 
           // Count active contractors in this state
-          const activeContractors = await prisma.contractor.count({
+          const activeContractors = await db.contractor.count({
             where: {
               primaryState: region,
             },

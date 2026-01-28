@@ -13,9 +13,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 // Helper to calculate percentage change
 function calculatePercentageChange(current: number, previous: number): number {
@@ -25,14 +24,21 @@ function calculatePercentageChange(current: number, previous: number): number {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || (session.user as any).role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    // Authenticate request
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    // Require ADMIN role
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const period = searchParams.get('period') || 'month';
@@ -75,13 +81,13 @@ export async function GET(request: NextRequest) {
     // ========== CURRENT PERIOD METRICS ==========
 
     // Count service requests (jobs)
-    const currentJobsTotal = await prisma.serviceRequest.count({
+    const currentJobsTotal = await db.serviceRequest.count({
       where: {
         createdAt: { gte: startDate, lte: now },
       },
     });
 
-    const currentJobsCompleted = await prisma.serviceRequest.count({
+    const currentJobsCompleted = await db.serviceRequest.count({
       where: {
         createdAt: { gte: startDate, lte: now },
         status: { in: ['COMPLETED', 'MATCHED', 'IN_PROGRESS'] },
@@ -89,17 +95,17 @@ export async function GET(request: NextRequest) {
     });
 
     // Count active contractors (those with AVAILABLE status)
-    const activeContractors = await prisma.contractorProfile.count({
+    const activeContractors = await db.contractorProfile.count({
       where: {
         availability: 'AVAILABLE',
       },
     });
 
     // Get total contractors
-    const totalContractors = await prisma.contractorProfile.count();
+    const totalContractors = await db.contractorProfile.count();
 
     // Calculate revenue from payments
-    const currentPayments = await prisma.payment.aggregate({
+    const currentPayments = await db.payment.aggregate({
       _sum: { amountAUD: true },
       _count: true,
       where: {
@@ -109,7 +115,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Get client payment totals as alternative
-    const currentClientPayments = await prisma.clientPayment.aggregate({
+    const currentClientPayments = await db.clientPayment.aggregate({
       _sum: { amount: true },
       _count: true,
       where: {
@@ -125,20 +131,20 @@ export async function GET(request: NextRequest) {
 
     // ========== PREVIOUS PERIOD METRICS ==========
 
-    const previousJobsTotal = await prisma.serviceRequest.count({
+    const previousJobsTotal = await db.serviceRequest.count({
       where: {
         createdAt: { gte: previousStartDate, lte: previousEndDate },
       },
     });
 
-    const previousJobsCompleted = await prisma.serviceRequest.count({
+    const previousJobsCompleted = await db.serviceRequest.count({
       where: {
         createdAt: { gte: previousStartDate, lte: previousEndDate },
         status: { in: ['COMPLETED', 'MATCHED', 'IN_PROGRESS'] },
       },
     });
 
-    const previousPayments = await prisma.payment.aggregate({
+    const previousPayments = await db.payment.aggregate({
       _sum: { amountAUD: true },
       where: {
         createdAt: { gte: previousStartDate, lte: previousEndDate },
@@ -146,7 +152,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const previousClientPayments = await prisma.clientPayment.aggregate({
+    const previousClientPayments = await db.clientPayment.aggregate({
       _sum: { amount: true },
       where: {
         createdAt: { gte: previousStartDate, lte: previousEndDate },
@@ -192,7 +198,7 @@ export async function GET(request: NextRequest) {
     // ========== TOP PERFORMERS ==========
 
     // Get top contractors by their profiles
-    const topContractorProfiles = await prisma.contractorProfile.findMany({
+    const topContractorProfiles = await db.contractorProfile.findMany({
       take: 5,
       orderBy: { totalJobs: 'desc' },
       select: {
@@ -215,7 +221,7 @@ export async function GET(request: NextRequest) {
     }));
 
     // Get top clients by service requests (using userId field)
-    const topClientsByJobs = await prisma.serviceRequest.groupBy({
+    const topClientsByJobs = await db.serviceRequest.groupBy({
       by: ['userId'],
       _count: true,
       where: {
@@ -228,7 +234,7 @@ export async function GET(request: NextRequest) {
     // Enrich with user details
     const topClients = await Promise.all(
       topClientsByJobs.map(async (tc) => {
-        const user = await prisma.user.findUnique({
+        const user = await db.user.findUnique({
           where: { id: tc.userId },
           select: { email: true, name: true },
         });
@@ -243,7 +249,7 @@ export async function GET(request: NextRequest) {
 
     // ========== SERVICE TYPE BREAKDOWN ==========
 
-    const serviceTypeBreakdown = await prisma.serviceRequest.groupBy({
+    const serviceTypeBreakdown = await db.serviceRequest.groupBy({
       by: ['serviceCategory'],
       _count: true,
       where: {
@@ -253,9 +259,9 @@ export async function GET(request: NextRequest) {
 
     // ========== ADDITIONAL STATS ==========
 
-    const totalUsers = await prisma.user.count();
-    const totalClients = await prisma.user.count({ where: { userType: 'CLIENT' } });
-    const newUsersThisPeriod = await prisma.user.count({
+    const totalUsers = await db.user.count();
+    const totalClients = await db.user.count({ where: { userType: 'CLIENT' } });
+    const newUsersThisPeriod = await db.user.count({
       where: { createdAt: { gte: startDate, lte: now } },
     });
 
