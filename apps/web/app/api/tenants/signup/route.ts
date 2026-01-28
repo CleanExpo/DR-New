@@ -9,6 +9,7 @@ import { TenantService } from '@/lib/tenant-service';
 import { createTenantCheckoutSession } from '@/lib/stripe/tenant-subscription';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { prisma } from '@/lib/prisma';
+import { sendVerificationEmail } from '@/lib/email/resend';
 
 const signupSchema = z.object({
   // Tenant info
@@ -132,8 +133,24 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 6. Send verification email (TODO: implement email service)
-    // await sendVerificationEmail(adminUser.email, adminUser.emailVerificationToken);
+    // 6. Send verification email
+    try {
+      if (adminUser.emailVerificationToken) {
+        const emailResult = await sendVerificationEmail(
+          adminUser.email,
+          adminUser.emailVerificationToken,
+          adminUser.name || undefined
+        );
+
+        if (!emailResult.success) {
+          console.warn('Verification email could not be sent:', emailResult.error);
+          // Don't fail the signup if email fails - user can resend later
+        }
+      }
+    } catch (emailError) {
+      console.error('Failed to send verification email:', emailError);
+      // Don't fail the signup if email fails
+    }
 
     return NextResponse.json({
       success: true,
