@@ -36,6 +36,9 @@ export async function POST(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     // Parse and validate request body
     const body = await request.json();
     const validation = verificationActionSchema.safeParse(body);
@@ -52,7 +55,7 @@ export async function POST(request: NextRequest) {
     const { contractorId, action, reason } = validation.data;
 
     // Fetch contractor
-    const contractor = await prisma.contractor.findUnique({
+    const contractor = await db.contractor.findUnique({
       where: { id: contractorId },
       include: {
         user: true,
@@ -67,7 +70,7 @@ export async function POST(request: NextRequest) {
     // Perform action
     switch (action) {
       case 'approve':
-        await prisma.contractor.update({
+        await db.contractor.update({
           where: { id: contractorId },
           data: {
             nrpgVerificationLevel: 'VERIFIED',
@@ -112,7 +115,7 @@ export async function POST(request: NextRequest) {
           );
         }
 
-        await prisma.contractor.update({
+        await db.contractor.update({
           where: { id: contractorId },
           data: {
             nrpgVerificationLevel: 'REJECTED',
@@ -155,7 +158,7 @@ export async function POST(request: NextRequest) {
           );
         }
 
-        await prisma.contractor.update({
+        await db.contractor.update({
           where: { id: contractorId },
           data: {
             nrpgVerificationLevel: 'PENDING_INFO',

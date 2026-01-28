@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
@@ -18,7 +18,10 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
-    const services = await prisma.serviceRequest.findMany({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    const services = await db.serviceRequest.findMany({
       include: {
         user: {
           select: {
