@@ -13,6 +13,7 @@
  */
 
 import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 export interface StorageConfig {
   type: 's3' | 'spaces';
@@ -255,4 +256,59 @@ export function generateStorageKey(
   const baseName = filename.replace(/\.[^/.]+$/, '').replace(/[^a-z0-9]/gi, '-').toLowerCase();
 
   return `${prefix}/${timestamp}-${random}-${baseName}.${ext}`;
+}
+
+/**
+ * Generate a presigned URL for secure file download
+ *
+ * @param key - Storage key of the file
+ * @param expiresIn - URL expiration time in seconds (default: 3600 = 1 hour)
+ * @param config - Optional storage configuration
+ * @returns Presigned URL string
+ */
+export async function getPresignedDownloadUrl(
+  key: string,
+  expiresIn: number = 3600,
+  config?: StorageConfig
+): Promise<string> {
+  const cfg = config || getStorageConfig();
+  const client = createStorageClient(cfg);
+
+  const command = new GetObjectCommand({
+    Bucket: cfg.bucketName,
+    Key: key,
+  });
+
+  // Generate presigned URL that expires after specified time
+  const url = await getSignedUrl(client, command, { expiresIn });
+  return url;
+}
+
+/**
+ * Generate a presigned URL for secure file upload
+ *
+ * @param key - Storage key for the upload
+ * @param contentType - MIME type of the file
+ * @param expiresIn - URL expiration time in seconds (default: 900 = 15 minutes)
+ * @param config - Optional storage configuration
+ * @returns Presigned URL string
+ */
+export async function getPresignedUploadUrl(
+  key: string,
+  contentType: string,
+  expiresIn: number = 900,
+  config?: StorageConfig
+): Promise<string> {
+  const cfg = config || getStorageConfig();
+  const client = createStorageClient(cfg);
+
+  const command = new PutObjectCommand({
+    Bucket: cfg.bucketName,
+    Key: key,
+    ContentType: contentType,
+  });
+
+  // Generate presigned URL for direct upload
+  const url = await getSignedUrl(client, command, { expiresIn });
+  return url;
 }

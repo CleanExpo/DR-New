@@ -4,6 +4,8 @@
  * Unified interface for file storage operations (local, S3, GCS)
  */
 
+import * as cloudStorage from '../../../lib/storage/cloud-storage';
+
 export type StorageProvider = 'local' | 's3' | 'gcs';
 export type FileCategory = 'recordings' | 'documents' | 'media' | 'avatars' | 'attachments';
 
@@ -89,7 +91,7 @@ class LocalStorageProvider implements IStorageProvider {
   }
 
   async upload(file: Buffer, filename: string, options: UploadOptions): Promise<FileMetadata> {
-    if (file.size > this.maxFileSize) {
+    if (file.length > this.maxFileSize) {
       throw new Error(`File size exceeds maximum of ${this.maxFileSize} bytes`);
     }
 
@@ -203,6 +205,165 @@ class LocalStorageProvider implements IStorageProvider {
 }
 
 /**
+ * S3-compatible storage provider (AWS S3, DigitalOcean Spaces, etc.)
+ */
+class S3StorageProvider implements IStorageProvider {
+  private config: cloudStorage.StorageConfig;
+  private fileIndex = new Map<string, FileMetadata>(); // Track file metadata
+
+  constructor(config: { bucket: string; region: string; accessKeyId: string; secretAccessKey: string; endpoint?: string }) {
+    this.config = {
+      type: config.endpoint ? 'spaces' : 's3',
+      region: config.region,
+      endpoint: config.endpoint,
+      accessKeyId: config.accessKeyId,
+      secretAccessKey: config.secretAccessKey,
+      bucketName: config.bucket,
+    };
+  }
+
+  async upload(file: Buffer, filename: string, options: UploadOptions): Promise<FileMetadata> {
+    // Generate unique storage key
+    const key = cloudStorage.generateStorageKey(options.category, filename);
+
+    // Upload to S3
+    const result = await cloudStorage.uploadFile(
+      key,
+      file,
+      {
+        contentType: options.metadata?.mimeType || 'application/octet-stream',
+        metadata: options.metadata,
+        acl: options.isPublic ? 'public-read' : 'private',
+      },
+      this.config
+    );
+
+    // Create metadata
+    const metadata: FileMetadata = {
+      id: key,
+      filename: key.split('/').pop() || filename,
+      originalName: filename,
+      mimeType: options.metadata?.mimeType || 'application/octet-stream',
+      size: result.size,
+      category: options.category,
+      uploadedBy: options.metadata?.userId || 'unknown',
+      uploadedAt: new Date(),
+      expiresAt: options.expiresIn ? new Date(Date.now() + options.expiresIn * 1000) : undefined,
+      metadata: options.metadata,
+      isPublic: options.isPublic || false,
+      path: result.key,
+      provider: 's3',
+    };
+
+    // Store metadata
+    this.fileIndex.set(key, metadata);
+
+    return metadata;
+  }
+
+  async download(id: string): Promise<Buffer> {
+    const buffer = await cloudStorage.downloadFile(id, this.config);
+    if (!buffer) {
+      throw new Error(`File not found: ${id}`);
+    }
+    return buffer;
+  }
+
+  async delete(id: string): Promise<boolean> {
+    try {
+      await cloudStorage.deleteFile(id, this.config);
+      this.fileIndex.delete(id);
+      return true;
+    } catch (error) {
+      console.error(`Failed to delete file ${id}:`, error);
+      return false;
+    }
+  }
+
+  async getMetadata(id: string): Promise<FileMetadata | null> {
+    // Check local cache first
+    const cached = this.fileIndex.get(id);
+    if (cached) {
+      return cached;
+    }
+
+    // Check if file exists in S3
+    const exists = await cloudStorage.fileExists(id, this.config);
+    if (!exists) {
+      return null;
+    }
+
+    // Return minimal metadata (would need to be enhanced with S3 metadata retrieval)
+    return {
+      id,
+      filename: id.split('/').pop() || id,
+      originalName: id.split('/').pop() || id,
+      mimeType: 'application/octet-stream',
+      size: 0,
+      category: id.split('/')[0] as FileCategory,
+      uploadedBy: 'unknown',
+      uploadedAt: new Date(),
+      metadata: {},
+      isPublic: false,
+      path: id,
+      provider: 's3',
+    };
+  }
+
+  async getSignedUrl(id: string, expiresIn: number = 3600): Promise<string> {
+    return await cloudStorage.getPresignedDownloadUrl(id, expiresIn, this.config);
+  }
+
+  async getStats(): Promise<StorageStats> {
+    const stats: StorageStats = {
+      provider: 's3',
+      totalFiles: this.fileIndex.size,
+      totalSize: 0,
+      categories: {
+        recordings: { count: 0, size: 0 },
+        documents: { count: 0, size: 0 },
+        media: { count: 0, size: 0 },
+        avatars: { count: 0, size: 0 },
+        attachments: { count: 0, size: 0 },
+      },
+    };
+
+    this.fileIndex.forEach((metadata) => {
+      stats.totalSize += metadata.size;
+      const category = stats.categories[metadata.category];
+      if (category) {
+        category.count++;
+        category.size += metadata.size;
+      }
+    });
+
+    return stats;
+  }
+
+  async cleanup(beforeDate: Date): Promise<number> {
+    let count = 0;
+    const idsToDelete: string[] = [];
+
+    // Find expired files
+    this.fileIndex.forEach((metadata, id) => {
+      if (metadata.expiresAt && metadata.expiresAt < beforeDate) {
+        idsToDelete.push(id);
+      }
+    });
+
+    // Delete expired files
+    for (const id of idsToDelete) {
+      const deleted = await this.delete(id);
+      if (deleted) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+}
+
+/**
  * StorageManager
  *
  * Unified interface for file storage operations
@@ -224,9 +385,17 @@ class StorageManager {
         );
         break;
       case 's3':
-        // S3 provider initialization would go here
-        this.provider = new LocalStorageProvider(config.local?.baseDir || './uploads');
-        console.warn('S3 provider not fully implemented, using local storage');
+        if (!config.s3?.bucket || !config.s3?.accessKeyId || !config.s3?.secretAccessKey) {
+          console.warn('S3 credentials not provided, falling back to local storage');
+          this.provider = new LocalStorageProvider(config.local?.baseDir || './uploads');
+        } else {
+          this.provider = new S3StorageProvider({
+            bucket: config.s3.bucket,
+            region: config.s3.region,
+            accessKeyId: config.s3.accessKeyId,
+            secretAccessKey: config.s3.secretAccessKey,
+          });
+        }
         break;
       case 'gcs':
         // GCS provider initialization would go here
@@ -339,7 +508,24 @@ class StorageManager {
           config.local?.maxFileSize || 5 * 1024 * 1024 * 1024
         );
         break;
-      // Add S3 and GCS cases when implemented
+      case 's3':
+        if (!config.s3?.bucket || !config.s3?.accessKeyId || !config.s3?.secretAccessKey) {
+          console.warn('S3 credentials not provided, falling back to local storage');
+          this.provider = new LocalStorageProvider(config.local?.baseDir || './uploads');
+        } else {
+          this.provider = new S3StorageProvider({
+            bucket: config.s3.bucket,
+            region: config.s3.region,
+            accessKeyId: config.s3.accessKeyId,
+            secretAccessKey: config.s3.secretAccessKey,
+          });
+        }
+        break;
+      case 'gcs':
+        // GCS provider will be implemented later
+        this.provider = new LocalStorageProvider(config.local?.baseDir || './uploads');
+        console.warn('GCS provider not yet implemented, using local storage');
+        break;
     }
   }
 }
