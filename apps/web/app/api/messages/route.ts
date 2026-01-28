@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { messageSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
 import { ZodError } from 'zod';
@@ -12,8 +12,9 @@ export async function GET(request: NextRequest) {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) return authResult.response;
     const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
-    const messages = await prisma.message.findMany({
+    const messages = await db.message.findMany({
       where: {
         OR: [
           { senderId: user.id },
@@ -35,11 +36,12 @@ export async function POST(request: NextRequest) {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) return authResult.response;
     const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const validatedData = messageSchema.parse(body);
 
-    const message = await prisma.message.create({
+    const message = await db.message.create({
       data: {
         senderId: user.id,
         receiverId: validatedData.receiverId,

@@ -7,34 +7,20 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
 import { getRecentNotifications, markNotificationsAsRead, getUnreadCount } from '@/lib/notifications';
 import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    // Try NextAuth first, fall back to custom auth middleware
-    let userId: string | null = null;
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
 
-    try {
-      const session = await getServerSession(authOptions);
-      if (session?.user?.id) {
-        userId = session.user.id;
-      }
-    } catch {
-      // Fall back to custom auth
-    }
-
-    if (!userId) {
-      const authResult = await authenticateRequest(request);
-      if (!authResult.success) return authResult.response;
-      userId = authResult.context.user.id;
-    }
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     // Get query parameters
     const { searchParams } = new URL(request.url);
@@ -42,14 +28,14 @@ export async function GET(request: NextRequest) {
     const unreadOnly = searchParams.get('unreadOnly') === 'true';
 
     // Fetch notifications
-    const notifications = await prisma.notification.findMany({
-      where: unreadOnly ? { userId, read: false } : { userId },
+    const notifications = await db.notification.findMany({
+      where: unreadOnly ? { userId: user.id, read: false } : { userId: user.id },
       orderBy: { createdAt: 'desc' },
       take: limit,
     });
 
     // Get unread count
-    const unreadCount = await getUnreadCount(userId);
+    const unreadCount = await getUnreadCount(user.id);
 
     return NextResponse.json({
       success: true,
@@ -65,32 +51,20 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
-    // Try NextAuth first, fall back to custom auth middleware
-    let userId: string | null = null;
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
 
-    try {
-      const session = await getServerSession(authOptions);
-      if (session?.user?.id) {
-        userId = session.user.id;
-      }
-    } catch {
-      // Fall back to custom auth
-    }
-
-    if (!userId) {
-      const authResult = await authenticateRequest(request);
-      if (!authResult.success) return authResult.response;
-      userId = authResult.context.user.id;
-    }
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const { notificationIds } = body;
 
     // Mark as read
-    await markNotificationsAsRead(userId, notificationIds);
+    await markNotificationsAsRead(user.id, notificationIds);
 
     // Get updated unread count
-    const unreadCount = await getUnreadCount(userId);
+    const unreadCount = await getUnreadCount(user.id);
 
     return NextResponse.json({
       success: true,
@@ -106,23 +80,11 @@ export async function PATCH(request: NextRequest) {
 // POST: Mark specific notification as read
 export async function POST(request: NextRequest) {
   try {
-    // Try NextAuth first, fall back to custom auth middleware
-    let userId: string | null = null;
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) return authResult.response;
 
-    try {
-      const session = await getServerSession(authOptions);
-      if (session?.user?.id) {
-        userId = session.user.id;
-      }
-    } catch {
-      // Fall back to custom auth
-    }
-
-    if (!userId) {
-      const authResult = await authenticateRequest(request);
-      if (!authResult.success) return authResult.response;
-      userId = authResult.context.user.id;
-    }
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const { notificationId } = body;
@@ -135,13 +97,13 @@ export async function POST(request: NextRequest) {
     }
 
     // Mark single notification as read
-    await prisma.notification.update({
+    await db.notification.update({
       where: { id: notificationId },
       data: { read: true },
     });
 
     // Get updated unread count
-    const unreadCount = await getUnreadCount(userId);
+    const unreadCount = await getUnreadCount(user.id);
 
     return NextResponse.json({
       success: true,
