@@ -10,12 +10,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { CustomerLifecycleService } from '@/lib/crm/customer-lifecycle.service';
 import { AdvancedLogger } from '@/lib/logger/advanced-logging';
-
-const prisma = new PrismaClient();
-const customerLifecycleService = new CustomerLifecycleService(prisma);
 
 export async function GET(
   request: NextRequest,
@@ -24,6 +22,14 @@ export async function GET(
   const correlationId = AdvancedLogger.setCorrelationId();
 
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+    const customerLifecycleService = new CustomerLifecycleService(db);
+
     const { userId } = params;
 
     AdvancedLogger.info('Fetching customer 360° view', { userId });
@@ -78,6 +84,14 @@ export async function POST(
   { params }: { params: { userId: string } }
 ) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+    const customerLifecycleService = new CustomerLifecycleService(db);
+
     const body = await request.json();
     const { action, data } = body;
 
