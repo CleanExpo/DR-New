@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
 export async function GET(request: NextRequest) {
@@ -13,9 +13,10 @@ export async function GET(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     // Get service requests as projects
-    const serviceRequests = await prisma.serviceRequest.findMany({
+    const serviceRequests = await db.serviceRequest.findMany({
       where: { userId: user.id },
       orderBy: { createdAt: 'desc' },
       include: {
