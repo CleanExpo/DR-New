@@ -6,7 +6,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import type { SearchAnalyticsEvent } from '@/lib/algolia/types';
 
 /**
@@ -15,6 +16,13 @@ import type { SearchAnalyticsEvent } from '@/lib/algolia/types';
  */
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const event: SearchAnalyticsEvent = await request.json();
 
     // Validate required fields
@@ -31,7 +39,7 @@ export async function POST(request: NextRequest) {
                         request.headers.get('x-real-ip') ||
                         'unknown';
 
-      const savedAnalytics = await prisma.searchAnalytics.create({
+      const savedAnalytics = await db.searchAnalytics.create({
         data: {
           query: event.query,
           resultsCount: event.resultsCount || 0,
@@ -75,6 +83,11 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const searchParams = request.nextUrl.searchParams;
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { redis } from '@/lib/config/redis.config';
 import { logInfo, logError } from '@/lib/logger/helpers';
 
@@ -21,10 +22,10 @@ interface RealtimeMetrics {
   };
 }
 
-async function getRealtimeMetrics(): Promise<RealtimeMetrics> {
+async function getRealtimeMetrics(db: any): Promise<RealtimeMetrics> {
   try {
     const now = Date.now();
-    const activeUsersResult = await prisma.user.count({
+    const activeUsersResult = await db.user.count({
       where: {
         updatedAt: {
           gte: new Date(now - 5 * 60 * 1000),
@@ -71,23 +72,31 @@ async function getRealtimeMetrics(): Promise<RealtimeMetrics> {
 }
 
 export async function GET(request: NextRequest) {
-  const headers = {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive',
-  };
-
-  const format = request.nextUrl.searchParams.get('format') || 'sse';
-
-  if (format === 'json') {
-    try {
-      const metrics = await getRealtimeMetrics();
-      return NextResponse.json(metrics);
-    } catch (error) {
-      logError(error, { context: 'analytics_json' });
-      return NextResponse.json({ error: 'Failed to get metrics' }, { status: 500 });
+  try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
-  }
+
+    const db = getTenantDb(authResult.context);
+
+    const headers = {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'Connection': 'keep-alive',
+    };
+
+    const format = request.nextUrl.searchParams.get('format') || 'sse';
+
+    if (format === 'json') {
+      try {
+        const metrics = await getRealtimeMetrics(db);
+        return NextResponse.json(metrics);
+      } catch (error) {
+        logError(error, { context: 'analytics_json' });
+        return NextResponse.json({ error: 'Failed to get metrics' }, { status: 500 });
+      }
+    }
 
   const encoder = new TextEncoder();
   let isClosed = false;
@@ -96,37 +105,41 @@ export async function GET(request: NextRequest) {
     isClosed = true;
   });
 
-  const customReadable = new ReadableStream({
-    async start(controller) {
-      const sendMetrics = async () => {
-        if (isClosed) {
-          controller.close();
-          return;
-        }
+    const customReadable = new ReadableStream({
+      async start(controller) {
+        const sendMetrics = async () => {
+          if (isClosed) {
+            controller.close();
+            return;
+          }
 
-        try {
-          const metrics = await getRealtimeMetrics();
-          const dataStr = JSON.stringify(metrics);
-          const message = 'data: ' + dataStr + '\n\n';
-          controller.enqueue(encoder.encode(message));
-          setTimeout(sendMetrics, 5000);
-        } catch (error) {
-          logError(error, { context: 'sse_stream' });
-          const errorDataStr = JSON.stringify({ error: 'Metrics unavailable' });
-          const errorMessage = 'data: ' + errorDataStr + '\n\n';
-          controller.enqueue(encoder.encode(errorMessage));
-          setTimeout(sendMetrics, 10000);
-        }
-      };
+          try {
+            const metrics = await getRealtimeMetrics(db);
+            const dataStr = JSON.stringify(metrics);
+            const message = 'data: ' + dataStr + '\n\n';
+            controller.enqueue(encoder.encode(message));
+            setTimeout(sendMetrics, 5000);
+          } catch (error) {
+            logError(error, { context: 'sse_stream' });
+            const errorDataStr = JSON.stringify({ error: 'Metrics unavailable' });
+            const errorMessage = 'data: ' + errorDataStr + '\n\n';
+            controller.enqueue(encoder.encode(errorMessage));
+            setTimeout(sendMetrics, 10000);
+          }
+        };
 
-      const initialDataStr = JSON.stringify({ message: 'Stream started' });
-      const initialMsg = 'data: ' + initialDataStr + '\n\n';
-      controller.enqueue(encoder.encode(initialMsg));
-      sendMetrics();
-    },
-  });
+        const initialDataStr = JSON.stringify({ message: 'Stream started' });
+        const initialMsg = 'data: ' + initialDataStr + '\n\n';
+        controller.enqueue(encoder.encode(initialMsg));
+        sendMetrics();
+      },
+    });
 
-  return new Response(customReadable, { headers });
+    return new Response(customReadable, { headers });
+  } catch (error) {
+    logError(error, { context: 'analytics_realtime' });
+    return NextResponse.json({ error: 'Failed to initialize real-time stream' }, { status: 500 });
+  }
 }
 
 export async function OPTIONS() {

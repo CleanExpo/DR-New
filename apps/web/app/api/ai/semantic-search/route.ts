@@ -8,6 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getDefaultProvider } from '@/lib/agents/providers';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 
@@ -146,6 +147,11 @@ const STATE_NAMES: Record<string, string> = {
 
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const body: SemanticSearchRequest = await request.json();
     const { query, context } = body;
 
