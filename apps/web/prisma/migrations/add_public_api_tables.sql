@@ -52,11 +52,11 @@ CREATE TABLE IF NOT EXISTS "LeadCapture" (
   "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
-CREATE INDEX "LeadCapture_email_idx" ON "LeadCapture"("email");
-CREATE INDEX "LeadCapture_phone_idx" ON "LeadCapture"("phone");
-CREATE INDEX "LeadCapture_status_idx" ON "LeadCapture"("status");
-CREATE INDEX "LeadCapture_submittedAt_idx" ON "LeadCapture"("submittedAt" DESC);
-CREATE INDEX "LeadCapture_urgency_idx" ON "LeadCapture"("urgency");
+CREATE INDEX IF NOT EXISTS "LeadCapture_email_idx" ON "LeadCapture"("email");
+CREATE INDEX IF NOT EXISTS "LeadCapture_phone_idx" ON "LeadCapture"("phone");
+CREATE INDEX IF NOT EXISTS "LeadCapture_status_idx" ON "LeadCapture"("status");
+CREATE INDEX IF NOT EXISTS "LeadCapture_submittedAt_idx" ON "LeadCapture"("submittedAt" DESC);
+CREATE INDEX IF NOT EXISTS "LeadCapture_urgency_idx" ON "LeadCapture"("urgency");
 
 -- Triage Assessment Table
 CREATE TABLE IF NOT EXISTS "TriageAssessment" (
@@ -97,10 +97,10 @@ CREATE TABLE IF NOT EXISTS "TriageAssessment" (
   "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
-CREATE INDEX "TriageAssessment_email_idx" ON "TriageAssessment"("email");
-CREATE INDEX "TriageAssessment_urgencyLevel_idx" ON "TriageAssessment"("urgencyLevel");
-CREATE INDEX "TriageAssessment_completedAt_idx" ON "TriageAssessment"("completedAt" DESC);
-CREATE INDEX "TriageAssessment_triageSessionId_idx" ON "TriageAssessment"("triageSessionId");
+CREATE INDEX IF NOT EXISTS "TriageAssessment_email_idx" ON "TriageAssessment"("email");
+CREATE INDEX IF NOT EXISTS "TriageAssessment_urgencyLevel_idx" ON "TriageAssessment"("urgencyLevel");
+CREATE INDEX IF NOT EXISTS "TriageAssessment_completedAt_idx" ON "TriageAssessment"("completedAt" DESC);
+CREATE INDEX IF NOT EXISTS "TriageAssessment_triageSessionId_idx" ON "TriageAssessment"("triageSessionId");
 
 -- Newsletter Subscription Table
 CREATE TABLE IF NOT EXISTS "NewsletterSubscription" (
@@ -148,9 +148,9 @@ CREATE TABLE IF NOT EXISTS "NewsletterSubscription" (
   "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
-CREATE INDEX "NewsletterSubscription_isActive_idx" ON "NewsletterSubscription"("isActive");
-CREATE INDEX "NewsletterSubscription_subscribedAt_idx" ON "NewsletterSubscription"("subscribedAt" DESC);
-CREATE INDEX "NewsletterSubscription_state_idx" ON "NewsletterSubscription"("state");
+CREATE INDEX IF NOT EXISTS "NewsletterSubscription_isActive_idx" ON "NewsletterSubscription"("isActive");
+CREATE INDEX IF NOT EXISTS "NewsletterSubscription_subscribedAt_idx" ON "NewsletterSubscription"("subscribedAt" DESC);
+CREATE INDEX IF NOT EXISTS "NewsletterSubscription_state_idx" ON "NewsletterSubscription"("state");
 
 -- Contractor Inquiry Table
 CREATE TABLE IF NOT EXISTS "ContractorInquiry" (
@@ -218,8 +218,8 @@ CREATE TABLE IF NOT EXISTS "ContractorInquiry" (
   "updatedAt" TIMESTAMP(3) NOT NULL
 );
 
-CREATE INDEX "ContractorInquiry_status_idx" ON "ContractorInquiry"("status");
-CREATE INDEX "ContractorInquiry_submittedAt_idx" ON "ContractorInquiry"("submittedAt" DESC);
-CREATE INDEX "ContractorInquiry_applicationScore_idx" ON "ContractorInquiry"("applicationScore" DESC);
-CREATE INDEX "ContractorInquiry_contactEmail_idx" ON "ContractorInquiry"("contactEmail");
-CREATE INDEX "ContractorInquiry_state_idx" ON "ContractorInquiry"("state");
+CREATE INDEX IF NOT EXISTS "ContractorInquiry_status_idx" ON "ContractorInquiry"("status");
+CREATE INDEX IF NOT EXISTS "ContractorInquiry_submittedAt_idx" ON "ContractorInquiry"("submittedAt" DESC);
+CREATE INDEX IF NOT EXISTS "ContractorInquiry_applicationScore_idx" ON "ContractorInquiry"("applicationScore" DESC);
+CREATE INDEX IF NOT EXISTS "ContractorInquiry_contactEmail_idx" ON "ContractorInquiry"("contactEmail");
+CREATE INDEX IF NOT EXISTS "ContractorInquiry_state_idx" ON "ContractorInquiry"("state");
