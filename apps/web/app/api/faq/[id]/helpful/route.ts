@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import { basePrisma } from '@/lib/prisma';
 import { z } from 'zod';
 
 const helpfulSchema = z.object({
@@ -18,7 +18,7 @@ export async function POST(
     const body = await request.json();
     const { helpful } = helpfulSchema.parse(body);
 
-    const faq = await prisma.fAQ.update({
+    const faq = await basePrisma.fAQ.update({
       where: { id: params.id },
       data: {
         ...(helpful
