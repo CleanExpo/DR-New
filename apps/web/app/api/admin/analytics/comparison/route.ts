@@ -4,21 +4,25 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { calculatePercentageChange } from '@/lib/analytics/trend-analyzer';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || (session.user as any).role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
 
@@ -43,7 +47,7 @@ export async function GET(request: NextRequest) {
     const p2End = new Date(period2End);
 
     // Fetch data for both periods
-    const period1Payments = await prisma.payment.findMany({
+    const period1Payments = await db.payment.findMany({
       where: {
         status: 'COMPLETED',
         createdAt: {
@@ -53,7 +57,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const period2Payments = await prisma.payment.findMany({
+    const period2Payments = await db.payment.findMany({
       where: {
         status: 'COMPLETED',
         createdAt: {
@@ -68,7 +72,7 @@ export async function GET(request: NextRequest) {
     const period2Revenue = period2Payments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
 
     // Booking data for completion rates
-    const period1Bookings = await prisma.booking.findMany({
+    const period1Bookings = await db.booking.findMany({
       where: {
         completedAt: {
           gte: p1Start,
@@ -77,7 +81,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const period2Bookings = await prisma.booking.findMany({
+    const period2Bookings = await db.booking.findMany({
       where: {
         completedAt: {
           gte: p2Start,

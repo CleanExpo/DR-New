@@ -4,9 +4,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   calculateRegionalMetrics,
   generateHeatmapData,
@@ -18,14 +17,19 @@ import {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || (session.user as any).role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const startDateParam = searchParams.get('startDate');
@@ -37,7 +41,7 @@ export async function GET(request: NextRequest) {
       : new Date(endDate.getTime() - 90 * 24 * 60 * 60 * 1000); // 90 days
 
     // Fetch completed bookings with location data
-    const bookings = await prisma.booking.findMany({
+    const bookings = await db.booking.findMany({
       where: {
         status: 'COMPLETED',
         completedAt: {
@@ -60,7 +64,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Fetch all contractors with service areas
-    const contractors = await prisma.contractor.findMany({
+    const contractors = await db.contractor.findMany({
       where: {
         isVerified: true,
         isActive: true,
