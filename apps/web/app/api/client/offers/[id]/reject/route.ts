@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
 
@@ -19,6 +19,9 @@ export async function POST(
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role authorization
     if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
@@ -26,7 +29,7 @@ export async function POST(
     }
 
     // Get the offer/match
-    const offer = await prisma.contractorMatch.findUnique({
+    const offer = await db.contractorMatch.findUnique({
       where: { id: params.id },
       include: {
         contractor: {
@@ -54,13 +57,13 @@ export async function POST(
     // (Ownership checks are not required for admin actions.)
 
     // Update the offer status to REJECTED
-    await prisma.contractorMatch.update({
+    await db.contractorMatch.update({
       where: { id: params.id },
       data: { status: 'REJECTED' },
     });
 
     // Send notification message to contractor
-    await prisma.message.create({
+    await db.message.create({
       data: {
         senderId: user.id,
         receiverId: offer.contractor.userId,

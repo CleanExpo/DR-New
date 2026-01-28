@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
 
@@ -15,6 +15,9 @@ export async function POST(
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role authorization
     if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
@@ -22,7 +25,7 @@ export async function POST(
     }
 
     // Get the project/match
-    const project = await prisma.contractorMatch.findUnique({
+    const project = await db.contractorMatch.findUnique({
       where: { id: params.id },
       include: {
         contractor: {
@@ -56,19 +59,19 @@ export async function POST(
     }
 
     // Update the project status to ACCEPTED (MatchStatus enum doesn't have COMPLETED)
-    await prisma.contractorMatch.update({
+    await db.contractorMatch.update({
       where: { id: params.id },
       data: { status: 'ACCEPTED' },
     });
 
     // Update the service request status to COMPLETED
-    await prisma.serviceRequest.update({
+    await db.serviceRequest.update({
       where: { id: project.serviceRequestId },
       data: { status: 'COMPLETED' },
     });
 
     // Send notification message to contractor
-    await prisma.message.create({
+    await db.message.create({
       data: {
         senderId: user.id,
         receiverId: project.contractor.userId,

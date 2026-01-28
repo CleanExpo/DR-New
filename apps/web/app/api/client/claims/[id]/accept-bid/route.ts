@@ -11,7 +11,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function POST(
   request: NextRequest,
@@ -42,7 +42,7 @@ export async function POST(
     }
 
     // 3. Get booking and verify ownership
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: bookingId },
       select: {
         id: true,
@@ -82,7 +82,7 @@ export async function POST(
     }
 
     // 5. Get the contractor match
-    const match = await prisma.contractorMatch.findUnique({
+    const match = await db.contractorMatch.findUnique({
       where: { id: matchId },
       include: {
         contractor: {
@@ -117,7 +117,7 @@ export async function POST(
     }
 
     // 6. Find the Contractor record linked to the same user
-    const contractor = await prisma.contractor.findUnique({
+    const contractor = await db.contractor.findUnique({
       where: { userId: match.contractor.userId },
       select: { id: true },
     });
@@ -130,7 +130,7 @@ export async function POST(
     }
 
     // 7. Execute transaction: accept bid, reject others, assign contractor
-    await prisma.$transaction([
+    await db.$transaction([
       // Accept the selected match
       prisma.contractorMatch.update({
         where: { id: matchId },

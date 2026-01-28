@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
@@ -10,12 +10,15 @@ export async function GET(request: NextRequest) {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) return authResult.response;
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
-    const profile = await prisma.contractorProfile.findUnique({
+    const profile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
     });
 
@@ -23,7 +26,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ success: true, data: [] });
     }
 
-    const activeProjects = await prisma.contractorMatch.findMany({
+    const activeProjects = await db.contractorMatch.findMany({
       where: {
         contractorId: profile.id,
         status: 'ACCEPTED',

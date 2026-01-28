@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { startModule } from '@/lib/services/client-onboarding.service';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z, ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -26,6 +26,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
@@ -37,7 +40,7 @@ export async function POST(request: NextRequest) {
     const validated = startModuleSchema.parse(body);
 
     // Get onboarding record
-    const onboarding = await prisma.clientOnboarding.findUnique({
+    const onboarding = await db.clientOnboarding.findUnique({
       where: { clientId: user.id },
     });
 

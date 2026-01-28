@@ -4,7 +4,7 @@ import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { completeModule } from '@/lib/services/client-onboarding.service';
 import { sendModuleCompletionEmail } from '@/lib/services/client-email.service';
 import { moduleCompletionSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
@@ -36,7 +39,7 @@ export async function POST(request: NextRequest) {
     const validated = moduleCompletionSchema.parse(body);
 
     // Get onboarding record
-    const onboarding = await prisma.clientOnboarding.findUnique({
+    const onboarding = await db.clientOnboarding.findUnique({
       where: { clientId: validated.clientId },
       include: {
         moduleProgress: true,
@@ -63,7 +66,7 @@ export async function POST(request: NextRequest) {
     const moduleName = moduleProgress?.moduleName || validated.moduleId;
 
     // Find next module
-    const allModules = await prisma.clientModuleProgress.findMany({
+    const allModules = await db.clientModuleProgress.findMany({
       where: { onboardingId: onboarding.id },
       orderBy: { moduleId: 'asc' },
     });

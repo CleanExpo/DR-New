@@ -11,7 +11,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function POST(
   request: NextRequest,
@@ -49,7 +49,7 @@ export async function POST(
     }
 
     // 3. Get booking and verify ownership
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: bookingId },
       include: {
         contractor: {
@@ -94,7 +94,7 @@ export async function POST(
     }
 
     // 4. Create activity record for the message
-    await prisma.activity.create({
+    await db.activity.create({
       data: {
         bookingId,
         type: 'NOTE',
@@ -106,7 +106,7 @@ export async function POST(
     });
 
     // 5. Log the action
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'CLIENT_MESSAGE_SENT',
         entityType: 'Booking',
