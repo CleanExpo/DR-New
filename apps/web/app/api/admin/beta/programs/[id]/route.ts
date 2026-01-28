@@ -128,20 +128,18 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await db.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    const db = getTenantDb(authResult.context)
 
     const existing = await db.betaProgram.findUnique({
       where: { id: params.id },
@@ -172,9 +170,9 @@ export async function PATCH(
         action: 'BETA_PROGRAM_UPDATED',
         entityType: 'BetaProgram',
         entityId: program.id,
-        userId: session.user.email!,
-        oldValues: existing,
-        newValues: validationResult.data,
+        performedBy: user.id,
+        oldValues: existing as any,
+        newValues: validationResult.data as any,
       },
     })
 
@@ -194,20 +192,18 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await db.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    const db = getTenantDb(authResult.context)
 
     const existing = await db.betaProgram.findUnique({
       where: { id: params.id },
@@ -246,8 +242,8 @@ export async function DELETE(
         action: 'BETA_PROGRAM_DELETED',
         entityType: 'BetaProgram',
         entityId: params.id,
-        userId: session.user.email!,
-        oldValues: existing,
+        performedBy: user.id,
+        oldValues: existing as any,
       },
     })
 

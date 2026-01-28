@@ -104,12 +104,12 @@ export async function PATCH(
         action: 'BETA_ENROLLMENT_UPDATED',
         entityType: 'BetaEnrollment',
         entityId: enrollment.id,
-        userId: adminUser.id,
+        performedBy: adminUser.id,
         oldValues: {
           status: existing.status,
           tierOverride: existing.tierOverride,
-        },
-        newValues: updateData,
+        } as any,
+        newValues: updateData as any,
       },
     })
 
@@ -134,20 +134,18 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const adminUser = await db.user.findUnique({
-      where: { email: session.user.email! },
-      select: { id: true, userType: true },
-    })
+    const { user: adminUser } = authResult.context
 
-    if (!adminUser || !['ADMIN', 'SUPER_ADMIN'].includes(adminUser.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(adminUser, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    const db = getTenantDb(authResult.context)
 
     const existing = await db.betaEnrollment.findUnique({
       where: { id: params.id },
@@ -185,8 +183,8 @@ export async function DELETE(
         action: 'BETA_ENROLLMENT_DELETED',
         entityType: 'BetaEnrollment',
         entityId: params.id,
-        userId: adminUser.id,
-        oldValues: existing,
+        performedBy: adminUser.id,
+        oldValues: existing as any,
       },
     })
 

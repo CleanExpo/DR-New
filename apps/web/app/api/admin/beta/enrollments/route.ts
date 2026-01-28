@@ -82,20 +82,18 @@ const createEnrollmentSchema = z.object({
 // POST - Invite/enroll a contractor to beta
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const adminUser = await db.user.findUnique({
-      where: { email: session.user.email! },
-      select: { id: true, userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!adminUser || !['ADMIN', 'SUPER_ADMIN'].includes(adminUser.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    const db = getTenantDb(authResult.context)
 
     const body = await request.json()
     const validationResult = createEnrollmentSchema.safeParse(body)
@@ -173,7 +171,7 @@ export async function POST(request: NextRequest) {
         programId,
         contractorId,
         status: 'INVITED',
-        invitedBy: adminUser.id,
+        invitedBy: user.id,
         tierOverride: tierOverride || 'PRO', // Default to PRO tier for beta
         adminNotes,
       },
@@ -195,12 +193,12 @@ export async function POST(request: NextRequest) {
         action: 'BETA_ENROLLMENT_CREATED',
         entityType: 'BetaEnrollment',
         entityId: enrollment.id,
-        userId: adminUser.id,
+        performedBy: user.id,
         newValues: {
           programId,
           contractorId,
           tierOverride: tierOverride || 'PRO',
-        },
+        } as any,
       },
     })
 
