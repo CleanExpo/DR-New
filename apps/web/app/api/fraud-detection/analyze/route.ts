@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 import { validateRequest, formatZodErrors } from '@/lib/validation';
 
@@ -18,13 +17,12 @@ interface RiskFactor {
 // Analyze a transaction for fraud risk
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
 
@@ -43,7 +41,7 @@ export async function POST(request: NextRequest) {
     const { paymentId } = validation.data;
 
     // Get payment with related data
-    const payment = await prisma.payment.findUnique({
+    const payment = await db.payment.findUnique({
       where: { id: paymentId },
       include: {
         client: {
@@ -171,7 +169,7 @@ export async function POST(request: NextRequest) {
 
     // Create or update fraud alert if risk is elevated
     if (riskScore >= 0.4) {
-      await prisma.fraudAlert.upsert({
+      await db.fraudAlert.upsert({
         where: { paymentId },
         create: {
           paymentId,

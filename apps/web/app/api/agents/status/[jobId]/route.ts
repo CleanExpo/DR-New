@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getOrchestrator } from '@/lib/agents/core/orchestrator';
 
 export async function GET(
@@ -13,12 +13,9 @@ export async function GET(
 ) {
   try {
     // Check authentication
-    const session = await getServerSession();
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized', message: 'You must be logged in to check job status' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
     const { jobId } = await params;
@@ -70,12 +67,9 @@ export async function POST(
 ) {
   try {
     // Check authentication
-    const session = await getServerSession();
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized', message: 'You must be logged in to manage jobs' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
     const { jobId } = await params;

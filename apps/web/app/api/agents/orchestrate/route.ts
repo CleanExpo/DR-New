@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { z } from 'zod';
 import { getOrchestrator } from '@/lib/agents/core/orchestrator';
 import { WorkflowType } from '@/lib/agents/types';
@@ -29,13 +29,12 @@ const orchestrateRequestSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     // Check authentication
-    const session = await getServerSession();
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized', message: 'You must be logged in to use agent workflows' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
 
     // Parse and validate request body
     const body = await request.json();
@@ -57,9 +56,8 @@ export async function POST(request: NextRequest) {
     // Get the orchestrator
     const orchestrator = getOrchestrator();
 
-    // Get user ID from session (assuming it's stored in the session)
-    // In a real app, you'd look this up from your database
-    const userId = (session.user as { id?: string }).id || session.user.email;
+    // Get user ID from auth context
+    const userId = user.id;
 
     // Execute the workflow
     if (stream) {

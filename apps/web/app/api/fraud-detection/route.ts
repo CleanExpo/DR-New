@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { fraudReviewSchema, validateRequest, formatZodErrors } from '@/lib/validation';
 
 export interface FraudRiskAssessment {
@@ -18,21 +17,18 @@ export interface FraudRiskAssessment {
 // Get flagged transactions
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = session.user as any;
-    if (!isAdmin(user.role)) {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden' },
-        { status: 403 }
-      );
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
+
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status') || 'pending';
@@ -53,7 +49,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [flaggedTransactions, total] = await Promise.all([
-      prisma.fraudAlert.findMany({
+      db.fraudAlert.findMany({
         where,
         include: {
           payment: {
@@ -87,7 +83,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma.fraudAlert.count({ where }),
+      db.fraudAlert.count({ where }),
     ]);
 
     return NextResponse.json({
@@ -113,21 +109,18 @@ export async function GET(request: NextRequest) {
 // Review a flagged transaction
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = session.user as any;
-    if (!isAdmin(user.role)) {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden' },
-        { status: 403 }
-      );
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
+
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
 
@@ -146,7 +139,7 @@ export async function POST(request: NextRequest) {
     const { transactionId, action, reason, notes } = validation.data;
 
     // Get the fraud alert
-    const fraudAlert = await prisma.fraudAlert.findFirst({
+    const fraudAlert = await db.fraudAlert.findFirst({
       where: { paymentId: transactionId },
     });
 
@@ -158,7 +151,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Update fraud alert
-    const updatedAlert = await prisma.fraudAlert.update({
+    const updatedAlert = await db.fraudAlert.update({
       where: { id: fraudAlert.id },
       data: {
         reviewStatus: action,
@@ -171,12 +164,12 @@ export async function POST(request: NextRequest) {
 
     // Update payment status based on action
     if (action === 'APPROVE') {
-      await prisma.payment.update({
+      await db.payment.update({
         where: { id: transactionId },
         data: { status: 'COMPLETED' },
       });
     } else if (action === 'REJECT') {
-      await prisma.payment.update({
+      await db.payment.update({
         where: { id: transactionId },
         data: { status: 'FAILED', failureReason: reason || 'Rejected due to fraud concerns' },
       });

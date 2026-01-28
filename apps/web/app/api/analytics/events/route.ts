@@ -10,20 +10,24 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { recordAnalyticsEvent } from '@/lib/analytics/event-processor';
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    // Events can be recorded by authenticated users or system with API key
+    const hasApiKey = request.headers.get('X-API-Key');
 
-    // Events can be recorded by authenticated users or system
-    if (!session && !request.headers.get('X-API-Key')) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    let userId: string | undefined;
+
+    if (!hasApiKey) {
+      // Require authentication if no API key
+      const authResult = await authenticateRequest(request);
+      if (!authResult.success) {
+        return authResult.response;
+      }
+      userId = authResult.context.user.id;
     }
 
     const body = await request.json();
@@ -57,7 +61,6 @@ export async function POST(request: NextRequest) {
     }
 
     // Record the event
-    const userId = session?.user?.id;
     await recordAnalyticsEvent(type, data, userId);
 
     return NextResponse.json({
@@ -87,13 +90,15 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
 
-    if (!session || (session.user as any).role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     const { searchParams } = new URL(request.url);
