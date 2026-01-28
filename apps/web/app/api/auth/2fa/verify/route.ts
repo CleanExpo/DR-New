@@ -24,10 +24,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { basePrisma } from '@/lib/prisma';
 import { twoFactorService } from '@/lib/auth/two-factor';
-import { prisma } from '@/lib/db';
 import { logInfo, logError, logWarn } from '@/lib/logger/helpers';
 import { createHash } from 'crypto';
 
@@ -50,18 +50,18 @@ function hashBackupCodes(codes: string[]): string[] {
 export async function POST(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { email, secret, code, backupCodes }: VerifyRequest = await request.json();
 
     // Verify email matches authenticated user
-    if (email !== session.user.email) {
+    if (email !== user.email) {
       return NextResponse.json(
         { error: 'Email mismatch' },
         { status: 403 }
@@ -91,11 +91,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Get user
-    const user = await prisma.user.findUnique({
+    const dbUser = await db.user.findUnique({
       where: { email },
     });
 
-    if (!user) {
+    if (!dbUser) {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
@@ -106,8 +106,8 @@ export async function POST(request: NextRequest) {
     const hashedBackupCodes = hashBackupCodes(backupCodes);
 
     // Save 2FA settings to database
-    await prisma.user.update({
-      where: { id: user.id },
+    await db.user.update({
+      where: { id: dbUser.id },
       data: {
         twoFactorSecret: secret,
         twoFactorEnabled: true,
@@ -117,8 +117,8 @@ export async function POST(request: NextRequest) {
     });
 
     logInfo('2FA enabled for user', {
-      userId: user.id,
-      email: user.email,
+      userId: dbUser.id,
+      email: dbUser.email,
     });
 
     return NextResponse.json({
@@ -140,19 +140,19 @@ export async function POST(request: NextRequest) {
  */
 export async function DELETE(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
+
+    const dbUser = await db.user.findUnique({
+      where: { email: user.email },
     });
 
-    if (!user) {
+    if (!dbUser) {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
@@ -160,8 +160,8 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Disable 2FA
-    await prisma.user.update({
-      where: { id: user.id },
+    await db.user.update({
+      where: { id: dbUser.id },
       data: {
         twoFactorSecret: null,
         twoFactorEnabled: false,
@@ -171,8 +171,8 @@ export async function DELETE(request: NextRequest) {
     });
 
     logInfo('2FA disabled for user', {
-      userId: user.id,
-      email: user.email,
+      userId: dbUser.id,
+      email: dbUser.email,
     });
 
     return NextResponse.json({
@@ -205,8 +205,8 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Get user
-    const user = await prisma.user.findUnique({
+    // Get user (using basePrisma since this is pre-auth)
+    const user = await basePrisma.user.findUnique({
       where: { email },
       select: {
         id: true,
@@ -239,7 +239,7 @@ export async function PUT(request: NextRequest) {
               (hc) => !twoFactorService.verifyBackupCode(code, hc)
             );
 
-            await prisma.user.update({
+            await basePrisma.user.update({
               where: { id: user.id },
               data: { twoFactorBackupCodes: updatedCodes },
             });
