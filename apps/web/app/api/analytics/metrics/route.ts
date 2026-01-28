@@ -10,7 +10,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
-import { basePrisma } from '@/lib/basePrisma';
+import { basePrisma } from '@/lib/prisma';
 import { calculateDailyMetrics, aggregateMetrics, getMetricsForPeriod } from '@/lib/analytics/metrics-engine';
 
 export async function GET(request: NextRequest) {

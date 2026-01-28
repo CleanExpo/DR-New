@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { basePrisma } from '@/lib/prisma';
@@ -9,7 +7,10 @@ import { contractorApplicationSchema, validateRequest, formatZodErrors } from '@
 // Get contractors (public for searching, full list for admins)
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    // Optional authentication - allow both public and authenticated access
+    const authResult = await authenticateRequest(request);
+    const user = authResult.success ? authResult.context.user : null;
+
     const { searchParams } = new URL(request.url);
 
     const query = searchParams.get('query') || '';
@@ -27,7 +28,6 @@ export async function GET(request: NextRequest) {
     };
 
     // Public searches only show verified contractors
-    const user = session?.user as any;
     const isAdminUser = user?.userType === 'ADMIN';
     if (!user || !isAdminUser) {
       where.contractor = {
@@ -66,13 +66,13 @@ export async function GET(request: NextRequest) {
         select: {
           id: true,
           name: true,
-          email: session?.user ? true : false,
+          email: user ? true : false,
           image: true,
           contractor: {
             select: {
               id: true,
               businessName: true,
-              licenseNumber: session?.user && isAdminUser ? true : false,
+              licenseNumber: user && isAdminUser ? true : false,
               serviceArea: true,
               specialties: true,
               rating: true,
