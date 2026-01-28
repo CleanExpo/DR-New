@@ -11,6 +11,8 @@ interface RouteParams {
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
     if (!session?.user) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
@@ -21,7 +23,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const { id } = params;
     const user = session.user as any;
 
-    const payment = await prisma.payment.findUnique({
+    const payment = await db.payment.findUnique({
       where: { id },
       include: {
         booking: {
@@ -83,6 +85,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 export async function PATCH(request: NextRequest, { params }: RouteParams) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
     if (!session?.user) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
@@ -94,7 +98,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     const user = session.user as any;
     const body = await request.json();
 
-    const payment = await prisma.payment.findUnique({
+    const payment = await db.payment.findUnique({
       where: { id },
     });
 
@@ -122,7 +126,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       }
     }
 
-    const updatedPayment = await prisma.payment.update({
+    const updatedPayment = await db.payment.update({
       where: { id },
       data: updateData,
     });

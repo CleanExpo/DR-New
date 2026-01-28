@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import stripe from '@/lib/stripe';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { z } from 'zod';
@@ -22,12 +22,15 @@ export async function POST(
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     if (!requireRole(user, ['CLIENT'])) {
       return unauthorizedRoleResponse(['CLIENT']);
     }
 
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: params.id },
       select: { id: true, userId: true },
     });
@@ -46,7 +49,7 @@ export async function POST(
       return handleValidationError(validation.error);
     }
 
-    const existing = await prisma.serviceRequestCalloutPayment.findUnique({
+    const existing = await db.serviceRequestCalloutPayment.findUnique({
       where: { serviceRequestId: serviceRequest.id },
       select: { stripeCheckoutSessionId: true },
     });
@@ -61,7 +64,7 @@ export async function POST(
     const paid = session.payment_status === 'paid';
 
     if (paid) {
-      await prisma.serviceRequestCalloutPayment.update({
+      await db.serviceRequestCalloutPayment.update({
         where: { serviceRequestId: serviceRequest.id },
         data: {
           status: 'PAID',

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import stripe from '@/lib/stripe';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { getNrpgCalloutSplit } from '@/lib/pricing/nrpg-callout';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
@@ -18,12 +18,15 @@ export async function POST(
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     if (!requireRole(user, ['CLIENT'])) {
       return unauthorizedRoleResponse(['CLIENT']);
     }
 
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: params.id },
       select: { id: true, userId: true, serviceTitle: true, status: true },
     });
@@ -64,7 +67,7 @@ export async function POST(
       },
     });
 
-    await prisma.serviceRequestCalloutPayment.upsert({
+    await db.serviceRequestCalloutPayment.upsert({
       where: { serviceRequestId: serviceRequest.id },
       create: {
         serviceRequestId: serviceRequest.id,

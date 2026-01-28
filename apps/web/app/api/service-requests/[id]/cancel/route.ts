@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
@@ -31,6 +31,9 @@ export async function PATCH(
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Require CLIENT role
     if (!requireRole(user, ['CLIENT'])) {
@@ -38,7 +41,7 @@ export async function PATCH(
     }
 
     // Find the service request
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id },
       include: {
         user: true
@@ -77,7 +80,7 @@ export async function PATCH(
 
     // Update the request status to CANCELLED
     console.log('[CANCEL_REQUEST] Updating status to CANCELLED');
-    const updatedRequest = await prisma.serviceRequest.update({
+    const updatedRequest = await db.serviceRequest.update({
       where: { id },
       data: {
         status: 'CANCELLED',

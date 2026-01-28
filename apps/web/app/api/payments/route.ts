@@ -9,6 +9,8 @@ import { createPaymentIntent, calculateFees } from '@/lib/stripe';
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
     if (!session?.user) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
@@ -100,6 +102,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
     if (!session?.user) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
@@ -125,7 +129,7 @@ export async function POST(request: NextRequest) {
     const user = session.user as any;
 
     // Get booking
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: bookingId },
       include: {
         contractor: true,
@@ -151,7 +155,7 @@ export async function POST(request: NextRequest) {
     const fees = calculateFees(amount);
 
     // Create payment record
-    const payment = await prisma.payment.create({
+    const payment = await db.payment.create({
       data: {
         bookingId,
         clientId: booking.clientId,
@@ -182,7 +186,7 @@ export async function POST(request: NextRequest) {
         },
       });
 
-      await prisma.payment.update({
+      await db.payment.update({
         where: { id: payment.id },
         data: {
           stripePaymentIntentId: paymentIntent.id,

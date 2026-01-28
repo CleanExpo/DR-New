@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { ZodError } from 'zod';
 import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { serviceRequestSearchSchema } from '@/lib/validation-schemas';
 import {
   handleValidationError,
@@ -25,6 +25,8 @@ export async function GET(request: NextRequest) {
   try {
     // Authenticate user via session
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
     const sessionUser = session?.user as unknown as {
       id?: string;
       email?: string;
@@ -42,7 +44,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Fetch full user from database
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: sessionUser.id ? { id: sessionUser.id } : { email: sessionUser.email! },
     });
 

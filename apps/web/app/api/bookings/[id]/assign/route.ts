@@ -7,7 +7,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authOptions } from '@/lib/auth';
 import { BookingStatus } from '@prisma/client';
 
@@ -21,6 +21,8 @@ export async function POST(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -29,7 +31,7 @@ export async function POST(
       );
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email },
     });
 
@@ -59,7 +61,7 @@ export async function POST(
     }
 
     // Verify booking exists
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: params.id },
     });
 
@@ -71,7 +73,7 @@ export async function POST(
     }
 
     // Verify contractor exists and is verified
-    const contractor = await prisma.contractor.findUnique({
+    const contractor = await db.contractor.findUnique({
       where: { id: contractorId },
       include: {
         iicrcCertifications: {
@@ -110,7 +112,7 @@ export async function POST(
     }
 
     // Assign contractor
-    const updatedBooking = await prisma.booking.update({
+    const updatedBooking = await db.booking.update({
       where: { id: params.id },
       data: {
         contractorId,
@@ -128,7 +130,7 @@ export async function POST(
     });
 
     // Log audit
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'UPDATE',
         entityType: 'Booking',
@@ -168,6 +170,8 @@ export async function DELETE(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -176,7 +180,7 @@ export async function DELETE(
       );
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email },
     });
 
@@ -195,7 +199,7 @@ export async function DELETE(
       );
     }
 
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: params.id },
     });
 
@@ -222,7 +226,7 @@ export async function DELETE(
       );
     }
 
-    const updatedBooking = await prisma.booking.update({
+    const updatedBooking = await db.booking.update({
       where: { id: params.id },
       data: {
         contractorId: null,
@@ -231,7 +235,7 @@ export async function DELETE(
     });
 
     // Log audit
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'UPDATE',
         entityType: 'Booking',
