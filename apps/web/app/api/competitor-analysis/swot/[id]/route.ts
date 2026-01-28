@@ -6,19 +6,24 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
     const { id } = params;
 
     // Get latest SWOT analysis for competitor
-    const swot = await prisma.sWOTAnalysis.findFirst({
+    const swot = await db.sWOTAnalysis.findFirst({
       where: { competitorId: id },
       orderBy: { generatedAt: 'desc' },
     });

@@ -7,14 +7,21 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient,  OpportunityStage } from '@prisma/client';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { OpportunityStage } from '@prisma/client';
 import { OpportunityService } from '@/lib/crm/opportunity.service';
-
-const prisma = new PrismaClient();
-const opportunityService = new OpportunityService(prisma);
 
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+    const opportunityService = new OpportunityService(db);
+
     const { searchParams } = new URL(request.url);
 
     // Get pipeline metrics
@@ -31,7 +38,7 @@ export async function GET(request: NextRequest) {
     if (state) where.serviceState = state;
 
     const [opportunities, total] = await Promise.all([
-      prisma.opportunity.findMany({
+      db.opportunity.findMany({
         where,
         include: {
           customerLifecycle: {
@@ -57,7 +64,7 @@ export async function GET(request: NextRequest) {
         take: limit,
       }),
 
-      prisma.opportunity.count({ where }),
+      db.opportunity.count({ where }),
     ]);
 
     return NextResponse.json({
