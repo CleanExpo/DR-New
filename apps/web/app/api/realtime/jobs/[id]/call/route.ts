@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { CallInitiatedEvent, CallAcceptedEvent, CallRejectedEvent, CallEndedEvent, CallType } from '@/lib/supabase/types'
+import type { PrismaClient } from '@prisma/client'
 
 // Lazy initialization to avoid build-time errors
 let supabase: SupabaseClient | null = null
@@ -25,8 +25,8 @@ interface RouteParams {
 }
 
 // Helper function to check tier access
-async function checkTierAccess(userId: string, jobId: string) {
-  const contractor = await prisma.contractor.findFirst({
+async function checkTierAccess(db: PrismaClient | ReturnType<typeof getTenantDb>, userId: string, jobId: string) {
+  const contractor = await db.contractor.findFirst({
     where: { userId },
     select: { id: true },
   })
@@ -34,7 +34,7 @@ async function checkTierAccess(userId: string, jobId: string) {
   let tier: string | null = null
 
   if (contractor) {
-    const subscription = await prisma.realtimeSubscription.findUnique({
+    const subscription = await db.realtimeSubscription.findUnique({
       where: { contractorId: contractor.id },
       select: { tier: true, status: true, trialEndsAt: true },
     })
@@ -50,7 +50,7 @@ async function checkTierAccess(userId: string, jobId: string) {
     }
   } else {
     // Client - check contractor's tier via booking
-    const booking = await prisma.booking.findFirst({
+    const booking = await db.booking.findFirst({
       where: {
         serviceRequestId: jobId,
         status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
@@ -59,7 +59,7 @@ async function checkTierAccess(userId: string, jobId: string) {
     })
 
     if (booking) {
-      const subscription = await prisma.realtimeSubscription.findUnique({
+      const subscription = await db.realtimeSubscription.findUnique({
         where: { contractorId: booking.contractorId },
         select: { tier: true, status: true, trialEndsAt: true },
       })
@@ -88,15 +88,18 @@ async function checkTierAccess(userId: string, jobId: string) {
 // GET - Get active call for a job
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
 
     // Find active call for this job
-    const activeCall = await prisma.jobCall.findFirst({
+    const activeCall = await db.jobCall.findFirst({
       where: {
         jobId,
         status: { in: ['initiated', 'ringing', 'active'] },
@@ -114,10 +117,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 // POST - Initiate a new call
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
     const body = await request.json()
@@ -128,7 +134,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Check tier access (ENTERPRISE only)
-    const tierAccess = await checkTierAccess(session.user.id, jobId)
+    const tierAccess = await checkTierAccess(db, authUser.id, jobId)
     if (!tierAccess.hasVideoCalls) {
       return NextResponse.json(
         {
@@ -140,18 +146,18 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Determine user type and get receiver
-    const job = await prisma.serviceRequest.findFirst({
+    const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
-        clientId: session.user.id,
+        clientId: authUser.id,
       },
       select: { id: true, clientId: true },
     })
 
-    const booking = await prisma.booking.findFirst({
+    const booking = await db.booking.findFirst({
       where: {
         serviceRequestId: jobId,
-        contractor: { userId: session.user.id },
+        contractor: { userId: authUser.id },
       },
       select: {
         contractorId: true,
@@ -168,10 +174,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (job) {
       // User is the client
       initiatorType = 'client'
-      initiatorId = session.user.id
+      initiatorId = authUser.id
 
       // Find contractor via booking
-      const activeBooking = await prisma.booking.findFirst({
+      const activeBooking = await db.booking.findFirst({
         where: {
           serviceRequestId: jobId,
           status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
@@ -190,7 +196,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     } else if (booking) {
       // User is the contractor
       initiatorType = 'contractor'
-      initiatorId = session.user.id
+      initiatorId = authUser.id
       receiverId = booking.serviceRequest.clientId
       receiverType = 'client'
     } else {
@@ -198,7 +204,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Check if there's already an active call
-    const existingCall = await prisma.jobCall.findFirst({
+    const existingCall = await db.jobCall.findFirst({
       where: {
         jobId,
         status: { in: ['initiated', 'ringing', 'active'] },
@@ -210,7 +216,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Create the call record
-    const call = await prisma.jobCall.create({
+    const call = await db.jobCall.create({
       data: {
         jobId,
         initiatorId,
@@ -252,10 +258,13 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 // PATCH - Accept, reject, or end a call
 export async function PATCH(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
     const body = await request.json()
@@ -266,7 +275,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Find the call
-    const call = await prisma.jobCall.findFirst({
+    const call = await db.jobCall.findFirst({
       where: {
         id: callId,
         jobId,
@@ -278,7 +287,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Verify user is part of this call
-    if (call.initiatorId !== session.user.id && call.receiverId !== session.user.id) {
+    if (call.initiatorId !== authUser.id && call.receiverId !== authUser.id) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
 
@@ -319,7 +328,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Update call record
-    const updatedCall = await prisma.jobCall.update({
+    const updatedCall = await db.jobCall.update({
       where: { id: callId },
       data: {
         status: newStatus,
@@ -329,7 +338,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     })
 
     // Determine who to notify (the other party)
-    const isInitiator = call.initiatorId === session.user.id
+    const isInitiator = call.initiatorId === authUser.id
     const targetId = isInitiator ? call.receiverId : call.initiatorId
     const targetType = isInitiator ? call.receiverType : call.initiatorType
     const senderType = isInitiator ? call.initiatorType : call.receiverType
@@ -339,7 +348,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       jobId,
       callId: call.id,
       callType: call.callType as CallType,
-      senderId: session.user.id,
+      senderId: authUser.id,
       senderType: senderType as 'client' | 'contractor',
       timestamp: now.toISOString(),
     }
@@ -354,7 +363,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
         callEvent = { ...baseEvent, type: 'CALL_REJECTED', reason }
         break
       case 'CALL_ENDED':
-        callEvent = { ...baseEvent, type: 'CALL_ENDED', duration, endedBy: session.user.id }
+        callEvent = { ...baseEvent, type: 'CALL_ENDED', duration, endedBy: authUser.id }
         break
     }
 

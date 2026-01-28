@@ -1,19 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 
 // Get all active jobs for current user
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: { contractor: true },
     })
 
@@ -26,7 +27,7 @@ export async function GET(request: NextRequest) {
 
     if (user.contractor) {
       // Contractor: Get assigned jobs
-      jobs = await prisma.serviceRequest.findMany({
+      jobs = await db.serviceRequest.findMany({
         where: {
           // Add contractor assignment filter when schema supports it
           // contractorId: user.contractor.id,
@@ -47,7 +48,7 @@ export async function GET(request: NextRequest) {
       })
     } else {
       // Client: Get their own requests
-      jobs = await prisma.serviceRequest.findMany({
+      jobs = await db.serviceRequest.findMany({
         where: {
           clientId: user.id,
         },

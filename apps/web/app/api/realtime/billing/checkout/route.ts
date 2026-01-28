@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import Stripe from 'stripe'
 
 // Initialize Stripe
@@ -34,10 +33,13 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const session = await getServerSession(authOptions)
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const body = await request.json()
     const { tier } = body as { tier: 'BASIC' | 'PRO' | 'ENTERPRISE' }
@@ -50,8 +52,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Get user with contractor profile
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: {
         contractor: {
           include: {
@@ -84,7 +86,7 @@ export async function POST(request: NextRequest) {
     let customerId: string
 
     // Check if user has existing Stripe customer ID
-    const existingCustomer = await prisma.user.findUnique({
+    const existingCustomer = await db.user.findUnique({
       where: { id: user.id },
       select: { stripeCustomerId: true },
     })
@@ -115,7 +117,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Store customer ID for future use
-      await prisma.user.update({
+      await db.user.update({
         where: { id: user.id },
         data: { stripeCustomerId: customerId },
       })
@@ -157,7 +159,7 @@ export async function POST(request: NextRequest) {
 
     // Create or update pending subscription record
     if (user.contractor.realtimeSubscription) {
-      await prisma.realtimeSubscription.update({
+      await db.realtimeSubscription.update({
         where: { contractorId: user.contractor.id },
         data: {
           tier,
@@ -166,7 +168,7 @@ export async function POST(request: NextRequest) {
         },
       })
     } else {
-      await prisma.realtimeSubscription.create({
+      await db.realtimeSubscription.create({
         data: {
           contractorId: user.contractor.id,
           tier,

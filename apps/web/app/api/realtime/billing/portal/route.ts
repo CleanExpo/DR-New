@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import Stripe from 'stripe'
 
 // Initialize Stripe
@@ -21,14 +20,17 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const session = await getServerSession(authOptions)
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
+
     // Get user with contractor and subscription
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: {
         contractor: {
           include: {
@@ -60,7 +62,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Log portal access for audit
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'REALTIME_BILLING_PORTAL_ACCESSED',
         entityType: 'RealtimeSubscription',

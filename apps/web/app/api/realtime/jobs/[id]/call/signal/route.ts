@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { SDPOfferEvent, SDPAnswerEvent, ICECandidateEvent, CallType } from '@/lib/supabase/types'
+import type { PrismaClient } from '@prisma/client'
 
 // Lazy initialization to avoid build-time errors
 let supabase: SupabaseClient | null = null
@@ -34,8 +34,8 @@ interface SignalPayload {
 }
 
 // Helper function to check tier access
-async function checkTierAccess(userId: string, jobId: string) {
-  const contractor = await prisma.contractor.findFirst({
+async function checkTierAccess(db: PrismaClient | ReturnType<typeof getTenantDb>, userId: string, jobId: string) {
+  const contractor = await db.contractor.findFirst({
     where: { userId },
     select: { id: true },
   })
@@ -43,7 +43,7 @@ async function checkTierAccess(userId: string, jobId: string) {
   let tier: string | null = null
 
   if (contractor) {
-    const subscription = await prisma.realtimeSubscription.findUnique({
+    const subscription = await db.realtimeSubscription.findUnique({
       where: { contractorId: contractor.id },
       select: { tier: true, status: true, trialEndsAt: true },
     })
@@ -59,7 +59,7 @@ async function checkTierAccess(userId: string, jobId: string) {
     }
   } else {
     // Client - check contractor's tier via booking
-    const booking = await prisma.booking.findFirst({
+    const booking = await db.booking.findFirst({
       where: {
         serviceRequestId: jobId,
         status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
@@ -68,7 +68,7 @@ async function checkTierAccess(userId: string, jobId: string) {
     })
 
     if (booking) {
-      const subscription = await prisma.realtimeSubscription.findUnique({
+      const subscription = await db.realtimeSubscription.findUnique({
         where: { contractorId: booking.contractorId },
         select: { tier: true, status: true, trialEndsAt: true },
       })
@@ -97,10 +97,13 @@ async function checkTierAccess(userId: string, jobId: string) {
 // POST - Relay SDP offer/answer or ICE candidate
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
     const body = await request.json()
@@ -115,7 +118,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Check tier access (ENTERPRISE only)
-    const tierAccess = await checkTierAccess(session.user.id, jobId)
+    const tierAccess = await checkTierAccess(db, authUser.id, jobId)
     if (!tierAccess.hasVideoCalls) {
       return NextResponse.json(
         {
@@ -127,7 +130,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Find the call and verify user is part of it
-    const call = await prisma.jobCall.findFirst({
+    const call = await db.jobCall.findFirst({
       where: {
         id: callId,
         jobId,
@@ -138,12 +141,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Call not found' }, { status: 404 })
     }
 
-    if (call.initiatorId !== session.user.id && call.receiverId !== session.user.id) {
+    if (call.initiatorId !== authUser.id && call.receiverId !== authUser.id) {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
     }
 
     // Determine who to send the signal to
-    const isInitiator = call.initiatorId === session.user.id
+    const isInitiator = call.initiatorId === authUser.id
     const targetId = isInitiator ? call.receiverId : call.initiatorId
     const targetType = isInitiator ? call.receiverType : call.initiatorType
     const senderType = isInitiator ? call.initiatorType : call.receiverType
@@ -153,7 +156,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       jobId,
       callId: call.id,
       callType: call.callType as CallType,
-      senderId: session.user.id,
+      senderId: authUser.id,
       senderType: senderType as 'client' | 'contractor',
       timestamp: new Date().toISOString(),
     }

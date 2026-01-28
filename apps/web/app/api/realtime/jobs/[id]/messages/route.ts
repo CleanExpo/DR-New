@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { MessageSentEvent, MessageReadEvent, ChatMessage } from '@/lib/supabase/types'
 
@@ -27,10 +27,13 @@ interface RouteParams {
 // GET - Fetch message history for a job
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
     const { searchParams } = new URL(request.url)
@@ -38,19 +41,19 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const before = searchParams.get('before') // cursor for pagination
 
     // Verify user is party to this job
-    const job = await prisma.serviceRequest.findFirst({
+    const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
-        clientId: session.user.id,
+        clientId: authUser.id,
       },
       select: { id: true, clientId: true },
     })
 
     // Also check if user is contractor via booking
-    const booking = await prisma.booking.findFirst({
+    const booking = await db.booking.findFirst({
       where: {
         serviceRequestId: jobId,
-        contractor: { userId: session.user.id },
+        contractor: { userId: authUser.id },
       },
       select: { contractorId: true },
     })
@@ -60,7 +63,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Check tier access (PRO+ only)
-    const tierAccess = await checkTierAccess(session.user.id, jobId)
+    const tierAccess = await checkTierAccess(authUser.id, jobId)
     if (!tierAccess.hasMessaging) {
       return NextResponse.json(
         {
@@ -73,7 +76,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Fetch messages
-    const messages = await prisma.jobMessage.findMany({
+    const messages = await db.jobMessage.findMany({
       where: {
         jobId,
         ...(before ? { createdAt: { lt: new Date(before) } } : {}),
@@ -84,11 +87,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     // Mark messages as read if user is the receiver
     const unreadMessages = messages
-      .filter((m: { isRead: boolean; receiverId: string }) => !m.isRead && m.receiverId === session.user.id)
+      .filter((m: { isRead: boolean; receiverId: string }) => !m.isRead && m.receiverId === authUser.id)
     const unreadMessageIds = unreadMessages.map((m: { id: string }) => m.id)
 
     if (unreadMessageIds.length > 0) {
-      await prisma.jobMessage.updateMany({
+      await db.jobMessage.updateMany({
         where: { id: { in: unreadMessageIds } },
         data: { isRead: true, readAt: new Date() },
       })
@@ -104,7 +107,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
           type: 'MESSAGE_READ',
           jobId,
           messageId: unreadMessageIds[0], // First message ID as reference
-          readBy: session.user.id,
+          readBy: authUser.id,
           timestamp: new Date().toISOString(),
         }
 
@@ -149,10 +152,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 // POST - Send a new message
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
     const body = await request.json()
@@ -170,18 +176,18 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       .replace(/>/g, '&gt;')
 
     // Determine user type and get receiver
-    const job = await prisma.serviceRequest.findFirst({
+    const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
-        clientId: session.user.id,
+        clientId: authUser.id,
       },
       select: { id: true, clientId: true },
     })
 
-    const booking = await prisma.booking.findFirst({
+    const booking = await db.booking.findFirst({
       where: {
         serviceRequestId: jobId,
-        contractor: { userId: session.user.id },
+        contractor: { userId: authUser.id },
       },
       select: {
         contractorId: true,
@@ -198,10 +204,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (job) {
       // User is the client
       senderType = 'client'
-      senderId = session.user.id
+      senderId = authUser.id
 
       // Find contractor via booking
-      const activeBooking = await prisma.booking.findFirst({
+      const activeBooking = await db.booking.findFirst({
         where: {
           serviceRequestId: jobId,
           status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
@@ -220,7 +226,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     } else if (booking) {
       // User is the contractor
       senderType = 'contractor'
-      senderId = session.user.id
+      senderId = authUser.id
       receiverId = booking.serviceRequest.clientId
       receiverType = 'client'
     } else {
@@ -228,7 +234,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Check tier access
-    const tierAccess = await checkTierAccess(session.user.id, jobId)
+    const tierAccess = await checkTierAccess(authUser.id, jobId)
     if (!tierAccess.hasMessaging) {
       return NextResponse.json(
         {
@@ -240,7 +246,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Create message
-    const message = await prisma.jobMessage.create({
+    const message = await db.jobMessage.create({
       data: {
         jobId,
         senderId,
@@ -290,7 +296,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 // Helper function to check tier access
 async function checkTierAccess(userId: string, jobId: string) {
   // Check if user is contractor
-  const contractor = await prisma.contractor.findFirst({
+  const contractor = await db.contractor.findFirst({
     where: { userId },
     select: { id: true },
   })
@@ -298,7 +304,7 @@ async function checkTierAccess(userId: string, jobId: string) {
   let tier: string | null = null
 
   if (contractor) {
-    const subscription = await prisma.realtimeSubscription.findUnique({
+    const subscription = await db.realtimeSubscription.findUnique({
       where: { contractorId: contractor.id },
       select: { tier: true, status: true, trialEndsAt: true },
     })
@@ -314,7 +320,7 @@ async function checkTierAccess(userId: string, jobId: string) {
     }
   } else {
     // Client - check contractor's tier via booking
-    const booking = await prisma.booking.findFirst({
+    const booking = await db.booking.findFirst({
       where: {
         serviceRequestId: jobId,
         status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
@@ -323,7 +329,7 @@ async function checkTierAccess(userId: string, jobId: string) {
     })
 
     if (booking) {
-      const subscription = await prisma.realtimeSubscription.findUnique({
+      const subscription = await db.realtimeSubscription.findUnique({
         where: { contractorId: booking.contractorId },
         select: { tier: true, status: true, trialEndsAt: true },
       })
