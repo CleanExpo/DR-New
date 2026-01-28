@@ -10,6 +10,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { smsService } from '@/lib/notifications/sms-service';
 import { logError, logInfo } from '@/lib/logger/helpers';
 
@@ -81,13 +82,12 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Authenticate user
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
 
     // Check if SMS service is available
     if (!smsService.isAvailable()) {
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const userId = (session.user as any)?.id || session.user?.email;
+    const userId = user.id;
     let success = false;
     let result: any = { sent: false };
 

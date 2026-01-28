@@ -112,10 +112,13 @@ export async function POST(
   { params }: { params: { moduleId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { moduleId } = params;
     const body = await request.json();
@@ -128,9 +131,8 @@ export async function POST(
       );
     }
 
-    const userId = (session.user as any).id;
     const contractor = await db.contractor.findFirst({
-      where: { userId },
+      where: { userId: user.id },
       select: { id: true },
     });
 
