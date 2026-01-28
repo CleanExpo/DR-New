@@ -1,29 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - List all beta programs with participant counts
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    // Check admin role
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
 
-    const programs = await prisma.betaProgram.findMany({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
+
+    const programs = await db.betaProgram.findMany({
       orderBy: { createdAt: 'desc' },
       include: {
         _count: {
@@ -89,7 +86,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check admin role
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email! },
       select: { userType: true },
     })
@@ -119,7 +116,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const program = await prisma.betaProgram.create({
+    const program = await db.betaProgram.create({
       data: {
         name,
         description,
@@ -132,7 +129,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_PROGRAM_CREATED',
         entityType: 'BetaProgram',

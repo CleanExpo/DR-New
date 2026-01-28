@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - Get program details with enrollments
@@ -10,22 +9,21 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
 
-    const program = await prisma.betaProgram.findUnique({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
+
+    const program = await db.betaProgram.findUnique({
       where: { id: params.id },
       include: {
         enrollments: {
@@ -136,7 +134,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email! },
       select: { userType: true },
     })
@@ -145,7 +143,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    const existing = await prisma.betaProgram.findUnique({
+    const existing = await db.betaProgram.findUnique({
       where: { id: params.id },
     })
 
@@ -163,13 +161,13 @@ export async function PATCH(
       )
     }
 
-    const program = await prisma.betaProgram.update({
+    const program = await db.betaProgram.update({
       where: { id: params.id },
       data: validationResult.data,
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_PROGRAM_UPDATED',
         entityType: 'BetaProgram',
@@ -202,7 +200,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email! },
       select: { userType: true },
     })
@@ -211,7 +209,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    const existing = await prisma.betaProgram.findUnique({
+    const existing = await db.betaProgram.findUnique({
       where: { id: params.id },
       include: {
         _count: {
@@ -226,7 +224,7 @@ export async function DELETE(
 
     // If there are enrollments, just deactivate instead of delete
     if (existing._count.enrollments > 0) {
-      await prisma.betaProgram.update({
+      await db.betaProgram.update({
         where: { id: params.id },
         data: { isActive: false },
       })
@@ -238,12 +236,12 @@ export async function DELETE(
     }
 
     // No enrollments, safe to delete
-    await prisma.betaProgram.delete({
+    await db.betaProgram.delete({
       where: { id: params.id },
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_PROGRAM_DELETED',
         entityType: 'BetaProgram',

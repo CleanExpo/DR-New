@@ -1,26 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - List all feedback with filtering
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
 
     const { searchParams } = new URL(request.url)
     const programId = searchParams.get('programId')
@@ -51,7 +49,7 @@ export async function GET(request: NextRequest) {
       whereClause.priority = priority
     }
 
-    const feedback = await prisma.betaFeedback.findMany({
+    const feedback = await db.betaFeedback.findMany({
       where: whereClause,
       include: {
         program: {
@@ -132,7 +130,7 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
     }
 
-    const adminUser = await prisma.user.findUnique({
+    const adminUser = await db.user.findUnique({
       where: { email: session.user.email! },
       select: { id: true, userType: true },
     })
@@ -153,7 +151,7 @@ export async function PATCH(request: NextRequest) {
 
     const { id, status, priority, isReviewed, adminResponse } = validationResult.data
 
-    const existing = await prisma.betaFeedback.findUnique({
+    const existing = await db.betaFeedback.findUnique({
       where: { id },
     })
 
@@ -183,7 +181,7 @@ export async function PATCH(request: NextRequest) {
       updateData.adminResponse = adminResponse
     }
 
-    const feedback = await prisma.betaFeedback.update({
+    const feedback = await db.betaFeedback.update({
       where: { id },
       data: updateData,
       include: {
@@ -209,7 +207,7 @@ export async function PATCH(request: NextRequest) {
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_FEEDBACK_UPDATED',
         entityType: 'BetaFeedback',
