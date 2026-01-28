@@ -387,14 +387,6 @@ export async function GET(request: NextRequest) {
     const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
-    if (false) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorised - Admin access required' },
-        { status: 403 }
-      );
-    }
-
-    const { searchParams } = new URL(request.url);
     const mode = searchParams.get('mode') || 'types';
     const reportId = searchParams.get('reportId');
 
