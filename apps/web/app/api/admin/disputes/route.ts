@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
 
     // Get refunded/disputed payments
     const [disputes, total] = await Promise.all([
-      prisma.payment.findMany({
+      db.payment.findMany({
         where: {
           status: 'REFUNDED',
         },
@@ -80,7 +80,7 @@ export async function GET(request: NextRequest) {
         take: limit,
         skip: offset,
       }),
-      prisma.payment.count({
+      db.payment.count({
         where: { status: 'REFUNDED' },
       }),
     ]);
@@ -145,14 +145,18 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
+    }
+
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const { paymentId, reason, approvedAmount } = body;
@@ -199,7 +203,7 @@ export async function POST(request: NextRequest) {
 
     console.log('=== MANUAL DISPUTE CREATED ===');
     console.log('Payment ID:', paymentId);
-    console.log('Admin ID:', session.user.id);
+    console.log('Admin ID:', user.id);
     console.log('Reason:', reason);
     console.log('Refund Amount:', refundAmount);
 
@@ -213,7 +217,7 @@ export async function POST(request: NextRequest) {
           reason,
           refundAmount,
           createdAt: new Date(),
-          createdBy: session.user.id,
+          createdBy: user.id,
         },
       },
       { status: 201 }
