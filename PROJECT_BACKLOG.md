@@ -1,20 +1,20 @@
 # Project Backlog - Disaster Recovery NRPG Platform
 ## Updated: 2026-01-28
 
-**Current Status:** 178/286 API routes converted (62.2%)
+**Current Status:** 203/286 API routes converted (71.0%) - 🎉 70% MILESTONE ACHIEVED!
 **Active Epic:** UNI-157 - V2.0 Multi-tenant SaaS Conversion
 **Build Status:** ✅ Passing (797 routes generated)
-**Routes with getServerSession remaining:** 32 routes (down from 93)
+**Routes with getServerSession remaining:** 7 routes (down from 93)
 
 ---
 
 ## 🔥 P0 - Critical (Blocking Production)
 
-### UNI-157 Phase 7: Complete API Route Conversion (108 routes remaining)
-**Status:** In Progress (62.2% complete, accelerating)
-**Remaining Work:** 32 routes using getServerSession + 76 other routes
-**Estimated Effort:** 4-6 hours (1 session)
-**Velocity:** 18 routes/session average
+### UNI-157 Phase 7: Complete API Route Conversion (83 routes remaining)
+**Status:** In Progress (71.0% complete, 70% milestone achieved! 🎉)
+**Remaining Work:** 7 routes using getServerSession + 76 other routes
+**Estimated Effort:** 2-3 hours (1 session)
+**Velocity:** 25 routes/session average (improving!)
 
 ---
 
@@ -69,90 +69,60 @@
 
 **Key Achievement:** PUT method uses basePrisma (pre-auth endpoint)
 
----
+### Batch 4i-4: Payments & Invoicing Operations (8 routes) - COMPLETED
+- [x] `invoices/[invoiceId]/pdf/route.ts` - PDF generation
+- [x] `payments/route.ts` - Payment operations
+- [x] `payments/[id]/route.ts` - Single payment operations
+- [x] `payments/[id]/refund/route.ts` - Refund processing
+- [x] `payments/booking/[bookingId]/route.ts` - Booking payment
+- [x] `payments/payout/[bookingId]/route.ts` - Contractor payout
+- [x] `payments/payout/manual/route.ts` - Manual payout processing
+- [x] `payments/refund/[paymentId]/route.ts` - Refund by payment ID
 
-## 🎯 Remaining Work - Batch 4i Sub-batches (32 routes with getServerSession)
+**Key Achievement:** Added optional `db` parameter to invoice helper functions for tenant-scoping
 
-### Batch 4i-4: Payments & Invoicing Operations (8 routes) ⭐ NEXT PRIORITY
-**Effort:** 2 hours | **Impact:** High - Critical for revenue operations
+### Batch 4i-5: Bookings Operations (2 routes, 5 methods) - COMPLETED
+- [x] `bookings/[id]/route.ts` - Single booking operations (GET, PATCH, DELETE)
+- [x] `bookings/[id]/assign/route.ts` - Assign contractor to booking (POST, DELETE)
 
-- [ ] `invoices/[invoiceId]/pdf/route.ts` - PDF generation
-- [ ] `payments/route.ts` - Payment operations
-- [ ] `payments/[id]/route.ts` - Single payment operations
-- [ ] `payments/[id]/refund/route.ts` - Refund processing
-- [ ] `payments/booking/[bookingId]/route.ts` - Booking payment
-- [ ] `payments/payout/[bookingId]/route.ts` - Contractor payout
-- [ ] `payments/payout/manual/route.ts` - Manual payout processing
-- [ ] `payments/refund/[paymentId]/route.ts` - Refund by payment ID
+**Key Achievement:** Removed redundant user lookups from AuthContext
 
-**Dependencies:** None
-**Risk:** Medium - Stripe integration, refund logic must be preserved
+### Batch 4i-6: Client Operations (3 routes, 3 methods) - COMPLETED
+- [x] `client/claims/[id]/accept-bid/route.ts` - Accept contractor bid
+- [x] `client/claims/[id]/invoice/route.ts` - Client invoice view
+- [x] `client/claims/[id]/message/route.ts` - Client messaging
 
----
+**Key Achievement:** Fixed transaction patterns to use tenant-scoped db
 
-### Batch 4i-5: Bookings Operations (2 routes)
-**Effort:** 30 minutes | **Impact:** High - Core business logic
+### Batch 4i-7: Contractor Operations (3 routes, 5 methods) - COMPLETED
+- [x] `contractor/route.ts` - Public search (GET), application (POST)
+- [x] `contractor/analytics/performance/route.ts` - Performance metrics (GET)
+- [x] `contractor/payout-settings/route.ts` - Payout configuration (GET, PUT)
 
-- [ ] `bookings/[id]/route.ts` - Single booking operations
-- [ ] `bookings/[id]/assign/route.ts` - Assign contractor to booking
+**Key Achievement:** Mixed pattern - public GET uses basePrisma, authenticated uses getTenantDb
 
-**Dependencies:** None
-**Risk:** Low - Straightforward conversion
+### Batch 4i-8: Notifications & Onboarding (3 routes, 3 methods) - COMPLETED
+- [x] `notifications/preferences/route.ts` - User preferences (GET, PUT)
+- [x] `notifications/sms/route.ts` - SMS sending (POST)
+- [x] `onboarding/module/[moduleId]/content/route.ts` - Training content (POST)
 
----
+**Key Achievement:** Maintained mixed auth patterns for health checks
 
-### Batch 4i-6: Client Operations (3 routes)
-**Effort:** 45 minutes | **Impact:** High - Client-facing features
+### Batch 4i-9: Admin & System Operations (6 routes, 9 methods) - COMPLETED
+- [x] `agents/orchestrate/route.ts` - Agent orchestration (POST)
+- [x] `agents/status/[jobId]/route.ts` - Job status tracking (GET, POST)
+- [x] `analytics/events/route.ts` - Analytics events (POST, GET)
+- [x] `analytics/metrics/route.ts` - Platform metrics (GET)
+- [x] `fraud-detection/route.ts` - Fraud detection (GET, POST)
+- [x] `fraud-detection/analyze/route.ts` - Fraud analysis (POST)
 
-- [ ] `client/claims/[id]/accept-bid/route.ts` - Client accepts contractor bid
-- [ ] `client/claims/[id]/invoice/route.ts` - View claim invoice
-- [ ] `client/claims/[id]/message/route.ts` - Send message about claim
-
-**Dependencies:** None
-**Risk:** Low
-
----
-
-### Batch 4i-7: Contractor Operations (3 routes)
-**Effort:** 45 minutes | **Impact:** High - Contractor-facing features
-
-- [ ] `contractor/route.ts` - Contractor profile operations
-- [ ] `contractor/analytics/performance/route.ts` - Performance metrics
-- [ ] `contractor/payout-settings/route.ts` - Payout configuration
-
-**Dependencies:** None
-**Risk:** Low
+**Key Achievement:** Reached 70% milestone! Analytics metrics uses basePrisma for global data
 
 ---
 
-### Batch 4i-8: Notifications & Onboarding (3 routes)
-**Effort:** 45 minutes | **Impact:** Medium
+## 🎯 Remaining Work - Batch 4i Sub-batches (7 routes with getServerSession)
 
-- [ ] `notifications/preferences/route.ts` - Notification settings
-- [ ] `notifications/sms/route.ts` - SMS notifications
-- [ ] `onboarding/module/[moduleId]/content/route.ts` - Training content
-
-**Dependencies:** None
-**Risk:** Low
-
----
-
-### Batch 4i-9: Admin & System Operations (6 routes)
-**Effort:** 1.5 hours | **Impact:** Medium - Admin tools
-
-- [ ] `agents/orchestrate/route.ts` - Agent orchestration
-- [ ] `agents/status/[jobId]/route.ts` - Job status tracking
-- [ ] `analytics/events/route.ts` - Analytics events (if different from public)
-- [ ] `analytics/metrics/route.ts` - Platform metrics
-- [ ] `fraud-detection/route.ts` - Fraud detection operations
-- [ ] `fraud-detection/analyze/route.ts` - Fraud analysis
-
-**Dependencies:** None
-**Risk:** Medium - Complex business logic
-
----
-
-### Batch 4i-10: Security & Orchestration (4 routes)
+### Batch 4i-10: Security & Orchestration (4 routes) ⭐ NEXT PRIORITY
 **Effort:** 1 hour | **Impact:** High - Security critical
 
 - [ ] `security/alerts/route.ts` - Security alerts
@@ -192,23 +162,29 @@ These 76 routes (286 total - 178 converted - 32 with getServerSession) likely fa
 
 ## 📊 Sprint Velocity & Metrics
 
-**Session Performance:**
-- **Starting:** 160/286 routes (55.9%)
-- **Ending:** 178/286 routes (62.2%)
-- **Converted:** 18 routes in 1 session
-- **Progress:** +7.7 percentage points
-- **Velocity:** 18 routes/session (excellent!)
+**Current Session Performance:**
+- **Starting:** 178/286 routes (62.2%)
+- **Ending:** 203/286 routes (71.0%)
+- **Converted:** 25 routes in 1 session
+- **Progress:** +8.8 percentage points
+- **Velocity:** 25 routes/session (accelerating! up from 18)
+
+**Overall Progress (Multi-session):**
+- **Original Starting:** 160/286 routes (55.9%)
+- **Current:** 203/286 routes (71.0%)
+- **Total Converted:** 43 routes
+- **Overall Progress:** +15.1 percentage points
 
 **Remaining Effort Calculation:**
-- 32 routes with getServerSession ÷ 18 routes/session = **1.8 sessions (~2 hours)**
+- 7 routes with getServerSession remaining
 - 76 other routes audit & conversion = **2-3 hours**
-- **Total estimated:** 4-6 hours (1 robust session)
+- **Total estimated:** 2-3 hours to complete Phase 7
 
 **Milestones:**
 - [x] 50% - 143 routes ✅
 - [x] 60% - 172 routes ✅
-- [ ] 70% - 200 routes (22 routes away - achievable this session!)
-- [ ] 80% - 229 routes
+- [x] 70% - 200 routes ✅ **ACHIEVED!** 🎉
+- [ ] 80% - 229 routes (26 routes away)
 - [ ] 90% - 257 routes
 - [ ] 100% - 286 routes
 
@@ -216,8 +192,9 @@ These 76 routes (286 total - 178 converted - 32 with getServerSession) likely fa
 
 ## 🎯 Immediate Next Steps (Priority Order)
 
-### Today's Goal: Reach 70% Milestone (200 routes)
-**Routes needed:** 22 routes
+### Today's Achievement: 70% Milestone REACHED! 🎉
+**Next Goal:** Complete all getServerSession conversions (7 routes remaining)
+**Then:** Reach 80% Milestone (229 routes) - need 26 more routes
 **Estimated time:** 3-4 hours
 
 1. **Batch 4i-4: Payments & Invoicing** (8 routes) - 2 hours
