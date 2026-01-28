@@ -79,21 +79,18 @@ const createProgramSchema = z.object({
 // POST - Create a new beta program
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    // Check admin role
-    const user = await db.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    const db = getTenantDb(authResult.context)
 
     const body = await request.json()
     const validationResult = createProgramSchema.safeParse(body)
@@ -134,14 +131,14 @@ export async function POST(request: NextRequest) {
         action: 'BETA_PROGRAM_CREATED',
         entityType: 'BetaProgram',
         entityId: program.id,
-        userId: session.user.email!,
+        performedBy: user.id,
         newValues: {
           name,
           featureArea,
           startDate: startDate.toISOString(),
           endDate: endDate.toISOString(),
           maxParticipants,
-        },
+        } as any,
       },
     })
 

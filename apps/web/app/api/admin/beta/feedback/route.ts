@@ -124,20 +124,18 @@ const updateFeedbackSchema = z.object({
 // PATCH - Update feedback status
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const adminUser = await db.user.findUnique({
-      where: { email: session.user.email! },
-      select: { id: true, userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!adminUser || !['ADMIN', 'SUPER_ADMIN'].includes(adminUser.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    const db = getTenantDb(authResult.context)
 
     const body = await request.json()
     const validationResult = updateFeedbackSchema.safeParse(body)
@@ -173,7 +171,7 @@ export async function PATCH(request: NextRequest) {
     if (isReviewed !== undefined) {
       updateData.isReviewed = isReviewed
       if (isReviewed) {
-        updateData.reviewedBy = adminUser.id
+        updateData.reviewedBy = user.id
       }
     }
 
@@ -212,13 +210,13 @@ export async function PATCH(request: NextRequest) {
         action: 'BETA_FEEDBACK_UPDATED',
         entityType: 'BetaFeedback',
         entityId: feedback.id,
-        userId: adminUser.id,
+        performedBy: user.id,
         oldValues: {
           status: existing.status,
           priority: existing.priority,
           isReviewed: existing.isReviewed,
-        },
-        newValues: updateData,
+        } as any,
+        newValues: updateData as any,
       },
     })
 
