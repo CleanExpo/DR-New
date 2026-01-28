@@ -9,8 +9,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function POST(
@@ -19,14 +18,13 @@ export async function POST(
 ) {
   try {
     // 1. Verify client authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorised' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const bookingId = params.id;
 
@@ -59,7 +57,7 @@ export async function POST(
       );
     }
 
-    if (booking.clientId !== session.user.id) {
+    if (booking.clientId !== user.id) {
       return NextResponse.json(
         { error: 'Unauthorised - You do not own this claim' },
         { status: 403 }
@@ -132,13 +130,13 @@ export async function POST(
     // 7. Execute transaction: accept bid, reject others, assign contractor
     await db.$transaction([
       // Accept the selected match
-      prisma.contractorMatch.update({
+      db.contractorMatch.update({
         where: { id: matchId },
         data: { status: 'ACCEPTED' },
       }),
 
       // Reject all other pending matches for this booking
-      prisma.contractorMatch.updateMany({
+      db.contractorMatch.updateMany({
         where: {
           serviceRequestId: bookingId,
           id: { not: matchId },
@@ -148,7 +146,7 @@ export async function POST(
       }),
 
       // Assign the contractor to the booking and update status
-      prisma.booking.update({
+      db.booking.update({
         where: { id: bookingId },
         data: {
           contractorId: contractor.id,
@@ -158,12 +156,12 @@ export async function POST(
       }),
 
       // Log the action
-      prisma.auditLog.create({
+      db.auditLog.create({
         data: {
           action: 'BID_ACCEPTED',
           entityType: 'Booking',
           entityId: bookingId,
-          userId: session.user.id,
+          performedBy: user.id,
           resourceType: 'ContractorMatch',
           resourceId: matchId,
           details: `Client accepted bid from ${match.contractor.businessName}`,
