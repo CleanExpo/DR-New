@@ -9,31 +9,22 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { basePrisma } from '@/lib/basePrisma';
 import { calculateDailyMetrics, aggregateMetrics, getMetricsForPeriod } from '@/lib/analytics/metrics-engine';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    // Verify authentication
-    if (!session || !session.user) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = session.user as any;
+    const { user } = authResult.context;
 
     // Only admins can view global analytics
-    if (user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Forbidden - Admin access required' },
-        { status: 403 }
-      );
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     const { searchParams } = new URL(request.url);
@@ -67,7 +58,7 @@ export async function GET(request: NextRequest) {
 
     if (period === 'daily') {
       // Get daily metrics from database
-      metrics = await prisma.dailyMetrics.findMany({
+      metrics = await basePrisma.dailyMetrics.findMany({
         where: {
           date: {
             gte: startDate,
@@ -86,7 +77,7 @@ export async function GET(request: NextRequest) {
       }
     } else if (period === 'weekly') {
       // Get weekly metrics from database
-      metrics = await prisma.weeklyReport.findMany({
+      metrics = await basePrisma.weeklyReport.findMany({
         where: {
           weekStartDate: {
             gte: startDate,
@@ -104,7 +95,7 @@ export async function GET(request: NextRequest) {
       const endMonth = endDate.getMonth() + 1;
       const endYear = endDate.getFullYear();
 
-      metrics = await prisma.monthlyMetrics.findMany({
+      metrics = await basePrisma.monthlyMetrics.findMany({
         where: {
           OR: [
             {
