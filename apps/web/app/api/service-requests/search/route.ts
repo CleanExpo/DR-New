@@ -5,9 +5,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { authenticateRequest, requireRole } from '@/lib/auth-middleware';
 import { ZodError } from 'zod';
-import { authOptions, isAdmin } from '@/lib/auth';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { serviceRequestSearchSchema } from '@/lib/validation-schemas';
 import {
@@ -23,40 +22,14 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    // Authenticate user via session
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-    const sessionUser = session?.user as unknown as {
-      id?: string;
-      email?: string;
-      userType?: string;
-    } | undefined;
-
-    if (!sessionUser?.id && !sessionUser?.email) {
-      return NextResponse.json(
-        {
-          error: 'UNAUTHORIZED',
-          message: 'Authentication required',
-        },
-        { status: 401 }
-      );
+    // Authenticate user
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // Fetch full user from database
-    const user = await db.user.findUnique({
-      where: sessionUser.id ? { id: sessionUser.id } : { email: sessionUser.email! },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        {
-          error: 'USER_NOT_FOUND',
-          message: 'User not found',
-        },
-        { status: 401 }
-      );
-    }
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     // Parse query parameters
     const searchParams = request.nextUrl.searchParams;
@@ -118,7 +91,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Determine user scope
-    const isUserAdmin = isAdmin(user.userType);
+    const isUserAdmin = requireRole(user, ['ADMIN', 'SUPER_ADMIN']);
 
     // Clients see only their own requests
     if (!isUserAdmin) {
@@ -127,8 +100,8 @@ export async function GET(request: NextRequest) {
 
     // Execute count and findMany queries in parallel
     const [total, data] = await Promise.all([
-      prisma.serviceRequest.count({ where: whereClause }),
-      prisma.serviceRequest.findMany({
+      db.serviceRequest.count({ where: whereClause }),
+      db.serviceRequest.findMany({
         where: whereClause,
         include: {
           user: {

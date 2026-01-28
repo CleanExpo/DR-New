@@ -2,13 +2,10 @@
  * Health Check Endpoint - GET /api/health
  *
  * Simple health check for monitoring and uptime checks.
- * Updated: 2026-01-13 - Added auth imports to match working routes
+ * Public endpoint - no authentication required.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/prisma';
-import { authOptions } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 

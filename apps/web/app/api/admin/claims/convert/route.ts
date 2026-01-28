@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
     );
 
     // 8. Log conversion for audit
-    await logClaimAction(request, session.user.id, publicClaimId, 'CLAIM_CONVERTED', {
+    await logClaimAction(request, user.id, publicClaimId, 'CLAIM_CONVERTED', {
       bookingId: convertedBooking.bookingId,
       clientName: convertedBooking.clientName,
       matchedContractors: matches.length,
@@ -178,16 +178,18 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const { prisma } = await import('@/lib/prisma');
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
+    }
+
+    const db = getTenantDb(authResult.context);
 
     const pendingClaims = await db.publicClaim.findMany({
       where: { status: 'PENDING' },
