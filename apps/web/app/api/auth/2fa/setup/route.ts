@@ -24,10 +24,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { twoFactorService } from '@/lib/auth/two-factor';
-import { prisma } from '@/lib/db';
 import { logInfo, logError } from '@/lib/logger/helpers';
 
 export const dynamic = 'force-dynamic';
@@ -35,30 +34,30 @@ export const dynamic = 'force-dynamic';
 export async function POST(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { email } = await request.json();
 
     // Verify email matches authenticated user
-    if (email !== session.user.email) {
+    if (email !== user.email) {
       return NextResponse.json(
         { error: 'Email mismatch' },
         { status: 403 }
       );
     }
 
-    // Get user from database
-    const user = await prisma.user.findUnique({
+    // Get user from database with 2FA status
+    const dbUser = await db.user.findUnique({
       where: { email },
     });
 
-    if (!user) {
+    if (!dbUser) {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
@@ -66,10 +65,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if 2FA is already enabled
-    if (user.twoFactorEnabled) {
+    if (dbUser.twoFactorEnabled) {
       logInfo('2FA setup attempted for user with 2FA already enabled', {
-        userId: user.id,
-        email: user.email,
+        userId: dbUser.id,
+        email: dbUser.email,
       });
 
       return NextResponse.json(
@@ -80,14 +79,14 @@ export async function POST(request: NextRequest) {
 
     // Generate 2FA secret and QR code
     const setup = await twoFactorService.generateSecret(
-      user.id,
-      user.email,
+      dbUser.id,
+      dbUser.email,
       'Disaster Recovery NRPG'
     );
 
     logInfo('2FA secret generated', {
-      userId: user.id,
-      email: user.email,
+      userId: dbUser.id,
+      email: dbUser.email,
       backupCodesCount: setup.backupCodes.length,
     });
 
@@ -113,16 +112,16 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
+
+    const dbUser = await db.user.findUnique({
+      where: { email: user.email },
       select: {
         id: true,
         email: true,
@@ -131,7 +130,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    if (!user) {
+    if (!dbUser) {
       return NextResponse.json(
         { error: 'User not found' },
         { status: 404 }
@@ -139,8 +138,8 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json({
-      twoFactorEnabled: user.twoFactorEnabled,
-      twoFactorSetupAt: user.twoFactorSetupAt,
+      twoFactorEnabled: dbUser.twoFactorEnabled,
+      twoFactorSetupAt: dbUser.twoFactorSetupAt,
     });
   } catch (error) {
     logError(error, { context: '2fa_get_status_endpoint' });
