@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
-import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
-import { prisma } from '@/lib/prisma';
-import { z, ZodError } from 'zod';
 
 const updatePreferencesSchema = z.object({
   name: z.string().optional(),
@@ -28,7 +28,10 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
-    const userDetails = await prisma.user.findUnique({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    const userDetails = await db.user.findUnique({
       where: { id: user.id },
       select: {
         id: true,
@@ -102,6 +105,9 @@ export async function PUT(request: NextRequest) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const { name, avatar, preferences } = updatePreferencesSchema.parse(body);
 
@@ -111,7 +117,7 @@ export async function PUT(request: NextRequest) {
     if (avatar) updateData.avatar = avatar;
 
     if (Object.keys(updateData).length > 0) {
-      await prisma.user.update({
+      await db.user.update({
         where: { id: user.id },
         data: updateData
       });

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
 export const dynamic = 'force-dynamic';
@@ -23,8 +23,11 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
-    // Fetch active projects (accepted contractor matches)
-    const activeProjects = await prisma.contractorMatch.findMany({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // Fetch active projects (accepted contractor matches) - automatically tenant-scoped
+    const activeProjects = await db.contractorMatch.findMany({
       where: {
         serviceRequest: {
           userId: user.id,

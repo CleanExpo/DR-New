@@ -8,9 +8,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(
   request: NextRequest,
@@ -18,19 +17,25 @@ export async function GET(
 ) {
   try {
     // 1. Verify client authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    // Validate user is client or admin
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const bookingId = params.id;
 
-    // 2. Get booking details
-    const booking = await prisma.booking.findUnique({
+    // 2. Get booking details - automatically tenant-scoped
+    const booking = await db.booking.findUnique({
       where: { id: bookingId },
       include: {
         client: {
@@ -85,17 +90,17 @@ export async function GET(
     }
 
     // 3. Verify client owns this booking
-    if (booking.clientId !== session.user.id) {
+    if (booking.clientId !== user.id) {
       return NextResponse.json(
         { error: 'Unauthorized - You do not own this claim' },
         { status: 403 }
       );
     }
 
-    // 4. Get contractor matches (bids) if no contractor assigned yet
+    // 4. Get contractor matches (bids) if no contractor assigned yet - automatically tenant-scoped
     let contractorMatches = [];
     if (!booking.contractorId) {
-      const matches = await prisma.contractorMatch.findMany({
+      const matches = await db.contractorMatch.findMany({
         where: { serviceRequestId: bookingId },
         include: {
           contractor: {
