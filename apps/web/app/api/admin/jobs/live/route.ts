@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
 import { handleUnexpectedError } from '@/lib/api-errors'
 
@@ -15,6 +15,9 @@ export async function GET(request: NextRequest) {
     if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
 
     const { searchParams } = new URL(request.url)
 
@@ -92,7 +95,7 @@ export async function GET(request: NextRequest) {
 
     // Get latest location for jobs with assigned contractors
     const jobIds = jobs.map(j => j.id)
-    const latestLocations = await prisma.contractorLocationHistory.findMany({
+    const latestLocations = await db.contractorLocationHistory.findMany({
       where: {
         jobId: { in: jobIds },
       },
