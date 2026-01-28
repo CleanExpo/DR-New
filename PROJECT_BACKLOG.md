@@ -1,7 +1,7 @@
 # Project Backlog - Disaster Recovery NRPG Platform
-## Generated: 2026-01-28
+## Updated: 2026-01-28
 
-**Current Status:** 151/286 API routes converted (52.8%)
+**Current Status:** 160/286 API routes converted (55.9%)
 **Active Epic:** UNI-157 - V2.0 Multi-tenant SaaS Conversion
 **Build Status:** ✅ Passing (797 routes generated)
 
@@ -9,38 +9,28 @@
 
 ## 🔥 P0 - Critical (Blocking Production)
 
-### UNI-157 Phase 7: Complete API Route Conversion (135 routes remaining)
-**Status:** In Progress (52.8% complete)
-**Remaining Work:** 135 routes across 8 categories
-**Estimated Effort:** 12-16 hours
+### UNI-157 Phase 7: Complete API Route Conversion (126 routes remaining)
+**Status:** In Progress (55.9% complete)
+**Remaining Work:** 126 routes across 5 batches
+**Estimated Effort:** 8-12 hours
 
-#### Batch 4b: Content & Case Studies Routes (7 routes)
-- [ ] `blog/cron/publish/route.ts` (POST) - Scheduled publishing
-- [ ] `case-studies/route.ts` (GET, POST) - Case study management
-- [ ] `faq/route.ts` (GET, POST) - FAQ management
-- [ ] `faq/[id]/helpful/route.ts` (POST) - Helpful voting
-- [ ] `faq/[id]/route.ts` (GET, PATCH, DELETE) - Single FAQ ops
+#### ✅ Batch 4b: Content & Case Studies Routes (4 routes) - COMPLETED
+- [x] `blog/cron/publish/route.ts` (GET, POST) - Scheduled publishing
+- [x] `case-studies/route.ts` (GET, POST) - Case study management
+- [x] `faq/route.ts` (GET, POST) - FAQ management
+- [x] `faq/[id]/helpful/route.ts` (POST) - Helpful voting
 
-**Dependencies:** None
-**Risk:** Low - Similar patterns to blog routes
+**Note:** `faq/[id]/route.ts` does not exist in codebase
 
-#### Batch 4c: Claims Management Routes (4 routes)
-- [ ] `claims/route.ts` (GET, POST) - Claims listing/creation
-- [ ] `claims/[id]/route.ts` (GET, PATCH) - Single claim operations
-- [ ] `admin/claims/convert/route.ts` (POST) - Public claim conversion
-- [ ] `admin/claims/match/route.ts` (POST) - Contractor matching
-- [ ] `admin/claims/triage/route.ts` (GET, POST) - Triage assessment
+#### ✅ Batch 4c: Claims Management Routes (2 routes) - COMPLETED
+- [x] `claims/route.ts` (GET, POST) - Claims listing/creation
+- [x] `claims/[id]/route.ts` (GET, PATCH) - Single claim operations
+- [x] `admin/claims/*` - Already converted in previous session
 
-**Dependencies:** None
-**Risk:** Medium - Complex claim matching logic
-
-#### Batch 4d: Messages & Notifications Routes (3 routes)
-- [ ] `messages/route.ts` (GET, POST) - Message threads
-- [ ] `messages/initiate/route.ts` (POST) - Start conversation
-- [ ] `notifications/route.ts` (GET, PATCH) - Notification management
-
-**Dependencies:** None
-**Risk:** Low - Standard CRUD patterns
+#### ✅ Batch 4d: Messages & Notifications Routes (3 routes) - COMPLETED
+- [x] `messages/route.ts` (GET, POST) - Message threads
+- [x] `messages/initiate/route.ts` (POST) - Start conversation
+- [x] `notifications/route.ts` (GET, PATCH, POST) - Notification management
 
 #### Batch 4e: Invoices & Projects Routes (3 routes)
 - [ ] `invoices/route.ts` (GET) - Invoice listing
@@ -260,31 +250,34 @@ Includes: auth, workspace, webhooks, competitor analysis, CRM, cron jobs, fraud 
 
 ## 📊 Current Sprint Velocity
 
-**Routes Converted per Session:** ~30-40 routes
-**Estimated Completion (Phase 7):** 3-4 more sessions
-**Total Remaining Effort (Phase 7):** 12-16 hours
+**Routes Converted This Session:** 9 routes (Batches 4b, 4c, 4d)
+**Average per Batch:** 3-4 routes
+**Current Progress:** 160/286 (55.9%)
+**Estimated Completion (Phase 7):** 2-3 more sessions
+**Total Remaining Effort (Phase 7):** 8-12 hours
 
 ---
 
-## 🎯 Next Steps (Immediate)
+## 🎯 Next Steps (Immediate Priority)
 
-1. **Complete Batch 4b** (Content routes) - 2 hours
-2. **Complete Batch 4c** (Claims routes) - 2 hours
-3. **Complete Batch 4d** (Messages routes) - 1 hour
-4. **Complete Batch 4e** (Invoices routes) - 1 hour
-5. **Start Batch 4f** (Public routes) - 2 hours
+1. **Complete Batch 4e** (Invoices & Projects) - 3 routes - 1 hour
+2. **Complete Batch 4f** (Public API) - 10 routes - 2 hours
+3. **Complete Batch 4g** (Analytics) - 15 routes - 3 hours
+4. **Complete Batch 4h** (Search Dominance) - 9 routes - 2 hours
+5. **Complete Batch 4i** (Remaining misc) - 89 routes - 6 hours
 
-**Milestone:** 60% completion after next session
+**Next Milestone:** 60% completion (172 routes) - Within reach!
 
 ---
 
 ## 📋 Definition of Done (UNI-157 Phase 7)
 
-- [x] 151/286 routes converted to authenticateRequest() pattern
-- [x] All routes use getTenantDb() for tenant isolation
-- [x] Build passes without errors
-- [x] Public routes use basePrisma appropriately
-- [ ] All 286 routes converted
+- [x] 160/286 routes converted to authenticateRequest() pattern ✅
+- [x] All routes use getTenantDb() for tenant isolation ✅
+- [x] Build passes without errors ✅
+- [x] Public routes use basePrisma appropriately ✅
+- [x] Removed fallback auth patterns (getServerSession) ✅
+- [ ] All 286 routes converted (44% remaining)
 - [ ] Integration tests pass
 - [ ] No type errors
 - [ ] Documentation updated
