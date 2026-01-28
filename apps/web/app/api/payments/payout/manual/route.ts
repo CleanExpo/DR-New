@@ -8,8 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { manualPayoutToContractor } from '@/lib/payments/contractor-payout';
 import { z } from 'zod';
 
@@ -25,13 +24,15 @@ type ManualPayoutData = z.infer<typeof manualPayoutSchema>;
 export async function POST(request: NextRequest) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
 
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     const body = await request.json();

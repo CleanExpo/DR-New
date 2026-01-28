@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 interface RouteParams {
   params: { id: string };
@@ -10,18 +9,15 @@ interface RouteParams {
 // Get single payment
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
+
     const { id } = params;
-    const user = session.user as any;
 
     const payment = await db.payment.findUnique({
       where: { id },
@@ -58,7 +54,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     // Check authorization
     if (
-      !isAdmin(user.role) &&
+      user.userType !== 'ADMIN' &&
       payment.clientId !== user.id &&
       payment.contractorId !== user.id
     ) {
@@ -84,18 +80,15 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 // Update payment (admin only for certain fields)
 export async function PATCH(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
+
     const { id } = params;
-    const user = session.user as any;
     const body = await request.json();
 
     const payment = await db.payment.findUnique({
@@ -110,7 +103,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Only admins can update payments
-    if (!isAdmin(user.role)) {
+    if (user.userType !== 'ADMIN') {
       return NextResponse.json(
         { success: false, error: 'Forbidden' },
         { status: 403 }

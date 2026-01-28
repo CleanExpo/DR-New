@@ -8,10 +8,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { triggerPayoutForBooking, getContractorEarnings } from '@/lib/payments/contractor-payout';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
+import { triggerPayoutForBooking, getContractorEarnings } from '@/lib/payments/contractor-payout';
 
 export async function POST(
   request: NextRequest,
@@ -19,15 +18,15 @@ export async function POST(
 ) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
 
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     const { bookingId } = params;
@@ -86,16 +85,13 @@ export async function GET(
   { params }: { params: { bookingId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { bookingId } = params;
 
@@ -117,9 +113,8 @@ export async function GET(
     }
 
     // Verify access
-    const user = session.user as any;
     if (
-      user.role !== 'ADMIN' &&
+      user.userType !== 'ADMIN' &&
       booking.clientId !== user.id &&
       booking.contractorId !== user.id
     ) {
@@ -149,7 +144,7 @@ export async function GET(
 
     // Get contractor earnings if contractor viewing
     let earnings = null;
-    if (booking.contractorId === user.id || user.role === 'ADMIN') {
+    if (booking.contractorId === user.id || user.userType === 'ADMIN') {
       earnings = await getContractorEarnings(booking.contractorId!);
     }
 

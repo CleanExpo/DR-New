@@ -1,22 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { createPaymentSchema, validateRequest, formatZodErrors, adminSearchSchema } from '@/lib/validation';
 import { createPaymentIntent, calculateFees } from '@/lib/stripe';
 
 // Get payments (with filtering for different user types)
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
@@ -24,15 +21,14 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const bookingId = searchParams.get('bookingId');
 
-    const user = session.user as any;
     const skip = (page - 1) * limit;
 
     // Build where clause based on user role
     const where: any = {};
 
-    if (user.role === 'USER') {
+    if (user.userType === 'USER') {
       where.clientId = user.id;
-    } else if (user.role === 'CONTRACTOR') {
+    } else if (user.userType === 'CONTRACTOR') {
       where.contractorId = user.id;
     }
     // Admins can see all payments
@@ -46,7 +42,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [payments, total] = await Promise.all([
-      prisma.payment.findMany({
+      db.payment.findMany({
         where,
         include: {
           booking: {
@@ -75,7 +71,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma.payment.count({ where }),
+      db.payment.count({ where }),
     ]);
 
     return NextResponse.json({
@@ -101,15 +97,13 @@ export async function GET(request: NextRequest) {
 // Create a new payment
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
 
@@ -126,7 +120,6 @@ export async function POST(request: NextRequest) {
     }
 
     const { bookingId, amount, paymentMethod, description } = validation.data;
-    const user = session.user as any;
 
     // Get booking
     const booking = await db.booking.findUnique({
@@ -144,7 +137,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify user is the client of this booking
-    if (booking.clientId !== user.id && user.role !== 'ADMIN') {
+    if (booking.clientId !== user.id && user.userType !== 'ADMIN') {
       return NextResponse.json(
         { success: false, error: 'Forbidden' },
         { status: 403 }

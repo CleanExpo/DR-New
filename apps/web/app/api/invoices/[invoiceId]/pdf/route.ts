@@ -8,8 +8,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { getInvoiceDetails, downloadInvoice } from '@/lib/invoicing/generate-invoice';
 import { generateInvoicePDF } from '@/lib/invoicing/pdf-generator';
 
@@ -19,19 +19,18 @@ export async function GET(
 ) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { invoiceId } = params;
 
     // Get invoice details
-    const invoice = await getInvoiceDetails(invoiceId);
+    const invoice = await getInvoiceDetails(invoiceId, db);
 
     if (!invoice) {
       return NextResponse.json(
@@ -41,9 +40,8 @@ export async function GET(
     }
 
     // Verify user has access (client, contractor, or admin)
-    const user = session.user as any;
     if (
-      user.role !== 'ADMIN' &&
+      user.userType !== 'ADMIN' &&
       invoice.clientId !== user.id &&
       invoice.contractorId !== user.id
     ) {
@@ -54,7 +52,7 @@ export async function GET(
     }
 
     // Log download
-    await downloadInvoice(invoiceId);
+    await downloadInvoice(invoiceId, db);
 
     // Prepare PDF data
     const pdfData = {

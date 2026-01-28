@@ -213,8 +213,8 @@ export async function generateInvoiceForPayment(paymentId: string) {
 /**
  * Get invoice details
  */
-export async function getInvoiceDetails(invoiceId: string) {
-  const invoice = await prisma.invoiceAU.findUnique({
+export async function getInvoiceDetails(invoiceId: string, db: any = prisma) {
+  const invoice = await db.invoiceAU.findUnique({
     where: { id: invoiceId },
     include: {
       payment: {
@@ -309,8 +309,8 @@ export async function getContractorInvoices(
 /**
  * Mark invoice as viewed
  */
-export async function markInvoiceAsViewed(invoiceId: string) {
-  const invoice = await prisma.invoiceAU.update({
+export async function markInvoiceAsViewed(invoiceId: string, db: any = prisma) {
+  const invoice = await db.invoiceAU.update({
     where: { id: invoiceId },
     data: {
       updatedAt: new Date(),
@@ -323,8 +323,8 @@ export async function markInvoiceAsViewed(invoiceId: string) {
 /**
  * Download invoice (increment view count, trigger email, etc.)
  */
-export async function downloadInvoice(invoiceId: string) {
-  const invoice = await prisma.invoiceAU.findUnique({
+export async function downloadInvoice(invoiceId: string, db: any = prisma) {
+  const invoice = await db.invoiceAU.findUnique({
     where: { id: invoiceId },
     include: {
       payment: true,

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { refundPaymentSchema, validateRequest, formatZodErrors } from '@/lib/validation';
 import { createRefund } from '@/lib/stripe';
 
@@ -12,18 +11,20 @@ interface RouteParams {
 // Create refund for a payment
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { id } = params;
-    const user = session.user as any;
     const body = await request.json();
 
     // Validate request
@@ -50,14 +51,6 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json(
         { success: false, error: 'Payment not found' },
         { status: 404 }
-      );
-    }
-
-    // Only admins can process refunds
-    if (!isAdmin(user.role)) {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden' },
-        { status: 403 }
       );
     }
 
