@@ -13,7 +13,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 
 const updatePayoutSettingsSchema = z.object({
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get contractor profile
-    const contractor = await prisma.contractor.findUnique({
+    const contractor = await db.contractor.findUnique({
       where: { userId: session.user.id },
       select: {
         id: true,
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get payout settings
-    const contractorProfile = await prisma.contractorProfile.findFirst({
+    const contractorProfile = await db.contractorProfile.findFirst({
       where: { contractorId: contractor.id },
       select: {
         stripeConnectAccountId: true,
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get recent payouts
-    const recentPayouts = await prisma.payment.findMany({
+    const recentPayouts = await db.payment.findMany({
       where: {
         contractorId: contractor.id,
         status: 'COMPLETED',
@@ -132,7 +132,7 @@ export async function PUT(request: NextRequest) {
     }
 
     // Get contractor profile
-    const contractor = await prisma.contractor.findUnique({
+    const contractor = await db.contractor.findUnique({
       where: { userId: session.user.id },
       select: { id: true },
     });
@@ -164,7 +164,7 @@ export async function PUT(request: NextRequest) {
     }
 
     // Update contractor profile
-    const updatedProfile = await prisma.contractorProfile.updateMany({
+    const updatedProfile = await db.contractorProfile.updateMany({
       where: { contractorId: contractor.id },
       data: {
         updatedAt: new Date(),

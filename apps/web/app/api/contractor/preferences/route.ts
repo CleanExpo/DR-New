@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
 import { z, ZodError } from 'zod';
@@ -37,13 +37,16 @@ export async function GET(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
-    const preferences = await prisma.contractorPreferences.findUnique({
+    const preferences = await db.contractorPreferences.findUnique({
       where: { userId: user.id }
     });
 
@@ -63,6 +66,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
@@ -75,7 +81,7 @@ export async function POST(request: NextRequest) {
     // Extract isOnboardingComplete from the body
     const { isOnboardingComplete, ...preferencesData } = preferences;
 
-    const contractorPreferences = await prisma.contractorPreferences.upsert({
+    const contractorPreferences = await db.contractorPreferences.upsert({
       where: { userId: user.id },
       update: {
         ...preferencesData,
@@ -90,12 +96,12 @@ export async function POST(request: NextRequest) {
 
     // If onboarding is completed, also create a basic contractor profile
     if (isOnboardingComplete) {
-      const existingProfile = await prisma.contractorProfile.findUnique({
+      const existingProfile = await db.contractorProfile.findUnique({
         where: { userId: user.id }
       });
 
       if (!existingProfile) {
-        await prisma.contractorProfile.create({
+        await db.contractorProfile.create({
           data: {
             userId: user.id,
             businessName: user.name || 'Contractor Business',

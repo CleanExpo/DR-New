@@ -6,7 +6,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
       : new Date(endDate.getTime() - 365 * 24 * 60 * 60 * 1000); // 1 year
 
     // Verify contractor exists
-    const contractor = await prisma.contractor.findUnique({
+    const contractor = await db.contractor.findUnique({
       where: { id: contractorId },
     });
 
@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get all completed bookings in date range
-    const completedBookings = await prisma.booking.findMany({
+    const completedBookings = await db.booking.findMany({
       where: {
         contractorId,
         status: 'COMPLETED',
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Get all matched jobs to calculate acceptance rate
-    const matchedJobs = await prisma.contractorMatch.findMany({
+    const matchedJobs = await db.contractorMatch.findMany({
       where: {
         contractorId,
         createdAt: {
@@ -120,7 +120,7 @@ export async function GET(request: NextRequest) {
       .map(([month, earnings]) => ({ month, earnings }));
 
     // Service type breakdown
-    const serviceTypeBreakdown = await prisma.booking.groupBy({
+    const serviceTypeBreakdown = await db.booking.groupBy({
       by: ['australianServiceType'],
       _count: true,
       where: {
@@ -134,7 +134,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Complaints/issues count
-    const disputes = await prisma.payment.count({
+    const disputes = await db.payment.count({
       where: {
         booking: {
           contractorId,

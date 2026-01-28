@@ -3,7 +3,7 @@ import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/li
 import { handleUnexpectedError } from '@/lib/api-errors';
 import { initializeOnboarding } from '@/lib/services/client-onboarding.service';
 import { sendClientWelcomeEmail } from '@/lib/services/client-email.service';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -32,6 +32,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
@@ -43,12 +46,12 @@ export async function POST(request: NextRequest) {
     const validated = startOnboardingSchema.parse(body);
 
     // Create client profile if doesn't exist
-    let profile = await prisma.clientProfile.findUnique({
+    let profile = await db.clientProfile.findUnique({
       where: { userId: user.id },
     });
 
     if (!profile) {
-      profile = await prisma.clientProfile.create({
+      profile = await db.clientProfile.create({
         data: {
           userId: user.id,
           phoneNumber: null,
