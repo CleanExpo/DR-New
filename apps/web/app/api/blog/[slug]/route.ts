@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
-import { basePrisma } from '@/lib/db';
+import { basePrisma } from '@/lib/prisma';
 import { PostStatus } from '@prisma/client';
 import { z } from 'zod';
 

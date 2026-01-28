@@ -25,5 +25,6 @@ if (USE_MOCK) {
 }
 
 export const prisma = prismaInstance;
+export const basePrisma = prismaInstance; // Alias for non-tenant-scoped access
 
 export default prisma;

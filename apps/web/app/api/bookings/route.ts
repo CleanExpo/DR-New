@@ -8,7 +8,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
-import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   BookingStatus,
   AustralianServiceType,
@@ -33,9 +32,6 @@ export async function GET(request: NextRequest) {
     }
 
     const { user } = authResult.context;
-    
-    // Get tenant-scoped database client
-    const db = getTenantDb(authResult.context);
 
     // Get tenant-scoped database client
     const db = getTenantDb(authResult.context);
@@ -115,9 +111,6 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
-    
-    // Get tenant-scoped database client
-    const db = getTenantDb(authResult.context);
 
     // Get tenant-scoped database client
     const db = getTenantDb(authResult.context);
