@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { z } from 'zod';
 
@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     // Validate request body
     const body = await request.json();
@@ -35,7 +36,7 @@ export async function POST(request: NextRequest) {
     const { receiverId, serviceRequestId, message } = validation.data;
 
     // Check if receiver exists
-    const receiver = await prisma.user.findUnique({
+    const receiver = await db.user.findUnique({
       where: { id: receiverId },
     });
 
@@ -48,7 +49,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if service request exists
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: serviceRequestId },
     });
 
@@ -61,7 +62,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if chat already exists for this service request
-    const existingChat = await prisma.message.findFirst({
+    const existingChat = await db.message.findFirst({
       where: {
         requestId: serviceRequestId,
         OR: [
@@ -87,7 +88,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create the message
-    const newMessage = await prisma.message.create({
+    const newMessage = await db.message.create({
       data: {
         senderId: user.id,
         receiverId: receiverId,
@@ -98,7 +99,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Get the created message with user details
-    const messageWithDetails = await prisma.message.findUnique({
+    const messageWithDetails = await db.message.findUnique({
       where: { id: newMessage.id },
       include: {
         sender: {
