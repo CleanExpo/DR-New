@@ -7,9 +7,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   triageClaim,
   triageClaimsBatch,
@@ -40,13 +39,19 @@ const triageHistory = new Map<string, TriageHistoryEntry>();
 export async function POST(request: NextRequest) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user || session.user.userType !== 'ADMIN') {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const body: TriageRequest = await request.json();
     const { claimId, claimIds, options } = body;
@@ -61,7 +66,7 @@ export async function POST(request: NextRequest) {
 
     // Handle single claim triage
     if (claimId) {
-      const claim = await prisma.publicClaim.findUnique({
+      const claim = await db.publicClaim.findUnique({
         where: { id: claimId },
       });
 
@@ -84,7 +89,7 @@ export async function POST(request: NextRequest) {
 
       // Optionally update claim priority based on triage
       if (options?.updatePriority) {
-        await prisma.publicClaim.update({
+        await db.publicClaim.update({
           where: { id: claimId },
           data: {
             priority: result.recommendedPriority,
@@ -109,7 +114,7 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      const claims = await prisma.publicClaim.findMany({
+      const claims = await db.publicClaim.findMany({
         where: { id: { in: claimIds } },
       });
 
@@ -179,13 +184,19 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user || session.user.userType !== 'ADMIN') {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const claimId = searchParams.get('claimId');
@@ -216,7 +227,7 @@ export async function GET(request: NextRequest) {
 
     // Get pending claims that need triage
     if (status === 'pending') {
-      const pendingClaims = await prisma.publicClaim.findMany({
+      const pendingClaims = await db.publicClaim.findMany({
         where: {
           status: 'PENDING',
         },

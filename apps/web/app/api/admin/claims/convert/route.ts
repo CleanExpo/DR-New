@@ -8,8 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import {
   convertPublicClaimToBooking,
   matchContractorsToBooking,
@@ -20,20 +19,25 @@ import {
   emitContractorsAvailable,
   emitContractorMatched,
 } from '@/lib/realtime/emit-handlers';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { logClaimAction } from '@/lib/services/audit.service';
 
 export async function POST(request: NextRequest) {
   try {
     // 1. Verify admin authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // 2. Get claim ID from request
     const body = await request.json();
@@ -47,7 +51,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 3. Get the original PublicClaim
-    const publicClaim = await prisma.publicClaim.findUnique({
+    const publicClaim = await db.publicClaim.findUnique({
       where: { id: publicClaimId },
     });
 
@@ -185,7 +189,7 @@ export async function GET(request: NextRequest) {
 
     const { prisma } = await import('@/lib/prisma');
 
-    const pendingClaims = await prisma.publicClaim.findMany({
+    const pendingClaims = await db.publicClaim.findMany({
       where: { status: 'PENDING' },
       select: {
         id: true,

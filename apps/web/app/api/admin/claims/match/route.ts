@@ -11,21 +11,25 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { matchContractorsToBooking } from '@/lib/claim-intake';
 
 export async function GET(request: NextRequest) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Get bookingId from query params
     const { searchParams } = new URL(request.url);
@@ -41,7 +45,7 @@ export async function GET(request: NextRequest) {
     const { prisma } = await import('@/lib/prisma');
 
     // Get existing ContractorMatch records
-    const matches = await prisma.contractorMatch.findMany({
+    const matches = await db.contractorMatch.findMany({
       where: { serviceRequestId: bookingId },
       include: {
         contractor: {
@@ -99,14 +103,19 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const { bookingId, removeExisting = false } = body;
@@ -121,7 +130,7 @@ export async function POST(request: NextRequest) {
     const { prisma } = await import('@/lib/prisma');
 
     // Verify booking exists
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: bookingId },
     });
 
@@ -134,7 +143,7 @@ export async function POST(request: NextRequest) {
 
     // Optionally remove existing matches before re-matching
     if (removeExisting) {
-      await prisma.contractorMatch.deleteMany({
+      await db.contractorMatch.deleteMany({
         where: { serviceRequestId: bookingId },
       });
     }
