@@ -29,7 +29,7 @@ export async function GET(
     const { invoiceId } = params;
 
     // Get invoice details
-    const invoice = await getInvoiceDetails(invoiceId);
+    const invoice = await getInvoiceDetails(invoiceId, db);
 
     if (!invoice) {
       return NextResponse.json(
@@ -40,7 +40,7 @@ export async function GET(
 
     // Verify user has access (client, contractor, or admin)
     if (
-      user.role !== 'ADMIN' &&
+      user.userType !== 'ADMIN' &&
       invoice.clientId !== user.id &&
       invoice.contractorId !== user.id
     ) {
@@ -52,7 +52,7 @@ export async function GET(
 
     // Mark as viewed
     try {
-      await markInvoiceAsViewed(invoiceId);
+      await markInvoiceAsViewed(invoiceId, db);
     } catch (error) {
       console.error('Error marking invoice as viewed:', error);
     }

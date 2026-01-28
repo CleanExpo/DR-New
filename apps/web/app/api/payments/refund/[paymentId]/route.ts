@@ -8,8 +8,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   initiateDispute,
   reviewDispute,
@@ -17,7 +17,6 @@ import {
   completeRefund,
   getDisputeDetails,
 } from '@/lib/payments/refund-handler';
-import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 
 // Validation schemas
@@ -43,24 +42,20 @@ export async function POST(
   { params }: { params: { paymentId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { paymentId } = params;
     const body = await request.json();
 
     // Check if user is client or admin
-    const user = session.user as any;
-    const isAdmin = user.role === 'ADMIN';
-    const isClient = user.role === 'USER';
+    const isAdmin = user.userType === 'ADMIN';
+    const isClient = user.userType === 'USER';
 
     if (!isAdmin && !isClient) {
       return NextResponse.json(
@@ -216,26 +211,21 @@ export async function GET(
   { params }: { params: { paymentId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+
     const { paymentId } = params;
-    const user = session.user as any;
 
     // Get dispute details
     const details = await getDisputeDetails(paymentId);
 
     // Check access
     if (
-      user.role !== 'ADMIN' &&
+      user.userType !== 'ADMIN' &&
       details.payment.clientId !== user.id &&
       details.payment.contractorId !== user.id
     ) {

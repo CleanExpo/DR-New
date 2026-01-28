@@ -8,10 +8,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { chargeForCompletedBooking, getPaymentDetails } from '@/lib/payments/booking-payment';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
+import { chargeForCompletedBooking, getPaymentDetails } from '@/lib/payments/booking-payment';
 
 export async function POST(
   request: NextRequest,
@@ -19,16 +18,13 @@ export async function POST(
 ) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { bookingId } = params;
 
@@ -50,8 +46,7 @@ export async function POST(
     }
 
     // Verify user is the client or an admin
-    const user = session.user as any;
-    if (user.role !== 'ADMIN' && booking.clientId !== user.id) {
+    if (user.userType !== 'ADMIN' && booking.clientId !== user.id) {
       return NextResponse.json(
         { error: 'Forbidden - You do not own this booking' },
         { status: 403 }
@@ -115,16 +110,13 @@ export async function GET(
   { params }: { params: { bookingId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    
-    // TODO: Convert to authenticateRequest and getTenantDb
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { bookingId } = params;
 
@@ -145,9 +137,8 @@ export async function GET(
     }
 
     // Verify user is the client, contractor, or admin
-    const user = session.user as any;
     if (
-      user.role !== 'ADMIN' &&
+      user.userType !== 'ADMIN' &&
       booking.clientId !== user.id &&
       booking.contractorId !== user.id
     ) {
