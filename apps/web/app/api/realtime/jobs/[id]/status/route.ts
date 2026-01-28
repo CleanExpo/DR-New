@@ -139,11 +139,12 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 // Get current job status
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
 

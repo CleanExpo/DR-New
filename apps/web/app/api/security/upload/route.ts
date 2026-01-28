@@ -37,8 +37,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { fileScanner } from '@/lib/security/file-scanner';
 import { securityMonitor } from '@/lib/security/security-monitor';
 import { logError, logInfo, logWarn } from '@/lib/logger/helpers';
@@ -68,13 +67,12 @@ export async function POST(request: NextRequest) {
                'unknown';
 
     // Verify authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
 
     // Get form data
     const formData = await request.formData();
@@ -116,7 +114,7 @@ export async function POST(request: NextRequest) {
         });
 
         logInfo('File upload allowed', {
-          userId: session.user.email,
+          userId: user.id,
           filename,
           size: scanResult.size,
           mimeType: scanResult.mimeType,
@@ -131,15 +129,15 @@ export async function POST(request: NextRequest) {
 
         // Track suspicious upload attempt
         securityMonitor.trackSuspiciousFileUpload(
-          session.user.email,
-          session.user.email,
+          user.id,
+          user.email,
           filename,
           scanResult.reason || 'Failed security scan',
           clientIp
         );
 
         logWarn('File upload blocked', {
-          userId: session.user.email,
+          userId: user.id,
           filename,
           size: scanResult.size,
           reason: scanResult.reason,
@@ -173,12 +171,9 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
     const config = fileScanner.getConfig();
