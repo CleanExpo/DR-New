@@ -5,11 +5,19 @@
  * Returns time-series organic traffic data
  */
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
 
     // Query parameters
@@ -48,7 +56,7 @@ export async function GET(request: Request) {
     if (landingPage) where.landingPage = landingPage;
 
     // Get traffic records
-    const records = await prisma.trafficRecord.findMany({
+    const records = await db.trafficRecord.findMany({
       where,
       orderBy: {
         timestamp: 'asc',

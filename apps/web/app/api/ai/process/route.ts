@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getWorkerService } from '@/lib/services/autonomousWorker.service';
-import { prisma } from '@/lib/prisma';
-// import pino from 'pino';
-
-// const logger = pino();
 
 interface ProcessRequest {
     taskType: 'summarization' | 'qa' | 'generation' | 'extraction';
@@ -15,17 +12,24 @@ interface ProcessRequest {
 
 export async function POST(request: NextRequest) {
     try {
-          const body: ProcessRequest = await request.json();
-          const { taskType, input, context, userId, disasterId } = body;
+          const authResult = await authenticateRequest(request);
+          if (!authResult.success) {
+            return authResult.response;
+          }
 
-      if (!input || !taskType || !userId) {
+          const { user } = authResult.context;
+
+          const body: ProcessRequest = await request.json();
+          const { taskType, input, context, disasterId } = body;
+
+      if (!input || !taskType) {
               return NextResponse.json(
-                { error: 'Missing required fields: input, taskType, userId' },
+                { error: 'Missing required fields: input, taskType' },
                 { status: 400 }
                       );
       }
 
-      logger.info(`Processing T5Gemma task: ${taskType} for user: ${userId}`);
+      console.log(`Processing T5Gemma task: ${taskType} for user: ${user.id}`);
 
       const workerService = getWorkerService();
           const jobId = await workerService.enqueueTask(
@@ -46,7 +50,7 @@ export async function POST(request: NextRequest) {
               message: `Task queued successfully`,
       });
     } catch (error) {
-          logger.error('API error:', error);
+          console.error('API error:', error);
           return NextResponse.json(
             {
                       error: error instanceof Error ? error.message : 'Processing failed',
@@ -57,6 +61,11 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const jobId = request.nextUrl.searchParams.get('jobId');
 
   if (!jobId) {

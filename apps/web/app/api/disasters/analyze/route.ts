@@ -1,21 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getDisasterRecoveryAgent } from '@/lib/services/disasterRecoveryAgent.service';
 
 export async function POST(request: NextRequest) {
     try {
+          const authResult = await authenticateRequest(request);
+          if (!authResult.success) {
+            return authResult.response;
+          }
+
+          const { user } = authResult.context;
+
           const {
                   disasterType,
                   severity,
                   description,
                   affectedAreas,
-                  userId,
           } = await request.json();
 
-      if (!disasterType || !severity || !description || !userId) {
+      if (!disasterType || !severity || !description) {
               return NextResponse.json(
                 {
                             error:
-                                          'Missing required fields: disasterType, severity, description, userId',
+                                          'Missing required fields: disasterType, severity, description',
                 },
                 { status: 400 }
                       );
@@ -29,7 +36,7 @@ export async function POST(request: NextRequest) {
                       description,
                       affectedAreas: affectedAreas || [],
             },
-                  userId
+                  user.id
                 );
 
       return NextResponse.json({

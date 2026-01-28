@@ -5,11 +5,19 @@
  * Returns current keyword rankings with filters
  */
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
 
     // Query parameters
@@ -22,7 +30,7 @@ export async function GET(request: Request) {
     const offset = parseInt(searchParams.get('offset') || '0');
 
     // Get the latest timestamp to filter for most recent rankings
-    const latestTimestamp = await prisma.rankingRecord.findFirst({
+    const latestTimestamp = await db.rankingRecord.findFirst({
       orderBy: { timestamp: 'desc' },
       select: { timestamp: true },
     });
@@ -58,7 +66,7 @@ export async function GET(request: Request) {
 
     // Get rankings with pagination
     const [rankings, total] = await Promise.all([
-      prisma.rankingRecord.findMany({
+      db.rankingRecord.findMany({
         where,
         orderBy: [
           { position: 'asc' },
@@ -68,7 +76,7 @@ export async function GET(request: Request) {
         skip: offset,
         distinct: ['keyword', 'location', 'device'],
       }),
-      prisma.rankingRecord.count({ where }),
+      db.rankingRecord.count({ where }),
     ]);
 
     // Calculate summary statistics

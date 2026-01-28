@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { z } from 'zod';
 import { triggerSWOTAnalysis, getJobStatus } from '@/lib/competitor-analysis/jobs/analysis-scheduler';
 import { swotAnalysisService } from '@/lib/competitor-analysis/services/swot-analysis-service';
@@ -21,6 +22,11 @@ const swotAnalysisSchema = z.object({
  */
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const body = await request.json();
 
     // Validate input
@@ -75,6 +81,11 @@ export async function POST(request: NextRequest) {
  */
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const { searchParams } = new URL(request.url);
 
     const competitorId = searchParams.get('competitorId');
