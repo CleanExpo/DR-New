@@ -11,7 +11,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { triggerPayoutForBooking, getContractorEarnings } from '@/lib/payments/contractor-payout';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function POST(
   request: NextRequest,
@@ -20,6 +20,8 @@ export async function POST(
   try {
     // Verify admin authentication
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || session.user.role !== 'ADMIN') {
       return NextResponse.json(
@@ -85,6 +87,8 @@ export async function GET(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user.id) {
       return NextResponse.json(
@@ -96,7 +100,7 @@ export async function GET(
     const { bookingId } = params;
 
     // Get booking to verify access
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: bookingId },
       select: {
         id: true,
@@ -126,7 +130,7 @@ export async function GET(
     }
 
     // Get payment and payout info
-    const payment = await prisma.payment.findFirst({
+    const payment = await db.payment.findFirst({
       where: { bookingId },
       select: {
         id: true,

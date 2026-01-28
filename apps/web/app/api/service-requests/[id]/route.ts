@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
@@ -23,7 +23,7 @@ export async function GET(
     const requestId = params.id;
 
     // Get the service request with all related data
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: requestId },
       include: {
         user: {
@@ -81,7 +81,7 @@ export async function GET(
 
     // If user is a contractor, calculate match score
     if (payload.userType === 'CONTRACTOR') {
-      const contractor = await prisma.contractorProfile.findUnique({
+      const contractor = await db.contractorProfile.findUnique({
         where: { userId: payload.userId },
       });
 

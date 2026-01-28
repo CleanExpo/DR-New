@@ -13,6 +13,8 @@ interface RouteParams {
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
     if (!session?.user) {
       return NextResponse.json(
         { success: false, error: 'Unauthorized' },
@@ -40,7 +42,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const { amount, reason } = validation.data;
 
     // Get payment
-    const payment = await prisma.payment.findUnique({
+    const payment = await db.payment.findUnique({
       where: { id },
     });
 
@@ -95,7 +97,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Create refund record
-    const refund = await prisma.refund.create({
+    const refund = await db.refund.create({
       data: {
         paymentId: id,
         amount: refundAmount,
@@ -110,7 +112,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const newRefundedAmount = payment.refundedAmount + refundAmount;
     const newStatus = newRefundedAmount >= payment.amount ? 'REFUNDED' : 'COMPLETED';
 
-    await prisma.payment.update({
+    await db.payment.update({
       where: { id },
       data: {
         refundedAmount: newRefundedAmount,

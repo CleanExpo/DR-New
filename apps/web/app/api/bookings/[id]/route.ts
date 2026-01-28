@@ -8,7 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authOptions } from '@/lib/auth';
 import { BookingStatus } from '@prisma/client';
 
@@ -22,6 +22,8 @@ export async function GET(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -30,7 +32,7 @@ export async function GET(
       );
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email },
     });
 
@@ -41,7 +43,7 @@ export async function GET(
       );
     }
 
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: params.id },
       include: {
         contractor: {
@@ -115,6 +117,8 @@ export async function PATCH(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -123,7 +127,7 @@ export async function PATCH(
       );
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email },
     });
 
@@ -134,7 +138,7 @@ export async function PATCH(
       );
     }
 
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: params.id },
     });
 
@@ -169,7 +173,7 @@ export async function PATCH(
       updates.status = body.status;
     }
 
-    const updatedBooking = await prisma.booking.update({
+    const updatedBooking = await db.booking.update({
       where: { id: params.id },
       data: updates,
       include: {
@@ -178,7 +182,7 @@ export async function PATCH(
     });
 
     // Log audit
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'UPDATE',
         entityType: 'Booking',
@@ -213,6 +217,8 @@ export async function DELETE(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user?.email) {
       return NextResponse.json(
@@ -221,7 +227,7 @@ export async function DELETE(
       );
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { email: session.user.email },
     });
 
@@ -232,7 +238,7 @@ export async function DELETE(
       );
     }
 
-    const booking = await prisma.booking.findUnique({
+    const booking = await db.booking.findUnique({
       where: { id: params.id },
     });
 
@@ -262,13 +268,13 @@ export async function DELETE(
       );
     }
 
-    const cancelledBooking = await prisma.booking.update({
+    const cancelledBooking = await db.booking.update({
       where: { id: params.id },
       data: { status: BookingStatus.CANCELLED },
     });
 
     // Log audit
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'UPDATE',
         entityType: 'Booking',

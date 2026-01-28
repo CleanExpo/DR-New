@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { serviceRequestSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
@@ -23,6 +23,9 @@ export async function POST(request: NextRequest) {
       return authResult.response;
     }
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Parse and validate request body
     const body = await request.json();
@@ -42,7 +45,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Create service request
-    const serviceRequest = await prisma.serviceRequest.create({
+    const serviceRequest = await db.serviceRequest.create({
       data: {
         userId: user.id,
         serviceCategory: validatedData.serviceCategory,
@@ -109,9 +112,12 @@ export async function GET(request: NextRequest) {
       return authResult.response;
     }
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Fetch user's service requests
-    const serviceRequests = await prisma.serviceRequest.findMany({
+    const serviceRequests = await db.serviceRequest.findMany({
       where: { userId: user.id },
       orderBy: { createdAt: 'desc' },
     });

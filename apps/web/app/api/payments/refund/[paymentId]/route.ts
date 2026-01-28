@@ -17,7 +17,7 @@ import {
   completeRefund,
   getDisputeDetails,
 } from '@/lib/payments/refund-handler';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 
 // Validation schemas
@@ -44,6 +44,8 @@ export async function POST(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user.id) {
       return NextResponse.json(
@@ -132,13 +134,13 @@ export async function POST(
       if (validatedData.action === 'APPROVE' || validatedData.action === 'PARTIAL') {
         const refundAmount =
           validatedData.approvedAmount ||
-          (await prisma.payment.findUnique({
+          (await db.payment.findUnique({
             where: { id: paymentId },
             select: { amountAUD: true, gstAUD: true },
           }))
             ? parseFloat(
                 (
-                  await prisma.payment.findUnique({
+                  await db.payment.findUnique({
                     where: { id: paymentId },
                     select: { amountAUD: true, gstAUD: true },
                   })
@@ -146,7 +148,7 @@ export async function POST(
               ) +
               parseFloat(
                 (
-                  await prisma.payment.findUnique({
+                  await db.payment.findUnique({
                     where: { id: paymentId },
                     select: { amountAUD: true, gstAUD: true },
                   })
@@ -215,6 +217,8 @@ export async function GET(
 ) {
   try {
     const session = await getServerSession(authOptions);
+    
+    // TODO: Convert to authenticateRequest and getTenantDb
 
     if (!session || !session.user.id) {
       return NextResponse.json(
