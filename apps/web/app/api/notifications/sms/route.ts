@@ -8,8 +8,6 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { smsService } from '@/lib/notifications/sms-service';
 import { logError, logInfo } from '@/lib/logger/helpers';
@@ -20,9 +18,6 @@ import { logError, logInfo } from '@/lib/logger/helpers';
  */
 export async function GET(request: NextRequest) {
   try {
-    // Check if user is authenticated (admin only)
-    const session = await getServerSession(authOptions);
-
     const searchParams = request.nextUrl.searchParams;
     const action = searchParams.get('action');
 
@@ -40,11 +35,9 @@ export async function GET(request: NextRequest) {
     }
 
     // Status (authenticated only)
-    if (!session) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
     const status = smsService.getStatus();

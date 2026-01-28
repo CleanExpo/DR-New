@@ -8,8 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticateRequest } from '@/lib/auth-middleware';
-import { requireRole } from '@/lib/require-role';
+import { authenticateRequest, requireRole } from '@/lib/auth-middleware';
 import { storageManager } from '@/src/lib/storage/storage-manager';
 
 export async function DELETE(request: NextRequest) {
