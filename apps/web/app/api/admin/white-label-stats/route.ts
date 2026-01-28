@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
@@ -19,6 +19,9 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     // Calculate date threshold for active clients
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
@@ -31,11 +34,11 @@ export async function GET(request: NextRequest) {
       completedServices
     ] = await Promise.all([
       // Get all clients
-      prisma.user.count({
+      db.user.count({
         where: { userType: 'CLIENT' }
       }),
       // Get active clients (those with recent activity)
-      prisma.user.count({
+      db.user.count({
         where: {
           userType: 'CLIENT',
           serviceRequests: {
@@ -48,9 +51,9 @@ export async function GET(request: NextRequest) {
         }
       }),
       // Get total service requests
-      prisma.serviceRequest.count(),
+      db.serviceRequest.count(),
       // Get completed service requests
-      prisma.serviceRequest.count({
+      db.serviceRequest.count({
         where: { status: 'COMPLETED' }
       })
     ]);

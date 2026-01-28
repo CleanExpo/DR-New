@@ -7,10 +7,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticateRequest } from '@/lib/auth-middleware';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { ErrorCode } from '@/lib/api-errors';
 import { createTenantPortalSession } from '@/lib/stripe/tenant-subscription';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,7 +24,14 @@ export async function GET(request: NextRequest) {
   const { user, tenantId } = authResult.context;
 
   // Only ADMIN and SUPER_ADMIN can manage tenant billing
-  if (user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN') {
+  if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+    return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
+  }
+
+  // Get tenant-scoped database client
+  const db = getTenantDb(authResult.context);
+
+  if (false) {
     return NextResponse.json(
       {
         error: ErrorCode.FORBIDDEN,
@@ -47,7 +54,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // Fetch tenant details
-    const tenant = await prisma.tenant.findUnique({
+    const tenant = await db.tenant.findUnique({
       where: { id: tenantId },
     });
 

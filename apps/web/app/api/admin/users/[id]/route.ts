@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin, isSuperAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 import { validateRequest, formatZodErrors } from '@/lib/validation';
 import { logUserManagement } from '@/lib/services/audit.service';
@@ -21,25 +20,23 @@ const updateUserSchema = z.object({
 // Get single user
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const currentUser = session.user as any;
-    if (!isAdmin(currentUser.role)) {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden' },
-        { status: 403 }
-      );
+    const { user: currentUser } = authResult.context;
+
+    if (!requireRole(currentUser, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { id } = params;
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
       where: { id },
       select: {
         id: true,
@@ -93,21 +90,19 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 // Update user
 export async function PATCH(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const currentUser = session.user as any;
-    if (!isAdmin(currentUser.role)) {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden' },
-        { status: 403 }
-      );
+    const { user: currentUser } = authResult.context;
+
+    if (!requireRole(currentUser, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { id } = params;
     const body = await request.json();
@@ -124,7 +119,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const targetUser = await prisma.user.findUnique({
+    const targetUser = await db.user.findUnique({
       where: { id },
     });
 
@@ -155,7 +150,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const updatedUser = await prisma.user.update({
+    const updatedUser = await db.user.update({
       where: { id },
       data: validation.data,
       select: {
@@ -199,21 +194,19 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 // Delete user (soft delete)
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const currentUser = session.user as any;
-    if (!isSuperAdmin(currentUser.role)) {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden - Super Admin required' },
-        { status: 403 }
-      );
+    const { user: currentUser } = authResult.context;
+
+    if (!requireRole(currentUser, ['SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['SUPER_ADMIN']);
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { id } = params;
 
@@ -225,7 +218,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const targetUser = await prisma.user.findUnique({
+    const targetUser = await db.user.findUnique({
       where: { id },
     });
 
@@ -237,7 +230,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     }
 
     // Soft delete - just deactivate
-    await prisma.user.update({
+    await db.user.update({
       where: { id },
       data: {
         isActive: false,
