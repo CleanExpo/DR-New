@@ -8,10 +8,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { getInvoiceDetails, markInvoiceAsViewed } from '@/lib/invoicing/generate-invoice';
-import { prisma } from '@/lib/prisma';
 
 export async function GET(
   request: NextRequest,
@@ -19,14 +18,13 @@ export async function GET(
 ) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { invoiceId } = params;
 
@@ -41,7 +39,6 @@ export async function GET(
     }
 
     // Verify user has access (client, contractor, or admin)
-    const user = session.user as any;
     if (
       user.role !== 'ADMIN' &&
       invoice.clientId !== user.id &&
@@ -110,19 +107,21 @@ export async function DELETE(
   { params }: { params: { invoiceId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
+    }
+
+    const db = getTenantDb(authResult.context);
     const { invoiceId } = params;
 
     // Soft delete by marking as draft
-    const invoice = await prisma.invoiceAU.update({
+    const invoice = await db.invoiceAU.update({
       where: { id: invoiceId },
       data: {
         updatedAt: new Date(),

@@ -11,28 +11,24 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get('limit') || '20');
     const offset = parseInt(searchParams.get('offset') || '0');
     const isPaid = searchParams.get('isPaid');
-
-    const user = session.user as any;
 
     // Build where clause based on user role
     const where: any = {};
@@ -52,7 +48,7 @@ export async function GET(request: NextRequest) {
 
     // Get paginated invoices
     const [invoices, total] = await Promise.all([
-      prisma.invoiceAU.findMany({
+      db.invoiceAU.findMany({
         where,
         include: {
           client: {
@@ -81,7 +77,7 @@ export async function GET(request: NextRequest) {
         take: limit,
         skip: offset,
       }),
-      prisma.invoiceAU.count({ where }),
+      db.invoiceAU.count({ where }),
     ]);
 
     return NextResponse.json({
