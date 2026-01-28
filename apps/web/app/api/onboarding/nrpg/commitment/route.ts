@@ -5,9 +5,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 
 const commitmentSchema = z.object({
@@ -22,15 +22,16 @@ const commitmentSchema = z.object({
 // GET /api/onboarding/nrpg/commitment
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const userId = (session.user as any).id;
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -39,7 +40,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get commitment record
-    const commitment = await prisma.nRPGCommitment.findUnique({
+    const commitment = await db.nRPGCommitment.findUnique({
       where: { contractorId: contractor.id },
     });
 
@@ -78,12 +79,14 @@ export async function GET(request: NextRequest) {
 // POST /api/onboarding/nrpg/commitment
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const userId = (session.user as any).id;
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
 
     // Validate input
@@ -95,8 +98,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
@@ -105,7 +108,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if already signed
-    const existing = await prisma.nRPGCommitment.findUnique({
+    const existing = await db.nRPGCommitment.findUnique({
       where: { contractorId: contractor.id },
     });
 
@@ -119,7 +122,7 @@ export async function POST(request: NextRequest) {
     const now = new Date();
 
     // Create commitment record
-    const commitment = await prisma.nRPGCommitment.create({
+    const commitment = await db.nRPGCommitment.create({
       data: {
         contractorId: contractor.id,
         signedName: parsed.data.fullName,
@@ -134,7 +137,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Update phase record to mark commitment as signed
-    await prisma.nRPGOnboardingPhase.updateMany({
+    await db.nRPGOnboardingPhase.updateMany({
       where: { contractorId: contractor.id },
       data: {
         commitmentSigned: true,

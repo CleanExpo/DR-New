@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { getVerifiedTrainingSourceHtml, verifyTrainingSourcesPresent } from '@/lib/training/nrp-training';
@@ -19,13 +19,15 @@ export async function GET(request: NextRequest) {
 
     const { user } = authResult.context;
 
+    const db = getTenantDb(authResult.context);
+
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
 
     await verifyTrainingSourcesPresent();
 
-    const onboarding = await prisma.contractorOnboarding.findUnique({
+    const onboarding = await db.contractorOnboarding.findUnique({
       where: { contractorId: user.id },
       select: { status: true },
     });
@@ -34,7 +36,7 @@ export async function GET(request: NextRequest) {
       return createErrorResponse(ErrorCode.FORBIDDEN, 'Certificate is only available after training completion', 403);
     }
 
-    const cert = await prisma.contractorCertification.findFirst({
+    const cert = await db.contractorCertification.findFirst({
       where: { contractorId: user.id, certificationName: 'NRP Contractor Certification' },
       orderBy: { createdAt: 'desc' },
     });
@@ -43,12 +45,12 @@ export async function GET(request: NextRequest) {
       return createErrorResponse(ErrorCode.RESOURCE_NOT_FOUND, 'Certificate not found', 404);
     }
 
-    const profile = await prisma.contractorProfile.findUnique({
+    const profile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
       select: { businessName: true },
     });
 
-    const dbUser = await prisma.user.findUnique({
+    const dbUser = await db.user.findUnique({
       where: { id: user.id },
       select: { name: true },
     });

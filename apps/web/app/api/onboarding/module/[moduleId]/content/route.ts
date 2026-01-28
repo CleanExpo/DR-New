@@ -4,9 +4,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { getModuleById, parseModuleId } from '@/lib/nrpg/course-loader';
 
 export async function GET(
@@ -14,10 +13,13 @@ export async function GET(
   { params }: { params: { moduleId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json({ success: false, error: 'Unauthorised' }, { status: 401 });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const { moduleId } = params;
 
@@ -40,15 +42,14 @@ export async function GET(
     }
 
     // Get user's progress for this module
-    const userId = (session.user as any).id;
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     });
 
     let progress = null;
     if (contractor) {
-      progress = await prisma.nRPGTrainingProgress.findUnique({
+      progress = await db.nRPGTrainingProgress.findUnique({
         where: {
           contractorId_moduleId: {
             contractorId: contractor.id,
@@ -59,7 +60,7 @@ export async function GET(
 
       // If no progress exists, create it and mark content as viewed
       if (!progress) {
-        progress = await prisma.nRPGTrainingProgress.create({
+        progress = await db.nRPGTrainingProgress.create({
           data: {
             contractorId: contractor.id,
             courseId: parsed.courseId,
@@ -75,7 +76,7 @@ export async function GET(
         });
       } else if (!progress.contentViewedAt) {
         // Update content viewed timestamp
-        progress = await prisma.nRPGTrainingProgress.update({
+        progress = await db.nRPGTrainingProgress.update({
           where: { id: progress.id },
           data: {
             contentViewedAt: new Date(),
@@ -128,7 +129,7 @@ export async function POST(
     }
 
     const userId = (session.user as any).id;
-    const contractor = await prisma.contractor.findFirst({
+    const contractor = await db.contractor.findFirst({
       where: { userId },
       select: { id: true },
     });
@@ -141,7 +142,7 @@ export async function POST(
 
     // Update time spent
     if (body.timeSpentMinutes !== undefined) {
-      const current = await prisma.nRPGTrainingProgress.findUnique({
+      const current = await db.nRPGTrainingProgress.findUnique({
         where: {
           contractorId_moduleId: {
             contractorId: contractor.id,
@@ -163,7 +164,7 @@ export async function POST(
 
     // Calculate progress percentage
     if (Object.keys(updateData).length > 0) {
-      const current = await prisma.nRPGTrainingProgress.findUnique({
+      const current = await db.nRPGTrainingProgress.findUnique({
         where: {
           contractorId_moduleId: {
             contractorId: contractor.id,
@@ -189,7 +190,7 @@ export async function POST(
       }
     }
 
-    const progress = await prisma.nRPGTrainingProgress.update({
+    const progress = await db.nRPGTrainingProgress.update({
       where: {
         contractorId_moduleId: {
           contractorId: contractor.id,

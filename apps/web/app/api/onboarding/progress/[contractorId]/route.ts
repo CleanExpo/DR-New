@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
@@ -17,6 +17,8 @@ export async function GET(
 
     const { user } = authResult.context;
 
+    const db = getTenantDb(authResult.context);
+
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
@@ -25,7 +27,7 @@ export async function GET(
       return createErrorResponse(ErrorCode.FORBIDDEN, 'Unauthorized onboarding access', 403);
     }
 
-    const onboarding = await prisma.contractorOnboarding.findUnique({
+    const onboarding = await db.contractorOnboarding.findUnique({
       where: { contractorId: params.contractorId },
       include: {
         moduleProgress: true,
