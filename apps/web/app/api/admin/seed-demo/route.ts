@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import bcrypt from 'bcryptjs'
 
 // Demo credentials - password: demo2026
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const results: string[] = []
 
     // 1. Create Demo Client
-    const demoClient = await prisma.user.upsert({
+    const demoClient = await db.user.upsert({
       where: { email: 'demo.client@disasterrecovery.com.au' },
       update: { password: DEMO_PASSWORD_HASH },
       create: {
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
     results.push(`Client: ${demoClient.email}`)
 
     // 2. Create Demo Contractor User
-    const demoContractorUser = await prisma.user.upsert({
+    const demoContractorUser = await db.user.upsert({
       where: { email: 'demo.contractor@disasterrecovery.com.au' },
       update: { password: DEMO_PASSWORD_HASH },
       create: {
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
     results.push(`Contractor: ${demoContractorUser.email}`)
 
     // 3. Create Demo Admin
-    const demoAdmin = await prisma.user.upsert({
+    const demoAdmin = await db.user.upsert({
       where: { email: 'demo.admin@disasterrecovery.com.au' },
       update: { password: DEMO_PASSWORD_HASH },
       create: {

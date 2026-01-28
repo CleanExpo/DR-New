@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
 import { z, ZodError } from 'zod';
@@ -29,7 +29,10 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
-    const categories = await prisma.adminServiceCategory.findMany({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    const categories = await db.adminServiceCategory.findMany({
       include: {
         services: true
       },
@@ -60,10 +63,13 @@ export async function POST(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const categoryData = categorySchema.parse(body);
 
-    const category = await prisma.adminServiceCategory.create({
+    const category = await db.adminServiceCategory.create({
       data: categoryData,
       include: {
         services: true

@@ -7,8 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { getOrchestrator } from '@/lib/agents/core/orchestrator';
 import type {
   ReportType,
@@ -87,19 +86,25 @@ const REPORT_TYPE_INFO: Record<
 export async function POST(request: NextRequest) {
   try {
     // Verify admin authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user || session.user.userType !== 'ADMIN') {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorised - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
 
     // Check if this is a natural language query
     if (body.query && !body.reportType) {
-      return handleNaturalLanguageQuery(body as NaturalLanguageRequest, session.user.id);
+      return handleNaturalLanguageQuery(body as NaturalLanguageRequest, user.id);
     }
 
     // Standard report generation
@@ -367,16 +372,22 @@ async function handleNaturalLanguageQuery(
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorised' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // Only admins can access reports
-    if (session.user.userType !== 'ADMIN') {
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    const { searchParams } = new URL(request.url);
+    if (false) {
       return NextResponse.json(
         { success: false, error: 'Unauthorised - Admin access required' },
         { status: 403 }
