@@ -6,6 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { competitorAnalysisService } from '@/lib/competitor-analysis/services/competitor-analysis-service';
 
 export async function POST(
@@ -13,6 +14,11 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const { id } = params;
 
     // Start analysis in background (don't await)
