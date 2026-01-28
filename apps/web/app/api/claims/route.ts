@@ -6,9 +6,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/prisma';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   submitInsuranceClaim,
   getInsuranceProviders,
@@ -20,25 +19,13 @@ import {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     // Parse query parameters
     const searchParams = request.nextUrl.searchParams;
@@ -59,7 +46,7 @@ export async function GET(request: NextRequest) {
 
     // Fetch claims
     const [claims, total] = await Promise.all([
-      prisma.insuranceClaimAU.findMany({
+      db.insuranceClaimAU.findMany({
         where,
         include: {
           insuranceProvider: {
@@ -82,7 +69,7 @@ export async function GET(request: NextRequest) {
         skip: offset,
         take: limit,
       }),
-      prisma.insuranceClaimAU.count({ where }),
+      db.insuranceClaimAU.count({ where }),
     ]);
 
     return NextResponse.json({
@@ -110,25 +97,13 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
 
