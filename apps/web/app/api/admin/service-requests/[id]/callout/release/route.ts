@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { createTransfer } from '@/lib/stripe';
 import { getNrpgCalloutSplit } from '@/lib/pricing/nrpg-callout';
@@ -23,7 +23,7 @@ export async function POST(
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
-    const callout = await prisma.serviceRequestCalloutPayment.findUnique({
+    const callout = await db.serviceRequestCalloutPayment.findUnique({
       where: { serviceRequestId: params.id },
       include: { contractorProfile: true },
     });
@@ -44,7 +44,7 @@ export async function POST(
     let contractorProfile = callout.contractorProfile;
 
     if (!contractorProfile) {
-      const accepted = await prisma.contractorMatch.findFirst({
+      const accepted = await db.contractorMatch.findFirst({
         where: { serviceRequestId: params.id, status: 'ACCEPTED' },
         include: { contractor: true },
         orderBy: { updatedAt: 'desc' },
@@ -60,7 +60,7 @@ export async function POST(
 
       contractorProfile = accepted.contractor;
 
-      await prisma.serviceRequestCalloutPayment.update({
+      await db.serviceRequestCalloutPayment.update({
         where: { serviceRequestId: params.id },
         data: { contractorProfileId: contractorProfile.id },
       });
@@ -82,7 +82,7 @@ export async function POST(
       'aud'
     );
 
-    await prisma.serviceRequestCalloutPayment.update({
+    await db.serviceRequestCalloutPayment.update({
       where: { serviceRequestId: params.id },
       data: {
         status: 'RELEASED',

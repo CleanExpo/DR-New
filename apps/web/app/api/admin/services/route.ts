@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
 import { z, ZodError } from 'zod';
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
-    const services = await prisma.adminService.findMany({
+    const services = await db.adminService.findMany({
       include: {
         category: true
       },
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const serviceData = serviceSchema.parse(body);
 
-    const service = await prisma.adminService.create({
+    const service = await db.adminService.create({
       data: serviceData,
       include: {
         category: true

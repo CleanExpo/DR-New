@@ -7,8 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import {
   calculatePrice,
   optimiseContractorBid,
@@ -26,13 +25,15 @@ interface PricingApiRequest extends PricingRequest {
 export async function POST(request: NextRequest) {
   try {
     // Verify authentication (allow both admin and contractors)
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorised' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const body: PricingApiRequest = await request.json();
     const { mode = 'calculate', contractorId, ...pricingRequest } = body;
@@ -153,13 +154,15 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorised' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const serviceType = searchParams.get('serviceType');
