@@ -6,9 +6,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/prisma';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   registerContractor as nrpgRegisterContractor,
   getPendingVerifications,
@@ -22,28 +21,16 @@ import { AustralianState, AustralianServiceType, IICRCCertificationLevel } from 
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     // Check if user is contractor type
-    if (user.userType !== 'CONTRACTOR') {
+    if (user.role !== 'CONTRACTOR') {
       return NextResponse.json(
         { error: 'User must be registered as contractor' },
         { status: 400 }
@@ -51,7 +38,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if contractor profile already exists
-    const existingContractor = await prisma.contractor.findUnique({
+    const existingContractor = await db.contractor.findUnique({
       where: { userId: user.id },
     });
 
@@ -99,7 +86,7 @@ export async function POST(request: NextRequest) {
 
     // Update user to contractor type if needed
     if (user.userType !== 'CONTRACTOR') {
-      await prisma.user.update({
+      await db.user.update({
         where: { id: user.id },
         data: { userType: 'CONTRACTOR' },
       });
@@ -144,33 +131,19 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
+    const { user } = authResult.context;
 
     // Check if user is admin
-    if (user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN') {
-      return NextResponse.json(
-        { error: 'Only admins can view pending verifications' },
-        { status: 403 }
-      );
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
+
+    const db = getTenantDb(authResult.context);
 
     // Get query params
     const searchParams = request.nextUrl.searchParams;

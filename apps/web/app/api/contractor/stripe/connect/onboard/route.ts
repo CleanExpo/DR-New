@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { createAccountLink, createConnectedAccount } from '@/lib/stripe';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
@@ -19,11 +19,13 @@ export async function POST(request: NextRequest) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
 
+    const db = getTenantDb(authResult.context);
+
     const origin = new URL(request.url).origin;
     const returnUrl = `${origin}/dashboard/contractor/onboarding/payouts?stripe=return`;
     const refreshUrl = `${origin}/dashboard/contractor/onboarding/payouts?stripe=refresh`;
 
-    const dbUser = await prisma.user.findUnique({
+    const dbUser = await db.user.findUnique({
       where: { id: user.id },
       select: { id: true, email: true },
     });
@@ -32,12 +34,12 @@ export async function POST(request: NextRequest) {
       return createErrorResponse(ErrorCode.INVALID_INPUT, 'User email is required for Stripe Connect', 400);
     }
 
-    let contractorProfile = await prisma.contractorProfile.findUnique({
+    let contractorProfile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
     });
 
     if (!contractorProfile) {
-      contractorProfile = await prisma.contractorProfile.create({
+      contractorProfile = await db.contractorProfile.create({
         data: {
           userId: user.id,
           services: [],
@@ -56,7 +58,7 @@ export async function POST(request: NextRequest) {
       });
       connectAccountId = account.id;
 
-      await prisma.contractorProfile.update({
+      await db.contractorProfile.update({
         where: { id: contractorProfile.id },
         data: { stripeConnectAccountId: connectAccountId },
       });

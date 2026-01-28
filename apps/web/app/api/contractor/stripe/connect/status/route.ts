@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
 import Stripe from 'stripe';
@@ -23,7 +23,9 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
 
-    const profile = await prisma.contractorProfile.findUnique({
+    const db = getTenantDb(authResult.context);
+
+    const profile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
       select: { stripeConnectAccountId: true },
     });
