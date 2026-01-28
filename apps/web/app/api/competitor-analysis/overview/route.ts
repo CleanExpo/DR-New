@@ -5,55 +5,47 @@
  * Returns dashboard overview metrics
  */
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    // Only attempt to fetch from database at runtime, not during build
-    if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes('dummy')) {
-      return NextResponse.json({
-        totalCompetitors: 0,
-        totalKeywords: 0,
-        totalOpportunities: 0,
-        lastAnalysisDate: null,
-        avgDomainRating: 0,
-        avgOrganicTraffic: 0,
-      });
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const { PrismaClient } = await import('@prisma/client');
-    const prisma = new PrismaClient();
+    const db = getTenantDb(authResult.context);
 
     // Get total competitors
-    const totalCompetitors = await prisma.competitor.count({
+    const totalCompetitors = await db.competitor.count({
       where: { isActive: true },
     });
 
     // Get total keywords
-    const totalKeywords = await prisma.competitorKeyword.count();
+    const totalKeywords = await db.competitorKeyword.count();
 
     // Get total opportunities
-    const totalOpportunities = await prisma.keywordOpportunity.count();
+    const totalOpportunities = await db.keywordOpportunity.count();
 
     // Get last analysis date
-    const lastAnalysis = await prisma.competitorAnalysis.findFirst({
+    const lastAnalysis = await db.competitorAnalysis.findFirst({
       orderBy: { analysisDate: 'desc' },
       select: { analysisDate: true },
     });
 
     // Get average domain rating
-    const avgDomainRating = await prisma.competitorAnalysis.aggregate({
+    const avgDomainRating = await db.competitorAnalysis.aggregate({
       _avg: { domainRating: true },
     });
 
     // Get average organic traffic
-    const avgOrganicTraffic = await prisma.competitorAnalysis.aggregate({
+    const avgOrganicTraffic = await db.competitorAnalysis.aggregate({
       _avg: { organicTraffic: true },
     });
-
-    await prisma.$disconnect();
 
     return NextResponse.json({
       totalCompetitors,

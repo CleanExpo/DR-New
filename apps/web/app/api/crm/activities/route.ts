@@ -8,14 +8,21 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient, ActivityType } from '@prisma/client';
+import { ActivityType } from '@prisma/client';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ActivityService } from '@/lib/crm/activity.service';
-
-const prisma = new PrismaClient();
-const activityService = new ActivityService(prisma);
 
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+    const activityService = new ActivityService(db);
+
     const body = await request.json();
 
     // Validate required fields
@@ -48,6 +55,14 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+    const activityService = new ActivityService(db);
+
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get('userId');
     const type = searchParams.get('type') as ActivityType | null;

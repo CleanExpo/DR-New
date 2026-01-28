@@ -6,10 +6,19 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { DownloadEvent } from '@/lib/resources/types';
 
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const downloadEvent: DownloadEvent = {
       resourceId: body.resourceId,
@@ -22,12 +31,11 @@ export async function POST(request: NextRequest) {
 
     // Store download event in database
     try {
-      const { prisma } = await import('@/lib/prisma');
       const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] ||
                         request.headers.get('x-real-ip') ||
                         'unknown';
 
-      const savedDownload = await prisma.resourceDownload.create({
+      const savedDownload = await db.resourceDownload.create({
         data: {
           resourceId: downloadEvent.resourceId,
           resourceType: body.resourceType || 'unknown',

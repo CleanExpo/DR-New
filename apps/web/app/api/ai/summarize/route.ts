@@ -1,20 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getWorkerService } from '@/lib/services/autonomousWorker.service';
 
 export async function POST(request: NextRequest) {
     try {
-          const { text, userId } = await request.json();
+          // Authenticate user
+          const authResult = await authenticateRequest(request);
+          if (!authResult.success) {
+            return authResult.response;
+          }
 
-      if (!text || !userId) {
+          const { user } = authResult.context;
+          const { text } = await request.json();
+
+      if (!text) {
               return NextResponse.json(
-                { error: 'Missing required fields: text, userId' },
+                { error: 'Missing required field: text' },
                 { status: 400 }
                       );
       }
 
       const workerService = getWorkerService();
           const jobId = await workerService.enqueueTask(
-                  userId,
+                  user.id,
                   'summarization',
             {
                       taskType: 'summarization',

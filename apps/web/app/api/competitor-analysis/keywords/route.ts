@@ -6,12 +6,18 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
     const competitorId = searchParams.get('competitorId');
     const category = searchParams.get('category');
@@ -27,7 +33,7 @@ export async function GET(request: NextRequest) {
       where.category = category;
     }
 
-    const keywords = await prisma.competitorKeyword.findMany({
+    const keywords = await db.competitorKeyword.findMany({
       where,
       orderBy: { position: 'asc' },
       take: limit,
