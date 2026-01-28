@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
+import { z, ZodError } from 'zod';
 
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
-
-import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
-import { handleUnexpectedError, handleValidationError, ErrorCode, createErrorResponse } from '@/lib/api-errors';
-import { prisma } from '@/lib/prisma';
-import { z, ZodError } from 'zod';
 
 const onboardingStepSchema = z.object({
   step: z.enum(['profile', 'preferences', 'complete']),
@@ -28,7 +27,10 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
-    const userWithRequests = await prisma.user.findUnique({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    const userWithRequests = await db.user.findUnique({
       where: { id: user.id },
       include: {
         serviceRequests: {
@@ -117,13 +119,16 @@ export async function POST(request: NextRequest) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const { step, data } = onboardingStepSchema.parse(body);
 
     // Handle different onboarding steps
     switch (step) {
       case 'profile':
-        await prisma.user.update({
+        await db.user.update({
           where: { id: user.id },
           data: {
             name: data.name,
