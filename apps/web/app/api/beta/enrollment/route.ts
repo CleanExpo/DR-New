@@ -1,19 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 
 // GET - Check contractor's beta enrollment status
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const dbUser = await db.user.findUnique({
+      where: { id: user.id },
       include: {
         contractor: {
           select: { id: true },
@@ -21,14 +22,14 @@ export async function GET() {
       },
     })
 
-    if (!user?.contractor) {
+    if (!dbUser?.contractor) {
       return NextResponse.json({ error: 'Contractor not found' }, { status: 404 })
     }
 
     // Find all beta enrollments for this contractor
-    const enrollments = await prisma.betaEnrollment.findMany({
+    const enrollments = await db.betaEnrollment.findMany({
       where: {
-        contractorId: user.contractor.id,
+        contractorId: dbUser.contractor.id,
       },
       include: {
         program: {
@@ -98,14 +99,16 @@ export async function GET() {
 // POST - Accept or decline a beta invitation
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const dbUser = await db.user.findUnique({
+      where: { id: user.id },
       include: {
         contractor: {
           select: { id: true },
@@ -113,7 +116,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    if (!user?.contractor) {
+    if (!dbUser?.contractor) {
       return NextResponse.json({ error: 'Contractor not found' }, { status: 404 })
     }
 
@@ -135,7 +138,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Find the enrollment
-    const enrollment = await prisma.betaEnrollment.findUnique({
+    const enrollment = await db.betaEnrollment.findUnique({
       where: { id: enrollmentId },
       include: {
         program: true,
@@ -147,7 +150,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify the enrollment belongs to this contractor
-    if (enrollment.contractorId !== user.contractor.id) {
+    if (enrollment.contractorId !== dbUser.contractor.id) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
@@ -168,7 +171,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (action === 'accept') {
-      const updatedEnrollment = await prisma.betaEnrollment.update({
+      const updatedEnrollment = await db.betaEnrollment.update({
         where: { id: enrollmentId },
         data: {
           status: 'ACTIVE',
@@ -187,7 +190,7 @@ export async function POST(request: NextRequest) {
       })
 
       // Create audit log
-      await prisma.auditLog.create({
+      await db.auditLog.create({
         data: {
           action: 'BETA_INVITATION_ACCEPTED',
           entityType: 'BetaEnrollment',
@@ -211,7 +214,7 @@ export async function POST(request: NextRequest) {
       })
     } else {
       // Decline - mark as withdrawn
-      await prisma.betaEnrollment.update({
+      await db.betaEnrollment.update({
         where: { id: enrollmentId },
         data: {
           status: 'WITHDRAWN',
@@ -221,7 +224,7 @@ export async function POST(request: NextRequest) {
       })
 
       // Create audit log
-      await prisma.auditLog.create({
+      await db.auditLog.create({
         data: {
           action: 'BETA_INVITATION_DECLINED',
           entityType: 'BetaEnrollment',

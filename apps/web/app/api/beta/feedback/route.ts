@@ -1,20 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - Get contractor's submitted feedback
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const dbUser = await db.user.findUnique({
+      where: { id: user.id },
       include: {
         contractor: {
           select: { id: true },
@@ -22,7 +23,7 @@ export async function GET(request: NextRequest) {
       },
     })
 
-    if (!user?.contractor) {
+    if (!dbUser?.contractor) {
       return NextResponse.json({ error: 'Contractor not found' }, { status: 404 })
     }
 
@@ -30,14 +31,14 @@ export async function GET(request: NextRequest) {
     const programId = searchParams.get('programId')
 
     const whereClause: Record<string, unknown> = {
-      contractorId: user.contractor.id,
+      contractorId: dbUser.contractor.id,
     }
 
     if (programId) {
       whereClause.programId = programId
     }
 
-    const feedback = await prisma.betaFeedback.findMany({
+    const feedback = await db.betaFeedback.findMany({
       where: whereClause,
       include: {
         program: {
@@ -88,14 +89,16 @@ const submitFeedbackSchema = z.object({
 // POST - Submit new feedback
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const dbUser = await db.user.findUnique({
+      where: { id: user.id },
       include: {
         contractor: {
           select: { id: true },
@@ -103,7 +106,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    if (!user?.contractor) {
+    if (!dbUser?.contractor) {
       return NextResponse.json({ error: 'Contractor not found' }, { status: 404 })
     }
 
@@ -129,10 +132,10 @@ export async function POST(request: NextRequest) {
     } = validationResult.data
 
     // Verify contractor is enrolled in this program
-    const enrollment = await prisma.betaEnrollment.findFirst({
+    const enrollment = await db.betaEnrollment.findFirst({
       where: {
         programId,
-        contractorId: user.contractor.id,
+        contractorId: dbUser.contractor.id,
         status: 'ACTIVE',
       },
       include: {
@@ -161,10 +164,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Create the feedback
-    const feedback = await prisma.betaFeedback.create({
+    const feedback = await db.betaFeedback.create({
       data: {
         programId,
-        contractorId: user.contractor.id,
+        contractorId: dbUser.contractor.id,
         category,
         title,
         description,
@@ -186,7 +189,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_FEEDBACK_SUBMITTED',
         entityType: 'BetaFeedback',

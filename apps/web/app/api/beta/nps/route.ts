@@ -1,20 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - Check if NPS survey is due and get past surveys
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const dbUser = await db.user.findUnique({
+      where: { id: user.id },
       include: {
         contractor: {
           select: { id: true },
@@ -22,7 +23,7 @@ export async function GET(request: NextRequest) {
       },
     })
 
-    if (!user?.contractor) {
+    if (!dbUser?.contractor) {
       return NextResponse.json({ error: 'Contractor not found' }, { status: 404 })
     }
 
@@ -30,9 +31,9 @@ export async function GET(request: NextRequest) {
     const programId = searchParams.get('programId')
 
     // Get active enrollments
-    const enrollments = await prisma.betaEnrollment.findMany({
+    const enrollments = await db.betaEnrollment.findMany({
       where: {
-        contractorId: user.contractor.id,
+        contractorId: dbUser.contractor.id,
         status: 'ACTIVE',
         program: {
           isActive: true,
@@ -67,10 +68,10 @@ export async function GET(request: NextRequest) {
 
     const surveysWithDueStatus = await Promise.all(
       relevantEnrollments.map(async (enrollment) => {
-        const lastSurvey = await prisma.betaNPSSurvey.findFirst({
+        const lastSurvey = await db.betaNPSSurvey.findFirst({
           where: {
             programId: enrollment.programId,
-            contractorId: user.contractor!.id,
+            contractorId: dbUser.contractor!.id,
           },
           orderBy: { createdAt: 'desc' },
         })
@@ -88,14 +89,14 @@ export async function GET(request: NextRequest) {
 
     // Get survey history
     const whereClause: Record<string, unknown> = {
-      contractorId: user.contractor.id,
+      contractorId: dbUser.contractor.id,
     }
 
     if (programId) {
       whereClause.programId = programId
     }
 
-    const pastSurveys = await prisma.betaNPSSurvey.findMany({
+    const pastSurveys = await db.betaNPSSurvey.findMany({
       where: whereClause,
       include: {
         program: {
@@ -143,14 +144,16 @@ const submitNpsSchema = z.object({
 // POST - Submit NPS survey
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const dbUser = await db.user.findUnique({
+      where: { id: user.id },
       include: {
         contractor: {
           select: { id: true },
@@ -158,7 +161,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    if (!user?.contractor) {
+    if (!dbUser?.contractor) {
       return NextResponse.json({ error: 'Contractor not found' }, { status: 404 })
     }
 
@@ -175,10 +178,10 @@ export async function POST(request: NextRequest) {
     const { programId, score, followUpAnswer, surveyTrigger } = validationResult.data
 
     // Verify contractor is enrolled in this program
-    const enrollment = await prisma.betaEnrollment.findFirst({
+    const enrollment = await db.betaEnrollment.findFirst({
       where: {
         programId,
-        contractorId: user.contractor.id,
+        contractorId: dbUser.contractor.id,
         status: 'ACTIVE',
       },
       include: {
@@ -207,10 +210,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Create the NPS survey
-    const survey = await prisma.betaNPSSurvey.create({
+    const survey = await db.betaNPSSurvey.create({
       data: {
         programId,
-        contractorId: user.contractor.id,
+        contractorId: dbUser.contractor.id,
         score,
         followUpAnswer,
         surveyTrigger: surveyTrigger || 'manual',
@@ -236,7 +239,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_NPS_SUBMITTED',
         entityType: 'BetaNPSSurvey',
