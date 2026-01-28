@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { getServerClient } from '@/lib/supabase/server'
 import type { JobStatus, RealtimeJobEvent } from '@/lib/supabase/types'
 
@@ -12,11 +11,13 @@ interface RouteParams {
 // Update job status (contractor only)
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
     const body = await request.json()
@@ -45,8 +46,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Get user and contractor info
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: { contractor: true },
     })
 
@@ -58,7 +59,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Get the service request/job
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: jobId },
       include: {
         client: true,
@@ -73,7 +74,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Update job status in database
-    const updatedJob = await prisma.serviceRequest.update({
+    const updatedJob = await db.serviceRequest.update({
       where: { id: jobId },
       data: {
         // Map JobStatus to existing status field
@@ -111,7 +112,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     })
 
     // Log the connection/status update
-    await prisma.connectionLog.create({
+    await db.connectionLog.create({
       data: {
         userId: user.id,
         userType: 'CONTRACTOR',
@@ -146,7 +147,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     const { id: jobId } = await params
 
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: jobId },
       select: {
         id: true,

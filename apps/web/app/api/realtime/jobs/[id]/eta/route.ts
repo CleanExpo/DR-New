@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db'
 
 interface RouteParams {
   params: Promise<{ id: string }>
@@ -33,19 +33,22 @@ function getCacheKey(jobId: string, contractorLat: number, contractorLng: number
 // GET - Calculate ETA using Google Directions API
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
 
     // Verify user has access to this job
-    const job = await prisma.serviceRequest.findFirst({
+    const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
         OR: [
-          { clientId: session.user.id },
+          { clientId: authUser.id },
           // Add contractor check when available
         ],
       },
@@ -63,7 +66,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Get contractor's latest location
-    const latestLocation = await prisma.contractorLocationHistory.findFirst({
+    const latestLocation = await db.contractorLocationHistory.findFirst({
       where: { jobId },
       orderBy: { timestamp: 'desc' },
     })

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import type { ContractorLocation, LocationUpdateEvent } from '@/lib/supabase/types'
 
@@ -27,18 +27,21 @@ interface RouteParams {
 // GET - Client fetches current contractor location for a job
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
 
     // Verify user has access to this job (is the client)
-    const job = await prisma.serviceRequest.findFirst({
+    const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
-        clientId: session.user.id,
+        clientId: authUser.id,
       },
       select: {
         id: true,
@@ -51,7 +54,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Get latest location from history
-    const latestLocation = await prisma.contractorLocationHistory.findFirst({
+    const latestLocation = await db.contractorLocationHistory.findFirst({
       where: { jobId },
       orderBy: { timestamp: 'desc' },
     })
@@ -82,10 +85,13 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 // POST - Contractor broadcasts their location
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { id: jobId } = await params
     const body = await request.json()
@@ -100,8 +106,8 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Find the contractor record for this user
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId: session.user.id },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: authUser.id },
       select: { id: true },
     })
 
@@ -110,7 +116,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Verify contractor is assigned to this job
-    const job = await prisma.serviceRequest.findFirst({
+    const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
         // TODO: Add contractor assignment check when field is available
@@ -132,7 +138,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Save location to history (rate limit: check last update)
-    const lastLocation = await prisma.contractorLocationHistory.findFirst({
+    const lastLocation = await db.contractorLocationHistory.findFirst({
       where: { jobId, contractorId: contractor.id },
       orderBy: { timestamp: 'desc' },
     })
@@ -148,7 +154,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Save new location
-    const newLocation = await prisma.contractorLocationHistory.create({
+    const newLocation = await db.contractorLocationHistory.create({
       data: {
         jobId,
         contractorId: contractor.id,

@@ -1,17 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import type { TierAccess, RealtimeTier } from '@/lib/supabase/types'
 
 // GET - Check tier access for a job
 // Client inherits the assigned contractor's tier
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const { searchParams } = new URL(request.url)
     const jobId = searchParams.get('jobId')
@@ -21,8 +23,8 @@ export async function GET(request: NextRequest) {
     }
 
     // Check if user is a contractor (has their own subscription)
-    const contractor = await prisma.contractor.findFirst({
-      where: { userId: session.user.id },
+    const contractor = await db.contractor.findFirst({
+      where: { userId: user.id },
       select: { id: true },
     })
 
@@ -31,7 +33,7 @@ export async function GET(request: NextRequest) {
 
     if (contractor) {
       // User is a contractor - check their own subscription
-      const subscription = await prisma.realtimeSubscription.findUnique({
+      const subscription = await db.realtimeSubscription.findUnique({
         where: { contractorId: contractor.id },
         select: {
           tier: true,
@@ -54,7 +56,7 @@ export async function GET(request: NextRequest) {
 
       // Check for beta tier override (grants access even without subscription)
       if (!tier) {
-        const betaEnrollment = await prisma.betaEnrollment.findFirst({
+        const betaEnrollment = await db.betaEnrollment.findFirst({
           where: {
             contractorId: contractor.id,
             status: 'ACTIVE',
@@ -77,7 +79,7 @@ export async function GET(request: NextRequest) {
       }
     } else {
       // User is a client - check the assigned contractor's subscription
-      const job = await prisma.serviceRequest.findFirst({
+      const job = await db.serviceRequest.findFirst({
         where: {
           id: jobId,
           clientId: session.user.id,
@@ -95,7 +97,7 @@ export async function GET(request: NextRequest) {
 
       // TODO: When contractor assignment is implemented, look up their subscription
       // For now, check if there's any contractor working on this job via bookings
-      const booking = await prisma.booking.findFirst({
+      const booking = await db.booking.findFirst({
         where: {
           serviceRequestId: jobId,
           status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
@@ -106,7 +108,7 @@ export async function GET(request: NextRequest) {
       })
 
       if (booking) {
-        const subscription = await prisma.realtimeSubscription.findUnique({
+        const subscription = await db.realtimeSubscription.findUnique({
           where: { contractorId: booking.contractorId },
           select: {
             tier: true,

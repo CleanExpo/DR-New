@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import Stripe from 'stripe'
 
 // Realtime tier pricing
@@ -19,16 +18,18 @@ const stripe = process.env.STRIPE_SECRET_KEY
   : null
 
 // Get current subscription
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: { contractor: true },
     })
 
@@ -39,7 +40,7 @@ export async function GET() {
       )
     }
 
-    const subscription = await prisma.realtimeSubscription.findUnique({
+    const subscription = await db.realtimeSubscription.findUnique({
       where: { contractorId: user.contractor.id },
     })
 
@@ -70,11 +71,13 @@ export async function GET() {
 // Subscribe to realtime tier - redirects to Stripe checkout
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const body = await request.json()
     const { tier, action } = body as {
@@ -82,8 +85,8 @@ export async function POST(request: NextRequest) {
       action?: 'upgrade' | 'portal'
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: {
         contractor: {
           include: {
@@ -167,16 +170,18 @@ export async function POST(request: NextRequest) {
 }
 
 // Cancel subscription
-export async function DELETE() {
+export async function DELETE(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: {
         contractor: {
           include: {
@@ -215,7 +220,7 @@ export async function DELETE() {
     }
 
     // Update local subscription status
-    const updated = await prisma.realtimeSubscription.update({
+    const updated = await db.realtimeSubscription.update({
       where: { contractorId: user.contractor.id },
       data: {
         status: 'CANCELLED',
@@ -224,7 +229,7 @@ export async function DELETE() {
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'REALTIME_SUBSCRIPTION_CANCELLED',
         entityType: 'RealtimeSubscription',

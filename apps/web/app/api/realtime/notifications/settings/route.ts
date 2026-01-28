@@ -1,19 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db'
 
 // Get notification preferences
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
+
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: { contractor: true },
     })
 
@@ -24,13 +26,13 @@ export async function GET() {
       )
     }
 
-    let preferences = await prisma.notificationPreference.findUnique({
+    let preferences = await db.notificationPreference.findUnique({
       where: { contractorId: user.contractor.id },
     })
 
     // Create default preferences if none exist
     if (!preferences) {
-      preferences = await prisma.notificationPreference.create({
+      preferences = await db.notificationPreference.create({
         data: {
           contractorId: user.contractor.id,
           soundEnabled: true,
@@ -57,16 +59,18 @@ export async function GET() {
 // Update notification preferences
 export async function PUT(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
+
+    const { user: authUser } = authResult.context
+    const db = getTenantDb(authResult.context)
 
     const body = await request.json()
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
+    const user = await db.user.findUnique({
+      where: { id: authUser.id },
       include: { contractor: true },
     })
 
@@ -77,7 +81,7 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    const preferences = await prisma.notificationPreference.upsert({
+    const preferences = await db.notificationPreference.upsert({
       where: { contractorId: user.contractor.id },
       update: {
         soundEnabled: body.soundEnabled,
