@@ -8,7 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { basePrisma } from '@/lib/prisma';
 import { rateLimit } from '@/lib/api/rate-limit';
 import {
   verifyRecaptcha,
@@ -30,8 +30,6 @@ import {
 import { sendNewsletterWelcomeEmail } from '@/lib/email/resend';
 
 export const dynamic = 'force-dynamic';
-
-const prisma = new PrismaClient();
 
 // Custom rate limit for newsletter
 const newsletterRateLimit = rateLimit({
@@ -98,7 +96,7 @@ async function handleNewsletterSubscription(req: NextRequest) {
   }
 
   // 7. Check if email already subscribed
-  const existingSubscription = await prisma.newsletterSubscription.findUnique({
+  const existingSubscription = await basePrisma.newsletterSubscription.findUnique({
     where: { email: data.email },
   });
 
@@ -106,7 +104,7 @@ async function handleNewsletterSubscription(req: NextRequest) {
     // Update existing subscription
     if (!existingSubscription.isActive) {
       // Reactivate subscription
-      await prisma.newsletterSubscription.update({
+      await basePrisma.newsletterSubscription.update({
         where: { email: data.email },
         data: {
           isActive: true,
@@ -157,7 +155,7 @@ async function handleNewsletterSubscription(req: NextRequest) {
 
   // 8. Create new subscription
   try {
-    const subscription = await prisma.newsletterSubscription.create({
+    const subscription = await basePrisma.newsletterSubscription.create({
       data: {
         email: data.email,
         firstName: data.firstName,
@@ -242,7 +240,7 @@ async function handleNewsletterUnsubscribe(req: NextRequest) {
   }
 
   // Find subscription
-  const subscription = await prisma.newsletterSubscription.findUnique({
+  const subscription = await basePrisma.newsletterSubscription.findUnique({
     where: { email },
   });
 
@@ -256,7 +254,7 @@ async function handleNewsletterUnsubscribe(req: NextRequest) {
   }
 
   // Deactivate subscription (soft delete)
-  await prisma.newsletterSubscription.update({
+  await basePrisma.newsletterSubscription.update({
     where: { email },
     data: {
       isActive: false,

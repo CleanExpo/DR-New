@@ -8,7 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { basePrisma } from '@/lib/prisma';
 import { rateLimit } from '@/lib/api/rate-limit';
 import {
   verifyRecaptcha,
@@ -29,8 +29,6 @@ import {
 } from '@/lib/api/error-handler';
 
 export const dynamic = 'force-dynamic';
-
-const prisma = new PrismaClient();
 
 // Strict rate limit for contractor inquiries
 const contractorInquiryRateLimit = rateLimit({
@@ -203,7 +201,7 @@ async function handleContractorInquiry(req: NextRequest) {
   }
 
   // 8. Check for duplicate ABN
-  const existingApplication = await prisma.contractorInquiry.findUnique({
+  const existingApplication = await basePrisma.contractorInquiry.findUnique({
     where: { abn: data.abn },
   });
 
@@ -247,7 +245,7 @@ async function handleContractorInquiry(req: NextRequest) {
 
   // 10. Create contractor inquiry
   try {
-    const inquiry = await prisma.contractorInquiry.create({
+    const inquiry = await basePrisma.contractorInquiry.create({
       data: {
         // Business Information
         businessName: data.businessName,

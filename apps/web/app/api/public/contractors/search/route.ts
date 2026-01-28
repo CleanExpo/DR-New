@@ -9,7 +9,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { AustralianServiceType, EmergencyResponseLevel } from '@prisma/client';
-import { prisma } from '@/lib/prisma';
+import { basePrisma } from '@/lib/prisma';
 import { rateLimit } from '@/lib/api/rate-limit';
 import {
   withErrorHandler,
@@ -120,12 +120,12 @@ async function handleContractorSearch(req: NextRequest) {
   }
 
   // 6. Count total for pagination
-  const total = await prisma.contractor.count({ where });
+  const total = await basePrisma.contractor.count({ where });
   const totalPages = Math.ceil(total / limit);
   const skip = (page - 1) * limit;
 
   // 7. Search contractors
-  const contractors = await prisma.contractor.findMany({
+  const contractors = await basePrisma.contractor.findMany({
     where,
     include: {
       iicrcCertifications: {

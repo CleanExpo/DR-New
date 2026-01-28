@@ -8,7 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { basePrisma } from '@/lib/prisma';
 import { strictRateLimit } from '@/lib/api/rate-limit';
 import {
   verifyRecaptcha,
@@ -30,8 +30,6 @@ import {
 import { sendLeadConfirmationEmail } from '@/lib/email/resend';
 
 export const dynamic = 'force-dynamic';
-
-const prisma = new PrismaClient();
 
 /**
  * POST /api/public/lead-capture
@@ -101,7 +99,7 @@ async function handleLeadCapture(req: NextRequest) {
 
   // 7. Create lead in database
   try {
-    const lead = await prisma.leadCapture.create({
+    const lead = await basePrisma.leadCapture.create({
       data: {
         // Personal Information
         firstName: data.firstName,
