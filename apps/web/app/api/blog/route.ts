@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/db';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { basePrisma } from '@/lib/db';
 import { BlogCategory, PostStatus } from '@prisma/client';
 import { z } from 'zod';
 
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [posts, total] = await Promise.all([
-      prisma.blogPost.findMany({
+      basePrisma.blogPost.findMany({
         where,
         include: {
           faqs: {
@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma.blogPost.count({ where }),
+      basePrisma.blogPost.count({ where }),
     ]);
 
     return NextResponse.json({
@@ -101,26 +101,17 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    // Authentication check - admin only
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // Check if user is admin
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!user || (user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN')) {
-      return NextResponse.json(
-        { error: 'Forbidden - Admin access required' },
-        { status: 403 }
-      );
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
+
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const validatedData = blogPostSchema.parse(body);
@@ -132,7 +123,7 @@ export async function POST(request: NextRequest) {
       .replace(/^-+|-+$/g, '');
 
     // Check if slug already exists
-    const existingPost = await prisma.blogPost.findUnique({
+    const existingPost = await db.blogPost.findUnique({
       where: { slug },
     });
 
@@ -146,7 +137,7 @@ export async function POST(request: NextRequest) {
     // Create blog post
     const { faqs, ...postData } = validatedData;
 
-    const post = await prisma.blogPost.create({
+    const post = await db.blogPost.create({
       data: {
         ...postData,
         slug,

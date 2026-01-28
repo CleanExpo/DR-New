@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { basePrisma } from '@/lib/db';
 import { PostStatus } from '@prisma/client';
 import { z } from 'zod';
 
@@ -26,7 +28,7 @@ export async function GET(
   { params }: { params: { slug: string } }
 ) {
   try {
-    const post = await prisma.blogPost.findUnique({
+    const post = await basePrisma.blogPost.findUnique({
       where: { slug: params.slug },
       include: {
         faqs: {
@@ -58,11 +60,22 @@ export async function PUT(
   { params }: { params: { slug: string } }
 ) {
   try {
-    // NOTE: Authentication recommended for production - add admin check before allowing updates
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const validatedData = updateSchema.parse(body);
 
-    const post = await prisma.blogPost.update({
+    const post = await db.blogPost.update({
       where: { slug: params.slug },
       data: {
         ...validatedData,
@@ -102,8 +115,19 @@ export async function DELETE(
   { params }: { params: { slug: string } }
 ) {
   try {
-    // NOTE: Authentication recommended for production - add admin check before allowing updates
-    await prisma.blogPost.delete({
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
+    }
+
+    const db = getTenantDb(authResult.context);
+
+    await db.blogPost.delete({
       where: { slug: params.slug },
     });
 
