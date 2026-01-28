@@ -6,8 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import {
   getNotificationPreferences,
   updateNotificationPreferences,
@@ -16,17 +15,15 @@ import {
 export async function GET(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+
     // Get preferences
-    const preferences = await getNotificationPreferences(session.user.id);
+    const preferences = await getNotificationPreferences(user.id);
 
     return NextResponse.json({
       success: true,
@@ -45,20 +42,18 @@ export async function GET(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     // Verify authentication
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
 
     // Parse request body
     const body = await request.json();
 
     // Update preferences
-    const updated = await updateNotificationPreferences(session.user.id, body);
+    const updated = await updateNotificationPreferences(user.id, body);
 
     return NextResponse.json({
       success: true,
