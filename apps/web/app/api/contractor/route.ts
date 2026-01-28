@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authOptions } from '@/lib/auth';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { basePrisma } from '@/lib/prisma';
 import { contractorApplicationSchema, validateRequest, formatZodErrors } from '@/lib/validation';
 
 // Get contractors (public for searching, full list for admins)
@@ -26,7 +28,8 @@ export async function GET(request: NextRequest) {
 
     // Public searches only show verified contractors
     const user = session?.user as any;
-    if (!user || !isAdmin(user.role)) {
+    const isAdminUser = user?.userType === 'ADMIN';
+    if (!user || !isAdminUser) {
       where.contractor = {
         isVerified: true,
       };
@@ -58,7 +61,7 @@ export async function GET(request: NextRequest) {
     }
 
     const [contractors, total] = await Promise.all([
-      prisma.user.findMany({
+      basePrisma.user.findMany({
         where,
         select: {
           id: true,
@@ -69,7 +72,7 @@ export async function GET(request: NextRequest) {
             select: {
               id: true,
               businessName: true,
-              licenseNumber: session?.user && isAdmin(user?.role) ? true : false,
+              licenseNumber: session?.user && isAdminUser ? true : false,
               serviceArea: true,
               specialties: true,
               rating: true,
@@ -85,7 +88,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma.user.count({ where }),
+      basePrisma.user.count({ where }),
     ]);
 
     return NextResponse.json({
@@ -111,13 +114,13 @@ export async function GET(request: NextRequest) {
 // Apply to become a contractor
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
 
@@ -133,10 +136,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const user = session.user as any;
-
     // Check if already a contractor
-    const existingContractor = await prisma.contractor.findUnique({
+    const existingContractor = await db.contractor.findUnique({
       where: { userId: user.id },
     });
 
@@ -156,7 +157,7 @@ export async function POST(request: NextRequest) {
     } = validation.data;
 
     // Create contractor profile
-    const contractor = await prisma.$transaction(async (tx) => {
+    const contractor = await db.$transaction(async (tx) => {
       // Create contractor record
       const contractorRecord = await tx.contractor.create({
         data: {
@@ -175,7 +176,7 @@ export async function POST(request: NextRequest) {
       // Update user role
       await tx.user.update({
         where: { id: user.id },
-        data: { role: 'CONTRACTOR' },
+        data: { userType: 'CONTRACTOR' },
       });
 
       // Create application notification for admins
