@@ -6,10 +6,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { triggerAnalysis, getJobStatus } from '@/lib/competitor-analysis/jobs/analysis-scheduler';
-
-const prisma = new PrismaClient();
 
 /**
  * POST - Trigger analysis for specific competitor
@@ -19,10 +18,16 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
     const competitorId = params.id;
 
     // Verify competitor exists
-    const competitor = await prisma.competitor.findUnique({
+    const competitor = await db.competitor.findUnique({
       where: { id: competitorId },
     });
 
@@ -75,6 +80,12 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
     const competitorId = params.id;
     const { searchParams } = new URL(request.url);
     const jobId = searchParams.get('jobId');
@@ -103,7 +114,7 @@ export async function GET(
     }
 
     // Otherwise, get latest analysis for competitor
-    const analysis = await prisma.competitorAnalysis.findFirst({
+    const analysis = await db.competitorAnalysis.findFirst({
       where: { competitorId },
       orderBy: { analysisDate: 'desc' },
       include: {

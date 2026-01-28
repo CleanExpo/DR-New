@@ -7,14 +7,21 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient, AlertSeverity } from '@prisma/client';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { AlertSeverity } from '@prisma/client';
 import { BusinessRulesService } from '@/lib/crm/business-rules.service';
-
-const prisma = new PrismaClient();
-const businessRulesService = new BusinessRulesService(prisma);
 
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+    const businessRulesService = new BusinessRulesService(db);
+
     const { searchParams } = new URL(request.url);
     const severity = searchParams.get('severity') as AlertSeverity | null;
 
