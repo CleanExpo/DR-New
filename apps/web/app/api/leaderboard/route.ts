@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getGlobalLeaderboard, getRegionalLeaderboard, type Region } from '@/lib/services/leaderboard.service';
 
 export const dynamic = 'force-dynamic';
@@ -17,6 +18,11 @@ export const dynamic = 'force-dynamic';
  */
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const searchParams = request.nextUrl.searchParams;
     const type = searchParams.get('type') || 'global';
     const region = searchParams.get('region') as Region | null;

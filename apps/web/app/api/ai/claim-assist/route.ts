@@ -9,6 +9,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { getDefaultProvider } from '@/lib/agents/providers';
 import { HumanMessage, SystemMessage } from '@langchain/core/messages';
 
@@ -67,6 +68,11 @@ const EMERGENCY_KEYWORDS = {
 
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const body: ClaimAssistRequest = await request.json();
     const { action, data } = body;
 
