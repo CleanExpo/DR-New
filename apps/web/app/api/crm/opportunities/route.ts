@@ -8,15 +8,21 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { OpportunityService } from '@/lib/crm/opportunity.service';
 import { AdvancedLogger } from '@/lib/logger/advanced-logging';
 
-const prisma = new PrismaClient();
-const opportunityService = new OpportunityService(prisma);
-
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+    const opportunityService = new OpportunityService(db);
+
     const body = await request.json();
 
     // Validate required fields
@@ -58,6 +64,13 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
     const customerLifecycleId = searchParams.get('customerLifecycleId');
     const stage = searchParams.get('stage');
@@ -66,7 +79,7 @@ export async function GET(request: NextRequest) {
     if (customerLifecycleId) where.customerLifecycleId = customerLifecycleId;
     if (stage) where.stage = stage;
 
-    const opportunities = await prisma.opportunity.findMany({
+    const opportunities = await db.opportunity.findMany({
       where,
       include: {
         customerLifecycle: {

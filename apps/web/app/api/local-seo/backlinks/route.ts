@@ -8,6 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { backlinkTracker } from '@/lib/seo/backlink-tracker';
 import { BacklinkSourceType, AustralianStateCode } from '@/lib/seo/local-seo-types';
 
@@ -19,6 +20,11 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const { searchParams } = new URL(request.url);
     const action = searchParams.get('action');
     const sourceType = searchParams.get('sourceType') as BacklinkSourceType | null;
@@ -135,6 +141,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const body = await request.json();
     const { action } = body;
 
@@ -246,6 +257,11 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const body = await request.json();
     const { prospectId, updates } = body;
 

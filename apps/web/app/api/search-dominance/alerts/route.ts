@@ -8,11 +8,19 @@
  * Marks alerts as read
  */
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
 
     // Query parameters
@@ -40,7 +48,7 @@ export async function GET(request: Request) {
 
     // Get alerts with pagination
     const [alerts, total] = await Promise.all([
-      prisma.searchAlert.findMany({
+      db.searchAlert.findMany({
         where,
         orderBy: [
           { actionRequired: 'desc' },
@@ -50,27 +58,27 @@ export async function GET(request: Request) {
         take: limit,
         skip: offset,
       }),
-      prisma.searchAlert.count({ where }),
+      db.searchAlert.count({ where }),
     ]);
 
     // Calculate statistics
     const stats = {
       total,
-      unread: await prisma.searchAlert.count({
+      unread: await db.searchAlert.count({
         where: { ...where, isRead: false },
       }),
       bySeverity: {
-        CRITICAL: await prisma.searchAlert.count({
+        CRITICAL: await db.searchAlert.count({
           where: { ...where, severity: 'CRITICAL' },
         }),
-        WARNING: await prisma.searchAlert.count({
+        WARNING: await db.searchAlert.count({
           where: { ...where, severity: 'WARNING' },
         }),
-        INFO: await prisma.searchAlert.count({
+        INFO: await db.searchAlert.count({
           where: { ...where, severity: 'INFO' },
         }),
       },
-      byType: await prisma.searchAlert.groupBy({
+      byType: await db.searchAlert.groupBy({
         by: ['type'],
         where,
         _count: true,
@@ -80,7 +88,7 @@ export async function GET(request: Request) {
           },
         },
       }),
-      actionRequired: await prisma.searchAlert.count({
+      actionRequired: await db.searchAlert.count({
         where: { ...where, actionRequired: true, isRead: false },
       }),
     };
@@ -118,8 +126,15 @@ export async function GET(request: Request) {
   }
 }
 
-export async function PATCH(request: Request) {
+export async function PATCH(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
     const { alertIds, isRead } = body;
 
@@ -131,7 +146,7 @@ export async function PATCH(request: Request) {
     }
 
     // Update alerts
-    const result = await prisma.searchAlert.updateMany({
+    const result = await db.searchAlert.updateMany({
       where: {
         id: {
           in: alertIds,

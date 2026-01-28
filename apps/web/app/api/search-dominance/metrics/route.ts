@@ -5,17 +5,25 @@
  * Returns current dominance score and breakdown
  */
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     // Get query parameters for date filtering
     const { searchParams } = new URL(request.url);
     const days = parseInt(searchParams.get('days') || '30');
 
     // Get latest dominance metrics
-    const latest = await prisma.dominanceMetrics.findFirst({
+    const latest = await db.dominanceMetrics.findFirst({
       orderBy: {
         date: 'desc',
       },
@@ -25,7 +33,7 @@ export async function GET(request: Request) {
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
 
-    const historical = await prisma.dominanceMetrics.findMany({
+    const historical = await db.dominanceMetrics.findMany({
       where: {
         date: {
           gte: startDate,

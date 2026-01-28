@@ -8,6 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { citationManager, CITATION_DIRECTORIES } from '@/lib/seo/citation-manager';
 import { DirectoryCategory, AustralianStateCode } from '@/lib/seo/local-seo-types';
 import { EMERGENCY_PHONE } from '@/lib/design-tokens';
@@ -21,6 +22,11 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const { searchParams } = new URL(request.url);
     const action = searchParams.get('action');
     const category = searchParams.get('category') as DirectoryCategory | null;
@@ -137,6 +143,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const body = await request.json();
     const { action } = body;
 
@@ -247,6 +258,11 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     const body = await request.json();
     const { submissionId, status, liveUrl, notes } = body;
 
