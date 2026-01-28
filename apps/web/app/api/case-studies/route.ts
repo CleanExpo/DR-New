@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/db';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
+import { basePrisma } from '@/lib/prisma';
 import { z } from 'zod';
 
 const caseStudySchema = z.object({
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
       where.location = { contains: location, mode: 'insensitive' };
     }
 
-    const caseStudies = await prisma.caseStudy.findMany({
+    const caseStudies = await basePrisma.caseStudy.findMany({
       where,
       orderBy: { publishedAt: 'desc' },
       take: limit,
@@ -71,26 +71,17 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    // Authentication check - admin only
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    // Check if user is admin
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!user || (user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN')) {
-      return NextResponse.json(
-        { error: 'Forbidden - Admin access required' },
-        { status: 403 }
-      );
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
+
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const validatedData = caseStudySchema.parse(body);
@@ -105,13 +96,13 @@ export async function POST(request: NextRequest) {
     let finalSlug = slug;
     let counter = 1;
     while (
-      await prisma.caseStudy.findUnique({ where: { slug: finalSlug } })
+      await db.caseStudy.findUnique({ where: { slug: finalSlug } })
     ) {
       finalSlug = `${slug}-${counter}`;
       counter++;
     }
 
-    const caseStudy = await prisma.caseStudy.create({
+    const caseStudy = await db.caseStudy.create({
       data: {
         ...validatedData,
         slug: finalSlug,

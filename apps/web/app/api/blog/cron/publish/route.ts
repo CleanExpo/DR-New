@@ -9,7 +9,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { basePrisma } from '@/lib/prisma';
 
 /**
  * GET /api/blog/cron/publish
@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
     const now = new Date();
 
     // Find all SCHEDULED articles where scheduledFor <= now
-    const articlesToPublish = await prisma.blogPost.findMany({
+    const articlesToPublish = await basePrisma.blogPost.findMany({
       where: {
         status: 'SCHEDULED',
         scheduledFor: {
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
     // Publish all articles
     const publishedArticles = await Promise.all(
       articlesToPublish.map(article =>
-        prisma.blogPost.update({
+        basePrisma.blogPost.update({
           where: { id: article.id },
           data: {
             status: 'PUBLISHED',
@@ -132,14 +132,14 @@ export async function POST(request: NextRequest) {
       delete query.scheduledFor;
     }
 
-    const articlesToPublish = await prisma.blogPost.findMany({
+    const articlesToPublish = await basePrisma.blogPost.findMany({
       where: query
     });
 
     // Publish articles
     const publishedArticles = await Promise.all(
       articlesToPublish.map(article =>
-        prisma.blogPost.update({
+        basePrisma.blogPost.update({
           where: { id: article.id },
           data: {
             status: 'PUBLISHED',
