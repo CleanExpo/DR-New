@@ -5,11 +5,19 @@
  * Returns algorithm update timeline and impact analysis
  */
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
 
     // Query parameters
@@ -33,7 +41,7 @@ export async function GET(request: Request) {
     if (status) where.status = status;
 
     // Get algorithm updates
-    const updates = await prisma.algorithmUpdate.findMany({
+    const updates = await db.algorithmUpdate.findMany({
       where,
       orderBy: {
         detectedAt: 'desc',
@@ -49,7 +57,7 @@ export async function GET(request: Request) {
         CONFIRMED: updates.filter((u) => u.status === 'CONFIRMED').length,
         RESOLVED: updates.filter((u) => u.status === 'RESOLVED').length,
       },
-      byType: await prisma.algorithmUpdate.groupBy({
+      byType: await db.algorithmUpdate.groupBy({
         by: ['type'],
         where,
         _count: true,
@@ -86,7 +94,7 @@ export async function GET(request: Request) {
     }));
 
     // Get recent ranking volatility for correlation
-    const recentRankings = await prisma.rankingRecord.findMany({
+    const recentRankings = await db.rankingRecord.findMany({
       where: {
         timestamp: {
           gte: startDate,

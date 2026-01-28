@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
 import { z } from 'zod';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { getTrainingModuleHtmlById, verifyTrainingSourcesPresent } from '@/lib/training/nrp-training';
@@ -9,8 +10,13 @@ const paramsSchema = z.object({
   moduleId: z.string().regex(/^NRP-\d{3}$/i),
 });
 
-export async function GET(_request: NextRequest, context: { params: { moduleId: string } }) {
+export async function GET(request: NextRequest, context: { params: { moduleId: string } }) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     await verifyTrainingSourcesPresent();
 
     const validation = paramsSchema.safeParse(context.params);

@@ -8,11 +8,19 @@
  * Triggers manual Blue Ocean scan
  */
 
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
 
     // Query parameters
@@ -33,7 +41,7 @@ export async function GET(request: Request) {
 
     // Get opportunities with pagination
     const [opportunities, total] = await Promise.all([
-      prisma.blueOceanOpportunity.findMany({
+      db.blueOceanOpportunity.findMany({
         where,
         orderBy: [
           { opportunityScore: 'desc' },
@@ -42,19 +50,19 @@ export async function GET(request: Request) {
         take: limit,
         skip: offset,
       }),
-      prisma.blueOceanOpportunity.count({ where }),
+      db.blueOceanOpportunity.count({ where }),
     ]);
 
     // Calculate statistics
     const stats = {
       total,
       byStatus: {
-        new: await prisma.blueOceanOpportunity.count({ where: { status: 'NEW' } }),
-        inProgress: await prisma.blueOceanOpportunity.count({ where: { status: 'IN_PROGRESS' } }),
-        completed: await prisma.blueOceanOpportunity.count({ where: { status: 'COMPLETED' } }),
-        dismissed: await prisma.blueOceanOpportunity.count({ where: { status: 'DISMISSED' } }),
+        new: await db.blueOceanOpportunity.count({ where: { status: 'NEW' } }),
+        inProgress: await db.blueOceanOpportunity.count({ where: { status: 'IN_PROGRESS' } }),
+        completed: await db.blueOceanOpportunity.count({ where: { status: 'COMPLETED' } }),
+        dismissed: await db.blueOceanOpportunity.count({ where: { status: 'DISMISSED' } }),
       },
-      byCategory: await prisma.blueOceanOpportunity.groupBy({
+      byCategory: await db.blueOceanOpportunity.groupBy({
         by: ['category'],
         _count: true,
         orderBy: {
@@ -104,8 +112,13 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
     // Trigger manual Blue Ocean scan
     // This would integrate with the job scheduler
     // For now, return a placeholder response

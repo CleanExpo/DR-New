@@ -8,10 +8,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
-
-const prisma = new PrismaClient();
 
 // Validation schemas
 const createCompetitorSchema = z.object({
@@ -42,6 +41,13 @@ const updateCompetitorSchema = z.object({
  */
 export async function GET(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
 
     const category = searchParams.get('category');
@@ -67,7 +73,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get all competitors with their latest analysis
-    const competitors = await prisma.competitor.findMany({
+    const competitors = await db.competitor.findMany({
       where,
       include: {
         analyses: {
@@ -123,13 +129,20 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
 
     // Validate input
     const validatedData = createCompetitorSchema.parse(body);
 
     // Check if competitor already exists
-    const existing = await prisma.competitor.findUnique({
+    const existing = await db.competitor.findUnique({
       where: { domain: validatedData.domain },
     });
 
@@ -147,7 +160,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create competitor
-    const competitor = await prisma.competitor.create({
+    const competitor = await db.competitor.create({
       data: validatedData,
     });
 
@@ -190,6 +203,13 @@ export async function POST(request: NextRequest) {
  */
 export async function PUT(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
 
     // Validate input
@@ -198,7 +218,7 @@ export async function PUT(request: NextRequest) {
     const { id, ...updateData } = validatedData;
 
     // Update competitor
-    const competitor = await prisma.competitor.update({
+    const competitor = await db.competitor.update({
       where: { id },
       data: updateData,
     });
@@ -255,6 +275,13 @@ export async function PUT(request: NextRequest) {
  */
 export async function DELETE(request: NextRequest) {
   try {
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
 
@@ -272,7 +299,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Delete competitor
-    await prisma.competitor.delete({
+    await db.competitor.delete({
       where: { id },
     });
 
