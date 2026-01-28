@@ -4,7 +4,7 @@ import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { completePhase } from '@/lib/services/client-onboarding.service';
 import { sendPhaseCompletionEmail } from '@/lib/services/client-email.service';
 import { insuranceDetailsSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN', 'SUPER_ADMIN']);
@@ -34,7 +37,7 @@ export async function POST(request: NextRequest) {
     const validated = insuranceDetailsSchema.parse(body);
 
     // Get client profile
-    const profile = await prisma.clientProfile.findUnique({
+    const profile = await db.clientProfile.findUnique({
       where: { userId: user.id },
     });
 
@@ -43,7 +46,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create or update insurance record
-    await prisma.clientInsurance.upsert({
+    await db.clientInsurance.upsert({
       where: { clientProfileId: profile.id },
       update: {
         hasInsurance: validated.hasInsurance,

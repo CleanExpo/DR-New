@@ -4,7 +4,7 @@ import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { completePhase } from '@/lib/services/client-onboarding.service';
 import { sendPhaseCompletionEmail } from '@/lib/services/client-email.service';
 import { paymentSetupSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import Stripe from 'stripe';
 import { ZodError } from 'zod';
 
@@ -30,6 +30,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN', 'SUPER_ADMIN']);
@@ -42,7 +45,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Payment processing not configured' }, { status: 500 });
     }
 
-    const profile = await prisma.clientProfile.findUnique({
+    const profile = await db.clientProfile.findUnique({
       where: { userId: user.id },
     });
 
@@ -51,7 +54,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Stripe customer if doesn't exist
-    let stripeCustomerId = await prisma.clientPayment.findUnique({
+    let stripeCustomerId = await db.clientPayment.findUnique({
       where: { clientProfileId: profile.id },
       select: { stripeCustomerId: true },
     });
@@ -86,7 +89,7 @@ export async function POST(request: NextRequest) {
     const card = paymentMethod.card;
 
     // Save payment information
-    await prisma.clientPayment.upsert({
+    await db.clientPayment.upsert({
       where: { clientProfileId: profile.id },
       update: {
         stripeCustomerId: stripeCustomerId.stripeCustomerId,

@@ -3,7 +3,7 @@ import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/li
 import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { sendEmail } from '@/lib/services/email.service';
 import { sendResumeLinkSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ZodError } from 'zod';
 import crypto from 'crypto';
 
@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
