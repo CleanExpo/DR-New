@@ -6,11 +6,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticateRequest } from '@/lib/auth-middleware';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { ErrorCode } from '@/lib/api-errors';
 import { getTenantSubscription } from '@/lib/stripe/tenant-subscription';
 import { getTenantFeatures, getTierPricingInfo } from '@/lib/tenant-features';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export const dynamic = 'force-dynamic';
 
@@ -24,15 +24,12 @@ export async function GET(request: NextRequest) {
   const { user, tenantId } = authResult.context;
 
   // Only ADMIN and SUPER_ADMIN can view tenant billing
-  if (user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN') {
-    return NextResponse.json(
-      {
-        error: ErrorCode.FORBIDDEN,
-        message: 'Only administrators can view tenant billing',
-      },
-      { status: 403 }
-    );
+  if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+    return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
   }
+
+  // Get tenant-scoped database client
+  const db = getTenantDb(authResult.context);
 
   // Validate tenant exists
   if (!tenantId) {
@@ -47,7 +44,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // Fetch tenant details
-    const tenant = await prisma.tenant.findUnique({
+    const tenant = await db.tenant.findUnique({
       where: { id: tenantId },
       select: {
         id: true,
@@ -75,7 +72,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get current usage (count active users)
-    const userCount = await prisma.user.count({
+    const userCount = await db.user.count({
       where: {
         tenantId,
         isActive: true,
@@ -85,7 +82,7 @@ export async function GET(request: NextRequest) {
     // Get monthly request count (from current month)
     const now = new Date();
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-    const monthlyRequests = await prisma.serviceRequest.count({
+    const monthlyRequests = await db.serviceRequest.count({
       where: {
         tenantId,
         createdAt: {

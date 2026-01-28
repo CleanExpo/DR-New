@@ -1,27 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/db';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { adminSearchSchema, validateRequest, formatZodErrors } from '@/lib/validation';
 
 // Get all users (admin only)
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    if (!session?.user) {
-      return NextResponse.json(
-        { success: false, error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = session.user as any;
-    if (!isAdmin(user.role)) {
-      return NextResponse.json(
-        { success: false, error: 'Forbidden' },
-        { status: 403 }
-      );
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const query = searchParams.get('query') || '';
