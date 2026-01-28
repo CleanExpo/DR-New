@@ -1,28 +1,26 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 
 // GET - Beta program analytics dashboard
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
 
     // Fetch all active programs with their data
-    const programs = await prisma.betaProgram.findMany({
+    const programs = await db.betaProgram.findMany({
       where: { isActive: true },
       include: {
         enrollments: {

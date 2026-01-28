@@ -1,26 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - List all enrollments with filtering
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email! },
-      select: { userType: true },
-    })
+    const { user } = authResult.context
 
-    if (!user || !['ADMIN', 'SUPER_ADMIN'].includes(user.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
 
     const { searchParams } = new URL(request.url)
     const programId = searchParams.get('programId')
@@ -36,7 +34,7 @@ export async function GET(request: NextRequest) {
       whereClause.status = status
     }
 
-    const enrollments = await prisma.betaEnrollment.findMany({
+    const enrollments = await db.betaEnrollment.findMany({
       where: whereClause,
       include: {
         program: {
@@ -90,7 +88,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
     }
 
-    const adminUser = await prisma.user.findUnique({
+    const adminUser = await db.user.findUnique({
       where: { email: session.user.email! },
       select: { id: true, userType: true },
     })
@@ -113,7 +111,7 @@ export async function POST(request: NextRequest) {
       validationResult.data
 
     // Check program exists and is active
-    const program = await prisma.betaProgram.findUnique({
+    const program = await db.betaProgram.findUnique({
       where: { id: programId },
       include: {
         _count: {
@@ -139,7 +137,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check contractor exists
-    const contractor = await prisma.contractor.findUnique({
+    const contractor = await db.contractor.findUnique({
       where: { id: contractorId },
       include: {
         user: {
@@ -153,7 +151,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if already enrolled
-    const existingEnrollment = await prisma.betaEnrollment.findUnique({
+    const existingEnrollment = await db.betaEnrollment.findUnique({
       where: {
         programId_contractorId: {
           programId,
@@ -170,7 +168,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create enrollment
-    const enrollment = await prisma.betaEnrollment.create({
+    const enrollment = await db.betaEnrollment.create({
       data: {
         programId,
         contractorId,
@@ -192,7 +190,7 @@ export async function POST(request: NextRequest) {
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_ENROLLMENT_CREATED',
         entityType: 'BetaEnrollment',

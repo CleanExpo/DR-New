@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/lib/auth'
-import { prisma } from '@/lib/prisma'
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // Update enrollment schema
@@ -18,22 +17,21 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
-
-    if (!session?.user) {
-      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
+    const authResult = await authenticateRequest(request)
+    if (!authResult.success) {
+      return authResult.response
     }
 
-    const adminUser = await prisma.user.findUnique({
-      where: { email: session.user.email! },
-      select: { id: true, userType: true },
-    })
+    const { user: adminUser } = authResult.context
 
-    if (!adminUser || !['ADMIN', 'SUPER_ADMIN'].includes(adminUser.userType)) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    if (!requireRole(adminUser, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
 
-    const existing = await prisma.betaEnrollment.findUnique({
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
+
+    const existing = await db.betaEnrollment.findUnique({
       where: { id: params.id },
       include: {
         contractor: {
@@ -87,7 +85,7 @@ export async function PATCH(
       updateData.adminNotes = adminNotes
     }
 
-    const enrollment = await prisma.betaEnrollment.update({
+    const enrollment = await db.betaEnrollment.update({
       where: { id: params.id },
       data: updateData,
       include: {
@@ -101,7 +99,7 @@ export async function PATCH(
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_ENROLLMENT_UPDATED',
         entityType: 'BetaEnrollment',
@@ -142,7 +140,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
     }
 
-    const adminUser = await prisma.user.findUnique({
+    const adminUser = await db.user.findUnique({
       where: { email: session.user.email! },
       select: { id: true, userType: true },
     })
@@ -151,7 +149,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    const existing = await prisma.betaEnrollment.findUnique({
+    const existing = await db.betaEnrollment.findUnique({
       where: { id: params.id },
     })
 
@@ -161,7 +159,7 @@ export async function DELETE(
 
     // If enrollment is active, just mark as withdrawn instead of deleting
     if (existing.status === 'ACTIVE') {
-      await prisma.betaEnrollment.update({
+      await db.betaEnrollment.update({
         where: { id: params.id },
         data: {
           status: 'WITHDRAWN',
@@ -177,12 +175,12 @@ export async function DELETE(
     }
 
     // For invited/completed/withdrawn, delete entirely
-    await prisma.betaEnrollment.delete({
+    await db.betaEnrollment.delete({
       where: { id: params.id },
     })
 
     // Create audit log
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'BETA_ENROLLMENT_DELETED',
         entityType: 'BetaEnrollment',
