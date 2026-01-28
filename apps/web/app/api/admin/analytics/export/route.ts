@@ -4,9 +4,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   generateCSVExport,
   generateExcelExport,
@@ -17,14 +16,19 @@ import {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || (session.user as any).role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const { format = 'csv', reportType = 'financial', startDate, endDate } = body;
@@ -107,7 +111,7 @@ export async function POST(request: NextRequest) {
 }
 
 async function generateFinancialExport(start: Date, end: Date): Promise<any[]> {
-  const payments = await prisma.payment.findMany({
+  const payments = await db.payment.findMany({
     where: {
       status: 'COMPLETED',
       createdAt: {
@@ -136,7 +140,7 @@ async function generateFinancialExport(start: Date, end: Date): Promise<any[]> {
 }
 
 async function generateOperationalExport(start: Date, end: Date): Promise<any[]> {
-  const bookings = await prisma.booking.findMany({
+  const bookings = await db.booking.findMany({
     where: {
       completedAt: {
         gte: start,
@@ -145,7 +149,7 @@ async function generateOperationalExport(start: Date, end: Date): Promise<any[]>
     },
   });
 
-  const serviceRequests = await prisma.serviceRequest.count({
+  const serviceRequests = await db.serviceRequest.count({
     where: {
       createdAt: {
         gte: start,
@@ -167,7 +171,7 @@ async function generateOperationalExport(start: Date, end: Date): Promise<any[]>
 }
 
 async function generateRevenueExport(start: Date, end: Date): Promise<any[]> {
-  const byServiceType = await prisma.booking.groupBy({
+  const byServiceType = await db.booking.groupBy({
     by: ['australianServiceType'],
     _sum: {
       finalPrice: true,
@@ -190,7 +194,7 @@ async function generateRevenueExport(start: Date, end: Date): Promise<any[]> {
 }
 
 async function generateContractorExport(start: Date, end: Date): Promise<any[]> {
-  const contractors = await prisma.contractor.findMany({
+  const contractors = await db.contractor.findMany({
     where: {
       isVerified: true,
     },
