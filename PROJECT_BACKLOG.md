@@ -1,7 +1,7 @@
 # Project Backlog - Disaster Recovery NRPG Platform
 ## Updated: 2026-01-28
 
-**Current Status:** 170/286 API routes converted (59.4%)
+**Current Status:** 171/286 API routes converted (59.8%)
 **Active Epic:** UNI-157 - V2.0 Multi-tenant SaaS Conversion
 **Build Status:** ✅ Passing (797 routes generated)
 
@@ -9,9 +9,9 @@
 
 ## 🔥 P0 - Critical (Blocking Production)
 
-### UNI-157 Phase 7: Complete API Route Conversion (116 routes remaining)
-**Status:** In Progress (59.4% complete)
-**Remaining Work:** 116 routes across 3 batches
+### UNI-157 Phase 7: Complete API Route Conversion (115 routes remaining)
+**Status:** In Progress (59.8% complete)
+**Remaining Work:** 115 routes (Batches 4g-4h don't exist, working on 4i misc routes)
 **Estimated Effort:** 8-12 hours
 
 #### ✅ Batch 4b: Content & Case Studies Routes (4 routes) - COMPLETED
@@ -50,41 +50,14 @@
 
 **Note:** 3 routes do not exist in codebase (service-requests, triage, newsletter/subscribe)
 
-#### Batch 4g: Analytics Routes (15 routes)
-- [ ] `analytics/client/route.ts` (GET) - Client analytics
-- [ ] `analytics/metrics/route.ts` (GET) - Platform metrics
-- [ ] `analytics/realtime/route.ts` (GET) - Real-time analytics
-- [ ] `analytics/search/route.ts` (GET) - Search analytics
-- [ ] `admin/analytics/benchmarks/route.ts` (GET)
-- [ ] `admin/analytics/builder/route.ts` (GET, POST)
-- [ ] `admin/analytics/client-onboarding/route.ts` (GET)
-- [ ] `admin/analytics/comparison/route.ts` (GET)
-- [ ] `admin/analytics/dashboard/route.ts` (GET)
-- [ ] `admin/analytics/export/route.ts` (POST)
-- [ ] `admin/analytics/forecast/route.ts` (GET)
-- [ ] `admin/analytics/geographic/route.ts` (GET)
-- [ ] `admin/analytics/operational/route.ts` (GET)
-- [ ] `admin/analytics/revenue/route.ts` (GET)
-- [ ] `admin/analytics/trends/route.ts` (GET)
+#### ⚠️ Batch 4g: Analytics Routes (0 routes) - ROUTES DO NOT EXIST
+**Note:** Analytics routes listed in original plan do not exist in codebase. Verified with file system search - no analytics/* or admin/analytics/* route files found.
 
-**Dependencies:** None
-**Risk:** Medium - Complex aggregation queries
+#### ⚠️ Batch 4h: Search Dominance & SEO Routes (0 routes) - ROUTES DO NOT EXIST
+**Note:** Search dominance routes listed in original plan do not exist in codebase. Verified with file system search - no search-dominance/* route files found.
 
-#### Batch 4h: Search Dominance & SEO Routes (9 routes)
-- [ ] `search-dominance/alerts/route.ts` (GET, POST)
-- [ ] `search-dominance/algorithm/route.ts` (GET, PATCH)
-- [ ] `search-dominance/blue-ocean/route.ts` (GET, POST)
-- [ ] `search-dominance/blue-ocean/[id]/route.ts` (GET, PATCH)
-- [ ] `search-dominance/competitors/activity/route.ts` (GET)
-- [ ] `search-dominance/metrics/route.ts` (GET)
-- [ ] `search-dominance/rankings/route.ts` (GET)
-- [ ] `search-dominance/territory/route.ts` (GET, POST)
-- [ ] `search-dominance/traffic/route.ts` (GET)
-
-**Dependencies:** None
-**Risk:** Medium - Complex SEO algorithms
-
-#### Batch 4i: Remaining Miscellaneous Routes (84 routes)
+#### 🔄 Batch 4i: Remaining Miscellaneous Routes (~115 routes remaining)
+**Status:** In Progress (1 route converted)
 Includes: auth, workspace, webhooks, competitor analysis, CRM, cron jobs, fraud detection, health checks, training modules, etc.
 
 **Dependencies:** None
@@ -245,9 +218,9 @@ Includes: auth, workspace, webhooks, competitor analysis, CRM, cron jobs, fraud 
 
 ## 📊 Current Sprint Velocity
 
-**Routes Converted This Session:** 19 routes (Batches 4b, 4c, 4d, 4e, 4f)
-**Average per Batch:** 3.8 routes
-**Current Progress:** 170/286 (59.4%)
+**Routes Converted This Session:** 11 routes (Batches 4e: 3, 4f: 7, 4i partial: 1)
+**Total Since Session Start:** 171/286 from 160/286 (+11 routes)
+**Current Progress:** 171/286 (59.8%)
 **Estimated Completion (Phase 7):** 2 more sessions
 **Total Remaining Effort (Phase 7):** 6-9 hours
 
@@ -265,13 +238,13 @@ Includes: auth, workspace, webhooks, competitor analysis, CRM, cron jobs, fraud 
 
 ## 📋 Definition of Done (UNI-157 Phase 7)
 
-- [x] 170/286 routes converted to authenticateRequest() pattern ✅
+- [x] 171/286 routes converted to authenticateRequest() pattern ✅
 - [x] All routes use getTenantDb() for tenant isolation ✅
 - [x] Build passes without errors ✅
 - [x] Public routes use basePrisma appropriately ✅
 - [x] Removed fallback auth patterns (getServerSession) ✅
 - [x] 60% milestone achieved! ✅
-- [ ] All 286 routes converted (40.6% remaining)
+- [ ] All 286 routes converted (40.2% remaining)
 - [ ] Integration tests pass
 - [ ] No type errors
 - [ ] Documentation updated
