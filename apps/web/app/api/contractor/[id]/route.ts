@@ -1,29 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
-import { getServerSession } from 'next-auth';
-import { authOptions, isAdmin } from '@/lib/auth';
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    const sessionUser = session?.user as unknown as { id?: string; userType?: string } | undefined;
-
-    if (!sessionUser?.id) {
-      return createErrorResponse(
-        ErrorCode.UNAUTHORIZED,
-        'Authentication required',
-        401
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const contractorId = params.id;
 
     // Get contractor profile by ID
-    const contractor = await prisma.contractorProfile.findUnique({
+    const contractor = await db.contractorProfile.findUnique({
       where: { id: contractorId },
       include: {
         user: {
@@ -45,8 +41,8 @@ export async function GET(
       );
     }
 
-    const isAdminUser = isAdmin(sessionUser.userType || '');
-    const isOwner = contractor.userId === sessionUser.id;
+    const isAdminUser = user.role === 'ADMIN' || user.role === 'SUPER_ADMIN';
+    const isOwner = contractor.userId === user.id;
 
     // Contractor identities are private; only admins and the contractor themselves can view.
     if (!isAdminUser && !isOwner) {
@@ -72,22 +68,19 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-    const sessionUser = session?.user as unknown as { id?: string; userType?: string } | undefined;
-
-    if (!sessionUser?.id) {
-      return createErrorResponse(
-        ErrorCode.UNAUTHORIZED,
-        'Authentication required',
-        401
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
     const contractorId = params.id;
     const body = await request.json();
 
     // Get contractor profile
-    const contractor = await prisma.contractorProfile.findUnique({
+    const contractor = await db.contractorProfile.findUnique({
       where: { id: contractorId }
     });
 
@@ -99,8 +92,8 @@ export async function PATCH(
       );
     }
 
-    const isAdminUser = isAdmin(sessionUser.userType || '');
-    const isOwner = contractor.userId === sessionUser.id;
+    const isAdminUser = user.role === 'ADMIN' || user.role === 'SUPER_ADMIN';
+    const isOwner = contractor.userId === user.id;
 
     if (!isAdminUser && !isOwner) {
       return createErrorResponse(
@@ -135,7 +128,7 @@ export async function PATCH(
     }
 
     // Update contractor profile
-    const updatedContractor = await prisma.contractorProfile.update({
+    const updatedContractor = await db.contractorProfile.update({
       where: { id: contractorId },
       data: updateData,
       include: {

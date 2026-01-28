@@ -5,11 +5,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { AustralianServiceType, EmergencyResponseLevel } from '@prisma/client';
 import { australianPostcodeSchema } from '@/lib/validation/australia';
-import { authOptions, isAdmin } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,13 +18,19 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-    const sessionUser = session?.user as unknown as { userType?: string } | undefined;
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
+    }
+
+    const { user } = authResult.context;
 
     // Contractors are private; this endpoint is admin-only.
-    if (!sessionUser || !isAdmin(sessionUser.userType || '')) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
+
+    const db = getTenantDb(authResult.context);
 
     const searchParams = request.nextUrl.searchParams;
     const postcode = searchParams.get('postcode');
@@ -108,7 +113,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Search contractors
-    const contractors = await prisma.contractor.findMany({
+    const contractors = await db.contractor.findMany({
       where,
       include: {
         user: {

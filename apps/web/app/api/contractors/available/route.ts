@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError } from '@/lib/api-errors';
 
@@ -20,6 +20,8 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
     const limit = parseInt(searchParams.get('limit') || '10');
@@ -37,7 +39,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get available contractors
-    const contractors = await prisma.contractorProfile.findMany({
+    const contractors = await db.contractorProfile.findMany({
       where: whereClause,
       include: {
         user: true

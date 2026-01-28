@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
-import { prisma } from '@/lib/prisma';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode, ConflictError } from '@/lib/api-errors';
 import { applyRateLimit } from '@/src/lib/security/rate-limit';
 import { bidValidationSchema } from '@/src/lib/validation/bid-validation';
@@ -28,6 +28,8 @@ export async function POST(
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
+    const db = getTenantDb(authResult.context);
+
     // Apply rate limiting - 5 bids per 10 minutes per contractor
     const rateLimitResult = await applyRateLimit(
       `bid-submission:${user.id}`,
@@ -47,7 +49,7 @@ export async function POST(
     const { budget, timeline, message, startDate, estimatedHours } = await bidValidationSchema.parseAsync(body);
 
     // Get contractor profile
-    const contractorProfile = await prisma.contractorProfile.findUnique({
+    const contractorProfile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
     });
 
@@ -60,7 +62,7 @@ export async function POST(
     }
 
     // Get service request first to validate it exists and is accepting bids
-    const serviceRequest = await prisma.serviceRequest.findUnique({
+    const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: params.id },
     });
 
@@ -84,7 +86,7 @@ export async function POST(
       // Try to create a new bid using the unique constraint
       // If a bid already exists for this contractor on this request,
       // this will throw a unique constraint violation
-      const newBid = await prisma.contractorMatch.create({
+      const newBid = await db.contractorMatch.create({
         data: {
           contractorId: contractorProfile.id,
           serviceRequestId: params.id,
