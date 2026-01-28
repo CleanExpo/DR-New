@@ -5,9 +5,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { prisma } from '@/lib/prisma';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { getClaimStatus, updateClaimStatus } from '@/lib/services/insurance.service';
 
 // ============================================================================
@@ -19,27 +18,15 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
+    const { user } = authResult.context;
+    const db = getTenantDb(authResult.context);
 
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
-    }
-
-    const claim = await prisma.insuranceClaimAU.findUnique({
+    const claim = await db.insuranceClaimAU.findUnique({
       where: { id: params.id },
       include: {
         insuranceProvider: {
@@ -76,7 +63,7 @@ export async function GET(
 
     // Check authorization
     const isAuthorized =
-      user.id === claim.clientId || user.userType === 'ADMIN';
+      user.id === claim.clientId || user.role === 'ADMIN' || user.role === 'SUPER_ADMIN';
 
     if (!isAuthorized) {
       return NextResponse.json(
@@ -113,35 +100,19 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.email) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { error: 'User not found' },
-        { status: 404 }
-      );
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
-    // Check if user is admin
-    if (user.userType !== 'ADMIN' && user.userType !== 'SUPER_ADMIN') {
-      return NextResponse.json(
-        { error: 'Only admins can update claims' },
-        { status: 403 }
-      );
-    }
+    const db = getTenantDb(authResult.context);
 
-    const claim = await prisma.insuranceClaimAU.findUnique({
+    const claim = await db.insuranceClaimAU.findUnique({
       where: { id: params.id },
     });
 
@@ -178,14 +149,14 @@ export async function PATCH(
 
     // Update denial reason if provided
     if (denialReason && status === 'DENIED') {
-      await prisma.insuranceClaimAU.update({
+      await db.insuranceClaimAU.update({
         where: { id: params.id },
         data: { denialReason },
       });
     }
 
     // Log audit
-    await prisma.auditLog.create({
+    await db.auditLog.create({
       data: {
         action: 'UPDATE',
         entityType: 'InsuranceClaim',
@@ -199,7 +170,7 @@ export async function PATCH(
       },
     });
 
-    const updatedClaim = await prisma.insuranceClaimAU.findUnique({
+    const updatedClaim = await db.insuranceClaimAU.findUnique({
       where: { id: params.id },
     });
 
