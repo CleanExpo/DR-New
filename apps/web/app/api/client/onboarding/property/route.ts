@@ -4,7 +4,7 @@ import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { completePhase, detectRiskZones } from '@/lib/services/client-onboarding.service';
 import { sendPhaseCompletionEmail } from '@/lib/services/client-email.service';
 import { propertyDetailsSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -27,6 +27,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
@@ -38,7 +41,7 @@ export async function POST(request: NextRequest) {
     const validated = propertyDetailsSchema.parse(body);
 
     // Get or create client profile
-    const profile = await prisma.clientProfile.upsert({
+    const profile = await db.clientProfile.upsert({
       where: { userId: user.id },
       update: {},
       create: {
@@ -54,7 +57,7 @@ export async function POST(request: NextRequest) {
     );
 
     // Create property record
-    const property = await prisma.clientProperty.create({
+    const property = await db.clientProperty.create({
       data: {
         clientProfileId: profile.id,
         streetAddress: validated.streetAddress,
@@ -77,7 +80,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Update profile with risk zone and property count
-    await prisma.clientProfile.update({
+    await db.clientProfile.update({
       where: { id: profile.id },
       data: {
         riskZone: zones.length > 0 ? zones.join(',') : null,

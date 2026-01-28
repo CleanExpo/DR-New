@@ -4,22 +4,27 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const clientId = session.user.id;
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
+    }
+
+    const clientId = user.id;
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const { searchParams } = new URL(request.url);
 
     const startDateParam = searchParams.get('startDate');
@@ -30,8 +35,8 @@ export async function GET(request: NextRequest) {
       ? new Date(startDateParam)
       : new Date(endDate.getTime() - 365 * 24 * 60 * 60 * 1000); // 1 year
 
-    // Get all payments in date range
-    const payments = await prisma.payment.findMany({
+    // Get all payments in date range - automatically tenant-scoped
+    const payments = await db.payment.findMany({
       where: {
         clientId,
         createdAt: {

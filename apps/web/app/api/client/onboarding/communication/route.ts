@@ -4,7 +4,7 @@ import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { completePhase } from '@/lib/services/client-onboarding.service';
 import { sendPhaseCompletionEmail } from '@/lib/services/client-email.service';
 import { communicationPreferencesSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
       return unauthorizedRoleResponse(['CLIENT', 'ADMIN', 'SUPER_ADMIN']);
@@ -34,7 +37,7 @@ export async function POST(request: NextRequest) {
     const validated = communicationPreferencesSchema.parse(body);
 
     // Update user preferences with notification settings
-    await prisma.userPreferences.upsert({
+    await db.userPreferences.upsert({
       where: { userId: user.id },
       update: {
         notifications: validated.notifications as any,
@@ -53,12 +56,12 @@ export async function POST(request: NextRequest) {
 
     // Create emergency contact if provided
     if (validated.emergencyContact) {
-      const profile = await prisma.clientProfile.findUnique({
+      const profile = await db.clientProfile.findUnique({
         where: { userId: user.id },
       });
 
       if (profile) {
-        await prisma.clientEmergencyContact.create({
+        await db.clientEmergencyContact.create({
           data: {
             clientProfileId: profile.id,
             name: validated.emergencyContact.name,

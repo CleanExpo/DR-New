@@ -4,7 +4,7 @@ import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { completePhase, detectAndAssignTier } from '@/lib/services/client-onboarding.service';
 import { sendPhaseCompletionEmail } from '@/lib/services/client-email.service';
 import { profileSetupSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
@@ -36,13 +39,13 @@ export async function POST(request: NextRequest) {
     const validated = profileSetupSchema.parse(body);
 
     // Update user record with full name
-    await prisma.user.update({
+    await db.user.update({
       where: { id: user.id },
       data: { name: validated.fullName },
     });
 
     // Update or create client profile
-    await prisma.clientProfile.upsert({
+    await db.clientProfile.upsert({
       where: { userId: user.id },
       update: {
         displayName: validated.displayName,

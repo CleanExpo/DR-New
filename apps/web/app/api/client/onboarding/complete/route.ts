@@ -4,7 +4,7 @@ import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
 import { completeOnboarding } from '@/lib/services/client-onboarding.service';
 import { sendOnboardingCompleteEmail } from '@/lib/services/client-email.service';
 import { completeOnboardingSchema } from '@/lib/validations/client-onboarding';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -29,6 +29,9 @@ export async function POST(request: NextRequest) {
     }
 
     const { user } = authResult.context;
+    
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     // Check role
     if (!requireRole(user, ['CLIENT', 'ADMIN', 'SUPER_ADMIN'])) {
@@ -47,7 +50,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Get completion stats for email
-    const onboarding = await prisma.clientOnboarding.findUnique({
+    const onboarding = await db.clientOnboarding.findUnique({
       where: { clientId: validated.clientId },
       include: {
         moduleProgress: true,
@@ -76,7 +79,7 @@ export async function POST(request: NextRequest) {
 
     if (validated.autoCreateRequest && validated.requestData) {
       // Create first service request with pre-filled data
-      const property = await prisma.clientProperty.findFirst({
+      const property = await db.clientProperty.findFirst({
         where: {
           clientProfile: { userId: validated.clientId },
           id: validated.requestData.propertyId,
@@ -84,7 +87,7 @@ export async function POST(request: NextRequest) {
       });
 
       if (property) {
-        const serviceRequest = await prisma.serviceRequest.create({
+        const serviceRequest = await db.serviceRequest.create({
           data: {
             userId: validated.clientId,
             serviceCategory: validated.requestData.serviceType,
@@ -101,7 +104,7 @@ export async function POST(request: NextRequest) {
         firstRequestId = serviceRequest.id;
 
         // Mark first request created
-        await prisma.clientOnboarding.update({
+        await db.clientOnboarding.update({
           where: { clientId: validated.clientId },
           data: { firstRequestCreated: true },
         });
@@ -110,7 +113,7 @@ export async function POST(request: NextRequest) {
 
     // Mark tour completed if requested
     if (validated.startTour) {
-      await prisma.clientOnboarding.update({
+      await db.clientOnboarding.update({
         where: { clientId: validated.clientId },
         data: { tourCompleted: false }, // Will be marked true when tour actually completes
       });

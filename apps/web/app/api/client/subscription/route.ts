@@ -11,9 +11,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 
 const updateSubscriptionSchema = z.object({
@@ -24,27 +23,32 @@ type UpdateSubscriptionData = z.infer<typeof updateSubscriptionSchema>;
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const clientId = session.user.id;
+    const { user } = authResult.context;
 
-    // Get client subscription
-    const clientPayment = await prisma.clientPayment.findFirst({
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
+    }
+
+    const clientId = user.id;
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
+    // Get client subscription - automatically tenant-scoped
+    const clientPayment = await db.clientPayment.findFirst({
       where: { clientId },
       orderBy: { createdAt: 'desc' },
       take: 1,
     });
 
-    // Get payment history for this subscription
+    // Get payment history for this subscription - automatically tenant-scoped
     const paymentHistory = clientPayment
-      ? await prisma.payment.findMany({
+      ? await db.payment.findMany({
           where: { clientId },
           select: {
             id: true,
@@ -120,16 +124,22 @@ export async function GET(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || !session.user.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
-    const clientId = session.user.id;
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['CLIENT', 'ADMIN'])) {
+      return unauthorizedRoleResponse(['CLIENT', 'ADMIN']);
+    }
+
+    const clientId = user.id;
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     const body = await request.json();
 
     // Validate
@@ -149,8 +159,8 @@ export async function PUT(request: NextRequest) {
       throw error;
     }
 
-    // Get current subscription
-    const currentSubscription = await prisma.clientPayment.findFirst({
+    // Get current subscription - automatically tenant-scoped
+    const currentSubscription = await db.clientPayment.findFirst({
       where: { clientId },
       orderBy: { createdAt: 'desc' },
       take: 1,
@@ -163,8 +173,8 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // Update subscription
-    const updatedSubscription = await prisma.clientPayment.update({
+    // Update subscription - automatically tenant-scoped
+    const updatedSubscription = await db.clientPayment.update({
       where: { id: currentSubscription.id },
       data: {
         plan: validatedData.plan,
