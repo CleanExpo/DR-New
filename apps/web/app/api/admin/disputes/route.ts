@@ -13,21 +13,25 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { listOpenDisputes } from '@/lib/payments/refund-handler';
-import { prisma } from '@/lib/prisma';
+import { getTenantDb } from '@/lib/get-tenant-db';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
+
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get('limit') || '20');
@@ -161,7 +165,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get payment
-    const payment = await prisma.payment.findUnique({
+    const payment = await db.payment.findUnique({
       where: { id: paymentId },
       select: {
         id: true,
@@ -185,7 +189,7 @@ export async function POST(request: NextRequest) {
     const refundAmount = approvedAmount || totalAmount;
 
     // Mark as refunded
-    const updatedPayment = await prisma.payment.update({
+    const updatedPayment = await db.payment.update({
       where: { id: paymentId },
       data: {
         status: 'REFUNDED',

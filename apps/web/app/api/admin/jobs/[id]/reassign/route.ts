@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { getTenantDb } from '@/lib/get-tenant-db'
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
 import { handleUnexpectedError } from '@/lib/api-errors'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
@@ -38,6 +38,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
+
     const { id: jobId } = await params
     const body = await request.json()
     const { newContractorId, reason } = body
@@ -57,7 +60,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Fetch job
-    const job = await prisma.serviceRequest.findUnique({
+    const job = await db.serviceRequest.findUnique({
       where: { id: jobId },
       include: {
         matches: {
@@ -82,7 +85,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     }
 
     // Verify new contractor exists
-    const newContractor = await prisma.contractorProfile.findUnique({
+    const newContractor = await db.contractorProfile.findUnique({
       where: { id: newContractorId },
       include: {
         user: { select: { id: true, name: true } },
@@ -101,7 +104,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const oldContractor = currentMatch?.contractor
 
     // Start transaction for reassignment
-    await prisma.$transaction(async (tx) => {
+    await db.$transaction(async (tx) => {
       // Expire old match if exists
       if (currentMatch) {
         await tx.contractorMatch.update({
@@ -219,12 +222,15 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN'])
     }
 
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context)
+
     const { id: jobId } = await params
     const { searchParams } = new URL(request.url)
     const search = searchParams.get('search')
 
     // Get job location for distance calculation context
-    const job = await prisma.serviceRequest.findUnique({
+    const job = await db.serviceRequest.findUnique({
       where: { id: jobId },
       select: {
         location: true,
@@ -252,7 +258,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Fetch available contractors with their active job count
-    const contractors = await prisma.contractorProfile.findMany({
+    const contractors = await db.contractorProfile.findMany({
       where,
       include: {
         user: {

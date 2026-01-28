@@ -8,24 +8,28 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { calculatePayoutAmount } from '@/lib/payments/contractor-payout';
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
-
-    if (!session || session.user.role !== 'ADMIN') {
-      return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
-      );
+    const authResult = await authenticateRequest(request);
+    if (!authResult.success) {
+      return authResult.response;
     }
 
+    const { user } = authResult.context;
+
+    if (!requireRole(user, ['ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN']);
+    }
+
+    // Get tenant-scoped database client
+    const db = getTenantDb(authResult.context);
+
     // Get all completed payments
-    const allPayments = await prisma.payment.findMany({
+    const allPayments = await db.payment.findMany({
       where: { status: 'COMPLETED' },
       include: {
         contractor: {
@@ -132,8 +136,8 @@ export async function GET(request: NextRequest) {
     );
 
     // Calculate payment success rate
-    const allPaymentsCount = await prisma.payment.count();
-    const failedPayments = await prisma.payment.count({
+    const allPaymentsCount = await db.payment.count();
+    const failedPayments = await db.payment.count({
       where: { status: 'FAILED' },
     });
     const successRate =
@@ -142,7 +146,7 @@ export async function GET(request: NextRequest) {
         : 100;
 
     // Get pending payments
-    const pendingPayments = await prisma.payment.findMany({
+    const pendingPayments = await db.payment.findMany({
       where: { status: 'PENDING' },
       select: {
         id: true,
