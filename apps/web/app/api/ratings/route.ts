@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
-import { requireRole, unauthorizedRoleResponse } from '@/lib/role-utils';
 import { createRatingSchema, queryRatingSchema } from '@/lib/validation/rating';
-import { ErrorCode } from '@/types/error-codes';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -29,8 +27,11 @@ export async function POST(request: NextRequest) {
       return authResult.response;
     }
 
-    if (!requireRole(authResult.context.user, ['CLIENT'])) {
-      return unauthorizedRoleResponse(['CLIENT']);
+    if (authResult.context.user.userType !== 'CLIENT') {
+      return NextResponse.json(
+        { error: 'Only clients can create reviews' },
+        { status: 403 }
+      );
     }
 
     // 2. Get tenant-scoped database
@@ -58,7 +59,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'Booking not found',
-          code: ErrorCode.RESOURCE_NOT_FOUND,
         },
         { status: 404 }
       );
@@ -68,7 +68,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'You can only review your own bookings',
-          code: ErrorCode.FORBIDDEN,
         },
         { status: 403 }
       );
@@ -78,7 +77,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'You can only review completed bookings',
-          code: ErrorCode.INVALID_REQUEST,
         },
         { status: 400 }
       );
@@ -88,7 +86,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'No contractor was assigned to this booking',
-          code: ErrorCode.INVALID_REQUEST,
         },
         { status: 400 }
       );
@@ -108,7 +105,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'You have already reviewed this booking',
-          code: ErrorCode.DUPLICATE_RESOURCE,
         },
         { status: 409 }
       );
@@ -192,7 +188,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'Validation failed',
-          code: ErrorCode.VALIDATION_ERROR,
           details: error.errors,
         },
         { status: 400 }
@@ -203,7 +198,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to create review',
-        code: ErrorCode.INTERNAL_ERROR,
       },
       { status: 500 }
     );
@@ -265,8 +259,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
           {
             error: 'Not authorized to view these reviews',
-            code: ErrorCode.FORBIDDEN,
-          },
+            },
           { status: 403 }
         );
       }
@@ -328,7 +321,6 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'Invalid query parameters',
-          code: ErrorCode.VALIDATION_ERROR,
           details: error.errors,
         },
         { status: 400 }
@@ -339,7 +331,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to fetch reviews',
-        code: ErrorCode.INTERNAL_ERROR,
       },
       { status: 500 }
     );
