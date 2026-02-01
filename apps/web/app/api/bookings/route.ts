@@ -71,6 +71,16 @@ export async function GET(request: NextRequest) {
               completedJobs: true,
             },
           },
+          ratings: {
+            where: {
+              clientId: user.id,
+            },
+            select: {
+              id: true,
+              rating: true,
+              createdAt: true,
+            },
+          },
         },
         orderBy: { createdAt: 'desc' },
         skip: offset,
