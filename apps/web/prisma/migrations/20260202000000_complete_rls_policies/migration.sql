@@ -187,32 +187,9 @@ CREATE POLICY "tenant_isolation_delete" ON "opportunities"
   FOR DELETE USING ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
 
 -- ===================================================================
--- Public Claim Models (UNI-183)
--- ===================================================================
-
--- public_claims
-CREATE POLICY "tenant_isolation_select" ON "public_claims"
-  FOR SELECT USING ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-CREATE POLICY "tenant_isolation_insert" ON "public_claims"
-  FOR INSERT WITH CHECK ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-CREATE POLICY "tenant_isolation_update" ON "public_claims"
-  FOR UPDATE USING ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-CREATE POLICY "tenant_isolation_delete" ON "public_claims"
-  FOR DELETE USING ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-
--- triage_assessments
-CREATE POLICY "tenant_isolation_select" ON "triage_assessments"
-  FOR SELECT USING ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-CREATE POLICY "tenant_isolation_insert" ON "triage_assessments"
-  FOR INSERT WITH CHECK ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-CREATE POLICY "tenant_isolation_update" ON "triage_assessments"
-  FOR UPDATE USING ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-CREATE POLICY "tenant_isolation_delete" ON "triage_assessments"
-  FOR DELETE USING ("tenantId" IS NULL OR "tenantId" = current_tenant_id() OR current_tenant_id() IS NULL);
-
--- ===================================================================
 -- Content Models
 -- ===================================================================
+-- NOTE: public_claims and triage_assessments tables don't exist yet (UNI-183 schema not migrated)
 
 -- blog_posts
 CREATE POLICY "tenant_isolation_select" ON "blog_posts"
