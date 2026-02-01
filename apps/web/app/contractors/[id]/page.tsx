@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { ReviewList } from "@/components/reviews/review-list"
 import Link from "next/link"
 
 const BASE_URL =
@@ -372,6 +373,21 @@ export default async function PublicContractorProfilePage({ params }: Props) {
             </div>
           </section>
         )}
+
+        {/* Client Reviews */}
+        <section className="container mx-auto px-6 mb-12">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-poppins font-semibold text-2xl text-white mb-6">
+              Client Reviews
+            </h2>
+            <ReviewList
+              contractorId={contractor.id}
+              showClientNames={true}
+              editable={false}
+              limit={5}
+            />
+          </div>
+        </section>
 
         {/* CTA */}
         <section className="container mx-auto px-6">
