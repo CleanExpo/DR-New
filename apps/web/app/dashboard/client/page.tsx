@@ -7,6 +7,8 @@ import ClientLayout from '@/components/dashboard/client-layout';
 import PersonalizedDashboard from '@/components/personalized/personalized-dashboard';
 import UserPreferencesDisplay from '@/components/profile/user-preferences-display';
 import { ClientEligibilityBanner } from '@/components/client/eligibility-banner';
+import { ReviewForm } from '@/components/reviews/review-form';
+import { ReviewList } from '@/components/reviews/review-list';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -117,6 +119,12 @@ export default function ClientDashboard() {
   const [selectedRequest, setSelectedRequest] = useState<any>(null);
   const [cancellingRequest, setCancellingRequest] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
+
+  // Bookings and reviews state
+  const [bookings, setBookings] = useState<any[]>([]);
+  const [loadingBookings, setLoadingBookings] = useState(false);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+  const [reviewBooking, setReviewBooking] = useState<any | null>(null);
 
   // Fetch user preferences
   const fetchUserPreferences = async () => {
@@ -245,6 +253,13 @@ export default function ClientDashboard() {
       fetchAvailableContractors(selectedCategory);
     }
   }, [activeTab, selectedCategory]);
+
+  // Fetch bookings when Bookings tab is selected
+  useEffect(() => {
+    if (activeTab === 'bookings') {
+      fetchBookings();
+    }
+  }, [activeTab]);
 
   const handleLogout = () => {
     logout();
@@ -544,6 +559,24 @@ export default function ClientDashboard() {
       console.error('Error fetching active projects:', error);
     } finally {
       setLoadingActiveProjects(false);
+    }
+  };
+
+  const fetchBookings = async () => {
+    try {
+      setLoadingBookings(true);
+      if (typeof window === 'undefined') return;
+
+      const response = await fetch('/api/bookings?limit=50', { cache: 'no-store' });
+
+      if (response.ok) {
+        const result = await response.json();
+        setBookings(result.data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching bookings:', error);
+    } finally {
+      setLoadingBookings(false);
     }
   };
 
@@ -2246,6 +2279,181 @@ export default function ClientDashboard() {
           </div>
         );
 
+      case 'bookings':
+        return (
+          <div className="space-y-6">
+            {/* Header Section */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-white">My Bookings</h2>
+                <p className="text-gray-400 mt-1">
+                  View your disaster recovery bookings and leave reviews for completed work
+                </p>
+              </div>
+              <Button
+                onClick={fetchBookings}
+                disabled={loadingBookings}
+                className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+              >
+                {loadingBookings ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                ) : (
+                  <Calendar className="h-4 w-4 mr-2" />
+                )}
+                Refresh
+              </Button>
+            </div>
+
+            {/* Loading State */}
+            {loadingBookings ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+              </div>
+            ) : bookings.length === 0 ? (
+              <div className="text-center py-12">
+                <Calendar className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-2">No Bookings Yet</h3>
+                <p className="text-gray-400 mb-6">
+                  You haven't made any disaster recovery bookings yet. Submit a service request to get started.
+                </p>
+                <Button
+                  onClick={() => setActiveTab('requests')}
+                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  View Requests
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {bookings.map((booking) => (
+                  <Card key={booking.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-[#00BFA6] group bg-gray-800 border-gray-700">
+                    <CardContent className="px-4 py-0">
+                      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        {/* Main Content */}
+                        <div className="flex-1 space-y-3">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <h4 className="font-bold text-white text-xl mb-2 group-hover:text-[#00BFA6] transition-colors">
+                                {booking.australianServiceType.replace(/_/g, ' ')}
+                              </h4>
+                              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-3">
+                                <div className="flex items-center">
+                                  <MapPin className="h-4 w-4 mr-1" />
+                                  <span className="text-white">{booking.serviceSuburb}, {booking.serviceState}</span>
+                                </div>
+                                {booking.contractor && (
+                                  <div className="flex items-center">
+                                    <span className="font-medium mr-2">Contractor:</span>
+                                    <span className="text-white">{booking.contractor.businessName}</span>
+                                  </div>
+                                )}
+                              </div>
+
+                              {booking.description && (
+                                <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
+                                  {booking.description}
+                                </p>
+                              )}
+
+                              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 pt-2">
+                                <div className="flex items-center">
+                                  <span className="font-medium mr-2">Submitted:</span>
+                                  <span className="text-white">{new Date(booking.createdAt).toLocaleDateString('en-AU')}</span>
+                                </div>
+                                {booking.completedAt && (
+                                  <div className="flex items-center">
+                                    <span className="font-medium mr-2">Completed:</span>
+                                    <span className="text-white">{new Date(booking.completedAt).toLocaleDateString('en-AU')}</span>
+                                  </div>
+                                )}
+                                {booking.estimatedCostAUD && (
+                                  <div className="flex items-center">
+                                    <span className="font-medium mr-2">Estimated Cost:</span>
+                                    <span className="text-white">${Number(booking.estimatedCostAUD).toFixed(2)}</span>
+                                  </div>
+                                )}
+                              </div>
+
+                              {booking.ratings && booking.ratings.length > 0 && (
+                                <div className="flex items-center gap-2 pt-2">
+                                  <Badge className="bg-green-900/30 text-green-400 border-green-500">
+                                    <CheckCircle className="h-3 w-3 mr-1" />
+                                    Review Submitted
+                                  </Badge>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Status and Actions */}
+                        <div className="flex flex-col lg:items-end space-y-4">
+                          <div className="text-right">
+                            <Badge className={`${
+                              booking.status === 'COMPLETED' ? 'bg-green-900/30 text-green-400 border-green-500' :
+                              booking.status === 'IN_PROGRESS' ? 'bg-blue-900/30 text-blue-400 border-blue-500' :
+                              booking.status === 'PENDING' ? 'bg-yellow-900/30 text-yellow-400 border-yellow-500' :
+                              'bg-gray-900/30 text-gray-400 border-gray-500'
+                            } text-sm px-3 py-1`}>
+                              {booking.status}
+                            </Badge>
+                          </div>
+
+                          {/* Actions */}
+                          <div className="flex gap-2">
+                            {booking.status === 'COMPLETED' && booking.contractor && booking.ratings.length === 0 && (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="group-hover:border-[#00BFA6] group-hover:text-[#00BFA6] transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
+                                onClick={() => {
+                                  setReviewBooking(booking);
+                                  setReviewModalOpen(true);
+                                }}
+                              >
+                                <Star className="h-4 w-4 mr-2" />
+                                Write Review
+                              </Button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+
+      case 'reviews':
+        return (
+          <div className="space-y-6">
+            {/* Header Section */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-white">My Reviews</h2>
+                <p className="text-gray-400 mt-1">
+                  View and manage your contractor reviews
+                </p>
+              </div>
+            </div>
+
+            {/* Reviews List */}
+            <Card className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] border-[#374151]">
+              <CardContent className="p-6">
+                <ReviewList
+                  clientId={user?.id}
+                  showClientNames={false}
+                  editable={true}
+                  limit={10}
+                />
+              </CardContent>
+            </Card>
+          </div>
+        );
+
       case 'offers':
         return (
           <div className="space-y-6">
@@ -3840,6 +4048,27 @@ export default function ClientDashboard() {
             setSelectedProjectId(null);
           }}
         />
+      )}
+
+      {/* Review Dialog */}
+      {reviewModalOpen && reviewBooking && (
+        <Dialog open={reviewModalOpen} onOpenChange={setReviewModalOpen}>
+          <DialogContent className="bg-[#1F2937] border-[#374151] max-w-2xl">
+            <ReviewForm
+              bookingId={reviewBooking.id}
+              contractorName={reviewBooking.contractor?.businessName || 'Contractor'}
+              onSuccess={() => {
+                setReviewModalOpen(false);
+                setReviewBooking(null);
+                fetchBookings(); // Refresh bookings to show review submitted badge
+              }}
+              onCancel={() => {
+                setReviewModalOpen(false);
+                setReviewBooking(null);
+              }}
+            />
+          </DialogContent>
+        </Dialog>
       )}
 
       {/* Removed Modal - Using Inline Filters */}

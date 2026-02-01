@@ -6,16 +6,18 @@ import {
   Sheet,
   SheetContent,
 } from '@/components/ui/sheet';
-import { 
-  Home, 
-  Plus, 
-  Award, 
-  CheckCircle, 
-  BarChart3, 
+import {
+  Home,
+  Plus,
+  Award,
+  CheckCircle,
+  BarChart3,
   User,
   X,
   Search,
-  LogOut
+  LogOut,
+  Calendar,
+  Star
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -36,6 +38,8 @@ export default function Sidebar({ activeTab, setActiveTab, sidebarOpen, setSideb
     { id: 'overview', label: 'Overview', icon: Home },
     { id: 'services', label: 'Browse Services', icon: Search },
     { id: 'requests', label: 'My Requests', icon: Plus },
+    { id: 'bookings', label: 'My Bookings', icon: Calendar },
+    { id: 'reviews', label: 'My Reviews', icon: Star },
     { id: 'offers', label: 'My Offers', icon: Award },
     { id: 'active-projects', label: 'Active Projects', icon: CheckCircle },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
