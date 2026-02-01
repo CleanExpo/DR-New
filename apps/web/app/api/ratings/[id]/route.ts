@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { updateRatingSchema } from '@/lib/validation/rating';
-import { ErrorCode } from '@/types/error-codes';
 import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
@@ -57,7 +56,6 @@ export async function GET(
       return NextResponse.json(
         {
           error: 'Review not found',
-          code: ErrorCode.RESOURCE_NOT_FOUND,
         },
         { status: 404 }
       );
@@ -72,7 +70,6 @@ export async function GET(
     return NextResponse.json(
       {
         error: 'Failed to fetch review',
-        code: ErrorCode.INTERNAL_ERROR,
       },
       { status: 500 }
     );
@@ -108,7 +105,6 @@ export async function PATCH(
       return NextResponse.json(
         {
           error: 'Review not found',
-          code: ErrorCode.RESOURCE_NOT_FOUND,
         },
         { status: 404 }
       );
@@ -123,7 +119,6 @@ export async function PATCH(
       return NextResponse.json(
         {
           error: 'Not authorized to edit this review',
-          code: ErrorCode.FORBIDDEN,
         },
         { status: 403 }
       );
@@ -205,7 +200,6 @@ export async function PATCH(
       return NextResponse.json(
         {
           error: 'Validation failed',
-          code: ErrorCode.VALIDATION_ERROR,
           details: error.errors,
         },
         { status: 400 }
@@ -216,7 +210,6 @@ export async function PATCH(
     return NextResponse.json(
       {
         error: 'Failed to update review',
-        code: ErrorCode.INTERNAL_ERROR,
       },
       { status: 500 }
     );
@@ -252,7 +245,6 @@ export async function DELETE(
       return NextResponse.json(
         {
           error: 'Review not found',
-          code: ErrorCode.RESOURCE_NOT_FOUND,
         },
         { status: 404 }
       );
@@ -267,7 +259,6 @@ export async function DELETE(
       return NextResponse.json(
         {
           error: 'Not authorized to delete this review',
-          code: ErrorCode.FORBIDDEN,
         },
         { status: 403 }
       );
@@ -313,7 +304,6 @@ export async function DELETE(
     return NextResponse.json(
       {
         error: 'Failed to delete review',
-        code: ErrorCode.INTERNAL_ERROR,
       },
       { status: 500 }
     );
