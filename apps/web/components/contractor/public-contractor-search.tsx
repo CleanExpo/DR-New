@@ -67,6 +67,7 @@ interface Contractor {
   businessName: string;
   nrpgMemberId?: string;
   rating: number;
+  reviewCount: number;
   completedJobs: number;
   responseTimeMinutes?: number;
   iicrcLevels: string[];
@@ -357,7 +358,9 @@ export default function PublicContractorSearch({
                           <Star className="h-3.5 w-3.5 fill-current" />
                           <span className="font-semibold text-sm">{contractor.rating.toFixed(1)}</span>
                         </div>
-                        <span className="text-[10px] text-[#6B7280]">Rating</span>
+                        <span className="text-[10px] text-[#6B7280]">
+                          {contractor.reviewCount} {contractor.reviewCount === 1 ? 'review' : 'reviews'}
+                        </span>
                       </div>
                       <div className="text-center">
                         <div className="flex items-center justify-center gap-1 text-[#2196F3]">

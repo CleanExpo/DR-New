@@ -139,6 +139,11 @@ async function handleContractorSearch(req: NextRequest) {
           certificationLevel: true,
         },
       },
+      _count: {
+        select: {
+          ratings: true,
+        },
+      },
       ...(postcode
         ? {
             serviceAreas: {
@@ -192,6 +197,7 @@ async function handleContractorSearch(req: NextRequest) {
         businessName: contractor.businessName,
         nrpgMemberId: contractor.nrpgMemberId,
         rating: Number(contractor.averageRating),
+        reviewCount: contractor._count.ratings,
         completedJobs: contractor.completedJobs,
         responseTimeMinutes: contractor.averageResponseTimeMinutes,
         iicrcLevels: contractor.iicrcCertifications.map(
