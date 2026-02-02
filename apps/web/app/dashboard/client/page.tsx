@@ -14,9 +14,11 @@ import { DashboardHeader } from '@/components/client/DashboardHeader';
 import { StatsOverview } from '@/components/client/StatsOverview';
 import { QuickActionsPanel } from '@/components/client/QuickActionsPanel';
 import { ServiceRequestCard } from '@/components/client/ServiceRequestCard';
+import { MessageCenter } from '@/components/client/MessageCenter';
 import type { StatItem } from '@/components/client/StatsOverview';
 import type { QuickAction } from '@/components/client/QuickActionsPanel';
 import type { ServiceRequest } from '@/components/client/ServiceRequestCard';
+import type { Thread } from '@/components/client/MessageCenter';
 // Custom Hooks
 import { useServiceRequests } from '@/hooks/client/useServiceRequests';
 import { useClientAnalytics } from '@/hooks/client/useClientAnalytics';
@@ -382,15 +384,86 @@ export default function ClientDashboard() {
   const getUrgencyDisplayName = (urgencyId: string) => {
     const urgencyMap = {
       emergency: "Emergency",
-      urgent: "Urgent", 
+      urgent: "Urgent",
       normal: "Normal",
       flexible: "Flexible"
     };
     return urgencyMap[urgencyId as keyof typeof urgencyMap] || '';
   };
 
+  // Convert messages array to threads format for MessageCenter
+  const convertMessagesToThreads = (): Thread[] => {
+    if (!messages || messages.length === 0) return [];
+
+    // Group messages by sender/thread
+    const threadsMap = messages.reduce((acc: Record<string, any[]>, message: any) => {
+      const threadId = message.sender?.id || message.threadId || 'system';
+      if (!acc[threadId]) {
+        acc[threadId] = [];
+      }
+      acc[threadId].push(message);
+      return acc;
+    }, {});
+
+    // Convert to Thread[] format
+    return Object.entries(threadsMap).map(([threadId, msgs]: [string, any[]]) => {
+      const firstMsg = msgs[0];
+      return {
+        id: threadId,
+        title: firstMsg.subject || firstMsg.sender?.name || 'Conversation',
+        participants: [
+          {
+            id: firstMsg.sender?.id || 'system',
+            name: firstMsg.sender?.name || 'System',
+            role: firstMsg.sender?.role || 'contractor',
+          },
+        ],
+        lastMessage: msgs[msgs.length - 1] ? {
+          id: msgs[msgs.length - 1].id,
+          content: msgs[msgs.length - 1].content,
+          senderId: msgs[msgs.length - 1].sender?.id || 'system',
+          senderName: msgs[msgs.length - 1].sender?.name || 'System',
+          timestamp: msgs[msgs.length - 1].createdAt,
+          read: msgs[msgs.length - 1].isRead,
+        } : undefined,
+        unreadCount: msgs.filter((m: any) => !m.isRead).length,
+        messages: msgs.map((m: any) => ({
+          id: m.id,
+          content: m.content,
+          senderId: m.sender?.id || 'system',
+          senderName: m.sender?.name || 'System',
+          timestamp: m.createdAt,
+          read: m.isRead,
+        })),
+      };
+    });
+  };
+
+  // Handle sending message from MessageCenter
+  const handleSendMessageFromCenter = async (threadId: string, content: string) => {
+    try {
+      const response = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          threadId,
+          content,
+          recipientId: threadId,
+        }),
+      });
+
+      if (response.ok) {
+        // Refresh messages
+        await fetchMessages();
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  };
+
   // Filtering and sorting is now handled by useServiceRequests hook
-  // Filtering is now handled by useServiceRequests hook
 
   const fetchMessages = async () => {
     try {
@@ -2348,78 +2421,19 @@ export default function ClientDashboard() {
       case 'messages':
         return (
           <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-white">Messages</h3>
-                <p className="text-gray-400 mt-1">Communicate with contractors and get updates</p>
-              </div>
-              <Badge className="bg-semantic-contractor text-white">
-                {unreadCount} unread
-              </Badge>
-            </div>
-
+            {/* Messages - Premium Component */}
             {loadingMessages ? (
               <div className="flex items-center justify-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
                 <span className="ml-2 text-gray-400">Loading messages...</span>
               </div>
-            ) : messages.length === 0 ? (
-              <div className="text-center py-16 bg-gray-800 rounded-lg border-2 border-dashed border-gray-600">
-                <MessageSquare className="h-20 w-20 text-gray-500 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">No messages yet</h3>
-                <p className="text-gray-400 mb-6 max-w-md mx-auto">
-                  When contractors respond to your requests, you'll see their messages here.
-                </p>
-              </div>
             ) : (
-              <div className="space-y-4">
-                {messages.map((message) => (
-                  <Card key={message.id} className="bg-gray-800 border-gray-700 hover:border-semantic-contractor transition-colors">
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="h-10 w-10 bg-semantic-contractor rounded-full flex items-center justify-center">
-                            <span className="text-white font-semibold text-sm">
-                              {message.sender?.name?.charAt(0) || 'S'}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between">
-                            <h4 className="font-semibold text-white truncate">
-                              {message.sender?.name || 'System'}
-                            </h4>
-                            <div className="flex items-center space-x-2">
-                              <span className="text-xs text-gray-400">
-                                {new Date(message.createdAt).toLocaleDateString()}
-                              </span>
-                              {!message.isRead && (
-                                <div className="h-2 w-2 bg-semantic-contractor rounded-full"></div>
-                              )}
-                            </div>
-                          </div>
-                          {message.subject && (
-                            <p className="text-sm font-medium text-gray-300 mt-1">{message.subject}</p>
-                          )}
-                          <p className="text-gray-400 mt-2 line-clamp-2">{message.content}</p>
-                          <div className="flex items-center mt-3 space-x-2">
-                            <Badge 
-                              className={`text-xs ${
-                                message.messageType === 'MATCH_NOTIFICATION' ? 'bg-green-900/30 text-green-400 border-green-500' :
-                                message.messageType === 'PROJECT_UPDATE' ? 'bg-blue-900/30 text-blue-400 border-blue-500' :
-                                message.messageType === 'PAYMENT_REMINDER' ? 'bg-yellow-900/30 text-yellow-400 border-yellow-500' :
-                                'bg-gray-900/30 text-gray-400 border-gray-500'
-                              }`}
-                            >
-                              {message.messageType.replace('_', ' ').toLowerCase()}
-                            </Badge>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              <MessageCenter
+                threads={convertMessagesToThreads()}
+                currentUserId={user?.id || ''}
+                onSendMessage={handleSendMessageFromCenter}
+                title="Messages"
+              />
             )}
           </div>
         );
