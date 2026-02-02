@@ -301,6 +301,43 @@ model Contractor {
   tenantId                      String?
   createdAt                     DateTime                 @default(now())
   updatedAt                     DateTime                 @updatedAt
+
+  // License Information
+  licenseNumber                 String?
+  licenseState                  AustralianState?
+  licenseExpiry                 DateTime?
+  licenseDocumentUrl            String?
+  licenseDocumentFileName       String?
+  licenseVerifiedAt             DateTime?
+  licenseVerifiedBy             String?
+
+  // Enhanced Verification
+  verificationStatus            ContractorVerificationStatus @default(PENDING)
+  submittedForVerificationAt    DateTime?
+  reviewedAt                    DateTime?
+  reviewedBy                    String?
+  rejectionReason               String?
+  resubmissionCount             Int                          @default(0)
+  verificationNotes             String?
+
+  // Profile Analytics
+  profileViews                  Int                          @default(0)
+  profileViewsThisMonth         Int                          @default(0)
+  lastProfileViewReset          DateTime?
+  directBookingRequests         Int                          @default(0)
+  quoteRequestCount             Int                          @default(0)
+  quoteAcceptanceRate           Decimal                      @default(0.00)
+
+  // Company Profile
+  companyLogoUrl                String?
+  companyDescription            String?
+  yearsInBusiness               Int?
+  teamSize                      Int?
+  serviceRadius                 Int                          @default(25)
+  emergencyAvailable            Boolean                      @default(false)
+  emergencyResponseTime         Int?
+
+  // Relations
   bookings                      Booking[]                @relation("ContractorBookings")
   user                          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tenant                        Tenant?                  @relation(fields: [tenantId], references: [id])
@@ -316,6 +353,8 @@ model Contractor {
   notificationPreference        NotificationPreference?  @relation("ContractorNotificationPreference")
   opportunities                 Opportunity[]            @relation("OpportunityContractor")
   realtimeSubscription          RealtimeSubscription?    @relation("ContractorRealtimeSubscription")
+  documents                     ContractorDocument[]         @relation("ContractorDocuments")
+  verificationHistory           ContractorVerificationHistory[] @relation("VerificationHistory")
 
   @@index([businessName])
   @@index([primaryState])
@@ -324,6 +363,9 @@ model Contractor {
   @@index([isActive])
   @@index([abnNumber])
   @@index([tenantId])
+  @@index([verificationStatus])
+  @@index([licenseExpiry])
+  @@index([isVerified, isActive, verificationStatus])
 }
 
 model IICRCCertification {
@@ -358,12 +400,28 @@ model ContractorServiceArea {
   responseTimeMinutes Int
   createdAt           DateTime        @default(now())
   updatedAt           DateTime        @updatedAt
+
+  // Geographic Enhancements
+  suburb              String?
+  city                String?
+  radiusKm            Int                          @default(25)
+  latitude            Decimal?
+  longitude           Decimal?
+
+  // Coverage Classification
+  isPrimaryArea       Boolean                      @default(true)
+  coverageLevel       ServiceCoverageLevel         @default(STANDARD)
+  priorityLevel       Int                          @default(1)
+
   contractor          Contractor      @relation("ServiceAreas", fields: [contractorId], references: [id], onDelete: Cascade)
 
   @@unique([contractorId, postcode])
   @@index([postcode])
   @@index([state])
   @@index([contractorId])
+  @@index([suburb])
+  @@index([latitude, longitude])
+  @@index([isPrimaryArea, isActive])
 }
 
 model AdminServiceCategory {
@@ -1046,6 +1104,43 @@ model Rating {
   tenantId       String?
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
+
+  // Detailed Attribute Ratings
+  title               String?
+  professionalism     Int?
+  qualityOfWork       Int?
+  timeliness          Int?
+  communication       Int?
+  valueForMoney       Int?
+
+  // Review Media
+  photoUrls           String[]
+  videoUrl            String?
+
+  // Contractor Engagement
+  contractorReply     String?
+  repliedAt           DateTime?
+  replyEditedAt       DateTime?
+
+  // Moderation & Visibility
+  isPublished         Boolean                      @default(true)
+  isPinned            Boolean                      @default(false)
+  isVerified          Boolean                      @default(true)
+  isEdited            Boolean                      @default(false)
+  editedAt            DateTime?
+
+  // Community Engagement
+  helpfulVotes        Int                          @default(0)
+  unhelpfulVotes      Int                          @default(0)
+
+  // Moderation
+  isFlagged           Boolean                      @default(false)
+  flagReason          String?
+  flaggedBy           String?
+  flaggedAt           DateTime?
+  moderatedBy         String?
+  moderatedAt         DateTime?
+
   booking        Booking    @relation(fields: [bookingId], references: [id], onDelete: Cascade)
   client         User       @relation(fields: [clientId], references: [id])
   contractor     Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
@@ -1056,6 +1151,9 @@ model Rating {
   @@index([clientId])
   @@index([rating])
   @@index([tenantId])
+  @@index([contractorId, isPublished])
+  @@index([isPinned, isPublished])
+  @@index([helpfulVotes])
 }
 
 model Message {
@@ -2689,6 +2787,142 @@ enum BetaFeedbackCategory {
   FEATURE_REQUEST
   USABILITY_ISSUE
   GENERAL_FEEDBACK
+}
+
+// ============================================
+// Contractor Verification Enums
+// ============================================
+
+enum ContractorVerificationStatus {
+  PENDING                // Initial state when contractor signs up
+  INCOMPLETE            // Missing required fields
+  SUBMITTED             // All fields complete, ready for review
+  UNDER_REVIEW          // Admin is reviewing
+  APPROVED              // Verified and live
+  REJECTED              // Application denied
+  RESUBMISSION_REQUIRED // Needs corrections
+  SUSPENDED             // Suspended after approval
+  EXPIRED               // License expired
+}
+
+enum ServiceCoverageLevel {
+  STANDARD       // Normal service
+  PRIORITY       // Fast response
+  EMERGENCY_ONLY // Only urgent calls
+  LIMITED        // Conditional availability
+}
+
+enum ContractorDocumentType {
+  BUSINESS_LICENSE
+  IICRC_CERTIFICATE
+  PUBLIC_LIABILITY_INSURANCE
+  WORKERS_COMPENSATION
+  PROFESSIONAL_INDEMNITY
+  ABN_REGISTRATION
+  POLICE_CHECK
+  TRADE_LICENSE
+  COMPANY_LOGO
+  INSURANCE_CLAIM_EXAMPLE
+  OTHER
+}
+
+enum DocumentStatus {
+  PENDING        // Uploaded, awaiting review
+  UNDER_REVIEW   // Admin reviewing
+  APPROVED       // Verified
+  REJECTED       // Not accepted
+  EXPIRED        // Past expiry date
+  REQUIRES_RENEWAL // Expiring soon
+}
+
+enum VerificationAction {
+  PROFILE_CREATED
+  SUBMITTED
+  REVIEW_STARTED
+  DOCUMENT_UPLOADED
+  DOCUMENT_VERIFIED
+  DOCUMENT_REJECTED
+  APPROVED
+  REJECTED
+  SUSPENDED
+  UNSUSPENDED
+  RESUBMISSION_REQUEST
+  LICENSE_EXPIRED
+  LICENSE_RENEWED
+  STATUS_CHANGED
+}
+
+// ============================================
+// Contractor Verification Models
+// ============================================
+
+model ContractorDocument {
+  id                  String                     @id @default(cuid())
+  contractorId        String
+  contractor          Contractor                 @relation("ContractorDocuments", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Document Metadata
+  documentType        ContractorDocumentType
+  fileName            String
+  fileUrl             String
+  fileSize            Int                        // Bytes
+  mimeType            String
+
+  // Verification
+  status              DocumentStatus             @default(PENDING)
+  uploadedAt          DateTime                   @default(now())
+  verifiedAt          DateTime?
+  verifiedBy          String?                    // Admin user ID
+  rejectionReason     String?
+  expiryDate          DateTime?
+  issuedDate          DateTime?
+
+  // Document Details
+  documentNumber      String?
+  issuingAuthority    String?
+  stateIssued         AustralianState?
+
+  // Security & Audit
+  viewCount           Int                        @default(0)
+  lastViewedAt        DateTime?
+  lastViewedBy        String?
+
+  createdAt           DateTime                   @default(now())
+  updatedAt           DateTime                   @updatedAt
+
+  @@index([contractorId, documentType])
+  @@index([status])
+  @@index([expiryDate])
+  @@index([documentType, status])
+}
+
+model ContractorVerificationHistory {
+  id                  String                        @id @default(cuid())
+  contractorId        String
+  contractor          Contractor                    @relation("VerificationHistory", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  // Action Details
+  action              VerificationAction
+  previousStatus      ContractorVerificationStatus?
+  newStatus           ContractorVerificationStatus
+  reason              String?
+  notes               String?
+
+  // Actor
+  performedBy         String                        // User ID
+  performedByName     String?
+  isSystemAction      Boolean                       @default(false)
+
+  // Metadata
+  ipAddress           String?
+  userAgent           String?
+  metadata            Json?
+
+  createdAt           DateTime                      @default(now())
+
+  @@index([contractorId, createdAt])
+  @@index([action])
+  @@index([createdAt])
 }
 
 // ============================================
