@@ -181,7 +181,7 @@ Automatically generates descriptions that demonstrate:
 
 ## 🛠️ Technical Stack
 
-- **AI Model:** GPT-4.1 (gpt-4.1) with Vision - Latest 2026 model ✨
+- **AI Model:** GPT-5.2 (gpt-5.2) with Enhanced Vision - Latest 2026 model ✨
 - **Backend:** Next.js 14 App Router
 - **Database:** PostgreSQL (Neon)
 - **ORM:** Prisma 5
