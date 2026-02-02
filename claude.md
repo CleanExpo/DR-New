@@ -4,8 +4,7 @@
 - **Type**: Next.js 14 SaaS Platform
 - **Stack**: TypeScript, Prisma, PostgreSQL, Redis, Tailwind
 - **Status**: 98% Complete, Production Ready
-- **Live**: https://dr-nrpg.vercel.app
-- **Custom Domain**: https://disasterrecovery.com.au
+- **Live**: https://disasterrecovery.com.au
 
 ## Agent Dispatch
 

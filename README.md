@@ -208,9 +208,7 @@ Works perfectly on Linux environments.
 
 **Repository**: https://github.com/CleanExpo/DR-NRPG.git
 
-**Production URL**: https://dr-nrpg.vercel.app
-
-**Custom Domain**: https://disasterrecovery.com.au
+**Production URL**: https://disasterrecovery.com.au
 
 ---
 
