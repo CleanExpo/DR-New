@@ -17,6 +17,9 @@ import { ServiceRequestCard } from '@/components/client/ServiceRequestCard';
 import type { StatItem } from '@/components/client/StatsOverview';
 import type { QuickAction } from '@/components/client/QuickActionsPanel';
 import type { ServiceRequest } from '@/components/client/ServiceRequestCard';
+// Custom Hooks
+import { useServiceRequests } from '@/hooks/client/useServiceRequests';
+import { useClientAnalytics } from '@/hooks/client/useClientAnalytics';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -82,32 +85,32 @@ export default function ClientDashboard() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [serviceRequests, setServiceRequests] = useState<any[]>([]);
-  const [filteredRequests, setFilteredRequests] = useState<any[]>([]);
-  const [loadingRequests, setLoadingRequests] = useState(false);
+
+  // Service Requests - Custom Hook (replaces 7 useState hooks)
+  const {
+    requests: serviceRequests,
+    filteredRequests,
+    loading: loadingRequests,
+    error: requestsError,
+    filters,
+    setFilters,
+    refreshRequests,
+    cancelRequest: cancelRequestHook
+  } = useServiceRequests();
+
   const [showContractorModal, setShowContractorModal] = useState(false);
   const [selectedContractor, setSelectedContractor] = useState<any>(null);
   const [showChatModal, setShowChatModal] = useState(false);
   const [showFiltersModal, setShowFiltersModal] = useState(false);
-  
-  // Filter states
-  const [filters, setFilters] = useState({
-    search: '',
-    status: 'all',
-    category: 'all',
-    urgency: 'all',
-    dateRange: 'all',
-    insurance: 'all',
-    sortBy: 'newest',
-    sortOrder: 'desc'
-  });
   const [chatMessages, setChatMessages] = useState<any[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
   const [messages, setMessages] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
   const [loadingMessages, setLoadingMessages] = useState(false);
-  const [analytics, setAnalytics] = useState<any>(null);
+
+  // Analytics - Custom Hook (replaces analytics state)
+  const { analytics, loading: loadingAnalytics } = useClientAnalytics(serviceRequests);
   const [notifications, setNotifications] = useState<any[]>([]);
   const [loadingNotifications, setLoadingNotifications] = useState(false);
   const [offers, setOffers] = useState<any[]>([]);
@@ -125,7 +128,7 @@ export default function ClientDashboard() {
   const [loadingPreferences, setLoadingPreferences] = useState(true);
   const [showRequestDetailsModal, setShowRequestDetailsModal] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState<any>(null);
-  const [cancellingRequest, setCancellingRequest] = useState(false);
+  const [cancellingRequest, setCancellingRequest] = useState<string | null>(null);
   const [showOnboarding, setShowOnboarding] = useState(false);
 
   // Bookings and reviews state
@@ -158,29 +161,21 @@ export default function ClientDashboard() {
     setShowRequestDetailsModal(true);
   };
 
-  // Handle cancel request
+  // Handle cancel request (using custom hook)
   const handleCancelRequest = async (requestId: string) => {
     try {
-      setCancellingRequest(true);
-      const response = await fetch(`/api/service-requests/${requestId}/cancel`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+      setCancellingRequest(requestId);
+      const success = await cancelRequestHook(requestId);
 
-      if (response.ok) {
-        // Refresh the requests list
-        await fetchServiceRequests();
+      if (success) {
         console.log('Request cancelled successfully');
       } else {
-        const errorData = await response.json();
-        console.error('Failed to cancel request:', errorData);
+        console.error('Failed to cancel request');
       }
     } catch (error) {
       console.error('Error cancelling request:', error);
     } finally {
-      setCancellingRequest(false);
+      setCancellingRequest(null);
     }
   };
 
@@ -220,7 +215,7 @@ export default function ClientDashboard() {
     } else if (user && user.userType === 'CONTRACTOR') {
       router.push('/dashboard/contractor');
     } else if (user && user.userType === 'CLIENT') {
-      fetchServiceRequests();
+      refreshRequests();
       fetchMessages();
       fetchNotifications();
       fetchUserPreferences();
@@ -236,13 +231,7 @@ export default function ClientDashboard() {
     }
   }, [user, loadingPreferences, userPreferences]);
 
-  // Calculate analytics whenever serviceRequests changes
-  useEffect(() => {
-    if (serviceRequests.length > 0) {
-      calculateAnalytics();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [serviceRequests]);
+  // Analytics calculation is now handled by useClientAnalytics hook
 
   // Fetch contractor matches for each service request
   useEffect(() => {
@@ -400,124 +389,8 @@ export default function ClientDashboard() {
     return urgencyMap[urgencyId as keyof typeof urgencyMap] || '';
   };
 
-  // Filter and sort logic
-  const applyFilters = useCallback((requests: any[]) => {
-    let filtered = [...requests];
-
-    // Search filter
-    if (filters.search) {
-      filtered = filtered.filter(request => 
-        request.serviceTitle?.toLowerCase().includes(filters.search.toLowerCase()) ||
-        request.description?.toLowerCase().includes(filters.search.toLowerCase()) ||
-        request.location?.toLowerCase().includes(filters.search.toLowerCase())
-      );
-    }
-
-    // Status filter
-    if (filters.status !== 'all') {
-      filtered = filtered.filter(request => request.status === filters.status);
-    }
-
-    // Category filter
-    if (filters.category !== 'all') {
-      filtered = filtered.filter(request => request.serviceCategory === filters.category);
-    }
-
-    // Urgency filter
-    if (filters.urgency !== 'all') {
-      filtered = filtered.filter(request => request.urgency === filters.urgency);
-    }
-
-    // Insurance filter
-    if (filters.insurance !== 'all') {
-      const isInsurance = filters.insurance === 'yes';
-      filtered = filtered.filter(request => request.insurance === isInsurance);
-    }
-
-    // Date range filter
-    if (filters.dateRange !== 'all') {
-      const now = new Date();
-      const filterDate = new Date();
-      
-      switch (filters.dateRange) {
-        case 'today':
-          filterDate.setHours(0, 0, 0, 0);
-          break;
-        case 'week':
-          filterDate.setDate(now.getDate() - 7);
-          break;
-        case 'month':
-          filterDate.setMonth(now.getMonth() - 1);
-          break;
-        case 'year':
-          filterDate.setFullYear(now.getFullYear() - 1);
-          break;
-      }
-      
-      filtered = filtered.filter(request => 
-        new Date(request.createdAt) >= filterDate
-      );
-    }
-
-    // Sort
-    filtered.sort((a, b) => {
-      let aValue, bValue;
-      
-      switch (filters.sortBy) {
-        case 'newest':
-        case 'oldest':
-          aValue = new Date(a.createdAt).getTime();
-          bValue = new Date(b.createdAt).getTime();
-          break;
-        case 'status':
-          aValue = a.status;
-          bValue = b.status;
-          break;
-        case 'urgency':
-          const urgencyOrder = { emergency: 4, urgent: 3, normal: 2, flexible: 1 };
-          aValue = urgencyOrder[a.urgency as keyof typeof urgencyOrder] || 0;
-          bValue = urgencyOrder[b.urgency as keyof typeof urgencyOrder] || 0;
-          break;
-        case 'title':
-          aValue = a.serviceTitle?.toLowerCase() || '';
-          bValue = b.serviceTitle?.toLowerCase() || '';
-          break;
-        default:
-          return 0;
-      }
-
-      if (filters.sortBy === 'oldest' || filters.sortOrder === 'asc') {
-        return aValue > bValue ? 1 : -1;
-      } else {
-        return aValue < bValue ? 1 : -1;
-      }
-    });
-
-    return filtered;
-  }, [filters]);
-
-  // Update filtered requests when filters or service requests change
-  useEffect(() => {
-    setFilteredRequests(applyFilters(serviceRequests));
-  }, [serviceRequests, filters, applyFilters]);
-
-  const fetchServiceRequests = async () => {
-    try {
-      setLoadingRequests(true);
-      if (typeof window === 'undefined') return;
-
-      const response = await fetch('/api/service-requests', { cache: 'no-store' });
-
-      if (response.ok) {
-        const result = await response.json();
-        setServiceRequests(result.data || []);
-      }
-    } catch (error) {
-      console.error('Error fetching service requests:', error);
-    } finally {
-      setLoadingRequests(false);
-    }
-  };
+  // Filtering and sorting is now handled by useServiceRequests hook
+  // Filtering is now handled by useServiceRequests hook
 
   const fetchMessages = async () => {
     try {
@@ -587,83 +460,6 @@ export default function ClientDashboard() {
       setLoadingBookings(false);
     }
   };
-
-  const calculateAnalytics = useCallback(() => {
-    const totalRequests = serviceRequests.length;
-    const pendingRequests = serviceRequests.filter(req => req.status === 'PENDING').length;
-    const inProgressRequests = serviceRequests.filter(req => req.status === 'IN_PROGRESS').length;
-    const completedRequests = serviceRequests.filter(req => req.status === 'COMPLETED').length;
-    const cancelledRequests = serviceRequests.filter(req => req.status === 'CANCELLED').length;
-    
-    const conversionRate = totalRequests > 0 ? (completedRequests / totalRequests) * 100 : 0;
-    
-    // Calculate average lead score
-    const requestsWithScore = serviceRequests.filter(req => req.leadScore !== null && req.leadScore !== undefined);
-    const averageLeadScore = requestsWithScore.length > 0 
-      ? requestsWithScore.reduce((sum, req) => sum + (req.leadScore || 0), 0) / requestsWithScore.length 
-      : 0;
-    
-    // Calculate total spent (mock calculation)
-    const totalSpent = completedRequests * 2750;
-    
-    // Calculate category distribution
-    const categoryCounts = serviceRequests.reduce((acc, req) => {
-      acc[req.serviceCategory] = (acc[req.serviceCategory] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-    
-    const topCategories = Object.entries(categoryCounts)
-      .map(([category, count]) => ({ category, count }))
-      .sort((a, b) => (b.count as number) - (a.count as number))
-      .slice(0, 5);
-    
-    // Calculate monthly trends (last 6 months)
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
-    
-    const monthlyTrends = serviceRequests
-      .filter(req => new Date(req.createdAt) >= sixMonthsAgo)
-      .reduce((acc, req) => {
-        const month = new Date(req.createdAt).toLocaleDateString('en-US', { month: 'short' });
-        acc[month] = (acc[month] || 0) + 1;
-        return acc;
-      }, {} as Record<string, number>);
-    
-    const monthlyTrendsArray = Object.entries(monthlyTrends)
-      .map(([month, count]) => ({ month, count }))
-      .sort((a, b) => new Date(a.month + ' 1, 2024').getTime() - new Date(b.month + ' 1, 2024').getTime());
-    
-    // Recent activity (last 5 requests)
-    const recentActivity = serviceRequests.slice(0, 5).map(req => ({
-      id: req.id,
-      title: req.serviceTitle,
-      status: req.status,
-      category: req.serviceCategory,
-      createdAt: req.createdAt,
-      leadScore: req.leadScore
-    }));
-    
-    const analytics = {
-      overview: {
-        totalRequests,
-        pendingRequests,
-        inProgressRequests,
-        completedRequests,
-        cancelledRequests,
-        conversionRate: Math.round(conversionRate * 10) / 10,
-        averageLeadScore: Math.round(averageLeadScore * 10) / 10,
-        totalSpent,
-        averageProjectValue: 2500,
-        averageResponseTime: 2.5,
-        satisfactionScore: 4.7
-      },
-      recentActivity,
-      topCategories,
-      monthlyTrends: monthlyTrendsArray
-    };
-    
-    setAnalytics(analytics);
-  }, [serviceRequests]);
 
 
   const fetchNotifications = async () => {
@@ -770,7 +566,7 @@ export default function ClientDashboard() {
       });
 
       // Refresh the service requests
-      await fetchServiceRequests();
+      await refreshRequests();
 
       // Close modal after a short delay
       setTimeout(() => {
