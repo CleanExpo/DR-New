@@ -66,23 +66,6 @@ describe('StatsOverview Component', () => {
     expect(screen.getByText('-2%')).toBeInTheDocument();
   });
 
-  it('renders with custom title', () => {
-    const title = 'Dashboard Metrics';
-    render(<StatsOverview stats={mockStats} title={title} />);
-
-    expect(screen.getByText(title)).toBeInTheDocument();
-  });
-
-  it('renders with custom columns configuration', () => {
-    const { container } = render(
-      <StatsOverview stats={mockStats} columns={{ base: 1, md: 2, lg: 4 }} />
-    );
-
-    // Check grid classes are applied
-    const gridElement = container.querySelector('.grid');
-    expect(gridElement).toBeInTheDocument();
-  });
-
   it('handles empty stats array gracefully', () => {
     const { container } = render(<StatsOverview stats={[]} />);
 

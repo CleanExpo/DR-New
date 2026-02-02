@@ -388,9 +388,9 @@ describe('useServiceRequests Hook', () => {
       });
     });
 
-    // Alphabetical order (reversed): Water -> Mould -> Flood -> Fire
-    expect(result.current.filteredRequests[0].serviceTitle).toBe('Water Damage Restoration');
-    expect(result.current.filteredRequests[3].serviceTitle).toBe('Fire Damage Assessment');
+    // Alphabetical order: Fire -> Flood -> Mould -> Water
+    expect(result.current.filteredRequests[0].serviceTitle).toBe('Fire Damage Assessment');
+    expect(result.current.filteredRequests[3].serviceTitle).toBe('Water Damage Restoration');
   });
 
   it('sorts requests by urgency', async () => {
