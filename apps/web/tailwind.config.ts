@@ -132,6 +132,15 @@ const config: Config = {
           bg: '#F0FDFA',
         },
 
+        // Portal Design System (Contractor Portal & Premium Dashboards)
+        'portal-bg': '#F9FAFB',
+        'portal-card': '#FFFFFF',
+        'portal-border': '#E5E7EB',
+        'portal-muted': '#6B7280',
+        'portal-hover': '#F3F4F6',
+        'earth-primary': '#92400E',
+        'nrpg-teal': '#00BFA6',
+
         // NRPG Brand Colors (Legacy - keeping for compatibility)
         'nrpg-blue': '#0047FF',
         'nrpg-red': '#E11D48',
