@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import DocumentUpload from '@/components/contractor/DocumentUpload';
+import ServiceAreaManager from '@/components/contractor/ServiceAreaManager';
 
 // Verification status badge component
 function VerificationStatusBadge({ status }: { status: string }) {
@@ -483,23 +484,7 @@ export default function ContractorVerificationProfile() {
 
           {/* Tab: Service Areas */}
           <TabsContent value="service-areas">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-white">Service Coverage Areas</CardTitle>
-                <CardDescription className="text-gray-400">
-                  Manage the geographic areas where you provide services
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-12 text-gray-400">
-                  <MapPin className="h-16 w-16 mx-auto mb-4 text-gray-600" />
-                  <p className="text-lg">Service area management coming soon</p>
-                  <p className="text-sm mt-2">
-                    This will include an interactive map to define your service coverage areas
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <ServiceAreaManager onAreasUpdated={fetchContractorData} />
           </TabsContent>
 
           {/* Tab: Verification History */}
