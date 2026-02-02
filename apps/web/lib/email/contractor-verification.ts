@@ -8,7 +8,7 @@ import { sendEmail } from './resend';
 
 const EMAIL_CONFIG = {
   from: process.env.EMAIL_FROM || 'Disaster Recovery Australia <noreply@disasterrecovery.com.au>',
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://dr-nrpg.vercel.app',
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || 'https://disaster-recovery-seven-virid.vercel.app',
   supportEmail: 'support@disasterrecovery.com.au',
 };
 
