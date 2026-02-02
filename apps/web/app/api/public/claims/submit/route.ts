@@ -150,7 +150,7 @@ async function sendClaimConfirmationEmail(
       </div>
 
       <p style="text-align: center;">
-        <a href="https://dr-nrpg.vercel.app/claim/success?claimId=${claimId}" class="button">View Your Claim</a>
+        <a href="https://disasterrecovery.com.au/claim/success?claimId=${claimId}" class="button">View Your Claim</a>
       </p>
 
       <h3>Important Information:</h3>
@@ -161,7 +161,7 @@ async function sendClaimConfirmationEmail(
         <li>✓ We never share your data with anyone</li>
       </ul>
 
-      <p>If you don't receive contractor calls within 45 minutes, please visit <strong>https://dr-nrpg.vercel.app/help-center</strong> or use your claim reference number: <strong>${claimId}</strong></p>
+      <p>If you don't receive contractor calls within 45 minutes, please visit <strong>https://disasterrecovery.com.au/help-center</strong> or use your claim reference number: <strong>${claimId}</strong></p>
 
       <p>Best regards,<br><strong>Disaster Recovery Australia</strong><br>AI-Powered Disaster Recovery Matching</p>
     </div>

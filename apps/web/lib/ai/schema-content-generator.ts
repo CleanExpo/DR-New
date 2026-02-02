@@ -372,8 +372,8 @@ TASK: Generate an Organization JSON-LD schema for NRPG.
 REQUIREMENTS:
 1. Name: NRPG (National Restoration Platform Group)
 2. Create 2-3 sentence description
-3. URL: https://dr-nrpg.vercel.app
-4. Logo: https://dr-nrpg.vercel.app/logo.png (placeholder)
+3. URL: https://disasterrecovery.com.au
+4. Logo: https://disasterrecovery.com.au/logo.png (placeholder)
 5. Contact: support@disasterrecovery.com.au
 6. Social profiles (placeholder URLs)
 
