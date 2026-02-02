@@ -81,6 +81,8 @@ model Tenant {
   contractorAssessments ContractorAssessment[]
   contractorModuleProgress ContractorModuleProgress[]
   contractorCertifications ContractorCertification[]
+  aiEnhancementLogs    AIImageEnhancementLog[]
+  aiBatchProcessingJobs AIBatchProcessingJob[]
 
   @@map("tenants")
 }
@@ -155,6 +157,7 @@ model User {
   invitedMembers               WorkspaceMember[]              @relation("MemberInviter")
   workspaceMemberships         WorkspaceMember[]
   ownedWorkspaces              Workspace[]                    @relation("WorkspaceOwner")
+  batchJobsInitiated           AIBatchProcessingJob[]         @relation("BatchJobInitiator")
 
   @@index([email])
   @@index([userType])
@@ -1817,9 +1820,10 @@ model InspectionReport {
   insuranceClaim       InsuranceClaimAU? @relation("InspectionReportClaim", fields: [insuranceClaimId], references: [id])
   managerReviewer      User?             @relation("ManagerReviews", fields: [managerReviewerId], references: [id])
   technicalReviewer    User?             @relation("TechnicalReviews", fields: [technicalReviewerId], references: [id])
-  tenant               Tenant?           @relation(fields: [tenantId], references: [id])
+  tenant               Tenant?                   @relation(fields: [tenantId], references: [id])
   moistureReadings     MoistureReading[]
   revisions            ReportRevision[]
+  enhancementLogs      AIImageEnhancementLog[]
 
   @@index([bookingId])
   @@index([status])
@@ -1885,32 +1889,40 @@ model MoistureReading {
 }
 
 model InspectionPhoto {
-  id           String           @id @default(cuid())
-  reportId     String
-  damageAreaId String?
-  photoUrl     String
-  thumbnailUrl String?
-  filename     String
-  fileSize     Int
-  mimeType     String
-  photoType    String
-  caption      String
-  description  String?
-  capturedAt   DateTime
-  gpsLatitude  Float?
-  gpsLongitude Float?
-  deviceModel  String?
-  sortOrder    Int              @default(0)
-  tenantId     String?
-  createdAt    DateTime         @default(now())
-  damageArea   DamageArea?      @relation("AreaPhotos", fields: [damageAreaId], references: [id])
-  report       InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
-  tenant       Tenant?          @relation(fields: [tenantId], references: [id])
+  id              String                  @id @default(cuid())
+  reportId        String
+  damageAreaId    String?
+  photoUrl        String
+  thumbnailUrl    String?
+  filename        String
+  fileSize        Int
+  mimeType        String
+  photoType       String
+  caption         String
+  description     String?
+  capturedAt      DateTime
+  gpsLatitude     Float?
+  gpsLongitude    Float?
+  deviceModel     String?
+  sortOrder       Int                     @default(0)
+  tenantId        String?
+  createdAt       DateTime                @default(now())
+
+  // AI Enhancement fields
+  aiEnhanced      Boolean                 @default(false)
+  aiEnhancedAt    DateTime?
+  aiModel         String?
+
+  damageArea      DamageArea?             @relation("AreaPhotos", fields: [damageAreaId], references: [id])
+  report          InspectionReport        @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant          Tenant?                 @relation(fields: [tenantId], references: [id])
+  enhancementLogs AIImageEnhancementLog[]
 
   @@index([reportId])
   @@index([damageAreaId])
   @@index([photoType])
   @@index([tenantId])
+  @@index([aiEnhanced])
   @@map("inspection_photos")
 }
 
@@ -2677,4 +2689,76 @@ enum BetaFeedbackCategory {
   FEATURE_REQUEST
   USABILITY_ISSUE
   GENERAL_FEEDBACK
+}
+
+// ============================================
+// AI Image Enhancement Models
+// ============================================
+
+model AIImageEnhancementLog {
+  id           String   @id @default(cuid())
+  photoId      String
+  reportId     String
+
+  // Prompt & Response
+  prompt       String   @db.Text
+  originalDesc String?  @db.Text
+  enhancedDesc String   @db.Text
+
+  // API Metadata
+  model        String
+  tokensUsed   Int
+  costUSD      Decimal  @db.Decimal(10, 4)
+  processingMs Int
+  success      Boolean  @default(true)
+  error        String?
+
+  // Multi-tenant
+  tenantId     String?
+  createdAt    DateTime @default(now())
+
+  // Relationships
+  photo        InspectionPhoto  @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  report       InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant       Tenant?          @relation(fields: [tenantId], references: [id])
+
+  @@index([photoId])
+  @@index([reportId])
+  @@index([createdAt])
+  @@index([tenantId])
+  @@map("ai_image_enhancement_logs")
+}
+
+model AIBatchProcessingJob {
+  id              String   @id @default(cuid())
+  jobType         String
+  status          String
+
+  // Progress Tracking
+  totalImages     Int
+  processedImages Int      @default(0)
+  successCount    Int      @default(0)
+  failureCount    Int      @default(0)
+  totalCostUSD    Decimal  @db.Decimal(10, 2) @default(0)
+
+  // Timestamps
+  startedAt       DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Ownership
+  initiatedBy     String
+  tenantId        String?
+  metadata        Json?
+
+  // Relationships
+  initiator       User    @relation("BatchJobInitiator", fields: [initiatedBy], references: [id])
+  tenant          Tenant? @relation(fields: [tenantId], references: [id])
+
+  @@index([status])
+  @@index([jobType])
+  @@index([createdAt])
+  @@index([tenantId])
+  @@map("ai_batch_processing_jobs")
 }
