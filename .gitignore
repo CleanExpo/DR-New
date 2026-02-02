@@ -118,3 +118,4 @@ nul
 # Excluded projects/directories
 australia-3d-map/
 NodeJS-Starter-V1/
+.env.production.local
