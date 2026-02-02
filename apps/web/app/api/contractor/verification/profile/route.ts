@@ -7,6 +7,7 @@ import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/li
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleValidationError, handleUnexpectedError, handleDatabaseError } from '@/lib/api-errors';
 import { ZodError, z } from 'zod';
+import { sendVerificationSubmittedEmail } from '@/lib/email/contractor-verification';
 
 // Validation schema for contractor verification profile updates
 const contractorVerificationUpdateSchema = z.object({
@@ -164,6 +165,19 @@ export async function PUT(request: NextRequest) {
           isSystemAction: true,
         },
       });
+
+      // Send verification submitted email
+      try {
+        await sendVerificationSubmittedEmail(
+          user.email,
+          user.name || 'Contractor',
+          updatedContractor.businessName
+        );
+        console.log(`✉️ Verification submitted email sent to ${user.email}`);
+      } catch (emailError) {
+        // Log email error but don't fail the request
+        console.error('Failed to send verification submitted email:', emailError);
+      }
     }
 
     return NextResponse.json({
