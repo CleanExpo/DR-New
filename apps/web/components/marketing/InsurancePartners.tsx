@@ -17,7 +17,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Button, StatCard } from '@/src/design-system';
 
 interface InsurancePartner {
   name: string;
@@ -109,62 +108,32 @@ export function InsurancePartners() {
         ))}
       </div>
 
-      {/* Bottom Trust Statement - Premium StatCard Components */}
+      {/* Bottom Trust Statement */}
       <div className="mt-12 pt-8 border-t border-slate-200">
         <div className="grid md:grid-cols-3 gap-6">
-          <StatCard
-            title="Direct Billing"
-            value="$0"
-            subtitle="No upfront payment required"
-            variant="success"
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-              </svg>
-            }
-          />
-          <StatCard
-            title="Availability"
-            value="24/7"
-            subtitle="Emergency claims support"
-            variant="info"
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            }
-          />
-          <StatCard
-            title="Certification Rate"
-            value="100%"
-            subtitle="IICRC-certified contractors"
-            variant="success"
-            icon={
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            }
-          />
+          <div className="text-center">
+            <div className="text-2xl font-black text-blue-600 mb-1">$0</div>
+            <p className="text-sm text-slate-600">Direct billing to insurer available</p>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-black text-blue-600 mb-1">24/7</div>
+            <p className="text-sm text-slate-600">Emergency claims processing support</p>
+          </div>
+          <div className="text-center">
+            <div className="text-2xl font-black text-blue-600 mb-1">100%</div>
+            <p className="text-sm text-slate-600">IICRC-certified contractors</p>
+          </div>
         </div>
       </div>
 
-      {/* CTA - Premium Button Component */}
+      {/* CTA */}
       <div className="mt-8 text-center">
         <p className="text-sm text-slate-700 mb-4">
           Have an insurance claim to process?
         </p>
-        <Button
-          size="lg"
-          variant="emergency"
-          icon={
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          }
-          iconPosition="right"
-        >
-          Request Emergency Service
-        </Button>
+        <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors">
+          Request Emergency Service →
+        </button>
       </div>
     </div>
   );

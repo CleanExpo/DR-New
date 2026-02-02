@@ -15,7 +15,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Button, IICRCBadge, StatCard } from '@/src/design-system';
+import { Button, IICRCBadge } from '@/src/design-system';
 
 interface Benefit {
   id: string;
@@ -167,29 +167,20 @@ function DefaultVariant({ className = '' }: { className?: string }) {
             </div>
           </div>
 
-          {/* Stats - Premium StatCard Components */}
-          <div className="grid grid-cols-3 gap-4">
-            <StatCard
-              title="Network"
-              value="500+"
-              subtitle="Active Contractors"
-              variant="info"
-              className="bg-white/5 backdrop-blur-sm border-white/10"
-            />
-            <StatCard
-              title="Coverage"
-              value="24/7"
-              subtitle="Dispatch Network"
-              variant="success"
-              className="bg-white/5 backdrop-blur-sm border-white/10"
-            />
-            <StatCard
-              title="Rating"
-              value="98%"
-              subtitle="Client Satisfaction"
-              variant="success"
-              className="bg-white/5 backdrop-blur-sm border-white/10"
-            />
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4">
+              <div className="font-display text-3xl font-black text-white mb-1">500+</div>
+              <div className="text-xs text-blue-200 uppercase tracking-wider">Active Contractors</div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4">
+              <div className="font-display text-3xl font-black text-white mb-1">24/7</div>
+              <div className="text-xs text-blue-200 uppercase tracking-wider">Dispatch Network</div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4">
+              <div className="font-display text-3xl font-black text-white mb-1">98%</div>
+              <div className="text-xs text-blue-200 uppercase tracking-wider">Client Satisfaction</div>
+            </div>
           </div>
         </div>
       </div>
