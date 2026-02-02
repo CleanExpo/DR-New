@@ -9,7 +9,7 @@ import { australianLocations, disasterTypes, serviceCategories } from '../k6.con
  * Get base URL from environment or default
  */
 export function getBaseUrl() {
-  return __ENV.BASE_URL || 'https://disaster-recovery-seven.vercel.app';
+  return __ENV.BASE_URL || 'https://dr-nrpg.vercel.app';
 }
 
 /**
