@@ -14,9 +14,9 @@
   },
   "scripts": {
     "build": "echo 'Using pre-built dist files'",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "dev": "tsup src/index.ts --format cjs,esm --watch",
     "clean": "rm -rf dist",
-    "rebuild": "tsup src/index.ts --format cjs,esm --dts",
+    "rebuild": "tsup src/index.ts --format cjs,esm",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
