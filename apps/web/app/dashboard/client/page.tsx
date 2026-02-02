@@ -9,6 +9,12 @@ import UserPreferencesDisplay from '@/components/profile/user-preferences-displa
 import { ClientEligibilityBanner } from '@/components/client/eligibility-banner';
 import { ReviewForm } from '@/components/reviews/review-form';
 import { ReviewList } from '@/components/reviews/review-list';
+// Premium Client Dashboard Components
+import { DashboardHeader } from '@/components/client/DashboardHeader';
+import { StatsOverview } from '@/components/client/StatsOverview';
+import { QuickActionsPanel } from '@/components/client/QuickActionsPanel';
+import type { StatItem } from '@/components/client/StatsOverview';
+import type { QuickAction } from '@/components/client/QuickActionsPanel';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -786,7 +792,7 @@ export default function ClientDashboard() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
         <div className="flex flex-col items-center gap-4">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
           <p className="text-gray-400 text-sm">Loading...</p>
         </div>
       </div>
@@ -1360,6 +1366,50 @@ export default function ClientDashboard() {
   const renderContent = () => {
     switch (activeTab) {
       case 'overview':
+        // Prepare stats data for StatsOverview component
+        const dashboardStats: StatItem[] = [
+          {
+            label: 'Total Requests',
+            value: analytics?.overview?.totalRequests || serviceRequests.length,
+            icon: FileText,
+            color: 'teal',
+          },
+          {
+            label: 'Active Requests',
+            value: analytics?.overview?.inProgressRequests || serviceRequests.filter(r => r.status === 'IN_PROGRESS').length,
+            icon: Clock,
+            color: 'blue',
+          },
+          {
+            label: 'Completed',
+            value: analytics?.overview?.completedRequests || serviceRequests.filter(r => r.status === 'COMPLETED').length,
+            icon: CheckCircle,
+            color: 'green',
+          },
+          {
+            label: 'Success Rate',
+            value: `${analytics?.overview?.conversionRate || 0}%`,
+            icon: TrendingUp,
+            color: 'yellow',
+          },
+        ];
+
+        // Prepare quick actions data for QuickActionsPanel component
+        const quickActions: QuickAction[] = [
+          {
+            label: 'Submit Request',
+            icon: Plus,
+            onClick: () => setShowServiceModal(true),
+            color: 'teal',
+          },
+          {
+            label: 'Browse Services',
+            icon: Search,
+            onClick: () => setActiveTab('services'),
+            variant: 'outline',
+          },
+        ];
+
         return (
           <div className="space-y-8">
             {/* Eligibility Banner - Shows onboarding progress */}
@@ -1411,7 +1461,7 @@ export default function ClientDashboard() {
             </div>
 
             {/* Welcome Section */}
-            <div className="bg-gradient-to-r from-[#00BFA6] to-[#00A693] rounded-lg p-6">
+            <div className="bg-gradient-to-r from-semantic-contractor to-semantic-contractor/90 rounded-lg p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold text-white mb-2">
@@ -1421,8 +1471,8 @@ export default function ClientDashboard() {
                     Ready to start your next project? Let's get you connected with the best contractors.
                   </p>
                 </div>
-                <Button 
-                  className="bg-white text-[#00BFA6] hover:bg-gray-100"
+                <Button
+                  className="bg-white text-semantic-contractor hover:bg-gray-100"
                   onClick={() => setShowServiceModal(true)}
                 >
                   <Plus className="h-4 w-4 mr-2" />
@@ -1446,56 +1496,8 @@ export default function ClientDashboard() {
               />
             ) : (
               <>
-                {/* Quick Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <Card className="bg-gray-800 border-gray-700">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm text-gray-400">Total Requests</p>
-                          <p className="text-2xl font-bold text-white">{analytics?.overview?.totalRequests || serviceRequests.length}</p>
-                        </div>
-                        <FileText className="h-8 w-8 text-[#00BFA6]" />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-gray-800 border-gray-700">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm text-gray-400">Active Requests</p>
-                          <p className="text-2xl font-bold text-white">{analytics?.overview?.inProgressRequests || serviceRequests.filter(r => r.status === 'IN_PROGRESS').length}</p>
-                        </div>
-                        <Clock className="h-8 w-8 text-blue-500" />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-gray-800 border-gray-700">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm text-gray-400">Completed</p>
-                          <p className="text-2xl font-bold text-white">{analytics?.overview?.completedRequests || serviceRequests.filter(r => r.status === 'COMPLETED').length}</p>
-                        </div>
-                        <CheckCircle className="h-8 w-8 text-green-500" />
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="bg-gray-800 border-gray-700">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm text-gray-400">Success Rate</p>
-                          <p className="text-2xl font-bold text-white">{analytics?.overview?.conversionRate || 0}%</p>
-                        </div>
-                        <TrendingUp className="h-8 w-8 text-purple-500" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                {/* Quick Stats - Premium Component */}
+                <StatsOverview stats={dashboardStats} />
 
                 {/* Service Categories */}
                 <div>
@@ -1504,7 +1506,7 @@ export default function ClientDashboard() {
                     {serviceCategories.slice(0, 8).map((category) => (
                       <Card 
                         key={category.id} 
-                        className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 bg-gray-800 border-gray-700 hover:border-[#00BFA6]"
+                        className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 bg-gray-800 border-gray-700 hover:border-semantic-contractor"
                         onClick={() => setActiveTab('services')}
                       >
                         <CardContent className="p-4 text-center">
@@ -1517,51 +1519,8 @@ export default function ClientDashboard() {
                   </div>
                 </div>
 
-                {/* Quick Actions */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="hover:shadow-lg transition-all duration-300 bg-gray-800 border-gray-700">
-                    <CardHeader>
-                      <CardTitle className="flex items-center text-white">
-                        <Plus className="h-5 w-5 mr-2 text-[#00BFA6]" />
-                        Request Service
-                      </CardTitle>
-                      <CardDescription className="text-gray-400">
-                        Submit a service request and get matched with qualified contractors
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Button 
-                        className="w-full bg-[#00BFA6] hover:bg-[#00A693]"
-                        onClick={() => setShowServiceModal(true)}
-                      >
-                        <Plus className="h-4 w-4 mr-2" />
-                        Submit Request
-                      </Button>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="hover:shadow-lg transition-all duration-300 bg-gray-800 border-gray-700">
-                    <CardHeader>
-                      <CardTitle className="flex items-center text-white">
-                        <Search className="h-5 w-5 mr-2 text-[#00BFA6]" />
-                        Browse Services
-                      </CardTitle>
-                      <CardDescription className="text-gray-400">
-                        Explore available services across all categories
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Button 
-                        variant="outline" 
-                        className="w-full border-gray-600 text-gray-300 hover:bg-gray-700 hover:text-white"
-                        onClick={() => setActiveTab('services')}
-                      >
-                        <Search className="h-4 w-4 mr-2" />
-                        Browse Marketplace
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </div>
+                {/* Quick Actions - Premium Component */}
+                <QuickActionsPanel actions={quickActions} title="Quick Actions" />
               </>
             )}
           </div>
@@ -1622,7 +1581,7 @@ export default function ClientDashboard() {
             
             {loadingContractors ? (
               <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
                 <span className="ml-2 text-gray-400">Loading contractors...</span>
               </div>
             ) : availableContractors.length >= 0 ? (
@@ -1634,12 +1593,12 @@ export default function ClientDashboard() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {availableContractors.map((contractor) => (
-                <Card key={contractor.id} className="hover:shadow-lg transition-all duration-300 group bg-gray-800 border-gray-700 hover:border-[#00BFA6]">
+                <Card key={contractor.id} className="hover:shadow-lg transition-all duration-300 group bg-gray-800 border-gray-700 hover:border-semantic-contractor">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
                         <div className="flex items-center mb-2">
-                          <div className="w-12 h-12 bg-[#00BFA6] rounded-full flex items-center justify-center mr-3">
+                          <div className="w-12 h-12 bg-semantic-contractor rounded-full flex items-center justify-center mr-3">
                             <span className="text-white font-semibold text-lg">
                               {contractor.businessName?.charAt(0) || contractor.user.name?.charAt(0) || 'C'}
                             </span>
@@ -1675,7 +1634,7 @@ export default function ClientDashboard() {
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-gray-400">Hourly Rate</span>
-                        <span className="font-bold text-[#00BFA6] text-lg">${contractor.hourlyRate}/hr</span>
+                        <span className="font-bold text-semantic-contractor text-lg">${contractor.hourlyRate}/hr</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-gray-400">Services</span>
@@ -1750,14 +1709,14 @@ export default function ClientDashboard() {
         return (
           <div className="space-y-6">
             {/* Header Section */}
-            <div className="bg-gradient-to-r from-[#00BFA6] to-[#00A693] rounded-lg p-6 text-white">
+            <div className="bg-gradient-to-r from-semantic-contractor to-semantic-contractor/90 rounded-lg p-6 text-white">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl font-bold mb-2">My Service Requests</h3>
                   <p className="text-white/80">Track and manage all your service requests in one place</p>
                 </div>
                 <Button 
-                  className="bg-white text-[#00BFA6] hover:bg-gray-100 font-semibold"
+                  className="bg-white text-semantic-contractor hover:bg-gray-100 font-semibold"
                   onClick={() => setShowServiceModal(true)}
                 >
                   <Plus className="h-5 w-5 mr-2" />
@@ -1834,14 +1793,14 @@ export default function ClientDashboard() {
                   placeholder="Search by title, description, or location..." 
                   value={filters.search}
                   onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
-                  className="pl-12 h-14 bg-gray-800 border-gray-700 text-white placeholder-gray-400 text-lg focus:border-[#00BFA6] focus:ring-2 focus:ring-[#00BFA6]/20"
+                  className="pl-12 h-14 bg-gray-800 border-gray-700 text-white placeholder-gray-400 text-lg focus:border-semantic-contractor focus:ring-2 focus:ring-semantic-contractor/20"
                     />
                   </div>
 
               {/* Filter Pills - Stripe Style */}
               <div className="flex flex-wrap items-center gap-3">
                 <Select value={filters.status} onValueChange={(value) => setFilters(prev => ({ ...prev, status: value }))}>
-                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
+                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-semantic-contractor">
                     <SelectValue>
                       {filters.status === 'all' ? (
                         <span className="flex items-center gap-2">
@@ -1864,7 +1823,7 @@ export default function ClientDashboard() {
                   </Select>
 
                 <Select value={filters.category} onValueChange={(value) => setFilters(prev => ({ ...prev, category: value }))}>
-                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
+                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-semantic-contractor">
                     <SelectValue>
                       {filters.category === 'all' ? 'All Categories' : getCategoryDisplayName(filters.category)}
                     </SelectValue>
@@ -1883,7 +1842,7 @@ export default function ClientDashboard() {
                   </Select>
 
                 <Select value={filters.urgency} onValueChange={(value) => setFilters(prev => ({ ...prev, urgency: value }))}>
-                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
+                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-semantic-contractor">
                     <SelectValue>
                       {filters.urgency === 'all' ? 'All Urgency' : getUrgencyDisplayName(filters.urgency)}
                     </SelectValue>
@@ -1898,7 +1857,7 @@ export default function ClientDashboard() {
                 </Select>
 
                 <Select value={filters.dateRange} onValueChange={(value) => setFilters(prev => ({ ...prev, dateRange: value }))}>
-                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
+                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-semantic-contractor">
                     <SelectValue>
                       {filters.dateRange === 'all' ? 'All Time' : 
                        filters.dateRange === 'today' ? 'Today' :
@@ -1917,7 +1876,7 @@ export default function ClientDashboard() {
                 </Select>
 
                 <Select value={filters.sortBy} onValueChange={(value) => setFilters(prev => ({ ...prev, sortBy: value }))}>
-                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
+                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-semantic-contractor">
                     <SelectValue>
                       {filters.sortBy === 'newest' ? 'Newest First' :
                        filters.sortBy === 'oldest' ? 'Oldest First' :
@@ -1938,7 +1897,7 @@ export default function ClientDashboard() {
                 {/* Active Filters Count Badge */}
                 {(filters.status !== 'all' || filters.category !== 'all' || filters.urgency !== 'all' || 
                   filters.dateRange !== 'all' || filters.insurance !== 'all' || filters.search) && (
-                  <Badge className="bg-[#00BFA6] text-white px-3 py-1.5 h-9 flex items-center gap-2">
+                  <Badge className="bg-semantic-contractor text-white px-3 py-1.5 h-9 flex items-center gap-2">
                     <span className="flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-white"></span>
                       Active Filters
@@ -1964,7 +1923,7 @@ export default function ClientDashboard() {
                 )}
 
                 <Select value={filters.insurance} onValueChange={(value) => setFilters(prev => ({ ...prev, insurance: value }))}>
-                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-[#00BFA6]">
+                  <SelectTrigger className="h-9 px-4 bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white focus:border-semantic-contractor">
                     <SelectValue>
                       {filters.insurance === 'all' ? 'Insurance' : filters.insurance === 'yes' ? 'Yes' : 'No'}
                     </SelectValue>
@@ -1997,7 +1956,7 @@ export default function ClientDashboard() {
             {/* Requests List */}
             {loadingRequests ? (
               <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
                 <span className="ml-2 text-gray-400">Loading requests...</span>
               </div>
             ) : filteredRequests.length === 0 ? (
@@ -2016,7 +1975,7 @@ export default function ClientDashboard() {
                 </p>
                 {serviceRequests.length === 0 ? (
                 <Button 
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white px-8 py-3 text-lg"
+                  className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white px-8 py-3 text-lg"
                   onClick={() => setShowServiceModal(true)}
                 >
                   <Plus className="h-5 w-5 mr-2" />
@@ -2045,14 +2004,14 @@ export default function ClientDashboard() {
             ) : (
               <div className="space-y-4">
                 {filteredRequests.map((request) => (
-                  <Card key={request.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-[#00BFA6] group bg-gray-800 border-gray-700">
+                  <Card key={request.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-semantic-contractor group bg-gray-800 border-gray-700">
                     <CardContent className="px-4 py-0">
                       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                         {/* Main Content */}
                         <div className="flex-1 space-y-3">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
-                              <h4 className="font-bold text-white text-xl mb-2 group-hover:text-[#00BFA6] transition-colors">
+                              <h4 className="font-bold text-white text-xl mb-2 group-hover:text-semantic-contractor transition-colors">
                                 {request.serviceTitle}
                               </h4>
                               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-3">
@@ -2153,7 +2112,7 @@ export default function ClientDashboard() {
                                 </div>
                                 <div className="w-full bg-gray-700 rounded-full h-2">
                                   <div 
-                                    className="bg-[#00BFA6] h-2 rounded-full transition-all duration-500" 
+                                    className="bg-semantic-contractor h-2 rounded-full transition-all duration-500" 
                                     style={{ width: `${getProgressPercentage(request.status)}%` }}
                                   ></div>
                                 </div>
@@ -2165,14 +2124,14 @@ export default function ClientDashboard() {
                           {false && (request.status === 'MATCHED' || request.status === 'IN_PROGRESS') && contractorMatches[request.id] && (
                             <div className="mt-4 p-4 bg-gray-700/50 rounded-lg border border-gray-600">
                               <h5 className="font-semibold text-white mb-3 flex items-center">
-                                <Users className="h-4 w-4 mr-2 text-[#00BFA6]" />
+                                <Users className="h-4 w-4 mr-2 text-semantic-contractor" />
                                 Dispatch Status
                               </h5>
                               <div className="space-y-3">
                                 {contractorMatches[request.id].slice(0, 3).map((match: any) => (
                                   <div key={match.id} className="flex items-center justify-between p-3 bg-gray-800 rounded-lg border border-gray-600">
                                     <div className="flex items-center space-x-3">
-                                      <div className="w-10 h-10 bg-[#00BFA6] rounded-full flex items-center justify-center">
+                                      <div className="w-10 h-10 bg-semantic-contractor rounded-full flex items-center justify-center">
                                         <span className="text-white font-semibold text-sm">
                                           {match.contractor.businessName?.charAt(0) || match.contractor.user.name?.charAt(0) || 'C'}
                                         </span>
@@ -2214,7 +2173,7 @@ export default function ClientDashboard() {
                                       </Button>
                                       <Button
                                         size="sm"
-                                        className="bg-[#00BFA6] hover:bg-[#00A693] text-white text-xs"
+                                        className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white text-xs"
                                         onClick={handleContactContractor}
                                       >
                                         <MessageSquare className="h-3 w-3 mr-1" />
@@ -2236,7 +2195,7 @@ export default function ClientDashboard() {
                             <Button 
                               variant="outline" 
                               size="sm"
-                              className="group-hover:border-[#00BFA6] group-hover:text-[#00BFA6] transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
+                              className="group-hover:border-semantic-contractor group-hover:text-semantic-contractor transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
                               onClick={() => handleViewRequestDetails(request)}
                             >
                               <Eye className="h-4 w-4 mr-2" />
@@ -2293,7 +2252,7 @@ export default function ClientDashboard() {
               <Button
                 onClick={fetchBookings}
                 disabled={loadingBookings}
-                className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
               >
                 {loadingBookings ? (
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
@@ -2307,7 +2266,7 @@ export default function ClientDashboard() {
             {/* Loading State */}
             {loadingBookings ? (
               <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
               </div>
             ) : bookings.length === 0 ? (
               <div className="text-center py-12">
@@ -2318,7 +2277,7 @@ export default function ClientDashboard() {
                 </p>
                 <Button
                   onClick={() => setActiveTab('requests')}
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                  className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   View Requests
@@ -2327,14 +2286,14 @@ export default function ClientDashboard() {
             ) : (
               <div className="space-y-4">
                 {bookings.map((booking) => (
-                  <Card key={booking.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-[#00BFA6] group bg-gray-800 border-gray-700">
+                  <Card key={booking.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-semantic-contractor group bg-gray-800 border-gray-700">
                     <CardContent className="px-4 py-0">
                       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                         {/* Main Content */}
                         <div className="flex-1 space-y-3">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
-                              <h4 className="font-bold text-white text-xl mb-2 group-hover:text-[#00BFA6] transition-colors">
+                              <h4 className="font-bold text-white text-xl mb-2 group-hover:text-semantic-contractor transition-colors">
                                 {booking.australianServiceType.replace(/_/g, ' ')}
                               </h4>
                               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-3">
@@ -2406,7 +2365,7 @@ export default function ClientDashboard() {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                className="group-hover:border-[#00BFA6] group-hover:text-[#00BFA6] transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
+                                className="group-hover:border-semantic-contractor group-hover:text-semantic-contractor transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
                                 onClick={() => {
                                   setReviewBooking(booking);
                                   setReviewModalOpen(true);
@@ -2467,7 +2426,7 @@ export default function ClientDashboard() {
               <Button
                 onClick={fetchOffers}
                 disabled={loadingOffers}
-                className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
               >
                 {loadingOffers ? (
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
@@ -2480,7 +2439,7 @@ export default function ClientDashboard() {
 
             {loadingOffers ? (
               <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
               </div>
             ) : offers.length >= 0 ? (
               <div className="text-center py-12">
@@ -2491,7 +2450,7 @@ export default function ClientDashboard() {
                 </p>
                 <Button
                   onClick={() => setActiveTab('requests')}
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                  className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   View Requests
@@ -2500,14 +2459,14 @@ export default function ClientDashboard() {
             ) : (
               <div className="space-y-4">
                 {offers.map((offer) => (
-                  <Card key={offer.id} className="bg-gray-800 border-gray-700 hover:border-[#00BFA6] transition-colors">
+                  <Card key={offer.id} className="bg-gray-800 border-gray-700 hover:border-semantic-contractor transition-colors">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-3">
                             <Avatar className="h-10 w-10">
                               <AvatarImage src={offer.contractor?.user?.avatar || ''} />
-                              <AvatarFallback className="bg-[#00BFA6] text-white">
+                              <AvatarFallback className="bg-semantic-contractor text-white">
                                 {offer.contractor?.user?.name?.charAt(0) || 'C'}
                               </AvatarFallback>
                             </Avatar>
@@ -2533,7 +2492,7 @@ export default function ClientDashboard() {
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                             <div className="bg-gray-700 p-3 rounded-lg">
                               <p className="text-xs text-gray-400 mb-1">Bid Amount</p>
-                              <p className="text-lg font-semibold text-[#00BFA6]">
+                              <p className="text-lg font-semibold text-semantic-contractor">
                                 To be discussed
                               </p>
                             </div>
@@ -2659,7 +2618,7 @@ export default function ClientDashboard() {
               <Button
                 onClick={fetchActiveProjects}
                 disabled={loadingActiveProjects}
-                className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
               >
                 {loadingActiveProjects ? (
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
@@ -2672,7 +2631,7 @@ export default function ClientDashboard() {
 
             {loadingActiveProjects ? (
               <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
               </div>
             ) : activeProjects.length === 0 ? (
               <div className="text-center py-12">
@@ -2683,7 +2642,7 @@ export default function ClientDashboard() {
                 </p>
                 <Button
                   onClick={() => setActiveTab('offers')}
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                  className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
                 >
                   <Award className="h-4 w-4 mr-2" />
                   View Offers
@@ -2692,14 +2651,14 @@ export default function ClientDashboard() {
             ) : (
               <div className="space-y-4">
                 {activeProjects.map((project) => (
-                  <Card key={project.id} className="bg-gray-800 border-gray-700 hover:border-[#00BFA6] transition-colors">
+                  <Card key={project.id} className="bg-gray-800 border-gray-700 hover:border-semantic-contractor transition-colors">
                     <CardContent className="p-6">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3 mb-3">
                             <Avatar className="h-10 w-10">
                               <AvatarImage src={project.contractor?.user?.avatar || ''} />
-                              <AvatarFallback className="bg-[#00BFA6] text-white">
+                              <AvatarFallback className="bg-semantic-contractor text-white">
                                 {project.contractor?.user?.name?.charAt(0) || 'C'}
                               </AvatarFallback>
                             </Avatar>
@@ -2725,7 +2684,7 @@ export default function ClientDashboard() {
                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
                             <div className="bg-gray-700 p-3 rounded-lg">
                               <p className="text-xs text-gray-400 mb-1">Project Value</p>
-                              <p className="text-lg font-semibold text-[#00BFA6]">
+                              <p className="text-lg font-semibold text-semantic-contractor">
                                 To be discussed
                               </p>
                             </div>
@@ -2815,14 +2774,14 @@ export default function ClientDashboard() {
                 <h3 className="text-2xl font-bold text-white">Messages</h3>
                 <p className="text-gray-400 mt-1">Communicate with contractors and get updates</p>
               </div>
-              <Badge className="bg-[#00BFA6] text-white">
+              <Badge className="bg-semantic-contractor text-white">
                 {unreadCount} unread
               </Badge>
             </div>
 
             {loadingMessages ? (
               <div className="flex items-center justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
                 <span className="ml-2 text-gray-400">Loading messages...</span>
               </div>
             ) : messages.length === 0 ? (
@@ -2836,11 +2795,11 @@ export default function ClientDashboard() {
             ) : (
               <div className="space-y-4">
                 {messages.map((message) => (
-                  <Card key={message.id} className="bg-gray-800 border-gray-700 hover:border-[#00BFA6] transition-colors">
+                  <Card key={message.id} className="bg-gray-800 border-gray-700 hover:border-semantic-contractor transition-colors">
                     <CardContent className="p-6">
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0">
-                          <div className="h-10 w-10 bg-[#00BFA6] rounded-full flex items-center justify-center">
+                          <div className="h-10 w-10 bg-semantic-contractor rounded-full flex items-center justify-center">
                             <span className="text-white font-semibold text-sm">
                               {message.sender?.name?.charAt(0) || 'S'}
                             </span>
@@ -2856,7 +2815,7 @@ export default function ClientDashboard() {
                                 {new Date(message.createdAt).toLocaleDateString()}
                               </span>
                               {!message.isRead && (
-                                <div className="h-2 w-2 bg-[#00BFA6] rounded-full"></div>
+                                <div className="h-2 w-2 bg-semantic-contractor rounded-full"></div>
                               )}
                             </div>
                           </div>
@@ -2907,7 +2866,7 @@ export default function ClientDashboard() {
                           <p className="text-sm font-medium text-gray-400">Total Requests</p>
                           <p className="text-2xl font-bold text-white">{analytics.overview.totalRequests}</p>
                         </div>
-                        <FileText className="h-8 w-8 text-[#00BFA6]" />
+                        <FileText className="h-8 w-8 text-semantic-contractor" />
                       </div>
                     </CardContent>
                   </Card>
@@ -2974,7 +2933,7 @@ export default function ClientDashboard() {
                               {activity.status}
                             </Badge>
                             {activity.leadScore && (
-                              <Badge className="bg-[#00BFA6] text-white">
+                              <Badge className="bg-semantic-contractor text-white">
                                 {activity.leadScore.toFixed(0)}
                               </Badge>
                             )}
@@ -2999,7 +2958,7 @@ export default function ClientDashboard() {
                           <div className="flex items-center space-x-2">
                             <div className="w-20 bg-gray-700 rounded-full h-2">
                               <div 
-                                className="bg-[#00BFA6] h-2 rounded-full" 
+                                className="bg-semantic-contractor h-2 rounded-full" 
                                 style={{ width: `${(category.count / analytics.topCategories[0].count) * 100}%` }}
                               ></div>
                             </div>
@@ -3019,7 +2978,7 @@ export default function ClientDashboard() {
                   Submit your first service request to start seeing analytics and insights.
                 </p>
                 <Button 
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                  className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
                   onClick={() => setShowServiceModal(true)}
                 >
                   Submit Request
@@ -3084,7 +3043,7 @@ export default function ClientDashboard() {
                     <input 
                       type="text" 
                       defaultValue={user?.name || ''}
-                      className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                      className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-semantic-contractor"
                     />
                   </div>
                   <div>
@@ -3092,7 +3051,7 @@ export default function ClientDashboard() {
                     <input 
                       type="email" 
                       defaultValue={user?.email || ''}
-                      className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                      className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-semantic-contractor"
                     />
                   </div>
                   <div>
@@ -3100,10 +3059,10 @@ export default function ClientDashboard() {
                     <input 
                       type="tel" 
                       placeholder="+1 (555) 123-4567"
-                      className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#00BFA6]"
+                      className="w-full mt-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-semantic-contractor"
                     />
                   </div>
-                  <Button className="w-full bg-[#00BFA6] hover:bg-[#00A693] text-white">
+                  <Button className="w-full bg-semantic-contractor hover:bg-semantic-contractor/90 text-white">
                     Save Changes
                   </Button>
                 </CardContent>
@@ -3121,28 +3080,28 @@ export default function ClientDashboard() {
                       <p className="text-white font-medium">Email Notifications</p>
                       <p className="text-gray-400 text-sm">Receive updates via email</p>
                     </div>
-                    <input type="checkbox" defaultChecked className="h-4 w-4 text-[#00BFA6] rounded" />
+                    <input type="checkbox" defaultChecked className="h-4 w-4 text-semantic-contractor rounded" />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">SMS Notifications</p>
                       <p className="text-gray-400 text-sm">Receive urgent updates via SMS</p>
                     </div>
-                    <input type="checkbox" className="h-4 w-4 text-[#00BFA6] rounded" />
+                    <input type="checkbox" className="h-4 w-4 text-semantic-contractor rounded" />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">Match Notifications</p>
                       <p className="text-gray-400 text-sm">Get notified when contractors match</p>
                     </div>
-                    <input type="checkbox" defaultChecked className="h-4 w-4 text-[#00BFA6] rounded" />
+                    <input type="checkbox" defaultChecked className="h-4 w-4 text-semantic-contractor rounded" />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">Project Updates</p>
                       <p className="text-gray-400 text-sm">Receive project status updates</p>
                     </div>
-                    <input type="checkbox" defaultChecked className="h-4 w-4 text-[#00BFA6] rounded" />
+                    <input type="checkbox" defaultChecked className="h-4 w-4 text-semantic-contractor rounded" />
                   </div>
                 </CardContent>
               </Card>
@@ -3169,14 +3128,14 @@ export default function ClientDashboard() {
                       <p className="text-white font-medium">Contact Information</p>
                       <p className="text-gray-400 text-sm">Allow contractors to contact you directly</p>
                     </div>
-                    <input type="checkbox" defaultChecked className="h-4 w-4 text-[#00BFA6] rounded" />
+                    <input type="checkbox" defaultChecked className="h-4 w-4 text-semantic-contractor rounded" />
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-white font-medium">Marketing Communications</p>
                       <p className="text-gray-400 text-sm">Receive promotional emails</p>
                     </div>
-                    <input type="checkbox" className="h-4 w-4 text-[#00BFA6] rounded" />
+                    <input type="checkbox" className="h-4 w-4 text-semantic-contractor rounded" />
                   </div>
                 </CardContent>
               </Card>
@@ -3225,7 +3184,7 @@ export default function ClientDashboard() {
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="w-full max-w-5xl max-h-[95vh] overflow-y-auto bg-white rounded-xl shadow-2xl relative">
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-[#00BFA6] to-[#00A693] text-white p-6 rounded-t-xl">
+            <div className="bg-gradient-to-r from-semantic-contractor to-semantic-contractor/90 text-white p-6 rounded-t-xl">
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold">Request a Service</h2>
@@ -3295,7 +3254,7 @@ export default function ClientDashboard() {
                       value={formData.serviceCategory} 
                       onValueChange={(value) => setFormData(prev => ({ ...prev, serviceCategory: value }))}
                     >
-                          <SelectTrigger className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm">
+                          <SelectTrigger className="h-14 border-gray-300 focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor bg-white shadow-sm">
                         <SelectValue placeholder="Choose a service category">
                           {formData.serviceCategory ? getCategoryDisplayName(formData.serviceCategory) : "Choose a service category"}
                         </SelectValue>
@@ -3325,7 +3284,7 @@ export default function ClientDashboard() {
                       value={formData.urgency} 
                       onValueChange={(value) => setFormData(prev => ({ ...prev, urgency: value }))}
                     >
-                          <SelectTrigger className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm">
+                          <SelectTrigger className="h-14 border-gray-300 focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor bg-white shadow-sm">
                         <SelectValue placeholder="Select urgency level">
                           {formData.urgency ? getUrgencyDisplayName(formData.urgency) : "Select urgency level"}
                         </SelectValue>
@@ -3383,7 +3342,7 @@ export default function ClientDashboard() {
                     placeholder="e.g., Emergency Water Damage Restoration"
                     value={formData.serviceTitle}
                     onChange={(e) => setFormData(prev => ({ ...prev, serviceTitle: e.target.value }))}
-                        className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm text-lg"
+                        className="h-14 border-gray-300 focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor bg-white shadow-sm text-lg"
                   />
                 </div>
 
@@ -3398,7 +3357,7 @@ export default function ClientDashboard() {
                     placeholder="Please describe your service needs in detail. Include any specific requirements, damage details, or special instructions..."
                     value={formData.description}
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                        className="w-full p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] min-h-[140px] bg-white shadow-sm text-gray-900"
+                        className="w-full p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor min-h-[140px] bg-white shadow-sm text-gray-900"
                     rows={5}
                   />
                       <p className="text-sm text-gray-500 flex items-center">
@@ -3418,7 +3377,7 @@ export default function ClientDashboard() {
                       placeholder="e.g., Sydney, NSW 2000"
                       value={formData.location}
                       onChange={(e) => setFormData(prev => ({ ...prev, location: e.target.value }))}
-                        className="h-14 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white shadow-sm text-lg"
+                        className="h-14 border-gray-300 focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor bg-white shadow-sm text-lg"
                     />
                   </div>
                 </div>
@@ -3439,7 +3398,7 @@ export default function ClientDashboard() {
                         placeholder="+61 4XX XXX XXX"
                         value={formData.phone}
                         onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                            className="h-12 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white"
+                            className="h-12 border-gray-300 focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor bg-white"
                       />
                     </div>
                     <div className="space-y-2">
@@ -3448,7 +3407,7 @@ export default function ClientDashboard() {
                         value={formData.preferredTime} 
                         onValueChange={(value) => setFormData(prev => ({ ...prev, preferredTime: value }))}
                       >
-                            <SelectTrigger className="h-12 border-gray-300 focus:ring-2 focus:ring-[#00BFA6] focus:border-[#00BFA6] bg-white">
+                            <SelectTrigger className="h-12 border-gray-300 focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor bg-white">
                           <SelectValue placeholder="When can we contact you?" />
                         </SelectTrigger>
                             <SelectContent className="z-[99999] bg-white border border-gray-200 shadow-lg rounded-lg">
@@ -3475,7 +3434,7 @@ export default function ClientDashboard() {
                         id="insurance" 
                         checked={formData.insurance}
                         onChange={(e) => setFormData(prev => ({ ...prev, insurance: e.target.checked }))}
-                            className="mt-1 rounded border-gray-300 text-[#00BFA6] focus:ring-[#00BFA6] h-5 w-5" 
+                            className="mt-1 rounded border-gray-300 text-semantic-contractor focus:ring-semantic-contractor h-5 w-5" 
                       />
                       <div>
                         <Label htmlFor="insurance" className="text-sm font-medium text-gray-700 cursor-pointer">
@@ -3491,7 +3450,7 @@ export default function ClientDashboard() {
                         id="urgent-response" 
                         checked={formData.urgentResponse}
                         onChange={(e) => setFormData(prev => ({ ...prev, urgentResponse: e.target.checked }))}
-                            className="mt-1 rounded border-gray-300 text-[#00BFA6] focus:ring-[#00BFA6] h-5 w-5" 
+                            className="mt-1 rounded border-gray-300 text-semantic-contractor focus:ring-semantic-contractor h-5 w-5" 
                       />
                       <div>
                         <Label htmlFor="urgent-response" className="text-sm font-medium text-gray-700 cursor-pointer">
@@ -3519,7 +3478,7 @@ export default function ClientDashboard() {
                   <Button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto bg-[#00BFA6] hover:bg-[#00A693] px-8 py-3 h-12 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full sm:w-auto bg-semantic-contractor hover:bg-semantic-contractor/90 px-8 py-3 h-12 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center">
@@ -3560,7 +3519,7 @@ export default function ClientDashboard() {
           {selectedContractor && (
             <div className="space-y-8">
               {/* Professional Header */}
-              <div className="text-center bg-gradient-to-r from-[#00BFA6] to-[#00A693] rounded-2xl p-8 text-white">
+              <div className="text-center bg-gradient-to-r from-semantic-contractor to-semantic-contractor/90 rounded-2xl p-8 text-white">
                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
                   <span className="text-white font-bold text-lg">
                     {selectedContractor.user?.name?.charAt(0) || selectedContractor.businessName?.charAt(0) || 'C'}
@@ -3596,21 +3555,21 @@ export default function ClientDashboard() {
                   <Card className="border-0 shadow-lg">
                     <CardHeader className="bg-gray-50 rounded-t-lg">
                       <CardTitle className="text-md text-gray-900 flex items-center">
-                        <Phone className="h-3 w-3 mr-3 text-[#00BFA6]" />
+                        <Phone className="h-3 w-3 mr-3 text-semantic-contractor" />
                         Contact Info
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-2 space-y-4 text-sm">
                       <div className="flex items-center space-x-2">
-                        <Mail className="h-3 w-3 text-[#00BFA6] flex-shrink-0" />
+                        <Mail className="h-3 w-3 text-semantic-contractor flex-shrink-0" />
                         <span className="text-gray-700">{selectedContractor.user?.email}</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <Phone className="h-3 w-3 text-[#00BFA6] flex-shrink-0" />
+                        <Phone className="h-3 w-3 text-semantic-contractor flex-shrink-0" />
                         <span className="text-gray-700">{selectedContractor.phone}</span>
                       </div>
                       <div className="flex items-start space-x-2">
-                        <MapPin className="h-3 w-3 text-[#00BFA6] flex-shrink-0 mt-1" />
+                        <MapPin className="h-3 w-3 text-semantic-contractor flex-shrink-0 mt-1" />
                         <span className="text-gray-700">{selectedContractor.address}, {selectedContractor.city}, {selectedContractor.state} {selectedContractor.zipCode}</span>
                       </div>
                     </CardContent>
@@ -3620,28 +3579,28 @@ export default function ClientDashboard() {
                   <Card className="border-0 shadow-lg">
                     <CardHeader className="bg-gray-50 rounded-t-lg">
                       <CardTitle className="text-md text-gray-900 flex items-center">
-                        <Award className="h-3 w-3 mr-3 text-[#00BFA6]" />
+                        <Award className="h-3 w-3 mr-3 text-semantic-contractor" />
                         Business Details
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 text-sm">
                       <div className="grid grid-cols-2 gap-6">
                         <div className="text-center">
-                          <div className="text-md font-bold text-[#00BFA6] mb-2">{selectedContractor.experience || 0}</div>
+                          <div className="text-md font-bold text-semantic-contractor mb-2">{selectedContractor.experience || 0}</div>
                           <div className="text-gray-600 ">Years Experience</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-md font-bold text-[#00BFA6] mb-2">${selectedContractor.hourlyRate || 0}</div>
+                          <div className="text-md font-bold text-semantic-contractor mb-2">${selectedContractor.hourlyRate || 0}</div>
                           <div className="text-gray-600 ">Per Hour</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-md font-bold text-[#00BFA6] mb-2">{selectedContractor.totalJobs || 0}</div>
+                          <div className="text-md font-bold text-semantic-contractor mb-2">{selectedContractor.totalJobs || 0}</div>
                           <div className="text-gray-600 ">Jobs Completed</div>
                         </div>
                         <div className="text-center">
                           <div className="flex items-center justify-center space-x-1 mb-2">
                             <Star className="h-3 w-3 text-yellow-500 fill-current" />
-                            <span className="text-md font-bold text-[#00BFA6]">{selectedContractor.rating?.toFixed(1) || '0.0'}</span>
+                            <span className="text-md font-bold text-semantic-contractor">{selectedContractor.rating?.toFixed(1) || '0.0'}</span>
                           </div>
                           <div className="text-gray-600 text-sm">Average Rating</div>
                         </div>
@@ -3656,14 +3615,14 @@ export default function ClientDashboard() {
                   <Card className="border-0 shadow-lg">
                     <CardHeader className="bg-gray-50 rounded-t-lg">
                       <CardTitle className="text-md text-gray-900 flex items-center">
-                        <Shield className="h-3 w-3 mr-3 text-[#00BFA6]" />
+                        <Shield className="h-3 w-3 mr-3 text-semantic-contractor" />
                         Services Offered
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4">
                       <div className="flex flex-wrap gap-3">
                         {selectedContractor.services?.map((service: string, index: number) => (
-                          <Badge key={index} className="bg-[#00BFA6] text-white px-2 py-1 text-sm font-medium">
+                          <Badge key={index} className="bg-semantic-contractor text-white px-2 py-1 text-sm font-medium">
                             {service}
                           </Badge>
                         ))}
@@ -3675,7 +3634,7 @@ export default function ClientDashboard() {
                   <Card className="border-0 shadow-lg">
                     <CardHeader className="bg-gray-50 rounded-t-lg">
                       <CardTitle className="text-md text-gray-900 flex items-center">
-                        <MapPin className="h-3 w-3 mr-3 text-[#00BFA6]" />
+                        <MapPin className="h-3 w-3 mr-3 text-semantic-contractor" />
                         Service Areas
                       </CardTitle>
                     </CardHeader>
@@ -3704,11 +3663,11 @@ export default function ClientDashboard() {
                 )}
 
                 {/* Action Buttons */}
-                <Card className="border-0 shadow-lg bg-gradient-to-r from-[#00BFA6]/5 to-[#00A693]/5">
+                <Card className="border-0 shadow-lg bg-gradient-to-r from-semantic-contractor/5 to-semantic-contractor/90/5">
                   <CardContent className="p-4 text-center">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
                     {selectedContractor.selectedServiceCategory && (
-                      <div className="mb-4 p-3 bg-white/50 rounded-lg border border-[#00BFA6]/20">
+                      <div className="mb-4 p-3 bg-white/50 rounded-lg border border-semantic-contractor/20">
                         <p className="text-sm text-gray-700 mb-1">
                           <span className="font-medium">Service Category:</span> {selectedContractor.selectedServiceCategory}
                         </p>
@@ -3719,7 +3678,7 @@ export default function ClientDashboard() {
                     )}
                     <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
                         <Button
-                          className="flex-1 bg-[#00BFA6] hover:bg-[#00A693] text-white text-md py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="flex-1 bg-semantic-contractor hover:bg-semantic-contractor/90 text-white text-md py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                           onClick={() => {
                             setFormData(prev => ({
                               ...prev,
@@ -3763,7 +3722,7 @@ export default function ClientDashboard() {
         <DialogContent className="max-w-4xl max-h-[90vh] bg-white border-0 shadow-2xl">
           <DialogHeader className="pb-4 border-b border-gray-200">
             <DialogTitle className="text-2xl font-bold text-gray-900 flex items-center">
-              <MessageSquare className="h-6 w-6 mr-3 text-[#00BFA6]" />
+              <MessageSquare className="h-6 w-6 mr-3 text-semantic-contractor" />
               Chat with {selectedContractor?.businessName || selectedContractor?.user?.name}
             </DialogTitle>
             <DialogDescription className="text-gray-600">
@@ -3776,7 +3735,7 @@ export default function ClientDashboard() {
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
               {loadingMessages ? (
                 <div className="flex items-center justify-center py-8">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]"></div>
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
                 </div>
               ) : chatMessages.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
@@ -3792,7 +3751,7 @@ export default function ClientDashboard() {
                     <div
                       className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                         message.senderId === user?.id
-                          ? 'bg-[#00BFA6] text-white'
+                          ? 'bg-semantic-contractor text-white'
                           : 'bg-white text-gray-900 border border-gray-200'
                       }`}
                     >
@@ -3826,7 +3785,7 @@ export default function ClientDashboard() {
                 <Button
                   onClick={sendMessage}
                   disabled={!newMessage.trim() || sendingMessage}
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white px-6"
+                  className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white px-6"
                 >
                   {sendingMessage ? (
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
@@ -3848,7 +3807,7 @@ export default function ClientDashboard() {
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="w-full max-w-5xl max-h-[95vh] overflow-y-auto bg-white rounded-xl shadow-2xl relative">
             {/* Modal Header */}
-            <div className="bg-gradient-to-r from-[#00BFA6] to-[#00A693] text-white p-4 rounded-t-xl sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-semantic-contractor to-semantic-contractor/90 text-white p-4 rounded-t-xl sticky top-0 z-10">
               <div className="flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold">Request Details</h2>
@@ -3964,7 +3923,7 @@ export default function ClientDashboard() {
                       {contractorMatches[selectedRequest.id].map((match: any) => (
                       <div key={match.id} className="flex items-center justify-between p-6 bg-gray-50 border border-gray-200 rounded-xl hover:border-gray-300 transition-colors">
                         <div className="flex items-center space-x-4">
-                          <div className="w-16 h-16 bg-[#00BFA6] rounded-full flex items-center justify-center">
+                          <div className="w-16 h-16 bg-semantic-contractor rounded-full flex items-center justify-center">
                             <span className="text-white font-bold text-xl">
                                 {match.contractor.businessName?.charAt(0) || match.contractor.user.name?.charAt(0) || 'C'}
                               </span>
@@ -4006,7 +3965,7 @@ export default function ClientDashboard() {
                             </Button>
                             <Button
                               size="sm"
-                            className="bg-[#00BFA6] hover:bg-[#00A693] text-white text-sm"
+                            className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white text-sm"
                               onClick={handleContactContractor}
                             >
                             <MessageCircle className="h-4 w-4 mr-2" />
@@ -4078,7 +4037,7 @@ export default function ClientDashboard() {
             <div className="p-6 border-b border-gray-700">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-white flex items-center">
-                  <Filter className="h-5 w-5 mr-2 text-[#00BFA6]" />
+                  <Filter className="h-5 w-5 mr-2 text-semantic-contractor" />
                   Advanced Filters
                 </h2>
                 <Button
@@ -4226,7 +4185,7 @@ export default function ClientDashboard() {
                 </Button>
                 <Button
                   onClick={() => setShowFiltersModal(false)}
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                  className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
                 >
                   Apply Filters
                 </Button>
