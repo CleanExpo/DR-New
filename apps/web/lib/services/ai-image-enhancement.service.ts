@@ -294,15 +294,36 @@ ${serviceContext}
 
 TASK: Analyze this image and generate a 2-3 sentence expert-level description that:
 1. Demonstrates technical expertise using proper restoration terminology
-2. Shows authority by referencing applicable Australian standards or building codes
+2. Shows authority by referencing applicable Australian standards or building codes (AS/NZS codes)
 3. Provides specific details about materials, damage extent, and remediation needs
-4. Is optimized for SEO and E.E.A.T. scoring
-5. Uses Australian English spelling (colour, mould, metre)
+4. Is optimised for SEO and E.E.A.T. scoring
+5. Uses ONLY Australian English spelling throughout (MANDATORY)
+
+CRITICAL SPELLING REQUIREMENTS (Australian English ONLY):
+- colonisation (NOT colonization)
+- optimised/optimisation (NOT optimized/optimization)
+- colour (NOT color)
+- mould (NOT mold)
+- metre/centimetre (NOT meter/centimeter)
+- fibre (NOT fiber)
+- vapour (NOT vapor)
+- behaviour (NOT behavior)
+- labour (NOT labor)
+- recognise/recognising (NOT recognize/recognizing)
+- analyse/analysis (NOT analyze)
+- stabilise (NOT stabilize)
+- minimise (NOT minimize)
+- materialised (NOT materialized)
+
+EXCEPTIONS (Use American spelling ONLY for these):
+- Trademarked product names (e.g., "DryAir", "ServPro")
+- IICRC official references (e.g., "IICRC S500")
+- Technical abbreviations and standards codes
 
 OUTPUT FORMAT: Plain text description only, no preamble or explanations.
 
 EXAMPLE OUTPUT (for reference only):
-"Severe water damage to structural timber framing and plasterboard ceiling linings in accordance with AS 3959 classification. Moisture readings indicate saturation levels exceeding 20% requiring immediate extraction and drying per IICRC S500 standards. Affected materials include Oregon timber joists, R2.5 ceiling insulation, and painted plasterboard requiring removal and replacement to prevent secondary mould colonisation."`;
+"Severe water damage to structural timber framing and plasterboard ceiling linings in accordance with AS 3959 classification. Moisture readings indicate saturation levels exceeding 20% requiring immediate extraction and drying per IICRC S500 standards. Affected materials include Oregon timber joists, R2.5 ceiling insulation, and painted plasterboard requiring removal and replacement to prevent secondary mould colonisation and progressive structural degradation."`;
 
     return promptTemplate;
   }
