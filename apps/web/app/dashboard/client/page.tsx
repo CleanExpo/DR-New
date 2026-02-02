@@ -13,8 +13,10 @@ import { ReviewList } from '@/components/reviews/review-list';
 import { DashboardHeader } from '@/components/client/DashboardHeader';
 import { StatsOverview } from '@/components/client/StatsOverview';
 import { QuickActionsPanel } from '@/components/client/QuickActionsPanel';
+import { ServiceRequestCard } from '@/components/client/ServiceRequestCard';
 import type { StatItem } from '@/components/client/StatsOverview';
 import type { QuickAction } from '@/components/client/QuickActionsPanel';
+import type { ServiceRequest } from '@/components/client/ServiceRequestCard';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -2003,235 +2005,16 @@ export default function ClientDashboard() {
               </div>
             ) : (
               <div className="space-y-4">
+                {/* Service Request Cards - Premium Component */}
                 {filteredRequests.map((request) => (
-                  <Card key={request.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-semantic-contractor group bg-gray-800 border-gray-700">
-                    <CardContent className="px-4 py-0">
-                      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                        {/* Main Content */}
-                        <div className="flex-1 space-y-3">
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <h4 className="font-bold text-white text-xl mb-2 group-hover:text-semantic-contractor transition-colors">
-                                {request.serviceTitle}
-                              </h4>
-                              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-3">
-                                <div className="flex items-center">
-                                  <span className="font-medium mr-2">Category:</span>
-                                  <Badge variant="outline" className="text-xs">
-                                    {getCategoryDisplayName(request.serviceCategory)}
-                                  </Badge>
-                                </div>
-                                {request.leadScore && (
-                                  <div className="flex items-center">
-                                    <span className="font-medium mr-2">Lead Score:</span>
-                                    <Badge 
-                                      className={`text-xs ${
-                                        request.leadScore >= 80 ? 'bg-green-900/30 text-green-400 border-green-500' :
-                                        request.leadScore >= 60 ? 'bg-yellow-900/30 text-yellow-400 border-yellow-500' :
-                                        'bg-red-900/30 text-red-400 border-red-500'
-                                      }`}
-                                    >
-                                      {request.leadScore.toFixed(0)}
-                                    </Badge>
-                                  </div>
-                                )}
-                                <div className="flex items-center">
-                                  <span className="font-medium mr-2">Urgency:</span>
-                                  <Badge 
-                                    variant="outline" 
-                                    className={`text-xs ${
-                                      request.urgency === 'emergency' ? 'border-red-500 text-red-400 bg-red-900/20' :
-                                      request.urgency === 'urgent' ? 'border-orange-500 text-orange-400 bg-orange-900/20' :
-                                      'border-gray-500 text-gray-400 bg-gray-700'
-                                    }`}
-                                  >
-                                    {getUrgencyDisplayName(request.urgency)}
-                                  </Badge>
-                                </div>
-                                <div className="flex items-center">
-                                  <span className="font-medium mr-2">Location:</span>
-                                  <span className="text-white">{request.location}</span>
-                                </div>
-                              </div>
-                              
-                              {request.description && (
-                                <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
-                                  {request.description}
-                                </p>
-                              )}
-
-                              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 pt-2">
-                                <div className="flex items-center">
-                                  <span className="font-medium mr-2">Budget:</span>
-                                  <span className="text-white">To be discussed</span>
-                                </div>
-                                <div className="flex items-center">
-                                  <span className="font-medium mr-2">Submitted:</span>
-                                  <span className="text-white">{new Date(request.createdAt).toLocaleDateString()}</span>
-                                </div>
-                                {request.phone && (
-                                  <div className="flex items-center">
-                                    <span className="font-medium mr-2">Phone:</span>
-                                    <span className="text-white">{request.phone}</span>
-                                  </div>
-                                )}
-                              </div>
-
-                              <div className="flex flex-wrap items-center gap-2 pt-2">
-                                {request.insurance && (
-                                  <Badge className="bg-blue-900/30 text-blue-400 border-blue-500">
-                                    Insurance Claim
-                                  </Badge>
-                                )}
-                                {request.urgentResponse && (
-                                  <Badge className="bg-orange-900/30 text-orange-400 border-orange-500">
-                                    Urgent Response
-                                  </Badge>
-                                )}
-                                {request.preferredTime && (
-                                  <Badge variant="outline" className="text-xs border-gray-500 text-gray-400 bg-gray-700">
-                                    Preferred: {request.preferredTime}
-                                  </Badge>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Status and Actions */}
-                        <div className="flex flex-col lg:items-end space-y-4">
-                          <div className="text-right">
-                            <Badge className={`${getStatusColor(request.status)} text-sm px-3 py-1`}>
-                              {getStatusDisplay(request.status)}
-                            </Badge>
-                            {getProgressPercentage(request.status) > 0 && (
-                              <div className="mt-3 w-40">
-                                <div className="flex justify-between text-xs text-gray-400 mb-1">
-                                  <span>Progress</span>
-                                  <span>{getProgressPercentage(request.status)}%</span>
-                                </div>
-                                <div className="w-full bg-gray-700 rounded-full h-2">
-                                  <div 
-                                    className="bg-semantic-contractor h-2 rounded-full transition-all duration-500" 
-                                    style={{ width: `${getProgressPercentage(request.status)}%` }}
-                                  ></div>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Contractor Matches Section */}
-                          {false && (request.status === 'MATCHED' || request.status === 'IN_PROGRESS') && contractorMatches[request.id] && (
-                            <div className="mt-4 p-4 bg-gray-700/50 rounded-lg border border-gray-600">
-                              <h5 className="font-semibold text-white mb-3 flex items-center">
-                                <Users className="h-4 w-4 mr-2 text-semantic-contractor" />
-                                Dispatch Status
-                              </h5>
-                              <div className="space-y-3">
-                                {contractorMatches[request.id].slice(0, 3).map((match: any) => (
-                                  <div key={match.id} className="flex items-center justify-between p-3 bg-gray-800 rounded-lg border border-gray-600">
-                                    <div className="flex items-center space-x-3">
-                                      <div className="w-10 h-10 bg-semantic-contractor rounded-full flex items-center justify-center">
-                                        <span className="text-white font-semibold text-sm">
-                                          {match.contractor.businessName?.charAt(0) || match.contractor.user.name?.charAt(0) || 'C'}
-                                        </span>
-                                      </div>
-                                      <div>
-                                        <h6 className="font-medium text-white">
-                                          {match.contractor.businessName || match.contractor.user.name}
-                                        </h6>
-                                        <p className="text-sm text-gray-400">
-                                          {match.contractor.city}, {match.contractor.state} • {match.contractor.experience} years exp
-                                        </p>
-                                        <div className="flex items-center space-x-2 mt-1">
-                                          <div className="flex items-center">
-                                            <span className="text-yellow-400 text-sm">★</span>
-                                            <span className="text-white text-sm ml-1">{match.contractor.rating.toFixed(1)}</span>
-                                            <span className="text-gray-400 text-sm ml-1">({match.contractor.totalJobs} jobs)</span>
-                                          </div>
-                                          <Badge 
-                                            className={`text-xs ${
-                                              match.matchScore >= 80 ? 'bg-green-900/30 text-green-400 border-green-500' :
-                                              match.matchScore >= 60 ? 'bg-yellow-900/30 text-yellow-400 border-yellow-500' :
-                                              'bg-red-900/30 text-red-400 border-red-500'
-                                            }`}
-                                          >
-                                            {match.matchScore}% match
-                                          </Badge>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="flex items-center space-x-2">
-                                      <Button
-                                        size="sm"
-                                        variant="outline"
-                                        className="text-xs border-gray-600 text-gray-300 hover:bg-gray-700"
-                                        onClick={() => handleViewContractor(match.contractor.id, match.contractor.services?.[0])}
-                                      >
-                                        <Eye className="h-3 w-3 mr-1" />
-                                        View Profile
-                                      </Button>
-                                      <Button
-                                        size="sm"
-                                        className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white text-xs"
-                                        onClick={handleContactContractor}
-                                      >
-                                        <MessageSquare className="h-3 w-3 mr-1" />
-                                        Contact
-                                      </Button>
-                                    </div>
-                                  </div>
-                                ))}
-                                {contractorMatches[request.id].length > 3 && (
-                                  <p className="text-sm text-gray-400 text-center">
-                                    +{contractorMatches[request.id].length - 3} more contractors available
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          )}
-
-                          <div className="flex flex-col sm:flex-row gap-2">
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="group-hover:border-semantic-contractor group-hover:text-semantic-contractor transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
-                              onClick={() => handleViewRequestDetails(request)}
-                            >
-                              <Eye className="h-4 w-4 mr-2" />
-                              View Details
-                            </Button>
-                            {request.status === 'PENDING' && (
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                className="group-hover:border-red-500 group-hover:text-red-500 transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
-                                onClick={() => handleCancelRequest(request.id)}
-                                disabled={cancellingRequest}
-                              >
-                                {cancellingRequest ? (
-                                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-500 mr-2"></div>
-                                ) : (
-                                  <X className="h-4 w-4 mr-2" />
-                                )}
-                                {cancellingRequest ? 'Cancelling...' : 'Cancel'}
-                              </Button>
-                            )}
-                            {request.status === 'COMPLETED' && (
-                              <Button 
-                                variant="outline" 
-                                size="sm"
-                                className="group-hover:border-green-500 group-hover:text-green-500 transition-colors border-gray-600 text-gray-300 hover:bg-gray-700"
-                              >
-                                <MessageSquare className="h-4 w-4 mr-2" />
-                                Review
-                              </Button>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <ServiceRequestCard
+                    key={request.id}
+                    request={request}
+                    onViewDetails={handleViewRequestDetails}
+                    onCancel={handleCancelRequest}
+                    categoryDisplayName={getCategoryDisplayName(request.serviceCategory)}
+                    urgencyDisplayName={getUrgencyDisplayName(request.urgency)}
+                  />
                 ))}
               </div>
             )}
