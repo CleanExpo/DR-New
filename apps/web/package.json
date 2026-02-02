@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "dr-nrpg-web",
   "version": "1.0.0",
   "description": "Disaster Recovery NRPG Platform - Next.js Frontend",
   "private": true,
