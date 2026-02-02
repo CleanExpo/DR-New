@@ -206,11 +206,11 @@ Works perfectly on Linux environments.
 
 ## Git Repository
 
-**Repository**: https://github.com/CleanExpo/Disaster-Recovery.git
+**Repository**: https://github.com/CleanExpo/DR-NRPG.git
 
-**Commits**: 12 commits (all pushed)
+**Production URL**: https://dr-nrpg.vercel.app
 
-**Latest**: 07174f0 "Final comprehensive report"
+**Custom Domain**: https://disasterrecovery.com.au
 
 ---
 
