@@ -4,6 +4,10 @@ import { authOptions } from '@/lib/auth';
 import { AIImageEnhancementService } from '@/lib/services/ai-image-enhancement.service';
 import { prisma } from '@/lib/prisma';
 
+// Force dynamic rendering (required for Next.js 14 App Router)
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 /**
  * POST /api/admin/ai-enhancement/images
  * Trigger batch enhancement for unprocessed images
