@@ -25,6 +25,9 @@ const config = {
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1',
+  },
   clearMocks: true,
   restoreMocks: true,
   verbose: true,

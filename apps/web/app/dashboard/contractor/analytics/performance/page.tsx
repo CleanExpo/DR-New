@@ -41,6 +41,84 @@ interface PerformanceAnalyticsData {
   };
 }
 
+// New analytics data structure
+interface ContractorAnalytics {
+  success: boolean;
+  analytics: {
+    overview: {
+      profileViews: number;
+      profileViewsThisMonth: number;
+      totalBookings: number;
+      completedBookings: number;
+      activeBookings: number;
+      averageRating: number;
+      totalRatings: number;
+      conversionRate: number;
+      memberSince: string;
+    };
+    bookingStats: {
+      total: number;
+      completed: number;
+      active: number;
+      cancelled: number;
+      thisMonth: number;
+      lastMonth: number;
+      last30Days: number;
+      completionRate: number;
+      cancellationRate: number;
+      monthOverMonthGrowth: number;
+    };
+    ratingStats: {
+      totalRatings: number;
+      averageRating: number;
+      ratingsLast30Days: number;
+      distribution: {
+        1: number;
+        2: number;
+        3: number;
+        4: number;
+        5: number;
+      };
+      positiveRatingPercentage: number;
+    };
+    performance: {
+      averageResponseTimeMinutes: number;
+      completedJobs: number;
+      quoteRequestCount: number;
+      quoteAcceptanceRate: number;
+      directBookingRequests: number;
+    };
+    trends: {
+      viewTrend: {
+        last7Days: number;
+        percentageChange: string;
+      };
+      bookingGrowth: {
+        thisMonth: number;
+        lastMonth: number;
+        percentageChange: string;
+      };
+    };
+    recent: {
+      bookings: Array<{
+        id: string;
+        status: string;
+        serviceType: string;
+        createdAt: string;
+        scheduledDate?: string;
+        completedAt?: string;
+        totalCost?: number;
+      }>;
+      ratings: Array<{
+        id: string;
+        rating: number;
+        comment?: string;
+        createdAt: string;
+      }>;
+    };
+  };
+}
+
 export default function ContractorPerformanceAnalytics() {
   const { data: session, status } = useSession();
   const router = useRouter();
