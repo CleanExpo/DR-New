@@ -5,7 +5,7 @@ import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { contractorId: string } }
 ) {
   try {
     const authResult = await authenticateRequest(request);
@@ -16,7 +16,7 @@ export async function GET(
     const { user } = authResult.context;
     const db = getTenantDb(authResult.context);
 
-    const contractorId = params.id;
+    const { contractorId } = params;
 
     // Get contractor profile by ID
     const contractor = await db.contractorProfile.findUnique({
@@ -65,7 +65,7 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { contractorId: string } }
 ) {
   try {
     const authResult = await authenticateRequest(request);
@@ -76,7 +76,7 @@ export async function PATCH(
     const { user } = authResult.context;
     const db = getTenantDb(authResult.context);
 
-    const contractorId = params.id;
+    const { contractorId } = params;
     const body = await request.json();
 
     // Get contractor profile
