@@ -25,6 +25,7 @@
     "db:migrate": "turbo run db:migrate --filter=web",
     "db:studio": "turbo run db:studio --filter=web",
     "seed:demo-admin": "tsx scripts/seed-demo-admin.ts",
+    "seed:demo-admin-full": "tsx scripts/seed-demo-admin-with-tenant.ts",
     "storybook": "turbo run storybook --filter=web",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
