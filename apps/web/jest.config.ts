@@ -20,6 +20,10 @@ const config = {
     // Tests are placeholder stubs — skip until dependency is added
     'src/__tests__/realtime/socket-server\\.test\\.ts',
   ],
+  testEnvironmentOptions: {
+    customExportConditions: [''],
+  },
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   clearMocks: true,
   restoreMocks: true,
