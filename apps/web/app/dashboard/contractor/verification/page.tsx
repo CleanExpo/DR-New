@@ -30,6 +30,7 @@ import {
   Shield
 } from 'lucide-react';
 import { toast } from 'sonner';
+import DocumentUpload from '@/components/contractor/DocumentUpload';
 
 // Verification status badge component
 function VerificationStatusBadge({ status }: { status: string }) {
@@ -477,23 +478,7 @@ export default function ContractorVerificationProfile() {
 
           {/* Tab: Licenses & Documents */}
           <TabsContent value="licenses">
-            <Card className="bg-gray-800 border-gray-700">
-              <CardHeader>
-                <CardTitle className="text-white">Licenses & Certifications</CardTitle>
-                <CardDescription className="text-gray-400">
-                  Upload your professional licenses and certificates for verification
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-12 text-gray-400">
-                  <Upload className="h-16 w-16 mx-auto mb-4 text-gray-600" />
-                  <p className="text-lg">Document upload functionality coming soon</p>
-                  <p className="text-sm mt-2">
-                    This will allow you to upload licenses, IICRC certificates, and insurance documents
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <DocumentUpload onDocumentUploaded={fetchContractorData} />
           </TabsContent>
 
           {/* Tab: Service Areas */}
