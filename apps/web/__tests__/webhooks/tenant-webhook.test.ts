@@ -582,13 +582,15 @@ describe('Tenant Webhook Handler', () => {
 
       expect(response.status).toBe(200);
 
-      // Verify tenant activated
+      // Verify tenant activated with checkout details
+      // Note: subscription details (status, tier) are filled by subscription.created event
       expect(prisma.tenant.update).toHaveBeenCalledWith(
         expect.objectContaining({
           where: { id: 'tenant_123' },
           data: expect.objectContaining({
-            subscriptionStatus: 'ACTIVE',
-            stripeSubscriptionId: 'sub_123',
+            onboardingCompleted: true,
+            stripeCustomerId: 'cus_123',
+            stripeCheckoutSessionId: 'cs_test_123',
           }),
         })
       );

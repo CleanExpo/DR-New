@@ -464,6 +464,15 @@ describe('Workspace Subscription Webhook Handler', () => {
         status: 'active',
         current_period_start: Math.floor(Date.now() / 1000),
         current_period_end: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60,
+        items: {
+          data: [
+            {
+              price: {
+                unit_amount: 4900,
+              },
+            },
+          ],
+        },
       };
 
       const mockEvent: Stripe.Event = {
@@ -482,6 +491,14 @@ describe('Workspace Subscription Webhook Handler', () => {
         id: 'workspace_123',
         businessName: 'New Workspace',
         stripeCustomerId: 'cus_123',
+        subscriptionTier: 'BASIC',
+        members: [
+          {
+            user: {
+              email: 'owner@workspace.com',
+            },
+          },
+        ],
       });
 
       (prisma.workspace.update as jest.Mock).mockResolvedValue({
@@ -496,9 +513,9 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       // Verify workspace activated
       expect(webhookRetry.retryPrismaOperation).toHaveBeenCalledWith(
-        'databaseQuery',
+        'criticalPayment',
         expect.any(Function),
-        expect.stringContaining('activate workspace')
+        expect.stringContaining('activate subscription')
       );
     });
 
@@ -538,9 +555,9 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       // Verify workspace canceled
       expect(webhookRetry.retryPrismaOperation).toHaveBeenCalledWith(
-        'databaseQuery',
+        'criticalPayment',
         expect.any(Function),
-        expect.stringContaining('cancel workspace')
+        expect.stringContaining('cancel subscription')
       );
     });
   });
