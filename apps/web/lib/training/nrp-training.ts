@@ -62,7 +62,9 @@ export interface NrpgQuizBank {
 }
 
 function generatedDir(): string {
-  return path.join(process.cwd(), 'src', 'lib', 'training', 'generated');
+  // In production (Vercel), src/ is compiled away
+  // Try the lib path first (production), fall back to src path (development)
+  return path.join(process.cwd(), 'lib', 'training', 'generated');
 }
 
 function trainingSourcesDir(): string {

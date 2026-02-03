@@ -34,12 +34,23 @@ const repoRoot = path.join(__dirname, '..', '..', '..');
 const sourcePath = path.join(repoRoot, 'training-sources');
 const destPath = path.join(__dirname, '..', 'lib', 'training', 'sources');
 
+// Also copy generated index files
+const generatedSourcePath = path.join(__dirname, '..', 'src', 'lib', 'training', 'generated');
+const generatedDestPath = path.join(__dirname, '..', 'lib', 'training', 'generated');
+
 console.log('📦 Copying training sources for deployment...\n');
-console.log(`Source: ${sourcePath}`);
-console.log(`Destination: ${destPath}\n`);
 
 try {
+  // Copy training HTML files
+  console.log(`Source: ${sourcePath}`);
+  console.log(`Destination: ${destPath}\n`);
   copyDir(sourcePath, destPath);
+
+  // Copy generated index files
+  console.log(`\nSource: ${generatedSourcePath}`);
+  console.log(`Destination: ${generatedDestPath}\n`);
+  copyDir(generatedSourcePath, generatedDestPath);
+
   console.log('\n✅ Training sources copied successfully!');
 } catch (error) {
   console.error('\n❌ Error copying training sources:', error.message);
