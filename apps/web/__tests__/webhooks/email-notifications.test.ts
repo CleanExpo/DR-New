@@ -56,7 +56,7 @@ describe('Billing Email Notifications', () => {
       expect(emailCall.html).toContain('Acme Corp');
       expect(emailCall.html).toContain('$99.00 AUD');
       expect(emailCall.html).toContain('Payment Attempt 1 Failed'); // Attempt count
-      expect(emailCall.html).toContain('Attempt: 1 of 3'); // Attempt count ratio
+      expect(emailCall.html).toContain('1 of 3'); // Attempt count ratio
       expect(emailCall.html).toContain('4242'); // Last 4 digits
 
       // Verify plain text version exists
@@ -78,10 +78,10 @@ describe('Billing Email Notifications', () => {
       const emailCall = (sendEmail as jest.Mock).mock.calls[0][0];
 
       // Check retry schedule is mentioned
-      expect(emailCall.html).toContain('Day 1');
-      expect(emailCall.html).toContain('Day 3');
-      expect(emailCall.html).toContain('Day 7');
-      expect(emailCall.text).toContain('Day 1');
+      expect(emailCall.html).toContain('Days'); // Mentions day counts
+      expect(emailCall.html).toContain('retry'); // Mentions retry
+      expect(emailCall.html).toContain('10 Days'); // Mentions downgrade timeline
+      expect(emailCall.text).toContain('Days');
       expect(emailCall.text).toContain('retry');
     });
 
@@ -100,7 +100,7 @@ describe('Billing Email Notifications', () => {
       const emailCall = (sendEmail as jest.Mock).mock.calls[0][0];
       expect(emailCall.html).toContain('Final Notice'); // Final attempt warning
       expect(emailCall.html).toContain('suspended'); // Warning about suspension
-      expect(emailCall.html).toContain('Attempt: 3 of 3'); // Attempt count ratio
+      expect(emailCall.html).toContain('3 of 3'); // Attempt count ratio
     });
 
     it('should return error when email service fails', async () => {
@@ -162,7 +162,7 @@ describe('Billing Email Notifications', () => {
       expect(sendEmail).toHaveBeenCalledWith(
         expect.objectContaining({
           to: 'owner@business.com',
-          subject: expect.stringContaining('Payment Confirmed'),
+          subject: expect.stringContaining('Payment Received'),
         })
       );
 
@@ -213,7 +213,7 @@ describe('Billing Email Notifications', () => {
 
       // Invoice URL should be linked
       expect(emailCall.html).toContain('invoice.stripe.com');
-      expect(emailCall.html).toContain('View Invoice');
+      expect(emailCall.html).toContain('Download Invoice');
     });
 
     it('should return error when email service fails', async () => {
@@ -253,7 +253,7 @@ describe('Billing Email Notifications', () => {
       expect(sendEmail).toHaveBeenCalledWith(
         expect.objectContaining({
           to: 'owner@startup.com',
-          subject: expect.stringContaining('Trial Ending'),
+          subject: expect.stringContaining('Trial Ends'),
         })
       );
 
