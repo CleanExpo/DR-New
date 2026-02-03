@@ -4,6 +4,7 @@ import { getTenantDb } from '@/lib/get-tenant-db';
 import { z } from 'zod';
 import { validateRequest, formatZodErrors } from '@/lib/validation';
 import { logUserManagement } from '@/lib/services/audit.service';
+import { sendAccountStatusChangeEmail } from '@/lib/email/client-notifications';
 
 interface RouteParams {
   params: { id: string };
@@ -178,6 +179,22 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       previousActive: targetUser.isActive,
     });
 
+    // Send account status change email if isActive was modified
+    if (validation.data.isActive !== undefined && validation.data.isActive !== targetUser.isActive) {
+      const statusChange = validation.data.isActive === false ? 'SUSPENDED' : 'REACTIVATED';
+      sendAccountStatusChangeEmail({
+        clientName: targetUser.name || 'User',
+        email: targetUser.email,
+        statusChange,
+        reason: 'Administrative action by platform admin',
+        actionRequired: statusChange === 'SUSPENDED'
+          ? 'Please contact support@disasterrecovery.com.au if you believe this is an error.'
+          : undefined,
+      }).catch((error) => {
+        console.error('Failed to send account status change email:', error);
+      });
+    }
+
     return NextResponse.json({
       success: true,
       data: updatedUser,
@@ -228,6 +245,17 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
         { status: 404 }
       );
     }
+
+    // Send account closure email before soft delete
+    sendAccountStatusChangeEmail({
+      clientName: targetUser.name || 'User',
+      email: targetUser.email,
+      statusChange: 'CLOSED',
+      reason: 'Account deleted by platform administrator',
+      actionRequired: 'If you believe this is an error, please contact support@disasterrecovery.com.au within 30 days to restore your account.',
+    }).catch((error) => {
+      console.error('Failed to send account closure email:', error);
+    });
 
     // Soft delete - just deactivate
     await db.user.update({

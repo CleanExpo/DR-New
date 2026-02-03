@@ -9,6 +9,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { BookingStatus } from '@prisma/client';
+import { sendBookingConfirmationEmail } from '@/lib/email/client-notifications';
 
 // ============================================================================
 // POST /api/bookings/[id]/assign - Assign contractor to booking
@@ -106,10 +107,38 @@ export async function POST(
             id: true,
             businessName: true,
             averageRating: true,
+            user: {
+              select: {
+                phone: true,
+              },
+            },
+          },
+        },
+        client: {
+          select: {
+            name: true,
+            email: true,
           },
         },
       },
     });
+
+    // Send updated booking confirmation email with contractor details
+    if (updatedBooking.client && updatedBooking.contractor) {
+      sendBookingConfirmationEmail({
+        clientName: updatedBooking.client.name || 'Valued Client',
+        email: updatedBooking.client.email,
+        bookingId: updatedBooking.id,
+        contractorName: updatedBooking.contractor.businessName,
+        contractorPhone: updatedBooking.contractor.user?.phone || undefined,
+        serviceType: updatedBooking.australianServiceType,
+        scheduledDate: updatedBooking.scheduledDate || new Date(),
+        propertyAddress: `${updatedBooking.streetAddress}, ${updatedBooking.serviceSuburb}, ${updatedBooking.serviceState} ${updatedBooking.servicePostcode}`,
+        totalAmount: updatedBooking.estimatedCostAUD || undefined,
+      }).catch((error) => {
+        console.error('Failed to send booking confirmation email after contractor assignment:', error);
+      });
+    }
 
     // Log audit
     await db.auditLog.create({

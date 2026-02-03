@@ -18,6 +18,7 @@ import {
   australianAddressSchema,
   australianBookingSchema,
 } from '@/lib/validation/australia';
+import { sendBookingConfirmationEmail } from '@/lib/email/client-notifications';
 
 // ============================================================================
 // GET /api/bookings - List bookings
@@ -166,6 +167,21 @@ export async function POST(request: NextRequest) {
           ? new Date(body.preferredDateTime)
           : undefined,
       },
+    });
+
+    // Send booking confirmation email (asynchronously, don't block response)
+    sendBookingConfirmationEmail({
+      clientName: user.name || 'Valued Client',
+      email: user.email,
+      bookingId: booking.id,
+      contractorName: 'To be assigned', // Contractor not yet assigned for new bookings
+      contractorPhone: undefined,
+      serviceType: body.serviceType,
+      scheduledDate: booking.scheduledDate || new Date(),
+      propertyAddress: `${body.address.streetAddress}, ${body.address.suburb}, ${body.address.state} ${body.address.postcode}`,
+      totalAmount: estimatedCost,
+    }).catch((error) => {
+      console.error('Failed to send booking confirmation email:', error);
     });
 
     // Log audit - automatically tenant-scoped

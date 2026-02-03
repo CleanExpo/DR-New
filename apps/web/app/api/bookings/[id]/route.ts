@@ -10,6 +10,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { BookingStatus } from '@prisma/client';
+import { sendReviewRequestEmail } from '@/lib/email/client-notifications';
 
 // ============================================================================
 // GET /api/bookings/[id] - Get booking details
@@ -148,9 +149,40 @@ export async function PATCH(
       where: { id: params.id },
       data: updates,
       include: {
-        contractor: true,
+        contractor: {
+          select: {
+            id: true,
+            businessName: true,
+            averageRating: true,
+          },
+        },
+        client: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
       },
     });
+
+    // Send review request email if booking was just completed
+    if (
+      updates.status === BookingStatus.COMPLETED &&
+      booking.status !== BookingStatus.COMPLETED &&
+      updatedBooking.client &&
+      updatedBooking.contractor
+    ) {
+      sendReviewRequestEmail({
+        clientName: updatedBooking.client.name || 'Valued Client',
+        email: updatedBooking.client.email,
+        contractorName: updatedBooking.contractor.businessName,
+        bookingId: updatedBooking.id,
+        serviceType: updatedBooking.australianServiceType,
+        completedDate: new Date(),
+      }).catch((error) => {
+        console.error('Failed to send review request email:', error);
+      });
+    }
 
     // Log audit
     await db.auditLog.create({
