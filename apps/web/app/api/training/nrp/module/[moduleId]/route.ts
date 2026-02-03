@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { MODULE_FILENAMES } from '@/lib/training/module-filenames';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs'; // Force Node.js runtime for filesystem access
@@ -26,15 +27,35 @@ export async function GET(request: NextRequest, context: { params: { moduleId: s
 
     const moduleId = validation.data.moduleId.toUpperCase();
 
-    // Serve pre-generated static JSON file
-    const staticFilePath = path.join(process.cwd(), 'public', 'training-modules', `${moduleId}.json`);
+    // Get the filename from the mapping
+    const fileName = MODULE_FILENAMES[moduleId];
+
+    if (!fileName) {
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        `Training module not found: ${moduleId}`,
+        404
+      );
+    }
+
+    // Read module HTML directly from lib/training/sources
+    const htmlFilePath = path.join(process.cwd(), 'lib', 'training', 'sources', 'NRP Folder', fileName);
 
     try {
-      const staticData = await fs.readFile(staticFilePath, 'utf8');
-      const moduleData = JSON.parse(staticData);
-      return NextResponse.json(moduleData);
+      const htmlContent = await fs.readFile(htmlFilePath, 'utf8');
+
+      // Create response matching expected format
+      return NextResponse.json({
+        success: true,
+        module: {
+          moduleId,
+          title: `${moduleId} Training Module`,
+          sourcePath: `lib/training/sources/NRP Folder/${fileName}`,
+          sha256: 'runtime',
+          html: htmlContent,
+        },
+      });
     } catch (error) {
-      // If static file doesn't exist, return 404
       return createErrorResponse(
         ErrorCode.RESOURCE_NOT_FOUND,
         `Training module not found: ${moduleId}`,
