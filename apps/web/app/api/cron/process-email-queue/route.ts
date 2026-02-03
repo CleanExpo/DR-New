@@ -5,12 +5,8 @@
  * Should be configured to run every 5 minutes in Vercel Cron Jobs.
  *
  * Cron Configuration (vercel.json):
- * {
- *   "crons": [{
- *     "path": "/api/cron/process-email-queue",
- *     "schedule": "*/5 * * * *"
- *   }]
- * }
+ * - Path: /api/cron/process-email-queue
+ * - Schedule: Every 5 minutes
  */
 
 import { NextRequest, NextResponse } from 'next/server';
