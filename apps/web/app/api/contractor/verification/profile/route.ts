@@ -8,6 +8,8 @@ import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleValidationError, handleUnexpectedError, handleDatabaseError } from '@/lib/api-errors';
 import { ZodError, z } from 'zod';
 import { sendVerificationSubmittedEmail } from '@/lib/email/contractor-verification';
+import { sendNewContractorApplicationSlackAlert } from '@/lib/monitoring/slack-alerts';
+import { sendNewContractorApplicationEmailAlert } from '@/lib/monitoring/email-alerts';
 
 // Validation schema for contractor verification profile updates
 const contractorVerificationUpdateSchema = z.object({
@@ -177,6 +179,43 @@ export async function PUT(request: NextRequest) {
       } catch (emailError) {
         // Log email error but don't fail the request
         console.error('Failed to send verification submitted email:', emailError);
+      }
+
+      // Send admin alerts (Slack + Email) for new contractor application
+      try {
+        // Get service areas for alert
+        const serviceAreas = await db.contractorServiceArea.findMany({
+          where: { contractorId: updatedContractor.id, isActive: true },
+          select: { postcode: true, suburb: true, state: true },
+          take: 5,
+        });
+
+        const serviceAreasList = serviceAreas.map(sa => `${sa.suburb || 'Unknown'}, ${sa.state}`);
+
+        // Send Slack alert
+        sendNewContractorApplicationSlackAlert({
+          contractorName: user.name || 'Contractor',
+          businessName: updatedContractor.businessName,
+          serviceAreas: serviceAreasList,
+          contractorId: updatedContractor.id,
+        }).catch((error) => {
+          console.error('Failed to send Slack alert for new contractor:', error);
+        });
+
+        // Send admin email alert
+        sendNewContractorApplicationEmailAlert({
+          contractorName: user.name || 'Contractor',
+          businessName: updatedContractor.businessName,
+          email: user.email,
+          phone: user.phone || undefined,
+          serviceAreas: serviceAreasList,
+          abnNumber: updatedContractor.abnNumber || undefined,
+          contractorId: updatedContractor.id,
+        }).catch((error) => {
+          console.error('Failed to send admin email alert for new contractor:', error);
+        });
+      } catch (alertError) {
+        console.error('Failed to send contractor application alerts:', alertError);
       }
     }
 
