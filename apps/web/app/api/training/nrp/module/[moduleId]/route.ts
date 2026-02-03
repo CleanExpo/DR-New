@@ -2,9 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { z } from 'zod';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
-import { promises as fs } from 'fs';
-import path from 'path';
-import { MODULE_FILENAMES } from '@/lib/training/module-filenames';
+import { getTrainingModuleHtmlById } from '@/lib/training/nrp-training';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs'; // Force Node.js runtime for filesystem access
@@ -27,35 +25,21 @@ export async function GET(request: NextRequest, context: { params: { moduleId: s
 
     const moduleId = validation.data.moduleId.toUpperCase();
 
-    // Get the filename from the mapping
-    const fileName = MODULE_FILENAMES[moduleId];
-
-    if (!fileName) {
-      return createErrorResponse(
-        ErrorCode.RESOURCE_NOT_FOUND,
-        `Training module not found: ${moduleId}`,
-        404
-      );
-    }
-
-    // Read module HTML directly from lib/training/sources
-    const htmlFilePath = path.join(process.cwd(), 'lib', 'training', 'sources', 'NRP Folder', fileName);
-
+    // Load module using the original working nrp-training.ts function
     try {
-      const htmlContent = await fs.readFile(htmlFilePath, 'utf8');
+      const trainingModule = await getTrainingModuleHtmlById(moduleId);
 
-      // Create response matching expected format
       return NextResponse.json({
         success: true,
         module: {
           moduleId,
-          title: `${moduleId} Training Module`,
-          sourcePath: `lib/training/sources/NRP Folder/${fileName}`,
-          sha256: 'runtime',
-          html: htmlContent,
+          sourcePath: trainingModule.sourcePath,
+          sha256: trainingModule.sha256,
+          html: trainingModule.html,
         },
       });
     } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to load training module';
       return createErrorResponse(
         ErrorCode.RESOURCE_NOT_FOUND,
         `Training module not found: ${moduleId}`,

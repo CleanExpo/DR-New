@@ -3,7 +3,7 @@
   "framework": "nextjs",
   "installCommand": "cd ../.. && pnpm install",
   "outputDirectory": ".next",
-  "includeFiles": ["lib/training/sources/**"],
+  "includeFiles": ["../../training-sources/**"],
   "build": {
     "env": {
       "NODE_OPTIONS": "--max-old-space-size=4096"
