@@ -6,8 +6,8 @@
  * - CAPTCHA verification
  * - Data validation
  * - Priority calculation
- * - Contractor matching (mock)
- * - Email notifications (mock)
+ * - AI-powered contractor matching (background job)
+ * - Email notifications
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -16,6 +16,8 @@ import { basePrisma } from '@/lib/prisma';
 import { completeClaimSchema, calculatePriority } from '@/lib/claim-wizard/types';
 import { verifyCaptcha } from '@/lib/services/captcha.service';
 import { sendClaimSubmissionConfirmationEmail } from '@/lib/email/client-notifications';
+import { createJob } from '@/lib/queue/background-jobs';
+import { getStateFromPostcode } from '@/src/lib/validation/australia';
 
 // Rate limiting storage (in-memory for demo, use Redis in production)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
@@ -202,9 +204,45 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 7. Contractor matching (will be implemented in next phase with real algorithm)
-    const contractorCount = Math.floor(Math.random() * 3) + 1; // 1-3 contractors for now
+    // 7. REAL IMPLEMENTATION: Queue contractor matching background job
+    const state = getStateFromPostcode(validatedData.step2.postcode) || 'NSW';
+    const matchingJob = await createJob(
+      'CONTRACTOR_MATCHING',
+      {
+        claimId: savedClaim.id,
+        criteria: {
+          serviceType: validatedData.step1.disasterType,
+          location: {
+            state,
+            suburb: validatedData.step2.suburb,
+            postcode: validatedData.step2.postcode,
+          },
+          urgency:
+            priority === 'critical'
+              ? 'emergency'
+              : priority === 'high'
+              ? 'urgent'
+              : 'standard',
+          specialRequirements: validatedData.step3.hasInsurance === 'yes' ? ['insurance'] : [],
+        },
+      },
+      {
+        priority: priority === 'critical' ? 1 : priority === 'high' ? 3 : 5,
+        claimId: savedClaim.id,
+        tenantId: savedClaim.tenantId || undefined,
+        initiatedBy: 'system',
+      }
+    );
+
     const estimatedResponseTime = priority === 'critical' ? '15 minutes' : '30 minutes';
+
+    console.log('=== CONTRACTOR MATCHING JOB QUEUED ===');
+    console.log('Job ID:', matchingJob.jobId);
+    console.log('Priority:', priority === 'critical' ? 1 : priority === 'high' ? 3 : 5);
+    console.log('Urgency:', priority === 'critical' ? 'emergency' : priority === 'high' ? 'urgent' : 'standard');
+    console.log('Location:', state, validatedData.step2.suburb, validatedData.step2.postcode);
+    console.log('Service Type:', validatedData.step1.disasterType);
+    console.log('======================================');
 
     // 8. Return success response with saved claim data
     return NextResponse.json(
@@ -212,8 +250,9 @@ export async function POST(request: NextRequest) {
         success: true,
         claimId,
         databaseId: savedClaim?.id,
-        message: 'Claim submitted successfully and saved to database',
-        estimatedContractorCalls: contractorCount,
+        message: 'Claim submitted successfully. Contractors are being matched.',
+        matchingJobId: matchingJob.jobId,
+        matchingStatus: 'IN_PROGRESS',
         estimatedResponseTime,
         priority,
       },
