@@ -83,6 +83,7 @@ model Tenant {
   contractorCertifications ContractorCertification[]
   aiEnhancementLogs    AIImageEnhancementLog[]
   aiBatchProcessingJobs AIBatchProcessingJob[]
+  backgroundJobs       BackgroundJob[]
 
   @@map("tenants")
 }
@@ -158,6 +159,7 @@ model User {
   workspaceMemberships         WorkspaceMember[]
   ownedWorkspaces              Workspace[]                    @relation("WorkspaceOwner")
   batchJobsInitiated           AIBatchProcessingJob[]         @relation("BatchJobInitiator")
+  backgroundJobsInitiated      BackgroundJob[]                @relation("BackgroundJobInitiator")
 
   @@index([email])
   @@index([userType])
@@ -566,7 +568,11 @@ model ContractorProfile {
 model ContractorMatch {
   id                String            @id @default(cuid())
   contractorId      String
-  serviceRequestId  String
+
+  // Support both ServiceRequest and PublicClaim
+  serviceRequestId  String?
+  claimId           String?
+
   matchScore        Float
   status            MatchStatus       @default(PENDING)
   contractorMessage String?
@@ -575,14 +581,30 @@ model ContractorMatch {
   timeline          String?
   startDate         String?
   estimatedHours    String?
+
+  // New fields for automated matching workflow
+  matchReason       String[]          @default([])
+  notificationStatus String?          // PENDING, SENT, FAILED, RESPONDED, DECLINED
+  notificationSentAt DateTime?
+  responseDeadline  DateTime?
+  contractorRespondedAt DateTime?
+  contractorResponse String?          // ACCEPTED, DECLINED, COUNTER_OFFER
+  isBackup          Boolean           @default(false)
+
   tenantId          String?
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
+
   contractor        ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-  serviceRequest    ServiceRequest    @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  serviceRequest    ServiceRequest?   @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  claim             PublicClaim?      @relation(fields: [claimId], references: [id], onDelete: Cascade)
   tenant            Tenant?           @relation(fields: [tenantId], references: [id])
 
   @@index([tenantId])
+  @@index([claimId, notificationStatus])
+  @@index([contractorId, createdAt])
+  @@index([responseDeadline])
+  @@index([serviceRequestId])
   @@map("contractor_matches")
 }
 
@@ -2387,7 +2409,11 @@ model PublicClaim {
   tenantId         String?
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
-  tenant           Tenant?  @relation(fields: [tenantId], references: [id])
+
+  // Relations
+  tenant           Tenant?           @relation(fields: [tenantId], references: [id])
+  backgroundJobs   BackgroundJob[]
+  contractorMatches ContractorMatch[]
 
   @@index([status])
   @@index([postcode])
@@ -2995,4 +3021,55 @@ model AIBatchProcessingJob {
   @@index([createdAt])
   @@index([tenantId])
   @@map("ai_batch_processing_jobs")
+}
+
+// ============================================
+// Background Job Queue Models
+// ============================================
+
+model BackgroundJob {
+  id              String   @id @default(cuid())
+
+  // Job Classification
+  jobType         String   // "CONTRACTOR_MATCHING", "CONTRACTOR_NOTIFICATION", etc.
+  status          String   @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED, RETRY
+  priority        Int      @default(5) // 1=critical, 5=normal, 10=low
+
+  // Payload
+  input           Json
+  output          Json?
+
+  // Error Tracking
+  attemptCount    Int      @default(0)
+  maxAttempts     Int      @default(3)
+  lastError       String?  @db.Text
+  errorStack      String?  @db.Text
+
+  // Scheduling
+  scheduledFor    DateTime @default(now())
+  startedAt       DateTime?
+  completedAt     DateTime?
+  nextRetryAt     DateTime?
+
+  // Relations
+  claimId         String?
+  tenantId        String?
+  initiatedBy     String?
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relationships
+  claim           PublicClaim? @relation(fields: [claimId], references: [id], onDelete: SetNull)
+  tenant          Tenant?      @relation(fields: [tenantId], references: [id], onDelete: SetNull)
+  initiator       User?        @relation("BackgroundJobInitiator", fields: [initiatedBy], references: [id], onDelete: SetNull)
+
+  @@index([status, scheduledFor])
+  @@index([jobType, status])
+  @@index([claimId])
+  @@index([priority, scheduledFor])
+  @@index([tenantId])
+  @@index([createdAt])
+  @@map("background_jobs")
 }

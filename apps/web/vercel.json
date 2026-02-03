@@ -60,6 +60,10 @@
       "schedule": "*/5 * * * *"
     },
     {
+      "path": "/api/cron/process-background-jobs",
+      "schedule": "* * * * *"
+    },
+    {
       "path": "/api/webhooks/cron/health-check",
       "schedule": "*/5 * * * *"
     },
