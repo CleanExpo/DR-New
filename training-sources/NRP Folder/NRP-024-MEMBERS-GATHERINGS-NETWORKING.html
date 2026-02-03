@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-024: Members Gatherings & Networking - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #f59e0b;
+        }
+        .section h2 {
+            color: #d97706;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .event-card {
+            background: white;
+            border: 2px solid #fef3c7;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .event-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #d97706;
+            flex: 1;
+        }
+        .event-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .badge-annual { background: #ef4444; color: white; }
+        .badge-quarterly { background: #10b981; color: white; }
+        .badge-monthly { background: #3b82f6; color: white; }
+        .badge-ongoing { background: #8b5cf6; color: white; }
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+            padding: 15px;
+            background: #fef3c7;
+            border-radius: 8px;
+        }
+        .detail-item {
+            display: flex;
+            align-items: center;
+        }
+        .detail-icon {
+            color: #f59e0b;
+            margin-right: 8px;
+            font-size: 1.1em;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-number { font-size: 2em; font-weight: bold; margin-bottom: 5px; }
+        .stat-label { opacity: 0.9; }
+        .testimonial {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .testimonial-author {
+            margin-top: 10px;
+            font-style: normal;
+            font-weight: bold;
+            color: #d97706;
+        }
+        .info-box {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #f3f4f6;
+            color: #d97706;
+            font-weight: 600;
+        }
+        tr:hover {
+            background: #fef3c7;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .calendar-item {
+            background: white;
+            border: 1px solid #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .calendar-month {
+            font-weight: bold;
+            color: #f59e0b;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 768px) {
+            .container { margin: 10px; padding: 15px; }
+            .event-header { flex-direction: column; }
+            .event-badge { margin-left: 0; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤝 NRP-024: Members Gatherings & Networking</h1>
+            <p>Connect, Learn & Grow Through NRPG Community Events & Programs</p>
+            <p><strong>Duration:</strong> 30 minutes | <strong>Assessment:</strong> 10 questions | <strong>Category:</strong> Community & Networking</p>
+        </div>
+
+        <div class="section">
+            <h2>📋 Module Overview</h2>
+            <p>This comprehensive module covers all networking and community engagement opportunities available to DR-NRPG members across Australia. Learn about annual conferences, regional meetups, online forums, mentorship programs, and exclusive member events designed to foster professional growth, knowledge sharing, and business development.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Events per Year</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2,847</div>
+                    <div class="stat-label">Active Members</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">89%</div>
+                    <div class="stat-label">Event Satisfaction Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1,200+</div>
+                    <div class="stat-label">Forum Posts Monthly</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Learning Objectives</h2>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>Understand the NRPG annual conference</strong> format, benefits, and networking opportunities</li>
+                <li><strong>Identify regional meetup schedules</strong> and how to attend events in your area</li>
+                <li><strong>Navigate the online community forum</strong> effectively for knowledge sharing</li>
+                <li><strong>Participate in mentorship programs</strong> as mentor or mentee</li>
+                <li><strong>Maximise networking ROI</strong> through strategic relationship building</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🎪 NRPG Annual Conference</h2>
+
+            <p>The flagship DR-NRPG Annual Conference brings together restoration professionals from across Australia for three days of education, networking, and industry celebration.</p>
+
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-title">2026 DR-NRPG Annual Conference</div>
+                    <div class="event-badge badge-annual">Annual Event</div>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">📅</span>
+                        <div><strong>Date:</strong> 15-17 August 2026</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📍</span>
+                        <div><strong>Location:</strong> ICC Sydney, Darling Harbour</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">👥</span>
+                        <div><strong>Expected:</strong> 850+ attendees</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💰</span>
+                        <div><strong>Cost:</strong> $795 + GST (free for PREMIUM)</div>
+                    </div>
+                </div>
+
+                <h4 style="color: #d97706; margin-top: 20px;">Conference Program Highlights</h4>
+
+                <table style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Focus</th>
+                            <th>Key Sessions</th>
+                            <th>CEC Available</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Day 1</strong><br>Thu 15 Aug</td>
+                            <td>Technical Training</td>
+                            <td>
+                                • Advanced moisture mapping techniques<br>
+                                • New IICRC S500 updates (2026 edition)<br>
+                                • Equipment technology showcase<br>
+                                • Mould remediation best practices
+                            </td>
+                            <td>3.0 CEC</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 2</strong><br>Fri 16 Aug</td>
+                            <td>Business Growth</td>
+                            <td>
+                                • Scaling your restoration business<br>
+                                • Insurance claims optimisation<br>
+                                • Digital marketing for contractors<br>
+                                • Financial management strategies
+                            </td>
+                            <td>2.5 CEC</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Day 3</strong><br>Sat 17 Aug</td>
+                            <td>Industry Future</td>
+                            <td>
+                                • Climate change impact on restoration<br>
+                                • AI and automation in restoration<br>
+                                • Sustainability in disaster recovery<br>
+                                • Gala dinner & awards ceremony
+                            </td>
+                            <td>2.0 CEC</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 20px; padding: 15px; background: #dbeafe; border-radius: 8px;">
+                    <h4 style="color: #1d4ed8; margin-bottom: 10px;">✨ What's Included in Registration</h4>
+                    <ul style="margin-left: 20px; line-height: 2;">
+                        <li>Access to all sessions (30+ educational sessions)</li>
+                        <li>7.5 CEC credits (covers 75% of annual requirement)</li>
+                        <li>Conference materials (printed workbook + USB with resources)</li>
+                        <li>Breakfast and lunch all three days</li>
+                        <li>Welcome reception (Thu evening) + Gala dinner (Sat evening)</li>
+                        <li>Trade show access (60+ exhibitors)</li>
+                        <li>Networking app (connect with attendees before/during event)</li>
+                        <li>Post-conference session recordings (available 7 days after event)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                "The NRPG Conference completely transformed my business. I learned new moisture mapping techniques that reduced my drying times by 30%, networked with suppliers who gave me better pricing, and met two contractors who became ongoing referral partners. The $795 investment returned 20x in the first six months."
+                <div class="testimonial-author">— James Patterson, Sydney Water Restoration | NRPG PREFERRED Member</div>
+            </div>
+
+            <div class="info-box">
+                <h4 style="color: #1d4ed8; margin-bottom: 10px;">🎟️ Early Bird Registration</h4>
+                <p><strong>Discount available:</strong> Register before 31 May 2026 and save $150<br>
+                <strong>Early bird price:</strong> $645 + GST (Regular: $795 + GST)<br>
+                <strong>PREFERRED members:</strong> $545 + GST (conference ticket included in membership)<br>
+                <strong>PREMIUM members:</strong> FREE (two tickets included in membership)</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🗺️ Regional Meetups & Chapter Events</h2>
+
+            <p>DR-NRPG hosts quarterly regional meetups in major metropolitan areas, providing local networking opportunities and targeted training without the travel commitment of the annual conference.</p>
+
+            <h3 style="color: #d97706; margin-top: 25px;">2026 Regional Meetup Schedule</h3>
+
+            <div class="calendar-grid">
+                <div class="calendar-item">
+                    <div class="calendar-month">📍 Sydney Chapter</div>
+                    <strong>Quarterly Meetups:</strong><br>
+                    • 14 Feb 2026 - Rosehill<br>
+                    • 16 May 2026 - Parramatta<br>
+                    • 15 Aug 2026 - Conference<br>
+                    • 14 Nov 2026 - Mascot<br>
+                    <strong>Avg Attendance:</strong> 85 members
+                </div>
+
+                <div class="calendar-item">
+                    <div class="calendar-month">📍 Melbourne Chapter</div>
+                    <strong>Quarterly Meetups:</strong><br>
+                    • 21 Feb 2026 - Clayton<br>
+                    • 23 May 2026 - Docklands<br>
+                    • 15 Aug 2026 - Conference<br>
+                    • 21 Nov 2026 - Airport West<br>
+                    <strong>Avg Attendance:</strong> 72 members
+                </div>
+
+                <div class="calendar-item">
+                    <div class="calendar-month">📍 Brisbane Chapter</div>
+                    <strong>Quarterly Meetups:</strong><br>
+                    • 7 Mar 2026 - South Bank<br>
+                    • 6 Jun 2026 - Fortitude Valley<br>
+                    • 5 Sep 2026 - Springfield<br>
+                    • 5 Dec 2026 - Eagle Farm<br>
+                    <strong>Avg Attendance:</strong> 54 members
+                </div>
+
+                <div class="calendar-item">
+                    <div class="calendar-month">📍 Perth Chapter</div>
+                    <strong>Quarterly Meetups:</strong><br>
+                    • 28 Feb 2026 - Osborne Park<br>
+                    • 30 May 2026 - Joondalup<br>
+                    • 29 Aug 2026 - Cannington<br>
+                    • 28 Nov 2026 - Malaga<br>
+                    <strong>Avg Attendance:</strong> 38 members
+                </div>
+
+                <div class="calendar-item">
+                    <div class="calendar-month">📍 Adelaide Chapter</div>
+                    <strong>Quarterly Meetups:</strong><br>
+                    • 13 Mar 2026 - Thebarton<br>
+                    • 12 Jun 2026 - Salisbury<br>
+                    • 11 Sep 2026 - Gepps Cross<br>
+                    • 11 Dec 2026 - Keswick<br>
+                    <strong>Avg Attendance:</strong> 29 members
+                </div>
+
+                <div class="calendar-item">
+                    <div class="calendar-month">📍 Gold Coast Chapter</div>
+                    <strong>Bi-Annual Meetups:</strong><br>
+                    • 20 Mar 2026 - Robina<br>
+                    • 19 Sep 2026 - Southport<br>
+                    <br><br>
+                    <strong>Avg Attendance:</strong> 24 members
+                </div>
+            </div>
+
+            <h3 style="color: #d97706; margin-top: 25px;">Regional Meetup Format</h3>
+
+            <div class="event-card">
+                <h4 style="color: #d97706; margin-bottom: 15px;">Typical Meetup Agenda (6:00pm - 9:00pm)</h4>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><strong>6:00pm - 6:30pm</strong></td>
+                            <td>Arrival, registration, networking drinks & canapés</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6:30pm - 7:00pm</strong></td>
+                            <td>Platform updates, new features, member announcements</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7:00pm - 8:00pm</strong></td>
+                            <td>Educational session (guest speaker or panel discussion)<br>
+                            <em>Topics: Equipment demos, case studies, industry trends, best practices</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong>8:00pm - 8:15pm</strong></td>
+                            <td>Q&A and open discussion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8:15pm - 9:00pm</strong></td>
+                            <td>Informal networking, business card exchange, drinks</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="margin-top: 15px;"><strong>Cost:</strong> FREE for all NRPG members<br>
+                <strong>Registration:</strong> Required (RSVP through dashboard Events section)<br>
+                <strong>CEC Credits:</strong> 1.0 CEC per meetup attended</p>
+            </div>
+
+            <div class="testimonial">
+                "I try to attend every Brisbane meetup. The networking alone is worth it - I've partnered with three other contractors I met at meetups for large commercial jobs we couldn't handle solo. Plus, the 1.0 CEC per event helps me stay on track for annual renewal without stress."
+                <div class="testimonial-author">— Michelle Chen, Brisbane Fire & Water | NRPG PARTNER Member</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💬 Online Community Forum</h2>
+
+            <p>The DR-NRPG online forum provides 24/7 access to peer support, technical advice, and knowledge sharing across Australia's restoration community.</p>
+
+            <div class="info-box">
+                <h4 style="color: #1d4ed8; margin-bottom: 10px;">🌐 Forum Access Details</h4>
+                <p><strong>URL:</strong> forum.nrpg.com.au<br>
+                <strong>Login:</strong> Same credentials as DR-NRPG dashboard<br>
+                <strong>Availability:</strong> 24/7 access from any device<br>
+                <strong>Moderation:</strong> Professional moderation team + volunteer member moderators</p>
+            </div>
+
+            <h3 style="color: #d97706; margin-top: 25px;">Forum Categories & Activity</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Forum Category</th>
+                        <th>Purpose</th>
+                        <th>Avg Posts/Month</th>
+                        <th>Response Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>🔧 Technical Q&A</strong></td>
+                        <td>Equipment troubleshooting, technique questions</td>
+                        <td>420</td>
+                        <td>< 2 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>💼 Business & Operations</strong></td>
+                        <td>Pricing, contracts, staffing, business growth</td>
+                        <td>285</td>
+                        <td>< 4 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>📋 Insurance Claims</strong></td>
+                        <td>Claims processes, scope disputes, estimating</td>
+                        <td>195</td>
+                        <td>< 3 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🎓 Training & Certification</strong></td>
+                        <td>IICRC questions, CEC tracking, course recommendations</td>
+                        <td>145</td>
+                        <td>< 6 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🛒 Equipment Reviews</strong></td>
+                        <td>Vendor reviews, equipment comparisons, recommendations</td>
+                        <td>115</td>
+                        <td>< 12 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>💡 Success Stories</strong></td>
+                        <td>Case studies, before/afters, lessons learned</td>
+                        <td>78</td>
+                        <td>Ongoing discussion</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🤝 Referrals & Partnerships</strong></td>
+                        <td>Overflow work, geographic partnerships, specialist referrals</td>
+                        <td>92</td>
+                        <td>< 8 hours</td>
+                    </tr>
+                    <tr>
+                        <td><strong>📣 General Discussion</strong></td>
+                        <td>Industry news, off-topic, casual conversation</td>
+                        <td>158</td>
+                        <td>Varies</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: #d97706; margin-top: 25px;">Forum Best Practices</h3>
+
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>✅ <strong>Search before posting</strong> - Check if your question has been answered previously</li>
+                <li>✅ <strong>Use descriptive titles</strong> - "Help with Desiccant vs LGR?" better than "Equipment Question"</li>
+                <li>✅ <strong>Include context</strong> - Job type, location, equipment used, issue encountered</li>
+                <li>✅ <strong>Add photos when relevant</strong> - Visual problems get faster, more accurate responses</li>
+                <li>✅ <strong>Mark solutions</strong> - Mark helpful replies as "Solution" to help future members</li>
+                <li>✅ <strong>Give back to community</strong> - Answer questions in your area of expertise</li>
+                <li>✅ <strong>Stay professional</strong> - Respectful discourse, no competitor bashing, constructive feedback only</li>
+            </ul>
+
+            <div class="testimonial">
+                "The forum saved me on a challenging mould job last year. Posted photos and moisture readings at 11pm, had three experienced contractors reply with specific advice by 7am the next morning. Their guidance prevented what could have been a costly mistake. I now check the forum daily and try to help newer contractors when I can."
+                <div class="testimonial-author">— David Martinez, Perth Mould Specialists | NRPG PREFERRED Member</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎓 Mentorship Program</h2>
+
+            <p>The NRPG Mentorship Program pairs experienced contractors with newcomers for structured professional development over a 6-12 month period.</p>
+
+            <div class="event-card">
+                <div class="event-header">
+                    <div class="event-title">NRPG Mentorship Program</div>
+                    <div class="event-badge badge-ongoing">Ongoing Program</div>
+                </div>
+
+                <h4 style="color: #d97706; margin-top: 15px;">Program Structure</h4>
+
+                <table style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th>Program Element</th>
+                            <th>Frequency</th>
+                            <th>Format</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Initial Matching Session</strong></td>
+                            <td>Once at program start</td>
+                            <td>Video call (facilitated)</td>
+                            <td>60 minutes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Monthly Check-ins</strong></td>
+                            <td>Once per month</td>
+                            <td>Video/phone call</td>
+                            <td>45-60 minutes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>On-Site Shadowing</strong></td>
+                            <td>Quarterly (optional)</td>
+                            <td>Job site visit</td>
+                            <td>Half day</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Goal Review Sessions</strong></td>
+                            <td>Every 3 months</td>
+                            <td>Video call</td>
+                            <td>60 minutes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Program Completion</strong></td>
+                            <td>At 6 or 12 months</td>
+                            <td>Final review + certification</td>
+                            <td>90 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="color: #d97706; margin-top: 25px;">Benefits for Mentees</h4>
+                <ul style="margin-left: 20px; line-height: 2;">
+                    <li>One-on-one guidance from experienced contractor (3+ years, PREFERRED+ tier)</li>
+                    <li>Accelerated learning curve - avoid common mistakes</li>
+                    <li>Business advice tailored to your specific market and situation</li>
+                    <li>Introduction to mentor's professional network</li>
+                    <li>Equipment purchasing advice and potential group buying opportunities</li>
+                    <li>Accountability partner for goal setting and achievement</li>
+                    <li>FREE participation (no cost to mentees)</li>
+                </ul>
+
+                <h4 style="color: #d97706; margin-top: 25px;">Benefits for Mentors</h4>
+                <ul style="margin-left: 20px; line-height: 2;">
+                    <li><strong>+5 merit score points</strong> upon successful program completion</li>
+                    <li><strong>2.0 CEC credits</strong> for completing mentorship (professional development category)</li>
+                    <li>Exclusive "Certified NRPG Mentor" badge for profile and marketing</li>
+                    <li>Potential referral partner or employee pipeline</li>
+                    <li>Personal satisfaction of giving back to the industry</li>
+                    <li>Opportunity to refine your own business thinking through teaching</li>
+                    <li>Recognition at annual conference (Top Mentor awards)</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4 style="color: #1d4ed8; margin-bottom: 10px;">🤝 How to Participate</h4>
+                <p><strong>As a Mentee:</strong> Apply through dashboard → Training Centre → "Request a Mentor"<br>
+                <strong>Requirements:</strong> CANDIDATE or PARTNER level, 0-18 months experience, commitment to monthly meetings<br>
+                <strong>Matching:</strong> Geographic proximity preferred, specialisation alignment, personality fit</p>
+
+                <p style="margin-top: 15px;"><strong>As a Mentor:</strong> Apply through dashboard → Training Centre → "Become a Mentor"<br>
+                <strong>Requirements:</strong> PREFERRED or PREMIUM level, 3+ years experience, 4.5+ star rating<br>
+                <strong>Commitment:</strong> 6-12 months, monthly 60-minute calls, availability for questions via forum</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Networking Strategy & ROI</h2>
+
+            <p>Strategic networking through NRPG events and programs delivers measurable business value beyond social connections.</p>
+
+            <h3 style="color: #d97706;">Networking ROI: Member Survey Results (2025)</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Networking Activity</th>
+                        <th>Time Investment</th>
+                        <th>Avg Business Value (12 months)</th>
+                        <th>ROI Multiple</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Annual Conference Attendance</strong></td>
+                        <td>3 days + $795</td>
+                        <td>$14,200 (new partnerships, equipment deals, client leads)</td>
+                        <td>18x</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quarterly Regional Meetups (4x)</strong></td>
+                        <td>12 hours + $0 cost</td>
+                        <td>$6,800 (local referrals, supplier relationships)</td>
+                        <td>Infinite (free)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Active Forum Participation</strong></td>
+                        <td>30 min/week + $0 cost</td>
+                        <td>$3,400 (technical problem solving, referrals)</td>
+                        <td>Infinite (free)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mentorship Program (as mentee)</strong></td>
+                        <td>1 hour/month + $0 cost</td>
+                        <td>$8,900 (accelerated growth, mistake avoidance)</td>
+                        <td>Infinite (free)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="margin-top: 20px;"><em>Data source: 2025 NRPG Member Value Survey (n=427 respondents) | Values represent median reported business impact</em></p>
+
+            <h3 style="color: #d97706; margin-top: 25px;">Maximising Your Networking ROI</h3>
+
+            <ol style="margin-left: 20px; line-height: 2.2;">
+                <li><strong>Set clear networking goals</strong> - Define what you want to achieve (referral partners, equipment advice, marketing insights)</li>
+                <li><strong>Prepare your elevator pitch</strong> - 30-second intro covering who you are, what you do, what makes you different</li>
+                <li><strong>Focus on giving first</strong> - Offer help, introductions, or advice before asking for anything</li>
+                <li><strong>Follow up within 48 hours</strong> - Send connection requests, LinkedIn invites, or emails while you're fresh in their mind</li>
+                <li><strong>Track your connections</strong> - Use CRM or spreadsheet to note where you met, conversation topics, follow-up items</li>
+                <li><strong>Attend consistently</strong> - Relationships build over time; attend multiple events to deepen connections</li>
+                <li><strong>Join online between events</strong> - Stay active in forum to maintain relationships when not meeting face-to-face</li>
+                <li><strong>Bring business cards</strong> - Always have cards ready; include QR code linking to your DR-NRPG profile</li>
+                <li><strong>Dress professionally</strong> - First impressions matter; business casual minimum for all NRPG events</li>
+                <li><strong>Turn connections into collaborations</strong> - Move beyond small talk to explore genuine partnership opportunities</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>📖 Key Takeaways</h2>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>The <strong>annual conference (15-17 Aug 2026, Sydney)</strong> offers 7.5 CEC + extensive networking ($795, free for PREMIUM)</li>
+                <li><strong>Regional meetups run quarterly</strong> in major cities (Sydney, Melbourne, Brisbane, Perth, Adelaide) - FREE for all members</li>
+                <li><strong>Online forum (forum.nrpg.com.au)</strong> provides 24/7 peer support with average <2 hour response time</li>
+                <li><strong>Mentorship program pairs</strong> experienced contractors with newcomers for 6-12 month structured development</li>
+                <li>Conference attendance delivers <strong>18x ROI</strong> through partnerships, supplier deals, and client leads</li>
+                <li><strong>All NRPG members qualify</strong> for mentorship program (mentees) or mentor role (PREFERRED+ with 3+ years)</li>
+                <li>Mentors earn <strong>+5 merit points + 2.0 CEC</strong> for successful program completion</li>
+                <li><strong>Strategic networking consistently generates</strong> $14K-$20K annual business value for active participants</li>
+            </ul>
+        </div>
+
+        <div class="section" style="background: #fef3c7; border-left-color: #f59e0b;">
+            <h2 style="color: #d97706;">📝 Module Assessment</h2>
+            <p><strong>To complete this module and earn 1.0 CEC, you must pass the 10-question assessment with a score of 80% or higher.</strong></p>
+            <p style="margin-top: 10px;">The assessment covers:</p>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>Annual conference details, location, and registration costs</li>
+                <li>Regional meetup schedules and formats</li>
+                <li>Online forum categories and best practices</li>
+                <li>Mentorship program structure and benefits</li>
+                <li>Networking ROI metrics and strategic approaches</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; padding: 20px; color: #6b7280;">
+            <p><strong>© 2026 DR-NRPG Platform | Connect. Learn. Grow.</strong></p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Building Australia's strongest restoration professional community</p>
+        </div>
+    </div>
+</body>
+</html>
