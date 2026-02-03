@@ -164,6 +164,11 @@ const nextConfig = {
       allowedOrigins: ['localhost:3000', '*.vercel.app'],
       bodySizeLimit: '2mb',
     },
+
+    // Include training-sources folder in Vercel deployment
+    outputFileTracingIncludes: {
+      '/api/**/*': ['../../training-sources/**/*'],
+    },
   },
 
   // Webpack optimization
