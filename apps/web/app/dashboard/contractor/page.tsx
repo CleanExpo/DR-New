@@ -24,7 +24,7 @@ import {
 import ContractorOnboarding from '@/components/onboarding/contractor-onboarding';
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import { EligibilityBanner } from '@/components/contractor/eligibility-banner';
-import { TrendingUp, DollarSign, Briefcase, Users } from 'lucide-react';
+import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle } from 'lucide-react';
 
 interface DashboardStats {
   activeOpportunities: number;
@@ -45,6 +45,15 @@ interface Opportunity {
   imageUrl?: string;
 }
 
+interface AvailabilityStatus {
+  status: 'available' | 'unavailable' | 'suspended' | 'inactive';
+  isActive: boolean;
+  isSuspended: boolean;
+  unavailableUntil: string | null;
+  minutesRemaining: number;
+  canReceiveNewJobs: boolean;
+}
+
 export default function ContractorDashboardPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -60,6 +69,9 @@ export default function ContractorDashboardPage() {
     avgProjectValue: 0,
   });
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
+  const [availability, setAvailability] = useState<AvailabilityStatus | null>(null);
+  const [loadingAvailability, setLoadingAvailability] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -178,6 +190,88 @@ export default function ContractorDashboardPage() {
     }
   };
 
+  const fetchAvailability = async () => {
+    try {
+      const response = await fetch('/api/contractor/availability', {
+        cache: 'no-store',
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setAvailability(data.availability);
+      }
+    } catch (error) {
+      console.error('Error fetching availability:', error);
+    }
+  };
+
+  const handleToggleAvailability = async () => {
+    if (availability?.status === 'suspended') {
+      return; // Cannot toggle if suspended
+    }
+
+    const willBeUnavailable = availability?.status === 'available';
+
+    if (willBeUnavailable) {
+      setShowConfirmDialog(true);
+    } else {
+      await performToggle(true);
+    }
+  };
+
+  const performToggle = async (available: boolean) => {
+    setLoadingAvailability(true);
+    setShowConfirmDialog(false);
+
+    try {
+      const response = await fetch('/api/contractor/availability', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ available }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setAvailability(data.availability);
+      } else {
+        const error = await response.json();
+        console.error('Failed to toggle availability:', error.message);
+      }
+    } catch (error) {
+      console.error('Error toggling availability:', error);
+    } finally {
+      setLoadingAvailability(false);
+    }
+  };
+
+  const handleCancelUnavailability = async () => {
+    setLoadingAvailability(true);
+
+    try {
+      const response = await fetch('/api/contractor/availability', {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setAvailability(data.availability);
+      }
+    } catch (error) {
+      console.error('Error cancelling unavailability:', error);
+    } finally {
+      setLoadingAvailability(false);
+    }
+  };
+
+  // Auto-refresh availability every 60 seconds
+  useEffect(() => {
+    if (user && user.userType === 'CONTRACTOR') {
+      fetchAvailability();
+      const interval = setInterval(fetchAvailability, 60000);
+      return () => clearInterval(interval);
+    }
+  }, [user]);
+
   const handleOnboardingComplete = async (preferences: any) => {
     try {
       setLoadingPreferences(true);
@@ -239,6 +333,127 @@ export default function ContractorDashboardPage() {
           Growth Partner
         </span>
       </div>
+
+      {/* Availability Toggle */}
+      {availability && (
+        <div className="bg-white border border-earth-primary/20 rounded-lg p-6 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className={`p-3 rounded-full ${
+                availability.status === 'available'
+                  ? 'bg-portal-success/10'
+                  : availability.status === 'suspended'
+                  ? 'bg-red-500/10'
+                  : 'bg-gray-500/10'
+              }`}>
+                <Power className={`size-6 ${
+                  availability.status === 'available'
+                    ? 'text-portal-success'
+                    : availability.status === 'suspended'
+                    ? 'text-red-500'
+                    : 'text-gray-500'
+                }`} />
+              </div>
+              <div>
+                <div className="flex items-center space-x-2">
+                  <h3 className="text-lg font-bold text-portal-text font-heading">
+                    Job Availability
+                  </h3>
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                    availability.status === 'available'
+                      ? 'bg-portal-success/10 text-portal-success'
+                      : availability.status === 'suspended'
+                      ? 'bg-red-500/10 text-red-500'
+                      : 'bg-gray-500/10 text-gray-500'
+                  }`}>
+                    {availability.status}
+                  </span>
+                </div>
+                <p className="text-portal-muted text-sm mt-1">
+                  {availability.status === 'available'
+                    ? 'You are currently receiving new job offers'
+                    : availability.status === 'suspended'
+                    ? 'Your account is suspended. Contact support for assistance.'
+                    : availability.status === 'inactive'
+                    ? 'Your account is inactive. Contact support to reactivate.'
+                    : `You will not receive new job offers for ${availability.minutesRemaining} more minutes`
+                  }
+                </p>
+                {availability.status === 'unavailable' && availability.minutesRemaining > 0 && (
+                  <div className="flex items-center space-x-2 mt-2">
+                    <Clock className="size-4 text-portal-muted" />
+                    <span className="text-sm text-portal-muted">
+                      Unavailable for {availability.minutesRemaining} more minute{availability.minutesRemaining !== 1 ? 's' : ''}
+                    </span>
+                    <button
+                      onClick={handleCancelUnavailability}
+                      disabled={loadingAvailability}
+                      className="ml-2 text-sm text-nrpg-teal hover:text-nrpg-teal/80 font-medium underline disabled:opacity-50"
+                    >
+                      Cancel and become available now
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={handleToggleAvailability}
+                disabled={loadingAvailability || availability.status === 'suspended' || availability.status === 'inactive'}
+                className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-nrpg-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
+                  availability.status === 'available'
+                    ? 'bg-portal-success'
+                    : 'bg-gray-300'
+                }`}
+              >
+                <span className="sr-only">Toggle availability</span>
+                <span
+                  className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-lg transition-transform ${
+                    availability.status === 'available' ? 'translate-x-9' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Confirmation Dialog */}
+      {showConfirmDialog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
+            <div className="flex items-start space-x-4">
+              <div className="p-3 bg-yellow-500/10 rounded-full">
+                <AlertCircle className="size-6 text-yellow-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-portal-text font-heading">
+                  Pause Job Notifications?
+                </h3>
+                <p className="text-portal-muted text-sm mt-2">
+                  You will not receive new job offers for the next 30 minutes. Already-sent offers will remain valid and you can still respond to them.
+                </p>
+                <div className="flex items-center space-x-3 mt-6">
+                  <button
+                    onClick={() => performToggle(false)}
+                    disabled={loadingAvailability}
+                    className="flex-1 px-4 py-2 bg-nrpg-teal text-white rounded-lg hover:bg-nrpg-teal/90 font-medium disabled:opacity-50"
+                  >
+                    Confirm
+                  </button>
+                  <button
+                    onClick={() => setShowConfirmDialog(false)}
+                    disabled={loadingAvailability}
+                    className="flex-1 px-4 py-2 bg-gray-100 text-portal-text rounded-lg hover:bg-gray-200 font-medium disabled:opacity-50"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
