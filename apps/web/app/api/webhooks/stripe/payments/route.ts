@@ -19,6 +19,7 @@ import {
   emitPaymentFailed,
   emitPaymentRefunded,
 } from '@/lib/realtime/payment-events';
+import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
 
 export const dynamic = 'force-dynamic';
 
@@ -63,6 +64,25 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // Check if this event has already been processed (idempotency)
+  try {
+    const alreadyProcessed = await isEventProcessed(event.id);
+    if (alreadyProcessed) {
+      console.info(`[Payment Webhook] Event ${event.id} already processed, skipping`);
+      return NextResponse.json({ received: true });
+    }
+  } catch (error) {
+    console.error('[Payment Webhook] Error checking event idempotency:', error);
+    // Don't block the response, let Stripe retry
+    return NextResponse.json(
+      {
+        error: 'Idempotency check failed',
+        message: error instanceof Error ? error.message : 'Idempotency check failed',
+      },
+      { status: 503 }
+    );
+  }
+
   try {
     switch (event.type) {
       case 'payment_intent.succeeded': {
@@ -87,8 +107,14 @@ export async function POST(request: NextRequest) {
         console.log(`Unhandled payment webhook event: ${event.type}`);
     }
 
+    // Record successful processing
+    await recordWebhookEvent(event.id, event.type, 200);
     return NextResponse.json({ received: true });
   } catch (error) {
+    // Record failed processing
+    const errorMessage = error instanceof Error ? error.message : 'Webhook handler failed';
+    await recordWebhookEvent(event.id, event.type, 500, errorMessage);
+
     console.error('Payment webhook handler error:', error);
     return NextResponse.json(
       { error: 'Webhook handler failed' },
