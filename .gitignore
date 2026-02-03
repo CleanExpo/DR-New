@@ -119,3 +119,5 @@ nul
 australia-3d-map/
 NodeJS-Starter-V1/
 .env.production.local
+.secrets-rotation.tmp
+.git-secrets-tmp/
