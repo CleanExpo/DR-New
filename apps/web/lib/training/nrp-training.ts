@@ -92,28 +92,106 @@ export function parseNrpgModuleNumber(moduleId: string): number | null {
   return parseInt(match[1], 10);
 }
 
+/**
+ * Parse CSE module ID to extract module number
+ * Format: CSE-M01, CSE-M02, etc.
+ */
+export function parseCseModuleNumber(moduleId: string): number | null {
+  const match = moduleId.match(/^CSE-M(\d{2})$/i);
+  if (!match) return null;
+  return parseInt(match[1], 10);
+}
+
+/**
+ * Parse WRT module ID to extract module number
+ * Format: WRT-M01, WRT-M02, etc.
+ */
+export function parseWrtModuleNumber(moduleId: string): number | null {
+  const match = moduleId.match(/^WRT-M(\d{2})$/i);
+  if (!match) return null;
+  return parseInt(match[1], 10);
+}
+
+/**
+ * Determine course type from module ID
+ */
+export function getCourseTypeFromModuleId(moduleId: string): 'NRPG' | 'CSE' | 'WRT' | null {
+  if (moduleId.match(/^NRP-\d{3}$/i)) return 'NRPG';
+  if (moduleId.match(/^CSE-M\d{2}$/i)) return 'CSE';
+  if (moduleId.match(/^WRT-M\d{2}$/i)) return 'WRT';
+  return null;
+}
+
+/**
+ * Get module path based on course type
+ */
+function getModulePath(courseType: 'NRPG' | 'CSE' | 'WRT', moduleNumber: number): string {
+  switch (courseType) {
+    case 'NRPG':
+      return path.join('training-sources', 'modules', `nrp-${moduleNumber.toString().padStart(3, '0')}.html`);
+    case 'CSE':
+      return path.join('..', '..', 'NRPG-Onboarding-Framework', 'contractor-onboarding', 'customer-service-excellence', 'modules', `module-${moduleNumber.toString().padStart(2, '0')}-training-content.md`);
+    case 'WRT':
+      return path.join('..', '..', 'NRPG-Onboarding-Framework', 'contractor-onboarding', 'water-damage-restoration', 'modules', `module-${moduleNumber.toString().padStart(2, '0')}-training-content.md`);
+    default:
+      throw new Error(`Unknown course type: ${courseType}`);
+  }
+}
+
 export async function getTrainingModuleHtmlById(
   moduleId: string
 ): Promise<{ html: string; sourcePath: string; sha256: string }> {
-  const index = await loadNrpgTrainingIndex();
-  const entry = index.modules.find((m) => m.moduleId.toUpperCase() === moduleId.toUpperCase());
-  if (!entry) {
+  const courseType = getCourseTypeFromModuleId(moduleId);
+  
+  if (!courseType) {
+    throw new Error(`Invalid module ID format: ${moduleId}. Expected NRP-XXX, CSE-MXX, or WRT-MXX`);
+  }
+
+  // Try to load from index first (for NRPG modules)
+  if (courseType === 'NRPG') {
+    const index = await loadNrpgTrainingIndex();
+    const entry = index.modules.find((m) => m.moduleId.toUpperCase() === moduleId.toUpperCase());
+    if (entry) {
+      const absolutePath = path.join(process.cwd(), entry.sourcePath);
+      const buffer = await fs.readFile(absolutePath);
+      const sha = sha256Hex(buffer);
+
+      if (sha !== entry.sourceSha256) {
+        throw new Error(`Training module source hash mismatch for ${moduleId}`);
+      }
+
+      return {
+        html: buffer.toString('utf8'),
+        sourcePath: entry.sourcePath,
+        sha256: sha,
+      };
+    }
+  }
+
+  // For CSE/WRT modules, load directly from framework
+  const moduleNumber = courseType === 'CSE' 
+    ? parseCseModuleNumber(moduleId) 
+    : parseWrtModuleNumber(moduleId);
+    
+  if (!moduleNumber) {
     throw new Error(`Training module not found: ${moduleId}`);
   }
 
-  const absolutePath = path.join(process.cwd(), entry.sourcePath);
-  const buffer = await fs.readFile(absolutePath);
-  const sha = sha256Hex(buffer);
-
-  if (sha !== entry.sourceSha256) {
-    throw new Error(`Training module source hash mismatch for ${moduleId}`);
+  const sourcePath = getModulePath(courseType, moduleNumber);
+  const absolutePath = path.join(process.cwd(), sourcePath);
+  
+  try {
+    const buffer = await fs.readFile(absolutePath);
+    const sha = sha256Hex(buffer);
+    
+    return {
+      html: buffer.toString('utf8'),
+      sourcePath,
+      sha256: sha,
+    };
+  } catch (error) {
+    throw new Error(`Training module not found: ${moduleId} (tried ${sourcePath})`);
   }
-
-  return {
-    html: buffer.toString('utf8'),
-    sourcePath: entry.sourcePath,
-    sha256: sha,
-  };
 }
 
 export async function verifyTrainingSourcesPresent(): Promise<void> {

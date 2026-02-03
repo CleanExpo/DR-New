@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "australian-sources-schema",
+  "title": "Australian Training Source Whitelist",
+  "description": "Verified Australian sources for DR-NRPG training content. All training modules must cite sources from this whitelist.",
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-03",
+  "governance": {
+    "maintainer": "DR-NRPG Content Team",
+    "reviewCycle": "quarterly",
+    "approvalRequired": true
+  },
+  "whitelist": {
+    "government": {
+      "description": "Australian federal, state, and local government sources",
+      "domains": [
+        {
+          "domain": "*.gov.au",
+          "category": "all_government",
+          "trustLevel": "maximum",
+          "requiresVerification": false
+        },
+        {
+          "domain": "safeworkaustralia.gov.au",
+          "category": "workplace_safety",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "priority": 1
+        },
+        {
+          "domain": "accc.gov.au",
+          "category": "consumer_protection",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "priority": 1
+        },
+        {
+          "domain": "afca.org.au",
+          "category": "financial_complaints",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "priority": 1
+        },
+        {
+          "domain": "abs.gov.au",
+          "category": "statistics",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "priority": 1
+        },
+        {
+          "domain": "bom.gov.au",
+          "category": "weather_climate",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "priority": 2
+        },
+        {
+          "domain": "disaster.qld.gov.au",
+          "category": "emergency_management",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "state": "QLD"
+        },
+        {
+          "domain": "ses.nsw.gov.au",
+          "category": "emergency_services",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "state": "NSW"
+        },
+        {
+          "domain": "ses.vic.gov.au",
+          "category": "emergency_services",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "state": "VIC"
+        },
+        {
+          "domain": "dfes.wa.gov.au",
+          "category": "emergency_services",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "state": "WA"
+        },
+        {
+          "domain": "cfa.vic.gov.au",
+          "category": "fire_services",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "state": "VIC"
+        },
+        {
+          "domain": "rfs.nsw.gov.au",
+          "category": "fire_services",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "state": "NSW"
+        },
+        {
+          "domain": "qfes.qld.gov.au",
+          "category": "fire_emergency",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "state": "QLD"
+        },
+        {
+          "domain": "training.gov.au",
+          "category": "education_training",
+          "trustLevel": "maximum",
+          "requiresVerification": false
+        },
+        {
+          "domain": "aitsl.edu.au",
+          "category": "education",
+          "trustLevel": "maximum",
+          "requiresVerification": false
+        }
+      ]
+    },
+    "industry": {
+      "description": "Australian industry associations and professional bodies",
+      "domains": [
+        {
+          "domain": "ria.org.au",
+          "category": "restoration_industry",
+          "trustLevel": "high",
+          "requiresVerification": false,
+          "priority": 1,
+          "notes": "Restoration Industry Association Australia"
+        },
+        {
+          "domain": "iicrc.org.au",
+          "category": "certification_standards",
+          "trustLevel": "high",
+          "requiresVerification": false,
+          "priority": 1,
+          "notes": "IICRC Australia - Australian English variant"
+        },
+        {
+          "domain": "masterbuilders.com.au",
+          "category": "building_construction",
+          "trustLevel": "high",
+          "requiresVerification": false
+        },
+        {
+          "domain": "carsi.com.au",
+          "category": "cleaning_restoration",
+          "trustLevel": "high",
+          "requiresVerification": false,
+          "notes": "Cleaning And Restoration Services Institute"
+        },
+        {
+          "domain": "aibs.com.au",
+          "category": "building_surveyors",
+          "trustLevel": "high",
+          "requiresVerification": false,
+          "notes": "Australian Institute of Building Surveyors"
+        },
+        {
+          "domain": "redcross.org.au",
+          "category": "emergency_response",
+          "trustLevel": "high",
+          "requiresVerification": false
+        },
+        {
+          "domain": "stjohn.org.au",
+          "category": "first_aid",
+          "trustLevel": "high",
+          "requiresVerification": false
+        }
+      ]
+    },
+    "insurance": {
+      "description": "Australian insurance industry bodies and codes",
+      "domains": [
+        {
+          "domain": "codeofpractice.com.au",
+          "category": "insurance_code",
+          "trustLevel": "high",
+          "requiresVerification": false,
+          "notes": "General Insurance Code of Practice"
+        },
+        {
+          "domain": "ica.com.au",
+          "category": "insurance_council",
+          "trustLevel": "high",
+          "requiresVerification": false,
+          "notes": "Insurance Council of Australia"
+        }
+      ]
+    },
+    "standards": {
+      "description": "Australian Standards and technical specifications",
+      "domains": [
+        {
+          "domain": "standards.org.au",
+          "category": "australian_standards",
+          "trustLevel": "maximum",
+          "requiresVerification": false,
+          "notes": "Standards Australia"
+        },
+        {
+          "domain": "saiglobal.com",
+          "category": "standards_publisher",
+          "trustLevel": "high",
+          "requiresVerification": true,
+          "notes": "Must be Australian Standards specifically"
+        }
+      ]
+    }
+  },
+  "blacklist": {
+    "description": "Domains explicitly prohibited from training content",
+    "domains": [
+      {
+        "domain": "*.com",
+        "reason": "Non-Australian commercial domain",
+        "exceptions": ["carsi.com.au", "iicrc.org.au"]
+      },
+      {
+        "domain": "*.org",
+        "reason": "Non-Australian organisation domain",
+        "exceptions": ["redcross.org.au", "iicrc.org.au"]
+      },
+      {
+        "domain": "iicrc.org",
+        "reason": "US-based IICRC - use iicrc.org.au instead",
+        "suggestedAlternative": "iicrc.org.au"
+      },
+      {
+        "domain": "osha.gov",
+        "reason": "US OSHA - use safeworkaustralia.gov.au instead",
+        "suggestedAlternative": "safeworkaustralia.gov.au"
+      },
+      {
+        "domain": "epa.gov",
+        "reason": "US EPA - use state EPA websites instead",
+        "suggestedAlternatives": [
+          "epa.nsw.gov.au",
+          "epa.vic.gov.au",
+          "environment.des.qld.gov.au"
+        ]
+      }
+    ]
+  },
+  "validationRules": {
+    "minimumGovAuSources": 3,
+    "minimumTotalSources": 5,
+    "requirePrimarySource": true,
+    "primarySourceCategories": ["government", "standards"],
+    "prohibitedTerms": [
+      "OSHA",
+      "EPA (US)",
+      "Fahrenheit",
+      "inches",
+      "feet",
+      "gallons",
+      "pounds",
+      "miles"
+    ],
+    "requiredAustralianTerms": [
+      "WorkSafe",
+      "OH&S",
+      "WHS",
+      "Celsius",
+      "millimetres",
+      "metres",
+      "litres",
+      "kilograms",
+      "kilometres"
+    ]
+  },
+  "australianContext": {
+    "requiredLocations": ["Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide"],
+    "requiredStatistics": {
+      "source": "abs.gov.au",
+      "minimumReferences": 2
+    },
+    "weatherPatterns": {
+      "tropicalCycloneRegions": ["Queensland", "Northern Territory", "Western Australia"],
+      "bushfireProneAreas": ["Victoria", "New South Wales", "South Australia"],
+      "flashFloodZones": ["Queensland", "New South Wales"]
+    }
+  },
+  "metadata": {
+    "createdBy": "DR-NRPG System",
+    "createdAt": "2026-02-03T00:00:00Z",
+    "version": "1.0.0",
+    "nextReviewDate": "2026-05-03"
+  }
+}

@@ -7,7 +7,7 @@ import { getTrainingModuleHtmlById, verifyTrainingSourcesPresent } from '@/lib/t
 export const dynamic = 'force-dynamic';
 
 const paramsSchema = z.object({
-  moduleId: z.string().regex(/^NRP-\d{3}$/i),
+  moduleId: z.string().regex(/^(NRP-\d{3}|CSE-M\d{2}|WRT-M\d{2})$/i),
 });
 
 export async function GET(request: NextRequest, context: { params: { moduleId: string } }) {
