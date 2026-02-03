@@ -4,13 +4,29 @@ import { promises as fs } from 'fs';
 
 // Helper function to get repository root
 // In development: process.cwd() is repo root
-// In Vercel: Check if we're in apps/web and go up if needed
+// In Vercel: Always check if training-sources exists at current level, if not go up
 function getRepoRoot(): string {
   const cwd = process.cwd();
-  // If current directory contains 'apps/web', we need to go up 2 levels
-  if (cwd.endsWith('apps/web') || cwd.includes('/apps/web')) {
-    return path.resolve(cwd, '..', '..');
+
+  // Try current directory first
+  const fs = require('fs');
+  if (fs.existsSync(path.join(cwd, 'training-sources'))) {
+    return cwd;
   }
+
+  // Try one level up
+  const parentDir = path.resolve(cwd, '..');
+  if (fs.existsSync(path.join(parentDir, 'training-sources'))) {
+    return parentDir;
+  }
+
+  // Try two levels up (for apps/web structure)
+  const grandparentDir = path.resolve(cwd, '..', '..');
+  if (fs.existsSync(path.join(grandparentDir, 'training-sources'))) {
+    return grandparentDir;
+  }
+
+  // Fallback to current directory
   return cwd;
 }
 
