@@ -1,4 +1,26 @@
 /**
+ * ⚠️ DEPRECATED - NO LONGER IN USE ⚠️
+ *
+ * This file contained the AI-powered contractor matching workflow using LangGraph.
+ * As of 2026-02-03, the system has been changed to use STRICT ROTATION instead of AI scoring.
+ *
+ * Reason for deprecation:
+ * - User requirement: Fair rotation based on lastJobReceivedAt (no preferential treatment)
+ * - User requirement: IICRC cert hard filtering (not scoring)
+ * - User requirement: No AI - pure round-robin distribution
+ *
+ * NEW Implementation:
+ * See: apps/web/lib/queue/processors/contractor-matching-processor.ts
+ *
+ * This file is kept for historical reference only.
+ * DO NOT USE THIS WORKFLOW - it will not be executed by the system.
+ *
+ * Date Deprecated: 2026-02-03
+ * Previous Functionality: AI-powered contractor matching with 0-100 scoring
+ *
+ * ============================================================================
+ *
+ * ORIGINAL DOCUMENTATION (for reference):
  * Contractor Matching Workflow - LangGraph implementation
  * Intelligently matches clients with qualified restoration contractors
  */
