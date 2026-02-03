@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { z } from 'zod';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
-import { getTrainingModuleHtmlById, verifyTrainingSourcesPresent } from '@/lib/training/nrp-training';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs'; // Force Node.js runtime for filesystem access
@@ -18,25 +19,28 @@ export async function GET(request: NextRequest, context: { params: { moduleId: s
       return authResult.response;
     }
 
-    await verifyTrainingSourcesPresent();
-
     const validation = paramsSchema.safeParse(context.params);
     if (!validation.success) {
       return handleValidationError(validation.error);
     }
 
     const moduleId = validation.data.moduleId.toUpperCase();
-    const trainingModule = await getTrainingModuleHtmlById(moduleId);
 
-    return NextResponse.json({
-      success: true,
-      module: {
-        moduleId,
-        sourcePath: trainingModule.sourcePath,
-        sha256: trainingModule.sha256,
-        html: trainingModule.html,
-      },
-    });
+    // Serve pre-generated static JSON file
+    const staticFilePath = path.join(process.cwd(), 'public', 'training-modules', `${moduleId}.json`);
+
+    try {
+      const staticData = await fs.readFile(staticFilePath, 'utf8');
+      const moduleData = JSON.parse(staticData);
+      return NextResponse.json(moduleData);
+    } catch (error) {
+      // If static file doesn't exist, return 404
+      return createErrorResponse(
+        ErrorCode.RESOURCE_NOT_FOUND,
+        `Training module not found: ${moduleId}`,
+        404
+      );
+    }
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to load training module';
     if (message.includes('not found')) {
