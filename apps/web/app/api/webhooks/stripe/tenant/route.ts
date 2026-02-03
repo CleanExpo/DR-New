@@ -21,6 +21,8 @@ import {
   sendPaymentSuccessEmail,
   sendTrialEndingEmail,
 } from '@/lib/email';
+import { sendPaymentFailureSlackAlert } from '@/lib/monitoring/slack-alerts';
+import { sendPaymentFailureEmailAlert } from '@/lib/monitoring/email-alerts';
 
 export const dynamic = 'force-dynamic';
 
@@ -390,6 +392,39 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
         console.error('[Tenant Webhook] Failed to send payment failure email:', error);
         // Don't throw - email failure shouldn't fail the webhook
       });
+
+      // Send admin alerts (Slack + Email) for high-value or last attempt failures
+      const isHighValue = amountDueAUD >= 200;
+      const isLastAttempt = attemptCount >= 3;
+
+      if (isHighValue || isLastAttempt) {
+        // Send Slack alert
+        sendPaymentFailureSlackAlert({
+          tenantName: tenant.users[0].name || tenant.name,
+          businessName: tenant.name,
+          subscriptionTier: tenant.subscriptionTier,
+          amountAUD: amountDueAUD,
+          attemptCount,
+          tenantId,
+        }).catch((error) => {
+          console.error('[Tenant Webhook] Failed to send Slack alert:', error);
+        });
+
+        // Send admin email alert
+        sendPaymentFailureEmailAlert({
+          tenantName: tenant.users[0].name || tenant.name,
+          businessName: tenant.name,
+          email: tenant.users[0].email,
+          subscriptionTier: tenant.subscriptionTier,
+          amountAUD: amountDueAUD,
+          attemptCount,
+          lastFourDigits,
+          tenantId,
+          failureReason: invoice.last_finalization_error?.message,
+        }).catch((error) => {
+          console.error('[Tenant Webhook] Failed to send admin email alert:', error);
+        });
+      }
     }
   } catch (error) {
     console.error('[Tenant Webhook] Failed to process payment failure:', error);

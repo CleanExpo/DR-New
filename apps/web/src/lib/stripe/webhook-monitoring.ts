@@ -13,6 +13,8 @@
  */
 
 import { prisma } from '@/lib/prisma';
+import { sendWebhookFailureSlackAlert, sendHighErrorRateSlackAlert } from '../../../lib/monitoring/slack-alerts';
+import { sendSystemHealthEmailAlert } from '../../../lib/monitoring/email-alerts';
 
 /**
  * Alert severity levels
@@ -126,15 +128,38 @@ export async function logAlert(
   try {
     console.warn(`[${severity}] ${alertType}: ${message}`, metadata);
 
-    // TODO: Integration points for external alerting systems
-    // - Send to Slack webhook
-    // - Send to PagerDuty
-    // - Send email notification
-    // - Log to monitoring service (Datadog, New Relic, etc.)
+    // Send alerts to Slack
+    if (alertType === AlertType.HIGH_FAILURE_RATE) {
+      await sendHighErrorRateSlackAlert({
+        errorRate: (metadata?.stats as any)?.failureRate ? parseFloat((metadata.stats as any).failureRate) : 0,
+        threshold: 5,
+        errorCount: (metadata?.stats as any)?.totalFailed || 0,
+        timeWindow: `${(metadata?.stats as any)?.timeWindowMinutes || 5} minutes`,
+      });
+    } else if (
+      alertType === AlertType.PAYMENT_PROCESSING_FAILED ||
+      alertType === AlertType.PAYMENT_INTENT_FAILED ||
+      alertType === AlertType.CHECKOUT_SESSION_FAILED
+    ) {
+      await sendWebhookFailureSlackAlert({
+        eventType: (metadata?.eventType as string) || 'unknown',
+        failureCount: (metadata?.failureCount as number) || 0,
+        errorMessage: message,
+        webhookId: (metadata?.stripeEventId as string) || 'unknown',
+      });
+    }
 
+    // Send critical alerts via email
     if (severity === AlertSeverity.CRITICAL) {
-      // Critical alerts should trigger immediate notifications
-      // await sendCriticalAlert(alertType, message, metadata);
+      await sendSystemHealthEmailAlert({
+        alertType: 'WEBHOOK_FAILURES',
+        metric: 'Webhook failure count',
+        threshold: '5 failures in 10 minutes',
+        currentValue: `${(metadata?.failureCount as number) || 0} failures`,
+        duration: `${(metadata?.timeWindowMinutes as number) || 5} minutes`,
+        affectedServices: ['Stripe Webhooks', 'Payment Processing'],
+        severity: 'CRITICAL',
+      });
     }
   } catch (error) {
     console.error('Error logging alert:', error);
