@@ -2,6 +2,18 @@ import path from 'path';
 import { createHash } from 'crypto';
 import { promises as fs } from 'fs';
 
+// Helper function to get repository root
+// In development: process.cwd() is repo root
+// In Vercel: Check if we're in apps/web and go up if needed
+function getRepoRoot(): string {
+  const cwd = process.cwd();
+  // If current directory contains 'apps/web', we need to go up 2 levels
+  if (cwd.endsWith('apps/web') || cwd.includes('/apps/web')) {
+    return path.resolve(cwd, '..', '..');
+  }
+  return cwd;
+}
+
 export interface NrpgTrainingSource {
   path: string;
   sha256: string;
@@ -63,7 +75,7 @@ function generatedDir(): string {
 }
 
 function trainingSourcesDir(): string {
-  return path.join(process.cwd(), 'training-sources');
+  return path.join(getRepoRoot(), 'training-sources');
 }
 
 function sha256Hex(content: Buffer): string {
@@ -152,7 +164,7 @@ export async function getTrainingModuleHtmlById(
     const index = await loadNrpgTrainingIndex();
     const entry = index.modules.find((m) => m.moduleId.toUpperCase() === moduleId.toUpperCase());
     if (entry) {
-      const absolutePath = path.join(process.cwd(), entry.sourcePath);
+      const absolutePath = path.join(getRepoRoot(), entry.sourcePath);
       const buffer = await fs.readFile(absolutePath);
       const sha = sha256Hex(buffer);
 
@@ -178,12 +190,12 @@ export async function getTrainingModuleHtmlById(
   }
 
   const sourcePath = getModulePath(courseType, moduleNumber);
-  const absolutePath = path.join(process.cwd(), sourcePath);
-  
+  const absolutePath = path.join(getRepoRoot(), sourcePath);
+
   try {
     const buffer = await fs.readFile(absolutePath);
     const sha = sha256Hex(buffer);
-    
+
     return {
       html: buffer.toString('utf8'),
       sourcePath,
@@ -211,7 +223,7 @@ export async function getVerifiedTrainingSourceHtml(
     throw new Error(`Training source not found in index: ${relativePath}`);
   }
 
-  const absolutePath = path.join(process.cwd(), relativePath);
+  const absolutePath = path.join(getRepoRoot(), relativePath);
   const buffer = await fs.readFile(absolutePath);
   const sha = sha256Hex(buffer);
 
