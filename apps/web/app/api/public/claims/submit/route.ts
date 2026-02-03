@@ -18,6 +18,7 @@ import { verifyCaptcha } from '@/lib/services/captcha.service';
 import { sendClaimSubmissionConfirmationEmail } from '@/lib/email/client-notifications';
 import { createJob } from '@/lib/queue/background-jobs';
 import { getStateFromPostcode } from '@/src/lib/validation/australia';
+import { getRequiredCerts } from '@/lib/claim-wizard/cert-requirements';
 
 // Rate limiting storage (in-memory for demo, use Redis in production)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
@@ -142,6 +143,9 @@ export async function POST(request: NextRequest) {
     // 6. REAL IMPLEMENTATION: Save claim to database using PublicClaim model
     let savedClaim;
     try {
+      // Determine required IICRC certifications based on disaster type
+      const requiredCerts = getRequiredCerts(validatedData.step1.disasterType);
+
       // Create a public claim record (pre-authentication intake)
       savedClaim = await basePrisma.publicClaim.create({
         data: {
@@ -155,6 +159,7 @@ export async function POST(request: NextRequest) {
 
           // Incident Details
           disasterType: validatedData.step1.disasterType,
+          requiredIICRCCerts: requiredCerts,
           incidentDate: new Date(validatedData.step1.incidentDate),
           isOngoing: validatedData.step1.isOngoing === 'yes',
           isEmergency: validatedData.step1.isEmergency === 'yes',
