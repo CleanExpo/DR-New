@@ -165,9 +165,9 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
 
-    // Include training-sources folder in Vercel deployment
+    // Include training sources in Vercel deployment
     outputFileTracingIncludes: {
-      '/api/**/*': ['../../training-sources/**/*'],
+      '/api/**/*': ['./lib/training/sources/**/*'],
     },
   },
 
