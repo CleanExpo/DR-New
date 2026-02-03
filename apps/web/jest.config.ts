@@ -22,6 +22,9 @@ const config = {
     // Tests are placeholder stubs — skip until dependency is added
     'src/__tests__/realtime/socket-server\\.test\\.ts',
   ],
+  transformIgnorePatterns: [
+    'node_modules/(?!(uuid|svix|resend)/)',
+  ],
   testEnvironmentOptions: {
     customExportConditions: [''],
   },
@@ -29,6 +32,7 @@ const config = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    '^uuid$': require.resolve('uuid'),
   },
   clearMocks: true,
   restoreMocks: true,

@@ -55,7 +55,8 @@ describe('Billing Email Notifications', () => {
       const emailCall = (sendEmail as jest.Mock).mock.calls[0][0];
       expect(emailCall.html).toContain('Acme Corp');
       expect(emailCall.html).toContain('$99.00 AUD');
-      expect(emailCall.html).toContain('1/3'); // Attempt count
+      expect(emailCall.html).toContain('Payment Attempt 1 Failed'); // Attempt count
+      expect(emailCall.html).toContain('Attempt: 1 of 3'); // Attempt count ratio
       expect(emailCall.html).toContain('4242'); // Last 4 digits
 
       // Verify plain text version exists
@@ -97,12 +98,16 @@ describe('Billing Email Notifications', () => {
       });
 
       const emailCall = (sendEmail as jest.Mock).mock.calls[0][0];
-      expect(emailCall.html).toContain('3/3'); // Final attempt
-      expect(emailCall.html).toContain('suspend'); // Warning about suspension
+      expect(emailCall.html).toContain('Final Notice'); // Final attempt warning
+      expect(emailCall.html).toContain('suspended'); // Warning about suspension
+      expect(emailCall.html).toContain('Attempt: 3 of 3'); // Attempt count ratio
     });
 
     it('should return error when email service fails', async () => {
-      (sendEmail as jest.Mock).mockRejectedValue(new Error('Resend API unavailable'));
+      (sendEmail as jest.Mock).mockResolvedValue({
+        success: false,
+        error: 'Resend API unavailable'
+      });
 
       const result = await sendPaymentFailureEmail({
         email: 'owner@test.com',
@@ -212,7 +217,10 @@ describe('Billing Email Notifications', () => {
     });
 
     it('should return error when email service fails', async () => {
-      (sendEmail as jest.Mock).mockRejectedValue(new Error('Email service timeout'));
+      (sendEmail as jest.Mock).mockResolvedValue({
+        success: false,
+        error: 'Email service timeout'
+      });
 
       const result = await sendPaymentSuccessEmail({
         email: 'owner@test.com',
@@ -315,7 +323,10 @@ describe('Billing Email Notifications', () => {
     });
 
     it('should return error when email service fails', async () => {
-      (sendEmail as jest.Mock).mockRejectedValue(new Error('SMTP connection refused'));
+      (sendEmail as jest.Mock).mockResolvedValue({
+        success: false,
+        error: 'SMTP connection refused'
+      });
 
       const result = await sendTrialEndingEmail({
         email: 'owner@test.com',
@@ -373,7 +384,10 @@ describe('Billing Email Notifications', () => {
 
   describe('Non-Blocking Email Delivery', () => {
     it('should handle email failures gracefully without throwing', async () => {
-      (sendEmail as jest.Mock).mockRejectedValue(new Error('Service unavailable'));
+      (sendEmail as jest.Mock).mockResolvedValue({
+        success: false,
+        error: 'Service unavailable'
+      });
 
       // All email functions should catch errors and return error object
       const failureResult = await sendPaymentFailureEmail({
@@ -410,13 +424,14 @@ describe('Billing Email Notifications', () => {
       expect(trialResult.error).toBeDefined();
     });
 
-    it('should log errors but not throw in webhook context', async () => {
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+    it('should not throw errors in webhook context', async () => {
+      (sendEmail as jest.Mock).mockResolvedValue({
+        success: false,
+        error: 'Network timeout'
+      });
 
-      (sendEmail as jest.Mock).mockRejectedValue(new Error('Network timeout'));
-
-      // Email send failures should be logged
-      await sendPaymentSuccessEmail({
+      // Email send failures should return error object, not throw
+      const result = await sendPaymentSuccessEmail({
         email: 'test@test.com',
         businessName: 'Test',
         amountAUD: 49.0,
@@ -424,10 +439,9 @@ describe('Billing Email Notifications', () => {
         nextBillingDate: new Date(),
       });
 
-      // Should not throw, allowing webhook to complete
-      expect(() => sendEmail).not.toThrow();
-
-      consoleSpy.mockRestore();
+      // Should return error object, allowing webhook to complete
+      expect(result.success).toBe(false);
+      expect(result.error).toBeDefined();
     });
   });
 });
