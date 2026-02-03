@@ -155,7 +155,7 @@ export async function getTrainingModuleHtmlById(
     const index = await loadNrpgTrainingIndex();
     const entry = index.modules.find((m) => m.moduleId.toUpperCase() === moduleId.toUpperCase());
     if (entry) {
-      // Replace 'training-sources' prefix with 'lib/training/sources'
+      // Read from lib/training/sources (copied during build from repository root)
       const localPath = entry.sourcePath.replace('training-sources/', '');
       const absolutePath = path.join(process.cwd(), 'lib', 'training', 'sources', localPath);
       const buffer = await fs.readFile(absolutePath);

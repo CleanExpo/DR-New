@@ -167,7 +167,7 @@ const nextConfig = {
 
     // Include training sources in Vercel deployment
     outputFileTracingIncludes: {
-      '/api/**/*': ['../../training-sources/**/*'],
+      '/api/**/*': ['./lib/training/sources/**/*'],
     },
   },
 
