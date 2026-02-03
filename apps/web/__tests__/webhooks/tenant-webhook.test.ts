@@ -10,12 +10,37 @@
  * - Error handling and retries
  */
 
+// Mock Stripe SDK FIRST before any imports
+jest.mock('stripe', () => {
+  const mockConstructEventFn = jest.fn();
+  const mockRetrieveSubscriptionFn = jest.fn();
+
+  const StripeMock = jest.fn().mockImplementation(() => ({
+    webhooks: {
+      constructEvent: mockConstructEventFn,
+    },
+    subscriptions: {
+      retrieve: mockRetrieveSubscriptionFn,
+    },
+  }));
+
+  // Expose mocks for test access
+  (StripeMock as any).mockConstructEvent = mockConstructEventFn;
+  (StripeMock as any).mockRetrieveSubscription = mockRetrieveSubscriptionFn;
+
+  return StripeMock;
+});
+
 import { NextRequest } from 'next/server';
 import Stripe from 'stripe';
 import { POST } from '@/app/api/webhooks/stripe/tenant/route';
 import { prisma } from '@/lib/prisma';
 import * as webhookIdempotency from '@/src/lib/stripe/webhook-idempotency';
 import * as emailModule from '@/lib/email';
+
+// Get mocks after import
+const mockConstructEvent = (Stripe as any).mockConstructEvent;
+const mockRetrieveSubscription = (Stripe as any).mockRetrieveSubscription;
 
 // Mock dependencies
 jest.mock('@/lib/prisma', () => ({
@@ -41,8 +66,6 @@ const mockEnv = {
 };
 
 describe('Tenant Webhook Handler', () => {
-  let mockStripe: jest.Mocked<Stripe>;
-
   beforeAll(() => {
     // Set mock environment variables
     Object.assign(process.env, mockEnv);
@@ -50,13 +73,6 @@ describe('Tenant Webhook Handler', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-
-    // Mock Stripe webhook verification
-    mockStripe = {
-      webhooks: {
-        constructEvent: jest.fn(),
-      },
-    } as any;
 
     // Mock idempotency checks - default to not processed
     (webhookIdempotency.isEventProcessed as jest.Mock).mockResolvedValue(false);
@@ -96,7 +112,7 @@ describe('Tenant Webhook Handler', () => {
       });
 
       // Mock Stripe to throw on invalid signature
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockImplementation(() => {
+      mockConstructEvent.mockImplementation(() => {
         throw new Error('Invalid signature');
       });
 
@@ -124,7 +140,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       const response = await POST(request);
       const data = await response.json();
@@ -154,7 +170,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       // Mock tenant lookup
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
@@ -195,7 +211,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       // Mock event as already processed
       (webhookIdempotency.isEventProcessed as jest.Mock).mockResolvedValue(true);
@@ -227,7 +243,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       // Mock idempotency check failure
       (webhookIdempotency.isEventProcessed as jest.Mock).mockRejectedValue(
@@ -271,8 +287,8 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
-      jest.spyOn(Stripe.prototype.subscriptions, 'retrieve').mockResolvedValue(mockSubscription as any);
+      mockConstructEvent.mockReturnValue(mockEvent);
+      mockRetrieveSubscription.mockResolvedValue(mockSubscription as any);
 
       // Mock tenant with owner email
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
@@ -343,7 +359,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
         id: 'tenant_123',
@@ -394,7 +410,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
         id: 'tenant_123',
@@ -466,7 +482,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
         id: 'tenant_123',
@@ -519,7 +535,7 @@ describe('Tenant Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
         id: 'tenant_123',

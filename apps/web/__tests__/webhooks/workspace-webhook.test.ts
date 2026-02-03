@@ -10,6 +10,32 @@
  * - Error handling and resilience
  */
 
+// Mock Stripe SDK FIRST before any imports
+jest.mock('stripe', () => {
+  const mockConstructEventFn = jest.fn();
+  const mockRetrieveSubscriptionFn = jest.fn();
+  const mockRetrievePaymentMethodFn = jest.fn();
+
+  const StripeMock = jest.fn().mockImplementation(() => ({
+    webhooks: {
+      constructEvent: mockConstructEventFn,
+    },
+    subscriptions: {
+      retrieve: mockRetrieveSubscriptionFn,
+    },
+    paymentMethods: {
+      retrieve: mockRetrievePaymentMethodFn,
+    },
+  }));
+
+  // Expose mocks for test access
+  (StripeMock as any).mockConstructEvent = mockConstructEventFn;
+  (StripeMock as any).mockRetrieveSubscription = mockRetrieveSubscriptionFn;
+  (StripeMock as any).mockRetrievePaymentMethod = mockRetrievePaymentMethodFn;
+
+  return StripeMock;
+});
+
 import { NextRequest } from 'next/server';
 import Stripe from 'stripe';
 import { POST } from '@/app/api/webhooks/stripe/subscription/route';
@@ -17,6 +43,11 @@ import { prisma } from '@/lib/prisma';
 import * as webhookIdempotency from '@/src/lib/stripe/webhook-idempotency';
 import * as webhookRetry from '@/src/lib/stripe/webhook-retry';
 import * as emailModule from '@/lib/email';
+
+// Get mocks after import
+const mockConstructEvent = (Stripe as any).mockConstructEvent;
+const mockRetrieveSubscription = (Stripe as any).mockRetrieveSubscription;
+const mockRetrievePaymentMethod = (Stripe as any).mockRetrievePaymentMethod;
 
 // Mock dependencies
 jest.mock('@/lib/prisma', () => ({
@@ -46,26 +77,12 @@ const mockEnv = {
 };
 
 describe('Workspace Subscription Webhook Handler', () => {
-  let mockStripe: jest.Mocked<Stripe>;
-
   beforeAll(() => {
     Object.assign(process.env, mockEnv);
   });
 
   beforeEach(() => {
     jest.clearAllMocks();
-
-    mockStripe = {
-      webhooks: {
-        constructEvent: jest.fn(),
-      },
-      subscriptions: {
-        retrieve: jest.fn(),
-      },
-      paymentMethods: {
-        retrieve: jest.fn(),
-      },
-    } as any;
 
     // Mock idempotency checks
     (webhookIdempotency.isEventProcessed as jest.Mock).mockResolvedValue(false);
@@ -110,7 +127,7 @@ describe('Workspace Subscription Webhook Handler', () => {
         body: JSON.stringify({ test: 'data' }),
       });
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockImplementation(() => {
+      mockConstructEvent.mockImplementation(() => {
         throw new Error('Invalid signature');
       });
 
@@ -137,7 +154,7 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
       (webhookIdempotency.isEventProcessed as jest.Mock).mockResolvedValue(true);
 
       const response = await POST(request);
@@ -162,7 +179,7 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
       (webhookIdempotency.isEventProcessed as jest.Mock).mockRejectedValue(
         new Error('Redis connection failed')
       );
@@ -200,8 +217,8 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
-      jest.spyOn(Stripe.prototype.subscriptions, 'retrieve').mockResolvedValue(mockSubscription as any);
+      mockConstructEvent.mockReturnValue(mockEvent);
+      mockRetrieveSubscription.mockResolvedValue(mockSubscription as any);
 
       // Mock workspace with owner member
       (prisma.workspace.findUnique as jest.Mock).mockResolvedValue({
@@ -265,7 +282,7 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.workspace.findUnique as jest.Mock).mockResolvedValue({
         id: 'workspace_123',
@@ -325,8 +342,8 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
-      jest.spyOn(Stripe.prototype.paymentMethods, 'retrieve').mockResolvedValue(mockPaymentMethod as any);
+      mockConstructEvent.mockReturnValue(mockEvent);
+      mockRetrievePaymentMethod.mockResolvedValue(mockPaymentMethod as any);
 
       (prisma.workspace.findUnique as jest.Mock).mockResolvedValue({
         id: 'workspace_123',
@@ -403,8 +420,8 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
-      jest.spyOn(Stripe.prototype.paymentMethods, 'retrieve').mockRejectedValue(
+      mockConstructEvent.mockReturnValue(mockEvent);
+      mockRetrievePaymentMethod.mockRejectedValue(
         new Error('Payment method not found')
       );
 
@@ -459,7 +476,7 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.workspace.findUnique as jest.Mock).mockResolvedValue({
         id: 'workspace_123',
@@ -502,7 +519,7 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.workspace.findUnique as jest.Mock).mockResolvedValue({
         id: 'workspace_123',
@@ -547,7 +564,7 @@ describe('Workspace Subscription Webhook Handler', () => {
 
       const request = createMockRequest(mockEvent);
 
-      jest.spyOn(Stripe.prototype.webhooks, 'constructEvent').mockReturnValue(mockEvent);
+      mockConstructEvent.mockReturnValue(mockEvent);
 
       (prisma.workspace.findUnique as jest.Mock).mockResolvedValue({
         id: 'workspace_123',
