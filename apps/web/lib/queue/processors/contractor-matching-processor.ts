@@ -193,7 +193,38 @@ export async function processContractorMatchingJob(
     `[Contractor Matching] Created ${matchRecords.length} ContractorMatch records`
   );
 
-  // 5. Update claim status
+  // 5. Update rotation tracking for all matched contractors
+  const contractorIds = result.scoredMatches.map((m) => m.contractorId);
+
+  if (contractorIds.length > 0) {
+    // Update lastJobReceivedAt to move contractors to back of rotation queue
+    // This ensures fair distribution even when using AI scoring
+    const now = new Date();
+
+    await basePrisma.contractorRotation.updateMany({
+      where: {
+        // Match contractors in this workspace and postcode
+        workspace: {
+          contractors: {
+            some: {
+              id: { in: contractorIds },
+            },
+          },
+        },
+        postcode: criteria.location.postcode,
+      },
+      data: {
+        lastJobReceivedAt: now,
+        totalJobsOffered: { increment: 1 },
+      },
+    });
+
+    console.log(
+      `[Contractor Matching] Updated rotation tracking for ${contractorIds.length} contractors`
+    );
+  }
+
+  // 6. Update claim status
   await basePrisma.publicClaim.update({
     where: { id: claimId },
     data: {
@@ -202,7 +233,7 @@ export async function processContractorMatchingJob(
     },
   });
 
-  // 6. Queue contractor notification jobs (only for primary match initially)
+  // 7. Queue contractor notification jobs (only for primary match initially)
   const primaryMatch = matchRecords.find(
     (m) => m.contractorId === result.recommendedMatch
   );
@@ -229,7 +260,7 @@ export async function processContractorMatchingJob(
     );
   }
 
-  // 7. Return processor output
+  // 8. Return processor output
   const output: ProcessorOutput = {
     claimId,
     matchingCompleted: true,

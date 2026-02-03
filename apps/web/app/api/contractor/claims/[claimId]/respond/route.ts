@@ -226,6 +226,21 @@ export async function POST(
         console.error('Failed to send client contractor assignment notification:', error);
       });
 
+      // Update rotation tracking - contractor accepted job
+      await basePrisma.contractorRotation.updateMany({
+        where: {
+          workspace: {
+            contractors: {
+              some: { id: contractor.id },
+            },
+          },
+          postcode: match.claim.postcode,
+        },
+        data: {
+          totalJobsReceived: { increment: 1 },
+        },
+      });
+
       console.log(`[Contractor Response] Claim ${claimId} assigned to ${contractor.businessName}`);
     }
 
@@ -234,6 +249,37 @@ export async function POST(
       console.log(
         `[Contractor Response] ${contractor.businessName} declined claim ${claimId}${message ? `: ${message}` : ''}`
       );
+
+      // Update rotation tracking - contractor declined job
+      const rotation = await basePrisma.contractorRotation.findFirst({
+        where: {
+          workspace: {
+            contractors: {
+              some: { id: contractor.id },
+            },
+          },
+          postcode: match.claim.postcode,
+        },
+      });
+
+      if (rotation) {
+        // Calculate new decline rate
+        const newDeclinedCount = rotation.totalJobsDeclined + 1;
+        const totalOffered = rotation.totalJobsOffered || 1; // Avoid division by zero
+        const newDeclineRate = (newDeclinedCount / totalOffered) * 100;
+
+        await basePrisma.contractorRotation.update({
+          where: { id: rotation.id },
+          data: {
+            totalJobsDeclined: { increment: 1 },
+            declineRate: newDeclineRate,
+          },
+        });
+
+        console.log(
+          `[Contractor Response] Updated decline tracking - ${contractor.businessName} decline rate: ${newDeclineRate.toFixed(1)}%`
+        );
+      }
 
       // TODO: Trigger backup contractor notification job
       // This will be implemented in Phase 5 (Auto-escalation)
