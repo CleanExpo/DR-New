@@ -10,12 +10,15 @@ const path = require('path');
 function copyDir(src, dest) {
   // Create destination directory if it doesn't exist
   if (!fs.existsSync(dest)) {
+    console.log(`  📁 Creating directory: ${dest}`);
     fs.mkdirSync(dest, { recursive: true });
   }
 
   // Read source directory
   const entries = fs.readdirSync(src, { withFileTypes: true });
+  console.log(`  📂 Reading ${entries.length} entries from ${src}`);
 
+  let fileCount = 0;
   for (const entry of entries) {
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
@@ -24,9 +27,16 @@ function copyDir(src, dest) {
       copyDir(srcPath, destPath);
     } else {
       fs.copyFileSync(srcPath, destPath);
-      console.log(`  ✓ Copied: ${path.relative(process.cwd(), destPath)}`);
+      fileCount++;
+      // Only log NRP-02X files explicitly for verification
+      if (entry.name.includes('NRP-02')) {
+        console.log(`  ✓✓✓ COPIED NRP-02X: ${entry.name} (${fs.statSync(destPath).size} bytes)`);
+      } else {
+        console.log(`  ✓ Copied: ${path.relative(process.cwd(), destPath)}`);
+      }
     }
   }
+  console.log(`  ✅ Copied ${fileCount} files from ${path.basename(src)}`);
 }
 
 // Main execution
