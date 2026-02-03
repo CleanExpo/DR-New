@@ -300,6 +300,7 @@ model Contractor {
   isActive                      Boolean                  @default(true)
   isSuspended                   Boolean                  @default(false)
   suspensionReason              String?
+  unavailableUntil              DateTime?
   tenantId                      String?
   createdAt                     DateTime                 @default(now())
   updatedAt                     DateTime                 @updatedAt
@@ -906,8 +907,10 @@ model ContractorRotation {
   lastJobReceivedAt  DateTime?
   totalJobsReceived  Int       @default(0)
   totalJobsDeclined  Int       @default(0)
+  totalJobsOffered   Int       @default(0)
   declineRate        Decimal   @default(0)
   availabilityStatus String    @default("available")
+  unavailableUntil   DateTime?
   serviceRadiusKm    Int       @default(25)
   updatedAt          DateTime  @updatedAt
   workspace          Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
@@ -916,6 +919,7 @@ model ContractorRotation {
   @@index([postcode])
   @@index([lastJobReceivedAt])
   @@index([availabilityStatus])
+  @@index([unavailableUntil])
   @@map("contractor_rotation")
 }
 
