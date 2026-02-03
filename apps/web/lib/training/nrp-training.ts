@@ -2,8 +2,8 @@ import path from 'path';
 import { createHash } from 'crypto';
 import { promises as fs } from 'fs';
 
-// Use public folder for training sources (Next.js always includes /public in Vercel deployments)
-// This solves the serverless function file access issue in production
+// Training sources are stored within the app directory so they're included in Vercel's serverless function bundle
+// This ensures fs.readFile() can access them in production
 
 export interface NrpgTrainingSource {
   path: string;
@@ -66,7 +66,7 @@ function generatedDir(): string {
 }
 
 function trainingSourcesDir(): string {
-  return path.join(process.cwd(), 'public', 'training-sources');
+  return path.join(process.cwd(), 'lib', 'training', 'sources');
 }
 
 function sha256Hex(content: Buffer): string {
@@ -155,7 +155,9 @@ export async function getTrainingModuleHtmlById(
     const index = await loadNrpgTrainingIndex();
     const entry = index.modules.find((m) => m.moduleId.toUpperCase() === moduleId.toUpperCase());
     if (entry) {
-      const absolutePath = path.join(process.cwd(), 'public', entry.sourcePath);
+      // Replace 'training-sources' prefix with 'lib/training/sources'
+      const localPath = entry.sourcePath.replace('training-sources/', '');
+      const absolutePath = path.join(process.cwd(), 'lib', 'training', 'sources', localPath);
       const buffer = await fs.readFile(absolutePath);
       const sha = sha256Hex(buffer);
 
@@ -181,7 +183,7 @@ export async function getTrainingModuleHtmlById(
   }
 
   const sourcePath = getModulePath(courseType, moduleNumber);
-  const absolutePath = path.join(process.cwd(), 'public', sourcePath);
+  const absolutePath = path.join(process.cwd(), sourcePath);
 
   try {
     const buffer = await fs.readFile(absolutePath);
@@ -214,7 +216,9 @@ export async function getVerifiedTrainingSourceHtml(
     throw new Error(`Training source not found in index: ${relativePath}`);
   }
 
-  const absolutePath = path.join(process.cwd(), 'public', relativePath);
+  // Replace 'training-sources' prefix with 'lib/training/sources'
+  const localPath = relativePath.replace('training-sources/', '');
+  const absolutePath = path.join(process.cwd(), 'lib', 'training', 'sources', localPath);
   const buffer = await fs.readFile(absolutePath);
   const sha = sha256Hex(buffer);
 
