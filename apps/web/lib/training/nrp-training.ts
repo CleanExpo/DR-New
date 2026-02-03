@@ -2,33 +2,8 @@ import path from 'path';
 import { createHash } from 'crypto';
 import { promises as fs } from 'fs';
 
-// Helper function to get repository root
-// In development: process.cwd() is repo root
-// In Vercel: Always check if training-sources exists at current level, if not go up
-function getRepoRoot(): string {
-  const cwd = process.cwd();
-
-  // Try current directory first
-  const fs = require('fs');
-  if (fs.existsSync(path.join(cwd, 'training-sources'))) {
-    return cwd;
-  }
-
-  // Try one level up
-  const parentDir = path.resolve(cwd, '..');
-  if (fs.existsSync(path.join(parentDir, 'training-sources'))) {
-    return parentDir;
-  }
-
-  // Try two levels up (for apps/web structure)
-  const grandparentDir = path.resolve(cwd, '..', '..');
-  if (fs.existsSync(path.join(grandparentDir, 'training-sources'))) {
-    return grandparentDir;
-  }
-
-  // Fallback to current directory
-  return cwd;
-}
+// Use public folder for training sources (Next.js always includes /public in Vercel deployments)
+// This solves the serverless function file access issue in production
 
 export interface NrpgTrainingSource {
   path: string;
@@ -91,7 +66,7 @@ function generatedDir(): string {
 }
 
 function trainingSourcesDir(): string {
-  return path.join(getRepoRoot(), 'training-sources');
+  return path.join(process.cwd(), 'public', 'training-sources');
 }
 
 function sha256Hex(content: Buffer): string {
@@ -180,7 +155,7 @@ export async function getTrainingModuleHtmlById(
     const index = await loadNrpgTrainingIndex();
     const entry = index.modules.find((m) => m.moduleId.toUpperCase() === moduleId.toUpperCase());
     if (entry) {
-      const absolutePath = path.join(getRepoRoot(), entry.sourcePath);
+      const absolutePath = path.join(process.cwd(), 'public', entry.sourcePath);
       const buffer = await fs.readFile(absolutePath);
       const sha = sha256Hex(buffer);
 
@@ -206,7 +181,7 @@ export async function getTrainingModuleHtmlById(
   }
 
   const sourcePath = getModulePath(courseType, moduleNumber);
-  const absolutePath = path.join(getRepoRoot(), sourcePath);
+  const absolutePath = path.join(process.cwd(), 'public', sourcePath);
 
   try {
     const buffer = await fs.readFile(absolutePath);
@@ -239,7 +214,7 @@ export async function getVerifiedTrainingSourceHtml(
     throw new Error(`Training source not found in index: ${relativePath}`);
   }
 
-  const absolutePath = path.join(getRepoRoot(), relativePath);
+  const absolutePath = path.join(process.cwd(), 'public', relativePath);
   const buffer = await fs.readFile(absolutePath);
   const sha = sha256Hex(buffer);
 
