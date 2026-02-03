@@ -16,6 +16,10 @@ import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
 import { retryPrismaOperation } from '@/src/lib/stripe/webhook-retry';
+import {
+  sendPaymentFailureEmail,
+  sendPaymentSuccessEmail,
+} from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 
@@ -239,11 +243,29 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
     () =>
       prisma.workspace.findUnique({
         where: { stripeCustomerId: invoice.customer as string },
+        include: {
+          members: {
+            where: { role: 'OWNER' },
+            include: { user: true },
+            take: 1,
+          },
+        },
       }),
     `find workspace for customer ${invoice.customer}`
   );
 
   if (!workspace) return;
+
+  // Fetch subscription details for next billing date
+  let nextBillingDate = new Date();
+  if (invoice.subscription) {
+    try {
+      const subscription = await stripe.subscriptions.retrieve(invoice.subscription as string);
+      nextBillingDate = new Date(subscription.current_period_end * 1000);
+    } catch {
+      // Use default if subscription retrieval fails
+    }
+  }
 
   // Update subscription status to active
   await retryPrismaOperation(
@@ -259,7 +281,21 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
   );
 
   // Send payment confirmation email (non-blocking)
-  // await sendPaymentConfirmationEmail(workspace);
+  if (workspace.members[0]?.user?.email) {
+    const amountPaidCents = invoice.amount_paid || 0;
+    const amountPaidAUD = amountPaidCents / 100;
+
+    sendPaymentSuccessEmail({
+      email: workspace.members[0].user.email,
+      businessName: workspace.businessName,
+      amountAUD: amountPaidAUD,
+      subscriptionTier: workspace.subscriptionTier,
+      nextBillingDate,
+    }).catch((error) => {
+      console.error('[Workspace Webhook] Failed to send payment success email:', error);
+      // Don't throw - email failure shouldn't fail the webhook
+    });
+  }
 }
 
 async function handlePaymentFailed(invoice: Stripe.Invoice) {
@@ -268,6 +304,13 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
     () =>
       prisma.workspace.findUnique({
         where: { stripeCustomerId: invoice.customer as string },
+        include: {
+          members: {
+            where: { role: 'OWNER' },
+            include: { user: true },
+            take: 1,
+          },
+        },
       }),
     `find workspace for customer ${invoice.customer}`
   );
@@ -290,8 +333,37 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
     `mark payment failed for invoice ${invoice.id}`
   );
 
-  // Send payment failed email (non-blocking)
-  // await sendPaymentFailedEmail(workspace, invoice.attempt_count);
+  // Send payment failure email notification (non-blocking)
+  if (workspace.members[0]?.user?.email) {
+    const attemptCount = invoice.attempt_count || 1;
+    const amountDueCents = invoice.amount_due || 0;
+    const amountDueAUD = amountDueCents / 100;
+
+    // Get last 4 digits of payment method if available
+    const paymentMethod = invoice.default_payment_method || invoice.payment_intent;
+    let lastFourDigits: string | undefined;
+
+    if (typeof paymentMethod === 'string' && paymentMethod.startsWith('pm_')) {
+      try {
+        const pm = await stripe!.paymentMethods.retrieve(paymentMethod);
+        lastFourDigits = pm.card?.last4;
+      } catch {
+        // Ignore payment method retrieval errors
+      }
+    }
+
+    sendPaymentFailureEmail({
+      email: workspace.members[0].user.email,
+      businessName: workspace.businessName,
+      amountAUD: amountDueAUD,
+      attemptCount,
+      lastFourDigits,
+      subscriptionTier: workspace.subscriptionTier,
+    }).catch((error) => {
+      console.error('[Workspace Webhook] Failed to send payment failure email:', error);
+      // Don't throw - email failure shouldn't fail the webhook
+    });
+  }
 
   // Audit log (non-critical)
   await retryPrismaOperation(
