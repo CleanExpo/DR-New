@@ -15,6 +15,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
+import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
 
 export const dynamic = 'force-dynamic';
 
@@ -54,6 +55,25 @@ export async function POST(request: NextRequest) {
   if (eventData.metadata?.type !== 'tenant_subscription') {
     console.log(`[Tenant Webhook] Skipping non-tenant event: ${event.type}`);
     return NextResponse.json({ received: true, skipped: true });
+  }
+
+  // Check if this event has already been processed (idempotency)
+  try {
+    const alreadyProcessed = await isEventProcessed(event.id);
+    if (alreadyProcessed) {
+      console.info(`[Tenant Webhook] Event ${event.id} already processed, skipping`);
+      return NextResponse.json({ received: true });
+    }
+  } catch (error) {
+    console.error('[Tenant Webhook] Error checking event idempotency:', error);
+    // Don't block the response, let Stripe retry
+    return NextResponse.json(
+      {
+        error: 'Idempotency check failed',
+        message: error instanceof Error ? error.message : 'Idempotency check failed',
+      },
+      { status: 503 }
+    );
   }
 
   try {
@@ -96,17 +116,29 @@ export async function POST(request: NextRequest) {
         break;
       }
 
+      case 'checkout.session.completed': {
+        const session = event.data.object as Stripe.Checkout.Session;
+        await handleCheckoutSessionCompleted(session);
+        break;
+      }
+
       default:
         console.log(`[Tenant Webhook] Unhandled event type: ${event.type}`);
     }
 
+    // Record successful processing
+    await recordWebhookEvent(event.id, event.type, 200);
     return NextResponse.json({ received: true });
   } catch (error) {
+    // Record failed processing
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    await recordWebhookEvent(event.id, event.type, 500, errorMessage);
+
     console.error('[Tenant Webhook] Handler error:', error);
     return NextResponse.json(
       {
         error: 'Webhook handler failed',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: errorMessage,
       },
       { status: 500 }
     );
@@ -315,6 +347,40 @@ async function handleTrialWillEnd(subscription: Stripe.Subscription) {
 
   // TODO: Send email notification to tenant admin about trial ending
   // This gives them 3 days to add payment method before trial expires
+}
+
+/**
+ * Handle checkout.session.completed event
+ * Activates tenant immediately after Stripe Checkout completion
+ * This provides instant activation instead of waiting for subscription.created
+ */
+async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
+  const tenantId = session.metadata?.tenantId;
+
+  if (!tenantId) {
+    console.log('[Tenant Webhook] Checkout session without tenantId metadata');
+    return;
+  }
+
+  console.log(`[Tenant Webhook] Checkout completed for tenant ${tenantId}`);
+
+  try {
+    // Activate tenant immediately (subscription details will be filled by subscription.created)
+    await prisma.tenant.update({
+      where: { id: tenantId },
+      data: {
+        stripeCustomerId: session.customer as string,
+        stripeCheckoutSessionId: session.id,
+        onboardingCompleted: true,
+        updatedAt: new Date(),
+      },
+    });
+
+    console.log(`[Tenant Webhook] Tenant ${tenantId} activated via checkout`);
+  } catch (error) {
+    console.error(`[Tenant Webhook] Failed to activate tenant ${tenantId} via checkout:`, error);
+    throw error;
+  }
 }
 
 // ============================================================================
