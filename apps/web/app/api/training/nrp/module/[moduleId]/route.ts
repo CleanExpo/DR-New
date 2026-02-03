@@ -5,6 +5,7 @@ import { handleUnexpectedError, handleValidationError, createErrorResponse, Erro
 import { getTrainingModuleHtmlById, verifyTrainingSourcesPresent } from '@/lib/training/nrp-training';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs'; // Force Node.js runtime for filesystem access
 
 const paramsSchema = z.object({
   moduleId: z.string().regex(/^(NRP-\d{3}|CSE-M\d{2}|WRT-M\d{2})$/i),
