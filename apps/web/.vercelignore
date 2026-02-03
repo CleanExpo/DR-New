@@ -1,0 +1,5 @@
+# Vercel ignore file - specify what NOT to deploy
+
+# Do NOT ignore these files (they must be deployed)
+!public/training-modules/
+!public/training-modules/*.json
