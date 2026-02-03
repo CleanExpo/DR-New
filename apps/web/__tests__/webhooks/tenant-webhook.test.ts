@@ -275,6 +275,11 @@ describe('Tenant Webhook Handler', () => {
         id: 'sub_123',
         current_period_start: Math.floor(Date.now() / 1000),
         current_period_end: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60, // 30 days
+        metadata: {
+          type: 'tenant_subscription',
+          tenantId: 'tenant_123',
+          tier: 'BASIC',
+        },
       };
 
       const mockEvent: Stripe.Event = {
@@ -349,6 +354,17 @@ describe('Tenant Webhook Handler', () => {
         },
       };
 
+      const mockSubscription = {
+        id: 'sub_123',
+        current_period_start: Math.floor(Date.now() / 1000),
+        current_period_end: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60,
+        metadata: {
+          type: 'tenant_subscription',
+          tenantId: 'tenant_123',
+          tier: 'BASIC',
+        },
+      };
+
       const mockEvent: Stripe.Event = {
         id: 'evt_payment_success',
         type: 'invoice.payment_succeeded',
@@ -360,6 +376,7 @@ describe('Tenant Webhook Handler', () => {
       const request = createMockRequest(mockEvent);
 
       mockConstructEvent.mockReturnValue(mockEvent);
+      mockRetrieveSubscription.mockResolvedValue(mockSubscription as any);
 
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
         id: 'tenant_123',
@@ -408,9 +425,21 @@ describe('Tenant Webhook Handler', () => {
         },
       } as any;
 
+      const mockSubscription = {
+        id: 'sub_123',
+        customer: 'cus_123',
+        status: 'past_due',
+        metadata: {
+          type: 'tenant_subscription',
+          tenantId: 'tenant_123',
+          tier: 'BASIC',
+        },
+      };
+
       const request = createMockRequest(mockEvent);
 
       mockConstructEvent.mockReturnValue(mockEvent);
+      mockRetrieveSubscription.mockResolvedValue(mockSubscription as any);
 
       (prisma.tenant.findUnique as jest.Mock).mockResolvedValue({
         id: 'tenant_123',
