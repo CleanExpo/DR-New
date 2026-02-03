@@ -23,6 +23,13 @@ export {
   sendTemplateEmail,
 } from './templates';
 
+// Re-export billing emails
+export {
+  sendPaymentFailureEmail,
+  sendPaymentSuccessEmail,
+  sendTrialEndingEmail,
+} from './billing';
+
 // Re-export types
 export type { EmailTemplate } from './templates';
 export type { SendEmailOptions } from './resend';

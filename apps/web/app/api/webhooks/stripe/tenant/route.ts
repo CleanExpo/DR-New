@@ -16,6 +16,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
+import {
+  sendPaymentFailureEmail,
+  sendPaymentSuccessEmail,
+  sendTrialEndingEmail,
+} from '@/lib/email';
 
 export const dynamic = 'force-dynamic';
 
@@ -273,16 +278,40 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
 
     console.log(`[Tenant Webhook] Payment succeeded for tenant ${tenantId}`);
 
-    await prisma.tenant.update({
+    // Update tenant subscription status
+    const tenant = await prisma.tenant.update({
       where: { id: tenantId },
       data: {
         subscriptionStatus: 'ACTIVE',
         currentPeriodStart: new Date(subscription.current_period_start * 1000),
         currentPeriodEnd: new Date(subscription.current_period_end * 1000),
       },
+      include: {
+        users: {
+          where: { role: 'OWNER' },
+          take: 1,
+        },
+      },
     });
 
     console.log(`[Tenant Webhook] Billing period extended for tenant ${tenantId}`);
+
+    // Send payment success confirmation email (non-blocking)
+    if (tenant.users[0]?.email) {
+      const amountPaidCents = invoice.amount_paid || 0;
+      const amountPaidAUD = amountPaidCents / 100;
+
+      sendPaymentSuccessEmail({
+        email: tenant.users[0].email,
+        businessName: tenant.name,
+        amountAUD: amountPaidAUD,
+        subscriptionTier: tenant.subscriptionTier,
+        nextBillingDate: new Date(subscription.current_period_end * 1000),
+      }).catch((error) => {
+        console.error('[Tenant Webhook] Failed to send payment success email:', error);
+        // Don't throw - email failure shouldn't fail the webhook
+      });
+    }
   } catch (error) {
     console.error('[Tenant Webhook] Failed to process payment success:', error);
     throw error;
@@ -315,16 +344,53 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
 
     console.log(`[Tenant Webhook] Payment failed for tenant ${tenantId}`);
 
-    await prisma.tenant.update({
+    // Update tenant subscription status
+    const tenant = await prisma.tenant.update({
       where: { id: tenantId },
       data: {
         subscriptionStatus: 'PAST_DUE',
+      },
+      include: {
+        users: {
+          where: { role: 'OWNER' },
+          take: 1,
+        },
       },
     });
 
     console.log(`[Tenant Webhook] Tenant ${tenantId} marked as PAST_DUE`);
 
-    // TODO: Send email notification to tenant admin about payment failure
+    // Send payment failure email notification (non-blocking)
+    if (tenant.users[0]?.email) {
+      const attemptCount = invoice.attempt_count || 1;
+      const amountDueCents = invoice.amount_due || 0;
+      const amountDueAUD = amountDueCents / 100;
+
+      // Get last 4 digits of payment method if available
+      const paymentMethod = invoice.default_payment_method || invoice.payment_intent;
+      let lastFourDigits: string | undefined;
+
+      if (typeof paymentMethod === 'string' && paymentMethod.startsWith('pm_')) {
+        try {
+          const pm = await stripe!.paymentMethods.retrieve(paymentMethod);
+          lastFourDigits = pm.card?.last4;
+        } catch {
+          // Ignore payment method retrieval errors
+        }
+      }
+
+      sendPaymentFailureEmail({
+        email: tenant.users[0].email,
+        businessName: tenant.name,
+        amountAUD: amountDueAUD,
+        attemptCount,
+        lastFourDigits,
+        subscriptionTier: tenant.subscriptionTier,
+      }).catch((error) => {
+        console.error('[Tenant Webhook] Failed to send payment failure email:', error);
+        // Don't throw - email failure shouldn't fail the webhook
+      });
+    }
   } catch (error) {
     console.error('[Tenant Webhook] Failed to process payment failure:', error);
     throw error;
@@ -345,8 +411,50 @@ async function handleTrialWillEnd(subscription: Stripe.Subscription) {
 
   console.log(`[Tenant Webhook] Trial ending soon for tenant ${tenantId}`);
 
-  // TODO: Send email notification to tenant admin about trial ending
-  // This gives them 3 days to add payment method before trial expires
+  try {
+    // Get tenant with owner email
+    const tenant = await prisma.tenant.findUnique({
+      where: { id: tenantId },
+      include: {
+        users: {
+          where: { role: 'OWNER' },
+          take: 1,
+        },
+      },
+    });
+
+    if (!tenant || !tenant.users[0]?.email) {
+      console.error('[Tenant Webhook] No owner email found for tenant ${tenantId}');
+      return;
+    }
+
+    // Determine monthly price based on subscription tier
+    const tierPricing: Record<string, number> = {
+      BASIC: 49,
+      PROFESSIONAL: 99,
+      ENTERPRISE: 199,
+    };
+    const monthlyPrice = tierPricing[tenant.subscriptionTier] || 49;
+
+    // Send trial ending email (non-blocking)
+    const trialEnd = subscription.trial_end ? new Date(subscription.trial_end * 1000) : new Date();
+
+    sendTrialEndingEmail({
+      email: tenant.users[0].email,
+      businessName: tenant.name,
+      trialEndsAt: trialEnd,
+      subscriptionTier: tenant.subscriptionTier,
+      monthlyPrice,
+    }).catch((error) => {
+      console.error('[Tenant Webhook] Failed to send trial ending email:', error);
+      // Don't throw - email failure shouldn't fail the webhook
+    });
+
+    console.log(`[Tenant Webhook] Trial ending email sent for tenant ${tenantId}`);
+  } catch (error) {
+    console.error('[Tenant Webhook] Failed to process trial ending:', error);
+    // Don't throw - this is a non-critical operation
+  }
 }
 
 /**
