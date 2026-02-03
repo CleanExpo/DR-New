@@ -10,6 +10,7 @@
 import { basePrisma } from '@/lib/prisma';
 import { BackgroundJob } from '@prisma/client';
 import { processContractorMatchingJob as executeContractorMatching } from './processors/contractor-matching-processor';
+import { processContractorNotificationJob as executeContractorNotification } from './processors/contractor-notification-processor';
 
 // ============================================================================
 // Types & Interfaces
@@ -285,8 +286,7 @@ async function processContractorMatchingJob(input: any): Promise<Record<string, 
 }
 
 async function processContractorNotificationJob(input: any): Promise<Record<string, unknown>> {
-  // TODO: Implement in contractor-notification-processor.ts
-  throw new Error('Contractor notification processor not yet implemented');
+  return executeContractorNotification(input);
 }
 
 async function processEmailBatchJob(input: any): Promise<Record<string, unknown>> {
