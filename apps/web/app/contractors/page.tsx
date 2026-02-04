@@ -134,14 +134,14 @@ export default function ContractorsPage() {
                 Transparent Pricing
               </h3>
               <p className="text-gray-400 mb-6">
-                Simple monthly subscription. No hidden fees, no commission cuts. Keep 100% of what you earn.
+                Simple flat fee per claim. No monthly fees, no commission cuts. Keep 100% of your additional work.
               </p>
               <ul className="space-y-3">
                 {[
-                  'Fixed monthly subscription ($99-$799)',
-                  'No commission on jobs',
-                  'No hidden fees or charges',
-                  'Cancel anytime, no contracts',
+                  '$550 flat fee per claim',
+                  'No monthly subscription fees',
+                  'No commission on any work',
+                  'Keep 100% of additional restoration work',
                 ].map((item, index) => (
                   <li key={index} className="flex items-start gap-3 text-gray-300">
                     <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />

@@ -118,7 +118,7 @@ export default function HowItWorksPage() {
     {
       title: 'Close Job & Get Paid',
       description:
-        'Contact the client, provide your quote, complete the work, and keep 100% of your earnings. We never take a commission.',
+        'Contact the client, provide your quote, complete the work. Just $550 flat fee per claim - no commission. Keep 100% of all additional restoration work.',
       status: 'active' as const,
       icon: <DollarSign className="h-5 w-5" />,
     },
@@ -215,7 +215,7 @@ export default function HowItWorksPage() {
             Simple, Transparent Pricing
           </h2>
           <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
-            No hidden fees. No commissions. Just a simple monthly subscription based on the volume of leads you want.
+            No hidden fees. No percentage commissions. No monthly subscription. Just a simple $550 flat fee per claim.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

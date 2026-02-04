@@ -151,7 +151,7 @@ export const waitlistFAQs: FAQ[] = [
             <strong>Real reviews:</strong> Verified customer reviews, not fake testimonials
           </li>
           <li>
-            <strong>Fair contractor commissions:</strong> 12-15% vs. 20-30% on other platforms
+            <strong>Fair contractor pricing:</strong> $550 flat fee vs. 20-30% commission on other platforms
           </li>
         </ul>
       </div>
@@ -176,10 +176,13 @@ export const contractorFAQs: FAQ[] = [
             <strong>Training Program:</strong> $1,495 AUD (one-time) for all 24 certification modules (22+ hours of training)
           </li>
           <li>
-            <strong>Platform Commission:</strong> 12-15% per job when you win work through the platform
+            <strong>Platform Fee:</strong> $550 flat fee per claim (no commission on your work)
           </li>
           <li>
-            <strong>No Monthly Fees:</strong> Zero subscription charges - only pay when you earn
+            <strong>No Monthly Fees:</strong> Zero subscription charges - only pay the flat fee per claim
+          </li>
+          <li>
+            <strong>No Commission:</strong> Keep 100% of all additional restoration work
           </li>
           <li>
             <strong>No Hidden Costs:</strong> Transparent pricing with no surprise fees
@@ -192,26 +195,34 @@ export const contractorFAQs: FAQ[] = [
     ),
   },
   {
-    question: 'What is the commission structure?',
+    question: 'How does the $550 platform fee work?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">Our transparent commission rates:</p>
-        <ul className="list-inside list-disc space-y-1 text-gray-600">
+        <p className="text-gray-600">Our platform fee structure is simple and transparent:</p>
+
+        <div className="bg-blue-50 border-l-4 border-blue-600 p-3 rounded">
+          <p className="font-semibold text-blue-900 mb-2">The $550 Flat Fee Model:</p>
+          <ol className="list-inside list-decimal space-y-1 text-blue-800 text-sm">
+            <li>Client pays <strong>$2,750 upfront</strong> for emergency make-safe work</li>
+            <li>You receive <strong>$2,200</strong> ($2,750 - $550 platform fee)</li>
+            <li>You create scope and quote for remaining restoration work</li>
+            <li>You keep <strong>100% of all additional work</strong> - no commission</li>
+          </ol>
+        </div>
+
+        <ul className="list-inside list-disc space-y-1 text-gray-600 mt-3">
           <li>
-            <strong>12% commission:</strong> For jobs over $10,000 AUD
+            <strong>No percentage commissions:</strong> Unlike other platforms, we never take a cut of your work
           </li>
           <li>
-            <strong>15% commission:</strong> For jobs under $10,000 AUD
-          </li>
-          <li>
-            <strong>No monthly fees:</strong> Pay only when you win jobs
+            <strong>No monthly fees:</strong> Zero subscription charges
           </li>
           <li>
             <strong>No cancellation fees:</strong> Leave anytime, no penalties
           </li>
         </ul>
         <p className="mt-2 text-sm text-gray-500">
-          Compare to competitors: HIPages (20-30%), ServiceSeeking (15-25%)
+          Compare to competitors: HIPages takes 20-30% commission, ServiceSeeking takes 15-25%. We take just $550 flat.
         </p>
       </div>
     ),

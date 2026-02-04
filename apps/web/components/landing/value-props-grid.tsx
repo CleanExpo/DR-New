@@ -154,8 +154,8 @@ export const contractorValueProps: ValueProp[] = [
         />
       </svg>
     ),
-    title: 'Transparent Commission: 12-15% Only',
+    title: 'Flat $550 Fee - No Commission',
     description:
-      'No monthly fees. Pay only when you win jobs. Lower rates than competitors. Grow your business without breaking the bank.',
+      'Keep 100% of your revenue minus a simple $550 platform fee per claim. No monthly fees. No percentage commissions. Earn more than commission-based platforms.',
   },
 ];

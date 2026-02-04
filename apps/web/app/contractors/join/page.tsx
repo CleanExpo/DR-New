@@ -18,11 +18,11 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Join NRPG Network - Certified Disaster Recovery Contractors | Australia',
   description:
-    'Join Australia\'s premier IICRC-verified disaster recovery network. Get qualified leads daily with 12-15% commission, no monthly fees. Complete 24-module certification program and start earning.',
+    'Join Australia\'s premier IICRC-verified disaster recovery network. Get qualified leads daily with just a $550 flat fee per claim - no commission, no monthly fees. Complete 24-module certification program and start earning.',
   openGraph: {
     title: 'Join the NRPG Contractor Network',
     description:
-      'Get qualified disaster recovery leads daily. 12-15% commission, no monthly fees. Complete professional training and join 200+ certified contractors across Australia.',
+      'Get qualified disaster recovery leads daily. $550 flat fee per claim - no commission, no monthly fees. Complete professional training and join 200+ certified contractors across Australia.',
     type: 'website',
     url: 'https://disasterrecoverynrpg.com.au/contractors/join',
   },
@@ -45,7 +45,7 @@ export default function ContractorJoinPage() {
       {/* Hero Section */}
       <HeroSection
         headline="Join Australia's Premier Disaster Recovery Network"
-        subheadline="Get qualified leads daily. No monthly fees. Only pay 12-15% commission when you win jobs. Complete our 24-module certification and start earning."
+        subheadline="Get qualified leads daily. Keep 100% of your revenue minus a flat $550 platform fee per claim. No monthly fees, no commission. Complete our 24-module certification and start earning."
         ctaText="Apply Now"
         ctaHref="#application-form"
         trustBadges={[
@@ -92,7 +92,7 @@ export default function ContractorJoinPage() {
               Why Contractors Choose NRPG
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-              No upfront costs. No monthly fees. Just qualified leads and fair commissions.
+              No upfront costs. No monthly fees. No commission. Just qualified leads and a simple $550 flat fee per claim.
             </p>
           </div>
 
@@ -201,17 +201,40 @@ export default function ContractorJoinPage() {
               </div>
             </div>
 
-            {/* Commission Structure */}
+            {/* Platform Fee Structure */}
             <div className="overflow-hidden rounded-xl border border-green-200 bg-white shadow-lg">
               <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4">
-                <h3 className="text-xl font-bold text-white">Platform Commission</h3>
-                <p className="text-green-100">Pay only when you earn</p>
+                <h3 className="text-xl font-bold text-white">Platform Fee</h3>
+                <p className="text-green-100">Simple, transparent pricing - no commission</p>
               </div>
               <div className="p-6">
                 <div className="mb-4 text-center">
-                  <div className="text-5xl font-bold text-gray-900">12-15%</div>
-                  <div className="text-gray-600">Per job commission</div>
+                  <div className="text-5xl font-bold text-gray-900">$550</div>
+                  <div className="text-gray-600">Flat fee per claim</div>
                 </div>
+
+                <div className="mb-6 rounded-lg border-2 border-blue-200 bg-blue-50 p-4">
+                  <h4 className="mb-3 font-semibold text-blue-900">How It Works:</h4>
+                  <ol className="space-y-2 text-sm text-blue-800">
+                    <li className="flex items-start">
+                      <span className="mr-2 font-bold">1.</span>
+                      <span>Client pays <strong>$2,750</strong> upfront for emergency make-safe work</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2 font-bold">2.</span>
+                      <span>You receive <strong>$2,200</strong> ($2,750 - $550 platform fee)</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2 font-bold">3.</span>
+                      <span>You create scope and quote for remaining restoration work</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-2 font-bold">4.</span>
+                      <span>You keep <strong>100% of remaining work</strong> - no commission</span>
+                    </li>
+                  </ol>
+                </div>
+
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <svg
@@ -225,25 +248,7 @@ export default function ContractorJoinPage() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="ml-2">
-                      <strong>12% for jobs over $10,000</strong> - Large project rate
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg
-                      className="mt-1 h-5 w-5 flex-shrink-0 text-green-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    <span className="ml-2">
-                      <strong>15% for jobs under $10,000</strong> - Standard rate
-                    </span>
+                    <span className="ml-2">No percentage commissions on any work</span>
                   </li>
                   <li className="flex items-start">
                     <svg
@@ -285,12 +290,25 @@ export default function ContractorJoinPage() {
                         clipRule="evenodd"
                       />
                     </svg>
+                    <span className="ml-2">Keep 100% of all additional restoration work</span>
+                  </li>
+                  <li className="flex items-start">
+                    <svg
+                      className="mt-1 h-5 w-5 flex-shrink-0 text-green-600"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                     <span className="ml-2">No cancellation penalties</span>
                   </li>
                 </ul>
                 <div className="mt-4 rounded bg-green-50 p-3 text-sm text-green-800">
-                  <strong>Compare:</strong> HIPages (20-30%), ServiceSeeking (15-25%), Airtasker
-                  (15-20%)
+                  <strong>Compare:</strong> HIPages takes 20-30% commission, ServiceSeeking takes 15-25%. We take just $550 flat - you keep the rest.
                 </div>
               </div>
             </div>
@@ -395,7 +413,7 @@ export default function ContractorJoinPage() {
             Start Getting Qualified Leads Today
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/90">
-            Join 200+ certified contractors earning more with lower commissions and no monthly fees.
+            Join 200+ certified contractors keeping 100% of their work with just a $550 flat fee per claim and no monthly fees.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <a
