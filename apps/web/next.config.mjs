@@ -166,6 +166,7 @@ const nextConfig = {
     },
 
     // Include training sources in Vercel deployment
+    // CRITICAL: Ensures both HTML sources and index files are bundled in serverless functions
     outputFileTracingIncludes: {
       '/api/**/*': [
         './lib/training/sources/**/*',
