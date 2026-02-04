@@ -17,6 +17,12 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ReviewList } from "@/components/reviews/review-list"
+import { ServiceAreaMap } from "@/components/contractor/ServiceAreaMap"
+import {
+  LicenseVerificationBadge,
+  InsuranceVerificationBadge,
+  FullyInsuredBadge,
+} from "@/components/contractor/LicenseVerificationBadge"
 import Link from "next/link"
 
 const BASE_URL =
@@ -29,7 +35,30 @@ interface Props {
 async function getContractor(id: string) {
   const contractor = await prisma.contractor.findUnique({
     where: { id },
-    include: {
+    select: {
+      id: true,
+      businessName: true,
+      isVerified: true,
+      isActive: true,
+      isSuspended: true,
+      nrpgVerificationLevel: true,
+      nrpgMemberId: true,
+      operatingStates: true,
+      primaryState: true,
+      averageRating: true,
+      completedJobs: true,
+      averageResponseTimeMinutes: true,
+      australianSpecialties: true,
+      supportedEmergencyLevels: true,
+      licenseNumber: true,
+      licenseState: true,
+      licenseExpiry: true,
+      licenseVerifiedAt: true,
+      publicLiabilityPolicyNumber: true,
+      publicLiabilityExpiryDate: true,
+      publicLiabilityCoverageAmount: true,
+      workCoverNumber: true,
+      workCoverExpiryDate: true,
       iicrcCertifications: {
         where: {
           isActive: true,
@@ -230,6 +259,61 @@ export default async function PublicContractorProfilePage({ params }: Props) {
           </div>
         </section>
 
+        {/* License & Insurance Verification */}
+        {(contractor.licenseState || contractor.publicLiabilityPolicyNumber) && (
+          <section className="container mx-auto px-6 mb-12">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="font-poppins font-semibold text-2xl text-white mb-6">
+                Licensing & Insurance
+              </h2>
+
+              <div className="space-y-4">
+                {/* Fully Insured Badge */}
+                {contractor.publicLiabilityPolicyNumber && contractor.workCoverNumber && (
+                  <div className="flex justify-center mb-6">
+                    <FullyInsuredBadge
+                      hasPublicLiability={!!contractor.publicLiabilityPolicyNumber}
+                      hasWorkCover={!!contractor.workCoverNumber}
+                    />
+                  </div>
+                )}
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  {/* License Verification */}
+                  {contractor.licenseState && contractor.licenseVerifiedAt && (
+                    <LicenseVerificationBadge
+                      licenseState={contractor.licenseState}
+                      licenseExpiry={contractor.licenseExpiry}
+                      isVerified={true}
+                      licenseNumber={contractor.licenseNumber || undefined}
+                    />
+                  )}
+
+                  {/* Public Liability Insurance */}
+                  {contractor.publicLiabilityPolicyNumber && (
+                    <InsuranceVerificationBadge
+                      coverageAmount={contractor.publicLiabilityCoverageAmount || '$10M'}
+                      expiryDate={contractor.publicLiabilityExpiryDate}
+                      policyNumber={contractor.publicLiabilityPolicyNumber}
+                      insuranceType="public_liability"
+                    />
+                  )}
+
+                  {/* WorkCover */}
+                  {contractor.workCoverNumber && (
+                    <InsuranceVerificationBadge
+                      coverageAmount="Active"
+                      expiryDate={contractor.workCoverExpiryDate}
+                      policyNumber={contractor.workCoverNumber}
+                      insuranceType="work_cover"
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Stats */}
         <section className="container mx-auto px-6 mb-12">
           <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
@@ -350,6 +434,16 @@ export default async function PublicContractorProfilePage({ params }: Props) {
             </div>
           </section>
         )}
+
+        {/* Service Coverage Map */}
+        <section className="container mx-auto px-6 mb-12">
+          <div className="max-w-4xl mx-auto">
+            <ServiceAreaMap
+              contractorId={contractor.id}
+              primaryState={contractor.primaryState || contractor.operatingStates[0]}
+            />
+          </div>
+        </section>
 
         {/* Emergency Levels */}
         {contractor.supportedEmergencyLevels.length > 0 && (
