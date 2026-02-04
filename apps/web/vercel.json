@@ -1,8 +1,5 @@
 {
-  "buildCommand": "cd ../.. && npx turbo run build --filter=dr-nrpg-web",
   "framework": "nextjs",
-  "installCommand": "cd ../.. && pnpm install",
-  "outputDirectory": ".next",
   "build": {
     "env": {
       "NODE_OPTIONS": "--max-old-space-size=4096"
