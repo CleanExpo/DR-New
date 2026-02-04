@@ -139,6 +139,10 @@ export default function ClientDashboard() {
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [reviewBooking, setReviewBooking] = useState<any | null>(null);
 
+  // Claims state
+  const [claims, setClaims] = useState<any[]>([]);
+  const [loadingClaims, setLoadingClaims] = useState(false);
+
   // Fetch user preferences
   const fetchUserPreferences = async () => {
     try {
@@ -223,6 +227,7 @@ export default function ClientDashboard() {
       fetchUserPreferences();
       fetchOffers();
       fetchActiveProjects();
+      fetchClaims();
     }
   }, [user, loading, router]);
 
@@ -531,6 +536,24 @@ export default function ClientDashboard() {
       console.error('Error fetching bookings:', error);
     } finally {
       setLoadingBookings(false);
+    }
+  };
+
+  const fetchClaims = async () => {
+    try {
+      setLoadingClaims(true);
+      if (typeof window === 'undefined') return;
+
+      const response = await fetch('/api/client/claims', { cache: 'no-store' });
+
+      if (response.ok) {
+        const result = await response.json();
+        setClaims(result.claims || []);
+      }
+    } catch (error) {
+      console.error('Error fetching claims:', error);
+    } finally {
+      setLoadingClaims(false);
     }
   };
 

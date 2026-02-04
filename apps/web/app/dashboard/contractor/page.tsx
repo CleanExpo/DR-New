@@ -116,10 +116,11 @@ export default function ContractorDashboardPage() {
   const fetchDashboardData = async () => {
     try {
       // Fetch contractor stats and available opportunities
-      const [statsResponse, projectsResponse, opportunitiesResponse] = await Promise.all([
+      const [statsResponse, projectsResponse, opportunitiesResponse, analyticsResponse] = await Promise.all([
         fetch('/api/contractor/profile', { cache: 'no-store' }),
         fetch('/api/contractor/active-projects', { cache: 'no-store' }),
         fetch('/api/contractor/available-requests', { cache: 'no-store' }),
+        fetch('/api/contractor/analytics', { cache: 'no-store' }),
       ]);
 
       if (statsResponse.ok) {
@@ -139,6 +140,23 @@ export default function ContractorDashboardPage() {
           ...prev,
           activeOpportunities: projects.length,
         }));
+      }
+
+      // Update stats with analytics data
+      if (analyticsResponse.ok) {
+        const data = await analyticsResponse.json();
+        if (data.success && data.analytics) {
+          const { overview, bookingStats, performance } = data.analytics;
+          setStats((prev) => ({
+            ...prev,
+            completedProjects: bookingStats.completed || prev.completedProjects,
+            totalEarnings: performance?.totalEarnings || prev.totalEarnings,
+            activeOpportunities: bookingStats.active || prev.activeOpportunities,
+            pendingBids: bookingStats.thisMonth || prev.pendingBids,
+            conversionRate: overview.conversionRate || prev.conversionRate,
+            avgProjectValue: performance?.averageProjectValue || prev.avgProjectValue,
+          }));
+        }
       }
 
       // Fetch real opportunities from API
