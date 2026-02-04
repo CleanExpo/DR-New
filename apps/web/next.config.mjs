@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { withSentryConfig } from '@sentry/nextjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -90,11 +91,11 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live https://*.vercel.app https://va.vercel-scripts.com",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live https://*.vercel.app https://va.vercel-scripts.com https://*.sentry.io",
               "style-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com https://fonts.googleapis.com",
               "img-src 'self' data: blob: https: https://*.cloudinary.com https://*.vercel-storage.com https://cdn.sanity.io https://hcaptcha.com https://*.hcaptcha.com https://*.supabase.co",
               "font-src 'self' data: https://fonts.gstatic.com https://hcaptcha.com https://*.hcaptcha.com",
-              "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://*.vercel.app https://vercel.live wss://*.vercel.app wss://vercel.live https://*.stripe.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.supabase.co wss://*.supabase.co",
+              "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://*.vercel.app https://vercel.live wss://*.vercel.app wss://vercel.live https://*.stripe.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.supabase.co wss://*.supabase.co https://*.sentry.io https://*.ingest.sentry.io",
               "frame-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://*.stripe.com https://vercel.live",
               "worker-src 'self' blob:",
               "child-src 'self' blob:",
@@ -255,4 +256,45 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+// Sentry configuration options
+const sentryWebpackPluginOptions = {
+  // For all available options, see:
+  // https://github.com/getsentry/sentry-webpack-plugin#options
+
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+
+  // Only print logs for uploading source maps in CI
+  silent: !process.env.CI,
+
+  // For all available options, see:
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  // Automatically annotate React components to show their full name in breadcrumbs and session replay
+  reactComponentAnnotation: {
+    enabled: true,
+  },
+
+  // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
+  // This can increase your server load as well as your hosting bill.
+  // Note: Check that the Sentry DSN is configured in the Sentry initialization config.
+  tunnelRoute: "/monitoring",
+
+  // Hides source maps from generated client bundles
+  hideSourceMaps: true,
+
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
+
+  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
+  // See the following for more information:
+  // https://docs.sentry.io/product/crons/
+  // https://vercel.com/docs/cron-jobs
+  automaticVercelMonitors: true,
+};
+
+// Make sure adding Sentry options is the last code to run before exporting
+export default withSentryConfig(nextConfig, sentryWebpackPluginOptions)
