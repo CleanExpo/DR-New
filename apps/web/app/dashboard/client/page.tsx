@@ -3,6 +3,7 @@
 import ClientOnboarding from '@/components/client-onboarding';
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import ActiveProjectDetailsModal from '@/components/configurable/active-project-details-modal';
+import { RealtimeNotifications } from '@/components/realtime/RealtimeNotifications';
 import ClientLayout from '@/components/dashboard/client-layout';
 import PersonalizedDashboard from '@/components/personalized/personalized-dashboard';
 import UserPreferencesDisplay from '@/components/profile/user-preferences-display';
@@ -1365,13 +1366,16 @@ export default function ClientDashboard() {
                     Ready to start your next project? Let's get you connected with the best contractors.
                   </p>
                 </div>
-                <Button
-                  className="bg-white text-semantic-contractor hover:bg-gray-100"
-                  onClick={() => setShowServiceModal(true)}
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  New Project
-                </Button>
+                <div className="flex items-center gap-3">
+                  <RealtimeNotifications userId={user.id} />
+                  <Button
+                    className="bg-white text-semantic-contractor hover:bg-gray-100"
+                    onClick={() => setShowServiceModal(true)}
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    New Project
+                  </Button>
+                </div>
               </div>
             </div>
 

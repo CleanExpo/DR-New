@@ -18,6 +18,8 @@ import {
 } from 'lucide-react';
 import { Button } from '@/src/design-system/components/Button/Button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { RealtimeMessagePanel } from '@/components/messaging/RealtimeMessagePanel';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface ContractorBid {
   matchId: string;
@@ -91,6 +93,7 @@ export default function ClaimDetailPage() {
   const params = useParams();
   const router = useRouter();
   const claimId = params.claimId as string;
+  const { user } = useAuth();
 
   const [claim, setClaim] = React.useState<ClaimDetail | null>(null);
   const [loading, setLoading] = React.useState(true);
@@ -101,6 +104,7 @@ export default function ClaimDetailPage() {
   const [sendingMessage, setSendingMessage] = React.useState(false);
   const [downloadingInvoice, setDownloadingInvoice] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
+  const [showRealtimeChat, setShowRealtimeChat] = React.useState(false);
 
   // Load claim details
   React.useEffect(() => {
@@ -563,6 +567,40 @@ export default function ClaimDetailPage() {
               )}
             </div>
           </div>
+
+          {/* Real-time Messaging - Show when contractor is assigned and user is authenticated */}
+          {claim.contractor && user && (
+            <div className="bg-white rounded-lg border border-gray-200 p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <MessageCircle className="h-5 w-5 text-blue-600" />
+                  Real-time Chat
+                </h2>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowRealtimeChat(!showRealtimeChat)}
+                >
+                  {showRealtimeChat ? 'Hide Chat' : 'Show Chat'}
+                </Button>
+              </div>
+
+              {showRealtimeChat && (
+                <div className="border-t border-gray-200 pt-4">
+                  <RealtimeMessagePanel
+                    jobId={claimId}
+                    userId={user.id}
+                    userName={user.name || 'Client'}
+                    onMessageSent={(message) => {
+                      console.log('Message sent:', message);
+                      setSuccessMessage('Message sent successfully');
+                      setTimeout(() => setSuccessMessage(null), 3000);
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Sidebar */}

@@ -24,6 +24,7 @@ import {
 import ContractorOnboarding from '@/components/onboarding/contractor-onboarding';
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import { EligibilityBanner } from '@/components/contractor/eligibility-banner';
+import { RealtimeNotifications } from '@/components/realtime/RealtimeNotifications';
 import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle } from 'lucide-react';
 
 interface DashboardStats {
@@ -347,9 +348,12 @@ export default function ContractorDashboardPage() {
             Here's your growth summary for today
           </p>
         </div>
-        <span className="hidden md:inline-block px-4 py-2 bg-nrpg-teal/10 text-nrpg-teal text-sm font-bold font-heading rounded-full uppercase tracking-wider">
-          Growth Partner
-        </span>
+        <div className="flex items-center gap-3">
+          <RealtimeNotifications userId={user.id} />
+          <span className="hidden md:inline-block px-4 py-2 bg-nrpg-teal/10 text-nrpg-teal text-sm font-bold font-heading rounded-full uppercase tracking-wider">
+            Growth Partner
+          </span>
+        </div>
       </div>
 
       {/* Availability Toggle */}
