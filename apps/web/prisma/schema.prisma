@@ -3079,3 +3079,97 @@ model BackgroundJob {
   @@index([createdAt])
   @@map("background_jobs")
 }
+
+// ============================================
+// Marketing Landing Pages Models
+// ============================================
+
+// Pre-Launch Waitlist Submissions
+// Captures emails from /launch landing page for launch notifications
+model WaitlistSubmission {
+  id            String   @id @default(cuid())
+
+  // User Information
+  email         String   @unique
+  fullName      String
+  userType      String   // "PROPERTY_OWNER" | "CONTRACTOR"
+
+  // Marketing Attribution
+  source        String?  // Landing page source (waitlist, contractor-join, emergency, etc.)
+  utmSource     String?  // Campaign source (google, facebook, linkedin, email, organic)
+  utmMedium     String?  // Campaign medium (cpc, social, email, organic)
+  utmCampaign   String?  // Campaign name (storm-season-2026, contractor-recruitment-q1, etc.)
+  utmContent    String?  // Ad content variant (headline-a, cta-orange, form-short, etc.)
+  utmTerm       String?  // Search term (water damage sydney, flood restoration melbourne, etc.)
+
+  // Consent & Privacy
+  consentEmail  Boolean  @default(false) // Consent to receive marketing emails
+
+  // Status Tracking
+  emailSent     Boolean  @default(false) // Confirmation email sent
+  notifiedLaunch Boolean @default(false) // Notified when platform launched
+  convertedUser  String?  // User ID if they signed up after launch
+
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([email])
+  @@index([userType])
+  @@index([createdAt])
+  @@index([source])
+  @@index([utmSource])
+  @@index([utmCampaign])
+  @@map("waitlist_submissions")
+}
+
+// Contractor Application Forms
+// Captures contractor interest from /contractors/join landing page
+model ContractorApplication {
+  id                String   @id @default(cuid())
+
+  // Business Information
+  businessName      String
+  contactName       String
+  email             String
+  phone             String
+  abn               String
+
+  // Certifications & Capabilities
+  certifications    String[] // IICRC cert types: ["WATER_DAMAGE", "FIRE_SMOKE", "MOULD", "TRAUMA", etc.]
+  serviceAreas      String[] // Postcodes or states they service
+  yearsInBusiness   Int
+
+  // Application Status
+  status            String   @default("PENDING") // PENDING | UNDER_REVIEW | APPROVED | REJECTED | CONTACTED
+  reviewedBy        String?  // User ID of admin who reviewed
+  reviewedAt        DateTime?
+  rejectionReason   String?  @db.Text
+  notes             String?  @db.Text // Internal admin notes
+
+  // Marketing Attribution
+  source            String?  // Landing page variant
+  utmSource         String?
+  utmMedium         String?
+  utmCampaign       String?
+  utmContent        String?
+  utmTerm           String?
+
+  // Follow-up Tracking
+  emailSent         Boolean  @default(false) // Application received email sent
+  contacted         Boolean  @default(false) // Contacted by sales/onboarding team
+  contactedAt       DateTime?
+  convertedContractor String? // Contractor ID if they completed onboarding
+
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@index([source])
+  @@index([utmCampaign])
+  @@index([abn])
+  @@map("contractor_applications")
+}
