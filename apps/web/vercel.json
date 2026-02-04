@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd ../.. && pnpm run build:web",
+  "buildCommand": "cd ../.. && npx turbo run build --filter=dr-nrpg-web",
   "framework": "nextjs",
   "installCommand": "cd ../.. && pnpm install",
   "outputDirectory": ".next",
