@@ -1,232 +1,580 @@
-# Execution Plan: Fix NRP-021 to NRP-024 Vercel Deployment Issue
+# Execution Plan: Finalize Project Handover and Connect All API Endpoints
 
-**Problem Statement:** Training modules NRP-001 to NRP-020 work in production, but NRP-021 to NRP-024 return 404 errors despite all files existing locally and being committed to repository.
-
-**Success Criteria:** All 24 training modules (NRP-001 through NRP-024) return 200 OK with correct HTML content in production.
-
----
-
-## Phase 1: Diagnostic Investigation
-
-- [ ] **Task 1 (Builder)**: Access Vercel dashboard and navigate to latest deployment for commit `5783c164`
-  - **Action:** Log in to https://vercel.com/cleanexpos-projects/disaster-recovery-nrp/deployments
-  - **Expected Output:** Deployment details page showing build status
-
-- [ ] **Task 2 (Validator)**: Verify deployment completed successfully without errors
-  - **Check:** Deployment status shows "Ready" (green checkmark)
-  - **Check:** Build logs contain no "ENOENT" or "Error copying" messages
-  - **Check:** Build time is recent (within last 2 hours)
-  - **Evidence:** Screenshot or text excerpt from deployment status
-
-- [ ] **Task 3 (Builder)**: Examine build logs for copy-training-sources.js script output
-  - **Action:** Open "Building" tab in deployment details
-  - **Search For:** Lines containing "Copying training sources" and "COPIED NRP-02X"
-  - **Expected Output:** Log lines showing all 4 files (NRP-021 through NRP-024) copied successfully
-
-- [ ] **Task 4 (Validator)**: Verify build logs confirm all 24 modules were copied
-  - **Check:** Logs contain "✓✓✓ COPIED NRP-02X: NRP-021-DR-NRPG-PLATFORM-OPERATIONS.html"
-  - **Check:** Logs contain "✓✓✓ COPIED NRP-02X: NRP-022-CONTINUAL-EDUCATION-CREDITS.html"
-  - **Check:** Logs contain "✓✓✓ COPIED NRP-02X: NRP-023-ASSOCIATION-MEMBERSHIPS-BENEFITS.html"
-  - **Check:** Logs contain "✓✓✓ COPIED NRP-02X: NRP-024-MEMBERS-GATHERINGS-NETWORKING.html"
-  - **Check:** Logs show "✅ Copied 24 files from NRP Folder" or similar count
-  - **Evidence:** Extract log lines or note line numbers
-
-- [ ] **Task 5 (Builder)**: Test diagnostic endpoint to check production file paths
-  - **Action:** Navigate to https://disasterrecovery.com.au/api/debug/index-raw
-  - **Expected Output:** JSON response showing which paths exist in production
-
-- [ ] **Task 6 (Validator)**: Verify diagnostic endpoint reveals index file location and module count
-  - **Check:** Response status is 200 OK (not 404)
-  - **Check:** JSON contains `"exists": true` for at least one path attempt
-  - **Check:** JSON shows `"totalModules": 24`
-  - **Check:** JSON shows `"has_NRP_021": true`
-  - **Evidence:** Copy JSON response or note key values
+**Generated**: 2026-02-04
+**Status**: Ready for Execution
+**Estimated Time**: 6-8 hours
+**Team**: Builder + Validator agents
 
 ---
 
-## Phase 2: Root Cause Identification & Fix
+## Architecture Context
 
-- [ ] **Task 7 (Builder)**: Based on diagnostic results, identify exact failure point
-  - **If build logs missing copy output:** Copy script didn't run → Fix package.json build command
-  - **If files copied but index not found:** Path issue → Fix generatedDir() function path
-  - **If index found but missing NRP-021:** Index outdated → Regenerate index file
-  - **If everything present but still 404:** Serverless function bundle issue → Fix outputFileTracingIncludes
-  - **Action:** Document which scenario applies and note the fix needed
-
-- [ ] **Task 8 (Validator)**: Verify root cause hypothesis matches observed symptoms
-  - **Check:** Hypothesis explains why NRP-020 works but NRP-021 doesn't
-  - **Check:** Hypothesis explains why all files work locally
-  - **Check:** Hypothesis aligns with evidence from build logs and diagnostic endpoint
-  - **Evidence:** Write 2-3 sentence explanation of how hypothesis fits all facts
-
-- [ ] **Task 9 (Builder)**: Implement targeted fix based on identified root cause
-  - **Scenario A (Build script didn't run):**
-    - Edit `apps/web/package.json` line 8
-    - Ensure build script is: `"build": "node scripts/copy-training-sources.js && prisma generate && next build"`
-  - **Scenario B (Path issue):**
-    - Edit `apps/web/lib/training/nrp-training.ts` generatedDir() function
-    - Ensure path doesn't include 'src': `path.join(process.cwd(), 'lib', 'training', 'generated')`
-  - **Scenario C (Index outdated):**
-    - Run: `cd "D:\Disaster Recovery - NRP\apps\web" && node scripts/copy-training-sources.js`
-    - Verify lib/training/generated/nrp-training-index.json has all 24 modules
-  - **Scenario D (Serverless bundle issue):**
-    - Edit `apps/web/next.config.mjs` outputFileTracingIncludes
-    - Ensure includes: `'/api/**/*': ['./lib/training/sources/**/*', './lib/training/generated/**/*']`
-  - **Action:** Make the required code changes and commit
-
-- [ ] **Task 10 (Validator)**: Verify fix was correctly implemented in code
-  - **Check:** Changed file(s) contain the exact modifications specified
-  - **Check:** No syntax errors introduced (run `npm run type-check` or similar)
-  - **Check:** Git commit created with descriptive message
-  - **Check:** Changes pushed to GitHub (verify on github.com)
-  - **Evidence:** Commit SHA and git log --oneline -1 output
-
-- [ ] **Task 11 (Builder)**: Force fresh Vercel deployment with fix
-  - **Action:** Either wait for automatic deployment OR manually redeploy via Vercel dashboard
-  - **If manual:** Go to deployments → Click "..." menu → "Redeploy" → "Use existing Build Cache" = OFF
-  - **Expected Output:** New deployment initiated with unique deployment URL
-
-- [ ] **Task 12 (Validator)**: Verify new deployment completed successfully
-  - **Check:** Deployment status shows "Ready" (not "Building" or "Error")
-  - **Check:** Deployment timestamp is after the fix commit
-  - **Check:** Deployment commit SHA matches latest commit with fix
-  - **Check:** Build logs show successful build (no errors in red)
-  - **Evidence:** Deployment URL and timestamp
+This plan uses alternating Builder/Validator task sequences:
+- **Builder**: Implements code, updates configs, edits files
+- **Validator**: Verifies file existence, checks syntax, runs tests, ensures requirements met
+- **Rule**: Validator MUST run immediately after Builder completes a task
 
 ---
 
-## Phase 3: Comprehensive Testing
+## Phase 1: API Endpoint Completion
 
-- [ ] **Task 13 (Builder)**: Test NRP-001 (regression test - should still work)
-  - **Action:** Navigate to https://disasterrecovery.com.au/api/training/nrp/module/NRP-001
-  - **Expected Output:** JSON response with `"success": true` and HTML content
+### 1.1 Audit Incomplete API Routes
+**[Task 1] Builder**: Search all `/apps/web/app/api/**/*.ts` files for "TODO", "FIXME", "placeholder", "not implemented" comments. Create inventory file at `specs/api-audit.md` listing:
+- File path
+- Line number
+- TODO description
+- Priority (Critical/High/Medium/Low)
+- Estimated effort (hours)
 
-- [ ] **Task 14 (Validator)**: Verify NRP-001 returns valid response
-  - **Check:** HTTP status code is 200 OK
-  - **Check:** Response JSON contains `"success": true`
-  - **Check:** Response JSON contains `"moduleId": "NRP-001"`
-  - **Check:** Response JSON contains `"html"` field with content length > 10000 characters
-  - **Evidence:** First 100 characters of HTML or note response size
-
-- [ ] **Task 15 (Builder)**: Test NRP-020 (boundary test - last working module)
-  - **Action:** Navigate to https://disasterrecovery.com.au/api/training/nrp/module/NRP-020
-  - **Expected Output:** JSON response with `"success": true` and HTML content
-
-- [ ] **Task 16 (Validator)**: Verify NRP-020 returns valid response
-  - **Check:** HTTP status code is 200 OK
-  - **Check:** Response JSON contains `"success": true`
-  - **Check:** Response JSON contains `"moduleId": "NRP-020"`
-  - **Check:** Response JSON contains `"html"` field with content length > 10000 characters
-  - **Evidence:** Note response size or status
-
-- [ ] **Task 17 (Builder)**: Test NRP-021 (critical test - first failing module)
-  - **Action:** Navigate to https://disasterrecovery.com.au/api/training/nrp/module/NRP-021
-  - **Expected Output:** JSON response with `"success": true` and HTML content (NOT 404 error)
-
-- [ ] **Task 18 (Validator)**: Verify NRP-021 now returns valid response
-  - **Check:** HTTP status code is 200 OK (NOT 404)
-  - **Check:** Response JSON contains `"success": true` (NOT `"error": "RESOURCE_NOT_FOUND"`)
-  - **Check:** Response JSON contains `"moduleId": "NRP-021"`
-  - **Check:** Response JSON contains `"html"` field with content length > 10000 characters
-  - **Check:** Response JSON contains `"title"` mentioning "Platform Operations"
-  - **Evidence:** Copy response status and moduleId field
-
-- [ ] **Task 19 (Builder)**: Test NRP-022, NRP-023, NRP-024 (remaining new modules)
-  - **Action:** Navigate to each URL:
-    - https://disasterrecovery.com.au/api/training/nrp/module/NRP-022
-    - https://disasterrecovery.com.au/api/training/nrp/module/NRP-023
-    - https://disasterrecovery.com.au/api/training/nrp/module/NRP-024
-  - **Expected Output:** All three return JSON with `"success": true`
-
-- [ ] **Task 20 (Validator)**: Verify NRP-022, NRP-023, NRP-024 all return valid responses
-  - **Check:** NRP-022 returns 200 OK with `"success": true` and title about "Continual Education"
-  - **Check:** NRP-023 returns 200 OK with `"success": true` and title about "Association Memberships"
-  - **Check:** NRP-024 returns 200 OK with `"success": true` and title about "Members Gatherings"
-  - **Check:** All three have unique SHA256 hashes (different module content)
-  - **Evidence:** List status codes and module titles
-
-- [ ] **Task 21 (Builder)**: Run comprehensive module availability test script
-  - **Action:** Create and run test script that checks all 24 modules:
-    ```bash
-    for i in {001..024}; do
-      curl -s "https://disasterrecovery.com.au/api/training/nrp/module/NRP-$i" | jq -r '.success // "ERROR"'
-    done
-    ```
-  - **Expected Output:** 24 lines showing "true" (no "ERROR" or "null")
-
-- [ ] **Task 22 (Validator)**: Verify all 24 modules return success
-  - **Check:** Script output shows "true" for all 24 modules
-  - **Check:** No lines contain "ERROR", "null", or "RESOURCE_NOT_FOUND"
-  - **Check:** All 24 responses received (no timeouts or connection errors)
-  - **Evidence:** Count of successful responses (should be 24/24)
+**[Task 2] Validator**: Verify `specs/api-audit.md` exists, contains valid markdown, has at least 10 entries, properly categorized by priority.
 
 ---
 
-## Phase 4: Documentation & Cleanup
+### 1.2 Connect Lead Capture Endpoint
+**[Task 3] Builder**: Read `/apps/web/app/api/public/lead-capture/route.ts` and verify it:
+- Has database insertion logic
+- Sends confirmation email
+- Triggers contractor matching
+- Returns proper 201 response
+- If missing any of above, implement them
 
-- [ ] **Task 23 (Builder)**: Update BUILD-FIX-SUMMARY.md with resolution
-  - **Action:** Edit `BUILD-FIX-SUMMARY.md`
-  - **Add Section:** "## ✅ FINAL RESOLUTION" with:
-    - Root cause description
-    - Fix implemented
-    - Verification results
-    - Date/time resolved
-  - **Action:** Commit changes
-
-- [ ] **Task 24 (Validator)**: Verify documentation accurately describes solution
-  - **Check:** BUILD-FIX-SUMMARY.md contains new "FINAL RESOLUTION" section
-  - **Check:** Root cause description matches what was actually found
-  - **Check:** Fix description matches code changes made
-  - **Check:** Timestamp is accurate (today's date)
-  - **Evidence:** Read summary section and confirm accuracy
-
-- [ ] **Task 25 (Builder)**: Remove diagnostic endpoints (cleanup)
-  - **Action:** Delete temporary diagnostic files:
-    - `apps/web/app/api/debug/files/route.ts`
-    - `apps/web/app/api/debug/module-index/route.ts`
-    - `apps/web/app/api/debug/index-raw/route.ts`
-  - **Action:** Optionally remove verbose logging from `copy-training-sources.js`
-  - **Action:** Commit cleanup changes
-
-- [ ] **Task 26 (Validator)**: Verify diagnostic endpoints removed and production still works
-  - **Check:** Diagnostic files no longer exist in apps/web/app/api/debug/
-  - **Check:** Git shows files deleted in latest commit
-  - **Check:** After deployment, NRP-021 still returns 200 OK (fix didn't break)
-  - **Evidence:** Confirm NRP-021 still accessible after cleanup deployment
-
-- [ ] **Task 27 (Builder)**: Update todo list to mark task complete
-  - **Action:** Run TodoWrite tool to update status:
-    - Mark "Test all 24 modules return 200 OK" as completed
-    - Mark "Confirm 100% success" as completed
-  - **Expected Output:** Todo list shows all items completed
-
-- [ ] **Task 28 (Validator)**: Verify project is in clean, production-ready state
-  - **Check:** All 24 training modules accessible in production
-  - **Check:** No diagnostic/debug endpoints exposed
-  - **Check:** No pending git changes (git status clean or only docs)
-  - **Check:** Build logs show successful builds with no warnings
-  - **Check:** Todo list shows all deployment tasks completed
-  - **Evidence:** Final checklist confirmation
+**[Task 4] Validator**:
+- Verify file compiles without TypeScript errors
+- Check Prisma schema has `LeadCapture` model
+- Verify email template exists
+- Run: `curl -X POST http://localhost:3000/api/public/lead-capture -H "Content-Type: application/json" -d '{"firstName":"Test","lastName":"User","email":"test@example.com","phone":"0412345678","propertyAddress":"123 Main St","suburb":"Sydney","state":"NSW","postcode":"2000","damageType":"WATER_DAMAGE","damageDescription":"Test description for validation","hasInsurance":true,"urgency":"STANDARD"}'`
+- Verify 201 response received
 
 ---
 
-## Success Metrics
+### 1.3 Connect Triage Assessment Endpoint
+**[Task 5] Builder**: Read `/apps/web/app/api/public/triage/route.ts` and implement:
+- Triage scoring algorithm (urgency calculation)
+- Cost estimation logic
+- Recommendation engine
+- Database persistence of results
+- Return proper response structure per README spec
 
-**Definition of Done:**
-- ✅ All 24 modules (NRP-001 through NRP-024) return HTTP 200 with valid JSON
-- ✅ Each module contains `"success": true` and correct `moduleId`
-- ✅ Production deployment stable with no errors in logs
-- ✅ Root cause documented and understood
-- ✅ Cleanup completed (no temporary debugging code in production)
-
-**Risk Mitigation:**
-- Each Builder task is immediately followed by Validator verification
-- Regression testing ensures existing functionality (NRP-001 to NRP-020) not broken
-- Comprehensive testing catches any edge cases (NRP-022, 023, 024)
-- Documentation ensures knowledge transfer and future debugging
+**[Task 6] Validator**:
+- Verify TypeScript compiles
+- Check triage scoring returns value 0-100
+- Verify cost estimation returns min/max range
+- Test endpoint: `curl -X POST http://localhost:3000/api/public/triage -H "Content-Type: application/json" -d '{"postcode":"2000","state":"NSW","responses":[{"questionId":"water_standing","answer":true},{"questionId":"affected_area","answer":"entire floor"}]}'`
+- Verify JSON response has urgencyLevel, urgencyScore, recommendations fields
 
 ---
 
-**Plan Status:** Ready for execution
-**Estimated Time:** 1-2 hours (depending on Vercel deployment times)
-**Last Updated:** 2026-02-04
+### 1.4 Connect Newsletter Subscription Endpoint
+**[Task 7] Builder**: Read `/apps/web/app/api/public/newsletter/route.ts` and implement:
+- Email validation and duplicate checking
+- Database insertion to NewsletterSubscription model
+- SendGrid/Resend integration for confirmation email
+- Unsubscribe token generation
+- Handle GET /api/public/newsletter?email=xxx&token=xxx for unsubscribe
+
+**[Task 8] Validator**:
+- Verify both POST and DELETE methods work
+- Test subscribe: `curl -X POST http://localhost:3000/api/public/newsletter -H "Content-Type: application/json" -d '{"email":"test@example.com","firstName":"Test","marketingConsent":true}'`
+- Verify 201 response and database record created
+- Check duplicate email returns 409 Conflict
+
+---
+
+### 1.5 Connect Contractor Inquiry Endpoint
+**[Task 9] Builder**: Read `/apps/web/app/api/public/contractor-inquiry/route.ts` (if different from `/api/landing/contractor-application/route.ts`, merge logic):
+- ABN validation (11 digits)
+- Duplicate checking by email and ABN
+- Auto-approval logic (if IICRC certified + insurance)
+- Email notification to admin team
+- Return application ID and next steps
+
+**[Task 10] Validator**:
+- Verify endpoint handles all required fields per README spec
+- Test: `curl -X POST http://localhost:3000/api/public/contractor-inquiry -H "Content-Type: application/json" -d '{"businessName":"Test Restoration","abn":"12345678901","contactFirstName":"John","contactLastName":"Doe","contactEmail":"john@test.com","contactPhone":"0412345678","businessAddress":"123 St","suburb":"Sydney","state":"NSW","postcode":"2000","servicesOffered":["WATER_DAMAGE"],"serviceAreas":["NSW"],"hasPublicLiability":true,"publicLiabilityAmount":10000000,"hasWorkersCompensation":false,"yearsInBusiness":5,"numberOfEmployees":3,"termsAccepted":true,"backgroundCheckConsent":true}'`
+- Verify 201 response with applicationId
+
+---
+
+## Phase 2: Dashboard API Endpoints
+
+### 2.1 Complete Contractor Analytics Endpoint
+**[Task 11] Builder**: Read `/apps/web/app/api/contractor/analytics/route.ts` and replace placeholder with:
+- Query contractor's completed jobs count
+- Calculate average rating
+- Calculate total revenue (sum of job amounts)
+- Get monthly revenue trend (last 12 months)
+- Return jobs by status breakdown
+
+**[Task 12] Validator**:
+- Verify TypeScript compiles
+- Check SQL queries use proper indexes
+- Test endpoint with authenticated contractor session
+- Verify response has: completedJobs, averageRating, totalRevenue, monthlyTrend fields
+
+---
+
+### 2.2 Complete Contractor Payout Settings
+**[Task 13] Builder**: Read `/apps/web/app/api/contractor/payout-settings/route.ts` and implement:
+- GET: Fetch contractor's Stripe Connect account status
+- POST: Create/update payout preferences (bank account, schedule)
+- Integration with Stripe Connect API
+- Return account_link for onboarding if not connected
+
+**[Task 14] Validator**:
+- Verify Stripe API key configured in .env
+- Check GET returns proper account status
+- Verify POST validates bank details format (BSB + account number)
+- Test endpoint returns 401 if not authenticated
+
+---
+
+### 2.3 Complete Client Onboarding Property Endpoint
+**[Task 15] Builder**: Read `/apps/web/app/api/client/onboarding/property/route.ts` and implement:
+- POST: Save property details (address, type, square meters)
+- Geocoding integration (Google Maps API or Mapbox) for coordinates
+- Validate Australian address format
+- Link property to authenticated user
+
+**[Task 16] Validator**:
+- Verify address validation rejects invalid postcodes
+- Check geocoding returns lat/lng coordinates
+- Test property saved to database
+- Verify user can only create property for themselves (RLS check)
+
+---
+
+### 2.4 Complete Admin Disputes Endpoint
+**[Task 17] Builder**: Read `/apps/web/app/api/admin/disputes/route.ts` and implement:
+- GET: List all active disputes with filters
+- POST: Admin manually creates dispute
+- PATCH /[id]: Update dispute status (OPEN, IN_REVIEW, RESOLVED, CLOSED)
+- Include pagination (page, limit)
+
+**[Task 18] Validator**:
+- Verify only admin role can access (check middleware)
+- Test pagination works correctly
+- Verify dispute status transitions follow business rules
+- Check audit log created on status change
+
+---
+
+## Phase 3: Integration & Third-Party Services
+
+### 3.1 Verify Stripe Integration
+**[Task 19] Builder**: Read all files in `/apps/web/lib/stripe/` and verify:
+- Webhook signature verification implemented
+- Tenant subscription creation works
+- Stripe Connect for contractors configured
+- Error handling for failed payments
+
+**[Task 20] Validator**:
+- Check `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` in .env.example
+- Verify webhook endpoint at `/api/webhooks/stripe/tenant/route.ts` exists
+- Test webhook with Stripe CLI: `stripe trigger payment_intent.succeeded`
+- Confirm database updated after webhook
+
+---
+
+### 3.2 Verify Email Service Integration
+**[Task 21] Builder**: Check email service configuration:
+- Read `/apps/web/lib/email/` (if exists) or search for Resend/SendGrid usage
+- Verify all email templates exist (confirmation, password reset, notification)
+- Ensure email sending is async/non-blocking
+- Add retry logic for failed sends
+
+**[Task 22] Validator**:
+- Check `RESEND_API_KEY` or `SENDGRID_API_KEY` in .env.example
+- Verify at least 5 email templates defined
+- Test sending email via API endpoint
+- Check email queue/background job processor exists
+
+---
+
+### 3.3 Verify Redis/Queue Integration
+**[Task 23] Builder**: Read `/apps/web/lib/queue/` and verify:
+- Background job processor configured
+- Contractor matching queue works
+- Email queue works
+- Job retry logic with exponential backoff
+
+**[Task 24] Validator**:
+- Check `UPSTASH_REDIS_REST_URL` in .env.example
+- Verify background job cron runs at `/api/cron/process-background-jobs`
+- Test adding job to queue and verify it processes
+- Check dead letter queue for failed jobs
+
+---
+
+## Phase 4: Vercel Deployment Configuration
+
+### 4.1 Verify Vercel Configuration
+**[Task 25] Builder**: Read `/vercel.json` and verify:
+- Build command uses turbo: `turbo run build --filter=dr-nrpg-web`
+- Output directory: `apps/web/.next`
+- All cron jobs defined (12 total per current config)
+- Security headers configured
+- Regions set to Sydney (syd1)
+
+**[Task 26] Validator**:
+- Run: `cat vercel.json | jq '.buildCommand'` - verify correct
+- Count cron jobs: `cat vercel.json | jq '.crons | length'` - verify ≥ 12
+- Check headers include CSP, X-Frame-Options, X-Content-Type-Options
+- Verify no conflicting apps/web/vercel.json exists
+
+---
+
+### 4.2 Create Deployment Environment Checklist
+**[Task 27] Builder**: Create `specs/deployment-checklist.md` with sections:
+- Environment Variables (categorized: Database, Auth, Email, Payment, Monitoring)
+- For each variable: name, description, required/optional, example value
+- Pre-deployment verification steps
+- Post-deployment smoke tests
+- Rollback procedure
+
+**[Task 28] Validator**:
+- Verify file exists at `specs/deployment-checklist.md`
+- Check contains at least 30 environment variables
+- Verify has smoke test section with ≥ 5 tests
+- Validate markdown renders correctly
+
+---
+
+### 4.3 Test Production Build
+**[Task 29] Builder**: Run production build locally:
+- Execute: `NODE_ENV=production turbo run build --filter=dr-nrpg-web`
+- Fix any build errors that occur
+- Verify no TypeScript errors
+- Verify no missing environment variable errors during build
+
+**[Task 30] Validator**:
+- Check build succeeds (exit code 0)
+- Verify output: `apps/web/.next` directory exists and is > 10MB
+- Check no critical warnings in build output
+- Verify build time < 5 minutes
+
+---
+
+## Phase 5: Documentation & Handover Preparation
+
+### 5.1 Create API Documentation
+**[Task 31] Builder**: Create comprehensive `specs/API-REFERENCE.md`:
+- All public API endpoints with examples
+- All authenticated API endpoints grouped by role
+- Request/response schemas
+- Error codes and handling
+- Rate limits
+- Authentication methods
+
+**[Task 32] Validator**:
+- Verify file exists at `specs/API-REFERENCE.md`
+- Check documents at least 20 API endpoints
+- Verify each endpoint has: method, path, auth, request body, response example
+- Validate all code examples are valid JSON
+
+---
+
+### 5.2 Create Database Documentation
+**[Task 33] Builder**: Generate database schema documentation:
+- Run: `npx prisma-docs-generator` (if available) OR manually create `specs/DATABASE-SCHEMA.md`
+- Document all 12+ tables with columns, types, relationships
+- Include ER diagram (Mermaid or PlantUML)
+- Document indexes, constraints, RLS policies
+
+**[Task 34] Validator**:
+- Verify documentation file exists
+- Check all Prisma models documented
+- Verify ER diagram renders correctly
+- Count tables: should be ≥ 12 models
+
+---
+
+### 5.3 Create Runbook for Operations
+**[Task 35] Builder**: Create `specs/RUNBOOK.md` with:
+- **Deployment**: Step-by-step Vercel deployment
+- **Monitoring**: How to check logs, errors, performance
+- **Incidents**: Common issues and resolutions
+- **Maintenance**: Database migrations, backups
+- **Cron Jobs**: What each job does, schedules, monitoring
+- **Alerts**: What alerts exist, thresholds, escalation
+
+**[Task 36] Validator**:
+- Verify file exists at `specs/RUNBOOK.md`
+- Check has 6 main sections (listed above)
+- Verify deployment section has ≥ 8 steps
+- Check includes example commands for common tasks
+
+---
+
+### 5.4 Create Handover Documentation
+**[Task 37] Builder**: Create `specs/HANDOVER.md` with:
+- Project overview and tech stack
+- Architecture diagram (high-level)
+- Key contacts and roles
+- Access credentials locations (not the actual secrets)
+- Known issues and limitations
+- Future roadmap items
+- Critical paths (what must not break)
+
+**[Task 38] Validator**:
+- Verify file exists at `specs/HANDOVER.md`
+- Check includes architecture diagram (Mermaid/PlantUML)
+- Verify lists known issues from README
+- Check has future roadmap with ≥ 5 items
+
+---
+
+## Phase 6: Testing & Quality Assurance
+
+### 6.1 Run Full Test Suite
+**[Task 39] Builder**: Execute complete test suite:
+- Run: `npm run test`
+- Fix any failing tests
+- Ensure coverage ≥ 80% for critical paths
+- Update snapshots if needed
+
+**[Task 40] Validator**:
+- Verify all tests pass (exit code 0)
+- Check test output shows ≥ 150 passing tests
+- Verify no test warnings
+- Check test coverage report: `npm run test:coverage`
+
+---
+
+### 6.2 Manual Smoke Testing
+**[Task 41] Builder**: Create smoke test script at `scripts/smoke-test.sh`:
+- Test homepage loads (curl http://localhost:3000)
+- Test API health endpoint (if exists)
+- Test login flow (programmatically)
+- Test dashboard loads for each role
+- Test key API endpoints (5-10 critical ones)
+
+**[Task 42] Validator**:
+- Execute: `bash scripts/smoke-test.sh`
+- Verify all checks pass
+- Check script tests at least 5 endpoints
+- Verify script exits with code 0 on success
+
+---
+
+### 6.3 Load Testing (Optional but Recommended)
+**[Task 43] Builder**: Create basic load test with k6 or Artillery:
+- Test file: `tests/load/basic-load.js`
+- Simulate 50 concurrent users
+- Test critical paths: homepage, API endpoints
+- Run for 2 minutes
+- Set acceptable thresholds (95th percentile < 500ms)
+
+**[Task 44] Validator**:
+- Run load test: `k6 run tests/load/basic-load.js` (or equivalent)
+- Verify no errors during test
+- Check 95th percentile response time < 500ms
+- Verify no memory leaks or crashes
+
+---
+
+## Phase 7: Security Audit
+
+### 7.1 Environment Variables Audit
+**[Task 45] Builder**: Review all environment variable usage:
+- Search codebase for `process.env`
+- Verify all secrets are in .env.example (with placeholder values)
+- Check no secrets committed to git: `git log -p | grep -i "api_key\|secret\|password"`
+- Verify .gitignore includes .env files
+
+**[Task 46] Validator**:
+- Check .env.example exists and has ≥ 25 variables
+- Verify no actual secrets in .env.example (all should be placeholders)
+- Run: `git log -S "sk_live_" --all` - should return 0 results
+- Confirm .env, .env.local in .gitignore
+
+---
+
+### 7.2 Dependency Vulnerability Scan
+**[Task 47] Builder**: Scan for vulnerabilities:
+- Run: `npm audit`
+- Fix critical and high vulnerabilities: `npm audit fix`
+- Document any vulnerabilities that can't be auto-fixed
+- Update packages if needed
+
+**[Task 48] Validator**:
+- Verify `npm audit` shows 0 critical vulnerabilities
+- Check 0 high vulnerabilities
+- Document any remaining moderate/low vulns in `specs/SECURITY.md`
+- Verify no outdated major dependencies
+
+---
+
+### 7.3 API Security Review
+**[Task 49] Builder**: Review API security:
+- Verify all authenticated endpoints check user roles
+- Check rate limiting on public endpoints
+- Ensure CORS configured correctly
+- Verify no SQL injection vectors (use Prisma parameterized queries)
+- Check XSS prevention (sanitize inputs)
+
+**[Task 50] Validator**:
+- Test unauthenticated access to protected endpoints (should return 401)
+- Verify rate limits work: send 100 requests rapidly to public endpoint
+- Check CORS: send OPTIONS request from foreign origin
+- Attempt SQL injection in search/filter endpoints
+- Test XSS: submit `<script>alert('XSS')</script>` in form fields
+
+---
+
+## Phase 8: Final Handover
+
+### 8.1 Create Handover Package
+**[Task 51] Builder**: Consolidate all documentation into `specs/` directory:
+- Move/copy all specs to one location
+- Create README.md in specs/ with index
+- Zip archive: `specs-handover-$(date +%Y%m%d).zip`
+- Generate PDF versions of key docs (optional)
+
+**[Task 52] Validator**:
+- Verify specs/ directory contains ≥ 8 documentation files
+- Check specs/README.md exists with table of contents
+- Verify zip archive created successfully
+- Test extracting zip to verify integrity
+
+---
+
+### 8.2 Update Main README
+**[Task 53] Builder**: Update `/README.md` with:
+- Change status from "95% Complete" to "100% Production Ready"
+- Update last updated date to today
+- Add link to specs/ documentation
+- Add "Handover Complete" badge
+- Document final commit hash
+
+**[Task 54] Validator**:
+- Verify README.md status shows 100%
+- Check date is current
+- Verify all links work
+- Confirm commit hash is valid: `git log -1 --format=%H`
+
+---
+
+### 8.3 Final Git Commit
+**[Task 55] Builder**: Create final handover commit:
+- Stage all changes: `git add .`
+- Commit with message: `chore: Complete project handover - all API endpoints connected, documentation finalized`
+- Add Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+- DO NOT push yet (awaiting user approval)
+
+**[Task 56] Validator**:
+- Run: `git status` - verify working tree clean
+- Check: `git log -1` - verify commit message correct
+- Verify commit includes all new files in specs/
+- Count changed files: should be ≥ 15
+
+---
+
+## Phase 9: Deployment Readiness
+
+### 9.1 Vercel Deployment Test
+**[Task 57] Builder**: Prepare for Vercel deployment:
+- Review vercel.json one final time
+- Ensure all environment variables documented
+- Create `vercel-env-template.txt` with all required env vars
+- Document deployment steps in RUNBOOK.md
+
+**[Task 58] Validator**:
+- Verify vercel.json is valid JSON
+- Check vercel-env-template.txt lists all 25+ variables
+- Verify RUNBOOK.md has Vercel deployment section
+- Confirm no hardcoded localhost URLs in code
+
+---
+
+### 9.2 Create Deployment Command
+**[Task 59] Builder**: User will manually deploy via Vercel Dashboard:
+- Document in RUNBOOK.md: "Go to Vercel Dashboard → Deployments → Redeploy"
+- Verify Root Directory setting is blank (not apps/web)
+- Confirm build command in Vercel matches vercel.json
+- Note: Cannot automate due to previous CLI issues
+
+**[Task 60] Validator**:
+- Verify deployment instructions in RUNBOOK.md
+- Check screenshot/instructions for Vercel Dashboard
+- Confirm reminder about Root Directory setting
+- Verify note about build command matches vercel.json
+
+---
+
+## Success Criteria
+
+### Phase 1-3: API Endpoints ✅
+- [ ] All TODO/FIXME items addressed
+- [ ] 4 public API endpoints fully functional
+- [ ] 4 dashboard API endpoints completed
+- [ ] All endpoints tested and verified
+- [ ] Stripe, email, Redis integrations working
+
+### Phase 4: Deployment ✅
+- [ ] vercel.json configured correctly
+- [ ] Production build succeeds
+- [ ] Deployment checklist created
+- [ ] No conflicting config files
+
+### Phase 5-6: Documentation & Testing ✅
+- [ ] API reference documentation complete
+- [ ] Database schema documented
+- [ ] Runbook created
+- [ ] Handover documentation complete
+- [ ] All tests passing
+- [ ] Smoke tests successful
+
+### Phase 7: Security ✅
+- [ ] 0 critical/high vulnerabilities
+- [ ] No secrets in git history
+- [ ] API security verified
+- [ ] Rate limiting tested
+
+### Phase 8-9: Handover ✅
+- [ ] specs/ directory complete (8+ files)
+- [ ] README updated to 100% complete
+- [ ] Final commit created
+- [ ] Deployment ready for Vercel
+
+---
+
+## Timeline Estimate
+
+| Phase | Tasks | Estimated Time |
+|-------|-------|----------------|
+| Phase 1: API Completion | 10 tasks | 2.5 hours |
+| Phase 2: Dashboard APIs | 8 tasks | 1.5 hours |
+| Phase 3: Integrations | 6 tasks | 1 hour |
+| Phase 4: Deployment | 6 tasks | 45 mins |
+| Phase 5: Documentation | 8 tasks | 1.5 hours |
+| Phase 6: Testing | 6 tasks | 45 mins |
+| Phase 7: Security | 6 tasks | 1 hour |
+| Phase 8: Handover | 6 tasks | 30 mins |
+| Phase 9: Deployment Prep | 4 tasks | 30 mins |
+| **TOTAL** | **60 tasks** | **~8 hours** |
+
+---
+
+## Notes for Execution
+
+1. **Sequential Execution**: Each Builder task MUST be followed by its Validator task before proceeding
+2. **Failure Handling**: If Validator fails, Builder must fix and re-run validation
+3. **Documentation**: All code changes should be documented inline
+4. **Testing**: Never skip validation steps - they catch issues early
+5. **Commit Strategy**: Commit after each completed phase, not individual tasks
+6. **Communication**: Builder should log progress after each task completion
+
+---
+
+## Ready to Execute
+
+This plan is ready for autonomous execution. Begin with **[Task 1] Builder** and proceed sequentially through all 60 tasks.
+
+**Execution Mode**: Autonomous with validation gates
+**Expected Completion**: 8 hours of focused work
+**Output**: Production-ready platform with complete handover documentation
+
+---
+
+*Plan generated by Lead Architect Agent*
+*Execution by Builder + Validator team*
