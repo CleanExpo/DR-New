@@ -242,7 +242,7 @@ async function sendApplicationReceivedEmail(
           <span style="color: #4B5563; font-size: 14px;">Complete all 24 NRPG training modules (approximately 22+ hours, self-paced). Training covers Safety, Legal, Documentation, Operations, Business, Restoration, and Platform Operations. Pass 315 assessment questions (80% minimum). Training investment: $1,495 AUD (one-time).</span>
         </li>
         <li style="margin-bottom: 0;"><strong>Start Receiving Jobs!</strong><br>
-          <span style="color: #4B5563; font-size: 14px;">Once certified, you will be live on the platform and start receiving qualified leads in your service areas. Commission: 12-15% per job, no monthly fees.</span>
+          <span style="color: #4B5563; font-size: 14px;">Once certified, you will be live on the platform and start receiving qualified leads in your service areas. Platform fee: $550 flat fee per claim (no commission), no monthly fees. Keep 100% of your revenue!</span>
         </li>
       </ol>
     </div>
