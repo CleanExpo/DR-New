@@ -19,16 +19,19 @@ import { Resend } from 'resend';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 
-// Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend client (only in runtime, not during build)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// Initialize rate limiting (10 requests per hour per IP)
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, '1 h'),
-  analytics: true,
-  prefix: 'ratelimit:waitlist',
-});
+// Initialize rate limiting (10 requests per hour per IP) - only if Redis is configured
+const ratelimit =
+  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
+    ? new Ratelimit({
+        redis: Redis.fromEnv(),
+        limiter: Ratelimit.slidingWindow(10, '1 h'),
+        analytics: true,
+        prefix: 'ratelimit:waitlist',
+      })
+    : null;
 
 // Validation schema
 const waitlistSchema = z.object({
@@ -52,23 +55,26 @@ type WaitlistSubmissionData = z.infer<typeof waitlistSchema>;
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limiting check
-    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
-    const { success, limit, remaining, reset } = await ratelimit.limit(ip);
+    // Rate limiting check (skip if not configured)
+    if (ratelimit) {
+      const ip =
+        request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+      const { success, limit, remaining, reset } = await ratelimit.limit(ip);
 
-    if (!success) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Too many submissions. Please try again later.',
-          rateLimit: {
-            limit,
-            remaining,
-            reset: new Date(reset).toISOString(),
+      if (!success) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Too many submissions. Please try again later.',
+            rateLimit: {
+              limit,
+              remaining,
+              reset: new Date(reset).toISOString(),
+            },
           },
-        },
-        { status: 429 }
-      );
+          { status: 429 }
+        );
+      }
     }
 
     // Parse request body
@@ -265,6 +271,11 @@ support@disasterrecoverynrpg.com.au
   `;
 
   try {
+    if (!resend) {
+      console.warn('[Waitlist API] Resend not configured, skipping email');
+      return;
+    }
+
     const result = await resend.emails.send({
       from: 'NRPG Team <noreply@disasterrecoverynrpg.com.au>',
       to: email,

@@ -18,7 +18,6 @@ interface HeroSectionProps {
   subheadline: string;
   ctaText: string;
   ctaHref?: string;
-  onCtaClick?: () => void;
   backgroundImage?: string;
   trustBadges?: {
     icon: React.ReactNode;
@@ -32,19 +31,12 @@ export function HeroSection({
   headline,
   subheadline,
   ctaText,
-  ctaHref,
-  onCtaClick,
+  ctaHref = '#',
   backgroundImage,
   trustBadges,
   className,
   children,
 }: HeroSectionProps) {
-  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
-    if (onCtaClick) {
-      e.preventDefault();
-      onCtaClick();
-    }
-  };
 
   return (
     <section
@@ -79,48 +71,25 @@ export function HeroSection({
 
           {/* CTA Button */}
           <div className="mt-10 flex justify-center">
-            {ctaHref ? (
-              <a
-                href={ctaHref}
-                onClick={handleCtaClick}
-                className="inline-flex items-center rounded-lg bg-white px-8 py-4 text-lg font-semibold text-orange-600 shadow-xl transition hover:-translate-y-0.5 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-orange-600"
+            <a
+              href={ctaHref}
+              className="inline-flex items-center rounded-lg bg-white px-8 py-4 text-lg font-semibold text-orange-600 shadow-xl transition hover:-translate-y-0.5 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-orange-600"
+            >
+              {ctaText}
+              <svg
+                className="ml-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                {ctaText}
-                <svg
-                  className="ml-2 h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </a>
-            ) : (
-              <button
-                onClick={handleCtaClick}
-                className="inline-flex items-center rounded-lg bg-white px-8 py-4 text-lg font-semibold text-orange-600 shadow-xl transition hover:-translate-y-0.5 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-orange-600"
-              >
-                {ctaText}
-                <svg
-                  className="ml-2 h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
-                  />
-                </svg>
-              </button>
-            )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </a>
           </div>
 
           {/* Trust Badges */}
