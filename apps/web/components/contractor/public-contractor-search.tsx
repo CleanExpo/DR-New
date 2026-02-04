@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,6 +12,14 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
+import { Checkbox } from '@/components/ui/checkbox';
 import { toast } from 'sonner';
 import Link from 'next/link';
 import {
@@ -28,7 +36,11 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowRight,
+  GitCompare,
+  X,
 } from 'lucide-react';
+import { ContractorComparison } from './ContractorComparison';
+import type { ContractorComparisonData } from './ContractorComparison';
 
 // Australian states for postcode validation
 const AUSTRALIAN_STATES: Record<string, { name: string; postcodeRange: [number, number] }> = {
@@ -118,6 +130,69 @@ export default function PublicContractorSearch({
   const [result, setResult] = useState<SearchResult | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedContractors, setSelectedContractors] = useState<string[]>([]);
+  const [showComparison, setShowComparison] = useState(false);
+
+  // Load selected contractors from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('selectedContractors');
+    if (saved) {
+      try {
+        setSelectedContractors(JSON.parse(saved));
+      } catch (e) {
+        // Invalid data, reset
+        localStorage.removeItem('selectedContractors');
+      }
+    }
+  }, []);
+
+  // Save selected contractors to localStorage
+  useEffect(() => {
+    localStorage.setItem('selectedContractors', JSON.stringify(selectedContractors));
+  }, [selectedContractors]);
+
+  // Toggle contractor selection
+  const toggleContractorSelection = (contractorId: string) => {
+    setSelectedContractors((prev) => {
+      if (prev.includes(contractorId)) {
+        // Remove from selection
+        return prev.filter((id) => id !== contractorId);
+      } else {
+        // Add to selection (max 3)
+        if (prev.length >= 3) {
+          toast.error('You can compare up to 3 contractors at a time');
+          return prev;
+        }
+        return [...prev, contractorId];
+      }
+    });
+  };
+
+  // Clear all selections
+  const clearSelection = () => {
+    setSelectedContractors([]);
+    localStorage.removeItem('selectedContractors');
+  };
+
+  // Get selected contractor data for comparison
+  const getSelectedContractorData = (): ContractorComparisonData[] => {
+    if (!result) return [];
+    return result.contractors
+      .filter((c) => selectedContractors.includes(c.id))
+      .map((c) => ({
+        id: c.id,
+        businessName: c.businessName,
+        averageRating: c.rating,
+        reviewCount: c.reviewCount,
+        completedJobs: c.completedJobs,
+        averageResponseTimeMinutes: c.responseTimeMinutes || 0,
+        iicrcCount: c.iicrcLevels.length,
+        specialties: c.specialties.map(formatServiceType),
+        operatingStates: c.operatingStates,
+        isLicensed: true, // All public contractors are verified/licensed
+        matchScore: c.matchScore,
+      }));
+  };
 
   const detectedState = postcode.length === 4 ? getStateFromPostcode(postcode) : null;
   const isPostcodeValid = !postcode || (postcode.length === 4 && detectedState !== null);
@@ -331,22 +406,34 @@ export default function PublicContractorSearch({
                   className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] border-[#374151] hover:border-[#00BFA6] transition-colors"
                 >
                   <CardContent className="p-6">
-                    {/* Header */}
+                    {/* Header with Compare Checkbox */}
                     <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="font-poppins font-semibold text-lg text-[#F9FAFB]">
-                          {contractor.businessName}
-                        </h3>
-                        {contractor.nrpgMemberId && (
-                          <div className="flex items-center gap-1.5 mt-1">
-                            <Shield className="h-3.5 w-3.5 text-[#00BFA6]" />
-                            <span className="text-xs text-[#00BFA6] font-medium">
-                              NRPG {contractor.nrpgMemberId}
-                            </span>
+                      <div className="flex-1">
+                        <div className="flex items-start gap-3">
+                          {/* Compare Checkbox */}
+                          <div className="pt-1">
+                            <Checkbox
+                              checked={selectedContractors.includes(contractor.id)}
+                              onCheckedChange={() => toggleContractorSelection(contractor.id)}
+                              className="border-[#374151] data-[state=checked]:bg-[#00BFA6] data-[state=checked]:border-[#00BFA6]"
+                            />
                           </div>
-                        )}
+                          <div>
+                            <h3 className="font-poppins font-semibold text-lg text-[#F9FAFB]">
+                              {contractor.businessName}
+                            </h3>
+                            {contractor.nrpgMemberId && (
+                              <div className="flex items-center gap-1.5 mt-1">
+                                <Shield className="h-3.5 w-3.5 text-[#00BFA6]" />
+                                <span className="text-xs text-[#00BFA6] font-medium">
+                                  NRPG {contractor.nrpgMemberId}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <Badge className="bg-[#00BFA6]/10 text-[#00BFA6] border-[#00BFA6]/30">
+                      <Badge className="bg-[#00BFA6]/10 text-[#00BFA6] border-[#00BFA6]/30 ml-2">
                         {contractor.matchScore}% match
                       </Badge>
                     </div>
@@ -500,6 +587,72 @@ export default function PublicContractorSearch({
           </p>
         </div>
       )}
+
+      {/* Comparison Bar (Fixed at bottom) */}
+      {selectedContractors.length > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-[#1F2937] to-[#0F1115] border-t border-[#374151] p-4 shadow-lg z-50">
+          <div className="container mx-auto px-6 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <GitCompare className="h-5 w-5 text-[#00BFA6]" />
+              <div>
+                <div className="font-semibold text-[#F9FAFB]">
+                  {selectedContractors.length} contractor{selectedContractors.length !== 1 ? 's' : ''} selected
+                </div>
+                <div className="text-xs text-[#9CA3AF]">
+                  {selectedContractors.length < 2
+                    ? 'Select at least 2 to compare'
+                    : `Select up to ${3 - selectedContractors.length} more`}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={clearSelection}
+                className="border-[#374151] text-[#9CA3AF] hover:bg-[#1F2937] bg-transparent"
+              >
+                <X className="h-4 w-4 mr-1" />
+                Clear
+              </Button>
+              <Button
+                onClick={() => setShowComparison(true)}
+                disabled={selectedContractors.length < 2}
+                className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold"
+              >
+                <GitCompare className="h-4 w-4 mr-2" />
+                Compare Now
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Comparison Dialog */}
+      <Dialog open={showComparison} onOpenChange={setShowComparison}>
+        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">Contractor Comparison</DialogTitle>
+            <DialogDescription>
+              Compare key metrics side-by-side to make an informed decision
+            </DialogDescription>
+          </DialogHeader>
+          <ContractorComparison
+            contractors={getSelectedContractorData()}
+            onRemove={(id) => {
+              toggleContractorSelection(id);
+              // Close dialog if less than 2 contractors left
+              if (selectedContractors.length <= 2) {
+                setShowComparison(false);
+              }
+            }}
+            onClear={() => {
+              clearSelection();
+              setShowComparison(false);
+            }}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
