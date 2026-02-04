@@ -238,24 +238,25 @@ async function sendApplicationReceivedEmail(
         <li style="margin-bottom: 12px;"><strong>Interview Call (If Required)</strong><br>
           <span style="color: #4B5563; font-size: 14px;">We may schedule a brief call to discuss your experience, service areas, and answer any questions you have.</span>
         </li>
-        <li style="margin-bottom: 12px;"><strong>Platform Training (30 Minutes)</strong><br>
-          <span style="color: #4B5563; font-size: 14px;">Once approved, you'll receive a training link to learn how to use the NRPG platform, manage jobs, and communicate with clients.</span>
+        <li style="margin-bottom: 12px;"><strong>NRPG Training Certification (Required)</strong><br>
+          <span style="color: #4B5563; font-size: 14px;">Complete all 24 NRPG training modules (approximately 22+ hours, self-paced). Training covers Safety, Legal, Documentation, Operations, Business, Restoration, and Platform Operations. Pass 315 assessment questions (80% minimum). Training investment: $1,495 AUD (one-time).</span>
         </li>
         <li style="margin-bottom: 0;"><strong>Start Receiving Jobs!</strong><br>
-          <span style="color: #4B5563; font-size: 14px;">After completing training, you'll be live on the platform and start receiving qualified leads in your service areas.</span>
+          <span style="color: #4B5563; font-size: 14px;">Once certified, you will be live on the platform and start receiving qualified leads in your service areas. Commission: 12-15% per job, no monthly fees.</span>
         </li>
       </ol>
     </div>
 
-    <h3 style="color: #1F2937; margin-top: 30px; font-size: 18px;">What We're Reviewing:</h3>
+    <h3 style="color: #1F2937; margin-top: 30px; font-size: 18px;">Complete Membership Requirements:</h3>
     <div style="background: #F9FAFB; padding: 20px; border-radius: 6px; margin: 20px 0;">
       <ul style="color: #4B5563; padding-left: 20px; margin: 0;">
-        <li>✓ IICRC Certifications (valid and current)</li>
-        <li>✓ Business License (ABN verification)</li>
-        <li>✓ Public Liability Insurance ($10M+ coverage)</li>
-        <li>✓ WorkCover/Workers Compensation (if applicable)</li>
-        <li>✓ Background Check (national police check)</li>
-        <li>✓ Trade References (2+ years industry experience)</li>
+        <li>✓ <strong>NRPG Training:</strong> Complete all 24 certification modules (22+ hours) - $1,495 AUD</li>
+        <li>✓ <strong>IICRC Certifications:</strong> At least one valid certification (WRT, ASD, FSR, AMRT, or CTS)</li>
+        <li>✓ <strong>Business License:</strong> Valid Australian Business Number (ABN)</li>
+        <li>✓ <strong>Public Liability Insurance:</strong> $10M+ coverage (current certificate required)</li>
+        <li>✓ <strong>WorkCover:</strong> Workers Compensation (if you have employees)</li>
+        <li>✓ <strong>Background Check:</strong> National police check (we can arrange this)</li>
+        <li>✓ <strong>Experience:</strong> 2+ years in disaster recovery with verifiable references</li>
       </ul>
     </div>
 

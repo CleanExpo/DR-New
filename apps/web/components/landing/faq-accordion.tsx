@@ -168,8 +168,28 @@ export const waitlistFAQs: FAQ[] = [
 export const contractorFAQs: FAQ[] = [
   {
     question: 'How much does it cost to join?',
-    answer:
-      'There are no upfront costs, monthly fees, or subscription charges. You only pay a 12-15% commission when you win a job through the platform. If you do not get jobs, you do not pay anything.',
+    answer: (
+      <div className="space-y-2">
+        <p className="text-gray-600">NRPG membership includes the following costs:</p>
+        <ul className="list-inside list-disc space-y-1 text-gray-600">
+          <li>
+            <strong>Training Program:</strong> $1,495 AUD (one-time) for all 24 certification modules (22+ hours of training)
+          </li>
+          <li>
+            <strong>Platform Commission:</strong> 12-15% per job when you win work through the platform
+          </li>
+          <li>
+            <strong>No Monthly Fees:</strong> Zero subscription charges - only pay when you earn
+          </li>
+          <li>
+            <strong>No Hidden Costs:</strong> Transparent pricing with no surprise fees
+          </li>
+        </ul>
+        <p className="mt-2 text-sm text-gray-500">
+          Training investment includes lifetime access to all modules, ongoing updates, and NRPG certification upon completion.
+        </p>
+      </div>
+    ),
   },
   {
     question: 'What is the commission structure?',
@@ -215,51 +235,103 @@ export const contractorFAQs: FAQ[] = [
     ),
   },
   {
-    question: 'What certifications do I need?',
+    question: 'What are the complete membership requirements?',
     answer: (
-      <div className="space-y-2">
-        <p className="text-gray-600">Required certifications (at least one):</p>
-        <ul className="list-inside list-disc space-y-1 text-gray-600">
-          <li>IICRC Water Damage Restoration (WRT)</li>
-          <li>IICRC Applied Structural Drying (ASD)</li>
-          <li>IICRC Fire and Smoke Restoration (FSR)</li>
-          <li>IICRC Mould Remediation (AMRT)</li>
-          <li>IICRC Trauma and Crime Scene Cleanup (CTS)</li>
-          <li>Other equivalent Australian or international certifications</li>
-        </ul>
-        <p className="mt-2 text-gray-600">
-          Plus: Valid business license (ABN), $10M+ public liability insurance, and background
-          check.
+      <div className="space-y-3">
+        <p className="text-gray-600">
+          <strong>To become an NRPG member, you must meet ALL of the following requirements:</strong>
         </p>
+
+        <div className="bg-blue-50 p-3 rounded">
+          <p className="font-semibold text-blue-900 mb-2">1. NRPG Training Certification (Required)</p>
+          <ul className="list-inside list-disc space-y-1 text-blue-800 text-sm">
+            <li>Complete all 24 NRPG training modules (22+ hours)</li>
+            <li>Pass 315 assessment questions (80% minimum)</li>
+            <li>Modules cover: Safety, Legal, Documentation, Operations, Business, and Restoration</li>
+          </ul>
+        </div>
+
+        <div className="bg-green-50 p-3 rounded">
+          <p className="font-semibold text-green-900 mb-2">2. IICRC Certifications (At least one)</p>
+          <ul className="list-inside list-disc space-y-1 text-green-800 text-sm">
+            <li>Water Damage Restoration (WRT) or Applied Structural Drying (ASD)</li>
+            <li>Fire and Smoke Restoration (FSR)</li>
+            <li>Mould Remediation (AMRT)</li>
+            <li>Trauma and Crime Scene Cleanup (CTS)</li>
+            <li>Or equivalent Australian/international certifications</li>
+          </ul>
+        </div>
+
+        <div className="bg-amber-50 p-3 rounded">
+          <p className="font-semibold text-amber-900 mb-2">3. Business & Legal Requirements</p>
+          <ul className="list-inside list-disc space-y-1 text-amber-800 text-sm">
+            <li>Valid Australian Business Number (ABN)</li>
+            <li>Public Liability Insurance ($10M+ coverage)</li>
+            <li>WorkCover/Workers Compensation (if applicable)</li>
+            <li>National Police Check (background verification)</li>
+            <li>2+ years industry experience with verifiable references</li>
+          </ul>
+        </div>
       </div>
     ),
   },
   {
     question: 'How long does the approval process take?',
-    answer:
-      'Most applications are reviewed within 2-3 business days. If we need additional documentation (certifications, insurance certificates, etc.), we will email you promptly. Once approved, you can complete the 30-minute platform training and start receiving jobs immediately.',
-  },
-  {
-    question: 'What support do you provide?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">We support contractors with:</p>
+        <p className="text-gray-600">The complete onboarding process includes:</p>
+        <ol className="list-inside list-decimal space-y-1 text-gray-600">
+          <li>
+            <strong>Application Review:</strong> 2-3 business days for initial verification
+          </li>
+          <li>
+            <strong>Training Program:</strong> Complete all 24 NRPG certification modules (approximately 22+ hours total, self-paced)
+          </li>
+          <li>
+            <strong>Assessment:</strong> Pass 315 quiz questions across all modules (80% minimum)
+          </li>
+          <li>
+            <strong>Final Verification:</strong> Background check, license verification, insurance confirmation
+          </li>
+          <li>
+            <strong>Platform Activation:</strong> Start receiving qualified leads once certified
+          </li>
+        </ol>
+        <p className="mt-2 text-sm text-gray-500">
+          Most contractors complete the training program within 2-4 weeks while working full-time. You can study at your own pace.
+        </p>
+      </div>
+    ),
+  },
+  {
+    question: 'What support and training do you provide?',
+    answer: (
+      <div className="space-y-2">
+        <p className="text-gray-600">NRPG provides comprehensive support:</p>
         <ul className="list-inside list-disc space-y-1 text-gray-600">
           <li>
-            <strong>Platform training:</strong> 30-minute onboarding video + documentation
+            <strong>Complete Training Program:</strong> 24 professional modules covering all aspects of disaster recovery business operations (22+ hours of content)
           </li>
           <li>
-            <strong>Mobile app:</strong> Manage jobs, communicate with clients, submit invoices
+            <strong>Certification Support:</strong> Study materials, practice assessments, and instructor assistance throughout your training
           </li>
           <li>
-            <strong>Contractor success team:</strong> Email and phone support (Mon-Fri, 9am-5pm
-            AEST)
+            <strong>Platform Training:</strong> Dedicated module (NRP-021) teaching you how to use the DR-NRPG platform effectively
           </li>
           <li>
-            <strong>Payment processing:</strong> We handle invoicing and direct insurance billing
+            <strong>Mobile App:</strong> Job management, client communication, invoicing, and progress tracking
           </li>
           <li>
-            <strong>Dispute resolution:</strong> Mediation for client disputes or payment issues
+            <strong>Contractor Success Team:</strong> Email and phone support (Mon-Fri, 9am-5pm AEST)
+          </li>
+          <li>
+            <strong>Ongoing Education:</strong> Continual education credits (NRP-022) and industry updates
+          </li>
+          <li>
+            <strong>Community Network:</strong> Member gatherings and networking events (NRP-024)
+          </li>
+          <li>
+            <strong>Payment Processing:</strong> Invoice management and direct insurance billing support
           </li>
         </ul>
       </div>
