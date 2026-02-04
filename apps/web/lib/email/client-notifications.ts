@@ -840,3 +840,178 @@ Australia's #1 Disaster Recovery Platform
     text,
   });
 }
+
+/**
+ * Send email when contractor accepts claim
+ */
+export async function sendClaimContractorAssignedEmail(data: {
+  clientName: string;
+  email: string;
+  claimId: string;
+  contractorName: string;
+  contractorEmail: string;
+  contractorPhone: string;
+  estimatedArrival: string;
+}): Promise<{ success: boolean; error?: string }> {
+  const trackingUrl = `${EMAIL_CONFIG.baseUrl}/dashboard/client/claims/${data.claimId}`;
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+    .button { display: inline-block; background: #059669; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: 600; }
+    .success-box { background: #d1fae5; border: 2px solid #10b981; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
+    .contractor-box { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #059669; }
+    .info-box { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid #e5e7eb; }
+    .timeline { background: white; padding: 20px; margin: 20px 0; border-radius: 4px; }
+    .timeline-item { margin: 15px 0; padding-left: 20px; border-left: 2px solid #059669; }
+    .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+    .contact-row { margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎉 Contractor Assigned to Your Claim</h1>
+    </div>
+    <div class="content">
+      <p>Hi ${data.clientName},</p>
+
+      <div class="success-box">
+        <h2 style="margin: 0; color: #059669;">✓ Great News!</h2>
+        <p style="margin: 10px 0 0 0; font-size: 16px;">A certified contractor has accepted your claim and will contact you shortly</p>
+      </div>
+
+      <p>We're pleased to confirm that <strong>${data.contractorName}</strong>, a verified and certified disaster recovery contractor, has accepted your claim and will be handling your restoration work.</p>
+
+      <div class="contractor-box">
+        <h3 style="margin-top: 0; color: #059669;">Your Assigned Contractor:</h3>
+        <div class="contact-row"><strong>Business Name:</strong> ${data.contractorName}</div>
+        <div class="contact-row"><strong>Email:</strong> <a href="mailto:${data.contractorEmail}">${data.contractorEmail}</a></div>
+        ${data.contractorPhone ? `<div class="contact-row"><strong>Phone:</strong> <a href="tel:${data.contractorPhone}">${data.contractorPhone}</a></div>` : ''}
+        <div class="contact-row"><strong>Estimated Contact Time:</strong> ${data.estimatedArrival}</div>
+      </div>
+
+      <div class="timeline">
+        <strong>What Happens Next:</strong>
+
+        <div class="timeline-item">
+          <strong>1. Contractor Will Contact You</strong><br>
+          ${data.contractorName} will reach out to you ${data.estimatedArrival} to schedule an initial assessment
+        </div>
+
+        <div class="timeline-item">
+          <strong>2. Property Assessment</strong><br>
+          The contractor will visit your property to assess the damage and provide a detailed quote
+        </div>
+
+        <div class="timeline-item">
+          <strong>3. Quote & Timeline</strong><br>
+          You'll receive a comprehensive quote with a clear timeline for completion
+        </div>
+
+        <div class="timeline-item">
+          <strong>4. Work Begins</strong><br>
+          Once approved, restoration work begins according to the agreed schedule
+        </div>
+
+        <div class="timeline-item">
+          <strong>5. Completion & Review</strong><br>
+          Work is completed, inspected, and you're invited to leave a review
+        </div>
+      </div>
+
+      <div class="info-box">
+        <strong>📋 Important Reminders:</strong><br><br>
+        ✓ Keep your claim reference handy: <strong>${data.claimId}</strong><br>
+        ✓ Take photos before, during, and after restoration work<br>
+        ✓ Notify your insurance provider (if applicable)<br>
+        ✓ Keep all receipts and documentation<br>
+        ✓ Communicate directly with your contractor for updates
+      </div>
+
+      <p style="text-align: center;">
+        <a href="${trackingUrl}" class="button">Track Your Claim</a>
+      </p>
+
+      <p><strong>Questions or Concerns?</strong></p>
+      <p>If you have any questions about your claim or need assistance, please don't hesitate to contact us:</p>
+      <ul>
+        <li>Email: <a href="mailto:${EMAIL_CONFIG.supportEmail}">${EMAIL_CONFIG.supportEmail}</a></li>
+        <li>Track online: <a href="${trackingUrl}">${trackingUrl}</a></li>
+      </ul>
+
+      <p><strong>Note:</strong> This contractor has been verified and certified by Disaster Recovery Australia. All NRPG members maintain current licenses, insurance, and IICRC certifications.</p>
+
+      <div class="footer">
+        <p>
+          <strong>Disaster Recovery Australia</strong><br>
+          Connecting property owners with certified disaster recovery contractors<br>
+          <a href="${EMAIL_CONFIG.baseUrl}">${EMAIL_CONFIG.baseUrl}</a>
+        </p>
+        <p style="margin-top: 10px; color: #999; font-size: 11px;">
+          This is an automated notification. Please do not reply directly to this email.<br>
+          For support, contact ${EMAIL_CONFIG.supportEmail}
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+  const text = `
+Contractor Assigned to Your Claim
+
+Hi ${data.clientName},
+
+Great news! A certified contractor has accepted your claim and will contact you shortly.
+
+YOUR ASSIGNED CONTRACTOR:
+Business Name: ${data.contractorName}
+Email: ${data.contractorEmail}
+${data.contractorPhone ? `Phone: ${data.contractorPhone}` : ''}
+Estimated Contact Time: ${data.estimatedArrival}
+
+WHAT HAPPENS NEXT:
+1. Contractor Will Contact You - ${data.contractorName} will reach out ${data.estimatedArrival}
+2. Property Assessment - The contractor will visit to assess damage
+3. Quote & Timeline - You'll receive a detailed quote
+4. Work Begins - Restoration starts once approved
+5. Completion & Review - Work completed and you leave feedback
+
+IMPORTANT REMINDERS:
+- Keep your claim reference: ${data.claimId}
+- Take photos before, during, and after work
+- Notify your insurance provider (if applicable)
+- Keep all receipts and documentation
+- Communicate directly with your contractor
+
+TRACK YOUR CLAIM:
+${trackingUrl}
+
+QUESTIONS?
+Email: ${EMAIL_CONFIG.supportEmail}
+
+Note: This contractor has been verified and certified by Disaster Recovery Australia.
+
+---
+Disaster Recovery Australia
+${EMAIL_CONFIG.baseUrl}
+  `;
+
+  return sendEmail({
+    to: data.email,
+    subject: '🎉 Contractor Assigned to Your Claim - Disaster Recovery Australia',
+    html,
+    text,
+  });
+}
