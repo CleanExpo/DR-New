@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RealtimeNotifications } from '@/components/realtime/RealtimeNotifications';
 import { useAuth } from '@/contexts/AuthContext';
 import {
   Activity,
@@ -2225,11 +2226,12 @@ export default function AdminDashboard() {
             <div className="flex items-center">
               <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
             </div>
-            
+
             <div className="flex items-center space-x-4">
-              <Button 
-                variant="outline" 
-                size="sm" 
+              <RealtimeNotifications userId={user?.id || ''} />
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={handleLogout}
                 className="border-gray-600 text-gray-300 hover:bg-red-600 hover:border-red-600 hover:text-white"
               >
