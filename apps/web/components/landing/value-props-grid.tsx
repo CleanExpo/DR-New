@@ -93,7 +93,7 @@ export const propertyOwnerValueProps: ValueProp[] = [
     ),
     title: '24/7 Emergency Response',
     description:
-      'Disaster doesn't wait, neither do we. Get matched with available contractors in 15 minutes, any time, day or night, across Australia.',
+      'Disaster does not wait, neither do we. Get matched with available contractors in 15 minutes, any time, day or night, across Australia.',
   },
   {
     icon: (

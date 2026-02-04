@@ -95,13 +95,13 @@ export const waitlistFAQs: FAQ[] = [
   {
     question: 'Is there a cost to join the waitlist?',
     answer:
-      'No! Joining the waitlist is completely free. There are no credit card requirements, no fees, and no obligations. You'll receive launch updates and have the option to be among the first to use the platform.',
+      'No! Joining the waitlist is completely free. There are no credit card requirements, no fees, and no obligations. You will receive launch updates and have the option to be among the first to use the platform.',
   },
   {
     question: 'What happens after I join the waitlist?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">After joining, you'll receive:</p>
+        <p className="text-gray-600">After joining, you will receive:</p>
         <ul className="list-inside list-disc space-y-1 text-gray-600">
           <li>A confirmation email with your spot on the waitlist</li>
           <li>Monthly progress updates as we build the platform</li>
@@ -169,7 +169,7 @@ export const contractorFAQs: FAQ[] = [
   {
     question: 'How much does it cost to join?',
     answer:
-      'There are no upfront costs, monthly fees, or subscription charges. You only pay a 12-15% commission when you win a job through the platform. If you don't get jobs, you don't pay anything.',
+      'There are no upfront costs, monthly fees, or subscription charges. You only pay a 12-15% commission when you win a job through the platform. If you do not get jobs, you do not pay anything.',
   },
   {
     question: 'What is the commission structure?',
@@ -237,7 +237,7 @@ export const contractorFAQs: FAQ[] = [
   {
     question: 'How long does the approval process take?',
     answer:
-      'Most applications are reviewed within 2-3 business days. If we need additional documentation (certifications, insurance certificates, etc.), we'll email you promptly. Once approved, you can complete the 30-minute platform training and start receiving jobs immediately.',
+      'Most applications are reviewed within 2-3 business days. If we need additional documentation (certifications, insurance certificates, etc.), we will email you promptly. Once approved, you can complete the 30-minute platform training and start receiving jobs immediately.',
   },
   {
     question: 'What support do you provide?',
