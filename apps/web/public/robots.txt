@@ -1,0 +1,86 @@
+# robots.txt for DR-NRPG Platform
+# Disaster Recovery - National Restoration Professionals Group
+# https://disasterrecoverynrpg.com.au
+
+# Allow all major search engines to crawl public content
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /demo/
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Crawl-delay: 0
+
+# Google Image Bot (allow image crawling)
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing Bot
+User-agent: bingbot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Crawl-delay: 1
+
+# Baidu (Chinese search engine)
+User-agent: Baiduspider
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Crawl-delay: 2
+
+# Yandex (Russian search engine)
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Crawl-delay: 1
+
+# Block aggressive scrapers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# Block malicious bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+# Sitemap locations
+Sitemap: https://disasterrecoverynrpg.com.au/sitemap.xml
+Sitemap: https://disasterrecoverynrpg.com.au/sitemap-contractors.xml
+
+# Host (preferred domain)
+Host: https://disasterrecoverynrpg.com.au
