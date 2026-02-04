@@ -155,10 +155,11 @@ export default function AdminDashboard() {
     try {
       if (typeof window === 'undefined') return;
 
-      // Fetch analytics
-      const analyticsResponse = await fetch('/api/analytics/leads', {
-        cache: 'no-store',
-      });
+      // Fetch analytics dashboard data
+      const [analyticsResponse, dashboardResponse] = await Promise.all([
+        fetch('/api/analytics/leads', { cache: 'no-store' }),
+        fetch('/api/admin/analytics/dashboard', { cache: 'no-store' }),
+      ]);
 
       if (analyticsResponse.ok) {
         const analyticsData = await analyticsResponse.json();
@@ -173,6 +174,30 @@ export default function AdminDashboard() {
           conversionRate: analyticsData.analytics.conversionRate || 0
         });
         setHighValueLeads(analyticsData.highValueLeads || []);
+      }
+
+      // Update stats with comprehensive dashboard data
+      if (dashboardResponse.ok) {
+        const dashboardData = await dashboardResponse.json();
+        if (dashboardData.success) {
+          const { kpis, summary } = dashboardData;
+          setStats((prev) => ({
+            ...prev,
+            totalUsers: summary.totalUsers || prev?.totalUsers || 0,
+            totalRequests: kpis.jobsCompleted?.value || prev?.totalRequests || 0,
+            totalRevenue: kpis.revenue?.value || prev?.totalRevenue || 0,
+            completedRequests: kpis.jobsCompleted?.value || prev?.completedRequests || 0,
+          }));
+          setAdminKpis((prev) => ({
+            ...prev,
+            totalRevenue: kpis.revenue?.value || prev.totalRevenue,
+            totalClients: summary.totalClients || prev.totalClients,
+            totalContractors: summary.totalContractors || prev.totalContractors,
+            activeContractors: kpis.activeContractors || prev.activeContractors,
+            totalServiceRequests: summary.totalUsers || prev.totalServiceRequests,
+            completedRequests: kpis.jobsCompleted?.value || prev.completedRequests,
+          }));
+        }
       }
     } catch (error) {
       console.error('Error fetching admin data:', error);
