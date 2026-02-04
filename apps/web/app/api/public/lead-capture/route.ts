@@ -153,6 +153,37 @@ async function handleLeadCapture(req: NextRequest) {
       logger.warn('Failed to send lead confirmation email', { error: emailResult.error });
     }
 
+    // 8.5. Queue contractor matching job
+    try {
+      const { createJob } = await import('@/lib/queue/background-jobs');
+
+      await createJob(
+        'CONTRACTOR_MATCHING',
+        {
+          claimId: lead.id,
+          criteria: {
+            serviceType: data.damageType,
+            location: {
+              state: data.state,
+              suburb: data.suburb,
+              postcode: data.postcode,
+            },
+            urgency: data.urgency?.toLowerCase() || 'standard',
+            preferredAvailability: data.preferredAvailability,
+          },
+        },
+        {
+          priority: data.urgency === 'URGENT' ? 1 : data.urgency === 'HIGH' ? 2 : 5,
+          claimId: lead.id,
+        }
+      );
+
+      logger.info('Contractor matching job queued', { leadId: lead.id, urgency: data.urgency });
+    } catch (queueError) {
+      logger.error('Failed to queue contractor matching job', queueError);
+      // Don't fail the request - matching can be triggered manually by admin if needed
+    }
+
     // 9. Return success response
     const response = successResponse(
       {
