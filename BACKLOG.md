@@ -142,12 +142,54 @@
 
 **See:** SECRET-ROTATION-STATUS.md for completion summary
 
-### BACKLOG-006: Legal & Compliance Review
-- **Priority:** P0 (Critical)
-- **Effort:** 8 hours (1 day)
-- **Risk:** High
+### BACKLOG-006: Legal & Compliance Review ⚠️ DOCUMENTATION COMPLETE
+- **Priority:** P0 (Critical - Requires Legal Counsel)
+- **Effort:** 40 hours prep + legal counsel review (estimated $8-13k)
+- **Risk:** High (non-compliance = regulatory penalties)
 - **Dependencies:** None
-- **Status:** Ready (requires legal counsel)
+- **Status:** ⚠️ **DOCUMENTATION COMPLETE** - Ready for legal counsel engagement
+- **Owner:** Legal Counsel + Engineering Team
+
+**Documentation Complete (2026-02-04):**
+- ✅ Comprehensive legal compliance checklist created (200+ items)
+- ✅ Privacy Policy gaps identified (APP compliance missing)
+- ✅ Terms of Service gaps identified (ACL compliance needed)
+- ✅ Contractor agreement requirements documented
+- ✅ Data retention policy requirements defined
+- ✅ Risk assessment completed
+- ✅ Implementation timeline planned (3 weeks)
+- ✅ Cost estimates provided
+
+**Critical Legal Gaps Identified:**
+- ⚠️ **Privacy Policy:** Missing Australian Privacy Act compliance statement
+- ⚠️ **Privacy Policy:** Missing international data transfer disclosures (Stripe US, Resend US)
+- ⚠️ **Privacy Policy:** Missing OAIC complaint process
+- ⚠️ **Privacy Policy:** Missing data breach notification policy
+- ⚠️ **Terms of Service:** Missing Australian Consumer Law (ACL) compliance
+- ⚠️ **Terms of Service:** Weak contractor independent status disclaimers
+- ⚠️ **Contractor Agreement:** Does not exist - MUST be drafted by employment lawyer
+- ⚠️ **Data Retention:** No documented data retention policy
+
+**Ready For Legal Counsel:**
+- 47 critical action items documented
+- 38 high priority action items documented
+- 28 medium priority action items documented
+- Implementation phases planned (3 weeks)
+- Budget estimated: $21-26k one-time, $9-17k annual
+
+**Requirements to Execute:**
+- ⏳ Engage qualified Australian legal counsel (privacy + employment + consumer law)
+- ⏳ Legal counsel reviews Privacy Policy
+- ⏳ Legal counsel reviews Terms of Service
+- ⏳ Legal counsel drafts Independent Contractor Agreement
+- ⏳ Legal counsel reviews contractor verification procedures
+- ⏳ Engineering implements legal document updates (40 hours)
+- ⏳ Engineering implements consent mechanisms (32 hours)
+- ⏳ QA tests legal compliance features (16 hours)
+
+**Launch Blocker:** Yes - Cannot launch without legal counsel review and document updates
+
+**See:** LEGAL_COMPLIANCE_CHECKLIST.md for comprehensive checklist
 
 ### BACKLOG-007: Monitoring & Alerting Configuration
 - **Priority:** P0 (Critical)
