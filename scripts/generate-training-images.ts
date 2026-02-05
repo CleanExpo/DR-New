@@ -802,17 +802,40 @@ AVOID: Brand names, people's faces, real calibration data with identifiers, mess
   {
     module: 'NRP-016',
     filename: 'advanced-drying-techniques.jpg',
-    description: 'Specialty drying methods and equipment',
-    prompt: `Professional photograph of advanced specialty drying techniques and equipment.
+    description: 'Injectidry HP60 wall drying system with manufacturer-accurate SAFETY YELLOW hoses',
+    prompt: `Professional photograph of advanced structural drying setup using Injectidry HP60 wall drying system in Australian residential property.
 
-SCENE: Specialty drying setup using advanced methods (cavity drying, injectidry systems, heat drying)
-DETAILS: Advanced drying equipment, specialty attachments, professional installation
-SETTING: Australian property with complex drying challenge being addressed
-ATMOSPHERE: Technical expertise, systematic approach to difficult drying situation
-CAMERA: Wide angle 24mm, f/4, showing advanced drying setup
-STYLE: Professional advanced restoration documentation
+CRITICAL - INJECTIDRY EQUIPMENT COLOURS (VERIFIED FROM MANUFACTURER):
+- Main HP60 unit: GREY roto-molded housing with black carrying handle
+- ALL Injectidry hoses: SAFETY YELLOW colour (this is absolutely critical)
+- Active Hoseline: SAFETY YELLOW 1.5" diameter flexible hose
+- Wall tubing: SAFETY YELLOW 3/8" diameter tubing to injection points
+- THIS IS THE ONLY CORRECT COLOUR SCHEME - Injectidry does NOT use red or blue hoses
 
-AVOID: Brand logos, operators' faces, extreme damage, unsafe setups`,
+SCENE: Comprehensive structural drying operation in water-damaged Australian home
+- Large open-plan living area with exposed wall cavities
+- Timber wall framing visible (Australian residential construction)
+- Subfloor access panel showing floor joists
+- Multiple professional drying systems working in coordination
+- Blue painters tape marking moisture measurement points on walls
+
+INJECTIDRY WALL DRYING SETUP:
+- Grey HP60 unit positioned against wall with exposed cavities
+- SAFETY YELLOW hoselines connecting to wall injection manifold
+- Yellow tubing routed neatly to multiple wall injection points
+- Small injection holes (3/16") visible in drywall at stud cavity locations
+
+SUPPORTING EQUIPMENT:
+- LGR dehumidifiers (blue units typical)
+- High-velocity air movers (blue/orange typical)
+- Thermal camera on tripod for moisture monitoring
+- Laptop showing drying progress data
+
+SETTING: Australian residential interior with timber framing
+CAMERA: Wide angle 24mm, f/5.6, showing complete multi-system setup
+STYLE: IICRC S500-compliant professional water damage restoration documentation
+
+AVOID: Red Injectidry hoses, blue Injectidry hoses, brand logos, faces, kinked tubing`,
   },
   {
     module: 'NRP-016',
