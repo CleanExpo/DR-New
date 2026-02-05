@@ -605,7 +605,8 @@ const IMAGE_MAPPINGS: ImageMapping[] = [
  * Generate image HTML markup
  */
 function generateImageHtml(module: string, image: { filename: string; altText: string; caption?: string }): string {
-  const imagePath = `/training-sources/images/${module}/${image.filename}`;
+  // Use relative path for local file viewing (../ goes up from "NRP Folder" to "training-sources")
+  const imagePath = `../images/${module}/${image.filename}`;
 
   return `
 <figure class="training-image">
@@ -671,17 +672,18 @@ function integrateImagesIntoModule(moduleFilePath: string, mapping: ImageMapping
 
   let htmlContent = fs.readFileSync(moduleFilePath, 'utf-8');
 
-  // Check if images are already integrated
-  if (htmlContent.includes('training-module-img')) {
-    console.log(`   ⏭️  Images already integrated, skipping...`);
-    return;
+  // Remove old training images section if it exists (for re-integration)
+  if (htmlContent.includes('training-images-section')) {
+    console.log(`   🔄 Updating existing images...`);
+    // Remove old images section
+    htmlContent = htmlContent.replace(/<!-- Training Module Images -->[\s\S]*?<!-- End Training Module Images -->\n\n/g, '');
+    // Remove old style if exists
+    htmlContent = htmlContent.replace(/<style>[\s\S]*?\.training-image \{[\s\S]*?<\/style>\n/g, '');
   }
 
-  // Add CSS styles if not already present
-  if (!htmlContent.includes('training-module-img')) {
-    const styleTag = generateImageStyles();
-    htmlContent = htmlContent.replace('</head>', `${styleTag}\n</head>`);
-  }
+  // Add CSS styles (always add since we removed old ones above)
+  const styleTag = generateImageStyles();
+  htmlContent = htmlContent.replace('</head>', `${styleTag}\n</head>`);
 
   // Generate all image HTML
   const imagesHtml = mapping.images.map(img => generateImageHtml(mapping.module, img)).join('\n');
