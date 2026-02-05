@@ -518,17 +518,35 @@ AVOID: Brand logos, operators, cluttered background, residential-grade equipment
   {
     module: 'NRP-011',
     filename: 'upholstery-cleaning-process.jpg',
-    description: 'Upholstery cleaning in progress on furniture',
-    prompt: `Professional photograph of upholstery cleaning in progress on Australian furniture.
+    description: 'IICRC UFT-compliant upholstery steam cleaning with proper hand wand',
+    prompt: `Professional photograph of upholstery steam cleaning in progress on Australian furniture.
 
-SCENE: Professional cleaning wand being used on lounge/sofa in Australian home
-DETAILS: Cleaning equipment visible, systematic cleaning pattern, protective coverings
-SETTING: Clean Australian residential interior, natural lighting
-ATMOSPHERE: Professional service in progress, careful attention to fabric
-CAMERA: Mid-range 50mm, f/4, showing cleaning technique and furniture
-STYLE: Professional cleaning service documentation
+SCENE: Professional technician's hands using an UPHOLSTERY STEAM CLEANING HAND WAND on a fabric sofa
 
-AVOID: People's faces clearly visible, brand logos, extreme stains, unsafe practices`,
+CRITICAL EQUIPMENT (IICRC UFT STANDARD):
+- UPHOLSTERY HAND WAND: Compact upholstery-specific tool with soft bristle head (10-15cm wide, NOT carpet wand)
+- Steam extraction hose connected to hand wand
+- Pre-spray solution bottle visible nearby
+- Portable extractor or truck-mount connection visible
+
+TECHNIQUE (IICRC UFT STANDARD):
+- Hand wand held at proper 15-30 degree angle against fabric
+- Systematic overlapping stroke pattern visible on upholstery
+- Light moisture indicating active steam extraction
+- Technician wearing nitrile gloves (blue or black)
+- Hands and arms visible, face NOT visible
+
+SETTING: Clean Australian residential interior, natural lighting, protective sheeting under furniture
+FURNITURE: Modern Australian-style fabric sofa, light-coloured upholstery showing cleaned vs uncleaned areas
+CAMERA: Mid-range 50mm, f/4, sharp focus on upholstery hand wand and technique
+STYLE: IICRC UFT-compliant professional upholstery cleaning service documentation
+
+ABSOLUTE REQUIREMENTS:
+- MUST show compact UPHOLSTERY-SPECIFIC hand tool (NOT wide 30-40cm carpet wand)
+- MUST show steam extraction method with visible hose
+- MUST show proper 15-30 degree wand angle technique
+
+AVOID: Wide carpet wands, dry cleaning methods, brand logos, faces visible, amateur technique`,
   },
   {
     module: 'NRP-011',

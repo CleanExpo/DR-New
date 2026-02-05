@@ -37,9 +37,10 @@
     }
   }
 </style>
+    <link rel="stylesheet" href="../styles/training-module-base.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container training-module">
         <div class="header">
             <h1>NRP-013: Emergency Response Procedures</h1>
 
@@ -84,12 +85,12 @@
             <p>24/7 Emergency Response Protocols - Australian Standards</p>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Module Overview</h2>
             <p>Master emergency response procedures for restoration contractors in Australia. Learn rapid deployment protocols, triage systems, communication procedures, and coordination with emergency services following Australian emergency management standards.</p>
 
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <div class="emergency-icon">🚨</div>
                     <h3>Emergency Types</h3>
                     <ul>
@@ -100,7 +101,7 @@
                         <li>Hazmat incidents</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="emergency-icon">⏱</div>
                     <h3>Response Times</h3>
                     <ul>
@@ -111,7 +112,7 @@
                         <li>CAT events: Immediate</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="emergency-icon">📋</div>
                     <h3>Key Protocols</h3>
                     <ul>
@@ -125,9 +126,9 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Australian Emergency Response Framework</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Priority Level</th>
                     <th>Scenario</th>
@@ -173,7 +174,7 @@
             </table>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Emergency Response Timeline</h2>
             <div class="response-timeline">
                 <div class="timeline-item">
@@ -203,7 +204,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Emergency Contact Database - Australia 2024</h2>
             <div class="contact-grid">
                 <div class="contact-card">
@@ -237,7 +238,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Priority Assessment Matrix</h2>
             <div class="priority-matrix">
                 <div class="priority-item priority-high">
@@ -366,10 +367,10 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>CAT Event Response Protocols</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <h3>Pre-Event Preparation</h3>
                     <ul>
                         <li>Monitor BOM warnings</li>
@@ -380,7 +381,7 @@
                         <li>Test communication systems</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <h3>During Event</h3>
                     <ul>
                         <li>Activate command centre</li>
@@ -391,7 +392,7 @@
                         <li>Media management</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <h3>Post-Event Recovery</h3>
                     <ul>
                         <li>Damage assessment sweeps</li>
@@ -405,9 +406,9 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Documentation Requirements</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Document Type</th>
                     <th>When Required</th>
@@ -591,7 +592,7 @@
             const resultHTML = `
                 <div class="result-box">
                     <h3>Emergency Response Quote</h3>
-                    <table style="width: 100%; margin-top: 15px;">
+                    <table class="training-table" style="width: 100%; margin-top: 15px;">
                         <tr><td><strong>Callout Fee (Priority ${priority}):</strong></td><td style="text-align: right;">$${calloutFee.toFixed(2)}</td></tr>
                         <tr><td><strong>Labour (${crewSize} techs × ${hours} hrs):</strong></td><td style="text-align: right;">$${labourCost.toFixed(2)}</td></tr>
                         <tr><td><strong>Equipment Package:</strong></td><td style="text-align: right;">$${equipmentCost.toFixed(2)}</td></tr>

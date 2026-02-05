@@ -37,9 +37,10 @@
     }
   }
 </style>
+    <link rel="stylesheet" href="../styles/training-module-base.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container training-module">
         <div class="header">
             <h1>NRP-012: Odour Control & Deodorisation</h1>
 
@@ -94,12 +95,12 @@
             <p>Professional Training Module - Advanced Odour Elimination Techniques</p>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Module Overview</h2>
             <p>Master the science of odour control and deodorisation in restoration environments. Learn molecular odour theory, advanced treatment technologies, and systematic approaches to eliminating persistent odours from fire, water damage, biological sources, and chemical contamination.</p>
 
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <div class="odour-icon">👃</div>
                     <h3>Odour Sources</h3>
                     <ul>
@@ -110,7 +111,7 @@
                         <li>Chemical & VOCs</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="odour-icon">⚗️</div>
                     <h3>Treatment Methods</h3>
                     <ul>
@@ -121,7 +122,7 @@
                         <li>Enzyme digestion</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="odour-icon">🔬</div>
                     <h3>Scientific Principles</h3>
                     <ul>
@@ -135,7 +136,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Odour Intensity Scale (Australian Standard)</h2>
             <div class="odour-scale">
                 <div class="scale-item">
@@ -162,9 +163,9 @@
             <p style="text-align: center; margin-top: 10px;"><em>Based on AS 4323.3:2001 - Stationary source emissions</em></p>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Odour Treatment Technologies & Applications</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Technology</th>
                     <th>Mechanism</th>
@@ -224,7 +225,7 @@
             </table>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Advanced Hydroxyl Technology</h2>
             <div class="molecule-diagram">
                 <h3>Hydroxyl Radical (OH•) Formation</h3>
@@ -280,9 +281,9 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Chemical Deodorants & Application Rates</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Product</th>
                     <th>Type</th>
@@ -400,7 +401,7 @@
             <div id="treatmentResult"></div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Treatment Protocol Matrix</h2>
             <div class="treatment-matrix">
                 <div class="matrix-row">
@@ -445,7 +446,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Safety & Compliance</h2>
             <div class="info-box">
                 <h4>⚠ Australian Safety Requirements</h4>
@@ -460,7 +461,7 @@
             </div>
 
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <h3>Equipment Maintenance</h3>
                     <ul>
                         <li>UV bulb replacement: 8,000 hours</li>
@@ -470,7 +471,7 @@
                         <li>Service log maintenance</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <h3>Customer Communication</h3>
                     <ul>
                         <li>Odour source identification</li>
@@ -627,7 +628,7 @@
             const resultHTML = `
                 <div class="result-box">
                     <h3>Odour Treatment Quote</h3>
-                    <table style="width: 100%; margin-top: 15px;">
+                    <table class="training-table" style="width: 100%; margin-top: 15px;">
                         <tr><td><strong>Equipment Rental (${unitsNeeded} units × ${days} days):</strong></td><td style="text-align: right;">$${equipmentCost.toFixed(2)}</td></tr>
                         ${chemicalCost > 0 ? `<tr><td><strong>Chemical Products:</strong></td><td style="text-align: right;">$${chemicalCost.toFixed(2)}</td></tr>` : ''}
                         <tr><td><strong>Setup & Installation:</strong></td><td style="text-align: right;">$${setupLabour.toFixed(2)}</td></tr>

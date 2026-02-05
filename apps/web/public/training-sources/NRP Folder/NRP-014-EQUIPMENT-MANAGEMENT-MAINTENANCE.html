@@ -37,9 +37,10 @@
     }
   }
 </style>
+    <link rel="stylesheet" href="../styles/training-module-base.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container training-module">
         <div class="header">
             <h1>NRP-014: Equipment Management & Maintenance</h1>
 
@@ -84,12 +85,12 @@
             <p>Professional Equipment Care, Maintenance & Asset Management</p>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Module Overview</h2>
             <p>Master professional equipment management for restoration contractors. Learn preventive maintenance schedules, troubleshooting procedures, inventory control, and ROI optimization for restoration equipment following Australian standards and manufacturer specifications.</p>
 
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <div class="equipment-icon">⚙️</div>
                     <h3>Equipment Categories</h3>
                     <ul>
@@ -100,7 +101,7 @@
                         <li>Monitoring devices</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="equipment-icon">🔧</div>
                     <h3>Maintenance Types</h3>
                     <ul>
@@ -111,7 +112,7 @@
                         <li>Emergency repairs</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="equipment-icon">📊</div>
                     <h3>Management Systems</h3>
                     <ul>
@@ -125,10 +126,10 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Major Equipment Inventory & Costs (2024 Australian Market)</h2>
             <div class="inventory-table">
-                <table>
+                <table class="training-table">
                     <tr>
                         <th>Equipment Type</th>
                         <th>Model Example</th>
@@ -221,7 +222,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Preventive Maintenance Schedule</h2>
             <div class="maintenance-schedule">
                 <div class="schedule-item">
@@ -275,9 +276,9 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Common Faults & Troubleshooting</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Equipment</th>
                     <th>Common Fault</th>
@@ -381,10 +382,10 @@
             <div id="roiResult"></div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Asset Management Best Practices</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <h3>Asset Tracking</h3>
                     <ul>
                         <li>Unique ID tags/barcodes</li>
@@ -395,7 +396,7 @@
                         <li>Insurance scheduling</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <h3>Rental vs Purchase Analysis</h3>
                     <ul>
                         <li>Break-even: 30-40 rental days</li>
@@ -406,7 +407,7 @@
                         <li>Tax implications</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <h3>Disposal & Replacement</h3>
                     <ul>
                         <li>Track repair frequency</li>
@@ -456,7 +457,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Australian Compliance Requirements</h2>
             <div class="info-box">
                 <h4>⚠ Electrical Safety Standards</h4>
@@ -608,7 +609,7 @@
                             <div>Payback Period</div>
                         </div>
                     </div>
-                    <table style="width: 100%; margin-top: 20px;">
+                    <table class="training-table" style="width: 100%; margin-top: 20px;">
                         <tr><td><strong>Equipment Type:</strong></td><td>${equipmentType.toUpperCase()}</td></tr>
                         <tr><td><strong>Purchase Method:</strong></td><td>${financeMethod === 'cash' ? 'Cash' : financeMethod === 'lease' ? 'Lease (5.9%)' : financeMethod === 'loan' ? 'Loan (7.5%)' : 'Long-term Rental'}</td></tr>
                         <tr><td><strong>Total Investment:</strong></td><td>$${totalCost.toFixed(2)}</td></tr>
