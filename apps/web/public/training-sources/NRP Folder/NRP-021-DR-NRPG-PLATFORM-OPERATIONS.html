@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NRP-021: DR-NRPG Platform Operations Guide - Complete Training Module</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -20px -20px 30px -20px;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #6366f1;
+        }
+        .section h2 {
+            color: #4f46e5;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .workflow-box {
+            background: white;
+            border: 2px solid #e0e7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 8px;
+            border-left: 4px solid #6366f1;
+        }
+        .step-number {
+            background: #6366f1;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-number { font-size: 2em; font-weight: bold; margin-bottom: 5px; }
+        .stat-label { opacity: 0.9; }
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .alert-box h4 {
+            color: #d97706;
+            margin-bottom: 10px;
+        }
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border: 2px dashed #9ca3af;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            color: #6b7280;
+        }
+        .screenshot-placeholder::before {
+            content: "📸";
+            font-size: 3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #6366f1;
+        }
+        .timeline-item {
+            position: relative;
+            padding: 15px 0 15px 25px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #6366f1;
+            border: 3px solid white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #f3f4f6;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        tr:hover {
+            background: #f9fafb;
+        }
+        @media (max-width: 768px) {
+            .container { margin: 10px; padding: 15px; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖥️ NRP-021: DR-NRPG Platform Operations Guide</h1>
+            <p>Comprehensive Guide to Platform Operations, Job Management & Payment Processing</p>
+            <p><strong>Duration:</strong> 45 minutes | <strong>Assessment:</strong> 10 questions | <strong>Category:</strong> Platform Operations</p>
+        </div>
+
+        <div class="section">
+            <h2>📋 Module Overview</h2>
+            <p>This comprehensive module covers the complete DR-NRPG platform operations for contractors in Australia. Learn how jobs are allocated, the rotation algorithm, acceptance workflows, payment processing, and platform best practices. All content reflects the current 2026 platform functionality.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">2,847</div>
+                    <div class="stat-label">Active Contractors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">45 sec</div>
+                    <div class="stat-label">Avg Response Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$42.5M</div>
+                    <div class="stat-label">Monthly Job Value</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">94.7%</div>
+                    <div class="stat-label">Acceptance Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Learning Objectives</h2>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>Understand the DR-NRPG rotation algorithm</strong> and how jobs are allocated fairly</li>
+                <li><strong>Master the job acceptance workflow</strong> including response times and requirements</li>
+                <li><strong>Navigate the contractor dashboard</strong> efficiently for maximum productivity</li>
+                <li><strong>Understand payment processing</strong> timelines and reconciliation procedures</li>
+                <li><strong>Implement platform best practices</strong> for optimal performance ratings</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🔄 DR-NRPG Rotation Algorithm Explained</h2>
+
+            <p>The DR-NRPG platform uses a sophisticated <strong>merit-based rotation algorithm</strong> to ensure fair job distribution across all qualified contractors in each service area.</p>
+
+            <div class="workflow-box">
+                <h3 style="color: #4f46e5; margin-bottom: 15px;">How the Rotation Algorithm Works</h3>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Job Request Received</h4>
+                        <p>Client submits job request through DR-NRPG platform (web, mobile, or insurance partner API). Job details include location, type, urgency level, and estimated scope.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Geographic Filtering</h4>
+                        <p>System identifies all contractors within service radius of job location. Default radius: 50km urban, 100km regional, 200km remote areas (Australian geographic classification).</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Competency Matching</h4>
+                        <p>Filters contractors by required certifications (IICRC), specialisation (water/fire/mould), and equipment capabilities. Only qualified contractors proceed to rotation.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Merit Score Calculation</h4>
+                        <p>Each contractor assigned a dynamic merit score based on:<br>
+                        • Response time history (30%)<br>
+                        • Job completion rating (25%)<br>
+                        • Client satisfaction score (20%)<br>
+                        • Time since last job (15%)<br>
+                        • Platform tenure and training (10%)</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Priority Ranking</h4>
+                        <p>Contractors ranked by merit score. Top 3 contractors offered job simultaneously. First to accept wins the job. If all decline, next 3 contractors offered job.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h4>Job Assignment & Notification</h4>
+                        <p>Winning contractor receives job assignment via SMS, email, and push notification. Must confirm acceptance within 15 minutes for emergency jobs, 60 minutes for standard jobs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h4>⚡ Emergency Job Priority</h4>
+                <p>Emergency jobs (flood, fire, urgent water damage) bypass standard rotation and notify ALL qualified contractors within radius simultaneously. First responder gets the job. Emergency response affects merit score significantly (+20 points for acceptance within 5 minutes).</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📱 Contractor Dashboard Overview</h2>
+
+            <div class="screenshot-placeholder">
+                <strong>SCREENSHOT: Contractor Dashboard Home</strong><br>
+                Shows: Available jobs, active jobs, payment summary, performance metrics
+            </div>
+
+            <h3 style="color: #4f46e5; margin-top: 20px;">Dashboard Sections</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Section</th>
+                        <th>Purpose</th>
+                        <th>Update Frequency</th>
+                        <th>Actions Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Available Jobs</strong></td>
+                        <td>Jobs currently offered to you</td>
+                        <td>Real-time</td>
+                        <td>Accept, Decline, Request Info</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Active Jobs</strong></td>
+                        <td>Jobs you've accepted and are working on</td>
+                        <td>Real-time</td>
+                        <td>Update status, Upload photos, Submit invoice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Job History</strong></td>
+                        <td>Completed and declined jobs</td>
+                        <td>Daily</td>
+                        <td>View details, Download reports</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Centre</strong></td>
+                        <td>Invoice status and payment tracking</td>
+                        <td>Daily (8am AEST)</td>
+                        <td>Submit invoices, View statements</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance Metrics</strong></td>
+                        <td>Your ratings and merit score</td>
+                        <td>Weekly (Monday 6am)</td>
+                        <td>View trends, Download reports</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Training Centre</strong></td>
+                        <td>NRPG modules and CEC tracking</td>
+                        <td>Real-time</td>
+                        <td>Complete modules, Track progress</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>✅ Job Acceptance Workflow</h2>
+
+            <div class="workflow-box">
+                <h3 style="color: #4f46e5; margin-bottom: 15px;">Step-by-Step Acceptance Process</h3>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>Step 1: Job Notification Received</strong><br>
+                        You receive job notification via SMS, email, and push notification (if app installed). Notification includes job ID, location, type, and response deadline.
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Step 2: Review Job Details</strong><br>
+                        Log into dashboard to view complete job details including client information, scope of works, photos, special requirements, and estimated value.
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Step 3: Assess Capacity & Availability</strong><br>
+                        Check your schedule, equipment availability, team capacity, and travel time. Consider current workload and ability to meet response time requirements.
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Step 4: Accept or Decline</strong><br>
+                        Click "Accept Job" or "Decline Job" button. If declining, select reason (too far, no capacity, outside expertise, other). Reason affects merit score minimally if valid.
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Step 5: Confirmation & Client Notification</strong><br>
+                        System immediately notifies client of acceptance. Your contact details shared with client. Job appears in "Active Jobs" section. Initial contact required within 60 minutes.
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Step 6: Initial Client Contact</strong><br>
+                        Call or SMS client within 60 minutes to confirm attendance time, discuss requirements, and answer questions. Log contact in platform for audit trail.
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h4>⏰ Response Time Requirements</h4>
+                <p><strong>Emergency Jobs:</strong> 15 minutes to accept, 2 hours to attend site<br>
+                <strong>Urgent Jobs:</strong> 60 minutes to accept, 4 hours to attend site<br>
+                <strong>Standard Jobs:</strong> 60 minutes to accept, 24 hours to attend site<br>
+                <strong>Scheduled Jobs:</strong> 24 hours to accept, attend at scheduled time</p>
+            </div>
+
+            <div class="screenshot-placeholder">
+                <strong>SCREENSHOT: Job Acceptance Screen</strong><br>
+                Shows: Job details, accept/decline buttons, response timer, map view
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💰 Payment Processing & Invoicing</h2>
+
+            <p>The DR-NRPG platform handles all payment processing through <strong>Stripe Connect</strong>, ensuring fast, secure payments to contractors. All amounts in Australian Dollars (AUD).</p>
+
+            <h3 style="color: #4f46e5; margin-top: 20px;">Payment Timeline</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Action Required</th>
+                        <th>Timeline</th>
+                        <th>Payment Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Job Completion</strong></td>
+                        <td>Mark job as complete in platform</td>
+                        <td>Day 0</td>
+                        <td>Job completed, awaiting invoice</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Invoice Submission</strong></td>
+                        <td>Submit invoice with photos and report</td>
+                        <td>Within 48 hours of completion</td>
+                        <td>Invoice submitted for review</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Platform Review</strong></td>
+                        <td>None (automated validation)</td>
+                        <td>1-2 business days</td>
+                        <td>Invoice under review</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client Payment</strong></td>
+                        <td>None (platform processes payment)</td>
+                        <td>2-5 business days</td>
+                        <td>Payment received by platform</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contractor Payout</strong></td>
+                        <td>None (automatic transfer)</td>
+                        <td>Within 24 hours of receipt</td>
+                        <td>Funds transferred to your account</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                <h4>💳 Platform Fee Structure (2026 Rates)</h4>
+                <p><strong>Standard Jobs:</strong> 12% + GST platform fee<br>
+                <strong>Emergency Jobs:</strong> 15% + GST platform fee (higher due to instant allocation)<br>
+                <strong>Insurance Jobs:</strong> 10% + GST platform fee (volume pricing)<br>
+                <strong>Example:</strong> $5,000 job → You receive $4,400 (Standard) or $4,545.45 (Insurance) + GST where applicable</p>
+            </div>
+
+            <h3 style="color: #4f46e5; margin-top: 20px;">Invoice Requirements</h3>
+
+            <p>All invoices submitted through DR-NRPG platform must include:</p>
+
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>✅ Detailed line items using <strong>RestoreAssist.ai</strong> estimates</li>
+                <li>✅ Before and after photos (minimum 10 photos)</li>
+                <li>✅ Moisture readings log (for water damage jobs)</li>
+                <li>✅ Materials receipts (attached as PDF)</li>
+                <li>✅ Client signature on completion certificate</li>
+                <li>✅ Correct ABN and GST registration details</li>
+            </ul>
+
+            <div class="screenshot-placeholder">
+                <strong>SCREENSHOT: Invoice Submission Form</strong><br>
+                Shows: Line items, photo upload, document attachments, submit button
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⭐ Performance Metrics & Merit Score</h2>
+
+            <p>Your performance on the DR-NRPG platform directly affects job allocation through the merit score system. Higher scores = more jobs offered.</p>
+
+            <h3 style="color: #4f46e5;">Merit Score Components (Total: 100 points)</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Weight</th>
+                        <th>How It's Calculated</th>
+                        <th>How to Improve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Response Time</strong></td>
+                        <td>30 points</td>
+                        <td>Average time to accept jobs (last 30 days)</td>
+                        <td>Accept jobs quickly, enable push notifications</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Completion Rating</strong></td>
+                        <td>25 points</td>
+                        <td>Job completion quality (client + platform review)</td>
+                        <td>High-quality work, complete documentation, professional conduct</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client Satisfaction</strong></td>
+                        <td>20 points</td>
+                        <td>Average client rating (1-5 stars)</td>
+                        <td>Excellent communication, exceed expectations, follow up</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Job Rotation Fairness</strong></td>
+                        <td>15 points</td>
+                        <td>Days since last job assignment</td>
+                        <td>Automatic - ensures fair distribution</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Platform Engagement</strong></td>
+                        <td>10 points</td>
+                        <td>Training completion, profile updates, CEC credits</td>
+                        <td>Complete NRPG modules, maintain current certifications</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">85-100</div>
+                    <div class="stat-label">Platinum Tier</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70-84</div>
+                    <div class="stat-label">Gold Tier</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">55-69</div>
+                    <div class="stat-label">Silver Tier</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40-54</div>
+                    <div class="stat-label">Bronze Tier</div>
+                </div>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>Tier Benefits:</strong> Platinum contractors receive priority job offers, early access to high-value jobs, and reduced platform fees (10% vs 12%). Gold tier receives standard priority. Silver/Bronze receive standard rotation but may see fewer job offers.</p>
+        </div>
+
+        <div class="section">
+            <h2>📞 Platform Support & Resources</h2>
+
+            <h3 style="color: #4f46e5;">Getting Help</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Support Type</th>
+                        <th>Contact Method</th>
+                        <th>Response Time</th>
+                        <th>Availability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Emergency Support</strong></td>
+                        <td>Phone: 1300-NRPG-NOW</td>
+                        <td>Immediate</td>
+                        <td>24/7 (all Australian time zones)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical Support</strong></td>
+                        <td>Email: support@disasterrecovery.com.au</td>
+                        <td>Within 4 hours</td>
+                        <td>Business hours (8am-6pm AEST)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Queries</strong></td>
+                        <td>Email: payments@disasterrecovery.com.au</td>
+                        <td>Within 24 hours</td>
+                        <td>Business days</td>
+                    </tr>
+                    <tr>
+                        <td><strong>General Enquiries</strong></td>
+                        <td>In-platform chat (dashboard)</td>
+                        <td>Within 2 hours</td>
+                        <td>Business hours</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert-box">
+                <h4>📚 Additional Resources</h4>
+                <p><strong>Knowledge Base:</strong> help.disasterrecovery.com.au<br>
+                <strong>Video Tutorials:</strong> Available in dashboard Training Centre<br>
+                <strong>Contractor Community Forum:</strong> forum.nrpg.com.au<br>
+                <strong>Monthly Webinars:</strong> Register through dashboard Events section</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✅ Best Practices for Platform Success</h2>
+
+            <div class="workflow-box">
+                <h3 style="color: #4f46e5; margin-bottom: 15px;">Top 10 Platform Best Practices</h3>
+
+                <ol style="margin-left: 20px; line-height: 2.2;">
+                    <li><strong>Enable all notification methods</strong> - SMS, email, and push notifications ensure you never miss job offers</li>
+                    <li><strong>Keep your availability calendar updated</strong> - Block out holidays, maintenance days, and periods of unavailability</li>
+                    <li><strong>Respond to all jobs within 30 minutes</strong> - Even declines help the algorithm work efficiently</li>
+                    <li><strong>Maintain 90%+ acceptance rate</strong> - Only decline if genuinely unable to service the job</li>
+                    <li><strong>Submit invoices within 24 hours</strong> - Faster invoicing = faster payment cycles</li>
+                    <li><strong>Upload high-quality photos</strong> - Clear, well-lit photos improve client satisfaction and reduce disputes</li>
+                    <li><strong>Communicate proactively</strong> - Update job status regularly, notify clients of delays immediately</li>
+                    <li><strong>Complete NRPG training modules</strong> - Improves merit score and keeps your skills current</li>
+                    <li><strong>Request client reviews</strong> - Positive reviews significantly boost merit score and build credibility</li>
+                    <li><strong>Use RestoreAssist.ai for all estimates</strong> - Standardised estimates reduce disputes and speed up payment processing</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📖 Key Takeaways</h2>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>The DR-NRPG rotation algorithm uses <strong>merit-based scoring</strong> to ensure fair job distribution</li>
+                <li>Response time is the <strong>most important factor</strong> (30% of merit score) in job allocation</li>
+                <li>Payment processing takes <strong>3-7 business days</strong> from invoice submission to bank account</li>
+                <li>Platform fees are <strong>10-15% + GST</strong> depending on job type</li>
+                <li><strong>Platinum tier contractors</strong> (85+ merit score) receive priority job offers and reduced fees</li>
+                <li>All invoices must use <strong>RestoreAssist.ai estimates</strong> for standardisation</li>
+                <li>Emergency support available <strong>24/7</strong> for urgent platform issues</li>
+            </ul>
+        </div>
+
+        <div class="section" style="background: #fef3c7; border-left-color: #f59e0b;">
+            <h2 style="color: #d97706;">📝 Module Assessment</h2>
+            <p><strong>To complete this module, you must pass the 10-question assessment with a score of 80% or higher.</strong></p>
+            <p style="margin-top: 10px;">The assessment covers:</p>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li>Rotation algorithm components and weighting</li>
+                <li>Job acceptance workflows and response times</li>
+                <li>Payment processing timeline and requirements</li>
+                <li>Merit score calculation and tier benefits</li>
+                <li>Platform best practices and support resources</li>
+            </ul>
+            <p style="margin-top: 15px; font-weight: bold;">Assessment available in the DR-NRPG training platform after completing this module.</p>
+        </div>
+
+        <div style="text-align: center; padding: 20px; color: #6b7280;">
+            <p><strong>© 2026 DR-NRPG Platform | Disaster Recovery - National Restoration Professionals Group</strong></p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Australian-owned and operated | Compliance with Australian workplace safety standards</p>
+        </div>
+    </div>
+</body>
+</html>
