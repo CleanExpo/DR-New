@@ -289,11 +289,81 @@
             }
         }
     </style>
+
+<style>
+  .training-image {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .training-module-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .training-module-img:hover {
+    transform: scale(1.02);
+  }
+
+  .training-image figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  @media print {
+    .training-module-img {
+      max-width: 80%;
+      page-break-inside: avoid;
+    }
+  }
+</style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>NRP-008: Fire & Smoke Damage Restoration</h1>
+
+<!-- Training Module Images -->
+<div class="training-images-section">
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-008/fire-damage-assessment.jpg"
+    alt="Fire and smoke damage in commercial office setting"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Fire and smoke damage assessment</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-008/air-scrubber-operation.jpg"
+    alt="Industrial air scrubbers operating for smoke odor removal"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Air scrubber equipment for smoke removal</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-008/soot-cleaning-techniques.jpg"
+    alt="Professional soot and smoke residue cleaning methodology"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Professional soot cleaning techniques</figcaption>
+</figure>
+</div>
+<!-- End Training Module Images -->
+
+
             <p>IICRC S740 Standards & Australian Fire Services Requirements</p>
         </div>
 

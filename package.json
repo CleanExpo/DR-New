@@ -29,9 +29,13 @@
     "storybook": "turbo run storybook --filter=dr-nrpg-web",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
-    "docker:reset": "docker compose down -v && docker compose up -d"
+    "docker:reset": "docker compose down -v && docker compose up -d",
+    "training:generate-images": "tsx scripts/generate-training-images.ts",
+    "training:integrate-images": "tsx scripts/integrate-training-images.ts"
   },
   "devDependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.2.4",
     "turbo": "^2.3.0"
   },
   "engines": {

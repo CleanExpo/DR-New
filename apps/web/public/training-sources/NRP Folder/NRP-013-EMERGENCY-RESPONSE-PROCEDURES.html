@@ -283,11 +283,81 @@
             margin-top: 20px;
         }
     </style>
+
+<style>
+  .training-image {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .training-module-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .training-module-img:hover {
+    transform: scale(1.02);
+  }
+
+  .training-image figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  @media print {
+    .training-module-img {
+      max-width: 80%;
+      page-break-inside: avoid;
+    }
+  }
+</style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>NRP-013: Emergency Response Procedures</h1>
+
+<!-- Training Module Images -->
+<div class="training-images-section">
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-013/odor-control-equipment.jpg"
+    alt="Ozone generators, hydroxyl generators, and thermal foggers"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Odor control equipment</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-013/air-quality-testing.jpg"
+    alt="Air quality testing and monitoring equipment"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Air quality testing equipment</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-013/deodorization-process.jpg"
+    alt="Professional deodorization in progress"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Deodorization process</figcaption>
+</figure>
+</div>
+<!-- End Training Module Images -->
+
+
             <p>24/7 Emergency Response Protocols - Australian Standards</p>
         </div>
 

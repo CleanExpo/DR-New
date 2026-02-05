@@ -270,11 +270,91 @@
             margin-top: 20px;
         }
     </style>
+
+<style>
+  .training-image {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .training-module-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .training-module-img:hover {
+    transform: scale(1.02);
+  }
+
+  .training-image figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  @media print {
+    .training-module-img {
+      max-width: 80%;
+      page-break-inside: avoid;
+    }
+  }
+</style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>NRP-012: Odour Control & Deodorisation</h1>
+
+<!-- Training Module Images -->
+<div class="training-images-section">
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-012/contents-pack-out.jpg"
+    alt="Professional contents packing and inventory process"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Contents pack-out process</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-012/contents-cleaning-facility.jpg"
+    alt="Commercial contents restoration facility"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Contents cleaning facility</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-012/electronics-restoration.jpg"
+    alt="Electronic equipment restoration and cleaning"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Electronics restoration process</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-012/textile-restoration.jpg"
+    alt="Professional textile cleaning and restoration"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Textile restoration</figcaption>
+</figure>
+</div>
+<!-- End Training Module Images -->
+
+
             <p>Professional Training Module - Advanced Odour Elimination Techniques</p>
         </div>
 
