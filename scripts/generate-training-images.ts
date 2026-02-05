@@ -55,7 +55,7 @@ SCENE: Clean, modern business diagram showing 4 steps:
 3. Approval (thumbs up icon)
 4. Membership activation (badge icon)
 
-STYLE: Professional business infographic, flat design, Australian color scheme (blue/green)
+STYLE: Professional business infographic, flat design, Australian colour scheme (blue/green)
 LAYOUT: Horizontal workflow with arrows connecting steps
 DETAILS: Icons, text labels for each step, clean white background
 QUALITY: 2K resolution, sharp edges, professional typography
@@ -84,8 +84,8 @@ AVOID: Specific company names, real people, trademarked logos`,
 
 SCENE: Modern checklist design with Australian regulatory requirements
 ELEMENTS: ABN registration, insurance certificates, licenses, safety compliance
-STYLE: Clean infographic design, professional color palette (blue/gray)
-LAYOUT: Vertical checklist with checkboxes, organized sections
+STYLE: Clean infographic design, professional colour palette (blue/gray)
+LAYOUT: Vertical checklist with checkboxes, organised sections
 QUALITY: 2K, high contrast, readable typography
 
 AVOID: Real ABN numbers, specific company details, people`,
@@ -115,7 +115,7 @@ AVOID: Brand names/logos, people operating equipment, cluttered background`,
 SCENE: Modern Australian home interior with moisture testing in progress
 DETAILS: Professional equipment visible (moisture meter against wall), testing documentation
 SETTING: Clean residential interior, natural lighting from windows
-ATMOSPHERE: Professional inspection environment, organized and systematic
+ATMOSPHERE: Professional inspection environment, organised and systematic
 CAMERA: 24mm wide angle, f/4, showing room context and equipment
 STYLE: Professional documentation photography
 
@@ -127,8 +127,8 @@ AVOID: People's faces visible, specific brand equipment, extreme damage`,
     description: 'Moisture mapping floor plan illustration',
     prompt: `Professional technical illustration of moisture mapping on a floor plan.
 
-SCENE: Clean floor plan diagram with color-coded moisture readings
-ELEMENTS: Room layout, moisture zones marked in colors (blue=dry, yellow=elevated, red=wet)
+SCENE: Clean floor plan diagram with colour-coded moisture readings
+ELEMENTS: Room layout, moisture zones marked in colours (blue=dry, yellow=elevated, red=wet)
 DETAILS: Measurement points, moisture percentage readings, legend
 STYLE: Technical architectural drawing, professional CAD-style illustration
 QUALITY: 2K, clear lines, professional typography
@@ -143,12 +143,12 @@ AVOID: Real addresses, people, photographs (this is an illustration)`,
     description: 'Insurance claim forms and documentation',
     prompt: `Professional flat lay photograph of insurance claim documentation process.
 
-SCENE: Organized desk surface with claim forms, photos, receipts, and documentation
+SCENE: Organised desk surface with claim forms, photos, receipts, and documentation
 DETAILS: Generic insurance forms, damage assessment photos, calculator, professional pen
 SETTING: Clean office desk, natural overhead lighting
 CAMERA: Top-down view, 50mm lens, f/4
 STYLE: Professional business documentation photography
-ATMOSPHERE: Organized, professional, trustworthy
+ATMOSPHERE: Organised, professional, trustworthy
 
 AVOID: Real claim numbers, personal information, specific insurer names, people's faces in photos`,
   },
@@ -161,7 +161,7 @@ AVOID: Real claim numbers, personal information, specific insurer names, people'
 SCENE: Step-by-step workflow diagram for insurance claims
 STEPS: Initial contact → Assessment → Documentation → Quote → Approval → Restoration → Completion
 STYLE: Professional business process infographic, clean design
-COLORS: Blue and green professional color scheme
+COLOURS: Blue and green professional colour scheme
 LAYOUT: Horizontal timeline with icons for each step
 QUALITY: 2K, crisp graphics, clear typography
 
@@ -193,8 +193,8 @@ AVOID: People's faces, extreme damage, horror aesthetic, specific addresses`,
 SCENE: Clean, professional report layout on computer screen or printed document
 SECTIONS: Executive summary, scope of work, findings, recommendations, cost estimate
 STYLE: Professional business document design, clear typography
-QUALITY: 2K, readable text (generic placeholders), organized layout
-COLORS: Professional blue/gray color scheme, clean white background
+QUALITY: 2K, readable text (generic placeholders), organised layout
+COLOURS: Professional blue/gray colour scheme, clean white background
 
 AVOID: Real client names, actual addresses, specific dollar amounts, company logos`,
   },
@@ -226,7 +226,7 @@ DETAILS: Hand-drawn floor plan sketches, moisture readings logged, professional 
 SETTING: Clean desk surface, natural lighting
 CAMERA: Top-down view, 50mm lens, f/4
 STYLE: Professional work documentation photography
-ATMOSPHERE: Organized, technical, professional
+ATMOSPHERE: Organised, technical, professional
 
 AVOID: Real addresses, personal information, illegible handwriting, people`,
   },
@@ -239,7 +239,7 @@ AVOID: Real addresses, personal information, illegible handwriting, people`,
     prompt: `Professional product photography of complete PPE safety equipment set.
 
 EQUIPMENT: Hard hat, safety glasses, respirator, gloves, steel-toe boots, high-vis vest
-ARRANGEMENT: Clean display on white surface, all equipment visible and organized
+ARRANGEMENT: Clean display on white surface, all equipment visible and organised
 LIGHTING: Professional studio lighting, clear visibility of all safety features
 CAMERA: 50mm lens, f/5.6, sharp focus throughout
 STYLE: Safety equipment product photography, industrial-grade quality
@@ -254,9 +254,9 @@ AVOID: Brand logos, people wearing equipment, cluttered background`,
     prompt: `Professional photograph of properly set up restoration job site with safety measures.
 
 SCENE: Australian residential restoration site with professional safety setup
-DETAILS: Safety barriers, warning signs, equipment organized, proper ventilation, safety protocols visible
+DETAILS: Safety barriers, warning signs, equipment organised, proper ventilation, safety protocols visible
 SETTING: Clean professional job site, natural lighting
-ATMOSPHERE: Safety-first professional environment, organized and systematic
+ATMOSPHERE: Safety-first professional environment, organised and systematic
 CAMERA: Wide angle 24mm, f/5.6, showing full site setup
 STYLE: Professional safety documentation photography
 
@@ -270,8 +270,8 @@ AVOID: People's faces, unsafe practices, cluttered workspace, extreme damage`,
 
 SCENE: Clean infographic showing key Australian WH&S requirements
 ELEMENTS: Safe Work Australia logo placeholder, key safety standards, compliance checklist
-STYLE: Professional safety infographic, red/yellow warning colors with blue accents
-LAYOUT: Organized sections with icons, clear hierarchy
+STYLE: Professional safety infographic, red/yellow warning colours with blue accents
+LAYOUT: Organised sections with icons, clear hierarchy
 QUALITY: 2K, professional design, readable typography
 
 AVOID: Specific company names, real certification numbers, people`,
@@ -302,7 +302,7 @@ AVOID: Brand logos, operators, cluttered background, extreme damage`,
 SCENE: Clean, professional psychrometric chart diagram
 ELEMENTS: Temperature/humidity curves, drying zones marked, example measurements plotted
 STYLE: Technical engineering diagram, clear lines and labels
-COLORS: Professional color coding (blue for wet, green for target, red for monitoring)
+COLOURS: Professional colour coding (blue for wet, green for target, red for monitoring)
 QUALITY: 2K, sharp lines, readable axis labels and numbers
 
 AVOID: Overly complex data, real project data, people`,
@@ -323,21 +323,21 @@ STYLE: Professional restoration documentation photography
 AVOID: People's faces, brand logos, extreme damage, unsafe setups`,
   },
 
-  // NRP-007: Mold Remediation Protocols
+  // NRP-007: Mould Remediation Protocols
   {
     module: 'NRP-007',
     filename: 'mould-containment-setup.jpg',
-    description: 'Professional mold containment barriers',
-    prompt: `Professional photograph of mold remediation containment setup.
+    description: 'Professional mould containment barriers',
+    prompt: `Professional photograph of mould remediation containment setup.
 
 SCENE: Professional containment barriers using clear plastic sheeting and zipper doors
 DETAILS: HEPA filtration units, negative air machines, proper sealing, professional setup
 SETTING: Australian residential property, contained work area
-ATMOSPHERE: Professional safety-first environment, organized containment
+ATMOSPHERE: Professional safety-first environment, organised containment
 CAMERA: Wide angle 24mm, f/5.6, showing complete containment system
 STYLE: Professional safety documentation photography
 
-AVOID: Visible mold growth (health hazard), people's faces, unsafe practices, brand logos`,
+AVOID: Visible mould growth (health hazard), people's faces, unsafe practices, brand logos`,
   },
   {
     module: 'NRP-007',
@@ -358,16 +358,16 @@ AVOID: Brand names/logos, operators, cluttered background`,
     module: 'NRP-007',
     filename: 'mould-testing-samples.jpg',
     description: 'Mold testing and sample collection',
-    prompt: `Professional photograph of mold testing equipment and sample collection materials.
+    prompt: `Professional photograph of mould testing equipment and sample collection materials.
 
 EQUIPMENT: Air quality testing devices, swab testing kits, sample containers, testing documentation
-ARRANGEMENT: Organized flat lay on clean surface, professional presentation
+ARRANGEMENT: Organised flat lay on clean surface, professional presentation
 SETTING: Clean laboratory or professional workspace
 LIGHTING: Natural overhead lighting, clear visibility of all testing materials
 CAMERA: Top-down view, 50mm lens, f/4
 STYLE: Professional laboratory/testing photography
 
-AVOID: Actual mold samples (health hazard), people, brand logos, real test results`,
+AVOID: Actual mould samples (health hazard), people, brand logos, real test results`,
   },
 
   // NRP-008: Fire & Smoke Damage Restoration
@@ -389,12 +389,12 @@ AVOID: Active flames, people, extreme destruction, horror aesthetic, unsafe cond
   {
     module: 'NRP-008',
     filename: 'air-scrubber-operation.jpg',
-    description: 'Air scrubbers for smoke odor removal',
+    description: 'Air scrubbers for smoke odour removal',
     prompt: `Professional photograph of industrial air scrubbers operating in smoke-damaged space.
 
-EQUIPMENT: Multiple professional air scrubbers with HEPA filters, thermal foggers for odor neutralization
+EQUIPMENT: Multiple professional air scrubbers with HEPA filters, thermal foggers for odour neutralization
 SCENE: Equipment operating in smoke-damaged Australian commercial space
-DETAILS: Professional equipment placement, organized restoration setup
+DETAILS: Professional equipment placement, organised restoration setup
 LIGHTING: Work lights showing equipment operation, natural ambient light
 CAMERA: 35mm lens, f/4, showing equipment and setting
 STYLE: Professional restoration documentation photography
@@ -409,7 +409,7 @@ AVOID: Brand logos, operators' faces, active fire, extreme damage`,
 
 SCENE: Wall being professionally cleaned of soot damage using dry sponges and cleaning techniques
 DETAILS: Cleaning supplies, dry chemical sponges, HEPA vacuum, protective coverings, professional technique
-SETTING: Australian commercial interior, organized work area
+SETTING: Australian commercial interior, organised work area
 ATMOSPHERE: Professional restoration in progress, systematic cleaning approach
 CAMERA: Close-up to mid-range, 50mm lens, f/4, showing cleaning detail
 STYLE: Professional restoration process documentation
@@ -443,7 +443,7 @@ AVOID: Real people's faces, actual biohazard materials, brand logos, unsafe demo
     prompt: `Professional product photography of biohazard decontamination equipment and supplies.
 
 EQUIPMENT: EPA-registered disinfectants, spray applicators, biohazard waste containers, decontamination solutions
-ARRANGEMENT: Organized professional display showing complete decontamination kit
+ARRANGEMENT: Organised professional display showing complete decontamination kit
 SETTING: Clean professional workspace, medical-grade presentation
 LIGHTING: Professional studio lighting, clear product visibility
 CAMERA: 35mm lens, f/5.6, sharp focus throughout
@@ -458,7 +458,7 @@ AVOID: Brand names, actual biohazard materials, people, unsafe handling`,
     prompt: `Professional photograph of biohazard waste disposal containers and protocols.
 
 SCENE: Professional biohazard waste containers (red bags, sharps containers, sealed bins)
-DETAILS: Proper labeling (generic biohazard symbols), secure sealing, organized staging area
+DETAILS: Proper labeling (generic biohazard symbols), secure sealing, organised staging area
 SETTING: Clean industrial or professional facility, proper containment area
 ATMOSPHERE: Safety-first professional environment, systematic waste management
 CAMERA: 24mm wide angle, f/5.6, showing complete waste handling setup
@@ -475,7 +475,7 @@ AVOID: Actual biohazard waste visible, people, brand names, real facility identi
     prompt: `Professional photograph of construction and reconstruction tools for restoration work.
 
 EQUIPMENT: Power tools (drill, saw, nail gun), hand tools, safety equipment, professional-grade construction tools
-ARRANGEMENT: Organized tool display showing complete reconstruction capability
+ARRANGEMENT: Organised tool display showing complete reconstruction capability
 SETTING: Clean professional workspace or job site, tools arranged professionally
 LIGHTING: Professional lighting showing tool details clearly
 CAMERA: 35mm lens, f/5.6, clear focus on all tools
@@ -490,9 +490,9 @@ AVOID: Brand logos, operators, cluttered workspace, unsafe tool handling`,
     prompt: `Professional photograph of wall reconstruction during restoration.
 
 SCENE: Australian residential interior showing wall reconstruction in progress
-DETAILS: Drywall installation, professional framing, organized work area, systematic approach
+DETAILS: Drywall installation, professional framing, organised work area, systematic approach
 SETTING: Clean job site, natural lighting from windows plus work lights
-ATMOSPHERE: Professional construction in progress, organized and safe
+ATMOSPHERE: Professional construction in progress, organised and safe
 CAMERA: Wide angle 24mm, f/4, showing reconstruction context
 STYLE: Professional construction documentation photography
 
@@ -570,7 +570,7 @@ AVOID: Extreme stains, people's faces, brand names on products, horror aesthetic
     prompt: `Professional photograph of proper carpet drying setup in Australian home.
 
 SCENE: Multiple high-velocity air movers strategically positioned over cleaned carpet
-DETAILS: Professional air mover placement, protective runners, organized drying setup
+DETAILS: Professional air mover placement, protective runners, organised drying setup
 SETTING: Australian residential room, carpet freshly cleaned and drying
 LIGHTING: Natural room lighting, equipment clearly visible
 CAMERA: Wide angle 24mm, f/5.6, showing complete drying setup
@@ -586,9 +586,9 @@ AVOID: Brand logos on equipment, people, cluttered space, unsafe cord management
     description: 'Professional contents packing and inventory process',
     prompt: `Professional photograph of contents pack-out and inventory process.
 
-SCENE: Organized packing operation in Australian home with damaged contents
+SCENE: Organised packing operation in Australian home with damaged contents
 DETAILS: Professional moving boxes, inventory lists, barcode labels, systematic packing
-SETTING: Australian residential interior, organized work area
+SETTING: Australian residential interior, organised work area
 ATMOSPHERE: Professional restoration service, careful handling of belongings
 CAMERA: Wide angle 24mm, f/4, showing packing operation context
 STYLE: Professional restoration documentation photography
@@ -602,10 +602,10 @@ AVOID: People's faces, personal belongings clearly identifiable, extreme damage,
     prompt: `Professional photograph of commercial contents restoration cleaning facility.
 
 SCENE: Large professional facility with contents cleaning stations, storage racks, equipment areas
-DETAILS: Organized work zones, professional cleaning equipment, systematic storage
-SETTING: Industrial warehouse-style facility, clean and organized
+DETAILS: Organised work zones, professional cleaning equipment, systematic storage
+SETTING: Industrial warehouse-style facility, clean and organised
 LIGHTING: Commercial facility lighting, clear visibility throughout
-CAMERA: Wide angle 16mm, f/5.6, showing facility scale and organization
+CAMERA: Wide angle 16mm, f/5.6, showing facility scale and organisation
 STYLE: Commercial facility documentation photography
 
 AVOID: Identifiable client contents, people's faces, specific company branding, cluttered areas`,
@@ -617,7 +617,7 @@ AVOID: Identifiable client contents, people's faces, specific company branding, 
     prompt: `Professional photograph of electronics restoration process.
 
 SCENE: Professional electronics cleaning and restoration workstation
-DETAILS: Specialty cleaning tools, anti-static equipment, organized workspace, electronics being serviced
+DETAILS: Specialty cleaning tools, anti-static equipment, organised workspace, electronics being serviced
 SETTING: Professional restoration facility, clean technical workspace
 LIGHTING: Professional work lighting, clear visibility of delicate process
 CAMERA: Mid-range 50mm, f/4, showing restoration process detail
@@ -632,7 +632,7 @@ AVOID: Identifiable devices with personal data, brand logos, people's faces, mes
     prompt: `Professional photograph of textile restoration cleaning process.
 
 SCENE: Commercial textile cleaning operation for damaged fabrics and garments
-DETAILS: Professional washing equipment, hanging racks, specialty cleaning chemicals, organized workflow
+DETAILS: Professional washing equipment, hanging racks, specialty cleaning chemicals, organised workflow
 SETTING: Professional restoration facility, clean textile processing area
 LIGHTING: Commercial facility lighting, clear view of textile processing
 CAMERA: 35mm lens, f/5.6, showing textile restoration operation
@@ -641,19 +641,19 @@ STYLE: Professional restoration facility photography
 AVOID: Identifiable personal clothing, brand logos on equipment, people's faces, cluttered workspace`,
   },
 
-  // NRP-013: Odor Control & Deodorization
+  // NRP-013: Odour Control & Deodorisation
   {
     module: 'NRP-013',
-    filename: 'odor-control-equipment.jpg',
+    filename: 'odour-control-equipment.jpg',
     description: 'Ozone generators, hydroxyl generators, thermal foggers',
-    prompt: `Professional product photography of odor control and deodorization equipment.
+    prompt: `Professional product photography of odour control and deodorisation equipment.
 
 EQUIPMENT: Ozone generators, hydroxyl generators, thermal foggers, air scrubbers
-ARRANGEMENT: Professional equipment display showing complete odor control capability
+ARRANGEMENT: Professional equipment display showing complete odour control capability
 SETTING: Clean professional environment, equipment clearly visible
 LIGHTING: Professional studio lighting, clear view of all equipment features
 CAMERA: 35mm lens, f/5.6, sharp focus throughout
-STYLE: Industrial odor control equipment product photography
+STYLE: Industrial odour control equipment product photography
 
 AVOID: Brand logos, operators, cluttered background, active operation in occupied spaces`,
   },
@@ -664,7 +664,7 @@ AVOID: Brand logos, operators, cluttered background, active operation in occupie
     prompt: `Professional photograph of air quality testing equipment and monitoring devices.
 
 EQUIPMENT: Air quality monitors, particle counters, gas detectors, testing documentation
-ARRANGEMENT: Professional testing equipment display, organized presentation
+ARRANGEMENT: Professional testing equipment display, organised presentation
 SETTING: Clean professional workspace or Australian property testing location
 LIGHTING: Professional lighting showing equipment details and displays
 CAMERA: 35mm lens, f/4, clear focus on testing equipment
@@ -674,14 +674,14 @@ AVOID: Brand names, people, extreme contamination visible, real test data with i
   },
   {
     module: 'NRP-013',
-    filename: 'deodorization-process.jpg',
-    description: 'Professional deodorization in progress',
-    prompt: `Professional photograph of deodorization process in Australian property.
+    filename: 'deodorisation-process.jpg',
+    description: 'Professional deodorisation in progress',
+    prompt: `Professional photograph of deodorisation process in Australian property.
 
 SCENE: Hydroxyl generator or ozone machine operating in treated space
 DETAILS: Professional setup, safety protocols visible, unoccupied space during treatment
-SETTING: Australian residential or commercial interior being deodorized
-ATMOSPHERE: Professional treatment environment, systematic odor control
+SETTING: Australian residential or commercial interior being deodorised
+ATMOSPHERE: Professional treatment environment, systematic odour control
 CAMERA: Wide angle 24mm, f/5.6, showing treatment setup
 STYLE: Professional restoration documentation photography
 
@@ -697,7 +697,7 @@ AVOID: Occupied spaces during ozone treatment (unsafe), people, brand logos, ext
 
 SCENE: Clean crawl space being professionally inspected with proper lighting
 DETAILS: Inspection equipment, moisture meters, documentation tools, professional approach
-SETTING: Australian residential crawl space, organized inspection
+SETTING: Australian residential crawl space, organised inspection
 LIGHTING: Professional work lights illuminating crawl space clearly
 CAMERA: Wide angle 16mm, f/4, showing crawl space context
 STYLE: Professional inspection documentation photography
@@ -726,7 +726,7 @@ AVOID: People's faces, unsafe practices, incomplete/sloppy work, extreme mess`,
     prompt: `Professional photograph of crawl space dehumidification system installation.
 
 SCENE: Commercial dehumidifier installed in encapsulated Australian crawl space
-DETAILS: Professional dehumidifier, drainage system, monitoring equipment, organized setup
+DETAILS: Professional dehumidifier, drainage system, monitoring equipment, organised setup
 SETTING: Clean, encapsulated crawl space with professional environmental control
 LIGHTING: Work lighting showing equipment and installation quality
 CAMERA: 24mm wide angle, f/4, showing dehumidification system context
@@ -742,7 +742,7 @@ AVOID: Brand logos on equipment, people, unsafe installations, cluttered crawl s
     description: 'Complete restoration equipment fleet display',
     prompt: `Professional photograph of complete restoration equipment fleet.
 
-SCENE: Organized display or service vehicle/trailer with complete equipment array
+SCENE: Organised display or service vehicle/trailer with complete equipment array
 EQUIPMENT: Dehumidifiers, air movers, extractors, moisture meters, air scrubbers, hand tools
 ARRANGEMENT: Professional fleet display showing full service capability
 SETTING: Clean warehouse or professional service vehicle
@@ -760,8 +760,8 @@ AVOID: Brand logos, operators, cluttered presentation, damaged equipment`,
 
 SCENE: Clean maintenance schedule design with preventive maintenance timeline
 ELEMENTS: Daily, weekly, monthly, annual maintenance tasks, equipment categories, checkbox system
-STYLE: Professional maintenance management infographic, organized design
-COLORS: Professional blue/gray scheme with safety yellow highlights
+STYLE: Professional maintenance management infographic, organised design
+COLOURS: Professional blue/gray scheme with safety yellow highlights
 LAYOUT: Calendar-style or checklist format, clear hierarchy
 QUALITY: 2K, readable typography, professional layout
 
@@ -774,7 +774,7 @@ AVOID: Specific company names, real equipment serial numbers, people`,
     prompt: `Professional photograph demonstrating safe equipment operation practices.
 
 SCENE: Professional equipment setup showing proper safety protocols
-DETAILS: Proper cord management, safety signage, organized workspace, professional practices
+DETAILS: Proper cord management, safety signage, organised workspace, professional practices
 SETTING: Australian job site or training facility
 ATMOSPHERE: Safety-first professional environment, educational demonstration
 CAMERA: Wide angle 24mm, f/5.6, showing complete safety setup
@@ -823,7 +823,7 @@ AVOID: Brand logos, operators' faces, extreme damage, unsafe setups`,
 SCENE: Thermal imaging camera display showing moisture patterns in Australian building
 DETAILS: Thermal image on camera/tablet screen showing temperature differentials indicating moisture
 SETTING: Australian property interior, professional moisture investigation
-COLORS: Thermal image color scale (blue=cool/wet, red/orange=warm/dry)
+COLOURS: Thermal image colour scale (blue=cool/wet, red/orange=warm/dry)
 CAMERA: Mid-range 50mm, f/4, showing thermal imaging device and display
 STYLE: Professional building diagnostic photography
 
@@ -853,7 +853,7 @@ AVOID: Brand logos, people's faces, extensive wall damage, messy installation`,
 SCENE: Tablet or computer display showing moisture monitoring software interface
 ELEMENTS: Moisture readings graph over time, multiple room monitoring, alert thresholds, professional data presentation
 STYLE: Professional software interface design, clean dashboard layout
-COLORS: Professional blue/gray interface with data visualization
+COLOURS: Professional blue/gray interface with data visualization
 QUALITY: 2K, clear interface, readable charts and numbers
 
 AVOID: Real property addresses, client names, specific dates, brand names of software`,
@@ -868,8 +868,8 @@ AVOID: Real property addresses, client names, specific dates, brand names of sof
 
 SCENE: Clean software dashboard showing job costing and estimating tools
 ELEMENTS: Project overview, cost categories, labor rates, materials pricing, estimate generation
-STYLE: Professional business software interface, organized layout
-COLORS: Professional blue/white color scheme, clear data presentation
+STYLE: Professional business software interface, organised layout
+COLOURS: Professional blue/white colour scheme, clear data presentation
 QUALITY: 2K, readable text and numbers, modern UI design
 
 AVOID: Real client names, actual project addresses, specific dollar amounts, brand names`,
@@ -883,7 +883,7 @@ AVOID: Real client names, actual project addresses, specific dollar amounts, bra
 SCENE: Clean pie chart or bar chart showing cost distribution
 CATEGORIES: Labor (largest), Materials, Equipment rental, Disposal, Overhead, Profit margin
 STYLE: Professional business infographic, data visualization
-COLORS: Professional color-coded categories, clear legend
+COLOURS: Professional colour-coded categories, clear legend
 QUALITY: 2K, sharp graphics, readable labels and percentages
 
 AVOID: Specific dollar amounts, real company data, people, cluttered design`,
@@ -897,7 +897,7 @@ AVOID: Specific dollar amounts, real company data, people, cluttered design`,
 SCENE: Clean calculator interface for restoration job pricing
 ELEMENTS: Input fields (square footage, category of loss, material types), calculation engine, price output
 STYLE: Professional web application design, user-friendly interface
-COLORS: Professional blue/white scheme, clear call-to-action buttons
+COLOURS: Professional blue/white scheme, clear call-to-action buttons
 QUALITY: 2K, modern UI design, clear typography
 
 AVOID: Real calculations, specific pricing, company branding, cluttered interface`,
@@ -911,7 +911,7 @@ AVOID: Real calculations, specific pricing, company branding, cluttered interfac
 SCENE: Dashboard with profit margin graphs and charts
 ELEMENTS: Profit margin percentage over time, job type comparison, target vs actual margins
 STYLE: Professional business analytics visualization, clear data presentation
-COLORS: Professional color scheme (green=good margins, yellow=acceptable, red=low)
+COLOURS: Professional colour scheme (green=good margins, yellow=acceptable, red=low)
 QUALITY: 2K, sharp graphs, readable axes and legends
 
 AVOID: Real business data, specific company names, people, actual dollar amounts`,
@@ -927,7 +927,7 @@ AVOID: Real business data, specific company names, people, actual dollar amounts
 SCENE: Comprehensive workflow diagram showing safety management process
 STEPS: Risk assessment → Controls → Training → Monitoring → Incident response → Continuous improvement
 STYLE: Professional safety management infographic, systematic flow design
-COLORS: Safety color scheme (red/yellow warnings, green compliance)
+COLOURS: Safety colour scheme (red/yellow warnings, green compliance)
 LAYOUT: Circular or linear workflow with clear connections
 QUALITY: 2K, professional design, clear typography
 
@@ -941,8 +941,8 @@ AVOID: Specific company processes, real incident data, people, cluttered design`
 
 SCENE: Clean, professional incident report form layout
 SECTIONS: Incident details, personnel involved, immediate actions, root cause, corrective actions
-STYLE: Professional business form design, organized sections
-COLORS: Professional document design, clear section headers
+STYLE: Professional business form design, organised sections
+COLOURS: Professional document design, clear section headers
 QUALITY: 2K, readable text, professional layout
 
 AVOID: Real incident data, personal information, specific company names, actual incidents described`,
@@ -955,7 +955,7 @@ AVOID: Real incident data, personal information, specific company names, actual 
 
 SCENE: Flat lay of professional safety training materials
 ITEMS: Training manuals, safety guides, PPE reference materials, Australian standards documents
-SETTING: Clean surface, organized professional presentation
+SETTING: Clean surface, organised professional presentation
 LIGHTING: Natural overhead lighting, clear visibility of materials
 CAMERA: Top-down view, 50mm lens, f/4
 STYLE: Professional training materials photography
@@ -988,7 +988,7 @@ SCENE: Comprehensive QC checklist for restoration project completion
 SECTIONS: Structural drying verification, cleanliness, repairs quality, documentation complete, customer walkthrough
 STYLE: Professional quality management form design
 LAYOUT: Multi-point checklist with pass/fail criteria
-QUALITY: 2K, clear typography, organized sections
+QUALITY: 2K, clear typography, organised sections
 
 AVOID: Real project data, client names, specific addresses, actual inspection results`,
   },
@@ -1000,7 +1000,7 @@ AVOID: Real project data, client names, specific addresses, actual inspection re
 
 SCENE: Flat lay of complete QA documentation set
 ITEMS: Quality inspection forms, photographic evidence, moisture readings logs, completion certificates
-SETTING: Clean professional desk, organized presentation
+SETTING: Clean professional desk, organised presentation
 LIGHTING: Natural overhead lighting, clear document visibility
 CAMERA: Top-down view, 50mm lens, f/4
 STYLE: Professional business documentation photography
@@ -1016,7 +1016,7 @@ AVOID: Real client data, personal information, specific addresses, identifiable 
 SCENE: Clean, professional customer satisfaction survey form
 ELEMENTS: Rating scales (1-5 stars), feedback sections, net promoter score, improvement suggestions
 STYLE: Professional survey design, user-friendly layout
-COLORS: Professional color scheme, clear rating visualizations
+COLOURS: Professional colour scheme, clear rating visualizations
 QUALITY: 2K, readable text, modern form design
 
 AVOID: Real customer feedback, names, specific company branding, actual survey results`,
@@ -1030,7 +1030,7 @@ AVOID: Real customer feedback, names, specific company branding, actual survey r
 SCENE: Business intelligence dashboard showing quality KPIs
 METRICS: Customer satisfaction score, first-time fix rate, rework percentage, inspection pass rate
 STYLE: Professional analytics dashboard, data visualization
-COLORS: Color-coded metrics (green=good, yellow=monitor, red=action needed)
+COLOURS: Color-coded metrics (green=good, yellow=monitor, red=action needed)
 QUALITY: 2K, clear graphs and charts, modern dashboard design
 
 AVOID: Real company data, specific performance numbers, company names, time periods`,
@@ -1046,7 +1046,7 @@ AVOID: Real company data, specific performance numbers, company names, time peri
 SCENE: Modern multi-channel communication strategy diagram
 CHANNELS: Phone, email, SMS, portal, in-person, mobile app icons
 STYLE: Professional marketing infographic, clean modern design
-COLORS: Professional brand-neutral colors, consistent iconography
+COLOURS: Professional brand-neutral colours, consistent iconography
 LAYOUT: Hub-and-spoke or grid layout showing all channels
 QUALITY: 2K, sharp graphics, clear channel labels
 
@@ -1075,7 +1075,7 @@ AVOID: Specific company processes, real customer data, people photos, brand name
 SCENE: Systematic complaint handling and resolution process flow
 STEPS: Complaint received → Acknowledgment → Investigation → Resolution plan → Implementation → Follow-up
 STYLE: Professional customer service process infographic
-COLORS: Calm professional colors (blue/green), clear step progression
+COLOURS: Calm professional colours (blue/green), clear step progression
 LAYOUT: Linear workflow with decision points
 QUALITY: 2K, professional design, clear typography
 
@@ -1089,8 +1089,8 @@ AVOID: Real complaints, customer names, specific incidents, company branding`,
 
 SCENE: Software dashboard showing feedback collection and analysis
 ELEMENTS: Feedback sources, sentiment analysis, trending issues, response tracking
-STYLE: Professional CRM-style interface, organized data presentation
-COLORS: Professional software UI colors, clear data visualization
+STYLE: Professional CRM-style interface, organised data presentation
+COLOURS: Professional software UI colours, clear data visualization
 QUALITY: 2K, modern interface design, readable dashboards
 
 AVOID: Real customer feedback text, names, specific company software, actual data`,
@@ -1106,7 +1106,7 @@ AVOID: Real customer feedback text, names, specific company software, actual dat
 SCENE: Comprehensive marketing channels overview
 CHANNELS: Digital (website, SEO, social media, email) + Traditional (referrals, signage, vehicle wraps, networking)
 STYLE: Professional marketing strategy infographic, balanced design
-COLORS: Modern professional color palette, distinct channel categories
+COLOURS: Modern professional colour palette, distinct channel categories
 LAYOUT: Grid or hub design showing all channels
 QUALITY: 2K, clean graphics, professional presentation
 
@@ -1121,7 +1121,7 @@ AVOID: Specific company names, real campaign data, people, brand logos`,
 SCENE: Social media strategy framework diagram
 ELEMENTS: Platform selection (Facebook, LinkedIn, Instagram), content types, posting schedule, engagement tactics
 STYLE: Professional digital marketing infographic, modern design
-COLORS: Platform-themed colors (blue, professional), organized layout
+COLOURS: Platform-themed colours (blue, professional), organised layout
 QUALITY: 2K, sharp graphics, clear strategy visualization
 
 AVOID: Real social media accounts, specific posts, people's faces, company branding`,
@@ -1136,7 +1136,7 @@ SCENE: Marketing funnel visualization from awareness to conversion
 STAGES: Awareness (wide top) → Interest → Consideration → Intent → Purchase (narrow bottom)
 METRICS: Traffic, leads, quotes, conversions shown at each stage
 STYLE: Professional sales funnel infographic, data-driven design
-COLORS: Gradient or color-coded funnel stages
+COLOURS: Gradient or colour-coded funnel stages
 QUALITY: 2K, clear visualization, professional layout
 
 AVOID: Real conversion data, specific numbers, company names, people`,
@@ -1148,9 +1148,9 @@ AVOID: Real conversion data, specific numbers, company names, people`,
     prompt: `Professional layout showing branding guidelines template.
 
 SCENE: Brand guidelines page layout showing identity elements
-ELEMENTS: Logo variations (generic/placeholder), color palette, typography, imagery style, brand voice
+ELEMENTS: Logo variations (generic/placeholder), colour palette, typography, imagery style, brand voice
 STYLE: Professional brand identity document design
-COLORS: Example brand colors (professional/neutral for template)
+COLOURS: Example brand colours (professional/neutral for template)
 QUALITY: 2K, clean layout, professional design standards
 
 AVOID: Real company logos, specific brand names, trademarked elements, actual brands`,
@@ -1164,7 +1164,7 @@ AVOID: Real company logos, specific brand names, trademarked elements, actual br
 SCENE: Marketing KPI dashboard showing campaign performance
 METRICS: Website traffic, lead sources, conversion rates, ROI by channel, campaign performance
 STYLE: Professional analytics dashboard, clear data visualization
-COLORS: Professional dashboard colors, color-coded metrics
+COLOURS: Professional dashboard colours, colour-coded metrics
 QUALITY: 2K, modern dashboard design, readable graphs
 
 AVOID: Real company data, specific campaign names, actual performance numbers, date ranges`,
@@ -1181,7 +1181,7 @@ SCENE: Clean Gantt chart showing typical restoration project phases
 PHASES: Assessment, Mitigation, Drying, Reconstruction, Quality check
 ELEMENTS: Task bars, dependencies, milestones, critical path
 STYLE: Professional project management visualization
-COLORS: Professional color-coded phases, clear timeline
+COLOURS: Professional colour-coded phases, clear timeline
 QUALITY: 2K, clear bars and text, readable timeline
 
 AVOID: Real project data, client names, specific dates, actual addresses`,
@@ -1194,8 +1194,8 @@ AVOID: Real project data, client names, specific dates, actual addresses`,
 
 SCENE: Resource scheduling visualization showing team and equipment allocation
 ELEMENTS: Personnel schedule, equipment assignments, project timelines, capacity planning
-STYLE: Professional resource management chart, organized layout
-COLORS: Color-coded resources (team members, equipment types)
+STYLE: Professional resource management chart, organised layout
+COLOURS: Color-coded resources (team members, equipment types)
 QUALITY: 2K, clear visualization, professional project management design
 
 AVOID: Real employee names, specific project details, actual dates, company names`,
@@ -1209,8 +1209,8 @@ AVOID: Real employee names, specific project details, actual dates, company name
 SCENE: Communication strategy diagram for restoration project
 ELEMENTS: Stakeholder matrix (client, insurer, subcontractors), communication frequency, methods, key messages
 STYLE: Professional project communication infographic
-COLORS: Professional business colors, clear stakeholder categories
-QUALITY: 2K, organized layout, clear communication flows
+COLOURS: Professional business colours, clear stakeholder categories
+QUALITY: 2K, organised layout, clear communication flows
 
 AVOID: Real stakeholder names, specific companies, actual contact details, people`,
   },
@@ -1223,7 +1223,7 @@ AVOID: Real stakeholder names, specific companies, actual contact details, peopl
 SCENE: Risk matrix showing likelihood vs impact grid
 ELEMENTS: Common project risks plotted (weather delays, scope creep, safety incidents), mitigation strategies
 STYLE: Professional risk management visualization, matrix format
-COLORS: Risk heat map colors (green=low, yellow=medium, red=high)
+COLOURS: Risk heat map colours (green=low, yellow=medium, red=high)
 QUALITY: 2K, clear grid, readable risk labels
 
 AVOID: Real project risks, specific incidents, company names, actual case data`,
@@ -1238,7 +1238,7 @@ SCENE: Comprehensive closeout checklist for restoration project completion
 SECTIONS: Final inspection, documentation delivery, customer approval, invoicing, warranties, feedback
 STYLE: Professional project management form design
 LAYOUT: Multi-section checklist with sign-off areas
-QUALITY: 2K, clear typography, organized sections
+QUALITY: 2K, clear typography, organised sections
 
 AVOID: Real project data, client signatures, specific addresses, actual completion dates`,
   },
@@ -1253,7 +1253,7 @@ AVOID: Real project data, client signatures, specific addresses, actual completi
 SCENE: 12-month cash flow graph showing inflows and outflows
 ELEMENTS: Revenue line, expenses line, net cash flow, cumulative balance
 STYLE: Professional financial chart, business analytics visualization
-COLORS: Green for positive cash flow, red for negative, blue for revenue
+COLOURS: Green for positive cash flow, red for negative, blue for revenue
 QUALITY: 2K, clear axes and labels, professional chart design
 
 AVOID: Real financial data, specific amounts, company names, actual dates`,
@@ -1266,8 +1266,8 @@ AVOID: Real financial data, specific amounts, company names, actual dates`,
 
 SCENE: Clean P&L statement format showing financial performance
 SECTIONS: Revenue, Cost of goods sold, Gross profit, Operating expenses, Net profit
-STYLE: Professional accounting document design, organized layout
-COLORS: Professional financial document colors, clear section headers
+STYLE: Professional accounting document design, organised layout
+COLOURS: Professional financial document colours, clear section headers
 QUALITY: 2K, readable numbers (generic placeholders), accounting standard format
 
 AVOID: Real financial data, specific company names, actual amounts, identifiable businesses`,
@@ -1281,7 +1281,7 @@ AVOID: Real financial data, specific company names, actual amounts, identifiable
 SCENE: Business intelligence dashboard showing key financial metrics
 METRICS: Gross profit margin, net profit margin, revenue per employee, average job value, collection period
 STYLE: Professional finance dashboard, clear data visualization
-COLORS: Professional dashboard colors, gauge charts, trend lines
+COLOURS: Professional dashboard colours, gauge charts, trend lines
 QUALITY: 2K, modern dashboard design, readable metrics
 
 AVOID: Real company data, specific financial numbers, actual performance data, company names`,
@@ -1294,8 +1294,8 @@ AVOID: Real company data, specific financial numbers, actual performance data, c
 
 SCENE: Clean, professional invoice design
 SECTIONS: Header with company details (generic), invoice number, date, services rendered, amounts, payment terms
-STYLE: Professional business invoice design, organized layout
-COLORS: Professional blue/white color scheme, clear sections
+STYLE: Professional business invoice design, organised layout
+COLOURS: Professional blue/white colour scheme, clear sections
 QUALITY: 2K, readable text, professional layout
 
 AVOID: Real company names, specific addresses, actual amounts, real client data`,
@@ -1309,8 +1309,8 @@ AVOID: Real company names, specific addresses, actual amounts, real client data`
 SCENE: Accounting software dashboard showing financial reporting capabilities
 ELEMENTS: Report types (P&L, balance sheet, cash flow), date ranges, export options, chart visualization
 STYLE: Professional accounting software interface
-COLORS: Professional software UI colors, clear data presentation
-QUALITY: 2K, modern interface design, organized layout
+COLOURS: Professional software UI colours, clear data presentation
+QUALITY: 2K, modern interface design, organised layout
 
 AVOID: Real company data, specific software brands, actual financial numbers, client names`,
   },
@@ -1325,7 +1325,7 @@ AVOID: Real company data, specific software brands, actual financial numbers, cl
 SCENE: Strategic growth planning visualization for restoration business
 ELEMENTS: Market expansion, service diversification, operational efficiency, strategic partnerships
 STYLE: Professional business strategy infographic, strategic planning design
-COLORS: Professional color scheme, clear strategy categories
+COLOURS: Professional colour scheme, clear strategy categories
 LAYOUT: Matrix or quadrant layout showing growth vectors
 QUALITY: 2K, professional design, clear strategic elements
 
@@ -1341,7 +1341,7 @@ SCENE: Competitive positioning matrix showing market analysis
 AXES: Service quality (vertical) vs Price (horizontal), competitor positioning plotted
 ELEMENTS: Generic competitor positions (A, B, C, D), market gaps, strategic positioning
 STYLE: Professional competitive analysis visualization, strategy framework
-COLORS: Professional color-coded competitors, clear quadrants
+COLOURS: Professional colour-coded competitors, clear quadrants
 QUALITY: 2K, clear matrix, readable labels
 
 AVOID: Real competitor names, specific companies, actual market data, brand logos`,
@@ -1355,7 +1355,7 @@ AVOID: Real competitor names, specific companies, actual market data, brand logo
 SCENE: Business ecosystem map showing partnership relationships
 PARTNERS: Insurance companies, property managers, plumbers, builders, suppliers (generic categories)
 STYLE: Professional business ecosystem visualization, network diagram
-COLORS: Professional color-coded partnership types
+COLOURS: Professional colour-coded partnership types
 LAYOUT: Hub-and-spoke or network diagram showing connections
 QUALITY: 2K, clear relationships, professional design
 
@@ -1370,7 +1370,7 @@ AVOID: Real company names, specific partnerships, actual contracts, brand logos`
 SCENE: Operational scaling framework for restoration business growth
 ELEMENTS: Process systemization, technology adoption, team expansion, geographic expansion
 STYLE: Professional operations strategy infographic, growth framework
-COLORS: Progressive color scheme showing growth stages
+COLOURS: Progressive colour scheme showing growth stages
 LAYOUT: Phased approach or maturity model visualization
 QUALITY: 2K, clear strategy stages, professional design
 
@@ -1385,7 +1385,7 @@ AVOID: Specific company plans, real expansion data, people, actual timelines`,
 SCENE: Succession planning process and business continuity strategy
 ELEMENTS: Leadership development, knowledge transfer, ownership transition, continuity protocols
 STYLE: Professional succession planning infographic, strategic framework
-COLORS: Professional business colors, clear planning stages
+COLOURS: Professional business colours, clear planning stages
 LAYOUT: Timeline or process flow showing succession phases
 QUALITY: 2K, professional design, clear planning elements
 

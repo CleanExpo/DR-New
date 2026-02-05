@@ -57,7 +57,7 @@ const IMAGE_MAPPINGS: ImageMapping[] = [
       },
       {
         filename: 'moisture-mapping-diagram.jpg',
-        altText: 'Color-coded moisture mapping on floor plan showing dry, elevated, and wet zones',
+        altText: 'Colour-coded moisture mapping on floor plan showing dry, elevated, and wet zones',
         caption: 'Moisture mapping visualization',
       },
     ],
@@ -152,8 +152,8 @@ const IMAGE_MAPPINGS: ImageMapping[] = [
     images: [
       {
         filename: 'mould-containment-setup.jpg',
-        altText: 'Professional mold remediation containment barriers and zipper doors',
-        caption: 'Mold containment barrier setup',
+        altText: 'Professional mould remediation containment barriers and zipper doors',
+        caption: 'Mould containment barrier setup',
       },
       {
         filename: 'hepa-filtration-equipment.jpg',
@@ -162,8 +162,8 @@ const IMAGE_MAPPINGS: ImageMapping[] = [
       },
       {
         filename: 'mould-testing-samples.jpg',
-        altText: 'Mold testing equipment and sample collection materials',
-        caption: 'Mold testing and sampling equipment',
+        altText: 'Mould testing equipment and sample collection materials',
+        caption: 'Mould testing and sampling equipment',
       },
     ],
   },
@@ -178,7 +178,7 @@ const IMAGE_MAPPINGS: ImageMapping[] = [
       },
       {
         filename: 'air-scrubber-operation.jpg',
-        altText: 'Industrial air scrubbers operating for smoke odor removal',
+        altText: 'Industrial air scrubbers operating for smoke odour removal',
         caption: 'Air scrubber equipment for smoke removal',
       },
       {
@@ -282,9 +282,9 @@ const IMAGE_MAPPINGS: ImageMapping[] = [
     htmlFilename: 'NRP-013-EMERGENCY-RESPONSE-PROCEDURES.html',
     images: [
       {
-        filename: 'odor-control-equipment.jpg',
+        filename: 'odour-control-equipment.jpg',
         altText: 'Ozone generators, hydroxyl generators, and thermal foggers',
-        caption: 'Odor control equipment',
+        caption: 'Odour control equipment',
       },
       {
         filename: 'air-quality-testing.jpg',
@@ -292,9 +292,9 @@ const IMAGE_MAPPINGS: ImageMapping[] = [
         caption: 'Air quality testing equipment',
       },
       {
-        filename: 'deodorization-process.jpg',
-        altText: 'Professional deodorization in progress',
-        caption: 'Deodorization process',
+        filename: 'deodorisation-process.jpg',
+        altText: 'Professional deodorisation in progress',
+        caption: 'Deodorisation process',
       },
     ],
   },
