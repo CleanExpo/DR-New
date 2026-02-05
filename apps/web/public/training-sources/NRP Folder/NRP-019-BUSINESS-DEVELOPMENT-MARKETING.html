@@ -4,265 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NRP-019: Business Development & Marketing - Complete Training Module</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        .header {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            border-radius: 15px 15px 0 0;
-            margin: -20px -20px 30px -20px;
-        }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .header p { font-size: 1.2em; opacity: 0.9; }
-        .section {
-            margin-bottom: 30px;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #e74c3c;
-        }
-        .section h2 {
-            color: #c0392b;
-            margin-bottom: 15px;
-            font-size: 1.8em;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 {
-            color: #c0392b;
-            margin-bottom: 10px;
-        }
-        .marketing-icon {
-            width: 60px;
-            height: 60px;
-            background: #e74c3c;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin: 0 auto 15px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background: #c0392b;
-            color: white;
-        }
-        tr:hover { background: #f5f5f5; }
-        .info-box {
-            background: #fadbd8;
-            border: 2px solid #e74c3c;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-        .info-box h4 {
-            color: #922b21;
-            margin-bottom: 10px;
-        }
-        .roi-calculator {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        .roi-display {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .roi-card {
-            text-align: center;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        .roi-value {
-            font-size: 28px;
-            font-weight: bold;
-            color: #27ae60;
-        }
-        .calculator {
-            background: #e9ecef;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .calculator h3 {
-            color: #c0392b;
-            margin-bottom: 15px;
-        }
-        .calc-input {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        .calc-input label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #495057;
-        }
-        .calc-input input, .calc-input select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-        }
-        .calc-button {
-            background: #e74c3c;
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            margin-top: 15px;
-        }
-        .calc-button:hover { background: #c0392b; }
-        .result-box {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            border: 2px solid #e74c3c;
-        }
-        .marketing-funnel {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        .funnel-stage {
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            text-align: center;
-            color: white;
-        }
-        .funnel-awareness { background: #3498db; }
-        .funnel-interest { background: #2ecc71; }
-        .funnel-consideration { background: #f39c12; }
-        .funnel-purchase { background: #e74c3c; }
-        .funnel-retention { background: #9b59b6; }
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .social-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-        }
-        .assessment {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 30px;
-        }
-        .assessment h2 {
-            color: #c0392b;
-            margin-bottom: 20px;
-        }
-        .question {
-            background: white;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #e74c3c;
-        }
-        .question h4 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .answers {
-            margin-left: 20px;
-        }
-        .answers label {
-            display: block;
-            margin-bottom: 10px;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-        .answers label:hover {
-            background: #f0f0f0;
-        }
-        .answers input[type="radio"] {
-            margin-right: 10px;
-        }
-        .submit-button {
-            background: #e74c3c;
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            display: block;
-            margin: 20px auto;
-        }
-        .submit-button:hover { background: #c0392b; }
-        .completion-message {
-            background: #d4edda;
-            border: 2px solid #28a745;
-            color: #155724;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
-
+    
 <style>
   .training-image {
     margin: 2rem 0;
@@ -306,7 +48,7 @@
 
 <figure class="training-image">
   <img
-    src="/training-sources/images/NRP-019/quality-control-checklist.jpg"
+    src="../images/NRP-019/quality-control-checklist.jpg"
     alt="Multi-point quality control inspection checklist"
     loading="lazy"
     class="training-module-img"
@@ -316,7 +58,7 @@
 
 <figure class="training-image">
   <img
-    src="/training-sources/images/NRP-019/quality-documentation.jpg"
+    src="../images/NRP-019/quality-documentation.jpg"
     alt="Professional quality assurance documentation"
     loading="lazy"
     class="training-module-img"
@@ -326,7 +68,7 @@
 
 <figure class="training-image">
   <img
-    src="/training-sources/images/NRP-019/customer-satisfaction-survey.jpg"
+    src="../images/NRP-019/customer-satisfaction-survey.jpg"
     alt="Customer satisfaction survey and feedback form"
     loading="lazy"
     class="training-module-img"
@@ -336,7 +78,7 @@
 
 <figure class="training-image">
   <img
-    src="/training-sources/images/NRP-019/quality-metrics-dashboard.jpg"
+    src="../images/NRP-019/quality-metrics-dashboard.jpg"
     alt="Quality metrics tracking dashboard"
     loading="lazy"
     class="training-module-img"
@@ -345,6 +87,8 @@
 </figure>
 </div>
 <!-- End Training Module Images -->
+
+
 
 
             <p>Growing Your Restoration Business in Australia</p>
