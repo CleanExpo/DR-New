@@ -1,0 +1,657 @@
+/**
+ * DR-NRPG Training Module Base Stylesheet
+ *
+ * Professional CSS system for all 24 NRP training modules
+ * Provides consistent typography, layout, and component styling
+ *
+ * @date 2026-02-06
+ * @standard IICRC Professional Training Documentation
+ */
+
+/* ============================================================================
+   CSS VARIABLES - Design Tokens
+   ============================================================================ */
+
+:root {
+  /* Primary Colors */
+  --primary-blue: #3498db;
+  --primary-blue-dark: #2980b9;
+  --primary-blue-light: #5dade2;
+
+  /* Accent Colors */
+  --accent-green: #27ae60;
+  --accent-green-dark: #229954;
+  --accent-orange: #f39c12;
+  --accent-red: #e74c3c;
+
+  /* Neutral Colors */
+  --text-primary: #2c3e50;
+  --text-secondary: #34495e;
+  --text-muted: #7f8c8d;
+  --text-light: #95a5a6;
+
+  /* Background Colors */
+  --bg-white: #ffffff;
+  --bg-light: #f8f9fa;
+  --bg-lighter: #ecf0f1;
+  --bg-dark: #2c3e50;
+
+  /* Border Colors */
+  --border-light: #e0e0e0;
+  --border-medium: #bdc3c7;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
+
+/* ============================================================================
+   BASE STYLES - Reset & Foundation
+   ============================================================================ */
+
+.training-module {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background-color: var(--bg-light);
+  padding: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.training-module * {
+  box-sizing: border-box;
+}
+
+/* ============================================================================
+   TYPOGRAPHY HIERARCHY
+   ============================================================================ */
+
+/* Module Title (h1) */
+.training-module h1,
+.module-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-lg) 0;
+  padding-bottom: var(--space-md);
+  border-bottom: 3px solid var(--primary-blue);
+  line-height: 1.2;
+}
+
+/* Section Headers (h2) */
+.training-module h2,
+.section-header {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: var(--space-2xl) 0 var(--space-md) 0;
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid var(--primary-blue);
+  line-height: 1.3;
+}
+
+/* Subsection Headers (h3) */
+.training-module h3,
+.subsection-header {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: var(--space-xl) 0 var(--space-md) 0;
+  line-height: 1.4;
+}
+
+/* Content Headers (h4) */
+.training-module h4,
+.content-header {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: var(--space-lg) 0 var(--space-sm) 0;
+  line-height: 1.4;
+}
+
+/* Minor Headers (h5, h6) */
+.training-module h5 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: var(--space-md) 0 var(--space-sm) 0;
+}
+
+.training-module h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: var(--space-md) 0 var(--space-sm) 0;
+}
+
+/* Paragraphs */
+.training-module p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-md) 0;
+}
+
+/* Lead Paragraph */
+.training-module .lead,
+.module-intro {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+/* ============================================================================
+   LIST STYLES - Bullet Points & Numbered Lists
+   ============================================================================ */
+
+/* Standard Unordered List with Checkmarks */
+.training-module ul,
+ul.training-list {
+  list-style: none;
+  padding-left: 0;
+  margin: var(--space-md) 0;
+}
+
+.training-module ul li,
+ul.training-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: var(--space-sm);
+  line-height: 1.6;
+}
+
+.training-module ul li::before,
+ul.training-list li::before {
+  content: "\2713"; /* Checkmark */
+  position: absolute;
+  left: 0;
+  color: var(--accent-green);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Bullet List Variant */
+ul.bullet-list li::before {
+  content: "\2022"; /* Bullet */
+  color: var(--primary-blue);
+  font-size: 1.25rem;
+  top: -2px;
+}
+
+/* Arrow List Variant */
+ul.arrow-list li::before {
+  content: "\2192"; /* Arrow */
+  color: var(--primary-blue);
+}
+
+/* Numbered Procedure List */
+ol.procedure-list {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+  margin: var(--space-lg) 0;
+}
+
+ol.procedure-list li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 3.5rem;
+  margin-bottom: var(--space-md);
+  min-height: 2.5rem;
+}
+
+ol.procedure-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Standard Ordered List */
+.training-module ol:not(.procedure-list) {
+  padding-left: 1.5rem;
+  margin: var(--space-md) 0;
+}
+
+.training-module ol:not(.procedure-list) li {
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-sm);
+}
+
+/* Nested Lists */
+.training-module ul ul,
+.training-module ol ul,
+.training-module ul ol,
+.training-module ol ol {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-lg);
+}
+
+/* ============================================================================
+   TABLE STYLES
+   ============================================================================ */
+
+/* Professional Data Table */
+.training-module table,
+table.training-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: var(--space-lg) 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  font-size: 0.95rem;
+}
+
+.training-module table thead,
+table.training-table thead {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+}
+
+.training-module table th,
+table.training-table th {
+  color: white;
+  padding: var(--space-md) var(--space-md);
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid var(--primary-blue-dark);
+}
+
+.training-module table td,
+table.training-table td {
+  padding: 0.875rem var(--space-md);
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+
+.training-module table tbody tr:nth-child(even),
+table.training-table tbody tr:nth-child(even) {
+  background-color: var(--bg-light);
+}
+
+.training-module table tbody tr:hover,
+table.training-table tbody tr:hover {
+  background-color: #e8f4fc;
+}
+
+.training-module table tbody tr:last-child td,
+table.training-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Compact Table Variant */
+table.compact-table th,
+table.compact-table td {
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.875rem;
+}
+
+/* ============================================================================
+   SECTION & CONTAINER STYLES
+   ============================================================================ */
+
+/* Module Section Container */
+.module-section {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin: var(--space-xl) 0;
+  box-shadow: var(--shadow-md);
+}
+
+/* Card Container */
+.training-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin: var(--space-md) 0;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+}
+
+/* Info Box */
+.info-box {
+  background: linear-gradient(135deg, var(--bg-light), var(--bg-lighter));
+  border-left: 4px solid var(--primary-blue);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.info-box h4,
+.info-box .info-title {
+  color: var(--primary-blue-dark);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+/* Warning Box */
+.warning-box {
+  background: linear-gradient(135deg, #fff8e1, #ffecb3);
+  border-left: 4px solid var(--accent-orange);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.warning-box h4,
+.warning-box .warning-title {
+  color: #e67e22;
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+/* Critical/Danger Box */
+.critical-box,
+.danger-box {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  border-left: 4px solid var(--accent-red);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.critical-box h4,
+.danger-box h4,
+.critical-box .critical-title,
+.danger-box .danger-title {
+  color: #c0392b;
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+/* Success Box */
+.success-box {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-left: 4px solid var(--accent-green);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.success-box h4,
+.success-box .success-title {
+  color: var(--accent-green-dark);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  font-weight: 600;
+}
+
+/* ============================================================================
+   IMAGE STYLES
+   ============================================================================ */
+
+/* Training Image Container */
+.training-image {
+  margin: var(--space-xl) 0;
+  text-align: center;
+}
+
+.training-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+}
+
+.training-image figcaption,
+.image-caption {
+  margin-top: var(--space-sm);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Image Grid */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.image-grid .training-image {
+  margin: 0;
+}
+
+/* ============================================================================
+   BADGE & TAG STYLES
+   ============================================================================ */
+
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.badge-primary {
+  background-color: var(--primary-blue);
+  color: white;
+}
+
+.badge-success {
+  background-color: var(--accent-green);
+  color: white;
+}
+
+.badge-warning {
+  background-color: var(--accent-orange);
+  color: white;
+}
+
+.badge-danger {
+  background-color: var(--accent-red);
+  color: white;
+}
+
+.badge-info {
+  background-color: #17a2b8;
+  color: white;
+}
+
+/* ============================================================================
+   IICRC STANDARDS STYLING
+   ============================================================================ */
+
+/* Standard Reference Box */
+.iicrc-standard {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border: 2px solid var(--primary-blue);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.iicrc-standard h4 {
+  color: var(--primary-blue-dark);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.iicrc-standard h4::before {
+  content: "\2611"; /* Checkbox */
+  font-size: 1.25rem;
+}
+
+/* Certification Badge */
+.certification-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+  color: white;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ============================================================================ */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--primary-blue); }
+.text-success { color: var(--accent-green); }
+.text-warning { color: var(--accent-orange); }
+.text-danger { color: var(--accent-red); }
+.text-muted { color: var(--text-muted); }
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: var(--space-md); }
+.mb-1 { margin-bottom: var(--space-md); }
+.mt-2 { margin-top: var(--space-xl); }
+.mb-2 { margin-bottom: var(--space-xl); }
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .training-module {
+    padding: var(--space-md);
+  }
+
+  .training-module h1,
+  .module-title {
+    font-size: 2rem;
+  }
+
+  .training-module h2,
+  .section-header {
+    font-size: 1.5rem;
+  }
+
+  .training-module h3,
+  .subsection-header {
+    font-size: 1.25rem;
+  }
+
+  .module-section {
+    padding: var(--space-md);
+  }
+
+  .training-module table {
+    font-size: 0.85rem;
+  }
+
+  .training-module table th,
+  .training-module table td {
+    padding: var(--space-sm);
+  }
+
+  ol.procedure-list li {
+    padding-left: 3rem;
+  }
+
+  ol.procedure-list li::before {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .training-module h1,
+  .module-title {
+    font-size: 1.75rem;
+  }
+
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .training-module {
+    background: white;
+    padding: 0;
+    max-width: none;
+  }
+
+  .module-section,
+  .training-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+  }
+
+  .training-image img {
+    box-shadow: none;
+    max-width: 100%;
+  }
+
+  .training-module table {
+    box-shadow: none;
+  }
+
+  .info-box,
+  .warning-box,
+  .critical-box,
+  .success-box {
+    border: 1px solid currentColor;
+    background: white !important;
+  }
+}

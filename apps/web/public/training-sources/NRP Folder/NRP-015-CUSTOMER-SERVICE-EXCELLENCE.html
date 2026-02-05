@@ -37,9 +37,10 @@
     }
   }
 </style>
+    <link rel="stylesheet" href="../styles/training-module-base.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container training-module">
         <div class="header">
             <h1>NRP-015: Customer Service Excellence</h1>
 
@@ -94,12 +95,12 @@
             <p>Professional Communication & Client Satisfaction Strategies</p>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Module Overview</h2>
             <p>Master customer service excellence in the restoration industry. Learn communication techniques, empathy in crisis situations, expectation management, and complaint resolution following Australian consumer protection laws and industry best practices.</p>
 
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <div class="service-icon">💬</div>
                     <h3>Communication Skills</h3>
                     <ul>
@@ -110,7 +111,7 @@
                         <li>Conflict resolution</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="service-icon">❤️</div>
                     <h3>Empathy & Support</h3>
                     <ul>
@@ -121,7 +122,7 @@
                         <li>Professional boundaries</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="service-icon">⭐</div>
                     <h3>Service Standards</h3>
                     <ul>
@@ -135,9 +136,9 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Australian Customer Rights & Restoration Industry</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Consumer Right</th>
                     <th>Legal Requirement</th>
@@ -177,7 +178,7 @@
             </table>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Customer Journey Mapping</h2>
             <div class="communication-framework">
                 <div class="comm-step">
@@ -225,7 +226,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Communication Templates & Scripts</h2>
 
             <div class="scenario-box">
@@ -250,7 +251,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Net Promoter Score (NPS) System</h2>
             <div class="rating-scale">
                 <div class="rating-item">
@@ -316,10 +317,10 @@
             <div id="clvResult"></div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Complaint Resolution Framework</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <h3>L.E.A.R.N. Method</h3>
                     <ul>
                         <li><strong>L</strong>isten without interrupting</li>
@@ -329,7 +330,7 @@
                         <li><strong>N</strong>otify of prevention measures</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <h3>Resolution Authority Levels</h3>
                     <ul>
                         <li><strong>Technician:</strong> Up to $500 credit</li>
@@ -339,7 +340,7 @@
                         <li><strong>Escalation:</strong> Within 2 hours</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <h3>Service Recovery Tactics</h3>
                     <ul>
                         <li>Immediate response (< 1 hour)</li>
@@ -352,9 +353,9 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Digital Communication Standards</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Channel</th>
                     <th>Response Time</th>
@@ -400,7 +401,7 @@
             </table>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Cultural Competency in Australian Context</h2>
             <div class="info-box">
                 <h4>🌏 Multicultural Awareness</h4>
@@ -524,7 +525,7 @@
             const resultHTML = `
                 <div class="result-box">
                     <h3>Customer Lifetime Value Analysis</h3>
-                    <table style="width: 100%; margin-top: 15px;">
+                    <table class="training-table" style="width: 100%; margin-top: 15px;">
                         <tr><td><strong>Direct Annual Value:</strong></td><td style="text-align: right;">$${annualValue.toFixed(2)}</td></tr>
                         <tr><td><strong>Years of Retention:</strong></td><td style="text-align: right;">${retentionYears} years</td></tr>
                         <tr><td><strong>Service Level Multiplier:</strong></td><td style="text-align: right;">×${serviceMultipliers[serviceLevel]}</td></tr>

@@ -37,9 +37,10 @@
     }
   }
 </style>
+    <link rel="stylesheet" href="../styles/training-module-base.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container training-module">
         <div class="header">
             <h1>NRP-016: Project Management & Scheduling</h1>
 
@@ -94,12 +95,12 @@
             <p>Efficient Resource Allocation & Timeline Management</p>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Module Overview</h2>
             <p>Master project management and scheduling for restoration projects. Learn resource allocation, critical path methodology, multi-site coordination, and stakeholder communication following Australian construction management standards and industry best practices.</p>
 
             <div class="grid">
-                <div class="card">
+                <div class="card training-card">
                     <div class="project-icon">📅</div>
                     <h3>Planning Tools</h3>
                     <ul>
@@ -110,7 +111,7 @@
                         <li>Risk assessment</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="project-icon">👥</div>
                     <h3>Resource Management</h3>
                     <ul>
@@ -121,7 +122,7 @@
                         <li>Capacity planning</li>
                     </ul>
                 </div>
-                <div class="card">
+                <div class="card training-card">
                     <div class="project-icon">📊</div>
                     <h3>Performance Metrics</h3>
                     <ul>
@@ -135,9 +136,9 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Project Phases & Timeline Standards</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Phase</th>
                     <th>Duration</th>
@@ -190,7 +191,7 @@
             </table>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Sample Project Timeline - Water Damage Restoration</h2>
             <div class="gantt-chart">
                 <div class="gantt-row">
@@ -232,7 +233,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Resource Allocation Matrix</h2>
             <div class="resource-grid">
                 <div class="resource-card">
@@ -324,7 +325,7 @@
             <div id="timelineResult"></div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Key Performance Indicators (KPIs)</h2>
             <div class="kpi-dashboard">
                 <div class="kpi-card">
@@ -354,7 +355,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Critical Path Method (CPM) Example</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -396,9 +397,9 @@
             <p style="margin-top: 20px;"><strong>Total Critical Path:</strong> 10 days | <strong>Float Available:</strong> 8 hours on non-critical tasks</p>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Risk Management Matrix</h2>
-            <table>
+            <table class="training-table">
                 <tr>
                     <th>Risk Category</th>
                     <th>Probability</th>
@@ -451,7 +452,7 @@
             </table>
         </div>
 
-        <div class="section">
+        <div class="section module-section">
             <h2>Communication & Reporting Schedule</h2>
             <div class="info-box">
                 <h4>📋 Standard Reporting Requirements</h4>
@@ -612,7 +613,7 @@
                     <div style="margin-top: 15px;">
                         <h4>Total Project Duration: ${Math.ceil(baseDays)} days</h4>
                     </div>
-                    <table style="width: 100%; margin-top: 15px;">
+                    <table class="training-table" style="width: 100%; margin-top: 15px;">
                         <tr><th>Phase</th><th>Duration</th><th>Start</th><th>End</th></tr>
                         <tr><td>Emergency Response</td><td>${phases.emergency} days</td><td>Day 1</td><td>Day ${phases.emergency}</td></tr>
                         <tr><td>Assessment & Planning</td><td>${phases.assessment} days</td><td>Day ${phases.emergency + 1}</td><td>Day ${phases.emergency + phases.assessment}</td></tr>
@@ -633,7 +634,7 @@
                     </div>
                     <div style="margin-top: 15px; padding: 15px; background: #fff3cd; border-radius: 5px;">
                         <h4>Cost Estimate:</h4>
-                        <table style="width: 100%; margin-top: 10px;">
+                        <table class="training-table" style="width: 100%; margin-top: 10px;">
                             <tr><td>Labour Cost:</td><td style="text-align: right;">$${labourCost.toFixed(2)}</td></tr>
                             <tr><td>Equipment Rental:</td><td style="text-align: right;">$${equipmentCost.toFixed(2)}</td></tr>
                             <tr><td>Materials:</td><td style="text-align: right;">$${materialsTotal.toFixed(2)}</td></tr>
