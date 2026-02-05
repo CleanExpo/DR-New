@@ -3,31 +3,37 @@
  *
  * Complete type definitions for the multi-step claim reporting wizard
  * with Zod validation schemas for strict type safety and runtime validation
+ *
+ * Updated: 2026-02-06 - Integrated Australian disaster types and regional risk assessment
  */
 
 import { z } from 'zod';
+import {
+  getAustralianDisasterTypeOptions,
+  australianDisasterTypeSchema,
+  AUSTRALIAN_DISASTER_TYPES,
+} from '@/lib/disaster-types/australian-disasters';
+import { getStateFromPostcode } from '@/src/lib/validation/australia';
 
 // ============================================================================
 // Step 1: Triage (Emergency Assessment)
 // ============================================================================
 
-export const disasterTypes = [
-  { value: 'water-damage', label: 'Water Damage' },
-  { value: 'fire-damage', label: 'Fire & Smoke Damage' },
-  { value: 'mold', label: 'Mold Remediation' },
-  { value: 'storm-damage', label: 'Storm Damage' },
-  { value: 'sewage', label: 'Sewage Cleanup' },
-  { value: 'biohazard', label: 'Biohazard Restoration' },
-] as const;
+// Use Australian disaster types for claim intake
+export const disasterTypes = getAustralianDisasterTypeOptions();
 
+// Enhanced triage schema with Australian disaster types
 export const triageSchema = z.object({
-  disasterType: z.enum(
-    ['water-damage', 'fire-damage', 'mold', 'storm-damage', 'sewage', 'biohazard'],
-    { required_error: 'Please select what happened' }
-  ),
+  disasterType: australianDisasterTypeSchema,
   incidentDate: z.string().min(1, 'Please select when this happened'),
   isOngoing: z.enum(['yes', 'no'], { required_error: 'Please indicate if this is still happening' }),
   isEmergency: z.enum(['yes', 'no'], { required_error: 'Please indicate if anyone is in danger' }),
+
+  // Optional: Regional risk questions (conditionally shown based on disaster type and location)
+  inBushfireZone: z.enum(['yes', 'no', 'unsure']).optional(),
+  propertyBALRating: z.enum(['BAL-LOW', 'BAL-12.5', 'BAL-19', 'BAL-29', 'BAL-40', 'BAL-FZ', 'not-sure']).optional(),
+  propertyCycloneRating: z.enum(['C1', 'C2', 'C3', 'C4', 'not-sure']).optional(),
+  inFloodZone: z.enum(['yes', 'no', 'unsure']).optional(),
 });
 
 export type TriageData = z.infer<typeof triageSchema>;
@@ -134,14 +140,35 @@ export interface GeoLocation {
 export type ClaimPriority = 'critical' | 'urgent' | 'high' | 'medium';
 
 export function calculatePriority(data: Partial<ClaimFormState>): ClaimPriority {
+  // Critical: Anyone in danger
   if (data.step1?.isEmergency === 'yes') return 'critical';
+
+  // Critical: Life-threatening disasters
+  const criticalDisasters = ['bushfire', 'cyclone', 'flood'];
+  if (data.step1?.disasterType && criticalDisasters.includes(data.step1.disasterType)) {
+    return 'critical';
+  }
+
+  // Urgent: Ongoing damage
   if (data.step1?.isOngoing === 'yes') return 'urgent';
 
-  // High priority for severe disaster types
-  const severeDamageTypes = ['fire-damage', 'sewage', 'biohazard'];
+  // High priority: Severe disaster types
+  const severeDamageTypes = ['house-fire', 'smoke-damage', 'sewage-backup', 'biohazard', 'structural-damage'];
   if (data.step1?.disasterType && severeDamageTypes.includes(data.step1.disasterType)) {
     return 'high';
   }
 
+  // High priority: In high-risk zones
+  if (data.step1?.inBushfireZone === 'yes' || data.step1?.inFloodZone === 'yes') {
+    return 'high';
+  }
+
   return 'medium';
+}
+
+/**
+ * Get disaster type details for enhanced processing
+ */
+export function getDisasterTypeDetails(disasterType: string) {
+  return AUSTRALIAN_DISASTER_TYPES[disasterType] || null;
 }
