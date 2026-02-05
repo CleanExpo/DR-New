@@ -26,7 +26,7 @@ export type WorkflowType =
   | 'CUSTOMER_SUPPORT'
   | 'CUSTOM';
 
-export type AIProviderType = 'anthropic' | 'openai' | 'ollama';
+export type AIProviderType = 'anthropic' | 'openai' | 'ollama' | 'vertexai';
 
 // ============================================================================
 // AGENT STATE

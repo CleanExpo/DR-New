@@ -28,11 +28,13 @@ import {
   type ClaimFormState,
   triageSchema,
   disasterTypes,
+  getDisasterTypeDetails,
 } from '@/lib/claim-wizard/types';
 import {
   saveClaimProgress,
   loadClaimProgress,
 } from '@/lib/claim-wizard/storage';
+import { AUSTRALIAN_DISASTER_TYPES } from '@/lib/disaster-types/australian-disasters';
 
 export default function ClaimStep1Page() {
   const router = useRouter();
@@ -59,8 +61,14 @@ export default function ClaimStep1Page() {
     },
   });
 
-  // Watch emergency status for conditional UI
+  // Watch emergency status and disaster type for conditional UI
   const isEmergency = watch('isEmergency');
+  const selectedDisasterType = watch('disasterType');
+
+  // Get disaster type details for contextual help
+  const disasterTypeDetails = React.useMemo(() => {
+    return selectedDisasterType ? getDisasterTypeDetails(selectedDisasterType) : null;
+  }, [selectedDisasterType]);
 
   // Debug: Log validation errors whenever they change
   React.useEffect(() => {
@@ -241,6 +249,133 @@ export default function ClaimStep1Page() {
                 </p>
               )}
             </div>
+
+            {/* Contextual Help based on selected disaster type */}
+            {disasterTypeDetails && (
+              <Alert className="border-blue-600 bg-blue-50">
+                <AlertCircle className="h-5 w-5 text-blue-600" />
+                <AlertDescription className="text-blue-900">
+                  <strong>{disasterTypeDetails.label}:</strong> {disasterTypeDetails.description}
+                  {disasterTypeDetails.seasonal && (
+                    <span className="block mt-2">
+                      <strong>Season:</strong> {disasterTypeDetails.seasonal.start} - {disasterTypeDetails.seasonal.end}
+                    </span>
+                  )}
+                  {disasterTypeDetails.buildingCode && (
+                    <span className="block mt-1">
+                      <strong>Building Code:</strong> {disasterTypeDetails.buildingCode}
+                    </span>
+                  )}
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {/* Conditional: Bushfire zone question */}
+            {selectedDisasterType === 'bushfire' && (
+              <div className="space-y-2 border-l-4 border-orange-500 pl-4">
+                <label className="block text-base font-medium text-foreground">
+                  Is your property in a designated bushfire zone?
+                </label>
+                <p className="text-sm text-gray-600 mb-3">
+                  Check your local council's bushfire overlay map. This affects insurance and contractor requirements.
+                </p>
+                <div className="space-y-2">
+                  <label className="flex items-center space-x-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                    <input
+                      type="radio"
+                      value="yes"
+                      className="h-4 w-4 text-dr-emergency focus:ring-dr-emergency"
+                      {...register('inBushfireZone')}
+                    />
+                    <span className="text-sm">Yes, in bushfire zone</span>
+                  </label>
+                  <label className="flex items-center space-x-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                    <input
+                      type="radio"
+                      value="no"
+                      className="h-4 w-4 text-dr-emergency focus:ring-dr-emergency"
+                      {...register('inBushfireZone')}
+                    />
+                    <span className="text-sm">No</span>
+                  </label>
+                  <label className="flex items-center space-x-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                    <input
+                      type="radio"
+                      value="unsure"
+                      className="h-4 w-4 text-dr-emergency focus:ring-dr-emergency"
+                      {...register('inBushfireZone')}
+                    />
+                    <span className="text-sm">Not sure</span>
+                  </label>
+                </div>
+              </div>
+            )}
+
+            {/* Conditional: Cyclone rating question */}
+            {selectedDisasterType === 'cyclone' && (
+              <div className="space-y-2 border-l-4 border-purple-500 pl-4">
+                <label className="block text-base font-medium text-foreground">
+                  What is your property's cyclone rating?
+                </label>
+                <p className="text-sm text-gray-600 mb-3">
+                  This is based on your building approval documents (AS 1170.2 Wind Actions).
+                </p>
+                <FormSelect
+                  label=""
+                  options={[
+                    { value: 'C1', label: 'C1 (Category 1 - Weakest)' },
+                    { value: 'C2', label: 'C2 (Category 2)' },
+                    { value: 'C3', label: 'C3 (Category 3)' },
+                    { value: 'C4', label: 'C4 (Category 4 - Strongest)' },
+                    { value: 'not-sure', label: 'Not sure' },
+                  ]}
+                  placeholder="Select cyclone rating"
+                  context="emergency"
+                  {...register('propertyCycloneRating')}
+                />
+              </div>
+            )}
+
+            {/* Conditional: Flood zone question */}
+            {(selectedDisasterType === 'flood' || selectedDisasterType === 'storm-water') && (
+              <div className="space-y-2 border-l-4 border-blue-500 pl-4">
+                <label className="block text-base font-medium text-foreground">
+                  Is your property in a flood zone?
+                </label>
+                <p className="text-sm text-gray-600 mb-3">
+                  Check your property's flood overlay on your council website. This affects insurance coverage.
+                </p>
+                <div className="space-y-2">
+                  <label className="flex items-center space-x-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                    <input
+                      type="radio"
+                      value="yes"
+                      className="h-4 w-4 text-dr-emergency focus:ring-dr-emergency"
+                      {...register('inFloodZone')}
+                    />
+                    <span className="text-sm">Yes, in flood zone</span>
+                  </label>
+                  <label className="flex items-center space-x-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                    <input
+                      type="radio"
+                      value="no"
+                      className="h-4 w-4 text-dr-emergency focus:ring-dr-emergency"
+                      {...register('inFloodZone')}
+                    />
+                    <span className="text-sm">No</span>
+                  </label>
+                  <label className="flex items-center space-x-3 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                    <input
+                      type="radio"
+                      value="unsure"
+                      className="h-4 w-4 text-dr-emergency focus:ring-dr-emergency"
+                      {...register('inFloodZone')}
+                    />
+                    <span className="text-sm">Not sure</span>
+                  </label>
+                </div>
+              </div>
+            )}
 
             {/* Navigation */}
             <div className="flex justify-between pt-6 border-t border-gray-200">
