@@ -171,11 +171,101 @@
             .stats-grid { grid-template-columns: 1fr; }
         }
     </style>
+
+<style>
+  .training-image {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .training-module-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .training-module-img:hover {
+    transform: scale(1.02);
+  }
+
+  .training-image figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  @media print {
+    .training-module-img {
+      max-width: 80%;
+      page-break-inside: avoid;
+    }
+  }
+</style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>🖥️ NRP-021: DR-NRPG Platform Operations Guide</h1>
+
+<!-- Training Module Images -->
+<div class="training-images-section">
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-021/marketing-channels-overview.jpg"
+    alt="Digital and traditional marketing channels infographic"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Marketing channels overview</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-021/social-media-strategy.jpg"
+    alt="Social media marketing strategy framework"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Social media strategy</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-021/lead-generation-funnel.jpg"
+    alt="Lead generation and conversion funnel diagram"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Lead generation funnel</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-021/branding-guidelines.jpg"
+    alt="Professional branding and visual identity guide"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Branding guidelines</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-021/marketing-analytics-dashboard.jpg"
+    alt="Marketing performance metrics dashboard"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Marketing analytics dashboard</figcaption>
+</figure>
+</div>
+<!-- End Training Module Images -->
+
+
             <p>Comprehensive Guide to Platform Operations, Job Management & Payment Processing</p>
             <p><strong>Duration:</strong> 45 minutes | <strong>Assessment:</strong> 10 questions | <strong>Category:</strong> Platform Operations</p>
         </div>

@@ -254,11 +254,91 @@
             margin-top: 20px;
         }
     </style>
+
+<style>
+  .training-image {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .training-module-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .training-module-img:hover {
+    transform: scale(1.02);
+  }
+
+  .training-image figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  @media print {
+    .training-module-img {
+      max-width: 80%;
+      page-break-inside: avoid;
+    }
+  }
+</style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>NRP-017: Cost Estimation & Pricing</h1>
+
+<!-- Training Module Images -->
+<div class="training-images-section">
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-017/estimating-software-interface.jpg"
+    alt="Professional estimating software dashboard"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Estimating software interface</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-017/cost-breakdown-chart.jpg"
+    alt="Visual cost breakdown by category"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Job cost breakdown</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-017/pricing-calculator.jpg"
+    alt="Interactive pricing calculator interface"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Pricing calculator tool</figcaption>
+</figure>
+
+<figure class="training-image">
+  <img
+    src="/training-sources/images/NRP-017/profit-margin-analysis.jpg"
+    alt="Profit margin analysis chart and graphs"
+    loading="lazy"
+    class="training-module-img"
+  />
+  <figcaption>Profit margin analysis</figcaption>
+</figure>
+</div>
+<!-- End Training Module Images -->
+
+
             <p>Accurate Estimating & Profitable Pricing Strategies</p>
         </div>
 
