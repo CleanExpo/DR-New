@@ -204,9 +204,9 @@ export async function GET(request: NextRequest) {
         priority: true,
         isEmergency: true,
         hasInsurance: true,
-        submittedAt: true,
+        createdAt: true,
       },
-      orderBy: { submittedAt: 'desc' },
+      orderBy: { createdAt: 'desc' },
       take: 50, // Limit to 50 most recent
     });
 

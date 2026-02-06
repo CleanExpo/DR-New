@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     return NextResponse.json(
       {
-        error: ErrorCode.INVALID_REQUEST,
+        error: ErrorCode.VALIDATION_ERROR,
         message: 'Invalid request body',
       },
       { status: 400 }
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
   if (!body.tier || !['BASIC', 'PRO', 'ENTERPRISE'].includes(body.tier)) {
     return NextResponse.json(
       {
-        error: ErrorCode.INVALID_REQUEST,
+        error: ErrorCode.VALIDATION_ERROR,
         message: 'Invalid subscription tier. Must be BASIC, PRO, or ENTERPRISE',
       },
       { status: 400 }
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
     if (!tenant) {
       return NextResponse.json(
         {
-          error: ErrorCode.NOT_FOUND,
+          error: ErrorCode.RESOURCE_NOT_FOUND,
           message: 'Tenant not found',
         },
         { status: 404 }
@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
     if (tenant.stripeSubscriptionId && tenant.subscriptionStatus === 'ACTIVE') {
       return NextResponse.json(
         {
-          error: ErrorCode.CONFLICT,
+          error: ErrorCode.VALIDATION_ERROR,
           message: 'Tenant already has an active subscription. Use the billing portal to manage it.',
         },
         { status: 409 }

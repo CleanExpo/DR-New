@@ -239,14 +239,9 @@ export async function GET(
             id: true,
             name: true,
             email: true,
-            phone: true,
+            australianPhoneNumber: true,
             createdAt: true,
-            lastLogin: true,
-          },
-        },
-        documents: {
-          orderBy: {
-            uploadedAt: 'desc',
+            lastLoginAt: true,
           },
         },
         serviceAreas: {
@@ -254,17 +249,12 @@ export async function GET(
             postcode: 'asc',
           },
         },
-        certifications: {
+        iicrcCertifications: {
           where: {
             isActive: true,
           },
           orderBy: {
-            issueDate: 'desc',
-          },
-        },
-        verificationHistory: {
-          orderBy: {
-            createdAt: 'desc',
+            certificationDate: 'desc',
           },
         },
         bookings: {
@@ -315,29 +305,27 @@ export async function GET(
     const completedFields = requiredFields.filter(field => contractor[field as keyof typeof contractor]);
     const profileCompleteness = Math.round((completedFields.length / requiredFields.length) * 100);
 
-    // Check required documents
-    const requiredDocumentTypes = [
-      'BUSINESS_LICENSE',
-      'PUBLIC_LIABILITY_INSURANCE',
-      'IICRC_CERTIFICATE',
-    ];
-
-    const uploadedDocumentTypes = contractor.documents.map((doc: any) => doc.documentType);
-    const missingDocuments = requiredDocumentTypes.filter(type => !uploadedDocumentTypes.includes(type));
+    // Check verification status - use type assertion for included relations
+    const contractorWithRelations = contractor as typeof contractor & {
+      iicrcCertifications?: { id: string }[];
+      serviceAreas?: { id: string }[];
+      bookings?: { id: string }[];
+    };
+    const hasRequiredCertifications = (contractorWithRelations.iicrcCertifications?.length || 0) > 0;
+    const hasServiceAreas = (contractorWithRelations.serviceAreas?.length || 0) > 0;
 
     return NextResponse.json({
       success: true,
       contractor,
       analysis: {
         profileCompleteness,
-        requiredDocuments: requiredDocumentTypes.length,
-        uploadedDocuments: contractor.documents.length,
-        missingDocuments,
-        serviceAreaCount: contractor.serviceAreas?.length || 0,
-        certificationCount: contractor.certifications?.length || 0,
-        totalBookings: contractor.bookings?.length || 0,
+        serviceAreaCount: contractorWithRelations.serviceAreas?.length || 0,
+        certificationCount: contractorWithRelations.iicrcCertifications?.length || 0,
+        totalBookings: contractorWithRelations.bookings?.length || 0,
         averageRating: contractor.averageRating,
         resubmissionCount: contractor.resubmissionCount || 0,
+        hasRequiredCertifications,
+        hasServiceAreas,
       },
     });
   } catch (error) {

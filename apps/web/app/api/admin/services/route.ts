@@ -30,6 +30,8 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
+    const db = getTenantDb(authResult.context);
+
     const services = await db.adminService.findMany({
       include: {
         category: true
@@ -60,6 +62,8 @@ export async function POST(request: NextRequest) {
     if (!requireRole(user, ['ADMIN'])) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
+
+    const db = getTenantDb(authResult.context);
 
     const body = await request.json();
     const serviceData = serviceSchema.parse(body);

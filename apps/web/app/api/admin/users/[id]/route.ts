@@ -13,10 +13,14 @@ interface RouteParams {
 const updateUserSchema = z.object({
   name: z.string().min(2).max(100).optional(),
   email: z.string().email().optional(),
-  role: z.enum(['USER', 'ADMIN', 'CONTRACTOR', 'SUPER_ADMIN']).optional(),
+  userType: z.enum(['CLIENT', 'ADMIN', 'CONTRACTOR', 'SUPER_ADMIN']).optional(),
   isActive: z.boolean().optional(),
-  phone: z.string().optional(),
+  australianPhoneNumber: z.string().optional(),
 });
+
+function isSuperAdmin(userType: string): boolean {
+  return userType === 'SUPER_ADMIN';
+}
 
 // Get single user
 export async function GET(request: NextRequest, { params }: RouteParams) {
@@ -43,12 +47,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         id: true,
         email: true,
         name: true,
-        role: true,
-        image: true,
-        phone: true,
+        userType: true,
+        avatar: true,
+        australianPhoneNumber: true,
         isActive: true,
-        emailVerified: true,
-        twoFactorEnabled: true,
+        isEmailVerified: true,
         createdAt: true,
         updatedAt: true,
         lastLoginAt: true,
@@ -63,7 +66,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         },
         loginAttempts: {
           take: 5,
-          orderBy: { createdAt: 'desc' },
+          orderBy: { attemptedAt: 'desc' },
         },
       },
     });
@@ -133,9 +136,9 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 
     // Only super admins can change roles to ADMIN or SUPER_ADMIN
     if (
-      validation.data.role &&
-      (validation.data.role === 'ADMIN' || validation.data.role === 'SUPER_ADMIN') &&
-      !isSuperAdmin(currentUser.role)
+      validation.data.userType &&
+      (validation.data.userType === 'ADMIN' || validation.data.userType === 'SUPER_ADMIN') &&
+      !isSuperAdmin(currentUser.userType)
     ) {
       return NextResponse.json(
         { success: false, error: 'Insufficient permissions' },
@@ -144,7 +147,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Can't demote yourself
-    if (id === currentUser.id && validation.data.role && validation.data.role !== currentUser.role) {
+    if (id === currentUser.id && validation.data.userType && validation.data.userType !== currentUser.userType) {
       return NextResponse.json(
         { success: false, error: 'Cannot change your own role' },
         { status: 400 }
@@ -158,14 +161,14 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
         id: true,
         email: true,
         name: true,
-        role: true,
+        userType: true,
         isActive: true,
         updatedAt: true,
       },
     });
 
     // Audit log the update
-    const auditAction = validation.data.role && validation.data.role !== targetUser.role
+    const auditAction = validation.data.userType && validation.data.userType !== targetUser.userType
       ? 'USER_ROLE_CHANGED'
       : validation.data.isActive === false
         ? 'USER_DEACTIVATED'
@@ -175,7 +178,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 
     await logUserManagement(request, currentUser.id, id, auditAction, {
       changes: validation.data,
-      previousRole: targetUser.role,
+      previousUserType: targetUser.userType,
       previousActive: targetUser.isActive,
     });
 
@@ -269,7 +272,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     // Audit log the deletion
     await logUserManagement(request, currentUser.id, id, 'USER_DELETED', {
       deletedUserEmail: targetUser.email,
-      deletedUserRole: targetUser.role,
+      deletedUserUserType: targetUser.userType,
     });
 
     return NextResponse.json({

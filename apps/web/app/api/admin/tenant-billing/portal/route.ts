@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
     if (!tenant) {
       return NextResponse.json(
         {
-          error: ErrorCode.NOT_FOUND,
+          error: ErrorCode.RESOURCE_NOT_FOUND,
           message: 'Tenant not found',
         },
         { status: 404 }
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
     if (!tenant.stripeCustomerId) {
       return NextResponse.json(
         {
-          error: ErrorCode.BAD_REQUEST,
+          error: ErrorCode.VALIDATION_ERROR,
           message: 'No billing account found. Please create a subscription first.',
         },
         { status: 400 }

@@ -53,8 +53,8 @@ export async function GET(request: NextRequest) {
           select: {
             id: true,
             businessName: true,
-            averageRating: true,
-            completedJobs: true,
+            rating: true,
+            totalJobs: true,
             user: {
               select: {
                 name: true,
@@ -80,13 +80,13 @@ export async function GET(request: NextRequest) {
       matches: matches.map((m) => ({
         matchId: m.id,
         contractorId: m.contractorId,
-        contractorName: m.contractor.user.name,
-        businessName: m.contractor.businessName,
-        email: m.contractor.user.email,
+        contractorName: m.contractor?.user?.name ?? null,
+        businessName: m.contractor?.businessName ?? null,
+        email: m.contractor?.user?.email ?? null,
         matchScore: m.matchScore,
         status: m.status,
-        rating: Number(m.contractor.averageRating),
-        completedJobs: m.contractor.completedJobs,
+        rating: Number(m.contractor?.rating ?? 0),
+        completedJobs: m.contractor?.totalJobs ?? 0,
         createdAt: m.createdAt,
       })),
       total: matches.length,

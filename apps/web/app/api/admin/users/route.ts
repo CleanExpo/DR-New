@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (role) {
-      where.role = role;
+      where.userType = role;
     }
 
     if (isActive !== null && isActive !== undefined) {
@@ -50,18 +50,17 @@ export async function GET(request: NextRequest) {
     }
 
     const [users, total] = await Promise.all([
-      prisma.user.findMany({
+      db.user.findMany({
         where,
         select: {
           id: true,
           email: true,
           name: true,
-          role: true,
-          image: true,
-          phone: true,
+          userType: true,
+          avatar: true,
+          australianPhoneNumber: true,
           isActive: true,
-          emailVerified: true,
-          twoFactorEnabled: true,
+          isEmailVerified: true,
           createdAt: true,
           updatedAt: true,
           lastLoginAt: true,
@@ -76,7 +75,7 @@ export async function GET(request: NextRequest) {
         skip,
         take: limit,
       }),
-      prisma.user.count({ where }),
+      db.user.count({ where }),
     ]);
 
     return NextResponse.json({

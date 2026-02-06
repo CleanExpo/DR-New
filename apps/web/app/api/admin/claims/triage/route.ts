@@ -323,6 +323,6 @@ function mapClaimToTriageData(claim: {
     policyNumber: claim.policyNumber,
     priority: claim.priority,
     status: claim.status,
-    createdAt: claim.createdAt,
+    submittedAt: claim.createdAt,
   };
 }

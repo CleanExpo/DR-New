@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (!contractor) {
-      return createErrorResponse(ErrorCode.NOT_FOUND, 'Contractor not found', 404);
+      return createErrorResponse(ErrorCode.RESOURCE_NOT_FOUND, 'Contractor not found', 404);
     }
 
     // Perform action
