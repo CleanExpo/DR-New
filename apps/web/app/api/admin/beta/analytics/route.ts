@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
 import { getTenantDb } from '@/lib/get-tenant-db'
 
 // GET - Beta program analytics dashboard
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const authResult = await authenticateRequest(request)
     if (!authResult.success) {

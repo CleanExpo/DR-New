@@ -2,6 +2,9 @@ import { PrismaClient } from '@prisma/client';
 import { getTenantPrisma } from './prisma-tenant';
 import { AuthContext } from './auth-middleware';
 
+// Export type alias for convenience
+export type TenantPrismaClient = PrismaClient;
+
 /**
  * Get a tenant-scoped Prisma client from AuthContext.
  *
