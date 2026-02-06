@@ -74,7 +74,7 @@ export async function GET(
           select: {
             id: true,
             rating: true,
-            review: true,
+            comment: true,
             createdAt: true,
           },
           orderBy: { createdAt: 'desc' },
@@ -98,7 +98,22 @@ export async function GET(
     }
 
     // 4. Get contractor matches (bids) if no contractor assigned yet - automatically tenant-scoped
-    let contractorMatches = [];
+    // Note: ContractorMatch.contractor points to ContractorProfile, not Contractor
+    let contractorMatches: Array<{
+      matchId: string;
+      contractorId: string;
+      contractorName: string | null;
+      businessName: string | null;
+      email: string;
+      matchScore: number;
+      status: string;
+      proposedBudget: number | null;
+      estimatedHours: string | null;
+      startDate: string | null;
+      message: string | null;
+      rating: number;
+      totalJobs: number;
+    }> = [];
     if (!booking.contractorId) {
       const matches = await db.contractorMatch.findMany({
         where: { serviceRequestId: bookingId },
@@ -111,19 +126,23 @@ export async function GET(
                   email: true,
                 },
               },
-              iicrcCertifications: {
-                where: { isActive: true },
-                select: {
-                  certificationLevel: true,
-                },
-              },
             },
           },
         },
         orderBy: { matchScore: 'desc' },
       });
 
-      contractorMatches = matches.map((m) => ({
+      // Type assertion for included relations
+      type MatchWithContractor = typeof matches[0] & {
+        contractor: {
+          user: { name: string | null; email: string };
+          businessName: string | null;
+          rating: number;
+          totalJobs: number;
+        };
+      };
+
+      contractorMatches = (matches as MatchWithContractor[]).map((m) => ({
         matchId: m.id,
         contractorId: m.contractorId,
         contractorName: m.contractor.user.name,
@@ -135,68 +154,84 @@ export async function GET(
         estimatedHours: m.estimatedHours,
         startDate: m.startDate,
         message: m.contractorMessage,
-        rating: Number(m.contractor.averageRating),
-        completedJobs: m.contractor.completedJobs,
-        certifications: m.contractor.iicrcCertifications.map((c) => c.certificationLevel),
+        rating: Number(m.contractor.rating),
+        totalJobs: m.contractor.totalJobs,
       }));
     }
 
     // 5. Format response
+    // Type assertion for included relations
+    type BookingWithRelations = typeof booking & {
+      client: { id: string; name: string | null; email: string };
+      contractor?: {
+        id: string;
+        businessName: string;
+        averageRating: any;
+        completedJobs: number;
+        user: { name: string | null; email: string };
+        iicrcCertifications: { certificationLevel: string }[];
+      } | null;
+      payments: { id: string; amountAUD: any; status: string; processedAt: Date | null }[];
+      ratings: { id: string; rating: number; comment: string | null; createdAt: Date }[];
+    };
+
+    const bookingData = booking as BookingWithRelations;
+
     return NextResponse.json({
       success: true,
       claim: {
-        id: booking.id,
-        serviceType: booking.australianServiceType,
-        description: booking.description,
+        id: bookingData.id,
+        serviceType: bookingData.australianServiceType,
+        description: bookingData.description,
         location: {
-          address: booking.streetAddress,
-          suburb: booking.serviceSuburb,
-          postcode: booking.servicePostcode,
-          state: booking.serviceState,
+          address: bookingData.streetAddress,
+          suburb: bookingData.serviceSuburb,
+          postcode: bookingData.servicePostcode,
+          state: bookingData.serviceState,
         },
-        status: booking.status,
-        emergencyLevel: booking.emergencyResponseLevel,
-        estimatedCost: Number(booking.estimatedCostAUD),
-        finalCost: booking.finalCostAUD ? Number(booking.finalCostAUD) : null,
+        status: bookingData.status,
+        emergencyLevel: bookingData.emergencyResponseLevel,
+        estimatedCost: Number(bookingData.estimatedCostAUD),
+        finalCost: bookingData.finalCostAUD ? Number(bookingData.finalCostAUD) : null,
         client: {
-          id: booking.client.id,
-          name: booking.client.name,
-          email: booking.client.email,
+          id: bookingData.client.id,
+          name: bookingData.client.name,
+          email: bookingData.client.email,
         },
-        contractor: booking.contractor
+        contractor: bookingData.contractor
           ? {
-              id: booking.contractor.id,
-              name: booking.contractor.user.name,
-              email: booking.contractor.user.email,
-              businessName: booking.contractor.businessName,
-              rating: Number(booking.contractor.averageRating),
-              completedJobs: booking.contractor.completedJobs,
-              certifications: booking.contractor.iicrcCertifications.map((c) => c.certificationLevel),
+              id: bookingData.contractor.id,
+              name: bookingData.contractor.user.name,
+              email: bookingData.contractor.user.email,
+              businessName: bookingData.contractor.businessName,
+              rating: Number(bookingData.contractor.averageRating),
+              completedJobs: bookingData.contractor.completedJobs,
+              certifications: bookingData.contractor.iicrcCertifications.map((c) => c.certificationLevel),
             }
           : null,
         contractorMatches,
-        notes: booking.notes,
-        internalNotes: booking.internalNotes,
-        clientNotes: booking.clientNotes,
-        damagePhotos: booking.damagePhotos,
-        payments: booking.payments.map((p) => ({
+        notes: bookingData.notes,
+        internalNotes: bookingData.internalNotes,
+        clientNotes: bookingData.clientNotes,
+        damagePhotos: bookingData.damagePhotos,
+        payments: bookingData.payments.map((p) => ({
           id: p.id,
           amount: Number(p.amountAUD),
           status: p.status,
           date: p.processedAt,
         })),
-        rating: booking.ratings[0]
+        rating: bookingData.ratings[0]
           ? {
-              rating: booking.ratings[0].rating,
-              review: booking.ratings[0].review,
-              date: booking.ratings[0].createdAt,
+              rating: bookingData.ratings[0].rating,
+              comment: bookingData.ratings[0].comment,
+              date: bookingData.ratings[0].createdAt,
             }
           : null,
         timeline: {
-          submitted: booking.createdAt,
-          started: booking.startedAt,
-          completed: booking.completedAt,
-          updated: booking.updatedAt,
+          submitted: bookingData.createdAt,
+          started: bookingData.startedAt,
+          completed: bookingData.completedAt,
+          updated: bookingData.updatedAt,
         },
       },
     });

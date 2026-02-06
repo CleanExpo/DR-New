@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
       where: {
         contractorId,
         status: {
-          in: ['ACCEPTED', 'IN_PROGRESS'],
+          in: ['CONFIRMED', 'IN_PROGRESS'],
         },
       },
     });
@@ -98,21 +98,25 @@ export async function GET(request: NextRequest) {
 
     const pendingPayouts = pendingPayments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
 
-    // Performance metrics
+    // Performance metrics - get ratings through the ratings relation
     const completedBookings = await db.booking.findMany({
       where: {
         contractorId,
         status: 'COMPLETED',
       },
       select: {
-        rating: true,
+        ratings: {
+          select: { rating: true },
+        },
       },
     });
 
-    const ratingsCount = completedBookings.filter((b) => b.rating).length;
+    // Flatten all ratings from all bookings
+    const allRatings = completedBookings.flatMap((b) => b.ratings.map((r) => r.rating));
+    const ratingsCount = allRatings.length;
     const averageRating =
       ratingsCount > 0
-        ? completedBookings.filter((b) => b.rating).reduce((sum, b) => sum + (b.rating || 0), 0) / ratingsCount
+        ? allRatings.reduce((sum, r) => sum + r, 0) / ratingsCount
         : 0;
 
     // Job acceptance rate
@@ -126,7 +130,7 @@ export async function GET(request: NextRequest) {
       where: {
         contractorId,
         status: {
-          not: 'REJECTED',
+          not: 'CANCELLED',
         },
       },
     });
@@ -137,7 +141,7 @@ export async function GET(request: NextRequest) {
     const earningsByServiceType = await db.booking.groupBy({
       by: ['australianServiceType'],
       _sum: {
-        finalPrice: true,
+        finalCostAUD: true,
       },
       _count: true,
       where: {
@@ -163,11 +167,11 @@ export async function GET(request: NextRequest) {
       },
       earnings: {
         byServiceType: earningsByServiceType
-          .sort((a, b) => (Number(b._sum.finalPrice || 0) - Number(a._sum.finalPrice || 0)))
+          .sort((a, b) => (Number(b._sum?.finalCostAUD || 0) - Number(a._sum?.finalCostAUD || 0)))
           .slice(0, 5)
           .map((item) => ({
             serviceType: item.australianServiceType,
-            earnings: Number(item._sum.finalPrice || 0),
+            earnings: Number(item._sum?.finalCostAUD || 0),
             jobs: item._count,
           })),
       },
