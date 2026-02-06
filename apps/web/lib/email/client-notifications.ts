@@ -507,6 +507,186 @@ Australia's #1 Disaster Recovery Platform
 }
 
 /**
+ * Send booking completed email to client
+ */
+export async function sendBookingCompletedEmail(data: {
+  clientName: string;
+  email: string;
+  contractorName: string;
+  bookingId: string;
+  serviceType: string;
+  completedDate: Date;
+  propertyAddress?: string;
+  finalAmount?: number;
+}): Promise<{ success: boolean; error?: string }> {
+  const bookingUrl = `${EMAIL_CONFIG.baseUrl}/dashboard/client/bookings/${data.bookingId}`;
+  const reviewUrl = `${EMAIL_CONFIG.baseUrl}/dashboard/client/bookings/${data.bookingId}/review`;
+
+  const formattedDate = data.completedDate.toLocaleDateString('en-AU', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+    .button { display: inline-block; background: #10b981; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin: 10px 5px; font-weight: 600; }
+    .button-secondary { display: inline-block; background: #8b5cf6; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin: 10px 5px; font-weight: 600; }
+    .success-box { background: #d1fae5; border: 2px solid #10b981; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
+    .completion-icon { font-size: 48px; margin-bottom: 10px; }
+    .booking-details { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; border-left: 4px solid #10b981; }
+    .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+    .detail-row:last-child { border-bottom: none; font-weight: 600; }
+    .review-prompt { background: #faf5ff; border: 2px solid #8b5cf6; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; }
+    .star-rating { color: #fbbf24; font-size: 28px; margin: 10px 0; }
+    .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>✅ Service Completed!</h1>
+    </div>
+    <div class="content">
+      <p>Hi ${data.clientName},</p>
+
+      <div class="success-box">
+        <div class="completion-icon">🎉</div>
+        <h2 style="margin: 0; color: #059669;">Your Service Has Been Completed</h2>
+        <p style="margin: 10px 0 0 0;">Completed on ${formattedDate}</p>
+      </div>
+
+      <p>Great news! <strong>${data.contractorName}</strong> has successfully completed the ${data.serviceType.toLowerCase()} service for your property.</p>
+
+      <div class="booking-details">
+        <strong>Completion Summary:</strong><br><br>
+        <div class="detail-row">
+          <span>Booking Reference:</span>
+          <span><strong>${data.bookingId}</strong></span>
+        </div>
+        <div class="detail-row">
+          <span>Service Type:</span>
+          <span>${data.serviceType}</span>
+        </div>
+        <div class="detail-row">
+          <span>Contractor:</span>
+          <span>${data.contractorName}</span>
+        </div>
+        <div class="detail-row">
+          <span>Completed:</span>
+          <span>${formattedDate}</span>
+        </div>
+        ${data.propertyAddress ? `
+        <div class="detail-row">
+          <span>Property:</span>
+          <span>${data.propertyAddress}</span>
+        </div>
+        ` : ''}
+        ${data.finalAmount ? `
+        <div class="detail-row">
+          <span>Final Amount:</span>
+          <span><strong>$${data.finalAmount.toFixed(2)} AUD</strong></span>
+        </div>
+        ` : ''}
+      </div>
+
+      <div class="review-prompt">
+        <div class="star-rating">★ ★ ★ ★ ★</div>
+        <h3 style="margin: 0; color: #7c3aed;">How Was Your Experience?</h3>
+        <p style="margin: 10px 0; color: #666;">Your feedback helps other property owners and rewards great contractors.</p>
+        <a href="${reviewUrl}" class="button-secondary">Leave a Review</a>
+      </div>
+
+      <p><strong>What's Next:</strong></p>
+      <ul>
+        <li>Review the completed work and ensure you're satisfied</li>
+        <li>Take photos for your records (especially for insurance claims)</li>
+        <li>Leave a review to help other property owners</li>
+        <li>Contact the contractor if you have any follow-up questions</li>
+        <li>Keep all documentation for warranty purposes</li>
+      </ul>
+
+      <p style="text-align: center;">
+        <a href="${bookingUrl}" class="button">View Booking Details</a>
+      </p>
+
+      <p><strong>Not Satisfied?</strong></p>
+      <p>If you have any concerns about the completed work, please contact us immediately at <a href="mailto:${EMAIL_CONFIG.supportEmail}">${EMAIL_CONFIG.supportEmail}</a> so we can help resolve any issues.</p>
+
+      <p>Thank you for choosing Disaster Recovery Australia. We're glad we could help restore your property!</p>
+    </div>
+    <div class="footer">
+      <p>Disaster Recovery Australia<br>
+      Australia's #1 Disaster Recovery Platform</p>
+      <p>This email was sent to ${data.email}</p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+  const text = `
+Service Completed!
+
+Hi ${data.clientName},
+
+🎉 Your Service Has Been Completed
+Completed on ${formattedDate}
+
+Great news! ${data.contractorName} has successfully completed the ${data.serviceType.toLowerCase()} service for your property.
+
+Completion Summary:
+- Booking Reference: ${data.bookingId}
+- Service Type: ${data.serviceType}
+- Contractor: ${data.contractorName}
+- Completed: ${formattedDate}
+${data.propertyAddress ? `- Property: ${data.propertyAddress}` : ''}
+${data.finalAmount ? `- Final Amount: $${data.finalAmount.toFixed(2)} AUD` : ''}
+
+★ ★ ★ ★ ★
+How Was Your Experience?
+Your feedback helps other property owners and rewards great contractors.
+Leave a Review: ${reviewUrl}
+
+What's Next:
+- Review the completed work and ensure you're satisfied
+- Take photos for your records (especially for insurance claims)
+- Leave a review to help other property owners
+- Contact the contractor if you have any follow-up questions
+- Keep all documentation for warranty purposes
+
+View Booking Details: ${bookingUrl}
+
+Not Satisfied?
+If you have any concerns, contact us at ${EMAIL_CONFIG.supportEmail}
+
+Thank you for choosing Disaster Recovery Australia!
+
+---
+Disaster Recovery Australia
+Australia's #1 Disaster Recovery Platform
+  `;
+
+  return sendEmail({
+    to: data.email,
+    subject: `✅ Service Completed: ${data.serviceType} - ${data.contractorName}`,
+    html,
+    text,
+  });
+}
+
+/**
  * Send review request email
  */
 export async function sendReviewRequestEmail(data: {
