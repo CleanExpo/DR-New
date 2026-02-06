@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
     if (!tenant) {
       return NextResponse.json(
         {
-          error: ErrorCode.NOT_FOUND,
+          error: ErrorCode.RESOURCE_NOT_FOUND,
           message: 'Tenant not found',
         },
         { status: 404 }
@@ -96,10 +96,17 @@ export async function GET(request: NextRequest) {
     const pricingInfo = getTierPricingInfo(tenant.subscriptionTier);
 
     // Get Stripe subscription details if available
-    let stripeSubscription = null;
+    let stripeSubscription: { id: string; cancel_at_period_end: boolean; canceled_at: number | null } | null = null;
     if (tenant.stripeSubscriptionId) {
       try {
-        stripeSubscription = await getTenantSubscription(tenant.stripeSubscriptionId);
+        const subscription = await getTenantSubscription(tenant.stripeSubscriptionId);
+        if (subscription) {
+          stripeSubscription = {
+            id: subscription.id,
+            cancel_at_period_end: subscription.cancel_at_period_end,
+            canceled_at: subscription.canceled_at,
+          };
+        }
       } catch (error) {
         console.error('[Tenant Billing] Failed to fetch Stripe subscription:', error);
         // Continue without Stripe data

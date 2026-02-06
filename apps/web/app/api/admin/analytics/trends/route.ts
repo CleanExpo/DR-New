@@ -74,7 +74,12 @@ export async function GET(request: NextRequest) {
     const jobGrowth = calculateMoMGrowth(jobValues);
 
     // Year-over-year comparison
-    let yoyComparison = null;
+    let yoyComparison: {
+      current: number;
+      previous: number;
+      change: number;
+      percentageChange: number;
+    } | null = null;
     const currentYear = new Date().getFullYear();
     const currentYearStart = new Date(currentYear, 0, 1);
     const previousYearStart = new Date(currentYear - 1, 0, 1);

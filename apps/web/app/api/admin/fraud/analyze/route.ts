@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   analyseFraud,
   analyseFraudBatch,
@@ -63,7 +64,7 @@ export async function POST(request: NextRequest) {
       const updatedAlert = updateAlertStatus(
         updateRequest.alertId,
         updateRequest.status,
-        session.user.id,
+        user.id,
         updateRequest.reviewNotes
       );
 

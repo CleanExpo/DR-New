@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
             email: true,
           },
         },
-        bookingsAsContractor: {
+        bookings: {
           where: {
             status: 'COMPLETED',
           },
@@ -106,7 +106,7 @@ export async function GET(request: NextRequest) {
 
     // 4. Calculate contractor benchmarks
     const contractorBenchmarks: ContractorBenchmark[] = contractors.map((contractor) => {
-      const bookings = contractor.bookingsAsContractor || [];
+      const bookings = contractor.bookings || [];
       const totalBookings = bookings.length;
 
       // Calculate total earnings from completed payments

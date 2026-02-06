@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import { getOrchestrator } from '@/lib/agents/core/orchestrator';
 import type {
   ReportType,
@@ -168,7 +169,7 @@ export async function POST(request: NextRequest) {
         includeCharts: reportRequest.includeCharts ?? true,
         includeRecommendations: reportRequest.includeRecommendations ?? true,
       },
-      userId: session.user.id,
+      userId: user.id,
     });
 
     if (result.status === 'FAILED') {

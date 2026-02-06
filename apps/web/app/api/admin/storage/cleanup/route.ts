@@ -8,7 +8,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticateRequest, requireRole } from '@/lib/auth-middleware';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { storageManager } from '@/src/lib/storage/storage-manager';
 
 export async function DELETE(request: NextRequest) {
@@ -19,9 +19,9 @@ export async function DELETE(request: NextRequest) {
       return authResult.response;
     }
 
-    const roleCheck = requireRole(authResult.context, ['ADMIN', 'SUPER_ADMIN']);
-    if (!roleCheck.authorized) {
-      return roleCheck.response;
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     // Clean up expired files
@@ -66,9 +66,9 @@ export async function GET(request: NextRequest) {
       return authResult.response;
     }
 
-    const roleCheck = requireRole(authResult.context, ['ADMIN', 'SUPER_ADMIN']);
-    if (!roleCheck.authorized) {
-      return roleCheck.response;
+    const { user } = authResult.context;
+    if (!requireRole(user, ['ADMIN', 'SUPER_ADMIN'])) {
+      return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
     // Get current storage stats

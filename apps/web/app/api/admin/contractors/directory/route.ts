@@ -173,23 +173,12 @@ export async function GET(request: NextRequest) {
             },
             orderBy: { expiryDate: 'asc' },
           },
-          documents: {
-            select: {
-              id: true,
-              documentType: true,
-              status: true,
-              expiryDate: true,
-              uploadedAt: true,
-            },
-            orderBy: { uploadedAt: 'desc' },
-            take: 10,
-          },
           user: {
             select: {
               id: true,
               name: true,
               email: true,
-              phone: true,
+              australianPhoneNumber: true,
               createdAt: true,
             },
           },
@@ -203,8 +192,6 @@ export async function GET(request: NextRequest) {
 
     // Add computed fields
     const enrichedContractors = contractors.map(contractor => {
-      const pendingDocs = contractor.documents.filter(d => d.status === 'PENDING').length;
-      const approvedDocs = contractor.documents.filter(d => d.status === 'APPROVED').length;
       const expiredCerts = contractor.iicrcCertifications.filter(
         c => c.expiryDate < new Date()
       ).length;
@@ -212,9 +199,6 @@ export async function GET(request: NextRequest) {
       return {
         ...contractor,
         stats: {
-          pendingDocuments: pendingDocs,
-          approvedDocuments: approvedDocs,
-          totalDocuments: contractor.documents.length,
           activeCertifications: contractor.iicrcCertifications.length,
           expiredCertifications: expiredCerts,
           serviceAreasCount: contractor.serviceAreas.length,
@@ -262,7 +246,7 @@ function calculateProfileCompleteness(contractor: any): number {
     contractor.serviceRadius,
     contractor.primaryState,
     contractor.serviceAreas?.length > 0,
-    contractor.documents?.length > 0,
+    contractor.iicrcCertifications?.length > 0,
   ];
 
   const completedFields = fields.filter(field =>

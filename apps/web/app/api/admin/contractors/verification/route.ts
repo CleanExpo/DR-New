@@ -56,13 +56,8 @@ export async function GET(request: NextRequest) {
               id: true,
               name: true,
               email: true,
-              phone: true,
+              australianPhoneNumber: true,
               createdAt: true,
-            },
-          },
-          documents: {
-            orderBy: {
-              uploadedAt: 'desc',
             },
           },
           serviceAreas: {
@@ -70,19 +65,13 @@ export async function GET(request: NextRequest) {
               postcode: 'asc',
             },
           },
-          certifications: {
+          iicrcCertifications: {
             where: {
               isActive: true,
             },
             orderBy: {
-              issueDate: 'desc',
+              certificationDate: 'desc',
             },
-          },
-          verificationHistory: {
-            orderBy: {
-              createdAt: 'desc',
-            },
-            take: 5, // Last 5 history entries
           },
         },
         orderBy: [

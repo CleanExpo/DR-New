@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
+import { getTenantDb } from '@/lib/get-tenant-db';
 import {
   calculatePrice,
   optimiseContractorBid,
@@ -64,8 +65,8 @@ export async function POST(request: NextRequest) {
 
       // Verify contractor access
       if (
-        session.user.userType !== 'ADMIN' &&
-        session.user.userType !== 'CONTRACTOR'
+        user.userType !== 'ADMIN' &&
+        user.userType !== 'CONTRACTOR'
       ) {
         return NextResponse.json(
           { success: false, error: 'Unauthorised - Contractor or Admin access required' },
@@ -109,7 +110,7 @@ export async function POST(request: NextRequest) {
       estimatedSize: pricingRequest.estimatedSize,
       jobComplexity: pricingRequest.jobComplexity,
       clientId: pricingRequest.clientId,
-      contractorId: pricingRequest.contractorId,
+      contractorId: contractorId,
       insuranceProvider: pricingRequest.insuranceProvider,
       scheduledDate: pricingRequest.scheduledDate
         ? new Date(pricingRequest.scheduledDate)

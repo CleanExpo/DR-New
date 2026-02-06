@@ -50,14 +50,10 @@ export async function GET(request: NextRequest) {
         },
       },
       include: {
-        contractorMatch: {
+        contractor: {
           select: {
-            contractor: {
-              select: {
-                id: true,
-                serviceAreas: true,
-              },
-            },
+            id: true,
+            serviceAreas: true,
           },
         },
       },
@@ -96,8 +92,9 @@ export async function GET(request: NextRequest) {
     // Group contractors by state
     const contractorsByState: Record<string, number> = {};
     contractors.forEach((c) => {
-      const states = c.serviceAreas || [];
-      states.forEach((state) => {
+      const areas = c.serviceAreas || [];
+      areas.forEach((area) => {
+        const state = area.state;
         contractorsByState[state] = (contractorsByState[state] || 0) + 1;
       });
     });

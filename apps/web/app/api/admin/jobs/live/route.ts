@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
 
     // Fetch jobs with related data
     const [jobs, totalCount] = await Promise.all([
-      prisma.serviceRequest.findMany({
+      db.serviceRequest.findMany({
         where,
         include: {
           user: {
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
               id: true,
               name: true,
               email: true,
-              phone: true,
+              australianPhoneNumber: true,
             },
           },
           matches: {
@@ -73,7 +73,7 @@ export async function GET(request: NextRequest) {
                       id: true,
                       name: true,
                       email: true,
-                      phone: true,
+                      australianPhoneNumber: true,
                     },
                   },
                 },
@@ -90,7 +90,7 @@ export async function GET(request: NextRequest) {
         take: limit,
         skip: offset,
       }),
-      prisma.serviceRequest.count({ where }),
+      db.serviceRequest.count({ where }),
     ])
 
     // Get latest location for jobs with assigned contractors
@@ -125,14 +125,14 @@ export async function GET(request: NextRequest) {
           id: job.user.id,
           name: job.user.name,
           email: job.user.email,
-          phone: job.user.phone,
+          phone: job.user.australianPhoneNumber,
         },
         contractor: activeMatch?.contractor ? {
           id: activeMatch.contractor.id,
           userId: activeMatch.contractor.user.id,
           name: activeMatch.contractor.user.name,
           email: activeMatch.contractor.user.email,
-          phone: activeMatch.contractor.user.phone,
+          phone: activeMatch.contractor.user.australianPhoneNumber,
           matchStatus: activeMatch.status,
         } : null,
         contractorLocation: location ? {

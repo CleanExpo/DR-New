@@ -119,6 +119,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
           serviceRequestId: jobId,
           contractorId: newContractorId,
           status: 'PENDING',
+          matchScore: 100, // Admin-initiated reassignment gets max score
         },
       })
 
@@ -268,15 +269,11 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             email: true,
           },
         },
-        _count: {
-          select: {
-            ContractorMatch: {
-              where: {
-                status: 'ACCEPTED',
-                serviceRequest: {
-                  status: { notIn: ['COMPLETED', 'CANCELLED'] },
-                },
-              },
+        matches: {
+          where: {
+            status: 'ACCEPTED',
+            serviceRequest: {
+              status: { notIn: ['COMPLETED', 'CANCELLED'] },
             },
           },
         },
@@ -288,10 +285,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const formattedContractors = contractors.map(c => ({
       id: c.id,
       userId: c.user.id,
-      name: c.user.name,
+      name: c.user?.name ?? null,
       businessName: c.businessName,
-      email: c.user.email,
-      activeJobs: c._count.ContractorMatch,
+      email: c.user?.email ?? null,
+      activeJobs: c.matches?.length ?? 0,
     }))
 
     return NextResponse.json({

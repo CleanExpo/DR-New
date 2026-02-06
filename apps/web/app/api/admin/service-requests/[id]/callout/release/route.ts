@@ -23,6 +23,8 @@ export async function POST(
       return unauthorizedRoleResponse(['ADMIN', 'SUPER_ADMIN']);
     }
 
+    const db = getTenantDb(authResult.context);
+
     const callout = await db.serviceRequestCalloutPayment.findUnique({
       where: { serviceRequestId: params.id },
       include: { contractorProfile: true },
