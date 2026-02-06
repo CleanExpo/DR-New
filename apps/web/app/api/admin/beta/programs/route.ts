@@ -4,7 +4,7 @@ import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - List all beta programs with participant counts
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const authResult = await authenticateRequest(request)
     if (!authResult.success) {

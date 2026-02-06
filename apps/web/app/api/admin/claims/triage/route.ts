@@ -143,7 +143,7 @@ export async function POST(request: NextRequest) {
       if (options?.updatePriority && batchResult.successful.length > 0) {
         await Promise.all(
           batchResult.successful.map((result) =>
-            prisma.publicClaim.update({
+            db.publicClaim.update({
               where: { id: result.claimId },
               data: { priority: result.recommendedPriority },
             })
@@ -233,7 +233,7 @@ export async function GET(request: NextRequest) {
         },
         orderBy: [
           { isEmergency: 'desc' },
-          { submittedAt: 'desc' },
+          { createdAt: 'desc' },
         ],
         take: limit,
       });
@@ -246,7 +246,7 @@ export async function GET(request: NextRequest) {
         postcode: claim.postcode,
         disasterType: claim.disasterType,
         isEmergency: claim.isEmergency,
-        submittedAt: claim.submittedAt,
+        createdAt: claim.createdAt,
         hasTriage: triageHistory.has(claim.id),
         triageResult: triageHistory.get(claim.id)?.triageResult || null,
       }));
@@ -303,7 +303,7 @@ function mapClaimToTriageData(claim: {
   policyNumber: string | null;
   priority: string;
   status: string;
-  submittedAt: Date;
+  createdAt: Date;
 }): PublicClaimData {
   return {
     id: claim.id,
@@ -323,6 +323,6 @@ function mapClaimToTriageData(claim: {
     policyNumber: claim.policyNumber,
     priority: claim.priority,
     status: claim.status,
-    submittedAt: claim.submittedAt,
+    createdAt: claim.createdAt,
   };
 }

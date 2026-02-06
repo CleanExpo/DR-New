@@ -60,11 +60,11 @@ export async function GET(request: NextRequest) {
       : 0;
 
     // Get approved/rejected counts
-    const approvedCount = await prisma.contractor.count({
+    const approvedCount = await db.contractor.count({
       where: { nrpgVerificationLevel: 'VERIFIED' },
     });
 
-    const rejectedCount = await prisma.contractor.count({
+    const rejectedCount = await db.contractor.count({
       where: { nrpgVerificationLevel: 'REJECTED' },
     });
 

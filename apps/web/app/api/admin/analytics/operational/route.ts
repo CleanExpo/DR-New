@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
         },
       },
       select: {
-        acceptedAt: true,
+        startedAt: true,
         completedAt: true,
         createdAt: true,
       },
@@ -71,8 +71,8 @@ export async function GET(request: NextRequest) {
 
     const completionTimes = completedBookings
       .map((b) => {
-        if (b.acceptedAt && b.completedAt) {
-          return (b.completedAt.getTime() - b.acceptedAt.getTime()) / (1000 * 60 * 60); // in hours
+        if (b.startedAt && b.completedAt) {
+          return (b.completedAt.getTime() - b.startedAt.getTime()) / (1000 * 60 * 60); // in hours
         }
         return 0;
       })
@@ -115,7 +115,7 @@ export async function GET(request: NextRequest) {
 
     // Service request volume by type
     const requestsByServiceType = await db.serviceRequest.groupBy({
-      by: ['australianServiceType'],
+      by: ['serviceCategory'],
       _count: true,
       where: {
         createdAt: {
@@ -125,24 +125,8 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Daily metrics
-    const dailyMetrics = await db.dailyMetrics.findMany({
-      where: {
-        date: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-      orderBy: {
-        date: 'asc',
-      },
-      select: {
-        date: true,
-        jobsCompleted: true,
-        jobsRequested: true,
-        avgCompletionTime: true,
-      },
-    });
+    // Note: dailyMetrics model not implemented - returning empty array
+    const dailyMetrics: { date: Date; jobsCompleted: number; jobsRequested: number; avgCompletionTime: number }[] = [];
 
     return NextResponse.json({
       success: true,
@@ -163,7 +147,7 @@ export async function GET(request: NextRequest) {
         count: item._count,
       })),
       serviceTypeDistribution: requestsByServiceType.map((item) => ({
-        serviceType: item.australianServiceType,
+        serviceType: item.serviceCategory,
         count: item._count,
       })),
       trends: {
