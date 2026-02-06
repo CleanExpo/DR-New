@@ -33,7 +33,14 @@ async function getRealtimeMetrics(db: any): Promise<RealtimeMetrics> {
       },
     });
 
-    const sessionCount = await redis.dbsize().catch(() => 0);
+    // Get session count from Redis client
+    let sessionCount = 0;
+    try {
+      const client = await redis.getClient();
+      sessionCount = await client.dbsize();
+    } catch {
+      sessionCount = 0;
+    }
     const memUsage = process.memoryUsage();
 
     return {

@@ -63,7 +63,7 @@ export async function GET(
 
     // Check authorization
     const isAuthorized =
-      user.id === claim.clientId || user.role === 'ADMIN' || user.role === 'SUPER_ADMIN';
+      user.id === claim.clientId || user.userType === 'ADMIN' || user.userType === 'SUPER_ADMIN';
 
     if (!isAuthorized) {
       return NextResponse.json(

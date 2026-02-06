@@ -130,7 +130,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Build message history
-    const messages = [new SystemMessage(contextualPrompt)];
+    const messages: (SystemMessage | HumanMessage | AIMessage)[] = [new SystemMessage(contextualPrompt)];
 
     if (history && history.length > 0) {
       // Add conversation history (last 10 messages max)
@@ -206,7 +206,6 @@ async function handleStreamingResponse(
                 conversationId,
                 intent: analysis.intent,
                 sentiment: analysis.sentiment,
-                escalationRequired: analysis.escalationRequired,
                 suggestedActions: analysis.suggestedActions,
               })}\n\n`
             )
@@ -367,7 +366,7 @@ function checkEscalationRequired(
 export async function GET() {
   try {
     const provider = getDefaultProvider();
-    const health = await provider.healthCheck();
+    const health = await provider.checkHealth();
 
     return NextResponse.json({
       status: 'ok',

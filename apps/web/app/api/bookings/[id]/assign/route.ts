@@ -109,7 +109,7 @@ export async function POST(
             averageRating: true,
             user: {
               select: {
-                phone: true,
+                australianPhoneNumber: true,
               },
             },
           },
@@ -124,17 +124,23 @@ export async function POST(
     });
 
     // Send updated booking confirmation email with contractor details
-    if (updatedBooking.client && updatedBooking.contractor) {
+    // Type assertion for included relations
+    const bookingWithRelations = updatedBooking as typeof updatedBooking & {
+      client?: { name: string | null; email: string };
+      contractor?: { businessName: string; user?: { australianPhoneNumber: string | null } };
+    };
+
+    if (bookingWithRelations.client && bookingWithRelations.contractor) {
       sendBookingConfirmationEmail({
-        clientName: updatedBooking.client.name || 'Valued Client',
-        email: updatedBooking.client.email,
+        clientName: bookingWithRelations.client.name || 'Valued Client',
+        email: bookingWithRelations.client.email,
         bookingId: updatedBooking.id,
-        contractorName: updatedBooking.contractor.businessName,
-        contractorPhone: updatedBooking.contractor.user?.phone || undefined,
+        contractorName: bookingWithRelations.contractor.businessName,
+        contractorPhone: bookingWithRelations.contractor.user?.australianPhoneNumber || undefined,
         serviceType: updatedBooking.australianServiceType,
         scheduledDate: updatedBooking.scheduledDate || new Date(),
         propertyAddress: `${updatedBooking.streetAddress}, ${updatedBooking.serviceSuburb}, ${updatedBooking.serviceState} ${updatedBooking.servicePostcode}`,
-        totalAmount: updatedBooking.estimatedCostAUD || undefined,
+        totalAmount: updatedBooking.estimatedCostAUD ? Number(updatedBooking.estimatedCostAUD) : undefined,
       }).catch((error) => {
         console.error('Failed to send booking confirmation email after contractor assignment:', error);
       });

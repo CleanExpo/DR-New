@@ -49,19 +49,24 @@ export async function GET(request: NextRequest) {
           select: {
             australianServiceType: true,
             serviceSuburb: true,
-            contractorMatch: {
+            contractor: {
               select: {
-                contractor: {
-                  select: {
-                    businessName: true,
-                  },
-                },
+                businessName: true,
               },
             },
           },
         },
       },
     });
+
+    // Type assertion for included booking relation
+    type PaymentWithBooking = typeof payments[0] & {
+      booking?: {
+        australianServiceType: string;
+        serviceSuburb: string;
+        contractor?: { businessName: string } | null;
+      } | null;
+    };
 
     // Calculate metrics
     const totalAmount = payments
@@ -77,9 +82,9 @@ export async function GET(request: NextRequest) {
       .reduce((sum, p) => sum + Number(p.amountAUD), 0);
 
     // Spending by contractor
-    const byContractor = payments.reduce(
+    const byContractor = (payments as PaymentWithBooking[]).reduce(
       (acc, p) => {
-        const contractorName = p.booking?.contractorMatch?.contractor?.businessName || 'Unknown';
+        const contractorName = p.booking?.contractor?.businessName || 'Unknown';
         const existing = acc.find((c) => c.contractor === contractorName);
         if (existing) {
           existing.amount += Number(p.amountAUD);
@@ -97,7 +102,7 @@ export async function GET(request: NextRequest) {
     );
 
     // Spending by service type
-    const byServiceType = payments.reduce(
+    const byServiceType = (payments as PaymentWithBooking[]).reduce(
       (acc, p) => {
         const serviceType = p.booking?.australianServiceType || 'Unknown';
         const existing = acc.find((s) => s.serviceType === serviceType);
@@ -149,7 +154,7 @@ export async function GET(request: NextRequest) {
       trends: {
         monthly: monthlyTrend,
       },
-      recentPayments: payments
+      recentPayments: (payments as PaymentWithBooking[])
         .slice(-5)
         .reverse()
         .map((p) => ({
@@ -158,7 +163,7 @@ export async function GET(request: NextRequest) {
           amount: Number(p.amountAUD),
           status: p.status,
           serviceType: p.booking?.australianServiceType,
-          contractor: p.booking?.contractorMatch?.contractor?.businessName,
+          contractor: p.booking?.contractor?.businessName,
         })),
     });
   } catch (error) {
