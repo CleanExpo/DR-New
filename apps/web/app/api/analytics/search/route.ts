@@ -7,12 +7,13 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
-import { getTenantDb } from '@/lib/get-tenant-db';
 import type { SearchAnalyticsEvent } from '@/lib/algolia/types';
 
 /**
  * POST /api/analytics/search
  * Track a search analytics event
+ * Note: SearchAnalytics model not yet implemented in Prisma schema
+ * Currently logs to console for development/debugging
  */
 export async function POST(request: NextRequest) {
   try {
@@ -20,8 +21,6 @@ export async function POST(request: NextRequest) {
     if (!authResult.success) {
       return authResult.response;
     }
-
-    const db = getTenantDb(authResult.context);
 
     const event: SearchAnalyticsEvent = await request.json();
 
@@ -33,39 +32,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Store in database
-    try {
-      const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] ||
-                        request.headers.get('x-real-ip') ||
-                        'unknown';
+    // Log search analytics (database model not yet implemented)
+    const ipAddress = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+                      request.headers.get('x-real-ip') ||
+                      'unknown';
 
-      const savedAnalytics = await db.searchAnalytics.create({
-        data: {
-          query: event.query,
-          resultsCount: event.resultsCount || 0,
-          category: event.index || 'general', // Use index as category
-          userId: event.userId,
-          ipAddress,
-          searchedAt: new Date(event.timestamp || Date.now()),
-        },
-      });
-
-      console.log('=== SEARCH ANALYTICS TRACKED ===');
-      console.log('Search ID:', savedAnalytics.id);
-      console.log('Query:', event.query);
-      console.log('Results Count:', event.resultsCount);
-      console.log('Index/Category:', event.index);
-      console.log('User ID:', event.userId || 'Anonymous');
-      console.log('================================');
-    } catch (dbError) {
-      console.error('[Analytics] Database error storing search event:', dbError);
-      return NextResponse.json(
-        {
-          error: 'Failed to store search analytics to database',
-        },
-        { status: 500 }
-      );
-    }
+    console.log('=== SEARCH ANALYTICS TRACKED ===');
+    console.log('Query:', event.query);
+    console.log('Index/Category:', event.index);
+    console.log('User ID:', event.userId || 'Anonymous');
+    console.log('IP Address:', ipAddress);
+    console.log('Timestamp:', new Date(event.timestamp || Date.now()).toISOString());
+    console.log('================================');
 
     return NextResponse.json({ success: true });
   } catch (error) {

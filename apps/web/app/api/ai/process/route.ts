@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
 
       const workerService = getWorkerService();
           const jobId = await workerService.enqueueTask(
-                  // userId,
+                  user.id,
                   taskType,
             {
                       taskType,

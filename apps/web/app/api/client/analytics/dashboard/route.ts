@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
       where: {
         clientId,
         status: {
-          in: ['OPEN', 'MATCHED', 'ACCEPTED'],
+          in: ['PENDING', 'MATCHED', 'IN_PROGRESS'],
         },
       },
     });
@@ -55,17 +55,13 @@ export async function GET(request: NextRequest) {
       where: {
         clientId,
         status: {
-          in: ['ACCEPTED', 'IN_PROGRESS'],
+          in: ['CONFIRMED', 'IN_PROGRESS'],
         },
       },
     });
 
     // Spending by month (last 12 months) - automatically tenant-scoped
-    const monthlySpending = await db.payment.groupBy({
-      by: [],
-      _sum: {
-        amountAUD: true,
-      },
+    const monthlyPayments = await db.payment.findMany({
       where: {
         clientId,
         status: 'COMPLETED',
@@ -73,13 +69,17 @@ export async function GET(request: NextRequest) {
           gte: new Date(new Date().setMonth(new Date().getMonth() - 12)),
         },
       },
+      select: {
+        amountAUD: true,
+      },
     });
+    const monthlyTotal = monthlyPayments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
 
     // Spending by service type - automatically tenant-scoped
     const spendingByServiceType = await db.booking.groupBy({
       by: ['australianServiceType'],
       _sum: {
-        finalPrice: true,
+        finalCostAUD: true,
       },
       _count: true,
       where: {
@@ -96,14 +96,19 @@ export async function GET(request: NextRequest) {
       },
       select: {
         id: true,
-        rating: true,
+        ratings: {
+          select: {
+            rating: true,
+          },
+        },
       },
     });
 
+    // Calculate average rating from ratings relation
+    const allRatings = bookingsWithRatings.flatMap((b) => b.ratings.map((r) => r.rating));
     const averageRating =
-      bookingsWithRatings.length > 0
-        ? bookingsWithRatings.filter((b) => b.rating).reduce((sum, b) => sum + (b.rating || 0), 0) /
-          bookingsWithRatings.length
+      allRatings.length > 0
+        ? allRatings.reduce((sum, r) => sum + r, 0) / allRatings.length
         : 0;
 
     // Refunds/disputes - automatically tenant-scoped
@@ -127,16 +132,14 @@ export async function GET(request: NextRequest) {
         total: allPayments.length,
         byServiceType: spendingByServiceType.map((item) => ({
           serviceType: item.australianServiceType,
-          amount: Number(item._sum.finalPrice || 0),
+          amount: Number(item._sum?.finalCostAUD || 0),
           count: item._count,
         })),
-        monthlyTotal: monthlySpending[0]?._sum.amountAUD
-          ? Number(monthlySpending[0]._sum.amountAUD)
-          : 0,
+        monthlyTotal: monthlyTotal,
       },
       quality: {
         averageRating: parseFloat(averageRating.toFixed(2)),
-        ratingsCount: bookingsWithRatings.filter((b) => b.rating).length,
+        ratingsCount: allRatings.length,
         disputes: disputedPayments,
       },
     });
