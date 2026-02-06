@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
         ratings: {
           select: {
             rating: true,
-            review: true,
+            comment: true,
           },
           orderBy: {
             createdAt: 'desc',
@@ -72,7 +72,18 @@ export async function GET(request: NextRequest) {
     });
 
     // 3. Format response
-    const claims = bookings.map((booking) => ({
+    // Type assertion for included relations
+    type BookingWithRelations = typeof bookings[0] & {
+      contractor?: {
+        id: string;
+        businessName: string;
+        averageRating: any;
+        user: { name: string | null; email: string };
+      } | null;
+      ratings: { rating: number; comment: string | null }[];
+    };
+
+    const claims = (bookings as BookingWithRelations[]).map((booking) => ({
       id: booking.id,
       serviceType: booking.australianServiceType,
       description: booking.description,
@@ -94,7 +105,7 @@ export async function GET(request: NextRequest) {
       rating: booking.ratings[0]
         ? {
             rating: booking.ratings[0].rating,
-            review: booking.ratings[0].review,
+            comment: booking.ratings[0].comment,
           }
         : null,
       submittedAt: booking.createdAt,
