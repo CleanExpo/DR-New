@@ -1,5 +1,5 @@
 import { captureException, captureMessage, setContext, setTag } from './sentry-config';
-import { updateMetrics, recordMetric } from '@/app/api/metrics/route';
+import { updateMetrics, recordMetric } from '@/lib/metrics/prometheus';
 import { logError, logInfo } from '@/lib/logger/helpers';
 
 interface MonitoringEvent {
