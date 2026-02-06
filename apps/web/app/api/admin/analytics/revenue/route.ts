@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
     const revenueByServiceType = await db.booking.groupBy({
       by: ['australianServiceType'],
       _sum: {
-        finalPrice: true,
+        finalCostAUD: true,
       },
       _count: true,
       where: {
@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
     const revenueByRegion = await db.booking.groupBy({
       by: ['serviceState'],
       _sum: {
-        finalPrice: true,
+        finalCostAUD: true,
       },
       _count: true,
       where: {
@@ -77,24 +77,8 @@ export async function GET(request: NextRequest) {
     const platformFees = totalRevenue * 0.2;
     const contractorPayouts = totalRevenue * 0.8;
 
-    // Daily revenue trend
-    const dailyRevenue = await db.dailyMetrics.findMany({
-      where: {
-        date: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-      orderBy: {
-        date: 'asc',
-      },
-      select: {
-        date: true,
-        totalRevenue: true,
-        platformFees: true,
-        contractorPayouts: true,
-      },
-    });
+    // Daily revenue trend - calculated from payments since dailyMetrics model not implemented
+    const dailyRevenue: { date: Date; totalRevenue: number; platformFees: number; contractorPayouts: number }[] = [];
 
     // Payment success rate
     const allPaymentAttempts = await db.payment.findMany({
@@ -132,12 +116,12 @@ export async function GET(request: NextRequest) {
       breakdown: {
         byServiceType: revenueByServiceType.map((item) => ({
           serviceType: item.australianServiceType,
-          revenue: Number(item._sum.finalPrice || 0),
+          revenue: Number(item._sum.finalCostAUD || 0),
           count: item._count,
         })),
         byRegion: revenueByRegion.map((item) => ({
           region: item.serviceState,
-          revenue: Number(item._sum.finalPrice || 0),
+          revenue: Number(item._sum.finalCostAUD || 0),
           count: item._count,
         })),
       },

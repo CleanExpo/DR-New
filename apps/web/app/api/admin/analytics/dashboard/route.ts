@@ -114,18 +114,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    // Get client payment totals as alternative
-    const currentClientPayments = await db.clientPayment.aggregate({
-      _sum: { amount: true },
-      _count: true,
-      where: {
-        createdAt: { gte: startDate, lte: now },
-        status: 'PAID',
-      },
-    });
-
-    const currentRevenue = Number(currentPayments._sum.amountAUD || 0) +
-                          Number(currentClientPayments._sum.amount || 0);
+    const currentRevenue = Number(currentPayments._sum.amountAUD || 0);
     const currentPlatformFees = currentRevenue * 0.15; // 15% platform fee
     const currentContractorPayouts = currentRevenue * 0.85;
 
@@ -152,16 +141,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    const previousClientPayments = await db.clientPayment.aggregate({
-      _sum: { amount: true },
-      where: {
-        createdAt: { gte: previousStartDate, lte: previousEndDate },
-        status: 'PAID',
-      },
-    });
-
-    const previousRevenue = Number(previousPayments._sum.amountAUD || 0) +
-                           Number(previousClientPayments._sum.amount || 0);
+    const previousRevenue = Number(previousPayments._sum.amountAUD || 0);
     const previousPlatformFees = previousRevenue * 0.15;
     const previousContractorPayouts = previousRevenue * 0.85;
 
