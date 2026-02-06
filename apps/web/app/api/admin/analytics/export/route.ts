@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
-import { getTenantDb } from '@/lib/get-tenant-db';
+import { getTenantDb, TenantPrismaClient } from '@/lib/get-tenant-db';
 import {
   generateCSVExport,
   generateExcelExport,
@@ -41,22 +41,22 @@ export async function POST(request: NextRequest) {
 
     switch (reportType) {
       case 'financial':
-        exportData = await generateFinancialExport(start, end);
+        exportData = await generateFinancialExport(db, start, end);
         filename = `financial-report-${start.toISOString().slice(0, 10)}-to-${end.toISOString().slice(0, 10)}`;
         break;
 
       case 'operational':
-        exportData = await generateOperationalExport(start, end);
+        exportData = await generateOperationalExport(db, start, end);
         filename = `operational-report-${start.toISOString().slice(0, 10)}-to-${end.toISOString().slice(0, 10)}`;
         break;
 
       case 'revenue':
-        exportData = await generateRevenueExport(start, end);
+        exportData = await generateRevenueExport(db, start, end);
         filename = `revenue-report-${start.toISOString().slice(0, 10)}-to-${end.toISOString().slice(0, 10)}`;
         break;
 
       case 'contractors':
-        exportData = await generateContractorExport(start, end);
+        exportData = await generateContractorExport(db, start, end);
         filename = `contractor-report-${start.toISOString().slice(0, 10)}-to-${end.toISOString().slice(0, 10)}`;
         break;
 
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generateFinancialExport(start: Date, end: Date): Promise<any[]> {
+async function generateFinancialExport(db: TenantPrismaClient, start: Date, end: Date): Promise<any[]> {
   const payments = await db.payment.findMany({
     where: {
       status: 'COMPLETED',
@@ -139,7 +139,7 @@ async function generateFinancialExport(start: Date, end: Date): Promise<any[]> {
   ];
 }
 
-async function generateOperationalExport(start: Date, end: Date): Promise<any[]> {
+async function generateOperationalExport(db: TenantPrismaClient, start: Date, end: Date): Promise<any[]> {
   const bookings = await db.booking.findMany({
     where: {
       completedAt: {
@@ -170,11 +170,11 @@ async function generateOperationalExport(start: Date, end: Date): Promise<any[]>
   ];
 }
 
-async function generateRevenueExport(start: Date, end: Date): Promise<any[]> {
+async function generateRevenueExport(db: TenantPrismaClient, start: Date, end: Date): Promise<any[]> {
   const byServiceType = await db.booking.groupBy({
     by: ['australianServiceType'],
     _sum: {
-      finalPrice: true,
+      finalCostAUD: true,
     },
     _count: true,
     where: {
@@ -187,13 +187,13 @@ async function generateRevenueExport(start: Date, end: Date): Promise<any[]> {
 
   return byServiceType.map((item) => ({
     'Service Type': item.australianServiceType,
-    'Revenue': formatCurrency(Number(item._sum.finalPrice || 0)),
+    'Revenue': formatCurrency(Number(item._sum.finalCostAUD || 0)),
     'Jobs Count': item._count,
-    'Avg Job Value': formatCurrency(Number(item._sum.finalPrice || 0) / item._count),
+    'Avg Job Value': formatCurrency(Number(item._sum.finalCostAUD || 0) / item._count),
   }));
 }
 
-async function generateContractorExport(start: Date, end: Date): Promise<any[]> {
+async function generateContractorExport(db: TenantPrismaClient, start: Date, end: Date): Promise<any[]> {
   const contractors = await db.contractor.findMany({
     where: {
       isVerified: true,

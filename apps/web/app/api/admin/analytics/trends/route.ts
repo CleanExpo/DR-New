@@ -34,17 +34,9 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const period = searchParams.get('period') || 'year'; // year, quarter, month
 
-    // Get monthly revenue data for analysis
-    const monthlyData = await db.dailyMetrics.findMany({
-      orderBy: {
-        date: 'asc',
-      },
-      select: {
-        date: true,
-        totalRevenue: true,
-        jobsCompleted: true,
-      },
-    });
+    // Note: dailyMetrics model not implemented - returning empty array
+    // In production, this would aggregate from payment and serviceRequest tables
+    const monthlyData: { date: Date; totalRevenue: number; jobsCompleted: number }[] = [];
 
     if (monthlyData.length === 0) {
       return NextResponse.json({

@@ -72,7 +72,7 @@ export async function GET(req: NextRequest) {
 
     // 5. Calculate estimated completion for active jobs
     const jobsWithEstimates = jobs.map((job) => {
-      let estimatedCompletion = null;
+      let estimatedCompletion: Date | null = null;
 
       if (job.status === 'PROCESSING' && job.startedAt) {
         const elapsedMs = Date.now() - new Date(job.startedAt).getTime();
