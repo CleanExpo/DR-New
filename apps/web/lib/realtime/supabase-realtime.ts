@@ -8,17 +8,56 @@
  * - User notifications
  */
 
-import { createClient, RealtimeChannel, RealtimePresenceState } from '@supabase/supabase-js';
+import { createClient, RealtimeChannel, RealtimePresenceState, SupabaseClient } from '@supabase/supabase-js';
 
-// Supabase client (will be initialized with environment variables)
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+// Lazy-loaded Supabase client to prevent build-time initialization errors
+let supabaseInstance: SupabaseClient | null = null;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-  realtime: {
-    params: {
-      eventsPerSecond: 10,
+/**
+ * Get the Supabase client instance (lazy initialization)
+ * This prevents "supabaseUrl is required" errors during static page generation
+ */
+function getSupabaseClient(): SupabaseClient {
+  if (supabaseInstance) {
+    return supabaseInstance;
+  }
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    // Return a mock client during build time to prevent errors
+    // This will be properly initialized at runtime when env vars are available
+    console.warn('[Supabase Realtime] Environment variables not available, using mock client');
+    return {
+      channel: () => ({
+        on: () => ({ on: () => ({ subscribe: () => {} }) }),
+        subscribe: () => {},
+        unsubscribe: () => Promise.resolve(),
+        send: () => Promise.resolve(),
+        track: () => Promise.resolve(),
+        presenceState: () => ({}),
+      }),
+    } as unknown as SupabaseClient;
+  }
+
+  supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
+    realtime: {
+      params: {
+        eventsPerSecond: 10,
+      },
     },
+  });
+
+  return supabaseInstance;
+}
+
+// Export getter for backward compatibility
+export const supabase = new Proxy({} as SupabaseClient, {
+  get(_, prop) {
+    const client = getSupabaseClient();
+    const value = (client as any)[prop];
+    return typeof value === 'function' ? value.bind(client) : value;
   },
 });
 
