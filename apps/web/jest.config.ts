@@ -5,7 +5,8 @@ const createJestConfig = nextJest({
 })
 
 const config = {
-  testEnvironment: 'node',
+  // Use jsdom for all tests - component tests need DOM, API tests work fine with it
+  testEnvironment: 'jsdom',
   testMatch: [
     '<rootDir>/src/__tests__/**/*.test.ts',
     '<rootDir>/src/__tests__/**/*.test.tsx',
@@ -33,6 +34,10 @@ const config = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^uuid$': require.resolve('uuid'),
+    // Resolve Prisma client to the generated client in root node_modules
+    '^@prisma/client$': '<rootDir>/../../node_modules/.prisma/client',
+    '^\\.prisma/client$': '<rootDir>/../../node_modules/.prisma/client',
+    '^\\.prisma/client/(.*)$': '<rootDir>/../../node_modules/.prisma/client/$1',
   },
   clearMocks: true,
   restoreMocks: true,
