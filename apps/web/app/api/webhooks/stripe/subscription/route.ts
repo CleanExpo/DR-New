@@ -24,7 +24,7 @@ import {
 export const dynamic = 'force-dynamic';
 
 const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2024-12-18.acacia' })
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' })
   : null;
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
@@ -152,7 +152,7 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
   await retryPrismaOperation(
     'nonCritical',
     () =>
-      prisma.auditLog.create({
+      prisma.workspaceAuditLog.create({
         data: {
           workspaceId: workspace.id,
           action: 'subscription_created',
@@ -225,7 +225,7 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
   await retryPrismaOperation(
     'nonCritical',
     () =>
-      prisma.auditLog.create({
+      prisma.workspaceAuditLog.create({
         data: {
           workspaceId: workspace.id,
           action: 'subscription_cancelled',
@@ -260,7 +260,7 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
   let nextBillingDate = new Date();
   if (invoice.subscription) {
     try {
-      const subscription = await stripe.subscriptions.retrieve(invoice.subscription as string);
+      const subscription = await stripe!.subscriptions.retrieve(invoice.subscription as string);
       nextBillingDate = new Date(subscription.current_period_end * 1000);
     } catch {
       // Use default if subscription retrieval fails
@@ -291,7 +291,7 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
       amountAUD: amountPaidAUD,
       subscriptionTier: workspace.subscriptionTier,
       nextBillingDate,
-    }).catch((error) => {
+    }).catch((error: unknown) => {
       console.error('[Workspace Webhook] Failed to send payment success email:', error);
       // Don't throw - email failure shouldn't fail the webhook
     });
@@ -359,7 +359,7 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
       attemptCount,
       lastFourDigits,
       subscriptionTier: workspace.subscriptionTier,
-    }).catch((error) => {
+    }).catch((error: unknown) => {
       console.error('[Workspace Webhook] Failed to send payment failure email:', error);
       // Don't throw - email failure shouldn't fail the webhook
     });
@@ -369,7 +369,7 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
   await retryPrismaOperation(
     'nonCritical',
     () =>
-      prisma.auditLog.create({
+      prisma.workspaceAuditLog.create({
         data: {
           workspaceId: workspace.id,
           action: 'payment_failed',

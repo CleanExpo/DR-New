@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
       db.booking.count({
         where: {
           contractorId: contractor.id,
-          status: { in: ['CANCELLED', 'REJECTED'] },
+          status: { in: ['CANCELLED', 'DISPUTED'] },
         },
       }),
       // Bookings this month
@@ -137,11 +137,11 @@ export async function GET(request: NextRequest) {
         select: {
           id: true,
           status: true,
-          serviceType: true,
+          australianServiceType: true,
           createdAt: true,
           scheduledDate: true,
           completedAt: true,
-          totalCost: true,
+          finalCostAUD: true,
         },
       }),
     ]);

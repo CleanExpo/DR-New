@@ -37,20 +37,22 @@ export async function POST(request: NextRequest) {
     const validated = communicationPreferencesSchema.parse(body);
 
     // Update user preferences with notification settings
+    // Store all communication preferences in notificationSettings Json field
+    const notificationSettings = {
+      notifications: validated.notifications,
+      contactTimes: validated.contactTimes,
+      shareDataForAnalytics: validated.shareDataForAnalytics,
+      allowSessionRecording: validated.allowSessionRecording,
+    };
+
     await db.userPreferences.upsert({
       where: { userId: user.id },
       update: {
-        notifications: validated.notifications as any,
-        contactTimes: validated.contactTimes as any,
-        shareDataForAnalytics: validated.shareDataForAnalytics,
-        allowSessionRecording: validated.allowSessionRecording,
+        notificationSettings,
       },
       create: {
         userId: user.id,
-        notifications: validated.notifications as any,
-        contactTimes: validated.contactTimes as any,
-        shareDataForAnalytics: validated.shareDataForAnalytics,
-        allowSessionRecording: validated.allowSessionRecording,
+        notificationSettings,
       },
     });
 

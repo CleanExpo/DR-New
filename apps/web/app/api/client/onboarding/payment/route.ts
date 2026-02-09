@@ -11,7 +11,7 @@ import { ZodError } from 'zod';
 export const dynamic = 'force-dynamic';
 
 const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2024-12-18.acacia' })
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' })
   : null;
 
 /**
@@ -54,12 +54,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Create Stripe customer if doesn't exist
-    let stripeCustomerId = await db.clientPayment.findUnique({
+    const existingPayment = await db.clientPayment.findUnique({
       where: { clientProfileId: profile.id },
       select: { stripeCustomerId: true },
     });
 
-    if (!stripeCustomerId?.stripeCustomerId) {
+    let customerId: string;
+    if (existingPayment?.stripeCustomerId) {
+      customerId = existingPayment.stripeCustomerId;
+    } else {
       const customer = await stripe.customers.create({
         email: user.email,
         name: user.name || undefined,
@@ -68,17 +71,16 @@ export async function POST(request: NextRequest) {
           userId: user.id,
         },
       });
-
-      stripeCustomerId = { stripeCustomerId: customer.id };
+      customerId = customer.id;
     }
 
     // Attach payment method to customer
     await stripe.paymentMethods.attach(validated.stripePaymentMethodId, {
-      customer: stripeCustomerId.stripeCustomerId,
+      customer: customerId,
     });
 
     // Set as default payment method
-    await stripe.customers.update(stripeCustomerId.stripeCustomerId, {
+    await stripe.customers.update(customerId, {
       invoice_settings: {
         default_payment_method: validated.stripePaymentMethodId,
       },
@@ -92,7 +94,7 @@ export async function POST(request: NextRequest) {
     await db.clientPayment.upsert({
       where: { clientProfileId: profile.id },
       update: {
-        stripeCustomerId: stripeCustomerId.stripeCustomerId,
+        stripeCustomerId: customerId,
         stripePaymentMethodId: validated.stripePaymentMethodId,
         cardBrand: card?.brand,
         cardLast4: card?.last4,
@@ -110,7 +112,7 @@ export async function POST(request: NextRequest) {
       },
       create: {
         clientProfileId: profile.id,
-        stripeCustomerId: stripeCustomerId.stripeCustomerId,
+        stripeCustomerId: customerId,
         stripePaymentMethodId: validated.stripePaymentMethodId,
         cardBrand: card?.brand,
         cardLast4: card?.last4,

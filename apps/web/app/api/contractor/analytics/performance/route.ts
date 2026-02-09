@@ -57,6 +57,11 @@ export async function GET(request: NextRequest) {
             status: true,
           },
         },
+        ratings: {
+          select: {
+            rating: true,
+          },
+        },
       },
     });
 
@@ -74,11 +79,11 @@ export async function GET(request: NextRequest) {
     const acceptedMatches = completedBookings.length;
     const acceptanceRate = matchedJobs.length > 0 ? (acceptedMatches / matchedJobs.length) * 100 : 0;
 
-    // Calculate time to completion metrics
+    // Calculate time to completion metrics (from start to completion)
     const bookingsWithTimes = completedBookings
-      .filter((b) => b.acceptedAt && b.completedAt)
+      .filter((b) => b.startedAt && b.completedAt)
       .map((b) => ({
-        timeInHours: (b.completedAt!.getTime() - b.acceptedAt!.getTime()) / (1000 * 60 * 60),
+        timeInHours: (b.completedAt!.getTime() - b.startedAt!.getTime()) / (1000 * 60 * 60),
       }));
 
     const avgCompletionTime =
@@ -86,17 +91,17 @@ export async function GET(request: NextRequest) {
         ? bookingsWithTimes.reduce((sum, b) => sum + b.timeInHours, 0) / bookingsWithTimes.length
         : 0;
 
-    // Ratings analysis
-    const ratingsData = completedBookings.filter((b) => b.rating);
+    // Ratings analysis - get all ratings from bookings
+    const allRatings = completedBookings.flatMap((b) => b.ratings.map((r) => r.rating));
     const averageRating =
-      ratingsData.length > 0 ? ratingsData.reduce((sum, b) => sum + (b.rating || 0), 0) / ratingsData.length : 0;
+      allRatings.length > 0 ? allRatings.reduce((sum, r) => sum + r, 0) / allRatings.length : 0;
 
     const ratingDistribution = {
-      five: ratingsData.filter((b) => b.rating === 5).length,
-      four: ratingsData.filter((b) => b.rating === 4).length,
-      three: ratingsData.filter((b) => b.rating === 3).length,
-      two: ratingsData.filter((b) => b.rating === 2).length,
-      one: ratingsData.filter((b) => b.rating === 1).length,
+      five: allRatings.filter((r) => r === 5).length,
+      four: allRatings.filter((r) => r === 4).length,
+      three: allRatings.filter((r) => r === 3).length,
+      two: allRatings.filter((r) => r === 2).length,
+      one: allRatings.filter((r) => r === 1).length,
     };
 
     // Earnings summary
@@ -157,7 +162,7 @@ export async function GET(request: NextRequest) {
         acceptanceRate: parseFloat(acceptanceRate.toFixed(2)),
         avgCompletionTimeHours: parseFloat(avgCompletionTime.toFixed(2)),
         averageRating: parseFloat(averageRating.toFixed(2)),
-        ratingsCount: ratingsData.length,
+        ratingsCount: allRatings.length,
         disputes,
       },
       performance: {
