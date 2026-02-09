@@ -159,7 +159,7 @@ export const authOptions: NextAuthOptions = {
           userType: user.userType,
           avatar: user.avatar,
           tenantId: user.tenantId,
-        } as any;
+        };
       },
     }),
   ],
@@ -174,21 +174,21 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = (user as any).id;
-        token.userType = (user as any).userType;
-        token.role = (user as any).userType;
-        token.avatar = (user as any).avatar ?? null;
-        token.tenantId = (user as any).tenantId ?? null;
+        token.id = user.id;
+        token.userType = user.userType;
+        token.role = user.userType;
+        token.avatar = user.avatar ?? null;
+        token.tenantId = user.tenantId ?? null;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as any).id = token.id;
-        (session.user as any).userType = (token as any).userType;
-        (session.user as any).role = (token as any).userType;
-        (session.user as any).avatar = (token as any).avatar ?? null;
-        (session.user as any).tenantId = (token as any).tenantId ?? null;
+        session.user.id = token.id;
+        session.user.userType = token.userType;
+        session.user.role = token.userType;
+        session.user.avatar = token.avatar ?? null;
+        session.user.tenantId = token.tenantId ?? null;
       }
       return session;
     },

@@ -55,7 +55,7 @@ export const contractorProfileCreateSchema = z.object({
     typeof val === 'string' ? parseInt(val, 10) : val
   ).refine(val => val >= 0, 'Experience must be non-negative'),
   bio: z.string().min(50, 'Bio must be at least 50 characters').optional(),
-  availability: z.enum(['AVAILABLE', 'BUSY', 'OFFLINE']).optional(),
+  availability: z.enum(['AVAILABLE', 'BUSY', 'UNAVAILABLE']).optional(),
 });
 
 export const contractorProfileUpdateSchema = contractorProfileCreateSchema.partial();
