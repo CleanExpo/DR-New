@@ -14,6 +14,9 @@ const nextConfig = {
   swcMinify: true,
 
   // Build optimization
+  // NOTE: TypeScript/ESLint checking disabled during build due to memory constraints
+  // TypeScript errors are tracked and being resolved - see .planning/ROADMAP.md Phase 1
+  // Run `npx tsc --noEmit` locally to check types (requires 8GB+ memory)
   eslint: {
     ignoreDuringBuilds: true,
   },
