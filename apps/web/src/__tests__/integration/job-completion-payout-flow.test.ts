@@ -12,11 +12,11 @@
  */
 
 import { prisma } from '../../../lib/prisma';
-import { triggerPayoutForBooking } from '../../../lib/payments/stripe';
+import { triggerPayoutForBooking } from '../../../lib/payments/contractor-payout';
 import type { BookingStatus, AustralianServiceType } from '@prisma/client';
 
 // Mock Stripe and email functions
-jest.mock('../../../lib/payments/stripe', () => ({
+jest.mock('../../../lib/payments/contractor-payout', () => ({
   triggerPayoutForBooking: jest.fn().mockResolvedValue({
     success: true,
     payoutId: 'po_test_123',

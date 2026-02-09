@@ -81,6 +81,10 @@ export class WebSocketManager extends EventEmitter {
   private subscriptions: Map<string, Set<string>> = new Map(); // Topic -> connection IDs
   private heartbeatIntervals: Map<string, NodeJS.Timeout> = new Map();
 
+  // Global intervals for cleanup
+  private metricsInterval: NodeJS.Timeout | null = null;
+  private monitoringInterval: NodeJS.Timeout | null = null;
+
   // Configuration
   private config = {
     heartbeatInterval: 30000, // 30 seconds
@@ -402,7 +406,7 @@ export class WebSocketManager extends EventEmitter {
    * Start metrics collection
    */
   private startMetricsCollection(): void {
-    setInterval(() => {
+    this.metricsInterval = setInterval(() => {
       this.collectMetrics();
     }, this.config.metricsInterval);
   }
@@ -448,7 +452,7 @@ export class WebSocketManager extends EventEmitter {
    * Start connection monitoring
    */
   private startConnectionMonitoring(): void {
-    setInterval(() => {
+    this.monitoringInterval = setInterval(() => {
       const staleConnections: string[] = [];
 
       for (const [connectionId, connection] of this.connections) {
@@ -462,6 +466,44 @@ export class WebSocketManager extends EventEmitter {
         this.handleConnectionClose(connectionId);
       }
     }, 60000); // Check every minute
+  }
+
+  /**
+   * Cleanup all intervals and connections
+   * Call this when shutting down the server
+   */
+  destroy(): void {
+    // Clear global intervals
+    if (this.metricsInterval) {
+      clearInterval(this.metricsInterval);
+      this.metricsInterval = null;
+    }
+
+    if (this.monitoringInterval) {
+      clearInterval(this.monitoringInterval);
+      this.monitoringInterval = null;
+    }
+
+    // Clear all connection heartbeat intervals
+    for (const [connectionId, interval] of this.heartbeatIntervals) {
+      clearInterval(interval);
+    }
+    this.heartbeatIntervals.clear();
+
+    // Close all connections
+    for (const connectionId of this.connections.keys()) {
+      this.handleConnectionClose(connectionId);
+    }
+
+    // Clear all data structures
+    this.connections.clear();
+    this.sessions.clear();
+    this.messageQueue.clear();
+    this.metrics.clear();
+    this.subscriptions.clear();
+
+    this.emit('manager:destroyed');
+    this.removeAllListeners();
   }
 
   /**
