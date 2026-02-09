@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
     // Service requests - automatically tenant-scoped
     const activeServiceRequests = await db.serviceRequest.count({
       where: {
-        clientId,
+        userId: clientId,
         status: {
           in: ['PENDING', 'MATCHED', 'IN_PROGRESS'],
         },

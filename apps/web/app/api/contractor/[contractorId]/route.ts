@@ -41,7 +41,7 @@ export async function GET(
       );
     }
 
-    const isAdminUser = user.role === 'ADMIN' || user.role === 'SUPER_ADMIN';
+    const isAdminUser = user.userType === 'ADMIN' || user.userType === 'SUPER_ADMIN';
     const isOwner = contractor.userId === user.id;
 
     // Contractor identities are private; only admins and the contractor themselves can view.
@@ -92,7 +92,7 @@ export async function PATCH(
       );
     }
 
-    const isAdminUser = user.role === 'ADMIN' || user.role === 'SUPER_ADMIN';
+    const isAdminUser = user.userType === 'ADMIN' || user.userType === 'SUPER_ADMIN';
     const isOwner = contractor.userId === user.id;
 
     if (!isAdminUser && !isOwner) {

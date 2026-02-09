@@ -39,24 +39,27 @@ export async function POST(request: NextRequest) {
     const validated = servicePreferencesSchema.parse(body);
 
     // Update user preferences
+    // Map to existing schema fields and store extras in dashboardLayout
+    const serviceExtras = {
+      serviceFrequency: validated.serviceFrequency,
+      pastServiceExperience: validated.pastServiceExperience,
+      emergencyContactAvailable: validated.emergencyContactAvailable,
+    };
+
     await db.userPreferences.upsert({
       where: { userId: user.id },
       update: {
-        primaryServiceTypes: validated.primaryServiceTypes,
-        urgencyPreference: validated.urgencyPreference,
-        typicalBudgetRange: validated.typicalBudgetRange,
-        serviceFrequency: validated.serviceFrequency,
-        pastServiceExperience: validated.pastServiceExperience,
-        emergencyContactAvailable: validated.emergencyContactAvailable,
+        serviceTypes: validated.primaryServiceTypes,
+        urgencyLevel: validated.urgencyPreference,
+        budgetRange: validated.typicalBudgetRange,
+        dashboardLayout: serviceExtras,
       },
       create: {
         userId: user.id,
-        primaryServiceTypes: validated.primaryServiceTypes,
-        urgencyPreference: validated.urgencyPreference,
-        typicalBudgetRange: validated.typicalBudgetRange,
-        serviceFrequency: validated.serviceFrequency,
-        pastServiceExperience: validated.pastServiceExperience,
-        emergencyContactAvailable: validated.emergencyContactAvailable,
+        serviceTypes: validated.primaryServiceTypes,
+        urgencyLevel: validated.urgencyPreference,
+        budgetRange: validated.typicalBudgetRange,
+        dashboardLayout: serviceExtras,
       },
     });
 
