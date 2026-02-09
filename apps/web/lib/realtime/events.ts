@@ -159,6 +159,124 @@ export interface MessageReceivedEvent {
 }
 
 // ============================================================================
+// Payment Events
+// ============================================================================
+
+export interface PaymentCreatedEvent {
+  type: 'payment:created';
+  id: string;
+  timestamp: Date;
+  data: {
+    paymentId: string;
+    bookingId: string;
+    clientId: string;
+    amount: number;
+    currency: string;
+  };
+  channel: string;
+  priority: 'normal' | 'high';
+}
+
+export interface PaymentSucceededEvent {
+  type: 'payment:succeeded';
+  id: string;
+  timestamp: Date;
+  data: {
+    paymentId: string;
+    bookingId: string;
+    clientId: string;
+    amount: number;
+    currency: string;
+    message: string;
+  };
+  channel: string;
+  priority: 'normal' | 'high';
+}
+
+export interface PaymentFailedEvent {
+  type: 'payment:failed';
+  id: string;
+  timestamp: Date;
+  data: {
+    paymentId: string;
+    bookingId: string;
+    clientId: string;
+    amount: number;
+    currency: string;
+    failureReason: string;
+    message: string;
+  };
+  channel: string;
+  priority: 'normal' | 'high';
+}
+
+export interface PaymentRefundedEvent {
+  type: 'payment:refunded';
+  id: string;
+  timestamp: Date;
+  data: {
+    paymentId: string;
+    bookingId: string;
+    clientId?: string;
+    refundAmount: number;
+    originalAmount?: number;
+    stripeRefundId?: string;
+    refundType: 'partial' | 'full';
+    currency: string;
+    message: string;
+  };
+  channel: string;
+  priority: 'normal' | 'high';
+}
+
+export interface InvoiceGeneratedEvent {
+  type: 'invoice:generated';
+  id: string;
+  timestamp: Date;
+  data: {
+    invoiceId: string;
+    paymentId: string;
+    bookingId: string;
+    invoiceNumber: string;
+    totalAmount: number;
+    message: string;
+  };
+  channel: string;
+  priority: 'normal' | 'high';
+}
+
+export interface PayoutInitiatedEvent {
+  type: 'payout:initiated';
+  id: string;
+  timestamp: Date;
+  data: {
+    payoutId: string;
+    bookingId: string;
+    contractorId: string;
+    payoutAmount: number;
+    platformFee: number;
+    message: string;
+  };
+  channel: string;
+  priority: 'normal' | 'high';
+}
+
+export interface PayoutCompletedEvent {
+  type: 'payout:completed';
+  id: string;
+  timestamp: Date;
+  data: {
+    payoutId: string;
+    bookingId: string;
+    contractorId: string;
+    payoutAmount: number;
+    message: string;
+  };
+  channel: string;
+  priority: 'normal' | 'high';
+}
+
+// ============================================================================
 // Union Type for All Events
 // ============================================================================
 
@@ -174,7 +292,14 @@ export type RealtimeEvent =
   | WorkStartedEvent
   | WorkProgressEvent
   | WorkCompletedEvent
-  | MessageReceivedEvent;
+  | MessageReceivedEvent
+  | PaymentCreatedEvent
+  | PaymentSucceededEvent
+  | PaymentFailedEvent
+  | PaymentRefundedEvent
+  | InvoiceGeneratedEvent
+  | PayoutInitiatedEvent
+  | PayoutCompletedEvent;
 
 // ============================================================================
 // Event Channels (subscription targets)
@@ -316,5 +441,59 @@ export const EVENT_METADATA: Record<RealtimeEvent['type'], EventMetadata> = {
     broadcastToAll: false,
     storeInDb: true,
     sendEmail: false,
+  },
+  'payment:created': {
+    priority: EventPriority.NORMAL,
+    requiresAction: false,
+    broadcastToAll: false,
+    storeInDb: true,
+    sendEmail: false,
+  },
+  'payment:succeeded': {
+    priority: EventPriority.HIGH,
+    requiresAction: false,
+    broadcastToAll: false,
+    storeInDb: true,
+    sendEmail: true,
+    emailTemplate: 'payment_success',
+  },
+  'payment:failed': {
+    priority: EventPriority.HIGH,
+    requiresAction: true,
+    broadcastToAll: false,
+    storeInDb: true,
+    sendEmail: true,
+    emailTemplate: 'payment_failed',
+  },
+  'payment:refunded': {
+    priority: EventPriority.HIGH,
+    requiresAction: false,
+    broadcastToAll: false,
+    storeInDb: true,
+    sendEmail: true,
+    emailTemplate: 'payment_refunded',
+  },
+  'invoice:generated': {
+    priority: EventPriority.NORMAL,
+    requiresAction: false,
+    broadcastToAll: false,
+    storeInDb: true,
+    sendEmail: false,
+  },
+  'payout:initiated': {
+    priority: EventPriority.HIGH,
+    requiresAction: false,
+    broadcastToAll: false,
+    storeInDb: true,
+    sendEmail: true,
+    emailTemplate: 'payout_initiated',
+  },
+  'payout:completed': {
+    priority: EventPriority.HIGH,
+    requiresAction: false,
+    broadcastToAll: false,
+    storeInDb: true,
+    sendEmail: true,
+    emailTemplate: 'payout_completed',
   },
 };

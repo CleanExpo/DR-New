@@ -25,6 +25,7 @@ export interface Suburb {
   state: AustralianState;
   coordinates: Coordinates;
   regionId: string;
+  population?: number; // Optional: ABS census population data
 }
 
 export interface Region {
