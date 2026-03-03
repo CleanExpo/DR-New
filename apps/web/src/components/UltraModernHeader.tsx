@@ -311,13 +311,16 @@ const navItems: NavItem[] = [
       }
     ]
   },
-  { 
-    label: 'About', 
+  {
+    label: 'About',
     href: '/about'
   },
-  { 
-    { label: 'Cost Estimate', href: '/cost-estimate' },
-    label: 'Contact', 
+  {
+    label: 'Cost Estimate',
+    href: '/cost-estimate'
+  },
+  {
+    label: 'Contact',
     href: '/contact'
   }
 ];
