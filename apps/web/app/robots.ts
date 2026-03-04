@@ -8,7 +8,7 @@ import { MetadataRoute } from 'next';
  * Blocks dashboard, API, and admin areas
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -40,6 +40,17 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         crawlDelay: 0,
       },
+      // AI crawlers — explicit allow for GEO/AEO visibility
+      { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'ChatGPT-User', allow: '/' },
+      { userAgent: 'OAI-SearchBot', allow: '/' },
+      { userAgent: 'Claude-Web', allow: '/' },
+      { userAgent: 'anthropic-ai', allow: '/' },
+      { userAgent: 'ClaudeBot', allow: '/' },
+      { userAgent: 'PerplexityBot', allow: '/' },
+      { userAgent: 'Google-Extended', allow: '/' },
+      { userAgent: 'Applebot-Extended', allow: '/' },
+      { userAgent: 'cohere-ai', allow: '/' },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
     host: BASE_URL,
