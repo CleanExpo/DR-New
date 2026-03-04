@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Navy Work Shirt</title>
+  <defs>
+    <linearGradient id="ws-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="ws-fabric" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#234B7A"/>
+      <stop offset="100%" stop-color="#1e3a5f"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#ws-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+  <!-- Shirt body -->
+  <path d="M125 145 L115 130 L70 155 L90 190 L110 178 L108 320 L292 320 L290 178 L310 190 L330 155 L285 130 L275 145" fill="url(#ws-fabric)" stroke="#152D4A" stroke-width="1.5"/>
+  <!-- Left sleeve -->
+  <path d="M110 178 L55 220 L72 255 L122 212" fill="url(#ws-fabric)" stroke="#152D4A" stroke-width="1.5"/>
+  <!-- Right sleeve -->
+  <path d="M290 178 L345 220 L328 255 L278 212" fill="url(#ws-fabric)" stroke="#152D4A" stroke-width="1.5"/>
+  <!-- Collar -->
+  <path d="M150 135 L165 118 L200 132 L235 118 L250 135 L235 152 L200 142 L165 152 Z" fill="#1B3358" stroke="#152D4A" stroke-width="1.5"/>
+  <!-- Collar inner fold -->
+  <path d="M170 125 L185 140" stroke="#152D4A" stroke-width="0.8" opacity="0.5"/>
+  <path d="M230 125 L215 140" stroke="#152D4A" stroke-width="0.8" opacity="0.5"/>
+  <!-- Button placket -->
+  <rect x="196" y="142" width="8" height="178" fill="#1B3358" opacity="0.5"/>
+  <circle cx="200" cy="160" r="2.5" fill="#3B6BA5" opacity="0.8"/>
+  <circle cx="200" cy="185" r="2.5" fill="#3B6BA5" opacity="0.8"/>
+  <circle cx="200" cy="210" r="2.5" fill="#3B6BA5" opacity="0.8"/>
+  <circle cx="200" cy="235" r="2.5" fill="#3B6BA5" opacity="0.8"/>
+  <circle cx="200" cy="260" r="2.5" fill="#3B6BA5" opacity="0.8"/>
+  <circle cx="200" cy="285" r="2.5" fill="#3B6BA5" opacity="0.8"/>
+  <!-- Chest pocket left -->
+  <rect x="130" y="188" width="50" height="40" fill="none" stroke="#152D4A" stroke-width="1.2" rx="1"/>
+  <line x1="130" y1="198" x2="180" y2="198" stroke="#152D4A" stroke-width="0.8"/>
+  <!-- NRPG Shield embroidery on chest -->
+  <g transform="translate(145, 210)">
+    <!-- Shield shape -->
+    <path d="M10 0 L20 0 L22 3 L22 14 L15 20 L8 14 L8 3 Z" fill="none" stroke="#0d9488" stroke-width="1.5"/>
+    <text x="11" y="14" font-family="sans-serif" font-weight="bold" font-size="7" fill="#0d9488">N</text>
+  </g>
+  <!-- Shoulder seam lines -->
+  <line x1="125" y1="145" x2="110" y2="178" stroke="#152D4A" stroke-width="1" opacity="0.6"/>
+  <line x1="275" y1="145" x2="290" y2="178" stroke="#152D4A" stroke-width="1" opacity="0.6"/>
+  <!-- Bottom hem -->
+  <line x1="108" y1="320" x2="292" y2="320" stroke="#152D4A" stroke-width="2"/>
+</svg>

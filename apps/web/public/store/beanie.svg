@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Beanie</title>
+  <defs>
+    <linearGradient id="bn-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="bn-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4B5563"/>
+      <stop offset="100%" stop-color="#374151"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bn-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+  <!-- Beanie dome -->
+  <path d="M90 260 Q90 120 200 100 Q310 120 310 260" fill="url(#bn-body)" stroke="#2D3748" stroke-width="1.5"/>
+  <!-- Knit texture lines -->
+  <path d="M120 140 Q200 125 280 140" stroke="#2D3748" stroke-width="0.6" fill="none" opacity="0.4"/>
+  <path d="M108 165 Q200 148 292 165" stroke="#2D3748" stroke-width="0.6" fill="none" opacity="0.4"/>
+  <path d="M98 190 Q200 172 302 190" stroke="#2D3748" stroke-width="0.6" fill="none" opacity="0.4"/>
+  <path d="M94 215 Q200 198 306 215" stroke="#2D3748" stroke-width="0.6" fill="none" opacity="0.4"/>
+  <!-- Vertical knit ribs -->
+  <path d="M155 115 L150 260" stroke="#2D3748" stroke-width="0.4" opacity="0.25"/>
+  <path d="M200 100 L200 260" stroke="#2D3748" stroke-width="0.4" opacity="0.25"/>
+  <path d="M245 115 L250 260" stroke="#2D3748" stroke-width="0.4" opacity="0.25"/>
+  <!-- Folded cuff -->
+  <path d="M88 260 Q88 240 90 235 Q200 220 310 235 Q312 240 312 260 Q312 285 310 290 Q200 305 90 290 Q88 285 88 260 Z" fill="#374151" stroke="#2D3748" stroke-width="1.5"/>
+  <!-- Cuff fold shadow -->
+  <path d="M90 260 Q200 248 310 260" stroke="#2D3748" stroke-width="1" opacity="0.5"/>
+  <!-- Teal horizontal stripe on cuff -->
+  <path d="M89 268 Q200 256 311 268 L311 278 Q200 266 89 278 Z" fill="#0d9488" opacity="0.9"/>
+  <path d="M89 268 Q200 256 311 268" stroke="#0B7C72" stroke-width="0.5"/>
+  <path d="M89 278 Q200 266 311 278" stroke="#0B7C72" stroke-width="0.5"/>
+  <!-- NRPG text on cuff -->
+  <text x="200" y="298" font-family="sans-serif" font-weight="bold" font-size="14" fill="#0d9488" text-anchor="middle" letter-spacing="3">NRPG</text>
+  <!-- Pom pom on top -->
+  <circle cx="200" cy="98" r="15" fill="#4B5563" stroke="#2D3748" stroke-width="1"/>
+  <circle cx="195" cy="93" r="3" fill="#555D6B" opacity="0.5"/>
+  <circle cx="205" cy="96" r="2.5" fill="#555D6B" opacity="0.4"/>
+  <circle cx="198" cy="103" r="2" fill="#555D6B" opacity="0.3"/>
+</svg>

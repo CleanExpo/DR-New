@@ -320,6 +320,10 @@ const navItems: NavItem[] = [
     href: '/cost-estimate'
   },
   {
+    label: 'Store',
+    href: '/store'
+  },
+  {
     label: 'Contact',
     href: '/contact'
   }

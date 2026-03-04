@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Contractor Welcome Bundle</title>
+  <defs>
+    <linearGradient id="wb-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#wb-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+
+  <!-- Surface/table hint -->
+  <rect x="30" y="50" width="340" height="310" fill="#0A0A0F" stroke="#1a1a2e" stroke-width="0.5" rx="2"/>
+
+  <!-- Folded polo shirt (center-left) -->
+  <g transform="translate(100, 160)">
+    <rect x="0" y="0" width="110" height="80" fill="#FFA500" stroke="#E8940A" stroke-width="1" rx="2"/>
+    <!-- Fold lines -->
+    <line x1="0" y1="25" x2="110" y2="25" stroke="#E8940A" stroke-width="0.8" opacity="0.5"/>
+    <line x1="35" y1="0" x2="35" y2="80" stroke="#E8940A" stroke-width="0.6" opacity="0.3"/>
+    <line x1="75" y1="0" x2="75" y2="80" stroke="#E8940A" stroke-width="0.6" opacity="0.3"/>
+    <!-- Collar peek -->
+    <path d="M35 0 L55 -8 L75 0" fill="#F0A030" stroke="#E8940A" stroke-width="1"/>
+    <!-- NRPG on chest area -->
+    <text x="55" y="50" font-family="sans-serif" font-weight="bold" font-size="10" fill="#0d9488" text-anchor="middle" letter-spacing="1">NRPG</text>
+    <!-- Reflective stripe -->
+    <rect x="5" y="62" width="100" height="3" fill="#FFFFFF" opacity="0.7" rx="0.5"/>
+  </g>
+
+  <!-- Cap (top right) -->
+  <g transform="translate(260, 90)">
+    <!-- Crown -->
+    <path d="M0 40 Q0 5 50 0 Q100 5 100 40 L95 48 L5 48 Z" fill="#111827" stroke="#0A0F1A" stroke-width="1"/>
+    <!-- Brim -->
+    <path d="M0 46 Q-5 50 -5 56 Q-3 65 15 70 Q50 75 85 70 Q103 65 105 56 Q105 50 100 46 L95 48 Q75 65 50 67 Q25 65 5 48 Z" fill="#111827" stroke="#0A0F1A" stroke-width="1"/>
+    <!-- Teal brim edge -->
+    <path d="M15 70 Q50 75 85 70" fill="none" stroke="#0d9488" stroke-width="2"/>
+    <!-- NRPG -->
+    <text x="50" y="32" font-family="sans-serif" font-weight="bold" font-size="14" fill="#0d9488" text-anchor="middle" letter-spacing="2">NRPG</text>
+    <!-- Button -->
+    <circle cx="50" cy="2" r="3" fill="#1F2937" stroke="#0A0F1A" stroke-width="0.5"/>
+  </g>
+
+  <!-- Sticker sheet (bottom right) -->
+  <g transform="translate(240, 210)">
+    <rect x="0" y="0" width="120" height="90" fill="#1A1A2E" stroke="#2A2A3E" stroke-width="1" rx="2"/>
+    <!-- Mini stickers on sheet -->
+    <circle cx="25" cy="25" r="14" fill="#FFFFFF" stroke="#2A2A3E" stroke-width="0.5"/>
+    <path d="M25 16 L30 19 L30 28 L25 33 L20 28 L20 19 Z" fill="#0d9488" stroke="#0B7C72" stroke-width="0.5"/>
+    <circle cx="65" cy="25" r="14" fill="#FFFFFF" stroke="#2A2A3E" stroke-width="0.5"/>
+    <path d="M65 16 Q70 22 68 28 Q65 32 62 28 Q60 22 65 16 Z" fill="#00F5FF" opacity="0.8"/>
+    <circle cx="100" cy="25" r="14" fill="#FFFFFF" stroke="#2A2A3E" stroke-width="0.5"/>
+    <path d="M100 16 Q104 22 102 26 Q100 30 98 26 Q96 22 100 16 Z" fill="#FFB800"/>
+    <circle cx="40" cy="65" r="14" fill="#FFFFFF" stroke="#2A2A3E" stroke-width="0.5"/>
+    <text x="40" y="69" font-family="sans-serif" font-weight="bold" font-size="6" fill="#00CC6A" text-anchor="middle">OK</text>
+    <circle cx="80" cy="65" r="14" fill="#FFFFFF" stroke="#2A2A3E" stroke-width="0.5"/>
+    <text x="80" y="67" font-family="sans-serif" font-weight="bold" font-size="10" fill="#FF4444" text-anchor="middle">+</text>
+  </g>
+
+  <!-- Teal accent line -->
+  <line x1="60" y1="340" x2="170" y2="340" stroke="#0d9488" stroke-width="2" opacity="0.6"/>
+
+  <!-- "Contractor Welcome Bundle" label -->
+  <text x="200" y="372" font-family="sans-serif" font-weight="bold" font-size="13" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">CONTRACTOR WELCOME BUNDLE</text>
+  <text x="200" y="388" font-family="sans-serif" font-size="9" fill="#9CA3AF" text-anchor="middle" letter-spacing="2">POLO + CAP + STICKERS</text>
+
+  <!-- Decorative teal corners -->
+  <path d="M40 55 L40 60 L50 60" fill="none" stroke="#0d9488" stroke-width="1.5" opacity="0.4"/>
+  <path d="M360 55 L360 60 L350 60" fill="none" stroke="#0d9488" stroke-width="1.5" opacity="0.4"/>
+  <path d="M40 355 L40 350 L50 350" fill="none" stroke="#0d9488" stroke-width="1.5" opacity="0.4"/>
+  <path d="M360 355 L360 350 L350 350" fill="none" stroke="#0d9488" stroke-width="1.5" opacity="0.4"/>
+</svg>
