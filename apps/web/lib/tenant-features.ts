@@ -184,9 +184,26 @@ export function getTenantFeatures(tier: SubscriptionTier): TenantFeatures {
       };
 
     default:
-      // Return BASIC features as fallback
+      // Fall-through: unknown tier treated as BASIC
       return getTenantFeatures('BASIC');
   }
+}
+
+/** Memoised tier feature map — O(1) lookup after first access. */
+const _tierFeatureCache = new Map<string, TenantFeatures>();
+
+/**
+ * Cached variant of getTenantFeatures.
+ * Use this in hot paths (e.g., middleware, per-request feature checks).
+ * Complexity: O(1) after warm-up; O(tiers) to build (constant 3 entries).
+ */
+export function getTenantFeaturesCached(tier: SubscriptionTier): TenantFeatures {
+  let features = _tierFeatureCache.get(tier);
+  if (!features) {
+    features = getTenantFeatures(tier);
+    _tierFeatureCache.set(tier, features);
+  }
+  return features;
 }
 
 /**
@@ -202,7 +219,7 @@ export function tenantHasFeature(
     return false;
   }
 
-  const features = getTenantFeatures(tier);
+  const features = getTenantFeaturesCached(tier);
   const featureValue = features[featureName];
 
   // Handle boolean features
@@ -232,7 +249,7 @@ export function checkTenantUsageLimits(
   withinLimits: boolean;
   exceeded: Array<'users' | 'requests'>;
 } {
-  const features = getTenantFeatures(tier);
+  const features = getTenantFeaturesCached(tier);
   const exceeded: Array<'users' | 'requests'> = [];
 
   // Check user limit (-1 means unlimited)
@@ -265,7 +282,7 @@ export function getUpgradeRecommendation(
   recommendedTier: SubscriptionTier | null;
   reasons: string[];
 } {
-  const currentFeatures = getTenantFeatures(currentTier);
+  const currentFeatures = getTenantFeaturesCached(currentTier);
   const reasons: string[] = [];
 
   // Check if approaching limits (80% threshold)

@@ -46,49 +46,21 @@ export async function GET(request: NextRequest) {
     const p2Start = new Date(period2Start);
     const p2End = new Date(period2End);
 
-    // Fetch data for both periods
-    const period1Payments = await db.payment.findMany({
-      where: {
-        status: 'COMPLETED',
-        createdAt: {
-          gte: p1Start,
-          lte: p1End,
-        },
-      },
-    });
-
-    const period2Payments = await db.payment.findMany({
-      where: {
-        status: 'COMPLETED',
-        createdAt: {
-          gte: p2Start,
-          lte: p2End,
-        },
-      },
-    });
-
-    // Calculate revenue metrics
-    const period1Revenue = period1Payments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
-    const period2Revenue = period2Payments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
-
-    // Booking data for completion rates
-    const period1Bookings = await db.booking.findMany({
-      where: {
-        completedAt: {
-          gte: p1Start,
-          lte: p1End,
-        },
-      },
-    });
-
-    const period2Bookings = await db.booking.findMany({
-      where: {
-        completedAt: {
-          gte: p2Start,
-          lte: p2End,
-        },
-      },
-    });
+    // Fetch data for both periods in parallel
+    const [period1Payments, period2Payments, period1Bookings, period2Bookings] = await Promise.all([
+      db.payment.findMany({
+        where: { status: 'COMPLETED', createdAt: { gte: p1Start, lte: p1End } },
+      }),
+      db.payment.findMany({
+        where: { status: 'COMPLETED', createdAt: { gte: p2Start, lte: p2End } },
+      }),
+      db.booking.findMany({
+        where: { completedAt: { gte: p1Start, lte: p1End } },
+      }),
+      db.booking.findMany({
+        where: { completedAt: { gte: p2Start, lte: p2End } },
+      }),
+    ]);
 
     // Calculate metrics for both periods
     function calculateMetrics(payments: any[], bookings: any[]) {
@@ -186,13 +158,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[Admin Analytics] Error fetching comparison data:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to fetch comparison analytics',
-        details: message,
-      },
+      { error: 'Failed to fetch comparison analytics' },
       { status: 500 }
     );
   }

@@ -129,26 +129,29 @@ export function aggregateByPeriod(
 }
 
 /**
- * Create linear scale
+ * Create linear scale.
+ * Uses d3.extent for O(n) single-pass min/max — avoids spread operator stack overflow
+ * on large datasets.
+ * Complexity: O(n)
  */
 export function createLinearScale(
   data: number[],
   range: [number, number] = [0, 100]
 ): d3.ScaleLinear<number, number> {
-  const min = Math.min(...data);
-  const max = Math.max(...data);
+  const [min = 0, max = 0] = d3.extent(data) as [number, number];
   return d3.scaleLinear().domain([min, max]).range(range);
 }
 
 /**
- * Create time scale
+ * Create time scale.
+ * Uses d3.extent for O(n) single-pass min/max — avoids two separate map+spread passes.
+ * Complexity: O(n)
  */
 export function createTimeScale(
   data: Date[],
   range: [number, number] = [0, 100]
 ): d3.ScaleTime<number, number> {
-  const min = new Date(Math.min(...data.map(d => d.getTime())));
-  const max = new Date(Math.max(...data.map(d => d.getTime())));
+  const [min, max] = d3.extent(data) as [Date, Date];
   return d3.scaleTime().domain([min, max]).range(range);
 }
 
@@ -232,13 +235,14 @@ export function calculateMovingAverage(data: number[], window: number): number[]
 }
 
 /**
- * Normalize data to 0-1 range
+ * Normalize data to 0-1 range.
+ * Single-pass min/max via d3.extent — avoids two separate spread calls.
+ * Complexity: O(n)
  */
 export function normalizeData(data: number[]): number[] {
-  const min = Math.min(...data);
-  const max = Math.max(...data);
+  const [min = 0, max = 0] = d3.extent(data) as [number, number];
   const range = max - min || 1;
-  return data.map(d => (d - min) / range);
+  return data.map((d) => (d - min) / range);
 }
 
 /**

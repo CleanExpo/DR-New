@@ -142,7 +142,7 @@ export function DecisionTree({ onComplete, className }: DecisionTreeProps) {
                 key={type.value}
                 onClick={() => handleDisasterTypeSelect(type.value)}
                 className={cn(
-                  'p-6 rounded-lg border-2 transition-all hover:border-dr-education hover:bg-dr-education-bg',
+                  'p-6 rounded-lg border-2 transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:border-dr-education hover:bg-dr-education-bg',
                   'flex flex-col items-center justify-center gap-3 min-h-[120px]',
                   answers.disasterType === type.value && 'border-dr-education bg-dr-education-bg'
                 )}
@@ -235,7 +235,7 @@ export function DecisionTree({ onComplete, className }: DecisionTreeProps) {
                       <label
                         key={option.value}
                         className={cn(
-                          'flex items-center gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all',
+                          'flex items-center gap-3 p-3 rounded-lg border-2 cursor-pointer transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                           answers[question.id] === option.value
                             ? 'border-dr-education bg-dr-education-bg'
                             : 'border-gray-200 hover:border-dr-education-border'

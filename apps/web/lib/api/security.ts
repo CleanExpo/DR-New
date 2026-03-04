@@ -359,21 +359,22 @@ export function isHoneypotTriggered(honeypotValue: string | null): boolean {
   return honeypotValue !== null && honeypotValue !== '';
 }
 
+/** Compiled once at module load — avoids re-creating RegExp objects per request. */
+const BOT_PATTERNS: readonly RegExp[] = [
+  /bot/i,
+  /crawler/i,
+  /spider/i,
+  /scraper/i,
+  /curl/i,
+  /wget/i,
+  /python-requests/i,
+];
+
 /**
- * Check if request is from a bot based on User-Agent
+ * Check if request is from a bot based on User-Agent.
+ * Complexity: O(p) where p = BOT_PATTERNS.length (constant 7).
  */
 export function isProbablyBot(req: NextRequest): boolean {
   const userAgent = req.headers.get('user-agent') || '';
-
-  const botPatterns = [
-    /bot/i,
-    /crawler/i,
-    /spider/i,
-    /scraper/i,
-    /curl/i,
-    /wget/i,
-    /python-requests/i,
-  ];
-
-  return botPatterns.some((pattern) => pattern.test(userAgent));
+  return BOT_PATTERNS.some((pattern) => pattern.test(userAgent));
 }

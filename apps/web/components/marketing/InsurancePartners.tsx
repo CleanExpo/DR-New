@@ -82,7 +82,7 @@ export function InsurancePartners() {
             href={partner.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:-translate-y-1"
+            className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] cursor-pointer hover:-translate-y-1"
             onMouseEnter={() => setHoveredPartner(partner.name)}
             onMouseLeave={() => setHoveredPartner(null)}
           >

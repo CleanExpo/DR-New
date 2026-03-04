@@ -96,21 +96,30 @@ export class PreferenceService {
       }
     ];
 
+    // Pre-compute lowercase Sets for O(1) lookup instead of O(n×m) repeated includes
+    // Complexity: O(i + s) build, then O(c × (t + u)) filter
+    //   where i = interests, s = serviceTypes, c = categories, t = tags, u = urgencyLevels
+    const interestSet = new Set(preferences.interests.map((x) => x.toLowerCase()));
+    const serviceTypeSet = new Set(preferences.serviceTypes.map((x) => x.toLowerCase()));
+    const urgencySet = new Set(preferences.urgencyLevel ? [preferences.urgencyLevel] : []);
+
     // Filter categories based on user preferences
     return allCategories.filter(category => {
-      // Match by interests
-      const interestMatch = preferences.interests.some(interest => 
-        category.tags.some(tag => tag.toLowerCase().includes(interest.toLowerCase()))
+      const tagsLower = category.tags.map((t) => t.toLowerCase());
+      const nameLower = category.name.toLowerCase();
+
+      // Match by interests — O(t) per category (tag scan)
+      const interestMatch = tagsLower.some((tag) =>
+        [...interestSet].some((interest) => tag.includes(interest))
       );
 
-      // Match by service types
-      const serviceTypeMatch = preferences.serviceTypes.some(serviceType =>
-        category.name.toLowerCase().includes(serviceType.toLowerCase()) ||
-        category.tags.some(tag => tag.toLowerCase().includes(serviceType.toLowerCase()))
-      );
+      // Match by service types — O(t + serviceTypes) per category
+      const serviceTypeMatch =
+        [...serviceTypeSet].some((st) => nameLower.includes(st)) ||
+        tagsLower.some((tag) => [...serviceTypeSet].some((st) => tag.includes(st)));
 
-      // Match by urgency level
-      const urgencyMatch = category.urgencyLevels.includes(preferences.urgencyLevel);
+      // Match by urgency level — O(1)
+      const urgencyMatch = category.urgencyLevels.some((ul) => urgencySet.has(ul));
 
       // Match by budget range
       const budgetMatch = this.matchesBudgetRange(preferences.budgetRange, category.budgetRanges);
@@ -122,20 +131,30 @@ export class PreferenceService {
   /**
    * Get personalized service providers based on user preferences
    */
+  /**
+   * Complexity: O(i + s) build + O(p × t) filter
+   *   where i = interests, s = serviceTypes, p = providers, t = tags per provider
+   */
   static getPersonalizedProviders(preferences: UserPreferences, allProviders: ServiceProvider[]): ServiceProvider[] {
+    // Pre-compute lowercase Sets for O(1) membership tests
+    const interestSet = new Set(preferences.interests.map((x) => x.toLowerCase()));
+    const serviceTypeSet = new Set(preferences.serviceTypes.map((x) => x.toLowerCase()));
+
     return allProviders.filter(provider => {
-      // Match by interests
-      const interestMatch = preferences.interests.some(interest =>
-        provider.tags.some(tag => tag.toLowerCase().includes(interest.toLowerCase()))
+      const tagsLower = provider.tags.map((t) => t.toLowerCase());
+      const categoryLower = provider.category.toLowerCase();
+
+      // Match by interests — O(t) per provider
+      const interestMatch = tagsLower.some((tag) =>
+        [...interestSet].some((interest) => tag.includes(interest))
       );
 
-      // Match by service types
-      const serviceTypeMatch = preferences.serviceTypes.some(serviceType =>
-        provider.category.toLowerCase().includes(serviceType.toLowerCase()) ||
-        provider.tags.some(tag => tag.toLowerCase().includes(serviceType.toLowerCase()))
-      );
+      // Match by service types — O(t + serviceTypes) per provider
+      const serviceTypeMatch =
+        [...serviceTypeSet].some((st) => categoryLower.includes(st)) ||
+        tagsLower.some((tag) => [...serviceTypeSet].some((st) => tag.includes(st)));
 
-      // Match by urgency level
+      // Match by urgency level — O(1)
       const urgencyMatch = provider.urgencyLevel === preferences.urgencyLevel;
 
       // Match by budget range

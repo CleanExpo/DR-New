@@ -36,48 +36,32 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Get contractor matches (active projects) - automatically tenant-scoped
-    const activeMatches = await db.contractorMatch.findMany({
-      where: {
-        contractorId: contractorProfile.id,
-        status: 'ACCEPTED'
-      },
-      include: {
-        serviceRequest: true
-      }
-    });
+    // Fetch all stats in parallel
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-    // Get completed jobs (matches with completed service requests) - automatically tenant-scoped
-    const completedMatches = await db.contractorMatch.findMany({
-      where: {
-        contractorId: contractorProfile.id,
-        serviceRequest: {
-          status: 'COMPLETED'
-        }
-      }
-    });
+    const [activeMatches, completedMatches, todaysOpportunities] = await Promise.all([
+      db.contractorMatch.findMany({
+        where: { contractorId: contractorProfile.id, status: 'ACCEPTED' },
+        include: { serviceRequest: true },
+      }),
+      db.contractorMatch.findMany({
+        where: { contractorId: contractorProfile.id, serviceRequest: { status: 'COMPLETED' } },
+      }),
+      db.serviceRequest.count({
+        where: {
+          status: 'PENDING',
+          serviceCategory: { in: contractorProfile.services },
+          createdAt: { gte: today },
+        },
+      }),
+    ]);
 
     // Calculate stats
     const activeProjects = activeMatches.length;
     const completedJobs = completedMatches.length;
     const totalEarnings = completedJobs * (contractorProfile.hourlyRate || 0) * 8; // Assuming 8 hours per job
     const rating = contractorProfile.rating || 0;
-
-    // Get today's opportunities (service requests in contractor's service areas) - automatically tenant-scoped
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const todaysOpportunities = await db.serviceRequest.count({
-      where: {
-        status: 'PENDING',
-        serviceCategory: {
-          in: contractorProfile.services
-        },
-        createdAt: {
-          gte: today
-        }
-      }
-    });
 
     const stats = {
       activeProjects,

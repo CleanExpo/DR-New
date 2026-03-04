@@ -162,13 +162,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[Admin Analytics] Error fetching trend data:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to fetch trend analytics',
-        details: message,
-      },
+      { error: 'Failed to fetch trend analytics' },
       { status: 500 }
     );
   }

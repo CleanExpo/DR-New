@@ -94,21 +94,17 @@ export function useClientAnalytics(requests?: ServiceRequest[]): UseClientAnalyt
         ? Math.round(((requestsThisMonth - requestsLastMonth) / requestsLastMonth) * 100)
         : 0;
 
-    // Most common category
+    // Most common category and urgency — single O(n) pass instead of two forEach loops
     const categoryCount: Record<string, number> = {};
-    requests.forEach((r) => {
+    const urgencyCount: Record<string, number> = {};
+    for (const r of requests) {
       categoryCount[r.serviceCategory] = (categoryCount[r.serviceCategory] || 0) + 1;
-    });
+      urgencyCount[r.urgency] = (urgencyCount[r.urgency] || 0) + 1;
+    }
     const mostCommonCategory =
       Object.keys(categoryCount).length > 0
         ? Object.entries(categoryCount).sort((a, b) => b[1] - a[1])[0][0]
         : 'N/A';
-
-    // Most common urgency
-    const urgencyCount: Record<string, number> = {};
-    requests.forEach((r) => {
-      urgencyCount[r.urgency] = (urgencyCount[r.urgency] || 0) + 1;
-    });
     const mostCommonUrgency =
       Object.keys(urgencyCount).length > 0
         ? Object.entries(urgencyCount).sort((a, b) => b[1] - a[1])[0][0]

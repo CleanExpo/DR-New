@@ -276,7 +276,7 @@ export default function TrainingPage() {
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1, ease: [0.19, 1, 0.22, 1] }}
                 >
                   <div
-                    className="rounded-sm border bg-[#050505] p-5 flex flex-col gap-4 h-full hover:brightness-110 transition-all"
+                    className="rounded-sm border bg-[#050505] p-5 flex flex-col gap-4 h-full hover:brightness-110 transition-[filter]"
                     style={{ borderColor: `${tier.colour}40` }}
                   >
                     {/* Tier label */}

@@ -101,7 +101,7 @@ export function Header({
               key={item.href}
               href={item.href}
               className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
+                'text-sm font-medium transition-[color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:text-primary',
                 pathname === item.href ? 'text-foreground' : 'text-muted-foreground',
                 item.highlighted && 'text-red-600 font-semibold'
               )}
@@ -170,7 +170,7 @@ export function Header({
                     'block px-3 py-2 rounded-md text-base font-medium',
                     pathname === item.href
                       ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
+                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-[background-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                     item.highlighted && 'text-red-600 font-semibold'
                   )}
                 >

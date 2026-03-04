@@ -40,37 +40,17 @@ export async function GET(request: NextRequest) {
       ? new Date(startDateParam)
       : new Date(endDate.getTime() - 90 * 24 * 60 * 60 * 1000); // 90 days
 
-    // Fetch completed bookings with location data
-    const bookings = await db.booking.findMany({
-      where: {
-        status: 'COMPLETED',
-        completedAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-      include: {
-        contractor: {
-          select: {
-            id: true,
-            serviceAreas: true,
-          },
-        },
-      },
-    });
-
-    // Fetch all contractors with service areas
-    const contractors = await db.contractor.findMany({
-      where: {
-        isVerified: true,
-        isActive: true,
-      },
-      select: {
-        id: true,
-        businessName: true,
-        serviceAreas: true,
-      },
-    });
+    // Fetch bookings and contractors in parallel
+    const [bookings, contractors] = await Promise.all([
+      db.booking.findMany({
+        where: { status: 'COMPLETED', completedAt: { gte: startDate, lte: endDate } },
+        include: { contractor: { select: { id: true, serviceAreas: true } } },
+      }),
+      db.contractor.findMany({
+        where: { isVerified: true, isActive: true },
+        select: { id: true, businessName: true, serviceAreas: true },
+      }),
+    ]);
 
     // Calculate regional metrics
     const metrics = calculateRegionalMetrics(bookings, contractors);
@@ -182,13 +162,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[Admin Analytics] Error fetching geographic data:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to fetch geographic analytics',
-        details: message,
-      },
+      { error: 'Failed to fetch geographic analytics' },
       { status: 500 }
     );
   }

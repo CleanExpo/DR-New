@@ -45,9 +45,8 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('[Reports] Error exporting report:', error);
-    const message = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: 'Failed to export report', details: message },
+      { error: 'Failed to export report' },
       { status: 500 }
     );
   }

@@ -46,8 +46,8 @@ export async function GET(request: NextRequest) {
       };
     }
 
-    // Fetch contractors with related data
-    const [contractors, total] = await Promise.all([
+    // Fetch contractors, total count, and summary statistics in parallel
+    const [contractors, total, statistics] = await Promise.all([
       db.contractor.findMany({
         where,
         include: {
@@ -61,17 +61,11 @@ export async function GET(request: NextRequest) {
             },
           },
           serviceAreas: {
-            orderBy: {
-              postcode: 'asc',
-            },
+            orderBy: { postcode: 'asc' },
           },
           iicrcCertifications: {
-            where: {
-              isActive: true,
-            },
-            orderBy: {
-              certificationDate: 'desc',
-            },
+            where: { isActive: true },
+            orderBy: { certificationDate: 'desc' },
           },
         },
         orderBy: [
@@ -82,15 +76,11 @@ export async function GET(request: NextRequest) {
         skip: offset,
       }),
       db.contractor.count({ where }),
+      db.contractor.groupBy({
+        by: ['verificationStatus'],
+        _count: { id: true },
+      }),
     ]);
-
-    // Calculate summary statistics
-    const statistics = await db.contractor.groupBy({
-      by: ['verificationStatus'],
-      _count: {
-        id: true,
-      },
-    });
 
     const statusCounts = statistics.reduce((acc: any, stat: any) => {
       acc[stat.verificationStatus] = stat._count.id;

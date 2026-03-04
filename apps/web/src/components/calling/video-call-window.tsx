@@ -160,7 +160,7 @@ export function VideoCallWindow({ callId, recipientName, callType }: VideoCallWi
         {/* Microphone Toggle */}
         <button
           onClick={() => toggleAudio(callId, !audioEnabled)}
-          className={`p-4 rounded-full transition-all ${
+          className={`p-4 rounded-full transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             audioEnabled
               ? 'bg-gray-700 hover:bg-gray-600 text-white'
               : 'bg-red-600 hover:bg-red-700 text-white'
@@ -180,7 +180,7 @@ export function VideoCallWindow({ callId, recipientName, callType }: VideoCallWi
         {callType === 'video' && (
           <button
             onClick={() => toggleVideo(callId, !videoEnabled)}
-            className={`p-4 rounded-full transition-all ${
+            className={`p-4 rounded-full transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
               videoEnabled
                 ? 'bg-gray-700 hover:bg-gray-600 text-white'
                 : 'bg-red-600 hover:bg-red-700 text-white'
@@ -200,7 +200,7 @@ export function VideoCallWindow({ callId, recipientName, callType }: VideoCallWi
         {/* Screen Share */}
         <button
           onClick={handleScreenShare}
-          className={`p-4 rounded-full transition-all ${
+          className={`p-4 rounded-full transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             isScreenSharing
               ? 'bg-blue-600 hover:bg-blue-700 text-white'
               : 'bg-gray-700 hover:bg-gray-600 text-white'
@@ -215,7 +215,7 @@ export function VideoCallWindow({ callId, recipientName, callType }: VideoCallWi
         {/* End Call */}
         <button
           onClick={handleEndCall}
-          className="p-4 rounded-full bg-red-600 hover:bg-red-700 text-white transition-all"
+          className="p-4 rounded-full bg-red-600 hover:bg-red-700 text-white transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
           title="End call"
         >
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">

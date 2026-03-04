@@ -79,15 +79,21 @@ export async function GET(request: NextRequest) {
       db.rankingRecord.count({ where }),
     ]);
 
-    // Calculate summary statistics
+    // Calculate summary statistics — single pass
+    let position1 = 0, position1to3 = 0, position1to10 = 0, aiCitations = 0, positionSum = 0;
+    for (const r of rankings) {
+      positionSum += r.position;
+      if (r.position === 1) position1++;
+      if (r.position <= 3) position1to3++;
+      if (r.position <= 10) position1to10++;
+      if (r.isInAIOverview) aiCitations++;
+    }
     const summary = {
-      position1: rankings.filter((r) => r.position === 1).length,
-      position1to3: rankings.filter((r) => r.position <= 3).length,
-      position1to10: rankings.filter((r) => r.position <= 10).length,
-      aiCitations: rankings.filter((r) => r.isInAIOverview).length,
-      avgPosition: rankings.length > 0
-        ? rankings.reduce((sum, r) => sum + r.position, 0) / rankings.length
-        : 0,
+      position1,
+      position1to3,
+      position1to10,
+      aiCitations,
+      avgPosition: rankings.length > 0 ? positionSum / rankings.length : 0,
       totalKeywords: rankings.length,
     };
 

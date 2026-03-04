@@ -290,7 +290,7 @@ export default function VerificationPage() {
             </div>
             <div className="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
               <div
-                className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                className="h-full bg-emerald-500 rounded-full transition-[width] duration-500"
                 style={{
                   width: `${(verification.overall.completedCount / verification.overall.totalRequired) * 100}%`,
                 }}

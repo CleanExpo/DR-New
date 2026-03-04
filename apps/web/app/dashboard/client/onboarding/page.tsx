@@ -143,7 +143,7 @@ export default function ClientOnboardingWelcomePage() {
       {/* Flow Selection */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Standard Flow */}
-        <Card className={`cursor-pointer transition-all ${flowType === 'standard' ? 'border-primary border-2' : 'hover:border-primary'}`}
+        <Card className={`cursor-pointer transition-[border-color,border-width] ${flowType === 'standard' ? 'border-primary border-2' : 'hover:border-primary'}`}
               onClick={() => setFlowType('standard')}>
           <CardHeader>
             <div className="flex items-center justify-between">
@@ -178,7 +178,7 @@ export default function ClientOnboardingWelcomePage() {
         </Card>
 
         {/* Fast Track Flow */}
-        <Card className={`cursor-pointer transition-all ${flowType === 'fast_track' ? 'border-orange-500 border-2' : 'hover:border-orange-500'}`}
+        <Card className={`cursor-pointer transition-[border-color,border-width] ${flowType === 'fast_track' ? 'border-orange-500 border-2' : 'hover:border-orange-500'}`}
               onClick={() => setFlowType('fast_track')}>
           <CardHeader>
             <div className="flex items-center justify-between">

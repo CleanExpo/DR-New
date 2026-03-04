@@ -168,7 +168,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: 'Failed to convert claim', details: message },
+      { error: 'Failed to convert claim' },
       { status: 500 }
     );
   }

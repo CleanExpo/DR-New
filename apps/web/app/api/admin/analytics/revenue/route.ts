@@ -32,67 +32,43 @@ export async function GET(request: NextRequest) {
       ? new Date(startDateParam)
       : new Date(endDate.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-    // Revenue by service type
-    const revenueByServiceType = await db.booking.groupBy({
-      by: ['australianServiceType'],
-      _sum: {
-        finalCostAUD: true,
-      },
-      _count: true,
-      where: {
-        completedAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
-
-    // Revenue by region
-    const revenueByRegion = await db.booking.groupBy({
-      by: ['serviceState'],
-      _sum: {
-        finalCostAUD: true,
-      },
-      _count: true,
-      where: {
-        completedAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
-
-    // Total metrics
-    const totalPayments = await db.payment.findMany({
-      where: {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-        status: 'COMPLETED',
-      },
-    });
+    // Fetch all revenue metrics in parallel
+    const [revenueByServiceType, revenueByRegion, totalPayments, allPaymentAttempts] =
+      await Promise.all([
+        db.booking.groupBy({
+          by: ['australianServiceType'],
+          _sum: { finalCostAUD: true },
+          _count: true,
+          where: { completedAt: { gte: startDate, lte: endDate } },
+        }),
+        db.booking.groupBy({
+          by: ['serviceState'],
+          _sum: { finalCostAUD: true },
+          _count: true,
+          where: { completedAt: { gte: startDate, lte: endDate } },
+        }),
+        db.payment.findMany({
+          where: { createdAt: { gte: startDate, lte: endDate }, status: 'COMPLETED' },
+        }),
+        db.payment.findMany({
+          where: { createdAt: { gte: startDate, lte: endDate } },
+          select: { status: true },
+        }),
+      ]);
 
     const totalRevenue = totalPayments.reduce((sum, p) => sum + Number(p.amountAUD), 0);
     const platformFees = totalRevenue * 0.2;
     const contractorPayouts = totalRevenue * 0.8;
 
-    // Daily revenue trend - calculated from payments since dailyMetrics model not implemented
+    // Daily revenue trend — dailyMetrics model not implemented
     const dailyRevenue: { date: Date; totalRevenue: number; platformFees: number; contractorPayouts: number }[] = [];
 
-    // Payment success rate
-    const allPaymentAttempts = await db.payment.findMany({
-      where: {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
-
-    const successfulPayments = allPaymentAttempts.filter((p) => p.status === 'COMPLETED')
-      .length;
-    const failedPayments = allPaymentAttempts.filter((p) => p.status === 'FAILED').length;
+    // Payment success rate — single pass
+    let successfulPayments = 0, failedPayments = 0;
+    for (const p of allPaymentAttempts) {
+      if (p.status === 'COMPLETED') successfulPayments++;
+      else if (p.status === 'FAILED') failedPayments++;
+    }
     const paymentSuccessRate =
       allPaymentAttempts.length > 0
         ? (successfulPayments / allPaymentAttempts.length) * 100
@@ -137,13 +113,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[Admin Analytics] Error fetching revenue data:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to fetch revenue analytics',
-        details: message,
-      },
+      { error: 'Failed to fetch revenue analytics' },
       { status: 500 }
     );
   }

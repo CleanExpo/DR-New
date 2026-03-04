@@ -243,7 +243,7 @@ export default function TrainingPage() {
               .map((course) => (
                 <div
                   key={course.id}
-                  className="bg-portal-card rounded-xl border border-portal-border overflow-hidden shadow-sm hover:shadow-md hover:border-nrpg-teal/30 transition-all duration-200"
+                  className="bg-portal-card rounded-xl border border-portal-border overflow-hidden shadow-sm hover:shadow-md hover:border-nrpg-teal/30 transition-[box-shadow,border-color,opacity] duration-200"
                 >
                   <div className="flex">
                     <div
@@ -274,7 +274,7 @@ export default function TrainingPage() {
                         </div>
                         <div className="w-full bg-portal-border rounded-full h-1.5">
                           <div
-                            className="bg-nrpg-teal h-1.5 rounded-full transition-all duration-500"
+                            className="bg-nrpg-teal h-1.5 rounded-full transition-[width] duration-500"
                             style={{ width: `${course.progress}%` }}
                           />
                         </div>
@@ -299,7 +299,7 @@ export default function TrainingPage() {
             <div
               key={course.id}
               className={cn(
-                'bg-portal-card rounded-xl border border-portal-border overflow-hidden shadow-sm transition-all duration-200',
+                'bg-portal-card rounded-xl border border-portal-border overflow-hidden shadow-sm transition-[box-shadow,border-color,opacity] duration-200',
                 course.status === 'locked'
                   ? 'opacity-75'
                   : 'hover:shadow-md hover:border-nrpg-teal/30'
@@ -361,7 +361,7 @@ export default function TrainingPage() {
                   <div className="space-y-1">
                     <div className="w-full bg-portal-border rounded-full h-1.5">
                       <div
-                        className="bg-nrpg-teal h-1.5 rounded-full transition-all duration-500"
+                        className="bg-nrpg-teal h-1.5 rounded-full transition-[width] duration-500"
                         style={{ width: `${course.progress}%` }}
                       />
                     </div>

@@ -115,53 +115,38 @@ export async function GET(request: NextRequest) {
       contractorMetrics[contractorId].payouts += netAmount;
     });
 
-    // Get current month data
+    // Get current month data — single pass
     const now = new Date();
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-    const monthPayments = allPayments.filter(
-      (p) => p.createdAt >= startOfMonth
-    );
+    let monthRevenue = 0, monthPayouts = 0;
+    for (const p of allPayments) {
+      if (p.createdAt >= startOfMonth) {
+        const amt = parseFloat(p.amountAUD.toString());
+        monthRevenue += amt;
+        monthPayouts += calculatePayoutAmount(amt).netAmount;
+      }
+    }
 
-    const monthRevenue = monthPayments.reduce(
-      (sum, p) => sum + parseFloat(p.amountAUD.toString()),
-      0
-    );
-
-    const monthPayouts = monthPayments.reduce(
-      (sum, p) => {
-        const { netAmount } = calculatePayoutAmount(parseFloat(p.amountAUD.toString()));
-        return sum + netAmount;
-      },
-      0
-    );
-
-    // Calculate payment success rate
-    const allPaymentsCount = await db.payment.count();
-    const failedPayments = await db.payment.count({
-      where: { status: 'FAILED' },
-    });
+    // Calculate payment success rate + pending payments in parallel
+    const [allPaymentsCount, failedPayments, pendingPayments] = await Promise.all([
+      db.payment.count(),
+      db.payment.count({ where: { status: 'FAILED' } }),
+      db.payment.findMany({
+        where: { status: 'PENDING' },
+        select: {
+          id: true,
+          amountAUD: true,
+          createdAt: true,
+          booking: { select: { id: true, australianServiceType: true } },
+        },
+        orderBy: { createdAt: 'asc' },
+        take: 10,
+      }),
+    ]);
     const successRate =
       allPaymentsCount > 0
         ? ((allPaymentsCount - failedPayments) / allPaymentsCount) * 100
         : 100;
-
-    // Get pending payments
-    const pendingPayments = await db.payment.findMany({
-      where: { status: 'PENDING' },
-      select: {
-        id: true,
-        amountAUD: true,
-        createdAt: true,
-        booking: {
-          select: {
-            id: true,
-            australianServiceType: true,
-          },
-        },
-      },
-      orderBy: { createdAt: 'asc' },
-      take: 10,
-    });
 
     return NextResponse.json({
       success: true,

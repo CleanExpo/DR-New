@@ -65,8 +65,15 @@ export async function GET(request: Request) {
     CRITICAL_ROUTES.map((route) => checkRoute(route, baseUrl))
   );
 
-  const availableCount = checks.filter((c) => c.status === 'available').length;
   const totalCount = checks.length;
+  let availableCount = 0;
+  let unavailableCount = 0;
+  let unknownCount = 0;
+  for (const c of checks) {
+    if (c.status === 'available') availableCount++;
+    else if (c.status === 'unavailable') unavailableCount++;
+    else unknownCount++;
+  }
 
   return NextResponse.json(
     {
@@ -75,8 +82,8 @@ export async function GET(request: Request) {
       summary: {
         total: totalCount,
         available: availableCount,
-        unavailable: checks.filter((c) => c.status === 'unavailable').length,
-        unknown: checks.filter((c) => c.status === 'unknown').length,
+        unavailable: unavailableCount,
+        unknown: unknownCount,
       },
       routes: checks,
     },

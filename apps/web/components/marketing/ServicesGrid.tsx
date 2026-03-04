@@ -145,19 +145,19 @@ function ServiceCard({
   return (
     <Link
       href={service.href}
-      className="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+      className="group relative bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-2"
     >
       {/* Image Background with Gradient Overlay */}
       <div className="relative h-48 bg-slate-200 dark:bg-slate-800 overflow-hidden">
         {/* Placeholder gradient (replace with actual images) */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${colorClasses} opacity-80 transition-all duration-300`} />
+        <div className={`absolute inset-0 bg-gradient-to-br ${colorClasses} opacity-80 transition-[opacity] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]`} />
 
         {/* Icon Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
           <service.icon
             size="hero"
             gradient={service.color === 'blue' ? 'water' : service.color === 'orange' ? 'fire' : service.color === 'green' ? 'mould' : 'bio'}
-            className="opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300"
+            className="opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-[transform,opacity] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]"
             aria-hidden="true"
           />
         </div>
@@ -215,7 +215,7 @@ export function ServicesGridCompact({ className = '' }: { className?: string }) 
         <Link
           key={service.id}
           href={service.href}
-          className="group flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+          className="group flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
         >
           <service.icon
             size="lg"

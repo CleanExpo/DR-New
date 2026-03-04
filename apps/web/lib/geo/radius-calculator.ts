@@ -372,17 +372,19 @@ export async function compareRadiusAdjustment(
   allSuburbs: Suburb[],
   allRegions: Region[]
 ): Promise<CoverageAdjustment> {
-  const currentResult = await calculateContractorCoverage(
-    { centrePostcode, radiusKm: currentRadius },
-    allSuburbs,
-    allRegions
-  );
-
-  const newResult = await calculateContractorCoverage(
-    { centrePostcode, radiusKm: newRadius },
-    allSuburbs,
-    allRegions
-  );
+  // Both coverage calculations are fully independent — run in parallel
+  const [currentResult, newResult] = await Promise.all([
+    calculateContractorCoverage(
+      { centrePostcode, radiusKm: currentRadius },
+      allSuburbs,
+      allRegions
+    ),
+    calculateContractorCoverage(
+      { centrePostcode, radiusKm: newRadius },
+      allSuburbs,
+      allRegions
+    ),
+  ]);
 
   const currentRegionIds = new Set(
     currentResult.regionsInRadius.map((r) => r.id)

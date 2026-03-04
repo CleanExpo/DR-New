@@ -27,36 +27,39 @@ export const shouldAnimateInContext = (context?: string): boolean => {
 // PAGE TRANSITIONS
 // ============================================================================
 
+// Physics easing curve: expo-out feel, approved by Bezier law
+const PHYSICS_EASE = [0.19, 1, 0.22, 1] as const;
+
 export const pageTransitions = {
   fadeInUp: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
-    transition: { duration: 0.4, ease: 'easeOut' },
+    transition: { duration: 0.4, ease: PHYSICS_EASE },
   },
   fadeInDown: {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 20 },
-    transition: { duration: 0.4, ease: 'easeOut' },
+    transition: { duration: 0.4, ease: PHYSICS_EASE },
   },
   fadeInLeft: {
     initial: { opacity: 0, x: -20 },
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: 20 },
-    transition: { duration: 0.4, ease: 'easeOut' },
+    transition: { duration: 0.4, ease: PHYSICS_EASE },
   },
   fadeInRight: {
     initial: { opacity: 0, x: 20 },
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -20 },
-    transition: { duration: 0.4, ease: 'easeOut' },
+    transition: { duration: 0.4, ease: PHYSICS_EASE },
   },
   scaleIn: {
     initial: { opacity: 0, scale: 0.95 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.95 },
-    transition: { duration: 0.3, ease: 'easeOut' },
+    transition: { duration: 0.3, ease: PHYSICS_EASE },
   },
 } as const;
 
@@ -70,11 +73,11 @@ export const buttonVariants: Variants = {
   },
   hover: {
     scale: 1.05,
-    transition: { duration: 0.2, ease: 'easeOut' },
+    transition: { type: 'spring', stiffness: 300, damping: 30 },
   },
   tap: {
     scale: 0.98,
-    transition: { duration: 0.1 },
+    transition: { type: 'spring', stiffness: 400, damping: 30 },
   },
 };
 
@@ -92,7 +95,7 @@ export const rippleVariants: Variants = {
 
 export const rippleTransition = {
   duration: 0.6,
-  ease: 'easeOut',
+  ease: [0.19, 1, 0.22, 1],
 };
 
 // ============================================================================
@@ -107,7 +110,7 @@ export const cardVariants: Variants = {
 
 export const cardTransition = {
   duration: 0.3,
-  ease: 'easeOut',
+  ease: [0.19, 1, 0.22, 1],
 };
 
 export const priorityCardVariants: Variants = {
@@ -179,7 +182,7 @@ export const dropdownVariants: Variants = {
 
 export const dropdownTransition = {
   duration: 0.2,
-  ease: 'easeOut',
+  ease: [0.19, 1, 0.22, 1],
 };
 
 export const menuItemVariants: Variants = {
@@ -220,7 +223,7 @@ export const scrollRevealVariants: Variants = {
 
 export const scrollRevealTransition = {
   duration: 0.5,
-  ease: 'easeOut',
+  ease: [0.19, 1, 0.22, 1],
 };
 
 // Viewport trigger configuration
@@ -415,7 +418,7 @@ export const imageLoadVariants: Variants = {
 
 export const imageLoadTransition = {
   duration: 0.4,
-  ease: 'easeOut',
+  ease: [0.19, 1, 0.22, 1],
 };
 
 // ============================================================================
@@ -624,31 +627,31 @@ export const mobilePageTransitions = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
-    transition: { duration: 0.2, ease: 'easeOut' },
+    transition: { duration: 0.2, ease: [0.19, 1, 0.22, 1] },
   },
   fadeInDown: {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 20 },
-    transition: { duration: 0.2, ease: 'easeOut' },
+    transition: { duration: 0.2, ease: [0.19, 1, 0.22, 1] },
   },
   fadeInLeft: {
     initial: { opacity: 0, x: -20 },
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: 20 },
-    transition: { duration: 0.2, ease: 'easeOut' },
+    transition: { duration: 0.2, ease: [0.19, 1, 0.22, 1] },
   },
   fadeInRight: {
     initial: { opacity: 0, x: 20 },
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -20 },
-    transition: { duration: 0.2, ease: 'easeOut' },
+    transition: { duration: 0.2, ease: [0.19, 1, 0.22, 1] },
   },
   scaleIn: {
     initial: { opacity: 0, scale: 0.95 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.95 },
-    transition: { duration: 0.2, ease: 'easeOut' },
+    transition: { duration: 0.2, ease: [0.19, 1, 0.22, 1] },
   },
 } as const;
 

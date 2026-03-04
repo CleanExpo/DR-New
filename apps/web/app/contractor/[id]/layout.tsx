@@ -13,17 +13,18 @@ export default async function ContractorProfileLayout({
   children,
   params,
 }: ContractorProfileLayoutProps) {
-  const session = await getServerSession(authOptions)
+  const [session, contractor] = await Promise.all([
+    getServerSession(authOptions),
+    prisma.contractorProfile.findUnique({
+      where: { id: params.id },
+      select: { userId: true },
+    }),
+  ])
   const sessionUser = session?.user as unknown as { id?: string; userType?: string } | undefined
 
   if (!sessionUser?.id) {
     redirect('/login')
   }
-
-  const contractor = await prisma.contractorProfile.findUnique({
-    where: { id: params.id },
-    select: { userId: true },
-  })
 
   if (!contractor) {
     notFound()

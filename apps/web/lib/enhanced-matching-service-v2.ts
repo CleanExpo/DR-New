@@ -236,15 +236,17 @@ export class EnhancedMatchingServiceV2 {
   }
 
   /**
-   * Calculate match score for a contractor against a service request
+   * Calculate match score for a contractor against a service request.
+   * Complexity: O(s + a) where s = contractor.services.length, a = contractor.serviceAreas.length
    */
   private static calculateContractorMatchScore(contractor: any, criteria: MatchCriteria) {
     let score = 0;
     const reasons: string[] = [];
     let canBid = true;
 
-    // Service category match (40 points) - HIGH PRIORITY
-    if (contractor.services.includes(criteria.serviceCategory)) {
+    // Service category match (40 points) - HIGH PRIORITY — O(1) with Set
+    const servicesSet = new Set<string>(contractor.services);
+    if (servicesSet.has(criteria.serviceCategory)) {
       score += 40;
       reasons.push('Service category match');
     } else {
@@ -313,15 +315,17 @@ export class EnhancedMatchingServiceV2 {
   }
 
   /**
-   * Calculate match score for a service request against a contractor
+   * Calculate match score for a service request against a contractor.
+   * Complexity: O(s + a) where s = contractor.services.length, a = contractor.serviceAreas.length
    */
   private static calculateRequestMatchScore(contractor: any, request: any) {
     let score = 0;
     const reasons: string[] = [];
     let canBid = true;
 
-    // Service category match (40 points) - HIGH PRIORITY
-    if (contractor.services.includes(request.serviceCategory)) {
+    // Service category match (40 points) - HIGH PRIORITY — O(1) with Set
+    const servicesSet = new Set<string>(contractor.services);
+    if (servicesSet.has(request.serviceCategory)) {
       score += 40;
       reasons.push('Service category match');
     } else {

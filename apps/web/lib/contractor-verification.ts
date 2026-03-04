@@ -212,6 +212,9 @@ async function mockLicenceCheck(
 /**
  * Batch-check all contractors for expired licences and flag them.
  * Useful as a scheduled job / cron task.
+ *
+ * Complexity: O(n) — two DB calls total (findMany + updateMany) regardless of n.
+ * Avoids N+1 pattern by collecting expired IDs then issuing a single updateMany.
  */
 export async function flagExpiredLicences(): Promise<{
   flagged: number;
@@ -228,21 +231,19 @@ export async function flagExpiredLicences(): Promise<{
     },
   });
 
-  let flagged = 0;
+  const expiredIds: string[] = contractors
+    .filter((c) => checkLicenceExpiry(c.licenseExpiry).isExpired)
+    .map((c) => c.id);
 
-  for (const c of contractors) {
-    const { isExpired } = checkLicenceExpiry(c.licenseExpiry);
-    if (isExpired) {
-      await prisma.contractor.update({
-        where: { id: c.id },
-        data: {
-          licenseStatus: 'expired',
-          verificationStatus: 'EXPIRED',
-        },
-      });
-      flagged++;
-    }
+  if (expiredIds.length > 0) {
+    await prisma.contractor.updateMany({
+      where: { id: { in: expiredIds } },
+      data: {
+        licenseStatus: 'expired',
+        verificationStatus: 'EXPIRED',
+      },
+    });
   }
 
-  return { flagged, total: contractors.length };
+  return { flagged: expiredIds.length, total: contractors.length };
 }

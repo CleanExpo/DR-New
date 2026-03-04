@@ -62,30 +62,38 @@ export async function GET(request: NextRequest) {
       ? enrollments.filter((e) => e.programId === programId)
       : enrollments
 
-    // Check when last NPS was submitted for each program
+    // Check when last NPS was submitted for each program — single batch query
     const oneWeekAgo = new Date()
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
 
-    const surveysWithDueStatus = await Promise.all(
-      relevantEnrollments.map(async (enrollment) => {
-        const lastSurvey = await db.betaNPSSurvey.findFirst({
-          where: {
-            programId: enrollment.programId,
-            contractorId: dbUser.contractor!.id,
-          },
-          orderBy: { createdAt: 'desc' },
-        })
+    const programIds = relevantEnrollments.map((e) => e.programId)
+    const contractorId = dbUser.contractor!.id
 
-        const isDue = !lastSurvey || lastSurvey.createdAt < oneWeekAgo
+    // Fetch the most recent survey per program in one query, then pick latest per program
+    const recentSurveys = await db.betaNPSSurvey.findMany({
+      where: { programId: { in: programIds }, contractorId },
+      orderBy: { createdAt: 'desc' },
+      select: { programId: true, createdAt: true, score: true },
+    })
 
-        return {
-          program: enrollment.program,
-          lastSurveyAt: lastSurvey?.createdAt || null,
-          lastScore: lastSurvey?.score || null,
-          isDue,
-        }
-      })
-    )
+    // Build a Map of programId -> most recent survey (already sorted desc)
+    const lastSurveyByProgram = new Map<string, typeof recentSurveys[0]>()
+    for (const survey of recentSurveys) {
+      if (!lastSurveyByProgram.has(survey.programId)) {
+        lastSurveyByProgram.set(survey.programId, survey)
+      }
+    }
+
+    const surveysWithDueStatus = relevantEnrollments.map((enrollment) => {
+      const lastSurvey = lastSurveyByProgram.get(enrollment.programId) ?? null
+      const isDue = !lastSurvey || lastSurvey.createdAt < oneWeekAgo
+      return {
+        program: enrollment.program,
+        lastSurveyAt: lastSurvey?.createdAt ?? null,
+        lastScore: lastSurvey?.score ?? null,
+        isDue,
+      }
+    })
 
     // Get survey history
     const whereClause: Record<string, unknown> = {

@@ -93,7 +93,7 @@ export function NetworkQualityMonitor({
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className={`h-full transition-all ${
+            className={`h-full transition-[width,background-color] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
               currentQuality === 'high'
                 ? 'w-full bg-green-600'
                 : currentQuality === 'medium'

@@ -176,14 +176,14 @@ export function ClientTestimonialCarousel() {
           <div className="flex gap-3 pt-4">
             <button
               onClick={goToPrevious}
-              className="p-3 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white transition-colors"
+              className="p-3 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white transition-[background-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={goToNext}
-              className="p-3 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white transition-colors"
+              className="p-3 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white transition-[background-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5" />
@@ -193,7 +193,7 @@ export function ClientTestimonialCarousel() {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-2 rounded-full transition-all ${
+                  className={`h-2 rounded-full transition-[width,background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                     index === currentIndex ? 'bg-blue-600 w-8' : 'bg-slate-300 w-2'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}

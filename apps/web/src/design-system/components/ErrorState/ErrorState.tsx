@@ -104,7 +104,7 @@ export function ErrorState({
               <div className="w-full h-2 bg-white rounded-full overflow-hidden">
                 <div
                   className={cn(
-                    'h-full transition-all duration-500',
+                    'h-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                     severity === 'error' && 'bg-red-500',
                     severity === 'warning' && 'bg-amber-500',
                     severity === 'info' && 'bg-blue-500'

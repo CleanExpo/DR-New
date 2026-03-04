@@ -180,7 +180,7 @@ export const TrustSidebar: React.FC<TrustSidebarProps> = ({
         {/* Call-to-Action - Reassurance CTA */}
         <button
           type="submit"
-          className="w-full mt-6 py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold rounded-lg transition-all active:scale-95 text-sm"
+          className="w-full mt-6 py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold rounded-lg transition-transform duration-100 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] active:scale-95 text-sm"
         >
           Continue to Next Step
         </button>

@@ -65,7 +65,7 @@ function Field({
 }
 
 const inputCls =
-  'w-full bg-[#0a0a0a] border border-white/10 text-white text-sm px-3 py-2.5 rounded-sm placeholder:text-white/20 focus:outline-none focus:border-teal-500/60 focus:ring-1 focus:ring-teal-500/30 transition-colors duration-200'
+  'w-full bg-[#0a0a0a] border border-white/10 text-white text-sm px-3 py-2.5 rounded-sm placeholder:text-white/20 focus:outline-none focus:border-teal-500/60 focus:ring-1 focus:ring-teal-500/30 transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]'
 
 // ---------------------------------------------------------------------------
 // Empty cart
@@ -76,6 +76,7 @@ function EmptyCart() {
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
       className="flex flex-col items-center justify-center py-32 gap-6"
     >
       <div className="p-6 border border-white/10 rounded-sm text-white/20">
@@ -91,7 +92,7 @@ function EmptyCart() {
       </div>
       <Link
         href="/store"
-        className="text-[11px] font-black uppercase tracking-widest text-[#050505] bg-teal-500 hover:bg-teal-400 px-6 py-3 rounded-sm transition-colors duration-200"
+        className="text-[11px] font-black uppercase tracking-widest text-[#050505] bg-teal-500 hover:bg-teal-400 px-6 py-3 rounded-sm transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
       >
         Browse the Store
       </Link>
@@ -146,7 +147,7 @@ function OrderSuccess({ orderId, total }: { orderId: string; total: number }) {
 
       <Link
         href="/store"
-        className="text-[11px] font-black uppercase tracking-widest text-[#050505] bg-teal-500 hover:bg-teal-400 px-6 py-3 rounded-sm transition-colors duration-200"
+        className="text-[11px] font-black uppercase tracking-widest text-[#050505] bg-teal-500 hover:bg-teal-400 px-6 py-3 rounded-sm transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
       >
         Continue Shopping
       </Link>
@@ -291,7 +292,7 @@ export default function CartCheckout() {
           </div>
           <Link
             href="/store"
-            className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-teal-400 border border-white/10 hover:border-teal-500/30 px-4 py-2 rounded-sm transition-all duration-200"
+            className="text-[10px] font-black uppercase tracking-widest text-white/40 hover:text-teal-400 border border-white/10 hover:border-teal-500/30 px-4 py-2 rounded-sm transition-[color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
           >
             ← Back to Store
           </Link>
@@ -319,7 +320,7 @@ export default function CartCheckout() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 12, height: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}
                       transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                      className="flex items-center gap-4 p-4 border border-white/10 bg-white/[0.02] rounded-sm hover:border-white/20 transition-colors duration-200"
+                      className="flex items-center gap-4 p-4 border border-white/10 bg-white/[0.02] rounded-sm hover:border-white/20 transition-[border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                     >
                       {/* Initials avatar */}
                       <div className="flex-shrink-0 w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-sm flex items-center justify-center">
@@ -347,7 +348,7 @@ export default function CartCheckout() {
                       <div className="flex items-center gap-0 border border-white/15 rounded-sm flex-shrink-0">
                         <button
                           onClick={() => update(item.productId, item.quantity - 1, item.variant)}
-                          className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/5 border-r border-white/10 transition-colors"
+                          className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/5 border-r border-white/10 transition-[background-color,color] duration-150 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                           aria-label="Decrease quantity"
                         >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -360,7 +361,7 @@ export default function CartCheckout() {
                         <button
                           onClick={() => update(item.productId, item.quantity + 1, item.variant)}
                           disabled={item.quantity >= 10}
-                          className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/5 border-l border-white/10 disabled:opacity-30 transition-colors"
+                          className="w-8 h-8 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/5 border-l border-white/10 disabled:opacity-30 transition-[background-color,color] duration-150 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                           aria-label="Increase quantity"
                         >
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -372,7 +373,7 @@ export default function CartCheckout() {
                       {/* Remove */}
                       <button
                         onClick={() => remove(item.productId, item.variant)}
-                        className="flex-shrink-0 p-2 text-white/20 hover:text-[#FF4444] transition-colors"
+                        className="flex-shrink-0 p-2 text-white/20 hover:text-[#FF4444] transition-[color] duration-150 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                         aria-label={`Remove ${item.name}`}
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -511,6 +512,7 @@ export default function CartCheckout() {
                 <motion.div
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
                   className="border border-[#FF4444]/30 bg-[#FF4444]/5 px-4 py-3 rounded-sm"
                 >
                   <p className="text-[#FF4444] text-sm">{error}</p>

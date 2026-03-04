@@ -209,29 +209,20 @@ export class LeadScoringService {
   /**
    * Get lead scoring analytics
    */
+  /**
+   * Fetch all lead-scoring analytics in parallel — 5 independent DB calls → Promise.all
+   * Complexity: O(1) wall-clock regardless of query count (concurrent execution)
+   */
   static async getLeadScoringAnalytics() {
     try {
-      const totalLeads = await prisma.serviceRequest.count();
-      const highValueLeads = await prisma.serviceRequest.count({
-        where: { leadScore: { gte: 70 } }
-      });
-      const mediumValueLeads = await prisma.serviceRequest.count({
-        where: { 
-          leadScore: { 
-            gte: 40,
-            lt: 70 
-          } 
-        }
-      });
-      const lowValueLeads = await prisma.serviceRequest.count({
-        where: { leadScore: { lt: 40 } }
-      });
-
-      const avgScore = await prisma.serviceRequest.aggregate({
-        _avg: {
-          leadScore: true
-        }
-      });
+      const [totalLeads, highValueLeads, mediumValueLeads, lowValueLeads, avgScore] =
+        await Promise.all([
+          prisma.serviceRequest.count(),
+          prisma.serviceRequest.count({ where: { leadScore: { gte: 70 } } }),
+          prisma.serviceRequest.count({ where: { leadScore: { gte: 40, lt: 70 } } }),
+          prisma.serviceRequest.count({ where: { leadScore: { lt: 40 } } }),
+          prisma.serviceRequest.aggregate({ _avg: { leadScore: true } }),
+        ]);
 
       return {
         totalLeads,
@@ -239,7 +230,7 @@ export class LeadScoringService {
         mediumValueLeads,
         lowValueLeads,
         averageScore: avgScore._avg.leadScore || 0,
-        conversionRate: totalLeads > 0 ? (highValueLeads / totalLeads) * 100 : 0
+        conversionRate: totalLeads > 0 ? (highValueLeads / totalLeads) * 100 : 0,
       };
     } catch (error) {
       console.error('Error getting lead scoring analytics:', error);

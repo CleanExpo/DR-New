@@ -143,17 +143,7 @@ export class TenantService {
 
     if (!config) return null;
 
-    // Parse value based on type
-    switch (config.type) {
-      case 'boolean':
-        return config.value === 'true';
-      case 'number':
-        return Number(config.value);
-      case 'json':
-        return JSON.parse(config.value);
-      default:
-        return config.value;
-    }
+    return TenantService.parseConfigValue(config.value, config.type);
   }
 
   /**
@@ -165,23 +155,25 @@ export class TenantService {
     });
 
     const result: Record<string, any> = {};
-    configs.forEach(config => {
-      switch (config.type) {
-        case 'boolean':
-          result[config.key] = config.value === 'true';
-          break;
-        case 'number':
-          result[config.key] = Number(config.value);
-          break;
-        case 'json':
-          result[config.key] = JSON.parse(config.value);
-          break;
-        default:
-          result[config.key] = config.value;
-      }
+    configs.forEach((config) => {
+      result[config.key] = TenantService.parseConfigValue(config.value, config.type);
     });
 
     return result;
+  }
+
+  /**
+   * Parse a single stored config value according to its declared type.
+   * Pure function — no side effects.
+   * Complexity: O(1)
+   */
+  private static parseConfigValue(value: string, type: string): any {
+    switch (type) {
+      case 'boolean': return value === 'true';
+      case 'number':  return Number(value);
+      case 'json':    return JSON.parse(value);
+      default:        return value;
+    }
   }
 
   /**
@@ -189,21 +181,9 @@ export class TenantService {
    */
   private static formatTenantConfig(tenant: any): TenantConfig {
     const configurations: Record<string, any> = {};
-    
+
     tenant.configurations.forEach((config: any) => {
-      switch (config.type) {
-        case 'boolean':
-          configurations[config.key] = config.value === 'true';
-          break;
-        case 'number':
-          configurations[config.key] = Number(config.value);
-          break;
-        case 'json':
-          configurations[config.key] = JSON.parse(config.value);
-          break;
-        default:
-          configurations[config.key] = config.value;
-      }
+      configurations[config.key] = TenantService.parseConfigValue(config.value, config.type);
     });
 
     return {

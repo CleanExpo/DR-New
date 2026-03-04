@@ -119,6 +119,7 @@ export const AnimatedItem = React.forwardRef<HTMLDivElement, AnimatedItemProps>(
         className={className}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
       >
         {children}
       </motion.div>

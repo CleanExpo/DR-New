@@ -280,7 +280,7 @@ export const TriageTool: React.FC<TriageToolProps> = ({
     fontWeight: fontWeights.semibold,
     cursor: 'pointer',
     minWidth: '140px',
-    transition: 'all 0.2s',
+    transition: 'transform 0.2s cubic-bezier(0.19, 1, 0.22, 1)',
   });
 
   const backButtonStyles: React.CSSProperties = {

@@ -37,8 +37,8 @@ export async function GET(req: NextRequest) {
 
     // 3. Get tenant-specific stats if not super admin
     if (user.userType !== 'SUPER_ADMIN' && user.tenantId) {
-      // Override with tenant-specific counts
-      const [totalPhotos, enhancedPhotos, lastLog, costStats] = await Promise.all([
+      // Override with tenant-specific counts — all queries in parallel
+      const [totalPhotos, enhancedPhotos, lastLog, costStats, totalAttempts] = await Promise.all([
         prisma.inspectionPhoto.count({
           where: { tenantId: user.tenantId },
         }),
@@ -56,12 +56,12 @@ export async function GET(req: NextRequest) {
           _sum: { costUSD: true },
           _count: true,
         }),
+        prisma.aIImageEnhancementLog.count({
+          where: { tenantId: user.tenantId },
+        }),
       ]);
 
       const successCount = costStats._count || 0;
-      const totalAttempts = await prisma.aIImageEnhancementLog.count({
-        where: { tenantId: user.tenantId },
-      });
 
       return NextResponse.json({
         totalPhotos,
@@ -76,10 +76,10 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json(stats);
-  } catch (error: any) {
+  } catch (error) {
     console.error('Stats error:', error);
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

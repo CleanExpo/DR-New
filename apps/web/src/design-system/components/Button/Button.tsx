@@ -23,7 +23,7 @@ import { buttonPressAnimation, rippleVariants, rippleTransition } from '@/lib/an
 
 const buttonVariants = cva(
   // Base styles (all buttons)
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-95 active:transition-transform active:duration-100 active:ease-out',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-[background-color,border-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-95 active:transition-transform active:duration-100 [active:transition-timing-function:cubic-bezier(0.19,1,0.22,1)]',
   {
     variants: {
       variant: {

@@ -169,7 +169,7 @@ export default function AssignContractorPage() {
                   type="button"
                   disabled={!isAvailable}
                   onClick={() => setSelectedId(isSelected ? '' : c.id)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all ${
+                  className={`w-full text-left p-4 rounded-xl border transition-[border-color,background-color,box-shadow,opacity] ${
                     isSelected
                       ? 'border-[#0d9488] bg-[#0d9488]/10 ring-1 ring-[#0d9488]'
                       : isAvailable

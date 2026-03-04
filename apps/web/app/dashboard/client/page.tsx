@@ -123,8 +123,7 @@ export default function ClientDashboard() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
 
-  const [contractorMatches, setContractorMatches] = useState<Record<string, any[]>>({});
-  const [loadingMatches, setLoadingMatches] = useState(false);
+  // contractorMatches removed — contractor identities are private per NRPG policy
   const [availableContractors, setAvailableContractors] = useState<any[]>([]);
   const [loadingContractors, setLoadingContractors] = useState(false);
   const [userPreferences, setUserPreferences] = useState(null);
@@ -241,16 +240,7 @@ export default function ClientDashboard() {
 
   // Analytics calculation is now handled by useClientAnalytics hook
 
-  // Fetch contractor matches for each service request
-  useEffect(() => {
-    if (serviceRequests.length > 0) {
-      serviceRequests.forEach(request => {
-        if (request.status === 'MATCHED' || request.status === 'IN_PROGRESS') {
-          fetchContractorMatches(request.id);
-        }
-      });
-    }
-  }, [serviceRequests]);
+  // Contractor match fetching removed — contractor identities are private per NRPG policy
 
   // Fetch available contractors when Services tab is selected
   useEffect(() => {
@@ -577,23 +567,6 @@ export default function ClientDashboard() {
     }
   };
 
-  const fetchContractorMatches = async (requestId: string) => {
-    try {
-      setLoadingMatches(true);
-      if (typeof window === 'undefined') return;
-
-      // Contractor identities are private; clients do not receive a contractor list.
-      setContractorMatches(prev => ({
-        ...prev,
-        [requestId]: []
-      }));
-      return;
-    } catch (error) {
-      console.error('Error fetching contractor matches:', error);
-    } finally {
-      setLoadingMatches(false);
-    }
-  };
 
   const fetchAvailableContractors = async (category: string = 'all') => {
     try {
@@ -1404,7 +1377,7 @@ export default function ClientDashboard() {
                     {serviceCategories.slice(0, 8).map((category) => (
                       <Card 
                         key={category.id} 
-                        className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 bg-gray-800 border-gray-700 hover:border-semantic-contractor"
+                        className="cursor-pointer hover:shadow-lg transition-[box-shadow,transform,border-color] duration-200 hover:scale-105 bg-gray-800 border-gray-700 hover:border-semantic-contractor"
                         onClick={() => setActiveTab('services')}
                       >
                         <CardContent className="p-4 text-center">
@@ -1491,7 +1464,7 @@ export default function ClientDashboard() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {availableContractors.map((contractor) => (
-                <Card key={contractor.id} className="hover:shadow-lg transition-all duration-300 group bg-gray-800 border-gray-700 hover:border-semantic-contractor">
+                <Card key={contractor.id} className="hover:shadow-lg transition-[box-shadow,border-color] duration-300 group bg-gray-800 border-gray-700 hover:border-semantic-contractor">
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
@@ -1588,7 +1561,7 @@ export default function ClientDashboard() {
                         View Profile
                       </Button>
                       <Button 
-                        className="flex-1 bg-blue-600 hover:bg-blue-700 group-hover:shadow-md transition-all duration-200"
+                        className="flex-1 bg-blue-600 hover:bg-blue-700 group-hover:shadow-md transition-[background-color,box-shadow] duration-200"
                         onClick={handleContactContractor}
                       >
                         <MessageSquare className="h-4 w-4 mr-2" />
@@ -1965,7 +1938,7 @@ export default function ClientDashboard() {
             ) : (
               <div className="space-y-4">
                 {bookings.map((booking) => (
-                  <Card key={booking.id} className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-semantic-contractor group bg-gray-800 border-gray-700">
+                  <Card key={booking.id} className="hover:shadow-xl transition-[box-shadow] duration-300 border-l-4 border-l-semantic-contractor group bg-gray-800 border-gray-700">
                     <CardContent className="px-4 py-0">
                       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                         {/* Main Content */}
@@ -3298,7 +3271,7 @@ export default function ClientDashboard() {
                     )}
                     <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
                         <Button
-                          className="flex-1 bg-semantic-contractor hover:bg-semantic-contractor/90 text-white text-md py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                          className="flex-1 bg-semantic-contractor hover:bg-semantic-contractor/90 text-white text-md py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-[background-color,box-shadow] duration-300"
                           onClick={() => {
                             setFormData(prev => ({
                               ...prev,
@@ -3315,7 +3288,7 @@ export default function ClientDashboard() {
                         Request Service
                       </Button>
                       <Button
-                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-md py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-md py-6 h-auto font-semibold shadow-lg hover:shadow-xl transition-[background-color,box-shadow] duration-300"
                         onClick={handleContactContractor}
                       >
                         <MessageSquare className="h-3 w-3 mr-3" />
@@ -3533,70 +3506,7 @@ export default function ClientDashboard() {
                 </div>
               )}
 
-              {/* Contractor Matches */}
-              {false && contractorMatches[selectedRequest.id] && contractorMatches[selectedRequest.id].length > 0 && (
-                <div className="space-y-4">
-                  <h4 className="text-xl font-bold text-gray-900">
-                      Matched Contractors ({contractorMatches[selectedRequest.id].length})
-                  </h4>
-                  <div className="space-y-4">
-                      {contractorMatches[selectedRequest.id].map((match: any) => (
-                      <div key={match.id} className="flex items-center justify-between p-6 bg-gray-50 border border-gray-200 rounded-xl hover:border-gray-300 transition-colors">
-                        <div className="flex items-center space-x-4">
-                          <div className="w-16 h-16 bg-semantic-contractor rounded-full flex items-center justify-center">
-                            <span className="text-white font-bold text-xl">
-                                {match.contractor.businessName?.charAt(0) || match.contractor.user.name?.charAt(0) || 'C'}
-                              </span>
-                            </div>
-                          <div className="flex-1">
-                            <h6 className="font-semibold text-gray-900 text-lg mb-1">
-                                {match.contractor.businessName || match.contractor.user.name}
-                              </h6>
-                            <p className="text-sm text-gray-600 mb-2">
-                              {match.contractor.city}, {match.contractor.state} • {match.contractor.experience} years experience
-                              </p>
-                            <div className="flex items-center space-x-4">
-                                <div className="flex items-center">
-                                <Star className="h-4 w-4 text-yellow-400 mr-1" />
-                                <span className="text-gray-900 text-sm font-medium">{match.contractor.rating.toFixed(1)}</span>
-                                <span className="text-gray-500 text-sm ml-1">({match.contractor.totalJobs} jobs)</span>
-                                </div>
-                                <Badge 
-                                className={`text-sm px-3 py-1 font-semibold ${
-                                  match.matchScore >= 80 ? 'bg-green-50 text-green-700 border-green-300' :
-                                  match.matchScore >= 60 ? 'bg-yellow-50 text-yellow-700 border-yellow-300' :
-                                  'bg-red-50 text-red-700 border-red-300'
-                                  }`}
-                                >
-                                  {match.matchScore}% match
-                                </Badge>
-                              </div>
-                            </div>
-                          </div>
-                        <div className="flex items-center space-x-3">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                            className="text-sm border-gray-300 text-gray-700 hover:bg-gray-100"
-                              onClick={() => handleViewContractor(match.contractor.id, match.contractor.services?.[0])}
-                            >
-                            <Eye className="h-4 w-4 mr-2" />
-                              View Profile
-                            </Button>
-                            <Button
-                              size="sm"
-                            className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white text-sm"
-                              onClick={handleContactContractor}
-                            >
-                            <MessageCircle className="h-4 w-4 mr-2" />
-                              Contact
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                </div>
-              )}
+              {/* Contractor Matches — hidden per NRPG policy: contractor identities are private */}
             </div>
           </div>
             </div>

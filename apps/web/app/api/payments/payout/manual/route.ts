@@ -84,10 +84,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      {
-        error: 'Failed to create manual payout',
-        details: message,
-      },
+      { error: 'Failed to create manual payout' },
       { status: 500 }
     );
   }

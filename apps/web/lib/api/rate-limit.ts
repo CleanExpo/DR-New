@@ -207,17 +207,19 @@ export async function redisRateLimit(
       throw new Error('Redis not configured');
     }
 
-    // Increment counter
-    const count = await redis.incr(key);
+    // Increment counter and fetch TTL in parallel — 2 concurrent Redis RTTs instead of 3
+    const [count, ttlInitial] = await Promise.all([
+      redis.incr(key),
+      redis.pttl(key),
+    ]);
 
-    // Set expiry on first request
+    // Set expiry on first request (key was just created)
     if (count === 1) {
       await redis.pexpire(key, windowMs);
     }
 
-    // Get TTL
-    const ttl = await redis.pttl(key);
-    const resetTime = now + (ttl > 0 ? ttl : windowMs);
+    const ttl = ttlInitial > 0 ? ttlInitial : windowMs;
+    const resetTime = now + ttl;
 
     if (count > maxRequests) {
       const retryAfter = Math.ceil(ttl / 1000);

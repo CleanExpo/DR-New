@@ -76,13 +76,16 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      modules: modules.map(module => ({
-        ...module,
-        totalEnrollments: module.progress.length,
-        completionRate: module.progress.length > 0
-          ? Math.round((module.progress.filter(p => p.completed).length / module.progress.length) * 100)
-          : 0,
-      })),
+      modules: modules.map(module => {
+        const total = module.progress.length;
+        let completed = 0;
+        for (const p of module.progress) { if (p.completed) completed++; }
+        return {
+          ...module,
+          totalEnrollments: total,
+          completionRate: total > 0 ? Math.round((completed / total) * 100) : 0,
+        };
+      }),
       pagination: {
         total,
         skip,
