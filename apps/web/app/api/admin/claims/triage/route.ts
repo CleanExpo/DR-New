@@ -174,7 +174,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Triage failed',
+        error: 'Triage failed',
       },
       { status: 500 }
     );
@@ -277,7 +277,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to get triage data',
+        error: 'Failed to get triage data',
       },
       { status: 500 }
     );

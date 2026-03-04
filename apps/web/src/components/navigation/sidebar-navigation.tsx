@@ -78,7 +78,7 @@ export default function SidebarNavigation({
 
       {/* Sidebar */}
       <aside
-        className={`fixed lg:sticky left-0 top-0 h-screen w-64 ${colors.bg} border-r ${colors.border} transition-all duration-300 z-50 overflow-y-auto ${
+        className={`fixed lg:sticky left-0 top-0 h-screen w-64 ${colors.bg} border-r ${colors.border} transition-[transform] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] z-50 overflow-y-auto ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >

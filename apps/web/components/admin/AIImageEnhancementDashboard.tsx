@@ -295,7 +295,7 @@ export function AIImageEnhancementDashboard() {
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                 <div
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 h-3 rounded-full transition-all duration-500"
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 h-3 rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                   style={{
                     width: `${(activeJob.processedImages / activeJob.totalImages) * 100}%`,
                   }}
@@ -426,7 +426,7 @@ export function AIImageEnhancementDashboard() {
             onClick={handleStartBatch}
             disabled={refreshing || !stats?.pendingPhotos}
             className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-6 rounded-lg font-semibold
-                     hover:from-purple-700 hover:to-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed
+                     hover:from-purple-700 hover:to-blue-700 transition-[opacity] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] disabled:opacity-50 disabled:cursor-not-allowed
                      flex items-center justify-center gap-2"
           >
             <Play className="w-5 h-5" />

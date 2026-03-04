@@ -20,46 +20,24 @@ export async function GET(request: Request) {
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
 
-    // Get recent competitor snapshots with major updates or new content
-    const snapshots = await prisma.competitorSnapshot.findMany({
-      where: {
-        timestamp: {
-          gte: startDate,
+    // Get snapshots and competitors in parallel
+    const [snapshots, competitors] = await Promise.all([
+      prisma.competitorSnapshot.findMany({
+        where: {
+          timestamp: { gte: startDate },
+          OR: [{ majorUpdate: true }, { newContent: { isEmpty: false } }],
         },
-        OR: [
-          { majorUpdate: true },
-          { newContent: { isEmpty: false } },
-        ],
-      },
-      orderBy: {
-        timestamp: 'desc',
-      },
-      take: limit,
-      include: {
-        competitor: {
-          select: {
-            name: true,
-            domain: true,
-            threatLevel: true,
-          },
-        },
-      },
-    });
+        orderBy: { timestamp: 'desc' },
+        take: limit,
+        include: { competitor: { select: { name: true, domain: true, threatLevel: true } } },
+      }),
+      prisma.competitor.findMany({
+        where: { isActive: true },
+        select: { id: true, name: true, domain: true, threatLevel: true, lastSnapshotAt: true, contentVelocity: true },
+      }),
+    ]);
 
-    // Get current threat distribution
-    const competitors = await prisma.competitor.findMany({
-      where: { isActive: true },
-      select: {
-        id: true,
-        name: true,
-        domain: true,
-        threatLevel: true,
-        lastSnapshotAt: true,
-        contentVelocity: true,
-      },
-    });
-
-    // Filter by threat level if specified
+    // Filter by threat level if specified (single pass)
     const filteredCompetitors = threatLevel
       ? competitors.filter((c) => c.threatLevel === threatLevel)
       : competitors;
@@ -84,21 +62,24 @@ export async function GET(request: Request) {
       timestamp: snapshot.timestamp,
     }));
 
-    // Calculate statistics
+    // Calculate statistics — single pass per collection
+    let threatHigh = 0, threatMedium = 0, threatLow = 0, velocitySum = 0;
+    for (const c of competitors) {
+      if (c.threatLevel === 'HIGH') threatHigh++;
+      else if (c.threatLevel === 'MEDIUM') threatMedium++;
+      else if (c.threatLevel === 'LOW') threatLow++;
+      velocitySum += c.contentVelocity;
+    }
+    let majorUpdates = 0, newContentCount = 0;
+    for (const s of snapshots) {
+      if (s.majorUpdate) majorUpdates++;
+      if (s.newContent && s.newContent.length > 0) newContentCount++;
+    }
     const stats = {
       totalCompetitors: competitors.length,
-      byThreatLevel: {
-        HIGH: competitors.filter((c) => c.threatLevel === 'HIGH').length,
-        MEDIUM: competitors.filter((c) => c.threatLevel === 'MEDIUM').length,
-        LOW: competitors.filter((c) => c.threatLevel === 'LOW').length,
-      },
-      recentActivity: {
-        majorUpdates: snapshots.filter((s) => s.majorUpdate).length,
-        newContent: snapshots.filter((s) => s.newContent && s.newContent.length > 0).length,
-      },
-      avgContentVelocity: competitors.length > 0
-        ? competitors.reduce((sum, c) => sum + c.contentVelocity, 0) / competitors.length
-        : 0,
+      byThreatLevel: { HIGH: threatHigh, MEDIUM: threatMedium, LOW: threatLow },
+      recentActivity: { majorUpdates, newContent: newContentCount },
+      avgContentVelocity: competitors.length > 0 ? velocitySum / competitors.length : 0,
     };
 
     return NextResponse.json({

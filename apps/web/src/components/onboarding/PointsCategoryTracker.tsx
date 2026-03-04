@@ -171,7 +171,7 @@ export function PointsCategoryTracker({
                   <div className="mt-2">
                     <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                       <div
-                        className="h-full rounded-full transition-all duration-500"
+                        className="h-full rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                         style={{
                           width: `${Math.min(percentage, 100)}%`,
                           backgroundColor: category.colour,

@@ -124,7 +124,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch AI metrics',
+        error: 'Failed to fetch AI metrics',
       },
       { status: 500 }
     );

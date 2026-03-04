@@ -287,7 +287,7 @@ export default function DisasterRecoveryBookingForm({
                             <div
                               key={service.value}
                               onClick={() => field.onChange(service.value)}
-                              className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                              className={`p-4 rounded-lg border-2 cursor-pointer transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                                 field.value === service.value
                                   ? 'border-[#00BFA6] bg-[#00BFA6]/10'
                                   : 'border-gray-600 bg-gray-700 hover:border-[#00BFA6]/50'
@@ -331,7 +331,7 @@ export default function DisasterRecoveryBookingForm({
                             <div
                               key={level.value}
                               onClick={() => field.onChange(level.value)}
-                              className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                              className={`p-4 rounded-lg border-2 cursor-pointer transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                                 field.value === level.value
                                   ? 'border-[#00BFA6] bg-[#00BFA6]/10'
                                   : 'border-gray-600 bg-gray-700 hover:border-[#00BFA6]/50'

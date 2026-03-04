@@ -73,7 +73,7 @@ export default function MainNavigation({
           {/* Logo/Brand */}
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2 group">
-              <div className="p-2 bg-white bg-opacity-20 rounded-lg group-hover:bg-opacity-30 transition-all">
+              <div className="p-2 bg-white bg-opacity-20 rounded-lg group-hover:bg-opacity-30 transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
                 <LayoutDashboard className="w-5 h-5" />
               </div>
               <div className="hidden sm:block">
@@ -89,7 +89,7 @@ export default function MainNavigation({
               <div key={item.href} className="relative group">
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] flex items-center gap-2 ${
                     isActive(item.href)
                       ? 'bg-white bg-opacity-20'
                       : 'hover:bg-white hover:bg-opacity-10'
@@ -107,7 +107,7 @@ export default function MainNavigation({
 
                 {/* Submenu */}
                 {item.submenu && (
-                  <div className="absolute left-0 mt-0 w-48 bg-white text-slate-900 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="absolute left-0 mt-0 w-48 bg-white text-slate-900 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-[opacity,visibility] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
                     {item.submenu.map((subitem) => (
                       <Link
                         key={subitem.href}
@@ -140,7 +140,7 @@ export default function MainNavigation({
             )}
 
             {/* Notifications */}
-            <button className="relative p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all">
+            <button className="relative p-2 hover:bg-white hover:bg-opacity-10 rounded-lg transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
               <Bell className="w-5 h-5" />
               {notificationCount > 0 && (
                 <span className="absolute top-1 right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold">
@@ -153,7 +153,7 @@ export default function MainNavigation({
             <div className="relative">
               <button
                 onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center gap-2 p-1.5 hover:bg-white hover:bg-opacity-10 rounded-lg transition-all"
+                className="flex items-center gap-2 p-1.5 hover:bg-white hover:bg-opacity-10 rounded-lg transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               >
                 <div className="w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center font-bold text-sm">
                   {userInitials}
@@ -212,7 +212,7 @@ export default function MainNavigation({
               <div key={item.href}>
                 <Link
                   href={item.href}
-                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                     isActive(item.href)
                       ? 'bg-white bg-opacity-20'
                       : 'hover:bg-white hover:bg-opacity-10'

@@ -474,7 +474,7 @@ export function TenantOnboardingWizard() {
               {BILLING_TIERS.map((tier) => (
                 <Card
                   key={tier.value}
-                  className={`cursor-pointer transition-all ${
+                  className={`cursor-pointer transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                     formData.tier === tier.value
                       ? 'border-primary ring-2 ring-primary'
                       : 'hover:border-primary/50'

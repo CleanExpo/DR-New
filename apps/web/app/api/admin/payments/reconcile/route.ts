@@ -91,9 +91,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('Reconciliation error:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
-    if (message.includes('not configured')) {
+    if (error instanceof Error && error.message.includes('not configured')) {
       return NextResponse.json(
         { error: 'Stripe is not configured' },
         { status: 500 }

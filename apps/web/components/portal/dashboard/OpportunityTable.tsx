@@ -122,7 +122,7 @@ export function OpportunityTable({
                     </p>
                   </td>
                   <td className="px-6 py-5 text-right">
-                    <button className="px-4 py-1.5 bg-nrpg-teal hover:bg-nrpg-teal-dark text-white text-xs font-bold font-heading rounded transition-all shadow-sm hover:shadow-md">
+                    <button className="px-4 py-1.5 bg-nrpg-teal hover:bg-nrpg-teal-dark text-white text-xs font-bold font-heading rounded transition-[background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] shadow-sm hover:shadow-md">
                       Express Interest
                     </button>
                   </td>

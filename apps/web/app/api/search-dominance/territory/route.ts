@@ -94,13 +94,40 @@ export async function GET(request: Request) {
       }
     });
 
-    // Overall statistics
+    // Overall statistics — single pass for all aggregates
+    let seoActivatedCount = 0, rankSum = 0, rankedCount = 0, totalMonthlySearches = 0;
+    const recentActivationsRaw: typeof areas = [];
+    const priorityAreasRaw: typeof areas = [];
+    const topPerformingRaw: typeof areas = [];
+
+    for (const a of areas) {
+      if (a.seoActivated) seoActivatedCount++;
+      if (a.currentRank) { rankSum += a.currentRank; rankedCount++; }
+      if (a.monthlySearches) totalMonthlySearches += a.monthlySearches;
+      if (a.activatedAt) recentActivationsRaw.push(a);
+      if (!a.seoActivated && (a.monthlySearches || 0) > 100) priorityAreasRaw.push(a);
+      if (a.seoActivated && a.currentRank && a.currentRank <= 10) topPerformingRaw.push(a);
+    }
+
+    const recentActivations = recentActivationsRaw
+      .sort((a, b) => (b.activatedAt?.getTime() || 0) - (a.activatedAt?.getTime() || 0))
+      .slice(0, 10)
+      .map((a) => ({ suburb: a.suburb, postcode: a.postcode, state: a.state, activatedAt: a.activatedAt }));
+
+    const priorityAreas = priorityAreasRaw
+      .sort((a, b) => (b.monthlySearches || 0) - (a.monthlySearches || 0))
+      .slice(0, 20)
+      .map((a) => ({ id: a.id, suburb: a.suburb, postcode: a.postcode, state: a.state, monthlySearches: a.monthlySearches, populationTier: a.populationTier }));
+
+    const topPerforming = topPerformingRaw
+      .sort((a, b) => (a.currentRank || 0) - (b.currentRank || 0))
+      .slice(0, 20)
+      .map((a) => ({ id: a.id, suburb: a.suburb, postcode: a.postcode, state: a.state, currentRank: a.currentRank, monthlySearches: a.monthlySearches, landingPageUrl: a.landingPageUrl }));
+
     const stats = {
       totalAreas: areas.length,
-      seoActivated: areas.filter((a) => a.seoActivated).length,
-      activationRate: areas.length > 0
-        ? (areas.filter((a) => a.seoActivated).length / areas.length) * 100
-        : 0,
+      seoActivated: seoActivatedCount,
+      activationRate: areas.length > 0 ? (seoActivatedCount / areas.length) * 100 : 0,
       byState: Object.values(byState).map((state: any) => ({
         state: state.state,
         total: state.total,
@@ -109,53 +136,10 @@ export async function GET(request: Request) {
         avgRank: state.avgRank,
         totalSearches: state.totalSearches,
       })),
-      avgRank: (() => {
-        const rankedAreas = areas.filter((a) => a.currentRank);
-        return rankedAreas.length > 0
-          ? rankedAreas.reduce((sum, a) => sum + (a.currentRank || 0), 0) / rankedAreas.length
-          : null;
-      })(),
-      totalMonthlySearches: areas.reduce((sum, a) => sum + (a.monthlySearches || 0), 0),
-      recentActivations: areas
-        .filter((a) => a.activatedAt)
-        .sort((a, b) => (b.activatedAt?.getTime() || 0) - (a.activatedAt?.getTime() || 0))
-        .slice(0, 10)
-        .map((a) => ({
-          suburb: a.suburb,
-          postcode: a.postcode,
-          state: a.state,
-          activatedAt: a.activatedAt,
-        })),
+      avgRank: rankedCount > 0 ? rankSum / rankedCount : null,
+      totalMonthlySearches,
+      recentActivations,
     };
-
-    // Priority areas (high search volume, not activated)
-    const priorityAreas = areas
-      .filter((a) => !a.seoActivated && (a.monthlySearches || 0) > 100)
-      .sort((a, b) => (b.monthlySearches || 0) - (a.monthlySearches || 0))
-      .slice(0, 20)
-      .map((a) => ({
-        id: a.id,
-        suburb: a.suburb,
-        postcode: a.postcode,
-        state: a.state,
-        monthlySearches: a.monthlySearches,
-        populationTier: a.populationTier,
-      }));
-
-    // Top performing areas (activated with good ranks)
-    const topPerforming = areas
-      .filter((a) => a.seoActivated && a.currentRank && a.currentRank <= 10)
-      .sort((a, b) => (a.currentRank || 0) - (b.currentRank || 0))
-      .slice(0, 20)
-      .map((a) => ({
-        id: a.id,
-        suburb: a.suburb,
-        postcode: a.postcode,
-        state: a.state,
-        currentRank: a.currentRank,
-        monthlySearches: a.monthlySearches,
-        landingPageUrl: a.landingPageUrl,
-      }));
 
     return NextResponse.json({
       stats,

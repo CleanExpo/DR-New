@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
         success: false,
         error: {
           code: 'TRIGGER_ERROR',
-          message: error.message,
+          message: 'Internal server error',
         },
       },
       { status: 500 }
@@ -159,7 +159,7 @@ export async function GET(request: NextRequest) {
         success: false,
         error: {
           code: 'FETCH_ERROR',
-          message: error.message,
+          message: 'Internal server error',
         },
       },
       { status: 500 }

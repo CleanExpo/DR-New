@@ -64,7 +64,7 @@ export function ContractorPortalLayout({
       {/* Sidebar */}
       <aside
         className={cn(
-          'flex flex-col bg-portal-card border-r border-portal-border shadow-lg transition-all duration-300',
+          'flex flex-col bg-portal-card border-r border-portal-border shadow-lg transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
           sidebarCollapsed ? 'w-20' : 'w-64',
           'hidden lg:flex'
         )}
@@ -95,7 +95,7 @@ export function ContractorPortalLayout({
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200',
+                  'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-[background-color,color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                   isActive
                     ? 'bg-earth-secondary text-white shadow-md'
                     : 'text-portal-muted hover:bg-portal-border hover:text-earth-primary',
@@ -115,7 +115,7 @@ export function ContractorPortalLayout({
         <div className="p-4 border-t border-portal-border">
           <button
             className={cn(
-              'w-full flex items-center justify-center gap-2 bg-nrpg-teal hover:bg-nrpg-teal-dark text-white text-sm font-bold font-heading py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg',
+              'w-full flex items-center justify-center gap-2 bg-nrpg-teal hover:bg-nrpg-teal-dark text-white text-sm font-bold font-heading py-2.5 rounded-lg transition-[background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] shadow-md hover:shadow-lg',
               sidebarCollapsed && 'px-2'
             )}
           >

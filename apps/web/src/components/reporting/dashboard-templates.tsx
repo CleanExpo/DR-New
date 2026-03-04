@@ -164,7 +164,7 @@ export function DashboardTemplates({ onTemplateSelect }: DashboardTemplatesProps
           <div
             key={template.id}
             onClick={() => handleSelectTemplate(template)}
-            className={`bg-white rounded-lg shadow hover:shadow-lg transition-all cursor-pointer border-2 ${
+            className={`bg-white rounded-lg shadow hover:shadow-lg transition-[box-shadow,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] cursor-pointer border-2 ${
               selectedTemplate === template.id
                 ? 'border-blue-500 ring-2 ring-blue-200'
                 : 'border-transparent'

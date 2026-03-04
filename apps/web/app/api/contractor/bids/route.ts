@@ -121,16 +121,11 @@ export async function POST(request: NextRequest) {
     console.log('Budget:', validatedData.proposedBudget);
     console.log('Hours:', validatedData.estimatedHours);
 
-    // 8. Get booking and contractor info for event emission - automatically tenant-scoped
-    const contractorInfo = await db.contractor.findUnique({
-      where: { id: contractor.id },
-      select: { businessName: true },
-    });
-
-    const booking = await db.booking.findUnique({
-      where: { id: updatedMatch.serviceRequest.id },
-      select: { clientId: true },
-    });
+    // 8. Get booking and contractor info in parallel for event emission
+    const [contractorInfo, booking] = await Promise.all([
+      db.contractor.findUnique({ where: { id: contractor.id }, select: { businessName: true } }),
+      db.booking.findUnique({ where: { id: updatedMatch.serviceRequest.id }, select: { clientId: true } }),
+    ]);
 
     // 9. Emit bid submitted event
     if (contractorInfo && booking) {
@@ -174,7 +169,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to submit bid',
-        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

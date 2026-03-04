@@ -101,7 +101,7 @@ export function NotificationToast({
   return (
     <div
       className={cn(
-        'fixed right-4 top-4 z-50 w-80 rounded-lg border p-4 shadow-lg transition-all duration-300',
+        'fixed right-4 top-4 z-50 w-80 rounded-lg border p-4 shadow-lg transition-[opacity,transform] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]',
         config.bgColor,
         config.borderColor,
         isVisible && !isExiting ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',

@@ -158,7 +158,7 @@ export function ClientJobTracker({
               <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                 <div
                   className={cn(
-                    'h-full rounded-full transition-all duration-500',
+                    'h-full rounded-full transition-[width,background-color] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                     timeline.isDelayed ? 'bg-amber-500' : 'bg-blue-600'
                   )}
                   style={{ width: `${timeline.overallProgress}%` }}
@@ -187,7 +187,7 @@ export function ClientJobTracker({
                   {showProgressLine && nextStep && (
                     <div
                       className={cn(
-                        'absolute left-5 w-0.5 transition-all duration-500',
+                        'absolute left-5 w-0.5 transition-[background-color] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                         step.isCompleted ? 'bg-blue-600' : 'bg-blue-400'
                       )}
                       style={{
@@ -251,7 +251,7 @@ export function ClientJobTracker({
                         /* Completed or future step */
                         <div
                           className={cn(
-                            'h-10 w-10 rounded-full flex items-center justify-center text-lg font-semibold transition-all',
+                            'h-10 w-10 rounded-full flex items-center justify-center text-lg font-semibold transition-[background-color,color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                             step.isCompleted
                               ? 'bg-blue-600 text-white'
                               : 'bg-gray-100 text-gray-400 border-2 border-gray-300'
@@ -342,7 +342,7 @@ export function ClientJobTracker({
                           <div className="w-full bg-gray-200 rounded-full h-1 overflow-hidden">
                             <div
                               className={cn(
-                                'h-full rounded-full transition-all duration-500',
+                                'h-full rounded-full transition-[width,background-color] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                                 step.isDelayed ? 'bg-amber-500' : 'bg-blue-600'
                               )}
                               style={{ width: `${step.progress}%` }}

@@ -109,7 +109,7 @@ export function FeaturedResourceCarousel({
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={cn(
-                  'h-2 rounded-full transition-all',
+                  'h-2 rounded-full transition-[width,background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                   index === currentIndex
                     ? 'w-8 bg-dr-education'
                     : 'w-2 bg-gray-300 hover:bg-gray-400'

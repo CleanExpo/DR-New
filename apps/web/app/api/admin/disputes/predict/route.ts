@@ -128,14 +128,16 @@ export async function POST(request: NextRequest) {
           riskLevel: p.riskLevel,
           primaryRiskFactors: p.primaryRiskFactors.slice(0, 3),
         })),
-        riskDistribution: {
-          critical: batchResult.predictions.filter((p) => p.riskLevel === 'CRITICAL')
-            .length,
-          high: batchResult.predictions.filter((p) => p.riskLevel === 'HIGH').length,
-          medium: batchResult.predictions.filter((p) => p.riskLevel === 'MEDIUM')
-            .length,
-          low: batchResult.predictions.filter((p) => p.riskLevel === 'LOW').length,
-        },
+        riskDistribution: (() => {
+          let critical = 0, high = 0, medium = 0, low = 0;
+          for (const p of batchResult.predictions) {
+            if (p.riskLevel === 'CRITICAL') critical++;
+            else if (p.riskLevel === 'HIGH') high++;
+            else if (p.riskLevel === 'MEDIUM') medium++;
+            else if (p.riskLevel === 'LOW') low++;
+          }
+          return { critical, high, medium, low };
+        })(),
       });
     }
 
@@ -253,21 +255,21 @@ export async function GET(request: NextRequest) {
         minRiskScore,
         bookings: atRiskResult.bookings,
         total: atRiskResult.totalCount,
-        summary: {
-          criticalCount: atRiskResult.bookings.filter(
-            (b) => b.riskLevel === 'CRITICAL'
-          ).length,
-          highCount: atRiskResult.bookings.filter((b) => b.riskLevel === 'HIGH')
-            .length,
-          averageRiskScore:
-            atRiskResult.bookings.length > 0
-              ? Math.round(
-                  (atRiskResult.bookings.reduce((sum, b) => sum + b.riskScore, 0) /
-                    atRiskResult.bookings.length) *
-                    10
-                ) / 10
+        summary: (() => {
+          let criticalCount = 0, highCount = 0, riskSum = 0;
+          for (const b of atRiskResult.bookings) {
+            if (b.riskLevel === 'CRITICAL') criticalCount++;
+            else if (b.riskLevel === 'HIGH') highCount++;
+            riskSum += b.riskScore;
+          }
+          return {
+            criticalCount,
+            highCount,
+            averageRiskScore: atRiskResult.bookings.length > 0
+              ? Math.round((riskSum / atRiskResult.bookings.length) * 10) / 10
               : 0,
-        },
+          };
+        })(),
       });
     }
 

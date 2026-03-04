@@ -75,7 +75,7 @@ export async function POST(
   } catch (error: any) {
     console.error('Single image enhancement error:', error);
     return NextResponse.json(
-      { error: error.message || 'Internal server error' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

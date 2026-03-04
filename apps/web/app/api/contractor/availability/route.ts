@@ -84,7 +84,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Internal Server Error',
-        message: error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: 'Internal server error',
       },
       { status: 500 }
     );
@@ -189,7 +189,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Internal Server Error',
-        message: error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: 'Internal server error',
       },
       { status: 500 }
     );
@@ -268,7 +268,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Internal Server Error',
-        message: error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: 'Internal server error',
       },
       { status: 500 }
     );

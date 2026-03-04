@@ -51,7 +51,7 @@ export async function GET(
     return NextResponse.json(
       {
         error: 'Internal Server Error',
-        message: error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: 'An unexpected error occurred',
       },
       { status: 500 }
     );
@@ -123,7 +123,7 @@ export async function POST(
     return NextResponse.json(
       {
         error: 'Internal Server Error',
-        message: error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: 'An unexpected error occurred',
       },
       { status: 500 }
     );

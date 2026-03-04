@@ -91,7 +91,7 @@ export function UserAnalyticsCard({ userId }: UserAnalyticsCardProps) {
         </div>
         <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
-            className={`h-full transition-all ${
+            className={`h-full transition-[width,background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
               analytics.engagementScore > 70
                 ? 'bg-green-600'
                 : analytics.engagementScore > 40

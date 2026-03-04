@@ -91,7 +91,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: ErrorCode.INTERNAL_ERROR,
-        message: error instanceof Error ? error.message : 'Failed to create portal session',
+        message: 'Failed to create portal session',
       },
       { status: 500 }
     );

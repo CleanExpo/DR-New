@@ -206,7 +206,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to create claim',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: 'Internal server error',
         success: false,
       },
       { status: 500 }

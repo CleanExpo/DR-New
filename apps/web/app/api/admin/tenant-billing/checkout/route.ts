@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: ErrorCode.INTERNAL_ERROR,
-        message: error instanceof Error ? error.message : 'Failed to create checkout session',
+        message: 'Failed to create checkout session',
       },
       { status: 500 }
     );

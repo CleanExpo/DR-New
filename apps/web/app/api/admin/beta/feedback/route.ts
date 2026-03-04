@@ -78,28 +78,32 @@ export async function GET(request: NextRequest) {
       ],
     })
 
-    // Calculate summary stats
+    // Calculate summary stats — single pass
+    let fbUnreviewed = 0
+    let fbBug = 0, fbFeature = 0, fbUsability = 0, fbGeneral = 0
+    let fbNew = 0, fbInReview = 0, fbResolved = 0, fbWontFix = 0
+    let fbCritical = 0, fbHigh = 0, fbMedium = 0, fbLow = 0
+    for (const f of feedback) {
+      if (!f.isReviewed) fbUnreviewed++
+      if (f.category === 'BUG_REPORT') fbBug++
+      else if (f.category === 'FEATURE_REQUEST') fbFeature++
+      else if (f.category === 'USABILITY_ISSUE') fbUsability++
+      else if (f.category === 'GENERAL_FEEDBACK') fbGeneral++
+      if (f.status === 'new') fbNew++
+      else if (f.status === 'in_review') fbInReview++
+      else if (f.status === 'resolved') fbResolved++
+      else if (f.status === 'wont_fix') fbWontFix++
+      if (f.priority === 'critical') fbCritical++
+      else if (f.priority === 'high') fbHigh++
+      else if (f.priority === 'medium') fbMedium++
+      else if (f.priority === 'low') fbLow++
+    }
     const stats = {
       total: feedback.length,
-      unreviewed: feedback.filter((f) => !f.isReviewed).length,
-      byCategory: {
-        BUG_REPORT: feedback.filter((f) => f.category === 'BUG_REPORT').length,
-        FEATURE_REQUEST: feedback.filter((f) => f.category === 'FEATURE_REQUEST').length,
-        USABILITY_ISSUE: feedback.filter((f) => f.category === 'USABILITY_ISSUE').length,
-        GENERAL_FEEDBACK: feedback.filter((f) => f.category === 'GENERAL_FEEDBACK').length,
-      },
-      byStatus: {
-        new: feedback.filter((f) => f.status === 'new').length,
-        in_review: feedback.filter((f) => f.status === 'in_review').length,
-        resolved: feedback.filter((f) => f.status === 'resolved').length,
-        wont_fix: feedback.filter((f) => f.status === 'wont_fix').length,
-      },
-      byPriority: {
-        critical: feedback.filter((f) => f.priority === 'critical').length,
-        high: feedback.filter((f) => f.priority === 'high').length,
-        medium: feedback.filter((f) => f.priority === 'medium').length,
-        low: feedback.filter((f) => f.priority === 'low').length,
-      },
+      unreviewed: fbUnreviewed,
+      byCategory: { BUG_REPORT: fbBug, FEATURE_REQUEST: fbFeature, USABILITY_ISSUE: fbUsability, GENERAL_FEEDBACK: fbGeneral },
+      byStatus: { new: fbNew, in_review: fbInReview, resolved: fbResolved, wont_fix: fbWontFix },
+      byPriority: { critical: fbCritical, high: fbHigh, medium: fbMedium, low: fbLow },
     }
 
     return NextResponse.json({ feedback, stats })

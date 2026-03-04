@@ -157,7 +157,7 @@ export function LiveJobFeed({
         <div className="space-y-3">
           {jobs.map(job => (
             <Card key={job.id} className={cn(
-              'transition-all duration-200',
+              'transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
               job.priority === 'emergency' && 'border-red-300 bg-red-50/50'
             )}>
               <CardHeader className="pb-2">

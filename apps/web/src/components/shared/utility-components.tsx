@@ -263,7 +263,7 @@ export function Card({
   return (
     <div
       className={`bg-white rounded-lg border border-slate-200 ${
-        hover ? 'hover:border-slate-300 hover:shadow-md transition-all' : ''
+        hover ? 'hover:border-slate-300 hover:shadow-md transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]' : ''
       } ${className}`}
     >
       {children}
@@ -343,7 +343,7 @@ export function ProgressBar({ percentage }: { percentage: number }) {
   return (
     <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
       <div
-        className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300"
+        className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
         style={{ width: `${Math.min(percentage, 100)}%` }}
       ></div>
     </div>

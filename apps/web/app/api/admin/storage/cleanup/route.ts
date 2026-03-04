@@ -47,7 +47,7 @@ export async function DELETE(request: NextRequest) {
         success: false,
         error: {
           code: 'CLEANUP_ERROR',
-          message: error instanceof Error ? error.message : 'Failed to clean up storage',
+          message: 'Failed to clean up storage',
         },
       },
       { status: 500 }
@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
         success: false,
         error: {
           code: 'STATS_ERROR',
-          message: error instanceof Error ? error.message : 'Failed to get storage stats',
+          message: 'Failed to get storage stats',
         },
       },
       { status: 500 }

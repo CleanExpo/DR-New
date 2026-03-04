@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
             const errorEvent = {
               type: 'error',
               data: {
-                error: error instanceof Error ? error.message : 'Unknown error',
+                error: 'Agent execution failed',
               },
               timestamp: new Date(),
             };
@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Internal Server Error',
-        message: error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: 'An unexpected error occurred',
       },
       { status: 500 }
     );

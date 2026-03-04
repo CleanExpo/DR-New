@@ -326,7 +326,7 @@ export function PhotoUpload({
                   <p className="text-xs text-gray-600">{file.progress}%</p>
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-b-lg overflow-hidden">
                     <div
-                      className="h-full bg-blue-500 transition-all duration-300"
+                      className="h-full bg-blue-500 transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                       style={{ width: `${file.progress}%` }}
                     />
                   </div>

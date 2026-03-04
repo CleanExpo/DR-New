@@ -15,7 +15,7 @@ export default function HowItWorksSection() {
         
         <div className="grid md:grid-cols-3 gap-8">
           <div className="relative">
-            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#00BFA6]/50 transition-all duration-300 card-hover-lift glow-effect">
+            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#00BFA6]/50 transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] card-hover-lift glow-effect">
               <div className="w-16 h-16 bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] rounded-2xl mb-6 flex items-center justify-center text-2xl font-bold text-white">
                 1
               </div>
@@ -31,7 +31,7 @@ export default function HowItWorksSection() {
           </div>
           
           <div className="relative">
-            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#7C4DFF]/50 transition-all duration-300 card-hover-lift glow-effect">
+            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#7C4DFF]/50 transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] card-hover-lift glow-effect">
               <div className="w-16 h-16 bg-gradient-to-br from-[#7C4DFF] to-[#8B5CF6] rounded-2xl mb-6 flex items-center justify-center text-2xl font-bold text-white">
                 2
               </div>
@@ -47,7 +47,7 @@ export default function HowItWorksSection() {
           </div>
           
           <div className="relative">
-            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#3B82F6]/50 transition-all duration-300 card-hover-lift glow-effect">
+            <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#3B82F6]/50 transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] card-hover-lift glow-effect">
               <div className="w-16 h-16 bg-gradient-to-br from-[#3B82F6] to-[#00BFA6] rounded-2xl mb-6 flex items-center justify-center text-2xl font-bold text-white">
                 3
               </div>

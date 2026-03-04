@@ -143,7 +143,7 @@ export function ContractorHeader() {
                 </Link>
                 <Link
                   href="/contractor/register"
-                  className="rounded-md bg-gradient-to-r from-[#0047FF] to-[#00BFA6] px-4 py-2 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110"
+                  className="rounded-md bg-gradient-to-r from-[#0047FF] to-[#00BFA6] px-4 py-2 text-sm font-medium text-white shadow-lg transition-[box-shadow,filter] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:shadow-xl hover:brightness-110"
                 >
                   Join Network
                 </Link>
@@ -238,7 +238,7 @@ export function ContractorHeader() {
                   </Link>
                   <Link
                     href="/contractor/register"
-                    className="block rounded-md bg-gradient-to-r from-[#0047FF] to-[#00BFA6] px-3 py-2 text-base font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110"
+                    className="block rounded-md bg-gradient-to-r from-[#0047FF] to-[#00BFA6] px-3 py-2 text-base font-medium text-white shadow-lg transition-[box-shadow,filter] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:shadow-xl hover:brightness-110"
                     onClick={closeMobileMenu}
                   >
                     Join Network

@@ -180,7 +180,7 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
                 return (
                   <Card
                     key={category.id}
-                    className={`cursor-pointer transition-all duration-200 ${
+                    className={`cursor-pointer transition-[background-color,border-color,color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                       preferences.selectedCategories.includes(category.id)
                         ? 'bg-[#00BFA6] border-[#00BFA6] text-white'
                         : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
@@ -250,7 +250,7 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
               {BUDGET_RANGES.map((budget) => (
                 <Card
                   key={budget.value}
-                  className={`cursor-pointer transition-all duration-200 ${
+                  className={`cursor-pointer transition-[background-color,border-color,color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                     preferences.budgetRange === budget.value
                       ? 'bg-[#00BFA6] border-[#00BFA6] text-white'
                       : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
@@ -287,7 +287,7 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
               {URGENCY_LEVELS.map((urgency) => (
                 <Card
                   key={urgency.value}
-                  className={`cursor-pointer transition-all duration-200 ${
+                  className={`cursor-pointer transition-[background-color,border-color,color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                     preferences.urgencyLevel === urgency.value
                       ? 'bg-[#00BFA6] border-[#00BFA6] text-white'
                       : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
@@ -324,7 +324,7 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
               {THEME_OPTIONS.map((theme) => (
                 <Card
                   key={theme.id}
-                  className={`cursor-pointer transition-all duration-200 ${
+                  className={`cursor-pointer transition-[background-color,border-color,color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                     preferences.selectedTheme === theme.id
                       ? 'border-2 border-white'
                       : 'border-gray-700 hover:border-gray-600'
@@ -394,7 +394,7 @@ export default function ClientOnboarding({ onComplete, onSkip }: ClientOnboardin
           {/* Progress Bar */}
           <div className="w-full bg-gray-700 rounded-full h-2 mb-8">
             <div
-              className="bg-[#00BFA6] h-2 rounded-full transition-all duration-300"
+              className="bg-[#00BFA6] h-2 rounded-full transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             />
           </div>

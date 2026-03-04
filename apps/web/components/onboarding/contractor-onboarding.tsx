@@ -187,7 +187,7 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
                 return (
                   <Card
                     key={category.id}
-                    className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
+                    className={`cursor-pointer transition-[transform,background-color,border-color,color] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:scale-105 ${
                       isSelected 
                         ? 'bg-[#00BFA6] border-[#00BFA6] text-white' 
                         : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
@@ -280,7 +280,7 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
                   {EXPERIENCE_LEVELS.map((level) => (
                     <Card
                       key={level.value}
-                      className={`cursor-pointer transition-all duration-200 ${
+                      className={`cursor-pointer transition-[background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                         preferences.experience === level.value
                           ? 'bg-[#00BFA6] border-[#00BFA6] text-white'
                           : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
@@ -308,7 +308,7 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
                     return (
                       <Card
                         key={area.id}
-                        className={`cursor-pointer transition-all duration-200 ${
+                        className={`cursor-pointer transition-[background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                           isSelected
                             ? 'bg-[#00BFA6] border-[#00BFA6] text-white'
                             : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
@@ -374,7 +374,7 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
                   {AVAILABILITY_OPTIONS.map((option) => (
                     <Card
                       key={option.value}
-                      className={`cursor-pointer transition-all duration-200 ${
+                      className={`cursor-pointer transition-[background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                         preferences.availability === option.value
                           ? 'bg-[#00BFA6] border-[#00BFA6] text-white'
                           : 'bg-gray-800 border-gray-700 hover:border-[#00BFA6] text-gray-300'
@@ -409,7 +409,7 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
               {THEMES.map((theme) => (
                 <Card
                   key={theme.id}
-                  className={`cursor-pointer transition-all duration-200 ${
+                  className={`cursor-pointer transition-[background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                     preferences.selectedTheme === theme.id
                       ? 'border-2 border-white'
                       : 'border-gray-700 hover:border-gray-600'
@@ -479,7 +479,7 @@ export default function ContractorOnboarding({ onComplete, onSkip }: ContractorO
           {/* Progress Bar */}
           <div className="w-full bg-gray-700 rounded-full h-2 mb-8">
             <div
-              className="bg-[#00BFA6] h-2 rounded-full transition-all duration-300"
+              className="bg-[#00BFA6] h-2 rounded-full transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             />
           </div>

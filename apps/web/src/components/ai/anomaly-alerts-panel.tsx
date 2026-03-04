@@ -104,7 +104,7 @@ export function AnomalyAlertsPanel({
           <div className="flex-1">
             <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
               <div
-                className={`h-full transition-all ${overallScore > 60 ? 'bg-red-600' : overallScore > 30 ? 'bg-yellow-600' : 'bg-green-600'}`}
+                className={`h-full transition-[width,background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${overallScore > 60 ? 'bg-red-600' : overallScore > 30 ? 'bg-yellow-600' : 'bg-green-600'}`}
                 style={{ width: `${overallScore}%` }}
               ></div>
             </div>

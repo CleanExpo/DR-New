@@ -104,7 +104,7 @@ export function BidComparisonTable({
             return (
               <Card
                 key={bidData.id}
-                className={`relative overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-xl
+                className={`relative overflow-hidden transition-[transform,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-1 hover:shadow-xl
                            ${isRecommended ? 'border-2 border-semantic-contractor' : 'border border-portal-border'}
                            ${status === 'accepted' ? 'bg-green-50' : status === 'rejected' ? 'bg-gray-50 opacity-60' : 'bg-white'}`}
               >
@@ -183,7 +183,7 @@ export function BidComparisonTable({
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-1.5">
                             <div
-                              className="bg-semantic-contractor h-1.5 rounded-full transition-all"
+                              className="bg-semantic-contractor h-1.5 rounded-full transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                               style={{ width: `${matchScore}%` }}
                             />
                           </div>

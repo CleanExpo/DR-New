@@ -60,7 +60,9 @@ const supportLinks: FooterLink[] = [
   { label: 'Support', href: '/support' },
   { label: 'Find a Contractor', href: '/contractors/directory' },
   { label: 'Training', href: '/training' },
-  { label: 'Submit a Claim', href: '/claim/step-1' }
+  { label: 'Submit a Claim', href: '/claim/step-1' },
+  { label: 'Cookie Policy', href: '/cookie-policy' },
+  { label: 'Disclaimer', href: '/disclaimer' }
 ]
 
 const legalLinks: FooterLink[] = [
@@ -331,6 +333,19 @@ export function PublicFooter() {
                 )}
               </React.Fragment>
             ))}
+          </div>
+
+          {/* Legal Entity Notice */}
+          <div className="text-center space-y-1 mb-4">
+            <p className="text-slate-400 text-xs">
+              Disaster Recovery Pty Ltd | ABN: 85 151 794 142 | ACN: 151 794 142
+            </p>
+            <p className="text-slate-400 text-xs">
+              Disaster Recovery Qld Pty Ltd | ABN: 42 633 062 307 | Brisbane, Queensland 4076
+            </p>
+            <p className="text-slate-400 text-xs">
+              Trading as: Disaster Recovery &middot; NRPG &middot; Restore Assist
+            </p>
           </div>
 
           {/* Bottom Bar */}

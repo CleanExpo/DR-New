@@ -114,10 +114,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: {
-          code: 'FETCH_ERROR',
-          message: error.message,
-        },
+        error: { code: 'FETCH_ERROR', message: 'Failed to fetch competitors' },
       },
       { status: 500 }
     );
@@ -188,10 +185,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: {
-          code: 'CREATE_ERROR',
-          message: error.message,
-        },
+        error: { code: 'CREATE_ERROR', message: 'Failed to create competitor' },
       },
       { status: 500 }
     );
@@ -260,10 +254,7 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: {
-          code: 'UPDATE_ERROR',
-          message: error.message,
-        },
+        error: { code: 'UPDATE_ERROR', message: 'Failed to update competitor' },
       },
       { status: 500 }
     );
@@ -326,10 +317,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: {
-          code: 'DELETE_ERROR',
-          message: error.message,
-        },
+        error: { code: 'DELETE_ERROR', message: 'Failed to delete competitor' },
       },
       { status: 500 }
     );

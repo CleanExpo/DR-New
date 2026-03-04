@@ -448,7 +448,7 @@ export default function ContractorSearchInterface({
               {contractors.map((contractor) => (
                 <Card
                   key={contractor.id}
-                  className="bg-gray-800 border-gray-700 hover:border-[#00BFA6] transition-all cursor-pointer"
+                  className="bg-gray-800 border-gray-700 hover:border-[#00BFA6] transition-[border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] cursor-pointer"
                   onClick={() => {
                     setSelectedContractor(contractor);
                     if (onSelectContractor) {

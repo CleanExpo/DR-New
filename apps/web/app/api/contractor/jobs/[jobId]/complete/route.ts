@@ -195,7 +195,7 @@ export async function POST(
       payoutTriggered = true;
     } catch (error) {
       console.error('Payout trigger failed:', error);
-      payoutError = error instanceof Error ? error.message : 'Unknown error';
+      payoutError = true;
       // Don't fail the request - job is still completed
       // Admin can manually trigger payout if needed
     }
@@ -229,7 +229,6 @@ export async function POST(
         triggered: payoutTriggered,
         ...(payoutError && {
           warning: 'Payout will be processed manually by admin',
-          error: payoutError
         }),
       },
     });

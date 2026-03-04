@@ -57,49 +57,48 @@ export async function GET(
       return NextResponse.json({ error: 'Program not found' }, { status: 404 })
     }
 
-    // Calculate NPS stats
-    const npsScores = program.npsSurveys.map((s) => s.score)
-    const promoters = npsScores.filter((s) => s >= 9).length
-    const passives = npsScores.filter((s) => s >= 7 && s <= 8).length
-    const detractors = npsScores.filter((s) => s <= 6).length
-    const total = npsScores.length
-    const npsScore =
-      total > 0
-        ? Math.round(((promoters - detractors) / total) * 100)
-        : null
-
-    // Calculate feedback stats
-    const feedbackByCategory = {
-      BUG_REPORT: program.feedback.filter((f) => f.category === 'BUG_REPORT').length,
-      FEATURE_REQUEST: program.feedback.filter((f) => f.category === 'FEATURE_REQUEST').length,
-      USABILITY_ISSUE: program.feedback.filter((f) => f.category === 'USABILITY_ISSUE').length,
-      GENERAL_FEEDBACK: program.feedback.filter((f) => f.category === 'GENERAL_FEEDBACK').length,
+    // Calculate NPS stats — single pass
+    let promoters = 0, passives = 0, detractors = 0
+    for (const s of program.npsSurveys) {
+      if (s.score >= 9) promoters++
+      else if (s.score >= 7) passives++
+      else detractors++
     }
+    const total = program.npsSurveys.length
+    const npsScore = total > 0 ? Math.round(((promoters - detractors) / total) * 100) : null
 
-    const feedbackByStatus = {
-      new: program.feedback.filter((f) => f.status === 'new').length,
-      in_review: program.feedback.filter((f) => f.status === 'in_review').length,
-      resolved: program.feedback.filter((f) => f.status === 'resolved').length,
-      wont_fix: program.feedback.filter((f) => f.status === 'wont_fix').length,
+    // Calculate feedback stats — single pass
+    let fbBug = 0, fbFeature = 0, fbUsability = 0, fbGeneral = 0
+    let fbNew = 0, fbInReview = 0, fbResolved = 0, fbWontFix = 0
+    let fbUnreviewed = 0
+    for (const f of program.feedback) {
+      if (f.category === 'BUG_REPORT') fbBug++
+      else if (f.category === 'FEATURE_REQUEST') fbFeature++
+      else if (f.category === 'USABILITY_ISSUE') fbUsability++
+      else if (f.category === 'GENERAL_FEEDBACK') fbGeneral++
+      if (f.status === 'new') fbNew++
+      else if (f.status === 'in_review') fbInReview++
+      else if (f.status === 'resolved') fbResolved++
+      else if (f.status === 'wont_fix') fbWontFix++
+      if (!f.isReviewed) fbUnreviewed++
+    }
+    let enActive = 0, enInvited = 0
+    for (const e of program.enrollments) {
+      if (e.status === 'ACTIVE') enActive++
+      else if (e.status === 'INVITED') enInvited++
     }
 
     return NextResponse.json({
       program: {
         ...program,
         stats: {
-          activeParticipants: program.enrollments.filter((e) => e.status === 'ACTIVE').length,
-          invitedParticipants: program.enrollments.filter((e) => e.status === 'INVITED').length,
+          activeParticipants: enActive,
+          invitedParticipants: enInvited,
           totalFeedback: program.feedback.length,
-          unreviewedFeedback: program.feedback.filter((f) => !f.isReviewed).length,
-          nps: {
-            score: npsScore,
-            promoters,
-            passives,
-            detractors,
-            total,
-          },
-          feedbackByCategory,
-          feedbackByStatus,
+          unreviewedFeedback: fbUnreviewed,
+          nps: { score: npsScore, promoters, passives, detractors, total },
+          feedbackByCategory: { BUG_REPORT: fbBug, FEATURE_REQUEST: fbFeature, USABILITY_ISSUE: fbUsability, GENERAL_FEEDBACK: fbGeneral },
+          feedbackByStatus: { new: fbNew, in_review: fbInReview, resolved: fbResolved, wont_fix: fbWontFix },
         },
       },
     })

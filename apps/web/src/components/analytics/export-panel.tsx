@@ -131,7 +131,7 @@ export function ExportPanel({
               <button
                 key={option.value}
                 onClick={() => setExportType(option.value)}
-                className={`p-3 rounded-lg border-2 text-left transition-all ${
+                className={`p-3 rounded-lg border-2 text-left transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                   exportType === option.value
                     ? 'border-blue-600 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300 bg-white'
@@ -178,7 +178,7 @@ export function ExportPanel({
               <button
                 key={option.value}
                 onClick={() => setFormat(option.value)}
-                className={`p-3 rounded-lg border-2 text-center transition-all ${
+                className={`p-3 rounded-lg border-2 text-center transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                   format === option.value
                     ? 'border-blue-600 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300 bg-white'

@@ -35,7 +35,7 @@ export function FeaturedStory({
     <div
       className={cn(
         'bg-portal-card rounded-xl overflow-hidden shadow-lg',
-        'transition-all duration-200 hover:-translate-y-1 hover:shadow-xl',
+        'transition-[transform,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-1 hover:shadow-xl',
         className
       )}
     >

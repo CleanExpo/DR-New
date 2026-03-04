@@ -188,7 +188,7 @@ export function DashboardEditor({
             <div
               key={widget.id}
               onClick={() => setSelectedWidgetId(widget.id)}
-              className={`relative rounded-lg border-2 transition-all cursor-move group ${
+              className={`relative rounded-lg border-2 transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] cursor-move group ${
                 selectedWidgetId === widget.id
                   ? 'border-blue-500 shadow-lg ring-2 ring-blue-200'
                   : 'border-gray-300 hover:border-gray-400'
