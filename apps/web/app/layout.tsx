@@ -22,7 +22,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://disasterrecoverynrpg.com.au'),
+  metadataBase: new URL('https://disasterrecovery.com.au'),
   title: {
     default: "Disaster Recovery Australia | 24/7 Emergency Restoration",
     template: "%s | Disaster Recovery Australia",
