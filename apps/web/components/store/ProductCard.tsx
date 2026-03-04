@@ -95,7 +95,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className={`group relative flex flex-col bg-[#050505] border border-white/10 rounded-sm overflow-hidden transition-all duration-300 hover:border-teal-500/60 hover:shadow-[0_0_24px_rgba(13,148,136,0.15)] ${className}`}
+      className={`group relative flex flex-col bg-[#050505] border border-white/10 rounded-sm overflow-hidden transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:border-teal-500/60 hover:shadow-[0_0_24px_rgba(13,148,136,0.15)] ${className}`}
     >
       {/* Featured badge */}
       {product.featured && (
@@ -160,7 +160,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
       </div>
 
       {/* Bottom border glow on hover */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/0 group-hover:via-teal-500/60 to-transparent transition-all duration-500" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/0 group-hover:via-teal-500/60 to-transparent transition-[opacity] duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]" />
     </motion.div>
   )
 }

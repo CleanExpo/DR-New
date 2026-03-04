@@ -52,11 +52,10 @@ export async function GET(request: NextRequest) {
     result = getProductsByCategory(category as StoreProduct['category'])
   }
 
-  // Filter featured
+  // Filter featured — single branch (the previous else-if was a dead branch:
+  // "featured === 'true' && !category" can never be reached after the first condition)
   if (featured === 'true') {
     result = result.filter((p) => p.featured)
-  } else if (featured === 'true' && !category) {
-    result = getFeaturedProducts()
   }
 
   return NextResponse.json({ products: result, total: result.length })

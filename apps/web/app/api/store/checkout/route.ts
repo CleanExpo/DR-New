@@ -87,47 +87,54 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error }, { status: 400 })
   }
 
-  // Resolve products and calculate totals
-  const resolvedItems: Array<{
+  // Resolve products and calculate totals in parallel (Von Neumann: no blocking serial loop)
+  type ResolvedItem = {
     product: StoreProduct
     variantId: string
     quantity: number
     lineTotal: number
-  }> = []
-
-  for (const item of data.items) {
-    const product = getProductById(item.productId)
-    if (!product) {
-      return NextResponse.json(
-        { error: `Product not found: ${item.productId}` },
-        { status: 400 }
-      )
-    }
-
-    const variant = product.variants.find((v) => v.id === item.variantId)
-    if (!variant) {
-      return NextResponse.json(
-        { error: `Variant "${item.variantId}" not found for product "${product.name}"` },
-        { status: 400 }
-      )
-    }
-
-    if (!variant.inStock) {
-      return NextResponse.json(
-        { error: `Variant "${variant.name}" of "${product.name}" is currently out of stock` },
-        { status: 400 }
-      )
-    }
-
-    const unitPrice = product.basePrice + variant.priceAdjustment
-    resolvedItems.push({
-      product,
-      variantId: item.variantId,
-      quantity: item.quantity,
-      lineTotal: unitPrice * item.quantity,
-    })
   }
 
+  const resolvedOrErrors = await Promise.all(
+    data.items.map(async (item): Promise<ResolvedItem | NextResponse> => {
+      const product = getProductById(item.productId)
+      if (!product) {
+        return NextResponse.json(
+          { error: `Product not found: ${item.productId}` },
+          { status: 400 }
+        )
+      }
+
+      const variant = product.variants.find((v) => v.id === item.variantId)
+      if (!variant) {
+        return NextResponse.json(
+          { error: `Variant "${item.variantId}" not found for product "${product.name}"` },
+          { status: 400 }
+        )
+      }
+
+      if (!variant.inStock) {
+        return NextResponse.json(
+          { error: `Variant "${variant.name}" of "${product.name}" is currently out of stock` },
+          { status: 400 }
+        )
+      }
+
+      const unitPrice = product.basePrice + variant.priceAdjustment
+      return {
+        product,
+        variantId: item.variantId,
+        quantity: item.quantity,
+        lineTotal: unitPrice * item.quantity,
+      }
+    })
+  )
+
+  // Surface the first validation error, if any
+  const firstError = resolvedOrErrors.find((r): r is NextResponse => r instanceof NextResponse)
+  if (firstError) return firstError
+
+  const resolvedItems = resolvedOrErrors as ResolvedItem[]
   const subtotalAUD = resolvedItems.reduce((sum, i) => sum + i.lineTotal, 0)
 
   // Build Printful order
@@ -155,17 +162,12 @@ export async function POST(request: NextRequest) {
       confirm: false,
     })
 
+    // Shannon: return only what the client needs — it already holds cart state locally
     return NextResponse.json({
       orderId: printfulOrder.id,
       externalId,
       estimatedDelivery: '7-14 business days',
       totalAUD: subtotalAUD,
-      items: resolvedItems.map((i) => ({
-        name: i.product.name,
-        variant: i.variantId,
-        quantity: i.quantity,
-        lineTotal: i.lineTotal,
-      })),
     })
   } catch (err) {
     console.error('[store:checkout] Printful order failed:', err)

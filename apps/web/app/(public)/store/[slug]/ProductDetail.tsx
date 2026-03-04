@@ -321,7 +321,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               onClick={handleAddToCart}
               disabled={!canAdd || added}
               whileTap={{ scale: 0.97 }}
-              className={`relative w-full py-4 rounded-sm font-black uppercase tracking-widest text-sm transition-all duration-300 ${
+              className={`relative w-full py-4 rounded-sm font-black uppercase tracking-widest text-sm transition-[background-color,box-shadow,color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                 added
                   ? 'bg-[#00FF88] text-[#050505] shadow-[0_0_24px_rgba(0,255,136,0.3)]'
                   : canAdd
