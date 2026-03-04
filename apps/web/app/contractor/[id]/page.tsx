@@ -2,24 +2,27 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useGA4ContractorTracking, useGA4CTATracking } from '@/hooks/useGA4';
-import { 
-  Star, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
-  DollarSign, 
-  Shield, 
+import {
+  Star,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  DollarSign,
+  Shield,
   Award,
   CheckCircle,
   ArrowLeft,
   MessageSquare,
-  Calendar
+  Calendar,
+  Printer,
+  QrCode
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -166,7 +169,7 @@ export default function ContractorProfilePage() {
               </Avatar>
               
               <div className="flex-1">
-                <div className="flex items-center space-x-3 mb-2">
+                <div className="flex flex-wrap items-center gap-3 mb-2">
                   <h1 className="text-3xl font-bold text-white">{contractor.businessName}</h1>
                   {contractor.isVerified && (
                     <Badge className="bg-green-900/30 text-green-400 border-green-500">
@@ -178,6 +181,30 @@ export default function ContractorProfilePage() {
                     {contractor.availability}
                   </Badge>
                 </div>
+                {/* NRPG Certified Contractor Badge */}
+                {contractor.isVerified && (
+                  <div className="no-print inline-flex items-center gap-3 mt-2 mb-4 px-4 py-3 rounded-sm border border-[#0d9488]/50 bg-[#0d9488]/10">
+                    {/* Shield with check SVG */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#0d9488"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-9 w-9 flex-shrink-0"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <polyline points="9 12 11 14 15 10" />
+                    </svg>
+                    <div>
+                      <p className="text-[#0d9488] font-semibold text-sm leading-tight">NRPG Certified Contractor</p>
+                      <p className="text-[#0d9488]/70 text-xs leading-tight">Verified &amp; Compliant — NRPG Network Member</p>
+                    </div>
+                  </div>
+                )}
                 
                 <p className="text-gray-400 text-lg mb-4">{contractor.user.name}</p>
                 
@@ -370,6 +397,125 @@ export default function ContractorProfilePage() {
             </Card>
           </div>
         </div>
+
+        {/* NRPG Certified — Van Decal QR Code Section */}
+        {contractor.isVerified && (
+          <div className="mt-8">
+            {/* Print styles: only show print-target during print */}
+            <style>{`
+              @media print {
+                .no-print { display: none !important; }
+                .print-target {
+                  display: flex !important;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 40px;
+                  background: #ffffff;
+                  color: #000000;
+                }
+                .print-target * { color: #000000 !important; }
+                body > * { display: none !important; }
+                #qr-print-section { display: flex !important; }
+              }
+              @media screen {
+                .print-target { display: none; }
+              }
+            `}</style>
+
+            {/* Printable target — hidden on screen, visible during print */}
+            <div id="qr-print-section" className="print-target">
+              <div style={{ textAlign: 'center', padding: '32px', border: '3px solid #0d9488', borderRadius: '4px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '12px' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#0d9488" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '28px', height: '28px' }}>
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                  <span style={{ fontWeight: 700, fontSize: '18px', color: '#0d9488' }}>NRPG Certified Contractor</span>
+                </div>
+                <p style={{ fontWeight: 700, fontSize: '16px', marginBottom: '4px' }}>{contractor.businessName}</p>
+                <p style={{ fontSize: '13px', color: '#555', marginBottom: '16px' }}>Verified &amp; Compliant — NRPG Network Member</p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(`https://disasterrecovery.com.au/contractor/${contractor.id}`)}&choe=UTF-8`}
+                  alt={`QR code for ${contractor.businessName} NRPG profile`}
+                  width={200}
+                  height={200}
+                  style={{ margin: '0 auto 12px', display: 'block' }}
+                />
+                <p style={{ fontSize: '12px', color: '#555' }}>Scan to verify certification</p>
+                <p style={{ fontSize: '11px', color: '#888', marginTop: '4px' }}>disasterrecovery.com.au</p>
+              </div>
+            </div>
+
+            {/* On-screen QR Card */}
+            <Card className="no-print border border-white/10 rounded-sm" style={{ background: '#0a0a0a' }}>
+              <CardHeader className="pb-2">
+                <div className="flex items-center gap-2">
+                  <QrCode className="h-5 w-5 text-[#0d9488]" />
+                  <CardTitle className="text-white text-lg">NRPG Certified — Van Decal QR Code</CardTitle>
+                </div>
+                <CardDescription className="text-gray-400 mt-1">
+                  Place this QR code on your NRPG van decal sticker so clients can verify your certification instantly.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                  {/* QR Code image */}
+                  <div className="flex-shrink-0 p-3 rounded-sm border border-white/10 bg-white inline-block">
+                    <Image
+                      src={`https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${encodeURIComponent(`https://disasterrecovery.com.au/contractor/${contractor.id}`)}&choe=UTF-8`}
+                      alt={`QR code for ${contractor.businessName} NRPG profile`}
+                      width={160}
+                      height={160}
+                      unoptimized
+                    />
+                  </div>
+
+                  {/* Info + button */}
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-white font-medium text-sm mb-1">Scan to view profile</p>
+                      <p className="text-gray-400 text-xs break-all font-mono">
+                        {`https://disasterrecovery.com.au/contractor/${contractor.id}`}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      <Button
+                        className="rounded-sm border border-[#0d9488] bg-[#0d9488]/10 text-[#0d9488] hover:bg-[#0d9488]/20 transition-colors"
+                        onClick={() => {
+                          window.print();
+                        }}
+                      >
+                        <Printer className="h-4 w-4 mr-2" />
+                        Download / Print
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="rounded-sm border border-white/10 text-gray-300 hover:bg-white/5"
+                        asChild
+                      >
+                        <a
+                          href={`https://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=${encodeURIComponent(`https://disasterrecovery.com.au/contractor/${contractor.id}`)}&choe=UTF-8`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download="nrpg-qr-code.png"
+                        >
+                          <QrCode className="h-4 w-4 mr-2" />
+                          Download QR (High-Res)
+                        </a>
+                      </Button>
+                    </div>
+
+                    <p className="text-gray-500 text-xs">
+                      This QR code links clients directly to your verified NRPG profile page.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Bronze — Certified Specialist Pack</title>
+  <defs>
+    <linearGradient id="bp-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="bp-bronze" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#cd7f32"/>
+      <stop offset="100%" stop-color="#a0522d"/>
+    </linearGradient>
+    <linearGradient id="bp-polo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2a2a"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bp-bg)"/>
+
+  <!-- Surface -->
+  <rect x="24" y="44" width="352" height="318" fill="#080808" stroke="#1a1a1a" stroke-width="0.5" rx="2"/>
+
+  <!-- Bronze tier glow line (top) -->
+  <rect x="24" y="44" width="352" height="2" fill="url(#bp-bronze)" opacity="0.8"/>
+
+  <!-- Decorative corner brackets -->
+  <path d="M32 52 L32 60 L44 60" fill="none" stroke="#cd7f32" stroke-width="1.5" opacity="0.5"/>
+  <path d="M368 52 L368 60 L356 60" fill="none" stroke="#cd7f32" stroke-width="1.5" opacity="0.5"/>
+  <path d="M32 356 L32 348 L44 348" fill="none" stroke="#cd7f32" stroke-width="1.5" opacity="0.5"/>
+  <path d="M368 356 L368 348 L356 348" fill="none" stroke="#cd7f32" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Folded polo shirt (dark grey, left-centre) -->
+  <g transform="translate(48, 110)">
+    <!-- Main body -->
+    <rect x="0" y="20" width="130" height="100" fill="url(#bp-polo)" stroke="#333" stroke-width="1" rx="2"/>
+    <!-- Fold crease -->
+    <line x1="0" y1="50" x2="130" y2="50" stroke="#444" stroke-width="0.8" opacity="0.6"/>
+    <line x1="0" y1="80" x2="130" y2="80" stroke="#333" stroke-width="0.5" opacity="0.4"/>
+    <!-- Collar -->
+    <path d="M40 20 L65 8 L90 20" fill="#252525" stroke="#333" stroke-width="1"/>
+    <path d="M50 20 L65 12 L80 20" fill="#1a1a1a"/>
+    <!-- Sleeves hint -->
+    <rect x="-18" y="20" width="22" height="40" fill="#222" stroke="#333" stroke-width="0.8" rx="1"/>
+    <rect x="126" y="20" width="22" height="40" fill="#222" stroke="#333" stroke-width="0.8" rx="1"/>
+    <!-- NRPG chest embroidery -->
+    <text x="65" y="72" font-family="sans-serif" font-weight="900" font-size="11" fill="#cd7f32" text-anchor="middle" letter-spacing="2">NRPG</text>
+    <!-- Bronze cert stripe -->
+    <rect x="8" y="108" width="114" height="3" fill="#cd7f32" opacity="0.7" rx="0.5"/>
+  </g>
+
+  <!-- Structured cap (top right) -->
+  <g transform="translate(224, 78)">
+    <!-- Crown panels -->
+    <path d="M0 50 Q0 8 60 2 Q120 8 120 50 L114 58 L6 58 Z" fill="#1c1c1c" stroke="#2a2a2a" stroke-width="1"/>
+    <!-- Seam lines -->
+    <line x1="60" y1="2" x2="60" y2="50" stroke="#2a2a2a" stroke-width="0.6" opacity="0.5"/>
+    <line x1="30" y1="6" x2="24" y2="52" stroke="#2a2a2a" stroke-width="0.5" opacity="0.3"/>
+    <line x1="90" y1="6" x2="96" y2="52" stroke="#2a2a2a" stroke-width="0.5" opacity="0.3"/>
+    <!-- Brim -->
+    <path d="M0 55 Q-6 60 -6 68 Q-4 78 18 84 Q60 90 102 84 Q124 78 126 68 Q126 60 120 55 L114 58 Q90 76 60 80 Q30 76 6 58 Z" fill="#1c1c1c" stroke="#2a2a2a" stroke-width="1"/>
+    <!-- Bronze brim accent -->
+    <path d="M18 84 Q60 90 102 84" fill="none" stroke="#cd7f32" stroke-width="2.5" opacity="0.9"/>
+    <!-- NRPG on crown -->
+    <text x="60" y="38" font-family="sans-serif" font-weight="900" font-size="14" fill="#cd7f32" text-anchor="middle" letter-spacing="2">NRPG</text>
+    <!-- Button -->
+    <circle cx="60" cy="4" r="3.5" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+    <!-- Snapback -->
+    <rect x="20" y="79" width="80" height="6" fill="#161616" stroke="#2a2a2a" stroke-width="0.5" rx="1"/>
+    <rect x="48" y="79" width="24" height="6" fill="#1a1a1a" stroke="#cd7f32" stroke-width="0.5" rx="0.5"/>
+  </g>
+
+  <!-- Van magnet strip (bottom, angled) -->
+  <g transform="translate(60, 264) rotate(-2)">
+    <!-- Main magnet backing -->
+    <rect x="0" y="0" width="280" height="52" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1" rx="2"/>
+    <!-- Bronze accent bar left -->
+    <rect x="0" y="0" width="6" height="52" fill="#cd7f32" rx="1"/>
+    <!-- Magnet pole strips -->
+    <rect x="0" y="0" width="280" height="10" fill="#cd7f32" opacity="0.15" rx="1"/>
+    <rect x="0" y="42" width="280" height="10" fill="#cd7f32" opacity="0.15" rx="1"/>
+    <!-- Logo on magnet -->
+    <text x="28" y="20" font-family="sans-serif" font-weight="900" font-size="11" fill="#cd7f32" letter-spacing="3">NRPG</text>
+    <text x="28" y="34" font-family="sans-serif" font-weight="700" font-size="8" fill="#888" letter-spacing="2">DISASTER RECOVERY</text>
+    <!-- Decorative hex grid hint -->
+    <text x="200" y="32" font-family="sans-serif" font-size="22" fill="#cd7f32" opacity="0.08" text-anchor="middle">&#9042;</text>
+    <!-- VAN MAGNET label -->
+    <text x="240" y="22" font-family="sans-serif" font-weight="700" font-size="7" fill="#555" text-anchor="middle" letter-spacing="1">VAN</text>
+    <text x="240" y="33" font-family="sans-serif" font-weight="700" font-size="7" fill="#555" text-anchor="middle" letter-spacing="1">MAGNET</text>
+  </g>
+
+  <!-- Separator line -->
+  <line x1="60" y1="258" x2="340" y2="258" stroke="#cd7f32" stroke-width="0.5" opacity="0.25"/>
+
+  <!-- BRONZE PACK title -->
+  <text x="200" y="370" font-family="sans-serif" font-weight="900" font-size="16" fill="#cd7f32" text-anchor="middle" letter-spacing="3">BRONZE PACK</text>
+
+  <!-- CERTIFIED SPECIALIST label -->
+  <text x="200" y="387" font-family="sans-serif" font-weight="700" font-size="9" fill="#FFB800" text-anchor="middle" letter-spacing="3">CERTIFIED SPECIALIST</text>
+
+  <!-- Subtle bronze glow bottom -->
+  <rect x="24" y="360" width="352" height="2" fill="url(#bp-bronze)" opacity="0.4"/>
+</svg>
