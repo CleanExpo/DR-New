@@ -1,79 +1,147 @@
+/**
+ * Lighthouse CI Configuration
+ *
+ * Performance budgets and thresholds for automated performance testing.
+ * Lighthouse analyzes web app performance, accessibility, SEO, and best practices.
+ *
+ * Installation:
+ * - pnpm add -D @lhci/cli (already installed)
+ *
+ * Usage:
+ * - Local: pnpm run lighthouse
+ * - CI: Runs automatically in GitHub Actions
+ *
+ * Lighthouse Server (optional):
+ * - Self-hosted: https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/server.md
+ * - Or use Lighthouse CI public server
+ *
+ * Documentation:
+ * https://github.com/GoogleChrome/lighthouse-ci/blob/main/docs/configuration.md
+ */
+
 module.exports = {
   ci: {
     collect: {
-      // Collect settings
-      numberOfRuns: 3,
-      startServerCommand: 'npm run start',
-      startServerReadyPattern: 'ready on',
+      // Build the application before running Lighthouse
+      startServerCommand: 'pnpm run build && pnpm run start',
+      startServerReadyPattern: 'Ready',
       startServerReadyTimeout: 30000,
+
+      // URLs to audit (relative to the server)
       url: [
-        'http://localhost:3000',
-        'http://localhost:3000/about',
-        'http://localhost:3000/pricing',
-        'http://localhost:3000/contact',
+        'http://localhost:3000/',
         'http://localhost:3000/dashboard',
+        'http://localhost:3000/prd/generate',
       ],
+
+      // Number of runs per URL (more runs = more reliable averages)
+      numberOfRuns: 3,
+
+      // Chrome flags
       settings: {
-        preset: 'desktop',
+        // Use headless Chrome
+        chromeFlags: '--no-sandbox --disable-dev-shm-usage',
+
+        // Throttling settings (emulate slow 4G)
         throttling: {
-          rttMs: 40,
-          throughputKbps: 10240,
-          cpuSlowdownMultiplier: 1,
+          rttMs: 150,
+          throughputKbps: 1638.4,
+          requestLatencyMs: 0,
+          downloadThroughputKbps: 1638.4,
+          uploadThroughputKbps: 675,
+          cpuSlowdownMultiplier: 4,
         },
-        onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
+
+        // Emulate mobile device
+        emulatedFormFactor: 'mobile',
+
+        // Screen emulation
+        screenEmulation: {
+          mobile: true,
+          width: 375,
+          height: 667,
+          deviceScaleFactor: 2,
+          disabled: false,
+        },
       },
     },
-    upload: {
-      target: 'temporary-public-storage',
-    },
-    assert: {
-      preset: 'lighthouse:recommended',
-      assertions: {
-        // Performance budgets
-        'categories:performance': ['error', { minScore: 0.85 }],
-        'categories:accessibility': ['error', { minScore: 0.90 }],
-        'categories:best-practices': ['error', { minScore: 0.90 }],
-        'categories:seo': ['error', { minScore: 0.90 }],
 
+    assert: {
+      // Assertions for performance budgets
+      preset: 'lighthouse:recommended',
+
+      assertions: {
         // Core Web Vitals
-        'first-contentful-paint': ['warn', { maxNumericValue: 1500 }],
-        'largest-contentful-paint': ['error', { maxNumericValue: 2500 }],
-        'cumulative-layout-shift': ['error', { maxNumericValue: 0.1 }],
-        'total-blocking-time': ['warn', { maxNumericValue: 300 }],
-        'speed-index': ['warn', { maxNumericValue: 3000 }],
-        'interactive': ['warn', { maxNumericValue: 3500 }],
+        'first-contentful-paint': ['error', { maxNumericValue: 2000 }], // FCP < 2s
+        'largest-contentful-paint': ['error', { maxNumericValue: 2500 }], // LCP < 2.5s
+        'cumulative-layout-shift': ['error', { maxNumericValue: 0.1 }], // CLS < 0.1
+        'total-blocking-time': ['error', { maxNumericValue: 300 }], // TBT < 300ms
+        'speed-index': ['error', { maxNumericValue: 3000 }], // SI < 3s
+
+        // Overall scores (0-1, where 0.9 = 90%)
+        'categories:performance': ['error', { minScore: 0.9 }],
+        'categories:accessibility': ['error', { minScore: 0.9 }],
+        'categories:best-practices': ['error', { minScore: 0.9 }],
+        'categories:seo': ['error', { minScore: 0.9 }],
 
         // Accessibility
         'color-contrast': 'error',
-        'document-title': 'error',
         'html-has-lang': 'error',
-        'meta-description': 'warn',
-        'valid-lang': 'error',
+        'image-alt': 'error',
+        'label': 'error',
+        'meta-viewport': 'error',
+        'aria-allowed-attr': 'error',
+        'aria-required-attr': 'error',
+        'aria-valid-attr': 'error',
+        'button-name': 'error',
+        'document-title': 'error',
+        'link-name': 'error',
 
         // Best Practices
         'errors-in-console': 'warn',
+        'uses-https': 'error',
         'no-vulnerable-libraries': 'error',
-        'uses-http2': 'warn',
+        'csp-xss': 'warn',
+        'deprecations': 'warn',
+
+        // Performance
         'uses-responsive-images': 'warn',
-
-        // SEO
-        'meta-description': 'warn',
-        'link-text': 'warn',
-        'crawlable-anchors': 'warn',
-        'is-crawlable': 'error',
-
-        // Resource optimization
-        'unused-javascript': ['warn', { maxLength: 0 }],
-        'unused-css-rules': ['warn', { maxLength: 0 }],
-        'uses-text-compression': 'error',
         'uses-optimized-images': 'warn',
         'modern-image-formats': 'warn',
-        'offscreen-images': 'warn',
+        'uses-text-compression': 'error',
+        'uses-rel-preconnect': 'warn',
+        'uses-rel-preload': 'warn',
+        'font-display': 'warn',
+        'unminified-css': 'error',
+        'unminified-javascript': 'error',
+        'unused-css-rules': 'warn',
+        'unused-javascript': 'warn',
+        'efficient-animated-content': 'warn',
+        'total-byte-weight': ['warn', { maxNumericValue: 1000000 }], // < 1MB
 
-        // Security
-        'is-on-https': 'error',
-        'uses-http2': 'warn',
+        // SEO
+        'meta-description': 'error',
+        'robots-txt': 'warn',
+        'canonical': 'warn',
+        'structured-data': 'warn',
+
+        // PWA (if applicable)
+        'viewport': 'error',
+        'installable-manifest': 'off', // Turn on if implementing PWA
+        'service-worker': 'off', // Turn on if implementing PWA
+        'works-offline': 'off', // Turn on if implementing PWA
       },
     },
+
+    upload: {
+      // Upload results to Lighthouse CI server (optional)
+      // Uncomment and configure if using LHCI server
+      // target: 'lhci',
+      // serverBaseUrl: 'https://your-lhci-server.com',
+      // token: process.env.LHCI_TOKEN,
+
+      // Or use temporary public storage (30 days)
+      target: 'temporary-public-storage',
+    },
   },
-};
+}
