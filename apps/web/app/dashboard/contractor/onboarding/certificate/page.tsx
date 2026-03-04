@@ -124,7 +124,7 @@ export default function ContractorCertificatePage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
         className="mt-6"
       >
         <div className="rounded-sm border border-teal-500/30 bg-[#050505] p-6 md:p-8">

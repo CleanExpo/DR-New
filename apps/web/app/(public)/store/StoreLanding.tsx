@@ -28,6 +28,15 @@ const FILTER_TABS: { label: string; value: FilterCategory }[] = [
   { label: 'Bundles', value: 'bundles' },
 ]
 
+// Pre-computed category counts — single O(n) pass avoids repeated filter calls in render loop
+function buildCategoryCounts(products: StoreProduct[]): Record<string, number> {
+  const counts: Record<string, number> = {}
+  for (const p of products) {
+    counts[p.category] = (counts[p.category] ?? 0) + 1
+  }
+  return counts
+}
+
 // ---------------------------------------------------------------------------
 // Hero decorative line
 // ---------------------------------------------------------------------------
@@ -91,6 +100,9 @@ interface StoreLandingProps {
 export default function StoreLanding({ products }: StoreLandingProps) {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('all')
   const { itemCount, hydrated } = useCart()
+
+  // Single O(n) pass — no per-tab filter calls inside the render loop
+  const categoryCounts = buildCategoryCounts(products)
 
   const filteredProducts =
     activeFilter === 'all'
@@ -174,7 +186,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
           >
             <Link
               href="/store/cart"
-              className="relative flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-teal-400 border border-white/10 hover:border-teal-500/40 bg-white/5 hover:bg-teal-500/5 px-4 py-2 rounded-sm transition-all duration-200"
+              className="relative flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-teal-400 border border-white/10 hover:border-teal-500/40 bg-white/5 hover:bg-teal-500/5 px-4 py-2 rounded-sm transition-colors duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -211,7 +223,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
                 {tab.label}
                 {tab.value !== 'all' && (
                   <span className={`ml-2 text-[9px] ${isActive ? 'text-[#050505]/70' : 'text-white/20'}`}>
-                    {products.filter((p) => p.category === tab.value).length}
+                    {categoryCounts[tab.value] ?? 0}
                   </span>
                 )}
               </button>
@@ -282,7 +294,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
             return bronzePack ? (
               <Link
                 href={`/store/${bronzePack.slug}`}
-                className="group relative flex flex-col rounded-sm border border-[#cd7f32]/30 bg-gradient-to-b from-[#cd7f32]/5 to-transparent hover:border-[#cd7f32]/60 hover:from-[#cd7f32]/10 transition-all duration-300"
+                className="group relative flex flex-col rounded-sm border border-[#cd7f32]/30 bg-gradient-to-b from-[#cd7f32]/5 to-transparent hover:border-[#cd7f32]/60 hover:from-[#cd7f32]/10 transition-[border-color,background] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               >
                 {/* Tier accent top bar */}
                 <div className="h-0.5 w-full rounded-t-sm bg-gradient-to-r from-[#cd7f32] via-[#a0522d] to-transparent" />
@@ -291,7 +303,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
                   <img
                     src={bronzePack.mockupImage}
                     alt={bronzePack.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]"
                   />
                 </div>
                 {/* Content */}
@@ -324,14 +336,14 @@ export default function StoreLanding({ products }: StoreLandingProps) {
             return silverPack ? (
               <Link
                 href={`/store/${silverPack.slug}`}
-                className="group relative flex flex-col rounded-sm border border-[#c0c0c0]/30 bg-gradient-to-b from-[#c0c0c0]/5 to-transparent hover:border-[#c0c0c0]/60 hover:from-[#c0c0c0]/10 transition-all duration-300"
+                className="group relative flex flex-col rounded-sm border border-[#c0c0c0]/30 bg-gradient-to-b from-[#c0c0c0]/5 to-transparent hover:border-[#c0c0c0]/60 hover:from-[#c0c0c0]/10 transition-[border-color,background] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               >
                 <div className="h-0.5 w-full rounded-t-sm bg-gradient-to-r from-[#c0c0c0] via-[#909090] to-transparent" />
                 <div className="relative aspect-square overflow-hidden rounded-sm">
                   <img
                     src={silverPack.mockupImage}
                     alt={silverPack.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]"
                   />
                 </div>
                 <div className="p-5 flex flex-col gap-2 flex-1">
@@ -363,14 +375,14 @@ export default function StoreLanding({ products }: StoreLandingProps) {
             return goldPack ? (
               <Link
                 href={`/store/${goldPack.slug}`}
-                className="group relative flex flex-col rounded-sm border border-[#ffd700]/30 bg-gradient-to-b from-[#ffd700]/5 to-transparent hover:border-[#ffd700]/60 hover:from-[#ffd700]/10 transition-all duration-300"
+                className="group relative flex flex-col rounded-sm border border-[#ffd700]/30 bg-gradient-to-b from-[#ffd700]/5 to-transparent hover:border-[#ffd700]/60 hover:from-[#ffd700]/10 transition-[border-color,background] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               >
                 <div className="h-0.5 w-full rounded-t-sm bg-gradient-to-r from-[#ffd700] via-[#c8a000] to-transparent" />
                 <div className="relative aspect-square overflow-hidden rounded-sm">
                   <img
                     src={goldPack.mockupImage}
                     alt={goldPack.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]"
                   />
                 </div>
                 <div className="p-5 flex flex-col gap-2 flex-1">

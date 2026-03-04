@@ -318,7 +318,7 @@ export default function CartCheckout() {
                       initial={{ opacity: 0, x: -12 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 12, height: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}
-                      transition={{ duration: 0.25 }}
+                      transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                       className="flex items-center gap-4 p-4 border border-white/10 bg-white/[0.02] rounded-sm hover:border-white/20 transition-colors duration-200"
                     >
                       {/* Initials avatar */}
@@ -522,7 +522,7 @@ export default function CartCheckout() {
                 type="submit"
                 disabled={submitting}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full py-4 rounded-sm font-black uppercase tracking-widest text-sm transition-all duration-300 ${
+                className={`w-full py-4 rounded-sm font-black uppercase tracking-widest text-sm transition-[background-color,box-shadow,color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                   submitting
                     ? 'bg-teal-500/40 text-[#050505]/60 cursor-wait'
                     : 'bg-teal-500 text-[#050505] hover:bg-teal-400 shadow-[0_0_16px_rgba(13,148,136,0.3)] hover:shadow-[0_0_28px_rgba(13,148,136,0.5)]'
