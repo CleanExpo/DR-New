@@ -164,6 +164,44 @@ export const serviceRequestSearchSchema = z.object({
   }
 );
 
+// ============ JOB SCHEMAS ============
+
+export const jobCreateSchema = z.object({
+  type: z.enum(['water', 'fire', 'mould', 'storm', 'asbestos']),
+  propertyId: z.string().min(1, 'Property is required'),
+  estimatedCost: z.number().positive('Estimated cost must be positive').optional(),
+  scheduledDate: z.string().datetime('Invalid date format').optional(),
+  notes: z.string().max(2000, 'Notes cannot exceed 2000 characters').optional(),
+  insuranceClaimId: z.string().optional(),
+});
+
+export const jobUpdateSchema = z.object({
+  status: z.enum(['PENDING', 'ASSIGNED', 'IN_PROGRESS', 'COMPLETED', 'INVOICED', 'PAID']).optional(),
+  notes: z.string().max(2000, 'Notes cannot exceed 2000 characters').optional(),
+  estimatedCost: z.number().positive().optional(),
+  actualCost: z.number().positive().optional(),
+  scheduledDate: z.string().datetime().optional(),
+});
+
+// ============ CONTRACTOR SCHEMAS ============
+
+export const contractorSchema = z.object({
+  businessName: z.string().min(2, 'Business name must be at least 2 characters'),
+  abn: z.string().regex(/^\d{11}$/, 'ABN must be 11 digits').optional(),
+  phone: z.string().regex(/^\+?[\d\s\-()]+$/, 'Invalid phone number format'),
+  email: z.string().email('Invalid email format'),
+  address: z.string().min(5, 'Address is required'),
+  suburb: z.string().min(2, 'Suburb is required'),
+  state: z.enum(['NSW', 'VIC', 'QLD', 'WA', 'SA', 'TAS', 'NT', 'ACT']),
+  postcode: z.string().regex(/^\d{4}$/, 'Postcode must be 4 digits'),
+  licenceNumber: z.string().optional(),
+  insuranceProvider: z.string().optional(),
+  insurancePolicyNumber: z.string().optional(),
+  insuranceExpiry: z.string().datetime().optional(),
+  services: z.array(z.string()).min(1, 'At least one service is required'),
+  serviceAreas: z.array(z.string()).min(1, 'At least one service area is required'),
+});
+
 // ============ TYPE EXPORTS ============
 
 export type LoginInput = z.infer<typeof loginSchema>;
@@ -178,3 +216,6 @@ export type TrainingActionInput = z.infer<typeof trainingActionSchema>;
 export type WhiteLabelConfigInput = z.infer<typeof whiteLabelConfigSchema>;
 export type ServiceStatusType = z.infer<typeof serviceStatusEnum>;
 export type ServiceRequestSearchInput = z.infer<typeof serviceRequestSearchSchema>;
+export type JobCreateInput = z.infer<typeof jobCreateSchema>;
+export type JobUpdateInput = z.infer<typeof jobUpdateSchema>;
+export type ContractorInput = z.infer<typeof contractorSchema>;

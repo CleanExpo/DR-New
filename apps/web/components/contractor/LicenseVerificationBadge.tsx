@@ -1,12 +1,15 @@
-import { CheckCircle, AlertCircle, Shield } from 'lucide-react';
+import { CheckCircle, AlertCircle, Shield, XCircle, HelpCircle, Ban } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { differenceInDays, format } from 'date-fns';
+
+type LicenceStatusValue = 'unverified' | 'verified' | 'expired' | 'suspended';
 
 interface LicenseVerificationBadgeProps {
   licenseState: string;
   licenseExpiry: Date | null;
   isVerified: boolean;
   licenseNumber?: string;
+  licenseStatus?: LicenceStatusValue;
   showExpiryWarning?: boolean;
   className?: string;
 }
@@ -16,6 +19,7 @@ export function LicenseVerificationBadge({
   licenseExpiry,
   isVerified,
   licenseNumber,
+  licenseStatus = 'unverified',
   showExpiryWarning = true,
   className,
 }: LicenseVerificationBadgeProps) {
@@ -26,66 +30,98 @@ export function LicenseVerificationBadge({
 
   const isExpiringSoon =
     showExpiryWarning && daysUntilExpiry !== null && daysUntilExpiry < 30 && daysUntilExpiry >= 0;
-  const isExpired = daysUntilExpiry !== null && daysUntilExpiry < 0;
+  const isExpired = licenseStatus === 'expired' || (daysUntilExpiry !== null && daysUntilExpiry < 0);
+  const isSuspended = licenseStatus === 'suspended';
+  const isLicenceVerified = licenseStatus === 'verified' || (isVerified && !isExpired && !isSuspended);
+  const isUnverified = !isLicenceVerified && !isExpired && !isSuspended;
 
-  // Don't render if not verified or expired
-  if (!isVerified || isExpired) {
-    return null;
-  }
+  // Determine badge style based on status
+  const badgeConfig = isExpired
+    ? {
+        bg: 'bg-red-50 border-red-200',
+        icon: <XCircle className="h-6 w-6 text-red-600 flex-shrink-0" />,
+        labelColour: 'text-red-900',
+        detailColour: 'text-red-700',
+        label: 'Licence Expired',
+      }
+    : isSuspended
+      ? {
+          bg: 'bg-orange-50 border-orange-200',
+          icon: <Ban className="h-6 w-6 text-orange-600 flex-shrink-0" />,
+          labelColour: 'text-orange-900',
+          detailColour: 'text-orange-700',
+          label: 'Licence Suspended',
+        }
+      : isExpiringSoon
+        ? {
+            bg: 'bg-amber-50 border-amber-200',
+            icon: <AlertCircle className="h-6 w-6 text-amber-600 flex-shrink-0" />,
+            labelColour: 'text-amber-900',
+            detailColour: 'text-amber-700',
+            label: `${licenseState} Licensed`,
+          }
+        : isLicenceVerified
+          ? {
+              bg: 'bg-green-50 border-green-200',
+              icon: <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0" />,
+              labelColour: 'text-green-900',
+              detailColour: 'text-green-700',
+              label: `${licenseState} Licensed`,
+            }
+          : {
+              bg: 'bg-gray-50 border-gray-200',
+              icon: <HelpCircle className="h-6 w-6 text-gray-400 flex-shrink-0" />,
+              labelColour: 'text-gray-700',
+              detailColour: 'text-gray-500',
+              label: 'Licence Unverified',
+            };
 
   return (
     <div
       className={cn(
         'flex items-center gap-3 rounded-lg p-4 border',
-        isExpiringSoon
-          ? 'bg-amber-50 border-amber-200'
-          : 'bg-green-50 border-green-200',
+        badgeConfig.bg,
         className
       )}
     >
-      {/* Icon */}
-      {isExpiringSoon ? (
-        <AlertCircle className="h-6 w-6 text-amber-600 flex-shrink-0" />
-      ) : (
-        <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0" />
-      )}
+      {badgeConfig.icon}
 
-      {/* Content */}
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-1">
-          <span
-            className={cn(
-              'font-semibold',
-              isExpiringSoon ? 'text-amber-900' : 'text-green-900'
-            )}
-          >
-            {licenseState} Licensed
+          <span className={cn('font-semibold', badgeConfig.labelColour)}>
+            {badgeConfig.label}
           </span>
           <Shield className="h-4 w-4 text-gray-500" />
         </div>
 
         {/* Expiry Information */}
         {licenseExpiry && (
-          <div
-            className={cn(
-              'text-sm',
-              isExpiringSoon ? 'text-amber-700' : 'text-green-700'
-            )}
-          >
-            {isExpiringSoon ? (
+          <div className={cn('text-sm', badgeConfig.detailColour)}>
+            {isExpired ? (
               <span className="font-medium">
-                ⚠️ Expires in {daysUntilExpiry} {daysUntilExpiry === 1 ? 'day' : 'days'}
+                Expired on {format(licenseExpiry, 'dd MMM yyyy')}
               </span>
-            ) : (
+            ) : isExpiringSoon ? (
+              <span className="font-medium">
+                Expires in {daysUntilExpiry} {daysUntilExpiry === 1 ? 'day' : 'days'}
+              </span>
+            ) : isLicenceVerified ? (
               <span>Valid until {format(licenseExpiry, 'dd MMM yyyy')}</span>
-            )}
+            ) : null}
           </div>
         )}
 
-        {/* License Number (if provided) */}
+        {/* Licence Number */}
         {licenseNumber && (
           <div className="text-xs text-gray-600 mt-1">
-            License: {licenseNumber}
+            Licence: {licenseNumber}
+          </div>
+        )}
+
+        {/* Unverified hint */}
+        {isUnverified && !licenseNumber && (
+          <div className={cn('text-xs', badgeConfig.detailColour)}>
+            No licence information provided
           </div>
         )}
       </div>

@@ -37,6 +37,7 @@ tsconfig.tsbuildinfo
 .env.docker.backup*
 .env.vercel
 .env.lock
+.env.supabase
 *.env
 
 # Secrets
@@ -121,3 +122,6 @@ NodeJS-Starter-V1/
 .env.production.local
 .secrets-rotation.tmp
 .git-secrets-tmp/
+
+.vercel
+.env*.local

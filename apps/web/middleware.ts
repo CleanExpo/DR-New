@@ -2,6 +2,55 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getCORSHeaders, handleCORSPreflight, logCORSViolation, isOriginAllowed } from '@/lib/config/cors.config';
 
+// ============================================================================
+// Rate Limiting (In-Memory, Per-IP, 100 req/min for API routes)
+// ============================================================================
+
+const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
+const RATE_LIMIT_MAX = 100; // max requests per window
+
+interface RateLimitEntry {
+  count: number;
+  resetAt: number;
+}
+
+const rateLimitMap = new Map<string, RateLimitEntry>();
+
+// Periodic cleanup to prevent memory leak (runs every 5 minutes)
+let lastCleanup = Date.now();
+const CLEANUP_INTERVAL_MS = 300_000;
+
+function cleanupRateLimitMap() {
+  const now = Date.now();
+  if (now - lastCleanup < CLEANUP_INTERVAL_MS) return;
+  lastCleanup = now;
+  for (const [key, entry] of rateLimitMap) {
+    if (now > entry.resetAt) {
+      rateLimitMap.delete(key);
+    }
+  }
+}
+
+function isRateLimited(ip: string): { limited: boolean; remaining: number; resetAt: number } {
+  const now = Date.now();
+  cleanupRateLimitMap();
+
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { limited: false, remaining: RATE_LIMIT_MAX - 1, resetAt: now + RATE_LIMIT_WINDOW_MS };
+  }
+
+  entry.count++;
+
+  if (entry.count > RATE_LIMIT_MAX) {
+    return { limited: true, remaining: 0, resetAt: entry.resetAt };
+  }
+
+  return { limited: false, remaining: RATE_LIMIT_MAX - entry.count, resetAt: entry.resetAt };
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -67,6 +116,38 @@ export function middleware(request: NextRequest) {
 
     // Allow cron routes to proceed without additional security headers
     return response;
+  }
+
+  // ============================================================================
+  // Rate Limiting for API Routes (100 req/min per IP)
+  // ============================================================================
+
+  if (isApi) {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+      || request.headers.get('x-real-ip')
+      || 'unknown';
+
+    const { limited, remaining, resetAt } = isRateLimited(ip);
+
+    if (limited) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(Math.ceil((resetAt - Date.now()) / 1000)),
+            'X-RateLimit-Limit': String(RATE_LIMIT_MAX),
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': String(Math.ceil(resetAt / 1000)),
+          },
+        }
+      );
+    }
+
+    // Add rate limit headers to API responses
+    response.headers.set('X-RateLimit-Limit', String(RATE_LIMIT_MAX));
+    response.headers.set('X-RateLimit-Remaining', String(remaining));
+    response.headers.set('X-RateLimit-Reset', String(Math.ceil(resetAt / 1000)));
   }
 
   if (!isStatic) {

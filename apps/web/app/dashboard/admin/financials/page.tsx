@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import XeroWidget from '@/components/dashboard/XeroWidget';
 
 interface FinancialData {
   revenue: {
@@ -321,6 +322,11 @@ export default function AdminFinancialsPage() {
             </div>
           </div>
         )}
+
+        {/* Xero Accounting Integration */}
+        <div className="mb-8">
+          <XeroWidget />
+        </div>
 
         {/* Quick Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

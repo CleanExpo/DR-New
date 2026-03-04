@@ -118,6 +118,8 @@ const config: Config = {
     'tests/unit/crm/opportunity\\.service\\.test\\.ts', // Prisma mock setup incomplete
     'tests/unit/service-request-search-api\\.test\\.ts', // API returns 500s from unmocked Prisma
     'tests/integration/training-nrp-api\\.test\\.ts', // Training API mock setup incomplete
+    // Smoke tests require a running server — run via `npm run test:smoke`
+    'tests/smoke/',
   ],
 
   // Transform ignore patterns
