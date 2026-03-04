@@ -132,7 +132,7 @@ export function TerritoryMap() {
                     </div>
                     <div className="relative h-8 w-full rounded-full bg-gray-100 overflow-hidden">
                       <div
-                        className={`h-full transition-all ${getActivationColor(
+                        className={`h-full transition-[width,background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${getActivationColor(
                           state.activationRate
                         )}`}
                         style={{ width: `${state.activationRate}%` }}

@@ -135,23 +135,10 @@ async function generateFinancialExport(db: TenantPrismaClient, start: Date, end:
 }
 
 async function generateOperationalExport(db: TenantPrismaClient, start: Date, end: Date): Promise<any[]> {
-  const bookings = await db.booking.findMany({
-    where: {
-      completedAt: {
-        gte: start,
-        lte: end,
-      },
-    },
-  });
-
-  const serviceRequests = await db.serviceRequest.count({
-    where: {
-      createdAt: {
-        gte: start,
-        lte: end,
-      },
-    },
-  });
+  const [bookings, serviceRequests] = await Promise.all([
+    db.booking.findMany({ where: { completedAt: { gte: start, lte: end } } }),
+    db.serviceRequest.count({ where: { createdAt: { gte: start, lte: end } } }),
+  ]);
 
   return [
     {

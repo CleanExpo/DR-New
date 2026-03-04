@@ -117,7 +117,7 @@ export default function ClientOnboardingWizard() {
               <button
                 key={service.id}
                 onClick={() => updateForm('serviceType', service.id)}
-                className={`p-4 rounded-xl border-2 text-left transition-all
+                className={`p-4 rounded-xl border-2 text-left transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]
                   ${formData.serviceType === service.id
                     ? 'border-blue-600 bg-blue-50'
                     : 'border-slate-200 hover:border-slate-300'}`}
@@ -138,7 +138,7 @@ export default function ClientOnboardingWizard() {
                 <button
                   key={opt.id}
                   onClick={() => updateForm('urgency', opt.id)}
-                  className={`px-4 py-2 rounded-lg border transition-all
+                  className={`px-4 py-2 rounded-lg border transition-[border-color,background-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]
                     ${formData.urgency === opt.id
                       ? 'border-blue-600 bg-blue-50 text-blue-700'
                       : 'border-slate-200 hover:border-slate-300'}`}
@@ -226,7 +226,7 @@ export default function ClientOnboardingWizard() {
                 <button
                   key={opt.id}
                   onClick={() => updateForm('propertyType', opt.id)}
-                  className={`flex-1 py-3 rounded-xl border transition-all
+                  className={`flex-1 py-3 rounded-xl border transition-[border-color,background-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]
                     ${formData.propertyType === opt.id
                       ? 'border-blue-600 bg-blue-50 text-blue-700'
                       : 'border-slate-200 hover:border-slate-300'}`}

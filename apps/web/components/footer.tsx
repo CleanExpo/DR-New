@@ -116,10 +116,29 @@ export default function Footer() {
             <Link href="/terms" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors text-sm">
               Terms of Service
             </Link>
+            <Link href="/cookie-policy" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors text-sm">
+              Cookie Policy
+            </Link>
+            <Link href="/disclaimer" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors text-sm">
+              Disclaimer
+            </Link>
             <Link href="/contact" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors text-sm">
               Support
             </Link>
           </div>
+        </div>
+
+        {/* Legal Entity Notice */}
+        <div className="mt-6 text-center space-y-1">
+          <p className="text-[#9CA3AF] text-xs">
+            Disaster Recovery Pty Ltd | ABN: 85 151 794 142 | ACN: 151 794 142
+          </p>
+          <p className="text-[#9CA3AF] text-xs">
+            Brisbane, Queensland 4076 | support@disasterrecovery.com.au
+          </p>
+          <p className="text-[#9CA3AF] text-xs">
+            Trading as: Disaster Recovery &middot; NRPG &middot; Restore Assist
+          </p>
         </div>
       </div>
     </footer>

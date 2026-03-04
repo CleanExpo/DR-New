@@ -189,7 +189,7 @@ export default function NRPGDemoPage() {
               </a>
               <a
                 href="/emergency"
-                className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-all"
+                className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               >
                 Emergency
               </a>

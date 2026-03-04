@@ -78,13 +78,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('[GBP API] GET error:', error);
-    return NextResponse.json({
-      success: false,
-      error: {
-        code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
-      },
-    }, { status: 500 });
+    return NextResponse.json({ success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } }, { status: 500 });
   }
 }
 
@@ -208,13 +202,7 @@ export async function POST(request: NextRequest) {
     }, { status: 400 });
   } catch (error) {
     console.error('[GBP API] POST error:', error);
-    return NextResponse.json({
-      success: false,
-      error: {
-        code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
-      },
-    }, { status: 500 });
+    return NextResponse.json({ success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } }, { status: 500 });
   }
 }
 
@@ -245,13 +233,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json(result);
   } catch (error) {
     console.error('[GBP API] PATCH error:', error);
-    return NextResponse.json({
-      success: false,
-      error: {
-        code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
-      },
-    }, { status: 500 });
+    return NextResponse.json({ success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } }, { status: 500 });
   }
 }
 
@@ -275,12 +257,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json(result);
   } catch (error) {
     console.error('[GBP API] DELETE error:', error);
-    return NextResponse.json({
-      success: false,
-      error: {
-        code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
-      },
-    }, { status: 500 });
+    return NextResponse.json({ success: false, error: { code: 'INTERNAL_ERROR', message: 'Internal server error' } }, { status: 500 });
   }
 }

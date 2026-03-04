@@ -170,12 +170,16 @@ export async function POST(request: NextRequest) {
           indicatorCount: r.indicators.length,
           topIndicators: r.indicators.slice(0, 3).map((i) => i.type),
         })),
-        riskDistribution: {
-          critical: batchResult.results.filter((r) => r.riskLevel === 'CRITICAL').length,
-          high: batchResult.results.filter((r) => r.riskLevel === 'HIGH').length,
-          medium: batchResult.results.filter((r) => r.riskLevel === 'MEDIUM').length,
-          low: batchResult.results.filter((r) => r.riskLevel === 'LOW').length,
-        },
+        riskDistribution: (() => {
+          let critical = 0, high = 0, medium = 0, low = 0;
+          for (const r of batchResult.results) {
+            if (r.riskLevel === 'CRITICAL') critical++;
+            else if (r.riskLevel === 'HIGH') high++;
+            else if (r.riskLevel === 'MEDIUM') medium++;
+            else if (r.riskLevel === 'LOW') low++;
+          }
+          return { critical, high, medium, low };
+        })(),
       });
     }
 
@@ -188,7 +192,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Analysis failed',
+        error: 'Analysis failed',
       },
       { status: 500 }
     );

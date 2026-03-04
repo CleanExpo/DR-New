@@ -53,7 +53,7 @@ export function StatsOverview({ stats, className = '' }: StatsOverviewProps) {
           <Card
             key={index}
             className="bg-portal-card rounded-xl border border-portal-border shadow-lg
-                       transition-all duration-200 hover:-translate-y-1 hover:shadow-xl"
+                       transition-[transform,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-1 hover:shadow-xl"
           >
             <CardContent className="p-6">
               <div className="flex items-start justify-between">

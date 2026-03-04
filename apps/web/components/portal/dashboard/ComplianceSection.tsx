@@ -87,7 +87,7 @@ export function ComplianceSection({
       </div>
 
       {/* Card */}
-      <div className="bg-portal-card rounded-xl border border-portal-border p-6 space-y-6 shadow-lg transition-all duration-200 hover:-translate-y-1 hover:shadow-xl">
+      <div className="bg-portal-card rounded-xl border border-portal-border p-6 space-y-6 shadow-lg transition-[transform,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-1 hover:shadow-xl">
         {/* Compliance Items */}
         <div className="space-y-4">
           {items.map((item) => {
@@ -148,7 +148,7 @@ export function ComplianceSection({
           </p>
           <div className="w-full bg-portal-border rounded-full h-1.5">
             <div
-              className="bg-nrpg-teal h-1.5 rounded-full transition-all duration-500"
+              className="bg-nrpg-teal h-1.5 rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               style={{ width: `${progress}%` }}
             />
           </div>

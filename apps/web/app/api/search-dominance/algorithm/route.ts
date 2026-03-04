@@ -40,40 +40,43 @@ export async function GET(request: NextRequest) {
 
     if (status) where.status = status;
 
-    // Get algorithm updates
-    const updates = await db.algorithmUpdate.findMany({
-      where,
-      orderBy: {
-        detectedAt: 'desc',
-      },
-      take: limit,
-    });
-
-    // Calculate statistics
-    const stats = {
-      total: updates.length,
-      byStatus: {
-        DETECTED: updates.filter((u) => u.status === 'DETECTED').length,
-        CONFIRMED: updates.filter((u) => u.status === 'CONFIRMED').length,
-        RESOLVED: updates.filter((u) => u.status === 'RESOLVED').length,
-      },
-      byType: await db.algorithmUpdate.groupBy({
+    // Get all data in parallel
+    const [updates, byType, recentRankings] = await Promise.all([
+      db.algorithmUpdate.findMany({
+        where,
+        orderBy: { detectedAt: 'desc' },
+        take: limit,
+      }),
+      db.algorithmUpdate.groupBy({
         by: ['type'],
         where,
         _count: true,
-        orderBy: {
-          _count: {
-            type: 'desc',
-          },
-        },
+        orderBy: { _count: { type: 'desc' } },
       }),
-      avgImpact: updates.length > 0
-        ? updates.reduce((sum, u) => sum + u.impactScore, 0) / updates.length
-        : 0,
-      highImpact: updates.filter((u) => u.impactScore >= 70).length,
-      avgVolatility: updates.length > 0
-        ? updates.reduce((sum, u) => sum + (u.volatility || 0), 0) / updates.length
-        : 0,
+      db.rankingRecord.findMany({
+        where: { timestamp: { gte: startDate }, previousPosition: { not: null } },
+        select: { keyword: true, position: true, previousPosition: true, timestamp: true },
+      }),
+    ]);
+
+    // Calculate statistics — single pass
+    let statusDetected = 0, statusConfirmed = 0, statusResolved = 0;
+    let impactSum = 0, highImpact = 0, volatilitySum = 0;
+    for (const u of updates) {
+      if (u.status === 'DETECTED') statusDetected++;
+      else if (u.status === 'CONFIRMED') statusConfirmed++;
+      else if (u.status === 'RESOLVED') statusResolved++;
+      impactSum += u.impactScore;
+      if (u.impactScore >= 70) highImpact++;
+      volatilitySum += u.volatility || 0;
+    }
+    const stats = {
+      total: updates.length,
+      byStatus: { DETECTED: statusDetected, CONFIRMED: statusConfirmed, RESOLVED: statusResolved },
+      byType,
+      avgImpact: updates.length > 0 ? impactSum / updates.length : 0,
+      highImpact,
+      avgVolatility: updates.length > 0 ? volatilitySum / updates.length : 0,
     };
 
     // Format timeline
@@ -92,24 +95,6 @@ export async function GET(request: NextRequest) {
       resolvedAt: update.resolvedAt,
       notes: update.notes,
     }));
-
-    // Get recent ranking volatility for correlation
-    const recentRankings = await db.rankingRecord.findMany({
-      where: {
-        timestamp: {
-          gte: startDate,
-        },
-        previousPosition: {
-          not: null,
-        },
-      },
-      select: {
-        keyword: true,
-        position: true,
-        previousPosition: true,
-        timestamp: true,
-      },
-    });
 
     // Calculate daily volatility
     const dailyVolatility = recentRankings.reduce((acc: any, ranking) => {

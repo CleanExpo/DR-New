@@ -96,13 +96,17 @@ export async function GET(request: NextRequest) {
     const averageRating =
       allRatings.length > 0 ? allRatings.reduce((sum, r) => sum + r, 0) / allRatings.length : 0;
 
-    const ratingDistribution = {
-      five: allRatings.filter((r) => r === 5).length,
-      four: allRatings.filter((r) => r === 4).length,
-      three: allRatings.filter((r) => r === 3).length,
-      two: allRatings.filter((r) => r === 2).length,
-      one: allRatings.filter((r) => r === 1).length,
-    };
+    const ratingDistribution = (() => {
+      let five = 0, four = 0, three = 0, two = 0, one = 0;
+      for (const r of allRatings) {
+        if (r === 5) five++;
+        else if (r === 4) four++;
+        else if (r === 3) three++;
+        else if (r === 2) two++;
+        else if (r === 1) one++;
+      }
+      return { five, four, three, two, one };
+    })();
 
     // Earnings summary
     const totalEarnings = completedBookings.reduce((sum, b) => {

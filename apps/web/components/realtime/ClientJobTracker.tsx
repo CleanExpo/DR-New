@@ -412,7 +412,7 @@ export function ClientJobTracker({
             {/* Progress Line */}
             <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700" />
             <div
-              className="absolute left-5 top-0 w-0.5 bg-teal-500 transition-all duration-500"
+              className="absolute left-5 top-0 w-0.5 bg-teal-500 transition-[height] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               style={{
                 height: `${(currentStep / (STATUS_STEPS.length - 1)) * 100}%`,
               }}
@@ -430,7 +430,7 @@ export function ClientJobTracker({
                     {/* Step Icon */}
                     <div
                       className={cn(
-                        'relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-lg transition-all',
+                        'relative z-10 flex h-10 w-10 items-center justify-center rounded-full text-lg transition-[background-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                         isPast || isActive
                           ? 'bg-teal-500 text-white'
                           : 'bg-gray-100 dark:bg-gray-800 text-gray-400'

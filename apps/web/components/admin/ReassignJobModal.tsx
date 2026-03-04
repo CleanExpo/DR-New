@@ -111,7 +111,7 @@ export function ReassignJobModal({
 
       {/* Modal */}
       <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative w-full max-w-lg transform overflow-hidden rounded-lg bg-white shadow-xl transition-all">
+        <div className="relative w-full max-w-lg transform overflow-hidden rounded-lg bg-white shadow-xl transition-[opacity,transform] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]">
           {/* Header */}
           <div className="border-b border-grey-200 px-6 py-4">
             <div className="flex items-center justify-between">

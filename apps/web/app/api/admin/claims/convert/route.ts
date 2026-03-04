@@ -150,21 +150,14 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Claim conversion error:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
+    const message = error instanceof Error ? error.message : '';
 
-    // Check for specific errors
     if (message.includes('not found')) {
-      return NextResponse.json(
-        { error: message },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Claim not found' }, { status: 404 });
     }
 
     if (message.includes('not pending')) {
-      return NextResponse.json(
-        { error: message },
-        { status: 409 }
-      );
+      return NextResponse.json({ error: 'Claim is not in pending state' }, { status: 409 });
     }
 
     return NextResponse.json(

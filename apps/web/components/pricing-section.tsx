@@ -14,7 +14,7 @@ export default function PricingSection() {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#00BFA6]/50 transition-all duration-300 card-hover-lift glow-effect">
+          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#00BFA6]/50 transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] card-hover-lift glow-effect">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-[#F9FAFB] mb-2">Basic</h3>
               <div className="text-4xl font-bold text-[#00BFA6] mb-2">$0</div>
@@ -38,12 +38,12 @@ export default function PricingSection() {
                 Standard response time
               </li>
             </ul>
-            <button className="w-full bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300">
+            <button className="w-full bg-gradient-to-br from-[#00BFA6] to-[#3B82F6] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-[opacity] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
               Get Started
             </button>
           </div>
           
-          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#7C4DFF]/50 transition-all duration-300 card-hover-lift glow-effect relative">
+          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#7C4DFF]/50 transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] card-hover-lift glow-effect relative">
             <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-[#7C4DFF] to-[#8B5CF6] text-white px-4 py-1 rounded-full text-sm font-semibold">
               Most Popular
             </div>
@@ -74,12 +74,12 @@ export default function PricingSection() {
                 Job progress tracking
               </li>
             </ul>
-            <button className="w-full bg-gradient-to-br from-[#7C4DFF] to-[#8B5CF6] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300">
+            <button className="w-full bg-gradient-to-br from-[#7C4DFF] to-[#8B5CF6] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-[opacity] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
               Get Premium
             </button>
           </div>
           
-          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#3B82F6]/50 transition-all duration-300 card-hover-lift glow-effect">
+          <div className="bg-gradient-to-br from-[#0F1115] to-[#1a1d29] p-8 rounded-2xl border border-[#374151]/50 hover:border-[#3B82F6]/50 transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] card-hover-lift glow-effect">
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold text-[#F9FAFB] mb-2">Enterprise</h3>
               <div className="text-4xl font-bold text-[#3B82F6] mb-2">Custom</div>
@@ -107,7 +107,7 @@ export default function PricingSection() {
                 White-label solution
               </li>
             </ul>
-            <button className="w-full bg-gradient-to-br from-[#3B82F6] to-[#00BFA6] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-all duration-300">
+            <button className="w-full bg-gradient-to-br from-[#3B82F6] to-[#00BFA6] text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition-[opacity] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
               Contact Sales
             </button>
           </div>

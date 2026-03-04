@@ -74,7 +74,7 @@ export function CourseCard({
     : `/dashboard/contractor/onboarding/training/${courseId}`;
 
   return (
-    <Card className="bg-gray-800 border-gray-700 hover:border-gray-600 transition-all group">
+    <Card className="bg-gray-800 border-gray-700 hover:border-gray-600 transition-[border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] group">
       <CardContent className="p-6">
         <div className="flex items-start gap-4">
           {/* Course icon */}
@@ -125,7 +125,7 @@ export function CourseCard({
               </div>
               <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full rounded-full transition-all duration-500"
+                  className="h-full rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                   style={{
                     width: `${progress.percentComplete}%`,
                     backgroundColor: progress.status === 'completed' ? '#10B981' : colour,

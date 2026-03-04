@@ -57,7 +57,7 @@ export default function CustomerPortalLayout({
       <aside
         className={`${
           sidebarOpen ? 'w-64' : 'w-0'
-        } bg-gradient-to-b from-blue-900 to-blue-800 text-white transition-all duration-300 overflow-hidden md:w-64 flex flex-col`}
+        } bg-gradient-to-b from-blue-900 to-blue-800 text-white transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] overflow-hidden md:w-64 flex flex-col`}
       >
         {/* Logo */}
         <div className="p-6 border-b border-blue-700">
@@ -73,7 +73,7 @@ export default function CustomerPortalLayout({
             return (
               <Link key={item.href} href={item.href}>
                 <div
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all cursor-pointer ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-[background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] cursor-pointer ${
                     active
                       ? 'bg-blue-700 shadow-lg'
                       : 'hover:bg-blue-700/50'

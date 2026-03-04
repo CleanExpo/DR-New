@@ -34,7 +34,7 @@ export function EmergencyButton({
       className={cn(
         'bg-nrpg-red hover:bg-nrpg-red/90 text-white rounded-3xl font-black',
         'shadow-2xl shadow-nrpg-red/30 hover:shadow-nrpg-red/40',
-        'transition-all duration-300',
+        'transition-[background-color,box-shadow,transform] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]',
         'active:scale-95',
         'flex items-center gap-2',
         sizeClasses[size],

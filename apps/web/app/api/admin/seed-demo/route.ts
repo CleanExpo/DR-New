@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     console.error('Seed error:', error)
     return NextResponse.json({
       error: 'Failed to seed demo accounts',
-      details: error instanceof Error ? error.message : 'Unknown error'
+      details: 'See server logs for details'
     }, { status: 500 })
   }
 }

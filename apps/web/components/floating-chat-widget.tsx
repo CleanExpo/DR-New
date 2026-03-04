@@ -312,7 +312,7 @@ export default function FloatingChatWidget({
             console.log('Floating chat button clicked, isOpen:', isOpen);
             setIsOpen(!isOpen);
           }}
-          className="w-14 h-14 rounded-full bg-gradient-to-r from-[#00BFA6] to-[#00A693] hover:from-[#00A693] hover:to-[#009682] text-white shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-white/20"
+          className="w-14 h-14 rounded-full bg-gradient-to-r from-[#00BFA6] to-[#00A693] hover:from-[#00A693] hover:to-[#009682] text-white shadow-xl hover:shadow-2xl transition-[box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] border-2 border-white/20"
           style={{ 
             position: 'fixed',
             bottom: '24px',
@@ -541,7 +541,7 @@ export default function FloatingChatWidget({
                           value={newMessage}
                           onChange={(e) => setNewMessage(e.target.value)}
                           placeholder="Type your message..."
-                          className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-full text-gray-900 placeholder-gray-500 focus:border-[#00BFA6] focus:ring-2 focus:ring-[#00BFA6]/20 focus:outline-none transition-all duration-200"
+                          className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-full text-gray-900 placeholder-gray-500 focus:border-[#00BFA6] focus:ring-2 focus:ring-[#00BFA6]/20 focus:outline-none transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                           onKeyPress={(e) => {
                             if (e.key === 'Enter' && !e.shiftKey) {
                               e.preventDefault();
@@ -552,7 +552,7 @@ export default function FloatingChatWidget({
                         <Button
                           onClick={sendMessage}
                           disabled={!newMessage.trim() || sendingMessage}
-                          className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-[#00BFA6] hover:bg-[#00A693] text-white p-0 shadow-md hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-[#00BFA6] hover:bg-[#00A693] text-white p-0 shadow-md hover:shadow-lg transition-[background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           {sendingMessage ? (
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

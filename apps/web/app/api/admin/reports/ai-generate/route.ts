@@ -224,7 +224,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Report generation failed',
+        error: 'Report generation failed',
       },
       { status: 500 }
     );
@@ -507,7 +507,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to get report data',
+        error: 'Failed to get report data',
       },
       { status: 500 }
     );

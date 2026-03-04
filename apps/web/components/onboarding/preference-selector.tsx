@@ -219,7 +219,7 @@ export default function PreferenceSelector({ onComplete, onSkip }: PreferenceSel
                 return (
                   <Card
                     key={category.id}
-                    className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
+                    className={`cursor-pointer transition-[transform,background-color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:scale-105 ${
                       isSelected 
                         ? 'ring-2 ring-[#00BFA6] bg-[#00BFA6]/10 border-[#00BFA6]' 
                         : 'bg-gray-800 border-gray-700 hover:border-gray-600'
@@ -256,7 +256,7 @@ export default function PreferenceSelector({ onComplete, onSkip }: PreferenceSel
                 return (
                   <Card
                     key={category}
-                    className={`cursor-pointer transition-all duration-200 ${
+                    className={`cursor-pointer transition-[background-color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                       isSelected 
                         ? 'ring-2 ring-[#00BFA6] bg-[#00BFA6]/10 border-[#00BFA6]' 
                         : 'bg-gray-800 border-gray-700 hover:border-gray-600'
@@ -290,7 +290,7 @@ export default function PreferenceSelector({ onComplete, onSkip }: PreferenceSel
                 return (
                   <Card
                     key={range.id}
-                    className={`cursor-pointer transition-all duration-200 ${
+                    className={`cursor-pointer transition-[background-color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                       isSelected 
                         ? 'ring-2 ring-[#00BFA6] bg-[#00BFA6]/10 border-[#00BFA6]' 
                         : 'bg-gray-800 border-gray-700 hover:border-gray-600'
@@ -329,7 +329,7 @@ export default function PreferenceSelector({ onComplete, onSkip }: PreferenceSel
                 return (
                   <Card
                     key={level.id}
-                    className={`cursor-pointer transition-all duration-200 ${
+                    className={`cursor-pointer transition-[background-color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                       isSelected 
                         ? 'ring-2 ring-[#00BFA6] bg-[#00BFA6]/10 border-[#00BFA6]' 
                         : 'bg-gray-800 border-gray-700 hover:border-gray-600'
@@ -370,7 +370,7 @@ export default function PreferenceSelector({ onComplete, onSkip }: PreferenceSel
                 return (
                   <Card
                     key={style.id}
-                    className={`cursor-pointer transition-all duration-200 ${
+                    className={`cursor-pointer transition-[background-color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                       isSelected 
                         ? 'ring-2 ring-[#00BFA6] bg-[#00BFA6]/10 border-[#00BFA6]' 
                         : 'bg-gray-800 border-gray-700 hover:border-gray-600'

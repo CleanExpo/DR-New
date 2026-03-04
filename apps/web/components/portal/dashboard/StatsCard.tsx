@@ -43,7 +43,7 @@ export function StatsCard({
     <div
       className={cn(
         'bg-portal-card rounded-xl p-6 border border-portal-border shadow-lg',
-        'transition-all duration-200 hover:-translate-y-1 hover:shadow-xl',
+        'transition-[transform,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-1 hover:shadow-xl',
         className
       )}
     >
@@ -93,7 +93,7 @@ export function StatsCard({
       {typeof progress === 'number' && (
         <div className="mt-6 h-1 w-full bg-portal-border rounded-full overflow-hidden">
           <div
-            className="h-full bg-nrpg-teal rounded-full transition-all duration-500"
+            className="h-full bg-nrpg-teal rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
             style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
           />
         </div>

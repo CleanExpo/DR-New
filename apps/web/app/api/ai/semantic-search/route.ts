@@ -186,7 +186,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to process search query',
+        error: 'Failed to process search query',
       },
       { status: 500 }
     );

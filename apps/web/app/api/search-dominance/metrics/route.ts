@@ -22,27 +22,17 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const days = parseInt(searchParams.get('days') || '30');
 
-    // Get latest dominance metrics
-    const latest = await db.dominanceMetrics.findFirst({
-      orderBy: {
-        date: 'desc',
-      },
-    });
-
-    // Get historical data for trend
+    // Get latest and historical in parallel
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
 
-    const historical = await db.dominanceMetrics.findMany({
-      where: {
-        date: {
-          gte: startDate,
-        },
-      },
-      orderBy: {
-        date: 'asc',
-      },
-    });
+    const [latest, historical] = await Promise.all([
+      db.dominanceMetrics.findFirst({ orderBy: { date: 'desc' } }),
+      db.dominanceMetrics.findMany({
+        where: { date: { gte: startDate } },
+        orderBy: { date: 'asc' },
+      }),
+    ]);
 
     // Calculate trend (comparing current to average of last 7 days)
     let trend: 'up' | 'down' | 'stable' = 'stable';
@@ -83,17 +73,16 @@ export async function GET(request: NextRequest) {
         aiOverviewRate: m.aiOverviewRate,
         dailySessions: m.dailySessions,
       })),
-      summary: {
-        avgScore: historical.length > 0
-          ? historical.reduce((sum, m) => sum + m.dominanceScore, 0) / historical.length
-          : 0,
-        maxScore: historical.length > 0
-          ? Math.max(...historical.map((m) => m.dominanceScore))
-          : 0,
-        minScore: historical.length > 0
-          ? Math.min(...historical.map((m) => m.dominanceScore))
-          : 0,
-      },
+      summary: (() => {
+        if (historical.length === 0) return { avgScore: 0, maxScore: 0, minScore: 0 };
+        let scoreSum = 0, maxScore = -Infinity, minScore = Infinity;
+        for (const m of historical) {
+          scoreSum += m.dominanceScore;
+          if (m.dominanceScore > maxScore) maxScore = m.dominanceScore;
+          if (m.dominanceScore < minScore) minScore = m.dominanceScore;
+        }
+        return { avgScore: scoreSum / historical.length, maxScore, minScore };
+      })(),
     });
   } catch (error) {
     console.error('[API] Error fetching dominance metrics:', error);

@@ -48,21 +48,20 @@ export async function GET(request: NextRequest) {
     const alerts: JobAlert[] = [];
     const now = new Date();
 
-    // 1. Jobs ASSIGNED for 24+ hours with no status update
+    // Fetch stale assignments and completed-without-invoice jobs in parallel
     const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    const fortyEightHoursAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
 
-    const staleAssignments = await prisma.job.findMany({
-      where: {
-        status: 'ASSIGNED',
-        updatedAt: { lt: twentyFourHoursAgo },
-      },
-      select: {
-        id: true,
-        jobNumber: true,
-        contractorId: true,
-        updatedAt: true,
-      },
-    });
+    const [staleAssignments, completedJobs] = await Promise.all([
+      prisma.job.findMany({
+        where: { status: 'ASSIGNED', updatedAt: { lt: twentyFourHoursAgo } },
+        select: { id: true, jobNumber: true, contractorId: true, updatedAt: true },
+      }),
+      prisma.job.findMany({
+        where: { status: 'COMPLETED', completedDate: { lt: fortyEightHoursAgo } },
+        select: { id: true, jobNumber: true, contractorId: true, completedDate: true },
+      }),
+    ]);
 
     for (const job of staleAssignments) {
       const hoursSince = Math.round(
@@ -78,22 +77,6 @@ export async function GET(request: NextRequest) {
         hoursSinceEvent: hoursSince,
       });
     }
-
-    // 2. Jobs COMPLETED for 48+ hours with no invoice
-    const fortyEightHoursAgo = new Date(now.getTime() - 48 * 60 * 60 * 1000);
-
-    const completedJobs = await prisma.job.findMany({
-      where: {
-        status: 'COMPLETED',
-        completedDate: { lt: fortyEightHoursAgo },
-      },
-      select: {
-        id: true,
-        jobNumber: true,
-        contractorId: true,
-        completedDate: true,
-      },
-    });
 
     for (const job of completedJobs) {
       const hoursSince = job.completedDate
@@ -116,8 +99,8 @@ export async function GET(request: NextRequest) {
     if (alerts.length > 0) {
       console.warn(`[JOB ALERTS] ${alerts.length} alert(s) detected:`, {
         timestamp: now.toISOString(),
-        staleAssignments: alerts.filter((a) => a.alertType === 'stale_assignment').length,
-        missingInvoices: alerts.filter((a) => a.alertType === 'missing_invoice').length,
+        staleAssignments: staleAssignments.length,
+        missingInvoices: completedJobs.length,
         alerts,
       });
 
@@ -140,7 +123,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Job alerts cron failed',
-        message: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );

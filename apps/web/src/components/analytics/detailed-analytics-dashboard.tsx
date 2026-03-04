@@ -141,7 +141,7 @@ export function DetailedAnalyticsDashboard({
                   </div>
                   <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-blue-600 transition-all"
+                      className="h-full bg-blue-600 transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                       style={{ width: `${(item.count / maxEventCount) * 100}%` }}
                     ></div>
                   </div>
@@ -157,7 +157,7 @@ export function DetailedAnalyticsDashboard({
                 {sortedHours.map((hour) => (
                   <div key={hour.hour} className="flex-1 flex flex-col items-center gap-1">
                     <div
-                      className="w-full bg-blue-600 rounded-t transition-all hover:bg-blue-700"
+                      className="w-full bg-blue-600 rounded-t transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:bg-blue-700"
                       style={{ height: `${(hour.traffic / maxHourTraffic) * 100}%`, minHeight: '4px' }}
                       title={`Hour ${hour.hour}: ${hour.traffic} events`}
                     ></div>

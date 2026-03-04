@@ -124,15 +124,24 @@ export async function GET(request: NextRequest) {
       }
     ];
 
+    // Single pass for all tenant stats
+    let activeTenants = 0, trialTenants = 0, totalUsers = 0, totalRequests = 0, totalRevenue = 0;
+    for (const t of tenants) {
+      if (t.status === 'active') activeTenants++;
+      else if (t.status === 'trial') trialTenants++;
+      totalUsers += t.users;
+      totalRequests += t.requests;
+      totalRevenue += t.revenue;
+    }
     const tenantStats = {
       totalTenants: tenants.length,
-      activeTenants: tenants.filter(t => t.status === 'active').length,
-      trialTenants: tenants.filter(t => t.status === 'trial').length,
-      totalUsers: tenants.reduce((sum, t) => sum + t.users, 0),
-      totalRequests: tenants.reduce((sum, t) => sum + t.requests, 0),
-      totalRevenue: tenants.reduce((sum, t) => sum + t.revenue, 0),
-      averageUsersPerTenant: Math.round(tenants.reduce((sum, t) => sum + t.users, 0) / tenants.length),
-      averageRevenuePerTenant: Math.round(tenants.reduce((sum, t) => sum + t.revenue, 0) / tenants.length)
+      activeTenants,
+      trialTenants,
+      totalUsers,
+      totalRequests,
+      totalRevenue,
+      averageUsersPerTenant: tenants.length > 0 ? Math.round(totalUsers / tenants.length) : 0,
+      averageRevenuePerTenant: tenants.length > 0 ? Math.round(totalRevenue / tenants.length) : 0,
     };
 
     return NextResponse.json({

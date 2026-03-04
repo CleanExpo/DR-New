@@ -68,65 +68,32 @@ export async function GET(request: NextRequest) {
       } | null;
     };
 
-    // Calculate metrics
-    const totalAmount = payments
-      .filter((p) => p.status === 'COMPLETED')
-      .reduce((sum, p) => sum + Number(p.amountAUD), 0);
-
-    const failedAmount = payments
-      .filter((p) => p.status === 'FAILED')
-      .reduce((sum, p) => sum + Number(p.amountAUD), 0);
-
-    const refundedAmount = payments
-      .filter((p) => p.status === 'REFUNDED')
-      .reduce((sum, p) => sum + Number(p.amountAUD), 0);
-
-    // Spending by contractor
-    const byContractor = (payments as PaymentWithBooking[]).reduce(
-      (acc, p) => {
-        const contractorName = p.booking?.contractor?.businessName || 'Unknown';
-        const existing = acc.find((c) => c.contractor === contractorName);
-        if (existing) {
-          existing.amount += Number(p.amountAUD);
-          existing.count += 1;
-        } else {
-          acc.push({
-            contractor: contractorName,
-            amount: Number(p.amountAUD),
-            count: 1,
-          });
-        }
-        return acc;
-      },
-      [] as Array<{ contractor: string; amount: number; count: number }>
-    );
-
-    // Spending by service type
-    const byServiceType = (payments as PaymentWithBooking[]).reduce(
-      (acc, p) => {
-        const serviceType = p.booking?.australianServiceType || 'Unknown';
-        const existing = acc.find((s) => s.serviceType === serviceType);
-        if (existing) {
-          existing.amount += Number(p.amountAUD);
-          existing.count += 1;
-        } else {
-          acc.push({
-            serviceType,
-            amount: Number(p.amountAUD),
-            count: 1,
-          });
-        }
-        return acc;
-      },
-      [] as Array<{ serviceType: string; amount: number; count: number }>
-    );
-
-    // Monthly spending trend
+    // Single-pass: calculate all metrics simultaneously
+    let totalAmount = 0, failedAmount = 0, refundedAmount = 0, successfulCount = 0;
+    const contractorMap = new Map<string, { amount: number; count: number }>();
+    const serviceTypeMap = new Map<string, { amount: number; count: number }>();
     const monthlyData: Record<string, number> = {};
-    payments.forEach((p) => {
-      const monthKey = p.createdAt.toISOString().substring(0, 7); // YYYY-MM
-      monthlyData[monthKey] = (monthlyData[monthKey] || 0) + Number(p.amountAUD);
-    });
+
+    for (const p of payments as PaymentWithBooking[]) {
+      const amt = Number(p.amountAUD);
+      if (p.status === 'COMPLETED') { totalAmount += amt; successfulCount++; }
+      else if (p.status === 'FAILED') failedAmount += amt;
+      else if (p.status === 'REFUNDED') refundedAmount += amt;
+
+      const contractorName = p.booking?.contractor?.businessName || 'Unknown';
+      const cv = contractorMap.get(contractorName);
+      if (cv) { cv.amount += amt; cv.count++; } else contractorMap.set(contractorName, { amount: amt, count: 1 });
+
+      const serviceType = p.booking?.australianServiceType || 'Unknown';
+      const sv = serviceTypeMap.get(serviceType);
+      if (sv) { sv.amount += amt; sv.count++; } else serviceTypeMap.set(serviceType, { amount: amt, count: 1 });
+
+      const monthKey = p.createdAt.toISOString().substring(0, 7);
+      monthlyData[monthKey] = (monthlyData[monthKey] || 0) + amt;
+    }
+
+    const byContractor = Array.from(contractorMap.entries()).map(([contractor, v]) => ({ contractor, ...v }));
+    const byServiceType = Array.from(serviceTypeMap.entries()).map(([serviceType, v]) => ({ serviceType, ...v }));
 
     const monthlyTrend = Object.entries(monthlyData)
       .sort(([a], [b]) => a.localeCompare(b))
@@ -143,7 +110,7 @@ export async function GET(request: NextRequest) {
         totalFailed: parseFloat(failedAmount.toFixed(2)),
         totalRefunded: parseFloat(refundedAmount.toFixed(2)),
         transactionCount: payments.length,
-        successfulTransactions: payments.filter((p) => p.status === 'COMPLETED').length,
+        successfulTransactions: successfulCount,
         averageTransactionValue:
           payments.length > 0 ? parseFloat((totalAmount / payments.length).toFixed(2)) : 0,
       },

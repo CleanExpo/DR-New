@@ -131,7 +131,7 @@ export async function GET(request: NextRequest) {
       success: false,
       error: {
         code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        message: 'Internal server error',
       },
     }, { status: 500 });
   }
@@ -246,7 +246,7 @@ export async function POST(request: NextRequest) {
       success: false,
       error: {
         code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        message: 'Internal server error',
       },
     }, { status: 500 });
   }
@@ -300,7 +300,7 @@ export async function PATCH(request: NextRequest) {
       success: false,
       error: {
         code: 'INTERNAL_ERROR',
-        message: error instanceof Error ? error.message : 'Unknown error occurred',
+        message: 'Internal server error',
       },
     }, { status: 500 });
   }

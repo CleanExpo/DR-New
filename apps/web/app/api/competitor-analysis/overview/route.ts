@@ -20,32 +20,16 @@ export async function GET(request: NextRequest) {
 
     const db = getTenantDb(authResult.context);
 
-    // Get total competitors
-    const totalCompetitors = await db.competitor.count({
-      where: { isActive: true },
-    });
-
-    // Get total keywords
-    const totalKeywords = await db.competitorKeyword.count();
-
-    // Get total opportunities
-    const totalOpportunities = await db.keywordOpportunity.count();
-
-    // Get last analysis date
-    const lastAnalysis = await db.competitorAnalysis.findFirst({
-      orderBy: { analysisDate: 'desc' },
-      select: { analysisDate: true },
-    });
-
-    // Get average domain rating
-    const avgDomainRating = await db.competitorAnalysis.aggregate({
-      _avg: { domainRating: true },
-    });
-
-    // Get average organic traffic
-    const avgOrganicTraffic = await db.competitorAnalysis.aggregate({
-      _avg: { organicTraffic: true },
-    });
+    // Fetch all overview metrics in parallel
+    const [totalCompetitors, totalKeywords, totalOpportunities, lastAnalysis, avgDomainRating, avgOrganicTraffic] =
+      await Promise.all([
+        db.competitor.count({ where: { isActive: true } }),
+        db.competitorKeyword.count(),
+        db.keywordOpportunity.count(),
+        db.competitorAnalysis.findFirst({ orderBy: { analysisDate: 'desc' }, select: { analysisDate: true } }),
+        db.competitorAnalysis.aggregate({ _avg: { domainRating: true } }),
+        db.competitorAnalysis.aggregate({ _avg: { organicTraffic: true } }),
+      ]);
 
     return NextResponse.json({
       totalCompetitors,

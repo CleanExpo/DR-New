@@ -164,7 +164,7 @@ export function KeywordMatrix({ opportunities, onKeywordClick }: KeywordMatrixPr
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
         <button
           onClick={() => setSelectedTier('all')}
-          className={`p-4 rounded-lg border-2 transition-all ${
+          className={`p-4 rounded-lg border-2 transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             selectedTier === 'all'
               ? 'border-blue-500 bg-blue-50'
               : 'border-gray-200 hover:border-gray-300'
@@ -176,7 +176,7 @@ export function KeywordMatrix({ opportunities, onKeywordClick }: KeywordMatrixPr
 
         <button
           onClick={() => setSelectedTier('easy')}
-          className={`p-4 rounded-lg border-2 transition-all ${
+          className={`p-4 rounded-lg border-2 transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             selectedTier === 'easy'
               ? 'border-green-500 bg-green-50'
               : 'border-gray-200 hover:border-gray-300'
@@ -188,7 +188,7 @@ export function KeywordMatrix({ opportunities, onKeywordClick }: KeywordMatrixPr
 
         <button
           onClick={() => setSelectedTier('medium')}
-          className={`p-4 rounded-lg border-2 transition-all ${
+          className={`p-4 rounded-lg border-2 transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             selectedTier === 'medium'
               ? 'border-yellow-500 bg-yellow-50'
               : 'border-gray-200 hover:border-gray-300'
@@ -200,7 +200,7 @@ export function KeywordMatrix({ opportunities, onKeywordClick }: KeywordMatrixPr
 
         <button
           onClick={() => setSelectedTier('hard')}
-          className={`p-4 rounded-lg border-2 transition-all ${
+          className={`p-4 rounded-lg border-2 transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             selectedTier === 'hard'
               ? 'border-red-500 bg-red-50'
               : 'border-gray-200 hover:border-gray-300'

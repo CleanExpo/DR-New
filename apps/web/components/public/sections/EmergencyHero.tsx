@@ -225,7 +225,7 @@ export function EmergencyHero() {
               <Button
                 size="xl"
                 variant="outline"
-                className="w-full sm:w-auto min-w-[200px] border-2 border-blue-500 text-blue-600 hover:bg-blue-50 shadow-md hover:shadow-lg transition-all"
+                className="w-full sm:w-auto min-w-[200px] border-2 border-blue-500 text-blue-600 hover:bg-blue-50 shadow-md hover:shadow-lg transition-[background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                 icon={<Calculator className="h-5 w-5" />}
                 iconPosition="left"
                 aria-label="Get a free quote"

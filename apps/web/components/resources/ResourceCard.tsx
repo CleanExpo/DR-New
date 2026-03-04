@@ -71,7 +71,7 @@ export function ResourceCard({
   if (variant === 'compact') {
     return (
       <Link href={href} className={cn('group', className)}>
-        <div className="flex gap-4 p-4 rounded-lg border hover:border-dr-education transition-all hover:shadow-md">
+        <div className="flex gap-4 p-4 rounded-lg border hover:border-dr-education transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:shadow-md">
           {/* Thumbnail */}
           {resource.thumbnailUrl && (
             <div className="flex-shrink-0">
@@ -118,7 +118,7 @@ export function ResourceCard({
   if (variant === 'featured') {
     return (
       <Link href={href} className={cn('group', className)}>
-        <Card className="overflow-hidden hover:shadow-xl transition-all border-2 hover:border-dr-education">
+        <Card className="overflow-hidden hover:shadow-xl transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] border-2 hover:border-dr-education">
           {/* Featured Image */}
           {resource.featuredImageUrl && (
             <div className="relative h-64 overflow-hidden">
@@ -205,7 +205,7 @@ export function ResourceCard({
   // Default variant
   return (
     <Link href={href} className={cn('group', className)}>
-      <Card className="h-full overflow-hidden hover:shadow-lg transition-all hover:border-dr-education">
+      <Card className="h-full overflow-hidden hover:shadow-lg transition-[border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:border-dr-education">
         {/* Thumbnail */}
         {resource.thumbnailUrl && (
           <div className="relative h-48 overflow-hidden">

@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Pricing calculation failed',
+        error: 'Pricing calculation failed',
       },
       { status: 500 }
     );
@@ -216,7 +216,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to get market data',
+        error: 'Failed to get market data',
       },
       { status: 500 }
     );

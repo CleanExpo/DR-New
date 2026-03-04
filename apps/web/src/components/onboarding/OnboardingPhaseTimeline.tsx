@@ -139,7 +139,7 @@ export function OnboardingPhaseTimeline({
         {/* Overall progress bar */}
         <div className="mt-2 h-2 bg-gray-700 rounded-full overflow-hidden">
           <div
-            className="h-full bg-[#00BFA6] rounded-full transition-all duration-500"
+            className="h-full bg-[#00BFA6] rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
             style={{ width: `${summary.overall.percentComplete}%` }}
           />
         </div>

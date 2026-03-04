@@ -456,6 +456,16 @@ export function ContractorFooter() {
               </Link>
             </div>
           </div>
+
+          {/* Legal Entity Notice */}
+          <div className="mt-4 text-center space-y-1">
+            <p className="text-slate-400 text-xs">
+              National Restoration Partners Guild (NRPG) | A division of Disaster Recovery Pty Ltd
+            </p>
+            <p className="text-slate-400 text-xs">
+              ABN: 85 151 794 142 | Brisbane, Queensland 4076 | support@nrpg.com.au
+            </p>
+          </div>
         </div>
       </div>
     </footer>

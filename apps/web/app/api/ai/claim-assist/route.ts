@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to process claim assist request',
+        error: 'Failed to process claim assist request',
       },
       { status: 500 }
     );

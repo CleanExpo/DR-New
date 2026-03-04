@@ -174,7 +174,7 @@ export default function ServiceSelection({ onComplete, onSkip }: ServiceSelectio
               {categories.map((category) => (
                 <Card 
                   key={category.id}
-                  className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
+                  className={`cursor-pointer transition-[transform,background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:scale-105 ${
                     selectedCategories.includes(category.id)
                       ? 'bg-[#00BFA6] border-[#00BFA6] shadow-lg'
                       : 'bg-gray-800 border-gray-700 hover:border-gray-600'
@@ -225,7 +225,7 @@ export default function ServiceSelection({ onComplete, onSkip }: ServiceSelectio
                 {availableServices.map((service) => (
                   <Card 
                     key={service.id}
-                    className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
+                    className={`cursor-pointer transition-[transform,background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:scale-105 ${
                       selectedServices.includes(service.id)
                         ? 'bg-[#7C4DFF] border-[#7C4DFF] shadow-lg'
                         : 'bg-gray-800 border-gray-700 hover:border-gray-600'
@@ -287,7 +287,7 @@ export default function ServiceSelection({ onComplete, onSkip }: ServiceSelectio
                   {BRANDING_COLORS.map((color) => (
                     <Card 
                       key={color.value}
-                      className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
+                      className={`cursor-pointer transition-[transform,background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:scale-105 ${
                         selectedBrandingColor === color.value
                           ? 'bg-gray-700 border-2 border-white'
                           : 'bg-gray-800 border-gray-700 hover:border-gray-600'
@@ -313,7 +313,7 @@ export default function ServiceSelection({ onComplete, onSkip }: ServiceSelectio
                   {themes.map((theme) => (
                     <Card 
                       key={theme.id}
-                      className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
+                      className={`cursor-pointer transition-[transform,background-color,border-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:scale-105 ${
                         selectedTheme === theme.identifier
                           ? 'bg-gray-700 border-2 border-white'
                           : 'bg-gray-800 border-gray-700 hover:border-gray-600'

@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
           console.error('API error:', error);
           return NextResponse.json(
             {
-                      error: error instanceof Error ? error.message : 'Processing failed',
+                      error: 'Processing failed',
             },
             { status: 500 }
                 );

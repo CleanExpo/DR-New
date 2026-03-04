@@ -81,7 +81,7 @@ export function DominanceScoreGauge({ score: propScore }: DominanceScoreGaugePro
                   strokeDasharray={circumference}
                   strokeDashoffset={strokeDashoffset}
                   strokeLinecap="round"
-                  className="transition-all duration-1000 ease-out"
+                  className="transition-[stroke-dashoffset] duration-1000 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]"
                 />
               </svg>
               {/* Score Text */}

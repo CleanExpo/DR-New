@@ -74,7 +74,7 @@ export function ServiceRequestCard({
   return (
     <Card
       className={`group bg-portal-card border-l-4 border-l-semantic-contractor rounded-xl
-                  shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5
+                  shadow-lg hover:shadow-xl transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-0.5
                   border-portal-border ${className}`}
     >
       <CardContent className="p-6">
@@ -197,7 +197,7 @@ export function ServiceRequestCard({
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                     <div
-                      className="bg-semantic-contractor h-2 rounded-full transition-all duration-500"
+                      className="bg-semantic-contractor h-2 rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                       style={{ width: `${progress}%` }}
                     />
                   </div>

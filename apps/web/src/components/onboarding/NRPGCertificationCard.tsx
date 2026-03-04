@@ -91,7 +91,7 @@ export function NRPGCertificationCard({
                 strokeLinecap="round"
                 strokeDasharray={circumference}
                 strokeDashoffset={strokeDashoffset}
-                className="transition-all duration-1000 ease-out"
+                className="transition-[stroke-dashoffset] duration-1000 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]"
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -140,7 +140,7 @@ export function NRPGCertificationCard({
             <div key={cat.key} className="text-center">
               <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-[#00BFA6] rounded-full transition-all duration-500"
+                  className="h-full bg-[#00BFA6] rounded-full transition-[width] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                   style={{ width: `${cat.data.percentage}%` }}
                 />
               </div>

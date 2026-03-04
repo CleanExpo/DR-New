@@ -158,7 +158,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: error instanceof Error ? error.message : 'Failed to process chat message',
+        error: 'Failed to process chat message',
       },
       { status: 500 }
     );
@@ -218,7 +218,7 @@ async function handleStreamingResponse(
             encoder.encode(
               `data: ${JSON.stringify({
                 type: 'error',
-                error: error instanceof Error ? error.message : 'Streaming failed',
+                error: 'Streaming failed',
               })}\n\n`
             )
           );
@@ -382,7 +382,7 @@ export async function GET() {
     return NextResponse.json(
       {
         status: 'error',
-        error: error instanceof Error ? error.message : 'Health check failed',
+        error: 'Health check failed',
       },
       { status: 500 }
     );

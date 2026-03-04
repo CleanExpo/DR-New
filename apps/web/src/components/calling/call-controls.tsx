@@ -201,7 +201,7 @@ export function CallControls({ callId, callType, compact = false }: CallControls
       <div className="relative group">
         <button
           onClick={handleEndCall}
-          className="p-3 rounded-full bg-red-600 hover:bg-red-700 text-white transition-all"
+          className="p-3 rounded-full bg-red-600 hover:bg-red-700 text-white transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
           title="End call"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
