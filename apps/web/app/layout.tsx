@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     "National Restoration Professionals Group",
   ],
   authors: [
-    { name: "NRPG Unite Group Australia", url: "https://disasterrecoverynrpg.com.au" }
+    { name: "NRPG Unite Group Australia", url: "https://disasterrecovery.com.au" }
   ],
   creator: "NRPG Australia",
   publisher: "National Restoration Professionals Group",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_AU",
-    url: "https://disasterrecoverynrpg.com.au",
+    url: "https://disasterrecovery.com.au",
     siteName: "NRPG - National Restoration Professionals Group",
     title: "NRPG | Australia's Emergency Restoration Network",
     description: "24/7 disaster recovery. IICRC-certified contractors. Flood, fire, storm & water damage restoration in major cities. Professional standards.",
@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     creator: "@NRPGAustralia",
   },
   alternates: {
-    canonical: "https://disasterrecoverynrpg.com.au",
+    canonical: "https://disasterrecovery.com.au",
   },
   verification: {
     google: "google-site-verification-code-here",
@@ -119,8 +119,8 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "National Restoration Professionals Group",
     "alternateName": "NRPG",
-    "url": "https://disasterrecoverynrpg.com.au",
-    "logo": "https://disasterrecoverynrpg.com.au/images/nrpg-logo.png",
+    "url": "https://disasterrecovery.com.au",
+    "logo": "https://disasterrecovery.com.au/images/nrpg-logo.png",
     "description": "24/7 emergency disaster recovery in major Australian cities. Connect with IICRC-certified restoration contractors for flood, fire, storm & water damage.",
     "email": "nrpg.team@gmail.com",
     "address": {

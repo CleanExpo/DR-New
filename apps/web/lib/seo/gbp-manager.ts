@@ -42,7 +42,7 @@ const GBP_CONFIG = {
   defaultServiceRadius: 50, // km
   businessName: 'NRPG Disaster Recovery',
   phone: EMERGENCY_PHONE.number,
-  website: 'https://disasterrecoverynrpg.com.au',
+  website: 'https://disasterrecovery.com.au',
 };
 
 /**

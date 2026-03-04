@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
     return { title: 'City Not Found' };
   }
 
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au'}/${params.city}`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}/${params.city}`;
 
   return {
     title: `Disaster Recovery ${city.city}, ${city.state} | Emergency Restoration | NRPG`,

@@ -222,7 +222,7 @@ export function DocumentUploadZone({
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200
+          className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-[border-color,background-color,transform] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]
                      ${
                        isDragging
                          ? 'border-semantic-contractor bg-semantic-contractor/5 scale-[1.02]'

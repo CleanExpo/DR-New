@@ -23,10 +23,10 @@ export const metadata: Metadata = {
     description:
       'Australia\'s first platform connecting property owners with verified disaster recovery contractors. 24/7 emergency response, transparent pricing, IICRC-certified professionals.',
     type: 'website',
-    url: 'https://disasterrecoverynrpg.com.au/launch',
+    url: 'https://disasterrecovery.com.au/launch',
     images: [
       {
-        url: 'https://disasterrecoverynrpg.com.au/og-image-launch.jpg',
+        url: 'https://disasterrecovery.com.au/og-image-launch.jpg',
         width: 1200,
         height: 630,
         alt: 'NRPG - National Restoration Professionals Group',

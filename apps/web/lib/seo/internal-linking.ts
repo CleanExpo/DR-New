@@ -30,7 +30,7 @@ export interface InternalLink {
 }
 
 export class InternalLinkingSystem {
-  private readonly baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
+  private readonly baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
 
   /**
    * Generate breadcrumbs for any page

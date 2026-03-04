@@ -231,20 +231,20 @@ async function sendConfirmationEmail(email: string, fullName: string, userType: 
 
     <div style="background: #FEF3C7; border-left: 4px solid #F59E0B; padding: 15px; margin: 30px 0; border-radius: 4px;">
       <p style="color: #92400E; margin: 0; font-size: 14px;">
-        <strong>💡 Pro Tip:</strong> Add <strong>support@disasterrecoverynrpg.com.au</strong> to your contacts to ensure you don't miss our launch announcement!
+        <strong>💡 Pro Tip:</strong> Add <strong>support@disasterrecovery.com.au</strong> to your contacts to ensure you don't miss our launch announcement!
       </p>
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
-      <a href="https://disasterrecoverynrpg.com.au" style="display: inline-block; background: #FF6B35; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">Visit Our Website</a>
+      <a href="https://disasterrecovery.com.au" style="display: inline-block; background: #FF6B35; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">Visit Our Website</a>
     </div>
 
     <p style="color: #6B7280; font-size: 14px; margin-top: 40px; padding-top: 30px; border-top: 1px solid #E5E7EB;">
-      You're receiving this email because you signed up for the NRPG waitlist at <a href="https://disasterrecoverynrpg.com.au" style="color: #FF6B35;">disasterrecoverynrpg.com.au</a>.
+      You're receiving this email because you signed up for the NRPG waitlist at <a href="https://disasterrecovery.com.au" style="color: #FF6B35;">disasterrecovery.com.au</a>.
       <br><br>
       <strong>NRPG - National Restoration Professionals Group</strong><br>
       Australia's Premier Disaster Recovery Network<br>
-      <a href="mailto:support@disasterrecoverynrpg.com.au" style="color: #FF6B35;">support@disasterrecoverynrpg.com.au</a>
+      <a href="mailto:support@disasterrecovery.com.au" style="color: #FF6B35;">support@disasterrecovery.com.au</a>
     </p>
   </div>
 </body>
@@ -262,12 +262,12 @@ What Happens Next:
 3. Early access - You'll be among the first to try the platform when we launch
 4. Launch notification - We'll email you the moment we go live (expected Q2 2026)
 
-Visit our website: https://disasterrecoverynrpg.com.au
+Visit our website: https://disasterrecovery.com.au
 
 ---
 NRPG - National Restoration Professionals Group
 Australia's Premier Disaster Recovery Network
-support@disasterrecoverynrpg.com.au
+support@disasterrecovery.com.au
   `;
 
   try {
@@ -277,7 +277,7 @@ support@disasterrecoverynrpg.com.au
     }
 
     const result = await resend.emails.send({
-      from: 'NRPG Team <noreply@disasterrecoverynrpg.com.au>',
+      from: 'NRPG Team <noreply@disasterrecovery.com.au>',
       to: email,
       subject,
       html: htmlContent,

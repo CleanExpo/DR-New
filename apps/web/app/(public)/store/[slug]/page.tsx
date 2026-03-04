@@ -56,7 +56,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${product.name} — NRPG Store`,
       description: product.description,
-      url: `https://disasterrecoverynrpg.com.au/store/${product.slug}`,
+      url: `https://disasterrecovery.com.au/store/${product.slug}`,
       type: 'website',
     },
   }

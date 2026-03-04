@@ -36,7 +36,7 @@ const CITATION_CONFIG = {
   defaultNAP: {
     name: 'NRPG - National Restoration Professionals Group',
     phone: EMERGENCY_PHONE.number,
-    website: 'https://disasterrecoverynrpg.com.au',
+    website: 'https://disasterrecovery.com.au',
     country: 'Australia',
   },
 };

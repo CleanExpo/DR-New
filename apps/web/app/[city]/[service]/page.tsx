@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: CityServicePageProps): Promis
     };
   }
 
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au'}/${params.city}/${params.service}`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}/${params.city}/${params.service}`;
 
   return {
     title: pageData.metaTitle,
@@ -165,7 +165,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
     schemaGenerator.generateBreadcrumbSchema(
       breadcrumbs.map((b) => ({
         name: b.name,
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au'}${b.url}`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}${b.url}`,
       }))
     ),
   ];

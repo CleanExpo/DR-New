@@ -217,7 +217,7 @@ export default function ReviewList({ contractorId, canReply = false }: ReviewLis
                         <span className="text-sm text-gray-400 w-8">{rating}★</span>
                         <div className="flex-1 bg-gray-700 rounded-full h-2">
                           <div
-                            className="bg-yellow-500 h-2 rounded-full transition-all"
+                            className="bg-yellow-500 h-2 rounded-full transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                             style={{ width: `${percentage}%` }}
                           />
                         </div>

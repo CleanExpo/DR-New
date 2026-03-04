@@ -129,7 +129,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Report generation failed',
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message: 'Internal server error',
       },
       { status: 500 }
     );
