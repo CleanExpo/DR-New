@@ -238,6 +238,48 @@ export const products: StoreProduct[] = [
     featured: true,
     mockupImage: '/store/nrpg-welcome-bundle.svg',
   },
+  {
+    id: 'bronze-pack',
+    slug: 'bronze-certified-specialist',
+    name: 'NRPG Bronze — Certified Specialist Pack',
+    description:
+      'Entry-level NRPG certification pack. Includes branded polo shirt, embroidered cap, and van magnet sticker set. Awarded on Certified Specialist status.',
+    category: 'bundles',
+    printfulProductId: undefined,
+    basePrice: 95,
+    variants: withSku('BRONZEPACK', sizesSmallToXXL),
+    tags: ['certification', 'bundle', 'bronze', 'specialist'],
+    featured: false,
+    mockupImage: '/store/bronze-pack.svg',
+  },
+  {
+    id: 'silver-pack',
+    slug: 'silver-certified-professional',
+    name: 'NRPG Silver — Certified Professional Pack',
+    description:
+      'Mid-tier NRPG certification pack. Includes hi-vis polo, cap, iPad case, travel mug, and notebook. Awarded on Certified Professional status.',
+    category: 'bundles',
+    printfulProductId: undefined,
+    basePrice: 185,
+    variants: withSku('SILVERPACK', sizesSmallToXXL),
+    tags: ['certification', 'bundle', 'silver', 'professional'],
+    featured: false,
+    mockupImage: '/store/silver-pack.svg',
+  },
+  {
+    id: 'gold-pack',
+    slug: 'gold-certified-expert',
+    name: 'NRPG Gold — Certified Expert Pack',
+    description:
+      'Top-tier NRPG certification pack. Includes rain jacket, hi-vis polo, cap, iPad case, travel mug, notebook, pull-up banner, and USB kit. Awarded on Certified Expert or Master status.',
+    category: 'bundles',
+    printfulProductId: undefined,
+    basePrice: 295,
+    variants: withSku('GOLDPACK', sizesSmallToXXL),
+    tags: ['certification', 'bundle', 'gold', 'expert', 'master'],
+    featured: false,
+    mockupImage: '/store/gold-pack.svg',
+  },
 ]
 
 // ---------------------------------------------------------------------------

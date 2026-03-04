@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Gold — Certified Expert Pack</title>
+  <defs>
+    <linearGradient id="gp-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="gp-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="50%" stop-color="#ffd700"/>
+      <stop offset="100%" stop-color="#c8a000"/>
+    </linearGradient>
+    <linearGradient id="gp-jacket" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a2a1a"/>
+      <stop offset="100%" stop-color="#0f1a0f"/>
+    </linearGradient>
+    <linearGradient id="gp-mug" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a0a"/>
+      <stop offset="100%" stop-color="#252510"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#gp-bg)"/>
+
+  <!-- Surface -->
+  <rect x="24" y="44" width="352" height="318" fill="#080808" stroke="#1a1a0a" stroke-width="0.5" rx="2"/>
+
+  <!-- Gold tier glow line (top) -->
+  <rect x="24" y="44" width="352" height="2" fill="url(#gp-gold)" opacity="0.9"/>
+
+  <!-- Decorative corner brackets -->
+  <path d="M32 52 L32 60 L44 60" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.6"/>
+  <path d="M368 52 L368 60 L356 60" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.6"/>
+  <path d="M32 356 L32 348 L44 348" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.6"/>
+  <path d="M368 356 L368 348 L356 348" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Rain Jacket (dominant item, left) -->
+  <g transform="translate(30, 72)">
+    <!-- Main jacket body -->
+    <path d="M18 36 L18 160 L128 160 L128 36 L108 20 L82 28 L64 28 L38 20 Z" fill="url(#gp-jacket)" stroke="#2a3a2a" stroke-width="1.2"/>
+    <!-- Chest -->
+    <path d="M38 20 L64 28 L82 28 L108 20 L96 10 L73 6 L50 10 Z" fill="#1a2a1a" stroke="#2a3a2a" stroke-width="1"/>
+    <!-- Collar -->
+    <path d="M60 28 L73 20 L86 28 L82 34 L73 30 L64 34 Z" fill="#0f1a0f" stroke="#2a3a2a" stroke-width="0.8"/>
+    <!-- Left sleeve -->
+    <path d="M18 36 L-8 44 L-10 100 L14 106 L18 80 Z" fill="#1a2a1a" stroke="#2a3a2a" stroke-width="1"/>
+    <!-- Right sleeve -->
+    <path d="M128 36 L154 44 L156 100 L132 106 L128 80 Z" fill="#1a2a1a" stroke="#2a3a2a" stroke-width="1"/>
+    <!-- Front zip -->
+    <rect x="70" y="28" width="6" height="132" fill="#111" stroke="#ffd700" stroke-width="0.5" opacity="0.8"/>
+    <!-- Gold reflective strips -->
+    <rect x="18" y="120" width="110" height="5" fill="#ffd700" opacity="0.5" rx="0.5"/>
+    <rect x="18" y="136" width="110" height="5" fill="#ffd700" opacity="0.5" rx="0.5"/>
+    <!-- NRPG chest badge -->
+    <rect x="32" y="56" width="42" height="22" fill="#ffd700" opacity="0.1" stroke="#ffd700" stroke-width="0.5" rx="1"/>
+    <text x="53" y="71" font-family="sans-serif" font-weight="900" font-size="9" fill="#ffd700" text-anchor="middle" letter-spacing="1">NRPG</text>
+    <!-- Pocket -->
+    <rect x="24" y="82" width="34" height="28" fill="none" stroke="#2a3a2a" stroke-width="1" rx="1"/>
+  </g>
+
+  <!-- Cap (top centre-right) -->
+  <g transform="translate(220, 76)">
+    <path d="M0 44 Q0 5 52 0 Q104 5 104 44 L98 52 L6 52 Z" fill="#1a1a0a" stroke="#2a2a0a" stroke-width="1"/>
+    <line x1="52" y1="0" x2="52" y2="44" stroke="#2a2a0a" stroke-width="0.5" opacity="0.4"/>
+    <path d="M0 49 Q-5 54 -5 63 Q-3 72 15 78 Q52 84 89 78 Q107 72 109 63 Q109 54 104 49 L98 52 Q77 70 52 73 Q27 70 6 52 Z" fill="#1a1a0a" stroke="#2a2a0a" stroke-width="1"/>
+    <!-- Gold brim accent -->
+    <path d="M15 78 Q52 84 89 78" fill="none" stroke="#ffd700" stroke-width="2.5" opacity="0.95"/>
+    <text x="52" y="33" font-family="sans-serif" font-weight="900" font-size="13" fill="#ffd700" text-anchor="middle" letter-spacing="2">NRPG</text>
+    <circle cx="52" cy="3" r="3" fill="#2a2a0a" stroke="#1a1a0a" stroke-width="0.5"/>
+    <rect x="17" y="73" width="70" height="6" fill="#0f0f05" stroke="#2a2a0a" stroke-width="0.5" rx="1"/>
+    <rect x="40" y="73" width="24" height="6" fill="#1a1a0a" stroke="#ffd700" stroke-width="0.5" rx="0.5"/>
+  </g>
+
+  <!-- iPad Case (centre right) -->
+  <g transform="translate(222, 172)">
+    <rect x="0" y="0" width="82" height="108" fill="#0f1a0a" stroke="#1a2a0a" stroke-width="1.5" rx="4"/>
+    <rect x="5" y="5" width="72" height="98" fill="#0a1405" stroke="#ffd700" stroke-width="0.5" opacity="0.6" rx="3"/>
+    <rect x="8" y="8" width="66" height="92" fill="#050a02" rx="2"/>
+    <text x="41" y="50" font-family="sans-serif" font-weight="900" font-size="12" fill="#ffd700" text-anchor="middle" letter-spacing="1">NRPG</text>
+    <text x="41" y="64" font-family="sans-serif" font-weight="400" font-size="6.5" fill="#00FF88" text-anchor="middle" letter-spacing="1">CERTIFIED EXPERT</text>
+    <path d="M10 10 L10 17 L17 17" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.5"/>
+    <path d="M72 10 L72 17 L65 17" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.5"/>
+    <rect x="28" y="100" width="26" height="4" fill="#ffd700" opacity="0.15" rx="2"/>
+  </g>
+
+  <!-- Travel Mug (right of iPad, upper) -->
+  <g transform="translate(316, 172)">
+    <rect x="0" y="0" width="42" height="90" fill="url(#gp-mug)" stroke="#2a2a10" stroke-width="1" rx="4"/>
+    <rect x="-2" y="-6" width="46" height="11" fill="#1f1f0a" stroke="#2a2a10" stroke-width="1" rx="3"/>
+    <rect x="7" y="-4" width="28" height="7" fill="#ffd700" opacity="0.12" rx="2"/>
+    <rect x="0" y="18" width="42" height="3" fill="#ffd700" opacity="0.3" rx="0.5"/>
+    <rect x="0" y="70" width="42" height="3" fill="#ffd700" opacity="0.3" rx="0.5"/>
+    <text x="21" y="50" font-family="sans-serif" font-weight="900" font-size="8" fill="#ffd700" text-anchor="middle" letter-spacing="1">NRPG</text>
+    <path d="M42 28 Q56 28 56 45 Q56 62 42 62" fill="none" stroke="#2a2a10" stroke-width="4" stroke-linecap="round"/>
+    <path d="M42 32 Q52 32 52 45 Q52 58 42 58" fill="none" stroke="#1a1a0a" stroke-width="2"/>
+    <rect x="2" y="86" width="38" height="4" fill="#111105" stroke="#2a2a10" stroke-width="0.5" rx="2"/>
+  </g>
+
+  <!-- Notebook (bottom centre-right) -->
+  <g transform="translate(200, 280)">
+    <!-- Cover -->
+    <rect x="0" y="0" width="86" height="66" fill="#0a0a05" stroke="#ffd700" stroke-width="0.8" opacity="0.7" rx="2"/>
+    <!-- Spine -->
+    <rect x="0" y="0" width="8" height="66" fill="#0f0f08" stroke="#ffd700" stroke-width="0.5" opacity="0.5" rx="1"/>
+    <!-- Ruling lines peek -->
+    <line x1="12" y1="20" x2="82" y2="20" stroke="#ffd700" stroke-width="0.4" opacity="0.15"/>
+    <line x1="12" y1="28" x2="82" y2="28" stroke="#ffd700" stroke-width="0.4" opacity="0.15"/>
+    <line x1="12" y1="36" x2="82" y2="36" stroke="#ffd700" stroke-width="0.4" opacity="0.15"/>
+    <line x1="12" y1="44" x2="82" y2="44" stroke="#ffd700" stroke-width="0.4" opacity="0.15"/>
+    <!-- Logo -->
+    <text x="50" y="15" font-family="sans-serif" font-weight="900" font-size="8" fill="#ffd700" text-anchor="middle" letter-spacing="1">NRPG</text>
+    <!-- Elastic band -->
+    <line x1="86" y1="32" x2="86" y2="34" stroke="#ffd700" stroke-width="1.5" opacity="0.5"/>
+    <rect x="82" y="0" width="4" height="66" fill="none" stroke="#ffd700" stroke-width="0.5" opacity="0.2"/>
+  </g>
+
+  <!-- USB Drive (bottom right) -->
+  <g transform="translate(296, 296)">
+    <!-- Body -->
+    <rect x="0" y="0" width="52" height="22" fill="#141414" stroke="#2a2a0a" stroke-width="1" rx="3"/>
+    <!-- USB connector -->
+    <rect x="38" y="5" width="18" height="12" fill="#c0c0c0" stroke="#888" stroke-width="0.5" rx="1"/>
+    <rect x="40" y="7" width="14" height="8" fill="#a0a0a0" rx="0.5"/>
+    <!-- Gold accent line -->
+    <rect x="0" y="9" width="38" height="4" fill="#ffd700" opacity="0.2" rx="0.5"/>
+    <!-- NRPG text -->
+    <text x="18" y="14" font-family="sans-serif" font-weight="900" font-size="6" fill="#ffd700" text-anchor="middle" letter-spacing="1">NRPG</text>
+    <!-- LED dot -->
+    <circle cx="6" cy="11" r="2" fill="#00FF88" opacity="0.7"/>
+    <!-- Cap for USB -->
+    <rect x="-10" y="2" width="12" height="18" fill="#1a1a0a" stroke="#2a2a0a" stroke-width="0.8" rx="2"/>
+  </g>
+
+  <!-- Separator line -->
+  <line x1="60" y1="264" x2="340" y2="264" stroke="#ffd700" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- GOLD PACK title -->
+  <text x="200" y="370" font-family="sans-serif" font-weight="900" font-size="16" fill="#ffd700" text-anchor="middle" letter-spacing="3">GOLD PACK</text>
+
+  <!-- CERTIFIED EXPERT label in emerald -->
+  <text x="200" y="387" font-family="sans-serif" font-weight="700" font-size="9" fill="#00FF88" text-anchor="middle" letter-spacing="3">CERTIFIED EXPERT</text>
+
+  <!-- Subtle gold glow bottom -->
+  <rect x="24" y="360" width="352" height="2" fill="url(#gp-gold)" opacity="0.4"/>
+</svg>

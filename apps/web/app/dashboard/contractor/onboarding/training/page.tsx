@@ -3,10 +3,11 @@
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, ArrowLeft, BookOpen, Award, Clock, CheckCircle2 } from 'lucide-react';
+import { Loader2, ArrowLeft, BookOpen, Award, Clock, CheckCircle2, Trophy, ArrowRight } from 'lucide-react';
 import { CourseCard } from '@/src/components/onboarding/CourseCard';
 
 interface CourseProgress {
@@ -28,6 +29,36 @@ interface Course {
   totalHours: number;
   progress: CourseProgress;
 }
+
+const CERT_TIERS = [
+  {
+    id: 'bronze',
+    label: 'Bronze',
+    subtitle: 'Certified Specialist',
+    price: '$95',
+    colour: '#cd7f32',
+    href: '/store/bronze-certified-specialist',
+    description: 'Essential field toolkit, branded workwear, and your Bronze certification badge to display on-site.',
+  },
+  {
+    id: 'silver',
+    label: 'Silver',
+    subtitle: 'Certified Professional',
+    price: '$185',
+    colour: '#c0c0c0',
+    href: '/store/silver-certified-professional',
+    description: 'Everything in Bronze plus premium workwear, extended toolkit, and priority job-matching access.',
+  },
+  {
+    id: 'gold',
+    label: 'Gold',
+    subtitle: 'Certified Expert',
+    price: '$295',
+    colour: '#ffd700',
+    href: '/store/gold-certified-expert',
+    description: 'Full elite pack — premium gear, exclusive Gold badge, dedicated account support, and first-pick jobs.',
+  },
+];
 
 export default function TrainingPage() {
   const { data: session, status: authStatus } = useSession();
@@ -68,6 +99,7 @@ export default function TrainingPage() {
   const totalHours = courses.reduce((sum, c) => sum + c.totalHours, 0);
   const timeSpentMinutes = courses.reduce((sum, c) => sum + c.progress.totalTimeMinutes, 0);
   const overallProgress = totalModules > 0 ? Math.round((completedModules / totalModules) * 100) : 0;
+  const trainingComplete = courses.length > 0 && overallProgress === 100;
 
   if (authStatus === 'loading' || loading) {
     return (
@@ -213,6 +245,86 @@ export default function TrainingPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Training Complete — Certification Pack Upsell */}
+      {trainingComplete && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8"
+        >
+          <div className="rounded-sm border border-teal-500/30 bg-[#050505] p-6 md:p-8">
+            {/* Section heading */}
+            <div className="flex items-center gap-3 mb-2">
+              <Trophy className="h-6 w-6 text-[#FFB800]" />
+              <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                Training Complete!
+              </h2>
+            </div>
+            <p className="text-gray-400 mb-8 max-w-2xl">
+              Ready to upgrade your certification pack? Choose the tier that fits your ambitions and take your NRPG career to the next level.
+            </p>
+
+            {/* Tier cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {CERT_TIERS.map((tier, index) => (
+                <motion.div
+                  key={tier.id}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                >
+                  <div
+                    className="rounded-sm border bg-[#050505] p-5 flex flex-col gap-4 h-full hover:brightness-110 transition-all"
+                    style={{ borderColor: `${tier.colour}40` }}
+                  >
+                    {/* Tier label */}
+                    <div className="flex items-center justify-between">
+                      <span
+                        className="text-sm font-bold uppercase tracking-widest"
+                        style={{ color: tier.colour }}
+                      >
+                        {tier.label}
+                      </span>
+                      <span
+                        className="text-xs rounded-sm px-2 py-0.5 font-medium"
+                        style={{ backgroundColor: `${tier.colour}18`, color: tier.colour }}
+                      >
+                        {tier.subtitle}
+                      </span>
+                    </div>
+
+                    {/* Price */}
+                    <div
+                      className="text-3xl font-extrabold"
+                      style={{ color: tier.colour }}
+                    >
+                      {tier.price}
+                      <span className="text-base font-normal text-gray-500 ml-1">AUD</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-400 flex-1">{tier.description}</p>
+
+                    {/* CTA */}
+                    <Link href={tier.href} className="mt-auto">
+                      <Button
+                        size="sm"
+                        className="w-full rounded-sm font-semibold text-[#050505] transition-opacity hover:opacity-90"
+                        style={{ backgroundColor: tier.colour }}
+                      >
+                        Get {tier.label} Pack
+                        <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
+                      </Button>
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 }

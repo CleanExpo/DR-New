@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { signIn, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Loader2, ExternalLink } from 'lucide-react';
+import { Loader2, ExternalLink, Gift, ArrowRight, ShoppingBag } from 'lucide-react';
 
 interface CertificateResponse {
   success: boolean;
@@ -117,7 +119,63 @@ export default function ContractorCertificatePage() {
       <p className="text-xs text-muted-foreground">
         Template: {payload.certificate?.template.path} · sha256 {payload.certificate?.template.sha256}
       </p>
+
+      {/* Welcome Pack CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="mt-6"
+      >
+        <div className="rounded-sm border border-teal-500/30 bg-[#050505] p-6 md:p-8">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+            {/* Left — text content */}
+            <div className="flex-1 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center justify-center w-10 h-10 rounded-sm bg-teal-500/10">
+                  <Gift className="h-5 w-5 text-teal-400" />
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                  Claim Your NRPG Contractor Welcome Pack
+                </h2>
+              </div>
+
+              <p className="text-gray-400 leading-relaxed max-w-xl">
+                Congratulations on completing your NRPG certification. Your Welcome Pack includes an NRPG branded polo, cap, sticker set, and van magnet — everything you need to rep the brand on site.
+              </p>
+
+              {/* Price badge */}
+              <div className="flex items-center gap-3">
+                <span className="inline-flex items-center gap-1.5 rounded-sm bg-teal-500/10 border border-teal-500/20 px-3 py-1 text-sm font-semibold text-teal-400">
+                  Included in onboarding
+                </span>
+                <span className="text-gray-500 text-sm line-through">$110 AUD</span>
+                <span className="text-2xl font-bold text-[#00FF88]">$0</span>
+              </div>
+            </div>
+
+            {/* Right — CTAs */}
+            <div className="flex flex-col gap-3 md:items-end md:shrink-0">
+              <Link href="/store/contractor-welcome-bundle">
+                <Button
+                  size="lg"
+                  className="rounded-sm bg-teal-600 hover:bg-teal-500 text-white font-semibold w-full md:w-auto transition-colors"
+                >
+                  Claim Welcome Pack
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </Link>
+              <Link
+                href="/store"
+                className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-teal-400 transition-colors md:justify-end"
+              >
+                <ShoppingBag className="h-4 w-4" />
+                Browse full store →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 }
-

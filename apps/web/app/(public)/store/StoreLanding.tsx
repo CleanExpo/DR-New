@@ -258,6 +258,147 @@ export default function StoreLanding({ products }: StoreLandingProps) {
       </section>
 
       {/* ------------------------------------------------------------------ */}
+      {/* CERTIFICATION PACKS                                                */}
+      {/* ------------------------------------------------------------------ */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Section header */}
+        <div className="mb-10">
+          <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 border border-amber-500/30 bg-amber-500/5 px-3 py-1 rounded-sm">
+            Exclusive Achievement Reward
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-4xl font-black uppercase tracking-tight text-white leading-none">
+            NRPG Certification Packs
+          </h2>
+          <p className="mt-2 text-white/40 text-sm max-w-lg leading-relaxed">
+            Awarded on achieving Certified Specialist, Professional, or Expert status. Each pack reflects your tier — earned, not purchased.
+          </p>
+        </div>
+
+        {/* Three tier cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {/* Bronze */}
+          {(() => {
+            const bronzePack = products.find((p) => p.id === 'bronze-pack')
+            return bronzePack ? (
+              <Link
+                href={`/store/${bronzePack.slug}`}
+                className="group relative flex flex-col rounded-sm border border-[#cd7f32]/30 bg-gradient-to-b from-[#cd7f32]/5 to-transparent hover:border-[#cd7f32]/60 hover:from-[#cd7f32]/10 transition-all duration-300"
+              >
+                {/* Tier accent top bar */}
+                <div className="h-0.5 w-full rounded-t-sm bg-gradient-to-r from-[#cd7f32] via-[#a0522d] to-transparent" />
+                {/* Mockup image */}
+                <div className="relative aspect-square overflow-hidden rounded-sm">
+                  <img
+                    src={bronzePack.mockupImage}
+                    alt={bronzePack.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                {/* Content */}
+                <div className="p-5 flex flex-col gap-2 flex-1">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-[#FFB800]">
+                    Bronze — Certified Specialist
+                  </span>
+                  <h3 className="text-white font-black text-sm uppercase tracking-wide leading-tight">
+                    {bronzePack.name}
+                  </h3>
+                  <p className="text-white/40 text-xs leading-relaxed flex-1">
+                    {bronzePack.description}
+                  </p>
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#cd7f32]/20">
+                    <span className="text-[#cd7f32] font-black text-lg font-mono">
+                      ${bronzePack.basePrice}
+                    </span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#cd7f32] transition-colors duration-200">
+                      View Pack →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ) : null
+          })()}
+
+          {/* Silver */}
+          {(() => {
+            const silverPack = products.find((p) => p.id === 'silver-pack')
+            return silverPack ? (
+              <Link
+                href={`/store/${silverPack.slug}`}
+                className="group relative flex flex-col rounded-sm border border-[#c0c0c0]/30 bg-gradient-to-b from-[#c0c0c0]/5 to-transparent hover:border-[#c0c0c0]/60 hover:from-[#c0c0c0]/10 transition-all duration-300"
+              >
+                <div className="h-0.5 w-full rounded-t-sm bg-gradient-to-r from-[#c0c0c0] via-[#909090] to-transparent" />
+                <div className="relative aspect-square overflow-hidden rounded-sm">
+                  <img
+                    src={silverPack.mockupImage}
+                    alt={silverPack.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-5 flex flex-col gap-2 flex-1">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-[#00F5FF]">
+                    Silver — Certified Professional
+                  </span>
+                  <h3 className="text-white font-black text-sm uppercase tracking-wide leading-tight">
+                    {silverPack.name}
+                  </h3>
+                  <p className="text-white/40 text-xs leading-relaxed flex-1">
+                    {silverPack.description}
+                  </p>
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#c0c0c0]/20">
+                    <span className="text-[#c0c0c0] font-black text-lg font-mono">
+                      ${silverPack.basePrice}
+                    </span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#c0c0c0] transition-colors duration-200">
+                      View Pack →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ) : null
+          })()}
+
+          {/* Gold */}
+          {(() => {
+            const goldPack = products.find((p) => p.id === 'gold-pack')
+            return goldPack ? (
+              <Link
+                href={`/store/${goldPack.slug}`}
+                className="group relative flex flex-col rounded-sm border border-[#ffd700]/30 bg-gradient-to-b from-[#ffd700]/5 to-transparent hover:border-[#ffd700]/60 hover:from-[#ffd700]/10 transition-all duration-300"
+              >
+                <div className="h-0.5 w-full rounded-t-sm bg-gradient-to-r from-[#ffd700] via-[#c8a000] to-transparent" />
+                <div className="relative aspect-square overflow-hidden rounded-sm">
+                  <img
+                    src={goldPack.mockupImage}
+                    alt={goldPack.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-5 flex flex-col gap-2 flex-1">
+                  <span className="text-[9px] font-black uppercase tracking-widest text-[#00FF88]">
+                    Gold — Certified Expert / Master
+                  </span>
+                  <h3 className="text-white font-black text-sm uppercase tracking-wide leading-tight">
+                    {goldPack.name}
+                  </h3>
+                  <p className="text-white/40 text-xs leading-relaxed flex-1">
+                    {goldPack.description}
+                  </p>
+                  <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#ffd700]/20">
+                    <span className="text-[#ffd700] font-black text-lg font-mono">
+                      ${goldPack.basePrice}
+                    </span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#ffd700] transition-colors duration-200">
+                      View Pack →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ) : null
+          })()}
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
       {/* INFO BAND                                                           */}
       {/* ------------------------------------------------------------------ */}
       <section className="border-t border-white/10 bg-white/[0.02] py-12 mt-4">

@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Silver — Certified Professional Pack</title>
+  <defs>
+    <linearGradient id="sp-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="sp-silver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e8e8e8"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#909090"/>
+    </linearGradient>
+    <linearGradient id="sp-hivis" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFA500"/>
+      <stop offset="100%" stop-color="#E89500"/>
+    </linearGradient>
+    <linearGradient id="sp-mug" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#252525"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#sp-bg)"/>
+
+  <!-- Surface -->
+  <rect x="24" y="44" width="352" height="318" fill="#080808" stroke="#1a1a1a" stroke-width="0.5" rx="2"/>
+
+  <!-- Silver tier glow line (top) -->
+  <rect x="24" y="44" width="352" height="2" fill="url(#sp-silver)" opacity="0.9"/>
+
+  <!-- Decorative corner brackets -->
+  <path d="M32 52 L32 60 L44 60" fill="none" stroke="#c0c0c0" stroke-width="1.5" opacity="0.5"/>
+  <path d="M368 52 L368 60 L356 60" fill="none" stroke="#c0c0c0" stroke-width="1.5" opacity="0.5"/>
+  <path d="M32 356 L32 348 L44 348" fill="none" stroke="#c0c0c0" stroke-width="1.5" opacity="0.5"/>
+  <path d="M368 356 L368 348 L356 348" fill="none" stroke="#c0c0c0" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Hi-Vis Polo (large, left) -->
+  <g transform="translate(36, 92)">
+    <!-- Main body -->
+    <rect x="0" y="22" width="140" height="112" fill="url(#sp-hivis)" stroke="#D08500" stroke-width="1" rx="2"/>
+    <!-- Fold crease -->
+    <line x1="0" y1="55" x2="140" y2="55" stroke="#D08500" stroke-width="0.8" opacity="0.5"/>
+    <line x1="0" y1="88" x2="140" y2="88" stroke="#D08500" stroke-width="0.5" opacity="0.3"/>
+    <!-- Collar -->
+    <path d="M44 22 L70 9 L96 22" fill="#E89A00" stroke="#D08500" stroke-width="1"/>
+    <path d="M54 22 L70 14 L86 22" fill="#CC8800"/>
+    <!-- Sleeves -->
+    <rect x="-20" y="22" width="24" height="48" fill="#E89500" stroke="#D08500" stroke-width="0.8" rx="1"/>
+    <rect x="136" y="22" width="24" height="48" fill="#E89500" stroke="#D08500" stroke-width="0.8" rx="1"/>
+    <!-- Reflective strips -->
+    <rect x="6" y="96" width="128" height="5" fill="#FFFFFF" opacity="0.8" rx="0.5"/>
+    <rect x="6" y="116" width="128" height="5" fill="#FFFFFF" opacity="0.8" rx="0.5"/>
+    <!-- NRPG embroidery -->
+    <text x="70" y="78" font-family="sans-serif" font-weight="900" font-size="12" fill="#050505" text-anchor="middle" letter-spacing="2">NRPG</text>
+    <!-- Silver cert dot -->
+    <circle cx="70" cy="38" r="6" fill="#c0c0c0" opacity="0.4"/>
+  </g>
+
+  <!-- Cap (top right) -->
+  <g transform="translate(222, 78)">
+    <path d="M0 46 Q0 6 56 0 Q112 6 112 46 L106 56 L6 56 Z" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+    <line x1="56" y1="0" x2="56" y2="46" stroke="#2a2a2a" stroke-width="0.6" opacity="0.4"/>
+    <path d="M0 52 Q-5 57 -5 66 Q-3 76 16 82 Q56 88 96 82 Q115 76 117 66 Q117 57 112 52 L106 56 Q84 74 56 77 Q28 74 6 56 Z" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+    <!-- Silver brim accent -->
+    <path d="M16 82 Q56 88 96 82" fill="none" stroke="#c0c0c0" stroke-width="2.5" opacity="0.9"/>
+    <text x="56" y="35" font-family="sans-serif" font-weight="900" font-size="13" fill="#c0c0c0" text-anchor="middle" letter-spacing="2">NRPG</text>
+    <circle cx="56" cy="3" r="3" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+    <rect x="18" y="77" width="76" height="6" fill="#161616" stroke="#2a2a2a" stroke-width="0.5" rx="1"/>
+    <rect x="44" y="77" width="24" height="6" fill="#1a1a1a" stroke="#c0c0c0" stroke-width="0.5" rx="0.5"/>
+  </g>
+
+  <!-- iPad Case (centre right) -->
+  <g transform="translate(218, 178)">
+    <!-- Case body -->
+    <rect x="0" y="0" width="88" height="116" fill="#0f1a1a" stroke="#1a3333" stroke-width="1.5" rx="4"/>
+    <!-- Inner bezel -->
+    <rect x="5" y="5" width="78" height="106" fill="#0a1414" stroke="#0d9488" stroke-width="0.5" rx="3"/>
+    <!-- Screen area -->
+    <rect x="8" y="8" width="72" height="100" fill="#050d0d" rx="2"/>
+    <!-- NRPG logo centred on case -->
+    <text x="44" y="55" font-family="sans-serif" font-weight="900" font-size="13" fill="#c0c0c0" text-anchor="middle" letter-spacing="2">NRPG</text>
+    <text x="44" y="70" font-family="sans-serif" font-weight="400" font-size="7" fill="#0d9488" text-anchor="middle" letter-spacing="1">CERTIFIED PRO</text>
+    <!-- Silver corner accents -->
+    <path d="M10 10 L10 18 L18 18" fill="none" stroke="#c0c0c0" stroke-width="1" opacity="0.4"/>
+    <path d="M78 10 L78 18 L70 18" fill="none" stroke="#c0c0c0" stroke-width="1" opacity="0.4"/>
+    <!-- Camera bump -->
+    <rect x="60" y="8" width="14" height="10" fill="#0d1f1f" stroke="#1a3333" stroke-width="0.5" rx="1"/>
+    <circle cx="67" cy="13" r="3" fill="#080808" stroke="#1a3333" stroke-width="0.5"/>
+    <!-- Home/touch bar hint -->
+    <rect x="30" y="108" width="28" height="4" fill="#0d9488" opacity="0.2" rx="2"/>
+  </g>
+
+  <!-- Travel Mug (bottom right) -->
+  <g transform="translate(316, 192)">
+    <!-- Mug body -->
+    <rect x="0" y="0" width="46" height="100" fill="url(#sp-mug)" stroke="#2a2a2a" stroke-width="1" rx="4"/>
+    <!-- Lid -->
+    <rect x="-2" y="-6" width="50" height="12" fill="#1f1f1f" stroke="#2a2a2a" stroke-width="1" rx="3"/>
+    <rect x="8" y="-4" width="30" height="8" fill="#c0c0c0" opacity="0.15" rx="2"/>
+    <!-- Silver band -->
+    <rect x="0" y="20" width="46" height="4" fill="#c0c0c0" opacity="0.3" rx="0.5"/>
+    <rect x="0" y="76" width="46" height="4" fill="#c0c0c0" opacity="0.3" rx="0.5"/>
+    <!-- NRPG -->
+    <text x="23" y="55" font-family="sans-serif" font-weight="900" font-size="9" fill="#c0c0c0" text-anchor="middle" letter-spacing="1">NRPG</text>
+    <!-- Handle -->
+    <path d="M46 30 Q62 30 62 50 Q62 70 46 70" fill="none" stroke="#2a2a2a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M46 34 Q58 34 58 50 Q58 66 46 66" fill="none" stroke="#1a1a1a" stroke-width="2"/>
+    <!-- Bottom -->
+    <rect x="2" y="96" width="42" height="4" fill="#111" stroke="#2a2a2a" stroke-width="0.5" rx="2"/>
+  </g>
+
+  <!-- Separator line -->
+  <line x1="60" y1="258" x2="340" y2="258" stroke="#c0c0c0" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- SILVER PACK title -->
+  <text x="200" y="370" font-family="sans-serif" font-weight="900" font-size="16" fill="#c0c0c0" text-anchor="middle" letter-spacing="3">SILVER PACK</text>
+
+  <!-- CERTIFIED PROFESSIONAL label in cyan -->
+  <text x="200" y="387" font-family="sans-serif" font-weight="700" font-size="9" fill="#00F5FF" text-anchor="middle" letter-spacing="3">CERTIFIED PROFESSIONAL</text>
+
+  <!-- Subtle silver glow bottom -->
+  <rect x="24" y="360" width="352" height="2" fill="url(#sp-silver)" opacity="0.35"/>
+</svg>
