@@ -153,7 +153,7 @@ export default function NewJobPage() {
                   key={jt.value}
                   type="button"
                   onClick={() => setType(jt.value)}
-                  className={`flex items-center gap-3 p-4 rounded-xl border transition-all text-left ${
+                  className={`flex items-center gap-3 p-4 rounded-xl border transition-[border-color,background-color,box-shadow] text-left ${
                     type === jt.value
                       ? 'border-[#0d9488] bg-[#0d9488]/10 ring-1 ring-[#0d9488]'
                       : 'border-white/10 bg-white/5 hover:border-white/20'

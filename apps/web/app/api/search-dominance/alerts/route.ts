@@ -46,51 +46,43 @@ export async function GET(request: NextRequest) {
     if (unreadOnly) where.isRead = false;
     if (actionRequired) where.actionRequired = true;
 
-    // Get alerts with pagination
-    const [alerts, total] = await Promise.all([
+    // Get alerts, counts and stats all in parallel
+    const [
+      alerts,
+      total,
+      unreadCount,
+      criticalCount,
+      warningCount,
+      infoCount,
+      byType,
+      actionRequiredCount,
+    ] = await Promise.all([
       db.searchAlert.findMany({
         where,
-        orderBy: [
-          { actionRequired: 'desc' },
-          { severity: 'desc' },
-          { createdAt: 'desc' },
-        ],
+        orderBy: [{ actionRequired: 'desc' }, { severity: 'desc' }, { createdAt: 'desc' }],
         take: limit,
         skip: offset,
       }),
       db.searchAlert.count({ where }),
-    ]);
-
-    // Calculate statistics
-    const stats = {
-      total,
-      unread: await db.searchAlert.count({
-        where: { ...where, isRead: false },
-      }),
-      bySeverity: {
-        CRITICAL: await db.searchAlert.count({
-          where: { ...where, severity: 'CRITICAL' },
-        }),
-        WARNING: await db.searchAlert.count({
-          where: { ...where, severity: 'WARNING' },
-        }),
-        INFO: await db.searchAlert.count({
-          where: { ...where, severity: 'INFO' },
-        }),
-      },
-      byType: await db.searchAlert.groupBy({
+      db.searchAlert.count({ where: { ...where, isRead: false } }),
+      db.searchAlert.count({ where: { ...where, severity: 'CRITICAL' } }),
+      db.searchAlert.count({ where: { ...where, severity: 'WARNING' } }),
+      db.searchAlert.count({ where: { ...where, severity: 'INFO' } }),
+      db.searchAlert.groupBy({
         by: ['type'],
         where,
         _count: true,
-        orderBy: {
-          _count: {
-            type: 'desc',
-          },
-        },
+        orderBy: { _count: { type: 'desc' } },
       }),
-      actionRequired: await db.searchAlert.count({
-        where: { ...where, actionRequired: true, isRead: false },
-      }),
+      db.searchAlert.count({ where: { ...where, actionRequired: true, isRead: false } }),
+    ]);
+
+    const stats = {
+      total,
+      unread: unreadCount,
+      bySeverity: { CRITICAL: criticalCount, WARNING: warningCount, INFO: infoCount },
+      byType,
+      actionRequired: actionRequiredCount,
     };
 
     return NextResponse.json({

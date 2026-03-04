@@ -163,50 +163,48 @@ export async function GET(request: NextRequest) {
         },
       });
 
-      // For each service type, calculate detailed metrics
-      serviceBenchmarks = await Promise.all(
-        serviceTypeData.map(async (serviceGroup) => {
-          const serviceType = serviceGroup.australianServiceType;
+      // Fetch all bookings for these service types in a single query (avoid N+1)
+      const serviceTypes = serviceTypeData.map(sg => sg.australianServiceType);
+      const allServiceBookings = await db.booking.findMany({
+        where: { australianServiceType: { in: serviceTypes } },
+        include: { ratings: true },
+      });
 
-          // Get all bookings for this service type
-          const bookings = await db.booking.findMany({
-            where: {
-              australianServiceType: serviceType,
-            },
-            include: {
-              ratings: true,
-            },
-          });
+      // Group bookings by service type using a Map for O(n) lookup
+      const bookingsByServiceType = new Map<string, typeof allServiceBookings>();
+      for (const booking of allServiceBookings) {
+        const key = booking.australianServiceType;
+        if (!bookingsByServiceType.has(key)) bookingsByServiceType.set(key, []);
+        bookingsByServiceType.get(key)!.push(booking);
+      }
 
-          const completedBookings = bookings.filter(b => b.status === 'COMPLETED');
-          const totalJobs = bookings.length;
-          const completedJobs = completedBookings.length;
+      serviceBenchmarks = serviceTypes.map((serviceType) => {
+        const bookings = bookingsByServiceType.get(serviceType) || [];
+        const completedBookings = bookings.filter(b => b.status === 'COMPLETED');
+        const totalJobs = bookings.length;
+        const completedJobs = completedBookings.length;
 
-          // Calculate metrics
-          const totalRevenue = completedBookings.reduce(
-            (sum, b) => sum + Number(b.finalCostAUD || 0),
-            0
-          );
+        const totalRevenue = completedBookings.reduce(
+          (sum, b) => sum + Number(b.finalCostAUD || 0),
+          0
+        );
+        const averagePrice = completedJobs > 0 ? totalRevenue / completedJobs : 0;
+        const completionRate = totalJobs > 0 ? (completedJobs / totalJobs) * 100 : 0;
 
-          const averagePrice = completedJobs > 0 ? totalRevenue / completedJobs : 0;
-          const completionRate = totalJobs > 0 ? (completedJobs / totalJobs) * 100 : 0;
+        const allRatings = completedBookings.flatMap(b => b.ratings || []);
+        const averageRating = allRatings.length > 0
+          ? allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length
+          : 0;
 
-          // Calculate average rating
-          const allRatings = completedBookings.flatMap(b => b.ratings || []);
-          const averageRating = allRatings.length > 0
-            ? allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length
-            : 0;
-
-          return {
-            serviceType,
-            averagePrice: parseFloat(averagePrice.toFixed(2)),
-            completionRate: parseFloat(completionRate.toFixed(2)),
-            totalJobs,
-            totalRevenue: parseFloat(totalRevenue.toFixed(2)),
-            averageRating: parseFloat(averageRating.toFixed(2)),
-          };
-        })
-      );
+        return {
+          serviceType,
+          averagePrice: parseFloat(averagePrice.toFixed(2)),
+          completionRate: parseFloat(completionRate.toFixed(2)),
+          totalJobs,
+          totalRevenue: parseFloat(totalRevenue.toFixed(2)),
+          averageRating: parseFloat(averageRating.toFixed(2)),
+        };
+      });
 
       // Sort by total revenue descending
       serviceBenchmarks.sort((a, b) => b.totalRevenue - a.totalRevenue);
@@ -230,52 +228,52 @@ export async function GET(request: NextRequest) {
         },
       });
 
-      // Calculate metrics for each state
-      regionalBenchmarks = await Promise.all(
-        stateData.map(async (stateGroup) => {
-          const region = stateGroup.serviceState;
+      // Fetch all regional completed bookings and contractor counts in parallel (avoid N+1)
+      const regions = stateData.map(sg => sg.serviceState).filter(Boolean) as string[];
+      const [allRegionalBookings, contractorsByState] = await Promise.all([
+        db.booking.findMany({
+          where: { serviceState: { in: regions }, status: 'COMPLETED' },
+          include: { ratings: true },
+        }),
+        db.contractor.groupBy({
+          by: ['primaryState'],
+          where: { primaryState: { in: regions } },
+          _count: { id: true },
+        }),
+      ]);
 
-          // Get completed bookings for this state
-          const completedBookings = await db.booking.findMany({
-            where: {
-              serviceState: region,
-              status: 'COMPLETED',
-            },
-            include: {
-              ratings: true,
-            },
-          });
-
-          const jobsCompleted = completedBookings.length;
-          const totalRevenue = completedBookings.reduce(
-            (sum, b) => sum + Number(b.finalCostAUD || 0),
-            0
-          );
-
-          const averagePrice = jobsCompleted > 0 ? totalRevenue / jobsCompleted : 0;
-
-          // Calculate average rating
-          const allRatings = completedBookings.flatMap(b => b.ratings || []);
-          const averageRating = allRatings.length > 0
-            ? allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length
-            : 0;
-
-          // Count active contractors in this state
-          const activeContractors = await db.contractor.count({
-            where: {
-              primaryState: region,
-            },
-          });
-
-          return {
-            region,
-            jobsCompleted,
-            averagePrice: parseFloat(averagePrice.toFixed(2)),
-            averageRating: parseFloat(averageRating.toFixed(2)),
-            activeContractors,
-          };
-        })
+      // Build lookup maps
+      const bookingsByState = new Map<string, typeof allRegionalBookings>();
+      for (const b of allRegionalBookings) {
+        const key = b.serviceState as string;
+        if (!bookingsByState.has(key)) bookingsByState.set(key, []);
+        bookingsByState.get(key)!.push(b);
+      }
+      const contractorCountByState = new Map(
+        contractorsByState.map(c => [c.primaryState, c._count.id])
       );
+
+      regionalBenchmarks = regions.map((region) => {
+        const completedBookings = bookingsByState.get(region) || [];
+        const jobsCompleted = completedBookings.length;
+        const totalRevenue = completedBookings.reduce(
+          (sum, b) => sum + Number(b.finalCostAUD || 0),
+          0
+        );
+        const averagePrice = jobsCompleted > 0 ? totalRevenue / jobsCompleted : 0;
+        const allRatings = completedBookings.flatMap(b => b.ratings || []);
+        const averageRating = allRatings.length > 0
+          ? allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length
+          : 0;
+
+        return {
+          region,
+          jobsCompleted,
+          averagePrice: parseFloat(averagePrice.toFixed(2)),
+          averageRating: parseFloat(averageRating.toFixed(2)),
+          activeContractors: contractorCountByState.get(region) || 0,
+        };
+      });
 
       // Sort by jobs completed descending
       regionalBenchmarks.sort((a, b) => b.jobsCompleted - a.jobsCompleted);
@@ -287,13 +285,14 @@ export async function GET(request: NextRequest) {
       serviceBenchmarks
     );
 
-    // 8. Calculate tier distribution
-    const tierDistribution = {
-      platinum: contractorBenchmarks.filter(c => c.tier === 'platinum').length,
-      gold: contractorBenchmarks.filter(c => c.tier === 'gold').length,
-      silver: contractorBenchmarks.filter(c => c.tier === 'silver').length,
-      bronze: contractorBenchmarks.filter(c => c.tier === 'bronze').length,
-    };
+    // 8. Calculate tier distribution — single pass instead of four .filter() calls
+    const tierDistribution = { platinum: 0, gold: 0, silver: 0, bronze: 0 };
+    for (const c of contractorBenchmarks) {
+      if (c.tier === 'platinum') tierDistribution.platinum++;
+      else if (c.tier === 'gold') tierDistribution.gold++;
+      else if (c.tier === 'silver') tierDistribution.silver++;
+      else if (c.tier === 'bronze') tierDistribution.bronze++;
+    }
 
     // 9. Build response based on type filter
     const benchmarkData: {
@@ -330,10 +329,7 @@ export async function GET(request: NextRequest) {
     console.error('[Admin Analytics] Error calculating benchmarks:', error);
 
     return NextResponse.json(
-      {
-        error: 'Failed to calculate benchmarks',
-        details: error instanceof Error ? error.message : 'Unknown error',
-      },
+      { error: 'Failed to calculate benchmarks' },
       { status: 500 }
     );
   }

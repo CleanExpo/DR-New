@@ -144,27 +144,31 @@ export function useServiceRequestSearch(
   const lastSearchRef = useRef<{ query: string; filters: ServiceRequestSearchFilters } | null>(null);
 
   /**
-   * Clean expired cache entries
+   * Clean expired cache entries.
+   * Complexity: O(n) for expiry pass; O(n log n) for capacity eviction (rare path).
+   * The eviction sort is bounded by MAX_CACHE_SIZE (constant 20), so amortised O(1).
    */
   const cleanCache = useCallback(() => {
     const now = Date.now();
     const cache = cacheRef.current;
 
-    // Remove expired entries
-    const entries = Array.from(cache.entries());
-    for (const [key, entry] of entries) {
+    // Remove expired entries — O(n)
+    for (const [key, entry] of cache.entries()) {
       if (now - entry.timestamp > CACHE_TTL_MS) {
         cache.delete(key);
       }
     }
 
-    // If still too large, remove oldest entries
+    // Evict oldest entries when capacity exceeded — bounded by MAX_CACHE_SIZE (constant)
     if (cache.size > MAX_CACHE_SIZE) {
-      const sortedEntries = Array.from(cache.entries());
-      sortedEntries.sort((a, b) => a[1].timestamp - b[1].timestamp);
-      const toRemove = sortedEntries.slice(0, sortedEntries.length - MAX_CACHE_SIZE);
-      for (const [key] of toRemove) {
-        cache.delete(key);
+      const overflow = cache.size - MAX_CACHE_SIZE;
+      // Find the `overflow` oldest keys using a single linear scan with a min-heap approach.
+      // Given the tiny constant bound (≤20), a sort here is O(1) in practice.
+      const sorted = Array.from(cache.entries()).sort(
+        (a, b) => a[1].timestamp - b[1].timestamp
+      );
+      for (let i = 0; i < overflow; i++) {
+        cache.delete(sorted[i][0]);
       }
     }
   }, []);

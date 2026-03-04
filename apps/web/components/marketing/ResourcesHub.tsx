@@ -147,7 +147,7 @@ export function ResourcesHub({
       <div className="text-center mt-12">
         <Link
           href="/resources"
-          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold hover:gap-3 transition-all"
+          className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold hover:gap-3 transition-[gap] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
         >
           View All Resources
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,7 +170,7 @@ function FeaturedResourceCard({ resource }: { resource: Resource }) {
   return (
     <Link
       href={resource.href}
-      className="group block h-full bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 rounded-3xl overflow-hidden shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-2"
+      className="group block h-full bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 rounded-3xl overflow-hidden shadow-2xl hover:shadow-blue-500/20 transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-2"
     >
       <div className="p-8 md:p-10 h-full flex flex-col">
         {/* Type Badge */}
@@ -201,7 +201,7 @@ function FeaturedResourceCard({ resource }: { resource: Resource }) {
         </div>
 
         {/* CTA */}
-        <div className="flex items-center gap-2 text-blue-400 font-bold mt-6 group-hover:gap-3 transition-all">
+        <div className="flex items-center gap-2 text-blue-400 font-bold mt-6 group-hover:gap-3 transition-[gap] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
           Read More
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -223,7 +223,7 @@ function ResourceCard({ resource, compact = false }: { resource: Resource; compa
   return (
     <Link
       href={resource.href}
-      className="group block bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      className="group block bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:-translate-y-1"
     >
       <div className="flex items-start gap-4">
         {/* Icon */}
@@ -273,7 +273,7 @@ export function ResourcesList({ className = '' }: { className?: string }) {
         <Link
           key={resource.id}
           href={resource.href}
-          className="group flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+          className="group flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
         >
           <span className="text-2xl" aria-hidden="true">{resource.icon}</span>
           <div className="flex-1 min-w-0">

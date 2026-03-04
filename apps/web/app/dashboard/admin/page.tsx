@@ -205,10 +205,9 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-
-    // Fetch admin KPIs
-    fetchAdminKpis();
   }, []);
+
+  // fetchAdminKpis is called alongside fetchAdminData in the useEffect below
 
   const fetchContractors = useCallback(async () => {
     try {
@@ -228,11 +227,15 @@ export default function AdminDashboard() {
         const data = await response.json();
         setContractors(data.contractors);
         
-        // Calculate stats
+        // Single-pass reduce — avoids two separate O(n) filter passes
+        let verifiedCount = 0;
+        for (const c of data.contractors) {
+          if (c.isVerified) verifiedCount++;
+        }
         const stats = {
           total: data.contractors.length,
-          verified: data.contractors.filter((c: any) => c.isVerified).length,
-          pending: data.contractors.filter((c: any) => !c.isVerified).length,
+          verified: verifiedCount,
+          pending: data.contractors.length - verifiedCount,
           rejected: 0 // We don't track rejected status in current schema
         };
         setContractorStats(stats);
@@ -389,7 +392,8 @@ export default function AdminDashboard() {
         router.push('/dashboard/contractor');
       }
     } else if (user && user.userType === 'ADMIN') {
-      fetchAdminData();
+      // Run both in parallel — no sequential dependency between them
+      Promise.all([fetchAdminData(), fetchAdminKpis()]);
     }
   }, [user, loading, router, fetchAdminData]);
 
@@ -446,10 +450,8 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (user && user.userType === 'ADMIN') {
-      fetchContractors();
-      fetchClients();
-      fetchClientServices();
-      fetchWhiteLabelStats();
+      // Fire all four independent fetches concurrently
+      Promise.all([fetchContractors(), fetchClients(), fetchClientServices(), fetchWhiteLabelStats()]);
     }
   }, [user, contractorStatusFilter, contractorSearchTerm, fetchContractors]);
 
@@ -2254,7 +2256,7 @@ export default function AdminDashboard() {
             <div className="space-y-2 flex-1 p-4">
               <Button
                 variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 relative ${
+                className={`w-full justify-start h-12 text-left transition-[background-color,color,box-shadow] duration-200 relative ${
                   activeTab === 'overview'
                     ? 'bg-[#00BFA6] text-white shadow-md hover:bg-[#00A693] border-l-4 border-l-[#00A693]'
                     : 'hover:bg-gray-700 hover:text-white text-gray-300'
@@ -2267,7 +2269,7 @@ export default function AdminDashboard() {
 
               <Button
                 variant="ghost"
-                className="w-full justify-start h-12 text-left transition-all duration-200 relative hover:bg-gray-700 hover:text-white text-gray-300"
+                className="w-full justify-start h-12 text-left transition-[background-color,color] duration-200 relative hover:bg-gray-700 hover:text-white text-gray-300"
                 onClick={() => router.push('/dashboard/admin/jobs/live')}
               >
                 <Activity className="h-5 w-5 mr-3" />
@@ -2280,7 +2282,7 @@ export default function AdminDashboard() {
 
               <Button
                 variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 relative ${
+                className={`w-full justify-start h-12 text-left transition-[background-color,color,box-shadow] duration-200 relative ${
                   activeTab === 'contractors' 
                     ? 'bg-[#00BFA6] text-white shadow-md hover:bg-[#00A693] border-l-4 border-l-[#00A693]' 
                     : 'hover:bg-gray-700 hover:text-white text-gray-300'
@@ -2293,7 +2295,7 @@ export default function AdminDashboard() {
 
               <Button
                 variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 relative ${
+                className={`w-full justify-start h-12 text-left transition-[background-color,color,box-shadow] duration-200 relative ${
                   activeTab === 'clients' 
                     ? 'bg-[#00BFA6] text-white shadow-md hover:bg-[#00A693] border-l-4 border-l-[#00A693]' 
                     : 'hover:bg-gray-700 hover:text-white text-gray-300'
@@ -2306,7 +2308,7 @@ export default function AdminDashboard() {
 
               <Button
                 variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 relative ${
+                className={`w-full justify-start h-12 text-left transition-[background-color,color,box-shadow] duration-200 relative ${
                   activeTab === 'white-label' 
                     ? 'bg-[#00BFA6] text-white shadow-md hover:bg-[#00A693] border-l-4 border-l-[#00A693]' 
                     : 'hover:bg-gray-700 hover:text-white text-gray-300'
@@ -2319,7 +2321,7 @@ export default function AdminDashboard() {
 
               <Button
                 variant="ghost"
-                className={`w-full justify-start h-12 text-left transition-all duration-200 relative ${
+                className={`w-full justify-start h-12 text-left transition-[background-color,color,box-shadow] duration-200 relative ${
                   activeTab === 'preferences' 
                     ? 'bg-[#00BFA6] text-white shadow-md hover:bg-[#00A693] border-l-4 border-l-[#00A693]' 
                     : 'hover:bg-gray-700 hover:text-white text-gray-300'

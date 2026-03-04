@@ -70,7 +70,7 @@ export async function POST(
     }
 
     return NextResponse.json(
-      { error: 'Failed to trigger payout', details: message },
+      { error: 'Failed to trigger payout' },
       { status: 500 }
     );
   }

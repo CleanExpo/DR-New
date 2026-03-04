@@ -98,13 +98,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('[Admin Analytics] Error exporting data:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to export analytics data',
-        details: message,
-      },
+      { error: 'Failed to export analytics data' },
       { status: 500 }
     );
   }

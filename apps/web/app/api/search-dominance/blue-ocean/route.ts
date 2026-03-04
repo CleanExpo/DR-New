@@ -39,43 +39,48 @@ export async function GET(request: NextRequest) {
     if (status) where.status = status.toUpperCase();
     if (category) where.category = category;
 
-    // Get opportunities with pagination
-    const [opportunities, total] = await Promise.all([
+    // Get opportunities, counts and stats all in parallel
+    const [
+      opportunities,
+      total,
+      statusNew,
+      statusInProgress,
+      statusCompleted,
+      statusDismissed,
+      byCategory,
+    ] = await Promise.all([
       db.blueOceanOpportunity.findMany({
         where,
-        orderBy: [
-          { opportunityScore: 'desc' },
-          { detectedAt: 'desc' },
-        ],
+        orderBy: [{ opportunityScore: 'desc' }, { detectedAt: 'desc' }],
         take: limit,
         skip: offset,
       }),
       db.blueOceanOpportunity.count({ where }),
-    ]);
-
-    // Calculate statistics
-    const stats = {
-      total,
-      byStatus: {
-        new: await db.blueOceanOpportunity.count({ where: { status: 'NEW' } }),
-        inProgress: await db.blueOceanOpportunity.count({ where: { status: 'IN_PROGRESS' } }),
-        completed: await db.blueOceanOpportunity.count({ where: { status: 'COMPLETED' } }),
-        dismissed: await db.blueOceanOpportunity.count({ where: { status: 'DISMISSED' } }),
-      },
-      byCategory: await db.blueOceanOpportunity.groupBy({
+      db.blueOceanOpportunity.count({ where: { status: 'NEW' } }),
+      db.blueOceanOpportunity.count({ where: { status: 'IN_PROGRESS' } }),
+      db.blueOceanOpportunity.count({ where: { status: 'COMPLETED' } }),
+      db.blueOceanOpportunity.count({ where: { status: 'DISMISSED' } }),
+      db.blueOceanOpportunity.groupBy({
         by: ['category'],
         _count: true,
-        orderBy: {
-          _count: {
-            category: 'desc',
-          },
-        },
+        orderBy: { _count: { category: 'desc' } },
         take: 10,
       }),
-      avgScore: opportunities.length > 0
-        ? opportunities.reduce((sum, o) => sum + o.opportunityScore, 0) / opportunities.length
-        : 0,
-      highPriority: opportunities.filter((o) => o.opportunityScore >= 80).length,
+    ]);
+
+    // Single pass for avgScore and highPriority
+    let scoreSum = 0, highPriority = 0;
+    for (const o of opportunities) {
+      scoreSum += o.opportunityScore;
+      if (o.opportunityScore >= 80) highPriority++;
+    }
+
+    const stats = {
+      total,
+      byStatus: { new: statusNew, inProgress: statusInProgress, completed: statusCompleted, dismissed: statusDismissed },
+      byCategory,
+      avgScore: opportunities.length > 0 ? scoreSum / opportunities.length : 0,
+      highPriority,
     };
 
     return NextResponse.json({

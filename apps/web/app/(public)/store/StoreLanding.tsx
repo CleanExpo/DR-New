@@ -78,6 +78,7 @@ function CartIndicator() {
     <motion.span
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-sm bg-teal-500 text-[#050505] text-[10px] font-black flex items-center justify-center"
     >
       {itemCount > 9 ? '9+' : itemCount}
@@ -104,6 +105,12 @@ export default function StoreLanding({ products }: StoreLandingProps) {
   // Single O(n) pass — no per-tab filter calls inside the render loop
   const categoryCounts = buildCategoryCounts(products)
 
+  // Single O(n) pass — pre-build id→product map to avoid three separate find() calls below
+  const productById = new Map(products.map((p) => [p.id, p]))
+  const bronzePack = productById.get('bronze-pack') ?? null
+  const silverPack = productById.get('silver-pack') ?? null
+  const goldPack = productById.get('gold-pack') ?? null
+
   const filteredProducts =
     activeFilter === 'all'
       ? products
@@ -124,7 +131,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
           <motion.div
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
             className="mb-6"
           >
             <span className="text-[10px] font-black uppercase tracking-widest text-teal-400 border border-teal-500/30 bg-teal-500/5 px-3 py-1 rounded-sm">
@@ -136,7 +143,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
             className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white leading-none mb-4"
           >
             Gear Up.{' '}
@@ -151,7 +158,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
             className="text-white/50 text-base md:text-lg max-w-xl mb-8 leading-relaxed"
           >
             Premium NRPG branded workwear and accessories engineered for disaster recovery
@@ -162,7 +169,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
             className="flex flex-wrap gap-6"
           >
             {[
@@ -181,12 +188,12 @@ export default function StoreLanding({ products }: StoreLandingProps) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.4, duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
             className="absolute top-6 right-6 sm:top-8 sm:right-8"
           >
             <Link
               href="/store/cart"
-              className="relative flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-teal-400 border border-white/10 hover:border-teal-500/40 bg-white/5 hover:bg-teal-500/5 px-4 py-2 rounded-sm transition-colors duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
+              className="relative flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-teal-400 border border-white/10 hover:border-teal-500/40 bg-white/5 hover:bg-teal-500/5 px-4 py-2 rounded-sm transition-[color,border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -214,7 +221,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
               <button
                 key={tab.value}
                 onClick={() => setActiveFilter(tab.value)}
-                className={`text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-sm border transition-all duration-200 ${
+                className={`text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-sm border transition-[background-color,border-color,color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                   isActive
                     ? 'bg-teal-500 text-[#050505] border-teal-500 shadow-[0_0_12px_rgba(13,148,136,0.4)]'
                     : 'text-white/50 border-white/10 bg-white/5 hover:text-white hover:border-white/20'
@@ -244,7 +251,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filteredProducts.map((product, i) => (
@@ -289,9 +296,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
         {/* Three tier cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {/* Bronze */}
-          {(() => {
-            const bronzePack = products.find((p) => p.id === 'bronze-pack')
-            return bronzePack ? (
+          {bronzePack ? (
               <Link
                 href={`/store/${bronzePack.slug}`}
                 className="group relative flex flex-col rounded-sm border border-[#cd7f32]/30 bg-gradient-to-b from-[#cd7f32]/5 to-transparent hover:border-[#cd7f32]/60 hover:from-[#cd7f32]/10 transition-[border-color,background] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
@@ -321,19 +326,16 @@ export default function StoreLanding({ products }: StoreLandingProps) {
                     <span className="text-[#cd7f32] font-black text-lg font-mono">
                       ${bronzePack.basePrice}
                     </span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#cd7f32] transition-colors duration-200">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#cd7f32] transition-[color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
                       View Pack →
                     </span>
                   </div>
                 </div>
               </Link>
-            ) : null
-          })()}
+          ) : null}
 
           {/* Silver */}
-          {(() => {
-            const silverPack = products.find((p) => p.id === 'silver-pack')
-            return silverPack ? (
+          {silverPack ? (
               <Link
                 href={`/store/${silverPack.slug}`}
                 className="group relative flex flex-col rounded-sm border border-[#c0c0c0]/30 bg-gradient-to-b from-[#c0c0c0]/5 to-transparent hover:border-[#c0c0c0]/60 hover:from-[#c0c0c0]/10 transition-[border-color,background] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
@@ -360,19 +362,16 @@ export default function StoreLanding({ products }: StoreLandingProps) {
                     <span className="text-[#c0c0c0] font-black text-lg font-mono">
                       ${silverPack.basePrice}
                     </span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#c0c0c0] transition-colors duration-200">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#c0c0c0] transition-[color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
                       View Pack →
                     </span>
                   </div>
                 </div>
               </Link>
-            ) : null
-          })()}
+          ) : null}
 
           {/* Gold */}
-          {(() => {
-            const goldPack = products.find((p) => p.id === 'gold-pack')
-            return goldPack ? (
+          {goldPack ? (
               <Link
                 href={`/store/${goldPack.slug}`}
                 className="group relative flex flex-col rounded-sm border border-[#ffd700]/30 bg-gradient-to-b from-[#ffd700]/5 to-transparent hover:border-[#ffd700]/60 hover:from-[#ffd700]/10 transition-[border-color,background] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
@@ -399,14 +398,13 @@ export default function StoreLanding({ products }: StoreLandingProps) {
                     <span className="text-[#ffd700] font-black text-lg font-mono">
                       ${goldPack.basePrice}
                     </span>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#ffd700] transition-colors duration-200">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white/30 group-hover:text-[#ffd700] transition-[color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]">
                       View Pack →
                     </span>
                   </div>
                 </div>
               </Link>
-            ) : null
-          })()}
+          ) : null}
         </div>
       </section>
 

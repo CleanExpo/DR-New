@@ -84,16 +84,19 @@ export function createRedisRateLimiter(config: RateLimitConfig) {
       const key = `rate-limit:${identifier}`;
       const now = Date.now();
 
-      // Increment counter
-      const count = await redis.incr(key);
+      // Increment counter and read TTL in parallel — O(1) with 2 concurrent Redis RTTs
+      const [count, ttlInitial] = await Promise.all([
+        redis.incr(key),
+        redis.pttl(key),
+      ]);
 
-      // Set expiry on first request
+      // Set expiry on first request (key was just created, so ttlInitial may be -1)
       if (count === 1) {
         await redis.pexpire(key, windowMs);
       }
 
-      // Get TTL (time to live)
-      const ttl = await redis.pttl(key);
+      // If pttl returned -1 (no expiry set yet), fall back to window size
+      const ttl = ttlInitial > 0 ? ttlInitial : windowMs;
       const resetTime = now + (ttl > 0 ? ttl : windowMs);
       const remaining = Math.max(0, maxRequests - count);
 

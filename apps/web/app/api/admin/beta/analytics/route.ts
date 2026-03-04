@@ -38,12 +38,15 @@ export async function GET(request: NextRequest) {
       },
     })
 
-    // Calculate overall NPS
+    // Calculate overall NPS — single pass
     const allNpsScores = programs.flatMap((p) => p.npsSurveys.map((s) => s.score))
     const totalResponses = allNpsScores.length
-    const promoters = allNpsScores.filter((s) => s >= 9).length
-    const passives = allNpsScores.filter((s) => s >= 7 && s <= 8).length
-    const detractors = allNpsScores.filter((s) => s <= 6).length
+    let promoters = 0, passives = 0, detractors = 0
+    for (const s of allNpsScores) {
+      if (s >= 9) promoters++
+      else if (s >= 7) passives++
+      else detractors++
+    }
     const overallNps = totalResponses > 0
       ? Math.round(((promoters - detractors) / totalResponses) * 100)
       : null
@@ -67,8 +70,11 @@ export async function GET(request: NextRequest) {
           )
         : []
 
-      const weekPromoters = weekScores.filter((s) => s >= 9).length
-      const weekDetractors = weekScores.filter((s) => s <= 6).length
+      let weekPromoters = 0, weekDetractors = 0
+      for (const s of weekScores) {
+        if (s >= 9) weekPromoters++
+        else if (s <= 6) weekDetractors++
+      }
       const weekTotal = weekScores.length
       const weekNps = weekTotal > 0
         ? Math.round(((weekPromoters - weekDetractors) / weekTotal) * 100)
@@ -81,55 +87,81 @@ export async function GET(request: NextRequest) {
       })
     }
 
-    // Aggregate feedback stats
+    // Aggregate feedback stats — single pass
     const allFeedback = programs.flatMap((p) => p.feedback)
+    const oneWeekAgo = new Date()
+    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
+    let fbUnreviewed = 0, fbThisWeek = 0
+    let fbBug = 0, fbFeature = 0, fbUsability = 0, fbGeneral = 0
+    let fbNew = 0, fbInReview = 0, fbResolved = 0, fbWontFix = 0
+    let fbCritical = 0, fbHigh = 0, fbMedium = 0, fbLow = 0
+    for (const f of allFeedback) {
+      if (!f.isReviewed) fbUnreviewed++
+      if (f.createdAt >= oneWeekAgo) fbThisWeek++
+      if (f.category === 'BUG_REPORT') fbBug++
+      else if (f.category === 'FEATURE_REQUEST') fbFeature++
+      else if (f.category === 'USABILITY_ISSUE') fbUsability++
+      else if (f.category === 'GENERAL_FEEDBACK') fbGeneral++
+      if (f.status === 'new') fbNew++
+      else if (f.status === 'in_review') fbInReview++
+      else if (f.status === 'resolved') fbResolved++
+      else if (f.status === 'wont_fix') fbWontFix++
+      if (f.priority === 'critical') fbCritical++
+      else if (f.priority === 'high') fbHigh++
+      else if (f.priority === 'medium') fbMedium++
+      else if (f.priority === 'low') fbLow++
+    }
     const feedbackStats = {
       total: allFeedback.length,
-      unreviewed: allFeedback.filter((f) => !f.isReviewed).length,
-      thisWeek: allFeedback.filter((f) => {
-        const oneWeekAgo = new Date()
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
-        return f.createdAt >= oneWeekAgo
-      }).length,
+      unreviewed: fbUnreviewed,
+      thisWeek: fbThisWeek,
       byCategory: {
-        BUG_REPORT: allFeedback.filter((f) => f.category === 'BUG_REPORT').length,
-        FEATURE_REQUEST: allFeedback.filter((f) => f.category === 'FEATURE_REQUEST').length,
-        USABILITY_ISSUE: allFeedback.filter((f) => f.category === 'USABILITY_ISSUE').length,
-        GENERAL_FEEDBACK: allFeedback.filter((f) => f.category === 'GENERAL_FEEDBACK').length,
+        BUG_REPORT: fbBug,
+        FEATURE_REQUEST: fbFeature,
+        USABILITY_ISSUE: fbUsability,
+        GENERAL_FEEDBACK: fbGeneral,
       },
-      byStatus: {
-        new: allFeedback.filter((f) => f.status === 'new').length,
-        in_review: allFeedback.filter((f) => f.status === 'in_review').length,
-        resolved: allFeedback.filter((f) => f.status === 'resolved').length,
-        wont_fix: allFeedback.filter((f) => f.status === 'wont_fix').length,
-      },
-      byPriority: {
-        critical: allFeedback.filter((f) => f.priority === 'critical').length,
-        high: allFeedback.filter((f) => f.priority === 'high').length,
-        medium: allFeedback.filter((f) => f.priority === 'medium').length,
-        low: allFeedback.filter((f) => f.priority === 'low').length,
-      },
+      byStatus: { new: fbNew, in_review: fbInReview, resolved: fbResolved, wont_fix: fbWontFix },
+      byPriority: { critical: fbCritical, high: fbHigh, medium: fbMedium, low: fbLow },
     }
 
-    // Enrollment stats
+    // Enrollment stats — single pass
     const allEnrollments = programs.flatMap((p) => p.enrollments)
+    let enInvited = 0, enActive = 0, enCompleted = 0, enWithdrawn = 0
+    for (const e of allEnrollments) {
+      if (e.status === 'INVITED') enInvited++
+      else if (e.status === 'ACTIVE') enActive++
+      else if (e.status === 'COMPLETED') enCompleted++
+      else if (e.status === 'WITHDRAWN') enWithdrawn++
+    }
     const enrollmentStats = {
       total: allEnrollments.length,
-      invited: allEnrollments.filter((e) => e.status === 'INVITED').length,
-      active: allEnrollments.filter((e) => e.status === 'ACTIVE').length,
-      completed: allEnrollments.filter((e) => e.status === 'COMPLETED').length,
-      withdrawn: allEnrollments.filter((e) => e.status === 'WITHDRAWN').length,
+      invited: enInvited,
+      active: enActive,
+      completed: enCompleted,
+      withdrawn: enWithdrawn,
     }
 
-    // Per-program stats
+    // Per-program stats — single pass per program
     const programStats = programs.map((program) => {
-      const programNpsScores = program.npsSurveys.map((s) => s.score)
-      const pPromoters = programNpsScores.filter((s) => s >= 9).length
-      const pDetractors = programNpsScores.filter((s) => s <= 6).length
-      const pTotal = programNpsScores.length
+      let pPromoters = 0, pDetractors = 0
+      for (const s of program.npsSurveys) {
+        if (s.score >= 9) pPromoters++
+        else if (s.score <= 6) pDetractors++
+      }
+      const pTotal = program.npsSurveys.length
       const programNps = pTotal > 0
         ? Math.round(((pPromoters - pDetractors) / pTotal) * 100)
         : null
+
+      let enActiveP = 0, enInvitedP = 0, fbUnreviewedP = 0
+      for (const e of program.enrollments) {
+        if (e.status === 'ACTIVE') enActiveP++
+        else if (e.status === 'INVITED') enInvitedP++
+      }
+      for (const f of program.feedback) {
+        if (!f.isReviewed) fbUnreviewedP++
+      }
 
       return {
         id: program.id,
@@ -138,19 +170,9 @@ export async function GET(request: NextRequest) {
         startDate: program.startDate,
         endDate: program.endDate,
         stats: {
-          enrollments: {
-            total: program.enrollments.length,
-            active: program.enrollments.filter((e) => e.status === 'ACTIVE').length,
-            invited: program.enrollments.filter((e) => e.status === 'INVITED').length,
-          },
-          feedback: {
-            total: program.feedback.length,
-            unreviewed: program.feedback.filter((f) => !f.isReviewed).length,
-          },
-          nps: {
-            score: programNps,
-            responses: pTotal,
-          },
+          enrollments: { total: program.enrollments.length, active: enActiveP, invited: enInvitedP },
+          feedback: { total: program.feedback.length, unreviewed: fbUnreviewedP },
+          nps: { score: programNps, responses: pTotal },
         },
       }
     })

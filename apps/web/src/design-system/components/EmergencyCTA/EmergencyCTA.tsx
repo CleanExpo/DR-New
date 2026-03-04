@@ -29,10 +29,10 @@ export function EmergencyCTA({
   return (
     <div className={cn('w-full', className)}>
       {/* Emergency Service Card - Online Request Only */}
-      <Card className="border-red-500 hover:border-red-600 transition-colors cursor-pointer group">
+      <Card className="border-red-500 hover:border-red-600 transition-[border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] cursor-pointer group">
         <CardContent className="pt-6">
           <div className="flex items-center gap-4 mb-3">
-            <div className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+            <div className="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] duration-300">
               <EmergencyAlert size="lg" className="text-white" gradient="emergency" />
             </div>
             <div className="flex-1">

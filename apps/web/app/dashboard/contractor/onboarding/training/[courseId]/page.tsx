@@ -225,7 +225,7 @@ export default function CourseDetailPage() {
                 </div>
                 <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
                   <div
-                    className="h-full rounded-full transition-all duration-500"
+                    className="h-full rounded-full transition-[width] duration-500"
                     style={{
                       width: `${course.progress.percentComplete}%`,
                       backgroundColor: course.progress.status === 'completed' ? '#10B981' : colour,

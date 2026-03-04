@@ -73,6 +73,7 @@ export class EnhancedMatchingService {
 
   /**
    * Calculate match score for a contractor
+   * Complexity: O(s + a) where s = contractor.services.length, a = contractor.serviceAreas.length
    */
   private static calculateMatchScore(contractor: any, criteria: MatchCriteria) {
     let score = 0;
@@ -80,7 +81,9 @@ export class EnhancedMatchingService {
     let canBid = true;
 
     // Service category match (40 points)
-    if (contractor.services.includes(criteria.serviceCategory)) {
+    // Use Set for O(1) lookup instead of O(s) Array.includes
+    const servicesSet = new Set<string>(contractor.services);
+    if (servicesSet.has(criteria.serviceCategory)) {
       score += 40;
       reasons.push('Service category match');
     }

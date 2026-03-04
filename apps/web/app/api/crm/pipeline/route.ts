@@ -24,10 +24,6 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
 
-    // Get pipeline metrics
-    const metrics = await opportunityService.getPipelineMetrics();
-
-    // Get individual opportunities if requested
     const stage = searchParams.get('stage') as OpportunityStage | null;
     const state = searchParams.get('state');
     const page = parseInt(searchParams.get('page') || '1');
@@ -37,7 +33,9 @@ export async function GET(request: NextRequest) {
     if (stage) where.stage = stage;
     if (state) where.serviceState = state;
 
-    const [opportunities, total] = await Promise.all([
+    // Fetch pipeline metrics and opportunities in parallel
+    const [metrics, opportunities, total] = await Promise.all([
+      opportunityService.getPipelineMetrics(),
       db.opportunity.findMany({
         where,
         include: {
@@ -63,7 +61,6 @@ export async function GET(request: NextRequest) {
         skip: (page - 1) * limit,
         take: limit,
       }),
-
       db.opportunity.count({ where }),
     ]);
 
@@ -80,12 +77,9 @@ export async function GET(request: NextRequest) {
         },
       },
     });
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
-      {
-        success: false,
-        error: error.message,
-      },
+      { success: false, error: 'Failed to fetch pipeline data' },
       { status: 500 }
     );
   }

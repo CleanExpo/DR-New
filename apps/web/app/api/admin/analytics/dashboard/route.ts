@@ -78,68 +78,52 @@ export async function GET(request: NextRequest) {
         previousEndDate = new Date(now.getFullYear(), now.getMonth(), 0);
     }
 
-    // ========== CURRENT PERIOD METRICS ==========
+    // ========== ALL PERIOD METRICS IN PARALLEL ==========
 
-    // Count service requests (jobs)
-    const currentJobsTotal = await db.serviceRequest.count({
-      where: {
-        createdAt: { gte: startDate, lte: now },
-      },
-    });
-
-    const currentJobsCompleted = await db.serviceRequest.count({
-      where: {
-        createdAt: { gte: startDate, lte: now },
-        status: { in: ['COMPLETED', 'MATCHED', 'IN_PROGRESS'] },
-      },
-    });
-
-    // Count active contractors (those with AVAILABLE status)
-    const activeContractors = await db.contractorProfile.count({
-      where: {
-        availability: 'AVAILABLE',
-      },
-    });
-
-    // Get total contractors
-    const totalContractors = await db.contractorProfile.count();
-
-    // Calculate revenue from payments
-    const currentPayments = await db.payment.aggregate({
-      _sum: { amountAUD: true },
-      _count: true,
-      where: {
-        createdAt: { gte: startDate, lte: now },
-        status: 'COMPLETED',
-      },
-    });
+    const [
+      currentJobsTotal,
+      currentJobsCompleted,
+      activeContractors,
+      totalContractors,
+      currentPayments,
+      previousJobsTotal,
+      previousJobsCompleted,
+      previousPayments,
+    ] = await Promise.all([
+      db.serviceRequest.count({
+        where: { createdAt: { gte: startDate, lte: now } },
+      }),
+      db.serviceRequest.count({
+        where: {
+          createdAt: { gte: startDate, lte: now },
+          status: { in: ['COMPLETED', 'MATCHED', 'IN_PROGRESS'] },
+        },
+      }),
+      db.contractorProfile.count({ where: { availability: 'AVAILABLE' } }),
+      db.contractorProfile.count(),
+      db.payment.aggregate({
+        _sum: { amountAUD: true },
+        _count: true,
+        where: { createdAt: { gte: startDate, lte: now }, status: 'COMPLETED' },
+      }),
+      db.serviceRequest.count({
+        where: { createdAt: { gte: previousStartDate, lte: previousEndDate } },
+      }),
+      db.serviceRequest.count({
+        where: {
+          createdAt: { gte: previousStartDate, lte: previousEndDate },
+          status: { in: ['COMPLETED', 'MATCHED', 'IN_PROGRESS'] },
+        },
+      }),
+      db.payment.aggregate({
+        _sum: { amountAUD: true },
+        where: { createdAt: { gte: previousStartDate, lte: previousEndDate }, status: 'COMPLETED' },
+      }),
+    ]);
 
     const currentRevenue = Number(currentPayments._sum.amountAUD || 0);
     const currentPlatformFees = currentRevenue * 0.15; // 15% platform fee
     const currentContractorPayouts = currentRevenue * 0.85;
-
-    // ========== PREVIOUS PERIOD METRICS ==========
-
-    const previousJobsTotal = await db.serviceRequest.count({
-      where: {
-        createdAt: { gte: previousStartDate, lte: previousEndDate },
-      },
-    });
-
-    const previousJobsCompleted = await db.serviceRequest.count({
-      where: {
-        createdAt: { gte: previousStartDate, lte: previousEndDate },
-        status: { in: ['COMPLETED', 'MATCHED', 'IN_PROGRESS'] },
-      },
-    });
-
-    const previousPayments = await db.payment.aggregate({
-      _sum: { amountAUD: true },
-      where: {
-        createdAt: { gte: previousStartDate, lte: previousEndDate },
-        status: 'COMPLETED',
-      },
-    });
 
     const previousRevenue = Number(previousPayments._sum.amountAUD || 0);
     const previousPlatformFees = previousRevenue * 0.15;
@@ -177,20 +161,36 @@ export async function GET(request: NextRequest) {
 
     // ========== TOP PERFORMERS ==========
 
-    // Get top contractors by their profiles
-    const topContractorProfiles = await db.contractorProfile.findMany({
-      take: 5,
-      orderBy: { totalJobs: 'desc' },
-      select: {
-        id: true,
-        businessName: true,
-        totalJobs: true,
-        rating: true,
-        user: {
-          select: { email: true },
-        },
-      },
-    });
+    // Fetch top performers, service breakdown, and user stats in parallel
+    const [topContractorProfiles, topClientsByJobs, serviceTypeBreakdown, totalUsers, totalClients, newUsersThisPeriod] =
+      await Promise.all([
+        db.contractorProfile.findMany({
+          take: 5,
+          orderBy: { totalJobs: 'desc' },
+          select: {
+            id: true,
+            businessName: true,
+            totalJobs: true,
+            rating: true,
+            user: { select: { email: true } },
+          },
+        }),
+        db.serviceRequest.groupBy({
+          by: ['userId'],
+          _count: true,
+          where: { createdAt: { gte: startDate, lte: now } },
+          orderBy: { _count: { userId: 'desc' } },
+          take: 5,
+        }),
+        db.serviceRequest.groupBy({
+          by: ['serviceCategory'],
+          _count: true,
+          where: { createdAt: { gte: startDate, lte: now } },
+        }),
+        db.user.count(),
+        db.user.count({ where: { userType: 'CLIENT' } }),
+        db.user.count({ where: { createdAt: { gte: startDate, lte: now } } }),
+      ]);
 
     const topContractors = topContractorProfiles.map((cp) => ({
       contractorId: cp.id,
@@ -200,49 +200,22 @@ export async function GET(request: NextRequest) {
       rating: cp.rating,
     }));
 
-    // Get top clients by service requests (using userId field)
-    const topClientsByJobs = await db.serviceRequest.groupBy({
-      by: ['userId'],
-      _count: true,
-      where: {
-        createdAt: { gte: startDate, lte: now },
-      },
-      orderBy: { _count: { userId: 'desc' } },
-      take: 5,
+    // Enrich top clients with user details — IDs are already known, batch via findMany
+    const topClientUserIds = topClientsByJobs.map((tc) => tc.userId);
+    const topClientUsers = await db.user.findMany({
+      where: { id: { in: topClientUserIds } },
+      select: { id: true, email: true, name: true },
     });
+    const topClientUserMap = new Map(topClientUsers.map((u) => [u.id, u]));
 
-    // Enrich with user details
-    const topClients = await Promise.all(
-      topClientsByJobs.map(async (tc) => {
-        const user = await db.user.findUnique({
-          where: { id: tc.userId },
-          select: { email: true, name: true },
-        });
-        return {
-          clientId: tc.userId,
-          name: user?.name || user?.email || 'Unknown',
-          _count: tc._count,
-          _sum: { amountAUD: tc._count * 500 }, // Estimate
-        };
-      })
-    );
-
-    // ========== SERVICE TYPE BREAKDOWN ==========
-
-    const serviceTypeBreakdown = await db.serviceRequest.groupBy({
-      by: ['serviceCategory'],
-      _count: true,
-      where: {
-        createdAt: { gte: startDate, lte: now },
-      },
-    });
-
-    // ========== ADDITIONAL STATS ==========
-
-    const totalUsers = await db.user.count();
-    const totalClients = await db.user.count({ where: { userType: 'CLIENT' } });
-    const newUsersThisPeriod = await db.user.count({
-      where: { createdAt: { gte: startDate, lte: now } },
+    const topClients = topClientsByJobs.map((tc) => {
+      const u = topClientUserMap.get(tc.userId);
+      return {
+        clientId: tc.userId,
+        name: u?.name || u?.email || 'Unknown',
+        _count: tc._count,
+        _sum: { amountAUD: tc._count * 500 }, // Estimate
+      };
     });
 
     return NextResponse.json({
@@ -290,14 +263,8 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('[Admin Analytics] Error fetching dashboard data:', error);
-
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to fetch admin analytics dashboard',
-        details: message,
-      },
+      { error: 'Failed to fetch admin analytics dashboard' },
       { status: 500 }
     );
   }

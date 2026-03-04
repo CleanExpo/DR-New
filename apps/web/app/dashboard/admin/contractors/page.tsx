@@ -371,7 +371,7 @@ export default function AdminContractorsPage() {
               return (
               <Card
                 key={contractor.id}
-                className={`bg-gray-800 transition-all duration-200 ${
+                className={`bg-gray-800 transition-[border-color,box-shadow,background-color] duration-200 ${
                   isSelected
                     ? 'border-[#00BFA6] ring-1 ring-[#00BFA6]/50 bg-gray-800/80'
                     : 'border-gray-700 hover:border-gray-600'
@@ -702,7 +702,7 @@ export default function AdminContractorsPage() {
 
       {/* Bulk Action Toolbar */}
       <div
-        className={`fixed bottom-0 left-0 right-0 z-40 transform transition-all duration-300 ease-out ${
+        className={`fixed bottom-0 left-0 right-0 z-40 transform transition-[transform] duration-300 ease-out ${
           selectedCount > 0
             ? 'translate-y-0 opacity-100'
             : 'translate-y-full opacity-0 pointer-events-none'

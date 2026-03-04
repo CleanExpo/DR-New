@@ -89,13 +89,8 @@ export async function POST(
   } catch (error) {
     console.error('Booking payment error:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to initiate payment',
-        details: message,
-      },
+      { error: 'Failed to initiate payment' },
       { status: 500 }
     );
   }

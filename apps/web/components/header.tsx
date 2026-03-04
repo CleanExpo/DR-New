@@ -76,7 +76,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex items-center gap-8">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]">
                 <span className="text-white font-bold text-lg">DR</span>
               </div>
               <div>
@@ -140,7 +140,7 @@ export default function Header() {
               </Link>
               <Link
                 href="/signup"
-                className="px-6 py-2 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-lg shadow-[#00BFA6]/20 hover:shadow-[#00BFA6]/40"
+                className="px-6 py-2 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-[opacity,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] shadow-lg shadow-[#00BFA6]/20 hover:shadow-[#00BFA6]/40"
               >
                 Get Started
               </Link>
@@ -249,7 +249,7 @@ export default function Header() {
                 <Link
                   href="/signup"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-6 py-2 text-center bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-all duration-300 shadow-lg shadow-[#00BFA6]/20"
+                  className="px-6 py-2 text-center bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] shadow-lg shadow-[#00BFA6]/20"
                 >
                   Get Started
                 </Link>

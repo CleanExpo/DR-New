@@ -143,7 +143,7 @@ export const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
 
   const slideContainerStyles: React.CSSProperties = {
     display: 'flex',
-    transition: 'transform 0.5s ease-in-out',
+    transition: 'transform 0.5s cubic-bezier(0.19, 1, 0.22, 1)',
     transform: `translateX(-${currentIndex * 100}%)`,
   };
 
@@ -210,7 +210,7 @@ export const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
     cursor: 'pointer',
     fontSize: '1.5rem',
     color: disasterRecoveryColors.authority.primary,
-    transition: 'all 0.2s',
+    transition: 'transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
     zIndex: 10,
   };
 
@@ -228,7 +228,7 @@ export const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
     backgroundColor: isActive ? disasterRecoveryColors.authority.primary : disasterRecoveryColors.neutral[300],
     border: 'none',
     cursor: 'pointer',
-    transition: 'all 0.3s',
+    transition: 'background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     padding: 0,
   });
 

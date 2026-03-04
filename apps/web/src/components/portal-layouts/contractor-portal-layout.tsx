@@ -42,7 +42,7 @@ export default function ContractorPortalLayout({ children }: ContractorPortalLay
       <div
         className={`${
           sidebarOpen ? 'w-64' : 'w-0'
-        } md:w-64 bg-gradient-to-b from-orange-600 to-orange-700 text-white transition-all duration-300 overflow-hidden fixed md:relative z-40 h-full flex flex-col`}
+        } md:w-64 bg-gradient-to-b from-orange-600 to-orange-700 text-white transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] overflow-hidden fixed md:relative z-40 h-full flex flex-col`}
       >
         {/* Logo Section */}
         <div className="p-6 border-b border-orange-500">

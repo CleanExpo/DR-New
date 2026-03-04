@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
     const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
     const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-    // Fetch booking statistics
+    // Fetch all analytics data in a single parallel batch
     const [
       totalBookings,
       completedBookings,
@@ -79,57 +79,24 @@ export async function GET(request: NextRequest) {
       bookingsLastMonth,
       bookingsLast30Days,
       recentBookings,
+      totalRatings,
+      ratingsLast30Days,
+      ratingBreakdown,
+      recentRatings,
     ] = await Promise.all([
-      // Total bookings
+      db.booking.count({ where: { contractorId: contractor.id } }),
+      db.booking.count({ where: { contractorId: contractor.id, status: 'COMPLETED' } }),
       db.booking.count({
-        where: { contractorId: contractor.id },
+        where: { contractorId: contractor.id, status: { in: ['PENDING', 'CONFIRMED', 'IN_PROGRESS'] } },
       }),
-      // Completed bookings
       db.booking.count({
-        where: {
-          contractorId: contractor.id,
-          status: 'COMPLETED',
-        },
+        where: { contractorId: contractor.id, status: { in: ['CANCELLED', 'DISPUTED'] } },
       }),
-      // Active bookings (not completed, cancelled, or rejected)
+      db.booking.count({ where: { contractorId: contractor.id, createdAt: { gte: startOfMonth } } }),
       db.booking.count({
-        where: {
-          contractorId: contractor.id,
-          status: { in: ['PENDING', 'CONFIRMED', 'IN_PROGRESS'] },
-        },
+        where: { contractorId: contractor.id, createdAt: { gte: startOfLastMonth, lte: endOfLastMonth } },
       }),
-      // Cancelled bookings
-      db.booking.count({
-        where: {
-          contractorId: contractor.id,
-          status: { in: ['CANCELLED', 'DISPUTED'] },
-        },
-      }),
-      // Bookings this month
-      db.booking.count({
-        where: {
-          contractorId: contractor.id,
-          createdAt: { gte: startOfMonth },
-        },
-      }),
-      // Bookings last month
-      db.booking.count({
-        where: {
-          contractorId: contractor.id,
-          createdAt: {
-            gte: startOfLastMonth,
-            lte: endOfLastMonth,
-          },
-        },
-      }),
-      // Bookings last 30 days
-      db.booking.count({
-        where: {
-          contractorId: contractor.id,
-          createdAt: { gte: thirtyDaysAgo },
-        },
-      }),
-      // Recent bookings (last 10)
+      db.booking.count({ where: { contractorId: contractor.id, createdAt: { gte: thirtyDaysAgo } } }),
       db.booking.findMany({
         where: { contractorId: contractor.id },
         orderBy: { createdAt: 'desc' },
@@ -144,43 +111,14 @@ export async function GET(request: NextRequest) {
           finalCostAUD: true,
         },
       }),
-    ]);
-
-    // Fetch rating statistics
-    const [
-      totalRatings,
-      ratingsLast30Days,
-      ratingBreakdown,
-      recentRatings,
-    ] = await Promise.all([
-      // Total ratings count
-      db.rating.count({
-        where: { contractorId: contractor.id },
-      }),
-      // Ratings last 30 days
-      db.rating.count({
-        where: {
-          contractorId: contractor.id,
-          createdAt: { gte: thirtyDaysAgo },
-        },
-      }),
-      // Rating breakdown (1-5 stars)
-      db.rating.groupBy({
-        by: ['rating'],
-        where: { contractorId: contractor.id },
-        _count: { rating: true },
-      }),
-      // Recent ratings (last 10)
+      db.rating.count({ where: { contractorId: contractor.id } }),
+      db.rating.count({ where: { contractorId: contractor.id, createdAt: { gte: thirtyDaysAgo } } }),
+      db.rating.groupBy({ by: ['rating'], where: { contractorId: contractor.id }, _count: { rating: true } }),
       db.rating.findMany({
         where: { contractorId: contractor.id },
         orderBy: { createdAt: 'desc' },
         take: 10,
-        select: {
-          id: true,
-          rating: true,
-          comment: true,
-          createdAt: true,
-        },
+        select: { id: true, rating: true, comment: true, createdAt: true },
       }),
     ]);
 

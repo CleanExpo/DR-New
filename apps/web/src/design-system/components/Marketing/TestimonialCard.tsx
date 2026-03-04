@@ -68,7 +68,7 @@ export function TestimonialCard({
 
   return (
     <div
-      className={`bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-6 border border-gray-700 hover:border-gray-600 transition-all ${className}`}
+      className={`bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl p-6 border border-gray-700 hover:border-gray-600 transition-[border-color] [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] duration-300 ${className}`}
     >
       {/* Header with avatar and info */}
       <div className="flex items-center mb-4">

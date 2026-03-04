@@ -126,7 +126,7 @@ export function LiveStatusCard({
   return (
     <div
       onClick={onClick}
-      className={`border-l-4 p-4 rounded-lg cursor-pointer transition-all hover:shadow-md ${
+      className={`border-l-4 p-4 rounded-lg cursor-pointer transition-[box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:shadow-md ${
         statusColor[status] || 'border-slate-200 bg-slate-50'
       }`}
     >

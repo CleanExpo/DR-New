@@ -40,11 +40,12 @@ export class MatchingService {
       });
 
       // Calculate match scores for each contractor
+      // Complexity: O(n * (s + a)) where n = contractors, s = services count, a = serviceAreas count
       const matches: ContractorMatch[] = [];
 
       for (const contractor of contractors) {
-        const matchScore = this.calculateMatchScore(contractor, criteria);
-        const reasons = this.getMatchReasons(contractor, criteria);
+        // Single-pass: compute score and reasons together to avoid iterating contractor data twice
+        const { matchScore, reasons } = this.calculateMatchScoreWithReasons(contractor, criteria);
 
         if (matchScore > 30) { // Only include contractors with score > 30
           matches.push({
@@ -67,17 +68,21 @@ export class MatchingService {
   }
 
   /**
-   * Calculate match score between contractor and service request
+   * Calculate match score and reasons in a single pass to avoid double-iterating contractor data.
+   * Complexity: O(s + a + f) where s = services, a = serviceAreas, f = profile fields
    */
-  private static calculateMatchScore(
+  private static calculateMatchScoreWithReasons(
     contractor: any,
     criteria: MatchingCriteria
-  ): number {
+  ): { matchScore: number; reasons: string[] } {
     let score = 0;
+    const reasons: string[] = [];
 
-    // Service category match (40 points)
-    if (contractor.services.includes(criteria.serviceCategory)) {
+    // Service category match (40 points) — O(1) with Set
+    const servicesSet = new Set<string>(contractor.services);
+    if (servicesSet.has(criteria.serviceCategory)) {
       score += 40;
+      reasons.push('Service category match');
     }
 
     // Location match (25 points)
@@ -87,10 +92,20 @@ export class MatchingService {
     // Experience bonus (20 points)
     const experienceScore = this.calculateExperienceScore(contractor.experience);
     score += experienceScore;
+    if (contractor.experience >= 5) {
+      reasons.push('High experience');
+    } else if (contractor.experience >= 2) {
+      reasons.push('Good experience');
+    }
 
     // Rating bonus (15 points)
     const ratingScore = this.calculateRatingScore(contractor.rating, contractor.totalJobs);
     score += ratingScore;
+    if (contractor.rating >= 4.5) {
+      reasons.push('Excellent rating');
+    } else if (contractor.rating >= 4.0) {
+      reasons.push('Good rating');
+    }
 
     // Budget compatibility (10 points)
     const budgetScore = this.calculateBudgetScore(contractor.hourlyRate, criteria.budget);
@@ -100,6 +115,7 @@ export class MatchingService {
     if (criteria.insurance) {
       if (contractor.insuranceProvider && contractor.insuranceExpiry && contractor.insuranceExpiry > new Date()) {
         score += 15;
+        reasons.push('Insurance coverage');
       } else {
         score -= 10; // Penalty for missing insurance when required
       }
@@ -117,7 +133,23 @@ export class MatchingService {
     const activityScore = this.calculateActivityScore(contractor);
     score += activityScore;
 
-    return Math.max(0, Math.min(score, 100)); // Ensure score is between 0-100
+    if (contractor.availability === 'AVAILABLE') {
+      reasons.push('Currently available');
+    }
+
+    return { matchScore: Math.max(0, Math.min(score, 100)), reasons };
+  }
+
+  /**
+   * Calculate match score between contractor and service request (score only, no reasons).
+   * Kept for backward compatibility; prefer calculateMatchScoreWithReasons for new call sites.
+   * Complexity: O(s + a + f) where s = services, a = serviceAreas, f = profile fields
+   */
+  private static calculateMatchScore(
+    contractor: any,
+    criteria: MatchingCriteria
+  ): number {
+    return this.calculateMatchScoreWithReasons(contractor, criteria).matchScore;
   }
 
   /**
@@ -217,39 +249,6 @@ export class MatchingService {
   }
 
   /**
-   * Get reasons for the match
-   */
-  private static getMatchReasons(contractor: any, criteria: MatchingCriteria): string[] {
-    const reasons: string[] = [];
-
-    if (contractor.services.includes(criteria.serviceCategory)) {
-      reasons.push('Service category match');
-    }
-
-    if (contractor.experience >= 5) {
-      reasons.push('High experience');
-    } else if (contractor.experience >= 2) {
-      reasons.push('Good experience');
-    }
-
-    if (contractor.rating >= 4.5) {
-      reasons.push('Excellent rating');
-    } else if (contractor.rating >= 4.0) {
-      reasons.push('Good rating');
-    }
-
-    if (contractor.availability === 'AVAILABLE') {
-      reasons.push('Currently available');
-    }
-
-    if (criteria.insurance && contractor.insuranceProvider) {
-      reasons.push('Insurance coverage');
-    }
-
-    return reasons;
-  }
-
-  /**
    * Create contractor matches in database
    */
   static async createMatches(
@@ -287,13 +286,26 @@ export class MatchingService {
     try {
       return await prisma.contractorMatch.findMany({
         where: { serviceRequestId: requestId },
-        include: {
+        select: {
+          id: true,
+          matchScore: true,
+          status: true,
+          createdAt: true,
           contractor: {
-            include: {
-              user: true
-            }
+            select: {
+              id: true,
+              businessName: true,
+              rating: true,
+              experience: true,
+              availability: true,
+              user: {
+                select: { id: true, name: true, email: true, avatar: true },
+              },
+            },
           },
-          serviceRequest: true
+          serviceRequest: {
+            select: { id: true, status: true, serviceCategory: true, location: true },
+          },
         },
         orderBy: { matchScore: 'desc' }
       });

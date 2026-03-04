@@ -32,98 +32,54 @@ export async function GET(request: NextRequest) {
       ? new Date(startDateParam)
       : new Date(endDate.getTime() - 30 * 24 * 60 * 60 * 1000);
 
-    // Service request metrics
-    const totalServiceRequests = await db.serviceRequest.count({
-      where: {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
-
-    const completedRequests = await db.booking.count({
-      where: {
-        completedAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
+    // Fetch all operational metrics in parallel
+    const [
+      totalServiceRequests,
+      completedRequests,
+      completedBookings,
+      activeContractors,
+      jobsByContractor,
+      jobsByStatus,
+      requestsByServiceType,
+    ] = await Promise.all([
+      db.serviceRequest.count({ where: { createdAt: { gte: startDate, lte: endDate } } }),
+      db.booking.count({ where: { completedAt: { gte: startDate, lte: endDate } } }),
+      db.booking.findMany({
+        where: { completedAt: { gte: startDate, lte: endDate } },
+        select: { startedAt: true, completedAt: true, createdAt: true },
+      }),
+      db.contractor.count({ where: { isVerified: true, isActive: true } }),
+      db.booking.groupBy({
+        by: ['contractorId'],
+        _count: true,
+        where: { completedAt: { gte: startDate, lte: endDate } },
+      }),
+      db.booking.groupBy({ by: ['status'], _count: true }),
+      db.serviceRequest.groupBy({
+        by: ['serviceCategory'],
+        _count: true,
+        where: { createdAt: { gte: startDate, lte: endDate } },
+      }),
+    ]);
 
     const completionRate =
       totalServiceRequests > 0 ? (completedRequests / totalServiceRequests) * 100 : 0;
 
-    // Time to completion
-    const completedBookings = await db.booking.findMany({
-      where: {
-        completedAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-      select: {
-        startedAt: true,
-        completedAt: true,
-        createdAt: true,
-      },
-    });
-
-    const completionTimes = completedBookings
-      .map((b) => {
-        if (b.startedAt && b.completedAt) {
-          return (b.completedAt.getTime() - b.startedAt.getTime()) / (1000 * 60 * 60); // in hours
-        }
-        return 0;
-      })
-      .filter((t) => t > 0);
-
-    const avgCompletionTime =
-      completionTimes.length > 0
-        ? completionTimes.reduce((a, b) => a + b, 0) / completionTimes.length
-        : 0;
-
-    // Contractor utilization
-    const activeContractors = await db.contractor.count({
-      where: {
-        isVerified: true,
-        isActive: true,
-      },
-    });
-
-    const jobsByContractor = await db.booking.groupBy({
-      by: ['contractorId'],
-      _count: true,
-      where: {
-        completedAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
+    // Calculate avg completion time — single pass (skip .filter())
+    let completionTimeSum = 0;
+    let completionTimeCount = 0;
+    for (const b of completedBookings) {
+      if (b.startedAt && b.completedAt) {
+        completionTimeSum += (b.completedAt.getTime() - b.startedAt.getTime()) / (1000 * 60 * 60);
+        completionTimeCount++;
+      }
+    }
+    const avgCompletionTime = completionTimeCount > 0 ? completionTimeSum / completionTimeCount : 0;
 
     const avgJobsPerContractor =
       jobsByContractor.length > 0
         ? jobsByContractor.reduce((sum, b) => sum + b._count, 0) / jobsByContractor.length
         : 0;
-
-    // Jobs by status
-    const jobsByStatus = await db.booking.groupBy({
-      by: ['status'],
-      _count: true,
-    });
-
-    // Service request volume by type
-    const requestsByServiceType = await db.serviceRequest.groupBy({
-      by: ['serviceCategory'],
-      _count: true,
-      where: {
-        createdAt: {
-          gte: startDate,
-          lte: endDate,
-        },
-      },
-    });
 
     // Note: dailyMetrics model not implemented - returning empty array
     const dailyMetrics: { date: Date; jobsCompleted: number; jobsRequested: number; avgCompletionTime: number }[] = [];
@@ -173,13 +129,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[Admin Analytics] Error fetching operational data:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to fetch operational analytics',
-        details: message,
-      },
+      { error: 'Failed to fetch operational analytics' },
       { status: 500 }
     );
   }

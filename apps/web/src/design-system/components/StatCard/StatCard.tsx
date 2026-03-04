@@ -61,7 +61,7 @@ export function StatCard({
     <div
       className={cn(
         'bg-white rounded-lg border border-gray-200 p-6',
-        'hover:shadow-md transition-shadow',
+        'hover:shadow-md transition-shadow [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
         className
       )}
     >

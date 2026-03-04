@@ -64,13 +64,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[Admin Analytics] Error generating forecast:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to generate forecast',
-        details: message,
-      },
+      { error: 'Failed to generate forecast' },
       { status: 500 }
     );
   }

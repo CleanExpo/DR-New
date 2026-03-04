@@ -104,7 +104,7 @@ export function ContractorHero() {
               <Link href="/contractor/join" className="inline-block">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-6 text-lg shadow-lg shadow-teal-500/25 transition-all hover:shadow-xl hover:shadow-teal-500/30 hover:scale-105"
+                  className="w-full sm:w-auto bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-6 text-lg shadow-lg shadow-teal-500/25 transition-[transform,box-shadow,background-color] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:shadow-xl hover:shadow-teal-500/30 hover:scale-105"
                   aria-label="Join the contractor network"
                 >
                   <TrendingUp className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -116,7 +116,7 @@ export function ContractorHero() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:text-blue-300 hover:border-blue-400 font-semibold px-8 py-6 text-lg transition-all hover:scale-105"
+                  className="w-full sm:w-auto border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 hover:text-blue-300 hover:border-blue-400 font-semibold px-8 py-6 text-lg transition-[transform,border-color,background-color,color] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:scale-105"
                   aria-label="Browse available opportunities"
                 >
                   <Briefcase className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -144,7 +144,7 @@ export function ContractorHero() {
             {metrics.map((metric, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50 hover:border-teal-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-teal-500/10"
+                className="group relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700/50 hover:border-teal-500/50 transition-[border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:shadow-lg hover:shadow-teal-500/10"
               >
                 {/* Icon */}
                 <div className="mb-4">
@@ -170,7 +170,7 @@ export function ContractorHero() {
                 </div>
 
                 {/* Hover Accent */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-teal-500/0 to-blue-500/0 group-hover:from-teal-500/5 group-hover:to-blue-500/5 transition-all duration-300" />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-teal-500/0 to-blue-500/0 group-hover:from-teal-500/5 group-hover:to-blue-500/5 transition-[opacity] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]" />
               </div>
             ))}
           </div>

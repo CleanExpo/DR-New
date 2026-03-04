@@ -137,7 +137,17 @@ export default function CompliancePage() {
     (item) => selectedCategory === 'all' || item.category === selectedCategory
   );
 
-  const completedCount = items.filter((i) => i.status === 'complete').length;
+  // Single-pass reduce — avoids 3 separate O(n) filter passes in render
+  const statusCounts = items.reduce(
+    (acc, i) => {
+      if (i.status === 'complete') acc.complete++;
+      else if (i.status === 'pending') acc.pending++;
+      else if (i.status === 'expiring') acc.expiring++;
+      return acc;
+    },
+    { complete: 0, pending: 0, expiring: 0 }
+  );
+  const completedCount = statusCounts.complete;
   const totalCount = items.length;
   const progressPercentage = Math.round((completedCount / totalCount) * 100);
 
@@ -179,22 +189,22 @@ export default function CompliancePage() {
         </div>
         <div className="w-full bg-portal-border rounded-full h-3">
           <div
-            className="bg-nrpg-teal h-3 rounded-full transition-all duration-500"
+            className="bg-nrpg-teal h-3 rounded-full transition-[width] duration-500"
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
         <div className="flex justify-between mt-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="size-3 rounded-full bg-portal-success"></div>
-            <span className="text-portal-muted">Complete ({items.filter((i) => i.status === 'complete').length})</span>
+            <span className="text-portal-muted">Complete ({statusCounts.complete})</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="size-3 rounded-full bg-amber-500"></div>
-            <span className="text-portal-muted">Pending ({items.filter((i) => i.status === 'pending').length})</span>
+            <span className="text-portal-muted">Pending ({statusCounts.pending})</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="size-3 rounded-full bg-orange-500"></div>
-            <span className="text-portal-muted">Expiring ({items.filter((i) => i.status === 'expiring').length})</span>
+            <span className="text-portal-muted">Expiring ({statusCounts.expiring})</span>
           </div>
         </div>
       </div>
@@ -231,7 +241,7 @@ export default function CompliancePage() {
           return (
             <div
               key={item.id}
-              className="bg-portal-card rounded-xl border border-portal-border p-6 shadow-sm hover:shadow-md hover:border-nrpg-teal/30 transition-all duration-200"
+              className="bg-portal-card rounded-xl border border-portal-border p-6 shadow-sm hover:shadow-md hover:border-nrpg-teal/30 transition-[box-shadow,border-color] duration-200"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">

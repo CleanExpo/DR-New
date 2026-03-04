@@ -168,13 +168,8 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[Analytics] Error fetching metrics:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to fetch analytics metrics',
-        details: message,
-      },
+      { error: 'Failed to fetch analytics metrics' },
       { status: 500 }
     );
   }

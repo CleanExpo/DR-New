@@ -85,19 +85,18 @@ export async function GET(request: NextRequest) {
       db.payment.count({ where }),
     ]);
 
-    // Calculate summary statistics
-    const totalSpent = payments.reduce(
-      (sum, p) =>
-        sum +
-        (p.status === 'COMPLETED'
-          ? parseFloat(p.amountAUD.toString()) +
-            parseFloat(p.gstAUD.toString())
-          : 0),
-      0
-    );
-
-    const completedCount = payments.filter(p => p.status === 'COMPLETED').length;
-    const pendingCount = payments.filter(p => p.status === 'PENDING' || p.status === 'PROCESSING').length;
+    // Calculate summary statistics — single pass
+    let totalSpent = 0;
+    let completedCount = 0;
+    let pendingCount = 0;
+    for (const p of payments) {
+      if (p.status === 'COMPLETED') {
+        totalSpent += parseFloat(p.amountAUD.toString()) + parseFloat(p.gstAUD.toString());
+        completedCount++;
+      } else if (p.status === 'PENDING' || p.status === 'PROCESSING') {
+        pendingCount++;
+      }
+    }
 
     return NextResponse.json({
       success: true,

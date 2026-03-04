@@ -244,7 +244,7 @@ export function HeroCarousel({
             {currentScenario.cta && (
               <a
                 href={currentScenario.cta.href}
-                className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-[transform,box-shadow,background-color] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] shadow-lg hover:shadow-blue-500/50 hover:scale-105"
               >
                 {currentScenario.cta.label}
                 <svg
@@ -270,7 +270,7 @@ export function HeroCarousel({
           <>
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-[background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label="Previous slide"
             >
               <svg
@@ -290,7 +290,7 @@ export function HeroCarousel({
 
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-[background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label="Next slide"
             >
               <svg
@@ -318,7 +318,7 @@ export function HeroCarousel({
             <button
               key={scenario.id}
               onClick={() => goToSlide(index)}
-              className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+              className={`h-2 rounded-full transition-[width,background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                 index === currentIndex
                   ? 'w-12 bg-blue-600'
                   : 'w-2 bg-slate-300 dark:bg-slate-600 hover:bg-blue-400'

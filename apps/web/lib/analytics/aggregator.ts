@@ -19,50 +19,12 @@ export async function aggregateDailyMetrics(date: Date): Promise<void> {
     // Calculate metrics
     const snapshot = await calculateDailyMetrics(date);
 
-    // Store in database
+    // Store in database — DRY: snapshot spread used for both create and update
+    const snapshotDate = new Date(date.toISOString().split('T')[0]);
     const dailyMetric = await prisma.dailyMetrics.upsert({
-      where: { date: new Date(date.toISOString().split('T')[0]) },
-      create: {
-        date: new Date(date.toISOString().split('T')[0]),
-        ...snapshot,
-        totalRevenue: snapshot.totalRevenue,
-        platformFees: snapshot.platformFees,
-        contractorPayouts: snapshot.contractorPayouts,
-        jobsCompleted: snapshot.jobsCompleted,
-        jobsRequested: snapshot.jobsRequested,
-        avgCompletionTime: snapshot.avgCompletionTime,
-        paymentSuccessRate: snapshot.paymentSuccessRate,
-        paymentFailureCount: snapshot.paymentFailureCount,
-        activeContractors: snapshot.activeContractors,
-        activeClients: snapshot.activeClients,
-        newContractors: snapshot.newContractors,
-        newClients: snapshot.newClients,
-        avgContractorEarnings: snapshot.avgContractorEarnings,
-        avgClientSpend: snapshot.avgClientSpend,
-        totalJobsInProgress: snapshot.totalJobsInProgress,
-        avgJobValue: snapshot.avgJobValue,
-        totalServiceRequests: snapshot.totalServiceRequests,
-      },
-      update: {
-        ...snapshot,
-        totalRevenue: snapshot.totalRevenue,
-        platformFees: snapshot.platformFees,
-        contractorPayouts: snapshot.contractorPayouts,
-        jobsCompleted: snapshot.jobsCompleted,
-        jobsRequested: snapshot.jobsRequested,
-        avgCompletionTime: snapshot.avgCompletionTime,
-        paymentSuccessRate: snapshot.paymentSuccessRate,
-        paymentFailureCount: snapshot.paymentFailureCount,
-        activeContractors: snapshot.activeContractors,
-        activeClients: snapshot.activeClients,
-        newContractors: snapshot.newContractors,
-        newClients: snapshot.newClients,
-        avgContractorEarnings: snapshot.avgContractorEarnings,
-        avgClientSpend: snapshot.avgClientSpend,
-        totalJobsInProgress: snapshot.totalJobsInProgress,
-        avgJobValue: snapshot.avgJobValue,
-        totalServiceRequests: snapshot.totalServiceRequests,
-      },
+      where: { date: snapshotDate },
+      create: { date: snapshotDate, ...snapshot },
+      update: { ...snapshot },
     });
 
     // Clear cache after aggregation
@@ -325,29 +287,35 @@ function generateWeeklyInsights(snapshot: any, trends: any): string[] {
 /**
  * Run all aggregation jobs (typically called by a cron job)
  */
+/**
+ * Run all aggregation jobs — independent tasks are executed in parallel via Promise.all.
+ * Complexity: O(1) wall-clock for the parallel branch regardless of how many jobs run.
+ */
 export async function runAggregationJobs(): Promise<void> {
   try {
     const now = new Date();
 
-    // Run daily aggregation for yesterday
     const yesterday = new Date(now);
     yesterday.setDate(yesterday.getDate() - 1);
-    await aggregateDailyMetrics(yesterday);
 
-    // Run weekly aggregation on Mondays
+    // Collect all jobs that should run now
+    const jobs: Promise<void>[] = [aggregateDailyMetrics(yesterday)];
+
     if (now.getDay() === 1) {
       const weekStart = new Date(now);
       weekStart.setDate(weekStart.getDate() - 7);
       weekStart.setHours(0, 0, 0, 0);
-      await aggregateWeeklyMetrics(weekStart);
+      jobs.push(aggregateWeeklyMetrics(weekStart));
     }
 
-    // Run monthly aggregation on the 1st of each month
     if (now.getDate() === 1) {
       const lastMonth = new Date(now);
       lastMonth.setMonth(lastMonth.getMonth() - 1);
-      await aggregateMonthlyMetrics(lastMonth.getFullYear(), lastMonth.getMonth() + 1);
+      jobs.push(aggregateMonthlyMetrics(lastMonth.getFullYear(), lastMonth.getMonth() + 1));
     }
+
+    // Run all independent jobs concurrently
+    await Promise.all(jobs);
   } catch (error) {
     console.error('[Analytics] Error running aggregation jobs:', error);
   }

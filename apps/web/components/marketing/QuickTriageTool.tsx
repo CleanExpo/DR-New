@@ -134,7 +134,7 @@ export function QuickTriageTool({ onComplete, className = '' }: QuickTriageToolP
               <button
                 key={disaster.id}
                 onClick={() => handleDisasterSelect(disaster)}
-                className="group flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-600 border-2 border-transparent transition-all text-left"
+                className="group flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:border-blue-600 border-2 border-transparent transition-[background-color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] text-left"
               >
                 <span className="text-3xl" aria-hidden="true">{disaster.icon}</span>
                 <div className="flex-1">
@@ -224,7 +224,7 @@ export function QuickTriageTool({ onComplete, className = '' }: QuickTriageToolP
               </p>
               <button
                 onClick={() => window.location.href = `/claim/step-1?emergency=true&disaster=${selectedDisaster.id}&pricing_disclosed=true`}
-                className="inline-flex items-center justify-center gap-3 w-full px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl shadow-lg shadow-red-600/30 transition-all text-lg"
+                className="inline-flex items-center justify-center gap-3 w-full px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl shadow-lg shadow-red-600/30 transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] text-lg"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8m0 8l-6-4m6 4l6-4" />
@@ -268,7 +268,7 @@ export function QuickTriageTool({ onComplete, className = '' }: QuickTriageToolP
 function StepIndicator({ active, completed, label }: { active: boolean; completed: boolean; label: string }) {
   return (
     <div
-      className={`flex items-center justify-center w-10 h-10 rounded-full font-bold text-sm transition-all ${
+      className={`flex items-center justify-center w-10 h-10 rounded-full font-bold text-sm transition-[background-color,color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
         completed
           ? 'bg-blue-600 text-white'
           : active
@@ -299,7 +299,7 @@ function SeverityOption({
   return (
     <button
       onClick={onClick}
-      className={`group w-full flex items-start gap-4 p-5 rounded-2xl border-2 transition-all text-left ${
+      className={`group w-full flex items-start gap-4 p-5 rounded-2xl border-2 transition-[border-color,background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] text-left ${
         recommended
           ? 'border-blue-600 bg-blue-50 dark:bg-blue-900/20'
           : 'border-slate-200 dark:border-slate-700 hover:border-blue-600 bg-white dark:bg-slate-800'

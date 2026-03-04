@@ -251,12 +251,14 @@ export async function GET(request: NextRequest) {
         triageResult: triageHistory.get(claim.id)?.triageResult || null,
       }));
 
+      let triaged = 0;
+      for (const c of claimsWithTriageStatus) { if (c.hasTriage) triaged++; }
       return NextResponse.json({
         success: true,
         claims: claimsWithTriageStatus,
         total: pendingClaims.length,
-        triaged: claimsWithTriageStatus.filter((c) => c.hasTriage).length,
-        pending: claimsWithTriageStatus.filter((c) => !c.hasTriage).length,
+        triaged,
+        pending: claimsWithTriageStatus.length - triaged,
       });
     }
 

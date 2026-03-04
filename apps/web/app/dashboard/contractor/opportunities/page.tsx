@@ -217,7 +217,7 @@ export default function OpportunitiesPage() {
           return (
             <div
               key={opp.id}
-              className="bg-portal-card rounded-xl border border-portal-border p-6 shadow-sm hover:shadow-md hover:border-nrpg-teal/30 transition-all duration-200"
+              className="bg-portal-card rounded-xl border border-portal-border p-6 shadow-sm hover:shadow-md hover:border-nrpg-teal/30 transition-[box-shadow,border-color] duration-200"
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
                 {/* Main Content */}

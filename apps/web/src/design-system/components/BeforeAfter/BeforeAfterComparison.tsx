@@ -56,7 +56,7 @@ export function BeforeAfterComparison({
         <div
           className={cn(
             'relative cursor-pointer group overflow-hidden rounded-lg border-2 border-gray-200',
-            'hover:border-dr-education transition-all',
+            'hover:border-dr-education transition-[border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
             className
           )}
         >

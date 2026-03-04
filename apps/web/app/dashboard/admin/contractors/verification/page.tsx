@@ -417,7 +417,7 @@ export default function AdminVerificationDashboard() {
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-2">
                       <div
-                        className="bg-[#00BFA6] h-2 rounded-full transition-all"
+                        className="bg-[#00BFA6] h-2 rounded-full transition-[width]"
                         style={{ width: `${detailedData.analysis.profileCompleteness}%` }}
                       />
                     </div>
@@ -714,7 +714,7 @@ export default function AdminVerificationDashboard() {
                       </div>
                       <div className="w-full bg-gray-700 rounded-full h-2">
                         <div
-                          className="bg-[#00BFA6] h-2 rounded-full transition-all"
+                          className="bg-[#00BFA6] h-2 rounded-full transition-[width]"
                           style={{ width: `${calculateProfileCompleteness(contractor)}%` }}
                         />
                       </div>

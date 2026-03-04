@@ -247,14 +247,8 @@ export async function POST(
       );
     }
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        success: false,
-        error: 'Failed to complete job',
-        details: message
-      },
+      { success: false, error: 'Failed to complete job' },
       { status: 500 }
     );
   }

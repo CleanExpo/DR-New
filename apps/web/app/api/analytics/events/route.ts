@@ -84,13 +84,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('[Analytics] Error recording event:', error);
 
-    const message = error instanceof Error ? error.message : 'Unknown error';
-
     return NextResponse.json(
-      {
-        error: 'Failed to record analytics event',
-        details: message,
-      },
+      { error: 'Failed to record analytics event' },
       { status: 500 }
     );
   }

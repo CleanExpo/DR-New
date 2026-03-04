@@ -107,7 +107,7 @@ export function Timeline({
             className={cn(
               'flex gap-4 relative',
               animated && !isVisible && 'opacity-0 translate-y-5',
-              animated && isVisible && 'opacity-100 translate-y-0 transition-all duration-500',
+              animated && isVisible && 'opacity-100 translate-y-0 transition-[opacity,transform] duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]',
               animated && `transition-delay-${index * 100}`
             )}
           >
@@ -122,7 +122,7 @@ export function Timeline({
                 <button
                   onClick={() => handleStepCheck(step.id, !isChecked)}
                   className={cn(
-                    'w-10 h-10 rounded-full flex items-center justify-center transition-colors',
+                    'w-10 h-10 rounded-full flex items-center justify-center transition-[background-color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
                     isChecked
                       ? 'bg-green-600 text-white'
                       : 'bg-white border-2 border-gray-300 hover:border-dr-education'

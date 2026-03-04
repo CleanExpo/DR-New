@@ -2,9 +2,20 @@
 
 import { THEMES, Theme } from './ThemeContext';
 
+/**
+ * Memoised theme lookup — O(1) after the first call per themeId.
+ * THEMES is a static array so the Map is built once and reused.
+ * Complexity: O(n) build, O(1) lookup where n = THEMES.length
+ */
+const themeCache = new Map<string, Theme>(THEMES.map((t) => [t.id, t]));
+
+function getTheme(themeId: string): Theme {
+  return themeCache.get(themeId) ?? THEMES[0];
+}
+
 // Utility function to get theme-aware CSS classes
 export function getThemeClasses(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   return {
     primary: `bg-[${theme.primaryColor}]`,
@@ -21,7 +32,7 @@ export function getThemeClasses(themeId: string) {
 
 // Utility function to get theme-aware styles
 export function getThemeStyles(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   return {
     primary: { backgroundColor: theme.primaryColor },
@@ -36,7 +47,7 @@ export function getThemeStyles(themeId: string) {
 
 // Utility function to get theme-aware Tailwind classes
 export function getThemeTailwindClasses(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   // Map theme colors to Tailwind classes
   const colorMap: { [key: string]: string } = {
@@ -76,7 +87,7 @@ export function getThemeTailwindClasses(themeId: string) {
 
 // Utility function to apply theme to a DOM element
 export function applyThemeToElement(element: HTMLElement, themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   element.style.setProperty('--theme-primary', theme.primaryColor);
   element.style.setProperty('--theme-secondary', theme.secondaryColor);
@@ -87,7 +98,7 @@ export function applyThemeToElement(element: HTMLElement, themeId: string) {
 
 // Utility function to get theme-aware button classes
 export function getThemeButtonClasses(themeId: string, variant: 'primary' | 'secondary' | 'outline' = 'primary') {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   const baseClasses = 'px-4 py-2 rounded-lg font-medium transition-all duration-200';
   
@@ -105,21 +116,21 @@ export function getThemeButtonClasses(themeId: string, variant: 'primary' | 'sec
 
 // Utility function to get theme-aware card classes
 export function getThemeCardClasses(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   return `bg-gray-800 border-gray-700 hover:border-[${theme.primaryColor}] transition-colors duration-200`;
 }
 
 // Utility function to get theme-aware input classes
 export function getThemeInputClasses(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   return `bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:border-[${theme.primaryColor}] focus:ring-[${theme.primaryColor}]`;
 }
 
 // Utility function to create CSS custom properties for a theme
 export function createThemeCSSVariables(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   return `
     :root {
@@ -134,7 +145,7 @@ export function createThemeCSSVariables(themeId: string) {
 
 // Utility function to get theme-aware gradient classes
 export function getThemeGradientClasses(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   return {
     primary: `bg-gradient-to-r from-[${theme.primaryColor}] to-[${theme.secondaryColor}]`,
@@ -145,7 +156,7 @@ export function getThemeGradientClasses(themeId: string) {
 
 // Utility function to get theme-aware text classes
 export function getThemeTextClasses(themeId: string) {
-  const theme = THEMES.find(t => t.id === themeId) || THEMES[0];
+  const theme = getTheme(themeId);
   
   return {
     primary: `text-[${theme.primaryColor}]`,

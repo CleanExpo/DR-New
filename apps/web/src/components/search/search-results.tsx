@@ -146,7 +146,7 @@ function SearchResultCard({ result }: { result: SearchResult }) {
         <div className="flex items-center gap-2 ml-4">
           <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-blue-600 transition-all"
+              className="h-full bg-blue-600 transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               style={{ width: `${relevancePercentage}%` }}
             />
           </div>

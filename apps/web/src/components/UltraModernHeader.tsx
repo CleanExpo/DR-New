@@ -364,7 +364,7 @@ export default function UltraModernHeader() {
     <>
       <header
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-[900] transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-[900] transition-[padding] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
           isScrolled ? 'py-2' : 'py-4'
         }`}
         style={{
@@ -438,14 +438,14 @@ export default function UltraModernHeader() {
               {/* Modern logo implementation */}
               <div className="relative flex items-center gap-3" style={{
                 transform: isScrolled ? 'scale(0.95)' : 'scale(1)',
-                transition: 'all 0.3s ease' }}>
+                transition: 'transform 0.3s cubic-bezier(0.19,1,0.22,1)' }}>
                 {/* Compressed PNG Logo */}
                 <Image
                   src="/logos/3D Disaster Recovery Logo Image.png"
                   alt="Disaster Recovery"
                   width={isScrolled ? 50 : 60}
                   height={isScrolled ? 50 : 60}
-                  className="transition-all duration-300 object-contain"
+                  className="transition-[width,height] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] object-contain"
                   style={{
                     filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))' }}
                   priority
@@ -470,7 +470,7 @@ export default function UltraModernHeader() {
                 >
                   <Link
                     href={item.href}
-                    className="relative px-5 py-2.5 text-sm font-medium text-white hover:text-white transition-all duration-300 rounded-full group min-h-[44px] inline-flex items-center justify-center px-4 py-3"
+                    className="relative px-5 py-2.5 text-sm font-medium text-white hover:text-white transition-[background-color] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] rounded-full group min-h-[44px] inline-flex items-center justify-center px-4 py-3"
                     aria-haspopup={item.dropdown ? "true" : undefined}
                     aria-expanded={item.dropdown ? activeDropdown === item.label : undefined}
                     id={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
@@ -500,7 +500,7 @@ export default function UltraModernHeader() {
                       <div
                         role="menu"
                         aria-labelledby={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                        className={`absolute top-full left-0 pt-2 transition-all duration-300 ${
+                        className={`absolute top-full left-0 pt-2 transition-[opacity,transform] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] ${
                           activeDropdown === item.label 
                             ? 'opacity-100 translate-y-0 pointer-events-auto' 
                             : 'opacity-0 -translate-y-2 pointer-events-none'
@@ -524,7 +524,7 @@ export default function UltraModernHeader() {
                             <Link
                               href={subItem.href}
                               role="menuitem"
-                              className="relative flex items-center gap-4 px-5 py-4 hover:bg-white/5 transition-all group"
+                              className="relative flex items-center gap-4 px-5 py-4 hover:bg-white/5 transition-[background-color] duration-150 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] group"
                               style={{
                                 borderBottom: idx < item.dropdown!.length - 1 
                                   ? '1px solid rgba(255, 255, 255, 0.05)' 
@@ -552,7 +552,7 @@ export default function UltraModernHeader() {
                               
                               {/* Arrow */}
                               <svg 
-                                className="w-4 h-4 text-gray-700 group-hover:text-purple-600 transition-all transform group-hover:translate-x-1"
+                                className="w-4 h-4 text-gray-700 group-hover:text-purple-600 transition-[transform,color] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] group-hover:translate-x-1"
                                 fill="none" 
                                 stroke="currentColor" 
                                 viewBox="0 0 24 24"
@@ -567,7 +567,7 @@ export default function UltraModernHeader() {
                                 {/* Invisible bridge for sub-dropdown */}
                                 <div className="absolute left-full top-0 w-2 h-full pointer-events-auto" />
                                 <div
-                                  className="absolute left-full top-0 pl-2 w-80 transition-all duration-300"
+                                  className="absolute left-full top-0 pl-2 w-80 transition-[opacity,transform] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]"
                                 style={{
                                   background: 'rgba(20, 20, 30, 0.98)',
                                   backdropFilter: 'blur(20px)',
@@ -584,7 +584,7 @@ export default function UltraModernHeader() {
                                       <Link
                                         key={formItem.label}
                                         href={formItem.href}
-                                        className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition-all rounded-lg min-h-[44px] inline-flex items-center justify-center px-4 py-3"
+                                        className="block px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition-[color,background-color] duration-150 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] rounded-lg min-h-[44px] inline-flex items-center justify-center px-4 py-3"
                                       >
                                         {formItem.label}
                                       </Link>
@@ -610,7 +610,7 @@ export default function UltraModernHeader() {
               {/* CRM Portal Button */}
               <Link
                 href="/crm"
-                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-all shadow-lg hover:shadow-xl min-h-[44px] inline-flex items-center justify-center px-4 py-3"
+                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:from-blue-700 hover:to-indigo-700 transition-[box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] shadow-lg hover:shadow-xl min-h-[44px] inline-flex items-center justify-center px-4 py-3"
               >
                 NRPG CRM Portal
               </Link>
@@ -618,7 +618,7 @@ export default function UltraModernHeader() {
               {/* Claim Button */}
               <Link
                 href="/claim"
-                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-600 to-blue-700 rounded-full hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl min-h-[44px] inline-flex items-center justify-center px-4 py-3"
+                className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-red-600 to-blue-700 rounded-full hover:from-red-700 hover:to-orange-700 transition-[box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] shadow-lg hover:shadow-xl min-h-[44px] inline-flex items-center justify-center px-4 py-3"
               >
                 ð¨ Make a Claim
               </Link>
@@ -627,7 +627,7 @@ export default function UltraModernHeader() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden relative p-3 rounded-lg transition-all"
+              className="md:hidden relative p-3 rounded-lg transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-menu"
@@ -638,17 +638,17 @@ export default function UltraModernHeader() {
             >
               <div className="w-6 h-5 relative flex flex-col justify-between">
                 <span 
-                  className="block h-0.5 w-full bg-white transition-all duration-300 origin-left"
+                  className="block h-0.5 w-full bg-white transition-transform duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] origin-left"
                   style={{
                     transform: mobileMenuOpen ? 'rotate(45deg) translateY(-2px)' : 'rotate(0)' }}
                 />
-                <span 
-                  className="block h-0.5 w-full bg-white transition-all duration-300"
+                <span
+                  className="block h-0.5 w-full bg-white transition-opacity duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                   style={{
                     opacity: mobileMenuOpen ? 0 : 1 }}
                 />
-                <span 
-                  className="block h-0.5 w-full bg-white transition-all duration-300 origin-left"
+                <span
+                  className="block h-0.5 w-full bg-white transition-transform duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] origin-left"
                   style={{
                     transform: mobileMenuOpen ? 'rotate(-45deg) translateY(2px)' : 'rotate(0)' }}
                 />
@@ -662,7 +662,7 @@ export default function UltraModernHeader() {
           id="mobile-navigation-menu"
           role="navigation"
           aria-label="Mobile navigation"
-          className={`md:hidden absolute top-full left-0 right-0 transition-all duration-500 ${
+          className={`md:hidden absolute top-full left-0 right-0 transition-[opacity,transform] duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] ${
             mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
           }`}
           style={{
@@ -675,7 +675,7 @@ export default function UltraModernHeader() {
               <div key={item.label}>
                 <Link
                   href={item.href}
-                  className="block px-4 py-3 rounded-xl text-white hover:text-white transition-all"
+                  className="block px-4 py-3 rounded-xl text-white hover:text-white transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
                     background: 'rgba(255, 255, 255, 0.03)' }}
@@ -757,7 +757,7 @@ export default function UltraModernHeader() {
       </header>
 
       {/* Header spacer */}
-      <div className={`${isScrolled ? 'h-16' : 'h-20'} transition-all duration-500`} />
+      <div className={`${isScrolled ? 'h-16' : 'h-20'} transition-[height] duration-500 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]`} />
     </>
   );
 }

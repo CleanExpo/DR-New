@@ -15,10 +15,10 @@ export default function HeroSection() {
           Connect with verified contractors instantly. Get your property restored fast.
         </p>
         <div className="flex gap-4 justify-center">
-          <button className="px-8 py-4 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-all">
+          <button className="px-8 py-4 bg-gradient-to-br from-[#00BFA6] to-[#7C4DFF] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] duration-300">
             Get Started
           </button>
-          <button className="px-8 py-4 border border-[#374151] text-[#F9FAFB] rounded-lg font-semibold hover:border-[#00BFA6] transition-all">
+          <button className="px-8 py-4 border border-[#374151] text-[#F9FAFB] rounded-lg font-semibold hover:border-[#00BFA6] transition-[border-color] [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] duration-300">
             Learn More
           </button>
         </div>

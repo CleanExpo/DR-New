@@ -180,7 +180,7 @@ export const ScrollRevealItem = React.forwardRef<
       className={className}
       variants={{
         hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.19, 1, 0.22, 1] } },
       }}
     >
       {children}

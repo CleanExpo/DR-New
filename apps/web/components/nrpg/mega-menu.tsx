@@ -108,7 +108,7 @@ export function MegaMenu({
       className={`
         fixed top-20 left-0 right-0 bg-gradient-to-br from-[#0F1115] to-[#1a1d29]
         shadow-2xl border-t border-[#374151]/50
-        transition-all duration-300 ease-out
+        transition-[opacity,transform,visibility] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]
         ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}
         ${className}
       `}
@@ -151,7 +151,7 @@ function MegaMenuItemCard({ item, basePath, onClose }: MegaMenuItemCardProps) {
       onClick={onClose}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative block rounded-2xl overflow-hidden bg-[#1a1d29] transition-all duration-300 hover:shadow-xl hover:shadow-[#00BFA6]/20 focus:outline-none focus:ring-2 focus:ring-[#00BFA6] focus:ring-offset-2 focus:ring-offset-[#0F1115]"
+      className="group relative block rounded-2xl overflow-hidden bg-[#1a1d29] transition-[box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] hover:shadow-xl hover:shadow-[#00BFA6]/20 focus:outline-none focus:ring-2 focus:ring-[#00BFA6] focus:ring-offset-2 focus:ring-offset-[#0F1115]"
       role="menuitem"
     >
       {/* Image Container - 16:10 Aspect Ratio */}
@@ -160,7 +160,7 @@ function MegaMenuItemCard({ item, basePath, onClose }: MegaMenuItemCardProps) {
           src={item.image}
           alt={`${item.title} - ${item.label}`}
           fill
-          className={`object-cover transition-transform duration-500 ${
+          className={`object-cover transition-transform duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] ${
             isHovered ? 'scale-110' : 'scale-100'
           }`}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -168,7 +168,7 @@ function MegaMenuItemCard({ item, basePath, onClose }: MegaMenuItemCardProps) {
 
         {/* Gradient Overlay */}
         <div
-          className={`absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent transition-opacity duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             isHovered ? 'opacity-100' : 'opacity-80'
           }`}
         />
@@ -196,7 +196,7 @@ function MegaMenuItemCard({ item, basePath, onClose }: MegaMenuItemCardProps) {
           {/* Description - Shows on hover */}
           {item.description && (
             <p
-              className={`text-xs text-slate-400 mt-2 line-clamp-2 transition-opacity duration-300 ${
+              className={`text-xs text-slate-400 mt-2 line-clamp-2 transition-opacity duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
                 isHovered ? 'opacity-100' : 'opacity-0'
               }`}
             >

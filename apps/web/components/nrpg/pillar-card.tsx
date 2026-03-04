@@ -159,7 +159,7 @@ export function PillarCard({
           src={data.image}
           alt={`${data.title} - ${data.protocol}`}
           fill
-          className={`object-cover transition-all duration-700 ease-out ${
+          className={`object-cover transition-[opacity,transform] duration-700 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] ${
             imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           } ${isHovered ? 'scale-110' : 'scale-100'}`}
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -169,7 +169,7 @@ export function PillarCard({
 
         {/* Gradient Overlay - Bottom to Top */}
         <div
-          className={`absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-transparent transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-transparent transition-opacity duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] ${
             isHovered ? 'opacity-100' : 'opacity-90'
           }`}
         />
@@ -183,7 +183,7 @@ export function PillarCard({
             className={`
               label-small px-4 py-2 rounded-full border backdrop-blur-sm
               ${protocolColors.text} ${protocolColors.bg} ${protocolColors.border}
-              transition-all duration-300
+              transition-transform duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]
               ${isHovered ? 'scale-105' : 'scale-100'}
             `}
           >
@@ -206,7 +206,7 @@ export function PillarCard({
             <ul
               className={`
                 mt-4 space-y-1 text-sm text-slate-400
-                transition-all duration-300
+                transition-[opacity,transform] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]
                 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
               `}
             >
@@ -236,7 +236,7 @@ export function PillarCard({
             <p
               className={`
                 mt-3 text-sm text-slate-400 line-clamp-2
-                transition-all duration-300
+                transition-opacity duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]
                 ${isHovered ? 'opacity-100' : 'opacity-0'}
               `}
             >
@@ -252,7 +252,7 @@ export function PillarCard({
           absolute bottom-8 right-8 z-10
           w-12 h-12 flex items-center justify-center
           rounded-full bg-blue-600 text-white
-          transition-all duration-300
+          transition-[opacity,transform] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]
           ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'}
         `}
       >
@@ -301,7 +301,7 @@ export function PillarCard({
         relative block group
         h-[440px] rounded-[2.5rem] overflow-hidden
         bg-slate-900
-        transition-all duration-500 ease-out
+        transition-[transform,box-shadow] duration-500 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]
         ${
           interactive
             ? 'hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-blue-500/50 focus:ring-offset-4 cursor-pointer'

@@ -164,10 +164,7 @@ export async function GET(request: NextRequest) {
 
     // Return error response
     return NextResponse.json(
-      {
-        error: 'Failed to get report templates',
-        details: error instanceof Error ? error.message : 'Unknown error',
-      },
+      { error: 'Failed to get report templates' },
       { status: 500 }
     );
   }

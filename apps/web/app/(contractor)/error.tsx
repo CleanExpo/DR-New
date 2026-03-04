@@ -57,14 +57,14 @@ export default function ContractorError({ error, reset }: ErrorProps) {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button
             onClick={reset}
-            className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-6 py-2.5 rounded-lg font-medium transition-all shadow-lg shadow-cyan-500/25"
+            className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white px-6 py-2.5 rounded-lg font-medium transition-[background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)] shadow-lg shadow-cyan-500/25"
           >
             Try again
           </Button>
           <Button
             onClick={() => (window.location.href = '/contractor')}
             variant="outline"
-            className="border-cyan-500/50 text-cyan-400 hover:bg-slate-800 hover:border-cyan-400 px-6 py-2.5 rounded-lg font-medium transition-colors"
+            className="border-cyan-500/50 text-cyan-400 hover:bg-slate-800 hover:border-cyan-400 px-6 py-2.5 rounded-lg font-medium transition-[background-color,border-color,color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
           >
             Return to dashboard
           </Button>

@@ -145,7 +145,7 @@ export default function ContractorProfilePage() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-gray-300 hover:text-white mr-4"
+              className="text-gray-300 hover:text-white mr-4 transition-[color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
               onClick={() => router.back()}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
@@ -226,7 +226,7 @@ export default function ContractorProfilePage() {
 
               <div className="flex flex-col space-y-3">
                 <Button
-                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white"
+                  className="bg-[#00BFA6] hover:bg-[#00A693] text-white transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                   onClick={() => {
                     trackContractorContacted({
                       contractor_id: contractor.id,
@@ -241,7 +241,7 @@ export default function ContractorProfilePage() {
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  className="border-gray-600 text-gray-300 hover:bg-gray-700 transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                   onClick={() => {
                     trackCTA('Book Consultation', 'Profile Header');
                   }}
@@ -279,8 +279,8 @@ export default function ContractorProfilePage() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {contractor.services.map((service, index) => (
-                    <Badge key={index} className="bg-[#00BFA6] text-white">
+                  {contractor.services.map((service) => (
+                    <Badge key={service} className="bg-[#00BFA6] text-white">
                       {service}
                     </Badge>
                   ))}
@@ -298,8 +298,8 @@ export default function ContractorProfilePage() {
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
-                  {contractor.serviceAreas.map((area, index) => (
-                    <Badge key={index} variant="outline" className="border-gray-600 text-gray-300">
+                  {contractor.serviceAreas.map((area) => (
+                    <Badge key={area} variant="outline" className="border-gray-600 text-gray-300">
                       {area}
                     </Badge>
                   ))}
@@ -482,7 +482,7 @@ export default function ContractorProfilePage() {
 
                     <div className="flex flex-wrap gap-3">
                       <Button
-                        className="rounded-sm border border-[#0d9488] bg-[#0d9488]/10 text-[#0d9488] hover:bg-[#0d9488]/20 transition-colors"
+                        className="rounded-sm border border-[#0d9488] bg-[#0d9488]/10 text-[#0d9488] hover:bg-[#0d9488]/20 transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                         onClick={() => {
                           window.print();
                         }}
@@ -492,7 +492,7 @@ export default function ContractorProfilePage() {
                       </Button>
                       <Button
                         variant="outline"
-                        className="rounded-sm border border-white/10 text-gray-300 hover:bg-white/5"
+                        className="rounded-sm border border-white/10 text-gray-300 hover:bg-white/5 transition-[background-color] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                         asChild
                       >
                         <a

@@ -138,7 +138,7 @@ export default function ClientOnboardingCompletePage() {
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Create Request */}
-            <Card className="cursor-pointer hover:border-primary transition-all"
+            <Card className="cursor-pointer hover:border-primary transition-[border-color]"
                   onClick={() => setAutoCreateRequest(!autoCreateRequest)}>
               <CardContent className="pt-6">
                 <div className="flex items-start gap-3">
@@ -157,7 +157,7 @@ export default function ClientOnboardingCompletePage() {
             </Card>
 
             {/* Dashboard Tour */}
-            <Card className="cursor-pointer hover:border-primary transition-all"
+            <Card className="cursor-pointer hover:border-primary transition-[border-color]"
                   onClick={() => setStartTour(!startTour)}>
               <CardContent className="pt-6">
                 <div className="flex items-start gap-3">
