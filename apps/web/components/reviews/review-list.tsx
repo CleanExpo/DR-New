@@ -239,7 +239,7 @@ export function ReviewList({
                     </span>
                     <div className="flex-1 h-2 bg-[#374151] rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-[#FFD700] transition-all duration-300"
+                        className="h-full bg-[#FFD700] transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
                         style={{ width: `${percentage}%` }}
                       />
                     </div>

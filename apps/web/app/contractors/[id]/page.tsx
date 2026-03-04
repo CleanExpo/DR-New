@@ -26,7 +26,7 @@ import {
 import Link from "next/link"
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://disasterrecoverynrpg.com.au"
+  process.env.NEXT_PUBLIC_BASE_URL || "https://disasterrecovery.com.au"
 
 interface Props {
   params: { id: string }

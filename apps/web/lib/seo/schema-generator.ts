@@ -12,7 +12,7 @@
 
 import { SERVICE_PILLARS, CLIENT_SECTORS, AUSTRALIAN_LOCATIONS, EMERGENCY_PHONE } from '@/lib/design-tokens';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
 
 export class SchemaGenerator {
   /**
@@ -26,7 +26,8 @@ export class SchemaGenerator {
       "@id": `${BASE_URL}/#organization`,
       name: "NRPG - National Restoration Professionals Group",
       alternateName: "Disaster Recovery Australia",
-      legalName: "National Restoration Professionals Group Pty Ltd",
+      legalName: "Disaster Recovery Pty Ltd",
+      taxID: "urn:abn:85151794142",
       description: "Australia's leading disaster recovery and emergency restoration network. 100% vetted contractors providing forensic restoration standards for flood, fire, storm, and water damage across all states and territories.",
       url: BASE_URL,
       telephone: EMERGENCY_PHONE.number,
@@ -35,17 +36,16 @@ export class SchemaGenerator {
 
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Level 12, 680 George Street",
-        addressLocality: "Sydney",
-        addressRegion: "NSW",
-        postalCode: "2000",
+        addressLocality: "Brisbane",
+        addressRegion: "QLD",
+        postalCode: "4076",
         addressCountry: "AU",
       },
 
       geo: {
         "@type": "GeoCoordinates",
-        latitude: -33.8688,
-        longitude: 151.2093,
+        latitude: -27.4698,
+        longitude: 153.0251,
       },
 
       areaServed: AUSTRALIAN_LOCATIONS.map(loc => ({

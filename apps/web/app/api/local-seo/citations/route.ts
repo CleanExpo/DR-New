@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
         name: 'NRPG - National Restoration Professionals Group',
         address: 'Australia',
         phone: EMERGENCY_PHONE.number,
-        website: 'https://disasterrecoverynrpg.com.au',
+        website: 'https://disasterrecovery.com.au',
         addressParts: {
           street: '',
           suburb: '',
@@ -173,7 +173,7 @@ export async function POST(request: NextRequest) {
           country: 'Australia',
         },
         phone: phone || EMERGENCY_PHONE.number,
-        website: website || 'https://disasterrecoverynrpg.com.au',
+        website: website || 'https://disasterrecovery.com.au',
       };
 
       const result = await citationManager.submitToDirectories(businessData, {

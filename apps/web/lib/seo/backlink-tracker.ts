@@ -33,7 +33,7 @@ const BACKLINK_CONFIG = {
   alertThreshold: 40, // Domain authority threshold for alerts
   outreachEnabled: true,
   targetBacklinks: 200,
-  domain: 'disasterrecoverynrpg.com.au',
+  domain: 'disasterrecovery.com.au',
   brandName: 'NRPG - National Restoration Professionals Group',
   phone: EMERGENCY_PHONE.number,
 };

@@ -273,24 +273,24 @@ async function sendApplicationReceivedEmail(
 
     <div style="background: #F3F4F6; padding: 20px; border-radius: 6px; margin: 20px 0;">
       <p style="color: #4B5563; margin: 0;">
-        <strong>Email:</strong> <a href="mailto:contractors@disasterrecoverynrpg.com.au" style="color: #1A936F;">contractors@disasterrecoverynrpg.com.au</a><br>
+        <strong>Email:</strong> <a href="mailto:contractors@disasterrecovery.com.au" style="color: #1A936F;">contractors@disasterrecovery.com.au</a><br>
         <strong>Phone:</strong> <span style="color: #6B7280;">[Business Phone Number]</span><br>
         <strong>Hours:</strong> <span style="color: #6B7280;">Monday-Friday, 9am-5pm AEST</span>
       </p>
     </div>
 
     <div style="text-align: center; margin-top: 40px;">
-      <a href="https://disasterrecoverynrpg.com.au/contractors/join" style="display: inline-block; background: #1A936F; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">View Application Status</a>
+      <a href="https://disasterrecovery.com.au/contractors/join" style="display: inline-block; background: #1A936F; color: white; padding: 14px 32px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px;">View Application Status</a>
     </div>
 
     <p style="color: #6B7280; font-size: 14px; margin-top: 40px; padding-top: 30px; border-top: 1px solid #E5E7EB;">
       <strong>Application ID:</strong> ${email}<br>
       <strong>Business:</strong> ${businessName}<br><br>
-      You're receiving this email because you submitted a contractor application at <a href="https://disasterrecoverynrpg.com.au" style="color: #1A936F;">disasterrecoverynrpg.com.au</a>.
+      You're receiving this email because you submitted a contractor application at <a href="https://disasterrecovery.com.au" style="color: #1A936F;">disasterrecovery.com.au</a>.
       <br><br>
       <strong>NRPG - National Restoration Professionals Group</strong><br>
       Australia's Premier Disaster Recovery Network<br>
-      <a href="mailto:contractors@disasterrecoverynrpg.com.au" style="color: #1A936F;">contractors@disasterrecoverynrpg.com.au</a>
+      <a href="mailto:contractors@disasterrecovery.com.au" style="color: #1A936F;">contractors@disasterrecovery.com.au</a>
     </p>
   </div>
 </body>
@@ -309,13 +309,13 @@ What Happens Next:
 4. Start Receiving Jobs! - After training, you'll be live and receiving qualified leads.
 
 Questions? Contact us:
-Email: contractors@disasterrecoverynrpg.com.au
+Email: contractors@disasterrecovery.com.au
 Hours: Monday-Friday, 9am-5pm AEST
 
 ---
 NRPG - National Restoration Professionals Group
 Australia's Premier Disaster Recovery Network
-contractors@disasterrecoverynrpg.com.au
+contractors@disasterrecovery.com.au
   `;
 
   try {
@@ -325,7 +325,7 @@ contractors@disasterrecoverynrpg.com.au
     }
 
     const result = await resend.emails.send({
-      from: 'NRPG Contractor Team <contractors@disasterrecoverynrpg.com.au>',
+      from: 'NRPG Contractor Team <contractors@disasterrecovery.com.au>',
       to: email,
       subject,
       html: htmlContent,

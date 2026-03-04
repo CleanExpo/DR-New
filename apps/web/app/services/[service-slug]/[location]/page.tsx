@@ -139,7 +139,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
     schemaGenerator.generateBreadcrumbSchema(
       breadcrumbs.map((b) => ({
         name: b.name,
-        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au'}${b.url}`,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}${b.url}`,
       }))
     ),
   ];

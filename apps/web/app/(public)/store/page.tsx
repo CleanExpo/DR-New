@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: 'NRPG Store | Branded Workwear & Equipment',
     description:
       'Official NRPG merchandise. Hi-vis polos, caps, accessories and bundles for disaster recovery professionals.',
-    url: 'https://disasterrecoverynrpg.com.au/store',
+    url: 'https://disasterrecovery.com.au/store',
     type: 'website',
   },
 }

@@ -68,7 +68,7 @@ function ThankYouContent() {
                 We've sent a confirmation email with more details about what happens next. If you don't see it in a few minutes, check your spam folder.
               </p>
               <p className="mt-2 text-sm text-blue-700">
-                <strong>Pro Tip:</strong> Add <span className="font-mono">support@disasterrecoverynrpg.com.au</span> to your contacts to ensure you don't miss our launch announcement!
+                <strong>Pro Tip:</strong> Add <span className="font-mono">support@disasterrecovery.com.au</span> to your contacts to ensure you don't miss our launch announcement!
               </p>
             </div>
           </div>
@@ -151,7 +151,7 @@ function ThankYouContent() {
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             {/* Twitter Share */}
             <a
-              href="https://twitter.com/intent/tweet?text=Just%20joined%20the%20waitlist%20for%20NRPG%2C%20Australia%27s%20premier%20disaster%20recovery%20network!%20%F0%9F%9A%80&url=https://disasterrecoverynrpg.com.au/launch"
+              href="https://twitter.com/intent/tweet?text=Just%20joined%20the%20waitlist%20for%20NRPG%2C%20Australia%27s%20premier%20disaster%20recovery%20network!%20%F0%9F%9A%80&url=https://disasterrecovery.com.au/launch"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-[#1DA1F2] px-6 py-3 font-semibold text-white transition hover:bg-[#1a8cd8]"
@@ -164,7 +164,7 @@ function ThankYouContent() {
 
             {/* Facebook Share */}
             <a
-              href="https://www.facebook.com/sharer/sharer.php?u=https://disasterrecoverynrpg.com.au/launch"
+              href="https://www.facebook.com/sharer/sharer.php?u=https://disasterrecovery.com.au/launch"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-[#1877F2] px-6 py-3 font-semibold text-white transition hover:bg-[#166fe5]"
@@ -177,7 +177,7 @@ function ThankYouContent() {
 
             {/* LinkedIn Share */}
             <a
-              href="https://www.linkedin.com/sharing/share-offsite/?url=https://disasterrecoverynrpg.com.au/launch"
+              href="https://www.linkedin.com/sharing/share-offsite/?url=https://disasterrecovery.com.au/launch"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-[#0A66C2] px-6 py-3 font-semibold text-white transition hover:bg-[#095196]"
@@ -243,7 +243,7 @@ function ThankYouContent() {
         <div className="mt-16 text-center">
           <p className="text-sm text-gray-500">
             Questions about your waitlist spot?{' '}
-            <a href="mailto:support@disasterrecoverynrpg.com.au" className="font-medium text-orange-600 hover:underline">
+            <a href="mailto:support@disasterrecovery.com.au" className="font-medium text-orange-600 hover:underline">
               Email us
             </a>{' '}
             or visit our{' '}

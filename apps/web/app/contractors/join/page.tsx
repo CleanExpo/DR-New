@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description:
       'Get qualified disaster recovery leads daily. $550 flat fee per claim - no commission, no monthly fees. Complete professional training and join 200+ certified contractors across Australia.',
     type: 'website',
-    url: 'https://disasterrecoverynrpg.com.au/contractors/join',
+    url: 'https://disasterrecovery.com.au/contractors/join',
   },
   keywords: [
     'disaster recovery contractors',
@@ -376,10 +376,10 @@ export default function ContractorJoinPage() {
               <p className="text-center text-gray-700">
                 Application form will be available here. For now, please email us at{' '}
                 <a
-                  href="mailto:contractors@disasterrecoverynrpg.com.au"
+                  href="mailto:contractors@disasterrecovery.com.au"
                   className="font-semibold text-blue-600 hover:underline"
                 >
-                  contractors@disasterrecoverynrpg.com.au
+                  contractors@disasterrecovery.com.au
                 </a>{' '}
                 with your details.
               </p>

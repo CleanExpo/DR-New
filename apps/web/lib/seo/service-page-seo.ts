@@ -17,7 +17,7 @@
 import type { Metadata } from 'next';
 import { schemaGenerator } from './schema-generator';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
 
 // ---------------------------------------------------------------------------
 // Types

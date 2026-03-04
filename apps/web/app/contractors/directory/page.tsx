@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import PublicContractorSearch from "@/components/contractor/public-contractor-search"
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecoverynrpg.com.au';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
 
 export const metadata: Metadata = {
   title: "Find a Certified Contractor | Disaster Recovery Australia",

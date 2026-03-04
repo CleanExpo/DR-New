@@ -62,7 +62,7 @@ export function QuickActionsPanel({
                 key={index}
                 onClick={action.onClick}
                 disabled={action.disabled}
-                className={`h-auto py-4 px-5 flex flex-col items-center gap-2 transition-all duration-200
+                className={`h-auto py-4 px-5 flex flex-col items-center gap-2 transition-[transform,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)]
                            hover:-translate-y-0.5 hover:shadow-md ${baseClasses}`}
               >
                 <Icon className="h-6 w-6" />
