@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Casual Polo Shirt</title>
+  <defs>
+    <linearGradient id="pc-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="pc-fabric" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#1F2937"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#pc-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+  <!-- Polo body -->
+  <path d="M135 150 L122 132 L80 155 L98 192 L115 180 L112 320 L288 320 L285 180 L302 192 L320 155 L278 132 L265 150" fill="url(#pc-fabric)" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Left sleeve -->
+  <path d="M115 180 L62 218 L80 252 L128 210" fill="url(#pc-fabric)" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Right sleeve -->
+  <path d="M285 180 L338 218 L320 252 L272 210" fill="url(#pc-fabric)" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Collar -->
+  <path d="M158 140 L172 122 L200 135 L228 122 L242 140 L228 158 L200 148 L172 158 Z" fill="#1A2332" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Collar fold details -->
+  <path d="M172 128 L186 148" stroke="#0A0F1A" stroke-width="0.7" opacity="0.5"/>
+  <path d="M228 128 L214 148" stroke="#0A0F1A" stroke-width="0.7" opacity="0.5"/>
+  <!-- Collar stand -->
+  <path d="M158 140 Q180 135 200 137 Q220 135 242 140" fill="none" stroke="#0A0F1A" stroke-width="0.8" opacity="0.4"/>
+  <!-- Button placket -->
+  <rect x="196" y="148" width="8" height="65" fill="#0A0F1A" opacity="0.25"/>
+  <circle cx="200" cy="162" r="2.5" fill="#374151" opacity="0.8"/>
+  <circle cx="200" cy="180" r="2.5" fill="#374151" opacity="0.8"/>
+  <circle cx="200" cy="198" r="2.5" fill="#374151" opacity="0.8"/>
+  <!-- NRPG teal embroidered logo on left chest -->
+  <g transform="translate(155, 200)">
+    <!-- Shield -->
+    <path d="M0 -14 L12 -8 L12 6 L0 15 L-12 6 L-12 -8 Z" fill="none" stroke="#0d9488" stroke-width="1.5"/>
+    <text x="0" y="5" font-family="sans-serif" font-weight="bold" font-size="9" fill="#0d9488" text-anchor="middle">N</text>
+  </g>
+  <!-- Subtle side seams -->
+  <line x1="112" y1="180" x2="112" y2="320" stroke="#0A0F1A" stroke-width="0.5" opacity="0.3"/>
+  <line x1="288" y1="180" x2="288" y2="320" stroke="#0A0F1A" stroke-width="0.5" opacity="0.3"/>
+  <!-- Sleeve hems -->
+  <path d="M62 218 L80 252" stroke="#0A0F1A" stroke-width="1.5"/>
+  <path d="M338 218 L320 252" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Bottom hem -->
+  <line x1="112" y1="320" x2="288" y2="320" stroke="#0A0F1A" stroke-width="2"/>
+  <!-- Fabric texture -->
+  <line x1="150" y1="170" x2="148" y2="320" stroke="#0A0F1A" stroke-width="0.2" opacity="0.15"/>
+  <line x1="250" y1="170" x2="252" y2="320" stroke="#0A0F1A" stroke-width="0.2" opacity="0.15"/>
+</svg>

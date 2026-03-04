@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Structured Cap</title>
+  <defs>
+    <linearGradient id="cap-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="cap-crown" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1F2937"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#cap-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+  <!-- Cap crown - 3/4 view -->
+  <path d="M100 220 Q100 130 200 110 Q300 130 300 220 L295 230 L105 230 Z" fill="url(#cap-crown)" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Crown panel seams -->
+  <path d="M200 108 L200 225" stroke="#0A0F1A" stroke-width="0.8" opacity="0.5"/>
+  <path d="M150 125 L160 225" stroke="#0A0F1A" stroke-width="0.6" opacity="0.3"/>
+  <path d="M250 125 L240 225" stroke="#0A0F1A" stroke-width="0.6" opacity="0.3"/>
+  <!-- Top button -->
+  <circle cx="200" cy="110" r="5" fill="#1F2937" stroke="#0A0F1A" stroke-width="1"/>
+  <!-- Brim -->
+  <path d="M95 228 Q80 232 75 245 Q72 260 90 268 Q130 280 200 285 Q270 280 310 268 Q328 260 325 245 Q320 232 305 228 L295 230 Q260 270 200 275 Q140 270 105 230 Z" fill="#111827" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Teal brim edge -->
+  <path d="M90 268 Q130 280 200 285 Q270 280 310 268" fill="none" stroke="#0d9488" stroke-width="3"/>
+  <!-- Brim underside shadow -->
+  <path d="M105 232 Q140 265 200 270 Q260 265 295 232" fill="#0A0F1A" opacity="0.3"/>
+  <!-- NRPG embroidered on front panel -->
+  <text x="200" y="185" font-family="sans-serif" font-weight="bold" font-size="32" fill="#0d9488" text-anchor="middle" letter-spacing="4">NRPG</text>
+  <!-- Embroidery texture effect -->
+  <text x="200" y="185" font-family="sans-serif" font-weight="bold" font-size="32" fill="none" stroke="#0d9488" stroke-width="0.5" text-anchor="middle" letter-spacing="4" opacity="0.3">NRPG</text>
+  <!-- Sweatband line -->
+  <path d="M100 220 Q140 225 200 228 Q260 225 300 220" fill="none" stroke="#0A0F1A" stroke-width="1.5"/>
+  <!-- Structured front panel outline -->
+  <path d="M145 225 L155 128 Q200 115 245 128 L255 225" fill="none" stroke="#0A0F1A" stroke-width="0.5" opacity="0.3"/>
+</svg>

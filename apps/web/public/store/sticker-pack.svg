@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Sticker Pack - 5 Stickers</title>
+  <defs>
+    <linearGradient id="sp-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#sp-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+
+  <!-- Sticker 1: NRPG Shield Logo (top left) -->
+  <g transform="translate(105, 105)">
+    <circle cx="0" cy="0" r="55" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.5"/>
+    <!-- Shield -->
+    <path d="M0 -30 L20 -20 L22 5 L0 25 L-22 5 L-20 -20 Z" fill="#0d9488" stroke="#0B7C72" stroke-width="1"/>
+    <text x="0" y="5" font-family="sans-serif" font-weight="bold" font-size="12" fill="#FFFFFF" text-anchor="middle">NRPG</text>
+    <text x="0" y="43" font-family="sans-serif" font-size="7" fill="#1a1a2e" text-anchor="middle" opacity="0.6">EST. 2024</text>
+  </g>
+
+  <!-- Sticker 2: CERTIFIED Badge (top right) -->
+  <g transform="translate(280, 120)">
+    <!-- Hexagon -->
+    <polygon points="0,-55 48,-27.5 48,27.5 0,55 -48,27.5 -48,-27.5" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.5"/>
+    <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="none" stroke="#00FF88" stroke-width="1.5"/>
+    <text x="0" y="-5" font-family="sans-serif" font-weight="bold" font-size="11" fill="#00CC6A" text-anchor="middle">CERTIFIED</text>
+    <text x="0" y="10" font-family="sans-serif" font-size="8" fill="#374151" text-anchor="middle">CONTRACTOR</text>
+    <!-- Checkmark -->
+    <path d="M-8 20 L-2 26 L10 14" fill="none" stroke="#00FF88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Sticker 3: Water Droplet (center) -->
+  <g transform="translate(190, 225)">
+    <circle cx="0" cy="0" r="50" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.5"/>
+    <!-- Water drop -->
+    <path d="M0 -28 Q-20 0 -18 12 Q-18 28 0 30 Q18 28 18 12 Q20 0 0 -28 Z" fill="#00F5FF" opacity="0.8"/>
+    <path d="M0 -28 Q-20 0 -18 12 Q-18 28 0 30 Q18 28 18 12 Q20 0 0 -28 Z" fill="none" stroke="#00C4CC" stroke-width="1"/>
+    <!-- Shine -->
+    <ellipse cx="-6" cy="2" rx="4" ry="8" fill="#FFFFFF" opacity="0.4" transform="rotate(-15, -6, 2)"/>
+    <text x="0" y="45" font-family="sans-serif" font-size="7" fill="#1a1a2e" text-anchor="middle" opacity="0.6">FLOOD READY</text>
+  </g>
+
+  <!-- Sticker 4: Flame Icon (bottom left) -->
+  <g transform="translate(95, 305)">
+    <circle cx="0" cy="0" r="48" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.5"/>
+    <!-- Flame -->
+    <path d="M0 -28 Q12 -15 14 -2 Q16 10 8 18 Q10 10 4 5 Q2 15 -4 20 Q-12 14 -14 2 Q-16 -12 0 -28 Z" fill="#FFB800" stroke="#E8A000" stroke-width="0.8"/>
+    <path d="M0 -18 Q7 -8 6 2 Q5 10 0 14 Q-5 10 -6 2 Q-7 -8 0 -18 Z" fill="#FF6B00" opacity="0.7"/>
+    <text x="0" y="38" font-family="sans-serif" font-size="7" fill="#1a1a2e" text-anchor="middle" opacity="0.6">FIRE RESP.</text>
+  </g>
+
+  <!-- Sticker 5: Emergency Star (bottom right) -->
+  <g transform="translate(295, 300)">
+    <circle cx="0" cy="0" r="48" fill="#FFFFFF" stroke="#1a1a2e" stroke-width="1.5"/>
+    <!-- Star of life / emergency star -->
+    <g fill="#FF4444" stroke="#CC3333" stroke-width="0.5">
+      <rect x="-6" y="-25" width="12" height="50" rx="2"/>
+      <rect x="-25" y="-6" width="50" height="12" rx="2"/>
+      <rect x="-6" y="-25" width="12" height="50" rx="2" transform="rotate(60)"/>
+      <rect x="-6" y="-25" width="12" height="50" rx="2" transform="rotate(-60)"/>
+    </g>
+    <!-- Center circle -->
+    <circle cx="0" cy="0" r="8" fill="#FFFFFF" stroke="#FF4444" stroke-width="1"/>
+    <text x="0" y="4" font-family="sans-serif" font-weight="bold" font-size="8" fill="#FF4444" text-anchor="middle">E</text>
+  </g>
+
+  <!-- "5 STICKERS" label -->
+  <text x="200" y="385" font-family="sans-serif" font-size="10" fill="#9CA3AF" text-anchor="middle" letter-spacing="2">STICKER PACK</text>
+</svg>

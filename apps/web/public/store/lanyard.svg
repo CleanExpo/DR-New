@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Lanyard with ID Card Holder</title>
+  <defs>
+    <linearGradient id="ly-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="ly-card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F9FAFB"/>
+      <stop offset="100%" stop-color="#E5E7EB"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#ly-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+  <!-- Lanyard cord - draped from top -->
+  <path d="M120 20 Q120 80 140 120 Q165 170 185 200 L200 215" fill="none" stroke="#0d9488" stroke-width="10" stroke-linecap="round"/>
+  <path d="M280 20 Q280 80 260 120 Q235 170 215 200 L200 215" fill="none" stroke="#0d9488" stroke-width="10" stroke-linecap="round"/>
+  <!-- Lanyard inner highlight -->
+  <path d="M120 20 Q120 80 140 120 Q165 170 185 200 L200 215" fill="none" stroke="#10B9AD" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
+  <path d="M280 20 Q280 80 260 120 Q235 170 215 200 L200 215" fill="none" stroke="#10B9AD" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
+  <!-- NRPG text repeated on lanyard cord -->
+  <text x="135" y="75" font-family="sans-serif" font-weight="bold" font-size="8" fill="#FFFFFF" transform="rotate(-55, 135, 75)" letter-spacing="1">NRPG</text>
+  <text x="155" y="130" font-family="sans-serif" font-weight="bold" font-size="8" fill="#FFFFFF" transform="rotate(-45, 155, 130)" letter-spacing="1">NRPG</text>
+  <text x="260" y="75" font-family="sans-serif" font-weight="bold" font-size="8" fill="#FFFFFF" transform="rotate(55, 260, 75)" letter-spacing="1">NRPG</text>
+  <text x="240" y="130" font-family="sans-serif" font-weight="bold" font-size="8" fill="#FFFFFF" transform="rotate(45, 240, 130)" letter-spacing="1">NRPG</text>
+  <!-- Metal clip -->
+  <rect x="192" y="210" width="16" height="12" fill="#9CA3AF" stroke="#6B7280" stroke-width="1" rx="1"/>
+  <rect x="196" y="215" width="8" height="10" fill="#6B7280" rx="1"/>
+  <!-- ID Card holder -->
+  <rect x="150" y="222" width="100" height="140" fill="url(#ly-card)" stroke="#D1D5DB" stroke-width="1.5" rx="3"/>
+  <!-- Card inner border -->
+  <rect x="156" y="228" width="88" height="128" fill="none" stroke="#E5E7EB" stroke-width="0.5" rx="2"/>
+  <!-- Photo placeholder -->
+  <rect x="165" y="238" width="45" height="50" fill="#E5E7EB" stroke="#D1D5DB" stroke-width="0.5" rx="1"/>
+  <circle cx="187" cy="255" r="12" fill="#D1D5DB"/>
+  <path d="M175 280 Q187 270 199 280 L199 288 L175 288 Z" fill="#D1D5DB"/>
+  <!-- NRPG shield on card -->
+  <g transform="translate(230, 250)">
+    <path d="M0 -12 L10 -7 L10 5 L0 12 L-10 5 L-10 -7 Z" fill="#0d9488" stroke="#0B7C72" stroke-width="0.8"/>
+    <text x="0" y="3" font-family="sans-serif" font-weight="bold" font-size="6" fill="#FFFFFF" text-anchor="middle">N</text>
+  </g>
+  <!-- Card text lines -->
+  <rect x="165" y="298" width="60" height="4" fill="#D1D5DB" rx="1"/>
+  <rect x="165" y="308" width="45" height="3" fill="#E5E7EB" rx="1"/>
+  <rect x="165" y="318" width="70" height="3" fill="#E5E7EB" rx="1"/>
+  <!-- Barcode -->
+  <g transform="translate(165, 335)">
+    <rect x="0" y="0" width="2" height="14" fill="#374151"/>
+    <rect x="4" y="0" width="1" height="14" fill="#374151"/>
+    <rect x="7" y="0" width="3" height="14" fill="#374151"/>
+    <rect x="12" y="0" width="1" height="14" fill="#374151"/>
+    <rect x="15" y="0" width="2" height="14" fill="#374151"/>
+    <rect x="19" y="0" width="1" height="14" fill="#374151"/>
+    <rect x="22" y="0" width="3" height="14" fill="#374151"/>
+    <rect x="27" y="0" width="2" height="14" fill="#374151"/>
+    <rect x="31" y="0" width="1" height="14" fill="#374151"/>
+    <rect x="34" y="0" width="2" height="14" fill="#374151"/>
+    <rect x="38" y="0" width="1" height="14" fill="#374151"/>
+    <rect x="41" y="0" width="3" height="14" fill="#374151"/>
+    <rect x="46" y="0" width="1" height="14" fill="#374151"/>
+    <rect x="49" y="0" width="2" height="14" fill="#374151"/>
+  </g>
+  <!-- Card slot notch at top -->
+  <path d="M190 222 Q200 228 210 222" fill="url(#ly-bg)" stroke="#D1D5DB" stroke-width="0.5"/>
+</svg>

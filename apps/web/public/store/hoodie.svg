@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <title>NRPG Pullover Hoodie</title>
+  <defs>
+    <linearGradient id="hd-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+    <linearGradient id="hd-fabric" x1="0" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#2D3748"/>
+      <stop offset="100%" stop-color="#1F2937"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#hd-bg)"/>
+  <rect x="0" y="0" width="400" height="400" fill="none" stroke="#1a1a2e" stroke-width="1"/>
+  <!-- Hood -->
+  <path d="M155 135 Q140 100 145 75 Q155 50 200 45 Q245 50 255 75 Q260 100 245 135" fill="url(#hd-fabric)" stroke="#161E2E" stroke-width="1.5"/>
+  <!-- Hood inner -->
+  <path d="M162 135 Q150 108 155 82 Q162 62 200 58 Q238 62 245 82 Q250 108 238 135" fill="#161E2E" opacity="0.5"/>
+  <!-- Hood drawstrings -->
+  <line x1="185" y1="135" x2="180" y2="170" stroke="#4B5563" stroke-width="1.5"/>
+  <line x1="215" y1="135" x2="220" y2="170" stroke="#4B5563" stroke-width="1.5"/>
+  <circle cx="180" cy="172" r="2.5" fill="#4B5563"/>
+  <circle cx="220" cy="172" r="2.5" fill="#4B5563"/>
+  <!-- Hoodie body -->
+  <path d="M120 140 L105 125 L65 150 L85 188 L105 175 L100 330 L300 330 L295 175 L315 188 L335 150 L295 125 L280 140" fill="url(#hd-fabric)" stroke="#161E2E" stroke-width="1.5"/>
+  <!-- Left sleeve -->
+  <path d="M105 175 L50 218 L68 258 L118 215" fill="url(#hd-fabric)" stroke="#161E2E" stroke-width="1.5"/>
+  <!-- Right sleeve -->
+  <path d="M295 175 L350 218 L332 258 L282 215" fill="url(#hd-fabric)" stroke="#161E2E" stroke-width="1.5"/>
+  <!-- Sleeve cuffs (ribbed) -->
+  <rect x="48" y="250" width="25" height="12" fill="#1A2332" stroke="#161E2E" stroke-width="1" rx="1"/>
+  <rect x="330" y="250" width="25" height="12" fill="#1A2332" stroke="#161E2E" stroke-width="1" rx="1"/>
+  <!-- Neckline -->
+  <path d="M155 135 Q175 150 200 152 Q225 150 245 135" fill="#161E2E" stroke="#161E2E" stroke-width="1"/>
+  <!-- Kangaroo pocket -->
+  <path d="M140 248 Q140 240 148 238 L252 238 Q260 240 260 248 L260 290 Q260 298 252 300 L148 300 Q140 298 140 290 Z" fill="none" stroke="#161E2E" stroke-width="1.5"/>
+  <!-- Pocket opening -->
+  <path d="M180 238 L180 268 Q180 275 188 278 L200 280" fill="none" stroke="#161E2E" stroke-width="1" opacity="0.6"/>
+  <path d="M220 238 L220 268 Q220 275 212 278 L200 280" fill="none" stroke="#161E2E" stroke-width="1" opacity="0.6"/>
+  <!-- NRPG logo on left chest -->
+  <g transform="translate(155, 195)">
+    <path d="M0 -12 L10 -7 L10 5 L0 12 L-10 5 L-10 -7 Z" fill="none" stroke="#0d9488" stroke-width="1.5"/>
+    <text x="0" y="4" font-family="sans-serif" font-weight="bold" font-size="8" fill="#0d9488" text-anchor="middle">N</text>
+  </g>
+  <!-- Shoulder seams -->
+  <line x1="120" y1="140" x2="105" y2="175" stroke="#161E2E" stroke-width="1" opacity="0.5"/>
+  <line x1="280" y1="140" x2="295" y2="175" stroke="#161E2E" stroke-width="1" opacity="0.5"/>
+  <!-- Bottom hem (ribbed) -->
+  <rect x="100" y="325" width="200" height="10" fill="#1A2332" stroke="#161E2E" stroke-width="1" rx="1"/>
+  <!-- Center seam -->
+  <line x1="200" y1="152" x2="200" y2="238" stroke="#161E2E" stroke-width="0.6" opacity="0.3"/>
+</svg>
