@@ -56,3 +56,45 @@ jobs:
           name: build-artifacts
           path: .next
           retention-days: 3
+
+  smoke-tests:
+    name: Smoke Tests (DR-217)
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+      - run: npm ci
+      - uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: .next
+      - name: Start server and run smoke tests
+        run: |
+          cd apps/web
+          npx next start &
+          SERVER_PID=$!
+
+          # Wait for server to be ready
+          for i in $(seq 1 30); do
+            if curl -s http://localhost:3000/api/health > /dev/null 2>&1; then
+              echo "Server is ready"
+              break
+            fi
+            echo "Waiting for server... ($i/30)"
+            sleep 2
+          done
+
+          # Run smoke tests
+          cd ../..
+          SMOKE_TEST_URL=http://localhost:3000 npm run test:smoke
+
+          # Cleanup
+          kill $SERVER_PID 2>/dev/null || true
+        env:
+          NODE_ENV: production
+          NEXTAUTH_SECRET: test-secret-for-ci
+          NEXTAUTH_URL: http://localhost:3000

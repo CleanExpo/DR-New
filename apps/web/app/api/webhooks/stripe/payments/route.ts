@@ -20,12 +20,13 @@ import {
   emitPaymentRefunded,
 } from '@/lib/realtime/payment-events';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
+import { syncJobPaymentToXero } from '@/lib/xero/sync';
 
 export const dynamic = 'force-dynamic';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-11-20.acacia',
+      apiVersion: '2024-12-18.acacia' as Stripe.LatestApiVersion,
     })
   : null;
 
@@ -171,6 +172,23 @@ async function handlePaymentIntentSucceeded(
       console.log('Booking ID:', payment.bookingId);
       console.log('Amount:', payment.amountAUD);
       console.log('Client:', payment.client?.email);
+
+      // Sync to Xero if this payment is linked to a job
+      if (metadata.jobId) {
+        try {
+          const totalAmount = parseFloat(payment.amountAUD.toString()) +
+            parseFloat(payment.gstAUD.toString());
+          await syncJobPaymentToXero(
+            metadata.jobId,
+            paymentIntent.id,
+            totalAmount,
+            new Date()
+          );
+        } catch (xeroError) {
+          // Xero sync failure is non-blocking -- payment already succeeded
+          console.error('[Xero Sync] Non-blocking error:', xeroError);
+        }
+      }
     }
   } catch (error) {
     console.error('Error handling payment success:', error);

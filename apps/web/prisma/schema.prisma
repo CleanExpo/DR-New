@@ -84,6 +84,7 @@ model Tenant {
   aiEnhancementLogs    AIImageEnhancementLog[]
   aiBatchProcessingJobs AIBatchProcessingJob[]
   backgroundJobs       BackgroundJob[]
+  jobs                 Job[]
 
   @@map("tenants")
 }
@@ -305,14 +306,16 @@ model Contractor {
   createdAt                     DateTime                 @default(now())
   updatedAt                     DateTime                 @updatedAt
 
-  // License Information
+  // Licence Information
   licenseNumber                 String?
   licenseState                  AustralianState?
+  licenseType                   String?              // builder|electrician|plumber|asbestos|demolition|gasfitter|painter|roofer
   licenseExpiry                 DateTime?
   licenseDocumentUrl            String?
   licenseDocumentFileName       String?
   licenseVerifiedAt             DateTime?
   licenseVerifiedBy             String?
+  licenseStatus                 String               @default("unverified") // unverified|verified|expired|suspended
 
   // Enhanced Verification
   verificationStatus            ContractorVerificationStatus @default(PENDING)
@@ -358,6 +361,7 @@ model Contractor {
   realtimeSubscription          RealtimeSubscription?    @relation("ContractorRealtimeSubscription")
   documents                     ContractorDocument[]         @relation("ContractorDocuments")
   verificationHistory           ContractorVerificationHistory[] @relation("VerificationHistory")
+  jobs                          Job[]                        @relation("ContractorJobs")
 
   @@index([businessName])
   @@index([primaryState])
@@ -368,6 +372,7 @@ model Contractor {
   @@index([tenantId])
   @@index([verificationStatus])
   @@index([licenseExpiry])
+  @@index([licenseStatus])
   @@index([isVerified, isActive, verificationStatus])
 }
 
@@ -693,6 +698,7 @@ model ClientProperty {
   updatedAt           DateTime        @updatedAt
   clientProfile       ClientProfile   @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
   tenant              Tenant?         @relation(fields: [tenantId], references: [id])
+  jobs                Job[]
 
   @@index([clientProfileId])
   @@index([postcode])
@@ -3123,6 +3129,22 @@ model WaitlistSubmission {
   @@map("waitlist_submissions")
 }
 
+// Xero OAuth2 Token Storage
+// Stores Xero API credentials for accounting integration
+model XeroToken {
+  id           String   @id @default(cuid())
+  tenantId     String   // Xero organisation tenant ID
+  accessToken  String   @db.Text
+  refreshToken String   @db.Text
+  expiresAt    DateTime
+  scopes       String[] // OAuth2 scopes granted
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([tenantId])
+  @@map("xero_tokens")
+}
+
 // Contractor Application Forms
 // Captures contractor interest from /contractors/join landing page
 model ContractorApplication {
@@ -3172,4 +3194,293 @@ model ContractorApplication {
   @@index([utmCampaign])
   @@index([abn])
   @@map("contractor_applications")
+}
+
+// ============================================
+// Public API Models
+// ============================================
+
+// Lead Capture
+// Captures property owner enquiries from public landing pages
+model LeadCapture {
+  id                     String    @id @default(cuid())
+
+  // Personal Information
+  firstName              String
+  lastName               String
+  email                  String
+  phone                  String
+
+  // Property Information
+  propertyAddress        String
+  suburb                 String
+  state                  String
+  postcode               String
+
+  // Damage Information
+  damageType             String
+  damageDescription      String    @db.Text
+
+  // Insurance Information
+  hasInsurance           Boolean   @default(false)
+  insuranceProvider      String?
+  claimNumber            String?
+
+  // Urgency
+  urgency                String    @default("STANDARD") // URGENT | HIGH | STANDARD | SCHEDULED
+
+  // Marketing
+  preferredContactMethod String?   @default("EMAIL")
+  marketingConsent       Boolean   @default(false)
+
+  // Attribution
+  source                 String?
+  referrer               String?
+
+  // Metadata
+  submittedAt            DateTime  @default(now())
+  ipAddress              String?
+  userAgent              String?
+
+  // Status Tracking
+  status                 String    @default("NEW") // NEW | CONTACTED | QUALIFIED | CONVERTED | CLOSED
+  assignedTo             String?
+  contactedAt            DateTime?
+  convertedToClientAt    DateTime?
+
+  // Timestamps
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@index([email])
+  @@index([phone])
+  @@index([status])
+  @@index([submittedAt])
+  @@index([urgency])
+  @@map("lead_captures")
+}
+
+// Newsletter Subscription
+// Manages email newsletter opt-ins from the public site
+model NewsletterSubscription {
+  id                 String    @id @default(cuid())
+
+  // Contact Information
+  email              String    @unique
+  firstName          String?
+  lastName           String?
+
+  // Preferences
+  interests          String[]
+
+  // Location
+  state              String?
+  postcode           String?
+
+  // Consent
+  marketingConsent   Boolean   @default(false)
+
+  // Status
+  isActive           Boolean   @default(true)
+  subscribedAt       DateTime  @default(now())
+  unsubscribedAt     DateTime?
+  resubscribedAt     DateTime?
+
+  // Unsubscribe Token
+  unsubscribeToken   String?   @unique
+
+  // Attribution
+  source             String?
+  referrer           String?
+  ipAddress          String?
+  userAgent          String?
+
+  // Email Engagement
+  emailsSent         Int       @default(0)
+  emailsOpened       Int       @default(0)
+  emailsClicked      Int       @default(0)
+  lastEmailSentAt    DateTime?
+  lastEmailOpenedAt  DateTime?
+
+  // Timestamps
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([isActive])
+  @@index([subscribedAt])
+  @@index([state])
+  @@map("newsletter_subscriptions")
+}
+
+// Contractor Inquiry
+// Captures contractor partnership enquiries from the public /contractors page
+model ContractorInquiry {
+  id                       String    @id @default(cuid())
+
+  // Business Information
+  businessName             String
+  abn                      String    @unique
+  businessType             String
+
+  // Contact Information
+  contactFirstName         String
+  contactLastName          String
+  contactEmail             String
+  contactPhone             String
+
+  // Business Address
+  businessAddress          String
+  suburb                   String
+  state                    String
+  postcode                 String
+
+  // Services & Experience
+  servicesOffered          String[]
+  serviceAreas             String[]
+  certifications           Json?
+  yearsInBusiness          Int
+  numberOfEmployees        Int
+
+  // Insurance
+  hasPublicLiability       Boolean
+  publicLiabilityAmount    Decimal?  @db.Decimal(12, 2)
+  hasWorkersCompensation   Boolean
+
+  // Additional Information
+  additionalInfo           String?   @db.Text
+  website                  String?
+  availability24x7         Boolean   @default(false)
+  emergencyResponseTime    String?
+
+  // Consent
+  termsAccepted            Boolean
+  backgroundCheckConsent   Boolean
+
+  // Application Scoring
+  applicationScore         Int       @default(0)
+  status                   String    @default("PENDING") // PENDING | UNDER_REVIEW | APPROVED | REJECTED | CONTACTED
+
+  // Review Process
+  reviewedBy               String?
+  reviewedAt               DateTime?
+  reviewNotes              String?   @db.Text
+  approvalReason           String?   @db.Text
+  rejectionReason          String?   @db.Text
+
+  // Attribution
+  source                   String?
+  referrer                 String?
+  submittedAt              DateTime  @default(now())
+  ipAddress                String?
+  userAgent                String?
+
+  // Timestamps
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+
+  @@index([status])
+  @@index([submittedAt])
+  @@index([applicationScore])
+  @@index([contactEmail])
+  @@index([state])
+  @@map("contractor_inquiries")
+}
+
+// ============================================
+// Job Management Models
+// ============================================
+
+model Job {
+  id               String        @id @default(cuid())
+  jobNumber        String        @unique // NRP-2026-XXXXX format
+  type             String        // water | fire | mould | storm | asbestos
+  status           JobStatus     @default(PENDING)
+  propertyId       String
+  contractorId     String?
+  clientId         String?
+  estimatedCost    Decimal?
+  actualCost       Decimal?
+  scheduledDate    DateTime?
+  completedDate    DateTime?
+  notes            String?
+  insuranceClaimId String?
+  hoursWorked      Decimal?
+  materialsUsed    String?
+  tenantId         String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  property         ClientProperty @relation(fields: [propertyId], references: [id])
+  contractor       Contractor?   @relation("ContractorJobs", fields: [contractorId], references: [id])
+  tenant           Tenant?       @relation(fields: [tenantId], references: [id])
+  documents        JobDocument[]
+  photos           JobPhoto[]
+
+  @@index([jobNumber])
+  @@index([status])
+  @@index([type])
+  @@index([contractorId])
+  @@index([propertyId])
+  @@index([tenantId])
+  @@index([scheduledDate])
+  @@map("jobs")
+}
+
+enum JobStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  COMPLETED
+  INVOICED
+  PAID
+}
+
+model JobDocument {
+  id        String   @id @default(cuid())
+  jobId     String
+  name      String
+  url       String
+  type      String
+  size      Int
+  createdAt DateTime @default(now())
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+  @@map("job_documents")
+}
+
+model JobPhoto {
+  id        String   @id @default(cuid())
+  jobId     String
+  url       String
+  caption   String?
+  takenAt   DateTime @default(now())
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+  @@map("job_photos")
+}
+
+// ============================================
+// Notification Log
+// ============================================
+
+model NotificationLog {
+  id          String   @id @default(cuid())
+  type        String   // email | sms
+  channel     String   // job_created | contractor_assigned | work_started | job_completed | invoice_generated
+  recipientId String?
+  recipient   String   // email address or phone number
+  jobId       String?
+  jobNumber   String?
+  subject     String?
+  status      String   @default("sent") // sent | failed | bounced
+  errorMessage String?
+  sentAt      DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  @@index([jobId])
+  @@index([recipientId])
+  @@index([channel])
+  @@index([sentAt])
+  @@map("notification_logs")
 }

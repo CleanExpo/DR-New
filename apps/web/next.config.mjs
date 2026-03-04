@@ -87,6 +87,32 @@ const nextConfig = {
         ],
       },
       {
+        // CORS lockdown — restrict API access to trusted origins only
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: process.env.CORS_ORIGIN || 'https://disasterrecovery.com.au',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization, X-Requested-With, stripe-signature, x-xero-signature',
+          },
+          {
+            key: 'Access-Control-Allow-Credentials',
+            value: 'true',
+          },
+          {
+            key: 'Access-Control-Max-Age',
+            value: '86400',
+          },
+        ],
+      },
+      {
         source: '/:path*',
         headers: [
           // Content Security Policy (CSP) - Updated with Supabase Realtime support

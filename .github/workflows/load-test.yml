@@ -64,7 +64,7 @@ jobs:
           if [ "${{ github.event.inputs.environment }}" = "production" ]; then
             echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
           else
-            echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
+            echo "BASE_URL=${{ env.BASE_URL_STAGING }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Run smoke test
@@ -141,7 +141,7 @@ jobs:
           if [ "${{ github.event.inputs.environment }}" = "production" ]; then
             echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
           else
-            echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
+            echo "BASE_URL=${{ env.BASE_URL_STAGING }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Run claim submission load test
@@ -179,7 +179,7 @@ jobs:
           if [ "${{ github.event.inputs.environment }}" = "production" ]; then
             echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
           else
-            echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
+            echo "BASE_URL=${{ env.BASE_URL_STAGING }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Run database stress test
@@ -217,7 +217,7 @@ jobs:
           if [ "${{ github.event.inputs.environment }}" = "production" ]; then
             echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
           else
-            echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
+            echo "BASE_URL=${{ env.BASE_URL_STAGING }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Run contractor matching test
@@ -255,7 +255,7 @@ jobs:
           if [ "${{ github.event.inputs.environment }}" = "production" ]; then
             echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
           else
-            echo "BASE_URL=${{ env.BASE_URL_PRODUCTION }}" >> $GITHUB_OUTPUT
+            echo "BASE_URL=${{ env.BASE_URL_STAGING }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Run authentication test

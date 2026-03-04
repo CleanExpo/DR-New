@@ -1,7 +1,15 @@
 import Stripe from 'stripe';
 
+// Guard: never allow test keys in production
+if (
+  process.env.NODE_ENV === 'production' &&
+  process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_')
+) {
+  throw new Error('Stripe test key detected in production! Set a live STRIPE_SECRET_KEY.');
+}
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2024-12-18.acacia' as Stripe.LatestApiVersion,
 });
 
 export interface PaymentIntentParams {

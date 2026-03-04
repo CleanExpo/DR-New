@@ -2,7 +2,7 @@
  * Webhook Monitoring API
  *
  * Provides endpoints for monitoring webhook health and failed events.
- * This endpoint should be protected by authentication in production.
+ * Protected by WEBHOOK_MONITOR_SECRET Bearer token.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -10,10 +10,32 @@ import { getFailedWebhookEvents, getWebhookStats, getAlertSummary } from '@/src/
 
 export const dynamic = 'force-dynamic';
 
+const MONITOR_SECRET = process.env.WEBHOOK_MONITOR_SECRET || '';
+
+/**
+ * Validate the monitoring Bearer token from the Authorization header.
+ */
+function validateMonitorAuth(request: NextRequest): boolean {
+  if (!MONITOR_SECRET) {
+    return false;
+  }
+
+  const authHeader = request.headers.get('authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return false;
+  }
+
+  const token = authHeader.slice(7);
+  return token === MONITOR_SECRET;
+}
+
 /**
  * GET /api/webhooks/monitoring
  *
  * Returns webhook monitoring data
+ *
+ * Headers:
+ * - Authorization: Bearer <WEBHOOK_MONITOR_SECRET>
  *
  * Query parameters:
  * - summary=true - Return alert summary (default)
@@ -24,6 +46,10 @@ export const dynamic = 'force-dynamic';
  */
 export async function GET(request: NextRequest) {
   try {
+    if (!validateMonitorAuth(request)) {
+      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
+    }
+
     const searchParams = request.nextUrl.searchParams;
 
     // Parse query parameters
@@ -32,11 +58,6 @@ export async function GET(request: NextRequest) {
     const returnFailed = searchParams.get('failed') === 'true';
     const timeWindow = parseInt(searchParams.get('timeWindow') || '60', 10);
     const limit = parseInt(searchParams.get('limit') || '50', 10);
-
-    // TODO: Add authentication check here
-    // if (!hasMonitoringAccess(request)) {
-    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    // }
 
     const response: Record<string, unknown> = {};
 
@@ -80,17 +101,16 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
+    if (!validateMonitorAuth(request)) {
+      return NextResponse.json({ error: 'Unauthorised' }, { status: 401 });
+    }
+
     const body = await request.json();
     const { stripeEventId } = body;
 
     if (!stripeEventId || typeof stripeEventId !== 'string') {
       return NextResponse.json({ error: 'Missing or invalid stripeEventId' }, { status: 400 });
     }
-
-    // TODO: Add authentication check here
-    // if (!hasMonitoringAccess(request)) {
-    //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    // }
 
     // Import at usage to avoid circular dependency
     const { retryFailedWebhookEvent } = await import('@/src/lib/stripe/webhook-monitoring');

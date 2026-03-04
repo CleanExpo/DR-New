@@ -13,11 +13,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { prisma } from '@/lib/prisma'
+import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency'
 
 export const dynamic = 'force-dynamic'
 
 const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2024-11-20.acacia' })
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2024-12-18.acacia' as Stripe.LatestApiVersion })
   : null
 
 const webhookSecret = process.env.STRIPE_REALTIME_WEBHOOK_SECRET || process.env.STRIPE_WEBHOOK_SECRET || ''
@@ -41,6 +42,24 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     console.error('Webhook signature verification failed:', err)
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
+  }
+
+  // Check if this event has already been processed (idempotency)
+  try {
+    const alreadyProcessed = await isEventProcessed(event.id)
+    if (alreadyProcessed) {
+      console.info(`[Realtime Webhook] Event ${event.id} already processed, skipping`)
+      return NextResponse.json({ received: true })
+    }
+  } catch (error) {
+    console.error('[Realtime Webhook] Error checking event idempotency:', error)
+    return NextResponse.json(
+      {
+        error: 'Idempotency check failed',
+        message: error instanceof Error ? error.message : 'Idempotency check failed',
+      },
+      { status: 503 }
+    )
   }
 
   // Only process realtime addon subscriptions
@@ -92,8 +111,14 @@ export async function POST(request: NextRequest) {
         console.log(`Unhandled realtime webhook event: ${event.type}`)
     }
 
+    // Record successful processing
+    await recordWebhookEvent(event.id, event.type, 200)
     return NextResponse.json({ received: true })
   } catch (error) {
+    // Record failed processing
+    const errorMessage = error instanceof Error ? error.message : 'Webhook handler failed'
+    await recordWebhookEvent(event.id, event.type, 500, errorMessage)
+
     console.error('Realtime webhook handler error:', error)
     return NextResponse.json({ error: 'Webhook handler failed' }, { status: 500 })
   }

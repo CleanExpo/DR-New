@@ -10,18 +10,30 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { timingSafeEqual } from 'crypto';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { recordAnalyticsEvent } from '@/lib/analytics/event-processor';
 
+function isValidApiKey(provided: string): boolean {
+  const expected = process.env.ANALYTICS_API_KEY;
+  if (!expected) return false;
+  if (provided.length !== expected.length) return false;
+  return timingSafeEqual(Buffer.from(provided), Buffer.from(expected));
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Events can be recorded by authenticated users or system with API key
-    const hasApiKey = request.headers.get('X-API-Key');
+    const apiKey = request.headers.get('X-API-Key');
 
     let userId: string | undefined;
 
-    if (!hasApiKey) {
+    if (apiKey) {
+      if (!isValidApiKey(apiKey)) {
+        return NextResponse.json({ error: 'Invalid API key' }, { status: 401 });
+      }
+    } else {
       // Require authentication if no API key
       const authResult = await authenticateRequest(request);
       if (!authResult.success) {

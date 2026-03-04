@@ -2,14 +2,43 @@ name: Health - Post-Deployment Checks
 
 on:
   workflow_run:
-    workflows: [ "Deploy - Production" ]
+    workflows: [ "Deploy Production" ]
     types: [ completed ]
 
+  schedule:
+    # Ping /api/health every 5 minutes
+    - cron: '*/5 * * * *'
+
 jobs:
+  scheduled-ping:
+    name: Scheduled Health Ping
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    steps:
+      - name: Ping /api/health
+        id: ping
+        run: |
+          response=$(curl -s -w "\n%{http_code}" https://disaster-recovery-seven.vercel.app/api/health)
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+
+          echo "HTTP Status: $http_code"
+          echo "Response: $body"
+
+          if [ "$http_code" != "200" ]; then
+            echo "::error::Health check failed with status $http_code"
+            exit 1
+          fi
+
+      - name: Alert on failure
+        if: failure()
+        run: |
+          echo "::error::ALERT — production health check failed at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
   health-check:
     name: Verify Deployment Health
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v4
       
