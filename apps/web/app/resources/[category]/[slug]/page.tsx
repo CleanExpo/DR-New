@@ -16,6 +16,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { DownloadButton } from '@/components/resources/DownloadButton';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -149,27 +150,6 @@ export default function ResourcePage({ params }: ResourcePageProps) {
   // Check if resource has case study
   const isCaseStudy = 'caseStudy' in resource && resource.caseStudy;
 
-  // Handle download click
-  const handleDownload = async () => {
-    if (!resource.downloadUrl) return;
-
-    // Track download
-    try {
-      await fetch('/api/resources/track-download', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          resourceId: resource.id,
-          timestamp: new Date().toISOString(),
-        }),
-      });
-    } catch (error) {
-      console.error('Failed to track download:', error);
-    }
-
-    // Trigger download
-    window.location.href = resource.downloadUrl;
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -380,15 +360,12 @@ export default function ResourcePage({ params }: ResourcePageProps) {
             {/* Action Buttons */}
             <Card>
               <CardContent className="pt-6 space-y-3">
-                {resource.downloadable && (
-                  <Button
-                    className="w-full gap-2"
-                    size="lg"
-                    onClick={handleDownload}
-                  >
-                    <Download className="h-4 w-4" />
-                    Download {resource.downloadFormat?.toUpperCase()}
-                  </Button>
+                {resource.downloadable && resource.downloadUrl && (
+                  <DownloadButton
+                    downloadUrl={resource.downloadUrl}
+                    resourceId={resource.id}
+                    downloadFormat={resource.downloadFormat}
+                  />
                 )}
 
                 <Button variant="outline" className="w-full gap-2">
