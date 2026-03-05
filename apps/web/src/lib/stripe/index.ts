@@ -1,8 +1,9 @@
 import Stripe from 'stripe';
 
-// Guard: never allow test keys in production
+// Guard: never allow test keys in production (skip during build phase)
 if (
   process.env.NODE_ENV === 'production' &&
+  process.env.NEXT_PHASE !== 'phase-production-build' &&
   process.env.STRIPE_SECRET_KEY?.startsWith('sk_test_')
 ) {
   throw new Error('Stripe test key detected in production! Set a live STRIPE_SECRET_KEY.');
