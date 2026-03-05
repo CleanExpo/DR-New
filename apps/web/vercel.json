@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
+  "installCommand": "cd ../.. && pnpm install",
+  "buildCommand": "cd ../.. && pnpm --filter nrpg-web run build",
+  "outputDirectory": ".next",
   "regions": ["syd1"],
   "headers": [
     {
