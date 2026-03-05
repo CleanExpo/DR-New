@@ -1,0 +1,1545 @@
+{
+  "version": "1.1.0",
+  "lastUpdated": "2026-03-05",
+  "brand": "Disaster Recovery Pty Ltd",
+  "abn": "85 151 794 142",
+  "description": "Synthex Campaign Intelligence — Decision Maker Profiles for Disaster Recovery, NRPG, and CARSI",
+  "researchEnrichment": "v1.1.0 enriched with live web intelligence (March 2026). Added AICLA, AiBEC, SRCP, Coach8, AICLA/ANZIIF Claims Convention details, QStrata Conference, real Facebook group names, specific IICRC certification pathways, Aged Care Act 2024 triggers, VHBA HTA-2024-002 guidance, ProGroup Dec 2025 article, R&R Magazine Jan 2026 cash flow episode, and segment-specific one-liner messages.",
+  "segmentKeyMessages": {
+    "insurance-loss-adjuster": "Our documentation is built to survive AFCA challenge.",
+    "property-manager": "We report to you, not the tenant — and you'll get the full documentation pack within 24 hours.",
+    "homeowner-post-disaster": "We're coming now. And we'll help you deal with the insurer.",
+    "restoration-contractor": "Join NRPG and start getting insurer referrals — here's the clear path.",
+    "facility-manager": "Here's your complete supplier onboarding pack. Add us today. We're ready for your 2am call."
+  },
+  "personas": [
+    {
+      "id": "insurance-loss-adjuster",
+      "name": "Insurance Loss Adjuster & Claims Manager",
+      "description": "The gatekeepers who approve contractor panels and dispatch restoration jobs. A single relationship = hundreds of recurring jobs. Highest-value B2B segment.",
+      "brands": ["disaster-recovery", "nrpg"],
+
+      "jobTitles": [
+        "Loss Adjuster",
+        "Senior Loss Adjuster",
+        "Executive Loss Adjuster",
+        "Chartered Loss Adjuster (AICLA)",
+        "Major & Complex Loss Adjuster",
+        "Claims Manager",
+        "Head of Claims",
+        "Claims Management Officer (CMO)",
+        "Property Claims Specialist",
+        "CAT (Catastrophe) Claims Manager",
+        "Assessing Manager",
+        "Panel Manager",
+        "Field Assessor",
+        "Technical Claims Manager",
+        "Property Claims Consultant",
+        "Restoration Claims Coordinator"
+      ],
+      "industries": ["General Insurance", "Home & Contents Insurance", "Commercial Property Insurance"],
+      "companySizes": ["Enterprise (500+)", "Mid-market (100-500)"],
+      "seniority": "Manager",
+      "annualRevenue": "$50M-$10B+",
+      "locationBias": ["Sydney", "Melbourne", "Brisbane", "Perth"],
+
+      "targetCompanies": [
+        "IAG (NRMA, CGU, WFI, SGIO, SGIC)",
+        "Suncorp (AAMI, GIO, Apia, Vero)",
+        "QBE Insurance",
+        "Allianz Australia",
+        "RACQ Insurance",
+        "RACT Insurance",
+        "Budget Direct",
+        "Youi",
+        "Hollard Insurance",
+        "Chubb Australia",
+        "HDI Global",
+        "Sedgwick Australia (QBE exclusive partner)",
+        "Crawford & Company Australia",
+        "Astute Adjusting",
+        "McLarens Australia",
+        "Claim Central",
+        "ARC Projects (QLD/NSW/VIC)"
+      ],
+
+      "goals": [
+        "Reduce claim lifecycle time (target: <14 days for water damage)",
+        "Minimise customer complaints and escalations",
+        "Maintain contractor panel quality with verified IICRC certification",
+        "Reduce reinstatement costs through proper first-time restoration",
+        "Meet KPIs on customer satisfaction (NPS) and turnaround time",
+        "Ensure regulatory compliance (AFCA obligations)",
+        "Reduce re-damage and re-work from substandard contractors"
+      ],
+
+      "painPoints": [
+        {
+          "id": "il-01",
+          "pain": "Contractor no-shows or late arrivals causing claim escalations and customer complaints",
+          "severity": "critical",
+          "frequency": "weekly",
+          "currentWorkaround": "Maintaining a list of 3-5 backup contractors per region",
+          "emotionalImpact": "Anxiety about NPS scores and customer retention"
+        },
+        {
+          "id": "il-02",
+          "pain": "Receiving non-IICRC-certified contractors who produce substandard scope of works or miss moisture readings",
+          "severity": "critical",
+          "frequency": "weekly",
+          "currentWorkaround": "Manual certification verification — time-consuming and unreliable",
+          "emotionalImpact": "Fear of re-damage liability and AFCA complaints"
+        },
+        {
+          "id": "il-03",
+          "pain": "Inadequate documentation — missing photos, moisture logs, drying reports, IICRC standards references",
+          "severity": "high",
+          "frequency": "daily",
+          "currentWorkaround": "Chasing contractors via phone/email for missing docs",
+          "emotionalImpact": "Frustration with manual document management"
+        },
+        {
+          "id": "il-04",
+          "pain": "Geographic coverage gaps — no verified contractor in a rural or regional area",
+          "severity": "high",
+          "frequency": "weekly",
+          "currentWorkaround": "Using unverified local tradespeople as emergency measure",
+          "emotionalImpact": "Stress about quality and liability"
+        },
+        {
+          "id": "il-05",
+          "pain": "Contractor overcharging or scope creep without prior approval",
+          "severity": "high",
+          "frequency": "monthly",
+          "currentWorkaround": "Manual invoice audit, sometimes requiring dispute process",
+          "emotionalImpact": "Frustration with cost management and budget pressure"
+        },
+        {
+          "id": "il-06",
+          "pain": "CAT event surge — suddenly need 50+ contractors across multiple states in 48 hours",
+          "severity": "critical",
+          "frequency": "situational",
+          "currentWorkaround": "Emergency calls to every contractor in database simultaneously",
+          "emotionalImpact": "Extreme stress, fear of media coverage of slow response"
+        }
+      ],
+
+      "buyingTriggers": [
+        "CAT event exposing panel capacity gaps",
+        "AFCA complaint upheld due to contractor failure",
+        "New insurer panel review cycle (typically annual)",
+        "Existing panel contractor loses IICRC certification",
+        "Customer complaint about restoration quality",
+        "New product line requiring specialist restoration capability",
+        "Post-event review flagging restoration KPI misses"
+      ],
+
+      "objections": [
+        "We already have a preferred panel — why change?",
+        "We need IICRC certification proof upfront before onboarding",
+        "What's your coverage in [regional area]?",
+        "What are your contractor response time SLAs?",
+        "We need volume pricing for our claim volumes",
+        "How do you handle CAT events with surge capacity?",
+        "What does your documentation platform look like?"
+      ],
+
+      "values": ["Reliability", "Compliance", "Speed", "Documentation", "Accountability", "Cost control"],
+
+      "searchIntents": [
+        {
+          "query": "IICRC certified restoration contractors australia insurance panel",
+          "intent": "commercial",
+          "volume": "medium",
+          "stage": "solution-aware"
+        },
+        {
+          "query": "water damage restoration insurer approved contractors",
+          "intent": "commercial",
+          "volume": "medium",
+          "stage": "comparing"
+        },
+        {
+          "query": "disaster recovery contractor panel management",
+          "intent": "informational",
+          "volume": "low",
+          "stage": "problem-aware"
+        },
+        {
+          "query": "S500 IICRC water damage documentation requirements",
+          "intent": "informational",
+          "volume": "medium",
+          "stage": "solution-aware"
+        },
+        {
+          "query": "restoration contractor AFCA complaint requirements",
+          "intent": "informational",
+          "volume": "low",
+          "stage": "problem-aware"
+        }
+      ],
+
+      "contentPreferences": ["whitepaper", "case-study", "comparison-table", "checklist", "compliance-guide", "webinar"],
+
+      "preferredChannels": [
+        "linkedin-ads",
+        "linkedin-organic",
+        "email-nurture",
+        "industry-events",
+        "direct-mail"
+      ],
+
+      "associations": [
+        {
+          "name": "Australasian Institute of Chartered Loss Adjusters",
+          "acronym": "AICLA",
+          "url": "https://www.aicla.org",
+          "relevance": "THE professional home — Chartered Loss Adjuster designation; state divisions in VIC, NSW, QLD, WA; same Brisbane address (Level 2, 190 Edward St) as AiBEC",
+          "memberCount": "3,000+ members"
+        },
+        {
+          "name": "Australian & New Zealand Institute of Insurance & Finance",
+          "acronym": "ANZIIF",
+          "url": "https://www.anziif.com",
+          "relevance": "Broader insurance & finance association — CIP (Certified Insurance Professional) points; co-hosts Annual Claims Convention with AICLA",
+          "memberCount": "15,000+"
+        },
+        {
+          "name": "Association of Insurance Building and Engineering Consultants",
+          "acronym": "AiBEC",
+          "url": "https://www.aibec.co",
+          "relevance": "Emerging body focused on building/engineering consultants in insurance claims; co-authored ICA Expert Reports Best Practice Standard; Level 2, 190 Edward St Brisbane (same as AICLA)",
+          "memberCount": "Growing"
+        },
+        {
+          "name": "Insurance Council of Australia",
+          "acronym": "ICA",
+          "url": "https://www.insurancecouncil.com.au",
+          "relevance": "Peak body — CAT event coordination, General Insurance Code of Practice",
+          "memberCount": "50+ member companies"
+        },
+        {
+          "name": "Australian Financial Complaints Authority",
+          "acronym": "AFCA",
+          "url": "https://www.afca.org.au",
+          "relevance": "Regulatory driver — 100,000+ complaints FY2025 (2nd consecutive year); Feb 2026 revised claim delay EDR guide adds compliance pressure"
+        },
+        {
+          "name": "Loss Adjusters Australasia",
+          "acronym": "ANZIIF Loss Adjusters Chapter",
+          "url": "https://www.anziif.com",
+          "relevance": "Specialist chapter for loss adjusters"
+        }
+      ],
+
+      "onlineCommunities": [
+        {
+          "platform": "linkedin",
+          "name": "Insurance Professionals Australia",
+          "activity": "high"
+        },
+        {
+          "platform": "linkedin",
+          "name": "ANZIIF Members Group",
+          "activity": "high"
+        },
+        {
+          "platform": "linkedin",
+          "name": "Insurance Australia Group (IAG) followers",
+          "activity": "medium"
+        }
+      ],
+
+      "publications": [
+        {
+          "name": "Insurance News",
+          "type": "website",
+          "url": "https://www.insurancenews.com.au",
+          "frequency": "daily",
+          "audience": "~15,000 Australian insurance professionals; bimonthly print + daily digital"
+        },
+        {
+          "name": "Insurance Business Magazine (AU)",
+          "type": "website",
+          "url": "https://www.insurancebusinessmag.com/au",
+          "frequency": "daily",
+          "audience": "Digital-first; strong claims coverage; read by brokers, adjusters, executives"
+        },
+        {
+          "name": "ANZIIF The Journal",
+          "type": "journal",
+          "frequency": "quarterly",
+          "audience": "Insurance and finance professionals; CPD-counted articles"
+        },
+        {
+          "name": "R&R Magazine (Restoration & Remediation)",
+          "type": "magazine",
+          "url": "https://www.randrmagonline.com",
+          "frequency": "monthly",
+          "audience": "US-based but internationally read; loss adjusters reference it to validate contractor documentation standards"
+        },
+        {
+          "name": "The Australian",
+          "type": "website",
+          "audience": "Business decision makers"
+        }
+      ],
+
+      "events": [
+        "AICLA/ANZIIF Claims Convention — Annual (Hilton Sydney); CC25 was Sept 17 2025; 350+ delegates; $880 incl GST; 6 CIP / 6 CPD points — THE key event for panel access",
+        "ANZIIF Annual Conference",
+        "Insurance Council of Australia Annual Forum",
+        "ANZIIF New Zealand Liability Conference — April 22 2026, Hilton Auckland (hybrid)",
+        "AiBEC annual conference — inaugural recently held",
+        "AICLA state division CPD events & networking functions (VIC, NSW, QLD, WA)",
+        "Suncorp Supplier Summit",
+        "IAG Panel Partner Days"
+      ],
+
+      "messagingFramework": {
+        "primaryHook": "The only contractor network where every job is IICRC-documented and CAT-surge ready",
+        "supportingPoints": [
+          "100% IICRC-certified contractors — verified in real-time, not just at onboarding",
+          "Digital drying logs, moisture readings, and photo documentation auto-attached to every claim",
+          "National coverage including regional — 2,000+ postcodes with verified contractors",
+          "CAT response surge capacity — pre-registered surge contractors activated within hours",
+          "AFCA-compliant documentation standard built into every job workflow"
+        ],
+        "socialProof": "Trusted by [insurer names] for property claim restoration across Australia",
+        "urgencyTrigger": "Next CAT event is not a matter of if — it's when. Panel gaps exposed in La Nina cost insurers $5.8B in 2022.",
+        "trustSignals": ["IICRC Corporate Member", "ABN: 85 151 794 142", "Disaster Recovery Pty Ltd", "S500/S520/S540 compliant workflow"]
+      },
+
+      "campaignHooks": [
+        {
+          "id": "il-hook-01",
+          "headline": "Your next CAT event will expose your panel gaps",
+          "subheadline": "NRPG gives you pre-verified surge capacity across all Australian states",
+          "angle": "Fear of CAT event unpreparedness",
+          "cta": "Download Panel Assessment Guide",
+          "channel": ["linkedin-ads", "email-nurture"],
+          "brand": "nrpg",
+          "stage": "problem-aware",
+          "keyMessage": "Capacity when you need it most"
+        },
+        {
+          "id": "il-hook-02",
+          "headline": "Every NRPG job comes with AFCA-compliant documentation. Automatically.",
+          "subheadline": "Moisture logs, drying reports, IICRC reference numbers — packaged for your claims file",
+          "angle": "Documentation compliance pain relief",
+          "cta": "See Sample Documentation Package",
+          "channel": ["linkedin-ads", "email-nurture", "direct-mail"],
+          "brand": "nrpg",
+          "stage": "solution-aware",
+          "keyMessage": "Close claims faster with compliant docs"
+        },
+        {
+          "id": "il-hook-03",
+          "headline": "How [Insurer] reduced restoration re-work by 67% with IICRC-only contractors",
+          "subheadline": "Case study: Panel quality transformation in 90 days",
+          "angle": "ROI proof via case study",
+          "cta": "Read the Case Study",
+          "channel": ["linkedin-organic", "email-nurture"],
+          "brand": "nrpg",
+          "stage": "comparing",
+          "keyMessage": "Better outcomes, lower total cost"
+        }
+      ],
+
+      "synthex": {
+        "segmentPriority": 1,
+        "estimatedAudienceSize": "2,000-5,000 decision makers in AU",
+        "averageDealValue": "$50,000-$500,000/year per insurer relationship",
+        "salesCycle": "3-12 months (panel review cycles)",
+        "cpaTarget": "$500-$2,000 per qualified lead",
+        "keyQualifyingQuestions": [
+          "What insurers do you currently manage restoration panels for?",
+          "What is your annual claim volume for property restoration?",
+          "Do you have IICRC certification as a panel requirement?",
+          "When is your next panel review cycle?",
+          "What documentation platform do you currently use?"
+        ],
+        "disqualifiers": [
+          "Only handles life/health insurance (no property)",
+          "Contractor they already use is NRPG member",
+          "Claims volume under 50/year"
+        ],
+        "tags": ["insurance", "b2b", "high-value", "panel-management", "IICRC", "CAT-events", "loss-adjuster", "nrpg"]
+      }
+    },
+
+    {
+      "id": "property-manager",
+      "name": "Property Manager & Strata Manager",
+      "description": "Manage multiple residential and commercial properties. Recurring need for fast, reliable, documented restoration. Single relationship = ongoing flow of jobs.",
+      "brands": ["disaster-recovery", "nrpg"],
+
+      "jobTitles": [
+        "Property Manager",
+        "Senior Property Manager",
+        "Portfolio Manager",
+        "Strata Manager",
+        "Body Corporate Manager",
+        "Owners Corporation Manager",
+        "Building Manager",
+        "Facilities Coordinator"
+      ],
+      "industries": ["Real Estate", "Strata Management", "Property Management"],
+      "companySizes": ["SME (10-100)", "Mid-market (100-500)"],
+      "seniority": "Manager",
+      "locationBias": ["Sydney", "Melbourne", "Brisbane", "Perth", "Gold Coast"],
+
+      "targetCompanies": [
+        "Ray White Property Management",
+        "LJ Hooker",
+        "First National Real Estate",
+        "McGrath Real Estate",
+        "PICA Group (strata)",
+        "Strata Plus",
+        "Knight Frank Strata",
+        "Colliers Strata",
+        "Lannock Strata Finance",
+        "Independent property management businesses"
+      ],
+
+      "goals": [
+        "Resolve tenant complaints within 24-48 hours to maintain rental income",
+        "Minimise vacancy caused by damage events",
+        "Maintain landlord/owner satisfaction and property value",
+        "Ensure all work is documented for insurance claims and owner reporting",
+        "Build a reliable contractor network for emergency maintenance",
+        "Protect themselves from liability (documented response is essential)"
+      ],
+
+      "painPoints": [
+        {
+          "id": "pm-01",
+          "pain": "Inability to find a reliable, responsive contractor at 11pm when a tenant reports a burst pipe",
+          "severity": "critical",
+          "frequency": "weekly",
+          "currentWorkaround": "Personal phone list of contacts, often waking up contractors with uncertain quality",
+          "emotionalImpact": "Panic and helplessness during after-hours emergencies"
+        },
+        {
+          "id": "pm-02",
+          "pain": "Contractor turns up, does some work, submits an inflated invoice without proper scope",
+          "severity": "high",
+          "frequency": "monthly",
+          "currentWorkaround": "Dispute invoice, delay payment, damaging relationship",
+          "emotionalImpact": "Distrust and financial stress"
+        },
+        {
+          "id": "pm-03",
+          "pain": "Owner/landlord wants proof the damage was addressed properly and insurance claim documentation is complete",
+          "severity": "high",
+          "frequency": "weekly",
+          "currentWorkaround": "Chasing contractor for photos and reports, piecing together claim files manually",
+          "emotionalImpact": "Time drain and anxiety"
+        },
+        {
+          "id": "pm-04",
+          "pain": "Mould discovered after a water event — contractor didn't dry properly, now it's worse",
+          "severity": "critical",
+          "frequency": "monthly",
+          "currentWorkaround": "Bring in a second contractor, risk landlord dispute",
+          "emotionalImpact": "Fear of liability, tenant health complaints"
+        },
+        {
+          "id": "pm-05",
+          "pain": "Managing 50+ properties means water events happen every week — need systemised contractor dispatch",
+          "severity": "high",
+          "frequency": "daily",
+          "currentWorkaround": "Spreadsheet or mental list of contractors by suburb",
+          "emotionalImpact": "Overwhelm and time pressure"
+        }
+      ],
+
+      "buyingTriggers": [
+        "A contractor fails to show up or delivers substandard work causing landlord complaint",
+        "Mould discovered weeks after a 'resolved' water event",
+        "Growing portfolio making ad-hoc contractor management unsustainable",
+        "New rent roll acquisition requiring new contractor relationships",
+        "REIQ/REIA CPD event featuring property damage management",
+        "Colleague recommendation after a positive experience"
+      ],
+
+      "objections": [
+        "My current plumber/tradie handles this",
+        "How quickly can you actually respond at 2am?",
+        "What's the difference between your contractors and anyone on HiPages?",
+        "Do your contractors understand property management documentation needs?",
+        "What does it cost to get started?"
+      ],
+
+      "values": ["Reliability", "Speed", "Communication", "Documentation", "Trust"],
+
+      "searchIntents": [
+        {
+          "query": "emergency water damage contractor property manager australia",
+          "intent": "transactional",
+          "volume": "high",
+          "stage": "ready-to-buy"
+        },
+        {
+          "query": "burst pipe property manager after hours contractor",
+          "intent": "transactional",
+          "volume": "high",
+          "stage": "ready-to-buy"
+        },
+        {
+          "query": "water damage insurance claim documentation property manager",
+          "intent": "informational",
+          "volume": "medium",
+          "stage": "problem-aware"
+        },
+        {
+          "query": "mould remediation residential rental property",
+          "intent": "commercial",
+          "volume": "medium",
+          "stage": "solution-aware"
+        },
+        {
+          "query": "strata water damage common property claim",
+          "intent": "informational",
+          "volume": "medium",
+          "stage": "problem-aware"
+        }
+      ],
+
+      "contentPreferences": ["checklist", "case-study", "how-to-guide", "email-sequence", "video-testimonial"],
+
+      "preferredChannels": [
+        "facebook-groups",
+        "linkedin-organic",
+        "email-nurture",
+        "google-search",
+        "industry-events"
+      ],
+
+      "associations": [
+        {
+          "name": "Real Estate Institute of Queensland",
+          "acronym": "REIQ",
+          "url": "https://www.reiq.com.au",
+          "relevance": "Primary QLD property management association — CPD events, CPP41419 Certificate IV in Real Estate Practice; runs annual Property Manager Conference",
+          "memberCount": "3,500+"
+        },
+        {
+          "name": "Real Estate Institute of Australia",
+          "acronym": "REIA",
+          "url": "https://www.reia.com.au",
+          "relevance": "National peak body; umbrella for all state REIs (REINSW, REIV, REISA, REIWA)"
+        },
+        {
+          "name": "Strata Community Association",
+          "acronym": "SCA",
+          "url": "https://strata.community",
+          "relevance": "Peak body for strata/body corporate managers; SCAQ = Queensland chapter; CHU is major strata insurer and SCA National Partner",
+          "memberCount": "State chapters in NSW, QLD, VIC, WA, SA, also NZ chapter"
+        },
+        {
+          "name": "SCA Queensland (SCAQ)",
+          "acronym": "SCAQ",
+          "url": "https://qld.strata.community",
+          "relevance": "QLD strata chapter — runs QStrata Conference (3-5 June 2026, 6 CPD points), WiSE High Tea, Golf Day, Awards for Excellence"
+        },
+        {
+          "name": "Property Management Industry Association",
+          "acronym": "PMIA",
+          "url": "https://www.pmia.com.au",
+          "relevance": "Industry-specific association for residential property managers"
+        }
+      ],
+
+      "onlineCommunities": [
+        {
+          "platform": "facebook",
+          "name": "Australian Property Managers",
+          "activity": "very-high",
+          "note": "Private group — verified by research as active peer community"
+        },
+        {
+          "platform": "facebook",
+          "name": "Real Estate Property Managers Australia",
+          "activity": "very-high",
+          "note": "Active peer recommendation community"
+        },
+        {
+          "platform": "facebook",
+          "name": "Property Management Australia (Facebook Group)",
+          "memberCount": "15,000+",
+          "activity": "very-high"
+        },
+        {
+          "platform": "facebook",
+          "name": "Strata Community Network (state-specific groups)",
+          "activity": "high"
+        },
+        {
+          "platform": "linkedin",
+          "name": "Property Management Professionals",
+          "activity": "medium"
+        }
+      ],
+
+      "publications": [
+        {
+          "name": "Elite Agent Magazine",
+          "type": "magazine",
+          "url": "https://eliteagent.com",
+          "frequency": "monthly",
+          "audience": "Property management-focused; strong PM community"
+        },
+        {
+          "name": "The Property Tribune",
+          "type": "website",
+          "url": "https://www.thepropertytribune.com.au",
+          "frequency": "daily",
+          "audience": "Digital-first property industry news"
+        },
+        {
+          "name": "Inside Strata",
+          "type": "newsletter",
+          "url": "https://inside.strata.community",
+          "frequency": "monthly",
+          "audience": "SCA's official publication; regular articles on water damage responsibility, insurance, maintenance"
+        },
+        {
+          "name": "CHU Strata Index",
+          "type": "journal",
+          "frequency": "annual",
+          "audience": "Annual research report on strata attitudes; CHU is major strata insurer and SCA National Partner"
+        },
+        {
+          "name": "Strata Community Connection",
+          "type": "newsletter",
+          "frequency": "monthly",
+          "audience": "Strata managers and owners corporations"
+        }
+      ],
+
+      "events": [
+        "REIQ Property Manager Conference (annual — Brisbane)",
+        "REIQ Residential Summit (annual)",
+        "QStrata Conference and Awards — 3–5 June 2026, SCAQ (6 CPD points) — key Queensland strata event",
+        "SCAQ WiSE High Tea — 6 March 2026",
+        "SCA Australasia Awards for Excellence (national)",
+        "SCA state divisional workshops (NSW, QLD, VIC, WA, SA throughout year)",
+        "PICA Group Annual Symposium",
+        "PropertyMe Summit",
+        "Inspection Manager User Conference"
+      ],
+
+      "messagingFramework": {
+        "primaryHook": "One call. IICRC-certified contractor on site within the hour. Documentation included.",
+        "supportingPoints": [
+          "24/7 emergency dispatch — real humans, not answering machines",
+          "All contractors carry $10M public liability — you're protected",
+          "Digital drying reports and photos sent to your inbox before the contractor leaves",
+          "Nationwide coverage including regional and rural properties",
+          "Flat-rate emergency callout — no bill shock"
+        ],
+        "socialProof": "Trusted by 500+ property managers across Australia for emergency restoration",
+        "urgencyTrigger": "Every hour of unaddressed water damage increases mould risk by 30%. Your tenant is already texting.",
+        "trustSignals": ["IICRC certified network", "$10M public liability per contractor", "24/7 dispatch confirmed"]
+      },
+
+      "campaignHooks": [
+        {
+          "id": "pm-hook-01",
+          "headline": "It's 2am. Pipe burst. Your tenant is calling. Who do you call?",
+          "subheadline": "NRPG has IICRC-certified contractors on standby 24/7 across Australia",
+          "angle": "Emotional urgency — the 2am scenario",
+          "cta": "Register Your Properties",
+          "channel": ["facebook-ads", "facebook-groups", "google-search"],
+          "brand": "disaster-recovery",
+          "stage": "problem-aware",
+          "keyMessage": "We're the contractor you call at 2am"
+        },
+        {
+          "id": "pm-hook-02",
+          "headline": "Water damage checklist for property managers (free download)",
+          "subheadline": "What to do in the first 60 minutes — step by step",
+          "angle": "Lead magnet — practical value",
+          "cta": "Download Free Checklist",
+          "channel": ["facebook-groups", "email-nurture", "linkedin-organic"],
+          "brand": "disaster-recovery",
+          "stage": "problem-aware",
+          "keyMessage": "We help you look professional in a crisis"
+        }
+      ],
+
+      "synthex": {
+        "segmentPriority": 2,
+        "estimatedAudienceSize": "25,000-40,000 property managers in AU",
+        "averageDealValue": "$5,000-$50,000/year per PM relationship",
+        "salesCycle": "1-4 weeks (event-triggered, fast decisions)",
+        "cpaTarget": "$50-$200 per lead",
+        "keyQualifyingQuestions": [
+          "How many properties are in your portfolio?",
+          "How often do you deal with water damage events each month?",
+          "Do you have a preferred restoration contractor currently?",
+          "Are you managing strata/common property as well as residential?"
+        ],
+        "disqualifiers": [
+          "Portfolio under 5 properties",
+          "Only commercial leasing (no residential/strata)",
+          "In-house maintenance team handles all restoration"
+        ],
+        "tags": ["property-management", "strata", "residential", "b2b", "recurring", "emergency-dispatch", "nrpg"]
+      }
+    },
+
+    {
+      "id": "homeowner-post-disaster",
+      "name": "Homeowner / Renter Post-Disaster",
+      "description": "The highest volume B2C segment. In active crisis — water, fire, or storm damage right now. Highly emotional, high urgency, highly susceptible to trust signals.",
+      "brands": ["disaster-recovery", "restore-assist"],
+
+      "jobTitles": ["Homeowner", "Property Owner", "Tenant", "Landlord"],
+      "industries": ["Residential", "Consumer"],
+      "companySizes": ["Individual"],
+      "seniority": "Mid-level",
+      "locationBias": ["All Australian states — coastal and flood-prone regions highest"],
+
+      "goals": [
+        "Get the damage stopped and house made safe as fast as possible",
+        "Get their insurance to pay for the restoration",
+        "Minimise disruption to family life",
+        "Not be ripped off by a dodgy contractor",
+        "Have a liveable home again"
+      ],
+
+      "painPoints": [
+        {
+          "id": "hw-01",
+          "pain": "Don't know who to call or trust — Google returns dozens of options with no way to verify quality",
+          "severity": "critical",
+          "frequency": "situational",
+          "currentWorkaround": "Call the first number that answers, ask on Facebook neighbourhood group",
+          "emotionalImpact": "Panic, fear of being scammed, overwhelm"
+        },
+        {
+          "id": "hw-02",
+          "pain": "Insurance company is slow, confusing, and seems to be lowballing the claim",
+          "severity": "critical",
+          "frequency": "situational",
+          "currentWorkaround": "Multiple phone calls to insurer, frustration, accepting less than entitled",
+          "emotionalImpact": "Anger, helplessness, financial anxiety"
+        },
+        {
+          "id": "hw-03",
+          "pain": "Mould appearing weeks after contractor said they fixed the water damage",
+          "severity": "critical",
+          "frequency": "situational",
+          "currentWorkaround": "Call original contractor back, dispute outcome",
+          "emotionalImpact": "Health fear, anger, regret"
+        },
+        {
+          "id": "hw-04",
+          "pain": "No idea what restoration process should look like — being told different things by different people",
+          "severity": "high",
+          "frequency": "situational",
+          "currentWorkaround": "Google searches at midnight, asking Facebook friends",
+          "emotionalImpact": "Confusion, distrust, helplessness"
+        }
+      ],
+
+      "buyingTriggers": [
+        "Flood/storm/burst pipe happening RIGHT NOW",
+        "Just discovered mould after a previous water event",
+        "Insurance company is being difficult about a claim",
+        "Neighbour or friend recommends a restoration service",
+        "Google search for emergency help"
+      ],
+
+      "objections": [
+        "How much will this cost?",
+        "Will my insurance cover this?",
+        "How do I know your contractor is trustworthy?",
+        "How quickly can someone come?",
+        "Will you deal with my insurance company for me?"
+      ],
+
+      "values": ["Trust", "Speed", "Transparency", "Fairness", "Family safety"],
+
+      "searchIntents": [
+        {
+          "query": "emergency water damage restoration [city]",
+          "intent": "transactional",
+          "volume": "very-high",
+          "stage": "ready-to-buy"
+        },
+        {
+          "query": "flood damage repair near me",
+          "intent": "transactional",
+          "volume": "very-high",
+          "stage": "ready-to-buy"
+        },
+        {
+          "query": "water damage insurance claim australia",
+          "intent": "informational",
+          "volume": "high",
+          "stage": "problem-aware"
+        },
+        {
+          "query": "mould after water damage health risk",
+          "intent": "informational",
+          "volume": "high",
+          "stage": "problem-aware"
+        },
+        {
+          "query": "how to make a flood insurance claim australia",
+          "intent": "informational",
+          "volume": "high",
+          "stage": "solution-aware"
+        },
+        {
+          "query": "what does IICRC certified mean",
+          "intent": "informational",
+          "volume": "medium",
+          "stage": "comparing"
+        }
+      ],
+
+      "contentPreferences": ["how-to-guide", "checklist", "video-testimonial", "before-after", "social-proof-post"],
+
+      "preferredChannels": [
+        "google-search",
+        "facebook-ads",
+        "google-display",
+        "facebook-groups"
+      ],
+
+      "associations": [],
+
+      "onlineCommunities": [
+        {
+          "platform": "facebook",
+          "name": "Neighbourhood Facebook groups (suburb-specific)",
+          "activity": "very-high"
+        },
+        {
+          "platform": "reddit",
+          "name": "r/australia, r/brisbane, r/sydney, r/melbourne",
+          "activity": "high"
+        },
+        {
+          "platform": "facebook",
+          "name": "Australian Home Owners & Renters Help Group",
+          "activity": "high"
+        }
+      ],
+
+      "publications": [
+        {
+          "name": "Domain.com.au",
+          "type": "website",
+          "audience": "Homeowners and renters"
+        },
+        {
+          "name": "Better Homes and Gardens Australia",
+          "type": "magazine",
+          "audience": "Homeowners"
+        }
+      ],
+
+      "events": [],
+
+      "messagingFramework": {
+        "primaryHook": "Verified. Fast. Your insurance sorted.",
+        "supportingPoints": [
+          "IICRC-certified contractor on site within 60 minutes",
+          "We document everything your insurance needs — you don't have to chase anyone",
+          "Upfront pricing, no surprises",
+          "We deal with your insurer directly — Restore Assist handles the paperwork",
+          "Mould-safe drying guaranteed with moisture monitoring"
+        ],
+        "socialProof": "4.9 stars from 1,247 verified homeowners across Australia",
+        "urgencyTrigger": "Water damage doubles every 24 hours — mould begins in 24-48 hours. Act now.",
+        "trustSignals": ["IICRC certified", "4.9★ 1,247 reviews", "ABN: 85 151 794 142", "$10M public liability", "Insurance approved"]
+      },
+
+      "campaignHooks": [
+        {
+          "id": "hw-hook-01",
+          "headline": "Flood damage? Don't wait. Mould starts in 24 hours.",
+          "subheadline": "IICRC-certified contractor at your door within 60 minutes, anywhere in Australia",
+          "angle": "Urgency + authority",
+          "cta": "Get Emergency Help Now",
+          "channel": ["google-search", "facebook-ads"],
+          "brand": "disaster-recovery",
+          "stage": "ready-to-buy",
+          "keyMessage": "Speed + trust in crisis"
+        },
+        {
+          "id": "hw-hook-02",
+          "headline": "Your insurer says it's not covered. They might be wrong.",
+          "subheadline": "Restore Assist reviews your policy and fights for your entitlements",
+          "angle": "Restore Assist — insurance claim advocacy",
+          "cta": "Get a Free Claim Review",
+          "channel": ["facebook-ads", "google-search"],
+          "brand": "restore-assist",
+          "stage": "problem-aware",
+          "keyMessage": "We advocate for you"
+        }
+      ],
+
+      "synthex": {
+        "segmentPriority": 3,
+        "estimatedAudienceSize": "200,000+ events per year in AU",
+        "averageDealValue": "$2,000-$30,000 per restoration job",
+        "salesCycle": "Minutes to hours (crisis-driven)",
+        "cpaTarget": "$20-$100 per lead",
+        "keyQualifyingQuestions": [
+          "What type of damage are you dealing with?",
+          "When did it happen?",
+          "Do you have home insurance?",
+          "What state/city are you in?"
+        ],
+        "disqualifiers": [
+          "Damage event was over 6 months ago with no claim lodged",
+          "Commercial property only",
+          "Damage under $500 (too small for restoration service)"
+        ],
+        "tags": ["consumer", "b2c", "emergency", "high-volume", "insurance-claim", "restore-assist", "disaster-recovery"]
+      }
+    },
+
+    {
+      "id": "restoration-contractor",
+      "name": "Restoration Contractor — NRPG & CARSI Target",
+      "description": "Independent restoration or cleaning business owner wanting more leads, IICRC certification, insurance panel access, and professional credibility. Primary target for NRPG membership and CARSI training.",
+      "brands": ["nrpg", "carsi"],
+
+      "jobTitles": [
+        "Business Owner",
+        "Director",
+        "Sole Trader",
+        "Operations Manager",
+        "Lead Technician",
+        "Cleaning Business Owner",
+        "Restoration Technician"
+      ],
+      "industries": ["Restoration", "Cleaning", "Building & Construction", "Flood Remediation", "Mould Remediation"],
+      "companySizes": ["Sole Trader", "Micro (1-9)", "SME (10-50)"],
+      "seniority": "Director",
+      "locationBias": ["All states — higher density in QLD, NSW, VIC"],
+
+      "goals": [
+        "Get approved onto insurance panel — this is the holy grail (consistent, high-volume work)",
+        "Obtain IICRC certification to differentiate from unqualified competitors",
+        "Grow from residential to commercial restoration jobs",
+        "Increase average job value from $2,000 to $15,000+",
+        "Build a team and stop doing everything solo",
+        "Professional recognition and industry credibility"
+      ],
+
+      "painPoints": [
+        {
+          "id": "rc-01",
+          "pain": "Losing jobs to unqualified competitors who underprice — 'race to the bottom' on pricing",
+          "severity": "critical",
+          "frequency": "daily",
+          "currentWorkaround": "Either underprice to compete or lose the job",
+          "emotionalImpact": "Frustration and existential threat to business"
+        },
+        {
+          "id": "rc-02",
+          "pain": "Can't get onto insurance panels without IICRC certification, but courses are expensive and time-consuming",
+          "severity": "critical",
+          "frequency": "situational",
+          "currentWorkaround": "Delaying certification, missing out on panel work",
+          "emotionalImpact": "Stuck in a catch-22 loop"
+        },
+        {
+          "id": "rc-03",
+          "pain": "Inconsistent lead flow — feast and famine cycle without a steady stream of referred jobs",
+          "severity": "high",
+          "frequency": "monthly",
+          "currentWorkaround": "Google Ads (expensive), word of mouth, HiPages/hipages (low margin)",
+          "emotionalImpact": "Financial stress and business uncertainty"
+        },
+        {
+          "id": "rc-04",
+          "pain": "No formal training — learned on the job, lacks confidence with complex jobs (mould, asbestos-adjacent)",
+          "severity": "high",
+          "frequency": "monthly",
+          "currentWorkaround": "YouTube, asking other contractors, sometimes turning jobs down",
+          "emotionalImpact": "Self-doubt and fear of liability"
+        },
+        {
+          "id": "rc-05",
+          "pain": "Customers ask for IICRC certification and contractor can't provide it — losing jobs at the point of sale",
+          "severity": "high",
+          "frequency": "weekly",
+          "currentWorkaround": "Try to explain why they're still good without it",
+          "emotionalImpact": "Embarrassment and competitiveness anxiety"
+        }
+      ],
+
+      "buyingTriggers": [
+        "Lost a job specifically because they didn't have IICRC certification",
+        "Heard about insurance panel work and want in",
+        "Business growing and want to professionalise",
+        "Competitor recently got certified and is taking market share",
+        "Employer or client explicitly requests IICRC cert",
+        "Received a referral to NRPG from another contractor"
+      ],
+
+      "objections": [
+        "CARSI courses — how much do they cost and how long do they take?",
+        "Is CARSI IICRC-accredited? I need the real IICRC cert.",
+        "What does NRPG membership actually get me in terms of jobs?",
+        "I'm already busy — I don't need more leads right now",
+        "Can I do the training online or does it need to be in person?"
+      ],
+
+      "values": ["Professionalism", "Income growth", "Recognition", "Independence", "Technical mastery"],
+
+      "searchIntents": [
+        {
+          "query": "IICRC water damage restoration certification australia",
+          "intent": "commercial",
+          "volume": "high",
+          "stage": "solution-aware"
+        },
+        {
+          "query": "IICRC WRT course australia online",
+          "intent": "transactional",
+          "volume": "high",
+          "stage": "ready-to-buy"
+        },
+        {
+          "query": "AMRT mould remediation certification australia",
+          "intent": "transactional",
+          "volume": "medium",
+          "stage": "ready-to-buy"
+        },
+        {
+          "query": "how to get on insurance panel restoration australia",
+          "intent": "informational",
+          "volume": "medium",
+          "stage": "problem-aware"
+        },
+        {
+          "query": "restoration contractor network australia more work",
+          "intent": "commercial",
+          "volume": "medium",
+          "stage": "solution-aware"
+        },
+        {
+          "query": "IICRC FSRT fire smoke restoration technician course",
+          "intent": "transactional",
+          "volume": "medium",
+          "stage": "ready-to-buy"
+        }
+      ],
+
+      "contentPreferences": ["how-to-guide", "cpd-module", "webinar", "case-study", "checklist"],
+
+      "preferredChannels": [
+        "facebook-groups",
+        "facebook-ads",
+        "google-search",
+        "youtube",
+        "email-nurture"
+      ],
+
+      "associations": [
+        {
+          "name": "Institute of Inspection Cleaning and Restoration Certification",
+          "acronym": "IICRC",
+          "url": "https://www.iicrc.org",
+          "relevance": "The gold standard certification. Core certs: WRT (Water Restoration), AMRT (Applied Microbial Remediation), FSRT (Fire & Smoke Restoration). Advanced: ASD, CDS, HST. Prestige: Master Water Restorer (MWR), Master Fire & Smoke Restorer (MSR)",
+          "memberCount": "60,000+ globally"
+        },
+        {
+          "name": "Specialised Restoration and Cleaning Professionals",
+          "acronym": "SRCP",
+          "url": "https://www.srcp.org.au",
+          "relevance": "Australian peer association — operating since 1995; IICRC shareholder; members must hold formal qualifications; actively promotes IICRC training. Direct path to peer community.",
+          "memberCount": "Active member base"
+        },
+        {
+          "name": "Cleaning and Restoration Science Institute",
+          "acronym": "CARSI",
+          "url": "https://carsi.com.au",
+          "relevance": "Australian IICRC-approved CEC credit provider; 85+ courses; free weekly webinar — key top-of-funnel owned channel; ABN: 62 580 077 456"
+        },
+        {
+          "name": "Coach8",
+          "acronym": "Coach8",
+          "url": "https://www.coach8.com.au",
+          "relevance": "IICRC-approved Australian training school (CARSI competitor) — delivers WRT, AMRT, FSRT, ASD, HST, CDS, UFT, CCT in Brisbane, Sydney, Melbourne, Canberra, Adelaide, Perth, Hobart, Darwin + online",
+          "memberCount": "Competitor to CARSI"
+        },
+        {
+          "name": "Restoration Industry Association",
+          "acronym": "RIA",
+          "url": "https://www.restorationindustry.org",
+          "relevance": "US-based but globally respected; The Experience Conference is THE US industry event followed online by AU contractors"
+        },
+        {
+          "name": "Master Builders Association",
+          "acronym": "MBA",
+          "url": "https://www.masterbuilders.com.au",
+          "relevance": "Building credibility for contractors doing structural restoration"
+        }
+      ],
+
+      "onlineCommunities": [
+        {
+          "platform": "facebook",
+          "name": "Australian Carpet Cleaners and Restorers",
+          "activity": "very-high",
+          "note": "Real, active peer community — verified by research"
+        },
+        {
+          "platform": "facebook",
+          "name": "Water Damage Restoration Professionals",
+          "activity": "very-high",
+          "note": "Niche, intent-focused — contractors seeking certification and panel access"
+        },
+        {
+          "platform": "facebook",
+          "name": "Water Damage Restoration Professionals Australia",
+          "memberCount": "3,000+",
+          "activity": "very-high"
+        },
+        {
+          "platform": "reddit",
+          "name": "r/Disaster_Recovery_Qld",
+          "activity": "medium",
+          "note": "Subreddit with posts about IICRC certification importance; Feb 2026 post on verifying contractors"
+        },
+        {
+          "platform": "facebook",
+          "name": "Mould Remediation Australia",
+          "memberCount": "5,000+",
+          "activity": "high"
+        },
+        {
+          "platform": "facebook",
+          "name": "Carpet Cleaning & Restoration Business Australia",
+          "memberCount": "8,000+",
+          "activity": "very-high"
+        },
+        {
+          "platform": "facebook",
+          "name": "IICRC Certification Discussion Group",
+          "activity": "medium"
+        },
+        {
+          "platform": "youtube",
+          "name": "Restoration & Remediation TV (RRT)",
+          "activity": "high"
+        }
+      ],
+
+      "publications": [
+        {
+          "name": "R&R Magazine (Restoration & Remediation)",
+          "type": "magazine",
+          "url": "https://www.randrmagonline.com",
+          "frequency": "monthly",
+          "audience": "US-based but internationally read by AU contractors; Jan 2026 episode: 'How Restoration Contractors Can Overcome Cash Flow Challenges' — directly addresses #1 industry pain"
+        },
+        {
+          "name": "Cleanfax Magazine",
+          "type": "magazine",
+          "url": "https://www.cleanfax.com",
+          "frequency": "monthly",
+          "audience": "Cleaning and restoration industry professionals globally"
+        },
+        {
+          "name": "Insurance News (insurancenews.com.au)",
+          "type": "website",
+          "url": "https://www.insurancenews.com.au",
+          "frequency": "daily",
+          "audience": "Contractors read to understand insurer perspective and panel requirements"
+        }
+      ],
+
+      "events": [
+        "ISSA Cleaning & Hygiene Expo (Sydney)",
+        "IICRC Regional Training Days (Brisbane, Sydney, Melbourne)",
+        "CARSI Training Events & Free Weekly Webinar — carsi.com.au (existing owned channel; top-of-funnel entry point to NRPG ecosystem)",
+        "Coach8 Courses — Brisbane, Sydney, Melbourne, Canberra, Adelaide, Perth, Hobart, Darwin + online (CARSI competitor)",
+        "Total Clean Expo",
+        "SRCP networking and CPD events",
+        "Restoration Industry Association Annual Convention / The Experience Conference (USA — streamed by AU contractors)"
+      ],
+
+      "messagingFramework": {
+        "primaryHook": "IICRC certified + on the NRPG panel = never chase another lead again",
+        "supportingPoints": [
+          "CARSI delivers IICRC WRT, AMRT, FSRT courses in Brisbane with flexible scheduling",
+          "NRPG panel members receive pre-vetted insurance jobs directly to their phones",
+          "IICRC certification adds $3,000-$10,000 to your average job value",
+          "Panel approval means consistent work — no more feast and famine",
+          "Join 500+ NRPG contractors who turned certification into a full pipeline"
+        ],
+        "socialProof": "NRPG contractors earn 40% more per job than non-certified competitors",
+        "urgencyTrigger": "Insurance panels review their contractor lists every 6 months. Next review is [month]. Apply now.",
+        "trustSignals": ["IICRC Approved Instructor", "CARSI ABN: 62 580 077 456", "NRPG certification pathway"]
+      },
+
+      "campaignHooks": [
+        {
+          "id": "rc-hook-01",
+          "headline": "Stop losing insurance jobs to certified contractors",
+          "subheadline": "CARSI delivers IICRC WRT certification in Brisbane — next intake [date]",
+          "angle": "Competitive pain — losing work to certified competitors",
+          "cta": "Book Your Course Place",
+          "channel": ["facebook-ads", "facebook-groups", "google-search"],
+          "brand": "carsi",
+          "stage": "problem-aware",
+          "keyMessage": "Certification = access to insurance panel work"
+        },
+        {
+          "id": "rc-hook-02",
+          "headline": "How one Brisbane contractor went from $180k to $480k revenue after IICRC certification",
+          "subheadline": "Case study: NRPG panel + CARSI training = consistent insurance referrals",
+          "angle": "Transformation story / ROI",
+          "cta": "Read the Story",
+          "channel": ["facebook-groups", "youtube", "email-nurture"],
+          "brand": "nrpg",
+          "stage": "solution-aware",
+          "keyMessage": "Certification ROI is real and measurable"
+        },
+        {
+          "id": "rc-hook-03",
+          "headline": "IICRC WRT — the course that gets you on insurance panels",
+          "subheadline": "3-day intensive in Brisbane. IICRC accredited. Delivered by CARSI.",
+          "angle": "Product awareness for CARSI training",
+          "cta": "View Upcoming Dates",
+          "channel": ["google-search", "facebook-ads"],
+          "brand": "carsi",
+          "stage": "ready-to-buy",
+          "keyMessage": "Accessible, accredited, practical training"
+        }
+      ],
+
+      "synthex": {
+        "segmentPriority": 2,
+        "estimatedAudienceSize": "15,000-25,000 restoration/cleaning businesses in AU",
+        "averageDealValue": "$500-$2,000 CARSI course | $1,200-$5,000/year NRPG membership",
+        "salesCycle": "1-8 weeks (training purchase), 1-3 months (membership)",
+        "cpaTarget": "$30-$150 per lead",
+        "keyQualifyingQuestions": [
+          "Do you currently hold any IICRC certifications?",
+          "What type of restoration work do you currently do?",
+          "Are you on any insurance company panels?",
+          "How many years have you been operating?",
+          "Are you looking for more work, more skills, or both?"
+        ],
+        "disqualifiers": [
+          "Already fully certified at Gold level",
+          "Not an Australian business",
+          "Not in cleaning/restoration industry"
+        ],
+        "tags": ["contractor", "carsi", "iicrc", "training", "nrpg-membership", "b2b-supply", "carsi-training"]
+      }
+    },
+
+    {
+      "id": "facility-manager",
+      "name": "Commercial Facility Manager",
+      "description": "Manages large commercial properties — hospitals, aged care, hotels, data centres, retail centres, government buildings. Highest single-job value. Needs documented chain of custody and business continuity focus.",
+      "brands": ["disaster-recovery", "nrpg"],
+
+      "jobTitles": [
+        "Facility Manager",
+        "Building Services Manager",
+        "Operations Manager",
+        "Engineering Manager",
+        "Asset Manager",
+        "Property Services Manager",
+        "Director of Facilities",
+        "Chief Operating Officer"
+      ],
+      "industries": [
+        "Healthcare & Aged Care",
+        "Hospitality (Hotels)",
+        "Data Centres & Technology",
+        "Education",
+        "Government",
+        "Retail & Shopping Centres",
+        "Commercial Property (REIT)"
+      ],
+      "companySizes": ["Enterprise (500+)", "Mid-market (100-500)"],
+      "seniority": "Director",
+      "locationBias": ["Sydney", "Melbourne", "Brisbane", "Perth"],
+
+      "goals": [
+        "Maintain business continuity — restore function as fast as possible",
+        "Protect sensitive assets (IT equipment, medical equipment, records)",
+        "Maintain regulatory compliance (ISO 41001, AS/NZS 3745, HACCP for food-adjacent)",
+        "Document everything for insurance and board reporting",
+        "Minimise financial exposure from damage events",
+        "Ensure contractor holds appropriate licences and safety accreditations"
+      ],
+
+      "painPoints": [
+        {
+          "id": "fm-01",
+          "pain": "Water ingress into server room or medical equipment area — every hour offline = massive financial loss",
+          "severity": "critical",
+          "frequency": "situational",
+          "currentWorkaround": "Pre-planned BCP with a nominated contractor — often not tested until crisis",
+          "emotionalImpact": "Extreme stress, board-level accountability"
+        },
+        {
+          "id": "fm-02",
+          "pain": "Contractor doesn't understand asset protection — treats a data centre like a house",
+          "severity": "critical",
+          "frequency": "situational",
+          "currentWorkaround": "Supervise every step personally, adding hours to the emergency",
+          "emotionalImpact": "Distrust, exhaustion"
+        },
+        {
+          "id": "fm-03",
+          "pain": "Insurance requires AS/NZS 3745 emergency response plan compliance — contractor documentation doesn't meet standard",
+          "severity": "high",
+          "frequency": "yearly",
+          "currentWorkaround": "Internal team compiles contractor reports into compliant format",
+          "emotionalImpact": "Administrative burden and compliance anxiety"
+        },
+        {
+          "id": "fm-04",
+          "pain": "24/7 response guarantee needed but current contractors operate business hours only",
+          "severity": "high",
+          "frequency": "monthly",
+          "currentWorkaround": "On-call roster of contractors, not always available",
+          "emotionalImpact": "Vulnerability and risk exposure"
+        }
+      ],
+
+      "buyingTriggers": [
+        "Annual BCP review or after-action review following an incident",
+        "Insurance renewal requiring documented emergency response capability",
+        "Merger/acquisition with new facilities requiring contractor rationalisation",
+        "Regulatory audit flagging contractor compliance gaps",
+        "New facility opening requiring service provider selection",
+        "Existing contractor fails to deliver on a major incident"
+      ],
+
+      "objections": [
+        "Do your contractors have the security clearances needed for our facility?",
+        "Can you demonstrate AS/NZS 3745 compliance documentation?",
+        "What is your documented response time SLA?",
+        "Do you have experience with [specific sector — hospital, data centre, aged care]?",
+        "We need to go through procurement — what's the process?"
+      ],
+
+      "values": ["Business continuity", "Compliance", "Asset protection", "Speed", "Accountability", "Documentation"],
+
+      "searchIntents": [
+        {
+          "query": "commercial water damage restoration business continuity australia",
+          "intent": "commercial",
+          "volume": "medium",
+          "stage": "solution-aware"
+        },
+        {
+          "query": "data centre flood emergency response contractor",
+          "intent": "commercial",
+          "volume": "low",
+          "stage": "comparing"
+        },
+        {
+          "query": "hospital water damage restoration IICRC australia",
+          "intent": "commercial",
+          "volume": "low",
+          "stage": "comparing"
+        },
+        {
+          "query": "AS/NZS 3745 emergency response plan contractor",
+          "intent": "informational",
+          "volume": "low",
+          "stage": "problem-aware"
+        }
+      ],
+
+      "contentPreferences": ["whitepaper", "case-study", "compliance-guide", "webinar", "roi-calculator"],
+
+      "preferredChannels": [
+        "linkedin-ads",
+        "linkedin-organic",
+        "email-nurture",
+        "industry-events",
+        "direct-mail"
+      ],
+
+      "associations": [
+        {
+          "name": "Facility Management Association of Australia",
+          "acronym": "FMA",
+          "url": "https://www.fma.com.au",
+          "relevance": "Primary FM association — events, CPD, networking",
+          "memberCount": "3,000+"
+        },
+        {
+          "name": "Building Services Contractors Association of Australia",
+          "acronym": "BSCAA",
+          "url": "https://www.bscaa.com",
+          "relevance": "Covers contractors and facility service providers"
+        },
+        {
+          "name": "Property Council of Australia",
+          "acronym": "PCA",
+          "url": "https://www.propertycouncil.com.au",
+          "relevance": "Commercial property owners and managers"
+        },
+        {
+          "name": "Australian Institute of Refrigeration Air Conditioning and Heating",
+          "acronym": "AIRAH",
+          "url": "https://www.airah.org.au",
+          "relevance": "HVAC-related water damage often intersects with FM roles"
+        }
+      ],
+
+      "onlineCommunities": [
+        {
+          "platform": "linkedin",
+          "name": "Facility Management Professionals Australia",
+          "activity": "high"
+        },
+        {
+          "platform": "linkedin",
+          "name": "FMA Australia Members",
+          "activity": "medium"
+        }
+      ],
+
+      "publications": [
+        {
+          "name": "FM Industry",
+          "type": "magazine",
+          "url": "https://www.fma.com.au",
+          "frequency": "quarterly",
+          "audience": "FMA's official publication — primary reading for FM professionals"
+        },
+        {
+          "name": "Facility Management Magazine",
+          "type": "magazine",
+          "url": "https://www.fmmagazine.com.au",
+          "frequency": "quarterly",
+          "audience": "Facility and building managers"
+        },
+        {
+          "name": "ProGroup Management Blog",
+          "type": "website",
+          "url": "https://www.pgm.com.au",
+          "audience": "Dec 2025 article 'Facilities Management in Times of Crisis: Australia's Quiet Engine of Resilience' — directly maps to our value proposition"
+        },
+        {
+          "name": "Victorian Health Building Authority (VHBA)",
+          "type": "website",
+          "audience": "Published HTA-2024-002 'Responding to flooding events — restoration for healthcare facilities' (June 2025) — mandatory guidance for Victorian healthcare FMs"
+        },
+        {
+          "name": "Australian Property Journal",
+          "type": "journal",
+          "frequency": "quarterly",
+          "audience": "Commercial property professionals"
+        }
+      ],
+
+      "events": [
+        "FMA National Conference — annual; primary gathering of FM professionals nationally",
+        "FMA TTFMA Webinars (Task Team on Facilities Management Advice) — regular online; April 2024 emergency management webinar confirms engagement with restoration topic",
+        "BSCAA National Conference",
+        "Property Council of Australia National Congress",
+        "AIRAH Annual Conference",
+        "Facilities Integrate (NZ)",
+        "Total Facilities Sydney"
+      ],
+
+      "messagingFramework": {
+        "primaryHook": "Specialist restoration for commercial facilities — AS/NZS 3745 compliant, asset-aware, 24/7",
+        "supportingPoints": [
+          "IICRC S500/S520/S540 certified technicians with commercial facility experience",
+          "AS/NZS 3745 compliant documentation package for every job",
+          "Data centre and server room flood response protocols",
+          "Healthcare and aged care sector experience — infection control aware",
+          "National footprint with commercial capacity — not just residential contractors"
+        ],
+        "socialProof": "Trusted by commercial property managers across major Australian CBDs",
+        "urgencyTrigger": "Your next flood event will expose whether your BCP is theory or practice. Pre-qualify NRPG now.",
+        "trustSignals": ["IICRC Corporate Member", "AS/NZS 3745 compliant", "ABN: 85 151 794 142", "Commercial specialist"]
+      },
+
+      "campaignHooks": [
+        {
+          "id": "fm-hook-01",
+          "headline": "Is your BCP contractor actually ready for a major water event?",
+          "subheadline": "Most facilities find out the hard way. NRPG offers pre-qualified commercial response.",
+          "angle": "BCP readiness anxiety",
+          "cta": "Request a Facility Assessment",
+          "channel": ["linkedin-ads", "email-nurture"],
+          "brand": "nrpg",
+          "stage": "problem-aware",
+          "keyMessage": "Commercial-grade restoration when it matters"
+        },
+        {
+          "id": "fm-hook-02",
+          "headline": "AS/NZS 3745 compliant restoration documentation — included in every job",
+          "subheadline": "Your insurer and board will thank you",
+          "angle": "Compliance documentation delivered automatically",
+          "cta": "Download Sample Documentation",
+          "channel": ["linkedin-ads", "email-nurture"],
+          "brand": "nrpg",
+          "stage": "solution-aware",
+          "keyMessage": "Compliance made effortless"
+        }
+      ],
+
+      "synthex": {
+        "segmentPriority": 3,
+        "estimatedAudienceSize": "8,000-15,000 facility managers in AU",
+        "averageDealValue": "$10,000-$500,000 per incident | $20,000-$100,000/year retainer potential",
+        "salesCycle": "2-6 months (procurement process)",
+        "cpaTarget": "$200-$1,000 per qualified lead",
+        "keyQualifyingQuestions": [
+          "What type of facility/facilities do you manage?",
+          "Do you have a current BCP with a nominated restoration contractor?",
+          "What is your total floor area under management?",
+          "Do you have AS/NZS 3745 requirements?",
+          "What sector are you in — healthcare, data centre, hospitality, retail?"
+        ],
+        "disqualifiers": [
+          "Residential property only",
+          "In-house maintenance team with full restoration capability",
+          "Under 1,000sqm facility"
+        ],
+        "tags": ["commercial", "facility-management", "b2b", "enterprise", "bcp", "compliance", "high-value", "nrpg"]
+      }
+    }
+  ],
+
+  "synthexConfig": {
+    "version": "1.0",
+    "apiVersion": "v1",
+    "campaignDefaults": {
+      "brand": "disaster-recovery",
+      "locale": "en-AU",
+      "currency": "AUD",
+      "timezone": "AEST",
+      "complianceNote": "No phone numbers in any campaign material. Email only: support@disasterrecovery.com.au",
+      "legalEntity": "Disaster Recovery Pty Ltd | ABN: 85 151 794 142",
+      "carsiEntity": "The Trustee for The McGurk Family Trust | ABN: 62 580 077 456 | trading as CARSI"
+    },
+    "segmentPriorityOrder": [
+      "insurance-loss-adjuster",
+      "restoration-contractor",
+      "property-manager",
+      "facility-manager",
+      "homeowner-post-disaster"
+    ],
+    "carsiSpecificPersonas": ["restoration-contractor"],
+    "restoreAssistPersonas": ["homeowner-post-disaster"],
+    "nrpgPersonas": ["insurance-loss-adjuster", "property-manager", "restoration-contractor", "facility-manager"]
+  }
+}

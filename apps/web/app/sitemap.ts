@@ -112,6 +112,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.4,
     },
+    {
+      url: `${baseUrl}/nz`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 
   const servicePages: MetadataRoute.Sitemap = sitemapStructure.services.map((page) => ({
