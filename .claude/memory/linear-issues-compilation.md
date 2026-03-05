@@ -301,12 +301,145 @@
 
 ---
 
+# SCHEMA.ORG STRUCTURED DATA AUDIT — 10 Issues (Task #2)
+
+## CRITICAL FINDINGS (P0)
+
+### ISSUE #20 (PENDING)
+- **Title**: [P0] SEO: Fix domain in all Organization schemas
+- **Severity**: CRITICAL
+- **Description**: All JSON-LD schemas across entire platform reference disasterrecoverynrpg.com.au instead of disasterrecovery.com.au. Breaks canonical URLs, causes search engine confusion, prevents proper schema validation in Google Search Console, Bing Webmaster Tools, and AI search engines. Affects 100% of pages.
+- **Affected**: `apps/web/app/layout.tsx` (lines 25, 80-82, 101, 122), `apps/web/lib/seo/schema-generator.ts` (line 15), all service/location/contractor pages
+- **Recommendation**: Update NEXT_PUBLIC_BASE_URL to https://disasterrecovery.com.au (coordinated with Tech SEO Issue #11)
+- **Labels**: SEO, Schema, Bug
+- **Priority**: 0
+- **Effort**: 20 minutes (depends on env var)
+
+### ISSUE #21 (PENDING)
+- **Title**: [P0] SEO: Add ABN (taxID) to Organization schema
+- **Severity**: CRITICAL
+- **Description**: Organization schema missing required ABN field (85 151 794 142). Prevents Google and search engines from verifying company legitimacy, affecting local search results, knowledge panels, and trust signals.
+- **Affected**: `apps/web/lib/seo/schema-generator.ts` lines 22-114, `apps/web/app/layout.tsx` lines 117-142
+- **Recommendation**: Add `"taxID": "urn:abn:85151794142"` and update `"legalName"` to include ABN before address block
+- **Labels**: SEO, Schema, Compliance
+- **Priority**: 0
+- **Effort**: 15 minutes
+
+### ISSUE #22 (PENDING)
+- **Title**: [P0] SEO: Add JSON-LD schemas to e-commerce store pages
+- **Severity**: CRITICAL
+- **Description**: Store pages (/store/page.tsx, /store/[slug]/ProductDetail.tsx) have ZERO JSON-LD structured data. Completely removes e-commerce visibility from Google Shopping, rich snippets, and AI search engines. Product schema required for price/availability signals.
+- **Affected**: `apps/web/app/(public)/store/page.tsx`, `apps/web/app/(public)/store/[slug]/ProductDetail.tsx`, product data in `apps/web/lib/printful/products.ts`
+- **Recommendation**: Add Product schema with name, description, image, price, availability, SKU. Add Organization schema reference and BreadcrumbList to store landing.
+- **Labels**: SEO, Schema, E-commerce
+- **Priority**: 0
+- **Effort**: 3-4 hours
+
+### ISSUE #23 (PENDING)
+- **Title**: [P0] SEO: Fix Organization address from Sydney to Brisbane
+- **Severity**: CRITICAL
+- **Description**: Master Organization schema uses Sydney NSW address instead of correct Brisbane QLD. Creates incorrect local SEO signals, location-based search penalties, contradicts geo-targeting strategy.
+- **Affected**: `apps/web/lib/seo/schema-generator.ts` lines 36-43, `apps/web/app/layout.tsx`, affects every page
+- **Recommendation**: Update to Brisbane CBD (lat: -27.4698, lon: 153.0251). Update streetAddress, addressLocality, addressRegion, postalCode.
+- **Labels**: SEO, Schema, Local SEO
+- **Priority**: 0
+- **Effort**: 20 minutes
+
+---
+
+## HIGH FINDINGS (P1)
+
+### ISSUE #24 (PENDING)
+- **Title**: [P1] SEO: Add BreadcrumbList schemas to service pages
+- **Severity**: HIGH
+- **Description**: Service pages (water-damage, fire-smoke, mould, storm) missing BreadcrumbList schemas. Improves SERP appearance with breadcrumb rich snippets, critical for internal linking SEO and UX signals.
+- **Affected**: All service pillar pages
+- **Recommendation**: Add BreadcrumbList schema with path: Home → Services → [Service Name]. Include canonical URLs in each breadcrumb item.
+- **Labels**: SEO, Schema
+- **Priority**: 1
+- **Effort**: 2-3 hours
+
+### ISSUE #25 (PENDING)
+- **Title**: [P1] SEO: Add Offer schema with pricing to e-commerce products
+- **Severity**: HIGH
+- **Description**: Store products lack structured pricing and availability data. Without `offers` schema, Google Shopping and price comparison engines cannot index products. Reduces e-commerce search visibility.
+- **Affected**: `apps/web/app/(public)/store/[slug]/ProductDetail.tsx`, `apps/web/lib/printful/products.ts`
+- **Recommendation**: Add Offer schema with priceCurrency: "AUD", price, availability, url pointing to product page.
+- **Labels**: SEO, Schema, E-commerce
+- **Priority**: 1
+- **Effort**: 2-3 hours
+
+### ISSUE #26 (PENDING)
+- **Title**: [P1] SEO: Add credential references to contractor profiles
+- **Severity**: HIGH
+- **Description**: Contractor ProfessionalService schemas missing `hasCredential` fields for IICRC certifications. Prevents search engines from understanding professional qualifications, reduces trust signals in local search.
+- **Affected**: `apps/web/app/contractors/[id]/page.tsx` lines 138-160
+- **Recommendation**: Add `"hasCredential"` array with EducationalOccupationalCredential objects for each IICRC certification.
+- **Labels**: SEO, Schema, Credentials
+- **Priority**: 1
+- **Effort**: 2-3 hours
+
+---
+
+## MEDIUM FINDINGS (P2)
+
+### ISSUE #27 (PENDING)
+- **Title**: [P2] SEO: Implement FAQ schema on service and location pages
+- **Severity**: MEDIUM
+- **Description**: No pages include FAQ schema despite Q&A patterns in content. FAQ schema enables rich snippets in search results and voice search optimization.
+- **Affected**: Service pages, location pages, contractor directory
+- **Recommendation**: Add FAQ schema with 3-5 Q&A pairs minimum per page. Improve featured snippet eligibility.
+- **Labels**: SEO, Schema, Content
+- **Priority**: 2
+- **Effort**: 4-6 hours
+
+### ISSUE #28 (PENDING)
+- **Title**: [P2] SEO: Implement HowTo schema for process-based content
+- **Severity**: MEDIUM
+- **Description**: Service pages describe multi-step processes suitable for HowTo schema but not implemented. HowTo schema enables rich snippets and improves featured snippet potential.
+- **Affected**: Service pillar pages with process descriptions
+- **Recommendation**: Structure with HowTo schema including step, name, description, image fields.
+- **Labels**: SEO, Schema, Content
+- **Priority**: 2
+- **Effort**: 3-4 hours
+
+### ISSUE #29 (PENDING)
+- **Title**: [P2] SEO: Add SiteLinksSearchBox schema globally
+- **Severity**: MEDIUM
+- **Description**: Platform lacks global SiteLinksSearchBox schema. High-value feature for platforms with 150+ location pages, 40+ service combinations. Enables site search in Google results.
+- **Affected**: Global site schema in layout.tsx
+- **Recommendation**: Add SiteLinksSearchBox schema with `searchAction` pointing to `/search` endpoint.
+- **Labels**: SEO, Schema, Feature
+- **Priority**: 2
+- **Effort**: 2-3 hours
+
+---
+
+## FINAL SUMMARY (3 AUDITS COMPILED)
+
+**Total Issues**: 29 (10 Critical, 6 High, 13 Medium)
+**Total Effort**: 70-95 hours
+
+| Audit | P0 | P1 | P2 | P3 | Total |
+|-------|----|----|----|----|-------|
+| GEO/AEO | 1 | 2 | 4 | 2 | 9 |
+| Tech SEO | 3 | 3 | 6 | - | 12 |
+| Schema | 4 | 3 | 3 | - | 10 |
+| **TOTAL** | **8** | **8** | **13** | **2** | **29** |
+
+**Key Dependencies**:
+- Schema domain fix (Issue #20) depends on Tech SEO env var fix (Issue #11)
+- Store schemas (Issues #22, #25) depend on product data structure
+- Organization address fix (Issue #23) should coordinate with domain fixes
+
+---
+
 ## NOTES
 
-- GEO/AEO audit findings: `.claude/memory/geo-aeo-audit-findings.md`
-- Tech SEO audit findings: Received from tech-seo-agent
+- GEO/AEO audit: `.claude/memory/geo-aeo-audit-findings.md`
+- Tech SEO audit: Received from tech-seo-agent
+- Schema audit: Received from schema-agent
 - llms.txt draft: `.claude/memory/llms-txt-draft.md`
-- Issue #14 (Tech SEO llms.txt) is DUPLICATE of DR-229 (GEO/AEO) — mark as duplicate after creation
-- Waiting for audit findings from schema-agent, content-seo-agent, local-seo-agent
-- This compilation covers GEO/AEO (Task #4) + Tech SEO (Task #1)
+- Waiting for audit findings from content-seo-agent, local-seo-agent
+- linear-agent has full compilation for issue creation
 

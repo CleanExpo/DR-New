@@ -34,12 +34,12 @@ export default function GetStartedPage() {
           
           <div className="mt-12 text-center text-sm text-slate-500">
             <p>
-              Need assistance? Contact us at{' '}
-              <a 
-                href="mailto:support@disasterrecovery.com.au" 
+              Need assistance?{' '}
+              <a
+                href="/contact"
                 className="text-blue-600 hover:underline"
               >
-                support@disasterrecovery.com.au
+                Contact us online
               </a>
             </p>
           </div>

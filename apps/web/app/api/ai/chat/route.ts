@@ -63,7 +63,7 @@ Guidelines:
 - For emergencies, advise calling 000 first
 - Direct complex insurance disputes to human support
 - Provide specific, actionable guidance
-- Contact: support@disasterrecovery.com.au (email only, no phone)
+- For support enquiries, direct users to submit a message via /contact (all communication is handled online via AI and the contact form)
 
 Platform features you can help with:
 - Submitting insurance claims

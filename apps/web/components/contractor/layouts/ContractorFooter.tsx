@@ -3,7 +3,6 @@
 import React from 'react'
 import Link from 'next/link'
 import {
-  Phone,
   Mail,
   Users,
   Award,
@@ -353,17 +352,17 @@ export function ContractorFooter() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex items-start space-x-3">
               <div className="bg-teal-500/20 rounded-lg p-3">
-                <Phone className="h-5 w-5 text-teal-400" />
+                <Mail className="h-5 w-5 text-teal-400" />
               </div>
               <div>
                 <div className="text-sm font-semibold text-slate-200 mb-1">Contractor Support</div>
                 <a
-                  href="tel:1800-NRPG-PRO"
+                  href="mailto:support@disasterrecovery.com.au"
                   className="text-teal-400 hover:text-teal-300 transition-colors duration-200"
                 >
-                  1800 NRPG PRO
+                  support@disasterrecovery.com.au
                 </a>
-                <div className="text-xs text-slate-400 mt-1">24/7 Support Line</div>
+                <div className="text-xs text-slate-400 mt-1">24/7 Support</div>
               </div>
             </div>
 

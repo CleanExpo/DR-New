@@ -61,8 +61,8 @@ export default async function RequestSubmittedPage({
 
             <p className="text-sm text-slate-500">
               Questions? Contact{' '}
-              <a href="mailto:support@disasterrecovery.com.au" className="text-blue-600 hover:underline">
-                support@disasterrecovery.com.au
+              <a href="/contact" className="text-blue-600 hover:underline">
+                our support team online
               </a>
             </p>
           </div>

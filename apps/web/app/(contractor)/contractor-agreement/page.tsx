@@ -370,7 +370,7 @@ export default function ContractorAgreementPage() {
                   Disaster Recovery Pty Ltd | ABN: 85 151 794 142 | ACN: 151 794 142
                 </p>
                 <p className="text-slate-500 text-xs mt-1">
-                  Brisbane, Queensland 4076 | support@disasterrecovery.com.au
+                  Australia-wide · AI-automated online
                 </p>
                 <p className="text-slate-500 text-xs mt-1">
                   Trading as: Disaster Recovery &middot; NRPG &middot; Restore Assist

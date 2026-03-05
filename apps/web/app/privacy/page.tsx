@@ -2,10 +2,30 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Shield, Eye, Users, Mail, Lock, Database, Globe, FileText, AlertTriangle, BookOpen, Bell, UserX, ExternalLink } from "lucide-react"
 import Link from "next/link"
+import { schemaGenerator } from "@/lib/seo/schema-generator"
 
 export default function PrivacyPage() {
+  const faqSchema = schemaGenerator.generateFAQSchema([
+    {
+      question: 'What data do you collect?',
+      answer: 'We collect information you provide when submitting claims, creating accounts, or contacting us. This includes name, contact details, property address, and damage descriptions.',
+    },
+    {
+      question: 'How long do you retain my data?',
+      answer: 'We retain personal data for 7 years to comply with Australian financial and insurance regulations, then securely delete it.',
+    },
+    {
+      question: 'Do you share my data with third parties?',
+      answer: 'We share relevant claim information with matched contractors and your insurance company only. We do not sell personal data to third parties.',
+    },
+  ])
+
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
@@ -454,7 +474,7 @@ export default function PrivacyPage() {
                     </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#FF9800] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Emailing us at privacy@disasterrecovery.com.au
+                      <Link href="/contact" className="text-[#00BFA6] hover:underline">Contacting our privacy team online</Link>
                     </li>
                   </ul>
                   <p className="text-[#9CA3AF] mt-4 text-sm leading-relaxed">
@@ -479,7 +499,7 @@ export default function PrivacyPage() {
                 personal information from children under 16. If we become aware that we have inadvertently collected
                 personal information from a child under 16, we will take immediate steps to delete that information
                 from our records. If you believe we may have collected information from a child under 16, please
-                contact us at privacy@disasterrecovery.com.au.
+                <Link href="/contact" className="text-[#00BFA6] hover:underline">contact our privacy team online</Link>.
               </p>
             </div>
           </div>
@@ -611,7 +631,7 @@ export default function PrivacyPage() {
                         <Mail className="h-5 w-5 text-[#00BFA6] mr-2" />
                         <span className="text-white font-medium">Privacy Inquiries</span>
                       </div>
-                      <p className="text-[#00BFA6]">privacy@disasterrecovery.com.au</p>
+                      <Link href="/contact" className="text-[#00BFA6] hover:underline">Contact our privacy team online</Link>
                       <p className="text-[#9CA3AF] text-sm mt-1">For privacy questions, access requests, or complaints</p>
                     </div>
 
@@ -620,22 +640,20 @@ export default function PrivacyPage() {
                         <Mail className="h-5 w-5 text-[#2196F3] mr-2" />
                         <span className="text-white font-medium">General Inquiries</span>
                       </div>
-                      <p className="text-[#00BFA6]">support@disasterrecovery.com.au</p>
+                      <Link href="/contact" className="text-[#00BFA6] hover:underline">Contact us online</Link>
                     </div>
 
                     <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
                       <div className="flex items-center mb-2">
                         <Globe className="h-5 w-5 text-[#2196F3] mr-2" />
-                        <span className="text-white font-medium">Postal Address</span>
+                        <span className="text-white font-medium">Entity</span>
                       </div>
                       <p className="text-[#9CA3AF] text-sm">
                         Privacy Officer
                         <br />
                         Disaster Recovery Pty Ltd
                         <br />
-                        Brisbane, Queensland
-                        <br />
-                        4076, Australia
+                        Australia-wide · AI-automated online
                       </p>
                     </div>
                   </div>
@@ -647,7 +665,7 @@ export default function PrivacyPage() {
                     <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
                       <p className="text-white font-medium mb-2">Step 1: Contact Us</p>
                       <p className="text-[#9CA3AF] text-sm">
-                        Email your complaint to privacy@disasterrecovery.com.au. We will acknowledge receipt
+                        <Link href="/contact" className="text-[#00BFA6] hover:underline">Contact our privacy team online</Link>. We will acknowledge receipt
                         within 2 business days.
                       </p>
                     </div>

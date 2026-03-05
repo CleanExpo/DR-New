@@ -110,7 +110,7 @@ bash scripts/health-check.ps1  # Health check
 
 ## Critical Rules
 
-1. **NO PHONE NUMBERS** — Email only: `support@disasterrecovery.com.au`
+1. **NO PHONE, NO ADDRESS, NO EMAIL DISPLAYED** — The platform is fully AI-automated online. Never display phone numbers, email addresses, street addresses, or business locations anywhere in the UI. All contact/support is handled via the online contact form and AI chat. This applies to all public pages, dashboards, footers, headers, CTAs, and schema visible to users.
 2. **Australian English** — colour, mould, organisation, licence, centre
 3. **Contractors are independent** — Platform facilitates matching only
 4. **Retrieval-First** — Query memory → skills → grep BEFORE loading docs inline

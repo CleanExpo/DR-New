@@ -329,7 +329,7 @@ export default function ContractorOnboardingChecklistPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-green-900 dark:text-green-100">
-                    Your NRP Training Certificate is Ready!
+                    Your NRPG Training Certificate is Ready!
                   </h3>
                   <p className="text-sm text-green-700 dark:text-green-300 mt-1">
                     You've completed all required modules. View and download your official NRPG certificate.

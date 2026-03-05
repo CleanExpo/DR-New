@@ -113,16 +113,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
+
   // Organization Schema with Social Media Profiles
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "National Restoration Professionals Group",
     "alternateName": "NRPG",
-    "url": "https://disasterrecovery.com.au",
-    "logo": "https://disasterrecovery.com.au/images/nrpg-logo.png",
+    "url": baseUrl,
+    "logo": `${baseUrl}/images/nrpg-logo.png`,
     "description": "24/7 emergency disaster recovery in major Australian cities. Connect with IICRC-certified restoration contractors for flood, fire, storm & water damage.",
-    "email": "nrpg.team@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "AU"
@@ -141,12 +142,33 @@ export default function RootLayout({
     }
   };
 
+  // WebSite + SiteLinksSearchBox Schema (DIS-31)
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
+    "url": baseUrl,
+    "name": "Disaster Recovery Australia \u2014 NRPG",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <html lang="en" className="light" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className={`font-sans ${jakarta.variable} ${spaceGrotesk.variable} antialiased`}>

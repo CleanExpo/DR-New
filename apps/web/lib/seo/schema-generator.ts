@@ -10,7 +10,7 @@
  * Critical for SEO visibility in disaster recovery market
  */
 
-import { SERVICE_PILLARS, CLIENT_SECTORS, AUSTRALIAN_LOCATIONS, EMERGENCY_PHONE } from '@/lib/design-tokens';
+import { SERVICE_PILLARS, CLIENT_SECTORS, AUSTRALIAN_LOCATIONS } from '@/lib/design-tokens';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
 
@@ -30,22 +30,11 @@ export class SchemaGenerator {
       taxID: "urn:abn:85151794142",
       description: "Australia's leading disaster recovery and emergency restoration network. 100% vetted contractors providing forensic restoration standards for flood, fire, storm, and water damage across all states and territories.",
       url: BASE_URL,
-      telephone: EMERGENCY_PHONE.number,
-      email: "dispatch@nrpg.com.au",
       foundingDate: "2010",
 
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Brisbane",
-        addressRegion: "QLD",
-        postalCode: "4076",
         addressCountry: "AU",
-      },
-
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: -27.4698,
-        longitude: 153.0251,
       },
 
       areaServed: AUSTRALIAN_LOCATIONS.map(loc => ({
@@ -125,7 +114,6 @@ export class SchemaGenerator {
       "@id": `${BASE_URL}/#emergency-service`,
       name: "NRPG 24/7 Emergency Restoration",
       description: "Round-the-clock emergency disaster restoration services across all Australian states and territories",
-      telephone: EMERGENCY_PHONE.number,
 
       serviceType: [
         "Water Damage Restoration",
@@ -141,7 +129,6 @@ export class SchemaGenerator {
       availableChannel: {
         "@type": "ServiceChannel",
         serviceUrl: `${BASE_URL}/emergency`,
-        servicePhone: `tel:${EMERGENCY_PHONE.number.replace(/\s/g, '')}`,
         availableLanguage: ["en-AU"],
       },
 
@@ -194,7 +181,7 @@ export class SchemaGenerator {
 
       availableChannel: {
         "@type": "ServiceChannel",
-        servicePhone: `tel:${EMERGENCY_PHONE.number.replace(/\s/g, '')}`,
+        serviceUrl: `${BASE_URL}/contact`,
       },
 
       category: "Disaster Restoration",
@@ -227,9 +214,7 @@ export class SchemaGenerator {
       name: `NRPG Disaster Recovery - ${location.city}`,
       alternateName: `Disaster Recovery ${location.city}`,
       description: `24/7 emergency disaster recovery in ${location.city}, ${location.state}. IICRC-certified water damage, fire damage, mould remediation. 60-minute response. All insurers accepted.`,
-      telephone: location.phone || EMERGENCY_PHONE.number,
       url: `${BASE_URL}/locations/${stateSlug}/${citySlug}`,
-      email: "dispatch@nrpg.com.au",
 
       address: {
         "@type": "PostalAddress",
@@ -365,7 +350,6 @@ export class SchemaGenerator {
         `${BASE_URL}/images/locations/${citySlug}-team.jpg`,
         `${BASE_URL}/images/locations/${citySlug}-equipment.jpg`,
       ],
-      telephone: EMERGENCY_PHONE.number,
       url: `${BASE_URL}/locations/${stateSlug}/${citySlug}`,
 
       address: {

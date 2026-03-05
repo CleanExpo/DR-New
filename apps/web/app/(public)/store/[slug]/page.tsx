@@ -53,12 +53,52 @@ export async function generateMetadata({
       'disaster recovery gear',
       categoryLabels[product.category],
     ],
+    alternates: {
+      canonical: `/store/${product.slug}`,
+    },
     openGraph: {
       title: `${product.name} — NRPG Store`,
       description: product.description,
       url: `https://disasterrecovery.com.au/store/${product.slug}`,
       type: 'website',
     },
+  }
+}
+
+// ---------------------------------------------------------------------------
+// JSON-LD Structured Data
+// ---------------------------------------------------------------------------
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'
+
+function generateProductJsonLd(product: NonNullable<ReturnType<typeof getProductBySlug>>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: `${BASE_URL}${product.mockupImage}`,
+    brand: { '@type': 'Brand', name: 'NRPG' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'AUD',
+      price: product.basePrice.toFixed(2),
+      availability: 'https://schema.org/InStock',
+      url: `${BASE_URL}/store/${product.slug}`,
+      seller: { '@type': 'Organization', name: 'NRPG' },
+    },
+  }
+}
+
+function generateProductBreadcrumbJsonLd(product: NonNullable<ReturnType<typeof getProductBySlug>>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Store', item: `${BASE_URL}/store` },
+      { '@type': 'ListItem', position: 3, name: product.name, item: `${BASE_URL}/store/${product.slug}` },
+    ],
   }
 }
 
@@ -71,5 +111,20 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
   if (!product) notFound()
 
-  return <ProductDetail product={product} />
+  const productJsonLd = generateProductJsonLd(product)
+  const breadcrumbJsonLd = generateProductBreadcrumbJsonLd(product)
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <ProductDetail product={product} />
+    </>
+  )
 }

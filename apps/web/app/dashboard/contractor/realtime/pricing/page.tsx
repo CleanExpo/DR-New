@@ -405,10 +405,10 @@ export default function RealtimePricingPage() {
           <p className="text-sm text-grey-600">
             Have questions? Contact us at{' '}
             <a
-              href="mailto:support@disasterrecovery.com.au"
+              href="/contact"
               className="font-medium text-blue-600 hover:text-blue-700"
             >
-              support@disasterrecovery.com.au
+              our support team online
             </a>
           </p>
         </div>

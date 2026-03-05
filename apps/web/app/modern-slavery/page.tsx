@@ -384,7 +384,7 @@ export default function ModernSlaveryPage() {
                     <Mail className="h-5 w-5 text-[#00BFA6] mr-2" />
                     <span className="text-white font-medium">Report to Us</span>
                   </div>
-                  <p className="text-[#00BFA6] text-sm">support@disasterrecovery.com.au</p>
+                  <a href="/contact" className="text-[#00BFA6] text-sm hover:underline">Contact us online</a>
                   <p className="text-[#9CA3AF] text-xs mt-1">Subject line: &quot;Modern Slavery Concern&quot;</p>
                 </div>
 
@@ -448,9 +448,7 @@ export default function ModernSlaveryPage() {
                   <p className="text-[#9CA3AF] text-sm">
                     Disaster Recovery Pty Ltd
                     <br />
-                    Brisbane, Queensland
-                    <br />
-                    4076, Australia
+                    Australia-wide · AI-automated online
                   </p>
                 </div>
               </div>

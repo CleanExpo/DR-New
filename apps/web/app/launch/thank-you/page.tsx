@@ -68,7 +68,7 @@ function ThankYouContent() {
                 We've sent a confirmation email with more details about what happens next. If you don't see it in a few minutes, check your spam folder.
               </p>
               <p className="mt-2 text-sm text-blue-700">
-                <strong>Pro Tip:</strong> Add <span className="font-mono">support@disasterrecovery.com.au</span> to your contacts to ensure you don't miss our launch announcement!
+                <strong>Pro Tip:</strong> Check your inbox regularly to ensure you don't miss our launch announcement!
               </p>
             </div>
           </div>
@@ -243,8 +243,8 @@ function ThankYouContent() {
         <div className="mt-16 text-center">
           <p className="text-sm text-gray-500">
             Questions about your waitlist spot?{' '}
-            <a href="mailto:support@disasterrecovery.com.au" className="font-medium text-orange-600 hover:underline">
-              Email us
+            <a href="/contact" className="font-medium text-orange-600 hover:underline">
+              Contact us online
             </a>{' '}
             or visit our{' '}
             <Link href="/support" className="font-medium text-orange-600 hover:underline">

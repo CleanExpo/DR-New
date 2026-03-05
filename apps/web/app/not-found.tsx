@@ -20,11 +20,11 @@ export default function NotFound() {
           Sorry, the page you&apos;re looking for doesn&apos;t exist or has been
           moved. If you need assistance, please contact us at{' '}
           <a
-            href="mailto:support@disasterrecovery.com.au"
+            href="/contact"
             className="underline"
             style={{ color: '#0d9488' }}
           >
-            support@disasterrecovery.com.au
+            our support team
           </a>
           .
         </p>

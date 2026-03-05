@@ -142,7 +142,7 @@ function OrderSuccess({ orderId, total }: { orderId: string; total: number }) {
       </div>
 
       <p className="text-white/20 text-xs">
-        Questions? Email support@disasterrecovery.com.au
+        Questions? <a href="/contact" className="underline hover:text-white/40">Contact us online</a>
       </p>
 
       <Link

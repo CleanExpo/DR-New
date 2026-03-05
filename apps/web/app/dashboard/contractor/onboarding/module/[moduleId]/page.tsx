@@ -146,7 +146,7 @@ export default function ContractorTrainingModulePage({ params }: { params: { mod
           </CardHeader>
           <CardContent className="p-0">
             <iframe
-              title={`NRP Module ${payload.module.moduleId}`}
+              title={`NRPG Module ${payload.module.moduleId}`}
               sandbox="allow-same-origin"
               srcDoc={html}
               className="w-full h-[75vh] bg-white"

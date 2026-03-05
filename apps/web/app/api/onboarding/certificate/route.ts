@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
       select: { name: true },
     });
 
-    const recipientName = profile?.businessName || dbUser?.name || 'NRP Contractor';
+    const recipientName = profile?.businessName || dbUser?.name || 'NRPG Contractor';
     const certId = (cert.id || '').replace(/[^a-zA-Z0-9]/g, '').slice(-6) || '000000';
     const issueDate = cert.issueDate ? cert.issueDate.toLocaleDateString('en-AU', { day: '2-digit', month: 'long', year: 'numeric' }) : '';
 

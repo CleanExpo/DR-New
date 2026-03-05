@@ -440,7 +440,7 @@ export default function StoreLanding({ products }: StoreLandingProps) {
                   </svg>
                 ),
                 title: 'Support',
-                body: 'Questions? Contact support@disasterrecovery.com.au — we respond within 24 hours.',
+                body: 'Questions? Contact us online — we respond within 24 hours.',
               },
             ].map((item) => (
               <div key={item.title} className="flex flex-col items-center gap-3">

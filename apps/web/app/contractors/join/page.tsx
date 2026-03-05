@@ -374,12 +374,12 @@ export default function ContractorJoinPage() {
 
             <div className="mt-8">
               <p className="text-center text-gray-700">
-                Application form will be available here. For now, please email us at{' '}
+                Application form will be available here. For now, please{' '}
                 <a
-                  href="mailto:contractors@disasterrecovery.com.au"
+                  href="/contact"
                   className="font-semibold text-blue-600 hover:underline"
                 >
-                  contractors@disasterrecovery.com.au
+                  contact us online
                 </a>{' '}
                 with your details.
               </p>

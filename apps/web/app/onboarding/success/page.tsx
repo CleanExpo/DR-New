@@ -99,7 +99,7 @@ export default function OnboardingSuccessPage({
                 <div className="text-xs text-muted-foreground mt-1">Detailed guides</div>
               </a>
               <a
-                href="mailto:support@disasterrecovery.com.au"
+                href="/contact"
                 className="p-3 border rounded-lg hover:bg-secondary/50 transition-colors"
               >
                 <div className="font-medium">Contact Support</div>
