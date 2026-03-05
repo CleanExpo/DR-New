@@ -10,7 +10,7 @@ import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/ser
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Fire & Smoke Damage Restoration | NRPG Australia",
-  description: "Professional fire and smoke damage restoration across Australia. Fire damage cleanup, smoke remediation, soot removal, odour elimination. IICRC certified. 24/7 emergency response.",
+  description: "Professional fire and smoke damage restoration by certified specialists. Insurance-direct billing, 24/7 emergency response, and complete soot remediation across all Australian states.",
   keywords: ['fire damage restoration', 'smoke damage', 'fire cleanup', 'soot removal', 'smoke odour removal', 'fire recovery', 'IICRC certified', 'Australia'],
   slug: 'fire-smoke-damage',
   categoryName: 'Fire & Smoke Damage Restoration',
@@ -42,7 +42,7 @@ export default function FireSmokeDamagePillarPage() {
               IICRC FSRT
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
-              Fire & Smoke Damage Restoration <span className="text-[#00BFA6]">Australia</span>
+              How Is Fire and Smoke Damage <span className="text-[#00BFA6]">Restored?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
               Expert fire and smoke damage restoration services. IICRC-certified professionals. 24/7 emergency response across major Australian cities.

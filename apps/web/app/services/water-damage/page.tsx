@@ -10,7 +10,7 @@ import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/ser
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Water Damage Restoration Services | NRPG Australia",
-  description: "Professional water damage restoration services across Australia. Basement flooding, burst pipes, flood restoration, structural drying. IICRC S500 certified. 24/7 emergency response.",
+  description: "IICRC-certified water damage restoration across Australia. 60-minute emergency response, insurance-approved contractors, and forensic drying standards to protect your property.",
   keywords: ['water damage restoration', 'water damage repair', 'flood damage', 'water extraction', 'structural drying', 'burst pipe', 'basement flooding', 'IICRC S500', 'Australia'],
   slug: 'water-damage',
   categoryName: 'Water Damage Restoration',
@@ -61,7 +61,7 @@ export default function WaterDamagePillarPage() {
               IICRC S500
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
-              Water Damage Restoration <span className="text-[#00BFA6]">Australia</span>
+              What Should You Do After <span className="text-[#00BFA6]">Water Damage?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
               Complete guide to water damage restoration services across Australia. IICRC-certified professionals. 24/7 emergency response across major Australian cities.

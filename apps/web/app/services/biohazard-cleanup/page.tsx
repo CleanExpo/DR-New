@@ -10,7 +10,7 @@ import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/ser
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Biohazard Cleanup Services | NRPG Australia",
-  description: "Professional biohazard cleanup services across Australia. Crime scene, trauma, meth lab decontamination, sewage, hoarding cleanup. Certified and discreet.",
+  description: "What Does Professional Biohazard Cleanup Involve? IICRC-certified specialists across Australia provide discreet, insurance-approved crime scene, trauma, and hazardous material remediation.",
   keywords: ['biohazard cleanup', 'crime scene cleanup', 'trauma cleanup', 'meth decontamination', 'sewage cleanup', 'hoarding cleanup', 'forensic cleaning', 'Australia'],
   slug: 'biohazard-cleanup',
   categoryName: 'Biohazard Cleanup',
@@ -42,7 +42,7 @@ export default function BiohazardCleanupPillarPage() {
               IICRC S540 / S800
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
-              Biohazard Cleanup Services <span className="text-[#00BFA6]">Australia</span>
+              What Does Professional Biohazard <span className="text-[#00BFA6]">Cleanup Involve?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
               Certified biohazard and trauma scene cleanup. IICRC-certified professionals. 24/7 emergency response across major Australian cities.

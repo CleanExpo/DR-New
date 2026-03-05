@@ -10,7 +10,7 @@ import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/ser
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Mould Remediation Services | NRPG Australia",
-  description: "Professional mould remediation services across Australia. Black mould removal, mould inspection, testing, prevention. IICRC S520 certified. Safe and thorough mould cleanup.",
+  description: "Safe, certified mould remediation services across Australia. IICRC-compliant air quality testing, containment, and full remediation by NRPG-vetted specialists.",
   keywords: ['mould remediation', 'mould removal', 'black mould', 'mould inspection', 'mould testing', 'mould prevention', 'IICRC S520', 'Australia'],
   slug: 'mould-remediation',
   categoryName: 'Mould Remediation',
@@ -42,7 +42,7 @@ export default function MouldRemediationPillarPage() {
               IICRC S520
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
-              Mould Remediation Services <span className="text-[#00BFA6]">Australia</span>
+              How Is Mould Safely Removed <span className="text-[#00BFA6]">from Your Property?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
               Professional mould removal and remediation. IICRC-certified professionals. 24/7 emergency response across major Australian cities.

@@ -9,7 +9,7 @@ import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/ser
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Storm Damage Restoration Services | NRPG Australia",
-  description: "Professional storm damage restoration across Australia. Roof damage, wind damage, hail damage, tree cleanup, emergency tarping. 24/7 emergency response.",
+  description: "Emergency storm damage repair and restoration across Australia. NRPG-vetted contractors respond within 60 minutes, manage insurance claims, and restore your property to pre-loss condition.",
   keywords: ['storm damage restoration', 'storm damage repair', 'roof damage', 'wind damage', 'hail damage', 'tree damage', 'emergency tarping', 'Australia'],
   slug: 'storm-damage',
   categoryName: 'Storm Damage Restoration',
@@ -38,7 +38,7 @@ export default function StormDamagePillarPage() {
               Multiple IICRC Standards
             </div>
             <h1 className="font-poppins font-bold text-4xl md:text-6xl text-balance mb-6">
-              Storm Damage Restoration <span className="text-[#00BFA6]">Australia</span>
+              Who Handles Storm Damage Restoration <span className="text-[#00BFA6]">in Australia?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
               Emergency storm and weather damage restoration. IICRC-certified professionals. 24/7 emergency response across major Australian cities.
