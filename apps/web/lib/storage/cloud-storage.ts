@@ -1,22 +1,25 @@
 /**
  * Cloud Storage Service
- * Unified interface for S3-compatible storage (AWS S3, DigitalOcean Spaces)
+ * Unified interface supporting Supabase Storage (primary), AWS S3, DigitalOcean Spaces
  *
  * Environment Variables:
- * - STORAGE_TYPE: 's3' | 'spaces' (default: 's3')
- * - STORAGE_REGION: AWS region or DigitalOcean region (e.g., 'us-east-1', 'syd1')
- * - STORAGE_ENDPOINT: Custom endpoint URL (required for DigitalOcean Spaces)
- * - STORAGE_ACCESS_KEY_ID: Access key
- * - STORAGE_SECRET_ACCESS_KEY: Secret key
- * - STORAGE_BUCKET_NAME: Bucket name
- * - STORAGE_PUBLIC_URL: Optional public CDN URL
+ * - STORAGE_TYPE: 'supabase' | 's3' | 'spaces' (default: 'supabase')
+ * - STORAGE_BUCKET_NAME: Bucket name (default: 'nrpg-uploads')
+ *
+ * Supabase (uses existing SUPABASE_* vars — no extra credentials needed):
+ * - NEXT_PUBLIC_SUPABASE_URL: Supabase project URL
+ * - SUPABASE_SERVICE_ROLE_KEY: Service role key
+ *
+ * S3 / Spaces (legacy):
+ * - STORAGE_REGION, STORAGE_ENDPOINT, STORAGE_ACCESS_KEY_ID, STORAGE_SECRET_ACCESS_KEY
  */
 
 import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { createClient } from '@supabase/supabase-js';
 
 export interface StorageConfig {
-  type: 's3' | 'spaces';
+  type: 'supabase' | 's3' | 'spaces';
   region: string;
   endpoint?: string;
   accessKeyId: string;
@@ -40,11 +43,37 @@ export interface UploadResult {
   etag?: string;
 }
 
-/**
- * Get storage configuration from environment variables
- */
+// ─── Supabase Storage helpers ─────────────────────────────────────────────────
+
+function getSupabaseClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    throw new Error('Supabase storage requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY');
+  }
+  return createClient(url, key, { auth: { persistSession: false } });
+}
+
+function getSupabaseBucket() {
+  return process.env.STORAGE_BUCKET_NAME || 'nrpg-uploads';
+}
+
+// ─── Config helper (for S3/Spaces legacy path) ────────────────────────────────
+
 export function getStorageConfig(): StorageConfig {
-  const type = (process.env.STORAGE_TYPE || 's3') as 's3' | 'spaces';
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
+
+  if (type === 'supabase') {
+    // No S3 credentials needed — Supabase uses its own auth
+    return {
+      type,
+      region: 'ap-southeast-2',
+      bucketName: getSupabaseBucket(),
+      accessKeyId: '',
+      secretAccessKey: '',
+    };
+  }
+
   const region = process.env.STORAGE_REGION || 'us-east-1';
   const endpoint = process.env.STORAGE_ENDPOINT;
   const accessKeyId = process.env.STORAGE_ACCESS_KEY_ID || '';
@@ -53,55 +82,64 @@ export function getStorageConfig(): StorageConfig {
   const publicUrl = process.env.STORAGE_PUBLIC_URL;
 
   if (!accessKeyId || !secretAccessKey || !bucketName) {
-    throw new Error('Storage credentials not configured. Set STORAGE_ACCESS_KEY_ID, STORAGE_SECRET_ACCESS_KEY, and STORAGE_BUCKET_NAME');
+    throw new Error('S3/Spaces storage requires STORAGE_ACCESS_KEY_ID, STORAGE_SECRET_ACCESS_KEY, and STORAGE_BUCKET_NAME');
   }
 
-  return {
-    type,
-    region,
-    endpoint,
-    accessKeyId,
-    secretAccessKey,
-    bucketName,
-    publicUrl,
-  };
+  return { type, region, endpoint, accessKeyId, secretAccessKey, bucketName, publicUrl };
 }
 
-/**
- * Create S3 client for AWS S3 or DigitalOcean Spaces
- */
+// ─── S3 client (legacy) ───────────────────────────────────────────────────────
+
 export function createStorageClient(config?: StorageConfig): S3Client {
   const cfg = config || getStorageConfig();
-
   const clientConfig: any = {
     region: cfg.region,
-    credentials: {
-      accessKeyId: cfg.accessKeyId,
-      secretAccessKey: cfg.secretAccessKey,
-    },
+    credentials: { accessKeyId: cfg.accessKeyId, secretAccessKey: cfg.secretAccessKey },
   };
-
-  // For DigitalOcean Spaces or custom S3-compatible endpoints
   if (cfg.endpoint) {
     clientConfig.endpoint = cfg.endpoint;
-    clientConfig.forcePathStyle = false; // DigitalOcean Spaces uses virtual-hosted-style
+    clientConfig.forcePathStyle = false;
   }
-
   return new S3Client(clientConfig);
 }
 
-/**
- * Upload file content to cloud storage
- */
+// ─── Upload ───────────────────────────────────────────────────────────────────
+
 export async function uploadFile(
   key: string,
   content: Buffer | string,
   options: UploadOptions = {},
   config?: StorageConfig
 ): Promise<UploadResult> {
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
+
+  if (type === 'supabase') {
+    const supabase = getSupabaseClient();
+    const bucket = getSupabaseBucket();
+    const buffer = typeof content === 'string' ? Buffer.from(content, 'utf-8') : content;
+
+    const { data, error } = await supabase.storage
+      .from(bucket)
+      .upload(key, buffer, {
+        contentType: options.contentType || 'application/octet-stream',
+        cacheControl: options.cacheControl || '3600',
+        upsert: true,
+      });
+
+    if (error) throw error;
+
+    const { data: urlData } = supabase.storage.from(bucket).getPublicUrl(key);
+
+    return {
+      key: data.path,
+      url: urlData.publicUrl,
+      size: buffer.length,
+    };
+  }
+
+  // S3 / Spaces path
   const cfg = config || getStorageConfig();
   const client = createStorageClient(cfg);
-
   const buffer = typeof content === 'string' ? Buffer.from(content, 'utf-8') : content;
 
   const command = new PutObjectCommand({
@@ -115,60 +153,47 @@ export async function uploadFile(
   });
 
   const response = await client.send(command);
-
-  // Construct URLs
   const url = getStorageUrl(key, cfg);
-  const publicUrl = cfg.publicUrl ? `${cfg.publicUrl}/${key}` : undefined;
 
   return {
     key,
     url,
-    publicUrl,
+    publicUrl: cfg.publicUrl ? `${cfg.publicUrl}/${key}` : undefined,
     size: buffer.length,
     etag: response.ETag,
   };
 }
 
-/**
- * Download file content from cloud storage
- */
-export async function downloadFile(
-  key: string,
-  config?: StorageConfig
-): Promise<Buffer | null> {
+// ─── Download ─────────────────────────────────────────────────────────────────
+
+export async function downloadFile(key: string, config?: StorageConfig): Promise<Buffer | null> {
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
+
+  if (type === 'supabase') {
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase.storage.from(getSupabaseBucket()).download(key);
+    if (error) {
+      if (error.message?.includes('not found') || error.message?.includes('Object not found')) return null;
+      throw error;
+    }
+    return data ? Buffer.from(await data.arrayBuffer()) : null;
+  }
+
   const cfg = config || getStorageConfig();
   const client = createStorageClient(cfg);
-
   try {
-    const command = new GetObjectCommand({
-      Bucket: cfg.bucketName,
-      Key: key,
-    });
-
+    const command = new GetObjectCommand({ Bucket: cfg.bucketName, Key: key });
     const response = await client.send(command);
-
-    if (!response.Body) {
-      return null;
-    }
-
-    // Convert stream to buffer
+    if (!response.Body) return null;
     const chunks: Uint8Array[] = [];
-    for await (const chunk of response.Body as any) {
-      chunks.push(chunk);
-    }
-
+    for await (const chunk of response.Body as any) chunks.push(chunk);
     return Buffer.concat(chunks);
   } catch (error: any) {
-    if (error.name === 'NoSuchKey' || error.$metadata?.httpStatusCode === 404) {
-      return null;
-    }
+    if (error.name === 'NoSuchKey' || error.$metadata?.httpStatusCode === 404) return null;
     throw error;
   }
 }
 
-/**
- * Download file content as string
- */
 export async function downloadFileAsString(
   key: string,
   encoding: BufferEncoding = 'utf-8',
@@ -178,137 +203,125 @@ export async function downloadFileAsString(
   return buffer ? buffer.toString(encoding) : null;
 }
 
-/**
- * Check if file exists in cloud storage
- */
-export async function fileExists(
-  key: string,
-  config?: StorageConfig
-): Promise<boolean> {
+// ─── Exists ───────────────────────────────────────────────────────────────────
+
+export async function fileExists(key: string, config?: StorageConfig): Promise<boolean> {
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
+
+  if (type === 'supabase') {
+    const supabase = getSupabaseClient();
+    const folder = key.includes('/') ? key.substring(0, key.lastIndexOf('/')) : '';
+    const filename = key.includes('/') ? key.substring(key.lastIndexOf('/') + 1) : key;
+    const { data } = await supabase.storage.from(getSupabaseBucket()).list(folder, {
+      search: filename,
+      limit: 1,
+    });
+    return !!data && data.length > 0 && data.some((f) => f.name === filename);
+  }
+
   const cfg = config || getStorageConfig();
   const client = createStorageClient(cfg);
-
   try {
-    const command = new HeadObjectCommand({
-      Bucket: cfg.bucketName,
-      Key: key,
-    });
-
-    await client.send(command);
+    await client.send(new HeadObjectCommand({ Bucket: cfg.bucketName, Key: key }));
     return true;
   } catch (error: any) {
-    if (error.name === 'NotFound' || error.$metadata?.httpStatusCode === 404) {
-      return false;
-    }
+    if (error.name === 'NotFound' || error.$metadata?.httpStatusCode === 404) return false;
     throw error;
   }
 }
 
-/**
- * Delete file from cloud storage
- */
-export async function deleteFile(
-  key: string,
-  config?: StorageConfig
-): Promise<void> {
-  const cfg = config || getStorageConfig();
-  const client = createStorageClient(cfg);
+// ─── Delete ───────────────────────────────────────────────────────────────────
 
-  const command = new DeleteObjectCommand({
-    Bucket: cfg.bucketName,
-    Key: key,
-  });
+export async function deleteFile(key: string, config?: StorageConfig): Promise<void> {
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
 
-  await client.send(command);
-}
-
-/**
- * Get storage URL for a key
- */
-export function getStorageUrl(key: string, config?: StorageConfig): string {
-  const cfg = config || getStorageConfig();
-
-  if (cfg.publicUrl) {
-    return `${cfg.publicUrl}/${key}`;
+  if (type === 'supabase') {
+    const supabase = getSupabaseClient();
+    const { error } = await supabase.storage.from(getSupabaseBucket()).remove([key]);
+    if (error) throw error;
+    return;
   }
 
+  const cfg = config || getStorageConfig();
+  const client = createStorageClient(cfg);
+  await client.send(new DeleteObjectCommand({ Bucket: cfg.bucketName, Key: key }));
+}
+
+// ─── URL helpers ──────────────────────────────────────────────────────────────
+
+export function getStorageUrl(key: string, config?: StorageConfig): string {
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
+
+  if (type === 'supabase') {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const bucket = getSupabaseBucket();
+    return `${url}/storage/v1/object/public/${bucket}/${key}`;
+  }
+
+  const cfg = config || getStorageConfig();
+  if (cfg.publicUrl) return `${cfg.publicUrl}/${key}`;
   if (cfg.endpoint) {
-    // DigitalOcean Spaces format: https://bucket-name.region.digitaloceanspaces.com/key
     const endpoint = cfg.endpoint.replace('https://', '').replace('http://', '');
     return `https://${cfg.bucketName}.${endpoint}/${key}`;
   }
-
-  // AWS S3 format
   return `https://${cfg.bucketName}.s3.${cfg.region}.amazonaws.com/${key}`;
 }
 
-/**
- * Generate a unique storage key with timestamp and random suffix
- */
-export function generateStorageKey(
-  prefix: string,
-  filename: string,
-  extension?: string
-): string {
-  const timestamp = Date.now();
-  const random = Math.random().toString(36).substring(2, 8);
-  const ext = extension || filename.split('.').pop() || '';
-  const baseName = filename.replace(/\.[^/.]+$/, '').replace(/[^a-z0-9]/gi, '-').toLowerCase();
+// ─── Presigned URLs ───────────────────────────────────────────────────────────
 
-  return `${prefix}/${timestamp}-${random}-${baseName}.${ext}`;
-}
-
-/**
- * Generate a presigned URL for secure file download
- *
- * @param key - Storage key of the file
- * @param expiresIn - URL expiration time in seconds (default: 3600 = 1 hour)
- * @param config - Optional storage configuration
- * @returns Presigned URL string
- */
 export async function getPresignedDownloadUrl(
   key: string,
   expiresIn: number = 3600,
   config?: StorageConfig
 ): Promise<string> {
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
+
+  if (type === 'supabase') {
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase.storage
+      .from(getSupabaseBucket())
+      .createSignedUrl(key, expiresIn);
+    if (error) throw error;
+    return data.signedUrl;
+  }
+
   const cfg = config || getStorageConfig();
   const client = createStorageClient(cfg);
-
-  const command = new GetObjectCommand({
-    Bucket: cfg.bucketName,
-    Key: key,
-  });
-
-  // Generate presigned URL that expires after specified time
-  const url = await getSignedUrl(client, command, { expiresIn });
-  return url;
+  return getSignedUrl(client, new GetObjectCommand({ Bucket: cfg.bucketName, Key: key }), { expiresIn });
 }
 
-/**
- * Generate a presigned URL for secure file upload
- *
- * @param key - Storage key for the upload
- * @param contentType - MIME type of the file
- * @param expiresIn - URL expiration time in seconds (default: 900 = 15 minutes)
- * @param config - Optional storage configuration
- * @returns Presigned URL string
- */
 export async function getPresignedUploadUrl(
   key: string,
   contentType: string,
   expiresIn: number = 900,
   config?: StorageConfig
 ): Promise<string> {
+  const type = (process.env.STORAGE_TYPE || 'supabase') as StorageConfig['type'];
+
+  if (type === 'supabase') {
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase.storage
+      .from(getSupabaseBucket())
+      .createSignedUploadUrl(key);
+    if (error) throw error;
+    return data.signedUrl;
+  }
+
   const cfg = config || getStorageConfig();
   const client = createStorageClient(cfg);
+  return getSignedUrl(
+    client,
+    new PutObjectCommand({ Bucket: cfg.bucketName, Key: key, ContentType: contentType }),
+    { expiresIn }
+  );
+}
 
-  const command = new PutObjectCommand({
-    Bucket: cfg.bucketName,
-    Key: key,
-    ContentType: contentType,
-  });
+// ─── Key generator ────────────────────────────────────────────────────────────
 
-  // Generate presigned URL for direct upload
-  const url = await getSignedUrl(client, command, { expiresIn });
-  return url;
+export function generateStorageKey(prefix: string, filename: string, extension?: string): string {
+  const timestamp = Date.now();
+  const random = Math.random().toString(36).substring(2, 8);
+  const ext = extension || filename.split('.').pop() || '';
+  const baseName = filename.replace(/\.[^/.]+$/, '').replace(/[^a-z0-9]/gi, '-').toLowerCase();
+  return `${prefix}/${timestamp}-${random}-${baseName}.${ext}`;
 }
