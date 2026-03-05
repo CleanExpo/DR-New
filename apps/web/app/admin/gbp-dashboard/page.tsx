@@ -262,7 +262,7 @@ export default function GBPDashboardPage() {
               { task: 'Set up review request automation', completed: false, priority: 'medium' },
             ].map((item, idx) => (
               <div key={idx} className="flex items-center gap-4 p-4 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors cursor-pointer">
-                <input type="checkbox" checked={item.completed} onChange={() => {}} className="w-5 h-5 cursor-pointer" />
+                <input type="checkbox" checked={item.completed} readOnly className="w-5 h-5 cursor-pointer" />
                 <span className="flex-1">{item.task}</span>
                 <span
                   className={`text-xs font-bold px-3 py-1 rounded-full ${

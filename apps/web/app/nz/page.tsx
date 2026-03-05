@@ -166,20 +166,7 @@ export default function NewZealandPage() {
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-300"
-              style={{
-                background: 'transparent',
-                border: '1px solid #00b4d8',
-                color: '#00b4d8',
-              }}
-              onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLElement).style.background = '#00b4d8'
-                ;(e.currentTarget as HTMLElement).style.color = '#050505'
-              }}
-              onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLElement).style.background = 'transparent'
-                ;(e.currentTarget as HTMLElement).style.color = '#00b4d8'
-              }}
+              className="inline-flex items-center gap-3 px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-300 text-[#00b4d8] bg-transparent border border-[#00b4d8] hover:bg-[#00b4d8] hover:text-[#050505]"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                 <path
