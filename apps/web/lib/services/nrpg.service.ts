@@ -97,3 +97,6 @@ export async function verifyNRPGContractor(
       return { success: false, message: 'Invalid verification level' };
   }
 }
+
+// Re-export full registration service functions from src
+export { registerContractor, getPendingVerifications } from '../../src/lib/services/nrpg.service';
