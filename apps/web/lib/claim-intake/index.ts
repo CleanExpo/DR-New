@@ -13,6 +13,10 @@
 
 import { prisma } from '@/lib/prisma';
 import { AustralianServiceType, AustralianState, BookingStatus, EmergencyResponseLevel } from '@prisma/client';
+import {
+  sendContractorMatchNotificationEmail,
+  sendBackupContractorNotificationEmail,
+} from '@/lib/email/contractor-notifications';
 
 // ============================================================================
 // Types
@@ -160,12 +164,17 @@ export async function matchContractorsToBooking(bookingId: string): Promise<Cont
     throw new Error(`Booking not found: ${bookingId}`);
   }
 
-  // 2. Find all active contractors
+  // 2. Find all active, available contractors
+  const now = new Date();
   const contractors = await prisma.contractor.findMany({
     where: {
       isActive: true,
       isSuspended: false,
-      isVerified: true, // Only verified contractors for now
+      isVerified: true,
+      OR: [
+        { unavailableUntil: null },
+        { unavailableUntil: { lt: now } },
+      ],
     },
     include: {
       serviceAreas: {
@@ -287,9 +296,24 @@ export async function matchContractorsToBooking(bookingId: string): Promise<Cont
 // Step 3: Notify Contractors
 // ============================================================================
 
+// Response deadline windows by urgency
+const RESPONSE_DEADLINE_HOURS: Record<string, number> = {
+  emergency: 0.25, // 15 minutes
+  urgent: 0.5,     // 30 minutes
+  standard: 2,     // 2 hours
+  flexible: 4,     // 4 hours
+};
+
+const EMERGENCY_LEVEL_TO_URGENCY: Record<string, 'emergency' | 'urgent' | 'standard' | 'flexible'> = {
+  CRITICAL: 'emergency',
+  URGENT: 'urgent',
+  STANDARD: 'standard',
+  SCHEDULED: 'flexible',
+};
+
 /**
- * Send notifications to contractors about new available job
- * Includes email and in-app notifications
+ * Send notifications to contractors about new available job.
+ * Emails each contractor, updates ContractorMatch.notificationStatus, and sets responseDeadline.
  */
 export async function notifyContractorsOfNewJob(
   bookingId: string,
@@ -302,12 +326,7 @@ export async function notifyContractorsOfNewJob(
   const booking = await prisma.booking.findUnique({
     where: { id: bookingId },
     include: {
-      client: {
-        select: {
-          name: true,
-          email: true,
-        },
-      },
+      client: { select: { name: true, email: true } },
     },
   });
 
@@ -315,20 +334,27 @@ export async function notifyContractorsOfNewJob(
     throw new Error(`Booking not found: ${bookingId}`);
   }
 
-  // Send notification to each matched contractor
+  const urgency = EMERGENCY_LEVEL_TO_URGENCY[booking.emergencyResponseLevel] ?? 'standard';
+  const responseDeadline = new Date(
+    Date.now() + RESPONSE_DEADLINE_HOURS[urgency] * 60 * 60 * 1000
+  );
+
+  // Mask client name for privacy (e.g., "John S.")
+  const clientParts = (booking.client?.name || 'Client').split(' ');
+  const maskedClientName =
+    clientParts.length > 1
+      ? `${clientParts[0]} ${clientParts[clientParts.length - 1].charAt(0)}.`
+      : clientParts[0];
+
+  // Determine if insurance-backed from booking notes
+  const hasInsurance = booking.notes?.includes('Insurance:') &&
+    !booking.notes?.includes('Insurance: None');
+
   for (const contractorId of contractorIds) {
     try {
       const contractor = await prisma.contractor.findUnique({
         where: { id: contractorId },
-        include: {
-          user: {
-            select: {
-              id: true,
-              email: true,
-              name: true,
-            },
-          },
-        },
+        include: { user: { select: { id: true, email: true, name: true } } },
       });
 
       if (!contractor) {
@@ -336,20 +362,51 @@ export async function notifyContractorsOfNewJob(
         continue;
       }
 
-      // Create in-app notification
-      // Note: Notification model may not exist yet, so this is pseudo-code for future implementation
-      // For now, we're just tracking that we attempted to notify
+      // Get ContractorMatch for this contractor+booking to retrieve matchScore/matchReason
+      const match = await prisma.contractorMatch.findFirst({
+        where: { contractorId, serviceRequestId: bookingId },
+      });
 
-      console.log(`📢 Notifying contractor: ${contractor.businessName}`);
-      console.log(`   Email: ${contractor.user.email}`);
-      console.log(`   Job: ${booking.australianServiceType} in ${booking.serviceSuburb}`);
-      console.log(`   Budget: $${booking.estimatedCostAUD}`);
+      const emailResult = await sendContractorMatchNotificationEmail({
+        contractorName: contractor.user.name || 'Contractor',
+        contractorEmail: contractor.user.email,
+        businessName: contractor.businessName,
+        claimId: bookingId,
+        clientName: maskedClientName,
+        propertySuburb: booking.serviceSuburb || '',
+        propertyPostcode: booking.servicePostcode || '',
+        disasterType: booking.australianServiceType.replace(/_/g, ' '),
+        urgency,
+        matchScore: match?.matchScore ?? 50,
+        matchReasons: (match?.matchReason as string[]) ?? ['Location match', 'Service specialty'],
+        responseDeadline,
+        estimatedValue: booking.estimatedCostAUD
+          ? `$${Number(booking.estimatedCostAUD).toLocaleString('en-AU')}`
+          : undefined,
+        hasInsurance: hasInsurance ?? false,
+      });
 
-      // TODO: Send email via Resend
-      // TODO: Create notification record
-      // TODO: Send WebSocket event to contractor
-
-      successCount++;
+      if (emailResult.success) {
+        if (match) {
+          await prisma.contractorMatch.update({
+            where: { id: match.id },
+            data: {
+              notificationStatus: 'SENT',
+              notificationSentAt: new Date(),
+              responseDeadline,
+            },
+          });
+        }
+        successCount++;
+      } else {
+        if (match) {
+          await prisma.contractorMatch.update({
+            where: { id: match.id },
+            data: { notificationStatus: 'FAILED' },
+          });
+        }
+        failureCount++;
+      }
     } catch (error) {
       console.error(`Failed to notify contractor ${contractorId}:`, error);
       failureCount++;
@@ -357,6 +414,84 @@ export async function notifyContractorsOfNewJob(
   }
 
   return { successCount, failureCount };
+}
+
+/**
+ * Escalate a timed-out ContractorMatch to the next backup contractor.
+ * Called by the job-alerts cron when a contractor hasn't responded within the deadline.
+ */
+export async function escalateToNextContractor(
+  bookingId: string,
+  expiredMatchId: string
+): Promise<boolean> {
+  // Mark the expired match
+  await prisma.contractorMatch.update({
+    where: { id: expiredMatchId },
+    data: { notificationStatus: 'EXPIRED', contractorResponse: 'DECLINED' },
+  });
+
+  // Find next unnotified backup contractor for this booking, sorted by matchScore desc
+  const nextMatch = await prisma.contractorMatch.findFirst({
+    where: {
+      serviceRequestId: bookingId,
+      notificationStatus: null,
+      contractorResponse: null,
+    },
+    orderBy: { matchScore: 'desc' },
+    include: {
+      contractor: {
+        include: { user: { select: { email: true, name: true } } },
+      },
+    },
+  });
+
+  if (!nextMatch) {
+    console.warn(`[ESCALATE] No backup contractor available for booking ${bookingId}`);
+    return false;
+  }
+
+  const booking = await prisma.booking.findUnique({
+    where: { id: bookingId },
+    select: {
+      australianServiceType: true,
+      serviceSuburb: true,
+      servicePostcode: true,
+      emergencyResponseLevel: true,
+    },
+  });
+
+  if (!booking) return false;
+
+  const urgency = EMERGENCY_LEVEL_TO_URGENCY[booking.emergencyResponseLevel] ?? 'standard';
+  const responseDeadline = new Date(
+    Date.now() + RESPONSE_DEADLINE_HOURS[urgency] * 60 * 60 * 1000
+  );
+
+  const contractor = nextMatch.contractor as any;
+  await sendBackupContractorNotificationEmail({
+    contractorName: contractor?.user?.name || 'Contractor',
+    contractorEmail: contractor?.user?.email || '',
+    businessName: contractor?.businessName || '',
+    claimId: bookingId,
+    clientName: 'Property Owner',
+    propertySuburb: booking.serviceSuburb || '',
+    propertyPostcode: booking.servicePostcode || '',
+    disasterType: booking.australianServiceType.replace(/_/g, ' '),
+    urgency,
+    matchScore: nextMatch.matchScore,
+    responseDeadline,
+  });
+
+  await prisma.contractorMatch.update({
+    where: { id: nextMatch.id },
+    data: {
+      notificationStatus: 'SENT',
+      notificationSentAt: new Date(),
+      responseDeadline,
+    },
+  });
+
+  return true;
 }
 
 // ============================================================================

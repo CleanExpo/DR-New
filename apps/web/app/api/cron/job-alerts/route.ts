@@ -12,6 +12,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { escalateToNextContractor } from '@/lib/claim-intake';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -95,6 +96,55 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // ── ContractorMatch timeout escalation ─────────────────────────────────
+    // Find matches where the response deadline has passed and the contractor
+    // has not responded. Escalate each to the next backup contractor.
+    const timedOutMatches = await prisma.contractorMatch.findMany({
+      where: {
+        notificationStatus: 'SENT',
+        contractorResponse: null,
+        responseDeadline: { lt: now },
+      },
+      select: {
+        id: true,
+        serviceRequestId: true,
+        contractorId: true,
+        matchScore: true,
+        responseDeadline: true,
+      },
+    });
+
+    let escalatedCount = 0;
+    let escalationFailures = 0;
+
+    for (const match of timedOutMatches) {
+      if (!match.serviceRequestId) continue;
+      try {
+        const escalated = await escalateToNextContractor(match.serviceRequestId, match.id);
+        if (escalated) {
+          escalatedCount++;
+        } else {
+          // No backup available — mark as EXPIRED so we don't retry
+          await prisma.contractorMatch.update({
+            where: { id: match.id },
+            data: { notificationStatus: 'EXPIRED' },
+          });
+          escalationFailures++;
+        }
+      } catch (err) {
+        console.error(`[JOB ALERTS] Escalation failed for match ${match.id}:`, err);
+        escalationFailures++;
+      }
+    }
+
+    if (timedOutMatches.length > 0) {
+      console.warn(`[JOB ALERTS] Match escalation: ${escalatedCount} escalated, ${escalationFailures} no-backup`, {
+        timestamp: now.toISOString(),
+        timedOutCount: timedOutMatches.length,
+      });
+    }
+    // ───────────────────────────────────────────────────────────────────────
+
     // Log alerts
     if (alerts.length > 0) {
       console.warn(`[JOB ALERTS] ${alerts.length} alert(s) detected:`, {
@@ -103,9 +153,6 @@ export async function GET(request: NextRequest) {
         missingInvoices: completedJobs.length,
         alerts,
       });
-
-      // TODO (DR-164): Send email/SMS notifications to admins
-      // await sendAdminAlert(alerts);
     } else {
       console.log('[JOB ALERTS] No alerts — all jobs are on track', {
         timestamp: now.toISOString(),
@@ -117,6 +164,11 @@ export async function GET(request: NextRequest) {
       timestamp: now.toISOString(),
       alertCount: alerts.length,
       alerts,
+      matchEscalation: {
+        timedOut: timedOutMatches.length,
+        escalated: escalatedCount,
+        noBackupAvailable: escalationFailures,
+      },
     });
   } catch (error) {
     console.error('[JOB ALERTS] Cron error:', error);
