@@ -2,12 +2,11 @@
  * Emergency Button Component - NRPG Brand
  *
  * Distinctive emergency CTA button matching Phil McGurk's 15-year brand
- * Displays emergency request option with emergency red styling
+ * Navigates to the emergency claim form — no phone numbers displayed.
  */
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { EMERGENCY_PHONE } from '@/lib/design-tokens';
 
 interface EmergencyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'default' | 'lg' | 'xl';
@@ -15,11 +14,15 @@ interface EmergencyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElem
   label?: string;
 }
 
+const CLAIM_URL = '/claim/step-1?emergency=true';
+const DEFAULT_LABEL = 'Submit Emergency Claim';
+
 export function EmergencyButton({
   className,
   size = 'default',
   showPulse = true,
   label,
+  onClick,
   ...props
 }: EmergencyButtonProps) {
   const sizeClasses = {
@@ -28,9 +31,14 @@ export function EmergencyButton({
     xl: 'px-12 py-6 text-2xl',
   };
 
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick) onClick(e);
+    window.location.href = CLAIM_URL;
+  };
+
   return (
     <button
-      onClick={() => window.location.href = EMERGENCY_PHONE.href}
+      onClick={handleClick}
       className={cn(
         'bg-nrpg-red hover:bg-nrpg-red/90 text-white rounded-3xl font-black',
         'shadow-2xl shadow-nrpg-red/30 hover:shadow-nrpg-red/40',
@@ -48,14 +56,14 @@ export function EmergencyButton({
           <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
         </span>
       )}
-      {label || EMERGENCY_PHONE.number}
+      {label || DEFAULT_LABEL}
     </button>
   );
 }
 
-// Variant: With label above number
+// Variant: With label above
 export function EmergencyButtonLabeled({
-  label = EMERGENCY_PHONE.labels.primary,
+  label = 'Emergency',
   className,
   ...props
 }: Omit<EmergencyButtonProps, 'label'> & { label?: string }) {
@@ -82,7 +90,7 @@ export function EmergencyButtonInline({
       {...props}
     >
       {icon}
-      <span>{EMERGENCY_PHONE.number}</span>
+      <span>{DEFAULT_LABEL}</span>
     </EmergencyButton>
   );
 }

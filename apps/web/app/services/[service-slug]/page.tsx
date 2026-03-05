@@ -15,7 +15,6 @@ import Link from 'next/link';
 import { pageGenerator, getServiceBySlug } from '@/lib/content/page-generator';
 import { internalLinking, getBreadcrumbsForPage } from '@/lib/seo/internal-linking';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
-import { EMERGENCY_PHONE } from '@/lib/design-tokens';
 
 interface ServicePageProps {
   params: {
@@ -174,14 +173,14 @@ export default function ServicePage({ params }: ServicePageProps) {
 
               {/* Emergency CTA */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a
-                  href={EMERGENCY_PHONE.href}
+                <Link
+                  href="/claim/step-1?emergency=true"
                   className="bg-red-600 hover:bg-red-700 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all"
                 >
-                  Emergency Call: {EMERGENCY_PHONE.display}
-                </a>
+                  Submit Emergency Claim
+                </Link>
                 <Link
-                  href="/contact"
+                  href="/claim/step-1"
                   className="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-lg transition-all"
                 >
                   Request Quote
@@ -361,12 +360,12 @@ export default function ServicePage({ params }: ServicePageProps) {
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Our emergency response team is standing by 24/7/365 to help you recover from disaster.
             </p>
-            <a
-              href={EMERGENCY_PHONE.href}
+            <Link
+              href="/claim/step-1?emergency=true"
               className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-xl px-12 py-5 rounded-lg shadow-xl hover:shadow-2xl transition-all"
             >
-              Call Emergency Dispatch: {EMERGENCY_PHONE.display}
-            </a>
+              Submit Emergency Claim
+            </Link>
           </div>
         </section>
       </div>

@@ -14,7 +14,6 @@ import Link from 'next/link';
 import { pageGenerator, getCityBySlug, getCitiesByState } from '@/lib/content/page-generator';
 import { internalLinking, getBreadcrumbsForPage } from '@/lib/seo/internal-linking';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
-import { EMERGENCY_PHONE } from '@/lib/design-tokens';
 
 interface LocationPageProps {
   params: {
@@ -184,14 +183,14 @@ export default function LocationPage({ params }: LocationPageProps) {
 
               {/* Emergency CTA */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a
-                  href={EMERGENCY_PHONE.href}
+                <Link
+                  href="/claim/step-1?emergency=true"
                   className="bg-red-600 hover:bg-red-700 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all"
                 >
-                  Emergency Dispatch: {EMERGENCY_PHONE.display}
-                </a>
+                  Submit Emergency Claim
+                </Link>
                 <Link
-                  href="/contact"
+                  href="/claim/step-1"
                   className="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-lg transition-all"
                 >
                   Request Local Quote
@@ -381,12 +380,12 @@ export default function LocationPage({ params }: LocationPageProps) {
               Our local {pageData.city} contractors are standing by 24/7 to respond to your
               emergency. We aim for rapid response, typically under 60 minutes in metro areas.
             </p>
-            <a
-              href={EMERGENCY_PHONE.href}
+            <Link
+              href="/claim/step-1?emergency=true"
               className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-xl px-12 py-5 rounded-lg shadow-xl hover:shadow-2xl transition-all"
             >
-              Call {pageData.city} Dispatch: {EMERGENCY_PHONE.display}
-            </a>
+              Submit Emergency Claim — {pageData.city}
+            </Link>
             <div className="mt-6 text-sm text-slate-400">
               Serving {pageData.population.toLocaleString()} residents across {pageData.city}
             </div>

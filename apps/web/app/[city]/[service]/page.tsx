@@ -20,7 +20,6 @@ import { Suspense } from 'react';
 import { getCityBySlug, getServiceBySlug } from '@/lib/content/page-generator';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
 import { internalLinking } from '@/lib/seo/internal-linking';
-import { EMERGENCY_PHONE } from '@/lib/design-tokens';
 import { generateCityServicePageData, getAllCityServiceCombinations } from '@/lib/seo/city-service-generator';
 
 interface CityServicePageProps {
@@ -272,15 +271,12 @@ export default function CityServicePage({ params }: CityServicePageProps) {
 
               {/* Emergency CTA */}
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
-                <a
-                  href={EMERGENCY_PHONE.href}
+                <Link
+                  href="/claim/step-1?emergency=true"
                   className="inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-xl hover:shadow-2xl transition-all group w-full sm:w-auto"
                 >
-                  <svg className="w-6 h-6 mr-2 group-hover:animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                  </svg>
-                  Emergency: {EMERGENCY_PHONE.display}
-                </a>
+                  Submit Emergency Claim
+                </Link>
                 <Link
                   href={`/${params.city}/${params.service}/quote`}
                   className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-lg transition-all w-full sm:w-auto"
@@ -369,12 +365,12 @@ export default function CityServicePage({ params }: CityServicePageProps) {
               Our {pageData.cityName} contractor network is IICRC certified, background-checked, and ready to respond 24/7 to your emergency.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href={EMERGENCY_PHONE.href}
+              <Link
+                href="/claim/step-1?emergency=true"
                 className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-xl px-12 py-5 rounded-lg shadow-xl hover:shadow-2xl transition-all"
               >
-                Call {pageData.cityName} Dispatch
-              </a>
+                Submit Emergency Claim
+              </Link>
               <Link
                 href={`/${params.city}/contractors`}
                 className="inline-block bg-white/10 hover:bg-white/20 border-2 border-white/40 text-white font-semibold px-12 py-5 rounded-lg transition-all"
@@ -491,12 +487,12 @@ export default function CityServicePage({ params }: CityServicePageProps) {
             <p className="text-xl text-slate-200 mb-8 max-w-2xl mx-auto">
               Our {pageData.cityName} team is standing by 24/7. We aim for rapid response, typically within 60 minutes in metro areas.
             </p>
-            <a
-              href={EMERGENCY_PHONE.href}
+            <Link
+              href="/claim/step-1?emergency=true"
               className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-xl px-12 py-6 rounded-lg shadow-2xl hover:shadow-3xl transition-all"
             >
-              Call Now: {EMERGENCY_PHONE.display}
-            </a>
+              Submit Emergency Claim
+            </Link>
             <div className="mt-6 text-sm text-slate-400">
               Serving {pageData.population.toLocaleString()} residents across {pageData.cityName} and surrounding suburbs
             </div>

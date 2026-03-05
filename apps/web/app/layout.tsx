@@ -98,7 +98,12 @@ export const metadata: Metadata = {
     creator: "@NRPGAustralia",
   },
   alternates: {
-    canonical: "https://disasterrecovery.com.au",
+    canonical: 'https://disasterrecovery.com.au',
+    languages: {
+      'en-AU': 'https://disasterrecovery.com.au',
+      'en-NZ': 'https://disasterrecovery.com.au/nz',
+      'x-default': 'https://disasterrecovery.com.au',
+    },
   },
   verification: {
     google: "google-site-verification-code-here",

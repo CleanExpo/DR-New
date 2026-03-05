@@ -15,7 +15,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getCityBySlug } from '@/lib/content/page-generator';
 import { schemaGenerator } from '@/lib/seo/schema-generator';
-import { EMERGENCY_PHONE } from '@/lib/design-tokens';
 import servicesData from '@/data/services.json';
 import citiesData from '@/data/australian-cities.json';
 
@@ -140,12 +139,12 @@ export default function CityPage({ params }: CityPageProps) {
                 Professional emergency restoration services throughout {city.city} and surrounding areas. IICRC certified technicians, 24/7 availability.
               </p>
 
-              <a
-                href={EMERGENCY_PHONE.href}
+              <Link
+                href="/claim/step-1?emergency=true"
                 className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
-                Emergency: {EMERGENCY_PHONE.display}
-              </a>
+                Submit Emergency Claim
+              </Link>
             </div>
           </div>
         </section>
@@ -200,12 +199,12 @@ export default function CityPage({ params }: CityPageProps) {
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
               Our {city.city} dispatch center is open 24/7/365. We aim for rapid response, typically within 60 minutes in metro areas.
             </p>
-            <a
-              href={EMERGENCY_PHONE.href}
+            <Link
+              href="/claim/step-1?emergency=true"
               className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-xl px-12 py-5 rounded-lg shadow-xl hover:shadow-2xl transition-all"
             >
-              Call Now: {EMERGENCY_PHONE.display}
-            </a>
+              Submit Emergency Claim
+            </Link>
           </div>
         </section>
       </div>
