@@ -25,14 +25,16 @@ SEO sprint complete. All 29 Linear issues tackled. Next: Google OAuth publish, d
 - **Account**: disasterrecovery8@gmail.com
 - **Team**: Disaster Recovery NRPG (DIS)
 - **Team ID**: 38fe387e-4d58-4d4e-89ee-77b56c6988ca
-- **API Key**: stored in mcp.json only (not recorded here) (saved in mcp.json)
+- **API Key**: stored in mcp.json only (not recorded here)
 - **Issues**: DIS-5 through DIS-33 (29 SEO audit issues; DIS-5 to DIS-13 = Done, DIS-14 to DIS-33 = Backlog)
 
 ## In-Progress Work
 None — all work committed. Linear issues created.
 
 ## Next Steps (Priority Order)
-1. **⚠️ URGENT (Phill)**: Rotate NEXTAUTH_SECRET, JWT_SECRET, GEMINI_API_KEY — real values committed in git history
+1. **DONE**: NEXTAUTH_SECRET rotated, JWT_SECRET added (new), GEMINI_API_KEY rotated
+   - SUPABASE_JWT_SECRET NOT changed — tied to Supabase project, rotate from Supabase dashboard if needed
+   - Vercel Root Directory fixed: apps/web set, apps/web/vercel.json created
 2. Google OAuth consent screen: publish from "Testing" mode at console.cloud.google.com
 3. Domain purchases: nrpg.com.au, carsi.com.au, restoreassist.com.au, disasterrecovery.co.nz (user action)
 4. Apply supabase/migrations/add-missing-rls.sql to production Supabase
@@ -41,4 +43,4 @@ None — all work committed. Linear issues created.
 7. Backend citation services (api/local-seo/citations/route.ts, lib/seo/gbp-manager.ts): still use EMERGENCY_PHONE.number for NAP — review if real phone number exists
 
 ## Last Updated
-05/03/2026 — SEO sprint complete: robots.ts, 20+ JSON-LD schemas, brand compliance, phone/email removal across all UI, NRP→NRPG rebrand, hreflang, Q-format headings
+05/03/2026 — SEO sprint complete + secrets rotated + Vercel build config fixed
