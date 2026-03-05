@@ -1,18 +1,21 @@
 import { MetadataRoute } from 'next';
 
 /**
- * Robots.txt Configuration - NRPG Platform
+ * Robots.txt Configuration — NRPG Platform
  *
- * Optimized for Australian disaster recovery market
- * Allows search engines to crawl all public pages
- * Blocks dashboard, API, and admin areas
+ * Optimised for Australian disaster recovery market.
+ * - Allows all major search engines and AI crawlers (GEO/AEO visibility)
+ * - Blocks dashboard, API, admin, and internal areas
+ * - Blocks known bad-actor scrapers
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
+      // ── Default: allow crawling, block private areas ──────────────
       {
         userAgent: '*',
         allow: '/',
@@ -25,10 +28,11 @@ export default function robots(): MetadataRoute.Robots {
           '/internal/',
         ],
       },
+
+      // ── Search engines ────────────────────────────────────────────
       {
         userAgent: 'Googlebot',
         allow: '/',
-        crawlDelay: 0, // No delay for Google
       },
       {
         userAgent: 'Googlebot-Image',
@@ -38,9 +42,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: 'Bingbot',
         allow: '/',
-        crawlDelay: 0,
       },
-      // AI crawlers — explicit allow for GEO/AEO visibility
+
+      // ── AI crawlers — explicit allow for GEO/AEO visibility ──────
       { userAgent: 'GPTBot', allow: '/' },
       { userAgent: 'ChatGPT-User', allow: '/' },
       { userAgent: 'OAI-SearchBot', allow: '/' },
@@ -50,7 +54,22 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'PerplexityBot', allow: '/' },
       { userAgent: 'Google-Extended', allow: '/' },
       { userAgent: 'Applebot-Extended', allow: '/' },
+      { userAgent: 'Amazonbot', allow: '/' },
+      { userAgent: 'FacebookBot', allow: '/' },
+      { userAgent: 'Diffbot', allow: '/' },
       { userAgent: 'cohere-ai', allow: '/' },
+
+      // ── Bad bots — block known scrapers ───────────────────────────
+      { userAgent: 'AhrefsBot', disallow: '/' },
+      { userAgent: 'SemrushBot', disallow: '/' },
+      { userAgent: 'DotBot', disallow: '/' },
+      { userAgent: 'MJ12bot', disallow: '/' },
+      { userAgent: 'BLEXBot', disallow: '/' },
+      { userAgent: 'DataForSeoBot', disallow: '/' },
+      { userAgent: 'serpstatbot', disallow: '/' },
+      { userAgent: 'Bytespider', disallow: '/' },
+      { userAgent: 'PetalBot', disallow: '/' },
+      { userAgent: 'ZoominfoBot', disallow: '/' },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
     host: BASE_URL,

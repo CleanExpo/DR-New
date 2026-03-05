@@ -79,7 +79,7 @@ export default function DashboardError({ error, reset }: ErrorPageProps) {
 
         {/* Support Text */}
         <p className="text-sm text-gray-500 text-center mt-6">
-          If the problem persists, please contact support@disasterrecovery.com.au
+          If the problem persists, please <a href="/contact" className="underline text-blue-600 hover:text-blue-700">contact support online</a>
         </p>
       </div>
     </div>

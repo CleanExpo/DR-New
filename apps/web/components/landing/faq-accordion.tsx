@@ -333,13 +333,13 @@ export const contractorFAQs: FAQ[] = [
             <strong>Mobile App:</strong> Job management, client communication, invoicing, and progress tracking
           </li>
           <li>
-            <strong>Contractor Success Team:</strong> Email and phone support (Mon-Fri, 9am-5pm AEST)
+            <strong>Contractor Success Team:</strong> Online support via your contractor portal (Mon-Fri, 9am-5pm AEST)
           </li>
           <li>
-            <strong>Ongoing Education:</strong> Continual education credits (NRP-022) and industry updates
+            <strong>Ongoing Education:</strong> Continual education credits (NRPG-022) and industry updates
           </li>
           <li>
-            <strong>Community Network:</strong> Member gatherings and networking events (NRP-024)
+            <strong>Community Network:</strong> Member gatherings and networking events (NRPG-024)
           </li>
           <li>
             <strong>Payment Processing:</strong> Invoice management and direct insurance billing support

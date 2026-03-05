@@ -391,7 +391,7 @@ export default function ClientDemoPage() {
         <div className="text-center text-sm text-gray-500">
           <p>
             Need help?{' '}
-            <a href="mailto:support@disasterrecovery.com.au" className="text-teal-600 hover:underline">
+            <a href="/contact" className="text-teal-600 hover:underline">
               Contact support
             </a>
           </p>

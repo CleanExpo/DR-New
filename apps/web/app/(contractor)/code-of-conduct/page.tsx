@@ -398,7 +398,7 @@ export default function CodeOfConductPage() {
                   National Restoration Partners Guild (NRPG) | ABN: 85 151 794 142
                 </p>
                 <p className="text-slate-500 text-xs mt-1">
-                  A division of Disaster Recovery Pty Ltd | support@disasterrecovery.com.au
+                  A division of Disaster Recovery Pty Ltd
                 </p>
               </div>
             </div>

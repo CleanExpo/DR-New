@@ -1,10 +1,26 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { FileText, Users, Shield, Scale, AlertTriangle, CheckCircle, Mail, Globe, Gavel, BookOpen, CreditCard, RefreshCw } from "lucide-react"
+import { schemaGenerator } from "@/lib/seo/schema-generator"
 
 export default function TermsPage() {
+  const faqSchema = schemaGenerator.generateFAQSchema([
+    {
+      question: 'What are the terms of using this platform?',
+      answer: 'By using Disaster Recovery Australia, you agree that we facilitate matching between property owners and independent contractors. We do not directly provide restoration services.',
+    },
+    {
+      question: 'Are contractors employees of Disaster Recovery Australia?',
+      answer: 'No. All contractors are independent businesses in the NRPG network. Disaster Recovery Australia is a platform facilitating the matching process only.',
+    },
+  ])
+
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">

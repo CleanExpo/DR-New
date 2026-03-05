@@ -113,7 +113,7 @@ export default function ContractorCertificatePage() {
       </div>
       <Card className="overflow-hidden">
         <CardContent className="p-0">
-          <iframe title="NRP Certificate" sandbox="allow-same-origin" srcDoc={html} className="w-full h-[75vh] bg-white" />
+          <iframe title="NRPG Certificate" sandbox="allow-same-origin" srcDoc={html} className="w-full h-[75vh] bg-white" />
         </CardContent>
       </Card>
       <p className="text-xs text-muted-foreground">

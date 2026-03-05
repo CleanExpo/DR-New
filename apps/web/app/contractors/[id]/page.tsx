@@ -156,6 +156,15 @@ export default async function PublicContractorProfilePage({ params }: Props) {
           name: "Australia",
         },
       })),
+      hasCredential: contractor.iicrcCertifications.map((cert) => ({
+        "@type": "EducationalOccupationalCredential",
+        name: `IICRC ${cert.certificationLevel}${cert.certificationCode ? ` (${cert.certificationCode})` : ''}`,
+        credentialCategory: "certification",
+        recognizedBy: {
+          "@type": "Organization",
+          name: "IICRC \u2014 Institute of Inspection, Cleaning and Restoration Certification",
+        },
+      })),
       url: `${BASE_URL}/contractors/${params.id}`,
     },
     {
@@ -247,7 +256,7 @@ export default async function PublicContractorProfilePage({ params }: Props) {
                     </Button>
                   </Link>
                   <Link
-                    href="mailto:support@disasterrecovery.com.au"
+                    href="/contact"
                     className="text-sm text-[#9CA3AF] hover:text-[#00BFA6] transition-colors flex items-center gap-1.5"
                   >
                     <Mail className="h-3.5 w-3.5" />

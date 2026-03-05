@@ -1,10 +1,26 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { AlertTriangle, Shield, FileText, Scale, HardHat, Heart, Globe, Mail, BookOpen, Users } from "lucide-react"
+import { schemaGenerator } from "@/lib/seo/schema-generator"
 
 export default function DisclaimerPage() {
+  const faqSchema = schemaGenerator.generateFAQSchema([
+    {
+      question: 'Are contractor results guaranteed?',
+      answer: 'While all contractors meet our IICRC certification and vetting standards, individual results may vary based on the nature and extent of the damage.',
+    },
+    {
+      question: 'Is Disaster Recovery Australia responsible for contractor work?',
+      answer: 'No. Disaster Recovery Australia is a platform facilitating the matching process. All restoration work is performed by independent, licensed contractors.',
+    },
+  ])
+
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
@@ -399,22 +415,20 @@ export default function DisclaimerPage() {
                 <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
                   <div className="flex items-center mb-2">
                     <Mail className="h-5 w-5 text-[#00BFA6] mr-2" />
-                    <span className="text-white font-medium">Email</span>
+                    <span className="text-white font-medium">Contact</span>
                   </div>
-                  <p className="text-[#00BFA6]">support@disasterrecovery.com.au</p>
+                  <a href="/contact" className="text-[#00BFA6] hover:underline">Contact us online</a>
                 </div>
 
                 <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
                   <div className="flex items-center mb-2">
                     <Globe className="h-5 w-5 text-[#2196F3] mr-2" />
-                    <span className="text-white font-medium">Registered Address</span>
+                    <span className="text-white font-medium">Entity</span>
                   </div>
                   <p className="text-[#9CA3AF] text-sm">
                     Disaster Recovery Pty Ltd
                     <br />
-                    Brisbane, Queensland
-                    <br />
-                    4076, Australia
+                    Australia-wide · AI-automated online
                   </p>
                 </div>
               </div>

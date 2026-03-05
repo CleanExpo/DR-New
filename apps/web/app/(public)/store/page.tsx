@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     'NRPG branded merchandise',
     'restoration contractor clothing',
   ],
+  alternates: {
+    canonical: '/store',
+  },
   openGraph: {
     title: 'NRPG Store | Branded Workwear & Equipment',
     description:
@@ -40,15 +43,43 @@ export const metadata: Metadata = {
 }
 
 // ---------------------------------------------------------------------------
+// JSON-LD Structured Data
+// ---------------------------------------------------------------------------
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'
+
+const storeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'NRPG Store — Professional Restoration Equipment & Gear',
+  url: `${BASE_URL}/store`,
+  description:
+    'Shop NRPG branded workwear, hi-vis gear, headwear, and accessories. Engineered for disaster recovery contractors. Fast Australian delivery. All prices AUD inc. GST.',
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Store', item: `${BASE_URL}/store` },
+    ],
+  },
+}
+
+// ---------------------------------------------------------------------------
 // Page (Server Component — data fetching)
 // ---------------------------------------------------------------------------
 
 export default function StorePage() {
   // Data sourced directly from local catalogue — no fetch latency.
   return (
-    <Suspense fallback={<StoreSkeleton />}>
-      <StoreLanding products={products} />
-    </Suspense>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(storeJsonLd) }}
+      />
+      <Suspense fallback={<StoreSkeleton />}>
+        <StoreLanding products={products} />
+      </Suspense>
+    </>
   )
 }
 

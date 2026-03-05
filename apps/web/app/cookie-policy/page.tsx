@@ -2,10 +2,26 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Cookie, Shield, BarChart3, Megaphone, Settings, Globe, AlertTriangle, ExternalLink } from "lucide-react"
 import Link from "next/link"
+import { schemaGenerator } from "@/lib/seo/schema-generator"
 
 export default function CookiePolicyPage() {
+  const faqSchema = schemaGenerator.generateFAQSchema([
+    {
+      question: 'What cookies does this site use?',
+      answer: 'We use essential cookies for platform functionality, analytics cookies to improve our service, and preference cookies to remember your settings.',
+    },
+    {
+      question: 'Can I disable cookies?',
+      answer: 'You can manage cookie preferences through our cookie settings panel or your browser settings. Note that disabling essential cookies may affect platform functionality.',
+    },
+  ])
+
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">
@@ -273,7 +289,7 @@ export default function CookiePolicyPage() {
                     </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#00BFA6] rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      Contacting us at privacy@disasterrecovery.com.au
+                      <Link href="/contact" className="text-[#00BFA6] hover:underline">Contacting us online</Link>
                     </li>
                   </ul>
                 </div>
@@ -352,13 +368,11 @@ export default function CookiePolicyPage() {
                     If you have questions about our use of cookies, please contact us:
                   </p>
                   <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
-                    <p className="text-[#00BFA6]">privacy@disasterrecovery.com.au</p>
+                    <Link href="/contact" className="text-[#00BFA6] hover:underline">Contact our privacy team online</Link>
                     <p className="text-[#9CA3AF] text-sm mt-2">
                       Disaster Recovery Pty Ltd
                       <br />
-                      Brisbane, Queensland
-                      <br />
-                      4076, Australia
+                      Australia-wide · AI-automated online
                     </p>
                   </div>
                 </div>

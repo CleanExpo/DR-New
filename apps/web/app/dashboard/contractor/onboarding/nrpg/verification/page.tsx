@@ -432,8 +432,8 @@ export default function VerificationPage() {
           </p>
           <p>
             For questions or concerns about your verification, please contact{' '}
-            <a href="mailto:support@disasterrecovery.com.au" className="text-[#00BFA6] hover:underline">
-              support@disasterrecovery.com.au
+            <a href="/contact" className="text-[#00BFA6] hover:underline">
+              our support team online
             </a>
           </p>
         </CardContent>

@@ -165,7 +165,7 @@ export default function NewZealandPage() {
               Join the NZ Waitlist
             </p>
             <a
-              href="mailto:support@disasterrecovery.com.au?subject=New Zealand Waitlist&body=I'd like to be notified when NRPG launches in New Zealand.%0A%0AName:%0ACompany:%0ARole:%0ACity (NZ):%0AInterest: (Restoration services / CARSI training / NRPG membership)"
+              href="/contact"
               className="inline-flex items-center gap-3 px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-300"
               style={{
                 background: 'transparent',
@@ -191,7 +191,7 @@ export default function NewZealandPage() {
               Register Your Interest
             </a>
             <p className="text-xs mt-3" style={{ color: '#4b5563' }}>
-              support@disasterrecovery.com.au &middot; We respect your privacy under the NZ Privacy Act 2020
+              We respect your privacy under the NZ Privacy Act 2020
             </p>
           </div>
 
@@ -314,7 +314,7 @@ export default function NewZealandPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:support@disasterrecovery.com.au?subject=NZ Contractor Interest — CARSI + NRPG&body=I'm a New Zealand restoration contractor interested in CARSI training and/or NRPG membership.%0A%0AName:%0ABusiness Name:%0ACity (NZ):%0ACurrent Certifications:%0AServices Offered:"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-sm uppercase tracking-wider transition-all duration-300"
                 style={{
                   background: '#00b4d8',

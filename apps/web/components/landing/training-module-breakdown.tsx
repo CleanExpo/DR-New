@@ -45,8 +45,8 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-001',
-        title: 'NRP Membership Registration',
+        id: 'NRPG-001',
+        title: 'NRPG Membership Registration',
         duration: 30,
         questions: 10,
         description: 'Introduction to NRPG organisation and membership requirements',
@@ -68,14 +68,14 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-002',
+        id: 'NRPG-002',
         title: 'Business Documentation & Verification',
         duration: 45,
         questions: 10,
         description: 'Essential business documentation standards',
       },
       {
-        id: 'NRP-003',
+        id: 'NRPG-003',
         title: 'Documentation Standards & Procedures',
         duration: 75,
         questions: 20,
@@ -98,21 +98,21 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-005',
+        id: 'NRPG-005',
         title: 'Asbestos & Lead Paint Awareness',
         duration: 90,
         questions: 25,
         description: 'Critical safety awareness training',
       },
       {
-        id: 'NRP-006',
+        id: 'NRPG-006',
         title: 'Working at Heights & Confined Spaces',
         duration: 90,
         questions: 25,
         description: 'Advanced safety protocols',
       },
       {
-        id: 'NRP-007',
+        id: 'NRPG-007',
         title: 'Biohazards, Sewage & Bacterial Contamination',
         duration: 75,
         questions: 20,
@@ -135,7 +135,7 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-008',
+        id: 'NRPG-008',
         title: 'Australian Compliance, WHS & Consumer Law',
         duration: 90,
         questions: 25,
@@ -164,14 +164,14 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-009',
+        id: 'NRPG-009',
         title: 'Building Codes & Construction Standards',
         duration: 90,
         questions: 20,
         description: 'Building standards and codes',
       },
       {
-        id: 'NRP-010',
+        id: 'NRPG-010',
         title: 'Electrical Codes & Safety Standards',
         duration: 75,
         questions: 20,
@@ -194,42 +194,42 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-004',
+        id: 'NRPG-004',
         title: 'Procedure Development & Implementation',
         duration: 60,
         questions: 15,
         description: 'Operational procedure development',
       },
       {
-        id: 'NRP-011',
+        id: 'NRPG-011',
         title: 'Insurance Claim Management',
         duration: 90,
         questions: 20,
         description: 'Insurance claim processes',
       },
       {
-        id: 'NRP-015',
+        id: 'NRPG-015',
         title: 'Emergency Response Management',
         duration: 45,
         questions: 10,
         description: 'Emergency response protocols',
       },
       {
-        id: 'NRP-016',
+        id: 'NRPG-016',
         title: 'Quality Assurance & Customer Service',
         duration: 45,
         questions: 10,
         description: 'Service quality standards',
       },
       {
-        id: 'NRP-017',
+        id: 'NRPG-017',
         title: 'Financial Management & Job Costing',
         duration: 60,
         questions: 15,
         description: 'Financial management principles',
       },
       {
-        id: 'NRP-019',
+        id: 'NRPG-019',
         title: 'Marketing & Business Development',
         duration: 30,
         questions: 5,
@@ -252,28 +252,28 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-012',
+        id: 'NRPG-012',
         title: 'Water Damage Restoration Mastery',
         duration: 90,
         questions: 20,
         description: 'Advanced water damage techniques',
       },
       {
-        id: 'NRP-013',
+        id: 'NRPG-013',
         title: 'Mould Remediation Protocols',
         duration: 75,
         questions: 15,
         description: 'Mould remediation procedures',
       },
       {
-        id: 'NRP-014',
+        id: 'NRPG-014',
         title: 'Fire & Smoke Damage Restoration',
         duration: 60,
         questions: 15,
         description: 'Fire damage restoration',
       },
       {
-        id: 'NRP-020',
+        id: 'NRPG-020',
         title: 'Advanced Restoration & Specialty Services',
         duration: 75,
         questions: 15,
@@ -296,14 +296,14 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-018',
+        id: 'NRPG-018',
         title: 'CRM System & Technology',
         duration: 60,
         questions: 10,
         description: 'Technology systems and CRM',
       },
       {
-        id: 'NRP-021',
+        id: 'NRPG-021',
         title: 'DR-NRPG Platform Operations',
         duration: 60,
         questions: 15,
@@ -326,21 +326,21 @@ const trainingCategories: ModuleCategory[] = [
     ),
     modules: [
       {
-        id: 'NRP-022',
+        id: 'NRPG-022',
         title: 'Continual Education Credits',
         duration: 45,
         questions: 10,
         description: 'Ongoing professional development',
       },
       {
-        id: 'NRP-023',
+        id: 'NRPG-023',
         title: 'Association Memberships & Benefits',
         duration: 30,
         questions: 8,
         description: 'Industry associations and networking',
       },
       {
-        id: 'NRP-024',
+        id: 'NRPG-024',
         title: 'Member Gatherings & Networking',
         duration: 30,
         questions: 7,

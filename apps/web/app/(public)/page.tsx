@@ -52,6 +52,52 @@ export default function HomePage() {
   const organizationSchema = schemaGenerator.generateOrganizationSchema()
   const emergencyServiceSchema = schemaGenerator.generateEmergencyServiceSchema()
 
+  const howToSchema = schemaGenerator.generateHowToSchema({
+    title: 'How to Get Emergency Disaster Recovery Assistance',
+    description: 'Submit a claim and be connected with an IICRC-certified contractor in minutes.',
+    steps: [
+      {
+        title: 'Submit Your Claim Online',
+        description: 'Fill out our 3-minute emergency claim form with details about your disaster.',
+      },
+      {
+        title: 'AI-Matched to Certified Contractors',
+        description: 'Our AI instantly matches you to the nearest IICRC-certified contractor.',
+      },
+      {
+        title: 'Rapid On-Site Response',
+        description: 'Your assigned contractor arrives within 60 minutes of dispatch.',
+      },
+      {
+        title: 'Restoration & Insurance Coordination',
+        description: 'We coordinate directly with your insurer for seamless claims.',
+      },
+    ],
+  })
+
+  const faqSchema = schemaGenerator.generateFAQSchema([
+    {
+      question: 'How quickly can you respond to a disaster emergency?',
+      answer: 'Our network of IICRC-certified contractors provides 60-minute emergency response across all major Australian cities, 24 hours a day, 7 days a week.',
+    },
+    {
+      question: 'Which types of disaster damage do you cover?',
+      answer: 'We cover water damage, flood damage, fire and smoke damage, storm damage, mould remediation, and biohazard cleanup across all Australian states and territories.',
+    },
+    {
+      question: 'Are your contractors certified and insured?',
+      answer: 'All contractors in our network hold current IICRC certification and appropriate trade licences. They are independently insured and fully vetted before joining the NRPG network.',
+    },
+    {
+      question: 'Do you work with all insurance companies?',
+      answer: 'Yes. Our contractors work with all major Australian insurers and can coordinate directly with your insurance company to streamline the claims process.',
+    },
+    {
+      question: 'How much does disaster restoration cost?',
+      answer: 'Costs vary based on the type and extent of damage. In many cases, restoration is fully covered by home and contents insurance. Our contractors provide detailed assessments for your insurer.',
+    },
+  ])
+
   return (
     <>
       {/* Schema.org Structured Data */}
@@ -65,6 +111,18 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(emergencyServiceSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(howToSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
         }}
       />
 
@@ -179,14 +237,118 @@ export default function HomePage() {
           </section>
         </ScrollReveal>
 
-        {/* 7. JOIN NRPG SECTION - Contractor Recruitment */}
+        {/* 7. HOW IT WORKS - Process Steps (DIS-23) */}
+        <ScrollReveal>
+          <section className="container mx-auto px-6 py-16 md:py-24">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+                How It Works
+              </h2>
+              <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+                From emergency claim to on-site restoration — four simple steps
+              </p>
+            </div>
+
+            <ol className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto list-none">
+              {[
+                {
+                  step: '1',
+                  title: 'Submit Your Claim Online',
+                  description: 'Fill out our 3-minute emergency claim form with details about your disaster.',
+                },
+                {
+                  step: '2',
+                  title: 'AI-Matched to Certified Contractors',
+                  description: 'Our AI instantly matches you to the nearest IICRC-certified contractor.',
+                },
+                {
+                  step: '3',
+                  title: 'Rapid On-Site Response',
+                  description: 'Your assigned contractor arrives within 60 minutes of dispatch.',
+                },
+                {
+                  step: '4',
+                  title: 'Restoration & Insurance Coordination',
+                  description: 'We coordinate directly with your insurer for seamless claims.',
+                },
+              ].map(({ step, title, description }) => (
+                <li key={step} className="flex flex-col items-center text-center space-y-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-600 text-white font-display text-2xl font-black flex-shrink-0">
+                    {step}
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
+                    {title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+                    {description}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </ScrollReveal>
+
+        {/* 8. FAQ SECTION (DIS-22) */}
+        <ScrollReveal>
+          <section className="bg-slate-50 dark:bg-slate-900 py-16 md:py-24">
+            <div className="container mx-auto px-6 max-w-4xl">
+              <div className="text-center mb-12">
+                <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-xl text-slate-600 dark:text-slate-300">
+                  Everything you need to know about disaster recovery with NRPG
+                </p>
+              </div>
+
+              <dl className="space-y-6">
+                {[
+                  {
+                    question: 'How quickly can you respond to a disaster emergency?',
+                    answer: 'Our network of IICRC-certified contractors provides 60-minute emergency response across all major Australian cities, 24 hours a day, 7 days a week.',
+                  },
+                  {
+                    question: 'Which types of disaster damage do you cover?',
+                    answer: 'We cover water damage, flood damage, fire and smoke damage, storm damage, mould remediation, and biohazard cleanup across all Australian states and territories.',
+                  },
+                  {
+                    question: 'Are your contractors certified and insured?',
+                    answer: 'All contractors in our network hold current IICRC certification and appropriate trade licences. They are independently insured and fully vetted before joining the NRPG network.',
+                  },
+                  {
+                    question: 'Do you work with all insurance companies?',
+                    answer: 'Yes. Our contractors work with all major Australian insurers and can coordinate directly with your insurance company to streamline the claims process.',
+                  },
+                  {
+                    question: 'How much does disaster restoration cost?',
+                    answer: 'Costs vary based on the type and extent of damage. In many cases, restoration is fully covered by home and contents insurance. Our contractors provide detailed assessments for your insurer.',
+                  },
+                ].map(({ question, answer }) => (
+                  <div
+                    key={question}
+                    className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700"
+                  >
+                    <dt className="font-display text-lg font-bold text-slate-900 dark:text-white mb-3">
+                      {question}
+                    </dt>
+                    <dd className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {answer}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </section>
+        </ScrollReveal>
+
+        {/* 9. JOIN NRPG SECTION - Contractor Recruitment */}
         <ScrollReveal>
           <section className="container mx-auto px-6 py-16 md:py-24">
             <JoinNRPGSection variant="default" />
           </section>
         </ScrollReveal>
 
-        {/* 8. FINAL EMERGENCY CTA */}
+        {/* 10. FINAL EMERGENCY CTA */}
         <ScrollReveal>
           <section className="container mx-auto px-6 py-16">
             <EmergencyCTA />

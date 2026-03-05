@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import {
-  Phone,
   Mail,
   MapPin,
   Clock,
@@ -15,9 +14,6 @@ import {
   AlertCircle,
   ArrowRight
 } from 'lucide-react'
-
-// Emergency contact constant
-const EMERGENCY_CONTACT = '1800 DISASTER'
 
 interface FooterLink {
   label: string
@@ -98,14 +94,14 @@ export function PublicFooter() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-center sm:text-left">
             <div className="flex items-center gap-2">
               <AlertCircle className="w-6 h-6 flex-shrink-0" />
-              <span className="font-bold text-lg">24/7 Emergency Response</span>
+              <span className="font-bold text-lg">24/7 Emergency Response Available</span>
             </div>
             <a
-              href={`tel:${EMERGENCY_CONTACT.replace(/\s/g, '')}`}
-              className="flex items-center gap-2 px-6 py-2 bg-white text-red-600 rounded-lg font-bold text-xl hover:bg-gray-100 transition-colors shadow-lg"
+              href="/claim/step-1?emergency=true"
+              className="flex items-center gap-2 px-6 py-2 bg-white text-red-600 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
-              <Phone className="w-5 h-5" />
-              {EMERGENCY_CONTACT}
+              <AlertCircle className="w-5 h-5" />
+              Submit Emergency Claim
             </a>
           </div>
         </div>
@@ -250,15 +246,15 @@ export function PublicFooter() {
             {/* Contact Info */}
             <div className="space-y-3">
               <a
-                href="mailto:support@disasterrecovery.com.au"
+                href="/claim/step-1"
                 className="flex items-start gap-2 text-gray-300 hover:text-emerald-400 text-sm transition-colors group"
               >
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 group-hover:text-emerald-400" />
-                <span className="break-all">support@disasterrecovery.com.au</span>
+                <span>Submit a Claim</span>
               </a>
               <div className="flex items-start gap-2 text-gray-300 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>Nationwide Coverage<br />Australia-wide service</span>
+                <span>Australia-wide service</span>
               </div>
             </div>
           </div>
@@ -339,9 +335,6 @@ export function PublicFooter() {
           <div className="text-center space-y-1 mb-4">
             <p className="text-slate-400 text-xs">
               Disaster Recovery Pty Ltd | ABN: 85 151 794 142 | ACN: 151 794 142
-            </p>
-            <p className="text-slate-400 text-xs">
-              Disaster Recovery Qld Pty Ltd | ABN: 42 633 062 307 | Brisbane, Queensland 4076
             </p>
             <p className="text-slate-400 text-xs">
               Trading as: Disaster Recovery &middot; NRPG &middot; Restore Assist

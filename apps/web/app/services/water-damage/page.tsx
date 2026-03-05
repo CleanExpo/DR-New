@@ -16,6 +16,20 @@ export const metadata: Metadata = generateCategoryMetadata({
   categoryName: 'Water Damage Restoration',
 });
 
+const waterDamageHowTo = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How Water Damage Restoration Works",
+  "description": "NRPG's forensic water damage restoration process",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Emergency Assessment", "text": "IICRC-certified technician arrives within 60 minutes to assess moisture levels and damage extent." },
+    { "@type": "HowToStep", "position": 2, "name": "Water Extraction", "text": "Industrial-grade extractors remove standing water and moisture from all affected surfaces." },
+    { "@type": "HowToStep", "position": 3, "name": "Structural Drying", "text": "Commercial dehumidifiers and air movers create optimal drying conditions across affected areas." },
+    { "@type": "HowToStep", "position": 4, "name": "Mould Prevention", "text": "Antimicrobial treatments applied to prevent secondary mould growth post-water damage." },
+    { "@type": "HowToStep", "position": 5, "name": "Restoration & Repair", "text": "Full structural repairs and restoration to pre-loss condition, documented for insurance claims." },
+  ],
+};
+
 export default function WaterDamagePillarPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
@@ -30,6 +44,11 @@ export default function WaterDamagePillarPage() {
   slug: 'water-damage',
   categoryName: 'Water Damage Restoration',
 })) }}
+      />
+      {/* HowTo Schema (DIS-30) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(waterDamageHowTo) }}
       />
       <main className="py-24">
         {/* Hero Section */}
