@@ -25,5 +25,18 @@
     "tier2": { "maxPopulation": 1000000, "price": 995 },
     "tier3": { "maxPopulation": null, "price": 1095 }
   },
-  "bufferPercentage": 10
+  "bufferPercentage": 10,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .superpowers/hooks/session-start",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
 }
