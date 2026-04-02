@@ -1372,12 +1372,35 @@ export const WorkflowChains = {
   },
 };
 
-// Export types
-export type {
-  WorkflowChainStep,
-  ChainExecution,
-  WorkflowStepResult,
-  DailyOperationConfig,
-  PerformanceMetrics,
-  SelfImprovementReport,
-};
+// ============================================================================
+// LEGACY FUNCTION EXPORTS (for backward compatibility)
+// ============================================================================
+
+export interface AgentEvent {
+  id: string;
+  type: string;
+  timestamp: Date;
+  source: string;
+  data: any;
+  priority: 'low' | 'medium' | 'high' | 'critical';
+}
+
+export async function executeManualWorkflow(workflowType: string, data: any): Promise<any> {
+  const orchestrator = getSuperOrchestrator();
+  return orchestrator.executeChain(workflowType, [], data);
+}
+
+export async function getDailyReport(): Promise<any> {
+  const orchestrator = getSuperOrchestrator();
+  return orchestrator.generateEveningReports();
+}
+
+export async function getWeeklyReport(): Promise<any> {
+  const orchestrator = getSuperOrchestrator();
+  return orchestrator.generateWeeklySummary();
+}
+
+export async function runSelfImprovement(): Promise<any> {
+  const orchestrator = getSuperOrchestrator();
+  return orchestrator.runSelfImprovement();
+}
