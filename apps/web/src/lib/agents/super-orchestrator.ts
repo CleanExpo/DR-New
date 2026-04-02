@@ -130,3 +130,7 @@ export async function getWeeklyReport(): Promise<any> {
 export async function runSelfImprovement(): Promise<any> {
   return superOrchestrator.runSelfImprovement()
 }
+
+export async function processAgentEvent(event: AgentEvent): Promise<void> {
+  return superOrchestrator.processEvent(event)
+}

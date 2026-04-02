@@ -1,5 +1,12 @@
 import nacl from 'tweetnacl';
-import { utils as naclUtils } from 'tweetnacl';
+
+// Utility functions for encoding/decoding (tweetnacl-util equivalent)
+const naclUtils = {
+  encodeBase64: (data: Uint8Array): string => Buffer.from(data).toString('base64'),
+  decodeBase64: (str: string): Uint8Array => new Uint8Array(Buffer.from(str, 'base64')),
+  encodeUTF8: (data: Uint8Array): string => Buffer.from(data).toString('utf8'),
+  decodeUTF8: (str: string): Uint8Array => new Uint8Array(Buffer.from(str, 'utf8')),
+};
 import { prisma } from '@/lib/prisma';
 
 /**
