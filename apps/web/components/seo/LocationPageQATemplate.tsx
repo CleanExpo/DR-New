@@ -156,6 +156,7 @@ export function LocationPageQATemplate({
       {/* JSON-LD Schema for Q&A (for Google) */}
       <script
         type="application/ld+json"
+        suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             '@context': 'https://schema.org',

@@ -14,6 +14,7 @@
 'use client';
 
 import * as React from 'react';
+import Script from 'next/script';
 import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 declare global {
@@ -63,56 +64,26 @@ export function HCaptcha({
   const [error, setError] = React.useState<string | null>(null);
 
   const siteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY;
+  const [scriptLoaded, setScriptLoaded] = React.useState(false);
 
+  // Check if site key is configured
   React.useEffect(() => {
-    // Check if site key is configured
     if (!siteKey) {
       setError('hCaptcha not configured');
       setIsLoading(false);
-
-      // In development, allow bypass
       if (process.env.NODE_ENV === 'development') {
         console.warn('hCaptcha not configured. Development mode bypass available.');
       }
-      return;
     }
+  }, [siteKey]);
 
-    // Load hCaptcha script
-    const loadScript = () => {
-      return new Promise<void>((resolve, reject) => {
-        // Check if already loaded
-        if (window.hcaptcha) {
-          resolve();
-          return;
-        }
-
-        // Check if script is already being loaded
-        const existingScript = document.querySelector(
-          'script[src*="hcaptcha.com"]'
-        );
-        if (existingScript) {
-          existingScript.addEventListener('load', () => resolve());
-          return;
-        }
-
-        // Create and load script
-        const script = document.createElement('script');
-        script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
-        script.async = true;
-        script.defer = true;
-
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error('Failed to load hCaptcha'));
-
-        document.head.appendChild(script);
-      });
-    };
+  // Initialise the widget once the hCaptcha script has loaded
+  React.useEffect(() => {
+    if (!scriptLoaded || !siteKey || !containerRef.current) return;
 
     const initCaptcha = async () => {
       try {
-        await loadScript();
-
-        // Wait for hCaptcha to be available
+        // Wait for hCaptcha global to be available (script sets it asynchronously)
         let attempts = 0;
         while (!window.hcaptcha && attempts < 50) {
           await new Promise((resolve) => setTimeout(resolve, 100));
@@ -120,10 +91,9 @@ export function HCaptcha({
         }
 
         if (!window.hcaptcha) {
-          throw new Error('hCaptcha failed to initialize');
+          throw new Error('hCaptcha failed to initialise');
         }
 
-        // Render the widget
         if (containerRef.current && !widgetIdRef.current) {
           widgetIdRef.current = window.hcaptcha.render(containerRef.current, {
             sitekey: siteKey,
@@ -147,16 +117,15 @@ export function HCaptcha({
 
         setIsLoading(false);
       } catch (err) {
-        console.error('hCaptcha initialization error:', err);
+        console.error('hCaptcha initialisation error:', err);
         setError('Failed to load verification widget');
         setIsLoading(false);
-        onError?.(err instanceof Error ? err.message : 'Initialization failed');
+        onError?.(err instanceof Error ? err.message : 'Initialisation failed');
       }
     };
 
     initCaptcha();
 
-    // Cleanup
     return () => {
       if (widgetIdRef.current && window.hcaptcha) {
         try {
@@ -167,7 +136,7 @@ export function HCaptcha({
         widgetIdRef.current = null;
       }
     };
-  }, [siteKey, theme, size, onVerify, onExpire, onError]);
+  }, [scriptLoaded, siteKey, theme, size, onVerify, onExpire, onError]);
 
   // Reset function exposed via ref if needed
   const reset = React.useCallback(() => {
@@ -252,6 +221,19 @@ export function HCaptcha({
   // hCaptcha widget container
   return (
     <div className={`${className}`}>
+      {/* Load hCaptcha via Next.js Script to avoid manual document.head.appendChild */}
+      {siteKey && (
+        <Script
+          src="https://js.hcaptcha.com/1/api.js?render=explicit"
+          strategy="afterInteractive"
+          onLoad={() => setScriptLoaded(true)}
+          onError={() => {
+            setError('Failed to load verification widget');
+            setIsLoading(false);
+            onError?.('Script load failed');
+          }}
+        />
+      )}
       <div
         ref={containerRef}
         className="flex justify-center"
