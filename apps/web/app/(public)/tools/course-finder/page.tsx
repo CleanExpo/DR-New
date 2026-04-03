@@ -1,247 +1,409 @@
 'use client'
 
-/**
- * DR-40 — IICRC Course Finder
- * Search IICRC certification courses by cert type, location, and date.
- * Covers AU, NZ, and Japan markets.
- */
-
-import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { BookOpen, MapPin, Calendar, ExternalLink } from 'lucide-react'
+import { useState, useMemo } from 'react'
+import {
+  Search,
+  Award,
+  MapPin,
+  Calendar,
+  ChevronDown,
+  ArrowRight,
+  Filter,
+  BookOpen,
+  Clock,
+  Layers,
+  CheckCircle,
+} from 'lucide-react'
 
-type CertType = 'all' | 'WRT' | 'ASD' | 'AMRT' | 'FSRT' | 'OCT' | 'CCT' | 'OSHA'
-type Country = 'all' | 'AU' | 'NZ' | 'JP'
-type Format = 'all' | 'in-person' | 'online'
-
-interface Course {
-  id: string
-  cert: Exclude<CertType, 'all'>
-  title: string
-  provider: string
-  city: string
-  country: Country extends 'all' ? never : Country
-  format: Format extends 'all' ? never : Format
-  date: string
-  seats: number
-  link: string
-}
-
-const CERT_LABELS: Record<Exclude<CertType, 'all'>, { label: string; colour: string; description: string }> = {
-  WRT: { label: 'WRT — Water Damage Restoration Technician', colour: 'text-blue-400', description: 'IICRC S500 aligned. Foundation water certification.' },
-  ASD: { label: 'ASD — Applied Structural Drying Technician', colour: 'text-cyan-400', description: 'Advanced drying science. Requires WRT.' },
-  AMRT: { label: 'AMRT — Applied Microbial Remediation Technician', colour: 'text-green-400', description: 'IICRC S520 mould remediation standard.' },
-  FSRT: { label: 'FSRT — Fire and Smoke Restoration Technician', colour: 'text-orange-400', description: 'IICRC S770 fire/smoke restoration.' },
-  OCT: { label: 'OCT — Odour Control Technician', colour: 'text-purple-400', description: 'Odour identification and deodorisation techniques.' },
-  CCT: { label: 'CCT — Carpet Cleaning Technician', colour: 'text-yellow-400', description: 'Carpet and upholstery cleaning fundamentals.' },
-  OSHA: { label: 'OSHA — Hazard Awareness', colour: 'text-red-400', description: 'Workplace health and safety fundamentals.' },
-}
-
-const SEEDED_COURSES: Course[] = [
-  { id: 'c1', cert: 'WRT', title: 'WRT Water Damage Restoration Technician', provider: 'IICRC Australia', city: 'Sydney', country: 'AU', format: 'in-person', date: '2026-05-12', seats: 16, link: 'https://iicrc.org' },
-  { id: 'c2', cert: 'WRT', title: 'WRT Water Damage Restoration Technician', provider: 'IICRC Australia', city: 'Melbourne', country: 'AU', format: 'in-person', date: '2026-05-19', seats: 12, link: 'https://iicrc.org' },
-  { id: 'c3', cert: 'ASD', title: 'ASD Applied Structural Drying Technician', provider: 'IICRC Australia', city: 'Brisbane', country: 'AU', format: 'in-person', date: '2026-06-02', seats: 8, link: 'https://iicrc.org' },
-  { id: 'c4', cert: 'AMRT', title: 'AMRT Applied Microbial Remediation Technician', provider: 'IICRC Australia', city: 'Perth', country: 'AU', format: 'in-person', date: '2026-06-09', seats: 10, link: 'https://iicrc.org' },
-  { id: 'c5', cert: 'WRT', title: 'WRT — Online Delivery', provider: 'IICRC Online', city: 'Online', country: 'AU', format: 'online', date: '2026-05-05', seats: 40, link: 'https://iicrc.org' },
-  { id: 'c6', cert: 'FSRT', title: 'FSRT Fire and Smoke Restoration Technician', provider: 'IICRC Australia', city: 'Adelaide', country: 'AU', format: 'in-person', date: '2026-07-14', seats: 14, link: 'https://iicrc.org' },
-  { id: 'c7', cert: 'WRT', title: 'WRT Water Damage Restoration Technician', provider: 'IICRC New Zealand', city: 'Auckland', country: 'NZ', format: 'in-person', date: '2026-05-26', seats: 12, link: 'https://iicrc.org' },
-  { id: 'c8', cert: 'AMRT', title: 'AMRT Applied Microbial Remediation Technician', provider: 'IICRC New Zealand', city: 'Wellington', country: 'NZ', format: 'in-person', date: '2026-06-23', seats: 10, link: 'https://iicrc.org' },
-  { id: 'c9', cert: 'ASD', title: 'ASD Applied Structural Drying', provider: 'IICRC New Zealand', city: 'Christchurch', country: 'NZ', format: 'in-person', date: '2026-07-07', seats: 8, link: 'https://iicrc.org' },
-  { id: 'c10', cert: 'WRT', title: 'WRT — Online Delivery', provider: 'IICRC Online', city: 'Online', country: 'NZ', format: 'online', date: '2026-05-05', seats: 40, link: 'https://iicrc.org' },
-  { id: 'c11', cert: 'WRT', title: 'WRT Water Damage Restoration Technician', provider: 'IICRC Japan', city: 'Tokyo', country: 'JP', format: 'in-person', date: '2026-06-15', seats: 16, link: 'https://iicrc.org' },
-  { id: 'c12', cert: 'AMRT', title: 'AMRT Applied Microbial Remediation Technician', provider: 'IICRC Japan', city: 'Osaka', country: 'JP', format: 'in-person', date: '2026-07-20', seats: 12, link: 'https://iicrc.org' },
-  { id: 'c13', cert: 'CCT', title: 'CCT Carpet Cleaning Technician', provider: 'IICRC Australia', city: 'Melbourne', country: 'AU', format: 'in-person', date: '2026-05-28', seats: 18, link: 'https://iicrc.org' },
-  { id: 'c14', cert: 'OCT', title: 'OCT Odour Control Technician', provider: 'IICRC Australia', city: 'Sydney', country: 'AU', format: 'in-person', date: '2026-06-30', seats: 12, link: 'https://iicrc.org' },
-  { id: 'c15', cert: 'OSHA', title: 'OSHA Hazard Awareness', provider: 'IICRC Online', city: 'Online', country: 'AU', format: 'online', date: '2026-05-01', seats: 100, link: 'https://iicrc.org' },
+const certifications = [
+  {
+    code: 'WRT',
+    name: 'Water Damage Restoration Technician',
+    category: 'Water Damage',
+    level: 'Technician',
+    duration: '3 days',
+    prereqs: 'None',
+    examType: 'Written',
+    cecs: 14,
+    renewalYears: 4,
+    description:
+      'Foundation certification for water extraction, structural drying, and moisture mapping. The most in-demand IICRC certification in Australia — required for the majority of insurer-referred water damage jobs.',
+    insurerRecognition: ['IAG', 'Suncorp', 'QBE', 'Allianz', 'NRMA'],
+    standards: ['IICRC S500'],
+    states: ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'ACT', 'TAS', 'NT', 'NZ'],
+    avgCostAUD: 1100,
+    jobImpact: 'High',
+  },
+  {
+    code: 'AMRT',
+    name: 'Applied Microbial Remediation Technician',
+    category: 'Mould',
+    level: 'Technician',
+    duration: '3 days',
+    prereqs: 'WRT recommended',
+    examType: 'Written',
+    cecs: 14,
+    renewalYears: 4,
+    description:
+      'Mould assessment, containment, remediation, and post-clearance testing. Covers IICRC S520 standard and is essential for any restorer handling water-damaged properties with mould growth.',
+    insurerRecognition: ['IAG', 'Suncorp', 'QBE'],
+    standards: ['IICRC S520'],
+    states: ['NSW', 'VIC', 'QLD', 'WA', 'SA', 'NZ'],
+    avgCostAUD: 1150,
+    jobImpact: 'High',
+  },
+  {
+    code: 'FSRT',
+    name: 'Fire and Smoke Restoration Technician',
+    category: 'Fire & Smoke',
+    level: 'Technician',
+    duration: '2 days',
+    prereqs: 'None',
+    examType: 'Written',
+    cecs: 14,
+    renewalYears: 4,
+    description:
+      'Soot removal, smoke deodorisation, contents restoration, and structural fire damage cleanup under IICRC FSRT standard. High demand following the 2019–2020 bushfire season.',
+    insurerRecognition: ['IAG', 'Suncorp', 'QBE', 'Allianz'],
+    standards: ['IICRC FSRT'],
+    states: ['NSW', 'VIC', 'QLD', 'SA', 'WA', 'NZ'],
+    avgCostAUD: 950,
+    jobImpact: 'High',
+  },
+  {
+    code: 'ASD',
+    name: 'Applied Structural Drying Technician',
+    category: 'Water Damage',
+    level: 'Advanced',
+    duration: '3 days',
+    prereqs: 'WRT required',
+    examType: 'Written + Practical',
+    cecs: 14,
+    renewalYears: 4,
+    description:
+      'Advanced structural drying using psychrometrics, drying chamber construction, and equipment optimisation. Required for complex multi-storey and Category 3 water damage projects.',
+    insurerRecognition: ['IAG', 'Suncorp'],
+    standards: ['IICRC S500'],
+    states: ['NSW', 'VIC', 'QLD', 'WA'],
+    avgCostAUD: 1600,
+    jobImpact: 'Medium',
+  },
+  {
+    code: 'BSRT',
+    name: 'Biohazard and Crime Scene Remediation Technician',
+    category: 'Biohazard',
+    level: 'Technician',
+    duration: '2 days',
+    prereqs: 'None',
+    examType: 'Written',
+    cecs: 14,
+    renewalYears: 4,
+    description:
+      'Bloodborne pathogen exposure control, PPE protocols, trauma scene decontamination, and meth lab remediation procedures. SafeWork compliance for biohazard-classified work.',
+    insurerRecognition: ['IAG', 'QBE'],
+    standards: ['IICRC BSRT', 'SafeWork'],
+    states: ['NSW', 'VIC', 'QLD', 'WA', 'SA'],
+    avgCostAUD: 1000,
+    jobImpact: 'Medium',
+  },
+  {
+    code: 'CDS',
+    name: 'Commercial Drying Specialist',
+    category: 'Water Damage',
+    level: 'Specialist',
+    duration: '3 days',
+    prereqs: 'WRT + ASD required',
+    examType: 'Written + Practical',
+    cecs: 14,
+    renewalYears: 4,
+    description:
+      'Large-loss commercial drying: multi-storey buildings, controlled environments, document and contents restoration. Essential for restorers targeting commercial and government contracts.',
+    insurerRecognition: ['IAG', 'Suncorp', 'QBE'],
+    standards: ['IICRC S500', 'IICRC CDS'],
+    states: ['NSW', 'VIC', 'QLD'],
+    avgCostAUD: 1900,
+    jobImpact: 'Medium',
+  },
 ]
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://disasterrecovery.com.au' },
-        { '@type': 'ListItem', position: 2, name: 'Tools', item: 'https://disasterrecovery.com.au/tools' },
-        { '@type': 'ListItem', position: 3, name: 'Course Finder', item: 'https://disasterrecovery.com.au/tools/course-finder' },
-      ],
-    },
-    {
-      '@type': 'SoftwareApplication',
-      name: 'IICRC Course Finder',
-      applicationCategory: 'EducationalApplication',
-      operatingSystem: 'Web',
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'AUD' },
-      description: 'Search IICRC certification courses by type, location, and date across Australia, New Zealand, and Japan.',
-    },
-  ],
+const categoryOptions = ['All Categories', 'Water Damage', 'Mould', 'Fire & Smoke', 'Biohazard']
+const levelOptions = ['All Levels', 'Technician', 'Advanced', 'Specialist']
+const stateOptions = ['All States', 'NSW', 'VIC', 'QLD', 'WA', 'SA', 'ACT', 'TAS', 'NT', 'NZ', 'Japan']
+
+const jobImpactColour: Record<string, string> = {
+  High: 'bg-green-100 text-green-700',
+  Medium: 'bg-yellow-100 text-yellow-700',
+  Low: 'bg-slate-100 text-slate-500',
 }
 
-const COUNTRY_FLAG: Record<string, string> = { AU: '🇦🇺', NZ: '🇳🇿', JP: '🇯🇵' }
+const levelColour: Record<string, string> = {
+  Technician: 'bg-blue-100 text-blue-700',
+  Advanced: 'bg-purple-100 text-purple-700',
+  Specialist: 'bg-orange-100 text-orange-700',
+}
 
 export default function CourseFinderPage() {
-  const [certFilter, setCertFilter] = useState<CertType>('all')
-  const [countryFilter, setCountryFilter] = useState<Country>('all')
-  const [formatFilter, setFormatFilter] = useState<Format>('all')
+  const [search, setSearch] = useState('')
+  const [categoryFilter, setCategoryFilter] = useState('All Categories')
+  const [levelFilter, setLevelFilter] = useState('All Levels')
+  const [stateFilter, setStateFilter] = useState('All States')
+  const [expandedCode, setExpandedCode] = useState<string | null>(null)
 
-  const filtered = useMemo(() =>
-    SEEDED_COURSES.filter(c =>
-      (certFilter === 'all' || c.cert === certFilter) &&
-      (countryFilter === 'all' || c.country === countryFilter) &&
-      (formatFilter === 'all' || c.format === formatFilter)
-    ).sort((a, b) => a.date.localeCompare(b.date)),
-    [certFilter, countryFilter, formatFilter]
-  )
+  const filtered = useMemo(() => {
+    return certifications.filter((cert) => {
+      const matchesSearch =
+        !search ||
+        cert.name.toLowerCase().includes(search.toLowerCase()) ||
+        cert.code.toLowerCase().includes(search.toLowerCase()) ||
+        cert.category.toLowerCase().includes(search.toLowerCase())
+      const matchesCategory =
+        categoryFilter === 'All Categories' || cert.category === categoryFilter
+      const matchesLevel = levelFilter === 'All Levels' || cert.level === levelFilter
+      const matchesState =
+        stateFilter === 'All States' || cert.states.includes(stateFilter)
+      return matchesSearch && matchesCategory && matchesLevel && matchesState
+    })
+  }, [search, categoryFilter, levelFilter, stateFilter])
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <main className="bg-[#050505] text-white min-h-screen">
-        <div className="max-w-4xl mx-auto px-6 py-12">
-          <nav className="text-sm text-slate-500 mb-8 flex gap-2">
-            <Link href="/tools" className="hover:text-white transition-colors">Tools</Link>
-            <span>/</span>
-            <span className="text-slate-300">Course Finder</span>
-          </nav>
-
-          <div className="flex items-center gap-3 mb-2">
-            <BookOpen className="w-7 h-7 text-blue-400" />
-            <h1 className="text-3xl font-black">IICRC Course Finder</h1>
+    <div className="min-h-screen bg-slate-50">
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 py-16 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/40 rounded-full text-emerald-400 text-sm font-medium mb-6">
+            <Award className="w-4 h-4" />
+            IICRC Certification Guide
           </div>
-          <p className="text-slate-400 mb-10">
-            Search upcoming IICRC certification courses across Australia, New Zealand, and Japan.
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 text-balance">
+            Find Your Next IICRC Certification
+          </h1>
+          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+            Compare IICRC certifications by category, level, cost, and insurer recognition — for restoration professionals in Australia, New Zealand, and Japan.
           </p>
+        </div>
+      </section>
 
-          {/* Cert reference */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 mb-8">
-            <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-3">Certification Guide</h2>
-            <div className="grid sm:grid-cols-2 gap-2">
-              {(Object.entries(CERT_LABELS) as [Exclude<CertType, 'all'>, typeof CERT_LABELS[keyof typeof CERT_LABELS]][]).map(([cert, info]) => (
-                <div key={cert} className="flex gap-3 text-sm">
-                  <span className={`font-bold w-12 shrink-0 ${info.colour}`}>{cert}</span>
-                  <span className="text-slate-400">{info.description}</span>
-                </div>
-              ))}
+      {/* Filters */}
+      <section className="bg-white border-b border-slate-200 py-6 px-6 sticky top-0 z-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* Search */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Search by code, name, or category..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-9 pr-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              />
             </div>
-          </div>
 
-          {/* Filters */}
-          <div className="grid sm:grid-cols-3 gap-4 mb-8">
-            <div>
-              <label className="block text-sm text-slate-400 mb-2">Certification</label>
-              <select value={certFilter} onChange={e => setCertFilter(e.target.value as CertType)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500">
-                <option value="all">All Certifications</option>
-                {(Object.keys(CERT_LABELS) as Exclude<CertType, 'all'>[]).map(c => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm text-slate-400 mb-2">Country</label>
-              <select value={countryFilter} onChange={e => setCountryFilter(e.target.value as Country)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500">
-                <option value="all">All Countries</option>
-                <option value="AU">🇦🇺 Australia</option>
-                <option value="NZ">🇳🇿 New Zealand</option>
-                <option value="JP">🇯🇵 Japan</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm text-slate-400 mb-2">Format</label>
-              <select value={formatFilter} onChange={e => setFormatFilter(e.target.value as Format)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500">
-                <option value="all">All Formats</option>
-                <option value="in-person">In-person</option>
-                <option value="online">Online</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Results */}
-          <div className="mb-4 flex items-center justify-between">
-            <span className="text-sm text-slate-400">{filtered.length} course{filtered.length !== 1 ? 's' : ''} found</span>
-          </div>
-
-          {filtered.length === 0 ? (
-            <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center">
-              <p className="text-slate-400">No courses match your filters.</p>
-              <button
-                onClick={() => { setCertFilter('all'); setCountryFilter('all'); setFormatFilter('all') }}
-                className="mt-4 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+            {/* Category */}
+            <div className="relative">
+              <Filter className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <select
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                className="pl-9 pr-8 py-2.5 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none cursor-pointer"
               >
-                Clear filters
-              </button>
+                {categoryOptions.map((o) => <option key={o}>{o}</option>)}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
             </div>
-          ) : (
-            <div className="space-y-3">
-              {filtered.map(course => {
-                const certInfo = CERT_LABELS[course.cert]
-                const dateObj = new Date(course.date + 'T00:00:00')
-                const formattedDate = dateObj.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' })
 
-                return (
-                  <div key={course.id} className="bg-slate-900 border border-slate-800 hover:border-slate-600 rounded-2xl p-5 transition-colors">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <span className={`text-xs font-bold px-2 py-0.5 rounded-full bg-slate-800 ${certInfo.colour}`}>
-                            {course.cert}
-                          </span>
-                          <span className="text-xs text-slate-500">
-                            {COUNTRY_FLAG[course.country]} {course.country}
-                          </span>
-                          <span className={`text-xs px-2 py-0.5 rounded-full ${
-                            course.format === 'online' ? 'bg-purple-500/20 text-purple-300' : 'bg-blue-500/20 text-blue-300'
-                          }`}>
-                            {course.format === 'online' ? 'Online' : 'In-person'}
-                          </span>
-                        </div>
+            {/* Level */}
+            <div className="relative">
+              <select
+                value={levelFilter}
+                onChange={(e) => setLevelFilter(e.target.value)}
+                className="pl-4 pr-8 py-2.5 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none cursor-pointer"
+              >
+                {levelOptions.map((o) => <option key={o}>{o}</option>)}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            </div>
 
-                        <h3 className="font-bold text-sm mb-2">{course.title}</h3>
+            {/* State */}
+            <div className="relative">
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <select
+                value={stateFilter}
+                onChange={(e) => setStateFilter(e.target.value)}
+                className="pl-9 pr-8 py-2.5 border border-slate-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none cursor-pointer"
+              >
+                {stateOptions.map((o) => <option key={o}>{o}</option>)}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            </div>
+          </div>
+          <div className="mt-3 text-sm text-slate-500">
+            {filtered.length} certification{filtered.length !== 1 ? 's' : ''} found
+          </div>
+        </div>
+      </section>
 
-                        <div className="flex items-center gap-4 text-xs text-slate-400 flex-wrap">
-                          <span className="flex items-center gap-1">
-                            <MapPin className="w-3 h-3" />
-                            {course.city} · {course.provider}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {formattedDate}
-                          </span>
-                          <span className={course.seats <= 5 ? 'text-red-400 font-semibold' : ''}>
-                            {course.seats} seats available
-                          </span>
-                        </div>
-                      </div>
-
-                      <a
-                        href={course.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-bold transition-colors"
-                        onClick={e => e.stopPropagation()}
-                      >
-                        Book
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
-                    </div>
-                  </div>
-                )
-              })}
+      {/* Results */}
+      <section className="py-10 px-6">
+        <div className="max-w-5xl mx-auto space-y-4">
+          {filtered.length === 0 && (
+            <div className="text-center py-16 text-slate-400">
+              <Award className="w-12 h-12 mx-auto mb-4 opacity-30" />
+              <p className="font-medium">No certifications match your filters.</p>
+              <p className="text-sm mt-1">Try adjusting your search or clearing some filters.</p>
             </div>
           )}
 
-          <p className="text-xs text-slate-600 mt-8 text-center">
-            Course dates and availability are indicative. Confirm directly with IICRC or the registered course provider.
-            Visit iicrc.org for the authoritative course schedule.
-          </p>
+          {filtered.map((cert) => {
+            const isExpanded = expandedCode === cert.code
+            return (
+              <div
+                key={cert.code}
+                className="bg-white rounded-2xl border-2 border-slate-200 hover:border-emerald-300 transition-all overflow-hidden"
+              >
+                {/* Header row */}
+                <button
+                  onClick={() => setExpandedCode(isExpanded ? null : cert.code)}
+                  className="w-full text-left p-6"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-start gap-4 flex-1 min-w-0">
+                      <div className="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <span className="text-sm font-bold text-emerald-700">{cert.code}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${levelColour[cert.level]}`}>
+                            {cert.level}
+                          </span>
+                          <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${jobImpactColour[cert.jobImpact]}`}>
+                            {cert.jobImpact} Job Impact
+                          </span>
+                        </div>
+                        <h3 className="text-base font-semibold text-slate-900">{cert.name}</h3>
+                        <div className="flex items-center gap-4 mt-1 text-xs text-slate-500">
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {cert.duration}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <BookOpen className="w-3 h-3" />
+                            {cert.prereqs}
+                          </span>
+                          <span className="font-medium text-slate-700">~${cert.avgCostAUD.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <ChevronDown
+                      className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                    />
+                  </div>
+                </button>
+
+                {/* Expanded detail */}
+                {isExpanded && (
+                  <div className="border-t border-slate-100 px-6 pb-6">
+                    <p className="text-sm text-slate-600 leading-relaxed mt-4 mb-5">{cert.description}</p>
+
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <div>
+                        <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Certification Details</h4>
+                        <dl className="space-y-1.5 text-sm">
+                          <div className="flex justify-between">
+                            <dt className="text-slate-500">Standard</dt>
+                            <dd className="text-slate-900 font-medium">{cert.standards.join(', ')}</dd>
+                          </div>
+                          <div className="flex justify-between">
+                            <dt className="text-slate-500">Exam type</dt>
+                            <dd className="text-slate-900 font-medium">{cert.examType}</dd>
+                          </div>
+                          <div className="flex justify-between">
+                            <dt className="text-slate-500">Renewal</dt>
+                            <dd className="text-slate-900 font-medium">Every {cert.renewalYears} years ({cert.cecs} CECs)</dd>
+                          </div>
+                          <div className="flex justify-between">
+                            <dt className="text-slate-500">Avg. cost (AU)</dt>
+                            <dd className="text-slate-900 font-medium">${cert.avgCostAUD.toLocaleString()} AUD</dd>
+                          </div>
+                        </dl>
+                      </div>
+
+                      <div>
+                        <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Insurer Recognition</h4>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {cert.insurerRecognition.map((ins) => (
+                            <span key={ins} className="inline-flex items-center gap-1 text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded-full font-medium">
+                              <CheckCircle className="w-3 h-3" />
+                              {ins}
+                            </span>
+                          ))}
+                        </div>
+
+                        <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">States / Regions</h4>
+                        <div className="flex flex-wrap gap-1.5">
+                          {cert.states.map((state) => (
+                            <span key={state} className="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium">
+                              {state}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 mt-5">
+                      <Link
+                        href="/events"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold rounded-lg transition-colors"
+                      >
+                        <Calendar className="w-4 h-4" />
+                        Find {cert.code} Courses Near You
+                      </Link>
+                      <Link
+                        href="/learn"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-emerald-600 hover:text-emerald-700"
+                      >
+                        Preparation Guide
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </div>
-      </main>
-    </>
+      </section>
+
+      {/* Tools CTA */}
+      <section className="bg-white border-t border-slate-200 py-10 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h3 className="font-semibold text-slate-900 mb-1">Ready to book a course?</h3>
+              <p className="text-sm text-slate-500">
+                Browse the ANZ Events Calendar for 35+ upcoming IICRC courses across Australia and NZ.
+              </p>
+            </div>
+            <div className="flex gap-3 flex-shrink-0">
+              <Link
+                href="/events"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-lg transition-colors"
+              >
+                <Calendar className="w-4 h-4" />
+                Browse Events
+              </Link>
+              <Link
+                href="/industry-partners"
+                className="inline-flex items-center gap-2 px-5 py-2.5 border border-slate-200 hover:border-slate-300 text-slate-700 font-semibold text-sm rounded-lg bg-white transition-colors"
+              >
+                <Layers className="w-4 h-4" />
+                Industry Hub
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }
