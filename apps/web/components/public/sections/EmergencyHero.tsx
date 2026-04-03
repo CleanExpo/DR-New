@@ -166,9 +166,9 @@ export function EmergencyHero() {
             variants={fadeInUp}
             className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 max-w-5xl tracking-tight"
           >
-            <span className="block">24/7 Emergency</span>
+            <span className="block">Disaster Recovery Services Australia</span>
             <span className="block bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent">
-              Disaster Recovery
+              Water, Fire, Storm &amp; Mould Damage Repair
             </span>
           </motion.h1>
 
