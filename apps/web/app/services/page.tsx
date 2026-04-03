@@ -2,9 +2,36 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Droplets, Flame, Wind, Zap, Shield, Clock, CheckCircle, Users } from "lucide-react"
 
+const servicesSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Disaster Recovery Services Australia',
+  description: 'Complete range of IICRC-certified disaster recovery and restoration services across Australia.',
+  url: 'https://disasterrecovery.com.au/services',
+  numberOfItems: 5,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Water Damage Restoration', url: 'https://disasterrecovery.com.au/services/water-damage' },
+    { '@type': 'ListItem', position: 2, name: 'Fire & Smoke Damage', url: 'https://disasterrecovery.com.au/services/fire-smoke-damage' },
+    { '@type': 'ListItem', position: 3, name: 'Mould Remediation', url: 'https://disasterrecovery.com.au/services/mould-remediation' },
+    { '@type': 'ListItem', position: 4, name: 'Storm Damage Restoration', url: 'https://disasterrecovery.com.au/services/storm-damage' },
+    { '@type': 'ListItem', position: 5, name: 'Biohazard Cleanup', url: 'https://disasterrecovery.com.au/services/biohazard-cleanup' },
+  ],
+}
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://disasterrecovery.com.au' },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://disasterrecovery.com.au/services' },
+  ],
+}
+
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main className="py-24">
         {/* Hero Section */}
