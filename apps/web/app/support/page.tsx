@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Mail, Phone, Clock, MessageCircle, FileText, Users, Shield } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: 'Support | NRPG Disaster Recovery Platform',
+  description: 'Get support for your disaster recovery claim or contractor engagement on the NRPG platform. Assistance available for property owners and contractors alike.',
+}
 
 export default function SupportPage() {
   return (
