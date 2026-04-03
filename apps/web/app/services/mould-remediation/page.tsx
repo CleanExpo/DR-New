@@ -48,7 +48,28 @@ export default function MouldRemediationPillarPage() {
   keywords: [],
   slug: 'mould-remediation',
   categoryName: 'Mould Remediation',
-  faqs: aeoFaqs,
+  faqs: [
+    {
+      question: 'Is mould dangerous to your health?',
+      answer: 'Yes, mould exposure can cause serious health issues including respiratory problems, allergic reactions, skin irritation, and in severe cases with toxic black mould (Stachybotrys chartarum), neurological symptoms. Vulnerable populations including children, the elderly, and people with asthma or compromised immune systems are at greatest risk. Professional mould remediation following IICRC S520 standards removes the source of contamination and restores safe indoor air quality.',
+    },
+    {
+      question: 'How is mould remediation done professionally?',
+      answer: 'Professional mould remediation follows the IICRC S520 Standard for Mould Remediation. The process includes: (1) Air quality testing to identify mould species and spore counts; (2) Containment of affected areas using negative air pressure and plastic sheeting; (3) HEPA vacuuming and antimicrobial treatment of all affected surfaces; (4) Physical removal and disposal of heavily contaminated porous materials such as drywall and insulation; (5) Post-remediation verification testing to confirm mould counts are within safe limits.',
+    },
+    {
+      question: 'How long does mould remediation take?',
+      answer: 'Mould remediation typically takes between 1 and 5 days depending on the extent of contamination. Small localised mould growth (under 1 square metre) can often be remediated in a single day. Extensive mould affecting multiple rooms, wall cavities, or HVAC systems can take 3–5 days. NRPG provides a detailed scope of works and timeline after the initial mould inspection.',
+    },
+    {
+      question: 'Does insurance cover mould remediation?',
+      answer: 'Insurance coverage for mould remediation in Australia depends on the cause. If mould resulted from a sudden and accidental event covered by your policy (such as burst pipe water damage or storm flooding), remediation costs are typically covered. Mould caused by long-term neglect or maintenance issues is generally not covered. NRPG provides documentation establishing the cause of mould growth to support insurance claims.',
+    },
+    {
+      question: 'How much does mould remediation cost in Australia?',
+      answer: 'Mould remediation costs in Australia range from approximately $500–$1,500 for minor localised mould to $3,000–$10,000+ for extensive contamination requiring structural material removal. The emergency assessment callout starts at $2,750 AUD including initial inspection, air quality sampling, and preliminary containment. A detailed quote is provided before all remediation work commences.',
+    },
+  ],
 })) }}
       />
       <main className="py-24">

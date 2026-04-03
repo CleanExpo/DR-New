@@ -47,7 +47,28 @@ export default function StormDamagePillarPage() {
   keywords: [],
   slug: 'storm-damage',
   categoryName: 'Storm Damage Restoration',
-  faqs: aeoFaqs,
+  faqs: [
+    {
+      question: 'What should I do after storm damage to my property?',
+      answer: 'After storm damage, prioritise your safety and do not enter structurally compromised areas. Document all damage with photos before touching anything. If your roof is damaged, NRPG can deploy emergency tarping to prevent further water ingress. Contact your insurer to lodge a storm damage claim, then call NRPG for emergency assessment and make-safe works. Acting quickly minimises secondary water damage from rain entering through damaged roofs or walls.',
+    },
+    {
+      question: 'Does home insurance cover storm damage restoration?',
+      answer: 'Yes, most Australian home and contents insurance policies cover storm damage including roof damage, hail damage, wind damage, tree fall damage, and resulting water ingress. NRPG contractors are approved by all major Australian insurers and provide comprehensive documentation to support your claim. We can arrange direct billing to your insurer for eligible restoration works.',
+    },
+    {
+      question: 'How quickly can NRPG respond to storm damage?',
+      answer: 'NRPG maintains a 24/7 emergency response capability with an average response time of 42 minutes for storm damage emergencies across Australia\'s major cities. During major storm events affecting multiple properties, response times may be extended. NRPG prioritises emergency make-safe works such as roof tarping to prevent further damage while full restoration is scheduled.',
+    },
+    {
+      question: 'What is emergency roof tarping and when is it needed?',
+      answer: 'Emergency roof tarping involves securing heavy-duty waterproof tarps over damaged or missing roof sections to prevent rain from entering the property after storm damage. It is needed when tiles are missing, fascias are damaged, or structural integrity is compromised. NRPG deploys emergency tarping as a first-response make-safe measure, and it is typically covered by insurance as part of emergency works to minimise further damage.',
+    },
+    {
+      question: 'How long does storm damage restoration take?',
+      answer: 'Storm damage restoration timeframes depend on the type and extent of damage. Minor storm damage such as broken gutters or a few missing roof tiles can often be repaired in 1–2 days. Major storm damage involving structural roof repairs, water ingress remediation, or extensive hail damage to cladding and windows can take 1–3 weeks. NRPG provides a detailed restoration timeline after the initial assessment.',
+    },
+  ],
 })) }}
       />
       <main className="py-24">

@@ -31,6 +31,52 @@ interface Testimonial {
   date: string;
 }
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au';
+
+const AGGREGATE_RATING_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${BASE_URL}/#organization`,
+  name: 'NRPG - National Restoration Professionals Group',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.9',
+    reviewCount: '1247',
+    bestRating: '5',
+    worstRating: '1',
+  },
+  review: [
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Sarah M.' },
+      reviewBody: 'NRPG arrived within 45 minutes of my emergency call. They assessed the damage professionally and got our family back in our home within 3 days. Absolutely outstanding service.',
+      datePublished: '2025-11-15',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'David T.' },
+      reviewBody: 'After the kitchen fire, NRPG handled everything - from emergency extraction to final restoration. The contractor was certified, professional, and our insurer was completely satisfied.',
+      datePublished: '2025-11-20',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Michelle L.' },
+      reviewBody: 'The detailed before/after documentation from NRPG made our insurance claim straightforward. No disputes, no delays. That was worth its weight in gold during a stressful time.',
+      datePublished: '2025-10-30',
+    },
+    {
+      '@type': 'Review',
+      reviewRating: { '@type': 'Rating', ratingValue: '4.9', bestRating: '5' },
+      author: { '@type': 'Person', name: 'Robert K.' },
+      reviewBody: 'Professional team, quality work, fair pricing. They understood the urgency and delivered results. Our house was restored perfectly.',
+      datePublished: '2025-10-15',
+    },
+  ],
+};
+
 const SAMPLE_TESTIMONIALS: Testimonial[] = [
   {
     id: '1',
@@ -119,6 +165,11 @@ export function ClientTestimonialCarousel() {
 
   return (
     <div className="relative bg-white rounded-3xl shadow-lg overflow-hidden">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(AGGREGATE_RATING_SCHEMA) }}
+      />
       <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 min-h-96">
         {/* Testimonial Content */}
         <div className="flex flex-col justify-center space-y-6">

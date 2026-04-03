@@ -62,7 +62,28 @@ export default function WaterDamagePillarPage() {
   keywords: [],
   slug: 'water-damage',
   categoryName: 'Water Damage Restoration',
-  faqs: aeoFaqs,
+  faqs: [
+    {
+      question: 'What should I do immediately after water damage?',
+      answer: 'Immediately after water damage, turn off the water source if possible, switch off electricity in affected areas for safety, document the damage with photos for your insurance claim, and call NRPG for emergency water extraction. Do not enter rooms with standing water until the electricity is confirmed off. Acting within the first 24–48 hours is critical to prevent mould growth and structural damage.',
+    },
+    {
+      question: 'How long does water damage restoration take?',
+      answer: 'Water damage restoration typically takes between 3 and 7 days, depending on the severity and extent of the damage. Minor water damage affecting a single room may be resolved in 3 days, while major flooding involving multiple rooms or structural materials can take 7–10 days. NRPG uses IICRC S500-compliant drying protocols and industrial dehumidifiers to achieve the fastest safe drying times.',
+    },
+    {
+      question: 'Does insurance cover water damage restoration?',
+      answer: 'Most Australian home and contents insurance policies cover sudden and accidental water damage such as burst pipes, storm flooding, and appliance leaks. NRPG contractors are approved by all major Australian insurers including NRMA, RACV, AAMI, Suncorp, and Allianz. We provide comprehensive documentation to support your claim and can arrange direct billing to your insurer.',
+    },
+    {
+      question: 'How much does water damage restoration cost in Australia?',
+      answer: 'Emergency water damage restoration in Australia starts at $2,750 AUD for the initial assessment and make-safe work, which includes 24/7 dispatch, IICRC-certified contractor arrival, moisture assessment, and initial water extraction. Full restoration costs depend on the extent of the damage. NRPG provides a detailed estimate after the initial assessment, and all costs are fully documented for insurance purposes.',
+    },
+    {
+      question: 'Can mould grow after water damage?',
+      answer: 'Yes, mould can begin growing within 24–48 hours of water damage if moisture is not promptly addressed. NRPG technicians apply antimicrobial treatments as part of every water damage restoration job to prevent secondary mould growth. If mould is already present, our IICRC S520-certified specialists can perform full mould remediation as part of the restoration process.',
+    },
+  ],
 })) }}
       />
       {/* HowTo Schema (DIS-30) */}

@@ -48,7 +48,28 @@ export default function FireSmokeDamagePillarPage() {
   keywords: [],
   slug: 'fire-smoke-damage',
   categoryName: 'Fire & Smoke Damage Restoration',
-  faqs: aeoFaqs,
+  faqs: [
+    {
+      question: 'What should I do immediately after a fire at my property?',
+      answer: 'After a fire, do not re-enter the property until emergency services have declared it safe. Once cleared, contact your insurer to lodge a claim and call NRPG for immediate fire damage assessment. Avoid touching or disturbing soot and smoke-damaged materials as this can spread contamination. NRPG\'s IICRC FSRT-certified contractors will document all damage, perform emergency board-up and tarping if needed, and begin the restoration process.',
+    },
+    {
+      question: 'How long does fire damage restoration take?',
+      answer: 'Fire damage restoration typically takes between 1 and 4 weeks depending on the severity. Minor smoke damage may be remediated in 3–5 days, while major structural fire damage requiring rebuild work can take several weeks. NRPG coordinates the full process including emergency stabilisation, smoke and soot removal, odour elimination, and structural repairs, providing a detailed timeline and insurance documentation at every stage.',
+    },
+    {
+      question: 'Can smoke and soot damage be fully removed?',
+      answer: 'Yes, professional smoke and soot removal using IICRC FSRT standards can fully remediate fire damage from most surfaces. NRPG contractors use HEPA air filtration, thermal fogging, ozone treatment, and specialised chemical sponges to remove soot residue and smoke odour from walls, ceilings, contents, and HVAC systems. Some severely damaged materials may need replacement rather than cleaning.',
+    },
+    {
+      question: 'Does home insurance cover fire damage restoration?',
+      answer: 'Yes, standard Australian home and contents insurance policies cover fire damage restoration including emergency works, smoke and soot removal, odour remediation, and structural repairs. NRPG contractors are approved by all major Australian insurers and provide itemised documentation to support your claim. We can arrange direct insurer billing to minimise out-of-pocket expenses.',
+    },
+    {
+      question: 'How much does fire damage restoration cost in Australia?',
+      answer: 'Fire damage restoration costs in Australia vary based on the extent of damage. Emergency callout and make-safe work starts at $2,750 AUD, covering initial assessment, emergency board-up, and preliminary documentation. Full restoration costs are assessed and quoted after the initial inspection, with all costs itemised for insurance claim purposes.',
+    },
+  ],
 })) }}
       />
       <main className="py-24">

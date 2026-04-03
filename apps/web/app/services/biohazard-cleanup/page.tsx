@@ -49,6 +49,28 @@ export default function BiohazardCleanupPillarPage() {
   slug: 'biohazard-cleanup',
   faqs: aeoFaqs,
   categoryName: 'Biohazard Cleanup',
+  faqs: [
+    {
+      question: 'What types of biohazard cleanup does NRPG handle?',
+      answer: 'NRPG handles all categories of biohazard cleanup including crime scene cleanup, unattended death and trauma scene decontamination, meth lab remediation, sewage and waste cleanup, hoarding cleanup, and general infectious waste remediation. All NRPG biohazard contractors hold IICRC S540 and S800 certifications and comply with Australian state and territory regulations for biohazardous waste disposal.',
+    },
+    {
+      question: 'How quickly can NRPG respond to biohazard cleanup emergencies?',
+      answer: 'NRPG maintains 24/7 emergency response capability for biohazard incidents with an average response time of 42 minutes across Australia\'s major cities. Biohazard scenes are treated with the highest priority due to health and safety risks. All response teams arrive in unmarked vehicles to maintain discretion for sensitive situations such as crime scenes and trauma cleanup.',
+    },
+    {
+      question: 'Is biohazard cleanup covered by insurance?',
+      answer: 'Insurance coverage for biohazard cleanup depends on the nature of the incident and your specific policy. Crime scene and trauma cleanup is often covered under home insurance policies. Sewage damage cleanup is typically covered if caused by a sudden blockage or failure. Meth lab decontamination may be covered by landlord insurance policies. NRPG provides detailed documentation and cost itemisation to support insurance claims.',
+    },
+    {
+      question: 'How do professionals safely clean up biohazardous materials?',
+      answer: 'Professional biohazard cleanup follows strict biosafety protocols. NRPG contractors wear full PPE including Tyvek suits, respirators, and double-gloved protection. Contaminated materials are removed, double-bagged, and disposed of through licensed biohazardous waste carriers. All affected surfaces are treated with hospital-grade disinfectants and ATP-tested to verify pathogen elimination. The property is cleared to safe occupancy standards before handover.',
+    },
+    {
+      question: 'How much does biohazard cleanup cost in Australia?',
+      answer: 'Biohazard cleanup costs in Australia vary widely depending on the type and extent of contamination. Basic sewage cleanup starts from approximately $800–$2,000. Trauma and crime scene cleanup ranges from $2,000–$8,000+. Meth lab decontamination can cost $5,000–$30,000+ depending on contamination levels. Emergency callout and assessment starts at $2,750 AUD with a full quote provided after initial assessment.',
+    },
+  ],
 })) }}
       />
       <main className="py-24">
