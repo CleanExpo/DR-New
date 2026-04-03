@@ -4,8 +4,13 @@ on:
   push:
     branches: [develop]
 
+concurrency:
+  group: staging-deploy
+  cancel-in-progress: true
+
 env:
   NODE_VERSION: '20'
+  PNPM_VERSION: '8'
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
@@ -13,19 +18,25 @@ jobs:
   deploy-staging:
     name: Deploy to Vercel Staging
     runs-on: ubuntu-latest
-    # Skip entirely when Vercel secrets are not configured in this repo
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    outputs:
+      staging-url: ${{ steps.deploy.outputs.staging-url }}
     environment:
       name: staging
       url: ${{ steps.deploy.outputs.staging-url }}
-    outputs:
-      staging-url: ${{ steps.deploy.outputs.staging-url }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
 
       - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+        run: pnpm add -g vercel@latest
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
@@ -33,7 +44,7 @@ jobs:
       - name: Build Project Artifacts
         run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Deploy to Vercel Preview (Staging)
+      - name: Deploy Staging to Vercel
         id: deploy
         run: |
           STAGING_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
@@ -42,35 +53,56 @@ jobs:
 
       - name: Create deployment summary
         run: |
-          echo "## Staging Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "## Staging Deployment Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**URL:** ${{ steps.deploy.outputs.staging-url }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Branch:** develop" >> $GITHUB_STEP_SUMMARY
-          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Deployed by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** \`develop\`" >> $GITHUB_STEP_SUMMARY
+          echo "**By:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
 
   smoke-tests:
     name: Staging Smoke Tests
     runs-on: ubuntu-latest
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
     needs: deploy-staging
     steps:
-      - name: Wait for deployment
+      - name: Wait for deployment to stabilise
         run: sleep 30
 
-      - name: Run smoke tests
+      - name: Run smoke tests against staging
         run: |
           STAGING_URL="${{ needs.deploy-staging.outputs.staging-url }}"
           echo "Testing $STAGING_URL..."
 
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$STAGING_URL")
+          # Test homepage
+          HTTP_CODE=$(curl -f -s -o /dev/null -w "%{http_code}" "$STAGING_URL" || echo "000")
+          echo "Homepage: $HTTP_CODE"
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "Homepage test failed with code: $HTTP_CODE"
+            echo "::error::Homepage returned $HTTP_CODE on staging"
             exit 1
           fi
-          echo "Homepage: $HTTP_CODE"
 
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$STAGING_URL/api/health")
-          echo "Health endpoint: $HTTP_CODE"
+          # Test health endpoint
+          HTTP_CODE=$(curl -f -s -o /dev/null -w "%{http_code}" "$STAGING_URL/api/health" || echo "000")
+          echo "Health: $HTTP_CODE"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error::Health endpoint returned $HTTP_CODE on staging"
+            exit 1
+          fi
 
-          echo "Staging smoke tests passed!"
+          # Test critical pages
+          FAILED=0
+          for page in "/about" "/pricing" "/contact"; do
+            HTTP_CODE=$(curl -f -s -o /dev/null -w "%{http_code}" "$STAGING_URL$page" || echo "000")
+            echo "Page $page: $HTTP_CODE"
+            if [ "$HTTP_CODE" = "000" ] || [ "$HTTP_CODE" = "500" ]; then
+              echo "::warning::$page returned $HTTP_CODE"
+              FAILED=1
+            fi
+          done
+
+          if [ "$FAILED" = "1" ]; then
+            echo "::warning::Some staging pages returned errors"
+          fi
+
+          echo "Staging smoke tests complete"
