@@ -227,6 +227,81 @@ export default function WaterDamagePillarPage() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What should I do first after water damage?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Turn off the water source if safe, avoid using electrical appliances in affected areas, move valuables to a dry area, and call a certified water damage restoration professional immediately. Acting within the first 60 minutes dramatically reduces damage and mould risk."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How long does water damage restoration take?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Minor water damage is typically restored in 3–5 days. Significant flooding or structural damage may take 1–2 weeks. IICRC S500 standards require complete structural drying before any reconstruction begins."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does insurance cover water damage restoration?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Most home and contents insurance policies cover sudden and accidental water damage. NRPG contractors provide full insurance documentation and work directly with all major Australian insurers including NRMA, Suncorp, RACV and QBE."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is IICRC S500 certification?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "IICRC S500 is the international standard for water damage restoration. Certified technicians are trained in moisture measurement, structural drying science, and mould prevention protocols — ensuring your property is restored to pre-loss condition."
+                }
+              }
+            ]
+          }) }}
+        />
+        <section className="container mx-auto px-6 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-4">
+              {[
+                {
+                  q: "What should I do first after water damage?",
+                  a: "Turn off the water source if safe, avoid using electrical appliances in affected areas, move valuables to a dry area, and call a certified water damage restoration professional immediately. Acting within the first 60 minutes dramatically reduces damage and mould risk."
+                },
+                {
+                  q: "How long does water damage restoration take?",
+                  a: "Minor water damage is typically restored in 3–5 days. Significant flooding or structural damage may take 1–2 weeks. IICRC S500 standards require complete structural drying before any reconstruction begins."
+                },
+                {
+                  q: "Does insurance cover water damage restoration?",
+                  a: "Most home and contents insurance policies cover sudden and accidental water damage. NRPG contractors provide full insurance documentation and work directly with all major Australian insurers including NRMA, Suncorp, RACV and QBE."
+                },
+                {
+                  q: "What is IICRC S500 certification?",
+                  a: "IICRC S500 is the international standard for water damage restoration. Certified technicians are trained in moisture measurement, structural drying science, and mould prevention protocols — ensuring your property is restored to pre-loss condition."
+                }
+              ].map(({ q, a }, i) => (
+                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
+                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Emergency CTA */}
         <section className="container mx-auto px-6">
           <div className="bg-gradient-to-r from-[#EF4444] to-[#DC2626] rounded-2xl p-12 text-center">
