@@ -1,16 +1,26 @@
 /**
  * POST /api/store/checkout
  *
- * Validates cart items against the local catalogue, then submits
- * a fulfilment order to Printful. Returns the Printful order ID,
- * estimated delivery window, and total in AUD.
+ * Validates cart items against the local catalogue, then creates a
+ * Stripe Checkout Session. Returns the Stripe-hosted checkout URL so
+ * the frontend can redirect the customer. The Printful order is
+ * created only AFTER payment_intent.succeeded (webhook).
+ *
+ * Previously this route called Printful directly without taking payment.
+ * DR-219 fixes that critical ordering bug.
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import Stripe from 'stripe'
 import { getProductById, type StoreProduct } from '@/lib/printful/products'
-import { createPrintfulOrder } from '@/lib/printful/sync'
 
 export const dynamic = 'force-dynamic'
+
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' as Stripe.LatestApiVersion })
+  : null
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'
 
 // ---------------------------------------------------------------------------
 // Request / Response shapes
@@ -75,6 +85,13 @@ function validatePayload(body: unknown): { data?: CheckoutRequest; error?: strin
 // ---------------------------------------------------------------------------
 
 export async function POST(request: NextRequest) {
+  if (!stripe) {
+    return NextResponse.json(
+      { error: 'Payment processing is not configured. Contact support@disasterrecovery.com.au' },
+      { status: 503 }
+    )
+  }
+
   let body: unknown
   try {
     body = await request.json()
@@ -87,11 +104,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error }, { status: 400 })
   }
 
-  // Resolve products and calculate totals in parallel (Von Neumann: no blocking serial loop)
+  // Resolve products and calculate totals
   type ResolvedItem = {
     product: StoreProduct
     variantId: string
     quantity: number
+    unitPrice: number
     lineTotal: number
   }
 
@@ -99,10 +117,7 @@ export async function POST(request: NextRequest) {
     data.items.map(async (item): Promise<ResolvedItem | NextResponse> => {
       const product = getProductById(item.productId)
       if (!product) {
-        return NextResponse.json(
-          { error: `Product not found: ${item.productId}` },
-          { status: 400 }
-        )
+        return NextResponse.json({ error: `Product not found: ${item.productId}` }, { status: 400 })
       }
 
       const variant = product.variants.find((v) => v.id === item.variantId)
@@ -121,58 +136,60 @@ export async function POST(request: NextRequest) {
       }
 
       const unitPrice = product.basePrice + variant.priceAdjustment
-      return {
-        product,
-        variantId: item.variantId,
-        quantity: item.quantity,
-        lineTotal: unitPrice * item.quantity,
-      }
+      return { product, variantId: item.variantId, quantity: item.quantity, unitPrice, lineTotal: unitPrice * item.quantity }
     })
   )
 
-  // Surface the first validation error, if any
   const firstError = resolvedOrErrors.find((r): r is NextResponse => r instanceof NextResponse)
   if (firstError) return firstError
 
   const resolvedItems = resolvedOrErrors as ResolvedItem[]
-  const subtotalAUD = resolvedItems.reduce((sum, i) => sum + i.lineTotal, 0)
-
-  // Build Printful order
   const externalId = `NRPG-${Date.now()}`
 
-  try {
-    const printfulOrder = await createPrintfulOrder({
-      externalId,
-      recipient: {
-        name: data.recipient.name,
-        address1: data.recipient.address,
-        address2: data.recipient.address2,
-        city: data.recipient.city,
-        state_code: data.recipient.state,
-        country_code: data.recipient.country,
-        zip: data.recipient.postcode,
-        email: data.recipient.email,
+  // Build Stripe line items (amounts in cents, AUD)
+  const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = resolvedItems.map((i) => ({
+    quantity: i.quantity,
+    price_data: {
+      currency: 'aud',
+      unit_amount: Math.round(i.unitPrice * 100),
+      product_data: {
+        name: `${i.product.name} (${i.variantId})`,
+        description: i.product.description.slice(0, 500),
+        images: i.product.mockupImage
+          ? [`${BASE_URL}${i.product.mockupImage}`]
+          : [],
       },
-      items: resolvedItems
-        .filter((i) => i.product.printfulProductId)
-        .map((i) => ({
-          external_variant_id: `${i.product.id}-${i.variantId}`,
-          quantity: i.quantity,
-        })),
-      confirm: false,
+    },
+  }))
+
+  // Serialize order details into metadata so the webhook can fulfil later.
+  // Stripe metadata strings are capped at 500 chars — compact the JSON.
+  const itemsJson = JSON.stringify(
+    resolvedItems.map((i) => ({ pid: i.product.id, vid: i.variantId, qty: i.quantity }))
+  )
+  const recipientJson = JSON.stringify(data.recipient)
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      customer_email: data.recipient.email,
+      success_url: `${BASE_URL}/store/order-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${BASE_URL}/store/cart`,
+      metadata: {
+        type: 'NRPG_STORE_ORDER',
+        externalId,
+        itemsJson,
+        recipientJson,
+      },
     })
 
-    // Shannon: return only what the client needs — it already holds cart state locally
-    return NextResponse.json({
-      orderId: printfulOrder.id,
-      externalId,
-      estimatedDelivery: '7-14 business days',
-      totalAUD: subtotalAUD,
-    })
+    return NextResponse.json({ url: session.url, externalId })
   } catch (err) {
-    console.error('[store:checkout] Printful order failed:', err)
+    console.error('[store:checkout] Stripe session creation failed:', err)
     return NextResponse.json(
-      { error: 'Failed to create fulfilment order. Please try again or contact support@disasterrecovery.com.au' },
+      { error: 'Failed to initiate payment. Please try again or contact support@disasterrecovery.com.au' },
       { status: 502 }
     )
   }

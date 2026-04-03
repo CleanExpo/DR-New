@@ -265,6 +265,14 @@ export default function CartCheckout() {
         return
       }
 
+      // Redirect to Stripe-hosted payment page. Cart is cleared on the
+      // order-success page after payment is confirmed.
+      if (data.url) {
+        window.location.href = data.url
+        return
+      }
+
+      // Fallback for non-Stripe environments (should not occur in production)
       clear()
       setSuccess({
         orderId: data.externalId ?? data.orderId ?? 'NRPG-ORDER',
