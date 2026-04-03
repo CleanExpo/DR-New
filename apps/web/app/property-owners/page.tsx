@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
+
+export const metadata: Metadata = {
+  title: 'For Property Owners | NRPG Disaster Recovery Australia',
+  description: 'NRPG connects Australian property owners with certified disaster recovery contractors. Fast response for water, fire, storm and mould damage — insurance-approved, IICRC certified.',
+}
 import { Shield, Clock, DollarSign, Users, CheckCircle, Star, ArrowRight, Phone, Zap, BarChart3, Smartphone, Globe, Lock } from "lucide-react"
 
 export default function PropertyOwnersPage() {

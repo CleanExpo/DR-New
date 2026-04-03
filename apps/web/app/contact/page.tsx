@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Mail, Phone, Clock, Users, Shield, Headphones, Globe, Zap, BarChart3, Smartphone } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: 'Contact Us | Disaster Recovery Australia — NRPG',
+  description: 'Get in touch with the NRPG platform team. We connect property owners with certified disaster recovery contractors across Australia for emergency restoration services.',
+}
 import { Button } from "@/components/ui/button"
 import { ChatMessage, PhoneCall } from "@/icons"
 
