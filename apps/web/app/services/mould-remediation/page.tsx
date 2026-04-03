@@ -174,6 +174,39 @@ export default function MouldRemediationPillarPage() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "Is mould dangerous to my health?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Exposure to mould — particularly black mould (Stachybotrys) — can cause respiratory symptoms, allergic reactions and in severe cases, serious illness. Professional IICRC S520-certified remediation is essential to safely remove mould and prevent regrowth." } },
+              { "@type": "Question", "name": "Can I remove mould myself?", "acceptedAnswer": { "@type": "Answer", "text": "DIY methods only address surface mould and do not eliminate the moisture source or airborne spores. Professional remediation uses containment, HEPA filtration and antimicrobial treatments to fully eliminate mould colonies and prevent recurrence." } },
+              { "@type": "Question", "name": "How long does mould remediation take?", "acceptedAnswer": { "@type": "Answer", "text": "Small mould areas (under 1 sqm) typically take 1–2 days. Larger infestations affecting walls, subfloors or HVAC systems may take 3–7 days. Full remediation includes post-treatment air quality testing to confirm clearance." } },
+              { "@type": "Question", "name": "Will insurance cover mould remediation?", "acceptedAnswer": { "@type": "Answer", "text": "Insurance covers mould remediation when it results from a covered event such as water damage, flooding or a burst pipe. Mould from poor ventilation or ongoing maintenance issues is generally not covered. An NRPG certified assessor can help determine coverage." } }
+            ]
+          }) }}
+        />
+        <section className="container mx-auto px-6 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {[
+                { q: "Is mould dangerous to my health?", a: "Yes. Exposure to mould — particularly black mould (Stachybotrys) — can cause respiratory symptoms, allergic reactions and in severe cases, serious illness. Professional IICRC S520-certified remediation is essential to safely remove mould and prevent regrowth." },
+                { q: "Can I remove mould myself?", a: "DIY methods only address surface mould and do not eliminate the moisture source or airborne spores. Professional remediation uses containment, HEPA filtration and antimicrobial treatments to fully eliminate mould colonies and prevent recurrence." },
+                { q: "How long does mould remediation take?", a: "Small mould areas (under 1 sqm) typically take 1–2 days. Larger infestations affecting walls, subfloors or HVAC systems may take 3–7 days. Full remediation includes post-treatment air quality testing to confirm clearance." },
+                { q: "Will insurance cover mould remediation?", a: "Insurance covers mould remediation when it results from a covered event such as water damage, flooding or a burst pipe. Mould from poor ventilation or ongoing maintenance issues is generally not covered. An NRPG certified assessor can help determine coverage." }
+              ].map(({ q, a }, i) => (
+                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
+                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Emergency CTA */}
         <section className="container mx-auto px-6">
           <div className="bg-gradient-to-r from-[#EF4444] to-[#DC2626] rounded-2xl p-12 text-center">
