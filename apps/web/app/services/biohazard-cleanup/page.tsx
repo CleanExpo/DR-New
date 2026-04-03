@@ -174,6 +174,39 @@ export default function BiohazardCleanupPillarPage() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "What is biohazard cleanup?", "acceptedAnswer": { "@type": "Answer", "text": "Biohazard cleanup is the professional decontamination and disposal of biological hazards including blood, bodily fluids, chemical exposure, sewage, and trauma scenes. It requires PPE, specialised equipment and certified disposal of biohazardous materials." } },
+              { "@type": "Question", "name": "How quickly must a biohazard scene be cleaned?", "acceptedAnswer": { "@type": "Answer", "text": "As quickly as possible. Biological materials begin decomposing within hours, increasing health risks and making decontamination more complex. NRPG provides 24/7 emergency biohazard response across Australia." } },
+              { "@type": "Question", "name": "Is biohazard cleanup covered by insurance?", "acceptedAnswer": { "@type": "Answer", "text": "Most building insurance policies cover biohazard cleanup resulting from unforeseen events. Trauma scene cleanup following a crime may be covered by crime-scene assistance riders. NRPG contractors provide complete documentation for insurance claims." } },
+              { "@type": "Question", "name": "Do I need to vacate my property during biohazard cleanup?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. For safety, all occupants (including pets) should vacate during biohazard decontamination. NRPG contractors establish containment zones and provide clearance certificates before re-entry is permitted." } }
+            ]
+          }) }}
+        />
+        <section className="container mx-auto px-6 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {[
+                { q: "What is biohazard cleanup?", a: "Biohazard cleanup is the professional decontamination and disposal of biological hazards including blood, bodily fluids, chemical exposure, sewage, and trauma scenes. It requires PPE, specialised equipment and certified disposal of biohazardous materials." },
+                { q: "How quickly must a biohazard scene be cleaned?", a: "As quickly as possible. Biological materials begin decomposing within hours, increasing health risks and making decontamination more complex. NRPG provides 24/7 emergency biohazard response across Australia." },
+                { q: "Is biohazard cleanup covered by insurance?", a: "Most building insurance policies cover biohazard cleanup resulting from unforeseen events. Trauma scene cleanup following a crime may be covered by crime-scene assistance riders. NRPG contractors provide complete documentation for insurance claims." },
+                { q: "Do I need to vacate my property during biohazard cleanup?", a: "Yes. For safety, all occupants (including pets) should vacate during biohazard decontamination. NRPG contractors establish containment zones and provide clearance certificates before re-entry is permitted." }
+              ].map(({ q, a }, i) => (
+                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
+                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Emergency CTA */}
         <section className="container mx-auto px-6">
           <div className="bg-gradient-to-r from-[#EF4444] to-[#DC2626] rounded-2xl p-12 text-center">
