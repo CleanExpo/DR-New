@@ -53,6 +53,8 @@ export interface CategoryPageSEOConfig {
   slug: string;
   /** Category display name, e.g. "Water Damage Restoration" */
   categoryName: string;
+  /** FAQs for FAQ schema (optional) */
+  faqs?: Array<{ question: string; answer: string }>;
 }
 
 // ---------------------------------------------------------------------------
@@ -174,10 +176,10 @@ export function generateServiceSchemas(config: ServicePageSEOConfig): object[] {
 
 /**
  * Generate JSON-LD structured data array for a parent category page.
- * Returns: Service schema + BreadcrumbList schema.
+ * Returns: Service schema + BreadcrumbList schema + FAQPage schema (if FAQs provided).
  */
 export function generateCategorySchemas(config: CategoryPageSEOConfig): object[] {
-  return [
+  const schemas: object[] = [
     schemaGenerator.generateServiceSchema({
       name: `${config.categoryName} - NRPG Australia`,
       description: config.description,
@@ -189,4 +191,10 @@ export function generateCategorySchemas(config: CategoryPageSEOConfig): object[]
       { name: config.categoryName, url: `${BASE_URL}/services/${config.slug}` },
     ]),
   ];
+
+  if (config.faqs && config.faqs.length > 0) {
+    schemas.push(schemaGenerator.generateFAQSchema(config.faqs));
+  }
+
+  return schemas;
 }

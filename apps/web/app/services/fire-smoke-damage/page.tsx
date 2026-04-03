@@ -1,12 +1,30 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { CheckCircle, Clock, Phone, ArrowRight, Calendar } from "lucide-react"
 import { FireSmoke } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
 
+const aeoFaqs = [
+  {
+    question: "How much does fire damage restoration cost in Australia?",
+    answer: "Fire damage restoration in Australia ranges from $10,000 for minor smoke damage to $150,000+ for significant structural fire damage. Most costs are covered by building insurance. Smoke and soot damage is often underestimated — even areas not directly burned require professional cleaning to prevent ongoing contamination.",
+  },
+  {
+    question: "Can a smoke-damaged property be fully restored?",
+    answer: "Yes. IICRC FSRT-certified technicians can restore smoke-damaged properties by removing soot deposits, neutralising smoke odours using ozone or hydroxyl treatment, and restoring affected surfaces. Speed is critical — soot causes permanent staining and ongoing corrosion if not removed within 24–48 hours of the fire.",
+  },
+  {
+    question: "How long does fire damage restoration take?",
+    answer: "Board-up and site securing typically happens within 24 hours. Smoke and soot removal takes 3–7 days. Full structural restoration including repairs takes 2–12 weeks depending on severity. Complex commercial fires can take months. Your insurer's assessor will need to approve the scope of works before full restoration begins.",
+  },
+  {
+    question: "Does insurance cover fire and smoke damage restoration in Australia?",
+    answer: "Yes. Standard home and contents insurance covers sudden fire damage including smoke, soot, and water damage caused during firefighting. Deliberate fire is excluded. Always lodge your claim promptly and engage IICRC-certified restorers — insurers may dispute claims where non-certified contractors are used.",
+  },
+]
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Fire & Smoke Damage Restoration | NRPG Australia",
@@ -14,6 +32,7 @@ export const metadata: Metadata = generateCategoryMetadata({
   keywords: ['fire damage restoration', 'smoke damage', 'fire cleanup', 'soot removal', 'smoke odour removal', 'fire recovery', 'IICRC certified', 'Australia'],
   slug: 'fire-smoke-damage',
   categoryName: 'Fire & Smoke Damage Restoration',
+  faqs: aeoFaqs,
 });
 
 export default function FireSmokeDamagePillarPage() {
@@ -29,6 +48,7 @@ export default function FireSmokeDamagePillarPage() {
   keywords: [],
   slug: 'fire-smoke-damage',
   categoryName: 'Fire & Smoke Damage Restoration',
+  faqs: aeoFaqs,
 })) }}
       />
       <main className="py-24">
@@ -174,36 +194,56 @@ export default function FireSmokeDamagePillarPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              { "@type": "Question", "name": "How quickly should fire damage be addressed?", "acceptedAnswer": { "@type": "Answer", "text": "Immediately. Soot is acidic and continues to corrode surfaces for days after a fire. Smoke particles penetrate porous materials within hours. Delaying professional cleanup permanently worsens damage and increases restoration costs." } },
-              { "@type": "Question", "name": "Can smoke damage be fully removed from a property?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, with professional IICRC FSRT-certified methods. Technicians use HEPA filtration, thermal fogging, ozone treatment and hydroxyl generators to neutralise smoke odours and particles — including from walls, ceilings and HVAC systems." } },
-              { "@type": "Question", "name": "Will insurance cover fire and smoke damage restoration?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, standard building and contents insurance covers fire and smoke damage. NRPG contractors provide complete photo documentation, moisture readings and restoration reports for insurance claims — and bill insurers directly." } },
-              { "@type": "Question", "name": "What is the difference between fire damage and smoke damage restoration?", "acceptedAnswer": { "@type": "Answer", "text": "Fire damage restoration addresses structural and material damage from flames. Smoke damage restoration focuses on soot removal, odour elimination and particle extraction. Both are typically required after any fire event." } }
-            ]
-          }) }}
-        />
+        {/* AEO: Frequently Asked Questions */}
         <section className="container mx-auto px-6 mb-16">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              {[
-                { q: "How quickly should fire damage be addressed?", a: "Immediately. Soot is acidic and continues to corrode surfaces for days after a fire. Smoke particles penetrate porous materials within hours. Delaying professional cleanup permanently worsens damage and increases restoration costs." },
-                { q: "Can smoke damage be fully removed from a property?", a: "Yes, with professional IICRC FSRT-certified methods. Technicians use HEPA filtration, thermal fogging, ozone treatment and hydroxyl generators to neutralise smoke odours and particles — including from walls, ceilings and HVAC systems." },
-                { q: "Will insurance cover fire and smoke damage restoration?", a: "Yes, standard building and contents insurance covers fire and smoke damage. NRPG contractors provide complete photo documentation and bill insurers directly." },
-                { q: "What is the difference between fire damage and smoke damage restoration?", a: "Fire damage restoration addresses structural and material damage from flames. Smoke damage restoration focuses on soot removal, odour elimination and particle extraction. Both are typically required after any fire event." }
-              ].map(({ q, a }, i) => (
-                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
-                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
-                </div>
-              ))}
+          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-4">
+            Fire &amp; Smoke Damage — Common Questions
+          </h2>
+          <p className="text-[#9CA3AF] text-center mb-12 max-w-2xl mx-auto">
+            Answers based on IICRC FSRT standard and Australian insurance industry data.
+          </p>
+
+          {/* Stat citation block */}
+          <div className="max-w-3xl mx-auto mb-10 bg-[#1F2937]/60 border border-[#F97316]/30 rounded-2xl p-6">
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#F97316]">$1.8B</div>
+                <div className="text-[#9CA3AF] text-sm">Annual fire and smoke insurance claims in Australia</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: Insurance Council of Australia, 2024</div>
+              </div>
+              <div className="h-px sm:h-auto sm:w-px bg-[#374151] flex-shrink-0" />
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#EF4444]">24hrs</div>
+                <div className="text-[#9CA3AF] text-sm">Maximum time before soot causes permanent staining</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: IICRC FSRT Standard</div>
+              </div>
+              <div className="h-px sm:h-auto sm:w-px bg-[#374151] flex-shrink-0" />
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#7C4DFF]">62k</div>
+                <div className="text-[#9CA3AF] text-sm">Structure fires attended in Australia per year</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: AFAC National Report 2024</div>
+              </div>
             </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-6">
+            {aeoFaqs.map((faq) => (
+              <div key={faq.question} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                <h3 className="font-poppins font-semibold text-lg text-white mb-3">{faq.question}</h3>
+                <p className="text-[#9CA3AF] leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="max-w-3xl mx-auto mt-8 flex items-center gap-3 text-[#9CA3AF] text-sm">
+            <Calendar className="h-4 w-4 text-[#00BFA6] flex-shrink-0" />
+            <span>
+              IICRC FSRT fire restoration courses run across Australia — view dates on the{' '}
+              <Link href="/events" className="text-[#00BFA6] hover:text-[#00A693] underline">
+                ANZ Industry Events Calendar
+              </Link>
+              .
+            </span>
           </div>
         </section>
 
