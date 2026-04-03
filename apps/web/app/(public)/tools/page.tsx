@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { Wrench, Calculator, Award, ArrowRight, Clock, FileText, Layers } from 'lucide-react'
+import { Wrench, Calculator, Award, Download, ArrowRight, Clock, Layers } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Industry Tools | Restoration Professionals — Australia, New Zealand & Japan',
   description:
-    'Free tools for restoration industry professionals: IICRC course finder, drying time calculator, moisture mapping templates, and job costing tools.',
+    'Free tools for restoration industry professionals: IICRC course finder, drying time calculator, downloadable templates, and moisture mapping.',
   openGraph: {
     title: 'Industry Tools | NRPG',
     description: 'Free tools for restoration professionals in Australia, New Zealand, and Japan.',
@@ -30,26 +30,26 @@ const tools = [
     title: 'Drying Time Calculator',
     description:
       'Estimate structural drying times based on material type, moisture content, equipment capacity, and ambient conditions. IICRC S500 parameters.',
-    badge: 'Coming Soon',
-    badgeColour: 'bg-yellow-100 text-yellow-700',
+    badge: 'Live',
+    badgeColour: 'bg-green-100 text-green-700',
     accent: 'blue',
   },
   {
-    href: '/tools/job-costing',
-    icon: FileText,
-    title: 'Job Costing Sheet',
+    href: '/tools/templates',
+    icon: Download,
+    title: 'Templates & Downloads',
     description:
-      'Downloadable job costing template for water, fire, mould, and biohazard jobs. Aligned with Xactimate line items for seamless insurer submissions.',
-    badge: 'Coming Soon',
-    badgeColour: 'bg-yellow-100 text-yellow-700',
+      'Free IICRC-aligned templates: drying logs, moisture mapping sheets, safety checklists, scope of works, and insurance documentation.',
+    badge: 'Live',
+    badgeColour: 'bg-green-100 text-green-700',
     accent: 'purple',
   },
   {
     href: '/tools/moisture-map',
     icon: Layers,
-    title: 'Moisture Mapping Template',
+    title: 'Interactive Moisture Map',
     description:
-      'Downloadable moisture mapping diagrams for residential and commercial properties. Pre-formatted for insurance documentation and IICRC drying logs.',
+      'Digital moisture mapping tool for residential and commercial properties. Mark affected areas, record readings, and export for insurance documentation.',
     badge: 'Coming Soon',
     badgeColour: 'bg-yellow-100 text-yellow-700',
     accent: 'teal',
@@ -118,7 +118,7 @@ export default function ToolsPage() {
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">{tool.title}</h3>
                     <p className="text-sm text-slate-600 leading-relaxed mb-4">{tool.description}</p>
                     <span className={`inline-flex items-center gap-1 text-sm font-semibold ${accent.text} group-hover:gap-2 transition-all`}>
-                      {tool.badge === 'Live' ? 'Open Tool' : 'Notify Me'}
+                      {tool.badge === 'Live' ? 'Open Tool' : 'Coming Soon'}
                       <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
