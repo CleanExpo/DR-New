@@ -1,5 +1,12 @@
+import type { Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+
+export const metadata: Metadata = {
+  title: 'Help Centre | NRPG Disaster Recovery Platform',
+  description: 'Find answers, guides and support resources for using the NRPG disaster recovery marketplace. Get help with claims, contractor bookings, insurance and more.',
+}
+
 import {
   Search,
   Book,
