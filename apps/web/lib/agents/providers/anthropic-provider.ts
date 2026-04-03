@@ -8,12 +8,11 @@ import { HumanMessage } from '@langchain/core/messages';
 import { BaseAIProvider } from './base-provider';
 import { AIProviderConfig, AIProviderType, ProviderHealth } from '../types';
 
-// Claude model pricing (per 1M tokens) - as of January 2025
+// Claude model pricing (per 1M tokens) - updated April 2026 (Claude 4.x family)
 const CLAUDE_PRICING = {
-  'claude-sonnet-4-20250514': { input: 3.0, output: 15.0 },
-  'claude-3-5-sonnet-20241022': { input: 3.0, output: 15.0 },
-  'claude-3-5-haiku-20241022': { input: 0.8, output: 4.0 },
-  'claude-3-opus-20240229': { input: 15.0, output: 75.0 },
+  'claude-opus-4-6': { input: 15.0, output: 75.0 },
+  'claude-sonnet-4-6': { input: 3.0, output: 15.0 },
+  'claude-haiku-4-5-20251001': { input: 0.8, output: 4.0 },
 } as const;
 
 type ClaudeModel = keyof typeof CLAUDE_PRICING;
@@ -23,7 +22,7 @@ export class AnthropicProvider extends BaseAIProvider {
     const defaultConfig: AIProviderConfig = {
       type: 'anthropic',
       apiKey: process.env.ANTHROPIC_API_KEY,
-      model: process.env.AGENT_DEFAULT_MODEL || 'claude-sonnet-4-20250514',
+      model: process.env.AGENT_DEFAULT_MODEL || 'claude-sonnet-4-6',
       temperature: 0.1,
       maxTokens: 4096,
       timeout: parseInt(process.env.AGENT_TIMEOUT_MS || '55000', 10),
@@ -96,7 +95,7 @@ export class AnthropicProvider extends BaseAIProvider {
 
     if (!modelPricing) {
       // Fallback to Sonnet pricing for unknown models
-      const fallback = CLAUDE_PRICING['claude-sonnet-4-20250514'];
+      const fallback = CLAUDE_PRICING['claude-sonnet-4-6'];
       return (
         (promptTokens * fallback.input) / 1_000_000 +
         (completionTokens * fallback.output) / 1_000_000
