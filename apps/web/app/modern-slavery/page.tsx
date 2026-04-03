@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Shield, Eye, Users, Search, BarChart3, CheckCircle, Globe, Mail, FileText, AlertTriangle, Heart, Scale } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: 'Modern Slavery Statement | NRPG — Disaster Recovery Australia',
+  description: 'NRPG\'s modern slavery statement under the Australian Modern Slavery Act 2018. Our commitment to ethical supply chains and contractor practices.',
+}
 
 export default function ModernSlaveryPage() {
   return (
