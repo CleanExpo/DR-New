@@ -153,9 +153,9 @@
 ### ISSUE #9 (PENDING)
 - **Title**: [P0] SEO: Fix domain hardcoding in robots.txt
 - **Severity**: CRITICAL
-- **Description**: Static robots.txt file hardcodes wrong domain (disasterrecoverynrpg.com.au) instead of disasterrecovery.com.au. All 4 instances affect sitemap declarations (lines 82-83) and host directive (line 86). Search engines are directed to non-production domain.
+- **Description**: Static robots.txt file hardcodes wrong domain (disasterrecovery.com.au) instead of disasterrecovery.com.au. All 4 instances affect sitemap declarations (lines 82-83) and host directive (line 86). Search engines are directed to non-production domain.
 - **Affected**: `apps/web/public/robots.txt` (lines 3, 82, 83, 86)
-- **Recommendation**: Replace all 4 instances of disasterrecoverynrpg.com.au with disasterrecovery.com.au
+- **Recommendation**: Replace all 4 instances of disasterrecovery.com.au with disasterrecovery.com.au
 - **Labels**: SEO, Config, Bug
 - **Priority**: 0 (Critical)
 - **Effort**: 15 minutes
@@ -163,9 +163,9 @@
 ### ISSUE #10 (PENDING)
 - **Title**: [P0] SEO: Fix domain fallback in sitemap generator
 - **Severity**: CRITICAL
-- **Description**: Sitemap generator hardcodes wrong domain fallback (disasterrecoverynrpg.com.au). If NEXT_PUBLIC_BASE_URL environment variable is unset, all 5,000-10,000 generated sitemap URLs will point to wrong domain, causing indexing to incorrect domain.
+- **Description**: Sitemap generator hardcodes wrong domain fallback (disasterrecovery.com.au). If NEXT_PUBLIC_BASE_URL environment variable is unset, all 5,000-10,000 generated sitemap URLs will point to wrong domain, causing indexing to incorrect domain.
 - **Affected**: `apps/web/app/sitemap.ts` line 19
-- **Recommendation**: Change fallback from https://disasterrecoverynrpg.com.au to https://disasterrecovery.com.au
+- **Recommendation**: Change fallback from https://disasterrecovery.com.au to https://disasterrecovery.com.au
 - **Labels**: SEO, Config, Bug
 - **Priority**: 0 (Critical)
 - **Effort**: 10 minutes
@@ -173,7 +173,7 @@
 ### ISSUE #11 (PENDING)
 - **Title**: [P0] SEO: Set NEXT_PUBLIC_BASE_URL environment variable
 - **Severity**: CRITICAL
-- **Description**: NEXT_PUBLIC_BASE_URL not explicitly set in production environments (.env.local, .env.vercel). Variable used as fallback in 27+ files and defaults to wrong domain (disasterrecoverynrpg.com.au) causing domain inconsistency across metadata, canonicals, and generated URLs. This is the root cause of multiple domain-related issues.
+- **Description**: NEXT_PUBLIC_BASE_URL not explicitly set in production environments (.env.local, .env.vercel). Variable used as fallback in 27+ files and defaults to wrong domain (disasterrecovery.com.au) causing domain inconsistency across metadata, canonicals, and generated URLs. This is the root cause of multiple domain-related issues.
 - **Affected**: `.env.local`, `.env.vercel`, and 27+ dependent files (app/robots.ts, app/sitemap.ts, app/layout.tsx, all dynamic page metadata)
 - **Recommendation**: Explicitly set NEXT_PUBLIC_BASE_URL=https://disasterrecovery.com.au in all production environment files
 - **Labels**: Config, Infrastructure
@@ -222,9 +222,9 @@
 ### ISSUE #15 (PENDING)
 - **Title**: [P2] SEO: Fix metadataBase domain in layout.tsx
 - **Severity**: MEDIUM
-- **Description**: Global layout.tsx hardcodes metadataBase URL to disasterrecoverynrpg.com.au instead of disasterrecovery.com.au. All relative OpenGraph URLs and canonical URLs are built from this base, causing domain inconsistency in generated meta tags.
+- **Description**: Global layout.tsx hardcodes metadataBase URL to disasterrecovery.com.au instead of disasterrecovery.com.au. All relative OpenGraph URLs and canonical URLs are built from this base, causing domain inconsistency in generated meta tags.
 - **Affected**: `apps/web/app/layout.tsx` line 25
-- **Recommendation**: Change metadataBase from https://disasterrecoverynrpg.com.au to https://disasterrecovery.com.au
+- **Recommendation**: Change metadataBase from https://disasterrecovery.com.au to https://disasterrecovery.com.au
 - **Labels**: SEO, Bug
 - **Priority**: 2 (Medium)
 - **Effort**: 10 minutes
@@ -308,7 +308,7 @@
 ### ISSUE #20 (PENDING)
 - **Title**: [P0] SEO: Fix domain in all Organization schemas
 - **Severity**: CRITICAL
-- **Description**: All JSON-LD schemas across entire platform reference disasterrecoverynrpg.com.au instead of disasterrecovery.com.au. Breaks canonical URLs, causes search engine confusion, prevents proper schema validation in Google Search Console, Bing Webmaster Tools, and AI search engines. Affects 100% of pages.
+- **Description**: All JSON-LD schemas across entire platform reference disasterrecovery.com.au instead of disasterrecovery.com.au. Breaks canonical URLs, causes search engine confusion, prevents proper schema validation in Google Search Console, Bing Webmaster Tools, and AI search engines. Affects 100% of pages.
 - **Affected**: `apps/web/app/layout.tsx` (lines 25, 80-82, 101, 122), `apps/web/lib/seo/schema-generator.ts` (line 15), all service/location/contractor pages
 - **Recommendation**: Update NEXT_PUBLIC_BASE_URL to https://disasterrecovery.com.au (coordinated with Tech SEO Issue #11)
 - **Labels**: SEO, Schema, Bug

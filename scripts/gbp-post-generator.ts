@@ -283,7 +283,7 @@ function generatePostsForCities(
         callToAction: {
           actionType: template.callToAction,
           url: template.callToAction === 'LEARN_MORE'
-            ? `https://disasterrecoverynrpg.com.au/locations/${city.stateCode.toLowerCase()}/${city.slug}`
+            ? `https://disasterrecovery.com.au/locations/${city.stateCode.toLowerCase()}/${city.slug}`
             : undefined,
         },
         category: template.category,

@@ -249,7 +249,7 @@ npm run dev
 ### Production
 ```bash
 # Set environment variable
-export NEXT_PUBLIC_BASE_URL=https://disasterrecoverynrpg.com.au
+export NEXT_PUBLIC_BASE_URL=https://disasterrecovery.com.au
 
 # Build
 npm run build
@@ -261,7 +261,7 @@ npm run start
 ### Deploy to Vercel/Netlify
 ```bash
 # Environment variables
-NEXT_PUBLIC_BASE_URL=https://disasterrecoverynrpg.com.au
+NEXT_PUBLIC_BASE_URL=https://disasterrecovery.com.au
 
 # Deploy (automatic build)
 vercel deploy --prod

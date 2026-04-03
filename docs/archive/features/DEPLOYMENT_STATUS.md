@@ -85,7 +85,7 @@
 - Accessible immediately after deployment
 
 **Production Domain** (to configure):
-- Target: `https://disasterrecoverynrpg.com.au`
+- Target: `https://disasterrecovery.com.au`
 - Status: Needs DNS configuration
 - SSL: Auto-provisioned by Vercel
 
@@ -95,7 +95,7 @@
 
 **Critical** (configure in Vercel dashboard):
 ```
-NEXTAUTH_URL=https://disasterrecoverynrpg.com.au
+NEXTAUTH_URL=https://disasterrecovery.com.au
 NEXTAUTH_SECRET=XDkqU2eWQi24r/ow9fDfNe0RTilbAxMXisCYd/c5NHU=
 JWT_SECRET=5HpxQD0dhqlHDw0ShFLKfzM63fgm/Kfk+i1U+PsdqgE=
 DATABASE_URL=[Configure Vercel Postgres]
@@ -126,7 +126,7 @@ NODE_ENV=production
    - Seed initial data
 
 3. **Configure Domain**:
-   - Add disasterrecoverynrpg.com.au in Vercel
+   - Add disasterrecovery.com.au in Vercel
    - Update DNS records
    - Wait for SSL provisioning
 
