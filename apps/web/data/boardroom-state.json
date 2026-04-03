@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "purpose": "Live boardroom state for /admin/boardroom dashboard. Also mirrored in docs/boardroom-state.json.",
+    "schema_version": "1.0",
+    "updated": "2026-04-03T11:00:00+10:00",
+    "updated_by": "DR-324 OMX Sprint 1 implementation"
+  },
+  "last_session": {
+    "id": "2026-04-03-06",
+    "date": "2026-04-03",
+    "time_aest": "06:00",
+    "reference": "DR-323"
+  },
+  "active_builds": [
+    {
+      "id": "BUILD-001",
+      "title": "Disaster Event Pages — Cyclone Narelle + QLD Floods",
+      "status": "P0_EXECUTION_BLOCKER",
+      "approved_sessions_ago": 4,
+      "approved_date": "2026-03-20",
+      "completion_evidence_required": true,
+      "owner": "pending_assignment",
+      "deadline": null,
+      "notes": "4 sessions approved with zero execution. Escalated to P0 EXECUTION BLOCKER under OMX protocol."
+    },
+    {
+      "id": "BUILD-002",
+      "title": "IICRC Certification Pathway Pages",
+      "status": "BLOCKED_CLARIFICATION",
+      "approved_sessions_ago": null,
+      "approved_date": null,
+      "completion_evidence_required": false,
+      "owner": "Phill McGurk",
+      "deadline": null,
+      "notes": "Pre-BUILD Clarification Gate: Gate 3 failed — IICRC data source URL not confirmed."
+    },
+    {
+      "id": "BUILD-004",
+      "title": "Human Advocate vs AI Insurer — NRPG Positioning Page",
+      "status": "SPEC_IN_PROGRESS",
+      "approved_sessions_ago": null,
+      "approved_date": null,
+      "completion_evidence_required": false,
+      "owner": "Phill McGurk",
+      "deadline": null,
+      "notes": "OMX multi-specialist model validates NRPG coordinated team positioning."
+    }
+  ],
+  "p0_open": ["BUILD-001"],
+  "gaps_open": ["GAP-001", "GAP-002", "GAP-021"],
+  "watch_items": [
+    {
+      "key": "omx_sprint1_complete",
+      "label": "OMX Sprint 1+2 complete",
+      "detail": "Pre-BUILD Gate, RALPLAN, Execution Protocol, Parallel Lanes, boardroom-state.json all implemented",
+      "date": "2026-04-03"
+    },
+    {
+      "key": "build_001_blocker",
+      "label": "BUILD-001 P0 EXECUTION BLOCKER",
+      "detail": "Requires named developer + commit SHA + 24-hour deadline before next session",
+      "date": "2026-04-03"
+    }
+  ],
+  "completed_this_session": [
+    { "id": "DR-27", "title": "Verified Facts Database — 38 facts seeded", "pr": 33 },
+    { "id": "DR-26", "title": "Fact Shield Protocol — 5-gate admin UI + protocol doc", "pr": 34 },
+    { "id": "DR-40", "title": "Tools Hub — /tools with 6 calculators", "pr": 35 },
+    { "id": "DR-324", "title": "OMX Sprint 1+2 patterns implemented", "pr": 36 }
+  ],
+  "pending_human_actions": [
+    {
+      "id": "pha-1",
+      "action": "Assign developer to BUILD-001 with commit SHA + 24-hour deadline",
+      "owner": "Phill McGurk",
+      "urgency": "P0",
+      "deadline": "before next boardroom session"
+    },
+    {
+      "id": "pha-2",
+      "action": "Confirm IICRC data source URL for BUILD-002 (Gate 3 failure)",
+      "owner": "Phill McGurk",
+      "urgency": "High",
+      "deadline": null
+    },
+    {
+      "id": "pha-3",
+      "action": "Merge PRs #33, #34, #35, #36 into develop → then develop into main",
+      "owner": "Phill McGurk",
+      "urgency": "Normal",
+      "deadline": null
+    }
+  ]
+}
