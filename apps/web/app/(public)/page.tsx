@@ -25,8 +25,7 @@
  * SEO: Schema.org markup, semantic HTML, optimized meta tags
  */
 
-'use client'
-
+import { type Metadata } from 'next'
 import React from 'react'
 import { EmergencyHero } from '@/components/public/sections/EmergencyHero'
 import { EmergencyCTA } from '@/src/design-system'
@@ -40,6 +39,14 @@ import {
 import { schemaGenerator } from '@/lib/seo/schema-generator'
 import { PageTransition } from '@/src/design-system/components/Layout/PageTransition'
 import { ScrollReveal } from '@/src/design-system/components/Layout/ScrollReveal'
+
+export const metadata: Metadata = {
+  title: 'Disaster Recovery Services Australia | 24/7 Emergency Restoration',
+  description: 'Professional disaster recovery 24/7. IICRC-certified contractors for water damage, fire damage, storm damage & mould remediation. Response within 60 minutes across Australia.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au',
+  },
+}
 
 /**
  * Public Homepage Component

@@ -1,11 +1,13 @@
-import type { Metadata } from 'next'
+import { type Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Cookie, Shield, BarChart3, Megaphone, Settings, Globe, AlertTriangle, ExternalLink } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | NRPG — Disaster Recovery Australia',
-  description: 'NRPG cookie policy. Learn about the cookies we use on our disaster recovery marketplace platform and how to manage your cookie preferences.',
+  title: 'Cookie Policy | Disaster Recovery Australia',
+  description: 'Cookie policy for disasterrecovery.com.au. Learn about how we use cookies and similar technologies to improve your experience on our platform.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/cookie-policy' },
+  robots: { index: true, follow: false },
 }
 import Link from "next/link"
 import { schemaGenerator } from "@/lib/seo/schema-generator"

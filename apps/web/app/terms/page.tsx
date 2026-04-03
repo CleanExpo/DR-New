@@ -1,11 +1,13 @@
-import type { Metadata } from 'next'
+import { type Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { FileText, Users, Shield, Scale, AlertTriangle, CheckCircle, Mail, Globe, Gavel, BookOpen, CreditCard, RefreshCw } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | NRPG — Disaster Recovery Australia',
-  description: 'NRPG platform terms of service. Understand your rights and obligations when using our disaster recovery contractor marketplace across Australia.',
+  title: 'Terms & Conditions | Disaster Recovery Australia',
+  description: 'Terms and conditions for using Disaster Recovery Australia. Understand your rights and obligations when using our platform to connect with certified restoration contractors.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/terms' },
+  robots: { index: true, follow: false },
 }
 import { schemaGenerator } from "@/lib/seo/schema-generator"
 
