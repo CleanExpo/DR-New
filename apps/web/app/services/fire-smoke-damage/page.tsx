@@ -174,6 +174,39 @@ export default function FireSmokeDamagePillarPage() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "How quickly should fire damage be addressed?", "acceptedAnswer": { "@type": "Answer", "text": "Immediately. Soot is acidic and continues to corrode surfaces for days after a fire. Smoke particles penetrate porous materials within hours. Delaying professional cleanup permanently worsens damage and increases restoration costs." } },
+              { "@type": "Question", "name": "Can smoke damage be fully removed from a property?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, with professional IICRC FSRT-certified methods. Technicians use HEPA filtration, thermal fogging, ozone treatment and hydroxyl generators to neutralise smoke odours and particles — including from walls, ceilings and HVAC systems." } },
+              { "@type": "Question", "name": "Will insurance cover fire and smoke damage restoration?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, standard building and contents insurance covers fire and smoke damage. NRPG contractors provide complete photo documentation, moisture readings and restoration reports for insurance claims — and bill insurers directly." } },
+              { "@type": "Question", "name": "What is the difference between fire damage and smoke damage restoration?", "acceptedAnswer": { "@type": "Answer", "text": "Fire damage restoration addresses structural and material damage from flames. Smoke damage restoration focuses on soot removal, odour elimination and particle extraction. Both are typically required after any fire event." } }
+            ]
+          }) }}
+        />
+        <section className="container mx-auto px-6 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {[
+                { q: "How quickly should fire damage be addressed?", a: "Immediately. Soot is acidic and continues to corrode surfaces for days after a fire. Smoke particles penetrate porous materials within hours. Delaying professional cleanup permanently worsens damage and increases restoration costs." },
+                { q: "Can smoke damage be fully removed from a property?", a: "Yes, with professional IICRC FSRT-certified methods. Technicians use HEPA filtration, thermal fogging, ozone treatment and hydroxyl generators to neutralise smoke odours and particles — including from walls, ceilings and HVAC systems." },
+                { q: "Will insurance cover fire and smoke damage restoration?", a: "Yes, standard building and contents insurance covers fire and smoke damage. NRPG contractors provide complete photo documentation and bill insurers directly." },
+                { q: "What is the difference between fire damage and smoke damage restoration?", a: "Fire damage restoration addresses structural and material damage from flames. Smoke damage restoration focuses on soot removal, odour elimination and particle extraction. Both are typically required after any fire event." }
+              ].map(({ q, a }, i) => (
+                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
+                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Emergency CTA */}
         <section className="container mx-auto px-6">
           <div className="bg-gradient-to-r from-[#EF4444] to-[#DC2626] rounded-2xl p-12 text-center">
