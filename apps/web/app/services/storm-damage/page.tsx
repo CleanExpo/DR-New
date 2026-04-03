@@ -170,6 +170,39 @@ export default function StormDamagePillarPage() {
           </div>
         </section>
 
+        {/* FAQ Section */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "What should I do immediately after storm damage?", "acceptedAnswer": { "@type": "Answer", "text": "Document all damage with photographs before touching anything. If roof damage has occurred, do not enter until the structure is assessed as safe. Contact your insurer and a certified storm damage restoration specialist as soon as possible." } },
+              { "@type": "Question", "name": "Does storm damage require emergency roof tarping?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, if roof damage is present. Emergency roof tarping prevents water from entering and causing secondary water and mould damage. NRPG contractors provide 24/7 emergency tarping services across Australia." } },
+              { "@type": "Question", "name": "How do I know if my home has structural damage after a storm?", "acceptedAnswer": { "@type": "Answer", "text": "Signs include visible cracks in walls or foundations, doors and windows that no longer close properly, bowing or sagging roof areas, and water staining on ceilings. An IICRC-certified inspector can assess hidden structural damage using thermal imaging." } },
+              { "@type": "Question", "name": "Is storm damage covered by home insurance in Australia?", "acceptedAnswer": { "@type": "Answer", "text": "Storm, hail and wind damage is typically covered under standard building insurance in Australia. Contents insurance may also apply. NRPG contractors provide full damage reports and work directly with your insurer." } }
+            ]
+          }) }}
+        />
+        <section className="container mx-auto px-6 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              {[
+                { q: "What should I do immediately after storm damage?", a: "Document all damage with photographs before touching anything. If roof damage has occurred, do not enter until the structure is assessed as safe. Contact your insurer and a certified storm damage restoration specialist as soon as possible." },
+                { q: "Does storm damage require emergency roof tarping?", a: "Yes, if roof damage is present. Emergency roof tarping prevents water from entering and causing secondary water and mould damage. NRPG contractors provide 24/7 emergency tarping services across Australia." },
+                { q: "How do I know if my home has structural damage after a storm?", a: "Signs include visible cracks in walls or foundations, doors and windows that no longer close properly, bowing or sagging roof areas, and water staining on ceilings. An IICRC-certified inspector can assess hidden structural damage using thermal imaging." },
+                { q: "Is storm damage covered by home insurance in Australia?", a: "Storm, hail and wind damage is typically covered under standard building insurance in Australia. Contents insurance may also apply. NRPG contractors provide full damage reports and work directly with your insurer." }
+              ].map(({ q, a }, i) => (
+                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
+                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Emergency CTA */}
         <section className="container mx-auto px-6">
           <div className="bg-gradient-to-r from-[#EF4444] to-[#DC2626] rounded-2xl p-12 text-center">
