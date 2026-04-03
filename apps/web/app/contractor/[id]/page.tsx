@@ -372,7 +372,7 @@ export default function ContractorProfilePage() {
                       <p className="text-gray-400 text-sm">{contractor.insuranceProvider}</p>
                       {contractor.insuranceExpiry && (
                         <p className="text-gray-400 text-xs">
-                          Expires: {new Date(contractor.insuranceExpiry).toLocaleDateString()}
+                          Expires: {new Date(contractor.insuranceExpiry).toLocaleDateString('en-AU')}
                         </p>
                       )}
                     </div>

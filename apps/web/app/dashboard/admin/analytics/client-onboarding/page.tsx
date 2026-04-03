@@ -105,7 +105,7 @@ export default function ClientOnboardingAnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Clients Started</p>
-                <p className="text-2xl font-bold">{metrics.totalStarted.toLocaleString()}</p>
+                <p className="text-2xl font-bold">{metrics.totalStarted.toLocaleString('en-AU')}</p>
               </div>
               <Users className="h-8 w-8 text-blue-500" />
             </div>
@@ -117,7 +117,7 @@ export default function ClientOnboardingAnalyticsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Completed</p>
-                <p className="text-2xl font-bold text-green-600">{metrics.totalCompleted.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-green-600">{metrics.totalCompleted.toLocaleString('en-AU')}</p>
               </div>
               <CheckCircle2 className="h-8 w-8 text-green-500" />
             </div>
@@ -242,7 +242,7 @@ export default function ClientOnboardingAnalyticsPage() {
                     <div>
                       <h4 className="font-semibold">{phaseLabels[phase.phase] || phase.phase}</h4>
                       <p className="text-xs text-muted-foreground">
-                        {phase.totalCompleted.toLocaleString()} / {phase.totalStarted.toLocaleString()} clients
+                        {phase.totalCompleted.toLocaleString('en-AU')} / {phase.totalStarted.toLocaleString('en-AU')} clients
                       </p>
                     </div>
                   </div>
@@ -266,7 +266,7 @@ export default function ClientOnboardingAnalyticsPage() {
                   <div>
                     <p className="text-muted-foreground">Drop-off</p>
                     <p className="font-semibold text-red-600">
-                      {phase.dropOffCount.toLocaleString()} ({Math.round(phase.dropOffRate)}%)
+                      {phase.dropOffCount.toLocaleString('en-AU')} ({Math.round(phase.dropOffRate)}%)
                     </p>
                   </div>
                   <div>

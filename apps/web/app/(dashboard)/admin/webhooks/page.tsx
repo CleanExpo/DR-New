@@ -386,7 +386,7 @@ export default function WebhookMonitoringPage() {
                     )}
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {new Date(event.processedAt).toLocaleString()}
+                    {new Date(event.processedAt).toLocaleString('en-AU')}
                   </div>
                 </div>
               ))}
@@ -450,7 +450,7 @@ export default function WebhookMonitoringPage() {
                     )}
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {new Date(event.processedAt).toLocaleString()}
+                    {new Date(event.processedAt).toLocaleString('en-AU')}
                   </div>
                 </div>
               ))}
@@ -492,7 +492,7 @@ export default function WebhookMonitoringPage() {
                     )}
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    {new Date(failure.createdAt).toLocaleString()}
+                    {new Date(failure.createdAt).toLocaleString('en-AU')}
                   </div>
                 </div>
               ))}
