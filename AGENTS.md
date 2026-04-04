@@ -44,3 +44,32 @@ Client submits request → Platform matches contractor → Contractor becomes so
                                          - Online forms
                                          - support@disasterrecovery.com.au
 ```
+
+---
+
+## Dependency Source Intelligence (opensrc)
+
+Source code for key dependencies is available in `apps/web/opensrc/` via [opensrc](https://github.com/vercel-labs/opensrc).
+Read implementation internals when types/docs aren't enough.
+
+**Pre-fetched packages** (ready to read):
+
+| Package | Path | Use for |
+|---------|------|---------|
+| `zod` | `apps/web/opensrc/repos/github.com/colinhacks/zod` | Validation edge cases, error maps |
+| `stripe` | `apps/web/opensrc/repos/github.com/stripe/stripe-node` | Webhook verification, payment states |
+| `next-auth` | `apps/web/opensrc/repos/github.com/nextauthjs/next-auth` | Session/JWT callbacks, Prisma adapter |
+| `@langchain/anthropic` | `apps/web/opensrc/repos/github.com/langchain-ai/langchainjs` | ChatAnthropic, LangGraph internals |
+| `@anthropic-ai/sdk` | `apps/web/opensrc/repos/github.com/anthropics/anthropic-sdk-typescript` | Raw API types, streaming, tool use |
+| `resend` | `apps/web/opensrc/repos/github.com/resend/resend-node` | Email API, error types |
+| `xero-node` | `apps/web/opensrc/repos/github.com/XeroAPI/xero-node` | OAuth2, invoice models, webhooks |
+
+**Fetch additional packages** (run from `apps/web/`):
+
+```bash
+npx opensrc <package> --modify         # npm package
+npx opensrc <owner>/<repo> --modify    # GitHub repo
+npx opensrc list                       # See what's fetched
+```
+
+**Skill file**: `.claude/skills/opensrc-source-intelligence.md` — full usage guide.

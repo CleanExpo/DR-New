@@ -2,3 +2,6 @@
 .env*.local
 lib/training/sources/
 lib/training/generated/
+
+# opensrc - source code for packages
+opensrc/
