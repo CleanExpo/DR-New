@@ -7,6 +7,7 @@ on:
 
 env:
   NODE_VERSION: '20'
+  PNPM_VERSION: '8'
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
@@ -20,12 +21,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -77,15 +72,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
 
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.13.x
@@ -161,15 +147,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-
       - name: Wait for deployment
         run: sleep 30
 
@@ -177,10 +154,7 @@ jobs:
         run: |
           PREVIEW_URL="${{ needs.deploy-preview.outputs.preview-url }}"
 
-          # Test homepage
           curl -f -s -o /dev/null -w "%{http_code}" $PREVIEW_URL || exit 1
-
-          # Test API health endpoint
           curl -f -s -o /dev/null -w "%{http_code}" $PREVIEW_URL/api/health || exit 1
 
-          echo "✅ Smoke tests passed!"
+          echo "Smoke tests passed!"
