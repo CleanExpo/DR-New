@@ -40,10 +40,14 @@ class CSRFProtection {
   private cleanupInterval = 60 * 60 * 1000; // 1 hour
 
   constructor() {
-    const secret = process.env.CSRF_SECRET || process.env.JWT_SECRET || 'default-csrf-secret';
+    const secret = process.env.CSRF_SECRET || process.env.JWT_SECRET;
+
+    if (!secret) {
+      throw new Error('CSRF_SECRET or JWT_SECRET environment variable must be set');
+    }
 
     if (secret.length < 32) {
-      logWarn('CSRF_SECRET is less than 32 characters, using default', {
+      logWarn('CSRF_SECRET is less than 32 characters', {
         length: secret.length,
       });
     }
