@@ -16,6 +16,24 @@
   ],
   "recently_completed": [
     {
+      "id": "DR-193",
+      "title": "CARSI \u2194 onboarding sync with webhook receiver",
+      "pr": 59,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-189",
+      "title": "100-point certification scoring engine + dashboard",
+      "pr": 58,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-198",
+      "title": "Contractor application form — screening + approval workflow",
+      "pr": 55,
+      "completed": "2026-04-04"
+    },
+    {
       "id": "DR-232",
       "title": "Metadata exports for 21 public pages",
       "pr": 45,
@@ -65,6 +83,9 @@
     }
   ],
   "pending_prs": [
+    { "pr": 59, "branch": "phillmcgurk/dr-193-p1-carsi-onboarding-sync-auto-assign-courses-when-contractor", "target": "develop" },
+    { "pr": 58, "branch": "phillmcgurk/dr-189-p1-100-point-certification-system-build-scoring-engine", "target": "develop" },
+    { "pr": 55, "branch": "phillmcgurk/dr-198-p1-contractor-application-form-pre-onboarding-screening", "target": "develop" },
     { "pr": 45, "branch": "phillmcgurk/dr-232-p1-seo-add-metadata-exports-to-21-pages-inheriting-generic", "target": "develop" },
     { "pr": 46, "branch": "phillmcgurk/dr-234-p1-seo-add-faqpage-schema-to-all-5-main-service-pages", "target": "develop" },
     { "pr": 47, "branch": "phillmcgurk/dr-244-p2-seo-create-restore-assist-landing-page-restore-assist", "target": "develop" },
@@ -83,7 +104,8 @@
     { "action": "Confirm AS-IICRC S500:2025 certification held by NRPG network", "gap": "GAP-004", "linear_id": "DR-321", "owner": "Toby", "due": "ASAP — unblocks BUILD-002" },
     { "action": "Privacy Act compliance review — appoint privacy officer", "gap": "GAP-030", "linear_id": "DR-328", "owner": "Toby + Legal", "due": "2026-07-01" },
     { "action": "OAIC compliance audit", "gap": "GAP-029", "linear_id": "DR-327", "owner": "Legal + CTO", "due": "ASAP" },
-    { "action": "Merge PRs #45-51 into develop after review", "gap": null, "linear_id": null, "owner": "Phill", "due": "ASAP" }
+    { "action": "Merge PRs #45-59 into develop after review", "gap": null, "linear_id": null, "owner": "Phill", "due": "ASAP" },
+    { "action": "Add CARSI_API_URL, CARSI_API_KEY, CARSI_WEBHOOK_SECRET to Vercel env vars", "gap": null, "linear_id": "DR-193", "owner": "Phill", "due": "Before DR-193 can go live" }
   ],
   "new_intelligence": [
     "Privacy Act small business exemption removed 1 July 2026 — affects all NRPG businesses",
@@ -91,6 +113,9 @@
     "Hardcoded fallback secrets found and fixed in src/lib/auth.ts and src/lib/security/csrf.ts"
   ],
   "resolved_since_last": [
+    "DR-193: CARSI \u2194 onboarding sync + webhook receiver complete",
+    "DR-189: 100-point certification scoring engine + dashboard complete",
+    "DR-198: Contractor application form + screening + approval workflow complete",
     "DR-232: Metadata exports complete",
     "DR-234: FAQPage schema complete",
     "DR-244: /restore-assist landing page live on develop",
