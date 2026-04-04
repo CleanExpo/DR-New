@@ -147,6 +147,23 @@ After a BUILD is approved + security-cleared:
 - No evidence after 2 sessions → **P0 EXECUTION BLOCKER** (named dev + commit SHA + 24-hour deadline)
 - No re-planning of ACTIVE builds — only: Complete | Blocked (specific reason) | Scope-Changed (new ID)
 
+### RALPLAN-DR Block (P0/P1 BUILDs — `dr-execute`)
+
+Every P0/P1 BUILD plan must include a RALPLAN-DR summary block before execution:
+
+```markdown
+## RALPLAN-DR: [BUILD-XXX]
+### Principles (3–5)
+### Decision Drivers (top 3)
+### Options Evaluated (≥2 with pros/cons)
+### Selected Approach + Rationale
+### Antithesis (strongest argument against this approach)
+### Test Acceptance Criteria (how we know it's done)
+### Pre-mortem (3 scenarios where this fails — P0/security builds only)
+```
+
+A plan without a RALPLAN-DR block is not approved for P0/P1 BUILDs.
+
 ### Parallel Lanes (`$team`)
 
 Every BUILD with ≥2 independent tasks must define explicit execution lanes. Never build sequentially what can build in parallel.
