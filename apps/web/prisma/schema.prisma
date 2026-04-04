@@ -3527,68 +3527,76 @@ model NotificationLog {
 }
 
 // ============================================
-// 100-Point Certification Scoring Engine — DR-189
+// 30-Day Onboarding Workflow — DR-191
 // ============================================
 
-/// NRPG 100-point certification scoring record.
-/// Stores the four scoring categories and computed total/level.
-/// One record per contractor — recalculated on credential updates.
-model NRPGCertScore {
+/// Week-by-week milestone for the 30-day NRPG onboarding programme.
+/// One record per contractor per milestone (7 milestones across 4 weeks).
+model OnboardingMilestone {
   id             String   @id @default(cuid())
 
   /// Contractor User ID
-  contractorId   String   @unique
+  contractorId   String
 
-  // --- Category 1: Specialisation Portfolio (max 40 pts) ---
-  /// Core specialty (water/fire/mould/trauma/storm) — 20 pts
-  coreSpecialtyPoints  Int @default(0)
-  /// Additional specialisation areas — up to 4 x 5 pts = 20 pts
-  additionalSpecPoints Int @default(0)
-  /// Total category 1 (capped at 40)
-  specialisationTotal  Int @default(0)
+  /// Unique key e.g. "WEEK1_WELCOME", "WEEK2_JOB_SHADOW"
+  milestoneKey   String
 
-  // --- Category 2: CARSI Mandatory Platform (max 25 pts) ---
-  /// CARSI membership active — 10 pts
-  carsiMembershipPoints Int @default(0)
-  /// CARSI courses completed — up to 5 x 3 pts = 15 pts
-  carsiCoursePoints     Int @default(0)
-  /// Total category 2 (capped at 25)
-  carsiTotal            Int @default(0)
+  /// Week number 1-4
+  week           Int
 
-  // --- Category 3: Industry Association Diversity (max 20 pts) ---
-  /// Primary industry association — 10 pts
-  primaryAssocPoints    Int @default(0)
-  /// Secondary associations — up to 2 x 5 pts = 10 pts
-  secondaryAssocPoints  Int @default(0)
-  /// Total category 3 (capped at 20)
-  associationTotal      Int @default(0)
+  /// Display label
+  title          String
 
-  // --- Category 4: Government Cert IV & Continuing Ed (max 15 pts) ---
-  /// Cert IV in Building and Construction or equivalent — 10 pts
-  govCert4Points        Int @default(0)
-  /// Continuing education credits (annual) — up to 5 pts
-  continuingEdPoints    Int @default(0)
-  /// Total category 4 (capped at 15)
-  govCertTotal          Int @default(0)
+  /// Brief description of what must be achieved
+  description    String   @db.Text
 
-  // --- Computed totals ---
-  /// Sum of all four categories (0-100)
-  totalPoints           Int @default(0)
+  /// NOT_STARTED | IN_PROGRESS | COMPLETED | OVERDUE | FLAGGED
+  status         String   @default("NOT_STARTED")
 
-  /// NONE | SPECIALIST | PROFESSIONAL | EXPERT | MASTER
-  certificationLevel    String @default("NONE")
+  /// Scheduled due date (calculated from onboarding start date)
+  dueDate        DateTime
 
-  /// Points needed to reach the next level (0 if MASTER)
-  pointsToNextLevel     Int @default(60)
+  /// When the milestone was completed
+  completedAt    DateTime?
 
-  /// ISO timestamp of last score computation
-  lastCalculatedAt      DateTime @default(now())
+  /// Whether an automated reminder has been sent
+  reminderSent   Boolean  @default(false)
 
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  /// Whether Phill has been flagged about this milestone being behind
+  flaggedToPhill Boolean  @default(false)
+  flaggedAt      DateTime?
 
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  checkIns       OnboardingCheckIn[]
+
+  @@unique([contractorId, milestoneKey])
   @@index([contractorId])
-  @@index([certificationLevel])
-  @@index([totalPoints])
-  @@map("nrpg_cert_scores")
+  @@index([status])
+  @@index([dueDate])
+  @@map("onboarding_milestones")
+}
+
+/// Bron (or admin) check-in record linked to a milestone.
+model OnboardingCheckIn {
+  id          String   @id @default(cuid())
+
+  milestoneId String
+  milestone   OnboardingMilestone @relation(fields: [milestoneId], references: [id], onDelete: Cascade)
+
+  /// Who performed the check-in (admin user ID or "SYSTEM")
+  performedBy String
+
+  /// Check-in notes
+  notes       String?  @db.Text
+
+  /// SATISFACTORY | NEEDS_ATTENTION | FLAGGED
+  outcome     String   @default("SATISFACTORY")
+
+  createdAt   DateTime @default(now())
+
+  @@index([milestoneId])
+  @@index([performedBy])
+  @@map("onboarding_check_ins")
 }
