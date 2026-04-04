@@ -34,9 +34,9 @@ export default function CertificationsPage() {
 
       {/* IICRC Certification */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-black mb-4">IICRC Certification Standard</h2>
+        <h2 className="text-3xl font-black mb-4">AS-IICRC S500:2025 Certification Standard</h2>
         <p className="text-gray-400 mb-8 max-w-3xl">
-          The Institute of Inspection, Cleaning and Restoration Certification (IICRC) is the international professional standard for restoration contractors. All NRPG contractors maintain current IICRC certifications.
+          The AS-IICRC S500:2025 is Australia's nationally recognised standard for water damage restoration (Standards Australia + RIA Australasia + IICRC), endorsed by Suncorp and major insurers. All NRPG contractors maintain current AS-IICRC S500:2025 certification.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
