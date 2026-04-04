@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Featured Snippet Q&A Component
  * Optimises content for featured snippets

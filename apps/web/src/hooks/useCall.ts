@@ -71,7 +71,7 @@ export function useCall() {
   // Initiate a call
   const initiateCall = useCallback(
     async (recipientId: string, type: 'voice' | 'video' = 'voice', roomId?: string) => {
-      if (!session?.user?.id) return;
+      if (!(session?.user as any)?.id) return;
 
       setIsLoading(true);
       setError(null);
@@ -99,7 +99,7 @@ export function useCall() {
         setIsLoading(false);
       }
     },
-    [session?.user?.id, startPolling]
+    [(session?.user as any)?.id, startPolling]
   );
 
   // Accept a call

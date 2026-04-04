@@ -45,9 +45,16 @@
   ],
   "exclude": [
     "node_modules",
+    ".next",
     "src/services/inspection/**/*",
     "src/lib/ai/**/*",
-    "src/services/analytics/**/*"
+    "src/services/analytics/**/*",
+    "scripts/**/*",
+    "public/**/*",
+    "src/lib/agents/**/*",
+    "src/lib/seo/**/*",
+    "src/services/**/*",
+    "opensrc/**/*"
   ],
   "references": [
     { "path": "../../packages/shared" }

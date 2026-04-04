@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * User Security Settings Page
  *

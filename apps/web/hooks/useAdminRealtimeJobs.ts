@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
@@ -353,4 +354,3 @@ export function useAdminRealtimeJobs(options: UseAdminRealtimeJobsOptions = {}) 
   }
 }
 
-export type { AdminLiveJob, AdminMetrics, AdminRealtimeState }

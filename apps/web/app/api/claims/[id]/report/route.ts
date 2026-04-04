@@ -49,7 +49,7 @@ export async function GET(
             contractor: {
               select: {
                 businessName: true,
-                licenceNumber: true,
+                licenseNumber: true,
                 user: {
                   select: {
                     name: true,
@@ -74,7 +74,6 @@ export async function GET(
           select: {
             reportNumber: true,
             inspectionDate: true,
-            overallCondition: true,
             scopeOfWork: true,
             findings: true,
             recommendations: true,
@@ -150,7 +149,7 @@ export async function GET(
             contractor: claim.booking.contractor
               ? {
                   businessName: claim.booking.contractor.businessName,
-                  licenceNumber: claim.booking.contractor.licenceNumber,
+                  licenceNumber: claim.booking.contractor.licenseNumber,
                   contactName: claim.booking.contractor.user.name,
                   contactEmail: claim.booking.contractor.user.email,
                 }
@@ -164,7 +163,6 @@ export async function GET(
       inspectionReports: claim.inspectionReports.map((r) => ({
         reportNumber: r.reportNumber,
         date: r.inspectionDate,
-        condition: r.overallCondition,
         scopeOfWork: r.scopeOfWork,
         findings: r.findings,
         recommendations: r.recommendations,

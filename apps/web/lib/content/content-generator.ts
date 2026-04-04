@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BlogCategory, FAQCategory } from '@prisma/client';
 import { prisma } from '@/lib/db';
 

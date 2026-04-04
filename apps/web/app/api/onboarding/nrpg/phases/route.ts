@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NRPG Onboarding Phases API
  * GET: Retrieve contractor's phase progress

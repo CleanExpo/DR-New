@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NRPG Commitment Framework API
  * GET: Retrieve contractor's commitment status

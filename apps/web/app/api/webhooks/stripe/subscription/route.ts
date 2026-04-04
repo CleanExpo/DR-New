@@ -14,6 +14,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
+import type { Workspace, WorkspaceMember, User } from '@prisma/client';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
 import { retryPrismaOperation } from '@/src/lib/stripe/webhook-retry';
 import {
@@ -122,7 +123,7 @@ export async function POST(request: NextRequest) {
 // ============================================================================
 
 async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
-  const workspace = await retryPrismaOperation(
+  const workspace = await retryPrismaOperation<Workspace | null>(
     'databaseQuery',
     () =>
       prisma.workspace.findUnique({
@@ -169,7 +170,7 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
 }
 
 async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
-  const workspace = await retryPrismaOperation(
+  const workspace = await retryPrismaOperation<Workspace | null>(
     'databaseQuery',
     () =>
       prisma.workspace.findUnique({
@@ -196,7 +197,7 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
 }
 
 async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
-  const workspace = await retryPrismaOperation(
+  const workspace = await retryPrismaOperation<Workspace | null>(
     'databaseQuery',
     () =>
       prisma.workspace.findUnique({
@@ -237,8 +238,10 @@ async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
   );
 }
 
+type WorkspaceWithMembers = Workspace & { members: (WorkspaceMember & { user: User })[] };
+
 async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
-  const workspace = await retryPrismaOperation(
+  const workspace = await retryPrismaOperation<WorkspaceWithMembers | null>(
     'databaseQuery',
     () =>
       prisma.workspace.findUnique({
@@ -250,7 +253,7 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
             take: 1,
           },
         },
-      }),
+      }) as Promise<WorkspaceWithMembers | null>,
     `find workspace for customer ${invoice.customer}`
   );
 
@@ -299,7 +302,7 @@ async function handlePaymentSucceeded(invoice: Stripe.Invoice) {
 }
 
 async function handlePaymentFailed(invoice: Stripe.Invoice) {
-  const workspace = await retryPrismaOperation(
+  const workspace = await retryPrismaOperation<WorkspaceWithMembers | null>(
     'databaseQuery',
     () =>
       prisma.workspace.findUnique({
@@ -311,7 +314,7 @@ async function handlePaymentFailed(invoice: Stripe.Invoice) {
             take: 1,
           },
         },
-      }),
+      }) as Promise<WorkspaceWithMembers | null>,
     `find workspace for customer ${invoice.customer}`
   );
 

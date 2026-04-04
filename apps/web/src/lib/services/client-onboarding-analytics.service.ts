@@ -119,7 +119,7 @@ export async function getClientOnboardingFunnelMetrics(): Promise<ClientFunnelMe
     // Total started this phase = completed previous phase (or all started for first phase)
     const totalStarted = prevPhase
       ? allOnboardings.filter((o) => o.completedPhases.includes(prevPhase)).length
-      : totalStarted;
+      : allOnboardings.length;
 
     // Total completed this phase
     const totalCompleted = allOnboardings.filter((o) => o.completedPhases.includes(phase)).length;

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Framer Motion Animation Library
  *

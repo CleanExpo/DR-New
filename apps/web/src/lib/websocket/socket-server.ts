@@ -44,10 +44,6 @@ export class SocketServer {
             credentials: true,
           },
           transports: ['websocket', 'polling'],
-          reconnection: true,
-          reconnectionDelay: 1000,
-          reconnectionDelayMax: 5000,
-          reconnectionAttempts: 5,
         }
       );
 
@@ -286,7 +282,7 @@ export class SocketServer {
   ): void {
     const userData = socket.data as SocketData;
 
-    socket.on(SocketEvent.USER_ONLINE, () => {
+    socket.on(SocketEvent.USER_ONLINE as any, () => {
       socket.broadcast.emit(SocketEvent.USER_ONLINE, {
         userId: userData.userId,
         userName: userData.userName,

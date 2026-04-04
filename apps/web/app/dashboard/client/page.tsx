@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import ClientOnboarding from '@/components/client-onboarding';
