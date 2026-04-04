@@ -135,7 +135,7 @@ export default function HomePage() {
 
         {/* 2. TRUST SIGNALS BAND - Insurance Partners */}
         <ScrollReveal>
-          <section className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900 py-12 md:py-16">
+          <section className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900 py-12 md:py-16" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 400px' }}>
             <div className="container mx-auto px-6">
               <InsurancePartners />
             </div>
@@ -144,14 +144,14 @@ export default function HomePage() {
 
         {/* 3. QUICK TRIAGE TOOL - Interactive Assessment */}
         <ScrollReveal>
-          <section className="container mx-auto px-6 py-16 md:py-24">
+          <section className="container mx-auto px-6 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
             <QuickTriageTool />
           </section>
         </ScrollReveal>
 
         {/* 4. SERVICES GRID - Visual Disaster Types */}
         <ScrollReveal>
-          <section className="bg-slate-50 dark:bg-slate-900 py-16 md:py-24">
+          <section className="bg-slate-50 dark:bg-slate-900 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 800px' }}>
             <div className="container mx-auto px-6">
               <ServicesGrid
                 title="Complete Disaster Recovery Services"
@@ -165,7 +165,7 @@ export default function HomePage() {
 
         {/* 5. RESOURCES HUB - Featured Content */}
         <ScrollReveal>
-          <section className="container mx-auto px-6 py-16 md:py-24">
+          <section className="container mx-auto px-6 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
             <ResourcesHub
               title="Knowledge Center"
               subtitle="Expert guides and resources to help you navigate disaster recovery"
@@ -176,7 +176,7 @@ export default function HomePage() {
 
         {/* 6. TRUST & CREDIBILITY SECTION */}
         <ScrollReveal>
-          <section className="bg-gradient-to-br from-blue-600 to-blue-700 py-16 md:py-24">
+          <section className="bg-gradient-to-br from-blue-600 to-blue-700 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
             <div className="container mx-auto px-6">
               <div className="text-center mb-12">
                 <h2 className="font-display text-4xl md:text-5xl font-black text-white mb-4">
@@ -239,7 +239,7 @@ export default function HomePage() {
 
         {/* 7. HOW IT WORKS - Process Steps (DIS-23) */}
         <ScrollReveal>
-          <section className="container mx-auto px-6 py-16 md:py-24">
+          <section className="container mx-auto px-6 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
             <div className="text-center mb-12">
               <h2 className="font-display text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">
                 How It Works
