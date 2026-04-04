@@ -3,10 +3,14 @@ name: Database - Migrations
 on:
   push:
     paths:
-      - 'prisma/schema.prisma'
-      - 'prisma/migrations/**'
+      - 'apps/web/prisma/schema.prisma'
+      - 'apps/web/prisma/migrations/**'
     branches: [ main ]
   workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
+  PNPM_VERSION: '8'
 
 jobs:
   migrate-staging:
@@ -16,17 +20,20 @@ jobs:
       name: staging
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
       - name: Run Prisma migration
-        run: npx prisma migrate deploy
+        run: pnpm --filter nrpg-web exec prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
       - name: Generate Prisma client
-        run: npx prisma generate
+        run: pnpm --filter nrpg-web exec prisma generate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
 
@@ -35,45 +42,44 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://disaster-recovery-seven.vercel.app
+      url: https://disasterrecovery.com.au
     needs: migrate-staging
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
-      - name: Create database backup
-        run: |
-          echo "Backup would be created here"
-          echo "Using: pg_dump or similar tool"
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
       - name: Run Prisma migration
-        run: npx prisma migrate deploy
+        run: pnpm --filter nrpg-web exec prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
           DIRECT_URL: ${{ secrets.DIRECT_URL_PRODUCTION }}
       - name: Generate Prisma client
-        run: npx prisma generate
+        run: pnpm --filter nrpg-web exec prisma generate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
       - name: Run post-migration checks
-        run: |
-          npx prisma db info
-          npx prisma db seed --skip-generate
+        run: pnpm --filter nrpg-web exec prisma db seed --skip-generate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
         continue-on-error: true
       - name: Notify on success
         if: success()
         run: |
-          echo "Database migrations completed successfully"
-          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }}             -H Content-Type: application/json             -d '{"text":"Database migrations completed successfully"}'
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+            -H 'Content-Type: application/json' \
+            -d '{"text":"Database migrations completed successfully"}'
         continue-on-error: true
       - name: Notify on failure
         if: failure()
         run: |
-          echo "Database migrations failed - rollback may be needed"
-          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }}             -H Content-Type: application/json             -d '{"text":"Database migrations FAILED"}'
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+            -H 'Content-Type: application/json' \
+            -d '{"text":"Database migrations FAILED"}'
         continue-on-error: true
