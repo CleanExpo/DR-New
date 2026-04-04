@@ -363,7 +363,7 @@ export default function CertificationsPage() {
                   <p className="text-gray-400 text-sm mb-2">
                     Master Builders Association recognition for transparent pricing and ethical business practices.
                   </p>
-                  <p className="text-xs text-gray-400">95%+ insurance claim approval rate</p>
+                  <p className="text-xs text-gray-400">NRPG policyholders consistently receive stronger claim outcomes through expert documentation</p>
                 </div>
               </div>
             </div>
