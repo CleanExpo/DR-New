@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DR-NRPG Boardroom Dashboard</title>
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #0d0d0d;
+      --surface2: #141414;
+      --border: #1e1e1e;
+      --text: #e8e8e8;
+      --muted: #666;
+      --accent: #c9a84c;
+      --accent-dim: rgba(201,168,76,0.12);
+      --red: #e05252;
+      --red-dim: rgba(224,82,82,0.12);
+      --green: #52c478;
+      --green-dim: rgba(82,196,120,0.12);
+      --amber: #e0a852;
+      --amber-dim: rgba(224,168,82,0.12);
+      --blue: #527ae0;
+      --blue-dim: rgba(82,122,224,0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 0 0 64px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header .logo {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    header .meta {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    header .meta span { color: var(--text); }
+
+    /* ── Layout ── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 24px 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .grid-full { grid-column: 1 / -1; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface2);
+    }
+
+    .card-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .card-body { padding: 16px; }
+
+    /* ── P0 Hero ── */
+    .p0-hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 32px;
+      grid-column: 1 / -1;
+    }
+
+    .p0-count {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--red);
+      font-variant-numeric: tabular-nums;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .p0-hero-body h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .p0-hero-body p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .p0-gaps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .gap-badge {
+      background: var(--red-dim);
+      border: 1px solid var(--red);
+      color: var(--red);
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Status badges ── */
+    .badge {
+      display: inline-block;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .badge-blocked { background: var(--red-dim); color: var(--red); border: 1px solid var(--red); }
+    .badge-active  { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); }
+    .badge-pending { background: var(--amber-dim); color: var(--amber); border: 1px solid var(--amber); }
+    .badge-done    { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue); }
+
+    /* ── BUILD cards ── */
+    .build-item {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .build-item:last-child { margin-bottom: 0; }
+
+    .build-item.blocked { border-color: rgba(224,82,82,0.4); }
+    .build-item.active  { border-color: rgba(82,196,120,0.4); }
+
+    .build-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .build-id {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .build-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .build-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .build-meta strong { color: var(--red); }
+
+    .build-lanes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .lane-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2px 8px;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* ── Watch items ── */
+    .watch-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .watch-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .watch-item:first-child { padding-top: 0; }
+
+    .watch-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .watch-dot.red    { background: var(--red); box-shadow: 0 0 6px var(--red); }
+    .watch-dot.amber  { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+    .watch-dot.blue   { background: var(--blue); }
+
+    .watch-label { font-size: 12px; color: var(--text); line-height: 1.4; }
+    .watch-date  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Countdown ── */
+    .countdown {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--amber);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+
+    .countdown.urgent { color: var(--red); }
+    .countdown-label { font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .countdown-row {
+      display: flex;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .countdown-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .countdown-row:first-child { padding-top: 0; }
+
+    .countdown-info { flex: 1; }
+    .countdown-info h4 { font-size: 12px; color: var(--text); margin-bottom: 2px; }
+    .countdown-info p  { font-size: 11px; color: var(--muted); }
+
+    /* ── Owner actions ── */
+    .action-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .action-item:first-child { padding-top: 0; }
+
+    .action-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .owner-tag {
+      background: var(--accent-dim);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--accent);
+      border-radius: 3px;
+      padding: 1px 7px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .action-due {
+      font-size: 10px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .action-due.urgent { color: var(--red); font-weight: 700; }
+
+    .action-text { font-size: 12px; color: var(--text); line-height: 1.4; }
+
+    .action-links { display: flex; gap: 8px; margin-top: 6px; }
+    .action-link {
+      font-size: 10px;
+      color: var(--muted);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1px 7px;
+      text-decoration: none;
+    }
+
+    /* ── Recently completed ── */
+    .completed-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 8px;
+    }
+
+    .completed-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+
+    .completed-id {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .completed-title {
+      font-size: 12px;
+      color: var(--text);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    .completed-pr {
+      font-size: 10px;
+      color: var(--green);
+      margin-top: 4px;
+    }
+
+    /* ── New intelligence ── */
+    .intel-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .intel-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .intel-item:first-child { padding-top: 0; }
+
+    .intel-icon { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+    /* ── PR queue ── */
+    .pr-table { width: 100%; border-collapse: collapse; }
+    .pr-table th {
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 8px 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pr-table td {
+      padding: 8px 8px 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      vertical-align: top;
+    }
+
+    .pr-table tr:last-child td { border-bottom: none; }
+
+    .pr-num {
+      color: var(--accent);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pr-branch {
+      color: var(--muted);
+      word-break: break-all;
+      max-width: 400px;
+    }
+
+    .pr-target {
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+      padding: 32px;
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── Loading / error ── */
+    #loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+      color: var(--muted);
+      font-size: 14px;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #dashboard { display: none; }
+  </style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="spinner"></div>
+  Loading boardroom state…
+</div>
+
+<div id="dashboard">
+  <header>
+    <div class="logo">DR-NRPG &mdash; Boardroom</div>
+    <div class="meta">Session: <span id="meta-session">—</span> &nbsp;|&nbsp; Schema: <span id="meta-schema">—</span></div>
+  </header>
+
+  <div class="grid">
+
+    <!-- ── P0 Gaps Hero ── -->
+    <div class="p0-hero card" id="p0-hero">
+      <div>
+        <div class="p0-count" id="p0-count">0</div>
+      </div>
+      <div class="p0-hero-body">
+        <h2>P0 Open Gaps</h2>
+        <p>Critical unresolved risks requiring immediate owner action</p>
+        <div class="p0-gaps" id="p0-gaps"></div>
+      </div>
+    </div>
+
+    <!-- ── Active BUILDs ── -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Active BUILDs</span>
+        <span class="badge badge-blocked" id="build-status-badge">0 blocked</span>
+      </div>
+      <div class="card-body" id="builds-body">
+        <div style="color:var(--muted);font-size:12px;">No active builds.</div>
+      </div>
+    </div>
+
+    <!-- ── Deadline Countdowns ── -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Watch Items</span>
+      </div>
+      <div class="card-body" id="watch-body">
+        <div style="color:var(--muted);font-size:12px;">No watch items.</div>
+      </div>
+    </div>
+
+    <!-- ── Pending Owner Actions ── -->
+    <div class="card grid-full">
+      <div class="card-header">
+        <span class="card-title">Pending Owner Actions</span>
+        <span class="badge badge-pending" id="actions-count-badge">0 pending</span>
+      </div>
+      <div class="card-body" id="actions-body">
+        <div style="color:var(--muted);font-size:12px;">No pending actions.</div>
+      </div>
+    </div>
+
+    <!-- ── New Intelligence ── -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">New Intelligence</span>
+      </div>
+      <div class="card-body" id="intel-body">
+        <div style="color:var(--muted);font-size:12px;">Nothing new.</div>
+      </div>
+    </div>
+
+    <!-- ── Pending PRs ── -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Pending PRs</span>
+        <span class="badge badge-pending" id="prs-count-badge">0 pending</span>
+      </div>
+      <div class="card-body" id="prs-body">
+        <div style="color:var(--muted);font-size:12px;">No pending PRs.</div>
+      </div>
+    </div>
+
+    <!-- ── Recently Completed ── -->
+    <div class="card grid-full">
+      <div class="card-header">
+        <span class="card-title">Recently Completed</span>
+        <span class="badge badge-done" id="completed-count-badge">0 items</span>
+      </div>
+      <div class="card-body">
+        <div class="completed-list" id="completed-list"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    DR-NRPG Boardroom Dashboard &mdash; <span>disasterrecovery.com.au</span> &mdash; Scientific Luxury
+  </footer>
+</div>
+
+<script>
+  /* ── Helpers ── */
+  function daysUntil(dateStr) {
+    // Parse "1 July 2026", "30 April 2026", "January 2026" etc.
+    const d = new Date(dateStr);
+    if (isNaN(d)) return null;
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    d.setHours(0,0,0,0);
+    return Math.ceil((d - today) / 86400000);
+  }
+
+  function extractDate(watchStr) {
+    // "1 July 2026 — small business exemption..." → try to find a date
+    const m = watchStr.match(/(\d{1,2}\s+\w+\s+\d{4}|\w+\s+\d{4})/);
+    return m ? m[1] : null;
+  }
+
+  function badge(cls, text) {
+    return `<span class="badge ${cls}">${text}</span>`;
+  }
+
+  /* ── Render ── */
+  function render(state) {
+    // Meta
+    document.getElementById('meta-session').textContent = state.last_session ?? '—';
+    document.getElementById('meta-schema').textContent  = state.schema_version ?? '—';
+
+    // P0 Gaps
+    const gaps = state.p0_gaps ?? [];
+    document.getElementById('p0-count').textContent = gaps.length;
+    const p0El = document.getElementById('p0-hero');
+    if (gaps.length === 0) p0El.style.borderColor = 'rgba(82,196,120,0.4)';
+    const gapsEl = document.getElementById('p0-gaps');
+    gapsEl.innerHTML = gaps.map(g => `<span class="gap-badge">${g}</span>`).join('');
+
+    // BUILDs
+    const builds = state.active_builds ?? [];
+    const buildsEl = document.getElementById('builds-body');
+    const blocked  = builds.filter(b => b.status === 'BLOCKED').length;
+    document.getElementById('build-status-badge').textContent =
+      blocked > 0 ? `${blocked} blocked` : `${builds.length} active`;
+    document.getElementById('build-status-badge').className =
+      blocked > 0 ? 'badge badge-blocked' : 'badge badge-active';
+
+    if (builds.length) {
+      buildsEl.innerHTML = builds.map(b => {
+        const cls   = b.status === 'BLOCKED' ? 'blocked' : 'active';
+        const bBadge = b.status === 'BLOCKED'
+          ? badge('badge-blocked', 'BLOCKED')
+          : badge('badge-active', b.status);
+        const lanes = (b.lanes ?? []).map(l => `<span class="lane-tag">${l}</span>`).join('');
+        const blocker = b.blocker
+          ? `<div class="build-meta">Blocker: <strong>${b.blocker}</strong>${b.blocker_owner ? ` — owner: ${b.blocker_owner}` : ''}</div>`
+          : '';
+        const linear = b.linear_id ? `<span class="lane-tag">${b.linear_id}</span>` : '';
+        return `
+          <div class="build-item ${cls}">
+            <div class="build-header">
+              <span class="build-id">${b.id}</span>
+              ${bBadge}
+              ${linear}
+            </div>
+            <div class="build-title">${b.title}</div>
+            ${blocker}
+            ${lanes ? `<div class="build-lanes">${lanes}</div>` : ''}
+          </div>`;
+      }).join('');
+    }
+
+    // Watch Items + Countdowns
+    const watch   = state.watch_items ?? {};
+    const watchEl = document.getElementById('watch-body');
+    const entries = Object.entries(watch);
+    if (entries.length) {
+      watchEl.innerHTML = entries.map(([key, val]) => {
+        const dateStr = extractDate(val);
+        const days    = dateStr ? daysUntil(dateStr) : null;
+        let dotCls = 'blue';
+        if (days !== null && days <= 30)  dotCls = 'amber';
+        if (days !== null && days <= 7)   dotCls = 'red';
+        let cdHtml = '';
+        if (days !== null) {
+          const cdCls = days <= 30 ? 'urgent' : '';
+          cdHtml = `<div class="countdown ${cdCls}">${days}</div><div class="countdown-label">days remaining</div>`;
+        }
+        return `
+          <div class="countdown-row">
+            <div class="countdown-info">
+              <h4>${key.replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase())}</h4>
+              <p>${val}</p>
+            </div>
+            <div style="text-align:right;flex-shrink:0">${cdHtml}</div>
+          </div>`;
+      }).join('');
+    }
+
+    // Owner Actions
+    const actions  = state.pending_owner_actions ?? [];
+    const actionsEl = document.getElementById('actions-body');
+    document.getElementById('actions-count-badge').textContent = `${actions.length} pending`;
+    if (actions.length) {
+      actionsEl.innerHTML = actions.map(a => {
+        const urgentDue = (a.due ?? '').toUpperCase().includes('ASAP');
+        const links = [
+          a.gap       && `<span class="action-link">${a.gap}</span>`,
+          a.linear_id && `<span class="action-link">${a.linear_id}</span>`,
+        ].filter(Boolean).join('');
+        return `
+          <div class="action-item">
+            <div class="action-header">
+              <span class="owner-tag">${a.owner}</span>
+              <span class="action-due ${urgentDue ? 'urgent' : ''}">${a.due}</span>
+            </div>
+            <div class="action-text">${a.action}</div>
+            ${links ? `<div class="action-links">${links}</div>` : ''}
+          </div>`;
+      }).join('');
+    }
+
+    // New Intelligence
+    const intel   = state.new_intelligence ?? [];
+    const intelEl = document.getElementById('intel-body');
+    if (intel.length) {
+      intelEl.innerHTML = intel.map(i =>
+        `<div class="intel-item"><span class="intel-icon">&#9654;</span><span>${i}</span></div>`
+      ).join('');
+    }
+
+    // Pending PRs
+    const prs   = state.pending_prs ?? [];
+    const prsEl = document.getElementById('prs-body');
+    document.getElementById('prs-count-badge').textContent = `${prs.length} pending`;
+    if (prs.length) {
+      prsEl.innerHTML = `
+        <table class="pr-table">
+          <thead>
+            <tr>
+              <th>PR</th>
+              <th>Branch</th>
+              <th>Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${prs.map(p => `
+              <tr>
+                <td class="pr-num">#${p.pr}</td>
+                <td class="pr-branch">${p.branch}</td>
+                <td class="pr-target">${p.target}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>`;
+    }
+
+    // Recently Completed
+    const completed = state.recently_completed ?? [];
+    const compEl    = document.getElementById('completed-list');
+    document.getElementById('completed-count-badge').textContent = `${completed.length} items`;
+    compEl.innerHTML = completed.map(c => `
+      <div class="completed-item">
+        <div class="completed-id">${c.id}</div>
+        <div class="completed-title">${c.title}</div>
+        ${c.pr ? `<div class="completed-pr">PR #${c.pr}</div>` : ''}
+      </div>`).join('');
+  }
+
+  /* ── Boot ── */
+  async function boot() {
+    try {
+      const res  = await fetch('./boardroom-state.json?t=' + Date.now());
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const state = await res.json();
+      render(state);
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+    } catch (err) {
+      document.getElementById('loading').innerHTML =
+        `<div style="color:var(--red);font-size:13px;">
+          Failed to load boardroom-state.json<br>
+          <span style="color:var(--muted);font-size:11px;">${err.message}</span><br><br>
+          <span style="color:var(--muted);font-size:11px;">
+            Open via a local server (e.g. <code>npx serve docs/</code>) — not file:// protocol.
+          </span>
+        </div>`;
+    }
+  }
+
+  boot();
+</script>
+</body>
+</html>
