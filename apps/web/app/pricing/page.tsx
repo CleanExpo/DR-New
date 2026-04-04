@@ -352,7 +352,7 @@ export default function PricingPage() {
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">Will my insurance cover everything?</h3>
             <p className="text-gray-400">
-              That depends on your specific policy and coverage type. We work directly with your insurer to maximize your claim. Our documentation is thorough to ensure insurance approval rates exceed 95%.
+              That depends on your specific policy and coverage type. We work directly with your insurer to maximise your claim outcome. Our thorough documentation and direct insurer communication is designed to give your claim the strongest possible foundation.
             </p>
           </div>
 
