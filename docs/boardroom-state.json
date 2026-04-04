@@ -16,8 +16,44 @@
   ],
   "recently_completed": [
     {
+      "id": "DR-335",
+      "title": "Boardroom Dashboard HTML artifact",
+      "pr": null,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-256",
+      "title": "Batch API for SEO + Contractor Onboarding (Anthropic Message Batches)",
+      "pr": null,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-257",
+      "title": "IICRC Citations component (inline + block + list)",
+      "pr": null,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-259",
+      "title": "Unite-Group API Integration (CRM, messaging, analytics, bookkeeping, social, webhook)",
+      "pr": null,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-247",
+      "title": "Skill Creator evals for DR-NRPG (12 evals across 6 skills)",
+      "pr": null,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-249",
+      "title": "Next.js 14→15 version bump (package.json only — codemod + deploy pending)",
+      "pr": null,
+      "completed": "2026-04-04"
+    },
+    {
       "id": "DR-193",
-      "title": "CARSI \u2194 onboarding sync with webhook receiver",
+      "title": "CARSI ↔ onboarding sync with webhook receiver",
       "pr": 59,
       "completed": "2026-04-04"
     },
@@ -96,32 +132,35 @@
   ],
   "p0_gaps": ["GAP-004", "GAP-028", "GAP-029", "GAP-030"],
   "watch_items": {
-    "privacy_act_exemption_removal": "1 July 2026 — small business exemption removed, 87 days remaining",
+    "privacy_act_exemption_removal": "1 July 2026 — small business exemption removed, 88 days remaining",
     "oaic_compliance_sweep": "January 2026 onwards — property-adjacent sectors targeted",
-    "uni_1760_model_retirement": "30 April 2026 — Sonnet 4.5/4.0 1M context beta retired"
+    "nextjs_15_codemod_required": "Before next deploy — run npx @next/codemod@canary upgrade latest on feat/nextjs-15 branch",
+    "unite_group_env_vars": "Before Unite-Group goes live — add UNITE_GROUP_API_KEY + UNITE_GROUP_WEBHOOK_SECRET to Vercel"
   },
   "pending_owner_actions": [
     { "action": "Confirm AS-IICRC S500:2025 certification held by NRPG network", "gap": "GAP-004", "linear_id": "DR-321", "owner": "Toby", "due": "ASAP — unblocks BUILD-002" },
     { "action": "Privacy Act compliance review — appoint privacy officer", "gap": "GAP-030", "linear_id": "DR-328", "owner": "Toby + Legal", "due": "2026-07-01" },
     { "action": "OAIC compliance audit", "gap": "GAP-029", "linear_id": "DR-327", "owner": "Legal + CTO", "due": "ASAP" },
     { "action": "Merge PRs #45-59 into develop after review", "gap": null, "linear_id": null, "owner": "Phill", "due": "ASAP" },
-    { "action": "Add CARSI_API_URL, CARSI_API_KEY, CARSI_WEBHOOK_SECRET to Vercel env vars", "gap": null, "linear_id": "DR-193", "owner": "Phill", "due": "Before DR-193 can go live" }
+    { "action": "Add CARSI_API_URL, CARSI_API_KEY, CARSI_WEBHOOK_SECRET to Vercel env vars", "gap": null, "linear_id": "DR-193", "owner": "Phill", "due": "Before DR-193 can go live" },
+    { "action": "Add UNITE_GROUP_API_KEY, UNITE_GROUP_WEBHOOK_SECRET to Vercel env vars", "gap": null, "linear_id": "DR-259", "owner": "Phill", "due": "Before Unite-Group integration goes live" },
+    { "action": "Run Next.js 15 codemod on feat/nextjs-15 branch, fix async cookies/headers/params", "gap": null, "linear_id": "DR-249", "owner": "Phill", "due": "Before next production deploy" }
   ],
   "new_intelligence": [
+    "DR Client Website Linear project fully triaged — all 57 non-Done issues resolved (Done or Cancelled)",
+    "Next.js 16 does not exist — issue title was wrong, bumped to ^15.0.0",
+    "Unite-Group API integration ready — awaiting env vars from Phill before going live",
+    "Anthropic Message Batches API available: ~50% cost saving on bulk content generation",
     "Privacy Act small business exemption removed 1 July 2026 — affects all NRPG businesses",
     "OAIC compliance sweep targeting property-adjacent sectors since Jan 2026",
     "Hardcoded fallback secrets found and fixed in src/lib/auth.ts and src/lib/security/csrf.ts"
   ],
   "resolved_since_last": [
-    "DR-193: CARSI \u2194 onboarding sync + webhook receiver complete",
-    "DR-189: 100-point certification scoring engine + dashboard complete",
-    "DR-198: Contractor application form + screening + approval workflow complete",
-    "DR-232: Metadata exports complete",
-    "DR-234: FAQPage schema complete",
-    "DR-244: /restore-assist landing page live on develop",
-    "DR-60: Hydration mismatch fixed",
-    "DR-73: Lead funnel design doc complete",
-    "UNI-1760: All legacy Claude model strings replaced",
-    "DR-329: Pre-BUILD Clarification Gate added to CLAUDE.md"
+    "DR-335: Boardroom Dashboard HTML artifact — docs/boardroom-dashboard.html",
+    "DR-256: Anthropic Batch API (suburb pages, contractor progress, blog) — 50% cost saving",
+    "DR-257: IICRC Citation components (IICRCCitation, IICRCCitationBlock, IICRCCitationList)",
+    "DR-259: Unite-Group API integration (CRM, messaging, analytics, bookkeeping, social, webhook)",
+    "DR-247: Skill evals — 12 eval cases across 6 DR-NRPG skills",
+    "DR-249: Next.js ^14 → ^15 version bump (codemod step remains for Phill)"
   ]
 }
