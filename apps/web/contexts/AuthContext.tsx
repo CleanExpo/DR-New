@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setSessionError(true)
         setLoading(false)
         // Redirect to login with error message
-        router.push('/auth/login?error=session_timeout')
+        router.push('/login?error=session_timeout')
       }
     }, 10000) // 10 second timeout
 
