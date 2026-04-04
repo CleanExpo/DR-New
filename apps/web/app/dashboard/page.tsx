@@ -30,7 +30,7 @@ export default function Dashboard() {
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin text-[#00BFA6] mx-auto mb-4" />
           <p className="text-gray-300 text-sm">Initializing session...</p>
-          <p className="text-gray-500 text-xs mt-2">If this takes more than 10 seconds, you'll be redirected to login</p>
+          <p className="text-gray-400 text-xs mt-2">If this takes more than 10 seconds, you'll be redirected to login</p>
         </div>
       </div>
     );

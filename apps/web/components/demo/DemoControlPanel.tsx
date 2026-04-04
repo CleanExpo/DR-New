@@ -186,7 +186,7 @@ export function DemoControlPanel({
         <div className="p-4 space-y-4">
           {/* Scenario Selector */}
           <div className="relative">
-            <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
+            <label className="block text-xs font-medium text-gray-400 dark:text-gray-400 mb-1">
               Scenario
             </label>
             <button
@@ -219,7 +219,7 @@ export function DemoControlPanel({
                         <span className="text-xs text-orange-500">{scenario.duration}</span>
                       </div>
                     </div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                    <p className="text-xs text-gray-400 dark:text-gray-400 mt-0.5">
                       {scenario.description}
                     </p>
                   </button>
@@ -244,7 +244,7 @@ export function DemoControlPanel({
             </button>
             <button
               onClick={controls.reset}
-              className="flex items-center justify-center w-10 h-10 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full transition-colors"
+              className="flex items-center justify-center w-10 h-10 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-400 dark:text-gray-300 rounded-full transition-colors"
               title="Reset (R)"
             >
               <RotateCcw className="w-4 h-4" />
@@ -253,7 +253,7 @@ export function DemoControlPanel({
 
           {/* Speed Control */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
+            <label className="block text-xs font-medium text-gray-400 dark:text-gray-400 mb-1">
               Speed
             </label>
             <div className="flex gap-1">
@@ -264,7 +264,7 @@ export function DemoControlPanel({
                   className={`flex-1 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                     state.speed === speed
                       ? 'bg-orange-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
                 >
                   {speed}x
@@ -276,7 +276,7 @@ export function DemoControlPanel({
           {/* Progress */}
           {state.currentScenario && (
             <div>
-              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+              <div className="flex items-center justify-between text-xs text-gray-400 dark:text-gray-400 mb-1">
                 <span>{state.stepLabel || 'Ready'}</span>
                 <span>Step {state.currentStep}/{state.totalSteps}</span>
               </div>
@@ -294,7 +294,7 @@ export function DemoControlPanel({
 
           {/* Quick Actions */}
           <div>
-            <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">
+            <label className="block text-xs font-medium text-gray-400 dark:text-gray-400 mb-2">
               Quick Actions
             </label>
             <div className="grid grid-cols-3 gap-2">
@@ -304,7 +304,7 @@ export function DemoControlPanel({
                 title="Move Contractor"
               >
                 <MapPin className="w-4 h-4 text-teal-500" />
-                <span className="text-xs text-gray-600 dark:text-gray-300">Move</span>
+                <span className="text-xs text-gray-400 dark:text-gray-300">Move</span>
               </button>
               <button
                 onClick={() => controls.sendMessage("Hi, I'm on my way!", 'contractor')}
@@ -312,7 +312,7 @@ export function DemoControlPanel({
                 title="Send Message"
               >
                 <MessageSquare className="w-4 h-4 text-blue-500" />
-                <span className="text-xs text-gray-600 dark:text-gray-300">Message</span>
+                <span className="text-xs text-gray-400 dark:text-gray-300">Message</span>
               </button>
               <button
                 onClick={controls.triggerNewJob}
@@ -320,7 +320,7 @@ export function DemoControlPanel({
                 title="Trigger Alert (N)"
               >
                 <Bell className="w-4 h-4 text-orange-500" />
-                <span className="text-xs text-gray-600 dark:text-gray-300">New Job</span>
+                <span className="text-xs text-gray-400 dark:text-gray-300">New Job</span>
               </button>
             </div>
           </div>
@@ -360,10 +360,10 @@ export function DemoControlPanel({
                 { key: '?', action: 'Show this help' },
               ].map(shortcut => (
                 <div key={shortcut.key} className="flex items-center justify-between py-1.5 border-b border-gray-100 dark:border-gray-800 last:border-0">
-                  <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded text-xs font-mono">
+                  <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-300 rounded text-xs font-mono">
                     {shortcut.key}
                   </kbd>
-                  <span className="text-gray-600 dark:text-gray-400">{shortcut.action}</span>
+                  <span className="text-gray-400 dark:text-gray-400">{shortcut.action}</span>
                 </div>
               ))}
             </div>

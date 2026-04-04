@@ -64,7 +64,7 @@ export function ContractorComparison({
             </Button>
           )}
         </div>
-        <p className="text-sm text-gray-600 mt-1">
+        <p className="text-sm text-gray-400 mt-1">
           Compare key metrics side-by-side to make an informed decision
         </p>
       </CardHeader>
@@ -106,7 +106,7 @@ export function ContractorComparison({
                     <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                       <span className="font-semibold">{contractor.averageRating.toFixed(1)}</span>
-                      <span className="text-xs text-gray-500">
+                      <span className="text-xs text-gray-400">
                         ({contractor.reviewCount} reviews)
                       </span>
                     </div>
@@ -158,7 +158,7 @@ export function ContractorComparison({
                   label="Operating States"
                   value={
                     <div className="flex items-center gap-1">
-                      <MapPin className="h-4 w-4 text-gray-600" />
+                      <MapPin className="h-4 w-4 text-gray-400" />
                       <span className="text-sm">{contractor.operatingStates.join(', ')}</span>
                     </div>
                   }
@@ -166,7 +166,7 @@ export function ContractorComparison({
 
                 {contractor.specialties.length > 0 && (
                   <div>
-                    <div className="text-xs text-gray-600 mb-2">Specialties</div>
+                    <div className="text-xs text-gray-400 mb-2">Specialties</div>
                     <div className="flex flex-wrap gap-1">
                       {contractor.specialties.slice(0, 3).map((spec) => (
                         <Badge key={spec} variant="outline" className="text-xs">
@@ -243,7 +243,7 @@ export function ContractorComparison({
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                       <span className="font-semibold">{contractor.averageRating.toFixed(1)}</span>
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">
+                    <div className="text-xs text-gray-400 mt-1">
                       {contractor.reviewCount} reviews
                     </div>
                     {contractor.averageRating === bestRating && (
@@ -332,7 +332,7 @@ export function ContractorComparison({
                 {contractors.map((contractor) => (
                   <td key={contractor.id} className="py-4 px-4 text-center">
                     <div className="flex items-center justify-center gap-1">
-                      <MapPin className="h-4 w-4 text-gray-600" />
+                      <MapPin className="h-4 w-4 text-gray-400" />
                       <span className="text-sm">{contractor.operatingStates.join(', ')}</span>
                     </div>
                   </td>
@@ -412,7 +412,7 @@ function ComparisonRow({ label, value, isBest }: ComparisonRowProps) {
         isBest && 'bg-green-50'
       )}
     >
-      <span className="text-sm text-gray-600">{label}</span>
+      <span className="text-sm text-gray-400">{label}</span>
       <div className="flex items-center gap-2">
         {value}
         {isBest && (

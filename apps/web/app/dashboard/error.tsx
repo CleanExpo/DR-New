@@ -36,7 +36,7 @@ export default function DashboardError({ error, reset }: ErrorPageProps) {
         </h1>
 
         {/* Error Message */}
-        <p className="text-gray-600 text-center mb-6">
+        <p className="text-gray-400 text-center mb-6">
           {isSessionError
             ? 'Your session could not be initialized. Please log in again to continue.'
             : 'An error occurred while loading the dashboard. Please try again.'}
@@ -78,7 +78,7 @@ export default function DashboardError({ error, reset }: ErrorPageProps) {
         </div>
 
         {/* Support Text */}
-        <p className="text-sm text-gray-500 text-center mt-6">
+        <p className="text-sm text-gray-400 text-center mt-6">
           If the problem persists, please <a href="/contact" className="underline text-blue-600 hover:text-blue-700">contact support online</a>
         </p>
       </div>

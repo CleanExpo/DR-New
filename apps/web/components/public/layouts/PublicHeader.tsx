@@ -81,7 +81,7 @@ function DropdownMenu({ section, isOpen, onToggle, onClose }: DropdownMenuProps)
             >
               <div className="font-medium text-gray-900 text-sm">{item.label}</div>
               {item.description && (
-                <div className="text-xs text-gray-600 mt-0.5">{item.description}</div>
+                <div className="text-xs text-gray-400 mt-0.5">{item.description}</div>
               )}
             </Link>
           ))}

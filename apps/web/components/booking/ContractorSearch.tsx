@@ -136,7 +136,7 @@ export default function ContractorSearch({ onSelectContractor, showBookButton = 
             className={`h-4 w-4 ${
               star <= rating
                 ? 'text-yellow-500 fill-yellow-500'
-                : 'text-gray-600'
+                : 'text-gray-400'
             }`}
           />
         ))}
@@ -246,7 +246,7 @@ export default function ContractorSearch({ onSelectContractor, showBookButton = 
       {contractors.length === 0 ? (
         <Card className="bg-gray-800 border-gray-700">
           <CardContent className="py-12 text-center text-gray-400">
-            <Search className="h-16 w-16 mx-auto mb-4 text-gray-600" />
+            <Search className="h-16 w-16 mx-auto mb-4 text-gray-400" />
             <p className="text-lg">No contractors found</p>
             <p className="text-sm mt-2">Try adjusting your search filters</p>
           </CardContent>
@@ -309,13 +309,13 @@ export default function ContractorSearch({ onSelectContractor, showBookButton = 
                 <div className="space-y-2 text-sm">
                   {contractor.primaryState && (
                     <div className="flex items-center gap-2 text-gray-300">
-                      <MapPin className="h-4 w-4 text-gray-500" />
+                      <MapPin className="h-4 w-4 text-gray-400" />
                       <span>{contractor.primaryState} • {contractor.serviceRadius}km service radius</span>
                     </div>
                   )}
                   {contractor.yearsInBusiness && (
                     <div className="flex items-center gap-2 text-gray-300">
-                      <Award className="h-4 w-4 text-gray-500" />
+                      <Award className="h-4 w-4 text-gray-400" />
                       <span>{contractor.yearsInBusiness} years in business</span>
                     </div>
                   )}

@@ -72,7 +72,7 @@ export function LicenseVerificationBadge({
               bg: 'bg-gray-50 border-gray-200',
               icon: <HelpCircle className="h-6 w-6 text-gray-400 flex-shrink-0" />,
               labelColour: 'text-gray-700',
-              detailColour: 'text-gray-500',
+              detailColour: 'text-gray-400',
               label: 'Licence Unverified',
             };
 
@@ -91,7 +91,7 @@ export function LicenseVerificationBadge({
           <span className={cn('font-semibold', badgeConfig.labelColour)}>
             {badgeConfig.label}
           </span>
-          <Shield className="h-4 w-4 text-gray-500" />
+          <Shield className="h-4 w-4 text-gray-400" />
         </div>
 
         {/* Expiry Information */}
@@ -113,7 +113,7 @@ export function LicenseVerificationBadge({
 
         {/* Licence Number */}
         {licenseNumber && (
-          <div className="text-xs text-gray-600 mt-1">
+          <div className="text-xs text-gray-400 mt-1">
             Licence: {licenseNumber}
           </div>
         )}
@@ -228,7 +228,7 @@ export function InsuranceVerificationBadge({
 
         {/* Policy Number (if provided) */}
         {policyNumber && (
-          <div className="text-xs text-gray-600 mt-1">
+          <div className="text-xs text-gray-400 mt-1">
             Policy: {policyNumber}
           </div>
         )}

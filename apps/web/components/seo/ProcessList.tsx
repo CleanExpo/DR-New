@@ -170,7 +170,7 @@ function ProcessStep({ step }: { step: ProcessStep }) {
 
           {/* Step Duration */}
           {step.duration && (
-            <div className="text-xs text-gray-500 mb-3">
+            <div className="text-xs text-gray-400 mb-3">
               ⏱️ Estimated time: {step.duration}
             </div>
           )}
@@ -181,7 +181,7 @@ function ProcessStep({ step }: { step: ProcessStep }) {
               <p className="text-sm font-semibold text-gray-700 mb-1">
                 Tools needed:
               </p>
-              <ul className="text-sm text-gray-600 space-y-1">
+              <ul className="text-sm text-gray-400 space-y-1">
                 {step.tools.map((tool, i) => (
                   <li key={i} className="flex items-center gap-2">
                     <span>🔧</span>
@@ -198,7 +198,7 @@ function ProcessStep({ step }: { step: ProcessStep }) {
               <p className="text-sm font-semibold text-gray-700 mb-1">
                 Materials:
               </p>
-              <ul className="text-sm text-gray-600 space-y-1">
+              <ul className="text-sm text-gray-400 space-y-1">
                 {step.materials.map((material, i) => (
                   <li key={i} className="flex items-center gap-2">
                     <span>📦</span>

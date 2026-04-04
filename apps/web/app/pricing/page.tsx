@@ -35,12 +35,12 @@ export default function PricingPage() {
       <section className="py-16 px-6 max-w-6xl mx-auto">
         <div className="mb-12">
           <h2 className="text-3xl font-black mb-4">Emergency Response Service</h2>
-          <p className="text-gray-600 mb-8">Our most common service covering assessment and make-safe work</p>
+          <p className="text-gray-400 mb-8">Our most common service covering assessment and make-safe work</p>
 
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-12 border-2 border-blue-200">
             <div className="flex items-baseline gap-4 mb-8">
               <span className="text-5xl font-black text-blue-600">$2,750</span>
-              <span className="text-gray-600">Including GST</span>
+              <span className="text-gray-400">Including GST</span>
             </div>
 
             <h3 className="text-2xl font-bold mb-6">What's Included:</h3>
@@ -159,10 +159,10 @@ export default function PricingPage() {
           <div className="space-y-6">
             <div>
               <h4 className="font-bold text-lg mb-3">Option 1: Direct Insurance Billing</h4>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-400 mb-4">
                 Most common for insured claims. We bill your insurance company directly.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <ul className="space-y-2 text-sm text-gray-400">
                 <li>• You pay your insurance excess/deductible</li>
                 <li>• We bill insurance for the $2,750 assessment fee</li>
                 <li>• Additional restoration work quoted separately and added to claim</li>
@@ -171,10 +171,10 @@ export default function PricingPage() {
             </div>
             <div className="border-t pt-6">
               <h4 className="font-bold text-lg mb-3">Option 2: Direct Payment</h4>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-400 mb-4">
                 For uninsured claims or when you prefer to manage directly.
               </p>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <ul className="space-y-2 text-sm text-gray-400">
                 <li>• Payment due upon service completion</li>
                 <li>• We accept all major credit cards and bank transfer</li>
                 <li>• Payment plan available for restoration work ($2,500+)</li>
@@ -189,7 +189,7 @@ export default function PricingPage() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-black mb-4">Additional Services & Costs</h2>
-          <p className="text-gray-600 mb-12">
+          <p className="text-gray-400 mb-12">
             All services priced individually. We quote before starting work.
           </p>
 
@@ -197,7 +197,7 @@ export default function PricingPage() {
             {/* Water Extraction */}
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <h4 className="font-bold text-lg mb-2">Water Extraction & Drying</h4>
-              <p className="text-sm text-gray-600 mb-4">Professional water removal and drying setup</p>
+              <p className="text-sm text-gray-400 mb-4">Professional water removal and drying setup</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
                   <span>Small area (&lt; 50m²):</span>
@@ -212,13 +212,13 @@ export default function PricingPage() {
                   <span className="font-bold">Quote required</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-500">Daily rental for equipment if needed: $100–$300</p>
+              <p className="text-xs text-gray-400">Daily rental for equipment if needed: $100–$300</p>
             </div>
 
             {/* Fire Restoration */}
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <h4 className="font-bold text-lg mb-2">Fire & Smoke Restoration</h4>
-              <p className="text-sm text-gray-600 mb-4">Smoke damage cleanup and restoration</p>
+              <p className="text-sm text-gray-400 mb-4">Smoke damage cleanup and restoration</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
                   <span>Light smoke damage:</span>
@@ -233,13 +233,13 @@ export default function PricingPage() {
                   <span className="font-bold">Quote required</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-500">Includes odour treatment and ventilation</p>
+              <p className="text-xs text-gray-400">Includes odour treatment and ventilation</p>
             </div>
 
             {/* Mould Remediation */}
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <h4 className="font-bold text-lg mb-2">Mould Remediation</h4>
-              <p className="text-sm text-gray-600 mb-4">Mould detection and professional removal</p>
+              <p className="text-sm text-gray-400 mb-4">Mould detection and professional removal</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
                   <span>Small area (&lt; 1m²):</span>
@@ -254,13 +254,13 @@ export default function PricingPage() {
                   <span className="font-bold">Quote required</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-500">Includes air quality testing</p>
+              <p className="text-xs text-gray-400">Includes air quality testing</p>
             </div>
 
             {/* Content Restoration */}
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <h4 className="font-bold text-lg mb-2">Content Restoration</h4>
-              <p className="text-sm text-gray-600 mb-4">Furniture, belongings, and personal items</p>
+              <p className="text-sm text-gray-400 mb-4">Furniture, belongings, and personal items</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
                   <span>Minimal content:</span>
@@ -275,13 +275,13 @@ export default function PricingPage() {
                   <span className="font-bold">Quote required</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-500">Storage available at additional cost</p>
+              <p className="text-xs text-gray-400">Storage available at additional cost</p>
             </div>
 
             {/* Structural Assessment */}
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <h4 className="font-bold text-lg mb-2">Structural Assessment</h4>
-              <p className="text-sm text-gray-600 mb-4">Engineering evaluation for insurance</p>
+              <p className="text-sm text-gray-400 mb-4">Engineering evaluation for insurance</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
                   <span>Standard assessment:</span>
@@ -296,13 +296,13 @@ export default function PricingPage() {
                   <span className="font-bold">$250/hour</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-500">IICRC-certified inspector included</p>
+              <p className="text-xs text-gray-400">IICRC-certified inspector included</p>
             </div>
 
             {/* Cleaning & Decontamination */}
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <h4 className="font-bold text-lg mb-2">Deep Cleaning & Decontamination</h4>
-              <p className="text-sm text-gray-600 mb-4">Biohazard and contamination cleanup</p>
+              <p className="text-sm text-gray-400 mb-4">Biohazard and contamination cleanup</p>
               <div className="space-y-2 text-sm mb-4">
                 <div className="flex justify-between">
                   <span>Standard cleaning:</span>
@@ -317,7 +317,7 @@ export default function PricingPage() {
                   <span className="font-bold">Quote required</span>
                 </div>
               </div>
-              <p className="text-xs text-gray-500">Includes disposal and certification</p>
+              <p className="text-xs text-gray-400">Includes disposal and certification</p>
             </div>
           </div>
         </div>
@@ -330,42 +330,42 @@ export default function PricingPage() {
         <div className="space-y-6">
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">What if my insurance doesn't cover the full cost?</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               We work with your insurance company to maximize the claim. If your policy has limitations, we can arrange a payment plan for the difference.
             </p>
           </div>
 
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">Is the $2,750 the final cost?</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               The $2,750 covers the emergency response and assessment. Additional restoration work (water extraction, drying, repairs) is quoted separately based on damage severity. We always provide a written quote before starting any work beyond the emergency service.
             </p>
           </div>
 
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">What payment methods do you accept?</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               We accept all major credit cards (Visa, Mastercard, American Express), bank transfer, and insurance direct billing. Payment plans are available for work exceeding $2,500.
             </p>
           </div>
 
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">Will my insurance cover everything?</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               That depends on your specific policy and coverage type. We work directly with your insurer to maximize your claim. Our documentation is thorough to ensure insurance approval rates exceed 95%.
             </p>
           </div>
 
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">How are complex restoration projects priced?</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               We provide detailed written quotes before starting any work. Quotes include materials, labour, equipment rental, and timeline. Most quotes are provided within 24 hours of initial assessment.
             </p>
           </div>
 
           <div className="pb-6">
             <h3 className="font-bold text-lg mb-2">Is there a discount for direct payment?</h3>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               Yes. We offer 10% discount for immediate full payment on non-insurance claims. We also offer interest-free payment plans for work exceeding $2,500 if you prefer to spread costs.
             </p>
           </div>

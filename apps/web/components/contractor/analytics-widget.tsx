@@ -99,7 +99,7 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
   if (error || !analytics) {
     return (
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-500 text-center">
+        <p className="text-gray-400 text-center">
           {error || 'No analytics data available'}
         </p>
       </div>
@@ -124,7 +124,7 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Profile Views */}
           <div className="p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm text-gray-600 mb-1">Profile Views</p>
+            <p className="text-sm text-gray-400 mb-1">Profile Views</p>
             <p className="text-2xl font-bold text-gray-900">{overview.profileViews}</p>
             <p className="text-xs text-teal-600 mt-1">
               {overview.profileViewsThisMonth} this month
@@ -133,7 +133,7 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
 
           {/* Bookings */}
           <div className="p-4 bg-green-50 rounded-lg">
-            <p className="text-sm text-gray-600 mb-1">Total Bookings</p>
+            <p className="text-sm text-gray-400 mb-1">Total Bookings</p>
             <p className="text-2xl font-bold text-gray-900">{overview.totalBookings}</p>
             <p className="text-xs text-teal-600 mt-1">
               {overview.activeBookings} active
@@ -142,22 +142,22 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
 
           {/* Average Rating */}
           <div className="p-4 bg-yellow-50 rounded-lg">
-            <p className="text-sm text-gray-600 mb-1">Avg Rating</p>
+            <p className="text-sm text-gray-400 mb-1">Avg Rating</p>
             <p className="text-2xl font-bold text-gray-900">
               {overview.averageRating.toFixed(1)} ⭐
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-gray-400 mt-1">
               {overview.totalRatings} reviews
             </p>
           </div>
 
           {/* Completion Rate */}
           <div className="p-4 bg-purple-50 rounded-lg">
-            <p className="text-sm text-gray-600 mb-1">Completion</p>
+            <p className="text-sm text-gray-400 mb-1">Completion</p>
             <p className="text-2xl font-bold text-gray-900">
               {bookingStats.completionRate.toFixed(0)}%
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-gray-400 mt-1">
               {bookingStats.completed} completed
             </p>
           </div>
@@ -167,13 +167,13 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
         <div className="mt-6 pt-6 border-t border-gray-200">
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-600">Conversion Rate:</span>
+              <span className="text-gray-400">Conversion Rate:</span>
               <span className="font-semibold text-gray-900">
                 {overview.conversionRate.toFixed(1)}%
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Monthly Growth:</span>
+              <span className="text-gray-400">Monthly Growth:</span>
               <span
                 className={`font-semibold ${
                   bookingStats.monthOverMonthGrowth >= 0
@@ -186,13 +186,13 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Response Time:</span>
+              <span className="text-gray-400">Response Time:</span>
               <span className="font-semibold text-gray-900">
                 {performance.averageResponseTimeMinutes} min
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-600">Positive Reviews:</span>
+              <span className="text-gray-400">Positive Reviews:</span>
               <span className="font-semibold text-gray-900">
                 {ratingStats.positiveRatingPercentage}%
               </span>
@@ -210,7 +210,7 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Profile Views</p>
+            <p className="text-sm font-medium text-gray-400">Profile Views</p>
             <span className="text-2xl">👁️</span>
           </div>
           <p className="text-3xl font-bold text-gray-900">
@@ -223,7 +223,7 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Total Bookings</p>
+            <p className="text-sm font-medium text-gray-400">Total Bookings</p>
             <span className="text-2xl">📋</span>
           </div>
           <p className="text-3xl font-bold text-gray-900">{overview.totalBookings}</p>
@@ -232,24 +232,24 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Average Rating</p>
+            <p className="text-sm font-medium text-gray-400">Average Rating</p>
             <span className="text-2xl">⭐</span>
           </div>
           <p className="text-3xl font-bold text-gray-900">
             {overview.averageRating.toFixed(1)}
           </p>
-          <p className="text-sm text-gray-500 mt-1">{overview.totalRatings} reviews</p>
+          <p className="text-sm text-gray-400 mt-1">{overview.totalRatings} reviews</p>
         </div>
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-600">Conversion Rate</p>
+            <p className="text-sm font-medium text-gray-400">Conversion Rate</p>
             <span className="text-2xl">📈</span>
           </div>
           <p className="text-3xl font-bold text-gray-900">
             {overview.conversionRate.toFixed(1)}%
           </p>
-          <p className="text-sm text-gray-500 mt-1">Views to bookings</p>
+          <p className="text-sm text-gray-400 mt-1">Views to bookings</p>
         </div>
       </div>
 
@@ -258,39 +258,39 @@ export function ContractorAnalyticsWidget({ variant = 'compact' }: AnalyticsWidg
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Metrics</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm font-medium text-gray-600 mb-2">Completion Rate</p>
+            <p className="text-sm font-medium text-gray-400 mb-2">Completion Rate</p>
             <p className="text-3xl font-bold text-gray-900">
               {bookingStats.completionRate.toFixed(1)}%
             </p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-400 mt-1">
               {bookingStats.completed} of {bookingStats.total}
             </p>
           </div>
 
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm font-medium text-gray-600 mb-2">Response Time</p>
+            <p className="text-sm font-medium text-gray-400 mb-2">Response Time</p>
             <p className="text-3xl font-bold text-gray-900">
               {performance.averageResponseTimeMinutes}
             </p>
-            <p className="text-sm text-gray-500 mt-1">minutes average</p>
+            <p className="text-sm text-gray-400 mt-1">minutes average</p>
           </div>
 
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm font-medium text-gray-600 mb-2">Quote Acceptance</p>
+            <p className="text-sm font-medium text-gray-400 mb-2">Quote Acceptance</p>
             <p className="text-3xl font-bold text-gray-900">
               {performance.quoteAcceptanceRate.toFixed(0)}%
             </p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-400 mt-1">
               {performance.quoteRequestCount} requests
             </p>
           </div>
 
           <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm font-medium text-gray-600 mb-2">Positive Reviews</p>
+            <p className="text-sm font-medium text-gray-400 mb-2">Positive Reviews</p>
             <p className="text-3xl font-bold text-gray-900">
               {ratingStats.positiveRatingPercentage}%
             </p>
-            <p className="text-sm text-gray-500 mt-1">4-5 star ratings</p>
+            <p className="text-sm text-gray-400 mt-1">4-5 star ratings</p>
           </div>
         </div>
       </div>

@@ -133,7 +133,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
           <div className="flex items-center justify-center h-[400px] bg-gray-50 rounded-lg">
             <div className="text-center">
               <div className="animate-spin h-8 w-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-2"></div>
-              <p className="text-sm text-gray-600">Loading map...</p>
+              <p className="text-sm text-gray-400">Loading map...</p>
             </div>
           </div>
         </CardContent>
@@ -154,7 +154,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
           <div className="flex items-center justify-center h-[400px] bg-gray-50 rounded-lg">
             <div className="text-center">
               <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 {error || 'No service areas available to display'}
               </p>
             </div>
@@ -179,7 +179,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
           <MapPin className="h-5 w-5" />
           Service Coverage Map
         </CardTitle>
-        <p className="text-sm text-gray-600 mt-1">
+        <p className="text-sm text-gray-400 mt-1">
           Showing {markers.length} service {markers.length === 1 ? 'area' : 'areas'} with response times
         </p>
       </CardHeader>
@@ -222,7 +222,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
                       <Clock className="h-3 w-3" />
                       <span>{marker.responseTimeMinutes} minutes</span>
                     </div>
-                    <div className="text-xs text-gray-600 mt-1">
+                    <div className="text-xs text-gray-400 mt-1">
                       Coverage radius: {marker.radiusKm}km
                     </div>
                   </div>
@@ -241,7 +241,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
                 <div className="h-4 w-4 rounded-full bg-[#10b981] border-2 border-white"></div>
                 <div className="text-xs">
                   <div className="font-medium text-gray-900">Express</div>
-                  <div className="text-gray-600">&lt; 30 min ({responseTimeGroups.express})</div>
+                  <div className="text-gray-400">&lt; 30 min ({responseTimeGroups.express})</div>
                 </div>
               </div>
             )}
@@ -250,7 +250,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
                 <div className="h-4 w-4 rounded-full bg-[#fbbf24] border-2 border-white"></div>
                 <div className="text-xs">
                   <div className="font-medium text-gray-900">Standard</div>
-                  <div className="text-gray-600">30-60 min ({responseTimeGroups.standard})</div>
+                  <div className="text-gray-400">30-60 min ({responseTimeGroups.standard})</div>
                 </div>
               </div>
             )}
@@ -259,7 +259,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
                 <div className="h-4 w-4 rounded-full bg-[#f97316] border-2 border-white"></div>
                 <div className="text-xs">
                   <div className="font-medium text-gray-900">Extended</div>
-                  <div className="text-gray-600">1-2 hours ({responseTimeGroups.extended})</div>
+                  <div className="text-gray-400">1-2 hours ({responseTimeGroups.extended})</div>
                 </div>
               </div>
             )}
@@ -268,7 +268,7 @@ export function ServiceAreaMap({ contractorId, primaryState, className }: Servic
                 <div className="h-4 w-4 rounded-full bg-[#ef4444] border-2 border-white"></div>
                 <div className="text-xs">
                   <div className="font-medium text-gray-900">Long Range</div>
-                  <div className="text-gray-600">&gt; 2 hours ({responseTimeGroups.longRange})</div>
+                  <div className="text-gray-400">&gt; 2 hours ({responseTimeGroups.longRange})</div>
                 </div>
               </div>
             )}

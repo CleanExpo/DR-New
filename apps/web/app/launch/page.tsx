@@ -109,7 +109,7 @@ export default function LaunchPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Why Property Owners Choose NRPG
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               No more guesswork. No more bad contractors. Just verified professionals who show up and
               get the job done right.
             </p>
@@ -128,7 +128,7 @@ export default function LaunchPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               How It Works
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               Get matched with verified contractors in 3 simple steps
             </p>
           </div>
@@ -140,7 +140,7 @@ export default function LaunchPage() {
                 1
               </div>
               <h3 className="mt-6 text-xl font-semibold text-gray-900">Submit Your Claim</h3>
-              <p className="mt-2 text-base text-gray-600">
+              <p className="mt-2 text-base text-gray-400">
                 Tell us what happened. Water damage? Fire? Mould? Takes 2 minutes. No credit card
                 required.
               </p>
@@ -154,7 +154,7 @@ export default function LaunchPage() {
               <h3 className="mt-6 text-xl font-semibold text-gray-900">
                 Get Matched with Verified Contractors
               </h3>
-              <p className="mt-2 text-base text-gray-600">
+              <p className="mt-2 text-base text-gray-400">
                 Our system matches you with IICRC-certified contractors in your area within 15
                 minutes. All verified, insured, and background-checked.
               </p>
@@ -168,7 +168,7 @@ export default function LaunchPage() {
               <h3 className="mt-6 text-xl font-semibold text-gray-900">
                 Track Your Restoration Progress
               </h3>
-              <p className="mt-2 text-base text-gray-600">
+              <p className="mt-2 text-base text-gray-400">
                 Contractor contacts you, provides a transparent quote, and starts work. Track progress
                 in real-time through our platform.
               </p>
@@ -184,7 +184,7 @@ export default function LaunchPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Join the Waitlist Today
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               Be among the first to access the platform. Get early access 2 weeks before public
               launch.
             </p>
@@ -196,7 +196,7 @@ export default function LaunchPage() {
 
           {/* Social Proof */}
           <div className="mt-12 text-center">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-400">
               <span className="font-semibold text-gray-900">500+ people</span> have already joined
               the waitlist
             </p>
@@ -209,7 +209,7 @@ export default function LaunchPage() {
                   />
                 ))}
               </div>
-              <span className="text-sm text-gray-600">and counting...</span>
+              <span className="text-sm text-gray-400">and counting...</span>
             </div>
           </div>
         </div>
@@ -222,7 +222,7 @@ export default function LaunchPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Frequently Asked Questions
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               Everything you need to know about joining the waitlist
             </p>
           </div>

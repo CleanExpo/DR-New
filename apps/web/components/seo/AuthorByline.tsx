@@ -108,7 +108,7 @@ export function AuthorByline({
 
             {/* Experience Metrics */}
             {experience && (
-              <div className="flex gap-4 mt-2 text-xs text-gray-600">
+              <div className="flex gap-4 mt-2 text-xs text-gray-400">
                 <span>
                   <strong>{experience.years}+</strong> years experience
                 </span>
@@ -124,7 +124,7 @@ export function AuthorByline({
 
           {/* Publication Date */}
           {publishedAt && (
-            <div className="text-right text-xs text-gray-500">
+            <div className="text-right text-xs text-gray-400">
               <p>Published</p>
               <time dateTime={publishedAt.toISOString()}>
                 {publishedAt.toLocaleDateString('en-AU', {
@@ -147,7 +147,7 @@ export function AuthorByline({
         {/* Credentials */}
         {credentials && credentials.length > 0 && (
           <div className="mt-4">
-            <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-2">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">
               Certifications & Credentials
             </p>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -166,7 +166,7 @@ export function AuthorByline({
         )}
 
         {/* Trust Signals */}
-        <div className="mt-4 pt-4 border-t border-indigo-200 flex items-center justify-between text-xs text-gray-600">
+        <div className="mt-4 pt-4 border-t border-indigo-200 flex items-center justify-between text-xs text-gray-400">
           <div className="flex gap-4">
             <span>🏢 Founder of NRPG Network</span>
             <span>🔒 IICRC Master Certified</span>
@@ -207,7 +207,7 @@ export function AuthorBylineCompact({
           )}
         </p>
         {role && (
-          <p className="text-xs text-gray-600">{role}</p>
+          <p className="text-xs text-gray-400">{role}</p>
         )}
       </div>
       <span className="text-xs text-indigo-600 font-semibold">VERIFIED</span>

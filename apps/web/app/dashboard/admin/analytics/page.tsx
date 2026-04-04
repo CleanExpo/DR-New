@@ -84,7 +84,7 @@ export default function AdminAnalyticsDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading analytics dashboard...</p>
+          <p className="text-gray-400">Loading analytics dashboard...</p>
         </div>
       </div>
     );
@@ -104,7 +104,7 @@ export default function AdminAnalyticsDashboard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Analytics Dashboard</h1>
-          <p className="text-gray-600 mt-2">Real-time business metrics and performance insights</p>
+          <p className="text-gray-400 mt-2">Real-time business metrics and performance insights</p>
         </div>
 
         {/* Period Selector */}
@@ -138,7 +138,7 @@ export default function AdminAnalyticsDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               {/* Revenue Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Revenue</p>
+                <p className="text-gray-400 text-sm font-medium">Total Revenue</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.kpis.revenue.value.toLocaleString('en-AU')}
                 </p>
@@ -156,7 +156,7 @@ export default function AdminAnalyticsDashboard() {
 
               {/* Platform Fees Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Platform Fees</p>
+                <p className="text-gray-400 text-sm font-medium">Platform Fees</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.kpis.platformFees.value.toLocaleString('en-AU')}
                 </p>
@@ -174,7 +174,7 @@ export default function AdminAnalyticsDashboard() {
 
               {/* Jobs Completed Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Jobs Completed</p>
+                <p className="text-gray-400 text-sm font-medium">Jobs Completed</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.kpis.jobsCompleted.value}
                 </p>
@@ -192,7 +192,7 @@ export default function AdminAnalyticsDashboard() {
 
               {/* Success Rate Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Payment Success Rate</p>
+                <p className="text-gray-400 text-sm font-medium">Payment Success Rate</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.kpis.paymentSuccessRate.value.toFixed(1)}%
                 </p>
@@ -212,19 +212,19 @@ export default function AdminAnalyticsDashboard() {
             {/* Additional Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Active Contractors</p>
+                <p className="text-gray-400 text-sm font-medium">Active Contractors</p>
                 <p className="text-2xl font-bold text-gray-900 mt-2">
                   {data.kpis.activeContractors}
                 </p>
               </div>
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Avg Completion Time</p>
+                <p className="text-gray-400 text-sm font-medium">Avg Completion Time</p>
                 <p className="text-2xl font-bold text-gray-900 mt-2">
                   {data.kpis.avgCompletionTime}
                 </p>
               </div>
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Contractor Payouts</p>
+                <p className="text-gray-400 text-sm font-medium">Contractor Payouts</p>
                 <p className="text-2xl font-bold text-gray-900 mt-2">
                   ${data.kpis.contractorPayouts.value.toLocaleString('en-AU')}
                 </p>
@@ -240,28 +240,28 @@ export default function AdminAnalyticsDashboard() {
                   className="bg-white hover:bg-gray-50 border border-gray-300 rounded-lg p-4 text-center transition-colors"
                 >
                   <p className="text-sm font-medium text-gray-900">Revenue Analysis</p>
-                  <p className="text-xs text-gray-600 mt-1">Detailed breakdown</p>
+                  <p className="text-xs text-gray-400 mt-1">Detailed breakdown</p>
                 </Link>
                 <Link
                   href="/dashboard/admin/analytics/operational"
                   className="bg-white hover:bg-gray-50 border border-gray-300 rounded-lg p-4 text-center transition-colors"
                 >
                   <p className="text-sm font-medium text-gray-900">Operational Metrics</p>
-                  <p className="text-xs text-gray-600 mt-1">Job performance</p>
+                  <p className="text-xs text-gray-400 mt-1">Job performance</p>
                 </Link>
                 <Link
                   href="/dashboard/admin/analytics/trends"
                   className="bg-white hover:bg-gray-50 border border-gray-300 rounded-lg p-4 text-center transition-colors"
                 >
                   <p className="text-sm font-medium text-gray-900">Trends & Comparison</p>
-                  <p className="text-xs text-gray-600 mt-1">Period analysis</p>
+                  <p className="text-xs text-gray-400 mt-1">Period analysis</p>
                 </Link>
                 <Link
                   href="/dashboard/admin/analytics/exports"
                   className="bg-white hover:bg-gray-50 border border-gray-300 rounded-lg p-4 text-center transition-colors"
                 >
                   <p className="text-sm font-medium text-gray-900">Export Reports</p>
-                  <p className="text-xs text-gray-600 mt-1">Download data</p>
+                  <p className="text-xs text-gray-400 mt-1">Download data</p>
                 </Link>
               </div>
 
@@ -275,7 +275,7 @@ export default function AdminAnalyticsDashboard() {
                         key={idx}
                         className="flex justify-between items-center pb-2 border-b last:border-b-0"
                       >
-                        <span className="text-sm text-gray-600">
+                        <span className="text-sm text-gray-400">
                           #{idx + 1} - {contractor.contractorId}
                         </span>
                         <span className="font-medium text-gray-900">
@@ -284,7 +284,7 @@ export default function AdminAnalyticsDashboard() {
                       </div>
                     ))
                   ) : (
-                    <p className="text-sm text-gray-600">No data available</p>
+                    <p className="text-sm text-gray-400">No data available</p>
                   )}
                 </div>
               </div>
@@ -299,7 +299,7 @@ export default function AdminAnalyticsDashboard() {
                         key={idx}
                         className="flex justify-between items-center pb-2 border-b last:border-b-0"
                       >
-                        <span className="text-sm text-gray-600">
+                        <span className="text-sm text-gray-400">
                           #{idx + 1} - {client.clientId}
                         </span>
                         <span className="font-medium text-gray-900">
@@ -308,7 +308,7 @@ export default function AdminAnalyticsDashboard() {
                       </div>
                     ))
                   ) : (
-                    <p className="text-sm text-gray-600">No data available</p>
+                    <p className="text-sm text-gray-400">No data available</p>
                   )}
                 </div>
               </div>

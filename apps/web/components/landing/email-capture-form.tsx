@@ -177,7 +177,7 @@ export function EmailCaptureForm({ source = 'waitlist', onSuccess, className }: 
               <span className="flex flex-1">
                 <span className="flex flex-col">
                   <span className="block text-base font-medium text-gray-900">Property Owner</span>
-                  <span className="mt-1 flex items-center text-sm text-gray-500">
+                  <span className="mt-1 flex items-center text-sm text-gray-400">
                     I need disaster recovery services
                   </span>
                 </span>
@@ -206,7 +206,7 @@ export function EmailCaptureForm({ source = 'waitlist', onSuccess, className }: 
               <span className="flex flex-1">
                 <span className="flex flex-col">
                   <span className="block text-base font-medium text-gray-900">Contractor</span>
-                  <span className="mt-1 flex items-center text-sm text-gray-500">
+                  <span className="mt-1 flex items-center text-sm text-gray-400">
                     I provide disaster recovery services
                   </span>
                 </span>
@@ -245,7 +245,7 @@ export function EmailCaptureForm({ source = 'waitlist', onSuccess, className }: 
               I agree to receive launch updates and disaster recovery tips{' '}
               <span className="text-red-500">*</span>
             </label>
-            <p className="text-gray-500">
+            <p className="text-gray-400">
               We respect your privacy. Unsubscribe anytime. See our{' '}
               <a href="/privacy" className="text-orange-600 hover:underline">
                 Privacy Policy
@@ -324,7 +324,7 @@ export function EmailCaptureForm({ source = 'waitlist', onSuccess, className }: 
         </button>
 
         {/* Privacy Note */}
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-gray-400">
           No credit card required. Free to join. Launch expected Q2 2026.
         </p>
       </form>

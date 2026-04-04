@@ -49,7 +49,7 @@ export function LiveCounter({
     >
       <div className="flex justify-between items-start mb-3">
         <div>
-          <p className="text-sm text-gray-600">{label}</p>
+          <p className="text-sm text-gray-400">{label}</p>
           <p className="text-3xl font-bold text-gray-900 flex items-center gap-2">
             {icon && <span className="text-2xl">{icon}</span>}
             <AnimatedNumber
@@ -78,7 +78,7 @@ export function LiveCounter({
 
       {/* Unit info */}
       {unit && (
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-400">
           Per {unit}
         </p>
       )}

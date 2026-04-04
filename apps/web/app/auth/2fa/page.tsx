@@ -118,7 +118,7 @@ export default function TwoFactorPage() {
               <TabsContent value="totp" className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="totp-code">6-Digit Code</Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-400">
                     Enter the code from your authenticator app (Google Authenticator, Authy, Microsoft Authenticator, etc.)
                   </p>
                   <Input
@@ -143,7 +143,7 @@ export default function TwoFactorPage() {
               <TabsContent value="backup" className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="backup-code">Backup Code</Label>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-400">
                     Use one of your backup codes if you don't have access to your authenticator app
                   </p>
                   <Input
@@ -157,7 +157,7 @@ export default function TwoFactorPage() {
                     className="font-mono"
                     autoFocus
                   />
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-400">
                     Format: XXXX-XXXX-XXXX (dashes are optional)
                   </p>
                 </div>

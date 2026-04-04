@@ -459,7 +459,7 @@ export default function DocumentUpload({ onDocumentUploaded }: DocumentUploadPro
             </div>
           ) : documents.length === 0 ? (
             <div className="text-center py-12 text-gray-400">
-              <FileText className="h-16 w-16 mx-auto mb-4 text-gray-600" />
+              <FileText className="h-16 w-16 mx-auto mb-4 text-gray-400" />
               <p className="text-lg">No documents uploaded yet</p>
               <p className="text-sm mt-2">Upload your first document to get started</p>
             </div>

@@ -184,7 +184,7 @@ export default function TenantsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Tenant Management</h1>
-          <p className="text-gray-600">Manage white-label platform instances</p>
+          <p className="text-gray-400">Manage white-label platform instances</p>
         </div>
         <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
           <DialogTrigger asChild>
@@ -380,7 +380,7 @@ export default function TenantsPage() {
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Industry:</span>
+                    <span className="text-gray-400">Industry:</span>
                     <Badge variant="outline" className="capitalize">
                       {tenant.industry}
                     </Badge>
@@ -388,17 +388,17 @@ export default function TenantsPage() {
                   
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-gray-600">Users:</span>
+                      <span className="text-gray-400">Users:</span>
                       <span className="ml-2 font-medium">{tenant.userCount}</span>
                     </div>
                     <div>
-                      <span className="text-gray-600">Requests:</span>
+                      <span className="text-gray-400">Requests:</span>
                       <span className="ml-2 font-medium">{tenant.requestCount}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Created:</span>
+                    <span className="text-gray-400">Created:</span>
                     <span>{new Date(tenant.createdAt).toLocaleDateString()}</span>
                   </div>
 
@@ -426,7 +426,7 @@ export default function TenantsPage() {
         <div className="text-center py-12">
           <Building className="mx-auto h-12 w-12 text-gray-400" />
           <h3 className="mt-2 text-sm font-medium text-gray-900">No tenants found</h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-400">
             {searchTerm || industryFilter !== 'all' || statusFilter !== 'all'
               ? 'Try adjusting your search or filter criteria.'
               : 'Get started by creating your first tenant.'}

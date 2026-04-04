@@ -189,7 +189,7 @@ export default function ContractorPerformanceAnalytics() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading performance analytics...</p>
+          <p className="text-gray-400">Loading performance analytics...</p>
         </div>
       </div>
     );
@@ -215,7 +215,7 @@ export default function ContractorPerformanceAnalytics() {
             ← Back to Analytics Dashboard
           </Link>
           <h1 className="text-3xl font-bold text-gray-900">Detailed Performance Analysis</h1>
-          <p className="text-gray-600 mt-2">Comprehensive view of your performance metrics and trends</p>
+          <p className="text-gray-400 mt-2">Comprehensive view of your performance metrics and trends</p>
         </div>
 
         {/* Date Range Filter */}
@@ -271,14 +271,14 @@ export default function ContractorPerformanceAnalytics() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               {/* Total Jobs */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Jobs</p>
+                <p className="text-gray-400 text-sm font-medium">Total Jobs</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{data.summary.totalJobs}</p>
-                <p className="text-xs text-gray-600 mt-1">{data.summary.completedJobs} completed</p>
+                <p className="text-xs text-gray-400 mt-1">{data.summary.completedJobs} completed</p>
               </div>
 
               {/* Average Rating */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Average Rating</p>
+                <p className="text-gray-400 text-sm font-medium">Average Rating</p>
                 <p className="text-3xl font-bold text-yellow-500 mt-2">
                   {data.summary.averageRating.toFixed(1)}
                 </p>
@@ -300,19 +300,19 @@ export default function ContractorPerformanceAnalytics() {
 
               {/* Total Earnings */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Earnings</p>
+                <p className="text-gray-400 text-sm font-medium">Total Earnings</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.summary.totalEarnings.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-600 mt-1">In selected period</p>
+                <p className="text-xs text-gray-400 mt-1">In selected period</p>
               </div>
 
               {/* Acceptance Rate */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Acceptance Rate</p>
+                <p className="text-gray-400 text-sm font-medium">Acceptance Rate</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.summary.acceptanceRate.toFixed(1)}%
                 </p>
@@ -328,17 +328,17 @@ export default function ContractorPerformanceAnalytics() {
             {/* Additional Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Avg Completion Time</p>
+                <p className="text-gray-400 text-sm font-medium">Avg Completion Time</p>
                 <p className="text-2xl font-bold text-gray-900 mt-2">
                   {data.summary.averageCompletionTime.toFixed(1)} days
                 </p>
               </div>
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Disputes</p>
+                <p className="text-gray-400 text-sm font-medium">Disputes</p>
                 <p className="text-2xl font-bold text-gray-900 mt-2">{data.summary.disputes}</p>
               </div>
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Refunds</p>
+                <p className="text-gray-400 text-sm font-medium">Refunds</p>
                 <p className="text-2xl font-bold text-gray-900 mt-2">{data.summary.refunds}</p>
               </div>
             </div>
@@ -391,7 +391,7 @@ export default function ContractorPerformanceAnalytics() {
                 <div className="space-y-6">
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-600 font-medium">Monthly Completion Rate</span>
+                      <span className="text-gray-400 font-medium">Monthly Completion Rate</span>
                       <span className="text-2xl font-bold text-gray-900">
                         {data.performance.monthlyCompletionRate.toFixed(1)}%
                       </span>
@@ -404,18 +404,18 @@ export default function ContractorPerformanceAnalytics() {
                     </div>
                   </div>
                   <div className="border-t pt-4">
-                    <p className="text-sm text-gray-600 mb-2">Performance Summary</p>
+                    <p className="text-sm text-gray-400 mb-2">Performance Summary</p>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Completed</span>
+                        <span className="text-gray-400">Completed</span>
                         <span className="font-medium text-gray-900">{data.summary.completedJobs}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Total</span>
+                        <span className="text-gray-400">Total</span>
                         <span className="font-medium text-gray-900">{data.summary.totalJobs}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Success Rate</span>
+                        <span className="text-gray-400">Success Rate</span>
                         <span className="font-medium text-green-600">
                           {data.summary.totalJobs > 0
                             ? ((data.summary.completedJobs / data.summary.totalJobs) * 100).toFixed(1)
@@ -448,7 +448,7 @@ export default function ContractorPerformanceAnalytics() {
                                 month: 'long',
                               })}
                             </p>
-                            <p className="text-xs text-gray-600">{item.jobCount} jobs</p>
+                            <p className="text-xs text-gray-400">{item.jobCount} jobs</p>
                           </div>
                           <span className="font-bold text-gray-900">
                             ${item.amount.toLocaleString('en-AU', {
@@ -468,7 +468,7 @@ export default function ContractorPerformanceAnalytics() {
                   })}
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">No earnings data available for the selected period</p>
+                <p className="text-sm text-gray-400">No earnings data available for the selected period</p>
               )}
             </div>
 
@@ -480,16 +480,16 @@ export default function ContractorPerformanceAnalytics() {
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                           Service Type
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                           Job Count
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                           Avg Rating
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                           Total Earnings
                         </th>
                       </tr>
@@ -500,7 +500,7 @@ export default function ContractorPerformanceAnalytics() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             {service.serviceType}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                             {service.jobCount}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
@@ -525,7 +525,7 @@ export default function ContractorPerformanceAnalytics() {
                   </table>
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">No service data available</p>
+                <p className="text-sm text-gray-400">No service data available</p>
               )}
             </div>
           </>

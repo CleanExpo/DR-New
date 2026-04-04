@@ -44,7 +44,7 @@ function ThankYouContent() {
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
             You're on the List! 🎉
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-400">
             Thank you for joining the NRPG waitlist. You're now part of an exclusive group waiting for Australia's premier disaster recovery network.
           </p>
         </div>
@@ -89,7 +89,7 @@ function ThankYouContent() {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900">We're Building</h3>
-                <p className="mt-1 text-base text-gray-600">
+                <p className="mt-1 text-base text-gray-400">
                   Our team is working hard to create the best disaster recovery platform in Australia. We'll share monthly progress updates and exclusive behind-the-scenes content.
                 </p>
               </div>
@@ -104,7 +104,7 @@ function ThankYouContent() {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900">You'll Get Updates</h3>
-                <p className="mt-1 text-base text-gray-600">
+                <p className="mt-1 text-base text-gray-400">
                   Stay informed with monthly emails about our progress, exclusive disaster recovery tips, and industry insights. No spam, just valuable content.
                 </p>
               </div>
@@ -119,7 +119,7 @@ function ThankYouContent() {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900">Early Access (2 Weeks Before Launch)</h3>
-                <p className="mt-1 text-base text-gray-600">
+                <p className="mt-1 text-base text-gray-400">
                   You'll be among the first to try the platform with exclusive early access 2 weeks before the public launch. Help us test, provide feedback, and shape the final product.
                 </p>
               </div>
@@ -134,7 +134,7 @@ function ThankYouContent() {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900">Launch Notification (Q2 2026)</h3>
-                <p className="mt-1 text-base text-gray-600">
+                <p className="mt-1 text-base text-gray-400">
                   When we launch in April-June 2026, you'll receive an immediate email notification. Be ready to access verified contractors 24/7 for all your disaster recovery needs.
                 </p>
               </div>
@@ -145,7 +145,7 @@ function ThankYouContent() {
         {/* Social Sharing */}
         <div className="mt-16 rounded-lg border border-gray-200 bg-white p-8 text-center shadow-sm">
           <h2 className="text-2xl font-bold text-gray-900">Help Us Spread the Word</h2>
-          <p className="mt-2 text-base text-gray-600">
+          <p className="mt-2 text-base text-gray-400">
             Know someone who needs disaster recovery services? Share NRPG with them!
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
@@ -210,7 +210,7 @@ function ThankYouContent() {
               />
             </svg>
             <h3 className="mt-4 text-lg font-semibold text-gray-900">Explore the Platform</h3>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-400">
               Learn more about NRPG and what we're building
             </p>
           </Link>
@@ -233,7 +233,7 @@ function ThankYouContent() {
               />
             </svg>
             <h3 className="mt-4 text-lg font-semibold text-gray-900">Are You a Contractor?</h3>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-400">
               Join the network and start receiving qualified leads
             </p>
           </Link>
@@ -241,7 +241,7 @@ function ThankYouContent() {
 
         {/* Contact */}
         <div className="mt-16 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-400">
             Questions about your waitlist spot?{' '}
             <a href="/contact" className="font-medium text-orange-600 hover:underline">
               Contact us online

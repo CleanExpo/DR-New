@@ -119,7 +119,7 @@ export default function XeroWidget() {
     return (
       <div className="bg-white rounded-lg shadow p-6 border-l-4 border-gray-300">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">Xero Accounting</h3>
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm text-gray-400 mb-4">
           Connect your Xero account to view financial data from your organisation.
         </p>
         <a
@@ -150,7 +150,7 @@ export default function XeroWidget() {
         </div>
         <button
           onClick={fetchXeroData}
-          className="text-sm text-gray-500 hover:text-gray-700"
+          className="text-sm text-gray-400 hover:text-gray-700"
           title="Refresh Xero data"
         >
           Refresh
@@ -161,7 +161,7 @@ export default function XeroWidget() {
       <div className="grid grid-cols-2 gap-4 mb-4">
         {/* Revenue This Month */}
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
             Revenue This Month
           </p>
           <p className="mt-1 text-2xl font-bold" style={{ color: '#0d9488' }}>
@@ -173,7 +173,7 @@ export default function XeroWidget() {
 
         {/* Net Profit */}
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
             Net Profit
           </p>
           <p
@@ -192,13 +192,13 @@ export default function XeroWidget() {
 
         {/* Outstanding Invoices */}
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
             Outstanding Invoices
           </p>
           <p className="mt-1 text-2xl font-bold text-gray-900">
             {data.invoiceSummary ? data.invoiceSummary.total : '--'}
           </p>
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             {data.invoiceSummary
               ? formatCurrency(data.invoiceSummary.totalOutstanding)
               : ''}
@@ -207,7 +207,7 @@ export default function XeroWidget() {
 
         {/* Overdue Invoices */}
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">
             Overdue
           </p>
           <p
@@ -236,7 +236,7 @@ export default function XeroWidget() {
           </p>
           <a
             href="/dashboard/admin/financials"
-            className="text-xs text-gray-600 hover:text-gray-800 mt-1 inline-block"
+            className="text-xs text-gray-400 hover:text-gray-800 mt-1 inline-block"
           >
             View details
           </a>

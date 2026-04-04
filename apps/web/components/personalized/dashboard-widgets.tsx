@@ -57,7 +57,7 @@ export default function PersonalizedWidgets({ preferences, userStats, onAction }
   };
 
   const getUrgencyColor = (urgency: string) => {
-    return URGENCY_COLORS[urgency as keyof typeof URGENCY_COLORS] || 'text-gray-500 bg-gray-900/30';
+    return URGENCY_COLORS[urgency as keyof typeof URGENCY_COLORS] || 'text-gray-400 bg-gray-900/30';
   };
 
   return (

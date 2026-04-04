@@ -75,7 +75,7 @@ export default function SettingsPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-400 mt-2">
           Manage your account settings and preferences
         </p>
       </div>
@@ -88,7 +88,7 @@ export default function SettingsPage() {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 text-gray-600">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 text-gray-400">
                       {link.icon}
                     </div>
                     <div>
@@ -114,15 +114,15 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex justify-between items-center py-2 border-b">
-              <span className="text-gray-600">Email</span>
+              <span className="text-gray-400">Email</span>
               <span className="font-medium">{session.user.email}</span>
             </div>
             <div className="flex justify-between items-center py-2 border-b">
-              <span className="text-gray-600">Name</span>
+              <span className="text-gray-400">Name</span>
               <span className="font-medium">{session.user.name || 'Not set'}</span>
             </div>
             <div className="flex justify-between items-center py-2">
-              <span className="text-gray-600">Account Type</span>
+              <span className="text-gray-400">Account Type</span>
               <span className="font-medium capitalize">
                 {session.user.userType?.toLowerCase() || 'User'}
               </span>

@@ -124,7 +124,7 @@ export default function CompetitorAnalysisDashboard() {
               <h1 className="text-3xl font-bold text-gray-900">
                 Competitor Intelligence Dashboard
               </h1>
-              <p className="mt-1 text-sm text-gray-600">
+              <p className="mt-1 text-sm text-gray-400">
                 Real-time competitive analysis powered by SEMRUSH & DataForSEO
               </p>
             </div>
@@ -172,7 +172,7 @@ export default function CompetitorAnalysisDashboard() {
           <div className="flex items-center justify-center h-96">
             <div className="text-center">
               <RefreshCw className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
-              <p className="text-gray-600 font-medium">Loading dashboard...</p>
+              <p className="text-gray-400 font-medium">Loading dashboard...</p>
             </div>
           </div>
         ) : (
@@ -182,7 +182,7 @@ export default function CompetitorAnalysisDashboard() {
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Total Competitors</p>
+                    <p className="text-sm font-medium text-gray-400">Total Competitors</p>
                     <p className="text-3xl font-bold text-gray-900 mt-2">
                       {overview?.totalCompetitors || 0}
                     </p>
@@ -191,7 +191,7 @@ export default function CompetitorAnalysisDashboard() {
                     <BarChart3 className="w-6 h-6 text-blue-600" />
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-4">
+                <p className="text-xs text-gray-400 mt-4">
                   Across {Object.keys(CompetitorCategory).length} categories
                 </p>
               </div>
@@ -199,7 +199,7 @@ export default function CompetitorAnalysisDashboard() {
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Keywords Tracked</p>
+                    <p className="text-sm font-medium text-gray-400">Keywords Tracked</p>
                     <p className="text-3xl font-bold text-gray-900 mt-2">
                       {overview?.totalKeywords?.toLocaleString() || 0}
                     </p>
@@ -208,7 +208,7 @@ export default function CompetitorAnalysisDashboard() {
                     <Search className="w-6 h-6 text-green-600" />
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-4">
+                <p className="text-xs text-gray-400 mt-4">
                   Avg {Math.round((overview?.avgOrganicTraffic || 0) / 1000)}k traffic/month
                 </p>
               </div>
@@ -216,7 +216,7 @@ export default function CompetitorAnalysisDashboard() {
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Opportunities</p>
+                    <p className="text-sm font-medium text-gray-400">Opportunities</p>
                     <p className="text-3xl font-bold text-gray-900 mt-2">
                       {overview?.totalOpportunities || 0}
                     </p>
@@ -225,7 +225,7 @@ export default function CompetitorAnalysisDashboard() {
                     <Target className="w-6 h-6 text-purple-600" />
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-4">
+                <p className="text-xs text-gray-400 mt-4">
                   High-value keyword targets identified
                 </p>
               </div>
@@ -233,7 +233,7 @@ export default function CompetitorAnalysisDashboard() {
               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">Last Analysis</p>
+                    <p className="text-sm font-medium text-gray-400">Last Analysis</p>
                     <p className="text-3xl font-bold text-gray-900 mt-2">
                       {overview?.lastAnalysisDate
                         ? new Date(overview.lastAnalysisDate).toLocaleDateString('en-AU', {
@@ -247,7 +247,7 @@ export default function CompetitorAnalysisDashboard() {
                     <Calendar className="w-6 h-6 text-orange-600" />
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 mt-4">
+                <p className="text-xs text-gray-400 mt-4">
                   Avg DR: {overview?.avgDomainRating?.toFixed(1) || 0}
                 </p>
               </div>
@@ -262,7 +262,7 @@ export default function CompetitorAnalysisDashboard() {
                     className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
                       activeTab === 'overview'
                         ? 'border-blue-600 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
                     Competitors Overview
@@ -272,7 +272,7 @@ export default function CompetitorAnalysisDashboard() {
                     className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
                       activeTab === 'keywords'
                         ? 'border-blue-600 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
                     Keyword Opportunities
@@ -282,7 +282,7 @@ export default function CompetitorAnalysisDashboard() {
                     className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
                       activeTab === 'swot'
                         ? 'border-blue-600 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
                     SWOT Analysis
@@ -292,7 +292,7 @@ export default function CompetitorAnalysisDashboard() {
                     className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
                       activeTab === 'rankings'
                         ? 'border-blue-600 text-blue-600'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        : 'border-transparent text-gray-400 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
                     Ranking Tracker
@@ -328,10 +328,10 @@ export default function CompetitorAnalysisDashboard() {
                     {!selectedCompetitor ? (
                       <div className="text-center py-12">
                         <Target className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-600 font-medium">
+                        <p className="text-gray-400 font-medium">
                           Select a competitor to view SWOT analysis
                         </p>
-                        <p className="text-sm text-gray-500 mt-1">
+                        <p className="text-sm text-gray-400 mt-1">
                           Click "View SWOT" on any competitor in the overview tab
                         </p>
                       </div>

@@ -149,7 +149,7 @@ export default function ContractorCertificatePage() {
                 <span className="inline-flex items-center gap-1.5 rounded-sm bg-teal-500/10 border border-teal-500/20 px-3 py-1 text-sm font-semibold text-teal-400">
                   Included in onboarding
                 </span>
-                <span className="text-gray-500 text-sm line-through">$110 AUD</span>
+                <span className="text-gray-400 text-sm line-through">$110 AUD</span>
                 <span className="text-2xl font-bold text-[#00FF88]">$0</span>
               </div>
             </div>

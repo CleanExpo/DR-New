@@ -88,7 +88,7 @@ function ClaimSuccessContent() {
           <div className="bg-gray-50 border border-gray-300 rounded-lg p-4 font-mono text-sm">
             {claimId}
           </div>
-          <p className="text-sm text-gray-600 mt-3">
+          <p className="text-sm text-gray-400 mt-3">
             Please save this reference number. You'll need it to track your claim or contact support.
           </p>
         </div>
@@ -199,7 +199,7 @@ function ClaimSuccessContent() {
 
         {/* Email Confirmation */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             A confirmation email has been sent with your claim details and next steps.
             <br />
             If you don't receive it within 5 minutes, please check your spam folder.
@@ -208,7 +208,7 @@ function ClaimSuccessContent() {
 
         {/* Support */}
         <div className="mt-8 text-center pb-12">
-          <p className="text-sm text-gray-600 mb-2">Need help or have questions?</p>
+          <p className="text-sm text-gray-400 mb-2">Need help or have questions?</p>
           <a
             href="/help-center"
             className="text-sm text-dr-education hover:text-dr-education-hover underline"

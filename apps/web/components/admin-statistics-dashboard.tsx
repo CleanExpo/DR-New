@@ -204,7 +204,7 @@ export default function AdminStatisticsDashboard() {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="text-gray-600 mt-1">Real-time platform statistics and insights</p>
+          <p className="text-gray-400 mt-1">Real-time platform statistics and insights</p>
         </div>
         <div className="flex gap-2">
           <Button
@@ -240,7 +240,7 @@ export default function AdminStatisticsDashboard() {
         {/* Bookings */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Total Bookings</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Total Bookings</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{statistics.bookings.total.toLocaleString()}</div>
@@ -249,7 +249,7 @@ export default function AdminStatisticsDashboard() {
                 <TrendingUp className="h-3 w-3 mr-1" />
                 {statistics.bookings.active} Active
               </Badge>
-              <span className="text-sm text-gray-600">{statistics.bookings.completed} Completed</span>
+              <span className="text-sm text-gray-400">{statistics.bookings.completed} Completed</span>
             </div>
           </CardContent>
         </Card>
@@ -257,7 +257,7 @@ export default function AdminStatisticsDashboard() {
         {/* Claims */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Total Claims</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Total Claims</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">${(statistics.claims.totalAmountAUD / 1_000_000).toFixed(1)}M</div>
@@ -266,7 +266,7 @@ export default function AdminStatisticsDashboard() {
                 <CheckCircle className="h-3 w-3 mr-1" />
                 {statistics.claims.approved} Approved
               </Badge>
-              <span className="text-sm text-gray-600">{statistics.claims.pending} Pending</span>
+              <span className="text-sm text-gray-400">{statistics.claims.pending} Pending</span>
             </div>
           </CardContent>
         </Card>
@@ -274,7 +274,7 @@ export default function AdminStatisticsDashboard() {
         {/* Contractors */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Contractors</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Contractors</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{statistics.contractors.total}</div>
@@ -283,7 +283,7 @@ export default function AdminStatisticsDashboard() {
                 <Users className="h-3 w-3 mr-1" />
                 {statistics.contractors.active} Active
               </Badge>
-              <span className="text-sm text-gray-600">⭐ {statistics.contractors.averageRating}</span>
+              <span className="text-sm text-gray-400">⭐ {statistics.contractors.averageRating}</span>
             </div>
           </CardContent>
         </Card>
@@ -291,7 +291,7 @@ export default function AdminStatisticsDashboard() {
         {/* Revenue */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Net Profit</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Net Profit</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">${(statistics.financial.netProfitAUD / 1_000_000).toFixed(2)}M</div>
@@ -512,31 +512,31 @@ export default function AdminStatisticsDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Total Revenue</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Total Revenue</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">${(statistics.financial.totalRevenueAUD / 1_000_000).toFixed(2)}M</div>
-                <p className="text-xs text-gray-600 mt-1">Avg: ${(statistics.financial.averageBookingValueAUD / 1000).toFixed(1)}K per booking</p>
+                <p className="text-xs text-gray-400 mt-1">Avg: ${(statistics.financial.averageBookingValueAUD / 1000).toFixed(1)}K per booking</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Total Payouts</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Total Payouts</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">${(statistics.financial.totalPayoutsAUD / 1_000_000).toFixed(2)}M</div>
-                <p className="text-xs text-gray-600 mt-1">To contractors and partners</p>
+                <p className="text-xs text-gray-400 mt-1">To contractors and partners</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Average Claim Value</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Average Claim Value</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">${(statistics.financial.averageClaimAmountAUD / 1000).toFixed(1)}K</div>
-                <p className="text-xs text-gray-600 mt-1">Per insurance claim</p>
+                <p className="text-xs text-gray-400 mt-1">Per insurance claim</p>
               </CardContent>
             </Card>
           </div>
@@ -552,7 +552,7 @@ export default function AdminStatisticsDashboard() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600">System Health</p>
+              <p className="text-sm font-medium text-gray-400">System Health</p>
               <div className="flex items-center gap-2">
                 <div className="text-2xl font-bold">{statistics.system.systemHealthPercent}%</div>
                 <div className="h-2 flex-1 bg-gray-200 rounded-full overflow-hidden">
@@ -564,11 +564,11 @@ export default function AdminStatisticsDashboard() {
               </div>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600">Avg Response Time</p>
+              <p className="text-sm font-medium text-gray-400">Avg Response Time</p>
               <p className="text-2xl font-bold">{statistics.system.averageResponseTimeMs}ms</p>
             </div>
             <div className="space-y-2">
-              <p className="text-sm font-medium text-gray-600">Active Sessions</p>
+              <p className="text-sm font-medium text-gray-400">Active Sessions</p>
               <p className="text-2xl font-bold">{statistics.system.activeSessionsCount}</p>
             </div>
           </div>

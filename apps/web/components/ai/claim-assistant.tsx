@@ -222,7 +222,7 @@ export default function ClaimAssistant({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-400 text-sm">
             Start typing your damage description to get AI-powered suggestions...
           </p>
         </CardContent>
@@ -388,7 +388,7 @@ export default function ClaimAssistant({
                   <ul className="text-sm text-gray-300 space-y-1">
                     {analysis.suggestions.map((suggestion, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-gray-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 text-gray-400 mt-0.5 flex-shrink-0" />
                         {suggestion}
                       </li>
                     ))}

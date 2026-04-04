@@ -226,14 +226,14 @@ export default function ContractorPerformanceDashboard() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold">Contractor Performance</h1>
-        <p className="text-gray-600 mt-1">Monitor contractor metrics and earnings</p>
+        <p className="text-gray-400 mt-1">Monitor contractor metrics and earnings</p>
       </div>
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Avg Rating</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Avg Rating</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{dashboardData.averageMetrics.rating.toFixed(1)}</div>
@@ -254,31 +254,31 @@ export default function ContractorPerformanceDashboard() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Completion Rate</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Completion Rate</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{dashboardData.averageMetrics.completionRate.toFixed(1)}%</div>
-            <p className="text-sm text-gray-600 mt-2">Across all contractors</p>
+            <p className="text-sm text-gray-400 mt-2">Across all contractors</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Avg Response Time</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Avg Response Time</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">{dashboardData.averageMetrics.responseTime}m</div>
-            <p className="text-sm text-gray-600 mt-2">To accept jobs</p>
+            <p className="text-sm text-gray-400 mt-2">To accept jobs</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-600">Avg Monthly Earnings</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-400">Avg Monthly Earnings</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold">${(dashboardData.averageMetrics.monthlyEarnings / 1000).toFixed(1)}K</div>
-            <p className="text-sm text-gray-600 mt-2">Per contractor</p>
+            <p className="text-sm text-gray-400 mt-2">Per contractor</p>
           </CardContent>
         </Card>
       </div>
@@ -322,7 +322,7 @@ export default function ContractorPerformanceDashboard() {
                 >
                   <CardContent className="pt-4">
                     <h3 className="font-semibold">{contractor.name}</h3>
-                    <p className="text-sm text-gray-600">{contractor.company}</p>
+                    <p className="text-sm text-gray-400">{contractor.company}</p>
                     <div className="flex items-center justify-between mt-2">
                       <div className="flex items-center gap-1">
                         {[...Array(5)].map((_, i) => (
@@ -362,19 +362,19 @@ export default function ContractorPerformanceDashboard() {
                   </CardHeader>
                   <CardContent className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-sm text-gray-600">Total Jobs</p>
+                      <p className="text-sm text-gray-400">Total Jobs</p>
                       <p className="text-2xl font-bold">{selectedContractor.totalJobs}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Completion Rate</p>
+                      <p className="text-sm text-gray-400">Completion Rate</p>
                       <p className="text-2xl font-bold">{selectedContractor.completionRate.toFixed(1)}%</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Response Time</p>
+                      <p className="text-sm text-gray-400">Response Time</p>
                       <p className="text-2xl font-bold">{selectedContractor.averageResponseTimeMinutes}m</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Avg Job Duration</p>
+                      <p className="text-sm text-gray-400">Avg Job Duration</p>
                       <p className="text-2xl font-bold">{selectedContractor.averageJobDurationHours}h</p>
                     </div>
                   </CardContent>
@@ -441,7 +441,7 @@ export default function ContractorPerformanceDashboard() {
                         <div key={idx} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                           <span className="font-medium">{cert.level}</span>
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-gray-600">{cert.expiryDate}</span>
+                            <span className="text-sm text-gray-400">{cert.expiryDate}</span>
                             <Badge variant={cert.isValid ? 'default' : 'destructive'}>
                               {cert.isValid ? 'Valid' : 'Expired'}
                             </Badge>
@@ -459,11 +459,11 @@ export default function ContractorPerformanceDashboard() {
                   </CardHeader>
                   <CardContent className="grid grid-cols-2 gap-4">
                     <div>
-                      <p className="text-sm text-gray-600">Total Earnings</p>
+                      <p className="text-sm text-gray-400">Total Earnings</p>
                       <p className="text-2xl font-bold">${(selectedContractor.totalEarningsAUD / 1000).toFixed(1)}K</p>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-600">Monthly Earnings</p>
+                      <p className="text-sm text-gray-400">Monthly Earnings</p>
                       <p className="text-2xl font-bold">${(selectedContractor.monthlyEarningsAUD / 1000).toFixed(1)}K</p>
                     </div>
                   </CardContent>
@@ -502,11 +502,11 @@ export default function ContractorPerformanceDashboard() {
             {dashboardData.performanceTiers.map((tier, idx) => (
               <Card key={idx}>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium text-gray-600">{tier.tier}</CardTitle>
+                  <CardTitle className="text-sm font-medium text-gray-400">{tier.tier}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-3xl font-bold">{tier.count}</p>
-                  <p className="text-sm text-gray-600 mt-2">⭐ {tier.avgRating.toFixed(2)}</p>
+                  <p className="text-sm text-gray-400 mt-2">⭐ {tier.avgRating.toFixed(2)}</p>
                 </CardContent>
               </Card>
             ))}

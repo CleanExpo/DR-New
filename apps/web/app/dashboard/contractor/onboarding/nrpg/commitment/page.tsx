@@ -348,7 +348,7 @@ export default function CommitmentPage() {
                   <ul className="space-y-2 mb-4">
                     {section.commitments.map((commitment, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-sm text-gray-300">
-                        <CheckCircle2 className="h-4 w-4 mt-0.5 text-gray-500 flex-shrink-0" />
+                        <CheckCircle2 className="h-4 w-4 mt-0.5 text-gray-400 flex-shrink-0" />
                         {commitment}
                       </li>
                     ))}
@@ -369,7 +369,7 @@ export default function CommitmentPage() {
                           <FormLabel className="text-white">
                             I agree to uphold these {section.title.toLowerCase()} standards
                           </FormLabel>
-                          <FormDescription className="text-gray-500 text-xs">
+                          <FormDescription className="text-gray-400 text-xs">
                             This commitment is binding for the duration of your NRPG membership
                           </FormDescription>
                         </div>
@@ -422,7 +422,7 @@ export default function CommitmentPage() {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription className="text-gray-500">
+                    <FormDescription className="text-gray-400">
                       By typing your name, you confirm this serves as your electronic signature
                     </FormDescription>
                     <FormMessage />

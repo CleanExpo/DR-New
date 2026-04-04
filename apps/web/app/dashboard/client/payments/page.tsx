@@ -111,7 +111,7 @@ export default function ClientPaymentsPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-300 border-t-blue-600" />
-          <p className="text-gray-600">Loading payments...</p>
+          <p className="text-gray-400">Loading payments...</p>
         </div>
       </div>
     );
@@ -123,7 +123,7 @@ export default function ClientPaymentsPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Payment History</h1>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-gray-400">
             View and manage all your payments and invoices
           </p>
         </div>
@@ -132,25 +132,25 @@ export default function ClientPaymentsPage() {
         {summary && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Total Spent</p>
+              <p className="text-gray-400 text-sm font-medium">Total Spent</p>
               <p className="mt-2 text-3xl font-bold text-gray-900">
                 {formatCurrency(summary.totalSpent)}
               </p>
             </div>
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Total Payments</p>
+              <p className="text-gray-400 text-sm font-medium">Total Payments</p>
               <p className="mt-2 text-3xl font-bold text-gray-900">
                 {summary.totalPayments}
               </p>
             </div>
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Completed</p>
+              <p className="text-gray-400 text-sm font-medium">Completed</p>
               <p className="mt-2 text-3xl font-bold text-green-600">
                 {summary.completedCount}
               </p>
             </div>
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Pending</p>
+              <p className="text-gray-400 text-sm font-medium">Pending</p>
               <p className="mt-2 text-3xl font-bold text-yellow-600">
                 {summary.pendingCount}
               </p>
@@ -196,7 +196,7 @@ export default function ClientPaymentsPage() {
         <div className="bg-white rounded-lg shadow overflow-hidden">
           {payments.length === 0 ? (
             <div className="p-8 text-center">
-              <p className="text-gray-600 mb-4">No payments found</p>
+              <p className="text-gray-400 mb-4">No payments found</p>
               <Link
                 href="/dashboard/client/claims"
                 className="text-blue-600 hover:text-blue-700 font-medium"
@@ -208,22 +208,22 @@ export default function ClientPaymentsPage() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Service
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Location
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Amount
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -231,25 +231,25 @@ export default function ClientPaymentsPage() {
               <tbody className="bg-white divide-y divide-gray-200">
                 {payments.map((payment) => (
                   <tr key={payment.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                       {formatDate(payment.processedAt || payment.createdAt)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <p className="font-medium text-gray-900">
                         {payment.booking?.serviceType.replace(/_/g, ' ')}
                       </p>
-                      <p className="text-gray-500 text-xs">
+                      <p className="text-gray-400 text-xs">
                         {payment.booking?.id}
                       </p>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                       {payment.booking?.location}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
                         {formatCurrency(payment.total)}
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-gray-400">
                         inc. {formatCurrency(payment.gst)} GST
                       </div>
                     </td>

@@ -65,7 +65,7 @@ export default function AdminDemoPage() {
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               Admin Dashboard
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-400">
               Real-time job coordination overview
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function AdminDemoPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{pendingJobs}</p>
-                  <p className="text-xs text-gray-500">Pending</p>
+                  <p className="text-xs text-gray-400">Pending</p>
                 </div>
               </div>
             </CardContent>
@@ -104,7 +104,7 @@ export default function AdminDemoPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{activeJobs}</p>
-                  <p className="text-xs text-gray-500">Active</p>
+                  <p className="text-xs text-gray-400">Active</p>
                 </div>
               </div>
             </CardContent>
@@ -118,7 +118,7 @@ export default function AdminDemoPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{completedJobs}</p>
-                  <p className="text-xs text-gray-500">Completed</p>
+                  <p className="text-xs text-gray-400">Completed</p>
                 </div>
               </div>
             </CardContent>
@@ -132,7 +132,7 @@ export default function AdminDemoPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{emergencyJobs}</p>
-                  <p className="text-xs text-gray-500">Emergency</p>
+                  <p className="text-xs text-gray-400">Emergency</p>
                 </div>
               </div>
             </CardContent>
@@ -146,7 +146,7 @@ export default function AdminDemoPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{activeContractors}</p>
-                  <p className="text-xs text-gray-500">On Jobs</p>
+                  <p className="text-xs text-gray-400">On Jobs</p>
                 </div>
               </div>
             </CardContent>
@@ -160,7 +160,7 @@ export default function AdminDemoPage() {
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">{availableContractors}</p>
-                  <p className="text-xs text-gray-500">Available</p>
+                  <p className="text-xs text-gray-400">Available</p>
                 </div>
               </div>
             </CardContent>
@@ -178,7 +178,7 @@ export default function AdminDemoPage() {
               <CardContent>
                 <div className="space-y-3">
                   {jobs.length === 0 ? (
-                    <div className="text-center py-8 text-gray-500">
+                    <div className="text-center py-8 text-gray-400">
                       No jobs yet. Click "Simulate Emergency" to add one.
                     </div>
                   ) : (
@@ -205,11 +205,11 @@ export default function AdminDemoPage() {
                             <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                               {job.serviceType}
                             </h3>
-                            <div className="flex items-center gap-1 text-sm text-gray-500 mt-1">
+                            <div className="flex items-center gap-1 text-sm text-gray-400 mt-1">
                               <MapPin className="w-3 h-3" />
                               {job.client.address}
                             </div>
-                            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 line-clamp-1">
+                            <p className="text-sm text-gray-400 dark:text-gray-400 mt-2 line-clamp-1">
                               {job.description}
                             </p>
                           </div>
@@ -219,7 +219,7 @@ export default function AdminDemoPage() {
                                 <p className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                                   {job.contractor.businessName}
                                 </p>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-gray-400">
                                   {job.contractor.user.name}
                                 </p>
                                 {job.eta && job.status === 'en_route' && (
@@ -283,10 +283,10 @@ export default function AdminDemoPage() {
                               )}
                             </div>
                             <div className="flex items-center gap-3 mt-1">
-                              <span className="text-xs text-gray-500">
+                              <span className="text-xs text-gray-400">
                                 ★ {contractor.rating}
                               </span>
-                              <span className="text-xs text-gray-500">
+                              <span className="text-xs text-gray-400">
                                 {contractor.completedJobs} jobs
                               </span>
                             </div>
@@ -315,19 +315,19 @@ export default function AdminDemoPage() {
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-800">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Avg Response Time</span>
+                    <span className="text-sm text-gray-400 dark:text-gray-400">Avg Response Time</span>
                     <span className="font-semibold text-gray-900 dark:text-gray-100">4.2 min</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-800">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Avg Completion Time</span>
+                    <span className="text-sm text-gray-400 dark:text-gray-400">Avg Completion Time</span>
                     <span className="font-semibold text-gray-900 dark:text-gray-100">1.8 hrs</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-800">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Client Satisfaction</span>
+                    <span className="text-sm text-gray-400 dark:text-gray-400">Client Satisfaction</span>
                     <span className="font-semibold text-green-600">98%</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">On-Time Arrival</span>
+                    <span className="text-sm text-gray-400 dark:text-gray-400">On-Time Arrival</span>
                     <span className="font-semibold text-green-600">95%</span>
                   </div>
                 </div>

@@ -141,9 +141,9 @@ export default function CourseDetailPage() {
       case 'in_progress':
         return <PlayCircle className="h-5 w-5 text-[#00BFA6]" />;
       case 'locked':
-        return <Lock className="h-5 w-5 text-gray-600" />;
+        return <Lock className="h-5 w-5 text-gray-400" />;
       default:
-        return <Circle className="h-5 w-5 text-gray-500" />;
+        return <Circle className="h-5 w-5 text-gray-400" />;
     }
   };
 
@@ -154,7 +154,7 @@ export default function CourseDetailPage() {
       case 'in_progress':
         return <Badge className="bg-[#00BFA6]/10 text-[#00BFA6] border-[#00BFA6]/20">In Progress</Badge>;
       case 'locked':
-        return <Badge className="bg-gray-700 text-gray-500 border-gray-600">Locked</Badge>;
+        return <Badge className="bg-gray-700 text-gray-400 border-gray-600">Locked</Badge>;
       default:
         return <Badge className="bg-gray-700 text-gray-400 border-gray-600">Available</Badge>;
     }
@@ -289,7 +289,7 @@ export default function CourseDetailPage() {
                     {module.status === 'completed' ? (
                       <CheckCircle2 className="h-5 w-5 text-white" />
                     ) : module.status === 'locked' ? (
-                      <Lock className="h-4 w-4 text-gray-500" />
+                      <Lock className="h-4 w-4 text-gray-400" />
                     ) : (
                       <span className="text-white font-medium">{module.order}</span>
                     )}
@@ -303,8 +303,8 @@ export default function CourseDetailPage() {
                       </h3>
                       {getModuleStatusBadge(module.status)}
                     </div>
-                    <p className="text-xs text-gray-500 mt-0.5 truncate">{module.description}</p>
-                    <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                    <p className="text-xs text-gray-400 mt-0.5 truncate">{module.description}</p>
+                    <div className="flex items-center gap-4 mt-2 text-xs text-gray-400">
                       <div className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
                         <span>{module.estimatedMinutes} min</span>

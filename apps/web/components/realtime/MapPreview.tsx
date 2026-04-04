@@ -131,7 +131,7 @@ function LiveTrackingMapInner({
               <div className="p-2 min-w-[150px]">
                 <p className="font-semibold text-gray-900">{contractorName || 'Contractor'}</p>
                 {contractorLocation.speed && (
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-400">
                     {Math.round(contractorLocation.speed)} km/h
                   </p>
                 )}
@@ -243,7 +243,7 @@ function MapPreviewFallback({
         <div className="text-center p-4">
           <div className="w-8 h-8 border-2 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-2" />
           <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Loading Live Map</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{destinationAddress}</p>
+          <p className="text-xs text-gray-400 dark:text-gray-400 mt-1">{destinationAddress}</p>
         </div>
       </div>
 

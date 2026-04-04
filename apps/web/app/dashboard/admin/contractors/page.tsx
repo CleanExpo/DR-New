@@ -509,7 +509,7 @@ export default function AdminContractorsPage() {
 
             {contractors.length === 0 && (
               <div className="text-center py-12">
-                <div className="text-gray-500 mb-4">
+                <div className="text-gray-400 mb-4">
                   <Shield className="h-12 w-12 mx-auto mb-2" />
                   <p>No contractors found</p>
                 </div>

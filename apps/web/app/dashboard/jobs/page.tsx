@@ -139,7 +139,7 @@ export default function JobsListPage() {
         {/* Search & Filters */}
         <div className="mt-4 flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
             <input
               type="text"
               placeholder="Search by job number or notes..."
@@ -192,9 +192,9 @@ export default function JobsListPage() {
           </div>
         ) : jobs.length === 0 ? (
           <div className="text-center py-20">
-            <Briefcase className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+            <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-400">No jobs found</h3>
-            <p className="text-sm text-gray-500 mt-1">Create a new job to get started.</p>
+            <p className="text-sm text-gray-400 mt-1">Create a new job to get started.</p>
             <button
               onClick={() => router.push('/dashboard/jobs/new')}
               className="mt-4 px-4 py-2 bg-[#0d9488] hover:bg-[#0d9488]/80 text-white rounded-lg text-sm font-medium transition-colours"
@@ -245,12 +245,12 @@ export default function JobsListPage() {
                           {job.property.suburb}, {job.property.state}
                         </td>
                         <td className="py-3 px-4 text-sm text-gray-400">
-                          {job.contractor?.businessName || <span className="text-gray-600">Unassigned</span>}
+                          {job.contractor?.businessName || <span className="text-gray-400">Unassigned</span>}
                         </td>
                         <td className="py-3 px-4 text-sm text-gray-300">
                           ${Number(job.actualCost || job.estimatedCost || 0).toLocaleString('en-AU')}
                         </td>
-                        <td className="py-3 px-4 text-sm text-gray-500">
+                        <td className="py-3 px-4 text-sm text-gray-400">
                           {new Date(job.createdAt).toLocaleDateString('en-AU')}
                         </td>
                       </tr>

@@ -301,7 +301,7 @@ export default function TrainingPage() {
                       style={{ color: tier.colour }}
                     >
                       {tier.price}
-                      <span className="text-base font-normal text-gray-500 ml-1">AUD</span>
+                      <span className="text-base font-normal text-gray-400 ml-1">AUD</span>
                     </div>
 
                     {/* Description */}

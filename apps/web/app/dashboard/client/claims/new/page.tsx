@@ -128,7 +128,7 @@ export default function NewClaimPage() {
           Back to Claims
         </Button>
         <h1 className="text-3xl font-bold text-gray-900">Submit New Claim</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-400 mt-2">
           Provide detailed information about your damage assessment to get matched with the right contractors
         </p>
       </div>
