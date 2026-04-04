@@ -51,8 +51,10 @@ const describeStripe = STRIPE_CONFIGURED ? describe : describe.skip;
 // ============================================================================
 
 let testTenant: any;
-let testCustomer: Stripe.Customer | null = null;
-let testSubscription: Stripe.Subscription | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let testCustomer: any = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let testSubscription: any = null;
 
 beforeAll(async () => {
   if (!STRIPE_CONFIGURED) {
@@ -82,7 +84,7 @@ afterAll(async () => {
   if (testSubscription) {
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       await stripe.subscriptions.cancel(testSubscription.id);
     } catch (error) {
@@ -94,7 +96,7 @@ afterAll(async () => {
   if (testCustomer) {
     try {
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       await stripe.customers.del(testCustomer.id);
     } catch (error) {
@@ -189,7 +191,7 @@ describeStripe('UNI-159: Checkout Session Creation', () => {
 
       // Verify session includes correct price
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       const session = await stripe.checkout.sessions.retrieve(result.sessionId);
 
@@ -210,7 +212,7 @@ describeStripe('UNI-159: Checkout Session Creation', () => {
       expect(result.sessionId).toBeDefined();
 
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       const session = await stripe.checkout.sessions.retrieve(result.sessionId);
 
@@ -229,7 +231,7 @@ describeStripe('UNI-159: Checkout Session Creation', () => {
       expect(result.sessionId).toBeDefined();
 
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       const session = await stripe.checkout.sessions.retrieve(result.sessionId);
 
@@ -245,11 +247,11 @@ describeStripe('UNI-159: Checkout Session Creation', () => {
       });
 
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       const session = await stripe.checkout.sessions.retrieve(result.sessionId);
 
-      expect(session.subscription_data?.trial_period_days).toBe(14);
+      expect((session as any).subscription_data?.trial_period_days).toBe(14);
     });
 
     it('should include correct success and cancel URLs', async () => {
@@ -261,7 +263,7 @@ describeStripe('UNI-159: Checkout Session Creation', () => {
       });
 
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       const session = await stripe.checkout.sessions.retrieve(result.sessionId);
 
@@ -280,7 +282,7 @@ describeStripe('UNI-159: Checkout Session Creation', () => {
       });
 
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-        apiVersion: '2024-11-20.acacia',
+        apiVersion: '2024-11-20.acacia' as Stripe.LatestApiVersion,
       });
       const session = await stripe.checkout.sessions.retrieve(result.sessionId);
 

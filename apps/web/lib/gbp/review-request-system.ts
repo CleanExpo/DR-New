@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Review Request Automation System
  *

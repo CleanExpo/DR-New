@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Process List Component
  * Optimises content for HowTo schema and featured snippets

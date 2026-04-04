@@ -268,8 +268,8 @@ export async function validateAndParseBid(data: unknown) {
 
   return {
     ...validated,
-    budget: parseBudget(validated.budget),
-    estimatedHours: parseEstimatedHours(validated.estimatedHours),
-    startDate: parseStartDate(validated.startDate),
+    budget: parseBudget(validated.budget ?? undefined),
+    estimatedHours: parseEstimatedHours(validated.estimatedHours ?? undefined),
+    startDate: parseStartDate(validated.startDate ?? undefined),
   };
 }

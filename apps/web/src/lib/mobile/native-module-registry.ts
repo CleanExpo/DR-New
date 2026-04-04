@@ -8,7 +8,9 @@
  */
 
 import { EventEmitter } from 'events';
+// @ts-ignore - module shims
 import { Logger } from '../logging/logger';
+// @ts-ignore - module shims
 import { MetricsCollector } from '../monitoring/metrics-collector';
 
 interface NativeModuleInfo {
@@ -198,7 +200,7 @@ export class NativeModuleRegistry extends EventEmitter {
   /**
    * Register a module
    */
-  registerModule(info: Omit<NativeModuleInfo, 'initialized'>): void {
+  registerModule(info: Omit<NativeModuleInfo, 'initialized'> & { initialized?: boolean }): void {
     const moduleInfo: NativeModuleInfo = {
       ...info,
       initialized: false

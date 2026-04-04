@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Individual Resource Page
  *

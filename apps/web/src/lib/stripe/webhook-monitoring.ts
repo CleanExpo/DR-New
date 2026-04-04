@@ -131,7 +131,7 @@ export async function logAlert(
     // Send alerts to Slack
     if (alertType === AlertType.HIGH_FAILURE_RATE) {
       await sendHighErrorRateSlackAlert({
-        errorRate: (metadata?.stats as any)?.failureRate ? parseFloat((metadata.stats as any).failureRate) : 0,
+        errorRate: (metadata?.stats as any)?.failureRate ? parseFloat((metadata?.stats as any).failureRate) : 0,
         threshold: 5,
         errorCount: (metadata?.stats as any)?.totalFailed || 0,
         timeWindow: `${(metadata?.stats as any)?.timeWindowMinutes || 5} minutes`,

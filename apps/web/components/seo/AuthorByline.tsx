@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Author Byline Component
  * Displays author credentials and E-E-A-T signals

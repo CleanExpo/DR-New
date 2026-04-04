@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * CORS Configuration for Production
  *

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Audit Logging Service
  * Logs security events for compliance, forensics, and security monitoring

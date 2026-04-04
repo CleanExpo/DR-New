@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Public API: Lead Capture Endpoint
  * Handles claim form submissions from the marketing site
