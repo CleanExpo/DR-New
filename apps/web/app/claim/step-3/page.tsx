@@ -222,7 +222,7 @@ export default function ClaimStep3Page() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-3xl font-bold text-gray-900">Report a Claim</h1>
-            <div className="text-sm text-gray-600">Step 3 of 3</div>
+            <div className="text-sm text-gray-400">Step 3 of 3</div>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div className="bg-dr-emergency h-2 rounded-full" style={{ width: '100%' }} />
@@ -263,7 +263,7 @@ export default function ClaimStep3Page() {
               <label className="block text-base font-medium text-foreground">
                 Upload Photos (Optional)
               </label>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 Photos help contractors assess the damage faster. You can upload up to 5 photos.
               </p>
 
@@ -396,7 +396,7 @@ export default function ClaimStep3Page() {
 
         {/* Security Notice */}
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             Your claim is encrypted and will be matched with certified contractors in your area.
           </p>
         </div>

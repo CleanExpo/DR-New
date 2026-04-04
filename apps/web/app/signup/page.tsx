@@ -493,7 +493,7 @@ function SignupPageContent() {
 
         {/* Footer */}
         <div className="mt-8 text-center">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             By creating an account, you agree to our{' '}
             <Link href="/terms" className="text-[#00BFA6] hover:text-[#00A693]">
               Terms of Service

@@ -53,7 +53,7 @@ export function ValuePropsGrid({ valueProps, columns = 3, className }: ValueProp
           <h3 className="mb-2 text-xl font-semibold text-gray-900">{prop.title}</h3>
 
           {/* Description */}
-          <p className="text-base leading-relaxed text-gray-600">{prop.description}</p>
+          <p className="text-base leading-relaxed text-gray-400">{prop.description}</p>
 
           {/* Decorative gradient on hover */}
           <div className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-orange-500/5 to-blue-500/5 opacity-0 transition group-hover:opacity-100" />

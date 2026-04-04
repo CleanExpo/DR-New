@@ -1457,9 +1457,9 @@ export default function ClientDashboard() {
               </div>
             ) : availableContractors.length >= 0 ? (
               <div className="text-center py-12">
-                <Users className="h-12 w-12 text-gray-500 mx-auto mb-4" />
+                <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-medium text-gray-400 mb-2">Contractor network is private</h3>
-                <p className="text-gray-500">Submit a request and NRPG will dispatch a vetted, insured, qualified contractor for the role.</p>
+                <p className="text-gray-400">Submit a request and NRPG will dispatch a vetted, insured, qualified contractor for the role.</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1832,7 +1832,7 @@ export default function ClientDashboard() {
               </div>
             ) : filteredRequests.length === 0 ? (
               <div className="text-center py-8 bg-gray-800 rounded-lg border-2 border-dashed border-gray-600">
-                <div className="text-gray-500 mb-4">
+                <div className="text-gray-400 mb-4">
                   <Plus className="h-20 w-20 mx-auto" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">
@@ -2565,7 +2565,7 @@ export default function ClientDashboard() {
               </>
             ) : (
               <div className="text-center py-16 bg-gray-800 rounded-lg border-2 border-dashed border-gray-600">
-                <BarChart3 className="h-20 w-20 text-gray-500 mx-auto mb-4" />
+                <BarChart3 className="h-20 w-20 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-2">No analytics data yet</h3>
                 <p className="text-gray-400 mb-6 max-w-md mx-auto">
                   Submit your first service request to start seeing analytics and insights.
@@ -2859,7 +2859,7 @@ export default function ClientDashboard() {
                                   <span className="text-xl mr-4">{category.icon}</span>
                               <div>
                                     <div className="font-semibold text-gray-900">{category.name}</div>
-                                    <div className="text-sm text-gray-500">{category.description}</div>
+                                    <div className="text-sm text-gray-400">{category.description}</div>
                               </div>
                             </div>
                           </SelectItem>
@@ -2888,7 +2888,7 @@ export default function ClientDashboard() {
                                 <span className="text-2xl mr-4">🚨</span>
                             <div>
                                   <div className="font-semibold text-gray-900">Emergency</div>
-                                  <div className="text-sm text-gray-500">24 hours or less</div>
+                                  <div className="text-sm text-gray-400">24 hours or less</div>
                             </div>
                           </div>
                         </SelectItem>
@@ -2897,7 +2897,7 @@ export default function ClientDashboard() {
                                 <span className="text-2xl mr-4">⚡</span>
                             <div>
                                   <div className="font-semibold text-gray-900">Urgent</div>
-                                  <div className="text-sm text-gray-500">2-3 days</div>
+                                  <div className="text-sm text-gray-400">2-3 days</div>
                             </div>
                           </div>
                         </SelectItem>
@@ -2906,7 +2906,7 @@ export default function ClientDashboard() {
                                 <span className="text-2xl mr-4">📅</span>
                             <div>
                                   <div className="font-semibold text-gray-900">Normal</div>
-                                  <div className="text-sm text-gray-500">1-2 weeks</div>
+                                  <div className="text-sm text-gray-400">1-2 weeks</div>
                             </div>
                           </div>
                         </SelectItem>
@@ -2915,7 +2915,7 @@ export default function ClientDashboard() {
                                 <span className="text-2xl mr-4">🔄</span>
                             <div>
                                   <div className="font-semibold text-gray-900">Flexible</div>
-                                  <div className="text-sm text-gray-500">1+ month</div>
+                                  <div className="text-sm text-gray-400">1+ month</div>
                             </div>
                           </div>
                         </SelectItem>
@@ -2953,7 +2953,7 @@ export default function ClientDashboard() {
                         className="w-full p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-semantic-contractor focus:border-semantic-contractor min-h-[140px] bg-white shadow-sm text-gray-900"
                     rows={5}
                   />
-                      <p className="text-sm text-gray-500 flex items-center">
+                      <p className="text-sm text-gray-400 flex items-center">
                         <span className="mr-1">💡</span>
                         Be as detailed as possible to help contractors understand your needs
                       </p>
@@ -3033,7 +3033,7 @@ export default function ClientDashboard() {
                         <Label htmlFor="insurance" className="text-sm font-medium text-gray-700 cursor-pointer">
                           This is an insurance claim
                         </Label>
-                        <p className="text-xs text-gray-500 mt-1">Check if this service is covered by insurance</p>
+                        <p className="text-xs text-gray-400 mt-1">Check if this service is covered by insurance</p>
                       </div>
                     </div>
                     
@@ -3049,7 +3049,7 @@ export default function ClientDashboard() {
                         <Label htmlFor="urgent-response" className="text-sm font-medium text-gray-700 cursor-pointer">
                           Request urgent response
                         </Label>
-                        <p className="text-xs text-gray-500 mt-1">Get priority matching with contractors</p>
+                        <p className="text-xs text-gray-400 mt-1">Get priority matching with contractors</p>
                           </div>
                         </div>
                       </div>
@@ -3104,7 +3104,7 @@ export default function ClientDashboard() {
             <DialogTitle className="text-xl font-bold text-gray-900 text-center">
               Professional Contractor
             </DialogTitle>
-            <DialogDescription className="text-gray-600 text-sm text-center">
+            <DialogDescription className="text-gray-400 text-sm text-center">
               Detailed contractor information and contact options
             </DialogDescription>
           </DialogHeader>
@@ -3180,22 +3180,22 @@ export default function ClientDashboard() {
                       <div className="grid grid-cols-2 gap-6">
                         <div className="text-center">
                           <div className="text-md font-bold text-semantic-contractor mb-2">{selectedContractor.experience || 0}</div>
-                          <div className="text-gray-600 ">Years Experience</div>
+                          <div className="text-gray-400 ">Years Experience</div>
                         </div>
                         <div className="text-center">
                           <div className="text-md font-bold text-semantic-contractor mb-2">${selectedContractor.hourlyRate || 0}</div>
-                          <div className="text-gray-600 ">Per Hour</div>
+                          <div className="text-gray-400 ">Per Hour</div>
                         </div>
                         <div className="text-center">
                           <div className="text-md font-bold text-semantic-contractor mb-2">{selectedContractor.totalJobs || 0}</div>
-                          <div className="text-gray-600 ">Jobs Completed</div>
+                          <div className="text-gray-400 ">Jobs Completed</div>
                         </div>
                         <div className="text-center">
                           <div className="flex items-center justify-center space-x-1 mb-2">
                             <Star className="h-3 w-3 text-yellow-500 fill-current" />
                             <span className="text-md font-bold text-semantic-contractor">{selectedContractor.rating?.toFixed(1) || '0.0'}</span>
                           </div>
-                          <div className="text-gray-600 text-sm">Average Rating</div>
+                          <div className="text-gray-400 text-sm">Average Rating</div>
                         </div>
                       </div>
                     </CardContent>
@@ -3264,7 +3264,7 @@ export default function ClientDashboard() {
                         <p className="text-sm text-gray-700 mb-1">
                           <span className="font-medium">Service Category:</span> {selectedContractor.selectedServiceCategory}
                         </p>
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-gray-400">
                           This will be auto-selected when you create your service request
                         </p>
                       </div>
@@ -3318,7 +3318,7 @@ export default function ClientDashboard() {
               <MessageSquare className="h-6 w-6 mr-3 text-semantic-contractor" />
               Chat with {selectedContractor?.businessName || selectedContractor?.user?.name}
             </DialogTitle>
-            <DialogDescription className="text-gray-600">
+            <DialogDescription className="text-gray-400">
               Negotiate and discuss service details directly
             </DialogDescription>
           </DialogHeader>
@@ -3331,7 +3331,7 @@ export default function ClientDashboard() {
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-semantic-contractor"></div>
                 </div>
               ) : chatMessages.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">
+                <div className="text-center py-8 text-gray-400">
                   <MessageSquare className="h-12 w-12 mx-auto mb-4 text-gray-300" />
                   <p>No messages yet. Start the conversation!</p>
                 </div>
@@ -3350,7 +3350,7 @@ export default function ClientDashboard() {
                     >
                       <p className="text-sm">{message.content}</p>
                       <p className={`text-xs mt-1 ${
-                        message.senderId === user?.id ? 'text-white/70' : 'text-gray-500'
+                        message.senderId === user?.id ? 'text-white/70' : 'text-gray-400'
                       }`}>
                         {new Date(message.createdAt).toLocaleTimeString()}
                       </p>
@@ -3429,7 +3429,7 @@ export default function ClientDashboard() {
                     <Badge className={`${getStatusColor(selectedRequest.status)} text-sm px-4 py-2 font-semibold`}>
                         {getStatusDisplay(selectedRequest.status)}
                       </Badge>
-                    <div className="flex items-center text-gray-600">
+                    <div className="flex items-center text-gray-400">
                       <Calendar className="h-4 w-4 mr-2" />
                       <span className="text-sm font-medium">
                         Submitted: {new Date(selectedRequest.createdAt).toLocaleDateString()}
@@ -3460,7 +3460,7 @@ export default function ClientDashboard() {
                     className={`text-sm px-4 py-2 font-semibold ${
                       selectedRequest.urgency === 'emergency' ? 'border-red-500 text-red-600 bg-red-50' :
                       selectedRequest.urgency === 'urgent' ? 'border-orange-500 text-orange-600 bg-orange-50' :
-                      'border-gray-300 text-gray-600 bg-gray-50'
+                      'border-gray-300 text-gray-400 bg-gray-50'
                         }`}
                       >
                         {getUrgencyDisplayName(selectedRequest.urgency)}

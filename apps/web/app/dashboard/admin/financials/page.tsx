@@ -129,7 +129,7 @@ export default function AdminFinancialsPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-300 border-t-blue-600" />
-          <p className="text-gray-600">Loading financial dashboard...</p>
+          <p className="text-gray-400">Loading financial dashboard...</p>
         </div>
       </div>
     );
@@ -163,7 +163,7 @@ export default function AdminFinancialsPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Financial Dashboard</h1>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-gray-400">
             Real-time revenue, payouts, and platform metrics
           </p>
         </div>
@@ -171,31 +171,31 @@ export default function AdminFinancialsPage() {
         {/* Key Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 text-sm font-medium">Total Revenue</p>
+            <p className="text-gray-400 text-sm font-medium">Total Revenue</p>
             <p className="mt-2 text-3xl font-bold text-gray-900">
               {formatCurrency(data.revenue.totalRevenue)}
             </p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-gray-400">
               {data.revenue.totalBookings} bookings
             </p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 text-sm font-medium">Platform Fees</p>
+            <p className="text-gray-400 text-sm font-medium">Platform Fees</p>
             <p className="mt-2 text-3xl font-bold text-green-600">
               {formatCurrency(data.payouts.platformFeesCollected)}
             </p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-gray-400">
               {data.payouts.platformFeePercentage}% commission
             </p>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-gray-600 text-sm font-medium">Contractor Payouts</p>
+            <p className="text-gray-400 text-sm font-medium">Contractor Payouts</p>
             <p className="mt-2 text-3xl font-bold text-blue-600">
               {formatCurrency(data.payouts.totalContractorEarnings)}
             </p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-gray-400">
               Outstanding: {formatCurrency(data.payouts.remainingDisputed)}
             </p>
           </div>
@@ -216,25 +216,25 @@ export default function AdminFinancialsPage() {
           <h2 className="text-lg font-semibold text-gray-900 mb-6">Payment Performance</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div>
-              <p className="text-gray-600 text-sm">Success Rate</p>
+              <p className="text-gray-400 text-sm">Success Rate</p>
               <p className="mt-2 text-2xl font-bold text-gray-900">
                 {data.performance.paymentSuccessRate.toFixed(1)}%
               </p>
             </div>
             <div>
-              <p className="text-gray-600 text-sm">Total Payments</p>
+              <p className="text-gray-400 text-sm">Total Payments</p>
               <p className="mt-2 text-2xl font-bold text-gray-900">
                 {data.performance.totalPayments}
               </p>
             </div>
             <div>
-              <p className="text-gray-600 text-sm">Failed Payments</p>
+              <p className="text-gray-400 text-sm">Failed Payments</p>
               <p className="mt-2 text-2xl font-bold text-red-600">
                 {data.performance.failedPayments}
               </p>
             </div>
             <div>
-              <p className="text-gray-600 text-sm">Avg Payment Time</p>
+              <p className="text-gray-400 text-sm">Avg Payment Time</p>
               <p className="mt-2 text-2xl font-bold text-gray-900">
                 {data.performance.averagePaymentTime}
               </p>
@@ -255,13 +255,13 @@ export default function AdminFinancialsPage() {
                     <p className="font-medium text-gray-900">
                       {service.type.replace(/_/g, ' ')}
                     </p>
-                    <p className="text-sm text-gray-500">{service.jobCount} jobs</p>
+                    <p className="text-sm text-gray-400">{service.jobCount} jobs</p>
                   </div>
                   <div className="text-right">
                     <p className="font-medium text-gray-900">
                       {formatCurrency(service.revenue)}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-400">
                       Fee: {formatCurrency(service.platformFee)}
                     </p>
                   </div>
@@ -281,7 +281,7 @@ export default function AdminFinancialsPage() {
                     <p className="font-medium text-gray-900">
                       {contractor.businessName}
                     </p>
-                    <p className="text-sm text-gray-500">{contractor.jobCount} jobs</p>
+                    <p className="text-sm text-gray-400">{contractor.jobCount} jobs</p>
                   </div>
                   <div className="text-right">
                     <p className="font-medium text-gray-900">
@@ -310,7 +310,7 @@ export default function AdminFinancialsPage() {
                     <p className="text-sm font-medium text-gray-900">
                       {payment.bookingType?.replace(/_/g, ' ')}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-400">
                       Created: {formatDate(payment.createdAt)}
                     </p>
                   </div>
@@ -335,7 +335,7 @@ export default function AdminFinancialsPage() {
             className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition"
           >
             <h3 className="font-semibold text-gray-900 mb-2">Detailed Revenue</h3>
-            <p className="text-gray-600 text-sm">View revenue breakdown by period</p>
+            <p className="text-gray-400 text-sm">View revenue breakdown by period</p>
           </Link>
 
           <Link
@@ -343,7 +343,7 @@ export default function AdminFinancialsPage() {
             className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition"
           >
             <h3 className="font-semibold text-gray-900 mb-2">Payout Tracking</h3>
-            <p className="text-gray-600 text-sm">Monitor contractor payments</p>
+            <p className="text-gray-400 text-sm">Monitor contractor payments</p>
           </Link>
 
           <Link
@@ -351,7 +351,7 @@ export default function AdminFinancialsPage() {
             className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition"
           >
             <h3 className="font-semibold text-gray-900 mb-2">Admin Dashboard</h3>
-            <p className="text-gray-600 text-sm">Back to main dashboard</p>
+            <p className="text-gray-400 text-sm">Back to main dashboard</p>
           </Link>
         </div>
       </div>

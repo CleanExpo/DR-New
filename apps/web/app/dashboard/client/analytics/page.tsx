@@ -77,7 +77,7 @@ export default function ClientAnalyticsDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your analytics...</p>
+          <p className="text-gray-400">Loading your analytics...</p>
         </div>
       </div>
     );
@@ -97,7 +97,7 @@ export default function ClientAnalyticsDashboard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Your Analytics</h1>
-          <p className="text-gray-600 mt-2">Track your spending, service history, and quality metrics</p>
+          <p className="text-gray-400 mt-2">Track your spending, service history, and quality metrics</p>
         </div>
 
         {/* Error Alert */}
@@ -114,47 +114,47 @@ export default function ClientAnalyticsDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
               {/* Total Spent Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Spent</p>
+                <p className="text-gray-400 text-sm font-medium">Total Spent</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.overview.totalSpent.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-600 mt-1">All-time spending</p>
+                <p className="text-xs text-gray-400 mt-1">All-time spending</p>
               </div>
 
               {/* Average Spend Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Average Per Job</p>
+                <p className="text-gray-400 text-sm font-medium">Average Per Job</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.overview.averageSpend.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-600 mt-1">Across {data.spending.total} transactions</p>
+                <p className="text-xs text-gray-400 mt-1">Across {data.spending.total} transactions</p>
               </div>
 
               {/* Jobs Completed Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Jobs Completed</p>
+                <p className="text-gray-400 text-sm font-medium">Jobs Completed</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{data.overview.jobsCompleted}</p>
-                <p className="text-xs text-gray-600 mt-1">Successful projects</p>
+                <p className="text-xs text-gray-400 mt-1">Successful projects</p>
               </div>
 
               {/* Active Requests Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Active Requests</p>
+                <p className="text-gray-400 text-sm font-medium">Active Requests</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{data.overview.activeServiceRequests}</p>
-                <p className="text-xs text-gray-600 mt-1">Open or matched</p>
+                <p className="text-xs text-gray-400 mt-1">Open or matched</p>
               </div>
 
               {/* Upcoming Bookings Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Upcoming Jobs</p>
+                <p className="text-gray-400 text-sm font-medium">Upcoming Jobs</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{data.overview.upcomingBookings}</p>
-                <p className="text-xs text-gray-600 mt-1">Scheduled work</p>
+                <p className="text-xs text-gray-400 mt-1">Scheduled work</p>
               </div>
             </div>
 
@@ -167,7 +167,7 @@ export default function ClientAnalyticsDashboard() {
                   {/* Average Rating */}
                   <div className="border-b pb-4 last:border-b-0 last:pb-0">
                     <div className="flex justify-between items-start mb-2">
-                      <span className="text-gray-600 font-medium">Average Contractor Rating</span>
+                      <span className="text-gray-400 font-medium">Average Contractor Rating</span>
                       <span className="text-2xl font-bold text-yellow-500">
                         {data.quality.averageRating.toFixed(1)}
                       </span>
@@ -186,16 +186,16 @@ export default function ClientAnalyticsDashboard() {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-xs text-gray-600 mt-2">Based on {data.quality.ratingsCount} ratings</p>
+                    <p className="text-xs text-gray-400 mt-2">Based on {data.quality.ratingsCount} ratings</p>
                   </div>
 
                   {/* Disputes */}
                   <div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600 font-medium">Disputes or Refunds</span>
+                      <span className="text-gray-400 font-medium">Disputes or Refunds</span>
                       <span className="text-2xl font-bold text-gray-900">{data.quality.disputes}</span>
                     </div>
-                    <p className="text-xs text-gray-600 mt-1">
+                    <p className="text-xs text-gray-400 mt-1">
                       {data.quality.disputes === 0 ? '✓ No issues on record' : 'Items requiring attention'}
                     </p>
                   </div>
@@ -211,7 +211,7 @@ export default function ClientAnalyticsDashboard() {
                       <div key={idx} className="flex justify-between items-center pb-2 border-b last:border-b-0">
                         <div>
                           <p className="text-sm font-medium text-gray-900">{item.serviceType}</p>
-                          <p className="text-xs text-gray-600">{item.count} job{item.count !== 1 ? 's' : ''}</p>
+                          <p className="text-xs text-gray-400">{item.count} job{item.count !== 1 ? 's' : ''}</p>
                         </div>
                         <span className="font-bold text-gray-900">
                           ${item.amount.toLocaleString('en-AU', {
@@ -223,7 +223,7 @@ export default function ClientAnalyticsDashboard() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-600">No spending data available</p>
+                  <p className="text-sm text-gray-400">No spending data available</p>
                 )}
               </div>
             </div>
@@ -235,7 +235,7 @@ export default function ClientAnalyticsDashboard() {
                 className="bg-white hover:bg-gray-50 border border-gray-300 rounded-lg p-6 transition-colors"
               >
                 <p className="text-lg font-bold text-gray-900">Detailed Spending Analysis</p>
-                <p className="text-sm text-gray-600 mt-2">View spending trends, monthly breakdown, and contractor analysis</p>
+                <p className="text-sm text-gray-400 mt-2">View spending trends, monthly breakdown, and contractor analysis</p>
                 <p className="text-xs text-blue-600 mt-3 font-medium">View Details →</p>
               </Link>
 
@@ -247,7 +247,7 @@ export default function ClientAnalyticsDashboard() {
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-600 mt-2">This month's spending</p>
+                <p className="text-xs text-gray-400 mt-2">This month's spending</p>
               </div>
             </div>
 
@@ -256,15 +256,15 @@ export default function ClientAnalyticsDashboard() {
               <h2 className="text-lg font-bold text-gray-900 mb-4">Your Summary</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">Total Transactions</p>
+                  <p className="text-gray-400 text-sm font-medium">Total Transactions</p>
                   <p className="text-2xl font-bold text-gray-900 mt-1">{data.spending.total}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">Services Used</p>
+                  <p className="text-gray-400 text-sm font-medium">Services Used</p>
                   <p className="text-2xl font-bold text-gray-900 mt-1">{data.spending.byServiceType.length}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">Completion Rate</p>
+                  <p className="text-gray-400 text-sm font-medium">Completion Rate</p>
                   <p className="text-2xl font-bold text-green-600 mt-1">
                     {data.spending.total > 0
                       ? ((data.overview.jobsCompleted / data.overview.activeServiceRequests || 1) * 100).toFixed(0)

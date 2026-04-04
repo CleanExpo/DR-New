@@ -64,7 +64,7 @@ export default function ClientDemoPage() {
             <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
               Track Your Job
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-400">
               {activeJob?.serviceType || 'Loading...'}
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function ClientDemoPage() {
                         <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                           Your contractor is on the way!
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-400 dark:text-gray-400">
                           {activeJob.contractor?.businessName || 'Contractor'} is heading to your location
                         </p>
                       </div>
@@ -183,11 +183,11 @@ export default function ClientDemoPage() {
                       <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-gray-800/90 px-3 py-2 rounded-lg text-xs">
                         <div className="flex items-center gap-2 mb-1">
                           <div className="w-3 h-3 bg-teal-500 rounded-full" />
-                          <span className="text-gray-600 dark:text-gray-300">Contractor</span>
+                          <span className="text-gray-400 dark:text-gray-300">Contractor</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 bg-red-500 rounded-full" />
-                          <span className="text-gray-600 dark:text-gray-300">Your Location</span>
+                          <span className="text-gray-400 dark:text-gray-300">Your Location</span>
                         </div>
                       </div>
 
@@ -279,7 +279,7 @@ export default function ClientDemoPage() {
                       <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                         {activeJob.contractor.businessName}
                       </h3>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-400">
                         {activeJob.contractor.user.name}
                       </p>
                       <div className="flex items-center gap-4 mt-2">
@@ -287,7 +287,7 @@ export default function ClientDemoPage() {
                           <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
                           <span className="text-sm font-medium">{activeJob.contractor.rating}</span>
                         </div>
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-400">
                           {activeJob.contractor.completedJobs} jobs completed
                         </span>
                       </div>
@@ -377,7 +377,7 @@ export default function ClientDemoPage() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                 No Active Job
               </h3>
-              <p className="text-gray-500 mb-4">
+              <p className="text-gray-400 mb-4">
                 Start a demo scenario to see the client tracking experience.
               </p>
               <Button onClick={() => controls.startScenario('full_journey')}>
@@ -388,7 +388,7 @@ export default function ClientDemoPage() {
         )}
 
         {/* Help */}
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center text-sm text-gray-400">
           <p>
             Need help?{' '}
             <a href="/contact" className="text-teal-600 hover:underline">

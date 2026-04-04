@@ -309,7 +309,7 @@ export default function AnalyticsExportsPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading exports dashboard...</p>
+          <p className="text-gray-400">Loading exports dashboard...</p>
         </div>
       </div>
     );
@@ -335,7 +335,7 @@ export default function AnalyticsExportsPage() {
             ← Back to Analytics
           </button>
           <h1 className="text-3xl font-bold text-gray-900">Export Reports</h1>
-          <p className="text-gray-600 mt-2">Generate and download analytics reports</p>
+          <p className="text-gray-400 mt-2">Generate and download analytics reports</p>
         </div>
 
         {/* Error/Success Alerts */}
@@ -363,7 +363,7 @@ export default function AnalyticsExportsPage() {
                 className="border border-gray-200 rounded-lg p-4 hover:border-blue-500 transition-colors"
               >
                 <h3 className="font-semibold text-gray-900">{report.label}</h3>
-                <p className="text-sm text-gray-600 mt-1">{report.description}</p>
+                <p className="text-sm text-gray-400 mt-1">{report.description}</p>
               </div>
             ))}
           </div>
@@ -465,28 +465,28 @@ export default function AnalyticsExportsPage() {
           {loadingExports ? (
             <div className="text-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-              <p className="text-gray-600 text-sm">Loading exports...</p>
+              <p className="text-gray-400 text-sm">Loading exports...</p>
             </div>
           ) : recentExports.length === 0 ? (
-            <p className="text-gray-600 text-center py-8">No recent exports found</p>
+            <p className="text-gray-400 text-center py-8">No recent exports found</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Export Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Format
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Size
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Date Generated
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Action
                     </th>
                   </tr>
@@ -497,15 +497,15 @@ export default function AnalyticsExportsPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {exportRecord.name}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                           {exportRecord.format}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                         {exportRecord.size}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                         {formatDate(exportRecord.dateGenerated)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
@@ -612,34 +612,34 @@ export default function AnalyticsExportsPage() {
           {loadingScheduled ? (
             <div className="text-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-              <p className="text-gray-600 text-sm">Loading scheduled reports...</p>
+              <p className="text-gray-400 text-sm">Loading scheduled reports...</p>
             </div>
           ) : scheduledReports.length === 0 ? (
-            <p className="text-gray-600 text-center py-8">No scheduled reports configured</p>
+            <p className="text-gray-400 text-center py-8">No scheduled reports configured</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Report Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Type
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Frequency
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Recipients
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Next Run
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Status
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -650,13 +650,13 @@ export default function AnalyticsExportsPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {report.name}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                         {AVAILABLE_REPORTS.find((r) => r.value === report.reportType)?.label || report.reportType}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                         {report.frequency}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600">
+                      <td className="px-6 py-4 text-sm text-gray-400">
                         <div className="max-w-xs">
                           {report.recipients.length === 1 ? (
                             report.recipients[0]
@@ -674,7 +674,7 @@ export default function AnalyticsExportsPage() {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                         {new Date(report.nextRun).toLocaleDateString('en-AU', {
                           year: 'numeric',
                           month: 'short',

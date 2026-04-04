@@ -115,7 +115,7 @@ export default function ClientClaimsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">My Claims</h1>
-          <p className="text-gray-600 mt-2">Track the status of your disaster recovery claims</p>
+          <p className="text-gray-400 mt-2">Track the status of your disaster recovery claims</p>
         </div>
         <Button
           variant="primary"
@@ -138,13 +138,13 @@ export default function ClientClaimsPage() {
       <div className="grid grid-cols-1 gap-4">
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader className="h-8 w-8 animate-spin text-gray-600" />
+            <Loader className="h-8 w-8 animate-spin text-gray-400" />
           </div>
         ) : claims.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
             <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 font-medium">No claims yet</p>
-            <p className="text-gray-500 mt-2">Start a new claim to get matched with contractors</p>
+            <p className="text-gray-400 font-medium">No claims yet</p>
+            <p className="text-gray-400 mt-2">Start a new claim to get matched with contractors</p>
             <Button
               variant="primary"
               onClick={() => router.push('/claim/step-1')}
@@ -178,7 +178,7 @@ export default function ClientClaimsPage() {
                         {claim.status.replace('_', ' ')}
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 line-clamp-2">{claim.description}</p>
+                    <p className="text-sm text-gray-400 line-clamp-2">{claim.description}</p>
                   </div>
 
                   {/* Quick Actions */}
@@ -188,7 +188,7 @@ export default function ClientClaimsPage() {
                 {/* Details Row */}
                 <div className="grid grid-cols-4 gap-4 pb-4 border-b border-gray-200">
                   <div>
-                    <div className="flex items-center gap-1 text-gray-600 mb-1">
+                    <div className="flex items-center gap-1 text-gray-400 mb-1">
                       <MapPin className="h-4 w-4" />
                       <span className="text-xs font-medium uppercase">Location</span>
                     </div>
@@ -198,7 +198,7 @@ export default function ClientClaimsPage() {
                   </div>
 
                   <div>
-                    <div className="flex items-center gap-1 text-gray-600 mb-1">
+                    <div className="flex items-center gap-1 text-gray-400 mb-1">
                       <DollarSign className="h-4 w-4" />
                       <span className="text-xs font-medium uppercase">Estimate</span>
                     </div>
@@ -208,20 +208,20 @@ export default function ClientClaimsPage() {
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">Submitted</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase mb-1">Submitted</p>
                     <p className="text-sm font-semibold text-gray-900">
                       {formatDate(claim.submittedAt)}
                     </p>
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">
+                    <p className="text-xs font-medium text-gray-400 uppercase mb-1">
                       {claim.contractor ? 'Assigned' : 'Status'}
                     </p>
                     {claim.contractor ? (
                       <div className="text-sm">
                         <p className="font-semibold text-gray-900">{claim.contractor.businessName}</p>
-                        <p className="text-xs text-gray-600 flex items-center gap-1">
+                        <p className="text-xs text-gray-400 flex items-center gap-1">
                           ⭐ {claim.contractor.rating.toFixed(1)}/5
                         </p>
                       </div>
@@ -238,7 +238,7 @@ export default function ClientClaimsPage() {
                       <span className="text-sm font-semibold text-gray-900">You rated:</span>
                       <span className="text-lg font-bold text-yellow-500">{claim.rating.rating}⭐</span>
                       {claim.rating.review && (
-                        <span className="text-sm text-gray-600">"{claim.rating.review}"</span>
+                        <span className="text-sm text-gray-400">"{claim.rating.review}"</span>
                       )}
                     </div>
                   </div>

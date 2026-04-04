@@ -115,7 +115,7 @@ export function ClientJobTracker({
               <Clock className="h-8 w-8 text-blue-600" />
               <div>
                 <h3 className="font-semibold text-gray-900">Job Progress</h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-400">
                   {job.contractorName || 'Your contractor'} • {job.serviceType}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export function ClientJobTracker({
             <div className="text-right">
               {!isCompleted && !isCancelled && timeline.estimatedCompletionTime && (
                 <>
-                  <p className="text-sm text-gray-600">Estimated completion</p>
+                  <p className="text-sm text-gray-400">Estimated completion</p>
                   <p className="text-lg font-semibold text-gray-900">
                     {formatEstimatedCompletion(timeline.estimatedCompletionTime)}
                   </p>
@@ -137,7 +137,7 @@ export function ClientJobTracker({
               )}
               {isCompleted && (
                 <>
-                  <p className="text-sm text-gray-600">Total duration</p>
+                  <p className="text-sm text-gray-400">Total duration</p>
                   <p className="text-lg font-semibold text-green-700">
                     {formatDuration(timeline.totalElapsedMinutes)}
                   </p>
@@ -150,7 +150,7 @@ export function ClientJobTracker({
           {!isCompleted && !isCancelled && (
             <div className="mt-4">
               <div className="flex items-center justify-between text-sm mb-2">
-                <span className="text-gray-600">Overall Progress</span>
+                <span className="text-gray-400">Overall Progress</span>
                 <span className="font-semibold text-gray-900">
                   {timeline.overallProgress}%
                 </span>
@@ -300,7 +300,7 @@ export function ClientJobTracker({
 
                         {/* Expected duration for future steps */}
                         {!step.isCurrent && !step.isCompleted && step.estimatedDuration > 0 && (
-                          <Badge variant="outline" className="border-gray-300 text-gray-600">
+                          <Badge variant="outline" className="border-gray-300 text-gray-400">
                             ~{formatDuration(step.estimatedDuration)}
                           </Badge>
                         )}
@@ -316,7 +316,7 @@ export function ClientJobTracker({
 
                       {/* Timestamp */}
                       {step.timestamp && (
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-xs text-gray-400 mt-1">
                           {step.timestamp.toLocaleString('en-AU', {
                             month: 'short',
                             day: 'numeric',
@@ -383,7 +383,7 @@ export function ClientJobTracker({
       </Card>
 
       {/* Connection Status */}
-      <div className="text-xs text-center text-gray-500">
+      <div className="text-xs text-center text-gray-400">
         {isConnected ? (
           <span className="flex items-center justify-center gap-1">
             <span className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></span>

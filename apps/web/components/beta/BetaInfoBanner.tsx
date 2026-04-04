@@ -70,14 +70,14 @@ export function BetaInfoBanner({
             <h3 className="text-sm font-semibold text-gray-900">
               You&apos;re invited to the beta programme!
             </h3>
-            <p className="mt-1 text-sm text-gray-600">
+            <p className="mt-1 text-sm text-gray-400">
               You&apos;ve been invited to join the <strong>{invitation.program.name}</strong> beta.
               {invitation.tierOverride && (
                 <> You&apos;ll get <strong>{invitation.tierOverride}</strong> tier access during the beta period.</>
               )}
             </p>
             {invitation.program.description && (
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 text-xs text-gray-400">
                 {invitation.program.description}
               </p>
             )}
@@ -105,7 +105,7 @@ export function BetaInfoBanner({
           {dismissible && (
             <button
               onClick={() => setIsDismissed(true)}
-              className="flex-shrink-0 text-gray-400 hover:text-gray-500"
+              className="flex-shrink-0 text-gray-400 hover:text-gray-400"
             >
               <X className="h-5 w-5" />
             </button>

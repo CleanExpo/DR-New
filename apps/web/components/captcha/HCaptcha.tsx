@@ -227,8 +227,8 @@ export function HCaptcha({
       <div
         className={`bg-gray-100 border border-gray-300 rounded-lg p-6 flex items-center justify-center ${className}`}
       >
-        <Loader2 className="h-6 w-6 text-gray-500 animate-spin" />
-        <span className="ml-2 text-gray-600">Loading verification...</span>
+        <Loader2 className="h-6 w-6 text-gray-400 animate-spin" />
+        <span className="ml-2 text-gray-400">Loading verification...</span>
       </div>
     );
   }

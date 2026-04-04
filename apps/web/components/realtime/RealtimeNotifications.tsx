@@ -132,7 +132,7 @@ export function RealtimeNotifications({ userId, className = '' }: RealtimeNotifi
       case 'review':
         return <AlertCircle className="h-5 w-5 text-yellow-500" />;
       default:
-        return <Bell className="h-5 w-5 text-gray-500" />;
+        return <Bell className="h-5 w-5 text-gray-400" />;
     }
   };
 

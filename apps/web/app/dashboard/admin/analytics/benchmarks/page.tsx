@@ -131,7 +131,7 @@ export default function BenchmarksPage() {
       case 'above':
         return 'text-green-600';
       case 'at':
-        return 'text-gray-600';
+        return 'text-gray-400';
       case 'below':
         return 'text-red-600';
     }
@@ -157,7 +157,7 @@ export default function BenchmarksPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading benchmarks...</p>
+          <p className="text-gray-400">Loading benchmarks...</p>
         </div>
       </div>
     );
@@ -183,7 +183,7 @@ export default function BenchmarksPage() {
             ← Back
           </button>
           <h1 className="text-3xl font-bold text-gray-900">Performance Benchmarking</h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-400 mt-2">
             Compare contractor, service, and regional performance metrics
           </p>
         </div>
@@ -397,31 +397,31 @@ export default function BenchmarksPage() {
                     <h3 className="font-bold text-gray-900 mb-3">{region.region}</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Average Price:</span>
+                        <span className="text-gray-400">Average Price:</span>
                         <span className="font-medium text-gray-900">
                           ${region.averagePrice.toLocaleString('en-AU')}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Total Jobs:</span>
+                        <span className="text-gray-400">Total Jobs:</span>
                         <span className="font-medium text-gray-900">
                           {region.totalJobs}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Total Revenue:</span>
+                        <span className="text-gray-400">Total Revenue:</span>
                         <span className="font-medium text-gray-900">
                           ${region.totalRevenue.toLocaleString('en-AU')}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Completion Rate:</span>
+                        <span className="text-gray-400">Completion Rate:</span>
                         <span className="font-medium text-gray-900">
                           {region.completionRate.toFixed(1)}%
                         </span>
                       </div>
                       <div className="flex justify-between pt-2 border-t border-gray-200">
-                        <span className="text-gray-600">Top Service:</span>
+                        <span className="text-gray-400">Top Service:</span>
                         <span className="font-medium text-blue-600">
                           {region.topService}
                         </span>
@@ -463,7 +463,7 @@ export default function BenchmarksPage() {
 
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-gray-600">Platform Average</p>
+                        <p className="text-gray-400">Platform Average</p>
                         <p className="font-medium text-gray-900">
                           {metric.platformAverage.toLocaleString('en-AU')}
                           {metric.unit}
@@ -471,7 +471,7 @@ export default function BenchmarksPage() {
                       </div>
                       {metric.industryAverage !== null && (
                         <div>
-                          <p className="text-gray-600">Industry Average</p>
+                          <p className="text-gray-400">Industry Average</p>
                           <p className="font-medium text-gray-900">
                             {metric.industryAverage.toLocaleString('en-AU')}
                             {metric.unit}
@@ -481,7 +481,7 @@ export default function BenchmarksPage() {
                     </div>
 
                     <div className="mt-3 pt-3 border-t border-gray-200">
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-gray-400">
                         {metric.indicator === 'above' &&
                           'Above average performance - keep up the good work!'}
                         {metric.indicator === 'at' &&

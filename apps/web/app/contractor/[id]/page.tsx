@@ -507,7 +507,7 @@ export default function ContractorProfilePage() {
                       </Button>
                     </div>
 
-                    <p className="text-gray-500 text-xs">
+                    <p className="text-gray-400 text-xs">
                       This QR code links clients directly to your verified NRPG profile page.
                     </p>
                   </div>

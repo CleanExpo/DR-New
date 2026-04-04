@@ -373,7 +373,7 @@ export default function ContractorDashboardPage() {
                     ? 'text-portal-success'
                     : availability.status === 'suspended'
                     ? 'text-red-500'
-                    : 'text-gray-500'
+                    : 'text-gray-400'
                 }`} />
               </div>
               <div>
@@ -386,7 +386,7 @@ export default function ContractorDashboardPage() {
                       ? 'bg-portal-success/10 text-portal-success'
                       : availability.status === 'suspended'
                       ? 'bg-red-500/10 text-red-500'
-                      : 'bg-gray-500/10 text-gray-500'
+                      : 'bg-gray-500/10 text-gray-400'
                   }`}>
                     {availability.status}
                   </span>

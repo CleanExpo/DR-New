@@ -73,7 +73,7 @@ export function FAQAccordion({ faqs, className }: FAQAccordionProps) {
           >
             <div className="border-t border-gray-100 px-6 pb-6 pt-4">
               {typeof faq.answer === 'string' ? (
-                <p className="text-base leading-relaxed text-gray-600">{faq.answer}</p>
+                <p className="text-base leading-relaxed text-gray-400">{faq.answer}</p>
               ) : (
                 faq.answer
               )}
@@ -101,8 +101,8 @@ export const waitlistFAQs: FAQ[] = [
     question: 'What happens after I join the waitlist?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">After joining, you will receive:</p>
-        <ul className="list-inside list-disc space-y-1 text-gray-600">
+        <p className="text-gray-400">After joining, you will receive:</p>
+        <ul className="list-inside list-disc space-y-1 text-gray-400">
           <li>A confirmation email with your spot on the waitlist</li>
           <li>Monthly progress updates as we build the platform</li>
           <li>Exclusive disaster recovery tips and resources</li>
@@ -116,8 +116,8 @@ export const waitlistFAQs: FAQ[] = [
     question: 'Who can use the NRPG platform?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">The platform serves two primary users:</p>
-        <ul className="list-inside list-disc space-y-1 text-gray-600">
+        <p className="text-gray-400">The platform serves two primary users:</p>
+        <ul className="list-inside list-disc space-y-1 text-gray-400">
           <li>
             <strong>Property Owners:</strong> Homeowners, landlords, property managers, or business
             owners who need disaster recovery services (water damage, fire damage, mould, storm
@@ -135,8 +135,8 @@ export const waitlistFAQs: FAQ[] = [
     question: 'What makes NRPG different from other platforms?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">NRPG is the only platform that combines:</p>
-        <ul className="list-inside list-disc space-y-1 text-gray-600">
+        <p className="text-gray-400">NRPG is the only platform that combines:</p>
+        <ul className="list-inside list-disc space-y-1 text-gray-400">
           <li>
             <strong>Strict verification:</strong> Only IICRC-certified, insured, and
             background-checked contractors
@@ -170,8 +170,8 @@ export const contractorFAQs: FAQ[] = [
     question: 'How much does it cost to join?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">NRPG membership includes the following costs:</p>
-        <ul className="list-inside list-disc space-y-1 text-gray-600">
+        <p className="text-gray-400">NRPG membership includes the following costs:</p>
+        <ul className="list-inside list-disc space-y-1 text-gray-400">
           <li>
             <strong>Training Program:</strong> $1,495 AUD (one-time) for all 24 certification modules (22+ hours of training)
           </li>
@@ -188,7 +188,7 @@ export const contractorFAQs: FAQ[] = [
             <strong>No Hidden Costs:</strong> Transparent pricing with no surprise fees
           </li>
         </ul>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-gray-400">
           Training investment includes lifetime access to all modules, ongoing updates, and NRPG certification upon completion.
         </p>
       </div>
@@ -198,7 +198,7 @@ export const contractorFAQs: FAQ[] = [
     question: 'How does the $550 platform fee work?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">Our platform fee structure is simple and transparent:</p>
+        <p className="text-gray-400">Our platform fee structure is simple and transparent:</p>
 
         <div className="bg-blue-50 border-l-4 border-blue-600 p-3 rounded">
           <p className="font-semibold text-blue-900 mb-2">The $550 Flat Fee Model:</p>
@@ -210,7 +210,7 @@ export const contractorFAQs: FAQ[] = [
           </ol>
         </div>
 
-        <ul className="list-inside list-disc space-y-1 text-gray-600 mt-3">
+        <ul className="list-inside list-disc space-y-1 text-gray-400 mt-3">
           <li>
             <strong>No percentage commissions:</strong> Unlike other platforms, we never take a cut of your work
           </li>
@@ -221,7 +221,7 @@ export const contractorFAQs: FAQ[] = [
             <strong>No cancellation fees:</strong> Leave anytime, no penalties
           </li>
         </ul>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-gray-400">
           Compare to competitors: HIPages takes 20-30% commission, ServiceSeeking takes 15-25%. We take just $550 flat.
         </p>
       </div>
@@ -231,8 +231,8 @@ export const contractorFAQs: FAQ[] = [
     question: 'How do I receive jobs?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">Here's how job matching works:</p>
-        <ol className="list-inside list-decimal space-y-1 text-gray-600">
+        <p className="text-gray-400">Here's how job matching works:</p>
+        <ol className="list-inside list-decimal space-y-1 text-gray-400">
           <li>Property owner submits a claim (water damage, fire, mould, etc.)</li>
           <li>
             Our system matches the claim with contractors based on: certifications, service areas,
@@ -249,7 +249,7 @@ export const contractorFAQs: FAQ[] = [
     question: 'What are the complete membership requirements?',
     answer: (
       <div className="space-y-3">
-        <p className="text-gray-600">
+        <p className="text-gray-400">
           <strong>To become an NRPG member, you must meet ALL of the following requirements:</strong>
         </p>
 
@@ -290,8 +290,8 @@ export const contractorFAQs: FAQ[] = [
     question: 'How long does the approval process take?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">The complete onboarding process includes:</p>
-        <ol className="list-inside list-decimal space-y-1 text-gray-600">
+        <p className="text-gray-400">The complete onboarding process includes:</p>
+        <ol className="list-inside list-decimal space-y-1 text-gray-400">
           <li>
             <strong>Application Review:</strong> 2-3 business days for initial verification
           </li>
@@ -308,7 +308,7 @@ export const contractorFAQs: FAQ[] = [
             <strong>Platform Activation:</strong> Start receiving qualified leads once certified
           </li>
         </ol>
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-gray-400">
           Most contractors complete the training program within 2-4 weeks while working full-time. You can study at your own pace.
         </p>
       </div>
@@ -318,8 +318,8 @@ export const contractorFAQs: FAQ[] = [
     question: 'What support and training do you provide?',
     answer: (
       <div className="space-y-2">
-        <p className="text-gray-600">NRPG provides comprehensive support:</p>
-        <ul className="list-inside list-disc space-y-1 text-gray-600">
+        <p className="text-gray-400">NRPG provides comprehensive support:</p>
+        <ul className="list-inside list-disc space-y-1 text-gray-400">
           <li>
             <strong>Complete Training Program:</strong> 24 professional modules covering all aspects of disaster recovery business operations (22+ hours of content)
           </li>

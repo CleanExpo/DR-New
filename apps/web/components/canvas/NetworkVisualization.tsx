@@ -255,7 +255,7 @@ export function NetworkVisualization({
 
       {/* Legend */}
       {showLegend && (
-        <div className="mt-4 text-xs text-gray-600 bg-blue-50 p-3 rounded-lg">
+        <div className="mt-4 text-xs text-gray-400 bg-blue-50 p-3 rounded-lg">
           <p>
             💡 <strong>Controls:</strong> Hover to highlight connections.
             Drag nodes to reposition. Scroll to zoom. Click nodes for details.

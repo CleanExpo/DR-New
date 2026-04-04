@@ -111,7 +111,7 @@ export default function AIMonitoringDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading AI metrics...</p>
+          <p className="text-gray-400">Loading AI metrics...</p>
         </div>
       </div>
     );
@@ -143,12 +143,12 @@ export default function AIMonitoringDashboard() {
         <div className="mb-8 flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">AI Monitoring Dashboard</h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-400 mt-2">
               Real-time AI provider status, usage metrics, and performance insights
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <label className="flex items-center gap-2 text-sm text-gray-600">
+            <label className="flex items-center gap-2 text-sm text-gray-400">
               <input
                 type="checkbox"
                 checked={autoRefresh}
@@ -208,7 +208,7 @@ export default function AIMonitoringDashboard() {
                   >
                     <div className="flex justify-between items-start">
                       <div>
-                        <p className="text-gray-600 text-sm font-medium">{provider.name}</p>
+                        <p className="text-gray-400 text-sm font-medium">{provider.name}</p>
                         <p
                           className={`text-lg font-bold mt-1 ${
                             provider.available ? 'text-green-600' : 'text-red-600'
@@ -224,7 +224,7 @@ export default function AIMonitoringDashboard() {
                       />
                     </div>
                     {provider.latencyMs && (
-                      <p className="text-sm text-gray-500 mt-2">
+                      <p className="text-sm text-gray-400 mt-2">
                         Latency: {formatDuration(provider.latencyMs)}
                       </p>
                     )}
@@ -246,14 +246,14 @@ export default function AIMonitoringDashboard() {
                 >
                   <div className="flex justify-between items-start">
                     <div>
-                      <p className="text-gray-600 text-sm font-medium">T5Gemma (Local)</p>
+                      <p className="text-gray-400 text-sm font-medium">T5Gemma (Local)</p>
                       <p
                         className={`text-lg font-bold mt-1 ${
                           metrics.t5gemma.available
                             ? 'text-green-600'
                             : metrics.t5gemma.transformersInstalled
                             ? 'text-yellow-600'
-                            : 'text-gray-500'
+                            : 'text-gray-400'
                         }`}
                       >
                         {metrics.t5gemma.available
@@ -273,7 +273,7 @@ export default function AIMonitoringDashboard() {
                       }`}
                     />
                   </div>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-gray-400 mt-2">
                     Model: {String(metrics.t5gemma.config.modelSize || 'N/A')}
                   </p>
                 </div>
@@ -283,31 +283,31 @@ export default function AIMonitoringDashboard() {
             {/* Usage Overview */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Requests</p>
+                <p className="text-gray-400 text-sm font-medium">Total Requests</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {metrics.usage.totalRequests.toLocaleString()}
                 </p>
-                <p className="text-sm text-gray-500 mt-1">This {period}</p>
+                <p className="text-sm text-gray-400 mt-1">This {period}</p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Tokens</p>
+                <p className="text-gray-400 text-sm font-medium">Total Tokens</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {formatTokens(metrics.usage.totalTokens)}
                 </p>
-                <p className="text-sm text-gray-500 mt-1">This {period}</p>
+                <p className="text-sm text-gray-400 mt-1">This {period}</p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Estimated Cost</p>
+                <p className="text-gray-400 text-sm font-medium">Estimated Cost</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${metrics.usage.estimatedCost.toFixed(2)}
                 </p>
-                <p className="text-sm text-gray-500 mt-1">USD this {period}</p>
+                <p className="text-sm text-gray-400 mt-1">USD this {period}</p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Success Rate</p>
+                <p className="text-gray-400 text-sm font-medium">Success Rate</p>
                 <p
                   className={`text-3xl font-bold mt-2 ${
                     metrics.performance.successRate >= 95
@@ -319,7 +319,7 @@ export default function AIMonitoringDashboard() {
                 >
                   {metrics.performance.successRate.toFixed(1)}%
                 </p>
-                <p className="text-sm text-gray-500 mt-1">This {period}</p>
+                <p className="text-sm text-gray-400 mt-1">This {period}</p>
               </div>
             </div>
 
@@ -329,25 +329,25 @@ export default function AIMonitoringDashboard() {
                 <h2 className="text-lg font-bold text-gray-900 mb-4">Performance</h2>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Avg Latency</p>
+                    <p className="text-sm text-gray-400">Avg Latency</p>
                     <p className="text-2xl font-bold text-gray-900">
                       {formatDuration(metrics.performance.avgLatencyMs)}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">P95 Latency</p>
+                    <p className="text-sm text-gray-400">P95 Latency</p>
                     <p className="text-2xl font-bold text-gray-900">
                       {formatDuration(metrics.performance.p95LatencyMs)}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Success Rate</p>
+                    <p className="text-sm text-gray-400">Success Rate</p>
                     <p className="text-2xl font-bold text-green-600">
                       {metrics.performance.successRate.toFixed(1)}%
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Error Rate</p>
+                    <p className="text-sm text-gray-400">Error Rate</p>
                     <p className="text-2xl font-bold text-red-600">
                       {metrics.performance.errorRate.toFixed(1)}%
                     </p>
@@ -369,7 +369,7 @@ export default function AIMonitoringDashboard() {
                           <span className="text-sm font-medium text-gray-900">
                             {workflow.replace(/_/g, ' ')}
                           </span>
-                          <span className="text-xs text-gray-500 ml-2">
+                          <span className="text-xs text-gray-400 ml-2">
                             ({stats.requests} requests)
                           </span>
                         </div>
@@ -377,14 +377,14 @@ export default function AIMonitoringDashboard() {
                           <span className="text-sm font-medium text-gray-900">
                             {formatTokens(stats.tokens)} tokens
                           </span>
-                          <span className="text-xs text-gray-500 block">
+                          <span className="text-xs text-gray-400 block">
                             avg {formatDuration(stats.avgDuration)}
                           </span>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <p className="text-sm text-gray-600">No workflow data for this period</p>
+                    <p className="text-sm text-gray-400">No workflow data for this period</p>
                   )}
                 </div>
               </div>
@@ -397,22 +397,22 @@ export default function AIMonitoringDashboard() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Job ID
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Workflow
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Status
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Tokens
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Duration
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Created
                       </th>
                     </tr>
@@ -421,7 +421,7 @@ export default function AIMonitoringDashboard() {
                     {metrics.recentJobs.length > 0 ? (
                       metrics.recentJobs.map((job) => (
                         <tr key={job.id} className="hover:bg-gray-50">
-                          <td className="px-4 py-3 whitespace-nowrap text-sm font-mono text-gray-600">
+                          <td className="px-4 py-3 whitespace-nowrap text-sm font-mono text-gray-400">
                             {job.id.substring(0, 8)}...
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
@@ -442,13 +442,13 @@ export default function AIMonitoringDashboard() {
                               {job.status}
                             </span>
                           </td>
-                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">
+                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
                             {formatTokens(job.tokens)}
                           </td>
-                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-600">
+                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
                             {formatDuration(job.durationMs)}
                           </td>
-                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-400">
                             {new Date(job.createdAt).toLocaleString('en-AU')}
                           </td>
                         </tr>
@@ -457,7 +457,7 @@ export default function AIMonitoringDashboard() {
                       <tr>
                         <td
                           colSpan={6}
-                          className="px-4 py-8 text-center text-sm text-gray-500"
+                          className="px-4 py-8 text-center text-sm text-gray-400"
                         >
                           No AI jobs found for this period
                         </td>

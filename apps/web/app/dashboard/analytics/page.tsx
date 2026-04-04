@@ -120,7 +120,7 @@ export default function AnalyticsDashboardPage() {
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Platform Analytics</h1>
-            <p className="mt-2 text-gray-600">Real-time insights and performance metrics</p>
+            <p className="mt-2 text-gray-400">Real-time insights and performance metrics</p>
           </div>
           <div className="flex items-center space-x-2">
             {streamConnected ? (
@@ -131,7 +131,7 @@ export default function AnalyticsDashboardPage() {
             ) : (
               <>
                 <WifiOff className="h-5 w-5 text-gray-400" />
-                <span className="text-sm font-medium text-gray-600">Offline</span>
+                <span className="text-sm font-medium text-gray-400">Offline</span>
               </>
             )}
           </div>
@@ -188,7 +188,7 @@ export default function AnalyticsDashboardPage() {
             </div>
             <div className="space-y-2 text-xs">
               <div className="flex items-center justify-between">
-                <span className="text-gray-600">Database</span>
+                <span className="text-gray-400">Database</span>
                 <span className={`font-medium ${
                   realtimeMetrics?.systemHealth?.database === 'healthy'
                     ? 'text-green-600'
@@ -198,7 +198,7 @@ export default function AnalyticsDashboardPage() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-600">Redis</span>
+                <span className="text-gray-400">Redis</span>
                 <span className={`font-medium ${
                   realtimeMetrics?.systemHealth?.redis === 'healthy'
                     ? 'text-green-600'
@@ -208,7 +208,7 @@ export default function AnalyticsDashboardPage() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-600">Socket.io</span>
+                <span className="text-gray-400">Socket.io</span>
                 <span className={`font-medium ${
                   realtimeMetrics?.systemHealth?.socketio === 'healthy'
                     ? 'text-green-600'

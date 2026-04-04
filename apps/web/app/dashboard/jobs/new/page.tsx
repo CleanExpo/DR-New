@@ -173,11 +173,11 @@ export default function NewJobPage() {
               Property <span className="text-[#FF4444]">*</span>
             </label>
             {loadingProperties ? (
-              <div className="flex items-center gap-2 text-sm text-gray-500">
+              <div className="flex items-center gap-2 text-sm text-gray-400">
                 <Loader2 className="h-4 w-4 animate-spin" /> Loading properties...
               </div>
             ) : properties.length === 0 ? (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-400">
                 No properties found. Please add a property to your profile first.
               </p>
             ) : (
@@ -241,7 +241,7 @@ export default function NewJobPage() {
               maxLength={2000}
               className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#0d9488] focus:border-[#0d9488] resize-none"
             />
-            <p className="text-xs text-gray-500 mt-1">{notes.length}/2000 characters</p>
+            <p className="text-xs text-gray-400 mt-1">{notes.length}/2000 characters</p>
           </div>
 
           {/* Submit */}

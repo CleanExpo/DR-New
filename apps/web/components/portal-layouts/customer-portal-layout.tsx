@@ -133,7 +133,7 @@ export default function CustomerPortalLayout({
 
               {/* Search Bar */}
               <div className="hidden md:flex items-center bg-gray-100 rounded-lg px-3 py-2 w-64">
-                <Search className="h-4 w-4 text-gray-500" />
+                <Search className="h-4 w-4 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search bookings, claims..."
@@ -158,7 +158,7 @@ export default function CustomerPortalLayout({
               <div className="flex items-center gap-3 pl-4 border-l">
                 <div className="hidden sm:block text-right">
                   <p className="text-sm font-medium">{userName}</p>
-                  <p className="text-xs text-gray-500">Customer</p>
+                  <p className="text-xs text-gray-400">Customer</p>
                 </div>
                 <button className="p-2 hover:bg-gray-100 rounded-lg">
                   <ChevronDown className="h-4 w-4" />

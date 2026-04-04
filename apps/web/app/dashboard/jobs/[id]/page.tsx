@@ -269,13 +269,13 @@ export default function JobDetailPage() {
                           ? 'bg-[#00FF88]/20 text-[#00FF88]'
                           : isCurrent
                           ? 'ring-2 ring-offset-2 ring-offset-[#050505]'
-                          : 'bg-white/5 text-gray-600'
+                          : 'bg-white/5 text-gray-400'
                       }`}
                       style={isCurrent ? { backgroundColor: sCfg.bgColour, color: sCfg.colour, ringColor: sCfg.colour } : {}}
                     >
                       {isCompleted ? '✓' : idx + 1}
                     </div>
-                    <span className={`text-xs mt-1.5 whitespace-nowrap ${isCurrent ? 'text-white font-medium' : 'text-gray-500'}`}>
+                    <span className={`text-xs mt-1.5 whitespace-nowrap ${isCurrent ? 'text-white font-medium' : 'text-gray-400'}`}>
                       {sCfg.label}
                     </span>
                   </div>
@@ -304,7 +304,7 @@ export default function JobDetailPage() {
               <p className="text-sm text-gray-400">
                 {job.property.suburb}, {job.property.state} {job.property.postcode}
               </p>
-              <p className="text-xs text-gray-500 mt-1">{job.property.propertyType}</p>
+              <p className="text-xs text-gray-400 mt-1">{job.property.propertyType}</p>
             </div>
 
             {/* Cost Info */}
@@ -314,26 +314,26 @@ export default function JobDetailPage() {
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs text-gray-500">Estimated</p>
+                  <p className="text-xs text-gray-400">Estimated</p>
                   <p className="text-lg font-semibold text-white">
                     {job.estimatedCost ? `$${Number(job.estimatedCost).toLocaleString('en-AU')}` : 'N/A'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500">Actual</p>
+                  <p className="text-xs text-gray-400">Actual</p>
                   <p className="text-lg font-semibold text-[#00FF88]">
                     {job.actualCost ? `$${Number(job.actualCost).toLocaleString('en-AU')}` : 'N/A'}
                   </p>
                 </div>
                 {job.hoursWorked && (
                   <div>
-                    <p className="text-xs text-gray-500">Hours Worked</p>
+                    <p className="text-xs text-gray-400">Hours Worked</p>
                     <p className="text-sm text-white">{Number(job.hoursWorked)}h</p>
                   </div>
                 )}
                 {job.materialsUsed && (
                   <div>
-                    <p className="text-xs text-gray-500">Materials</p>
+                    <p className="text-xs text-gray-400">Materials</p>
                     <p className="text-sm text-white">{job.materialsUsed}</p>
                   </div>
                 )}
@@ -356,7 +356,7 @@ export default function JobDetailPage() {
                 <FileText className="h-4 w-4" /> Documents ({job.documents.length})
               </h3>
               {job.documents.length === 0 ? (
-                <p className="text-sm text-gray-500">No documents uploaded yet.</p>
+                <p className="text-sm text-gray-400">No documents uploaded yet.</p>
               ) : (
                 <div className="space-y-2">
                   {job.documents.map((doc) => (
@@ -366,7 +366,7 @@ export default function JobDetailPage() {
                     >
                       <div>
                         <p className="text-sm text-white">{doc.name}</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-400">
                           {doc.type} &middot; {(doc.size / 1024).toFixed(1)} KB
                         </p>
                       </div>
@@ -390,7 +390,7 @@ export default function JobDetailPage() {
                 <Image className="h-4 w-4" /> Photos ({job.photos.length})
               </h3>
               {job.photos.length === 0 ? (
-                <p className="text-sm text-gray-500">No photos uploaded yet.</p>
+                <p className="text-sm text-gray-400">No photos uploaded yet.</p>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   {job.photos.map((photo) => (
@@ -423,7 +423,7 @@ export default function JobDetailPage() {
                 <div>
                   <p className="text-white font-medium">{job.contractor.businessName}</p>
                   <p className="text-sm text-gray-400">{job.contractor.user.name}</p>
-                  <p className="text-xs text-gray-500 mt-1">{job.contractor.user.email}</p>
+                  <p className="text-xs text-gray-400 mt-1">{job.contractor.user.email}</p>
                   <div className="flex items-center gap-3 mt-3">
                     <span className="text-xs text-gray-400">
                       Rating: {Number(job.contractor.averageRating).toFixed(1)}/5
@@ -440,7 +440,7 @@ export default function JobDetailPage() {
                 </div>
               ) : (
                 <div>
-                  <p className="text-sm text-gray-500 mb-3">No contractor assigned</p>
+                  <p className="text-sm text-gray-400 mb-3">No contractor assigned</p>
                   {job.status === 'PENDING' && (
                     <button
                       onClick={() => router.push(`/dashboard/jobs/${job.id}/assign`)}
@@ -460,14 +460,14 @@ export default function JobDetailPage() {
               </h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Created</span>
+                  <span className="text-gray-400">Created</span>
                   <span className="text-gray-300">
                     {new Date(job.createdAt).toLocaleDateString('en-AU')}
                   </span>
                 </div>
                 {job.scheduledDate && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Scheduled</span>
+                    <span className="text-gray-400">Scheduled</span>
                     <span className="text-gray-300">
                       {new Date(job.scheduledDate).toLocaleDateString('en-AU')}
                     </span>
@@ -475,14 +475,14 @@ export default function JobDetailPage() {
                 )}
                 {job.completedDate && (
                   <div className="flex justify-between">
-                    <span className="text-gray-500">Completed</span>
+                    <span className="text-gray-400">Completed</span>
                     <span className="text-[#00FF88]">
                       {new Date(job.completedDate).toLocaleDateString('en-AU')}
                     </span>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Updated</span>
+                  <span className="text-gray-400">Updated</span>
                   <span className="text-gray-300">
                     {new Date(job.updatedAt).toLocaleDateString('en-AU')}
                   </span>

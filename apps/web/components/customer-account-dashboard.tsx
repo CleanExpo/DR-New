@@ -299,7 +299,7 @@ export default function CustomerAccountDashboard() {
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold">Welcome, {profile.name}!</h1>
-          <p className="text-gray-600 mt-1">Manage your bookings, claims, and insurance</p>
+          <p className="text-gray-400 mt-1">Manage your bookings, claims, and insurance</p>
         </div>
         <Button variant="outline" className="gap-2">
           <LogOut className="h-4 w-4" />
@@ -338,31 +338,31 @@ export default function CustomerAccountDashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Total Bookings</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Total Bookings</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">{profile.totalBookingsCount}</p>
-                <p className="text-sm text-gray-600 mt-2">Service requests</p>
+                <p className="text-sm text-gray-400 mt-2">Service requests</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Insurance Claims</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Insurance Claims</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">{profile.totalClaimsCount}</p>
-                <p className="text-sm text-gray-600 mt-2">Submitted & processed</p>
+                <p className="text-sm text-gray-400 mt-2">Submitted & processed</p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-medium text-gray-600">Total Spent</CardTitle>
+                <CardTitle className="text-sm font-medium text-gray-400">Total Spent</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold">${(profile.totalSpentAUD / 1000).toFixed(1)}K</p>
-                <p className="text-sm text-gray-600 mt-2">On restoration services</p>
+                <p className="text-sm text-gray-400 mt-2">On restoration services</p>
               </CardContent>
             </Card>
           </div>
@@ -380,7 +380,7 @@ export default function CustomerAccountDashboard() {
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <p className="font-semibold">{booking.serviceType.replace(/_/g, ' ')}</p>
-                        <p className="text-sm text-gray-600">{booking.address}, {booking.suburb} {booking.postcode}</p>
+                        <p className="text-sm text-gray-400">{booking.address}, {booking.suburb} {booking.postcode}</p>
                       </div>
                       <Badge className={getStatusColor(booking.status)}>
                         {booking.status}
@@ -392,7 +392,7 @@ export default function CustomerAccountDashboard() {
                           {booking.emergencyLevel}
                         </span>
                         {booking.contractor && (
-                          <span className="text-gray-600">Contractor: {booking.contractor.name}</span>
+                          <span className="text-gray-400">Contractor: {booking.contractor.name}</span>
                         )}
                       </div>
                       <span className="font-semibold">${(booking.finalCostAUD || booking.estimatedCostAUD).toLocaleString()}</span>
@@ -420,14 +420,14 @@ export default function CustomerAccountDashboard() {
                     <div className="flex justify-between items-start">
                       <div>
                         <p className="font-semibold">{insurance.provider}</p>
-                        <p className="text-sm text-gray-600">Policy: {insurance.policyNumber}</p>
-                        <p className="text-sm text-gray-600">Type: {insurance.coverageType}</p>
+                        <p className="text-sm text-gray-400">Policy: {insurance.policyNumber}</p>
+                        <p className="text-sm text-gray-400">Type: {insurance.coverageType}</p>
                       </div>
                       <Badge className={getStatusColor(insurance.status)}>
                         {insurance.status}
                       </Badge>
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">
+                    <p className="text-sm text-gray-400 mt-2">
                       Expires: {new Date(insurance.expiryDate).toLocaleDateString()}
                     </p>
                   </div>
@@ -451,8 +451,8 @@ export default function CustomerAccountDashboard() {
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <p className="font-semibold text-lg">{booking.serviceType.replace(/_/g, ' ')}</p>
-                        <p className="text-sm text-gray-600">{booking.address}</p>
-                        <p className="text-sm text-gray-600">{booking.suburb}, {booking.postcode} {booking.state}</p>
+                        <p className="text-sm text-gray-400">{booking.address}</p>
+                        <p className="text-sm text-gray-400">{booking.suburb}, {booking.postcode} {booking.state}</p>
                       </div>
                       <div className="text-right">
                         <Badge className={getStatusColor(booking.status)}>
@@ -464,11 +464,11 @@ export default function CustomerAccountDashboard() {
 
                     <div className="grid grid-cols-2 gap-4 text-sm mb-3">
                       <div>
-                        <p className="text-gray-600">Created</p>
+                        <p className="text-gray-400">Created</p>
                         <p className="font-medium">{new Date(booking.createdAt).toLocaleDateString()}</p>
                       </div>
                       <div>
-                        <p className="text-gray-600">Severity</p>
+                        <p className="text-gray-400">Severity</p>
                         <Badge className={getEmergencyColor(booking.emergencyLevel)}>
                           {booking.emergencyLevel}
                         </Badge>
@@ -479,7 +479,7 @@ export default function CustomerAccountDashboard() {
                       <div className="p-3 bg-gray-50 rounded mb-3">
                         <p className="font-semibold text-sm">Assigned Contractor</p>
                         <p className="text-sm">{booking.contractor.name} - {booking.contractor.company}</p>
-                        <p className="text-sm text-gray-600">⭐ {booking.contractor.rating} | {booking.contractor.phone}</p>
+                        <p className="text-sm text-gray-400">⭐ {booking.contractor.rating} | {booking.contractor.phone}</p>
                       </div>
                     )}
 
@@ -512,7 +512,7 @@ export default function CustomerAccountDashboard() {
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <p className="font-semibold text-lg">{claim.claimNumber}</p>
-                        <p className="text-sm text-gray-600">{claim.insuranceProvider} - {claim.policyNumber}</p>
+                        <p className="text-sm text-gray-400">{claim.insuranceProvider} - {claim.policyNumber}</p>
                       </div>
                       <Badge className={getStatusColor(claim.status)}>
                         {claim.status}
@@ -521,12 +521,12 @@ export default function CustomerAccountDashboard() {
 
                     <div className="grid grid-cols-2 gap-4 text-sm mb-3">
                       <div>
-                        <p className="text-gray-600">Claim Amount</p>
+                        <p className="text-gray-400">Claim Amount</p>
                         <p className="font-semibold">${claim.claimAmountAUD.toLocaleString()}</p>
                       </div>
                       {claim.approvedAmountAUD && (
                         <div>
-                          <p className="text-gray-600">Approved Amount</p>
+                          <p className="text-gray-400">Approved Amount</p>
                           <p className="font-semibold text-green-600">${claim.approvedAmountAUD.toLocaleString()}</p>
                         </div>
                       )}
@@ -538,7 +538,7 @@ export default function CustomerAccountDashboard() {
                     </div>
 
                     {claim.submittedDate && (
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-400">
                         Submitted: {new Date(claim.submittedDate).toLocaleDateString()}
                       </p>
                     )}
@@ -581,19 +581,19 @@ export default function CustomerAccountDashboard() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Full Name</label>
+                  <label className="text-sm font-medium text-gray-400">Full Name</label>
                   <p className="text-lg font-medium mt-1">{profile.name}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Email Address</label>
+                  <label className="text-sm font-medium text-gray-400">Email Address</label>
                   <p className="text-lg font-medium mt-1">{profile.email}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Phone Number</label>
+                  <label className="text-sm font-medium text-gray-400">Phone Number</label>
                   <p className="text-lg font-medium mt-1">{profile.phone}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-600">Member Since</label>
+                  <label className="text-sm font-medium text-gray-400">Member Since</label>
                   <p className="text-lg font-medium mt-1">{new Date(profile.joinedDate).toLocaleDateString()}</p>
                 </div>
               </div>
@@ -602,19 +602,19 @@ export default function CustomerAccountDashboard() {
                 <h3 className="font-semibold mb-4">Address</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-gray-600">Street Address</label>
+                    <label className="text-sm font-medium text-gray-400">Street Address</label>
                     <p className="text-lg font-medium mt-1">{profile.address}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600">Suburb</label>
+                    <label className="text-sm font-medium text-gray-400">Suburb</label>
                     <p className="text-lg font-medium mt-1">{profile.suburb}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600">Postcode</label>
+                    <label className="text-sm font-medium text-gray-400">Postcode</label>
                     <p className="text-lg font-medium mt-1">{profile.postcode}</p>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-gray-600">State</label>
+                    <label className="text-sm font-medium text-gray-400">State</label>
                     <p className="text-lg font-medium mt-1">{profile.state}</p>
                   </div>
                 </div>
@@ -625,11 +625,11 @@ export default function CustomerAccountDashboard() {
                   <h3 className="font-semibold mb-4">Insurance Details</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-600">Provider</label>
+                      <label className="text-sm font-medium text-gray-400">Provider</label>
                       <p className="text-lg font-medium mt-1">{profile.insuranceProvider}</p>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600">Policy Number</label>
+                      <label className="text-sm font-medium text-gray-400">Policy Number</label>
                       <p className="text-lg font-medium mt-1">{profile.policyNumber}</p>
                     </div>
                   </div>
@@ -644,15 +644,15 @@ export default function CustomerAccountDashboard() {
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="text-center p-4 border rounded-lg">
-                <p className="text-sm text-gray-600">Total Bookings</p>
+                <p className="text-sm text-gray-400">Total Bookings</p>
                 <p className="text-3xl font-bold mt-2">{profile.totalBookingsCount}</p>
               </div>
               <div className="text-center p-4 border rounded-lg">
-                <p className="text-sm text-gray-600">Claims Submitted</p>
+                <p className="text-sm text-gray-400">Claims Submitted</p>
                 <p className="text-3xl font-bold mt-2">{profile.totalClaimsCount}</p>
               </div>
               <div className="text-center p-4 border rounded-lg">
-                <p className="text-sm text-gray-600">Total Spent</p>
+                <p className="text-sm text-gray-400">Total Spent</p>
                 <p className="text-3xl font-bold mt-2">${(profile.totalSpentAUD / 1000).toFixed(1)}K</p>
               </div>
             </CardContent>

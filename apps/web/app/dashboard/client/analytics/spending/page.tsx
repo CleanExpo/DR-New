@@ -109,7 +109,7 @@ export default function SpendingAnalyticsPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading spending analytics...</p>
+          <p className="text-gray-400">Loading spending analytics...</p>
         </div>
       </div>
     );
@@ -135,7 +135,7 @@ export default function SpendingAnalyticsPage() {
             ← Back to Analytics
           </button>
           <h1 className="text-3xl font-bold text-gray-900">Detailed Spending Analysis</h1>
-          <p className="text-gray-600 mt-2">Comprehensive breakdown of your spending by contractor and service type</p>
+          <p className="text-gray-400 mt-2">Comprehensive breakdown of your spending by contractor and service type</p>
         </div>
 
         {/* Date Range Filter */}
@@ -175,7 +175,7 @@ export default function SpendingAnalyticsPage() {
             {/* Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Spent</p>
+                <p className="text-gray-400 text-sm font-medium">Total Spent</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.summary.totalSpent.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
@@ -185,7 +185,7 @@ export default function SpendingAnalyticsPage() {
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Average Per Transaction</p>
+                <p className="text-gray-400 text-sm font-medium">Average Per Transaction</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.summary.averageTransactionValue.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
@@ -195,13 +195,13 @@ export default function SpendingAnalyticsPage() {
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Successful Transactions</p>
+                <p className="text-gray-400 text-sm font-medium">Successful Transactions</p>
                 <p className="text-3xl font-bold text-green-600 mt-2">{data.summary.successfulTransactions}</p>
-                <p className="text-xs text-gray-600 mt-1">of {data.summary.transactionCount} total</p>
+                <p className="text-xs text-gray-400 mt-1">of {data.summary.transactionCount} total</p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Refunded Amount</p>
+                <p className="text-gray-400 text-sm font-medium">Refunded Amount</p>
                 <p className="text-3xl font-bold text-red-600 mt-2">
                   ${data.summary.totalRefunded.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
@@ -222,7 +222,7 @@ export default function SpendingAnalyticsPage() {
                       <div key={idx} className="flex justify-between items-center pb-3 border-b last:border-b-0 last:pb-0">
                         <div>
                           <p className="text-sm font-medium text-gray-900">{item.contractor}</p>
-                          <p className="text-xs text-gray-600">{item.count} job{item.count !== 1 ? 's' : ''}</p>
+                          <p className="text-xs text-gray-400">{item.count} job{item.count !== 1 ? 's' : ''}</p>
                         </div>
                         <span className="font-bold text-gray-900">
                           ${item.amount.toLocaleString('en-AU', {
@@ -234,7 +234,7 @@ export default function SpendingAnalyticsPage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-600">No contractor data available</p>
+                  <p className="text-sm text-gray-400">No contractor data available</p>
                 )}
               </div>
 
@@ -247,7 +247,7 @@ export default function SpendingAnalyticsPage() {
                       <div key={idx} className="flex justify-between items-center pb-3 border-b last:border-b-0 last:pb-0">
                         <div>
                           <p className="text-sm font-medium text-gray-900">{item.serviceType}</p>
-                          <p className="text-xs text-gray-600">{item.count} job{item.count !== 1 ? 's' : ''}</p>
+                          <p className="text-xs text-gray-400">{item.count} job{item.count !== 1 ? 's' : ''}</p>
                         </div>
                         <span className="font-bold text-gray-900">
                           ${item.amount.toLocaleString('en-AU', {
@@ -259,7 +259,7 @@ export default function SpendingAnalyticsPage() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-600">No service type data available</p>
+                  <p className="text-sm text-gray-400">No service type data available</p>
                 )}
               </div>
             </div>
@@ -271,7 +271,7 @@ export default function SpendingAnalyticsPage() {
                 <div className="space-y-2">
                   {data.trends.monthly.map((item, idx) => (
                     <div key={idx} className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600 font-medium">{item.month}</span>
+                      <span className="text-sm text-gray-400 font-medium">{item.month}</span>
                       <div className="flex items-center gap-3 flex-1 ml-4">
                         <div className="flex-1 bg-gray-200 rounded-full h-2">
                           <div
@@ -296,7 +296,7 @@ export default function SpendingAnalyticsPage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">No trend data available</p>
+                <p className="text-sm text-gray-400">No trend data available</p>
               )}
             </div>
 
@@ -321,8 +321,8 @@ export default function SpendingAnalyticsPage() {
                           <td className="py-3 px-4 text-gray-900">
                             {new Date(payment.date).toLocaleDateString('en-AU')}
                           </td>
-                          <td className="py-3 px-4 text-gray-600">{payment.serviceType || 'N/A'}</td>
-                          <td className="py-3 px-4 text-gray-600">{payment.contractor || 'N/A'}</td>
+                          <td className="py-3 px-4 text-gray-400">{payment.serviceType || 'N/A'}</td>
+                          <td className="py-3 px-4 text-gray-400">{payment.contractor || 'N/A'}</td>
                           <td className="py-3 px-4 font-bold text-gray-900">
                             ${payment.amount.toLocaleString('en-AU', {
                               minimumFractionDigits: 2,
@@ -348,7 +348,7 @@ export default function SpendingAnalyticsPage() {
                   </table>
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">No payment history available</p>
+                <p className="text-sm text-gray-400">No payment history available</p>
               )}
             </div>
           </>

@@ -54,7 +54,7 @@ export function ETADisplay({
     if (countdown <= 5) return 'text-green-600 bg-green-50'
     if (countdown <= 15) return 'text-teal-600 bg-teal-50'
     if (countdown <= 30) return 'text-amber-600 bg-amber-50'
-    return 'text-gray-600 bg-gray-50'
+    return 'text-gray-400 bg-gray-50'
   }
 
   const sizeClasses = {

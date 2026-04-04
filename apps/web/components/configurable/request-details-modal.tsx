@@ -615,7 +615,7 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId }: Requ
                         <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
                         <div>
                           <p className="text-gray-400 font-medium text-sm">Bidding Phase</p>
-                          <p className="text-gray-500 text-xs">In Progress</p>
+                          <p className="text-gray-400 text-xs">In Progress</p>
                         </div>
                       </div>
                       
@@ -623,7 +623,7 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId }: Requ
                         <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
                         <div>
                           <p className="text-gray-400 font-medium text-sm">Contractor Selected</p>
-                          <p className="text-gray-500 text-xs">Pending</p>
+                          <p className="text-gray-400 text-xs">Pending</p>
                         </div>
                       </div>
                       
@@ -631,7 +631,7 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId }: Requ
                         <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
                         <div>
                           <p className="text-gray-400 font-medium text-sm">Work Started</p>
-                          <p className="text-gray-500 text-xs">Pending</p>
+                          <p className="text-gray-400 text-xs">Pending</p>
                         </div>
                       </div>
                       
@@ -639,7 +639,7 @@ export default function RequestDetailsModal({ isOpen, onClose, requestId }: Requ
                         <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
                         <div>
                           <p className="text-gray-400 font-medium text-sm">Project Completed</p>
-                          <p className="text-gray-500 text-xs">Pending</p>
+                          <p className="text-gray-400 text-xs">Pending</p>
                         </div>
                       </div>
                     </div>

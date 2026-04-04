@@ -323,7 +323,7 @@ export function PhotoUpload({
               ) : (
                 <>
                   <Loader2 className="h-8 w-8 text-blue-500 animate-spin mb-1" />
-                  <p className="text-xs text-gray-600">{file.progress}%</p>
+                  <p className="text-xs text-gray-400">{file.progress}%</p>
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-b-lg overflow-hidden">
                     <div
                       className="h-full bg-blue-500 transition-[width] duration-300 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
@@ -332,7 +332,7 @@ export function PhotoUpload({
                   </div>
                 </>
               )}
-              <p className="absolute top-1 left-1 text-xs text-gray-500 truncate max-w-[80%]">
+              <p className="absolute top-1 left-1 text-xs text-gray-400 truncate max-w-[80%]">
                 {file.name}
               </p>
             </div>
@@ -355,15 +355,15 @@ export function PhotoUpload({
         >
           <Upload
             className={`h-8 w-8 mb-2 ${
-              isDragging ? 'text-blue-500' : 'text-gray-500'
+              isDragging ? 'text-blue-500' : 'text-gray-400'
             }`}
           />
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             {isDragging
               ? 'Drop photos here'
               : `Click or drag to upload (${photos.length}/${maxPhotos})`}
           </p>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-gray-400 mt-1">
             JPG, PNG, WebP up to {maxFileSize / (1024 * 1024)}MB
           </p>
           <input

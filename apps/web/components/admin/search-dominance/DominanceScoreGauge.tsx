@@ -109,8 +109,8 @@ export function DominanceScoreGauge({ score: propScore }: DominanceScoreGaugePro
               )}
               {trend === 'stable' && (
                 <>
-                  <Minus className="h-4 w-4 text-gray-600" />
-                  <span className="text-gray-600">Stable</span>
+                  <Minus className="h-4 w-4 text-gray-400" />
+                  <span className="text-gray-400">Stable</span>
                 </>
               )}
             </div>

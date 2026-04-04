@@ -112,11 +112,11 @@ export default function ContractorAvailableRequestsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Available Requests</h1>
-          <p className="text-gray-600 mt-2">Jobs matched specifically for your expertise and location</p>
+          <p className="text-gray-400 mt-2">Jobs matched specifically for your expertise and location</p>
         </div>
         <div className="text-right">
           <p className="text-3xl font-bold text-gray-900">{filteredRequests.length}</p>
-          <p className="text-sm text-gray-600">jobs available</p>
+          <p className="text-sm text-gray-400">jobs available</p>
         </div>
       </div>
 
@@ -165,13 +165,13 @@ export default function ContractorAvailableRequestsPage() {
       <div className="grid grid-cols-1 gap-4">
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <Loader className="h-8 w-8 animate-spin text-gray-600" />
+            <Loader className="h-8 w-8 animate-spin text-gray-400" />
           </div>
         ) : filteredRequests.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
             <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-600 font-medium">No requests available</p>
-            <p className="text-gray-500 mt-2">
+            <p className="text-gray-400 font-medium">No requests available</p>
+            <p className="text-gray-400 mt-2">
               {filter !== 'all'
                 ? 'No requests match your filter. Try adjusting your search.'
                 : 'Check back soon for new job opportunities.'}
@@ -204,7 +204,7 @@ export default function ContractorAvailableRequestsPage() {
                         {request.matchScore} match
                       </span>
                     </div>
-                    <p className="text-sm text-gray-600 line-clamp-2">{request.description}</p>
+                    <p className="text-sm text-gray-400 line-clamp-2">{request.description}</p>
                   </div>
 
                   {/* Quick Actions */}
@@ -214,18 +214,18 @@ export default function ContractorAvailableRequestsPage() {
                 {/* Details Row */}
                 <div className="grid grid-cols-5 gap-4 pb-4 border-b border-gray-200">
                   <div>
-                    <div className="flex items-center gap-1 text-gray-600 mb-1">
+                    <div className="flex items-center gap-1 text-gray-400 mb-1">
                       <MapPin className="h-4 w-4" />
                       <span className="text-xs font-medium uppercase">Location</span>
                     </div>
                     <p className="text-sm font-semibold text-gray-900">
                       {request.location.suburb}
                     </p>
-                    <p className="text-xs text-gray-600">{request.location.postcode}</p>
+                    <p className="text-xs text-gray-400">{request.location.postcode}</p>
                   </div>
 
                   <div>
-                    <div className="flex items-center gap-1 text-gray-600 mb-1">
+                    <div className="flex items-center gap-1 text-gray-400 mb-1">
                       <DollarSign className="h-4 w-4" />
                       <span className="text-xs font-medium uppercase">Budget</span>
                     </div>
@@ -235,19 +235,19 @@ export default function ContractorAvailableRequestsPage() {
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">Client</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase mb-1">Client</p>
                     <p className="text-sm font-semibold text-gray-900">{request.clientName}</p>
                   </div>
 
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">Posted</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase mb-1">Posted</p>
                     <p className="text-sm font-semibold text-gray-900">
                       {request.hoursPosted < 1 ? 'Just now' : `${request.hoursPosted}h ago`}
                     </p>
                   </div>
 
                   <div className="text-right">
-                    <p className="text-xs font-medium text-gray-500 uppercase mb-1">Status</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase mb-1">Status</p>
                     <p className="text-sm font-semibold text-blue-600">Available</p>
                   </div>
                 </div>

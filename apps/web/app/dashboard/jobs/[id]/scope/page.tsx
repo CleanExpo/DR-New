@@ -269,11 +269,11 @@ export default function ScopeDiagramPage() {
                 className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500">Room {idx + 1}</span>
+                  <span className="text-xs text-gray-400">Room {idx + 1}</span>
                   {rooms.length > 1 && (
                     <button
                       onClick={() => removeRoom(room.id)}
-                      className="p-1 text-gray-600 hover:text-red-400 transition-colors"
+                      className="p-1 text-gray-400 hover:text-red-400 transition-colors"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>
@@ -282,7 +282,7 @@ export default function ScopeDiagramPage() {
 
                 {/* Room name */}
                 <div>
-                  <label className="text-xs text-gray-500 mb-1 block">Room Name</label>
+                  <label className="text-xs text-gray-400 mb-1 block">Room Name</label>
                   <input
                     type="text"
                     value={room.name}
@@ -294,7 +294,7 @@ export default function ScopeDiagramPage() {
                 {/* Dimensions */}
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs text-gray-500 mb-1 block">Width (m)</label>
+                    <label className="text-xs text-gray-400 mb-1 block">Width (m)</label>
                     <input
                       type="number"
                       min={1}
@@ -306,7 +306,7 @@ export default function ScopeDiagramPage() {
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-gray-500 mb-1 block">Length (m)</label>
+                    <label className="text-xs text-gray-400 mb-1 block">Length (m)</label>
                     <input
                       type="number"
                       min={1}
@@ -320,13 +320,13 @@ export default function ScopeDiagramPage() {
                 </div>
 
                 {/* Area display */}
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-gray-400">
                   Area: <span className="text-white font-medium">{room.width * room.length} m2</span>
                 </div>
 
                 {/* Severity */}
                 <div>
-                  <label className="text-xs text-gray-500 mb-1 block">Severity</label>
+                  <label className="text-xs text-gray-400 mb-1 block">Severity</label>
                   <div className="grid grid-cols-4 gap-1">
                     {SEVERITY_OPTIONS.map((opt) => (
                       <button
@@ -362,7 +362,7 @@ export default function ScopeDiagramPage() {
               />
             ) : (
               <div className="flex items-center justify-center h-64 bg-white/5 border border-white/10 rounded-xl">
-                <p className="text-gray-500 text-sm">Add rooms to generate a scope diagram</p>
+                <p className="text-gray-400 text-sm">Add rooms to generate a scope diagram</p>
               </div>
             )}
           </div>
