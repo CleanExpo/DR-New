@@ -120,6 +120,51 @@ bash scripts/health-check.ps1  # Health check
 
 ---
 
+## OMX Workflow Protocols (DR-324)
+
+> Ports patterns from oh-my-codex into Claude-native workflow. Applies to all BUILD tasks.
+
+### Pre-BUILD Clarification Gate (`dr-clarify`)
+
+Before ANY build enters "Approved", all 6 gates must be green:
+
+| Gate | Pass Condition |
+|------|----------------|
+| G1 Content | No "TBD", "pending", or "to be confirmed" sections |
+| G2 Legal | Pre-conditions confirmed by named person (not "pending review") |
+| G3 Data Sources | Every stat has Tier 1–3 source + direct URL |
+| G4 Geo/Supplier | Named supplier confirmed per geography |
+| G5 Owner | Specific named individual — not "the team" |
+| G6 Execution Date | Specific DD/MM/YYYY — not "next session" |
+
+Failed gate → Status: `Blocked: Clarification Required`. Do not plan.
+
+### BUILD Execution Protocol (`dr-execute`)
+
+After a BUILD is approved + security-cleared:
+- Status → **ACTIVE EXECUTION**
+- Next session: must present completion evidence (URL live / TypeScript passes / PR merged)
+- No evidence after 2 sessions → **P0 EXECUTION BLOCKER** (named dev + commit SHA + 24-hour deadline)
+- No re-planning of ACTIVE builds — only: Complete | Blocked (specific reason) | Scope-Changed (new ID)
+
+### Parallel Lanes (`$team`)
+
+Every BUILD with ≥2 independent tasks must define explicit execution lanes. Never build sequentially what can build in parallel.
+
+### Session Continuity
+
+Read `docs/boardroom-state.json` first at boardroom session start (5 seconds). Write it at session end.
+
+### Skill Files
+
+`.claude/skills/dr/` contains 4 OMX-ported skills:
+- `dr-clarify.md` — Pre-BUILD ambiguity gate
+- `dr-execute.md` — BUILD completion loop
+- `dr-content-build.md` — Autonomous content pipeline
+- `dr-competitor-page.md` — Competitor page extraction
+
+---
+
 ## Drift Recovery
 
 If context feels wrong, re-read in order:
