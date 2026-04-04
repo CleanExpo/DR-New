@@ -3527,68 +3527,60 @@ model NotificationLog {
 }
 
 // ============================================
-// 100-Point Certification Scoring Engine — DR-189
+// Professional Commitment Framework — DR-192
 // ============================================
 
-/// NRPG 100-point certification scoring record.
-/// Stores the four scoring categories and computed total/level.
-/// One record per contractor — recalculated on credential updates.
-model NRPGCertScore {
-  id             String   @id @default(cuid())
+/// Stores the digital signing record for the NRPG Professional Commitment Framework.
+/// A contractor must have a SIGNED record before training access is granted.
+model CommitmentFramework {
+  id          String   @id @default(cuid())
 
-  /// Contractor User ID
-  contractorId   String   @unique
+  /// The contractor's User ID (authenticated session)
+  contractorId String  @unique
 
-  // --- Category 1: Specialisation Portfolio (max 40 pts) ---
-  /// Core specialty (water/fire/mould/trauma/storm) — 20 pts
-  coreSpecialtyPoints  Int @default(0)
-  /// Additional specialisation areas — up to 4 x 5 pts = 20 pts
-  additionalSpecPoints Int @default(0)
-  /// Total category 1 (capped at 40)
-  specialisationTotal  Int @default(0)
+  // --- Agreement sections ---
 
-  // --- Category 2: CARSI Mandatory Platform (max 25 pts) ---
-  /// CARSI membership active — 10 pts
-  carsiMembershipPoints Int @default(0)
-  /// CARSI courses completed — up to 5 x 3 pts = 15 pts
-  carsiCoursePoints     Int @default(0)
-  /// Total category 2 (capped at 25)
-  carsiTotal            Int @default(0)
+  /// NRPG Professional Commitment Agreement accepted
+  commitmentAgreementAccepted     Boolean  @default(false)
+  commitmentAgreementAcceptedAt   DateTime?
 
-  // --- Category 3: Industry Association Diversity (max 20 pts) ---
-  /// Primary industry association — 10 pts
-  primaryAssocPoints    Int @default(0)
-  /// Secondary associations — up to 2 x 5 pts = 10 pts
-  secondaryAssocPoints  Int @default(0)
-  /// Total category 3 (capped at 20)
-  associationTotal      Int @default(0)
+  /// Code of Ethics acknowledged
+  codeOfEthicsAccepted            Boolean  @default(false)
+  codeOfEthicsAcceptedAt          DateTime?
 
-  // --- Category 4: Government Cert IV & Continuing Ed (max 15 pts) ---
-  /// Cert IV in Building and Construction or equivalent — 10 pts
-  govCert4Points        Int @default(0)
-  /// Continuing education credits (annual) — up to 5 pts
-  continuingEdPoints    Int @default(0)
-  /// Total category 4 (capped at 15)
-  govCertTotal          Int @default(0)
+  /// Insurance requirements confirmed (public liability $10M+)
+  insuranceRequirementsConfirmed  Boolean  @default(false)
+  insuranceRequirementsAt         DateTime?
 
-  // --- Computed totals ---
-  /// Sum of all four categories (0-100)
-  totalPoints           Int @default(0)
+  /// WHS (Work Health & Safety) compliance acknowledged
+  whsComplianceAccepted           Boolean  @default(false)
+  whsComplianceAcceptedAt         DateTime?
 
-  /// NONE | SPECIALIST | PROFESSIONAL | EXPERT | MASTER
-  certificationLevel    String @default("NONE")
+  /// Rate card agreement — minimum $750 job charge confirmed
+  rateCardAgreed                  Boolean  @default(false)
+  rateCardAgreedAt                DateTime?
 
-  /// Points needed to reach the next level (0 if MASTER)
-  pointsToNextLevel     Int @default(60)
+  // --- Signing state ---
 
-  /// ISO timestamp of last score computation
-  lastCalculatedAt      DateTime @default(now())
+  /// PENDING | SIGNED | REVOKED
+  status       String   @default("PENDING")
 
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  /// ISO timestamp of final submission (all sections accepted)
+  signedAt     DateTime?
 
+  /// IP address at signing time (audit trail)
+  signerIp     String?
+
+  /// User-agent at signing time
+  signerAgent  String?
+
+  /// Reference to stored PDF/document in Supabase Storage (populated post-signing)
+  documentUrl  String?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([status])
   @@index([contractorId])
-  @@index([certificationLevel])
-  @@index([totalPoints])
-  @@map("nrpg_cert_scores")
+  @@map("commitment_frameworks")
 }
