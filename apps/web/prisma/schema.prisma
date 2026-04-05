@@ -3414,6 +3414,7 @@ model Job {
   tenant           Tenant?       @relation(fields: [tenantId], references: [id])
   documents        JobDocument[]
   photos           JobPhoto[]
+  outcomeLogs      JobOutcomeLog[]
 
   @@index([jobNumber])
   @@index([status])
@@ -3458,6 +3459,46 @@ model JobPhoto {
 
   @@index([jobId])
   @@map("job_photos")
+}
+
+// ============================================
+// Job Outcome Log — DR-322 Path B
+// Structured outcome collection for BI/analytics.
+// Captures terminal-state transitions so data collection
+// begins now, independent of Path A (publish decision).
+// ============================================
+
+enum JobOutcome {
+  COMPLETED
+  CANCELLED
+  REJECTED_BY_CLIENT
+  REJECTED_BY_CONTRACTOR
+  TIMED_OUT
+}
+
+model JobOutcomeLog {
+  id               String     @id @default(cuid())
+  jobId            String
+  outcome          JobOutcome
+  jobType          String     // water | fire | mould | storm | asbestos
+  contractorId     String?
+  clientId         String?
+  insuranceClaimId String?
+  actualCost       Decimal?   @db.Decimal(10, 2)
+  hoursWorked      Decimal?   @db.Decimal(6, 2)
+  loggedAt         DateTime   @default(now())
+  loggedByUserId   String
+  tenantId         String?
+  metadata         Json?      // flexible extra context (state, postcode, etc.)
+  job              Job        @relation(fields: [jobId], references: [id])
+
+  @@index([jobId])
+  @@index([outcome])
+  @@index([jobType])
+  @@index([loggedAt])
+  @@index([tenantId])
+  @@index([contractorId])
+  @@map("job_outcome_logs")
 }
 
 // ============================================
