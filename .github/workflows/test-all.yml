@@ -140,7 +140,7 @@ jobs:
       - name: Generate Prisma Client
         run: pnpm run db:generate
       - name: Push database schema
-        run: pnpm run db:push --skip-generate
+        run: pnpm --filter nrpg-web exec prisma db push --skip-generate
         env:
           DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_e2e
           DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_e2e
