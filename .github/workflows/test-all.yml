@@ -84,11 +84,13 @@ jobs:
           pnpm run db:push
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
       - name: Run integration tests
         run: pnpm --filter nrpg-web run test:integration
         env:
           CI: true
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
+          DIRECT_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
           REDIS_URL: redis://localhost:6379
       - name: Upload coverage
         uses: codecov/codecov-action@v4
@@ -194,6 +196,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Generate Prisma Client
+        run: pnpm run db:generate
       - name: Type check
         run: pnpm run type-check
       - name: Build application
