@@ -61,11 +61,16 @@ test.describe('Property Owner Portal', () => {
       // Try to submit without filling in required fields
       const submitButton = page.locator('button[type="submit"], button:has-text("Next"), button:has-text("Continue")');
       if (await submitButton.isVisible()) {
-        await submitButton.click();
-
-        // Should stay on step 1 (not advance to step 2)
-        await page.waitForTimeout(1000);
-        await expect(page).toHaveURL(/\/claim\/step-1/);
+        const isDisabled = await submitButton.isDisabled();
+        if (isDisabled) {
+          // Button disabled when form is empty — validation correctly prevents submission
+          expect(isDisabled).toBe(true);
+        } else {
+          await submitButton.click({ force: true });
+          // Should stay on step 1 (not advance to step 2)
+          await page.waitForTimeout(1000);
+          await expect(page).toHaveURL(/\/claim\/step-1/);
+        }
       }
     });
   });
