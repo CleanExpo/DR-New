@@ -103,3 +103,4 @@ jobs:
           NEXTAUTH_URL: http://localhost:3000
           DATABASE_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
           DIRECT_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
+          STRIPE_SECRET_KEY: sk_test_dummy_for_ci_smoke_tests
