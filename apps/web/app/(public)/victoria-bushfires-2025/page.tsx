@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 export default function VictoriaBushfires2025Page() {
   return (
     <DisasterEventPage
-      eventName="Victorian Bushfires"
+      eventName="East Gippsland & Alpine Region"
       eventType="bushfire"
       eventPhase="recovery"
       state="Victoria"
