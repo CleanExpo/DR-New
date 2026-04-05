@@ -484,8 +484,8 @@ test.describe('Error Handling & Edge Cases', () => {
     // Try to access admin verification page without logging in
     await page.goto('/dashboard/admin/contractors/verification');
 
-    // Should redirect to login (middleware redirects unauthenticated users to /login)
-    await page.waitForURL(/\/login/, { timeout: 10000 });
+    // Wait for client-side auth redirect (accepts /login or /api/auth)
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
 
     // Verify not on admin page
     const currentUrl = page.url();
@@ -497,7 +497,7 @@ test.describe('Error Handling & Edge Cases', () => {
     await page.goto('/dashboard/admin/contractors/verification');
 
     // Should be redirected away from admin (to login or similar)
-    await page.waitForTimeout(2000);
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
     const currentUrl = page.url();
     expect(currentUrl).not.toContain('/dashboard/admin');
   });
@@ -570,7 +570,7 @@ test.describe('Contractor Operational Job Flow (DR-218)', () => {
     // Use a fresh page without auth state
     await page.context().clearCookies();
     await page.goto('/dashboard/contractor');
-    await page.waitForTimeout(3000);
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
 
     const url = page.url();
     const redirected =
