@@ -264,11 +264,11 @@ export class PerformanceMonitor {
  * Hook for measuring component render time
  */
 export function useMeasureRender(componentName: string) {
-  if (typeof window === 'undefined') return
-
   const monitor = PerformanceMonitor.getInstance()
 
   React.useEffect(() => {
+    if (typeof window === 'undefined') return
+
     monitor.mark(`${componentName}-render-start`)
 
     return () => {

@@ -208,19 +208,19 @@ export async function initializeOnboarding(
       { id: 'MODULE-007', name: 'Emergency Preparedness & Prevention' },
     ];
 
-    for (const module of modules) {
+    for (const courseModule of modules) {
       await prisma.clientModuleProgress.upsert({
         where: {
           onboardingId_moduleId: {
             onboardingId: onboarding.id,
-            moduleId: module.id,
+            moduleId: courseModule.id,
           },
         },
         update: {},
         create: {
           onboardingId: onboarding.id,
-          moduleId: module.id,
-          moduleName: module.name,
+          moduleId: courseModule.id,
+          moduleName: courseModule.name,
           status: 'NOT_STARTED',
           progress: 0,
         },
@@ -541,16 +541,16 @@ export async function startModule(
   onboardingId: string,
   moduleId: string
 ): Promise<boolean> {
-  const module = await prisma.clientModuleProgress.findFirst({
+  const courseModule = await prisma.clientModuleProgress.findFirst({
     where: { onboardingId, moduleId },
   });
 
-  if (!module) {
+  if (!courseModule) {
     throw new Error('Module not found');
   }
 
   await prisma.clientModuleProgress.update({
-    where: { id: module.id },
+    where: { id: courseModule.id },
     data: {
       status: 'IN_PROGRESS',
       startedAt: new Date(),
@@ -570,18 +570,18 @@ export async function completeModule(
   quizScore?: number,
   timeSpentSeconds?: number
 ): Promise<boolean> {
-  const module = await prisma.clientModuleProgress.findFirst({
+  const courseModule = await prisma.clientModuleProgress.findFirst({
     where: { onboardingId, moduleId },
   });
 
-  if (!module) {
+  if (!courseModule) {
     throw new Error('Module not found');
   }
 
   const quizPassed = quizScore ? quizScore >= 70 : true; // 70% passing score
 
   await prisma.clientModuleProgress.update({
-    where: { id: module.id },
+    where: { id: courseModule.id },
     data: {
       status: 'COMPLETED',
       completed: true,
@@ -589,8 +589,8 @@ export async function completeModule(
       progress: 100,
       quizScore,
       quizPassed,
-      quizAttempts: module.quizAttempts + 1,
-      timeSpentSeconds: timeSpentSeconds || module.timeSpentSeconds,
+      quizAttempts: courseModule.quizAttempts + 1,
+      timeSpentSeconds: timeSpentSeconds || courseModule.timeSpentSeconds,
     },
   });
 
