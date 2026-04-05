@@ -93,7 +93,7 @@ jobs:
             sleep 2
           done
 
-          SMOKE_TEST_URL=http://localhost:3000 pnpm exec jest --config "$REPO_ROOT/jest.smoke.config.ts" --verbose --forceExit
+          SMOKE_TEST_URL=http://localhost:3000 pnpm exec jest --config "$REPO_ROOT/jest.smoke.config.js" --verbose --forceExit
 
           kill $SERVER_PID 2>/dev/null || true
         env:
