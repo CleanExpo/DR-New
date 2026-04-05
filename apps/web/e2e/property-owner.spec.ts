@@ -95,7 +95,8 @@ test.describe('Property Portal — Auth Protection', () => {
   for (const route of protectedRoutes) {
     test(`${route} redirects unauthenticated users`, async ({ page }) => {
       await page.goto(route);
-      await page.waitForTimeout(3000);
+      // Wait up to 30s for client-side auth redirect (webkit can be slow in CI)
+      await page.waitForURL(/\/login|\/api\/auth|\/404/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected =

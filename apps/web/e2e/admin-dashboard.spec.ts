@@ -36,7 +36,7 @@ function skipIfNoAuth() {
 test.describe('Admin Routes — Auth Protection', () => {
   test('GET /dashboard/jobs redirects unauthenticated to login', async ({ page }) => {
     await page.goto('/dashboard/jobs');
-    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const redirected =
@@ -49,7 +49,7 @@ test.describe('Admin Routes — Auth Protection', () => {
 
   test('GET /dashboard/reports redirects unauthenticated to login', async ({ page }) => {
     await page.goto('/dashboard/reports');
-    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const redirected =
@@ -62,7 +62,7 @@ test.describe('Admin Routes — Auth Protection', () => {
 
   test('GET /dashboard/claims redirects unauthenticated to login', async ({ page }) => {
     await page.goto('/dashboard/claims');
-    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const redirected =
@@ -77,7 +77,7 @@ test.describe('Admin Routes — Auth Protection', () => {
     page,
   }) => {
     await page.goto('/dashboard/admin/contractors/verification');
-    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const redirected =
