@@ -21,6 +21,7 @@ import {
   AlertCircle,
   Shield,
   ChevronRight,
+  FileText,
 } from 'lucide-react';
 
 interface OnboardingDashboardProps {
