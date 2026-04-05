@@ -13,6 +13,8 @@ jobs:
   deploy-staging:
     name: Deploy to Vercel Staging
     runs-on: ubuntu-latest
+    # Skip entirely when Vercel secrets are not configured in this repo
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
     environment:
       name: staging
       url: ${{ steps.deploy.outputs.staging-url }}
@@ -50,6 +52,7 @@ jobs:
   smoke-tests:
     name: Staging Smoke Tests
     runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
     needs: deploy-staging
     steps:
       - name: Wait for deployment
