@@ -357,32 +357,78 @@ export default function ContractorJoinPage() {
           <div className="rounded-xl border border-gray-200 bg-white p-8 shadow-lg">
             <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Ready to Join?
+                Create Your Contractor Account
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
-                Submit your application and our team will review it within 2-3 business days.
+                Register online in minutes. Complete the 24-module training program and start
+                receiving qualified leads from day one.
               </p>
             </div>
 
             <div className="mt-8 rounded-lg border-l-4 border-blue-600 bg-blue-50 p-4">
               <p className="text-sm text-blue-900">
-                <strong>Note:</strong> This is an interest form. After we review your application,
-                you will receive information about enrolling in the 24-module training program
-                ($1,495 AUD). Training must be completed before you can start receiving leads.
+                <strong>What happens next:</strong> Create your account, complete the 5-step
+                onboarding to set your services and coverage area, then enrol in the 24-module
+                NRPG certification program ($1,495 AUD). Once certified, leads are assigned
+                automatically — $550 flat fee per claim, no commission, no monthly fees.
               </p>
             </div>
 
-            <div className="mt-8">
-              <p className="text-center text-gray-700">
-                Application form will be available here. For now, please{' '}
-                <a
-                  href="/contact"
-                  className="font-semibold text-blue-600 hover:underline"
-                >
-                  contact us online
-                </a>{' '}
-                with your details.
-              </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg border border-gray-100 bg-gray-50 p-5">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">1</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">Create your account</p>
+                    <p className="mt-1 text-sm text-gray-500">Name, email, and password — takes 60 seconds</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-lg border border-gray-100 bg-gray-50 p-5">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">2</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">Complete onboarding</p>
+                    <p className="mt-1 text-sm text-gray-500">Services, coverage area, experience level</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-lg border border-gray-100 bg-gray-50 p-5">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">3</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">Upload verification docs</p>
+                    <p className="mt-1 text-sm text-gray-500">IICRC certificate, ABN, public liability insurance</p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-lg border border-gray-100 bg-gray-50 p-5">
+                <div className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">4</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">Start receiving leads</p>
+                    <p className="mt-1 text-sm text-gray-500">Qualified jobs matched to your area and services</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <Link
+                href="/signup?type=contractor"
+                className="inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl sm:w-auto"
+              >
+                Create Contractor Account
+                <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
+              <Link
+                href="/contractor/portal"
+                className="inline-flex w-full items-center justify-center rounded-lg border-2 border-gray-300 bg-white px-8 py-4 text-lg font-semibold text-gray-700 transition hover:border-blue-600 hover:text-blue-600 sm:w-auto"
+              >
+                Already have an account? Sign in
+              </Link>
             </div>
           </div>
         </div>

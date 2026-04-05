@@ -127,3 +127,9 @@ NodeJS-Starter-V1/
 .env*.local
 .superpowers/
 apps/web/opensrc/
+
+# Generated files
+__pycache__/
+*.pyc
+apps/web/tsconfig.check.json
+.claude/launch.json
