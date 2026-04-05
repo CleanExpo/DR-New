@@ -79,6 +79,7 @@ jobs:
           path: apps/web/.next
       - name: Start server and run smoke tests
         run: |
+          REPO_ROOT=$(pwd)
           cd apps/web
           pnpm exec next start &
           SERVER_PID=$!
@@ -92,8 +93,7 @@ jobs:
             sleep 2
           done
 
-          cd ../..
-          SMOKE_TEST_URL=http://localhost:3000 pnpm run test:smoke
+          SMOKE_TEST_URL=http://localhost:3000 pnpm exec jest --config "$REPO_ROOT/jest.smoke.config.ts" --verbose --forceExit
 
           kill $SERVER_PID 2>/dev/null || true
         env:
