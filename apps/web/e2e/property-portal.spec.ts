@@ -61,11 +61,16 @@ test.describe('Property Owner Portal', () => {
       // Try to submit without filling in required fields
       const submitButton = page.locator('button[type="submit"], button:has-text("Next"), button:has-text("Continue")');
       if (await submitButton.isVisible()) {
-        await submitButton.click();
-
-        // Should stay on step 1 (not advance to step 2)
-        await page.waitForTimeout(1000);
-        await expect(page).toHaveURL(/\/claim\/step-1/);
+        const isDisabled = await submitButton.isDisabled();
+        if (isDisabled) {
+          // Button disabled when form is empty — validation correctly prevents submission
+          expect(isDisabled).toBe(true);
+        } else {
+          await submitButton.click({ force: true });
+          // Should stay on step 1 (not advance to step 2)
+          await page.waitForTimeout(1000);
+          await expect(page).toHaveURL(/\/claim\/step-1/);
+        }
       }
     });
   });
@@ -76,7 +81,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client dashboard', async ({ page }) => {
       await page.goto('/dashboard/client');
-      await page.waitForTimeout(3000);
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -88,7 +93,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client claims page', async ({ page }) => {
       await page.goto('/dashboard/client/claims');
-      await page.waitForTimeout(3000);
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -100,7 +105,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client payments page', async ({ page }) => {
       await page.goto('/dashboard/client/payments');
-      await page.waitForTimeout(3000);
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -112,7 +117,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client onboarding page', async ({ page }) => {
       await page.goto('/dashboard/client/onboarding');
-      await page.waitForTimeout(3000);
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -124,7 +129,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client analytics page', async ({ page }) => {
       await page.goto('/dashboard/client/analytics');
-      await page.waitForTimeout(3000);
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||

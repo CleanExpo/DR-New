@@ -275,17 +275,17 @@ export default function AdminVerificationDashboard() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Mail className="h-4 w-4 text-gray-500" />
+                  <Mail className="h-4 w-4 text-gray-400" />
                   <span className="text-gray-300">{selectedContractor.user.email}</span>
                 </div>
                 {selectedContractor.user.phone && (
                   <div className="flex items-center gap-3">
-                    <Phone className="h-4 w-4 text-gray-500" />
+                    <Phone className="h-4 w-4 text-gray-400" />
                     <span className="text-gray-300">{selectedContractor.user.phone}</span>
                   </div>
                 )}
                 <div className="flex items-center gap-3">
-                  <Calendar className="h-4 w-4 text-gray-500" />
+                  <Calendar className="h-4 w-4 text-gray-400" />
                   <span className="text-gray-300">
                     Registered: {formatDate(selectedContractor.user.createdAt)}
                   </span>
@@ -312,7 +312,7 @@ export default function AdminVerificationDashboard() {
                           <p className="text-white font-medium">{doc.documentType.replace(/_/g, ' ')}</p>
                           <p className="text-sm text-gray-400">{doc.fileName}</p>
                           {doc.expiryDate && (
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-gray-400 mt-1">
                               Expires: {formatDate(doc.expiryDate)}
                             </p>
                           )}
@@ -358,7 +358,7 @@ export default function AdminVerificationDashboard() {
                       <div key={area.id} className="p-3 bg-gray-700/50 rounded-lg">
                         <p className="text-white font-medium">{area.postcode}</p>
                         <p className="text-sm text-gray-400">{area.state}</p>
-                        <p className="text-xs text-gray-500">{area.radiusKm}km radius</p>
+                        <p className="text-xs text-gray-400">{area.radiusKm}km radius</p>
                       </div>
                     ))}
                   </div>
@@ -385,7 +385,7 @@ export default function AdminVerificationDashboard() {
                             <p className="text-sm text-gray-400">
                               {entry.previousStatus} → {entry.newStatus}
                             </p>
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-gray-400 mt-1">
                               By: {entry.performedByName} • {formatDate(entry.createdAt)}
                             </p>
                           </div>
@@ -556,7 +556,7 @@ export default function AdminVerificationDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-gray-400">{statistics.pending}</p>
-                  <p className="text-xs text-gray-500">Pending</p>
+                  <p className="text-xs text-gray-400">Pending</p>
                 </div>
                 <Clock className="h-8 w-8 text-gray-400" />
               </div>
@@ -567,7 +567,7 @@ export default function AdminVerificationDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-yellow-500">{statistics.incomplete}</p>
-                  <p className="text-xs text-gray-500">Incomplete</p>
+                  <p className="text-xs text-gray-400">Incomplete</p>
                 </div>
                 <AlertCircle className="h-8 w-8 text-yellow-500" />
               </div>
@@ -578,7 +578,7 @@ export default function AdminVerificationDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-blue-500">{statistics.submitted}</p>
-                  <p className="text-xs text-gray-500">Submitted</p>
+                  <p className="text-xs text-gray-400">Submitted</p>
                 </div>
                 <FileText className="h-8 w-8 text-blue-500" />
               </div>
@@ -589,7 +589,7 @@ export default function AdminVerificationDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-purple-500">{statistics.underReview}</p>
-                  <p className="text-xs text-gray-500">Reviewing</p>
+                  <p className="text-xs text-gray-400">Reviewing</p>
                 </div>
                 <Eye className="h-8 w-8 text-purple-500" />
               </div>
@@ -600,7 +600,7 @@ export default function AdminVerificationDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-green-500">{statistics.approved}</p>
-                  <p className="text-xs text-gray-500">Approved</p>
+                  <p className="text-xs text-gray-400">Approved</p>
                 </div>
                 <CheckCircle className="h-8 w-8 text-green-500" />
               </div>
@@ -611,7 +611,7 @@ export default function AdminVerificationDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-red-500">{statistics.rejected}</p>
-                  <p className="text-xs text-gray-500">Rejected</p>
+                  <p className="text-xs text-gray-400">Rejected</p>
                 </div>
                 <XCircle className="h-8 w-8 text-red-500" />
               </div>
@@ -622,7 +622,7 @@ export default function AdminVerificationDashboard() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-orange-500">{statistics.resubmitted}</p>
-                  <p className="text-xs text-gray-500">Resubmitted</p>
+                  <p className="text-xs text-gray-400">Resubmitted</p>
                 </div>
                 <FileText className="h-8 w-8 text-orange-500" />
               </div>
@@ -647,7 +647,7 @@ export default function AdminVerificationDashboard() {
           {contractors.length === 0 ? (
             <Card className="bg-gray-800 border-gray-700">
               <CardContent className="py-12 text-center text-gray-400">
-                <Shield className="h-16 w-16 mx-auto mb-4 text-gray-600" />
+                <Shield className="h-16 w-16 mx-auto mb-4 text-gray-400" />
                 <p className="text-lg">No contractors found in this category</p>
               </CardContent>
             </Card>
@@ -671,7 +671,7 @@ export default function AdminVerificationDashboard() {
                           <div className="flex items-center gap-2 mt-2">
                             {getStatusBadge(contractor.verificationStatus)}
                             {contractor.submittedForVerificationAt && (
-                              <span className="text-xs text-gray-500">
+                              <span className="text-xs text-gray-400">
                                 Submitted: {formatDate(contractor.submittedForVerificationAt)}
                               </span>
                             )}

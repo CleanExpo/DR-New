@@ -85,7 +85,7 @@ export default function AdminClaimsPage() {
   const getPriorityIcon = (priority: string) => {
     if (priority === 'critical') return <Zap className="h-5 w-5 text-red-600" />;
     if (priority === 'urgent') return <AlertCircle className="h-5 w-5 text-orange-600" />;
-    return <Clock className="h-5 w-5 text-gray-600" />;
+    return <Clock className="h-5 w-5 text-gray-400" />;
   };
 
   const formatDate = (date: string) => {
@@ -102,7 +102,7 @@ export default function AdminClaimsPage() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Claim Intake Management</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-400 mt-2">
           Review and convert public claims into bookings for contractor matching
         </p>
       </div>
@@ -119,13 +119,13 @@ export default function AdminClaimsPage() {
       <div className="grid grid-cols-1 gap-4">
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-gray-600">Loading pending claims...</p>
+            <p className="text-gray-400">Loading pending claims...</p>
           </div>
         ) : claims.length === 0 ? (
           <div className="text-center py-12">
             <CheckCircle className="h-12 w-12 text-green-600 mx-auto mb-4" />
-            <p className="text-gray-600 font-medium">All claims processed!</p>
-            <p className="text-gray-500">No pending claims at this time.</p>
+            <p className="text-gray-400 font-medium">All claims processed!</p>
+            <p className="text-gray-400">No pending claims at this time.</p>
           </div>
         ) : (
           claims.map((claim) => (
@@ -145,7 +145,7 @@ export default function AdminClaimsPage() {
                         </span>
                       )}
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-4 text-sm text-gray-400">
                       <span className="flex items-center gap-1">
                         📍 {claim.suburb}, {claim.postcode}
                       </span>
@@ -164,23 +164,23 @@ export default function AdminClaimsPage() {
                 {/* Details Row */}
                 <div className="grid grid-cols-4 gap-4 mb-4 pb-4 border-b border-gray-200">
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase">Disaster Type</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase">Disaster Type</p>
                     <p className="text-sm font-semibold text-gray-900 capitalize">
                       {claim.disasterType.replace('-', ' ')}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase">Insurance</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase">Insurance</p>
                     <p className="text-sm font-semibold text-gray-900">
                       {claim.hasInsurance ? '✓ Yes' : '✗ No'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase">Submitted</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase">Submitted</p>
                     <p className="text-sm font-semibold text-gray-900">{formatDate(claim.submittedAt)}</p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-gray-500 uppercase">Status</p>
+                    <p className="text-xs font-medium text-gray-400 uppercase">Status</p>
                     <p className="text-sm font-semibold text-orange-600">Pending Review</p>
                   </div>
                 </div>
@@ -210,13 +210,13 @@ export default function AdminClaimsPage() {
                 {/* Expanded Details */}
                 {selectedClaimId === claim.id && (
                   <div className="mt-4 pt-4 border-t border-gray-200 bg-gray-50 -mx-6 -mb-6 px-6 py-4">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-400">
                       <strong>Claim ID:</strong> {claim.id}
                     </p>
-                    <p className="text-xs text-gray-500 mt-2">
+                    <p className="text-xs text-gray-400 mt-2">
                       When you convert this claim, we will:
                     </p>
-                    <ul className="text-xs text-gray-600 mt-2 space-y-1 ml-4">
+                    <ul className="text-xs text-gray-400 mt-2 space-y-1 ml-4">
                       <li>✓ Create a Booking record</li>
                       <li>✓ Create or link a Client user account</li>
                       <li>✓ Find matching contractors based on location and specialty</li>

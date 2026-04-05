@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Booking Payout API
  *

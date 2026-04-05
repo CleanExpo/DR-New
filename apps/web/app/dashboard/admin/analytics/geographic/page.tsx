@@ -170,7 +170,7 @@ export default function GeographicAnalyticsDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading geographic analytics...</p>
+          <p className="text-gray-400">Loading geographic analytics...</p>
         </div>
       </div>
     );
@@ -196,7 +196,7 @@ export default function GeographicAnalyticsDashboard() {
             ← Back
           </button>
           <h1 className="text-3xl font-bold text-gray-900">Geographic Analytics</h1>
-          <p className="text-gray-600 mt-2">Regional demand, contractor distribution, and expansion opportunities</p>
+          <p className="text-gray-400 mt-2">Regional demand, contractor distribution, and expansion opportunities</p>
         </div>
 
         {/* Date Range Filter */}
@@ -237,7 +237,7 @@ export default function GeographicAnalyticsDashboard() {
             </div>
           </div>
           {data?.dateRange && (
-            <p className="text-sm text-gray-600 mt-4">
+            <p className="text-sm text-gray-400 mt-4">
               Showing data from {formatAustralianDate(data.dateRange.start)} to {formatAustralianDate(data.dateRange.end)}
             </p>
           )}
@@ -256,38 +256,38 @@ export default function GeographicAnalyticsDashboard() {
             {/* Summary Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Jobs</p>
+                <p className="text-gray-400 text-sm font-medium">Total Jobs</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.summary.totalJobs.toLocaleString('en-AU')}
                 </p>
-                <p className="text-xs text-gray-500 mt-2">Across all regions</p>
+                <p className="text-xs text-gray-400 mt-2">Across all regions</p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Active Contractors</p>
+                <p className="text-gray-400 text-sm font-medium">Active Contractors</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.summary.totalContractors.toLocaleString('en-AU')}
                 </p>
-                <p className="text-xs text-gray-500 mt-2">Available nationwide</p>
+                <p className="text-xs text-gray-400 mt-2">Available nationwide</p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Avg Job Value</p>
+                <p className="text-gray-400 text-sm font-medium">Avg Job Value</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.summary.avgJobValue.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-500 mt-2">Per service</p>
+                <p className="text-xs text-gray-400 mt-2">Per service</p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Regions Served</p>
+                <p className="text-gray-400 text-sm font-medium">Regions Served</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.summary.regionsServed}
                 </p>
-                <p className="text-xs text-gray-500 mt-2">Geographic coverage</p>
+                <p className="text-xs text-gray-400 mt-2">Geographic coverage</p>
               </div>
             </div>
 
@@ -295,25 +295,25 @@ export default function GeographicAnalyticsDashboard() {
             <div className="bg-white rounded-lg shadow mb-8">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-lg font-bold text-gray-900">Regional Breakdown</h2>
-                <p className="text-sm text-gray-600 mt-1">Sorted by demand (job count)</p>
+                <p className="text-sm text-gray-400 mt-1">Sorted by demand (job count)</p>
               </div>
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Region
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Demand (Jobs)
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Active Contractors
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Avg Service Value
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Coverage %
                       </th>
                     </tr>
@@ -325,13 +325,13 @@ export default function GeographicAnalyticsDashboard() {
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             {region.region}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                             {region.jobCount.toLocaleString('en-AU')}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                             {region.contractorCount.toLocaleString('en-AU')}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                             ${region.avgServiceValue.toLocaleString('en-AU', {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
@@ -368,7 +368,7 @@ export default function GeographicAnalyticsDashboard() {
                       ))
                     ) : (
                       <tr>
-                        <td colSpan={5} className="px-6 py-4 text-center text-sm text-gray-600">
+                        <td colSpan={5} className="px-6 py-4 text-center text-sm text-gray-400">
                           No regional data available
                         </td>
                       </tr>
@@ -405,7 +405,7 @@ export default function GeographicAnalyticsDashboard() {
                     </div>
                   ))
                 ) : (
-                  <div className="col-span-5 text-center py-8 text-gray-600">
+                  <div className="col-span-5 text-center py-8 text-gray-400">
                     No top performers data available
                   </div>
                 )}
@@ -416,7 +416,7 @@ export default function GeographicAnalyticsDashboard() {
             <div className="bg-white rounded-lg shadow mb-8">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-lg font-bold text-gray-900">Underserved Regions</h2>
-                <p className="text-sm text-gray-600 mt-1">Areas with low contractor coverage - expansion opportunities</p>
+                <p className="text-sm text-gray-400 mt-1">Areas with low contractor coverage - expansion opportunities</p>
               </div>
               <div className="p-6">
                 {data.underservedRegions.length > 0 ? (
@@ -431,23 +431,23 @@ export default function GeographicAnalyticsDashboard() {
                         </div>
                         <div className="grid grid-cols-2 gap-4 mb-3">
                           <div>
-                            <p className="text-xs text-gray-600">Jobs</p>
+                            <p className="text-xs text-gray-400">Jobs</p>
                             <p className="text-lg font-bold text-gray-900">{region.jobCount.toLocaleString('en-AU')}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-gray-600">Contractors</p>
+                            <p className="text-xs text-gray-400">Contractors</p>
                             <p className="text-lg font-bold text-gray-900">{region.contractorCount.toLocaleString('en-AU')}</p>
                           </div>
                         </div>
                         <div className="bg-white border border-red-200 rounded p-3">
                           <p className="text-sm font-medium text-gray-700 mb-1">Recommendation:</p>
-                          <p className="text-sm text-gray-600">{region.recommendation}</p>
+                          <p className="text-sm text-gray-400">{region.recommendation}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-center py-8 text-gray-600">No underserved regions identified</p>
+                  <p className="text-center py-8 text-gray-400">No underserved regions identified</p>
                 )}
               </div>
             </div>
@@ -456,7 +456,7 @@ export default function GeographicAnalyticsDashboard() {
             <div className="bg-white rounded-lg shadow mb-8">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-lg font-bold text-gray-900">Growth Regions</h2>
-                <p className="text-sm text-gray-600 mt-1">High demand with moderate contractor supply - potential for expansion</p>
+                <p className="text-sm text-gray-400 mt-1">High demand with moderate contractor supply - potential for expansion</p>
               </div>
               <div className="p-6">
                 {data.growthRegions.length > 0 ? (
@@ -466,11 +466,11 @@ export default function GeographicAnalyticsDashboard() {
                         <h3 className="text-lg font-bold text-gray-900 mb-2">{region.region}</h3>
                         <div className="space-y-2 mb-3">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Jobs:</span>
+                            <span className="text-sm text-gray-400">Jobs:</span>
                             <span className="font-bold text-gray-900">{region.jobCount.toLocaleString('en-AU')}</span>
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className="text-sm text-gray-600">Contractors:</span>
+                            <span className="text-sm text-gray-400">Contractors:</span>
                             <span className="font-bold text-gray-900">{region.contractorCount.toLocaleString('en-AU')}</span>
                           </div>
                         </div>
@@ -481,7 +481,7 @@ export default function GeographicAnalyticsDashboard() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-center py-8 text-gray-600">No growth regions identified</p>
+                  <p className="text-center py-8 text-gray-400">No growth regions identified</p>
                 )}
               </div>
             </div>
@@ -490,7 +490,7 @@ export default function GeographicAnalyticsDashboard() {
             <div className="bg-white rounded-lg shadow mb-8">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-lg font-bold text-gray-900">Expansion Recommendations</h2>
-                <p className="text-sm text-gray-600 mt-1">Strategic regions to prioritise for contractor recruitment</p>
+                <p className="text-sm text-gray-400 mt-1">Strategic regions to prioritise for contractor recruitment</p>
               </div>
               <div className="p-6">
                 {data.expansionRecommendations.length > 0 ? (
@@ -510,15 +510,15 @@ export default function GeographicAnalyticsDashboard() {
                         </div>
                         <div className="grid grid-cols-3 gap-4">
                           <div>
-                            <p className="text-xs text-gray-600">Jobs</p>
+                            <p className="text-xs text-gray-400">Jobs</p>
                             <p className="text-lg font-bold text-gray-900">{rec.jobCount.toLocaleString('en-AU')}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-gray-600">Contractors</p>
+                            <p className="text-xs text-gray-400">Contractors</p>
                             <p className="text-lg font-bold text-gray-900">{rec.contractorCount.toLocaleString('en-AU')}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-gray-600">Coverage</p>
+                            <p className="text-xs text-gray-400">Coverage</p>
                             <p className="text-lg font-bold text-gray-900">{rec.coveragePercentage.toFixed(1)}%</p>
                           </div>
                         </div>
@@ -526,7 +526,7 @@ export default function GeographicAnalyticsDashboard() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-center py-8 text-gray-600">No expansion recommendations available</p>
+                  <p className="text-center py-8 text-gray-400">No expansion recommendations available</p>
                 )}
               </div>
             </div>
@@ -535,7 +535,7 @@ export default function GeographicAnalyticsDashboard() {
             <div className="bg-white rounded-lg shadow">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-lg font-bold text-gray-900">Regional Demand Heatmap</h2>
-                <p className="text-sm text-gray-600 mt-1">Visual representation of demand intensity and supply adequacy</p>
+                <p className="text-sm text-gray-400 mt-1">Visual representation of demand intensity and supply adequacy</p>
               </div>
               <div className="p-6">
                 {data.heatmap.length > 0 ? (
@@ -544,15 +544,15 @@ export default function GeographicAnalyticsDashboard() {
                       <span className="text-sm font-medium text-gray-700">Legend:</span>
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 bg-red-600 rounded"></div>
-                        <span className="text-xs text-gray-600">High Demand / Low Supply</span>
+                        <span className="text-xs text-gray-400">High Demand / Low Supply</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 bg-yellow-500 rounded"></div>
-                        <span className="text-xs text-gray-600">Moderate Balance</span>
+                        <span className="text-xs text-gray-400">Moderate Balance</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 bg-green-600 rounded"></div>
-                        <span className="text-xs text-gray-600">Adequate Supply</span>
+                        <span className="text-xs text-gray-400">Adequate Supply</span>
                       </div>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -581,7 +581,7 @@ export default function GeographicAnalyticsDashboard() {
                     </div>
                   </>
                 ) : (
-                  <p className="text-center py-8 text-gray-600">No heatmap data available</p>
+                  <p className="text-center py-8 text-gray-400">No heatmap data available</p>
                 )}
               </div>
             </div>

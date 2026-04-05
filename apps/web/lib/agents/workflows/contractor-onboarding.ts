@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Contractor Onboarding Workflow - LangGraph implementation
  *

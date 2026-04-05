@@ -78,7 +78,7 @@ export default function ContractorAnalyticsDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your analytics...</p>
+          <p className="text-gray-400">Loading your analytics...</p>
         </div>
       </div>
     );
@@ -98,7 +98,7 @@ export default function ContractorAnalyticsDashboard() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Your Analytics</h1>
-          <p className="text-gray-600 mt-2">Track your earnings, performance, and job metrics</p>
+          <p className="text-gray-400 mt-2">Track your earnings, performance, and job metrics</p>
         </div>
 
         {/* Error Alert */}
@@ -115,52 +115,52 @@ export default function ContractorAnalyticsDashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
               {/* Total Earnings Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Earnings</p>
+                <p className="text-gray-400 text-sm font-medium">Total Earnings</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.overview.totalEarnings.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-600 mt-1">All-time earnings</p>
+                <p className="text-xs text-gray-400 mt-1">All-time earnings</p>
               </div>
 
               {/* This Month Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">This Month</p>
+                <p className="text-gray-400 text-sm font-medium">This Month</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.overview.monthlyEarnings.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-600 mt-1">Current month earnings</p>
+                <p className="text-xs text-gray-400 mt-1">Current month earnings</p>
               </div>
 
               {/* Average Per Job Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Avg Per Job</p>
+                <p className="text-gray-400 text-sm font-medium">Avg Per Job</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.overview.averagePerJob.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </p>
-                <p className="text-xs text-gray-600 mt-1">Average job value</p>
+                <p className="text-xs text-gray-400 mt-1">Average job value</p>
               </div>
 
               {/* Completed Jobs Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Completed Jobs</p>
+                <p className="text-gray-400 text-sm font-medium">Completed Jobs</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{data.overview.completedJobs}</p>
-                <p className="text-xs text-gray-600 mt-1">Total completed</p>
+                <p className="text-xs text-gray-400 mt-1">Total completed</p>
               </div>
 
               {/* Active Jobs Card */}
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Active Jobs</p>
+                <p className="text-gray-400 text-sm font-medium">Active Jobs</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{data.overview.activeJobs}</p>
-                <p className="text-xs text-gray-600 mt-1">In progress</p>
+                <p className="text-xs text-gray-400 mt-1">In progress</p>
               </div>
             </div>
 
@@ -173,7 +173,7 @@ export default function ContractorAnalyticsDashboard() {
                   {/* Average Rating */}
                   <div className="border-b pb-4">
                     <div className="flex justify-between items-start mb-2">
-                      <span className="text-gray-600 font-medium">Average Rating</span>
+                      <span className="text-gray-400 font-medium">Average Rating</span>
                       <span className="text-2xl font-bold text-yellow-500">
                         {data.performance.averageRating.toFixed(1)}
                       </span>
@@ -192,13 +192,13 @@ export default function ContractorAnalyticsDashboard() {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-xs text-gray-600 mt-2">Based on {data.performance.ratingsCount} ratings</p>
+                    <p className="text-xs text-gray-400 mt-2">Based on {data.performance.ratingsCount} ratings</p>
                   </div>
 
                   {/* Acceptance Rate */}
                   <div className="border-b pb-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-600 font-medium">Acceptance Rate</span>
+                      <span className="text-gray-400 font-medium">Acceptance Rate</span>
                       <span className="text-xl font-bold text-gray-900">
                         {data.performance.acceptanceRate.toFixed(1)}%
                       </span>
@@ -214,7 +214,7 @@ export default function ContractorAnalyticsDashboard() {
                   {/* Completion Rate */}
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-600 font-medium">Completion Rate</span>
+                      <span className="text-gray-400 font-medium">Completion Rate</span>
                       <span className="text-xl font-bold text-gray-900">
                         {data.performance.completionRate.toFixed(1)}%
                       </span>
@@ -236,7 +236,7 @@ export default function ContractorAnalyticsDashboard() {
                   {/* Pending Payouts */}
                   <div className="border-b pb-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-600 font-medium">Pending Payouts</span>
+                      <span className="text-gray-400 font-medium">Pending Payouts</span>
                       <span className="text-2xl font-bold text-gray-900">
                         ${data.earnings.pendingPayouts.toLocaleString('en-AU', {
                           minimumFractionDigits: 2,
@@ -250,13 +250,13 @@ export default function ContractorAnalyticsDashboard() {
                         <p className="text-xs mt-1">Payouts typically process within 3-5 business days</p>
                       </div>
                     ) : (
-                      <p className="text-sm text-gray-600">No pending payouts</p>
+                      <p className="text-sm text-gray-400">No pending payouts</p>
                     )}
                   </div>
 
                   {/* Last Payout */}
                   <div>
-                    <span className="text-gray-600 font-medium block mb-2">Last Payout</span>
+                    <span className="text-gray-400 font-medium block mb-2">Last Payout</span>
                     {data.earnings.lastPayoutDate ? (
                       <p className="text-lg font-semibold text-gray-900">
                         {new Date(data.earnings.lastPayoutDate).toLocaleDateString('en-AU', {
@@ -266,7 +266,7 @@ export default function ContractorAnalyticsDashboard() {
                         })}
                       </p>
                     ) : (
-                      <p className="text-sm text-gray-600">No payouts yet</p>
+                      <p className="text-sm text-gray-400">No payouts yet</p>
                     )}
                   </div>
                 </div>
@@ -282,7 +282,7 @@ export default function ContractorAnalyticsDashboard() {
                     <div key={idx} className="flex justify-between items-center pb-3 border-b last:border-b-0">
                       <div>
                         <p className="text-sm font-medium text-gray-900">{item.serviceType}</p>
-                        <p className="text-xs text-gray-600">{item.count} job{item.count !== 1 ? 's' : ''}</p>
+                        <p className="text-xs text-gray-400">{item.count} job{item.count !== 1 ? 's' : ''}</p>
                       </div>
                       <span className="font-bold text-gray-900">
                         ${item.amount.toLocaleString('en-AU', {
@@ -294,7 +294,7 @@ export default function ContractorAnalyticsDashboard() {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">No earnings data available</p>
+                <p className="text-sm text-gray-400">No earnings data available</p>
               )}
             </div>
 
@@ -305,7 +305,7 @@ export default function ContractorAnalyticsDashboard() {
                 className="block bg-white hover:bg-gray-50 border border-gray-300 rounded-lg p-6 transition-colors"
               >
                 <p className="text-lg font-bold text-gray-900">Detailed Performance Analysis</p>
-                <p className="text-sm text-gray-600 mt-2">
+                <p className="text-sm text-gray-400 mt-2">
                   View rating distribution, monthly trends, completion time metrics, and historical data
                 </p>
                 <p className="text-xs text-blue-600 mt-3 font-medium">View Details →</p>

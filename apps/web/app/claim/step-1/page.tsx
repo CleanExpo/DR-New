@@ -129,7 +129,7 @@ export default function ClaimStep1Page() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-3xl font-bold text-gray-900">Report a Claim</h1>
-            <div className="text-sm text-gray-600">Step 1 of 3</div>
+            <div className="text-sm text-gray-400">Step 1 of 3</div>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div className="bg-dr-emergency h-2 rounded-full" style={{ width: '33%' }} />
@@ -276,7 +276,7 @@ export default function ClaimStep1Page() {
                 <label className="block text-base font-medium text-foreground">
                   Is your property in a designated bushfire zone?
                 </label>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-gray-400 mb-3">
                   Check your local council's bushfire overlay map. This affects insurance and contractor requirements.
                 </p>
                 <div className="space-y-2">
@@ -317,7 +317,7 @@ export default function ClaimStep1Page() {
                 <label className="block text-base font-medium text-foreground">
                   What is your property's cyclone rating?
                 </label>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-gray-400 mb-3">
                   This is based on your building approval documents (AS 1170.2 Wind Actions).
                 </p>
                 <FormSelect
@@ -342,7 +342,7 @@ export default function ClaimStep1Page() {
                 <label className="block text-base font-medium text-foreground">
                   Is your property in a flood zone?
                 </label>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-gray-400 mb-3">
                   Check your property's flood overlay on your council website. This affects insurance coverage.
                 </p>
                 <div className="space-y-2">
@@ -408,7 +408,7 @@ export default function ClaimStep1Page() {
 
         {/* Help Text */}
         <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             Your information is encrypted and secure. We never share your data.
           </p>
         </div>

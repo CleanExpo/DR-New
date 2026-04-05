@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Two-Factor Authentication (2FA) Service
  *

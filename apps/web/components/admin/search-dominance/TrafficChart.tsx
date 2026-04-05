@@ -72,7 +72,7 @@ export function TrafficChart() {
                     ? 'text-green-600'
                     : growth.trend === 'down'
                     ? 'text-red-600'
-                    : 'text-gray-600'
+                    : 'text-gray-400'
                 }`}
               >
                 {growth.sessions > 0 ? '+' : ''}

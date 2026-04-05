@@ -162,17 +162,17 @@ export default function CompleteJobPage() {
               <h3 className="text-sm font-medium text-gray-400 mb-3">Completion Summary</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Hours Worked</span>
+                  <span className="text-gray-400">Hours Worked</span>
                   <span className="text-white">{hoursWorked}h</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-500">Actual Cost (ex. GST)</span>
+                  <span className="text-gray-400">Actual Cost (ex. GST)</span>
                   <span className="text-white">
                     ${parseFloat(actualCost).toLocaleString('en-AU')}
                   </span>
                 </div>
                 <div className="flex justify-between border-t border-white/10 pt-2">
-                  <span className="text-gray-500">GST (10%)</span>
+                  <span className="text-gray-400">GST (10%)</span>
                   <span className="text-gray-400">
                     ${(parseFloat(actualCost) * 0.1).toLocaleString('en-AU')}
                   </span>

@@ -293,7 +293,7 @@ export default function SemanticSearchInput({
                 AI understood your query as:
               </p>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-gray-400">
                   {Math.round(parsedResult.parsed.confidence * 100)}% confident
                 </span>
               </div>
@@ -346,7 +346,7 @@ export default function SemanticSearchInput({
             {/* Suggestions */}
             {parsedResult.suggestions && parsedResult.suggestions.length > 0 && (
               <div className="mt-3 pt-3 border-t border-gray-700">
-                <p className="text-xs text-gray-500 mb-2">Suggestions:</p>
+                <p className="text-xs text-gray-400 mb-2">Suggestions:</p>
                 <ul className="text-sm text-gray-400 space-y-1">
                   {parsedResult.suggestions.map((suggestion, i) => (
                     <li key={i} className="flex items-start gap-2">

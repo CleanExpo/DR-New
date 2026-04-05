@@ -18,7 +18,7 @@ jobs:
       - name: Ping /api/health
         id: ping
         run: |
-          response=$(curl -s -w "\n%{http_code}" https://disaster-recovery-seven.vercel.app/api/health)
+          response=$(curl -s -w "\n%{http_code}" https://disasterrecovery.com.au/api/health)
           http_code=$(echo "$response" | tail -n1)
           body=$(echo "$response" | sed '$d')
 
@@ -52,7 +52,7 @@ jobs:
           while [ $attempt -le $max_attempts ]; do
             echo "Health check attempt $attempt/$max_attempts"
             response=$(curl -s -w "
-%{http_code}" https://disaster-recovery-seven.vercel.app/api/health)
+%{http_code}" https://disasterrecovery.com.au/api/health)
             http_code=$(echo "$response" | tail -n1)
             body=$(echo "$response" | sed '$d')
             
@@ -77,7 +77,7 @@ jobs:
 
       - name: Check database connectivity
         run: |
-          curl -s https://disaster-recovery-seven.vercel.app/api/health | grep -q '"database"'
+          curl -s https://disasterrecovery.com.au/api/health | grep -q '"database"'
           if [ $? -eq 0 ]; then
             echo "Database connectivity verified"
           else
@@ -87,7 +87,7 @@ jobs:
 
       - name: Check metrics endpoint
         run: |
-          curl -s https://disaster-recovery-seven.vercel.app/api/metrics | head -20
+          curl -s https://disasterrecovery.com.au/api/metrics | head -20
           if [ $? -eq 0 ]; then
             echo "Metrics endpoint is responding"
           else
@@ -97,7 +97,7 @@ jobs:
 
       - name: Performance baseline check
         run: |
-          response_time=$(curl -s -w '%{time_total}' -o /dev/null https://disaster-recovery-seven.vercel.app/api/health)
+          response_time=$(curl -s -w '%{time_total}' -o /dev/null https://disasterrecovery.com.au/api/health)
           echo "API response time: $response_time seconds"
           
           if (( $(echo "$response_time > 5" | bc -l) )); then

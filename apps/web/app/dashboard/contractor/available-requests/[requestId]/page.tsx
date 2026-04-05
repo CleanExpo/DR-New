@@ -165,7 +165,7 @@ export default function JobDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader className="h-8 w-8 animate-spin text-gray-600" />
+        <Loader className="h-8 w-8 animate-spin text-gray-400" />
       </div>
     );
   }
@@ -196,7 +196,7 @@ export default function JobDetailPage() {
         <h1 className="text-3xl font-bold text-gray-900 mt-4 capitalize">
           {job.disasterType.replace('_', ' ')} Job
         </h1>
-        <p className="text-gray-600 mt-2">{job.location.suburb}, {job.location.postcode}</p>
+        <p className="text-gray-400 mt-2">{job.location.suburb}, {job.location.postcode}</p>
       </div>
 
       {/* Success Alert */}
@@ -231,36 +231,36 @@ export default function JobDetailPage() {
 
             <div className="space-y-4">
               <div>
-                <p className="text-sm text-gray-600 uppercase font-medium mb-2">Description</p>
+                <p className="text-sm text-gray-400 uppercase font-medium mb-2">Description</p>
                 <p className="text-gray-700 leading-relaxed">{job.description}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium mb-2">Estimated Budget</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium mb-2">Estimated Budget</p>
                   <p className="text-2xl font-bold text-gray-900">{formatCurrency(job.estimatedBudget)}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium mb-2">Emergency Level</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium mb-2">Emergency Level</p>
                   <p className="text-lg font-semibold text-gray-900">{job.emergencyLevel}</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
                 <div>
-                  <div className="flex items-center gap-1 text-gray-600 mb-2">
+                  <div className="flex items-center gap-1 text-gray-400 mb-2">
                     <MapPin className="h-4 w-4" />
                     <span className="text-sm font-medium uppercase">Location</span>
                   </div>
                   <p className="text-gray-900 font-semibold">{job.location.suburb}</p>
-                  <p className="text-xs text-gray-600">{job.location.postcode}, {job.location.state}</p>
+                  <p className="text-xs text-gray-400">{job.location.postcode}, {job.location.state}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium mb-2">Posted</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium mb-2">Posted</p>
                   <p className="text-gray-900 font-semibold">{formatDate(job.postedAt)}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium mb-2">Client</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium mb-2">Client</p>
                   <p className="text-gray-900 font-semibold">{job.clientName}</p>
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function JobDetailPage() {
               </form>
 
               <div className="mt-4 pt-4 border-t border-gray-200">
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-400">
                   ℹ️ By submitting a bid, you agree to the terms of service and confirm your
                   availability for this job.
                 </p>
@@ -370,9 +370,9 @@ export default function JobDetailPage() {
             <h3 className="font-semibold text-gray-900 mb-4">Quick Info</h3>
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-gray-600 uppercase font-medium">Match Score</p>
+                <p className="text-xs text-gray-400 uppercase font-medium">Match Score</p>
                 <p className="text-2xl font-bold text-amber-600 mt-1">{job.matchScore}</p>
-                <p className="text-xs text-gray-600 mt-1">
+                <p className="text-xs text-gray-400 mt-1">
                   {job.matchScore >= 80
                     ? 'Excellent fit for your expertise'
                     : job.matchScore >= 60

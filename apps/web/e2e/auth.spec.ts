@@ -24,7 +24,8 @@ test.describe('Authentication Flow', () => {
 
       await page.fill('input[type="email"], input[name="email"]', 'invalid@example.com');
       await page.fill('input[type="password"], input[name="password"]', 'wrongpassword');
-      await page.click('button[type="submit"]');
+      // force: true bypasses pointer-events check on CI (button may be briefly covered during hydration)
+      await page.locator('button[type="submit"]').click({ force: true });
 
       // Should show error message (not redirect)
       await expect(page.locator('text=/invalid|error|failed/i')).toBeVisible({ timeout: 10000 });
@@ -71,7 +72,7 @@ test.describe('Authentication Flow', () => {
       await page.goto('/dashboard/client');
 
       // Should redirect to login or show auth prompt
-      await page.waitForTimeout(3000);
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
       const url = page.url();
       const isRedirected = url.includes('/login') || url.includes('/api/auth');
       const hasAuthContent = await page.locator('text=/sign in|log in|login/i').count() > 0;
@@ -82,7 +83,7 @@ test.describe('Authentication Flow', () => {
     test('should redirect unauthenticated users from admin dashboard', async ({ page }) => {
       await page.goto('/dashboard/admin');
 
-      await page.waitForTimeout(3000);
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
       const url = page.url();
       const isRedirected = url.includes('/login') || url.includes('/api/auth');
       const hasAuthContent = await page.locator('text=/sign in|log in|login/i').count() > 0;

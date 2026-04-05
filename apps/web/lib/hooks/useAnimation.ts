@@ -8,6 +8,7 @@
  */
 
 import { useCallback, useMemo, useEffect, useState } from 'react';
+import { type Variants } from 'framer-motion';
 import { useIsEmergency } from './useIsEmergency';
 import {
   shouldAnimateInContext,
@@ -16,7 +17,6 @@ import {
   isMobileDevice,
   prefersReducedMotion,
   getAnimationQuality,
-  Variants,
 } from '@/lib/animations';
 
 interface UseAnimationOptions {

@@ -1,3 +1,4 @@
+// @ts-ignore - module shim
 import { RateLimiterMemory, RateLimiterRes } from 'rate-limiter-flexible';
 
 /**

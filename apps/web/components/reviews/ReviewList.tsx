@@ -157,7 +157,7 @@ export default function ReviewList({ contractorId, canReply = false }: ReviewLis
             className={`h-5 w-5 ${
               star <= rating
                 ? 'text-yellow-500 fill-yellow-500'
-                : 'text-gray-600'
+                : 'text-gray-400'
             }`}
           />
         ))}
@@ -246,7 +246,7 @@ export default function ReviewList({ contractorId, canReply = false }: ReviewLis
                                 className={`h-4 w-4 ${
                                   star <= Math.round(value)
                                     ? 'text-yellow-500 fill-yellow-500'
-                                    : 'text-gray-600'
+                                    : 'text-gray-400'
                                 }`}
                               />
                             ))}
@@ -270,7 +270,7 @@ export default function ReviewList({ contractorId, canReply = false }: ReviewLis
         {reviews.length === 0 ? (
           <Card className="bg-gray-800 border-gray-700">
             <CardContent className="py-12 text-center text-gray-400">
-              <MessageCircle className="h-16 w-16 mx-auto mb-4 text-gray-600" />
+              <MessageCircle className="h-16 w-16 mx-auto mb-4 text-gray-400" />
               <p className="text-lg">No reviews yet</p>
               <p className="text-sm mt-2">Be the first to leave a review!</p>
             </CardContent>

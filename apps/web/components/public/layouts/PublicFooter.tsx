@@ -325,7 +325,7 @@ export function PublicFooter() {
                   {link.label}
                 </Link>
                 {index < legalLinks.length - 1 && (
-                  <span className="text-gray-600">|</span>
+                  <span className="text-gray-400">|</span>
                 )}
               </React.Fragment>
             ))}
@@ -346,10 +346,10 @@ export function PublicFooter() {
             <p>
               &copy; {new Date().getFullYear()} Disaster Recovery Australia. All rights reserved.
             </p>
-            <p className="text-gray-500">
+            <p className="text-gray-400">
               Powered by <Link href="/about" className="text-emerald-400 hover:text-emerald-300 transition-colors">National Recovery Platform Group (NRPG)</Link>
             </p>
-            <p className="text-gray-500 max-w-4xl mx-auto leading-relaxed pt-2">
+            <p className="text-gray-400 max-w-4xl mx-auto leading-relaxed pt-2">
               Disaster Recovery Australia is a platform that connects property owners with independent restoration contractors.
               We facilitate the matching process only and do not directly provide restoration services.
               All work is performed by independent, licensed contractors in the NRPG network.

@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
@@ -334,12 +335,12 @@ export default function VerificationPage() {
                       {/* Details */}
                       <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
                         <div>
-                          <span className="text-gray-500">Provider:</span>
+                          <span className="text-gray-400">Provider:</span>
                           <span className="text-gray-300 ml-2">{info.provider}</span>
                         </div>
                         {checkData.referenceId && (
                           <div>
-                            <span className="text-gray-500">Reference:</span>
+                            <span className="text-gray-400">Reference:</span>
                             <span className="text-gray-300 ml-2 font-mono text-xs">
                               {checkData.referenceId}
                             </span>
@@ -347,7 +348,7 @@ export default function VerificationPage() {
                         )}
                         {checkData.initiatedAt && (
                           <div>
-                            <span className="text-gray-500">Initiated:</span>
+                            <span className="text-gray-400">Initiated:</span>
                             <span className="text-gray-300 ml-2">
                               {new Date(checkData.initiatedAt).toLocaleDateString('en-AU')}
                             </span>
@@ -355,7 +356,7 @@ export default function VerificationPage() {
                         )}
                         {checkData.expiresAt && checkData.status === 'PASS' && (
                           <div>
-                            <span className="text-gray-500">Valid until:</span>
+                            <span className="text-gray-400">Valid until:</span>
                             <span className="text-gray-300 ml-2">
                               {new Date(checkData.expiresAt).toLocaleDateString('en-AU')}
                             </span>

@@ -141,11 +141,11 @@ export default function DemoLandingPage() {
                     {isSelected && (
                       <div className={`absolute top-2 right-2 w-2 h-2 bg-${view.colour}-500 rounded-full`} />
                     )}
-                    <Icon className={`w-8 h-8 mb-3 ${isSelected ? `text-${view.colour}-400` : 'text-gray-500'}`} />
+                    <Icon className={`w-8 h-8 mb-3 ${isSelected ? `text-${view.colour}-400` : 'text-gray-400'}`} />
                     <h3 className={`font-semibold mb-1 ${isSelected ? 'text-white' : 'text-gray-300'}`}>
                       {view.label}
                     </h3>
-                    <p className="text-sm text-gray-500">{view.description}</p>
+                    <p className="text-sm text-gray-400">{view.description}</p>
                   </button>
                 )
               })}
@@ -172,7 +172,7 @@ export default function DemoLandingPage() {
                     <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${
                       isSelected ? 'bg-orange-500/20' : 'bg-gray-700/50'
                     }`}>
-                      <Icon className={`w-6 h-6 ${isSelected ? 'text-orange-400' : 'text-gray-500'}`} />
+                      <Icon className={`w-6 h-6 ${isSelected ? 'text-orange-400' : 'text-gray-400'}`} />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
@@ -185,7 +185,7 @@ export default function DemoLandingPage() {
                           </span>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500 mb-2">{scenario.description}</p>
+                      <p className="text-sm text-gray-400 mb-2">{scenario.description}</p>
                       <span className="text-xs text-orange-400">{scenario.duration}</span>
                     </div>
                     {isSelected && (
@@ -208,7 +208,7 @@ export default function DemoLandingPage() {
               <ArrowRight className="w-5 h-5" />
             </Link>
 
-            <p className="mt-6 text-sm text-gray-500">
+            <p className="mt-6 text-sm text-gray-400">
               Press <kbd className="px-2 py-0.5 bg-gray-700 text-gray-300 rounded text-xs font-mono">?</kbd> during demo for keyboard shortcuts
             </p>
           </section>
@@ -246,7 +246,7 @@ export default function DemoLandingPage() {
         </main>
 
         {/* Footer */}
-        <footer className="py-6 text-center text-gray-600 text-sm">
+        <footer className="py-6 text-center text-gray-400 text-sm">
           <p>NRPG - Australia's #1 Disaster Recovery Network</p>
         </footer>
       </div>

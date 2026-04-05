@@ -185,7 +185,7 @@ export function RealtimeNotifications({
       case 'review':
         return <Star className="h-5 w-5 text-yellow-600" />;
       default:
-        return <Bell className="h-5 w-5 text-gray-600" />;
+        return <Bell className="h-5 w-5 text-gray-400" />;
     }
   };
 

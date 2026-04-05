@@ -582,7 +582,7 @@ export class PRCampaignManager {
     campaign.results = {
       ...campaign.results,
       ...results
-    };
+    } as PRCampaign['results'];
     campaign.updatedAt = new Date();
 
     this.campaigns.set(campaignId, campaign);

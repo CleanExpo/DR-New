@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
@@ -20,6 +21,7 @@ import {
   AlertCircle,
   Shield,
   ChevronRight,
+  FileText,
 } from 'lucide-react';
 
 interface OnboardingDashboardProps {

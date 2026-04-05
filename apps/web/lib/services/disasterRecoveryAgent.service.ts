@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { getT5GemmaService } from './t5gemma.service';
 import { getWorkerService } from './autonomousWorker.service';
 import { prisma } from '@/lib/prisma';

@@ -435,7 +435,7 @@ async function executeClaimProcessing(
 
   // Compile the graph with checkpointer
   const compiledWorkflow = workflow.compile({
-    checkpointer: config.checkpointer,
+    checkpointer: config.checkpointer as any,
   });
 
   // Extract claim details from input

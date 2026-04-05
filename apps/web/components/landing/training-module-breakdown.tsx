@@ -439,15 +439,15 @@ export function TrainingModuleBreakdown() {
       <div className="grid gap-6 sm:grid-cols-3">
         <div className="rounded-lg border border-gray-200 bg-white p-6 text-center shadow-sm">
           <div className="text-4xl font-bold text-gray-900">{totalModules}</div>
-          <div className="mt-1 text-sm text-gray-600">Total Modules</div>
+          <div className="mt-1 text-sm text-gray-400">Total Modules</div>
         </div>
         <div className="rounded-lg border border-gray-200 bg-white p-6 text-center shadow-sm">
           <div className="text-4xl font-bold text-gray-900">{Math.floor(totalDuration / 60)}h+</div>
-          <div className="mt-1 text-sm text-gray-600">Training Duration</div>
+          <div className="mt-1 text-sm text-gray-400">Training Duration</div>
         </div>
         <div className="rounded-lg border border-gray-200 bg-white p-6 text-center shadow-sm">
           <div className="text-4xl font-bold text-gray-900">{totalQuestions}</div>
-          <div className="mt-1 text-sm text-gray-600">Assessment Questions</div>
+          <div className="mt-1 text-sm text-gray-400">Assessment Questions</div>
         </div>
       </div>
 
@@ -478,7 +478,7 @@ export function TrainingModuleBreakdown() {
                   <div className={cn('flex-shrink-0', colors.icon)}>{category.icon}</div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">{category.name}</h3>
-                    <div className="mt-1 flex flex-wrap gap-2 text-sm text-gray-600">
+                    <div className="mt-1 flex flex-wrap gap-2 text-sm text-gray-400">
                       <span>{category.modules.length} modules</span>
                       <span>•</span>
                       <span>{categoryDuration} mins</span>
@@ -522,10 +522,10 @@ export function TrainingModuleBreakdown() {
                               </span>
                               <h4 className="font-semibold text-gray-900">{module.title}</h4>
                             </div>
-                            <p className="mt-2 text-sm text-gray-600">{module.description}</p>
+                            <p className="mt-2 text-sm text-gray-400">{module.description}</p>
                           </div>
                         </div>
-                        <div className="mt-3 flex gap-4 text-sm text-gray-500">
+                        <div className="mt-3 flex gap-4 text-sm text-gray-400">
                           <span className="flex items-center gap-1">
                             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path

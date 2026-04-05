@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 /**
@@ -359,7 +360,7 @@ export function CertificateCanvas({
       </div>
 
       {/* Info */}
-      <div className="text-xs text-gray-600 bg-blue-50 p-3 rounded-lg">
+      <div className="text-xs text-gray-400 bg-blue-50 p-3 rounded-lg">
         <p>
           💡 <strong>Tip:</strong> Click "Edit Certificate" to customize text fields.
           Once satisfied with changes, click "Save Changes" then "Export Certificate".

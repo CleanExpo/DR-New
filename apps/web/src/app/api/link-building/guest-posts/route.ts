@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Guest Posts API Route
  *

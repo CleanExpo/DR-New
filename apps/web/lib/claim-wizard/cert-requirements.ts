@@ -7,7 +7,8 @@
  * - Round 2 (Fallback): If no contractors have cert, offer to ANY in rotation
  */
 
-import { IICRCCertificationLevel } from '@prisma/client';
+// IICRC certification codes used in contractor matching (not the Prisma enum levels)
+type IICRCCertCode = 'WRT' | 'ASD' | 'AMRT' | 'FSRT' | 'OCT' | 'CCT' | 'UFT';
 
 /**
  * Disaster Type → Required IICRC Certifications Mapping
@@ -15,7 +16,7 @@ import { IICRCCertificationLevel } from '@prisma/client';
  * Each disaster type specifies which IICRC certifications are REQUIRED.
  * Contractors without these certifications will be skipped in Round 1 matching.
  */
-export const CERT_REQUIREMENTS: Record<string, IICRCCertificationLevel[]> = {
+export const CERT_REQUIREMENTS: Record<string, IICRCCertCode[]> = {
   // ============================================================================
   // Water-Related Disasters
   // ============================================================================
@@ -128,7 +129,7 @@ export const CERT_REQUIREMENTS: Record<string, IICRCCertificationLevel[]> = {
  * getRequiredCerts('General Cleaning') → []
  * getRequiredCerts('Unknown Type') → []
  */
-export function getRequiredCerts(disasterType: string): IICRCCertificationLevel[] {
+export function getRequiredCerts(disasterType: string): IICRCCertCode[] {
   return CERT_REQUIREMENTS[disasterType] || [];
 }
 
@@ -153,8 +154,8 @@ export function requiresCertification(disasterType: string): boolean {
  * @param certLevel - IICRC certification level enum
  * @returns Full certification name
  */
-export function getCertificationName(certLevel: IICRCCertificationLevel): string {
-  const certNames: Record<IICRCCertificationLevel, string> = {
+export function getCertificationName(certLevel: IICRCCertCode): string {
+  const certNames: Record<IICRCCertCode, string> = {
     WRT: 'Water Restoration Technician',
     AMRT: 'Applied Microbial Remediation Technician',
     ASD: 'Applied Structural Drying Technician',
@@ -180,7 +181,7 @@ export function getCertificationName(certLevel: IICRCCertificationLevel): string
  * hasRequiredCerts([], 'General Cleaning') → true (no certs required)
  */
 export function hasRequiredCerts(
-  contractorCerts: IICRCCertificationLevel[],
+  contractorCerts: IICRCCertCode[],
   disasterType: string
 ): boolean {
   const requiredCerts = getRequiredCerts(disasterType);
@@ -206,9 +207,9 @@ export function hasRequiredCerts(
  * getMissingCerts(['WRT', 'ASD', 'AMRT'], 'Flood') → []
  */
 export function getMissingCerts(
-  contractorCerts: IICRCCertificationLevel[],
+  contractorCerts: IICRCCertCode[],
   disasterType: string
-): IICRCCertificationLevel[] {
+): IICRCCertCode[] {
   const requiredCerts = getRequiredCerts(disasterType);
   return requiredCerts.filter((cert) => !contractorCerts.includes(cert));
 }

@@ -411,7 +411,7 @@ export default function ReportsPage() {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <p className="py-16 text-center text-sm text-gray-500">No job data available</p>
+              <p className="py-16 text-center text-sm text-gray-400">No job data available</p>
             )}
           </div>
 
@@ -473,7 +473,7 @@ export default function ReportsPage() {
               </table>
             </div>
           ) : (
-            <p className="py-8 text-center text-sm text-gray-500">No contractor data available</p>
+            <p className="py-8 text-center text-sm text-gray-400">No contractor data available</p>
           )}
         </div>
 
@@ -516,7 +516,7 @@ export default function ReportsPage() {
               </table>
             </div>
           ) : (
-            <p className="py-8 text-center text-sm text-gray-500">No outstanding invoices</p>
+            <p className="py-8 text-center text-sm text-gray-400">No outstanding invoices</p>
           )}
         </div>
       </div>

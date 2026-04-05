@@ -108,9 +108,9 @@ export default function ForecastsAnalyticsDashboard() {
       case 'decreasing':
         return 'text-red-600';
       case 'stable':
-        return 'text-gray-600';
+        return 'text-gray-400';
       default:
-        return 'text-gray-600';
+        return 'text-gray-400';
     }
   };
 
@@ -125,7 +125,7 @@ export default function ForecastsAnalyticsDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading predictive analytics...</p>
+          <p className="text-gray-400">Loading predictive analytics...</p>
         </div>
       </div>
     );
@@ -152,7 +152,7 @@ export default function ForecastsAnalyticsDashboard() {
               ← Back
             </button>
             <h1 className="text-3xl font-bold text-gray-900">Predictive Analytics</h1>
-            <p className="text-gray-600 mt-2">Revenue and demand forecasting with confidence intervals</p>
+            <p className="text-gray-400 mt-2">Revenue and demand forecasting with confidence intervals</p>
           </div>
         </div>
 
@@ -186,7 +186,7 @@ export default function ForecastsAnalyticsDashboard() {
             {/* Summary Section */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Current Revenue</p>
+                <p className="text-gray-400 text-sm font-medium">Current Revenue</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   ${data.summary.currentRevenue.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
@@ -196,14 +196,14 @@ export default function ForecastsAnalyticsDashboard() {
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Current Demand</p>
+                <p className="text-gray-400 text-sm font-medium">Current Demand</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.summary.currentDemand.toLocaleString('en-AU')} jobs
                 </p>
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Revenue Forecast Accuracy</p>
+                <p className="text-gray-400 text-sm font-medium">Revenue Forecast Accuracy</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.insights.revenueForecastAccuracy.toFixed(1)}%
                 </p>
@@ -216,7 +216,7 @@ export default function ForecastsAnalyticsDashboard() {
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Demand Forecast Accuracy</p>
+                <p className="text-gray-400 text-sm font-medium">Demand Forecast Accuracy</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
                   {data.insights.demandForecastAccuracy.toFixed(1)}%
                 </p>
@@ -234,10 +234,10 @@ export default function ForecastsAnalyticsDashboard() {
               <div className="flex justify-between items-center mb-6">
                 <div>
                   <h2 className="text-xl font-bold text-gray-900">Revenue Forecast</h2>
-                  <p className="text-sm text-gray-600 mt-1">Predicted revenue for upcoming periods</p>
+                  <p className="text-sm text-gray-400 mt-1">Predicted revenue for upcoming periods</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-600 font-medium">Trend</p>
+                  <p className="text-sm text-gray-400 font-medium">Trend</p>
                   <p className={`text-2xl font-bold ${getTrendColor(data.forecasts.revenue.trend)}`}>
                     {getTrendIcon(data.forecasts.revenue.trend)} {data.forecasts.revenue.trend}
                   </p>
@@ -257,7 +257,7 @@ export default function ForecastsAnalyticsDashboard() {
                             maximumFractionDigits: 2,
                           })}
                         </p>
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-gray-400">
                           {forecast.confidence.toFixed(1)}% confidence
                         </p>
                       </div>
@@ -268,7 +268,7 @@ export default function ForecastsAnalyticsDashboard() {
                         style={{ width: `${forecast.confidence}%` }}
                       ></div>
                     </div>
-                    <div className="flex justify-between text-xs text-gray-600">
+                    <div className="flex justify-between text-xs text-gray-400">
                       <span>
                         Lower: ${forecast.lower.toLocaleString('en-AU', {
                           minimumFractionDigits: 2,
@@ -306,10 +306,10 @@ export default function ForecastsAnalyticsDashboard() {
               <div className="flex justify-between items-center mb-6">
                 <div>
                   <h2 className="text-xl font-bold text-gray-900">Demand Forecast</h2>
-                  <p className="text-sm text-gray-600 mt-1">Predicted job demand for upcoming periods</p>
+                  <p className="text-sm text-gray-400 mt-1">Predicted job demand for upcoming periods</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-600 font-medium">Trend</p>
+                  <p className="text-sm text-gray-400 font-medium">Trend</p>
                   <p className={`text-2xl font-bold ${getTrendColor(data.forecasts.demand.trend)}`}>
                     {getTrendIcon(data.forecasts.demand.trend)} {data.forecasts.demand.trend}
                   </p>
@@ -326,7 +326,7 @@ export default function ForecastsAnalyticsDashboard() {
                         <p className="text-lg font-bold text-gray-900">
                           {forecast.predicted.toLocaleString('en-AU')} jobs
                         </p>
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-gray-400">
                           {forecast.confidence.toFixed(1)}% confidence
                         </p>
                       </div>
@@ -337,7 +337,7 @@ export default function ForecastsAnalyticsDashboard() {
                         style={{ width: `${forecast.confidence}%` }}
                       ></div>
                     </div>
-                    <div className="flex justify-between text-xs text-gray-600">
+                    <div className="flex justify-between text-xs text-gray-400">
                       <span>
                         Lower: {forecast.lower.toLocaleString('en-AU', {
                           minimumFractionDigits: 0,
@@ -377,19 +377,19 @@ export default function ForecastsAnalyticsDashboard() {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Metric
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Period
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Predicted Value
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Confidence
                       </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Range (95% CI)
                       </th>
                     </tr>
@@ -400,7 +400,7 @@ export default function ForecastsAnalyticsDashboard() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           Revenue
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                           {forecast.period}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
@@ -420,7 +420,7 @@ export default function ForecastsAnalyticsDashboard() {
                             <span className="text-sm text-gray-900">{forecast.confidence.toFixed(1)}%</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                           ${forecast.lower.toLocaleString('en-AU')} - ${forecast.upper.toLocaleString('en-AU')}
                         </td>
                       </tr>
@@ -430,7 +430,7 @@ export default function ForecastsAnalyticsDashboard() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           Demand
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                           {forecast.period}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
@@ -447,7 +447,7 @@ export default function ForecastsAnalyticsDashboard() {
                             <span className="text-sm text-gray-900">{forecast.confidence.toFixed(1)}%</span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                           {Math.round(forecast.lower)} - {Math.round(forecast.upper)} jobs
                         </td>
                       </tr>
@@ -469,20 +469,20 @@ export default function ForecastsAnalyticsDashboard() {
                       <span className={`text-2xl mr-2 ${getTrendColor(data.forecasts.revenue.trend)}`}>
                         {getTrendIcon(data.forecasts.revenue.trend)}
                       </span>
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-gray-400">
                         Revenue is{' '}
                         <span className={`font-medium ${getTrendColor(data.forecasts.revenue.trend)}`}>
                           {data.forecasts.revenue.trend}
                         </span>
                       </span>
                     </div>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-400">
                       Current: ${data.forecasts.revenue.currentValue.toLocaleString('en-AU', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-400">
                       Next period: ${data.forecasts.revenue.forecasts[0]?.predicted.toLocaleString('en-AU', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
@@ -498,17 +498,17 @@ export default function ForecastsAnalyticsDashboard() {
                       <span className={`text-2xl mr-2 ${getTrendColor(data.forecasts.demand.trend)}`}>
                         {getTrendIcon(data.forecasts.demand.trend)}
                       </span>
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-gray-400">
                         Demand is{' '}
                         <span className={`font-medium ${getTrendColor(data.forecasts.demand.trend)}`}>
                           {data.forecasts.demand.trend}
                         </span>
                       </span>
                     </div>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-400">
                       Current: {data.forecasts.demand.currentValue.toLocaleString('en-AU')} jobs
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-400">
                       Next period: {data.forecasts.demand.forecasts[0]?.predicted.toLocaleString('en-AU')} jobs
                     </p>
                   </div>
@@ -519,11 +519,11 @@ export default function ForecastsAnalyticsDashboard() {
                 <h3 className="text-sm font-medium text-gray-900 mb-2">Accuracy Metrics</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-xs text-gray-600 mb-1">Revenue Forecast Accuracy</p>
+                    <p className="text-xs text-gray-400 mb-1">Revenue Forecast Accuracy</p>
                     <p className="text-2xl font-bold text-gray-900">
                       {data.insights.revenueForecastAccuracy.toFixed(1)}%
                     </p>
-                    <p className="text-xs text-gray-600 mt-1">
+                    <p className="text-xs text-gray-400 mt-1">
                       {data.insights.revenueForecastAccuracy >= 80
                         ? 'High confidence forecast'
                         : data.insights.revenueForecastAccuracy >= 60
@@ -532,11 +532,11 @@ export default function ForecastsAnalyticsDashboard() {
                     </p>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-4">
-                    <p className="text-xs text-gray-600 mb-1">Demand Forecast Accuracy</p>
+                    <p className="text-xs text-gray-400 mb-1">Demand Forecast Accuracy</p>
                     <p className="text-2xl font-bold text-gray-900">
                       {data.insights.demandForecastAccuracy.toFixed(1)}%
                     </p>
-                    <p className="text-xs text-gray-600 mt-1">
+                    <p className="text-xs text-gray-400 mt-1">
                       {data.insights.demandForecastAccuracy >= 80
                         ? 'High confidence forecast'
                         : data.insights.demandForecastAccuracy >= 60

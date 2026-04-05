@@ -50,7 +50,7 @@ export default function TrainingPage() {
       {/* Certification Pathways */}
       <section className="py-16 px-6 max-w-6xl mx-auto">
         <h2 className="text-3xl font-black mb-4">IICRC Certification Pathways</h2>
-        <p className="text-gray-600 mb-12 max-w-3xl">
+        <p className="text-gray-400 mb-12 max-w-3xl">
           Choose your specialization. Each pathway includes prerequisites, study materials, exam preparation, and continuing education credits.
         </p>
 
@@ -63,7 +63,7 @@ export default function TrainingPage() {
               </div>
               <h3 className="text-xl font-bold">Water Damage</h3>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-400 mb-6">
               RSD (Restoration Specialist – Drying), FSRT, and Advanced WRD certifications
             </p>
             <div className="space-y-3 mb-6">
@@ -84,7 +84,7 @@ export default function TrainingPage() {
                 <span className="text-sm">Insurance documentation</span>
               </div>
             </div>
-            <div className="text-sm text-gray-500 mb-6">
+            <div className="text-sm text-gray-400 mb-6">
               <strong>Study time:</strong> 30-40 hours | <strong>CE credits:</strong> 8
             </div>
             <button className="w-full px-4 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
@@ -100,7 +100,7 @@ export default function TrainingPage() {
               </div>
               <h3 className="text-xl font-bold">Fire & Smoke</h3>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-400 mb-6">
               FSRT (Fire & Smoke Restoration Tech) and Advanced FSRT certifications
             </p>
             <div className="space-y-3 mb-6">
@@ -121,7 +121,7 @@ export default function TrainingPage() {
                 <span className="text-sm">Structural assessment</span>
               </div>
             </div>
-            <div className="text-sm text-gray-500 mb-6">
+            <div className="text-sm text-gray-400 mb-6">
               <strong>Study time:</strong> 35-45 hours | <strong>CE credits:</strong> 10
             </div>
             <button className="w-full px-4 py-3 bg-orange-600 text-white font-bold rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center gap-2">
@@ -137,7 +137,7 @@ export default function TrainingPage() {
               </div>
               <h3 className="text-xl font-bold">Mould Remediation</h3>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-400 mb-6">
               CMR (Certified Mould Remediator) and Advanced CMR certifications
             </p>
             <div className="space-y-3 mb-6">
@@ -158,7 +158,7 @@ export default function TrainingPage() {
                 <span className="text-sm">Health & safety protocols</span>
               </div>
             </div>
-            <div className="text-sm text-gray-500 mb-6">
+            <div className="text-sm text-gray-400 mb-6">
               <strong>Study time:</strong> 25-35 hours | <strong>CE credits:</strong> 7
             </div>
             <button className="w-full px-4 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2">
@@ -174,7 +174,7 @@ export default function TrainingPage() {
               </div>
               <h3 className="text-xl font-bold">Biohazard Cleaning</h3>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-400 mb-6">
               CBCT (Certified Biohazard Cleanup Technician) certifications
             </p>
             <div className="space-y-3 mb-6">
@@ -195,7 +195,7 @@ export default function TrainingPage() {
                 <span className="text-sm">Trauma cleanup regulations</span>
               </div>
             </div>
-            <div className="text-sm text-gray-500 mb-6">
+            <div className="text-sm text-gray-400 mb-6">
               <strong>Study time:</strong> 20-25 hours | <strong>CE credits:</strong> 5
             </div>
             <button className="w-full px-4 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center gap-2">
@@ -211,7 +211,7 @@ export default function TrainingPage() {
               </div>
               <h3 className="text-xl font-bold">Forensic Restoration</h3>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-400 mb-6">
               Advanced certification for crime scene and trauma cleanup
             </p>
             <div className="space-y-3 mb-6">
@@ -232,7 +232,7 @@ export default function TrainingPage() {
                 <span className="text-sm">Law enforcement coordination</span>
               </div>
             </div>
-            <div className="text-sm text-gray-500 mb-6">
+            <div className="text-sm text-gray-400 mb-6">
               <strong>Study time:</strong> 40-50 hours | <strong>CE credits:</strong> 12
             </div>
             <button className="w-full px-4 py-3 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2">
@@ -248,7 +248,7 @@ export default function TrainingPage() {
               </div>
               <h3 className="text-xl font-bold">Master Restorer Track</h3>
             </div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-400 mb-6">
               Elite certification combining multiple specialties
             </p>
             <div className="space-y-3 mb-6">
@@ -269,7 +269,7 @@ export default function TrainingPage() {
                 <span className="text-sm">Continuing education requirement</span>
               </div>
             </div>
-            <div className="text-sm text-gray-500 mb-6">
+            <div className="text-sm text-gray-400 mb-6">
               <strong>Requirements:</strong> See individual certifications + prerequisites
             </div>
             <button className="w-full px-4 py-3 bg-yellow-500 text-white font-bold rounded-lg hover:bg-yellow-600 transition-colors flex items-center justify-center gap-2">
@@ -283,13 +283,13 @@ export default function TrainingPage() {
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-black mb-4">Study Resources</h2>
-          <p className="text-gray-600 mb-12">Free tools to accelerate your certification journey</p>
+          <p className="text-gray-400 mb-12">Free tools to accelerate your certification journey</p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <BookOpen className="w-8 h-8 text-blue-600 mb-3" />
               <h3 className="font-bold mb-2">Study Guides</h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-400 mb-4">
                 Comprehensive PDFs covering exam topics with practice questions
               </p>
               <a href="#" className="text-blue-600 font-bold text-sm hover:underline">
@@ -300,7 +300,7 @@ export default function TrainingPage() {
             <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <Users className="w-8 h-8 text-green-600 mb-3" />
               <h3 className="font-bold mb-2">Monthly Webinars</h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-400 mb-4">
                 Live sessions with IICRC instructors and industry experts
               </p>
               <a href="#" className="text-green-600 font-bold text-sm hover:underline">
@@ -311,7 +311,7 @@ export default function TrainingPage() {
             <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <Zap className="w-8 h-8 text-yellow-600 mb-3" />
               <h3 className="font-bold mb-2">Practice Exams</h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-400 mb-4">
                 Full-length mock exams simulating real testing conditions
               </p>
               <a href="#" className="text-yellow-600 font-bold text-sm hover:underline">
@@ -322,7 +322,7 @@ export default function TrainingPage() {
             <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <Award className="w-8 h-8 text-purple-600 mb-3" />
               <h3 className="font-bold mb-2">CE Credits</h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-sm text-gray-400 mb-4">
                 Maintain certifications with approved continuing education
               </p>
               <a href="#" className="text-purple-600 font-bold text-sm hover:underline">
@@ -388,7 +388,7 @@ export default function TrainingPage() {
       <section className="py-16 px-6 bg-gradient-to-r from-blue-50 to-indigo-50">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-black mb-4">Ready to Get Certified?</h2>
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-400 mb-8">
             Start your IICRC certification journey with Australia's leading restoration professionals network.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -399,7 +399,7 @@ export default function TrainingPage() {
               Join Next Webinar
             </button>
           </div>
-          <p className="text-sm text-gray-500 mt-8">
+          <p className="text-sm text-gray-400 mt-8">
             Questions? <a href="mailto:training@disasterrecovery.com.au" className="text-blue-600 font-bold hover:underline">
               Contact our training team
             </a>

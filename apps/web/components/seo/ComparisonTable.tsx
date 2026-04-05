@@ -100,7 +100,7 @@ export function ComparisonTable({
 
         {/* Caption */}
         {caption && (
-          <p className="text-sm text-gray-600 italic mt-3">
+          <p className="text-sm text-gray-400 italic mt-3">
             {caption}
           </p>
         )}
@@ -191,7 +191,7 @@ export function PricingComparisonTable({
       </div>
 
       {/* Note */}
-      <p className="text-sm text-gray-600 mt-4">
+      <p className="text-sm text-gray-400 mt-4">
         💡 Prices shown are estimates. Final costs depend on specific damage assessment. Contact us for detailed quote.
       </p>
     </section>

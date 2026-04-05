@@ -133,7 +133,7 @@ export default function SplitScreenDemoPage() {
                       {currentEta !== null && isEnRoute && (
                         <div className="text-right">
                           <span className="text-2xl font-bold text-teal-600">{currentEta}</span>
-                          <span className="text-sm text-gray-500 ml-1">min</span>
+                          <span className="text-sm text-gray-400 ml-1">min</span>
                         </div>
                       )}
                     </div>
@@ -142,7 +142,7 @@ export default function SplitScreenDemoPage() {
                       <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                         {activeJob.serviceType}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mt-1">
+                      <p className="text-sm text-gray-400 dark:text-gray-400 line-clamp-2 mt-1">
                         {activeJob.description}
                       </p>
                     </div>
@@ -155,7 +155,7 @@ export default function SplitScreenDemoPage() {
                         <p className="font-medium text-gray-900 dark:text-gray-100 text-sm">
                           {activeJob.client.name}
                         </p>
-                        <p className="text-xs text-gray-500 flex items-center gap-1">
+                        <p className="text-xs text-gray-400 flex items-center gap-1">
                           <MapPin className="w-3 h-3" />
                           {activeJob.client.address}
                         </p>
@@ -219,7 +219,7 @@ export default function SplitScreenDemoPage() {
                 )}
               </div>
             ) : (
-              <div className="h-full flex items-center justify-center text-gray-500">
+              <div className="h-full flex items-center justify-center text-gray-400">
                 <div className="text-center">
                   <p className="mb-2">Start a demo scenario</p>
                   <Button size="sm" onClick={() => controls.startScenario('full_journey')}>
@@ -251,14 +251,14 @@ export default function SplitScreenDemoPage() {
                             <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm">
                               Contractor on the way!
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-gray-400">
                               {activeJob.contractor?.businessName}
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
                           <span className="text-2xl font-bold text-teal-600">{currentEta}</span>
-                          <span className="text-xs text-gray-500 ml-1">min</span>
+                          <span className="text-xs text-gray-400 ml-1">min</span>
                           {trafficCondition && (
                             <p className={cn(
                               'text-xs',
@@ -363,9 +363,9 @@ export default function SplitScreenDemoPage() {
                           </p>
                           <div className="flex items-center gap-2 mt-1">
                             <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
-                            <span className="text-xs text-gray-600">{activeJob.contractor.rating}</span>
+                            <span className="text-xs text-gray-400">{activeJob.contractor.rating}</span>
                             <span className="text-xs text-gray-400">•</span>
-                            <span className="text-xs text-gray-600">{activeJob.contractor.completedJobs} jobs</span>
+                            <span className="text-xs text-gray-400">{activeJob.contractor.completedJobs} jobs</span>
                           </div>
                         </div>
                       </div>
@@ -420,7 +420,7 @@ export default function SplitScreenDemoPage() {
                 )}
               </div>
             ) : (
-              <div className="h-full flex items-center justify-center text-gray-500">
+              <div className="h-full flex items-center justify-center text-gray-400">
                 <div className="text-center">
                   <p className="mb-2">Waiting for job...</p>
                 </div>

@@ -372,7 +372,7 @@ async function executeInspectionReport(
 
   // Compile the graph with checkpointer
   const compiledWorkflow = workflow.compile({
-    checkpointer: config.checkpointer,
+    checkpointer: config.checkpointer as any,
   });
 
   // Extract inspection details from input

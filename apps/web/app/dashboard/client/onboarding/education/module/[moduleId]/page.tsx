@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -7,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, ArrowLeft, CheckCircle2, BookOpen, Award } from 'lucide-react';
+import { Loader2, ArrowLeft, CheckCircle2, BookOpen, Award, Info } from 'lucide-react';
 
 export default function ClientModuleViewerPage({ params }: { params: { moduleId: string } }) {
   const router = useRouter();

@@ -45,7 +45,7 @@ export function RankingsTable() {
     if (position === 1) return 'text-yellow-600 bg-yellow-50';
     if (position <= 3) return 'text-blue-600 bg-blue-50';
     if (position <= 10) return 'text-green-600 bg-green-50';
-    return 'text-gray-600 bg-gray-50';
+    return 'text-gray-400 bg-gray-50';
   };
 
   return (

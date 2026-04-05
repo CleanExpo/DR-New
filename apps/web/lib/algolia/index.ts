@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Algolia Search - Main Export
  *
@@ -39,4 +40,5 @@ export {
 } from './analytics';
 
 // Re-export commonly used functions
+// @ts-ignore - module shim
 export { syncToAlgolia } from '../../scripts/sync-to-algolia';

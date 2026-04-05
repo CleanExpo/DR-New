@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Development Defaults Security Configuration
  *

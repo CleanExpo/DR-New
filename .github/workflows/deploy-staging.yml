@@ -1,0 +1,76 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches: [develop]
+
+env:
+  NODE_VERSION: '20'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  deploy-staging:
+    name: Deploy to Vercel Staging
+    runs-on: ubuntu-latest
+    # Skip entirely when Vercel secrets are not configured in this repo
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    environment:
+      name: staging
+      url: ${{ steps.deploy.outputs.staging-url }}
+    outputs:
+      staging-url: ${{ steps.deploy.outputs.staging-url }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel Preview (Staging)
+        id: deploy
+        run: |
+          STAGING_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          echo "staging-url=$STAGING_URL" >> $GITHUB_OUTPUT
+          echo "Deployed staging to: $STAGING_URL"
+
+      - name: Create deployment summary
+        run: |
+          echo "## Staging Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**URL:** ${{ steps.deploy.outputs.staging-url }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** develop" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployed by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+
+  smoke-tests:
+    name: Staging Smoke Tests
+    runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    needs: deploy-staging
+    steps:
+      - name: Wait for deployment
+        run: sleep 30
+
+      - name: Run smoke tests
+        run: |
+          STAGING_URL="${{ needs.deploy-staging.outputs.staging-url }}"
+          echo "Testing $STAGING_URL..."
+
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$STAGING_URL")
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Homepage test failed with code: $HTTP_CODE"
+            exit 1
+          fi
+          echo "Homepage: $HTTP_CODE"
+
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$STAGING_URL/api/health")
+          echo "Health endpoint: $HTTP_CODE"
+
+          echo "Staging smoke tests passed!"

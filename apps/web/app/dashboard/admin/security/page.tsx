@@ -188,7 +188,7 @@ export default function SecurityDashboardPage() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Security Dashboard</h1>
-            <p className="mt-2 text-gray-600">Monitor security events and system threats</p>
+            <p className="mt-2 text-gray-400">Monitor security events and system threats</p>
           </div>
           <Button
             onClick={loadData}
@@ -204,7 +204,7 @@ export default function SecurityDashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-400">
                 Total Events
               </CardTitle>
             </CardHeader>
@@ -241,12 +241,12 @@ export default function SecurityDashboardPage() {
 
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+              <CardTitle className="text-sm font-medium text-gray-400">
                 Last Updated
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm font-mono text-gray-600">
+              <p className="text-sm font-mono text-gray-400">
                 {new Date().toLocaleTimeString()}
               </p>
             </CardContent>
@@ -265,7 +265,7 @@ export default function SecurityDashboardPage() {
             {data.events.length === 0 ? (
               <Card>
                 <CardContent className="pt-6">
-                  <p className="text-center text-gray-600">
+                  <p className="text-center text-gray-400">
                     No security events at this time
                   </p>
                 </CardContent>
@@ -302,11 +302,11 @@ export default function SecurityDashboardPage() {
                             )}
                           </div>
 
-                          <p className="text-sm text-gray-600 mb-2">
+                          <p className="text-sm text-gray-400 mb-2">
                             {event.email || event.ipAddress}
                           </p>
 
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-gray-400">
                             {new Date(event.createdAt).toLocaleString()}
                           </p>
                         </div>
@@ -346,7 +346,7 @@ export default function SecurityDashboardPage() {
                   {Object.entries(data.monitoring.eventsByType).map(
                     ([type, count]) => (
                       <div key={type} className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">{type}</span>
+                        <span className="text-sm text-gray-400">{type}</span>
                         <Badge variant="secondary">{count}</Badge>
                       </div>
                     )
@@ -363,7 +363,7 @@ export default function SecurityDashboardPage() {
                   {Object.entries(data.monitoring.eventsBySeverity).map(
                     ([severity, count]) => (
                       <div key={severity} className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">{severity}</span>
+                        <span className="text-sm text-gray-400">{severity}</span>
                         <Badge
                           className={getSeverityColor(severity)}
                           variant="outline"
@@ -397,21 +397,21 @@ export default function SecurityDashboardPage() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-600">Type</p>
+                  <p className="text-sm text-gray-400">Type</p>
                   <p className="font-medium">{selectedEvent.type}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600">Severity</p>
+                  <p className="text-sm text-gray-400">Severity</p>
                   <Badge className={getSeverityColor(selectedEvent.severity)}>
                     {selectedEvent.severity}
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600">Email</p>
+                  <p className="text-sm text-gray-400">Email</p>
                   <p className="font-mono text-sm">{selectedEvent.email || 'N/A'}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600">IP Address</p>
+                  <p className="text-sm text-gray-400">IP Address</p>
                   <p className="font-mono text-sm">{selectedEvent.ipAddress}</p>
                 </div>
               </div>
