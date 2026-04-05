@@ -101,14 +101,14 @@ export function ContractorHero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link href="/contractor/join" className="inline-block">
+              <Link href="/signup?type=contractor" className="inline-block">
                 <Button
                   size="lg"
                   className="w-full sm:w-auto bg-teal-500 hover:bg-teal-600 text-white font-semibold px-8 py-6 text-lg shadow-lg shadow-teal-500/25 transition-[transform,box-shadow,background-color] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] hover:shadow-xl hover:shadow-teal-500/30 hover:scale-105"
-                  aria-label="Join the contractor network"
+                  aria-label="Create contractor account"
                 >
                   <TrendingUp className="w-5 h-5 mr-2" aria-hidden="true" />
-                  Join the Network
+                  Create Account
                 </Button>
               </Link>
 
