@@ -114,7 +114,7 @@ export default function ReviewSubmissionForm({
                 className={`h-8 w-8 ${
                   star <= value
                     ? 'text-yellow-500 fill-yellow-500'
-                    : 'text-gray-600 hover:text-gray-500'
+                    : 'text-gray-400 hover:text-gray-400'
                 }`}
               />
             </button>

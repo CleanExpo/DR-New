@@ -174,21 +174,23 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.userType = user.userType;
-        token.role = user.userType;
-        token.avatar = user.avatar ?? null;
-        token.tenantId = user.tenantId ?? null;
+        const u = user as any;
+        token.id = u.id;
+        token.userType = u.userType;
+        token.role = u.userType;
+        token.avatar = u.avatar ?? null;
+        token.tenantId = u.tenantId ?? null;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id;
-        session.user.userType = token.userType;
-        session.user.role = token.userType;
-        session.user.avatar = token.avatar ?? null;
-        session.user.tenantId = token.tenantId ?? null;
+        const su = session.user as any;
+        su.id = token.id;
+        su.userType = token.userType;
+        su.role = token.userType;
+        su.avatar = token.avatar ?? null;
+        su.tenantId = token.tenantId ?? null;
       }
       return session;
     },

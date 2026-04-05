@@ -59,7 +59,7 @@ const COVERAGE_LEVELS = [
   { value: 'STANDARD', label: 'Standard', icon: Target, color: 'text-blue-500' },
   { value: 'PRIORITY', label: 'Priority', icon: Zap, color: 'text-yellow-500' },
   { value: 'EMERGENCY_ONLY', label: 'Emergency Only', icon: AlertCircle, color: 'text-red-500' },
-  { value: 'LIMITED', label: 'Limited', icon: Clock, color: 'text-gray-500' },
+  { value: 'LIMITED', label: 'Limited', icon: Clock, color: 'text-gray-400' },
 ];
 
 // Coverage level badge component
@@ -301,7 +301,7 @@ export default function ServiceAreaManager({ onAreasUpdated }: ServiceAreaManage
             </div>
           ) : serviceAreas.length === 0 ? (
             <div className="text-center py-12 text-gray-400">
-              <MapPin className="h-16 w-16 mx-auto mb-4 text-gray-600" />
+              <MapPin className="h-16 w-16 mx-auto mb-4 text-gray-400" />
               <p className="text-lg">No service areas configured yet</p>
               <p className="text-sm mt-2">Add your first service area to start receiving job matches</p>
             </div>

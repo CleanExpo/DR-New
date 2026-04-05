@@ -95,7 +95,7 @@ export default function TrendsAnalyticsDashboard() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading trend analysis...</p>
+          <p className="text-gray-400">Loading trend analysis...</p>
         </div>
       </div>
     );
@@ -122,7 +122,7 @@ export default function TrendsAnalyticsDashboard() {
               ← Back
             </button>
             <h1 className="text-3xl font-bold text-gray-900">Trends & Analysis</h1>
-            <p className="text-gray-600 mt-2">Historical trends and growth analysis</p>
+            <p className="text-gray-400 mt-2">Historical trends and growth analysis</p>
           </div>
         </div>
 
@@ -142,7 +142,7 @@ export default function TrendsAnalyticsDashboard() {
                 <h2 className="text-lg font-bold text-gray-900 mb-4">Year-over-Year Comparison</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <p className="text-gray-600 text-sm font-medium">Current Year Revenue</p>
+                    <p className="text-gray-400 text-sm font-medium">Current Year Revenue</p>
                     <p className="text-3xl font-bold text-gray-900 mt-2">
                       ${data.trends.yoy.current.toLocaleString('en-AU', {
                         minimumFractionDigits: 2,
@@ -152,7 +152,7 @@ export default function TrendsAnalyticsDashboard() {
                   </div>
 
                   <div>
-                    <p className="text-gray-600 text-sm font-medium">Previous Year Revenue</p>
+                    <p className="text-gray-400 text-sm font-medium">Previous Year Revenue</p>
                     <p className="text-3xl font-bold text-gray-900 mt-2">
                       ${data.trends.yoy.previous.toLocaleString('en-AU', {
                         minimumFractionDigits: 2,
@@ -162,7 +162,7 @@ export default function TrendsAnalyticsDashboard() {
                   </div>
 
                   <div>
-                    <p className="text-gray-600 text-sm font-medium">Year-over-Year Growth</p>
+                    <p className="text-gray-400 text-sm font-medium">Year-over-Year Growth</p>
                     <p
                       className={`text-3xl font-bold mt-2 ${
                         data.trends.yoy.percentageChange > 0 ? 'text-green-600' : 'text-red-600'
@@ -181,7 +181,7 @@ export default function TrendsAnalyticsDashboard() {
                 <h2 className="text-lg font-bold text-gray-900 mb-4">Revenue Trend Consistency</h2>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-gray-600 text-sm font-medium mb-2">Consistency Score</p>
+                    <p className="text-gray-400 text-sm font-medium mb-2">Consistency Score</p>
                     <div className="w-full bg-gray-200 rounded-full h-4">
                       <div
                         className={`h-4 rounded-full ${
@@ -196,7 +196,7 @@ export default function TrendsAnalyticsDashboard() {
                     </div>
                     <p className="text-sm font-bold text-gray-900 mt-1">{data.metrics.revenue.consistency.toFixed(1)}%</p>
                   </div>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-400">
                     {data.metrics.revenue.consistency > 70
                       ? 'Strong upward trend'
                       : data.metrics.revenue.consistency > 40
@@ -210,7 +210,7 @@ export default function TrendsAnalyticsDashboard() {
                 <h2 className="text-lg font-bold text-gray-900 mb-4">Jobs Completion Trend</h2>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-gray-600 text-sm font-medium mb-2">Consistency Score</p>
+                    <p className="text-gray-400 text-sm font-medium mb-2">Consistency Score</p>
                     <div className="w-full bg-gray-200 rounded-full h-4">
                       <div
                         className={`h-4 rounded-full ${
@@ -225,7 +225,7 @@ export default function TrendsAnalyticsDashboard() {
                     </div>
                     <p className="text-sm font-bold text-gray-900 mt-1">{data.metrics.jobs.consistency.toFixed(1)}%</p>
                   </div>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-400">
                     {data.metrics.jobs.consistency > 70
                       ? 'Strong upward trend'
                       : data.metrics.jobs.consistency > 40
@@ -242,7 +242,7 @@ export default function TrendsAnalyticsDashboard() {
               <div className="space-y-3">
                 {data.trends.monthly.slice(-12).map((item, idx) => (
                   <div key={idx} className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600 font-medium min-w-fit w-20">{item.month}</span>
+                    <span className="text-sm text-gray-400 font-medium min-w-fit w-20">{item.month}</span>
                     <div className="flex-1 bg-gray-200 rounded-full h-2 mx-4">
                       <div
                         className="bg-blue-600 h-2 rounded-full"
@@ -263,7 +263,7 @@ export default function TrendsAnalyticsDashboard() {
                       </p>
                       <p
                         className={`text-xs font-medium ${
-                          item.revenueGrowth > 0 ? 'text-green-600' : item.revenueGrowth < 0 ? 'text-red-600' : 'text-gray-600'
+                          item.revenueGrowth > 0 ? 'text-green-600' : item.revenueGrowth < 0 ? 'text-red-600' : 'text-gray-400'
                         }`}
                       >
                         {item.revenueGrowth > 0 ? '↑' : item.revenueGrowth < 0 ? '↓' : '→'} {Math.abs(item.revenueGrowth).toFixed(1)}%
@@ -282,7 +282,7 @@ export default function TrendsAnalyticsDashboard() {
                   <div className="space-y-2">
                     {data.metrics.revenue.inflectionPoints.map((point, idx) => (
                       <div key={idx} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                        <span className="text-sm text-gray-600">{point.month}</span>
+                        <span className="text-sm text-gray-400">{point.month}</span>
                         <span className="font-bold text-gray-900">
                           ${point.value.toLocaleString('en-AU', {
                             minimumFractionDigits: 2,
@@ -293,7 +293,7 @@ export default function TrendsAnalyticsDashboard() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-600">No significant inflection points detected</p>
+                  <p className="text-sm text-gray-400">No significant inflection points detected</p>
                 )}
               </div>
 
@@ -303,13 +303,13 @@ export default function TrendsAnalyticsDashboard() {
                   <div className="space-y-2">
                     {data.metrics.jobs.inflectionPoints.map((point, idx) => (
                       <div key={idx} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                        <span className="text-sm text-gray-600">{point.month}</span>
+                        <span className="text-sm text-gray-400">{point.month}</span>
                         <span className="font-bold text-gray-900">{point.jobs} jobs</span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-600">No significant inflection points detected</p>
+                  <p className="text-sm text-gray-400">No significant inflection points detected</p>
                 )}
               </div>
             </div>

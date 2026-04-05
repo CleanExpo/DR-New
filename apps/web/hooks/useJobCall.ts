@@ -191,7 +191,7 @@ export function useJobCall(options: UseJobCallOptions): UseJobCallReturn {
 
   // Initiate a call
   const initiateCall = useCallback(async (callType: CallType): Promise<boolean> => {
-    if (!session?.user?.id) {
+    if (!(session?.user as any)?.id) {
       setError('Not authenticated')
       return false
     }
@@ -253,7 +253,7 @@ export function useJobCall(options: UseJobCallOptions): UseJobCallReturn {
       setIsLoading(false)
       return false
     }
-  }, [session?.user?.id, jobId, getLocalStream, stopLocalStream, createPeerConnection, sendSignal])
+  }, [(session?.user as any)?.id, jobId, getLocalStream, stopLocalStream, createPeerConnection, sendSignal])
 
   // Accept a call
   const acceptCall = useCallback(async (callId: string): Promise<boolean> => {

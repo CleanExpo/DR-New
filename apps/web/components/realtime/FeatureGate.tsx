@@ -98,7 +98,7 @@ export function TierUpgradePrompt({ requiredTier, feature, compact = false }: Ti
         <span className="text-lg">🔒</span>
         <div className="flex-1">
           <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{title}</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">
+          <p className="text-xs text-gray-400 dark:text-gray-400">
             Upgrade to {tierInfo.name} to unlock
           </p>
         </div>
@@ -121,12 +121,12 @@ export function TierUpgradePrompt({ requiredTier, feature, compact = false }: Ti
 
         <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{title}</h3>
 
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 max-w-sm mx-auto">
+        <p className="text-sm text-gray-400 dark:text-gray-400 mb-4 max-w-sm mx-auto">
           {description}
         </p>
 
         <div className="mb-4 p-3 bg-white dark:bg-gray-800 rounded-lg inline-block">
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Available with</p>
+          <p className="text-xs text-gray-400 dark:text-gray-400 mb-1">Available with</p>
           <p className={`font-semibold ${tierInfo.colour}`}>
             {tierInfo.name} Plan - ${tierInfo.price}/month
           </p>
@@ -134,7 +134,7 @@ export function TierUpgradePrompt({ requiredTier, feature, compact = false }: Ti
 
         <div className="space-y-2 mb-6">
           {tierInfo.features.slice(0, 3).map((feature, index) => (
-            <div key={index} className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+            <div key={index} className="flex items-center justify-center gap-2 text-sm text-gray-400 dark:text-gray-400">
               <span className="text-teal-500">✓</span>
               <span>{feature}</span>
             </div>
@@ -148,7 +148,7 @@ export function TierUpgradePrompt({ requiredTier, feature, compact = false }: Ti
           Upgrade to {tierInfo.name}
         </button>
 
-        <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
+        <p className="mt-3 text-xs text-gray-400 dark:text-gray-400">
           Contact support@disasterrecovery.com.au for questions
         </p>
       </div>

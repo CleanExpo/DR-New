@@ -103,7 +103,7 @@ export default function ContractorEarningsPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-300 border-t-blue-600" />
-          <p className="text-gray-600">Loading earnings...</p>
+          <p className="text-gray-400">Loading earnings...</p>
         </div>
       </div>
     );
@@ -116,7 +116,7 @@ export default function ContractorEarningsPage() {
         <div className="mb-8 flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Your Earnings</h1>
-            <p className="mt-2 text-gray-600">Track your income and payouts</p>
+            <p className="mt-2 text-gray-400">Track your income and payouts</p>
           </div>
           <Link
             href="/dashboard/contractor/payout-settings"
@@ -130,34 +130,34 @@ export default function ContractorEarningsPage() {
         {summary && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Total Earnings</p>
+              <p className="text-gray-400 text-sm font-medium">Total Earnings</p>
               <p className="mt-2 text-3xl font-bold text-gray-900">
                 {formatCurrency(summary.totalEarnings)}
               </p>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-gray-400">
                 {summary.paymentCount} jobs
               </p>
             </div>
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Total Paid Out</p>
+              <p className="text-gray-400 text-sm font-medium">Total Paid Out</p>
               <p className="mt-2 text-3xl font-bold text-green-600">
                 {formatCurrency(summary.totalPaidOut)}
               </p>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-gray-400">
                 {summary.contractorPayoutPercentage}% of earnings
               </p>
             </div>
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Pending Payout</p>
+              <p className="text-gray-400 text-sm font-medium">Pending Payout</p>
               <p className="mt-2 text-3xl font-bold text-yellow-600">
                 {formatCurrency(summary.pendingPayout)}
               </p>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-gray-400">
                 After {summary.platformFeePercentage}% platform fee
               </p>
             </div>
             <div className="bg-white rounded-lg shadow p-6">
-              <p className="text-gray-600 text-sm font-medium">Last Payment</p>
+              <p className="text-gray-400 text-sm font-medium">Last Payment</p>
               <p className="mt-2 text-lg font-bold text-gray-900">
                 {summary.lastPayment ? formatDate(summary.lastPayment) : 'N/A'}
               </p>
@@ -177,25 +177,25 @@ export default function ContractorEarningsPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div>
-                <p className="text-gray-600 text-sm">Total Amount</p>
+                <p className="text-gray-400 text-sm">Total Amount</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {formatCurrency(periodEarnings.totalAmount)}
                 </p>
               </div>
               <div>
-                <p className="text-gray-600 text-sm">Your Payout</p>
+                <p className="text-gray-400 text-sm">Your Payout</p>
                 <p className="text-2xl font-bold text-green-600">
                   {formatCurrency(periodEarnings.totalPayout)}
                 </p>
               </div>
               <div>
-                <p className="text-gray-600 text-sm">Job Count</p>
+                <p className="text-gray-400 text-sm">Job Count</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {periodEarnings.jobCount}
                 </p>
               </div>
               <div>
-                <p className="text-gray-600 text-sm">Average Job Value</p>
+                <p className="text-gray-400 text-sm">Average Job Value</p>
                 <p className="text-2xl font-bold text-gray-900">
                   {formatCurrency(periodEarnings.averageJobValue)}
                 </p>
@@ -242,7 +242,7 @@ export default function ContractorEarningsPage() {
         <div className="bg-white rounded-lg shadow overflow-hidden">
           {earnings.length === 0 ? (
             <div className="p-8 text-center">
-              <p className="text-gray-600 mb-4">No earnings in this period</p>
+              <p className="text-gray-400 mb-4">No earnings in this period</p>
               <Link
                 href="/dashboard/contractor"
                 className="text-blue-600 hover:text-blue-700 font-medium"
@@ -254,22 +254,22 @@ export default function ContractorEarningsPage() {
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Job
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Location
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Amount
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Your Payout
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Status
                   </th>
                 </tr>
@@ -281,21 +281,21 @@ export default function ContractorEarningsPage() {
                       <p className="font-medium text-gray-900">
                         {earning.booking?.serviceType.replace(/_/g, ' ')}
                       </p>
-                      <p className="text-gray-500 text-xs">
+                      <p className="text-gray-400 text-xs">
                         {earning.booking?.id}
                       </p>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                       {earning.booking?.location}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                       {formatDate(earning.processedAt || earning.completedAt)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">
                         {formatCurrency(earning.totalAmount)}
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-gray-400">
                         Fee: {formatCurrency(earning.platformFee)}
                       </div>
                     </td>

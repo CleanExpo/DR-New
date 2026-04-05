@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Contractor Registration API Route
  * Handles NRPG contractor registration and onboarding

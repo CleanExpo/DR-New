@@ -384,7 +384,7 @@ export default function AIChatWidget({
                     <p
                       className={cn(
                         'text-xs mt-2',
-                        message.role === 'user' ? 'text-white/70' : 'text-gray-500'
+                        message.role === 'user' ? 'text-white/70' : 'text-gray-400'
                       )}
                     >
                       {message.timestamp.toLocaleTimeString([], {
@@ -406,7 +406,7 @@ export default function AIChatWidget({
             {/* Quick Actions (shown when no messages or few messages) */}
             {messages.length <= 1 && (
               <div className="mt-4 space-y-2">
-                <p className="text-xs text-gray-500 flex items-center gap-1">
+                <p className="text-xs text-gray-400 flex items-center gap-1">
                   <Lightbulb className="h-3 w-3" />
                   Quick actions:
                 </p>
@@ -429,7 +429,7 @@ export default function AIChatWidget({
             {/* Suggested Actions */}
             {suggestedActions.length > 0 && (
               <div className="mt-4 space-y-2">
-                <p className="text-xs text-gray-500">Suggested actions:</p>
+                <p className="text-xs text-gray-400">Suggested actions:</p>
                 <div className="flex flex-wrap gap-2">
                   {suggestedActions.map((action, i) => (
                     <Button
@@ -500,7 +500,7 @@ export default function AIChatWidget({
               </Button>
             </div>
             <div className="flex items-center justify-between mt-2">
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-400">
                 Press Enter to send
               </p>
               {messages.length > 1 && (
@@ -508,7 +508,7 @@ export default function AIChatWidget({
                   variant="ghost"
                   size="sm"
                   onClick={handleClear}
-                  className="text-xs text-gray-500 hover:text-gray-300 h-6 px-2"
+                  className="text-xs text-gray-400 hover:text-gray-300 h-6 px-2"
                 >
                   Clear chat
                 </Button>

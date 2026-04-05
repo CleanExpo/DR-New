@@ -212,7 +212,7 @@ export function SecureFileUpload({
         </p>
 
         {config && (
-          <p className="text-xs text-gray-600 mt-2">
+          <p className="text-xs text-gray-400 mt-2">
             Max {config.maxSizeMB}MB per file • Formats: {config.allowedMimeTypes.join(', ')}
           </p>
         )}
@@ -239,7 +239,7 @@ export function SecureFileUpload({
       {uploading && progress > 0 && (
         <div className="space-y-2">
           <Progress value={progress} className="w-full" />
-          <p className="text-sm text-gray-600 text-center">{progress}%</p>
+          <p className="text-sm text-gray-400 text-center">{progress}%</p>
         </div>
       )}
 
@@ -277,7 +277,7 @@ export function SecureFileUpload({
                   <p className="text-sm font-medium text-gray-900 truncate">
                     {file.filename}
                   </p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-xs text-gray-400">
                     {formatBytes(file.size)} • Scanned in {file.scanTime}ms
                   </p>
                 </div>

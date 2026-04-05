@@ -274,7 +274,7 @@ export default function ContractorsPage() {
               Join Certified Professionals
             </h2>
             <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
-              All NRPG contractors are IICRC-certified and continuously trained in industry best practices.
+              All NRPG contractors are AS-IICRC S500:2025-certified and continuously trained in industry best practices.
             </p>
 
             <div className="max-w-4xl mx-auto">
@@ -295,7 +295,7 @@ export default function ContractorsPage() {
                   <Award className="h-12 w-12 text-nrpg-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-lg mb-2">IICRC Certified</h3>
                   <p className="text-gray-400 text-sm">
-                    All contractors hold current IICRC certifications
+                    All contractors hold current AS-IICRC S500:2025 certification
                   </p>
                 </div>
                 <div className="text-center">

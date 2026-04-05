@@ -121,7 +121,7 @@ export default function ClaimDetailPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Loader className="h-8 w-8 animate-spin text-gray-600" />
+        <Loader className="h-8 w-8 animate-spin text-gray-400" />
       </div>
     );
   }
@@ -150,7 +150,7 @@ export default function ClaimDetailPage() {
           Back
         </Button>
         <h1 className="text-3xl font-bold text-gray-900 mt-4">{claim.clientName}</h1>
-        <p className="text-gray-600 mt-2">Claim ID: {claim.id}</p>
+        <p className="text-gray-400 mt-2">Claim ID: {claim.id}</p>
       </div>
 
       {/* Error Alert */}
@@ -169,23 +169,23 @@ export default function ClaimDetailPage() {
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Client Information</h2>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-gray-600" />
+                <Mail className="h-5 w-5 text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-600">Email</p>
+                  <p className="text-sm text-gray-400">Email</p>
                   <p className="font-medium text-gray-900">{claim.clientEmail}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-gray-600" />
+                <Phone className="h-5 w-5 text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-600">Phone</p>
+                  <p className="text-sm text-gray-400">Phone</p>
                   <p className="font-medium text-gray-900">{claim.clientPhone}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-gray-600" />
+                <MapPin className="h-5 w-5 text-gray-400" />
                 <div>
-                  <p className="text-sm text-gray-600">Property Address</p>
+                  <p className="text-sm text-gray-400">Property Address</p>
                   <p className="font-medium text-gray-900">
                     {claim.propertyAddress}, {claim.suburb} {claim.postcode}
                   </p>
@@ -200,13 +200,13 @@ export default function ClaimDetailPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium">Disaster Type</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium">Disaster Type</p>
                   <p className="text-lg font-semibold text-gray-900 capitalize mt-1">
                     {claim.disasterType.replace('-', ' ')}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium">Date</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium">Date</p>
                   <p className="text-lg font-semibold text-gray-900 mt-1">
                     {formatDate(claim.incidentDate)}
                   </p>
@@ -214,13 +214,13 @@ export default function ClaimDetailPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium">Ongoing</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium">Ongoing</p>
                   <p className="text-lg font-semibold text-gray-900 mt-1">
                     {claim.isOngoing ? '🔴 Yes' : '✅ No'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-600 uppercase font-medium">Emergency</p>
+                  <p className="text-sm text-gray-400 uppercase font-medium">Emergency</p>
                   <p className="text-lg font-semibold text-gray-900 mt-1">
                     {claim.isEmergency ? '🚨 Yes' : '✅ No'}
                   </p>
@@ -240,7 +240,7 @@ export default function ClaimDetailPage() {
             <h2 className="text-lg font-semibold text-gray-900 mb-4">Insurance Information</h2>
             <div className="space-y-3">
               <div>
-                <p className="text-sm text-gray-600 uppercase font-medium">Has Insurance</p>
+                <p className="text-sm text-gray-400 uppercase font-medium">Has Insurance</p>
                 <p className="text-lg font-semibold text-gray-900 mt-1">
                   {claim.hasInsurance ? '✅ Yes' : '❌ No'}
                 </p>
@@ -248,13 +248,13 @@ export default function ClaimDetailPage() {
               {claim.hasInsurance && (
                 <>
                   <div>
-                    <p className="text-sm text-gray-600 uppercase font-medium">Provider</p>
+                    <p className="text-sm text-gray-400 uppercase font-medium">Provider</p>
                     <p className="text-lg font-semibold text-gray-900 mt-1">
                       {claim.insuranceProvider || 'Not specified'}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600 uppercase font-medium">Policy Number</p>
+                    <p className="text-sm text-gray-400 uppercase font-medium">Policy Number</p>
                     <p className="text-lg font-semibold text-gray-900 mt-1">
                       {claim.policyNumber || 'Not provided'}
                     </p>
@@ -272,11 +272,11 @@ export default function ClaimDetailPage() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Submission Info</h3>
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-gray-600 uppercase font-medium">Submitted</p>
+                <p className="text-xs text-gray-400 uppercase font-medium">Submitted</p>
                 <p className="text-sm font-medium text-gray-900 mt-1">{formatDate(claim.submittedAt)}</p>
               </div>
               <div>
-                <p className="text-xs text-gray-600 uppercase font-medium">Priority</p>
+                <p className="text-xs text-gray-400 uppercase font-medium">Priority</p>
                 <div className="mt-1">
                   <span className={`inline-block px-3 py-1 rounded-full font-semibold text-sm ${
                     claim.priority === 'critical' ? 'bg-red-100 text-red-800' :
@@ -308,7 +308,7 @@ export default function ClaimDetailPage() {
           {matches.length > 0 && (
             <div className="bg-white rounded-lg border border-gray-200 p-6">
               <div className="flex items-center gap-2 mb-4">
-                <Users className="h-5 w-5 text-gray-600" />
+                <Users className="h-5 w-5 text-gray-400" />
                 <h3 className="text-lg font-semibold text-gray-900">
                   Matched Contractors ({matches.length})
                 </h3>
@@ -319,20 +319,20 @@ export default function ClaimDetailPage() {
                     <div className="flex items-start justify-between mb-2">
                       <div>
                         <p className="font-semibold text-gray-900 text-sm">{match.businessName}</p>
-                        <p className="text-xs text-gray-600">{match.contractorName}</p>
+                        <p className="text-xs text-gray-400">{match.contractorName}</p>
                       </div>
                       <div className="flex items-center gap-1">
                         <TrendingUp className="h-4 w-4 text-green-600" />
                         <span className="text-sm font-bold text-green-600">{match.matchScore}</span>
                       </div>
                     </div>
-                    <div className="text-xs text-gray-600">
+                    <div className="text-xs text-gray-400">
                       ⭐ {match.rating}/5 • {match.completedJobs} jobs
                     </div>
                   </div>
                 ))}
                 {matches.length > 5 && (
-                  <p className="text-xs text-gray-600 text-center">
+                  <p className="text-xs text-gray-400 text-center">
                     +{matches.length - 5} more contractors
                   </p>
                 )}

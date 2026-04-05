@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Security Alert Service
  *

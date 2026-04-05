@@ -66,7 +66,7 @@ export default function ContractorDemoPage() {
             <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
               Contractor Dashboard
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-400">
               {activeJobs.length} active • {completedToday} completed today
             </p>
           </div>
@@ -120,7 +120,7 @@ export default function ContractorDemoPage() {
                   <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                     {activeJob.client.name}
                   </h3>
-                  <p className="text-sm text-gray-500 flex items-center gap-1">
+                  <p className="text-sm text-gray-400 flex items-center gap-1">
                     <MapPin className="w-3 h-3" />
                     {activeJob.client.address}
                   </p>
@@ -194,7 +194,7 @@ export default function ContractorDemoPage() {
                         <span className="font-medium text-gray-900 dark:text-gray-100">
                           {msg.senderType === 'client' ? activeJob.client.name : 'You'}:
                         </span>{' '}
-                        <span className="text-gray-600 dark:text-gray-400">{msg.content}</span>
+                        <span className="text-gray-400 dark:text-gray-400">{msg.content}</span>
                       </div>
                     ))}
                   </div>
@@ -207,7 +207,7 @@ export default function ContractorDemoPage() {
         {/* Other Jobs */}
         {activeJobs.filter(j => j.id !== activeJob?.id).length > 0 && (
           <div>
-            <h2 className="text-sm font-semibold text-gray-500 uppercase mb-3">Other Jobs</h2>
+            <h2 className="text-sm font-semibold text-gray-400 uppercase mb-3">Other Jobs</h2>
             <div className="space-y-3">
               {activeJobs.filter(j => j.id !== activeJob?.id).map(job => (
                 <Card key={job.id} className="hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
@@ -225,7 +225,7 @@ export default function ContractorDemoPage() {
                         <p className="font-medium text-gray-900 dark:text-gray-100">
                           {job.client.name}
                         </p>
-                        <p className="text-sm text-gray-500">{job.serviceType}</p>
+                        <p className="text-sm text-gray-400">{job.serviceType}</p>
                       </div>
                       <Button variant="ghost" size="sm">View</Button>
                     </div>
@@ -239,7 +239,7 @@ export default function ContractorDemoPage() {
         {/* Completed Jobs */}
         {jobs.filter(j => j.status === 'completed').length > 0 && (
           <div>
-            <h2 className="text-sm font-semibold text-gray-500 uppercase mb-3">Completed Today</h2>
+            <h2 className="text-sm font-semibold text-gray-400 uppercase mb-3">Completed Today</h2>
             <div className="space-y-2">
               {jobs.filter(j => j.status === 'completed').map(job => (
                 <Card key={job.id} className="bg-green-50/50 dark:bg-green-900/10 border-green-200 dark:border-green-800">
@@ -249,7 +249,7 @@ export default function ContractorDemoPage() {
                         <p className="font-medium text-gray-900 dark:text-gray-100">
                           {job.client.name}
                         </p>
-                        <p className="text-sm text-gray-500">{job.serviceType}</p>
+                        <p className="text-sm text-gray-400">{job.serviceType}</p>
                       </div>
                       <Badge className="bg-green-100 text-green-700">
                         Completed
@@ -270,7 +270,7 @@ export default function ContractorDemoPage() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
                 No Jobs Yet
               </h3>
-              <p className="text-gray-500 mb-4">
+              <p className="text-gray-400 mb-4">
                 New job requests will appear here in real-time.
               </p>
               <Button onClick={controls.triggerNewJob} variant="outline">

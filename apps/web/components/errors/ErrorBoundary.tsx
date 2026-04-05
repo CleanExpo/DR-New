@@ -105,7 +105,7 @@ export class ErrorBoundary extends Component<Props, State> {
               Something Went Wrong
             </h2>
 
-            <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-center text-gray-400 dark:text-gray-400 mb-6">
               We're sorry for the inconvenience. An unexpected error has occurred and our team has been notified.
             </p>
 
@@ -116,7 +116,7 @@ export class ErrorBoundary extends Component<Props, State> {
                   {this.state.error.toString()}
                 </p>
                 {this.state.errorInfo && (
-                  <details className="text-xs font-mono text-gray-600 dark:text-gray-400">
+                  <details className="text-xs font-mono text-gray-400 dark:text-gray-400">
                     <summary className="cursor-pointer hover:text-gray-900 dark:hover:text-white">
                       Component Stack
                     </summary>
@@ -149,7 +149,7 @@ export class ErrorBoundary extends Component<Props, State> {
             </div>
 
             {/* Additional help */}
-            <p className="mt-6 text-xs text-center text-gray-500 dark:text-gray-400">
+            <p className="mt-6 text-xs text-center text-gray-400 dark:text-gray-400">
               If this problem persists, please{' '}
               <a
                 href="mailto:support@disasterrecovery.com.au"

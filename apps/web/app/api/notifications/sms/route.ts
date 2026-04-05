@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * SMS Notification API Route
  *

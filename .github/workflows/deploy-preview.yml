@@ -14,18 +14,14 @@ jobs:
   deploy-preview:
     name: Deploy to Vercel Preview
     runs-on: ubuntu-latest
+    # Skip entirely when Vercel secrets are not configured in this repo
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
     environment:
       name: preview
       url: ${{ steps.deploy.outputs.preview-url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -73,19 +69,11 @@ jobs:
   lighthouse-preview:
     name: Lighthouse Audit on Preview
     runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
     needs: deploy-preview
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
 
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.13.x
@@ -156,19 +144,11 @@ jobs:
   smoke-tests:
     name: Smoke Tests on Preview
     runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
     needs: deploy-preview
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
 
       - name: Wait for deployment
         run: sleep 30
@@ -177,10 +157,7 @@ jobs:
         run: |
           PREVIEW_URL="${{ needs.deploy-preview.outputs.preview-url }}"
 
-          # Test homepage
           curl -f -s -o /dev/null -w "%{http_code}" $PREVIEW_URL || exit 1
-
-          # Test API health endpoint
           curl -f -s -o /dev/null -w "%{http_code}" $PREVIEW_URL/api/health || exit 1
 
-          echo "✅ Smoke tests passed!"
+          echo "Smoke tests passed!"

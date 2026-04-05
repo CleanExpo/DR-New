@@ -249,7 +249,7 @@ export default function ServiceSelection({ onComplete, onSkip }: ServiceSelectio
               </div>
             ) : (
               <div className="text-center py-8">
-                <Settings className="h-12 w-12 text-gray-500 mx-auto mb-4" />
+                <Settings className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <p className="text-gray-400">Please select service categories first</p>
               </div>
             )}

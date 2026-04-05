@@ -298,7 +298,7 @@ async function executeDisasterAnalysis(
 
   // Compile the graph with checkpointer
   const compiledWorkflow = workflow.compile({
-    checkpointer: config.checkpointer,
+    checkpointer: config.checkpointer as any,
   });
 
   // Extract scenario from input

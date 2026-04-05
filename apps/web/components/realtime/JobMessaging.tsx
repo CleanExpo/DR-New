@@ -218,7 +218,7 @@ export function JobMessaging({
           <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
             In-App Messaging
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-sm text-gray-400 dark:text-gray-400 mb-4">
             Chat directly with your contractor. Available with PRO tier.
           </p>
           <button
@@ -251,7 +251,7 @@ export function JobMessaging({
             <div className="w-6 h-6 border-2 border-teal-500 border-t-transparent rounded-full animate-spin" />
           </div>
         ) : messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-gray-500 dark:text-gray-400">
+          <div className="flex flex-col items-center justify-center h-full text-gray-400 dark:text-gray-400">
             <span className="text-2xl mb-2">💬</span>
             <p className="text-sm">No messages yet</p>
             <p className="text-xs">Send a message to get started</p>
@@ -271,7 +271,7 @@ export function JobMessaging({
           <div className="flex justify-start">
             <div className="bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-2 rounded-bl-none">
               <div className="flex items-center gap-1">
-                <span className="text-xs text-gray-500 dark:text-gray-400">
+                <span className="text-xs text-gray-400 dark:text-gray-400">
                   {otherPartyName} is typing
                 </span>
                 <span className="flex gap-1">
@@ -356,7 +356,7 @@ function MessageBubble({ message, isOwn, senderName }: MessageBubbleProps) {
           <span
             className={cn(
               'text-xs',
-              isOwn ? 'text-teal-200' : 'text-gray-500 dark:text-gray-400'
+              isOwn ? 'text-teal-200' : 'text-gray-400 dark:text-gray-400'
             )}
           >
             {time}

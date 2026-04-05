@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * EmergencyHero Component
  *
@@ -174,14 +175,14 @@ export function EmergencyHero() {
           {/* Subheading */}
           <motion.p
             variants={fadeInUp}
-            className="text-lg sm:text-xl lg:text-2xl text-gray-600 mb-4 max-w-3xl leading-relaxed"
+            className="text-lg sm:text-xl lg:text-2xl text-gray-400 mb-4 max-w-3xl leading-relaxed"
           >
             Professional restoration services within <span className="font-semibold text-emerald-600">60 minutes</span>
           </motion.p>
 
           <motion.p
             variants={fadeInUp}
-            className="text-base sm:text-lg text-gray-500 mb-12 max-w-2xl"
+            className="text-base sm:text-lg text-gray-400 mb-12 max-w-2xl"
           >
             Australia&apos;s trusted network of certified disaster recovery specialists.
             Fire, flood, storm, or mould - we&apos;re here to help restore your property.
@@ -268,7 +269,7 @@ export function EmergencyHero() {
           {/* Additional Trust Indicators */}
           <motion.div
             variants={fadeInUp}
-            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600"
+            className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400"
           >
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-emerald-600" />

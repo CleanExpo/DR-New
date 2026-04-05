@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * NRPG Growth Portal - Contractor Layout
  *

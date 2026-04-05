@@ -388,7 +388,7 @@ export default function ContractorDirectory() {
           <Card className="bg-gray-800 border-gray-700">
             <CardContent className="py-12">
               <div className="text-center text-gray-400">
-                <Users className="h-16 w-16 mx-auto mb-4 text-gray-600" />
+                <Users className="h-16 w-16 mx-auto mb-4 text-gray-400" />
                 <p className="text-lg">No contractors found</p>
                 <p className="text-sm mt-2">Try adjusting your search filters</p>
               </div>
@@ -455,24 +455,24 @@ export default function ContractorDirectory() {
                   <div className="space-y-2 text-sm">
                     {contractor.abnNumber && (
                       <div className="flex items-center gap-2 text-gray-300">
-                        <FileText className="h-4 w-4 text-gray-500" />
+                        <FileText className="h-4 w-4 text-gray-400" />
                         <span>ABN: {contractor.abnNumber}</span>
                       </div>
                     )}
                     {contractor.licenseNumber && (
                       <div className="flex items-center gap-2 text-gray-300">
-                        <Shield className="h-4 w-4 text-gray-500" />
+                        <Shield className="h-4 w-4 text-gray-400" />
                         <span>License: {contractor.licenseNumber}</span>
                       </div>
                     )}
                     {contractor.primaryState && (
                       <div className="flex items-center gap-2 text-gray-300">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                        <MapPin className="h-4 w-4 text-gray-400" />
                         <span>{contractor.primaryState} • {contractor.serviceRadius}km radius</span>
                       </div>
                     )}
                     <div className="flex items-center gap-2 text-gray-300">
-                      <Eye className="h-4 w-4 text-gray-500" />
+                      <Eye className="h-4 w-4 text-gray-400" />
                       <span>{contractor.profileViews} profile views</span>
                     </div>
                   </div>
@@ -481,7 +481,7 @@ export default function ContractorDirectory() {
                   <div className="pt-4 border-t border-gray-700 flex items-center justify-between">
                     <div className="text-sm">
                       <p className="text-gray-400">{contractor.user.name}</p>
-                      <p className="text-gray-500 text-xs">{contractor.user.email}</p>
+                      <p className="text-gray-400 text-xs">{contractor.user.email}</p>
                     </div>
                     <Button
                       variant="outline"

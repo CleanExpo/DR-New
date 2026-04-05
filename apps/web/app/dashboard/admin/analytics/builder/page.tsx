@@ -205,7 +205,7 @@ export default function ReportBuilderPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading report builder...</p>
+          <p className="text-gray-400">Loading report builder...</p>
         </div>
       </div>
     );
@@ -231,7 +231,7 @@ export default function ReportBuilderPage() {
             ← Back
           </button>
           <h1 className="text-3xl font-bold text-gray-900">Custom Report Builder</h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-400 mt-2">
             Create custom analytics reports with your chosen metrics and visualisations
           </p>
         </div>
@@ -257,8 +257,8 @@ export default function ReportBuilderPage() {
                     onClick={() => handleUseTemplate(template)}
                   >
                     <h3 className="font-bold text-gray-900 mb-2">{template.name}</h3>
-                    <p className="text-sm text-gray-600 mb-3">{template.description}</p>
-                    <div className="flex items-center justify-between text-xs text-gray-500">
+                    <p className="text-sm text-gray-400 mb-3">{template.description}</p>
+                    <div className="flex items-center justify-between text-xs text-gray-400">
                       <span>{template.metrics.length} metrics</span>
                       <span className="capitalize">{template.visualization}</span>
                     </div>
@@ -304,7 +304,7 @@ export default function ReportBuilderPage() {
                       />
                       <div>
                         <p className="text-sm font-medium text-gray-900">{metric.name}</p>
-                        <p className="text-xs text-gray-600">{metric.description}</p>
+                        <p className="text-xs text-gray-400">{metric.description}</p>
                       </div>
                     </label>
                   ))}
@@ -401,7 +401,7 @@ export default function ReportBuilderPage() {
                     })}
                   </div>
                 ) : (
-                  <p className="text-sm text-gray-600 italic">
+                  <p className="text-sm text-gray-400 italic">
                     No filters added. Click &quot;Add Filter&quot; to add one.
                   </p>
                 )}
@@ -430,7 +430,7 @@ export default function ReportBuilderPage() {
                     >
                       <div className="flex-1">
                         <h3 className="font-bold text-gray-900">{report.name}</h3>
-                        <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+                        <div className="flex items-center gap-4 mt-1 text-sm text-gray-400">
                           <span>{report.metrics.length} metrics</span>
                           <span className="capitalize">{report.visualization}</span>
                           <span>
@@ -463,7 +463,7 @@ export default function ReportBuilderPage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-400">
                   No saved reports yet. Create your first report above!
                 </p>
               )}

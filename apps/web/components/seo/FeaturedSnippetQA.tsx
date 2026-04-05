@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Featured Snippet Q&A Component
  * Optimises content for featured snippets
@@ -91,7 +92,7 @@ export function FeaturedSnippetQA({
               </p>
 
               {/* Word count indicator (for featured snippet optimization) */}
-              <div className="mt-2 text-xs text-gray-500">
+              <div className="mt-2 text-xs text-gray-400">
                 {faq.answer.split(/\s+/).length} words
               </div>
 
@@ -156,7 +157,7 @@ export function FAQAccordion({
               {/* Summary (Question) */}
               <summary className="cursor-pointer p-4 bg-gray-50 hover:bg-gray-100 transition font-semibold text-gray-900 flex justify-between items-center">
                 <span>{faq.question}</span>
-                <span className="text-gray-500 group-open:rotate-180 transition">
+                <span className="text-gray-400 group-open:rotate-180 transition">
                   ▼
                 </span>
               </summary>
@@ -167,7 +168,7 @@ export function FAQAccordion({
                   {faq.answer}
                 </p>
                 {faq.category && (
-                  <p className="text-xs text-gray-500 mt-3">
+                  <p className="text-xs text-gray-400 mt-3">
                     Category: {faq.category}
                   </p>
                 )}

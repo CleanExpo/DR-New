@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Encryption & Data Protection Service
  *

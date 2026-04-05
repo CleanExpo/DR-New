@@ -85,10 +85,10 @@ export default function ComparisonDashboard() {
 
   const MetricComparison = ({ label, current, previous, change }: any) => (
     <div className="bg-white rounded-lg shadow p-6">
-      <p className="text-gray-600 text-sm font-medium">{label}</p>
+      <p className="text-gray-400 text-sm font-medium">{label}</p>
       <div className="mt-4 space-y-3">
         <div>
-          <p className="text-xs text-gray-600 mb-1">Current Period</p>
+          <p className="text-xs text-gray-400 mb-1">Current Period</p>
           <p className="text-2xl font-bold text-gray-900">
             {typeof current === 'number' && current > 100
               ? `$${current.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
@@ -96,8 +96,8 @@ export default function ComparisonDashboard() {
           </p>
         </div>
         <div>
-          <p className="text-xs text-gray-600 mb-1">Previous Period</p>
-          <p className="text-2xl font-bold text-gray-600">
+          <p className="text-xs text-gray-400 mb-1">Previous Period</p>
+          <p className="text-2xl font-bold text-gray-400">
             {typeof previous === 'number' && previous > 100
               ? `$${previous.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
               : previous.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -106,12 +106,12 @@ export default function ComparisonDashboard() {
         <div className="pt-2 border-t">
           <p
             className={`text-lg font-bold ${
-              change.trend === 'up' ? 'text-green-600' : change.trend === 'down' ? 'text-red-600' : 'text-gray-600'
+              change.trend === 'up' ? 'text-green-600' : change.trend === 'down' ? 'text-red-600' : 'text-gray-400'
             }`}
           >
             {change.trend === 'up' ? '↑' : change.trend === 'down' ? '↓' : '→'} {change.percentage.toFixed(1)}%
           </p>
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-gray-400">
             {change.trend === 'up' ? 'Increase' : change.trend === 'down' ? 'Decrease' : 'No change'}
           </p>
         </div>
@@ -122,7 +122,7 @@ export default function ComparisonDashboard() {
   if (status === 'loading') {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-600">Loading...</p>
+        <p className="text-gray-400">Loading...</p>
       </div>
     );
   }
@@ -148,7 +148,7 @@ export default function ComparisonDashboard() {
               ← Back
             </button>
             <h1 className="text-3xl font-bold text-gray-900">Period Comparison</h1>
-            <p className="text-gray-600 mt-2">Compare metrics between two custom periods</p>
+            <p className="text-gray-400 mt-2">Compare metrics between two custom periods</p>
           </div>
         </div>
 
@@ -230,7 +230,7 @@ export default function ComparisonDashboard() {
             {/* Summary */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Total Revenue Growth</p>
+                <p className="text-gray-400 text-sm font-medium">Total Revenue Growth</p>
                 <p
                   className={`text-4xl font-bold mt-3 ${
                     data.summary.revenueGrowth > 0 ? 'text-green-600' : 'text-red-600'
@@ -241,7 +241,7 @@ export default function ComparisonDashboard() {
               </div>
 
               <div className="bg-white rounded-lg shadow p-6">
-                <p className="text-gray-600 text-sm font-medium">Jobs Completed Growth</p>
+                <p className="text-gray-400 text-sm font-medium">Jobs Completed Growth</p>
                 <p
                   className={`text-4xl font-bold mt-3 ${
                     data.summary.jobsGrowth > 0 ? 'text-green-600' : 'text-red-600'
@@ -267,11 +267,11 @@ export default function ComparisonDashboard() {
               <h2 className="text-lg font-bold text-gray-900 mb-4">Transaction Volume</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">Current Period</p>
+                  <p className="text-gray-400 text-sm font-medium">Current Period</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{data.comparison.transactionCount.current}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600 text-sm font-medium">Previous Period</p>
+                  <p className="text-gray-400 text-sm font-medium">Previous Period</p>
                   <p className="text-3xl font-bold text-gray-900 mt-2">{data.comparison.transactionCount.previous}</p>
                 </div>
               </div>

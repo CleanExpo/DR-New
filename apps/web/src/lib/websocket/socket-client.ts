@@ -140,14 +140,14 @@ class SocketClientManager {
           this.emitConnectionStateChange();
         });
 
-        // Reconnection attempt
-        this.socket.on('reconnect_attempt', () => {
+        // Reconnection attempt (manager-level events)
+        (this.socket.io as any).on('reconnect_attempt', () => {
           this.reconnectAttempts++;
           console.log(`[Socket] Reconnection attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts}`);
         });
 
-        // Reconnection success
-        this.socket.on('reconnect', () => {
+        // Reconnection success (manager-level events)
+        (this.socket.io as any).on('reconnect', () => {
           this.reconnectAttempts = 0;
           console.log('[Socket] Reconnected');
         });
@@ -267,14 +267,14 @@ class SocketClientManager {
    * Subscribe to multiple channels
    */
   subscribeToChannels(channels: string[]): void {
-    this.emit('subscribe', channels);
+    this.emit('subscribe' as any, channels);
   }
 
   /**
    * Unsubscribe from channels
    */
   unsubscribeFromChannels(channels: string[]): void {
-    this.emit('unsubscribe', channels);
+    this.emit('unsubscribe' as any, channels);
   }
 
   /**
@@ -285,7 +285,7 @@ class SocketClientManager {
     content: string,
     callback?: (error?: Error | null) => void
   ): void {
-    this.emit('chat_message_send', {
+    this.emit('chat_message_send' as any, {
       roomId,
       content,
       type: 'text',
@@ -297,7 +297,7 @@ class SocketClientManager {
    * Start typing indicator
    */
   startTyping(roomId: string): void {
-    this.emit('chat_typing', {
+    this.emit('chat_typing' as any, {
       roomId,
       userName: '',
       isTyping: true,
@@ -308,14 +308,14 @@ class SocketClientManager {
    * Stop typing indicator
    */
   stopTyping(roomId: string): void {
-    this.emit('chat_typing_stop', roomId);
+    this.emit('chat_typing_stop' as any, roomId);
   }
 
   /**
    * Ping keep-alive
    */
   ping(callback?: () => void): void {
-    this.emit('ping', undefined as any, () => {
+    this.emit('ping' as any, undefined, () => {
       callback?.();
     });
   }
@@ -324,7 +324,7 @@ class SocketClientManager {
    * Mark notification as read
    */
   markNotificationAsRead(notificationId: string, callback?: () => void): void {
-    this.emit('notification_read', notificationId as any, callback);
+    this.emit('notification_read' as any, notificationId, callback);
   }
 
   /**

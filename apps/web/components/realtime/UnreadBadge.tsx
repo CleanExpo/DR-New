@@ -53,7 +53,7 @@ export function MessageIconWithBadge({
   return (
     <div className={cn('relative inline-flex', className)}>
       <svg
-        className={cn('w-5 h-5 text-gray-600 dark:text-gray-400', iconClassName)}
+        className={cn('w-5 h-5 text-gray-400 dark:text-gray-400', iconClassName)}
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

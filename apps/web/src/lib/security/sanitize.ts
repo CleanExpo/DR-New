@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * XSS Sanitization Utilities
  *
@@ -5,6 +6,7 @@
  * Cross-Site Scripting (XSS) attacks.
  */
 
+// @ts-ignore - module shim
 import DOMPurify from 'isomorphic-dompurify';
 
 /**

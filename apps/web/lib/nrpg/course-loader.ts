@@ -307,10 +307,10 @@ export function calculateCourseProgress(
 
   // Find current module (first non-completed)
   let currentModuleId: string | null = null;
-  for (const module of courseInfo.modules) {
-    const progress = relevantProgress.find(p => p.moduleId === module.moduleId);
+  for (const courseModule of courseInfo.modules) {
+    const progress = relevantProgress.find(p => p.moduleId === courseModule.moduleId);
     if (!progress || progress.status !== 'COMPLETED') {
-      currentModuleId = module.moduleId;
+      currentModuleId = courseModule.moduleId;
       break;
     }
   }

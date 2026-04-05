@@ -239,7 +239,7 @@ export async function submitInsuranceClaim(
         insuranceProviderId: insuranceProvider.id,
         policyNumber: request.policyNumber,
         claimNumber,
-        totalClaimAmountAUD: BigInt(Math.round(request.totalClaimAmountAUD * 100)) / BigInt(100),
+        totalClaimAmountAUD: Math.round(request.totalClaimAmountAUD * 100) / 100,
         status: InsuranceClaimStatus.SUBMITTED,
         damageDescription: request.damageDescription,
         damagePhotos: request.damagePhotos,

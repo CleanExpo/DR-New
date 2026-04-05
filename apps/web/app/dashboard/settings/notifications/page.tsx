@@ -206,7 +206,7 @@ export default function NotificationPreferencesPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Notification Preferences</h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-400 mt-2">
           Manage how you receive notifications about claims, bids, and updates.
         </p>
       </div>
@@ -248,7 +248,7 @@ export default function NotificationPreferencesPage() {
                 <Label htmlFor="email-enabled" className="font-medium">
                   Enable Email Notifications
                 </Label>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Receive notifications via email
                 </p>
               </div>
@@ -352,7 +352,7 @@ export default function NotificationPreferencesPage() {
                 <Label htmlFor="push-enabled" className="font-medium">
                   Enable Push Notifications
                 </Label>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Receive real-time alerts in your browser
                 </p>
               </div>
@@ -421,7 +421,7 @@ export default function NotificationPreferencesPage() {
                 <Label htmlFor="sound-enabled" className="font-medium">
                   Enable Notification Sounds
                 </Label>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Play a sound when you receive notifications
                 </p>
               </div>
@@ -476,7 +476,7 @@ export default function NotificationPreferencesPage() {
                 <Label htmlFor="quiet-enabled" className="font-medium">
                   Enable Quiet Hours
                 </Label>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   Only urgent alerts will be delivered during quiet hours
                 </p>
               </div>
@@ -560,7 +560,7 @@ export default function NotificationPreferencesPage() {
                   <Label htmlFor="sms-enabled" className="font-medium">
                     Enable SMS Notifications
                   </Label>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-400">
                     Standard SMS rates may apply
                   </p>
                 </div>
@@ -585,7 +585,7 @@ export default function NotificationPreferencesPage() {
                       onChange={(e) => updatePreference('smsPhone', e.target.value)}
                       className="max-w-xs"
                     />
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-400">
                       Australian mobile numbers only
                     </p>
                   </div>

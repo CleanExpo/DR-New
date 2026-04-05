@@ -126,3 +126,4 @@ NodeJS-Starter-V1/
 .vercel
 .env*.local
 .superpowers/
+apps/web/opensrc/

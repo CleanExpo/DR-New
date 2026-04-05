@@ -7,7 +7,7 @@ on:
     branches: [ main, develop ]
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '20'
 
 jobs:
   lint:
@@ -15,26 +15,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run lint --if-present
-      - run: npx tsc --noEmit
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run db:generate
+      - run: pnpm run lint
+      - run: pnpm run type-check
 
   test:
     name: Run Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
-      - run: npm test --if-present
-        continue-on-error: true
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run test
 
   build:
     name: Build Application
@@ -42,20 +44,22 @@ jobs:
     needs: [lint]
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
         env:
           NEXTAUTH_SECRET: test-secret-for-ci
           NEXTAUTH_URL: http://localhost:3000
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
-          path: .next
+          path: apps/web/.next
           retention-days: 3
+          include-hidden-files: true
 
   smoke-tests:
     name: Smoke Tests (DR-217)
@@ -63,22 +67,24 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'npm'
-      - run: npm ci
-      - uses: actions/download-artifact@v3
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run db:generate
+      - uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: .next
+          path: apps/web/.next
       - name: Start server and run smoke tests
         run: |
+          REPO_ROOT=$(pwd)
           cd apps/web
-          npx next start &
+          pnpm exec next start &
           SERVER_PID=$!
 
-          # Wait for server to be ready
           for i in $(seq 1 30); do
             if curl -s http://localhost:3000/api/health > /dev/null 2>&1; then
               echo "Server is ready"
@@ -88,13 +94,13 @@ jobs:
             sleep 2
           done
 
-          # Run smoke tests
-          cd ../..
-          SMOKE_TEST_URL=http://localhost:3000 npm run test:smoke
+          SMOKE_TEST_URL=http://localhost:3000 pnpm exec jest --config "$REPO_ROOT/jest.smoke.config.js" --verbose --forceExit
 
-          # Cleanup
           kill $SERVER_PID 2>/dev/null || true
         env:
           NODE_ENV: production
           NEXTAUTH_SECRET: test-secret-for-ci
           NEXTAUTH_URL: http://localhost:3000
+          DATABASE_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
+          DIRECT_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
+          STRIPE_SECRET_KEY: sk_test_dummy_for_ci_smoke_tests

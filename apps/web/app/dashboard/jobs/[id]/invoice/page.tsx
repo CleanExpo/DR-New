@@ -104,9 +104,9 @@ export default function InvoicePage() {
 
         {!generated ? (
           <div className="text-center py-16">
-            <FileText className="h-16 w-16 text-gray-600 mx-auto mb-4" />
+            <FileText className="h-16 w-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-300 mb-2">Generate Invoice</h3>
-            <p className="text-sm text-gray-500 mb-6 max-w-md mx-auto">
+            <p className="text-sm text-gray-400 mb-6 max-w-md mx-auto">
               This will calculate line items from the completed job data including labour hours,
               materials, and 10% GST.
             </p>
@@ -147,25 +147,25 @@ export default function InvoicePage() {
 
               <div className="grid grid-cols-2 gap-4 text-sm mb-6">
                 <div>
-                  <p className="text-gray-500 mb-1">Contractor</p>
+                  <p className="text-gray-400 mb-1">Contractor</p>
                   <p className="text-white font-medium">{invoice.contractor.name}</p>
                   {invoice.contractor.abn && (
-                    <p className="text-xs text-gray-500">ABN: {invoice.contractor.abn}</p>
+                    <p className="text-xs text-gray-400">ABN: {invoice.contractor.abn}</p>
                   )}
                 </div>
                 <div>
-                  <p className="text-gray-500 mb-1">Property</p>
+                  <p className="text-gray-400 mb-1">Property</p>
                   <p className="text-white text-sm">{invoice.property}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500 mb-1">Service Type</p>
+                  <p className="text-gray-400 mb-1">Service Type</p>
                   <p className="text-white">
                     {invoice.jobType.charAt(0).toUpperCase() + invoice.jobType.slice(1)} Restoration
                   </p>
                 </div>
                 {invoice.completedDate && (
                   <div>
-                    <p className="text-gray-500 mb-1">Completed</p>
+                    <p className="text-gray-400 mb-1">Completed</p>
                     <p className="text-white">
                       {new Date(invoice.completedDate).toLocaleDateString('en-AU')}
                     </p>

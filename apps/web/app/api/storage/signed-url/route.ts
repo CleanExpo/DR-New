@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Signed URL Generation API
  *

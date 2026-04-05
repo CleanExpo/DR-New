@@ -183,7 +183,7 @@ export function AIImageEnhancementDashboard() {
             </div>
             AI Image Enhancement
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-400 mt-2">
             Generate E.E.A.T.-optimized descriptions for inspection photos using GPT-4 Vision
           </p>
         </div>
@@ -203,11 +203,11 @@ export function AIImageEnhancementDashboard() {
         <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Total Images</p>
+              <p className="text-gray-400 text-sm font-medium">Total Images</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">
                 {stats?.totalPhotos.toLocaleString() || '0'}
               </p>
-              <p className="text-sm text-gray-500 mt-2">In database</p>
+              <p className="text-sm text-gray-400 mt-2">In database</p>
             </div>
             <div className="bg-gradient-to-br from-blue-500/20 to-cyan-500/20 p-3 rounded-lg">
               <ImageIcon className="w-6 h-6 text-blue-600" />
@@ -219,7 +219,7 @@ export function AIImageEnhancementDashboard() {
         <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">AI Enhanced</p>
+              <p className="text-gray-400 text-sm font-medium">AI Enhanced</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">
                 {stats?.enhancedPhotos.toLocaleString() || '0'}
               </p>
@@ -240,11 +240,11 @@ export function AIImageEnhancementDashboard() {
         <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Pending</p>
+              <p className="text-gray-400 text-sm font-medium">Pending</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">
                 {stats?.pendingPhotos.toLocaleString() || '0'}
               </p>
-              <p className="text-sm text-gray-500 mt-2">Awaiting enhancement</p>
+              <p className="text-sm text-gray-400 mt-2">Awaiting enhancement</p>
             </div>
             <div className="bg-gradient-to-br from-yellow-500/20 to-amber-500/20 p-3 rounded-lg">
               <Clock className="w-6 h-6 text-yellow-600" />
@@ -256,11 +256,11 @@ export function AIImageEnhancementDashboard() {
         <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-gray-600 text-sm font-medium">Total Cost</p>
+              <p className="text-gray-400 text-sm font-medium">Total Cost</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">
                 ${stats?.totalCostUSD.toFixed(2) || '0.00'}
               </p>
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-gray-400 mt-2">
                 Avg: ${stats?.avgCostPerImage.toFixed(4) || '0.0000'}/image
               </p>
             </div>
@@ -279,7 +279,7 @@ export function AIImageEnhancementDashboard() {
               <div className="animate-pulse bg-purple-600 w-3 h-3 rounded-full"></div>
               <h3 className="text-lg font-semibold text-gray-900">Processing in Progress</h3>
             </div>
-            <span className="text-sm text-gray-600">Job ID: {activeJob.id.substring(0, 8)}</span>
+            <span className="text-sm text-gray-400">Job ID: {activeJob.id.substring(0, 8)}</span>
           </div>
 
           <div className="space-y-4">
@@ -306,21 +306,21 @@ export function AIImageEnhancementDashboard() {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white/80 rounded-lg p-3">
-                <p className="text-sm text-gray-600">Success</p>
+                <p className="text-sm text-gray-400">Success</p>
                 <p className="text-2xl font-bold text-green-600">{activeJob.successCount}</p>
               </div>
               <div className="bg-white/80 rounded-lg p-3">
-                <p className="text-sm text-gray-600">Failed</p>
+                <p className="text-sm text-gray-400">Failed</p>
                 <p className="text-2xl font-bold text-red-600">{activeJob.failureCount}</p>
               </div>
               <div className="bg-white/80 rounded-lg p-3">
-                <p className="text-sm text-gray-600">Cost</p>
+                <p className="text-sm text-gray-400">Cost</p>
                 <p className="text-2xl font-bold text-purple-600">
                   ${activeJob.totalCostUSD.toFixed(2)}
                 </p>
               </div>
               <div className="bg-white/80 rounded-lg p-3">
-                <p className="text-sm text-gray-600">ETA</p>
+                <p className="text-sm text-gray-400">ETA</p>
                 <p className="text-lg font-bold text-blue-600">
                   {activeJob.estimatedCompletion
                     ? new Date(activeJob.estimatedCompletion).toLocaleTimeString()
@@ -409,13 +409,13 @@ export function AIImageEnhancementDashboard() {
 
           <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4 mb-4">
             <div>
-              <p className="text-sm text-gray-600">Ready to process</p>
+              <p className="text-sm text-gray-400">Ready to process</p>
               <p className="text-2xl font-bold text-gray-900">
                 {stats?.pendingPhotos.toLocaleString() || '0'} images
               </p>
             </div>
             <div className="text-right">
-              <p className="text-sm text-gray-600">Estimated cost</p>
+              <p className="text-sm text-gray-400">Estimated cost</p>
               <p className="text-2xl font-bold text-purple-600">
                 ${((filters.limit || 0) * 0.0024).toFixed(2)}
               </p>
@@ -446,7 +446,7 @@ export function AIImageEnhancementDashboard() {
               <h4 className="font-semibold text-gray-900">Success Rate</h4>
             </div>
             <p className="text-3xl font-bold text-green-600">{stats.successRate.toFixed(1)}%</p>
-            <p className="text-sm text-gray-500 mt-2">Successful enhancements</p>
+            <p className="text-sm text-gray-400 mt-2">Successful enhancements</p>
           </div>
 
           <div className="bg-white rounded-xl p-6 border border-gray-200">
@@ -459,7 +459,7 @@ export function AIImageEnhancementDashboard() {
             <p className="text-3xl font-bold text-blue-600">
               {(stats.avgProcessingTime / 1000).toFixed(1)}s
             </p>
-            <p className="text-sm text-gray-500 mt-2">Per image</p>
+            <p className="text-sm text-gray-400 mt-2">Per image</p>
           </div>
 
           <div className="bg-white rounded-xl p-6 border border-gray-200">
@@ -474,7 +474,7 @@ export function AIImageEnhancementDashboard() {
                 ? new Date(stats.lastProcessedAt).toLocaleString()
                 : 'Never'}
             </p>
-            <p className="text-sm text-gray-500 mt-2">Most recent enhancement</p>
+            <p className="text-sm text-gray-400 mt-2">Most recent enhancement</p>
           </div>
         </div>
       )}

@@ -498,7 +498,7 @@ export default function ContractorVerificationProfile() {
               </CardHeader>
               <CardContent>
                 <div className="text-center py-12 text-gray-400">
-                  <FileText className="h-16 w-16 mx-auto mb-4 text-gray-600" />
+                  <FileText className="h-16 w-16 mx-auto mb-4 text-gray-400" />
                   <p className="text-lg">No verification history yet</p>
                   <p className="text-sm mt-2">
                     All changes to your verification status will appear here

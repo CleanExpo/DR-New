@@ -71,7 +71,7 @@ export default function LoginPage() {
             <div className="text-center">
               <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome back!</h2>
-              <p className="text-gray-600">Redirecting you to your dashboard...</p>
+              <p className="text-gray-400">Redirecting you to your dashboard...</p>
               <div className="mt-4">
                 <Loader2 className="h-6 w-6 animate-spin mx-auto text-[#00BFA6]" />
               </div>
@@ -202,7 +202,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <div className="mt-8 text-center">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             By signing in, you agree to our{' '}
             <Link href="/terms" className="text-[#00BFA6] hover:text-[#00A693]">
               Terms of Service

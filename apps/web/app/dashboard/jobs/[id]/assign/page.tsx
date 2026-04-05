@@ -137,7 +137,7 @@ export default function AssignContractorPage() {
 
         {/* Search */}
         <div className="relative mb-6">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <input
             type="text"
             placeholder="Search contractors..."
@@ -154,7 +154,7 @@ export default function AssignContractorPage() {
           </div>
         ) : filteredContractors.length === 0 ? (
           <div className="text-center py-16">
-            <User className="h-12 w-12 text-gray-600 mx-auto mb-4" />
+            <User className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <p className="text-gray-400">No verified contractors found</p>
           </div>
         ) : (
@@ -197,7 +197,7 @@ export default function AssignContractorPage() {
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-400">
                     <span>{c.completedJobs} jobs completed</span>
                   </div>
                 </button>

@@ -91,7 +91,7 @@ export default function ContractorJoinPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Why Contractors Choose NRPG
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               No upfront costs. No monthly fees. No commission. Just qualified leads and a simple $550 flat fee per claim.
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function ContractorJoinPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Transparent Pricing
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               No hidden fees. No surprises. Just straightforward pricing.
             </p>
           </div>
@@ -124,7 +124,7 @@ export default function ContractorJoinPage() {
               <div className="p-6">
                 <div className="mb-4 text-center">
                   <div className="text-5xl font-bold text-gray-900">$1,495</div>
-                  <div className="text-gray-600">AUD (one-time)</div>
+                  <div className="text-gray-400">AUD (one-time)</div>
                 </div>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
@@ -210,7 +210,7 @@ export default function ContractorJoinPage() {
               <div className="p-6">
                 <div className="mb-4 text-center">
                   <div className="text-5xl font-bold text-gray-900">$550</div>
-                  <div className="text-gray-600">Flat fee per claim</div>
+                  <div className="text-gray-400">Flat fee per claim</div>
                 </div>
 
                 <div className="mb-6 rounded-lg border-2 border-blue-200 bg-blue-50 p-4">
@@ -340,7 +340,7 @@ export default function ContractorJoinPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Complete Training Program
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               24 professional modules covering every aspect of disaster recovery business operations
             </p>
           </div>
@@ -359,7 +359,7 @@ export default function ContractorJoinPage() {
               <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 Ready to Join?
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
                 Submit your application and our team will review it within 2-3 business days.
               </p>
             </div>
@@ -395,7 +395,7 @@ export default function ContractorJoinPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Frequently Asked Questions
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-400">
               Everything you need to know about joining NRPG
             </p>
           </div>
