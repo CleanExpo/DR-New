@@ -24,7 +24,8 @@ test.describe('Authentication Flow', () => {
 
       await page.fill('input[type="email"], input[name="email"]', 'invalid@example.com');
       await page.fill('input[type="password"], input[name="password"]', 'wrongpassword');
-      await page.click('button[type="submit"]');
+      // force: true bypasses pointer-events check on CI (button may be briefly covered during hydration)
+      await page.locator('button[type="submit"]').click({ force: true });
 
       // Should show error message (not redirect)
       await expect(page.locator('text=/invalid|error|failed/i')).toBeVisible({ timeout: 10000 });
