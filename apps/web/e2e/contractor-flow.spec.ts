@@ -71,7 +71,7 @@ test.describe('Contractor Onboarding Flow', () => {
 
     // Wait for response — accept redirect to dashboard, login, or verify-email
     await contractorPage.waitForURL(
-      url => !url.includes('/signup'),
+      url => !url.href.includes('/signup'),
       { timeout: 15000 }
     );
   });
