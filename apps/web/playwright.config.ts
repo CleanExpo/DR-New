@@ -21,8 +21,8 @@ export default defineConfig({
 
   /* Reporter to use */
   reporter: [
-    ['html', { outputFolder: 'test-results/html' }],
-    ['json', { outputFile: 'test-results/results.json' }],
+    ['html', { outputFolder: 'playwright-report' }],
+    ['json', { outputFile: 'playwright-report/results.json' }],
     ['list'],
   ],
 
@@ -79,11 +79,18 @@ export default defineConfig({
     },
   ],
 
-  /* Run your local dev server before starting the tests */
-  webServer: process.env.CI ? undefined : {
-    command: 'npm run dev',
+  /* Run the dev server before starting the tests (both locally and in CI) */
+  webServer: {
+    command: 'pnpm exec next dev --port 3000',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
+    env: {
+      NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET ?? 'test-secret-for-ci',
+      NEXTAUTH_URL: process.env.NEXTAUTH_URL ?? 'http://localhost:3000',
+      DATABASE_URL: process.env.DATABASE_URL ?? 'postgresql://smoke:smoke@localhost:5432/smoke_test',
+      DIRECT_URL: process.env.DIRECT_URL ?? 'postgresql://smoke:smoke@localhost:5432/smoke_test',
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY ?? 'sk_test_dummy_for_ci_e2e',
+    },
   },
 });
