@@ -101,3 +101,5 @@ jobs:
           NODE_ENV: production
           NEXTAUTH_SECRET: test-secret-for-ci
           NEXTAUTH_URL: http://localhost:3000
+          DATABASE_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
+          DIRECT_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
