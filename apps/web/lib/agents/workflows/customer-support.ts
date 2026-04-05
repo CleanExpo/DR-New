@@ -373,7 +373,7 @@ async function executeCustomerSupport(
 
   // Compile the graph with checkpointer
   const compiledWorkflow = workflow.compile({
-    checkpointer: config.checkpointer,
+    checkpointer: config.checkpointer as any,
   });
 
   // Extract support query from input
