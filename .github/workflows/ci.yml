@@ -59,6 +59,7 @@ jobs:
           name: build-artifacts
           path: apps/web/.next
           retention-days: 3
+          include-hidden-files: true
 
   smoke-tests:
     name: Smoke Tests (DR-217)
