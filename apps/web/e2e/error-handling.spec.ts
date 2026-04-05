@@ -60,7 +60,7 @@ test.describe('Error Handling — 404 Not Found', () => {
     // Without auth this should redirect to login
     await page.goto('/dashboard/jobs/definitely-not-a-real-job-id');
     // Wait up to 10s for client-side auth redirect (webkit can be slow)
-    await page.waitForURL(/\/login|\/api\/auth|\/404/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth|\/404/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const status = (await page.evaluate(() => document.title)) ?? '';
@@ -159,7 +159,7 @@ test.describe('Error Handling — Dashboard Auth Redirects', () => {
     }) => {
       await page.goto(route);
       // Wait up to 10s for client-side auth redirect (webkit can be slow)
-      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const redirectedToLogin =

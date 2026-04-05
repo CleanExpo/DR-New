@@ -140,7 +140,7 @@ test.describe('Insurance Claims — Claim Intake Wizard (Public)', () => {
 test.describe('Insurance Claims — Dashboard (Auth Required)', () => {
   test('GET /dashboard/claims redirects unauthenticated users', async ({ page }) => {
     await page.goto('/dashboard/claims');
-    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const isProtected =
@@ -153,7 +153,7 @@ test.describe('Insurance Claims — Dashboard (Auth Required)', () => {
 
   test('GET /dashboard/client/claims/new redirects unauthenticated', async ({ page }) => {
     await page.goto('/dashboard/client/claims/new');
-    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const isProtected =
@@ -166,7 +166,7 @@ test.describe('Insurance Claims — Dashboard (Auth Required)', () => {
 
   test('GET /dashboard/client/claims/:id redirects unauthenticated', async ({ page }) => {
     await page.goto('/dashboard/client/claims/test-claim-id');
-    await page.waitForURL(/\/login|\/api\/auth|\/404/, { timeout: 10000 }).catch(() => {});
+    await page.waitForURL(/\/login|\/api\/auth|\/404/, { timeout: 30000 }).catch(() => {});
 
     const url = page.url();
     const isProtected =

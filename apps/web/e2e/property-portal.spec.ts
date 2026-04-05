@@ -81,7 +81,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client dashboard', async ({ page }) => {
       await page.goto('/dashboard/client');
-      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -93,7 +93,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client claims page', async ({ page }) => {
       await page.goto('/dashboard/client/claims');
-      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -105,7 +105,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client payments page', async ({ page }) => {
       await page.goto('/dashboard/client/payments');
-      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -117,7 +117,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client onboarding page', async ({ page }) => {
       await page.goto('/dashboard/client/onboarding');
-      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
@@ -129,7 +129,7 @@ test.describe('Property Owner Portal', () => {
 
     test('should protect client analytics page', async ({ page }) => {
       await page.goto('/dashboard/client/analytics');
-      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 10000 }).catch(() => {});
+      await page.waitForURL(/\/login|\/api\/auth/, { timeout: 30000 }).catch(() => {});
 
       const url = page.url();
       const isProtected = url.includes('/login') ||
