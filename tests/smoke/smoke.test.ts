@@ -140,8 +140,8 @@ describe('Smoke Tests (DR-217)', () => {
   // =========================================================================
   // Test 8: 404 page for nonexistent routes
   // =========================================================================
-  it('Test 8: Nonexistent page returns 404', async () => {
-    const res = await smokeFetch('/nonexistent-page-xyz-smoke-test');
+  it('Test 8: Nonexistent route returns 404', async () => {
+    const res = await smokeFetch('/api/nonexistent-endpoint-xyz-smoke-test');
     expect(res.status).toBe(404);
   });
 
