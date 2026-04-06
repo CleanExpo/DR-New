@@ -23,11 +23,11 @@ import Link from 'next/link';
 import { WaterDamage, FireSmoke, MouldRemediation, BioForensic } from '@/icons';
 
 export const metadata: Metadata = {
-  title: 'Real Restoration Case Studies | NRPG',
-  description: 'Explore 50+ real disaster recovery projects completed by NRPG contractors across Australia. See before/after photos, timelines, costs, and customer testimonials.',
+  title: 'Restoration Case Studies | NRPG',
+  description: 'Real disaster recovery projects completed by NRPG contractors across Australia. IICRC-standard documentation, timelines, costs, and customer testimonials from verified projects.',
   openGraph: {
-    title: 'Real Restoration Case Studies | NRPG',
-    description: 'Explore 50+ real disaster recovery projects completed by NRPG contractors across Australia.',
+    title: 'Restoration Case Studies | NRPG',
+    description: 'Real disaster recovery projects completed by NRPG contractors across Australia. IICRC-standard documentation and verified project outcomes.',
     type: 'website',
   },
 };
@@ -80,7 +80,7 @@ const SAMPLE_CASE_STUDIES: CaseStudy[] = [
     customerSatisfaction: 5,
     featured: true,
     published: '2025-11-10',
-    excerpt: 'Burst pipe caused significant water damage. Professional extraction and dehumidification prevented mould growth. Home fully restored with insurance approval.',
+    excerpt: 'Burst pipe caused significant water damage. Professional extraction and dehumidification prevented mould growth. IICRC-standard documentation provided for the client\'s insurance submission.',
     slug: 'alexandria-water-damage-restoration',
   },
   {
@@ -96,7 +96,7 @@ const SAMPLE_CASE_STUDIES: CaseStudy[] = [
     customerSatisfaction: 4.9,
     featured: true,
     published: '2025-10-30',
-    excerpt: 'Humidity damage created mould growth. NRPG performed professional remediation with air quality testing and documentation for insurance claim.',
+    excerpt: 'Humidity damage created mould growth. NRPG performed professional remediation with air quality testing and IICRC-standard documentation for the client\'s insurance submission.',
     slug: 'south-brisbane-mould-remediation',
   },
   {
@@ -128,7 +128,7 @@ const SAMPLE_CASE_STUDIES: CaseStudy[] = [
     customerSatisfaction: 5,
     featured: false,
     published: '2025-09-25',
-    excerpt: 'Bathroom leak created mould in walls. NRPG identified hidden damage, remediated mould, and restored bathroom with zero insurance disputes.',
+    excerpt: 'Bathroom leak created mould in walls. NRPG identified hidden damage, remediated mould, and restored bathroom. IICRC-standard documentation supported the client\'s insurance submission.',
     slug: 'unley-bathroom-restoration',
   },
 ];
@@ -171,9 +171,8 @@ export default async function CaseStudiesPage() {
               Real Restoration Stories
             </h1>
             <p className="text-xl text-blue-100 mb-8">
-              Explore 50+ real disaster recovery projects completed by NRPG contractors
-              across Australia. Before/after documentation, timelines, costs, and customer
-              testimonials from verified projects.
+              Real disaster recovery projects completed by NRPG contractors across Australia.
+              IICRC-standard documentation, timelines, costs, and customer testimonials from verified projects.
             </p>
 
             {/* Search Bar */}
@@ -217,9 +216,7 @@ export default async function CaseStudiesPage() {
               className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden border border-slate-200 hover:border-blue-600"
             >
               {/* Image Placeholder */}
-              <div className="bg-gradient-to-br from-slate-200 to-slate-300 aspect-video flex items-center justify-center text-slate-500">
-                [Case Study Image]
-              </div>
+              <div className="bg-gradient-to-br from-slate-200 to-slate-300 aspect-video" aria-hidden="true" />
 
               {/* Content */}
               <div className="p-6">
@@ -293,9 +290,7 @@ export default async function CaseStudiesPage() {
               className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all overflow-hidden border border-slate-200 hover:border-blue-600"
             >
               {/* Image */}
-              <div className="bg-gradient-to-br from-slate-200 to-slate-300 aspect-video flex items-center justify-center text-slate-500">
-                [Case Study Image]
-              </div>
+              <div className="bg-gradient-to-br from-slate-200 to-slate-300 aspect-video" aria-hidden="true" />
 
               {/* Content */}
               <div className="p-6">
