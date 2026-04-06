@@ -3,6 +3,19 @@ import Footer from "@/components/footer"
 import { Cookie, Shield, BarChart3, Megaphone, Settings, Globe, AlertTriangle, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import { schemaGenerator } from "@/lib/seo/schema-generator"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Cookie Policy | NRPG — Disaster Recovery Australia',
+  description: 'Cookie Policy for disasterrecovery.com.au. Explains how Disaster Recovery Pty Ltd uses cookies and similar technologies, and how to manage your cookie preferences.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/cookie-policy',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function CookiePolicyPage() {
   const faqSchema = schemaGenerator.generateFAQSchema([
