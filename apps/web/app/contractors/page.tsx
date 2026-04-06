@@ -42,7 +42,7 @@ export default function ContractorsPage() {
         <Hero
           variant="centered"
           badge={{
-            text: "Join Australia's #1 Disaster Recovery Network",
+            text: "Join Australia and New Zealand's #1 Disaster Recovery Network",
             icon: <Award className="h-4 w-4" />,
           }}
           title="Scale Your Restoration Business with"
@@ -274,7 +274,7 @@ export default function ContractorsPage() {
               Join Certified Professionals
             </h2>
             <p className="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto">
-              All NRPG contractors are AS-IICRC S500:2025-certified and continuously trained in industry best practices.
+              Every NRPG contractor independently holds AS-IICRC S500:2025 certification, their own trade licences, and their own business insurance — a standard enforced through a proprietary onboarding process found nowhere else in Australia or New Zealand.
             </p>
 
             <div className="max-w-4xl mx-auto">
@@ -286,16 +286,16 @@ export default function ContractorsPage() {
               <div className="mt-12 grid md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <Shield className="h-12 w-12 text-nrpg-primary mx-auto mb-4" />
-                  <h3 className="font-semibold text-lg mb-2">Fully Insured</h3>
+                  <h3 className="font-semibold text-lg mb-2">Independently Insured</h3>
                   <p className="text-gray-400 text-sm">
-                    $20M public liability and $5M professional indemnity required
+                    Each contractor holds their own public liability and professional indemnity insurance — not pooled, not shared
                   </p>
                 </div>
                 <div className="text-center">
                   <Award className="h-12 w-12 text-nrpg-primary mx-auto mb-4" />
                   <h3 className="font-semibold text-lg mb-2">IICRC Certified</h3>
                   <p className="text-gray-400 text-sm">
-                    All contractors hold current AS-IICRC S500:2025 certification
+                    Each contractor holds their own AS-IICRC S500:2025 certification — independently earned and maintained
                   </p>
                 </div>
                 <div className="text-center">

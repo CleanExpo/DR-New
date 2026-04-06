@@ -86,7 +86,7 @@ export default function HomePage() {
     },
     {
       question: 'Are your contractors certified and insured?',
-      answer: 'All contractors in our network hold current IICRC certification and appropriate trade licences. They are independently insured and fully vetted before joining the NRPG network.',
+      answer: 'Every contractor in the NRPG network independently holds their own IICRC certification, their own trade licences, and their own business insurance. They operate as independent businesses verified through a proprietary onboarding process with no equivalent in Australia or New Zealand.',
     },
     {
       question: 'Do you work with all insurance companies?',
@@ -199,7 +199,7 @@ export default function HomePage() {
                     IICRC Certified
                   </h3>
                   <p className="text-blue-100 leading-relaxed">
-                    Every contractor verified to IICRC industry standards for quality and safety
+                    Every contractor independently holds IICRC certification, their own licences, and their own business insurance — verified through an onboarding process unmatched in Australia and New Zealand
                   </p>
                 </div>
 
@@ -313,7 +313,7 @@ export default function HomePage() {
                   },
                   {
                     question: 'Are your contractors certified and insured?',
-                    answer: 'All contractors in our network hold current IICRC certification and appropriate trade licences. They are independently insured and fully vetted before joining the NRPG network.',
+                    answer: 'Every contractor in the NRPG network independently holds their own IICRC certification, their own trade licences, and their own business insurance. They operate as independent businesses verified through a proprietary onboarding process with no equivalent in Australia or New Zealand.',
                   },
                   {
                     question: 'Do you work with all insurance companies?',
