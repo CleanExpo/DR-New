@@ -42,7 +42,7 @@ export default function ContractorsPage() {
         <Hero
           variant="centered"
           badge={{
-            text: "Join Australia and New Zealand's #1 Disaster Recovery Network",
+            text: "Join Australia and New Zealand's Leading Disaster Recovery Network",
             icon: <Award className="h-4 w-4" />,
           }}
           title="Scale Your Restoration Business with"
@@ -259,10 +259,10 @@ export default function ContractorsPage() {
 
           <div className="mt-12 bg-gradient-to-br from-nrpg-primary/10 to-blue-500/10 border border-nrpg-primary/30 rounded-2xl p-8 text-center">
             <p className="text-xl text-gray-300 mb-4">
-              These are <span className="text-nrpg-primary font-semibold">real metrics</span> from our contractor network. Your results may vary based on your service area, specialization, and response time.
+              Platform performance benchmarks from our contractor network. Individual results vary based on service area, specialisation, and response time.
             </p>
             <p className="text-sm text-gray-400">
-              Data aggregated from 500+ active contractors across Australia (last 12 months)
+              Network averages — individual contractor results will differ based on location and service type.
             </p>
           </div>
         </section>
