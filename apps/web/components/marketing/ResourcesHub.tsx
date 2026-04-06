@@ -84,6 +84,16 @@ const FEATURED_RESOURCES: Resource[] = [
     href: '/resources/disaster-prep-videos',
     readTime: '15 min',
   },
+  {
+    id: 'insurance-claim-advocate',
+    type: 'guide',
+    title: 'Insurance Claim Advocate — Human Expert on Your Side',
+    description: 'What to do when your insurer uses AI assessment tools. Know your rights and how independent expert evidence can support your claim.',
+    icon: '🛡️',
+    href: '/insurance-claim-advocate',
+    readTime: '8 min',
+    featured: true,
+  },
 ];
 
 interface ResourcesHubProps {
