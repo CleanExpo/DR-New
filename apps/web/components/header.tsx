@@ -113,17 +113,17 @@ export default function Header() {
               </div>
 
               {/* Regular Links */}
-              <Link href="#features" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium">
-                Features
-              </Link>
-              <Link href="#how-it-works" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium">
+              <Link href="/how-it-works" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium">
                 How It Works
               </Link>
-              <Link href="#pricing" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium">
+              <Link href="/pricing" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium">
                 Pricing
               </Link>
-              <Link href="#about" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium">
+              <Link href="/about" className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium">
                 About
+              </Link>
+              <Link href="/contractors" className="text-[#00BFA6] hover:text-[#00A693] transition-colors font-semibold">
+                Join as Contractor
               </Link>
             </nav>
           </div>
@@ -209,32 +209,32 @@ export default function Header() {
               </div>
 
               <Link
-                href="#features"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium py-2"
-              >
-                Features
-              </Link>
-              <Link
-                href="#how-it-works"
+                href="/how-it-works"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium py-2"
               >
                 How It Works
               </Link>
               <Link
-                href="#pricing"
+                href="/pricing"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium py-2"
               >
                 Pricing
               </Link>
               <Link
-                href="#about"
+                href="/about"
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-[#9CA3AF] hover:text-[#F9FAFB] transition-colors font-medium py-2"
               >
                 About
+              </Link>
+              <Link
+                href="/contractors"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-[#00BFA6] hover:text-[#00A693] transition-colors font-semibold py-2"
+              >
+                Join as Contractor
               </Link>
 
               {/* Mobile Auth Buttons */}
