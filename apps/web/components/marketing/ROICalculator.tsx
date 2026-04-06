@@ -47,7 +47,7 @@ const SUCCESSFUL_CONTRACTOR_STORIES = [
     photo: '/images/contractors/lisa-rodriguez.jpg',
     avgJobValue: 7500,
     annualRevenue: 1296000, // 18 × 7500 × 12 × 0.8
-    quote: 'The platform gives me consistent work. No more feast or famine. Insurance direct billing saves me 20 hours/month on admin.',
+    quote: 'The platform gives me consistent work. No more feast or famine. The IICRC documentation tools save me 20 hours/month on admin.',
   },
   {
     name: 'James Thompson',
