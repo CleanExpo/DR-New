@@ -29,25 +29,25 @@ const CONTRACTOR_BENEFITS: Benefit[] = [
     id: 'leads',
     icon: '🎯',
     title: 'Qualified Lead Generation',
-    description: 'Access to pre-vetted, insurance-backed restoration projects in your area',
+    description: 'Access to pre-qualified restoration projects matched to your trade area — you keep running your own business',
   },
   {
     id: 'standards',
     icon: '⭐',
     title: 'IICRC Quality Standards',
-    description: 'Join a network committed to professional excellence and industry best practices',
+    description: 'A network built on IICRC certification held independently by every contractor — your credentials, your business',
   },
   {
     id: 'support',
     icon: '🤝',
     title: 'Business Support',
-    description: 'Marketing, scheduling, and administrative support to help you focus on restoration',
+    description: 'Marketing, scheduling, and administrative support to help you focus on restoration work',
   },
   {
     id: 'payment',
     icon: '💰',
-    title: 'Guaranteed Payment',
-    description: 'Fast, reliable payment processing with insurance company partnerships',
+    title: 'Streamlined Payment',
+    description: 'Fast, reliable payment processing — you invoice under your own ABN or NZBN',
   },
 ];
 
@@ -92,7 +92,7 @@ function DefaultVariant({ className = '' }: { className?: string }) {
             </h2>
 
             <p className="text-xl text-blue-100 leading-relaxed">
-              Become part of Australia's premier network of IICRC-certified disaster recovery professionals.
+              Become part of Australia and New Zealand's premier network of IICRC-certified disaster recovery professionals — each contractor independently licensed, insured, and credentialled.
             </p>
           </div>
 
@@ -171,7 +171,7 @@ function DefaultVariant({ className = '' }: { className?: string }) {
           <div className="grid grid-cols-3 gap-4 text-center">
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4">
               <div className="font-display text-3xl font-black text-white mb-1">500+</div>
-              <div className="text-xs text-blue-200 uppercase tracking-wider">Active Contractors</div>
+              <div className="text-xs text-blue-200 uppercase tracking-wider">AU &amp; NZ Contractors</div>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4">
               <div className="font-display text-3xl font-black text-white mb-1">24/7</div>
@@ -197,7 +197,7 @@ function CompactVariant({ className = '' }: { className?: string }) {
             Join Our Network
           </h3>
           <p className="text-blue-100">
-            IICRC-certified contractors wanted. Grow your business with qualified leads.
+            IICRC-certified contractors wanted across Australia and New Zealand. Grow your independent business with qualified leads.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
@@ -231,7 +231,7 @@ function DetailedVariant({ className = '' }: { className?: string }) {
           Grow Your Restoration Business
         </h2>
         <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto">
-          Join Australia's fastest-growing network of IICRC-certified disaster recovery professionals
+          Join Australia and New Zealand's fastest-growing network of independently credentialled, IICRC-certified disaster recovery professionals
         </p>
       </div>
 

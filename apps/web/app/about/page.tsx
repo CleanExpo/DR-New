@@ -283,10 +283,9 @@ export default function AboutPage() {
                 <div className="flex items-start space-x-4">
                   <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
-                    <h4 className="font-semibold text-xl text-white mb-2">Verified Contractors</h4>
+                    <h4 className="font-semibold text-xl text-white mb-2">Independently Verified Contractors</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
-                      All contractors undergo rigorous verification including licensing, insurance, background checks,
-                      and quality assessments.
+                      Every contractor independently holds their own IICRC certification, trade licences, and business insurance — verified through a proprietary onboarding process with no equivalent in Australia or New Zealand.
                     </p>
                   </div>
                 </div>
@@ -317,9 +316,9 @@ export default function AboutPage() {
                 <div className="flex items-start space-x-4">
                   <VerifiedBadge size="lg" gradient="primary" className="mt-1 flex-shrink-0" aria-hidden="true" />
                   <div>
-                    <h4 className="font-semibold text-xl text-white mb-2">Insurance Support</h4>
+                    <h4 className="font-semibold text-xl text-white mb-2">Professional Documentation</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
-                      Expert assistance with insurance claims and documentation to ensure smooth processing.
+                      IICRC-standard scope of works, reports, and estimates — professional documentation prepared by independently credentialled restoration specialists.
                     </p>
                   </div>
                 </div>
@@ -329,7 +328,7 @@ export default function AboutPage() {
                   <div>
                     <h4 className="font-semibold text-xl text-white mb-2">24/7 Emergency Response</h4>
                     <p className="text-[#9CA3AF] leading-relaxed">
-                      Round-the-clock emergency services for urgent restoration needs across Australia.
+                      Round-the-clock emergency services for urgent restoration needs across Australia and New Zealand.
                     </p>
                   </div>
                 </div>
