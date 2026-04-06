@@ -226,10 +226,10 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <h3 className="font-display text-2xl font-bold text-white">
-                    Insurance Approved
+                    IICRC Documentation
                   </h3>
                   <p className="text-blue-100 leading-relaxed">
-                    All work documented to insurance standards with guaranteed quality
+                    All work documented to IICRC and Australian standards — a professional scope of works and estimate you can submit to your insurer
                   </p>
                 </div>
               </div>

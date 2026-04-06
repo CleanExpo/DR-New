@@ -331,7 +331,7 @@ export default function PricingPage() {
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">What if my insurance doesn't cover the full cost?</h3>
             <p className="text-gray-400">
-              We work with your insurance company to maximize the claim. If your policy has limitations, we can arrange a payment plan for the difference.
+              We provide a professional IICRC-standard scope of works and estimate that you submit to your insurer. Whether your policy covers the full cost is between you and your insurer — if it doesn't, we can arrange a payment plan for any outstanding balance.
             </p>
           </div>
 
@@ -352,7 +352,7 @@ export default function PricingPage() {
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">Will my insurance cover everything?</h3>
             <p className="text-gray-400">
-              That depends on your specific policy and coverage type. We work directly with your insurer to maximise your claim outcome. Our thorough documentation and direct insurer communication is designed to give your claim the strongest possible foundation.
+              That depends on your specific policy and coverage type. NRPG provides a thorough IICRC-standard inspection report, scope of works, and cost estimate — professional documentation prepared to Australian standards that you present to your insurer. Whether and how much your policy covers is determined by you and your insurer.
             </p>
           </div>
 
