@@ -87,8 +87,8 @@ const FEATURED_RESOURCES: Resource[] = [
   {
     id: 'insurance-claim-advocate',
     type: 'guide',
-    title: 'Insurance Claim Advocate — Human Expert on Your Side',
-    description: 'What to do when your insurer uses AI assessment tools. Know your rights and how independent expert evidence can support your claim.',
+    title: 'Professional Restoration Reports & Scope of Works',
+    description: 'How IICRC-certified restoration experts assess damage, document findings, and deliver a professional scope of works and estimate — to Australian standards.',
     icon: '🛡️',
     href: '/insurance-claim-advocate',
     readTime: '8 min',
