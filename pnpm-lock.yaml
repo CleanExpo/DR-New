@@ -445,7 +445,7 @@ importers:
         specifier: ^8.6.15
         version: 8.6.15(storybook@10.1.11(@testing-library/dom@10.4.0)(prettier@3.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@testing-library/jest-dom':
-        specifier: ^6.1.6
+        specifier: ^6.9.1
         version: 6.9.1
       '@testing-library/react':
         specifier: ^14.1.2
@@ -475,7 +475,7 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       '@types/node':
-        specifier: ^20.10.5
+        specifier: ^20.19.30
         version: 20.19.30
       '@types/pino':
         specifier: ^7.0.5
