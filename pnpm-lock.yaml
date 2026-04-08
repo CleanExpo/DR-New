@@ -11,6 +11,9 @@ importers:
       '@google/generative-ai':
         specifier: ^0.24.1
         version: 0.24.1
+      '@types/node':
+        specifier: '20'
+        version: 20.19.35
       dotenv:
         specifier: ^17.2.4
         version: 17.2.4

@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@google/generative-ai": "^0.24.1",
+    "@types/node": "20",
     "dotenv": "^17.2.4",
     "turbo": "^2.3.0"
   },
