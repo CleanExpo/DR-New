@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { translateText, batchTranslate } from '@/lib/translation/translator'
+import { translateText, batchTranslate } from '@/lib/ai/translation.service'
 import { SUPPORTED_LANGUAGES } from '@/lib/translation/languages'
 
 /**
