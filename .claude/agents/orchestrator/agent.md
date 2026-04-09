@@ -1,13 +1,34 @@
 ---
 name: orchestrator
+description: "Master coordinator of all agent activities. Use for complex multi-agent tasks, feature orchestration, and production delivery workflows."
 type: agent
 role: Master Coordinator
 priority: 1
-version: 2.0.0
+version: 3.0.0
+model: claude-opus-4-6
+tools:
+  - Read
+  - Edit
+  - Write
+  - Glob
+  - Grep
+  - Bash
+  - Agent
+  - WebSearch
+  - WebFetch
+  - TodoWrite
+permissions:
+  allow:
+    - "Bash(npx tsc *)"
+    - "Bash(pnpm *)"
+    - "Bash(git *)"
+    - "Bash(gh *)"
+skills:
+  - fact-checker
+  - iicrc-validator
+  - disaster-recovery-domain
+  - typescript-coding-standards
 inherits_from: ORCHESTRATOR_PRIMER.md
-skills_required:
-  - context/orchestration.skill.md
-  - verification/verification-first.skill.md
 hooks_triggered:
   - pre-agent-dispatch
   - post-verification
