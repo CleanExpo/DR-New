@@ -1,14 +1,25 @@
 ---
 name: seo-intelligence
+description: "SEO/AEO/GEO specialist for Australian disaster recovery market. Use for keyword research, content strategy, competitor analysis, and search dominance."
 type: agent
 role: Search Dominance Strategy
 priority: 2
-version: 1.0.0
+version: 2.0.0
+model: claude-sonnet-4-6
+tools:
+  - Read
+  - Glob
+  - Grep
+  - WebSearch
+  - WebFetch
+  - Write
+permissions:
+  allow:
+    - "Bash(node *)"
+skills:
+  - disaster-recovery-domain
+  - fact-checker
 market_focus: Australian (Brisbane primary)
-skills_required:
-  - search-dominance/search-dominance.skill.md
-  - search-dominance/blue-ocean.skill.md
-  - australian/geo-australian.skill.md
 hooks_triggered:
   - pre-seo-task
 ---
