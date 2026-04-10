@@ -186,7 +186,7 @@ export default function CertificationsPage() {
               <div className="h-12 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
                 <span className="text-sm font-bold text-gray-400">RACV</span>
               </div>
-              <p className="text-sm text-gray-400">Direct billing available</p>
+              <p className="text-sm text-gray-400">IICRC documentation accepted</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 text-center border-2 border-gray-200 hover:border-blue-400 transition-colors">
@@ -207,7 +207,7 @@ export default function CertificationsPage() {
               <div className="h-12 bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
                 <span className="text-sm font-bold text-gray-400">Allianz</span>
               </div>
-              <p className="text-sm text-gray-400">Direct claim assignment</p>
+              <p className="text-sm text-gray-400">IICRC-standard documentation supplied</p>
             </div>
           </div>
 
@@ -221,16 +221,16 @@ export default function CertificationsPage() {
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div>
-                <div className="font-bold text-lg mb-2">Expert Advocacy</div>
-                <p className="text-sm text-gray-400">Expert claims advocacy from lodgement to settlement</p>
+                <div className="font-bold text-lg mb-2">IICRC Documentation</div>
+                <p className="text-sm text-gray-400">Professional scope of works, estimates, and reports prepared to Australian standards for your insurance submission</p>
               </div>
               <div>
-                <div className="font-bold text-lg mb-2">Direct Billing</div>
-                <p className="text-sm text-gray-400">Available with most insurers</p>
+                <div className="font-bold text-lg mb-2">All Insurers Accepted</div>
+                <p className="text-sm text-gray-400">IICRC-standard documentation accepted by all major Australian insurers</p>
               </div>
               <div>
-                <div className="font-bold text-lg mb-2">Zero Disputes</div>
-                <p className="text-sm text-gray-400">Professional documentation prevents disputes</p>
+                <div className="font-bold text-lg mb-2">Transparent Pricing</div>
+                <p className="text-sm text-gray-400">Itemised scope of works and estimates — no surprises</p>
               </div>
             </div>
           </div>
@@ -363,7 +363,7 @@ export default function CertificationsPage() {
                   <p className="text-gray-400 text-sm mb-2">
                     Master Builders Association recognition for transparent pricing and ethical business practices.
                   </p>
-                  <p className="text-xs text-gray-400">NRPG policyholders consistently receive stronger claim outcomes through expert documentation</p>
+                  <p className="text-xs text-gray-400">NRPG clients consistently receive thorough IICRC-standard documentation for their insurance submissions</p>
                 </div>
               </div>
             </div>

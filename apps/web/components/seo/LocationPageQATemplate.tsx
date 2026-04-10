@@ -56,7 +56,7 @@ export function LocationPageQATemplate({
     },
     {
       question: `Can NRPG work with my insurance in ${city}?`,
-      answer: `NRPG contractors in ${city} are approved by all major Australian insurance companies including NRMA, RACV, AAMI, Suncorp, and Allianz. We provide detailed documentation for your claim and can arrange direct billing to your insurer.`,
+      answer: `NRPG contractors in ${city} produce IICRC-standard documentation — scope of works, estimates, and damage reports — accepted by all major Australian insurance companies including NRMA, RACV, AAMI, Suncorp, and Allianz. You submit this documentation to your insurer as part of your claim.`,
       schema: true,
     },
     {

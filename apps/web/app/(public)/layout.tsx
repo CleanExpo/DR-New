@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { PublicHeader } from '@/components/public/layouts/PublicHeader'
 import { PublicFooter } from '@/components/public/layouts/PublicFooter'
@@ -28,6 +28,24 @@ interface PublicLayoutProps {
  * - Help center
  */
 export default function PublicLayout({ children }: PublicLayoutProps) {
+  useEffect(() => {
+    // Force light mode for all public DR pages regardless of ThemeProvider state.
+    // ThemeProvider (in AppProviders) defaults to dark and reads localStorage,
+    // causing the DR homepage to render with dark styling. The MutationObserver
+    // ensures any post-hydration override is immediately reverted.
+    const html = document.documentElement
+    const ensureLight = () => {
+      if (html.classList.contains('dark') || !html.classList.contains('light')) {
+        html.classList.remove('dark')
+        html.classList.add('light')
+      }
+    }
+    ensureLight()
+    const observer = new MutationObserver(ensureLight)
+    observer.observe(html, { attributes: true, attributeFilter: ['class'] })
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <div className="public-layout min-h-screen flex flex-col bg-slate-50">
       {/* Custom CSS Variables for Public Site Theme */}

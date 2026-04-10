@@ -39,7 +39,7 @@ const processSteps = [
     step: "04",
     title: "Quality Verification",
     description:
-      "Final quality inspection to verify all repairs meet Australian building standards. Water testing of repaired areas, warranty documentation, and completion sign-off with your insurer.",
+      "Final quality inspection to verify all repairs meet Australian building standards. Water testing of repaired areas and full warranty documentation provided for your records and insurance file.",
   },
 ]
 
@@ -85,7 +85,7 @@ const faqs = [
   {
     question: "What is the insurance claim process for hail damage?",
     answer:
-      "Contact your insurer to lodge an initial claim as soon as possible after a hail event. Our team provides comprehensive assessment reports, photographic documentation, and detailed scope of works to support your claim. We work directly with assessors to streamline the process.",
+      "Contact your insurer to lodge an initial claim as soon as possible after a hail event. Our team provides comprehensive IICRC-standard assessment reports, photographic documentation, and detailed scope of works — everything you need when your insurer's assessor visits.",
   },
   {
     question: "Should I repair or replace hail-damaged roofing?",

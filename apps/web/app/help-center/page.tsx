@@ -4,16 +4,25 @@ import {
   Search,
   Book,
   MessageCircle,
-  Phone,
-  Mail,
   FileText,
   Users,
   Shield,
   CheckCircle,
   AlertTriangle,
   Zap,
+  ArrowRight,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Help Center | NRPG — Disaster Recovery Australia',
+  description: 'Answers to common questions about lodging a disaster recovery claim, payments, contractor matching, IICRC documentation, and the NRPG platform.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/help-center',
+  },
+}
 
 export default function HelpCenterPage() {
   const faqs = [
@@ -52,7 +61,7 @@ export default function HelpCenterPage() {
       description: "How to choose the right contractor for your project",
     },
     { title: "Insurance Claims Help", icon: MessageCircle, description: "Navigate insurance claims with confidence" },
-    { title: "Emergency Response", icon: Phone, description: "What to do in restoration emergencies" },
+    { title: "Emergency Response", icon: AlertTriangle, description: "What to do in restoration emergencies" },
   ]
 
   const serviceCategories = [
@@ -99,9 +108,9 @@ export default function HelpCenterPage() {
         "Every project includes quality checkpoints, customer feedback integration, and our commitment to helping ensure quality results.",
     },
     {
-      title: "Insurance Support",
+      title: "IICRC Documentation",
       description:
-        "Our team helps navigate insurance claims, provides documentation support, and works directly with insurance adjusters when needed.",
+        "Every job produces IICRC-standard documentation — scope of works, moisture logs, photographic evidence — accepted by all major Australian insurers for your insurance submission.",
     },
   ]
 
@@ -209,15 +218,20 @@ export default function HelpCenterPage() {
           {/* Contact Support */}
           <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151] text-center">
             <h3 className="font-poppins font-bold text-2xl text-white mb-4">Still Need Help?</h3>
-            <p className="text-[#9CA3AF] mb-6">Our support team is ready to assist you</p>
+            <p className="text-[#9CA3AF] mb-6">Our support team is ready to assist you. Submit a request via the contact form and we&apos;ll respond within 24 hours.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold">
-                <Mail className="h-4 w-4 mr-2" />
-                Email Support
+              <Button asChild className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold">
+                <Link href="/contact">
+                  <MessageCircle className="h-4 w-4 mr-2" />
+                  Contact Support
+                </Link>
               </Button>
-              <Button variant="outline" className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] bg-transparent">
-                <Phone className="h-4 w-4 mr-2" />
-                Call Support
+              <Button asChild variant="outline" className="border-[#374151] text-[#F9FAFB] hover:bg-[#1F2937] bg-transparent">
+                <Link href="/claim">
+                  <FileText className="h-4 w-4 mr-2" />
+                  Lodge a Claim
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Link>
               </Button>
             </div>
           </div>

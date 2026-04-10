@@ -3,6 +3,19 @@ import Footer from "@/components/footer"
 import { Shield, Eye, Users, Mail, Lock, Database, Globe, FileText, AlertTriangle, BookOpen, Bell, UserX, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import { schemaGenerator } from "@/lib/seo/schema-generator"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | NRPG — Disaster Recovery Australia',
+  description: 'Privacy Policy for Disaster Recovery Pty Ltd (ABN: 85 151 794 142). Compliant with the Privacy Act 1988 (Cth), Australian Privacy Principles, and the New Zealand Privacy Act 2020.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/privacy',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function PrivacyPage() {
   const faqSchema = schemaGenerator.generateFAQSchema([
@@ -16,7 +29,7 @@ export default function PrivacyPage() {
     },
     {
       question: 'Do you share my data with third parties?',
-      answer: 'We share relevant claim information with matched contractors and your insurance company only. We do not sell personal data to third parties.',
+      answer: 'We share relevant claim information with the IICRC-certified contractor matched to your job. We do not share your personal information with your insurer — we provide IICRC-standard documentation that you submit to your insurer yourself. We do not sell personal data to third parties.',
     },
   ])
 
@@ -52,7 +65,7 @@ export default function PrivacyPage() {
                     and <strong className="text-white">&quot;Restore Assist&quot;</strong>. This policy covers all personal information collected
                     through our platform at https://disasterrecovery.com.au and any associated applications. We comply with
                     the <strong className="text-white">Privacy Act 1988 (Cth)</strong> and the <strong className="text-white">Australian Privacy Principles (APPs 1–13)</strong>,
-                    as well as the <strong className="text-white">New Zealand Privacy Act 2020</strong> and <strong className="text-white">Information Privacy Principles (IPPs 1–13)</strong>.
+                    as well as the <strong className="text-white">New Zealand Privacy Act 2020</strong> and its <strong className="text-white">13 privacy principles (PP 1–13)</strong>.
                   </p>
                 </div>
               </div>

@@ -2,6 +2,19 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { AlertTriangle, Shield, FileText, Scale, HardHat, Heart, Globe, Mail, BookOpen, Users } from "lucide-react"
 import { schemaGenerator } from "@/lib/seo/schema-generator"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Platform Disclaimer | NRPG — Disaster Recovery Australia',
+  description: 'Important disclaimer for Disaster Recovery Pty Ltd (ABN: 85 151 794 142). NRPG is a platform facilitator only — all restoration work is performed by independent, IICRC-certified contractors.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/disclaimer',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function DisclaimerPage() {
   const faqSchema = schemaGenerator.generateFAQSchema([

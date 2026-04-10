@@ -2,6 +2,20 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { FileText, Users, Shield, Scale, AlertTriangle, CheckCircle, Mail, Globe, Gavel, BookOpen, CreditCard, RefreshCw } from "lucide-react"
 import { schemaGenerator } from "@/lib/seo/schema-generator"
+import Link from "next/link"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | NRPG — Disaster Recovery Australia',
+  description: 'Terms of Service for Disaster Recovery Pty Ltd (ABN: 85 151 794 142), trading as NRPG, Disaster Recovery, and Restore Assist. Governs use of the platform under Australian and New Zealand law.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/terms',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
 
 export default function TermsPage() {
   const faqSchema = schemaGenerator.generateFAQSchema([
@@ -270,19 +284,31 @@ export default function TermsPage() {
                       </p>
                     </div>
                     <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
-                      <p className="text-white font-medium mb-1">Platform Fees</p>
+                      <p className="text-white font-medium mb-1">Engagement Fee — Disaster Recovery Pty Ltd</p>
                       <p className="text-[#9CA3AF] text-sm">
-                        Platform fees, if applicable, will be clearly disclosed prior to any transaction.
-                        A tax invoice compliant with the A New Tax System (Goods and Services Tax) Act 1999 (Cth)
-                        will be provided for all applicable charges.
+                        An engagement fee of <strong className="text-white">$2,750 AUD (incl. GST)</strong> is payable to Disaster Recovery Pty Ltd
+                        prior to contractor dispatch. This fee covers platform matching, contractor coordination,
+                        and IICRC-standard project documentation. A tax invoice compliant with the
+                        A New Tax System (Goods and Services Tax) Act 1999 (Cth) will be issued.
+                        Payment is accepted by credit card or bank transfer.
+                      </p>
+                    </div>
+                    <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
+                      <p className="text-white font-medium mb-1">Contractor Costs — Paid Directly to Contractor</p>
+                      <p className="text-[#9CA3AF] text-sm">
+                        All restoration costs beyond the engagement fee are invoiced directly to you by the
+                        assigned contractor under their own ABN (or NZBN for NZ contractors). Contractor
+                        invoices are separate from and in addition to the platform engagement fee.
+                        IICRC-standard scope-of-works documentation is provided for your insurance submission.
                       </p>
                     </div>
                     <div className="bg-[#0F1115] rounded-lg p-4 border border-[#374151]">
                       <p className="text-white font-medium mb-1">Refund Policy</p>
                       <p className="text-[#9CA3AF] text-sm">
-                        Refund requests are assessed on a case-by-case basis. Platform fees are generally
-                        non-refundable unless otherwise required by Australian Consumer Law or the
-                        New Zealand Consumer Guarantees Act 1993.
+                        The engagement fee is generally non-refundable once a contractor has been dispatched,
+                        unless otherwise required by the Australian Consumer Law (Schedule 2 of the
+                        Competition and Consumer Act 2010 (Cth)) or the New Zealand Consumer Guarantees Act 1993.
+                        Refund requests are assessed on a case-by-case basis.
                       </p>
                     </div>
                   </div>
@@ -507,8 +533,8 @@ export default function TermsPage() {
                 <div>
                   <h3 className="font-poppins font-semibold text-xl text-white mb-4">Your Right to Terminate</h3>
                   <p className="text-[#9CA3AF] leading-relaxed">
-                    You may close your account and cease using the platform at any time by contacting us at
-                    support@disasterrecovery.com.au. Termination does not relieve you of any outstanding
+                    You may close your account and cease using the platform at any time by submitting a request
+                    via our <Link href="/contact" className="text-[#00BFA6] hover:underline">online contact form</Link>. Termination does not relieve you of any outstanding
                     obligations, including payment of any fees owed prior to termination. Upon termination,
                     your right to access the platform ceases immediately.
                   </p>
@@ -548,7 +574,7 @@ export default function TermsPage() {
                     </div>
                     <h4 className="font-semibold text-white mb-2">Internal Resolution</h4>
                     <p className="text-[#9CA3AF] text-sm">
-                      Contact us at support@disasterrecovery.com.au. We aim to acknowledge complaints within
+                      Submit a complaint via our <Link href="/contact" className="text-[#00BFA6] hover:underline">online contact form</Link>. We aim to acknowledge complaints within
                       2 business days and resolve within 14 business days.
                     </p>
                   </div>
@@ -679,7 +705,7 @@ export default function TermsPage() {
                     <Mail className="h-5 w-5 text-[#00BFA6] mr-2" />
                     <span className="text-white font-medium">General & Legal Inquiries</span>
                   </div>
-                  <p className="text-[#00BFA6]">support@disasterrecovery.com.au</p>
+                  <Link href="/contact" className="text-[#00BFA6] hover:underline text-sm">Submit inquiry via online contact form →</Link>
                   <p className="text-[#9CA3AF] text-sm mt-1">For questions about these terms, legal matters, or complaints</p>
                 </div>
 

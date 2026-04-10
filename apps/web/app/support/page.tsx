@@ -1,6 +1,16 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Mail, Phone, Clock, MessageCircle, FileText, Users, Shield } from "lucide-react"
+import { Mail, Phone, Clock, MessageCircle, FileText, Users, Shield, ArrowRight } from "lucide-react"
+import Link from "next/link"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Support | NRPG — Disaster Recovery Australia',
+  description: 'Get help with your NRPG claim, contractor matching, billing, or platform questions. Submit a support request via our online contact form.',
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/support',
+  },
+}
 
 export default function SupportPage() {
   return (
@@ -33,11 +43,13 @@ export default function SupportPage() {
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
               <div className="flex items-center mb-4">
                 <Mail className="h-8 w-8 text-[#2196F3] mr-3" />
-                <h3 className="font-poppins font-semibold text-xl text-white">Email Support</h3>
+                <h3 className="font-poppins font-semibold text-xl text-white">Contact Form</h3>
               </div>
-              <p className="text-[#9CA3AF] mb-4">Send us a detailed message</p>
-              <p className="text-[#2196F3] font-semibold text-lg">nrpg.team@gmail.com</p>
-              <p className="text-[#9CA3AF] text-sm">Response within 24 hours</p>
+              <p className="text-[#9CA3AF] mb-4">Send us a detailed message via our secure online form</p>
+              <Link href="/contact" className="inline-flex items-center gap-1 text-[#2196F3] font-semibold hover:underline">
+                Submit a request <ArrowRight className="h-4 w-4" />
+              </Link>
+              <p className="text-[#9CA3AF] text-sm mt-2">Response within 24 hours</p>
             </div>
 
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
@@ -98,8 +110,7 @@ export default function SupportPage() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-white mb-2">Response Times</h4>
-                  <p className="text-[#9CA3AF]">Phone: Immediate</p>
-                  <p className="text-[#9CA3AF]">Email: Within 24 hours</p>
+                  <p className="text-[#9CA3AF]">Contact form: Within 24 hours</p>
                   <p className="text-[#9CA3AF]">Chat: Within 5 minutes</p>
                 </div>
               </div>

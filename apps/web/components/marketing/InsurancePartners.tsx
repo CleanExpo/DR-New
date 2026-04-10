@@ -30,31 +30,31 @@ const INSURANCE_PARTNERS: InsurancePartner[] = [
     name: 'NRMA Insurance',
     logo: '/logos/nrma-insurance.svg',
     url: 'https://nrma.com.au',
-    description: 'Major Australian insurer, approved for emergency restoration claims',
+    description: 'Major Australian insurer — IICRC-standard documentation accepted for restoration claims',
   },
   {
     name: 'RACV',
     logo: '/logos/racv.svg',
     url: 'https://racv.com.au',
-    description: 'Victorian insurance partner for home and business coverage',
+    description: 'Victorian insurer for home and business — IICRC documentation accepted',
   },
   {
     name: 'AAMI',
     logo: '/logos/aami.svg',
     url: 'https://aami.com.au',
-    description: 'Home and car insurance, integrated claims process',
+    description: 'Home and car insurance — IICRC-standard scope of works accepted',
   },
   {
     name: 'Suncorp',
     logo: '/logos/suncorp.svg',
     url: 'https://suncorp.com.au',
-    description: 'Home insurance partner across all states',
+    description: 'Home insurance across all states — IICRC documentation accepted',
   },
   {
     name: 'Allianz',
     logo: '/logos/allianz.svg',
     url: 'https://allianz.com.au',
-    description: 'Comprehensive insurance coverage coordination',
+    description: 'Comprehensive coverage — IICRC-standard scope and estimate supplied for all claims',
   },
 ];
 
@@ -69,8 +69,7 @@ export function InsurancePartners() {
           Trusted by Major Australian Insurers
         </h3>
         <p className="text-slate-600 max-w-2xl mx-auto">
-          NRPG contractors are approved and preferred by leading Australian insurance companies.
-          Direct billing, standardized documentation, and transparent pricing eliminate disputes.
+          NRPG contractors produce IICRC-standard documentation recognised by all major Australian insurers — a professional scope of works and estimate your insurer accepts.
         </p>
       </div>
 
@@ -112,8 +111,8 @@ export function InsurancePartners() {
       <div className="mt-12 pt-8 border-t border-slate-200">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="text-center">
-            <div className="text-2xl font-black text-blue-600 mb-1">$0</div>
-            <p className="text-sm text-slate-600">Direct billing to insurer available</p>
+            <div className="text-2xl font-black text-blue-600 mb-1">AU+NZ</div>
+            <p className="text-sm text-slate-600">Network coverage across Australia and New Zealand</p>
           </div>
           <div className="text-center">
             <div className="text-2xl font-black text-blue-600 mb-1">24/7</div>
