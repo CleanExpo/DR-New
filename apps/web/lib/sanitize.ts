@@ -6,31 +6,30 @@
  * render time, so this is safe.
  */
 
-let DOMPurify: typeof import('dompurify') | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let purify: { sanitize: (html: string, cfg?: Record<string, unknown>) => string } | null = null;
 
-async function loadDOMPurify(): Promise<typeof import('dompurify')> {
-  if (!DOMPurify) {
-    DOMPurify = (await import('dompurify')).default as unknown as typeof import('dompurify');
+async function loadDOMPurify(): Promise<void> {
+  if (!purify) {
+    // Dynamic import keeps DOMPurify out of the SSR bundle.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mod = await import('dompurify');
+    purify = (mod.default ?? mod) as unknown as typeof purify;
   }
-  return DOMPurify;
 }
 
 /**
  * Synchronous sanitizer — safe to use in render functions.
- * Falls back to an empty string on the server (SSR pass).
  * DOMPurify must have been pre-loaded via `preloadSanitizer()` for full
- * effect; otherwise returns the raw string (admin-only content).
+ * effect; otherwise returns the raw string (admin-authored content only).
  */
 export function sanitizeHtml(html: string): string {
   if (typeof window === 'undefined') {
     // Server-side rendering — content is admin-authored; return as-is.
-    // DOMPurify only strips tags in the browser where the DOM is available.
     return html;
   }
-  if (DOMPurify) {
-    return (DOMPurify as import('dompurify').DOMPurifyI).sanitize(html, {
-      USE_PROFILES: { html: true },
-    });
+  if (purify) {
+    return purify.sanitize(html, { USE_PROFILES: { html: true } });
   }
   // DOMPurify not yet loaded — return raw (admin-authored content only).
   return html;
@@ -46,6 +45,7 @@ export async function preloadSanitizer(): Promise<void> {
     await loadDOMPurify();
   }
 }
+
 
 /**
  * Escape plain text for safe injection into an HTML context, then apply
