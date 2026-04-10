@@ -58,6 +58,7 @@ import {
   SAMPLE_CASE_STUDY,
 } from '@/lib/resources/data';
 import { DisasterCategory, ContentType, Resource } from '@/lib/resources/types';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface ResourcePageProps {
   params: {
@@ -256,7 +257,7 @@ export default function ResourcePage({ params }: ResourcePageProps) {
             {/* Main Content */}
             <div className="prose prose-lg max-w-none">
               {resource.content ? (
-                <div dangerouslySetInnerHTML={{ __html: resource.content }} />
+                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(resource.content) }} />
               ) : (
                 <div>
                   <p>{resource.description}</p>
