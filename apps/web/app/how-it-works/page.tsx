@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 /**
@@ -20,15 +19,7 @@ import {
   LeadPreview,
   Timeline,
 } from '@/design-system';
-import {
-  Bell,
-  Search,
-  UserCheck,
-  Mail,
-  DollarSign,
-  ArrowRight,
-  Zap,
-} from 'lucide-react';
+import { ArrowRight, Zap } from 'lucide-react';
 import { VerifiedBadge } from '@/icons';
 
 export default function HowItWorksPage() {
@@ -89,39 +80,39 @@ export default function HowItWorksPage() {
 
   const howItWorksSteps = [
     {
+      id: 'step-1',
+      number: 1,
       title: 'Client Reports Disaster',
       description:
         'Homeowner or business submits a claim through our website or app. They provide details about the disaster, location, and insurance information.',
-      status: 'completed' as const,
-      icon: <Bell className="h-5 w-5" />,
     },
     {
+      id: 'step-2',
+      number: 2,
       title: 'AI Qualifies Lead',
       description:
         'Our AI system instantly validates contact information, verifies insurance status, assesses damage severity, and confirms the location is within your service area.',
-      status: 'completed' as const,
-      icon: <Search className="h-5 w-5" />,
     },
     {
+      id: 'step-3',
+      number: 3,
       title: 'Rotation System Dispatches',
       description:
         'Our fair rotation algorithm selects the next eligible contractor based on location, specialization, and availability. No favoritism, just equal opportunity.',
-      status: 'completed' as const,
-      icon: <UserCheck className="h-5 w-5" />,
     },
     {
+      id: 'step-4',
+      number: 4,
       title: 'You Receive Notification',
       description:
         'Get instant SMS and email alerts with full lead details: client contact info, damage description, photos, insurance details, and urgency level.',
-      status: 'completed' as const,
-      icon: <Mail className="h-5 w-5" />,
     },
     {
+      id: 'step-5',
+      number: 5,
       title: 'Close Job & Get Paid',
       description:
-        'Contact the client, provide your quote, complete the work. Just $550 flat fee per claim - no commission. Keep 100% of all additional restoration work.',
-      status: 'active' as const,
-      icon: <DollarSign className="h-5 w-5" />,
+        'Contact the client, provide your quote, complete the work. Just $550 flat fee per claim — no commission. Keep 100% of all additional restoration work.',
     },
   ];
 
@@ -152,7 +143,7 @@ export default function HowItWorksPage() {
           <div className="max-w-4xl mx-auto">
             <Timeline
               steps={howItWorksSteps}
-              variant="vertical"
+              mode="timeline"
               animated
               className="mb-12"
             />

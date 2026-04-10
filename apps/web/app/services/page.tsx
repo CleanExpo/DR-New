@@ -1,6 +1,31 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Droplets, Flame, Wind, Zap, Shield, Clock, CheckCircle, Users } from "lucide-react"
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Disaster Recovery Services | NRPG Australia',
+  description: 'IICRC-certified disaster recovery services across Australia — water damage, fire restoration, mould remediation, storm damage, and biohazard cleanup. Independently licensed and insured contractors, 24/7 emergency response.',
+  keywords: [
+    'disaster recovery services Australia',
+    'water damage restoration',
+    'fire damage restoration',
+    'mould remediation',
+    'storm damage repair',
+    'biohazard cleanup',
+    'IICRC certified contractors',
+    'emergency restoration Australia',
+  ],
+  alternates: {
+    canonical: 'https://disasterrecovery.com.au/services',
+  },
+  openGraph: {
+    title: 'Disaster Recovery Services | NRPG Australia',
+    description: 'IICRC-certified disaster recovery services across Australia — water damage, fire restoration, mould remediation, storm damage, and biohazard cleanup.',
+    url: 'https://disasterrecovery.com.au/services',
+    type: 'website',
+  },
+}
 
 export default function ServicesPage() {
   return (

@@ -176,8 +176,7 @@ function ClaimSuccessContent() {
             <li className="flex gap-2">
               <span className="text-amber-600">•</span>
               <span>
-                <strong>Insurance claims:</strong> If you indicated you have insurance, contractors
-                will work directly with your insurer
+                <strong>Insurance claims:</strong> If you have insurance, contractors provide IICRC-standard documentation — scope of works and estimates — for you to submit to your insurer
               </span>
             </li>
             <li className="flex gap-2">

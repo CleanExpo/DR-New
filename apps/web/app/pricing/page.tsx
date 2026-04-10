@@ -15,7 +15,7 @@ import { Check, AlertCircle, Zap, DollarSign } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Pricing & Costs | NRPG Disaster Recovery',
-  description: 'Complete transparent pricing for disaster recovery services. No hidden fees, direct insurance billing available.',
+  description: 'Complete transparent pricing for disaster recovery services. No hidden fees. IICRC-standard documentation for insurance claims.',
 };
 
 export default function PricingPage() {
@@ -153,32 +153,40 @@ export default function PricingPage() {
           </div>
         </div>
 
-        {/* How Billing Works */}
+        {/* How Payment Works */}
         <div className="bg-blue-50 rounded-xl p-8 border-l-4 border-blue-600">
-          <h3 className="text-2xl font-bold mb-6">How Billing Works</h3>
+          <h3 className="text-2xl font-bold mb-6">How Payment Works</h3>
           <div className="space-y-6">
             <div>
-              <h4 className="font-bold text-lg mb-3">Option 1: Direct Insurance Billing</h4>
+              <h4 className="font-bold text-lg mb-3">Step 1 — Pay Disaster Recovery Australia</h4>
               <p className="text-gray-400 mb-4">
-                Most common for insured claims. We bill your insurance company directly.
+                The $2,750 emergency response and assessment fee is payable to Disaster Recovery Australia upon booking.
               </p>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>• You pay your insurance excess/deductible</li>
-                <li>• We bill insurance for the $2,750 assessment fee</li>
-                <li>• Additional restoration work quoted separately and added to claim</li>
-                <li>• You receive detailed invoice for insurance claim</li>
+                <li>• All major credit cards (Visa, Mastercard, Amex) and bank transfer accepted</li>
+                <li>• Tax invoice provided for your insurance submission</li>
               </ul>
             </div>
             <div className="border-t pt-6">
-              <h4 className="font-bold text-lg mb-3">Option 2: Direct Payment</h4>
+              <h4 className="font-bold text-lg mb-3">Step 2 — Pay Your Contractor</h4>
               <p className="text-gray-400 mb-4">
-                For uninsured claims or when you prefer to manage directly.
+                Any additional restoration works are invoiced directly to you by your assigned contractor, as per their approved scope of works and estimates.
               </p>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li>• Payment due upon service completion</li>
-                <li>• We accept all major credit cards and bank transfer</li>
-                <li>• Payment plan available for restoration work ($2,500+)</li>
-                <li>• 10% discount for immediate payment</li>
+                <li>• Contractor invoices you directly under their own ABN or NZBN</li>
+                <li>• All invoices and IICRC-standard documentation provided for your insurer</li>
+                <li>• Payment plans available for restoration work ($2,500+)</li>
+              </ul>
+            </div>
+            <div className="border-t pt-6">
+              <h4 className="font-bold text-lg mb-3">Step 3 — Submit to Your Insurer</h4>
+              <p className="text-gray-400 mb-4">
+                You submit the IICRC-standard scope of works, estimate, and invoices to your insurer. Whether and how much your policy covers is a matter between you and your insurer.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li>• Full IICRC-standard documentation provided</li>
+                <li>• Before/after photography and damage report included</li>
+                <li>• All documentation meets Australian standards for insurance submission</li>
               </ul>
             </div>
           </div>
@@ -345,7 +353,7 @@ export default function PricingPage() {
           <div className="border-b pb-6">
             <h3 className="font-bold text-lg mb-2">What payment methods do you accept?</h3>
             <p className="text-gray-400">
-              We accept all major credit cards (Visa, Mastercard, American Express), bank transfer, and insurance direct billing. Payment plans are available for work exceeding $2,500.
+              We accept all major credit cards (Visa, Mastercard, American Express) and bank transfer. Payment plans are available for restoration work exceeding $2,500.
             </p>
           </div>
 

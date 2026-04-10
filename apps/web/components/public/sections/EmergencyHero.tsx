@@ -253,7 +253,7 @@ export function EmergencyHero() {
             <TrustBadge
               icon={<Shield className="h-6 w-6" />}
               title="Insurance Approved"
-              subtitle="Direct billing available"
+              subtitle="IICRC documentation accepted"
               variant="blue"
             />
 

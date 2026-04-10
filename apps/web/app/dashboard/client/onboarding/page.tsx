@@ -112,9 +112,9 @@ export default function ClientOnboardingWelcomePage() {
         <Card>
           <CardContent className="pt-6 text-center">
             <CheckCircle className="h-12 w-12 text-blue-600 mx-auto mb-3" />
-            <h3 className="font-semibold mb-2">Insurance Claim Expertise</h3>
+            <h3 className="font-semibold mb-2">IICRC Documentation</h3>
             <p className="text-sm text-muted-foreground">
-              We work directly with your insurer for faster claims
+              Professional scope of works and estimates accepted by all major insurers
             </p>
           </CardContent>
         </Card>

@@ -1,6 +1,6 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Mail, Phone, Clock, Users, Shield, Headphones, Globe, Zap, BarChart3, Smartphone } from "lucide-react"
+import { Phone, Clock, Users, Shield, Headphones, Globe, Zap, BarChart3, Smartphone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ChatMessage, PhoneCall } from "@/icons"
 
@@ -10,32 +10,24 @@ export default function ContactPage() {
     {
       name: "Platform Support",
       description: "General platform questions, user onboarding, and platform feature assistance",
-      email: "nrpg.team@gmail.com",
-      phone: "Contact us",
       icon: Headphones,
       color: "text-[#00BFA6]",
     },
     {
       name: "Technical Support",
       description: "Platform technical issues, API integration, and system troubleshooting",
-      email: "nrpg.team@gmail.com",
-      phone: "Contact us",
       icon: Shield,
       color: "text-[#2196F3]",
     },
     {
       name: "Partnership & Licensing",
       description: "White-label licensing, contractor partnerships, and business collaborations",
-      email: "nrpg.team@gmail.com",
-      phone: "Contact us",
       icon: Users,
       color: "text-[#7C4DFF]",
     },
     {
       name: "Enterprise Sales",
       description: "Enterprise platform solutions, custom integrations, and large-scale deployments",
-      email: "nrpg.team@gmail.com",
-      phone: "Contact us",
       icon: Globe,
       color: "text-[#FF9800]",
     },
@@ -140,16 +132,6 @@ export default function ContactPage() {
 
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
                 <div className="flex items-center mb-4">
-                  <Mail className="h-6 w-6 text-[#2196F3] mr-3" />
-                  <h3 className="font-poppins font-semibold text-xl text-white">Email</h3>
-                </div>
-                <p className="text-[#9CA3AF] mb-2">General Inquiries</p>
-                <p className="text-[#2196F3] font-semibold">nrpg.team@gmail.com</p>
-                <p className="text-[#9CA3AF] text-sm">Response within 24 hours</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-                <div className="flex items-center mb-4">
                   <Clock className="h-6 w-6 text-[#FF9800] mr-3" />
                   <h3 className="font-poppins font-semibold text-xl text-white">Business Hours</h3>
                 </div>
@@ -178,15 +160,9 @@ export default function ContactPage() {
                     <h3 className="font-poppins font-semibold text-lg text-white">{team.name}</h3>
                   </div>
                   <p className="text-[#9CA3AF] mb-4 text-sm leading-relaxed">{team.description}</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center">
-                      <Mail className="h-4 w-4 text-[#9CA3AF] mr-2" />
-                      <span className={`text-sm ${team.color}`}>{team.email}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Phone className="h-4 w-4 text-[#9CA3AF] mr-2" />
-                      <span className={`text-sm ${team.color}`}>{team.phone}</span>
-                    </div>
+                  <div className="flex items-center">
+                    <Phone className="h-4 w-4 text-[#9CA3AF] mr-2" />
+                    <span className={`text-sm ${team.color}`}>Use the contact form above</span>
                   </div>
                 </div>
               ))}
