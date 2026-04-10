@@ -33,7 +33,7 @@ const RATE_LIMIT_MAX_REQUESTS = 5; // Max 5 claims per hour per IP
 function getRateLimitKey(request: NextRequest): string {
   // Use X-Forwarded-For in production behind proxy
   const forwarded = request.headers.get('x-forwarded-for');
-  const ip = forwarded ? forwarded.split(',')[0] : request.ip || 'unknown';
+  const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown';
   return `claim_submit_${ip}`;
 }
 
