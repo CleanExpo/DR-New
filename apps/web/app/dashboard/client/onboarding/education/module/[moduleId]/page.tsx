@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, ArrowLeft, CheckCircle2, BookOpen, Award, Info } from 'lucide-react';
+import { sanitizeHtml, preloadSanitizer } from '@/lib/sanitize';
 
 export default function ClientModuleViewerPage({ params }: { params: { moduleId: string } }) {
   const router = useRouter();
@@ -21,6 +22,7 @@ export default function ClientModuleViewerPage({ params }: { params: { moduleId:
   const moduleId = params.moduleId;
 
   useEffect(() => {
+    preloadSanitizer();
     if (status === 'authenticated') {
       loadModule();
     }
@@ -157,7 +159,7 @@ export default function ClientModuleViewerPage({ params }: { params: { moduleId:
         <CardContent className="space-y-6">
           {/* Module Content */}
           <div className="prose dark:prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: moduleData?.content || '' }} />
+            <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(moduleData?.content || '') }} />
           </div>
 
           {/* Placeholder notice */}
