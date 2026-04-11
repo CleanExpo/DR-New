@@ -1,3 +1,4 @@
+'use client';
 /**
  * Contractor Specialisation Pathways — DR-197
  *

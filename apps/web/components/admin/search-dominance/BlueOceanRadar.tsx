@@ -1,3 +1,4 @@
+'use client';
 /**
  * Blue Ocean Radar Component
  *
