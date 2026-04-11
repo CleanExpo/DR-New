@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS CRM Incident Table Component
  *

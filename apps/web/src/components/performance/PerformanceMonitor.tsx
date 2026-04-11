@@ -1,3 +1,4 @@
+'use client';
 /**
  * Performance Monitor Component
  *
