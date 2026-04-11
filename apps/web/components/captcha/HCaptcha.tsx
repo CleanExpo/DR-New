@@ -12,7 +12,6 @@
  *    - HCAPTCHA_SECRET (server-side)
  */
 
-'use client';
 
 import * as React from 'react';
 import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';

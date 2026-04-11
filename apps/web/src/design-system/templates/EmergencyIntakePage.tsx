@@ -1,5 +1,5 @@
-'use client';
 // @ts-nocheck
+'use client';
 /**
  * DesignOS Emergency Intake Page Template
  *
@@ -15,7 +15,6 @@
  * - Detailed loading progress
  */
 
-'use client';
 
 import * as React from 'react';
 import { useRouter } from 'next/navigation';

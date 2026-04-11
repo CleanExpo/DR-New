@@ -12,7 +12,6 @@
  * - Success state with redirect
  */
 
-'use client';
 
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';

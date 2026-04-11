@@ -16,7 +16,6 @@
  * - Touch swipe support
  */
 
-'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';

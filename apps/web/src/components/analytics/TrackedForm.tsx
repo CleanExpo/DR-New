@@ -5,7 +5,6 @@
  * Form wrapper with built-in GA4 form event tracking
  */
 
-'use client';
 
 import { type FormEvent, type ComponentProps, useEffect } from 'react';
 import { useGA4FormTracking } from '@/hooks/useGA4';

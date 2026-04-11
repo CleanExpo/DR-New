@@ -1,5 +1,5 @@
-'use client';
 // @ts-nocheck
+'use client';
 /**
  * DesignOS Button Component
  *
