@@ -339,6 +339,9 @@ export function PublicFooter() {
             <p className="text-slate-400 text-xs">
               Trading as: Disaster Recovery &middot; NRPG &middot; Restore Assist
             </p>
+            <p className="text-slate-500 text-xs">
+              Part of the <span className="text-slate-400">Unite-Group Nexus</span>
+            </p>
           </div>
 
           {/* Bottom Bar */}
