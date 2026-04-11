@@ -1,3 +1,4 @@
+'use client';
 /**
  * Traffic Chart Component
  *

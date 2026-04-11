@@ -1,3 +1,4 @@
+'use client';
 /**
  * Quick Triage Tool - Interactive Disaster Assessment
  *
