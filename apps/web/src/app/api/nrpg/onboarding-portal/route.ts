@@ -279,15 +279,14 @@ export async function POST(request: NextRequest) {
       });
 
       const scoreBreakdown = calculateScore({
-        contractorId,
-        specialisations: onboarding?.specialization ? [onboarding.specialization as 'WATER_DAMAGE'] : [],
-        carsiMembershipPoints: 0,
-        carsiCoursePoints: 0,
-        iicrcCertifications: d.iicrcCertifications,
-        industryAssociations: d.industryAssociations,
-        govCertIV: d.govCertIV,
-        continuingEducationPoints: Math.min(d.yearsExperience * 2, 15),
         hasCoreSpeicality: (onboarding?.specialization ?? '') !== '',
+        additionalSpecCount: 0,
+        hasCarsiMembership: false,
+        carsiCoursesCompleted: 0,
+        hasPrimaryAssociation: (d.industryAssociations ?? []).length > 0,
+        secondaryAssociationCount: Math.max(0, (d.industryAssociations ?? []).length - 1),
+        hasGovCert4: d.govCertIV === true,
+        continuingEdCredits: Math.min(d.yearsExperience * 2, 15) / 15,
       });
 
       await persistScore(contractorId, scoreBreakdown);
