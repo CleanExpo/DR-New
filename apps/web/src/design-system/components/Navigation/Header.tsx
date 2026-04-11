@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS Navigation Header Component
  *
