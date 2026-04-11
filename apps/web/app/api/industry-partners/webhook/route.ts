@@ -32,14 +32,15 @@ const webhookSecret = process.env.STRIPE_IP_WEBHOOK_SECRET ?? ''
 // ── Handler ───────────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  if (!stripe) {
-    console.error('[ip-webhook] Stripe not configured.')
-    return NextResponse.json({ error: 'Service unavailable.' }, { status: 503 })
-  }
-
+  // Validate signature header before checking Stripe configuration
   const sig = req.headers.get('stripe-signature')
   if (!sig) {
     return NextResponse.json({ error: 'Missing stripe-signature header.' }, { status: 400 })
+  }
+
+  if (!stripe) {
+    console.error('[ip-webhook] Stripe not configured.')
+    return NextResponse.json({ error: 'Service unavailable.' }, { status: 503 })
   }
 
   let event: Stripe.Event
