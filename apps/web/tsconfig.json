@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "ES2020"
-    ],
+    "lib": ["dom", "dom.iterable", "ES2020"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,40 +20,17 @@
       }
     ],
     "paths": {
-      "@anthropic-ai/claude-agent-sdk": [
-        "./src/shims/claude-agent-sdk"
-      ],
-      "isomorphic-dompurify": [
-        "./src/shims/isomorphic-dompurify"
-      ],
-      "rate-limiter-flexible": [
-        "./src/shims/rate-limiter-flexible"
-      ],
-      "@storybook/react": [
-        "./src/shims/storybook-react"
-      ],
-      "@langchain/google-vertexai": [
-        "./src/shims/langchain-google-vertexai"
-      ],
-      "@google-cloud/vertexai": [
-        "./src/shims/google-cloud-vertexai"
-      ],
-      "@/*": [
-        "./*",
-        "./src/*"
-      ],
-      "@tests/*": [
-        "./tests/*"
-      ],
-      "@shared/*": [
-        "../../packages/shared/src/*"
-      ]
+      "@anthropic-ai/claude-agent-sdk": ["./src/shims/claude-agent-sdk"],
+      "isomorphic-dompurify": ["./src/shims/isomorphic-dompurify"],
+      "rate-limiter-flexible": ["./src/shims/rate-limiter-flexible"],
+      "@storybook/react": ["./src/shims/storybook-react"],
+      "@langchain/google-vertexai": ["./src/shims/langchain-google-vertexai"],
+      "@google-cloud/vertexai": ["./src/shims/google-cloud-vertexai"],
+      "@/*": ["./*", "./src/*"],
+      "@tests/*": ["./tests/*"],
+      "@shared/*": ["../../packages/shared/src/*"]
     },
-    "types": [
-      "jest",
-      "node",
-      "@testing-library/jest-dom"
-    ]
+    "types": ["jest", "node", "@testing-library/jest-dom"]
   },
   "include": [
     "next-env.d.ts",
@@ -72,14 +45,18 @@
   ],
   "exclude": [
     "node_modules",
+    ".next",
     "src/services/inspection/**/*",
     "src/lib/ai/**/*",
     "src/services/analytics/**/*",
-    "opensrc"
+    "scripts/**/*",
+    "public/**/*",
+    "src/lib/agents/**/*",
+    "src/lib/seo/**/*",
+    "src/services/**/*",
+    "opensrc/**/*"
   ],
   "references": [
-    {
-      "path": "../../packages/shared"
-    }
+    { "path": "../../packages/shared" }
   ]
 }
