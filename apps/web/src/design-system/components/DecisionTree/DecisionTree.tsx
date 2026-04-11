@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS Decision Tree Component
  *

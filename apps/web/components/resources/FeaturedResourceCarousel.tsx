@@ -1,3 +1,4 @@
+'use client';
 /**
  * FeaturedResourceCarousel Component
  *
