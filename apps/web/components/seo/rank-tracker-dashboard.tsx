@@ -5,7 +5,6 @@
  * Displays keyword rankings, changes, opportunities, and SERP features
  */
 
-'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import {
