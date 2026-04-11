@@ -14,7 +14,6 @@
  * <LocationPageQATemplate city="Sydney" state="NSW" service="Water Damage" />
  */
 
-'use client';
 
 import { useMemo } from 'react';
 import { ChevronDown } from 'lucide-react';

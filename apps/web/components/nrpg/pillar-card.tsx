@@ -1,5 +1,5 @@
-'use client';
 // @ts-nocheck
+'use client';
 /**
  * NRPG PillarCard Component
  *
@@ -17,7 +17,6 @@
  * - Accessibility support
  */
 
-'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';

@@ -13,7 +13,6 @@
  * - 30-second auto-refresh with subtle notifications
  */
 
-'use client';
 
 import * as React from 'react';
 import {

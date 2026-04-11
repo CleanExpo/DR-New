@@ -13,7 +13,6 @@
  * Ideal for people researching before emergency call (20% of audience)
  */
 
-'use client';
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star, MapPin, Clock, CheckCircle } from 'lucide-react';
