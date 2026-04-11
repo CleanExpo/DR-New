@@ -9,7 +9,6 @@
  *   <SpecialisationPathway specialisation="WATER_DAMAGE" currentPoints={72} />
  */
 
-'use client';
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
