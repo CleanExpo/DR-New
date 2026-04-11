@@ -22,10 +22,31 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export const metadata: Metadata = {
-  title: 'Help Centre | Disaster Recovery Australia',
-  description: 'Get help with disaster recovery claims, contractor matching, and platform questions. Our Help Centre has guides, FAQs, and support for homeowners and contractors.',
-  alternates: { canonical: 'https://disasterrecovery.com.au/help-center' },
+const helpCenterSchemas = {
+  webPage: {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Help Centre — Disaster Recovery Australia',
+    url: 'https://disasterrecovery.com.au/help-center',
+    description: 'Get help with your disaster recovery request, insurance claim, or contractor matching.',
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://disasterrecovery.com.au' },
+        { '@type': 'ListItem', position: 2, name: 'Help Centre', item: 'https://disasterrecovery.com.au/help-center' },
+      ],
+    },
+  },
+  faqPage: {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'How do I submit a restoration request?', acceptedAnswer: { '@type': 'Answer', text: 'Fill out our online form with details about your damage and we will match you with qualified contractors in your area within 24 hours.' } },
+      { '@type': 'Question', name: 'How are contractors vetted?', acceptedAnswer: { '@type': 'Answer', text: 'All contractors undergo thorough background checks, licence verification, insurance validation, and customer review analysis before joining our platform.' } },
+      { '@type': 'Question', name: 'What types of restoration services are available?', acceptedAnswer: { '@type': 'Answer', text: 'We cover water damage, fire damage, mould remediation, storm damage, and emergency restoration services across Australia.' } },
+      { '@type': 'Question', name: 'Is there emergency support available?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, we offer 24/7 emergency support for urgent restoration needs. Complete the intake form for immediate assistance.' } },
+    ],
+  },
 }
 
 export default function HelpCenterPage() {
@@ -120,6 +141,8 @@ export default function HelpCenterPage() {
 
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(helpCenterSchemas.webPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(helpCenterSchemas.faqPage) }} />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">

@@ -10,6 +10,56 @@
  */
 
 import React from 'react';
+
+const howItWorksSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How the NRPG Disaster Recovery Platform Works',
+  url: 'https://disasterrecovery.com.au/how-it-works',
+  description:
+    'Step-by-step guide to how the NRPG contractor matching platform connects property owners with IICRC-certified restoration contractors.',
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Client Reports Disaster',
+      text: 'The property owner submits a claim through the website or app with details about the disaster, location, and insurance information.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'AI Qualifies Lead',
+      text: 'Our AI system validates contact information, verifies insurance status, assesses damage severity, and confirms the location is within a service area.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Rotation System Dispatches',
+      text: 'Our fair rotation algorithm selects the next eligible contractor based on location, specialisation, and availability.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Contractor Receives Notification',
+      text: 'The contractor receives instant SMS and email alerts with full lead details including client contact info, damage description, photos, and insurance details.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: 'Close Job',
+      text: 'The contractor contacts the client, provides a quote, completes the restoration work, and invoices the client directly.',
+    },
+  ],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://disasterrecovery.com.au' },
+    { '@type': 'ListItem', position: 2, name: 'How It Works', item: 'https://disasterrecovery.com.au/how-it-works' },
+  ],
+};
 import Link from 'next/link';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -127,6 +177,8 @@ export default function HowItWorksPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howItWorksSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
 
       <main>

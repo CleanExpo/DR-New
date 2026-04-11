@@ -11,6 +11,21 @@ export const metadata: Metadata = {
 import { Button } from "@/components/ui/button"
 import { ChatMessage, PhoneCall } from "@/icons"
 
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Disaster Recovery Australia',
+  url: 'https://disasterrecovery.com.au/contact',
+  description: 'Contact the Disaster Recovery Australia platform team for support, partnerships, or technical enquiries.',
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://disasterrecovery.com.au' },
+      { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://disasterrecovery.com.au/contact' },
+    ],
+  },
+}
+
 export default function ContactPage() {
 
   const supportTeam = [
@@ -50,6 +65,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-6 max-w-6xl">

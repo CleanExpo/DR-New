@@ -10,9 +10,31 @@ export const metadata: Metadata = {
 }
 import { VerifiedBadge, IICRCBadge, ScheduleCalendar } from "@/icons"
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Disaster Recovery Australia — NRPG',
+  url: 'https://disasterrecovery.com.au',
+  description: 'National Restoration Partners Guild — Australia\'s leading IICRC-certified disaster recovery contractor marketplace.',
+  foundingDate: '2025',
+  areaServed: { '@type': 'Country', name: 'Australia' },
+  knowsAbout: ['water damage restoration', 'fire damage restoration', 'mould remediation', 'storm damage', 'disaster recovery'],
+}
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Disaster Recovery Australia',
+  url: 'https://disasterrecovery.com.au/about',
+  description: 'Learn about the NRPG marketplace platform connecting property owners with IICRC-certified restoration contractors across Australia.',
+  publisher: { '@type': 'Organization', name: 'Disaster Recovery Australia' },
+}
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <Header />
       <main className="py-24">
         <div className="container mx-auto px-6">
