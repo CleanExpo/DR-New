@@ -29,7 +29,7 @@ import {
 
 interface AgreementSection {
   id: keyof SigningState;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
   title: string;
   body: string;
   checkLabel: string;
