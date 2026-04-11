@@ -285,7 +285,7 @@ export default function AIMonitoringDashboard() {
               <div className="bg-white rounded-lg shadow p-6">
                 <p className="text-gray-400 text-sm font-medium">Total Requests</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">
-                  {metrics.usage.totalRequests.toLocaleString()}
+                  {metrics.usage.totalRequests.toLocaleString('en-AU')}
                 </p>
                 <p className="text-sm text-gray-400 mt-1">This {period}</p>
               </div>
