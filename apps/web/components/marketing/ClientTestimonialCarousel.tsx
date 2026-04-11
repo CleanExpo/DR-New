@@ -1,3 +1,4 @@
+'use client';
 /**
  * Client Testimonial Carousel Component
  *

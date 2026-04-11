@@ -1,3 +1,4 @@
+'use client';
 /**
  * Location Page Q&A Template Component
  *
