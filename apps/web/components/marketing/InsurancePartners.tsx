@@ -14,7 +14,6 @@
  * Critical E.E.A.T signal for property damage claims
  */
 
-'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';

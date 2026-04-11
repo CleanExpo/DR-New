@@ -1,5 +1,5 @@
-'use client';
 // @ts-nocheck
+'use client';
 /**
  * Featured Snippet Q&A Component
  * Optimises content for featured snippets
