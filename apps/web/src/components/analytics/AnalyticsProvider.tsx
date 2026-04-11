@@ -5,7 +5,6 @@
  * Wraps the app with analytics initialization and cookie consent
  */
 
-'use client';
 
 import { useState, useEffect, type ReactNode } from 'react';
 import { GoogleAnalytics } from './GoogleAnalytics';

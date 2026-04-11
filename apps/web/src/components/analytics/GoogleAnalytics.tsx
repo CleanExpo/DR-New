@@ -5,7 +5,6 @@
  * Initializes GA4 tracking with GTM support and cookie consent
  */
 
-'use client';
 
 import { useEffect } from 'react';
 import Script from 'next/script';
