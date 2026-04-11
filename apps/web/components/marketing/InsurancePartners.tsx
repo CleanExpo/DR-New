@@ -1,3 +1,4 @@
+'use client';
 /**
  * Insurance Partners Logo Section Component
  *

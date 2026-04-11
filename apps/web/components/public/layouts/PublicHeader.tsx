@@ -1,3 +1,4 @@
+'use client';
 'use client'
 
 import React, { useState } from 'react'
@@ -46,6 +47,18 @@ const locationsMenu: NavSection = {
     { label: 'Perth', href: '/locations/perth', description: 'Western Australia' },
     { label: 'Adelaide', href: '/locations/adelaide', description: 'South Australia' },
     { label: 'Other Regions', href: '/locations', description: 'View all service areas' }
+  ]
+}
+
+const industryPartnersMenu: NavSection = {
+  title: 'Industry Partners',
+  items: [
+    { label: 'Industry Hub', href: '/industry-partners', description: 'All industry resources in one place' },
+    { label: 'ANZ Events Calendar', href: '/events', description: 'IICRC courses, conferences, trade shows' },
+    { label: 'Supplier Directory', href: '/directory', description: 'Vetted equipment and chemical suppliers' },
+    { label: 'Learning Hub', href: '/learn', description: 'Courses, podcasts, and learning resources' },
+    { label: 'Knowledge Guides', href: '/guides', description: 'Technical guides and IICRC standards' },
+    { label: 'Industry Tools', href: '/tools', description: 'Calculators and productivity tools' },
   ]
 }
 
@@ -147,17 +160,17 @@ export function PublicHeader() {
               onToggle={() => toggleDropdown('locations')}
               onClose={closeAllDropdowns}
             />
+            <DropdownMenu
+              section={industryPartnersMenu}
+              isOpen={activeDropdown === 'industry-partners'}
+              onToggle={() => toggleDropdown('industry-partners')}
+              onClose={closeAllDropdowns}
+            />
             <Link
               href="/about"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors"
             >
               About
-            </Link>
-            <Link
-              href="/resources"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors"
-            >
-              Resources
             </Link>
           </nav>
 
@@ -243,6 +256,21 @@ export function PublicHeader() {
               ))}
             </div>
 
+            {/* Mobile Industry Partners */}
+            <div className="space-y-1 pt-2 border-t border-gray-200">
+              <div className="font-semibold text-gray-900 px-3 py-2 text-sm">{industryPartnersMenu.title}</div>
+              {industryPartnersMenu.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMobileMenu}
+                  className="block px-6 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
             {/* Mobile Links */}
             <div className="pt-2 border-t border-gray-200">
               <Link
@@ -251,13 +279,6 @@ export function PublicHeader() {
                 className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition-colors"
               >
                 About
-              </Link>
-              <Link
-                href="/resources"
-                onClick={closeMobileMenu}
-                className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition-colors"
-              >
-                Resources
               </Link>
             </div>
 

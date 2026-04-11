@@ -1,3 +1,4 @@
+'use client';
 /**
  * Analytics Provider Component
  *
