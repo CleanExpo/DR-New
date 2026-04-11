@@ -184,8 +184,9 @@ describe('API routes', () => {
 // ── 404 handling ──────────────────────────────────────────────────────────────
 
 describe('Error handling', () => {
-  test('GET /nonexistent-page-xyz returns 404', async () => {
-    const res = await fetch(`${BASE_URL}/nonexistent-page-xyz`)
+  test('GET /api/nonexistent-endpoint-xyz-404 returns 404', async () => {
+    // Use an API path — no dynamic routes match /api/* so a missing handler returns 404
+    const res = await fetch(`${BASE_URL}/api/nonexistent-endpoint-xyz-404`)
     expect(res.status).toBe(404)
   })
 })
