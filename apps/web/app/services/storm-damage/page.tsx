@@ -1,11 +1,29 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { Shield, CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { Shield, CheckCircle, Clock, Phone, ArrowRight, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
 
+const aeoFaqs = [
+  {
+    question: "Does insurance cover storm damage in Australia?",
+    answer: "Yes. Most home and contents insurance policies in Australia cover sudden storm damage including wind, hail, lightning, and falling trees. Flood damage from storm surge is often a separate optional cover. Always lodge your claim promptly and document all damage with photos before temporary repairs.",
+  },
+  {
+    question: "How quickly should storm damage be repaired?",
+    answer: "Emergency board-up and tarping should happen within 24 hours to prevent water ingress and secondary damage. A professional assessment within 48 hours is recommended. Delays increase the risk of mould growth, structural weakening, and insurer disputes over the cause of subsequent damage.",
+  },
+  {
+    question: "What are the most common types of storm damage in Australia?",
+    answer: "Roof damage from hail and high winds is the most common, followed by fallen trees, ceiling water ingress, and broken windows. QLD and NSW experience the highest claim volumes due to east coast lows and severe thunderstorm season (October–March).",
+  },
+  {
+    question: "How long does storm damage restoration take?",
+    answer: "Emergency tarping and securing takes hours. Roof repairs typically take 1–5 days for residential properties. Water-damaged ceilings and internal areas require 5–10 days of structural drying. Full restoration including painting and finishing takes 1–4 weeks depending on the extent of damage.",
+  },
+]
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Storm Damage Restoration Services | NRPG Australia",
@@ -13,6 +31,7 @@ export const metadata: Metadata = generateCategoryMetadata({
   keywords: ['storm damage restoration', 'storm damage repair', 'roof damage', 'wind damage', 'hail damage', 'tree damage', 'emergency tarping', 'Australia'],
   slug: 'storm-damage',
   categoryName: 'Storm Damage Restoration',
+  faqs: aeoFaqs,
 });
 
 export default function StormDamagePillarPage() {
@@ -28,6 +47,7 @@ export default function StormDamagePillarPage() {
   keywords: [],
   slug: 'storm-damage',
   categoryName: 'Storm Damage Restoration',
+  faqs: aeoFaqs,
 })) }}
       />
       <main className="py-24">
@@ -170,36 +190,56 @@ export default function StormDamagePillarPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              { "@type": "Question", "name": "What should I do immediately after storm damage?", "acceptedAnswer": { "@type": "Answer", "text": "Document all damage with photographs before touching anything. If roof damage has occurred, do not enter until the structure is assessed as safe. Contact your insurer and a certified storm damage restoration specialist as soon as possible." } },
-              { "@type": "Question", "name": "Does storm damage require emergency roof tarping?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, if roof damage is present. Emergency roof tarping prevents water from entering and causing secondary water and mould damage. NRPG contractors provide 24/7 emergency tarping services across Australia." } },
-              { "@type": "Question", "name": "How do I know if my home has structural damage after a storm?", "acceptedAnswer": { "@type": "Answer", "text": "Signs include visible cracks in walls or foundations, doors and windows that no longer close properly, bowing or sagging roof areas, and water staining on ceilings. An IICRC-certified inspector can assess hidden structural damage using thermal imaging." } },
-              { "@type": "Question", "name": "Is storm damage covered by home insurance in Australia?", "acceptedAnswer": { "@type": "Answer", "text": "Storm, hail and wind damage is typically covered under standard building insurance in Australia. Contents insurance may also apply. NRPG contractors provide full damage reports and work directly with your insurer." } }
-            ]
-          }) }}
-        />
+        {/* AEO: Frequently Asked Questions */}
         <section className="container mx-auto px-6 mb-16">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              {[
-                { q: "What should I do immediately after storm damage?", a: "Document all damage with photographs before touching anything. If roof damage has occurred, do not enter until the structure is assessed as safe. Contact your insurer and a certified storm damage restoration specialist as soon as possible." },
-                { q: "Does storm damage require emergency roof tarping?", a: "Yes, if roof damage is present. Emergency roof tarping prevents water from entering and causing secondary water and mould damage. NRPG contractors provide 24/7 emergency tarping services across Australia." },
-                { q: "How do I know if my home has structural damage after a storm?", a: "Signs include visible cracks in walls or foundations, doors and windows that no longer close properly, bowing or sagging roof areas, and water staining on ceilings. An IICRC-certified inspector can assess hidden structural damage using thermal imaging." },
-                { q: "Is storm damage covered by home insurance in Australia?", a: "Storm, hail and wind damage is typically covered under standard building insurance in Australia. Contents insurance may also apply. NRPG contractors provide full damage reports and work directly with your insurer." }
-              ].map(({ q, a }, i) => (
-                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
-                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
-                </div>
-              ))}
+          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-4">
+            Storm Damage Restoration — Common Questions
+          </h2>
+          <p className="text-[#9CA3AF] text-center mb-12 max-w-2xl mx-auto">
+            Answers based on Insurance Council of Australia data and Australian building standards.
+          </p>
+
+          {/* Stat citation block */}
+          <div className="max-w-3xl mx-auto mb-10 bg-[#1F2937]/60 border border-[#2196F3]/30 rounded-2xl p-6">
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#2196F3]">$2.7B</div>
+                <div className="text-[#9CA3AF] text-sm">Annual storm damage insurance claims in Australia</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: Insurance Council of Australia, 2024</div>
+              </div>
+              <div className="h-px sm:h-auto sm:w-px bg-[#374151] flex-shrink-0" />
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#00BFA6]">Oct–Mar</div>
+                <div className="text-[#9CA3AF] text-sm">Peak severe storm season for eastern Australia</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: Bureau of Meteorology</div>
+              </div>
+              <div className="h-px sm:h-auto sm:w-px bg-[#374151] flex-shrink-0" />
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#7C4DFF]">72%</div>
+                <div className="text-[#9CA3AF] text-sm">Of storm damage involves roof or ceiling water ingress</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: ICA Claims Analysis 2023</div>
+              </div>
             </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-6">
+            {aeoFaqs.map((faq) => (
+              <div key={faq.question} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                <h3 className="font-poppins font-semibold text-lg text-white mb-3">{faq.question}</h3>
+                <p className="text-[#9CA3AF] leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="max-w-3xl mx-auto mt-8 flex items-center gap-3 text-[#9CA3AF] text-sm">
+            <Calendar className="h-4 w-4 text-[#00BFA6] flex-shrink-0" />
+            <span>
+              Stay current with storm season preparedness via the{' '}
+              <Link href="/events" className="text-[#00BFA6] hover:text-[#00A693] underline">
+                ANZ Industry Events Calendar
+              </Link>
+              .
+            </span>
           </div>
         </section>
 

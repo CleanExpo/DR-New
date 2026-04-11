@@ -1,12 +1,30 @@
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import { CheckCircle, Clock, Phone, ArrowRight } from "lucide-react"
+import { CheckCircle, Clock, Phone, ArrowRight, Calendar } from "lucide-react"
 import { MouldRemediation } from "@/icons"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/service-page-seo"
 
+const aeoFaqs = [
+  {
+    question: "How much does mould removal cost in Australia?",
+    answer: "Professional mould remediation in Australia costs $500–$5,000+ depending on the affected area, mould type, and whether containment is required. IICRC-certified remediation is essential for insurance claims. A typical residential mould remediation of 5–20 sq metres costs $1,500–$3,500.",
+  },
+  {
+    question: "Can I remove mould myself in Australia?",
+    answer: "DIY removal is only appropriate for superficial surface mould under 1 square metre with no underlying moisture source. Anything larger, hidden mould, or black mould (Stachybotrys) requires a licensed IICRC-certified remediator. Disturbing mould without containment can spread spores throughout the property.",
+  },
+  {
+    question: "How long does mould remediation take?",
+    answer: "A standard residential mould remediation takes 1–5 days depending on the extent of contamination. This includes containment setup, removal, antimicrobial treatment, and drying. Post-remediation clearance testing is conducted 24–48 hours after completion to confirm the property meets safe air quality standards.",
+  },
+  {
+    question: "What are the health effects of mould exposure in Australia?",
+    answer: "Mould exposure causes respiratory symptoms, allergic reactions, asthma aggravation, and eye/skin irritation. Immunocompromised individuals, children, and the elderly face higher risk. Stachybotrys (black mould) can produce mycotoxins. All confirmed mould in occupied buildings should be professionally assessed and remediated.",
+  },
+]
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Mould Remediation Services | NRPG Australia",
@@ -14,6 +32,7 @@ export const metadata: Metadata = generateCategoryMetadata({
   keywords: ['mould remediation', 'mould removal', 'black mould', 'mould inspection', 'mould testing', 'mould prevention', 'IICRC S520', 'Australia'],
   slug: 'mould-remediation',
   categoryName: 'Mould Remediation',
+  faqs: aeoFaqs,
 });
 
 export default function MouldRemediationPillarPage() {
@@ -29,6 +48,7 @@ export default function MouldRemediationPillarPage() {
   keywords: [],
   slug: 'mould-remediation',
   categoryName: 'Mould Remediation',
+  faqs: aeoFaqs,
 })) }}
       />
       <main className="py-24">
@@ -174,36 +194,56 @@ export default function MouldRemediationPillarPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-              { "@type": "Question", "name": "Is mould dangerous to my health?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Exposure to mould — particularly black mould (Stachybotrys) — can cause respiratory symptoms, allergic reactions and in severe cases, serious illness. Professional IICRC S520-certified remediation is essential to safely remove mould and prevent regrowth." } },
-              { "@type": "Question", "name": "Can I remove mould myself?", "acceptedAnswer": { "@type": "Answer", "text": "DIY methods only address surface mould and do not eliminate the moisture source or airborne spores. Professional remediation uses containment, HEPA filtration and antimicrobial treatments to fully eliminate mould colonies and prevent recurrence." } },
-              { "@type": "Question", "name": "How long does mould remediation take?", "acceptedAnswer": { "@type": "Answer", "text": "Small mould areas (under 1 sqm) typically take 1–2 days. Larger infestations affecting walls, subfloors or HVAC systems may take 3–7 days. Full remediation includes post-treatment air quality testing to confirm clearance." } },
-              { "@type": "Question", "name": "Will insurance cover mould remediation?", "acceptedAnswer": { "@type": "Answer", "text": "Insurance covers mould remediation when it results from a covered event such as water damage, flooding or a burst pipe. Mould from poor ventilation or ongoing maintenance issues is generally not covered. An NRPG certified assessor can help determine coverage." } }
-            ]
-          }) }}
-        />
+        {/* AEO: Frequently Asked Questions */}
         <section className="container mx-auto px-6 mb-16">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-              {[
-                { q: "Is mould dangerous to my health?", a: "Yes. Exposure to mould — particularly black mould (Stachybotrys) — can cause respiratory symptoms, allergic reactions and in severe cases, serious illness. Professional IICRC S520-certified remediation is essential to safely remove mould and prevent regrowth." },
-                { q: "Can I remove mould myself?", a: "DIY methods only address surface mould and do not eliminate the moisture source or airborne spores. Professional remediation uses containment, HEPA filtration and antimicrobial treatments to fully eliminate mould colonies and prevent recurrence." },
-                { q: "How long does mould remediation take?", a: "Small mould areas (under 1 sqm) typically take 1–2 days. Larger infestations affecting walls, subfloors or HVAC systems may take 3–7 days. Full remediation includes post-treatment air quality testing to confirm clearance." },
-                { q: "Will insurance cover mould remediation?", a: "Insurance covers mould remediation when it results from a covered event such as water damage, flooding or a burst pipe. Mould from poor ventilation or ongoing maintenance issues is generally not covered. An NRPG certified assessor can help determine coverage." }
-              ].map(({ q, a }, i) => (
-                <div key={i} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
-                  <h3 className="font-poppins font-semibold text-lg text-white mb-3">{q}</h3>
-                  <p className="text-[#9CA3AF] leading-relaxed">{a}</p>
-                </div>
-              ))}
+          <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-4">
+            Mould Remediation — Common Questions
+          </h2>
+          <p className="text-[#9CA3AF] text-center mb-12 max-w-2xl mx-auto">
+            Answers based on IICRC S520 standard and Australian building biology research.
+          </p>
+
+          {/* Stat citation block */}
+          <div className="max-w-3xl mx-auto mb-10 bg-[#1F2937]/60 border border-[#00BFA6]/30 rounded-2xl p-6">
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#00BFA6]">1 in 3</div>
+                <div className="text-[#9CA3AF] text-sm">Australian homes have mould issues</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: CSIRO Housing Survey</div>
+              </div>
+              <div className="h-px sm:h-auto sm:w-px bg-[#374151] flex-shrink-0" />
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#22C55E]">48hrs</div>
+                <div className="text-[#9CA3AF] text-sm">Mould can begin growing after water ingress</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: IICRC S520 Standard</div>
+              </div>
+              <div className="h-px sm:h-auto sm:w-px bg-[#374151] flex-shrink-0" />
+              <div className="text-center sm:text-left">
+                <div className="text-4xl font-bold text-[#7C4DFF]">$2.1B</div>
+                <div className="text-[#9CA3AF] text-sm">Annual mould remediation spend in Australia</div>
+                <div className="text-[#6B7280] text-xs mt-1">Source: IBISWorld 2024</div>
+              </div>
             </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-6">
+            {aeoFaqs.map((faq) => (
+              <div key={faq.question} className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151]">
+                <h3 className="font-poppins font-semibold text-lg text-white mb-3">{faq.question}</h3>
+                <p className="text-[#9CA3AF] leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="max-w-3xl mx-auto mt-8 flex items-center gap-3 text-[#9CA3AF] text-sm">
+            <Calendar className="h-4 w-4 text-[#00BFA6] flex-shrink-0" />
+            <span>
+              IICRC AMRT mould remediation courses are available across Australia — see the{' '}
+              <Link href="/events" className="text-[#00BFA6] hover:text-[#00A693] underline">
+                ANZ Industry Events Calendar
+              </Link>
+              .
+            </span>
           </div>
         </section>
 
