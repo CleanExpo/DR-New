@@ -24,6 +24,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
+      - run: pnpm run db:generate
       - run: pnpm run --if-present lint
       - run: pnpm exec tsc --noEmit
 
