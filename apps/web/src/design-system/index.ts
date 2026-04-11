@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS - Design System Exports
  *
