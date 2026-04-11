@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS Before/After Comparison Component
  *
