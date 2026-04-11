@@ -112,9 +112,8 @@ jobs:
             sleep 2
           done
 
-          # Run smoke tests
-          cd ../..
-          SMOKE_TEST_URL=http://localhost:3000 pnpm run --if-present test:smoke
+          # Run smoke tests (stay in apps/web where jest is installed)
+          SMOKE_TEST_URL=http://localhost:3000 pnpm exec jest --config jest.smoke.config.ts --verbose --forceExit
 
           # Cleanup
           kill $SERVER_PID 2>/dev/null || true
