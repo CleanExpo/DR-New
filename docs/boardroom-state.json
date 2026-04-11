@@ -1,0 +1,102 @@
+{
+  "last_session": "2026-04-04",
+  "schema_version": "1.0",
+  "active_builds": [
+    {
+      "id": "BUILD-002",
+      "title": "AS-IICRC S500:2025 Content Refresh",
+      "linear_id": "DR-321",
+      "status": "BLOCKED",
+      "blocker": "Legal must confirm AS-IICRC S500:2025 certification held by NRPG network — ACL s18 risk",
+      "blocker_owner": "Toby (CEO)",
+      "approved_session": null,
+      "lanes": ["service-pages-content", "meta-descriptions", "faq-item"],
+      "completion_evidence_required": ["legal_confirmation", "content_live", "no_regressions"]
+    }
+  ],
+  "recently_completed": [
+    {
+      "id": "DR-232",
+      "title": "Metadata exports for 21 public pages",
+      "pr": 45,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-234",
+      "title": "FAQPage schema for 5 service pages",
+      "pr": 46,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-244",
+      "title": "/restore-assist landing page",
+      "pr": 47,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-60",
+      "title": "Fix Next.js hydration mismatch",
+      "pr": 48,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-73",
+      "title": "3-business lead funnel design doc",
+      "pr": 49,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "UNI-1760",
+      "title": "Replace legacy Claude model strings with Claude 4.6",
+      "pr": 50,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "SEC-001",
+      "title": "Remove hardcoded fallback secrets (JWT + CSRF)",
+      "pr": 51,
+      "completed": "2026-04-04"
+    },
+    {
+      "id": "DR-329",
+      "title": "Pre-BUILD Clarification Gate added to CLAUDE.md",
+      "pr": null,
+      "completed": "2026-04-04"
+    }
+  ],
+  "pending_prs": [
+    { "pr": 45, "branch": "phillmcgurk/dr-232-p1-seo-add-metadata-exports-to-21-pages-inheriting-generic", "target": "develop" },
+    { "pr": 46, "branch": "phillmcgurk/dr-234-p1-seo-add-faqpage-schema-to-all-5-main-service-pages", "target": "develop" },
+    { "pr": 47, "branch": "phillmcgurk/dr-244-p2-seo-create-restore-assist-landing-page-restore-assist", "target": "develop" },
+    { "pr": 48, "branch": "phillmcgurk/dr-60-dr-fix-nextjs-hydration-mismatch-appendchild-syntaxerror-in", "target": "develop" },
+    { "pr": 49, "branch": "phillmcgurk/dr-73-funnel-884a-design-the-3-business-lead-funnel-dr", "target": "develop" },
+    { "pr": 50, "branch": "phillmcgurk/uni-1760-verify-no-legacy-claude-model-strings-sonnet-4540-1m-context", "target": "develop" },
+    { "pr": 51, "branch": "fix/sec-hardcoded-fallback-secrets", "target": "develop" }
+  ],
+  "p0_gaps": ["GAP-004", "GAP-028", "GAP-029", "GAP-030"],
+  "watch_items": {
+    "privacy_act_exemption_removal": "1 July 2026 — small business exemption removed, 87 days remaining",
+    "oaic_compliance_sweep": "January 2026 onwards — property-adjacent sectors targeted",
+    "uni_1760_model_retirement": "30 April 2026 — Sonnet 4.5/4.0 1M context beta retired"
+  },
+  "pending_owner_actions": [
+    { "action": "Confirm AS-IICRC S500:2025 certification held by NRPG network", "gap": "GAP-004", "linear_id": "DR-321", "owner": "Toby", "due": "ASAP — unblocks BUILD-002" },
+    { "action": "Privacy Act compliance review — appoint privacy officer", "gap": "GAP-030", "linear_id": "DR-328", "owner": "Toby + Legal", "due": "2026-07-01" },
+    { "action": "OAIC compliance audit", "gap": "GAP-029", "linear_id": "DR-327", "owner": "Legal + CTO", "due": "ASAP" },
+    { "action": "Merge PRs #45-51 into develop after review", "gap": null, "linear_id": null, "owner": "Phill", "due": "ASAP" }
+  ],
+  "new_intelligence": [
+    "Privacy Act small business exemption removed 1 July 2026 — affects all NRPG businesses",
+    "OAIC compliance sweep targeting property-adjacent sectors since Jan 2026",
+    "Hardcoded fallback secrets found and fixed in src/lib/auth.ts and src/lib/security/csrf.ts"
+  ],
+  "resolved_since_last": [
+    "DR-232: Metadata exports complete",
+    "DR-234: FAQPage schema complete",
+    "DR-244: /restore-assist landing page live on develop",
+    "DR-60: Hydration mismatch fixed",
+    "DR-73: Lead funnel design doc complete",
+    "UNI-1760: All legacy Claude model strings replaced",
+    "DR-329: Pre-BUILD Clarification Gate added to CLAUDE.md"
+  ]
+}
