@@ -17,7 +17,6 @@
  * </CsrfProtectedForm>
  */
 
-'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useCsrfToken } from '@/lib/hooks/useCsrfToken';
