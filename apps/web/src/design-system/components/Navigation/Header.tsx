@@ -11,7 +11,6 @@
  * Strategic decision: 768px hamburger breakpoint (standard tablet)
  */
 
-'use client';
 
 import * as React from 'react';
 import Link from 'next/link';
