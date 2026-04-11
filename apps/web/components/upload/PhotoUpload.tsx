@@ -9,7 +9,6 @@
  * - Validation
  */
 
-'use client';
 
 import * as React from 'react';
 import { Upload, X, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
