@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS NRPG Contractor Dashboard Page Template
  *
