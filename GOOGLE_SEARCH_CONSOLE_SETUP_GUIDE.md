@@ -25,7 +25,7 @@ Before starting, ensure you have:
 - [ ] Google account (Gmail) with admin access
 - [ ] Vercel account access (for DNS verification) OR website file upload access
 - [ ] Business phone number: `+61 (to be added)`
-- [ ] Business email: `support@disasterrecoverynrpg.com.au`
+- [ ] Business email: `support@disasterrecovery.com.au`
 - [ ] 1 hour of uninterrupted time
 
 ---
@@ -41,7 +41,7 @@ Before starting, ensure you have:
 2. **Add Property:**
    - Click "Add Property" or "+" button
    - Choose: **"Domain"** property type (recommended)
-   - Enter domain: `disasterrecoverynrpg.com.au`
+   - Enter domain: `disasterrecovery.com.au`
    - Click "Continue"
 
 **Why Domain Property?**
@@ -68,7 +68,7 @@ TTL: 3600 (1 hour)
 **If using Vercel for domain management:**
 1. Go to: https://vercel.com/dashboard
 2. Navigate to: Project → Settings → Domains
-3. Click on `disasterrecoverynrpg.com.au`
+3. Click on `disasterrecovery.com.au`
 4. Add DNS Record:
    - Type: `TXT`
    - Name: `@`
@@ -152,7 +152,7 @@ Once domain is verified:
 
 **Email Notifications:**
 - Navigate to: Settings → Users and Permissions
-- Add team email: `support@disasterrecoverynrpg.com.au`
+- Add team email: `support@disasterrecovery.com.au`
 - Enable notifications for:
   - Critical issues (manual actions, security issues)
   - Indexing errors
@@ -203,8 +203,8 @@ Service Area:
 
 Contact Information:
 - Phone: +61 [Add your business phone]
-- Website: https://disasterrecoverynrpg.com.au
-- Email: support@disasterrecoverynrpg.com.au
+- Website: https://disasterrecovery.com.au
+- Email: support@disasterrecovery.com.au
 
 Hours:
 - Monday: Open 24 hours
@@ -278,9 +278,9 @@ Submit your business to 20+ Australian directories to build citations and backli
 **Pre-Filled Business Information:**
 ```
 Business Name: NRPG - National Restoration Professionals Group
-Website: https://disasterrecoverynrpg.com.au
+Website: https://disasterrecovery.com.au
 Phone: +61 [Add your number]
-Email: support@disasterrecoverynrpg.com.au
+Email: support@disasterrecovery.com.au
 Category: Disaster Restoration Service, Emergency Services, Contractor
 Description: Australia's leading network of IICRC-certified disaster recovery contractors. 24/7 emergency response for water damage, flood restoration, fire damage, mould remediation, storm damage, and biohazard cleanup.
 
@@ -466,7 +466,7 @@ Yellow Pages | ... | Y | 2026-02-04 | ... | Pending
 2. Check TXT record is correct (no extra spaces, correct value)
 3. Use `dig` or `nslookup` to verify DNS record:
    ```bash
-   nslookup -type=TXT disasterrecoverynrpg.com.au
+   nslookup -type=TXT disasterrecovery.com.au
    ```
 4. Try alternative verification method (HTML meta tag)
 
@@ -475,7 +475,7 @@ Yellow Pages | ... | Y | 2026-02-04 | ... | Pending
 **Symptoms:** "Couldn't fetch" error on sitemap submission
 
 **Solutions:**
-1. Test sitemap manually: https://disasterrecoverynrpg.com.au/sitemap.xml
+1. Test sitemap manually: https://disasterrecovery.com.au/sitemap.xml
 2. Ensure robots.txt allows crawling (already configured)
 3. Check for XML syntax errors
 4. Wait 24-48 hours for Google to retry fetch
@@ -524,7 +524,7 @@ Print this checklist and mark off as you complete:
 
 ### Google Search Console (20 minutes):
 - [ ] Account created at https://search.google.com/search-console
-- [ ] Domain property added: `disasterrecoverynrpg.com.au`
+- [ ] Domain property added: `disasterrecovery.com.au`
 - [ ] Domain verified via DNS TXT record or HTML meta tag
 - [ ] Sitemap submitted: `sitemap.xml`
 - [ ] Sitemap submitted: `sitemap-contractors.xml`
@@ -597,7 +597,7 @@ Once you've completed this guide:
 - Community Forum: https://support.google.com/business/community
 
 **DR-NRPG Platform Support:**
-- Email: support@disasterrecoverynrpg.com.au
+- Email: support@disasterrecovery.com.au
 - Documentation: See `SEO_KEYWORD_RESEARCH.md` and `BACKLOG-SEO_OPTIMIZATION.md`
 
 ---

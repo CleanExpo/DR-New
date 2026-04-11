@@ -374,11 +374,11 @@ SELECT COUNT(DISTINCT "tenantId") FROM "PublicClaim";
 
 ```bash
 # Health check endpoints
-curl https://disasterrecoverynrpg.com.au/claim/step-1
+curl https://disasterrecovery.com.au/claim/step-1
 # Should return 200 OK
 
 # Test API
-curl https://disasterrecoverynrpg.com.au/api/client/claims
+curl https://disasterrecovery.com.au/api/client/claims
 # Should return 401 Unauthorized (auth required)
 ```
 

@@ -275,7 +275,7 @@ Edit `data/services.json` or `data/australian-cities.json` → update `metaDescr
 ## SEO Monitoring
 
 ### Google Search Console
-1. Submit sitemap: `https://disasterrecoverynrpg.com.au/sitemap.xml`
+1. Submit sitemap: `https://disasterrecovery.com.au/sitemap.xml`
 2. Monitor indexation (target: 800+ pages indexed)
 3. Track performance by page type
 
@@ -329,7 +329,7 @@ npm run seo:test
 
 ```bash
 # Set environment variable
-export NEXT_PUBLIC_BASE_URL=https://disasterrecoverynrpg.com.au
+export NEXT_PUBLIC_BASE_URL=https://disasterrecovery.com.au
 
 # Build
 npm run build

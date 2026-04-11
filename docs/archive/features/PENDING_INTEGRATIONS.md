@@ -145,7 +145,7 @@ npm run generate:combo-pages
 
 **Not Yet Done**:
 - ❌ Deployed to actual production URL
-- ❌ DNS configured for disasterrecoverynrpg.com.au
+- ❌ DNS configured for disasterrecovery.com.au
 - ❌ SSL certificates configured
 - ❌ Environment variables set in production
 - ❌ Production database connected
@@ -256,7 +256,7 @@ npm run generate:combo-pages
 1. Deploy to Vercel/hosting provider
 2. Configure production environment variables
 3. Set up production database
-4. Configure domain DNS (disasterrecoverynrpg.com.au)
+4. Configure domain DNS (disasterrecovery.com.au)
 5. SSL certificates
 
 **Short-Term** (Within 1-2 weeks):

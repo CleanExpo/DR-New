@@ -50,7 +50,7 @@ Comprehensive SEO optimization has been implemented for the DR-NRPG Platform to 
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://disasterrecoverynrpg.com.au/contractors/clx123</loc>
+    <loc>https://disasterrecovery.com.au/contractors/clx123</loc>
     <lastmod>2026-02-04T10:30:00.000Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -59,7 +59,7 @@ Comprehensive SEO optimization has been implemented for the DR-NRPG Platform to 
 </urlset>
 ```
 
-**Access:** https://disasterrecoverynrpg.com.au/sitemap-contractors.xml
+**Access:** https://disasterrecovery.com.au/sitemap-contractors.xml
 
 ---
 
@@ -86,13 +86,13 @@ Disallow: /api/
 Disallow: /dashboard/
 Disallow: /admin/
 
-Sitemap: https://disasterrecoverynrpg.com.au/sitemap.xml
-Sitemap: https://disasterrecoverynrpg.com.au/sitemap-contractors.xml
+Sitemap: https://disasterrecovery.com.au/sitemap.xml
+Sitemap: https://disasterrecovery.com.au/sitemap-contractors.xml
 
-Host: https://disasterrecoverynrpg.com.au
+Host: https://disasterrecovery.com.au
 ```
 
-**Access:** https://disasterrecoverynrpg.com.au/robots.txt
+**Access:** https://disasterrecovery.com.au/robots.txt
 
 ---
 
@@ -184,7 +184,7 @@ Host: https://disasterrecoverynrpg.com.au
 2. Sign in with Google account (use company Gmail)
 3. Click "Add Property"
 4. Choose **"Domain"** property type (recommended)
-   - Domain: disasterrecoverynrpg.com.au
+   - Domain: disasterrecovery.com.au
 5. Click "Continue"
 
 ### Step 2: Verify Domain Ownership (10 min)
@@ -201,7 +201,7 @@ Host: https://disasterrecoverynrpg.com.au
 
 1. Download verification file (e.g., `googleabcdef123456.html`)
 2. Upload to `apps/web/public/` directory
-3. Access: https://disasterrecoverynrpg.com.au/googleabcdef123456.html
+3. Access: https://disasterrecovery.com.au/googleabcdef123456.html
 4. Click "Verify" in Google Search Console
 5. Verification complete ✅
 
@@ -217,9 +217,9 @@ Host: https://disasterrecoverynrpg.com.au
 ### Step 3: Submit Sitemaps (2 min)
 
 1. In Google Search Console, go to "Sitemaps" (left sidebar)
-2. Enter sitemap URL: `https://disasterrecoverynrpg.com.au/sitemap.xml`
+2. Enter sitemap URL: `https://disasterrecovery.com.au/sitemap.xml`
 3. Click "Submit"
-4. Enter second sitemap URL: `https://disasterrecoverynrpg.com.au/sitemap-contractors.xml`
+4. Enter second sitemap URL: `https://disasterrecovery.com.au/sitemap-contractors.xml`
 5. Click "Submit"
 6. Wait 24-48 hours for Google to crawl and index
 
@@ -232,7 +232,7 @@ Host: https://disasterrecoverynrpg.com.au
 
 **Set Preferred Domain:**
 - Settings → Domain Settings
-- Set preferred domain: https://disasterrecoverynrpg.com.au (with HTTPS)
+- Set preferred domain: https://disasterrecovery.com.au (with HTTPS)
 
 **Set Country Targeting:**
 - Settings → International Targeting
@@ -301,7 +301,7 @@ Host: https://disasterrecoverynrpg.com.au
    - **Address:** Level 10, 123 Collins Street, Melbourne VIC 3000 (or actual address)
    - **Service Areas:** All Australian major cities (Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra)
    - **Phone:** (Use company phone number)
-   - **Website:** https://disasterrecoverynrpg.com.au
+   - **Website:** https://disasterrecovery.com.au
    - **Hours:** 24 hours (Emergency service)
 
 ### Step 2: Verify Business (2-3 days)
@@ -387,7 +387,7 @@ Service Areas: Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, and major
 **Test Main Sitemap:**
 ```bash
 # Visit in browser
-https://disasterrecoverynrpg.com.au/sitemap.xml
+https://disasterrecovery.com.au/sitemap.xml
 
 # Expected: XML file with 6,000-11,000 URLs
 # Check: <loc> tags contain valid URLs
@@ -399,7 +399,7 @@ https://disasterrecoverynrpg.com.au/sitemap.xml
 **Test Contractor Sitemap:**
 ```bash
 # Visit in browser
-https://disasterrecoverynrpg.com.au/sitemap-contractors.xml
+https://disasterrecovery.com.au/sitemap-contractors.xml
 
 # Expected: XML file with contractor profile URLs
 # Check: Only verified, active contractors included
@@ -420,7 +420,7 @@ https://disasterrecoverynrpg.com.au/sitemap-contractors.xml
 **Test robots.txt:**
 ```bash
 # Visit in browser
-https://disasterrecoverynrpg.com.au/robots.txt
+https://disasterrecovery.com.au/robots.txt
 
 # Expected: Text file with rules
 # Check: Sitemap URLs are correct
@@ -431,13 +431,13 @@ https://disasterrecoverynrpg.com.au/robots.txt
 **Test with Google Search Console:**
 1. Go to: Settings → Crawl Rate Settings
 2. Click "Test robots.txt"
-3. Enter URL: https://disasterrecoverynrpg.com.au/robots.txt
+3. Enter URL: https://disasterrecovery.com.au/robots.txt
 4. Verify: No errors, rules parsed correctly
 5. Test specific URLs:
-   - https://disasterrecoverynrpg.com.au/ → ✅ Allowed
-   - https://disasterrecoverynrpg.com.au/contractors → ✅ Allowed
-   - https://disasterrecoverynrpg.com.au/api/contractors → ❌ Disallowed
-   - https://disasterrecoverynrpg.com.au/dashboard → ❌ Disallowed
+   - https://disasterrecovery.com.au/ → ✅ Allowed
+   - https://disasterrecovery.com.au/contractors → ✅ Allowed
+   - https://disasterrecovery.com.au/api/contractors → ❌ Disallowed
+   - https://disasterrecovery.com.au/dashboard → ❌ Disallowed
 
 ---
 
@@ -445,7 +445,7 @@ https://disasterrecoverynrpg.com.au/robots.txt
 
 **Test with Google Rich Results Test:**
 1. Visit: https://search.google.com/test/rich-results
-2. Enter URL: https://disasterrecoverynrpg.com.au
+2. Enter URL: https://disasterrecovery.com.au
 3. Click "Test URL"
 4. Wait for analysis
 5. Expected Results:
@@ -455,7 +455,7 @@ https://disasterrecoverynrpg.com.au/robots.txt
    - ⚠️ Warnings (if any) - review and fix
 
 **Test Contractor Profile Schema:**
-1. Enter URL: https://disasterrecoverynrpg.com.au/contractors/[id]
+1. Enter URL: https://disasterrecovery.com.au/contractors/[id]
 2. Expected Results:
    - ✅ LocalBusiness schema detected
    - ✅ Review schema detected
@@ -473,7 +473,7 @@ https://disasterrecoverynrpg.com.au/robots.txt
 
 **Test with Google:**
 1. Visit: https://search.google.com/test/mobile-friendly
-2. Enter URL: https://disasterrecoverynrpg.com.au
+2. Enter URL: https://disasterrecovery.com.au
 3. Click "Test URL"
 4. Expected: ✅ "Page is mobile-friendly"
 5. Check: No issues with text size, tap targets, viewport
@@ -490,7 +490,7 @@ https://disasterrecoverynrpg.com.au/robots.txt
 
 **Test with PageSpeed Insights:**
 1. Visit: https://pagespeed.web.dev
-2. Enter URL: https://disasterrecoverynrpg.com.au
+2. Enter URL: https://disasterrecovery.com.au
 3. Click "Analyze"
 4. Check scores:
    - **Performance:** Target 90+ (mobile), 95+ (desktop)
@@ -599,7 +599,7 @@ https://disasterrecoverynrpg.com.au/robots.txt
 
 ### Step 1: Google Search Console Setup (20 min)
 1. Create account at https://search.google.com/search-console
-2. Add property: disasterrecoverynrpg.com.au
+2. Add property: disasterrecovery.com.au
 3. Verify domain (DNS TXT record or HTML meta tag)
 4. Submit both sitemaps
 5. Monitor indexing status daily

@@ -1,6 +1,6 @@
-# Domain Configuration - disasterrecoverynrpg.com.au
+# Domain Configuration - disasterrecovery.com.au
 **Date**: 2025-12-29
-**Domain**: disasterrecoverynrpg.com.au
+**Domain**: disasterrecovery.com.au
 **Status**: ✅ **ADDED TO VERCEL** - DNS Configuration Required
 
 ---
@@ -8,14 +8,14 @@
 ## ✅ STEP 1: DOMAIN ADDED TO VERCEL (COMPLETE)
 
 **Vercel Project**: unite-group/disaster-recovery
-**Domain**: disasterrecoverynrpg.com.au
+**Domain**: disasterrecovery.com.au
 **Status**: Added successfully
 
 ---
 
 ## 🔧 STEP 2: CONFIGURE DNS RECORDS (REQUIRED)
 
-You need to add DNS records with your domain registrar (whoever you purchased disasterrecoverynrpg.com.au from).
+You need to add DNS records with your domain registrar (whoever you purchased disasterrecovery.com.au from).
 
 ### **Recommended Configuration (A Record)**:
 
@@ -27,7 +27,7 @@ You need to add DNS records with your domain registrar (whoever you purchased di
 
 **What this means**:
 - **Type: A** - Points domain to an IP address
-- **Name: @** - Root domain (disasterrecoverynrpg.com.au)
+- **Name: @** - Root domain (disasterrecovery.com.au)
 - **Value: 76.76.21.21** - Vercel's IP address
 - **TTL: 3600** - Time to live (1 hour)
 
@@ -35,7 +35,7 @@ You need to add DNS records with your domain registrar (whoever you purchased di
 
 ### **Alternative: CNAME Record** (For subdomains like www):
 
-If you want **www.disasterrecoverynrpg.com.au** to also work:
+If you want **www.disasterrecovery.com.au** to also work:
 
 | Type | Name | Value | TTL |
 |------|------|-------|-----|
@@ -48,7 +48,7 @@ If you want **www.disasterrecoverynrpg.com.au** to also work:
 ### If your domain is with **GoDaddy**:
 1. Log in to GoDaddy account
 2. Go to "My Products" → "Domains"
-3. Click "DNS" next to disasterrecoverynrpg.com.au
+3. Click "DNS" next to disasterrecovery.com.au
 4. Click "Add" → Select "A" record
 5. Name: `@`
 6. Value: `76.76.21.21`
@@ -67,7 +67,7 @@ If you want **www.disasterrecoverynrpg.com.au** to also work:
 
 ### If your domain is with **Cloudflare**:
 1. Log in to Cloudflare
-2. Select domain: disasterrecoverynrpg.com.au
+2. Select domain: disasterrecovery.com.au
 3. DNS → Records
 4. Add record → Type: A
 5. Name: `@`
@@ -108,15 +108,15 @@ If you want **www.disasterrecoverynrpg.com.au** to also work:
 vercel domains ls
 
 # Verify DNS propagation
-nslookup disasterrecoverynrpg.com.au
+nslookup disasterrecovery.com.au
 
 # Or use online tool:
-# https://dnschecker.org/#A/disasterrecoverynrpg.com.au
+# https://dnschecker.org/#A/disasterrecovery.com.au
 ```
 
 **Expected Result**:
 ```
-disasterrecoverynrpg.com.au
+disasterrecovery.com.au
 Address: 76.76.21.21
 ```
 
@@ -138,7 +138,7 @@ Address: 76.76.21.21
 
 **Once DNS propagates** (check email from Vercel):
 
-1. **Visit**: https://disasterrecoverynrpg.com.au
+1. **Visit**: https://disasterrecovery.com.au
 2. **Verify**:
    - ✅ Site loads correctly
    - ✅ HTTPS (padlock icon in browser)
@@ -155,12 +155,12 @@ Address: 76.76.21.21
 - Latest URL: https://disaster-recovery-96cophjn1-unite-group.vercel.app
 
 **Custom Domain**: ⏸️ DNS Configuration Required
-- Domain: disasterrecoverynrpg.com.au
+- Domain: disasterrecovery.com.au
 - Status: Added to Vercel, awaiting DNS
 - Required: A record → 76.76.21.21
 
 **Once DNS Configured**:
-- ✅ https://disasterrecoverynrpg.com.au will be your production URL
+- ✅ https://disasterrecovery.com.au will be your production URL
 - ✅ SSL certificate auto-provisioned
 - ✅ HTTP→HTTPS redirect automatic
 
@@ -170,13 +170,13 @@ Address: 76.76.21.21
 
 1. **Find out who manages your domain** (GoDaddy, Namecheap, Cloudflare, Melbourne IT, etc.)
 2. **Log in to that account**
-3. **Go to DNS settings** for disasterrecoverynrpg.com.au
+3. **Go to DNS settings** for disasterrecovery.com.au
 4. **Add A record**:
    - Name: `@`
    - Value: `76.76.21.21`
 5. **Save and wait** for DNS propagation (5 min - 2 hours)
 6. **Check email** from Vercel confirming domain is ready
-7. **Visit** https://disasterrecoverynrpg.com.au
+7. **Visit** https://disasterrecovery.com.au
 
 ---
 

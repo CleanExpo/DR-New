@@ -153,7 +153,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     description: "Expert water damage restoration in Sydney. 60-min response...",
     keywords: ["water damage sydney", "flood restoration sydney", ...],
     alternates: {
-      canonical: "https://disasterrecoverynrpg.com.au/services/water-damage-restoration/sydney"
+      canonical: "https://disasterrecovery.com.au/services/water-damage-restoration/sydney"
     },
     openGraph: { ... },
     twitter: { ... }
@@ -370,7 +370,7 @@ npm run dev
 ### Build Configuration
 ```bash
 # .env.production
-NEXT_PUBLIC_BASE_URL=https://disasterrecoverynrpg.com.au
+NEXT_PUBLIC_BASE_URL=https://disasterrecovery.com.au
 
 # Build
 npm run build

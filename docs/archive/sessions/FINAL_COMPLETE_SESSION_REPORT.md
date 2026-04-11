@@ -185,7 +185,7 @@ You spotted 2 errors in 20 seconds and said: *"Find them ALL"*
 ## 🌐 WORKSTREAM 6: DOMAIN & SOCIAL MEDIA
 
 ### **Custom Domain Configured**:
-- **Domain**: disasterrecoverynrpg.com.au
+- **Domain**: disasterrecovery.com.au
 - **Status**: ✅ Added to Vercel
 - **DNS**: Awaiting configuration (A record: @ → 76.76.21.21)
 - **SSL**: Auto-provisioned by Vercel (once DNS configured)
@@ -281,7 +281,7 @@ You spotted 2 errors in 20 seconds and said: *"Find them ALL"*
 
 **Current Production URL**: https://disaster-recovery-f05z0tisn-unite-group.vercel.app
 
-**Custom Domain** (After DNS configured): https://disasterrecoverynrpg.com.au
+**Custom Domain** (After DNS configured): https://disasterrecovery.com.au
 
 **Vercel Dashboard**: https://vercel.com/unite-group/disaster-recovery
 
@@ -448,7 +448,7 @@ You spotted 2 errors in 20 seconds and said: *"Find them ALL"*
 
 **Current Live URL**: https://disaster-recovery-f05z0tisn-unite-group.vercel.app
 
-**Custom Domain**: https://disasterrecoverynrpg.com.au
+**Custom Domain**: https://disasterrecovery.com.au
 - Status: Configured in Vercel
 - Awaiting: DNS A record (@ → 76.76.21.21)
 - Once DNS configured: SSL auto-provisioned, site live
@@ -573,7 +573,7 @@ You spotted 2 errors in 20 seconds and said: *"Find them ALL"*
 **Immediate** (User Action Required):
 1. **Configure DNS**: Add A record (@ → 76.76.21.21) at your domain registrar
 2. **Wait**: 5 min - 48 hours for DNS propagation
-3. **Verify**: Site live at https://disasterrecoverynrpg.com.au
+3. **Verify**: Site live at https://disasterrecovery.com.au
 
 **Optional** (Can Add Anytime):
 4. Build out 35 sub-pillar page content (use Gemini)
@@ -617,6 +617,6 @@ You spotted 2 errors in 20 seconds and said: *"Find them ALL"*
 ---
 
 **Production URL**: https://disaster-recovery-f05z0tisn-unite-group.vercel.app
-**Future URL** (after DNS): https://disasterrecoverynrpg.com.au
+**Future URL** (after DNS): https://disasterrecovery.com.au
 
 **Your platform transformation is 100% complete.** 🎉

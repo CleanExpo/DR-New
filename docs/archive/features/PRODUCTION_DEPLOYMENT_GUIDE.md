@@ -1,7 +1,7 @@
 # Production Deployment Guide - NRPG Platform
 **Date**: 2025-12-29
 **Target**: Vercel Production Deployment
-**Domain**: disasterrecoverynrpg.com.au
+**Domain**: disasterrecovery.com.au
 **Status**: 🔄 **READY TO DEPLOY**
 
 ---
@@ -39,7 +39,7 @@ DATABASE_URL="postgresql://user:password@host:5432/dbname"
 DIRECT_URL="postgresql://user:password@host:5432/dbname"
 
 # NextAuth (CRITICAL - Generate secure secrets)
-NEXTAUTH_URL="https://disasterrecoverynrpg.com.au"
+NEXTAUTH_URL="https://disasterrecovery.com.au"
 NEXTAUTH_SECRET="[GENERATE_WITH: openssl rand -base64 32]"
 
 # JWT Secret (CRITICAL - Generate secure secret)
@@ -163,7 +163,7 @@ npx prisma generate
 
 **In Vercel Dashboard**:
 1. Go to Project Settings → Domains
-2. Add domain: `disasterrecoverynrpg.com.au`
+2. Add domain: `disasterrecovery.com.au`
 3. Configure DNS records (Vercel will show exact records):
    - Type: A
    - Name: @ (or subdomain)
@@ -177,7 +177,7 @@ npx prisma generate
 ### Step 6: Post-Deployment Verification
 
 **Test Production Site**:
-1. ✅ Visit https://disasterrecoverynrpg.com.au
+1. ✅ Visit https://disasterrecovery.com.au
 2. ✅ Verify all pages load correctly
 3. ✅ Check all images display
 4. ✅ Test contact forms
@@ -194,7 +194,7 @@ npx prisma generate
 
 ### Critical (Must Set):
 ```
-NEXTAUTH_URL=https://disasterrecoverynrpg.com.au
+NEXTAUTH_URL=https://disasterrecovery.com.au
 NEXTAUTH_SECRET=[GENERATE: openssl rand -base64 32]
 JWT_SECRET=[GENERATE: openssl rand -base64 32]
 DATABASE_URL=[FROM: Vercel Postgres or your DB provider]
@@ -256,7 +256,7 @@ SMTP_FROM=nrpg.team@gmail.com
    - Environment Variables: Add critical ones listed above
 4. **Deploy**: Click deploy button
 5. **Result**: Live site at `your-project.vercel.app`
-6. **Add Domain**: Configure disasterrecoverynrpg.com.au
+6. **Add Domain**: Configure disasterrecovery.com.au
 
 ---
 

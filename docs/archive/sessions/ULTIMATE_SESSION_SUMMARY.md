@@ -230,7 +230,7 @@ This was one of the most comprehensive platform transformations ever accomplishe
 **Inspect**: https://vercel.com/unite-group/disaster-recovery/
 
 ### Target Domain (To Configure):
-**Production URL**: https://disasterrecoverynrpg.com.au
+**Production URL**: https://disasterrecovery.com.au
 **Status**: Needs DNS configuration
 
 ---
@@ -327,7 +327,7 @@ This was one of the most comprehensive platform transformations ever accomplishe
 1. ✅ Test Vercel URL: https://disaster-recovery-csh7j6aed-unite-group.vercel.app
 2. ⏸️ Configure production database (Vercel Postgres)
 3. ⏸️ Add environment variables in Vercel dashboard
-4. ⏸️ Configure custom domain (disasterrecoverynrpg.com.au)
+4. ⏸️ Configure custom domain (disasterrecovery.com.au)
 
 **Short-Term** (1-2 weeks):
 5. Build out 35 sub-pillar page content
