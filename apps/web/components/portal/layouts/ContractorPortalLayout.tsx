@@ -1,5 +1,5 @@
-'use client';
 // @ts-nocheck
+'use client';
 /**
  * NRPG Growth Portal - Contractor Layout
  *
@@ -11,7 +11,6 @@
  * - Outfit (headings) + Lora (body) typography
  */
 
-'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';

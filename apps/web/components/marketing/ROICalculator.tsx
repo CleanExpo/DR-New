@@ -15,7 +15,6 @@
  * Authority signal: Transparent about financials, contractor success stories
  */
 
-'use client';
 
 import { useState, useMemo } from 'react';
 import { DollarSign, Zap, TrendingUp } from 'lucide-react';
