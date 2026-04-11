@@ -13,7 +13,6 @@
  * - Mobile-first responsive design
  */
 
-'use client';
 
 import React, { useState } from 'react';
 import { Button } from '@/src/design-system';
