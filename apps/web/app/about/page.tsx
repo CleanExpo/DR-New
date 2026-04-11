@@ -1,11 +1,12 @@
-import type { Metadata } from 'next'
+import { type Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Users, Award, Target, MapPin, TrendingUp, Heart, Star, Building2, Zap, Globe, Code, BarChart3, Smartphone, Shield } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: 'About NRPG | Australia\'s Disaster Recovery Marketplace',
-  description: 'Learn about NRPG — the marketplace platform connecting Australians with IICRC-certified disaster recovery contractors for water, fire, storm and mould damage restoration.',
+  title: 'About Us | Disaster Recovery Australia',
+  description: 'Disaster Recovery Australia connects property owners with IICRC-certified restoration contractors. Learn about our mission, team, and commitment to professional disaster recovery standards.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/about' },
 }
 import { VerifiedBadge, IICRCBadge, ScheduleCalendar } from "@/icons"
 

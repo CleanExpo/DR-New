@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import { type Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
@@ -21,6 +21,12 @@ import {
   Zap,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+export const metadata: Metadata = {
+  title: 'Help Centre | Disaster Recovery Australia',
+  description: 'Get help with disaster recovery claims, contractor matching, and platform questions. Our Help Centre has guides, FAQs, and support for homeowners and contractors.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/help-center' },
+}
 
 export default function HelpCenterPage() {
   const faqs = [

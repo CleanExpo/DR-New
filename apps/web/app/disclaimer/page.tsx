@@ -1,6 +1,14 @@
+import { type Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { AlertTriangle, Shield, FileText, Scale, HardHat, Heart, Globe, Mail, BookOpen, Users } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: 'Disclaimer | Disaster Recovery Australia',
+  description: 'Disclaimer for disasterrecovery.com.au. Important information about the limitations of the information provided on our disaster recovery platform.',
+  alternates: { canonical: 'https://disasterrecovery.com.au/disclaimer' },
+  robots: { index: true, follow: false },
+}
 import { schemaGenerator } from "@/lib/seo/schema-generator"
 
 export default function DisclaimerPage() {
