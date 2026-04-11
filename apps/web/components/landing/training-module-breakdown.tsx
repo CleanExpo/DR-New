@@ -1,3 +1,4 @@
+'use client';
 /**
  * Training Module Breakdown Component
  *
