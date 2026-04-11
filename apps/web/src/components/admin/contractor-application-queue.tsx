@@ -58,7 +58,7 @@ interface PaginationInfo {
 
 const STATUS_CONFIG: Record<
   ApplicationStatus,
-  { label: string; className: string; icon: React.ElementType }
+  { label: string; className: string; icon: React.ComponentType<{ className?: string }> }
 > = {
   PENDING: { label: 'Pending', className: 'bg-yellow-900/30 text-yellow-400 border-yellow-800', icon: Clock },
   UNDER_REVIEW: { label: 'Under Review', className: 'bg-blue-900/30 text-blue-400 border-blue-800', icon: Eye },
