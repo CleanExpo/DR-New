@@ -1,3 +1,4 @@
+'use client';
 /**
  * CSRF Protected Form Wrapper
  *
