@@ -16,7 +16,6 @@
  * - Database aggregations for rating data
  */
 
-'use client';
 
 import { useEffect, useState } from 'react';
 import { Zap, Users, Clock, Star } from 'lucide-react';
