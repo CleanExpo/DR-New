@@ -9,7 +9,6 @@
  * - Not fear-mongering, educational with professional narration
  */
 
-'use client';
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
