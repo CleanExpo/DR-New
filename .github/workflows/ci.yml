@@ -24,7 +24,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint --if-present
+      - run: pnpm run db:generate
+      - run: pnpm run --if-present lint
       - run: pnpm exec tsc --noEmit
 
   test:
@@ -41,7 +42,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
-      - run: pnpm test --if-present
+      - run: pnpm run --if-present test
         env:
           DATABASE_URL: 'postgresql://test:test@localhost:5432/test'
           NEXTAUTH_SECRET: ci-test-secret-32chars-minimum-ok
@@ -110,7 +111,7 @@ jobs:
 
           # Run smoke tests
           cd ../..
-          SMOKE_TEST_URL=http://localhost:3000 pnpm run test:smoke --if-present
+          SMOKE_TEST_URL=http://localhost:3000 pnpm run --if-present test:smoke
 
           # Cleanup
           kill $SERVER_PID 2>/dev/null || true
