@@ -64,7 +64,7 @@ interface ProgressSummary {
 
 const STATUS_CONFIG: Record<
   string,
-  { label: string; color: string; icon: React.ElementType; ringColor: string }
+  { label: string; color: string; icon: React.ComponentType<{ className?: string }>; ringColor: string }
 > = {
   NOT_STARTED: {
     label: 'Not Started',
