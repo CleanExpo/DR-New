@@ -1,3 +1,4 @@
+'use client';
 /**
  * Cookie Consent Banner
  *
