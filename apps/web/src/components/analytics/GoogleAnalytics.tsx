@@ -1,3 +1,4 @@
+'use client';
 /**
  * Google Analytics 4 Component
  *
