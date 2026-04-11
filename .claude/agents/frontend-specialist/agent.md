@@ -1,16 +1,29 @@
 ---
 name: frontend-specialist
+description: "Frontend engineer for Next.js App Router, React, Tailwind, and Framer Motion. Use for UI components, pages, and client-side logic."
 type: agent
 role: Frontend Engineer
 priority: 2
-version: 1.0.0
+version: 2.0.0
+model: claude-sonnet-4-6
+tools:
+  - Read
+  - Edit
+  - Write
+  - Glob
+  - Grep
+  - Bash
+permissions:
+  allow:
+    - "Bash(npx tsc *)"
+    - "Bash(pnpm *)"
+    - "Bash(npm run *)"
+skills:
+  - typescript-coding-standards
 toolshed: frontend
 context_scope:
   - apps/web/
 token_budget: 60000
-skills_required:
-  - scientific-luxury
-  - react-best-practices
 ---
 
 # Frontend Specialist Agent

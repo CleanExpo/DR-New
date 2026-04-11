@@ -37,6 +37,18 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "prompt",
+            "if": "Bash(git commit *)",
+            "prompt": "BEFORE committing: Run npx tsc first and verify zero TypeScript errors. If tsc fails, fix all errors before allowing the commit to proceed. Respond with the tsc result."
+          }
+        ]
+      }
     ]
   }
 }

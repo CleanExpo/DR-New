@@ -217,12 +217,12 @@ export default function CertificationsPage() {
               Insurance Approval Process
             </h3>
             <p className="text-gray-400 mb-6">
-              All NRPG contractors provide thorough documentation supporting insurance claims. Our approval rate exceeds 95%.
+              Our IICRC-certified contractors support clients through the complete claims process with thorough documentation.
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               <div>
-                <div className="font-bold text-lg mb-2">95%+</div>
-                <p className="text-sm text-gray-400">Insurance claim approval rate</p>
+                <div className="font-bold text-lg mb-2">Expert Advocacy</div>
+                <p className="text-sm text-gray-400">Expert claims advocacy from lodgement to settlement</p>
               </div>
               <div>
                 <div className="font-bold text-lg mb-2">Direct Billing</div>

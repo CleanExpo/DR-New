@@ -84,6 +84,16 @@ const FEATURED_RESOURCES: Resource[] = [
     href: '/resources/disaster-prep-videos',
     readTime: '15 min',
   },
+  {
+    id: 'insurance-claim-advocate',
+    type: 'guide',
+    title: 'Professional Restoration Reports & Scope of Works',
+    description: 'How IICRC-certified restoration experts assess damage, document findings, and deliver a professional scope of works and estimate — to Australian standards.',
+    icon: '🛡️',
+    href: '/insurance-claim-advocate',
+    readTime: '8 min',
+    featured: true,
+  },
 ];
 
 interface ResourcesHubProps {

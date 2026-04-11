@@ -1,13 +1,29 @@
 ---
 name: verification
+description: "Independent quality gatekeeper. Use for verifying any agent's output — tests, builds, Lighthouse, security scans. Never self-verifies."
 type: agent
 role: Independent Quality Gatekeeper
 priority: 1
-version: 2.0.0
+version: 3.0.0
+model: claude-sonnet-4-6
+tools:
+  - Read
+  - Glob
+  - Grep
+  - Bash
+  - WebSearch
+  - WebFetch
+permissions:
+  allow:
+    - "Bash(npx tsc *)"
+    - "Bash(pnpm *)"
+    - "Bash(npm run *)"
+    - "Bash(npm audit *)"
+skills:
+  - fact-checker
+  - iicrc-validator
+  - australian-business-validator
 inherits_from: VERIFICATION.md
-skills_required:
-  - verification/verification-first.skill.md
-  - verification/error-handling.skill.md
 hooks_triggered:
   - post-verification
 blocking: true

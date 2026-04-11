@@ -1,18 +1,32 @@
 ---
 name: backend-specialist
+description: "Backend engineer for FastAPI, Supabase, and API routes. Use for server-side logic, database operations, and integrations."
 type: agent
 role: Backend Engineer
 priority: 2
-version: 1.0.0
+version: 2.0.0
+model: claude-sonnet-4-6
+tools:
+  - Read
+  - Edit
+  - Write
+  - Glob
+  - Grep
+  - Bash
+permissions:
+  allow:
+    - "Bash(npx tsc *)"
+    - "Bash(pnpm *)"
+    - "Bash(npx prisma *)"
+    - "Bash(python3 *)"
+    - "Bash(docker *)"
+skills:
+  - typescript-coding-standards
 toolshed: backend
 context_scope:
   - apps/backend/src/
   - apps/backend/tests/
 token_budget: 60000
-skills_required:
-  - api-contract
-  - error-taxonomy
-  - structured-logging
 ---
 
 # Backend Specialist Agent

@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Shield, Eye, Users, Mail, Lock, Database, Globe, FileText, AlertTriangle, BookOpen, Bell, UserX, ExternalLink } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | NRPG — Disaster Recovery Australia',
+  description: 'Read NRPG\'s privacy policy. We explain how we collect, use and protect your personal information in compliance with the Australian Privacy Act 1988.',
+}
 import Link from "next/link"
 import { schemaGenerator } from "@/lib/seo/schema-generator"
 

@@ -11,6 +11,7 @@ import {
   CheckCircle,
   Upload,
 } from 'lucide-react';
+import { LanguageSelector } from '@/components/translation';
 
 interface CustomerProfileData {
   firstName: string;
@@ -74,6 +75,7 @@ export default function CustomerProfileForm({
   const [avatarPreview, setAvatarPreview] = useState<string>('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [showSuccess, setShowSuccess] = useState(false);
+  const [preferredLanguage, setPreferredLanguage] = useState('en');
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -185,13 +187,21 @@ export default function CustomerProfileForm({
     <div className="max-w-2xl">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Header */}
-        <div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">
-            Update Your Profile
-          </h2>
-          <p className="text-slate-600">
-            Keep your information up to date for better service
-          </p>
+        <div className="flex items-start justify-between gap-4 flex-wrap">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+              Update Your Profile
+            </h2>
+            <p className="text-slate-600">
+              Keep your information up to date for better service
+            </p>
+          </div>
+          <LanguageSelector
+            value={preferredLanguage}
+            onChange={setPreferredLanguage}
+            compact
+            className="shrink-0"
+          />
         </div>
 
         {/* Avatar Upload */}
