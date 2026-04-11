@@ -1,3 +1,4 @@
+'use client';
 /**
  * NewsletterSignup Component
  *

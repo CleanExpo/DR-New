@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS Loading Progress Component
  *
