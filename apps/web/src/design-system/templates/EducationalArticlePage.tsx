@@ -13,7 +13,6 @@
  * - Comfortable reading experience
  */
 
-'use client';
 
 import * as React from 'react';
 import {

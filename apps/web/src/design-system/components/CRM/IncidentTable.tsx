@@ -13,7 +13,6 @@
  * - Compact design (48px row height)
  */
 
-'use client';
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';

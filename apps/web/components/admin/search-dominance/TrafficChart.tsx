@@ -5,7 +5,6 @@
  * Area chart showing organic traffic over time (24h/7d/30d)
  */
 
-'use client';
 
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
