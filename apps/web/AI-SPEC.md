@@ -495,7 +495,7 @@ Auto-Approve (low-risk) OR Flag for Review (high-risk)
 
 # Anthropic Claude (Primary)
 ANTHROPIC_API_KEY=sk-ant-...
-AGENT_DEFAULT_MODEL=claude-sonnet-4-20250514
+AGENT_DEFAULT_MODEL=claude-sonnet-4-6
 
 # OpenAI (Secondary)
 OPENAI_API_KEY=sk-...

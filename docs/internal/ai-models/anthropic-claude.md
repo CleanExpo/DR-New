@@ -18,20 +18,17 @@ npm install @anthropic-ai/sdk
 
 ## Available Models
 
-### Latest Models (Claude 4.5)
+### Current Models (Claude 4.6 — April 2026)
 
-| Model ID                     | Alias               | Description                                  | Context        | Max Output |
-| ---------------------------- | ------------------- | -------------------------------------------- | -------------- | ---------- |
-| `claude-sonnet-4-5-20250929` | `claude-sonnet-4-5` | Smartest model for complex agents and coding | 200K (1M beta) | 64K        |
-| `claude-haiku-4-5-20251001`  | `claude-haiku-4-5`  | Fastest with near-frontier intelligence      | 200K           | 64K        |
-| `claude-opus-4-1-20250805`   | `claude-opus-4-1`   | Exceptional for specialized reasoning        | 200K           | 32K        |
+Use these model IDs in production. Default to `claude-sonnet-4-6` for most tasks.
 
-### Claude 4 Models
+| Model ID                    | Description                                  | Context | Input     | Output   |
+| --------------------------- | -------------------------------------------- | ------- | --------- | -------- |
+| `claude-opus-4-6`           | Most capable; complex reasoning & agents     | 200K    | $15/MTok  | $75/MTok |
+| `claude-sonnet-4-6`         | **Default.** Balanced performance & cost     | 200K    | $3/MTok   | $15/MTok |
+| `claude-haiku-4-5-20251001` | Fastest; lightweight tasks & high throughput | 200K    | $0.8/MTok | $4/MTok  |
 
-| Model ID                   | Alias               | Description                |
-| -------------------------- | ------------------- | -------------------------- |
-| `claude-sonnet-4-20250514` | `claude-sonnet-4-0` | Fast, balanced performance |
-| `claude-opus-4-20250514`   | `claude-opus-4-0`   | Powerful reasoning         |
+**`AGENT_DEFAULT_MODEL=claude-sonnet-4-6`**
 
 ### Claude 3.7 Models
 
