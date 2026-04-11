@@ -21,7 +21,6 @@
     ],
     "paths": {
       "@anthropic-ai/claude-agent-sdk": ["./src/shims/claude-agent-sdk"],
-      "@anthropic-ai/sdk": ["./src/shims/anthropic-sdk"],
       "isomorphic-dompurify": ["./src/shims/isomorphic-dompurify"],
       "rate-limiter-flexible": ["./src/shims/rate-limiter-flexible"],
       "@storybook/react": ["./src/shims/storybook-react"],
