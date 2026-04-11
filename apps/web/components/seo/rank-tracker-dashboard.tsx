@@ -1,3 +1,4 @@
+'use client';
 /**
  * Rank Tracker Dashboard Component
  *
