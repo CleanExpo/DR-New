@@ -1,3 +1,4 @@
+'use client';
 /**
  * Dominance Score Gauge Component
  *
