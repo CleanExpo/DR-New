@@ -1,3 +1,4 @@
+'use client';
 /**
  * DesignOS Educational Article Page Template
  *

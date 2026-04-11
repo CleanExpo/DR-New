@@ -1,3 +1,4 @@
+'use client';
 /**
  * Secure File Upload Component
  *
