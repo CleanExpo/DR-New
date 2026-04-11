@@ -1,3 +1,4 @@
+'use client';
 // @ts-nocheck
 /**
  * Featured Snippet Q&A Component

@@ -1,3 +1,4 @@
+'use client';
 /**
  * FAQ Accordion Component
  *

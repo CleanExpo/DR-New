@@ -1,3 +1,4 @@
+'use client';
 /**
  * Live Stats Counter Component
  *
