@@ -424,7 +424,7 @@
         "localDirectories": ["townsvilledirectory.com.au", "nqbusiness.com.au"],
         "mediaOutlets": ["townsvillebulletin.com.au"],
         "chamberOfCommerce": "townsvillechamber.com.au",
-        "primaryServices": ["flood-restoration", "cyclone-damage-restoration", "mould-remediation"],
+        "primaryServices": ["flood-restoration", "storm-damage-restoration", "mould-remediation"],
         "competitorDensity": "low",
         "searchVolume": {
           "flood restoration townsville": 210,
@@ -455,7 +455,7 @@
         "localDirectories": ["cairnsdirectory.com.au", "fnqbusiness.com.au"],
         "mediaOutlets": ["cairnspost.com.au"],
         "chamberOfCommerce": "cairnschamber.com.au",
-        "primaryServices": ["cyclone-damage-restoration", "flood-restoration", "mould-remediation"],
+        "primaryServices": ["flood-restoration", "storm-damage-restoration", "mould-remediation"],
         "competitorDensity": "low",
         "searchVolume": {
           "cyclone damage cairns": 260,
@@ -641,7 +641,7 @@
         "localDirectories": ["mackaydirectory.com.au"],
         "mediaOutlets": ["dailymercury.com.au"],
         "chamberOfCommerce": "mackaychamber.com.au",
-        "primaryServices": ["cyclone-damage-restoration", "flood-restoration", "mould-remediation"],
+        "primaryServices": ["flood-restoration", "storm-damage-restoration", "mould-remediation"],
         "competitorDensity": "low",
         "searchVolume": {
           "cyclone damage mackay": 90,
@@ -660,7 +660,7 @@
       "latitude": -23.3781,
       "longitude": 150.5136,
       "timezone": "Australia/Brisbane",
-      "keywords": ["Rockhampton disaster recovery", "Rockhampton flood restoration", "Rockhampton cyclone damage"],
+      "keywords": ["Rockhampton disaster recovery", "Rockhampton flood restoration", "Rockhampton storm damage"],
       "localStats": {
         "avgAnnualFloods": 19,
         "avgAnnualStorms": 56,
@@ -672,12 +672,12 @@
         "localDirectories": ["rockhamptondirectory.com.au"],
         "mediaOutlets": ["themorningbulletin.com.au"],
         "chamberOfCommerce": "rockhamptonregion.com.au",
-        "primaryServices": ["flood-restoration", "cyclone-damage-restoration", "water-damage-restoration"],
+        "primaryServices": ["flood-restoration", "storm-damage-restoration", "water-damage-restoration"],
         "competitorDensity": "low",
         "searchVolume": {
           "flood restoration rockhampton": 70,
           "water damage rockhampton": 50,
-          "cyclone damage rockhampton": 50,
+          "storm damage rockhampton": 50,
           "mould removal rockhampton": 40
         }
       }
@@ -772,6 +772,843 @@
           "flood restoration wagga": 30,
           "fire damage wagga": 20,
           "mould removal wagga": 20
+        }
+      }
+    },
+    {
+      "city": "Parramatta",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "parramatta",
+      "population": 239000,
+      "latitude": -33.8150,
+      "longitude": 151.0011,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Parramatta disaster recovery", "Parramatta water damage", "Parramatta flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 10,
+        "avgAnnualStorms": 43,
+        "avgAnnualFires": 7,
+        "avgHumidity": 64
+      },
+      "localSeo": {
+        "serviceRadius": 20,
+        "localDirectories": ["parramattabusiness.com.au"],
+        "mediaOutlets": ["smh.com.au", "dailytelegraph.com.au"],
+        "chamberOfCommerce": "parramattachamber.com.au",
+        "primaryServices": ["water-damage-restoration", "mould-remediation", "fire-damage-restoration"],
+        "competitorDensity": "high",
+        "searchVolume": {
+          "water damage parramatta": 200,
+          "flood restoration parramatta": 120,
+          "mould removal parramatta": 150,
+          "fire damage parramatta": 80
+        }
+      }
+    },
+    {
+      "city": "Penrith",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "penrith",
+      "population": 220000,
+      "latitude": -33.7511,
+      "longitude": 150.6942,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Penrith disaster recovery", "Penrith water damage", "Penrith flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 14,
+        "avgAnnualStorms": 41,
+        "avgAnnualFires": 10,
+        "avgHumidity": 62
+      },
+      "localSeo": {
+        "serviceRadius": 25,
+        "localDirectories": ["penrithbusiness.com.au"],
+        "mediaOutlets": ["penrithpress.com.au", "smh.com.au"],
+        "chamberOfCommerce": "penrithchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "storm-damage-restoration"],
+        "competitorDensity": "high",
+        "searchVolume": {
+          "water damage penrith": 180,
+          "flood restoration penrith": 140,
+          "storm damage penrith": 100,
+          "mould removal penrith": 90
+        }
+      }
+    },
+    {
+      "city": "Liverpool",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "liverpool-nsw",
+      "population": 210000,
+      "latitude": -33.9221,
+      "longitude": 150.9228,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Liverpool NSW disaster recovery", "Liverpool water damage", "Liverpool flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 11,
+        "avgAnnualStorms": 42,
+        "avgAnnualFires": 8,
+        "avgHumidity": 63
+      },
+      "localSeo": {
+        "serviceRadius": 20,
+        "localDirectories": ["liverpooldirectory.com.au"],
+        "mediaOutlets": ["smh.com.au", "dailytelegraph.com.au"],
+        "chamberOfCommerce": "liverpoolchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "mould-remediation", "structural-drying"],
+        "competitorDensity": "high",
+        "searchVolume": {
+          "water damage liverpool nsw": 160,
+          "flood restoration liverpool": 110,
+          "mould removal liverpool": 130,
+          "structural drying liverpool": 60
+        }
+      }
+    },
+    {
+      "city": "Central Coast",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "central-coast",
+      "population": 340000,
+      "latitude": -33.4290,
+      "longitude": 151.3428,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Central Coast disaster recovery", "Central Coast water damage", "Central Coast flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 13,
+        "avgAnnualStorms": 50,
+        "avgAnnualFires": 9,
+        "avgHumidity": 70
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["centralcoastbusiness.com.au"],
+        "mediaOutlets": ["centralcoastnews.com.au", "smh.com.au"],
+        "chamberOfCommerce": "centralcoastchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "storm-damage-restoration"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage central coast": 200,
+          "flood restoration central coast": 160,
+          "storm damage central coast": 140,
+          "mould removal central coast": 120
+        }
+      }
+    },
+    {
+      "city": "Coffs Harbour",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "coffs-harbour",
+      "population": 71000,
+      "latitude": -30.2986,
+      "longitude": 153.1094,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Coffs Harbour disaster recovery", "Coffs Harbour water damage", "Coffs Harbour flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 18,
+        "avgAnnualStorms": 65,
+        "avgAnnualFires": 6,
+        "avgHumidity": 78
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["coffsharbour.com.au"],
+        "mediaOutlets": ["coffscoastadvocate.com.au"],
+        "chamberOfCommerce": "coffsharbourbusiness.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage coffs harbour": 80,
+          "flood restoration coffs harbour": 70,
+          "mould removal coffs harbour": 60,
+          "storm damage coffs harbour": 55
+        }
+      }
+    },
+    {
+      "city": "Dubbo",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "dubbo",
+      "population": 41000,
+      "latitude": -32.2431,
+      "longitude": 148.6017,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Dubbo disaster recovery", "Dubbo water damage", "Dubbo flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 9,
+        "avgAnnualStorms": 29,
+        "avgAnnualFires": 16,
+        "avgHumidity": 52
+      },
+      "localSeo": {
+        "serviceRadius": 80,
+        "localDirectories": ["dubbobusiness.com.au"],
+        "mediaOutlets": ["dailyliberal.com.au"],
+        "chamberOfCommerce": "dubbochamber.com.au",
+        "primaryServices": ["water-damage-restoration", "fire-damage-restoration", "structural-drying"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage dubbo": 40,
+          "fire damage dubbo": 30,
+          "flood restoration dubbo": 30,
+          "mould removal dubbo": 25
+        }
+      }
+    },
+    {
+      "city": "Tamworth",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "tamworth",
+      "population": 41000,
+      "latitude": -31.0833,
+      "longitude": 150.9167,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Tamworth disaster recovery", "Tamworth water damage", "Tamworth fire damage"],
+      "localStats": {
+        "avgAnnualFloods": 7,
+        "avgAnnualStorms": 30,
+        "avgAnnualFires": 17,
+        "avgHumidity": 55
+      },
+      "localSeo": {
+        "serviceRadius": 80,
+        "localDirectories": ["tamworthdirectory.com.au"],
+        "mediaOutlets": ["northerndailyleader.com.au"],
+        "chamberOfCommerce": "tamworthchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "fire-damage-restoration", "structural-drying"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage tamworth": 35,
+          "fire damage tamworth": 30,
+          "flood restoration tamworth": 25,
+          "mould removal tamworth": 20
+        }
+      }
+    },
+    {
+      "city": "Bathurst",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "bathurst",
+      "population": 42000,
+      "latitude": -33.4183,
+      "longitude": 149.5779,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Bathurst disaster recovery", "Bathurst water damage", "Bathurst flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 8,
+        "avgAnnualStorms": 33,
+        "avgAnnualFires": 13,
+        "avgHumidity": 60
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["bathurstdirectory.com.au"],
+        "mediaOutlets": ["westernadvocate.com.au"],
+        "chamberOfCommerce": "bathurstchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "fire-damage-restoration", "structural-drying"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage bathurst": 30,
+          "fire damage bathurst": 25,
+          "flood restoration bathurst": 20,
+          "mould removal bathurst": 18
+        }
+      }
+    },
+    {
+      "city": "Orange",
+      "state": "NSW",
+      "stateCode": "NSW",
+      "slug": "orange-nsw",
+      "population": 42000,
+      "latitude": -33.2839,
+      "longitude": 149.1000,
+      "timezone": "Australia/Sydney",
+      "keywords": ["Orange NSW disaster recovery", "Orange water damage", "Orange flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 8,
+        "avgAnnualStorms": 32,
+        "avgAnnualFires": 12,
+        "avgHumidity": 58
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["orangedirectory.com.au"],
+        "mediaOutlets": ["centralwesternews.com.au"],
+        "chamberOfCommerce": "orangechamber.com.au",
+        "primaryServices": ["water-damage-restoration", "fire-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage orange nsw": 30,
+          "fire damage orange": 25,
+          "mould removal orange nsw": 20,
+          "flood restoration orange": 18
+        }
+      }
+    },
+    {
+      "city": "Dandenong",
+      "state": "Victoria",
+      "stateCode": "VIC",
+      "slug": "dandenong",
+      "population": 140000,
+      "latitude": -37.9874,
+      "longitude": 145.2156,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Dandenong disaster recovery", "Dandenong water damage", "Dandenong flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 10,
+        "avgAnnualStorms": 40,
+        "avgAnnualFires": 8,
+        "avgHumidity": 65
+      },
+      "localSeo": {
+        "serviceRadius": 20,
+        "localDirectories": ["dandenongbusiness.com.au"],
+        "mediaOutlets": ["heraldsun.com.au"],
+        "chamberOfCommerce": "dandenongchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "mould-remediation", "structural-drying"],
+        "competitorDensity": "high",
+        "searchVolume": {
+          "water damage dandenong": 150,
+          "flood restoration dandenong": 100,
+          "mould removal dandenong": 120,
+          "structural drying dandenong": 60
+        }
+      }
+    },
+    {
+      "city": "Frankston",
+      "state": "Victoria",
+      "stateCode": "VIC",
+      "slug": "frankston",
+      "population": 135000,
+      "latitude": -38.1454,
+      "longitude": 145.1245,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Frankston disaster recovery", "Frankston water damage", "Frankston flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 8,
+        "avgAnnualStorms": 38,
+        "avgAnnualFires": 7,
+        "avgHumidity": 63
+      },
+      "localSeo": {
+        "serviceRadius": 25,
+        "localDirectories": ["frankstonbusiness.com.au"],
+        "mediaOutlets": ["heraldsun.com.au", "frankstonstandard.com.au"],
+        "chamberOfCommerce": "frankstonbusiness.com.au",
+        "primaryServices": ["water-damage-restoration", "mould-remediation", "fire-damage-restoration"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage frankston": 130,
+          "flood restoration frankston": 90,
+          "mould removal frankston": 110,
+          "fire damage frankston": 55
+        }
+      }
+    },
+    {
+      "city": "Traralgon",
+      "state": "Victoria",
+      "stateCode": "VIC",
+      "slug": "traralgon",
+      "population": 25000,
+      "latitude": -38.1959,
+      "longitude": 146.5399,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Traralgon disaster recovery", "Traralgon water damage", "Traralgon flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 12,
+        "avgAnnualStorms": 38,
+        "avgAnnualFires": 11,
+        "avgHumidity": 68
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["latrobe.com.au"],
+        "mediaOutlets": ["traralgonjournal.com.au"],
+        "chamberOfCommerce": "lavalleybusiness.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "fire-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage traralgon": 40,
+          "flood restoration traralgon": 35,
+          "fire damage traralgon": 30,
+          "mould removal traralgon": 25
+        }
+      }
+    },
+    {
+      "city": "Shepparton",
+      "state": "Victoria",
+      "stateCode": "VIC",
+      "slug": "shepparton",
+      "population": 64000,
+      "latitude": -36.3827,
+      "longitude": 145.3984,
+      "timezone": "Australia/Melbourne",
+      "keywords": ["Shepparton disaster recovery", "Shepparton water damage", "Shepparton flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 14,
+        "avgAnnualStorms": 32,
+        "avgAnnualFires": 10,
+        "avgHumidity": 60
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["sheppartondirectory.com.au"],
+        "mediaOutlets": ["sheppartonnews.com.au"],
+        "chamberOfCommerce": "gmregion.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "structural-drying"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage shepparton": 50,
+          "flood restoration shepparton": 45,
+          "mould removal shepparton": 30,
+          "structural drying shepparton": 20
+        }
+      }
+    },
+    {
+      "city": "Ipswich",
+      "state": "Queensland",
+      "stateCode": "QLD",
+      "slug": "ipswich",
+      "population": 230000,
+      "latitude": -27.6166,
+      "longitude": 152.7639,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Ipswich disaster recovery", "Ipswich water damage", "Ipswich flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 20,
+        "avgAnnualStorms": 75,
+        "avgAnnualFires": 8,
+        "avgHumidity": 72
+      },
+      "localSeo": {
+        "serviceRadius": 30,
+        "localDirectories": ["ipswichbusiness.com.au"],
+        "mediaOutlets": ["qt.com.au"],
+        "chamberOfCommerce": "ipswichchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage ipswich": 200,
+          "flood restoration ipswich": 180,
+          "mould removal ipswich": 150,
+          "storm damage ipswich": 100
+        }
+      }
+    },
+    {
+      "city": "Logan",
+      "state": "Queensland",
+      "stateCode": "QLD",
+      "slug": "logan",
+      "population": 340000,
+      "latitude": -27.6392,
+      "longitude": 153.1085,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Logan disaster recovery", "Logan water damage", "Logan flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 16,
+        "avgAnnualStorms": 70,
+        "avgAnnualFires": 7,
+        "avgHumidity": 73
+      },
+      "localSeo": {
+        "serviceRadius": 30,
+        "localDirectories": ["logandirectory.com.au"],
+        "mediaOutlets": ["couriermail.com.au"],
+        "chamberOfCommerce": "loganbusiness.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage logan": 180,
+          "flood restoration logan": 150,
+          "mould removal logan": 140,
+          "storm damage logan": 90
+        }
+      }
+    },
+    {
+      "city": "Bundaberg",
+      "state": "Queensland",
+      "stateCode": "QLD",
+      "slug": "bundaberg",
+      "population": 72000,
+      "latitude": -24.8661,
+      "longitude": 152.3489,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Bundaberg disaster recovery", "Bundaberg water damage", "Bundaberg flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 18,
+        "avgAnnualStorms": 72,
+        "avgAnnualFires": 8,
+        "avgHumidity": 76
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["bundabergdirectory.com.au"],
+        "mediaOutlets": ["news-mail.com.au"],
+        "chamberOfCommerce": "bundabergchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "storm-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage bundaberg": 80,
+          "flood restoration bundaberg": 75,
+          "storm damage bundaberg": 60,
+          "mould removal bundaberg": 50
+        }
+      }
+    },
+    {
+      "city": "Hervey Bay",
+      "state": "Queensland",
+      "stateCode": "QLD",
+      "slug": "hervey-bay",
+      "population": 55000,
+      "latitude": -25.2904,
+      "longitude": 152.8418,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Hervey Bay disaster recovery", "Hervey Bay water damage", "Hervey Bay flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 14,
+        "avgAnnualStorms": 68,
+        "avgAnnualFires": 5,
+        "avgHumidity": 78
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["herveybay.com.au"],
+        "mediaOutlets": ["frasercoastchronicle.com.au"],
+        "chamberOfCommerce": "frasercoastchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage hervey bay": 60,
+          "flood restoration hervey bay": 55,
+          "mould removal hervey bay": 50,
+          "storm damage hervey bay": 40
+        }
+      }
+    },
+    {
+      "city": "Gladstone",
+      "state": "Queensland",
+      "stateCode": "QLD",
+      "slug": "gladstone",
+      "population": 34000,
+      "latitude": -23.8427,
+      "longitude": 151.2582,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Gladstone disaster recovery", "Gladstone water damage", "Gladstone flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 12,
+        "avgAnnualStorms": 62,
+        "avgAnnualFires": 7,
+        "avgHumidity": 74
+      },
+      "localSeo": {
+        "serviceRadius": 50,
+        "localDirectories": ["gladstonedirectory.com.au"],
+        "mediaOutlets": ["gladstoneobserver.com.au"],
+        "chamberOfCommerce": "gladstonechamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "fire-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage gladstone": 40,
+          "flood restoration gladstone": 35,
+          "fire damage gladstone": 30,
+          "mould removal gladstone": 25
+        }
+      }
+    },
+    {
+      "city": "Caloundra",
+      "state": "Queensland",
+      "stateCode": "QLD",
+      "slug": "caloundra",
+      "population": 51000,
+      "latitude": -26.8002,
+      "longitude": 153.1308,
+      "timezone": "Australia/Brisbane",
+      "keywords": ["Caloundra disaster recovery", "Caloundra water damage", "Caloundra flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 13,
+        "avgAnnualStorms": 65,
+        "avgAnnualFires": 5,
+        "avgHumidity": 77
+      },
+      "localSeo": {
+        "serviceRadius": 25,
+        "localDirectories": ["caloundrabusiness.com.au"],
+        "mediaOutlets": ["sunshinecoastdaily.com.au"],
+        "chamberOfCommerce": "sunshinecoastchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage caloundra": 70,
+          "flood restoration caloundra": 60,
+          "mould removal caloundra": 55,
+          "storm damage caloundra": 45
+        }
+      }
+    },
+    {
+      "city": "Mount Gambier",
+      "state": "South Australia",
+      "stateCode": "SA",
+      "slug": "mount-gambier",
+      "population": 29000,
+      "latitude": -37.8282,
+      "longitude": 140.7827,
+      "timezone": "Australia/Adelaide",
+      "keywords": ["Mount Gambier disaster recovery", "Mount Gambier water damage", "Mount Gambier fire damage"],
+      "localStats": {
+        "avgAnnualFloods": 7,
+        "avgAnnualStorms": 35,
+        "avgAnnualFires": 10,
+        "avgHumidity": 68
+      },
+      "localSeo": {
+        "serviceRadius": 60,
+        "localDirectories": ["mountgambierdirectory.com.au"],
+        "mediaOutlets": ["themountgambiergazette.com.au"],
+        "chamberOfCommerce": "mountgambierchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "fire-damage-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage mount gambier": 30,
+          "fire damage mount gambier": 25,
+          "mould removal mount gambier": 20,
+          "flood restoration mount gambier": 18
+        }
+      }
+    },
+    {
+      "city": "Whyalla",
+      "state": "South Australia",
+      "stateCode": "SA",
+      "slug": "whyalla",
+      "population": 21000,
+      "latitude": -33.0327,
+      "longitude": 137.5776,
+      "timezone": "Australia/Adelaide",
+      "keywords": ["Whyalla disaster recovery", "Whyalla water damage", "Whyalla storm damage"],
+      "localStats": {
+        "avgAnnualFloods": 3,
+        "avgAnnualStorms": 25,
+        "avgAnnualFires": 15,
+        "avgHumidity": 45
+      },
+      "localSeo": {
+        "serviceRadius": 80,
+        "localDirectories": ["whyalladirectory.com.au"],
+        "mediaOutlets": ["whyallanewsonline.com.au"],
+        "chamberOfCommerce": "whyallachamber.com.au",
+        "primaryServices": ["fire-damage-restoration", "storm-damage-restoration", "structural-drying"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage whyalla": 20,
+          "fire damage whyalla": 18,
+          "storm damage whyalla": 15,
+          "structural drying whyalla": 10
+        }
+      }
+    },
+    {
+      "city": "Mandurah",
+      "state": "Western Australia",
+      "stateCode": "WA",
+      "slug": "mandurah",
+      "population": 88000,
+      "latitude": -32.5366,
+      "longitude": 115.7219,
+      "timezone": "Australia/Perth",
+      "keywords": ["Mandurah disaster recovery", "Mandurah water damage", "Mandurah flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 8,
+        "avgAnnualStorms": 30,
+        "avgAnnualFires": 6,
+        "avgHumidity": 55
+      },
+      "localSeo": {
+        "serviceRadius": 30,
+        "localDirectories": ["mandurahbusiness.com.au"],
+        "mediaOutlets": ["mandurahcoast.com.au"],
+        "chamberOfCommerce": "mandurahchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "mould-remediation", "structural-drying"],
+        "competitorDensity": "medium",
+        "searchVolume": {
+          "water damage mandurah": 90,
+          "flood restoration mandurah": 60,
+          "mould removal mandurah": 70,
+          "structural drying mandurah": 40
+        }
+      }
+    },
+    {
+      "city": "Geraldton",
+      "state": "Western Australia",
+      "stateCode": "WA",
+      "slug": "geraldton",
+      "population": 41000,
+      "latitude": -28.7774,
+      "longitude": 114.6152,
+      "timezone": "Australia/Perth",
+      "keywords": ["Geraldton disaster recovery", "Geraldton water damage", "Geraldton storm damage"],
+      "localStats": {
+        "avgAnnualFloods": 4,
+        "avgAnnualStorms": 35,
+        "avgAnnualFires": 10,
+        "avgHumidity": 50
+      },
+      "localSeo": {
+        "serviceRadius": 100,
+        "localDirectories": ["geraldtondirectory.com.au"],
+        "mediaOutlets": ["geraldtonguardian.com.au"],
+        "chamberOfCommerce": "geraldtonchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "storm-damage-restoration", "fire-damage-restoration"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage geraldton": 35,
+          "storm damage geraldton": 30,
+          "fire damage geraldton": 25,
+          "mould removal geraldton": 20
+        }
+      }
+    },
+    {
+      "city": "Kalgoorlie",
+      "state": "Western Australia",
+      "stateCode": "WA",
+      "slug": "kalgoorlie",
+      "population": 30000,
+      "latitude": -30.7489,
+      "longitude": 121.4660,
+      "timezone": "Australia/Perth",
+      "keywords": ["Kalgoorlie disaster recovery", "Kalgoorlie water damage", "Kalgoorlie fire damage"],
+      "localStats": {
+        "avgAnnualFloods": 2,
+        "avgAnnualStorms": 20,
+        "avgAnnualFires": 18,
+        "avgHumidity": 35
+      },
+      "localSeo": {
+        "serviceRadius": 120,
+        "localDirectories": ["kalgoorliebusiness.com.au"],
+        "mediaOutlets": ["kalgoorlieminer.com.au"],
+        "chamberOfCommerce": "kalgoorliechamber.com.au",
+        "primaryServices": ["fire-damage-restoration", "structural-drying", "biohazard-cleanup"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage kalgoorlie": 20,
+          "fire damage kalgoorlie": 25,
+          "structural drying kalgoorlie": 15,
+          "biohazard cleanup kalgoorlie": 10
+        }
+      }
+    },
+    {
+      "city": "Alice Springs",
+      "state": "Northern Territory",
+      "stateCode": "NT",
+      "slug": "alice-springs",
+      "population": 26000,
+      "latitude": -23.6980,
+      "longitude": 133.8807,
+      "timezone": "Australia/Darwin",
+      "keywords": ["Alice Springs disaster recovery", "Alice Springs water damage", "Alice Springs flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 5,
+        "avgAnnualStorms": 20,
+        "avgAnnualFires": 20,
+        "avgHumidity": 30
+      },
+      "localSeo": {
+        "serviceRadius": 150,
+        "localDirectories": ["alicesprings.com.au"],
+        "mediaOutlets": ["alicespringsnews.com.au"],
+        "chamberOfCommerce": "alicespringschamber.com.au",
+        "primaryServices": ["water-damage-restoration", "fire-damage-restoration", "structural-drying"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage alice springs": 20,
+          "fire damage alice springs": 18,
+          "flood restoration alice springs": 15,
+          "structural drying alice springs": 10
+        }
+      }
+    },
+    {
+      "city": "Devonport",
+      "state": "Tasmania",
+      "stateCode": "TAS",
+      "slug": "devonport",
+      "population": 26000,
+      "latitude": -41.1757,
+      "longitude": 146.3521,
+      "timezone": "Australia/Hobart",
+      "keywords": ["Devonport disaster recovery", "Devonport water damage", "Devonport flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 10,
+        "avgAnnualStorms": 42,
+        "avgAnnualFires": 7,
+        "avgHumidity": 75
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["devonportbusiness.com.au"],
+        "mediaOutlets": ["theadvocate.com.au"],
+        "chamberOfCommerce": "devonportchamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage devonport": 30,
+          "flood restoration devonport": 25,
+          "mould removal devonport": 20,
+          "storm damage devonport": 18
+        }
+      }
+    },
+    {
+      "city": "Burnie",
+      "state": "Tasmania",
+      "stateCode": "TAS",
+      "slug": "burnie",
+      "population": 19000,
+      "latitude": -41.0566,
+      "longitude": 145.9035,
+      "timezone": "Australia/Hobart",
+      "keywords": ["Burnie disaster recovery", "Burnie water damage", "Burnie flood restoration"],
+      "localStats": {
+        "avgAnnualFloods": 9,
+        "avgAnnualStorms": 40,
+        "avgAnnualFires": 6,
+        "avgHumidity": 73
+      },
+      "localSeo": {
+        "serviceRadius": 40,
+        "localDirectories": ["burniedirectory.com.au"],
+        "mediaOutlets": ["theadvocate.com.au"],
+        "chamberOfCommerce": "burniechamber.com.au",
+        "primaryServices": ["water-damage-restoration", "flood-restoration", "mould-remediation"],
+        "competitorDensity": "low",
+        "searchVolume": {
+          "water damage burnie": 25,
+          "flood restoration burnie": 20,
+          "mould removal burnie": 18,
+          "storm damage burnie": 15
         }
       }
     }
