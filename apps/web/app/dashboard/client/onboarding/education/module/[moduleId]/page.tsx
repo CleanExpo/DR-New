@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import DOMPurify from 'isomorphic-dompurify';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -157,7 +158,7 @@ export default function ClientModuleViewerPage({ params }: { params: { moduleId:
         <CardContent className="space-y-6">
           {/* Module Content */}
           <div className="prose dark:prose-invert max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: moduleData?.content || '' }} />
+            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(moduleData?.content || '') }} />
           </div>
 
           {/* Placeholder notice */}

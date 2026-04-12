@@ -13,6 +13,7 @@
  */
 
 import * as React from 'react';
+import DOMPurify from 'isomorphic-dompurify';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -256,7 +257,7 @@ export default function ResourcePage({ params }: ResourcePageProps) {
             {/* Main Content */}
             <div className="prose prose-lg max-w-none">
               {resource.content ? (
-                <div dangerouslySetInnerHTML={{ __html: resource.content }} />
+                <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(resource.content) }} />
               ) : (
                 <div>
                   <p>{resource.description}</p>

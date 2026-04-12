@@ -1,5 +1,6 @@
 'use client';
 
+import DOMPurify from 'isomorphic-dompurify';
 import { useSearch } from '@/hooks/useSearch';
 import type { SearchResult } from '@/hooks/useSearch';
 
@@ -163,7 +164,7 @@ function SearchResultCard({ result }: { result: SearchResult }) {
       {result.preview && (
         <div className="text-sm text-gray-700 mb-3 p-2 bg-gray-50 rounded line-clamp-2">
           {/* Render highlights as markdown-style bold */}
-          <span dangerouslySetInnerHTML={{ __html: result.preview.replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>') }} />
+          <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(result.preview.replace(/\*\*(.+?)\*\*/g, '<mark>$1</mark>'), { ALLOWED_TAGS: ['mark'] }) }} />
         </div>
       )}
 
