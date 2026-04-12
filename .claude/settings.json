@@ -1,84 +1,202 @@
 {
   "projectName": "Disaster Recovery NRPG",
-  "version": "1.1.0",
-  "lastUpdated": "2026-04-04",
-  "permissions": {
-    "allow": [
-      "Read(**)",
-      "Write(**)",
-      "Edit(**)",
-      "Glob(**)",
-      "Grep(**)",
-      "Bash(git *)",
-      "Bash(gh *)",
-      "Bash(pnpm *)",
-      "Bash(npm *)",
-      "Bash(npx *)",
-      "Bash(node *)",
-      "Bash(ls *)",
-      "Bash(cat *)",
-      "Bash(echo *)",
-      "Bash(mkdir *)",
-      "Bash(cp *)",
-      "Bash(mv *)",
-      "Bash(rm *)",
-      "Bash(find *)",
-      "Bash(grep *)",
-      "Bash(sed *)",
-      "Bash(awk *)",
-      "Bash(jq *)",
-      "Bash(python3 *)",
-      "Bash(base64 *)",
-      "Bash(curl *)",
-      "mcp__e8597b4d-b7f2-46d6-ac8c-2f35e1c23ccf__*",
-      "mcp__d6da3127-33c8-48c0-b33d-f92bab0cf0f2__*",
-      "mcp__21d7de5d-7115-4af8-a6c3-2b86769b05fb__*",
-      "mcp__c879c796-40a3-4892-8e02-fbb874e287ab__*",
-      "mcp__df70ff2d-f672-4e42-ab6f-09115597687c__*",
-      "TodoWrite(**)",
-      "WebFetch(**)",
-      "WebSearch(**)",
-      "Agent(**)"
-    ],
-    "deny": [
-      "Bash(git push --force *)",
-      "Bash(git reset --hard *)",
-      "Bash(rm -rf /*)",
-      "Bash(* --no-verify *)"
-    ]
-  },
-  "systemsComplete": 17,
-  "systemsTotal": 17,
+  "version": "2.0.0",
+  "lastUpdated": "03/04/2026",
   "techStack": {
     "framework": "Next.js 14",
-    "database": "PostgreSQL",
-    "search": "PostgreSQL Full-Text",
-    "cms": "Sanity",
+    "database": "PostgreSQL (Supabase)",
+    "orm": "Prisma 5.22.0",
+    "cache": "Redis (ioredis + Upstash)",
+    "realtime": "Socket.io",
     "payments": "Stripe",
-    "auth": "NextAuth"
+    "auth": "NextAuth v4",
+    "cms": "Sanity",
+    "deployment": "Vercel"
   },
   "businessRules": {
     "phoneNumbers": false,
-    "contactEmail": "support@disasterrecovery.com.au",
+    "emailInUI": false,
+    "addressInUI": false,
     "australianEnglish": true,
-    "dynamicSeoGeneration": true
+    "contactEmail": "support@disasterrecovery.com.au",
+    "domain": "disasterrecovery.com.au"
   },
-  "tierPricing": {
-    "rural": { "maxPopulation": 50000, "price": 395 },
-    "semiRural": { "maxPopulation": 200000, "price": 595 },
-    "tier1": { "maxPopulation": 400000, "price": 795 },
-    "tier2": { "maxPopulation": 1000000, "price": 995 },
-    "tier3": { "maxPopulation": null, "price": 1095 }
+
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(pnpm *)",
+      "Bash(npx prettier *)",
+      "Bash(npx eslint *)",
+      "Bash(npx tsc *)",
+      "Bash(npx prisma *)",
+      "Bash(node *)",
+      "Read(**)",
+      "Edit(**)",
+      "Write(**)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(.env.local)",
+      "Read(**/secrets/**)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Write(.env)",
+      "Write(.env.*)",
+      "Write(.env.local)",
+      "Bash(git push --force *)",
+      "Bash(curl * | bash)",
+      "Bash(wget * | bash)",
+      "Bash(rm -rf /)",
+      "Bash(* --no-verify)"
+    ]
   },
-  "bufferPercentage": 10,
+
   "hooks": {
+
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "bash .superpowers/hooks/session-start",
-            "timeout": 30
+            "command": "echo '=== DR-NRPG Session Started ===' && echo 'Stack: Next.js 14 · Prisma · Supabase · Redis · Tailwind v3' && echo 'Live: https://disasterrecovery.com.au' && echo 'Rules: 9 active | Commands: 21 | Agents: 27' && echo 'Fullscreen: '\"$( [ \"$CLAUDE_CODE_NO_FLICKER\" = '1' ] && echo 'ON (PgUp/PgDn scroll, Ctrl+o transcript)' || echo 'OFF — set CLAUDE_CODE_NO_FLICKER=1' )\" && echo 'Read CLAUDE.md → .claude/PROGRESS.md before starting work.'"
+          }
+        ]
+      }
+    ],
+
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('file_path',''))\" 2>/dev/null || echo ''); if [[ -n \"$FILE\" ]] && echo \"$FILE\" | grep -qE '(\\.env|\\.env\\..*|\\.env\\.local|secrets/|.*\\.pem$|.*\\.key$|.*\\.p12$|.*\\.pfx$)'; then echo \"BLOCKED: '$FILE' is a protected file. Use environment variable management instead.\" >&2; exit 2; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('command',''))\" 2>/dev/null || echo ''); if echo \"$CMD\" | grep -qE 'git push.*--force[^-]|git push.*--force$'; then echo \"BLOCKED: force push is not allowed. Use --force-with-lease if required and confirm with project lead.\" >&2; exit 2; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('command',''))\" 2>/dev/null || echo ''); if echo \"$CMD\" | grep -qE 'git (commit|push).*(origin )?main'; then echo \"BLOCKED: direct commits/pushes to main are not allowed. Use a feat/ or fix/ branch and open a PR.\" >&2; exit 2; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('command',''))\" 2>/dev/null || echo ''); if echo \"$CMD\" | grep -qiE '(DROP\\s+(TABLE|DATABASE|SCHEMA|INDEX)|TRUNCATE\\s+TABLE|rm\\s+-rf\\s+/)'; then echo \"BLOCKED: destructive command detected (DROP/TRUNCATE/rm -rf /). Confirm with project lead before running.\" >&2; exit 2; fi"
+          }
+        ]
+      }
+    ],
+
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('file_path',''))\" 2>/dev/null || echo ''); if [[ -n \"$FILE\" ]] && echo \"$FILE\" | grep -qE '\\.(ts|tsx|js|jsx|css)$'; then cd \"$(dirname \"$FILE\")\" 2>/dev/null; npx prettier --write \"$FILE\" 2>/dev/null || true; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('file_path',''))\" 2>/dev/null || echo ''); if [[ -n \"$FILE\" ]] && echo \"$FILE\" | grep -qE '\\.(ts|tsx)$' && echo \"$FILE\" | grep -v 'node_modules'; then ERRORS=$(npx tsc --noEmit 2>&1 | head -10); if [[ -n \"$ERRORS\" ]]; then echo 'TypeScript errors detected:' >&2; echo \"$ERRORS\" >&2; fi; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "CMD=$(echo \"$CLAUDE_TOOL_INPUT\" | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('command',''))\" 2>/dev/null || echo ''); LOGDIR=\"${CLAUDE_PROJECT_DIR}/.claude/logs\"; mkdir -p \"$LOGDIR\"; echo \"{\\\"ts\\\":\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\",\\\"cmd\\\":\\\"$(echo $CMD | head -c 200)\\\"}\" >> \"$LOGDIR/bash-audit.log\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "PROJ=\"${CLAUDE_PROJECT_DIR}\"; PROGRESS=\"$PROJ/.claude/PROGRESS.md\"; TS=$(date -u +%Y-%m-%dT%H:%M:%SZ); DIFF=$(cd \"$PROJ\" 2>/dev/null && git diff --name-only 2>/dev/null | head -20 || echo 'no git changes'); if [[ -f \"$PROGRESS\" ]]; then printf '\\n### Auto-logged: %s\\nModified files:\\n%s\\n' \"$TS\" \"$DIFF\" >> \"$PROGRESS\" 2>/dev/null; fi; echo '' >&2; echo '=== Session End Checklist ===' >&2; echo 'Before closing, confirm:' >&2; echo '  [ ] pnpm run type-check — passes (zero errors)' >&2; echo '  [ ] pnpm run test — all tests pass' >&2; echo '  [ ] Changes committed to a feat/ or fix/ branch' >&2; echo '  [ ] .claude/PROGRESS.md updated with session decisions' >&2; exit 0"
+          }
+        ]
+      }
+    ],
+
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "BACKUP_DIR=\"${CLAUDE_PROJECT_DIR}/.claude/backups\"; mkdir -p \"$BACKUP_DIR\"; PROGRESS=\"${CLAUDE_PROJECT_DIR}/.claude/PROGRESS.md\"; if [[ -f \"$PROGRESS\" ]]; then cp \"$PROGRESS\" \"$BACKUP_DIR/PROGRESS-$(date +%Y%m%d-%H%M%S).md\" && echo \"PROGRESS.md backed up to $BACKUP_DIR\" >&2; fi"
+          }
+        ]
+      }
+    ],
+
+    "PostCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '=== Context Compacted ===' >&2; echo 'Re-reading critical context...' >&2; PROJ=\"${CLAUDE_PROJECT_DIR}\"; echo '--- CONSTITUTION (7 immutable rules) ---' >&2; head -60 \"$PROJ/.claude/memory/CONSTITUTION.md\" 2>/dev/null >&2; echo '--- PROGRESS (active tasks) ---' >&2; head -40 \"$PROJ/.claude/PROGRESS.md\" 2>/dev/null >&2; echo '--- Reminders: mobile-first, claim intake <90s, OLED black #050505, rounded-sm, Framer Motion only, no phone/email/address in UI ---' >&2"
+          }
+        ]
+      }
+    ],
+
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -Command \"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Claude Code needs your attention — DR-NRPG', 'Disaster Recovery NRPG')\" 2>/dev/null || notify-send 'DR-NRPG' 'Claude Code needs your attention' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+
+    "ConfigChange": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "LOGDIR=\"${CLAUDE_PROJECT_DIR}/.claude/logs\"; mkdir -p \"$LOGDIR\"; echo \"{\\\"ts\\\":\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\",\\\"event\\\":\\\"ConfigChange\\\"}\" >> \"$LOGDIR/config-audit.log\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Subagent spawned. Rules: scope narrowly, return summary only, do not pollute main context. Load only relevant skills (max 5-6 per invocation).' >&2"
           }
         ]
       }
@@ -95,5 +213,6 @@
         ]
       }
     ]
+
   }
 }
