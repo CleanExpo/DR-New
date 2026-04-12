@@ -84,24 +84,36 @@ export default function HomePage() {
 
   const faqSchema = schemaGenerator.generateFAQSchema([
     {
-      question: 'How quickly can you respond to a disaster emergency?',
-      answer: 'Our network of IICRC-certified contractors provides 60-minute emergency response across all major Australian cities, 24 hours a day, 7 days a week.',
+      question: 'How quickly can an NRPG contractor respond to a disaster emergency?',
+      answer: 'NRPG contractors target a 60-minute on-site response, 24 hours a day, 7 days a week across all Australian states and territories. During major weather events such as cyclones and floods, emergency dispatch is prioritised by severity. Response times in metropolitan areas are typically faster than regional locations.',
     },
     {
-      question: 'Which types of disaster damage do you cover?',
-      answer: 'We cover water damage, flood damage, fire and smoke damage, storm damage, mould remediation, and biohazard cleanup across all Australian states and territories.',
+      question: 'What types of disaster damage does Disaster Recovery Australia handle?',
+      answer: 'Disaster Recovery Australia connects property owners with NRPG-certified contractors for water and flood damage, fire and smoke damage, storm and cyclone damage, mould remediation, and biohazard and sewage cleanup. All work is performed to IICRC (Institute of Inspection Cleaning and Restoration Certification) standards and fully documented for insurance claims.',
     },
     {
-      question: 'Are your contractors certified and insured?',
-      answer: 'Every contractor in the NRPG network independently holds their own IICRC certification, their own trade licences, and their own business insurance. They operate as independent businesses verified through a proprietary onboarding process with no equivalent in Australia or New Zealand.',
+      question: 'Are NRPG contractors IICRC certified?',
+      answer: 'Yes. Every contractor in the NRPG network must hold active IICRC certification relevant to their services — including Water Damage Restoration Technician (WRT), Applied Structural Drying (ASD), and Fire and Smoke Restoration Technician (FSRT). IICRC certification is recognised by all major Australian insurers as the professional standard for property restoration.',
     },
     {
-      question: 'Do you work with all insurance companies?',
-      answer: 'Yes. Our contractors work with all major Australian insurers and can coordinate directly with your insurance company to streamline the claims process.',
+      question: 'Does home insurance cover disaster restoration costs in Australia?',
+      answer: 'Most standard home insurance policies in Australia cover sudden and accidental water damage from burst pipes, storm water ingress, and appliance failure. Flood cover (riverine flooding) is typically an optional add-on. NRPG contractors provide IICRC-standard documentation — moisture mapping, scope of works, and drying logs — that insurers require to process claims promptly.',
     },
     {
-      question: 'How much does disaster restoration cost?',
-      answer: 'Costs vary based on the type and extent of damage. In many cases, restoration is fully covered by home and contents insurance. Our contractors provide detailed assessments for your insurer.',
+      question: 'How much does water damage restoration cost in Australia?',
+      answer: 'Water damage restoration typically costs $2,500–$8,000 for a standard residential property, depending on the affected area, materials, and drying time required. If you hold home insurance, your policy excess is usually your only out-of-pocket cost. NRPG contractors work with all major Australian insurers including NRMA, Suncorp, Allianz, QBE, and RACQ.',
+    },
+    {
+      question: 'How long does structural drying take after water damage?',
+      answer: 'Most residential water damage jobs take 3–7 days for the structural drying phase using professional commercial equipment. The IICRC S500 standard defines completion when all materials return to their pre-loss equilibrium moisture content — not an arbitrary time target. Dense materials such as concrete slabs and timber framing can take 10–14 days or more.',
+    },
+    {
+      question: 'What should I do immediately after a flood or burst pipe?',
+      answer: 'First, ensure personal safety — do not enter a property with structural damage, electrical hazards, or contaminated floodwater. Turn off electricity at the switchboard if water is present and it is safe to do so. Document all visible damage with photos before moving anything. Contact your insurer to notify them of the event. Then submit an emergency claim through Disaster Recovery Australia — an NRPG contractor will arrive to take over from there.',
+    },
+    {
+      question: 'Does Disaster Recovery Australia operate outside Queensland?',
+      answer: 'Yes. NRPG contractors operate across all Australian states and territories — New South Wales, Victoria, Queensland, Western Australia, South Australia, Tasmania, ACT, and Northern Territory — as well as New Zealand. Coverage density varies by region; major metropolitan areas have multiple certified contractors available 24/7.',
     },
   ])
 
@@ -295,7 +307,7 @@ export default function HomePage() {
           </section>
         </ScrollReveal>
 
-        {/* 8. FAQ SECTION (DIS-22) */}
+        {/* 8. FAQ SECTION (DR-240) */}
         <ScrollReveal>
           <section className="bg-slate-50 dark:bg-slate-900 py-16 md:py-24">
             <div className="container mx-auto px-6 max-w-4xl">
@@ -308,42 +320,55 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <dl className="space-y-6">
+              <dl className="space-y-4">
                 {[
                   {
-                    question: 'How quickly can you respond to a disaster emergency?',
-                    answer: 'Our network of IICRC-certified contractors provides 60-minute emergency response across all major Australian cities, 24 hours a day, 7 days a week.',
+                    question: 'How quickly can an NRPG contractor respond?',
+                    answer: 'NRPG contractors target a 60-minute on-site response, 24/7 across all Australian states and territories. During major weather events, emergency dispatch is prioritised by severity.',
                   },
                   {
-                    question: 'Which types of disaster damage do you cover?',
-                    answer: 'We cover water damage, flood damage, fire and smoke damage, storm damage, mould remediation, and biohazard cleanup across all Australian states and territories.',
+                    question: 'Are NRPG contractors IICRC certified?',
+                    answer: 'Yes. Every contractor must hold active IICRC certification — Water Damage Restoration Technician (WRT), Applied Structural Drying (ASD), Fire and Smoke Restoration Technician (FSRT), and others relevant to their services. IICRC certification is recognised by all major Australian insurers as the professional standard.',
                   },
                   {
-                    question: 'Are your contractors certified and insured?',
-                    answer: 'Every contractor in the NRPG network independently holds their own IICRC certification, their own trade licences, and their own business insurance. They operate as independent businesses verified through a proprietary onboarding process with no equivalent in Australia or New Zealand.',
+                    question: 'Does home insurance cover disaster restoration?',
+                    answer: 'Most standard policies cover sudden and accidental damage from burst pipes, storm water ingress, and appliance failure. NRPG contractors provide IICRC-standard documentation — scope of works, moisture mapping, drying logs — that insurers require to process claims promptly.',
                   },
                   {
-                    question: 'Do you work with all insurance companies?',
-                    answer: 'Yes. Our contractors work with all major Australian insurers and can coordinate directly with your insurance company to streamline the claims process.',
+                    question: 'What should I do immediately after a flood or burst pipe?',
+                    answer: 'Ensure personal safety first. Turn off electricity at the switchboard if water is present and safe to do so. Photograph all damage before moving anything. Notify your insurer. Then submit an emergency claim — an NRPG contractor arrives to take over from there.',
                   },
                   {
-                    question: 'How much does disaster restoration cost?',
-                    answer: 'Costs vary based on the type and extent of damage. In many cases, restoration is fully covered by home and contents insurance. Our contractors provide detailed assessments for your insurer.',
+                    question: 'How long does structural drying take?',
+                    answer: 'Most residential jobs take 3–7 days with professional commercial equipment. Dense materials like concrete slabs or insulated walls can take 10–14 days. The IICRC S500 standard defines completion by moisture content readings, not an arbitrary time target.',
+                  },
+                  {
+                    question: 'What states does NRPG operate in?',
+                    answer: 'All Australian states and territories — NSW, VIC, QLD, WA, SA, TAS, ACT, and NT — plus New Zealand. Metropolitan areas have multiple certified contractors on 24/7 standby.',
                   },
                 ].map(({ question, answer }) => (
                   <div
                     key={question}
-                    className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700"
+                    className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700"
                   >
-                    <dt className="font-display text-lg font-bold text-slate-900 dark:text-white mb-3">
+                    <dt className="font-display text-lg font-bold text-slate-900 dark:text-white mb-2">
                       {question}
                     </dt>
-                    <dd className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <dd className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
                       {answer}
                     </dd>
                   </div>
                 ))}
               </dl>
+
+              <div className="text-center mt-8">
+                <a
+                  href="/faq"
+                  className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:underline text-sm"
+                >
+                  View all frequently asked questions →
+                </a>
+              </div>
             </div>
           </section>
         </ScrollReveal>
