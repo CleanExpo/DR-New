@@ -13,6 +13,7 @@ import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { SuccessState } from '@/src/design-system/components/SuccessState/SuccessState';
 import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function ClaimSuccessPage() {
   return (
@@ -195,6 +196,50 @@ function ClaimSuccessContent() {
               </span>
             </li>
           </ul>
+        </div>
+
+        {/* RestoreAssist Trust Signal */}
+        <div className="mt-8 bg-teal-50 border border-teal-200 rounded-lg p-6">
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-teal-600 text-white flex items-center justify-center font-semibold text-lg">
+              RA
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-teal-900 mb-2">
+                Professional Documentation Included
+              </h3>
+              <p className="text-sm text-teal-800 mb-3">
+                Your NRPG contractor will document every aspect of the damage using{' '}
+                <strong>RestoreAssist</strong> — producing the professional scope of works,
+                moisture mapping, and photographic evidence your insurer needs to process
+                your claim without delays or disputes.
+              </p>
+              <ul className="space-y-1 text-sm text-teal-800 mb-3">
+                <li className="flex gap-2">
+                  <span className="text-teal-600 font-bold">✓</span>
+                  <span>IICRC-standard moisture mapping and drying logs</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-teal-600 font-bold">✓</span>
+                  <span>Timestamped photographic evidence</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-teal-600 font-bold">✓</span>
+                  <span>Scope of works accepted by all major Australian insurers</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-teal-600 font-bold">✓</span>
+                  <span>Daily drying reports delivered to your insurer automatically</span>
+                </li>
+              </ul>
+              <Link
+                href="/restore-assist"
+                className="text-sm text-teal-700 hover:text-teal-900 underline font-medium"
+              >
+                Learn how RestoreAssist documentation protects your claim →
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Email Confirmation */}

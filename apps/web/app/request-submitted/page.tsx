@@ -51,6 +51,24 @@ export default async function RequestSubmittedPage({
             </ul>
           </div>
 
+          {/* RestoreAssist Trust Signal */}
+          <div className="bg-teal-50 border border-teal-200 rounded-xl p-6 mb-8 text-left">
+            <h2 className="font-semibold text-teal-900 mb-2">Professional documentation included</h2>
+            <p className="text-sm text-teal-800 mb-3">
+              Your NRPG contractor will use <strong>RestoreAssist</strong> to document all
+              damage — creating the moisture maps, scope of works, and photographic evidence
+              your insurer needs to process your claim without delays.
+            </p>
+            <ul className="text-sm text-teal-800 space-y-1 mb-3">
+              <li>✓ IICRC-standard moisture mapping</li>
+              <li>✓ Scope of works accepted by all major Australian insurers</li>
+              <li>✓ Timestamped photo evidence</li>
+            </ul>
+            <Link href="/restore-assist" className="text-sm text-teal-700 hover:text-teal-900 underline font-medium">
+              Learn how RestoreAssist protects your claim →
+            </Link>
+          </div>
+
           <div className="space-y-4">
             <Link
               href="/"
