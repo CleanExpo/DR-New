@@ -15,9 +15,11 @@ export interface AuthContext {
 
 export interface AuthenticateRequestOptions {
   /**
-   * Legacy fallback for non-browser clients that still send `Authorization: Bearer ...`.
+   * Accept `Authorization: Bearer <token>` in addition to NextAuth cookie sessions.
    *
-   * Default: `false` (cookie-based NextAuth session only).
+   * Default: `true` — enables React Native / mobile clients to authenticate with
+   * the JWT issued by POST /api/auth/mobile without requiring cookies.
+   * Cookie-based NextAuth sessions are always tried first.
    */
   allowBearerToken?: boolean;
 }
@@ -28,7 +30,7 @@ export interface AuthenticateRequestOptions {
  */
 export async function authenticateRequest(
   request: NextRequest,
-  options: AuthenticateRequestOptions = {}
+  options: AuthenticateRequestOptions = { allowBearerToken: true }
 ): Promise<{ success: true; context: AuthContext } | { success: false; response: NextResponse }> {
   // Prefer NextAuth cookie-based sessions when available.
   try {
