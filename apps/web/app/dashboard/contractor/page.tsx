@@ -26,7 +26,10 @@ import ContractorOnboarding from '@/components/onboarding/contractor-onboarding'
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import { EligibilityBanner } from '@/components/contractor/eligibility-banner';
 import { RealtimeNotifications } from '@/components/realtime/RealtimeNotifications';
-import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle } from 'lucide-react';
+import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle, Star } from 'lucide-react';
+import { useContractorStats } from '@/hooks/useContractorStats';
+import { Card, CardContent } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface DashboardStats {
   activeOpportunities: number;
@@ -59,6 +62,7 @@ interface AvailabilityStatus {
 export default function ContractorDashboardPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const { stats: apiStats, loading: statsLoading } = useContractorStats();
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [contractorPreferences, setContractorPreferences] = useState<any>(null);
   const [loadingPreferences, setLoadingPreferences] = useState(true);
@@ -480,31 +484,47 @@ export default function ContractorDashboardPage() {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatsCard
-          label="Active Opportunities"
-          value={stats.activeOpportunities.toString()}
-          trend={{ value: 12, direction: 'up' }}
-          icon={<Briefcase className="size-5 text-earth-primary" />}
-        />
-        <StatsCard
-          label="Pending Bids"
-          value={stats.pendingBids.toString()}
-          trend={{ value: 3, direction: 'up' }}
-          icon={<TrendingUp className="size-5 text-nrpg-teal" />}
-        />
-        <StatsCard
-          label="Projects Completed"
-          value={stats.completedProjects.toString()}
-          sublabel="This quarter"
-          icon={<Users className="size-5 text-earth-secondary" />}
-        />
-        <StatsCard
-          label="Total Earnings"
-          value={`$${stats.totalEarnings.toLocaleString()}`}
-          trend={{ value: 8, direction: 'up' }}
-          sublabel="YTD"
-          icon={<DollarSign className="size-5 text-portal-success" />}
-        />
+        {statsLoading ? (
+          <>
+            {[0, 1, 2, 3].map((i) => (
+              <Card key={i}>
+                <CardContent className="pt-6 space-y-3">
+                  <Skeleton className="h-4 w-24" />
+                  <Skeleton className="h-8 w-16" />
+                  <Skeleton className="h-3 w-20" />
+                </CardContent>
+              </Card>
+            ))}
+          </>
+        ) : (
+          <>
+            <StatsCard
+              label="Active Jobs"
+              value={(apiStats?.activeProjects ?? stats.activeOpportunities).toString()}
+              trend={{ value: 12, direction: 'up' }}
+              icon={<Briefcase className="size-5 text-earth-primary" />}
+            />
+            <StatsCard
+              label="Jobs Completed"
+              value={(apiStats?.completedJobs ?? stats.completedProjects).toString()}
+              sublabel="All time"
+              icon={<Users className="size-5 text-earth-secondary" />}
+            />
+            <StatsCard
+              label="Total Earnings"
+              value={`$${(apiStats?.totalEarnings ?? stats.totalEarnings).toLocaleString()}`}
+              trend={{ value: 8, direction: 'up' }}
+              sublabel="All time"
+              icon={<DollarSign className="size-5 text-portal-success" />}
+            />
+            <StatsCard
+              label="Rating"
+              value={apiStats?.rating != null ? apiStats.rating.toFixed(1) : '—'}
+              sublabel={apiStats?.todaysOpportunities != null ? `${apiStats.todaysOpportunities} new today` : undefined}
+              icon={<Star className="size-5 text-yellow-500" />}
+            />
+          </>
+        )}
       </div>
 
       {/* Main Content Grid */}

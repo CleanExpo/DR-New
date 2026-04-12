@@ -33,7 +33,7 @@ export default function AdminPortalLayout({ children }: AdminPortalLayoutProps) 
     { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Verification Queue', href: '/admin/verification', icon: CheckSquare },
     { name: 'Claims Management', href: '/admin/claims', icon: FileText },
-    { name: 'User Management', href: '/admin/users', icon: Users },
+    { name: 'User Management', href: '/dashboard/admin/users', icon: Users },
     { name: 'Beta Programmes', href: '/dashboard/admin/beta', icon: Beaker },
     { name: 'Reports', href: '/admin/reports', icon: BarChart3 },
     { name: 'Settings', href: '/admin/settings', icon: Settings },

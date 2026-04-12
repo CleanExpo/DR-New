@@ -193,6 +193,30 @@ export default function NrpgRegistrationPage() {
         return;
       }
 
+      // CONN-003: Create workspace after successful contractor registration
+      try {
+        const wsRes = await fetch('/api/workspace/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            businessName: form.businessName,
+            abnNumber: form.abnNumber.trim() ? form.abnNumber.trim() : undefined,
+            acnNumber: form.acnNumber.trim() ? form.acnNumber.trim() : undefined,
+            initialTier: 'BASIC',
+          }),
+        });
+
+        const wsData = await wsRes.json().catch(() => null);
+
+        if (wsRes.ok && wsData?.success && wsData?.workspace?.id) {
+          // Store workspace ID for subscription checkout (CONN-001)
+          localStorage.setItem('nrpg_workspace_id', wsData.workspace.id);
+        }
+        // Workspace creation failure is non-blocking — contractor can still complete onboarding
+      } catch {
+        // Fire-and-forget: workspace creation errors don't block registration
+      }
+
       setSuccess(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Registration failed');
@@ -211,14 +235,18 @@ export default function NrpgRegistrationPage() {
               Registration submitted
             </CardTitle>
             <CardDescription>
-              NRPG will review your submission. You can continue training while verification is pending.
+              NRPG will review your submission. Your workspace has been created — choose a subscription
+              plan to unlock full access to the contractor portal.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button className="w-full" onClick={() => router.push('/dashboard/contractor/onboarding/checklist')}>
+            <Button className="w-full" onClick={() => router.push('/dashboard/contractor/subscription')}>
+              Set Up Subscription
+            </Button>
+            <Button variant="outline" className="w-full" onClick={() => router.push('/dashboard/contractor/onboarding/checklist')}>
               Back to checklist
             </Button>
-            <Button variant="outline" className="w-full" onClick={() => router.push('/dashboard/contractor/onboarding')}>
+            <Button variant="ghost" className="w-full" onClick={() => router.push('/dashboard/contractor/onboarding')}>
               Continue training
             </Button>
           </CardContent>

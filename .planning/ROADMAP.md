@@ -52,8 +52,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: Audit all 318 API routes for frontend consumers
-- [ ] 02-02: Document disconnected endpoints and required connections
+- [x] 02-01: Audit all 318 API routes for frontend consumers
+- [x] 02-02: Document disconnected endpoints and required connections
 
 **Audit Areas:**
 - Admin Dashboard → Admin API routes (62 routes)

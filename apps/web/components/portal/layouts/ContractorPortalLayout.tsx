@@ -28,6 +28,9 @@ import {
   Settings,
   ChevronLeft,
   Menu,
+  Briefcase,
+  ClipboardList,
+  CreditCard,
 } from 'lucide-react';
 
 interface NavItem {
@@ -40,9 +43,12 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard/contractor', icon: LayoutDashboard },
   { label: 'Active Opportunities', href: '/dashboard/contractor/opportunities', icon: FileText },
+  { label: 'My Bids', href: '/dashboard/contractor/my-bids', icon: ClipboardList },
+  { label: 'Active Jobs', href: '/dashboard/contractor/active-jobs', icon: Briefcase },
   { label: 'Brand & Compliance', href: '/dashboard/contractor/compliance', icon: Shield },
   { label: 'Financial Insights', href: '/dashboard/contractor/financial', icon: TrendingUp },
   { label: 'Growth & Training', href: '/dashboard/contractor/training', icon: GraduationCap },
+  { label: 'Subscription', href: '/dashboard/contractor/subscription', icon: CreditCard },
 ];
 
 interface ContractorPortalLayoutProps {

@@ -4,6 +4,13 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Skeleton } from '@/components/ui/skeleton';
+import { usePayoutSettings, type PayoutSchedule } from '@/hooks/usePayoutSettings';
+import { toast } from '@/hooks/use-toast';
 
 interface Earning {
   id: string;
@@ -38,6 +45,133 @@ interface PeriodEarnings {
   totalPayout: number;
   jobCount: number;
   averageJobValue: number;
+}
+
+const SCHEDULE_OPTIONS: { value: PayoutSchedule; label: string; description: string }[] = [
+  { value: 'WEEKLY', label: 'Weekly', description: 'Paid every Monday' },
+  { value: 'BI_WEEKLY', label: 'Bi-weekly', description: 'Paid every second Monday' },
+  { value: 'MONTHLY', label: 'Monthly', description: 'Paid on the 1st of each month' },
+];
+
+function PayoutSettingsPanel() {
+  const { data, loading, saving, error, updatePayoutSchedule } = usePayoutSettings();
+  const [selected, setSelected] = useState<PayoutSchedule>('WEEKLY');
+
+  useEffect(() => {
+    if (data?.settings?.payoutSchedule) {
+      setSelected(data.settings.payoutSchedule);
+    }
+  }, [data?.settings?.payoutSchedule]);
+
+  const handleSave = async () => {
+    const result = await updatePayoutSchedule(selected);
+    if (result.success) {
+      toast({ title: 'Payout settings saved', description: 'Your payout schedule has been updated.' });
+    } else {
+      toast({ title: 'Failed to save', description: result.error ?? 'Please try again.', variant: 'destructive' });
+    }
+  };
+
+  if (loading) {
+    return (
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle>Payout Settings</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Skeleton className="h-6 w-48" />
+          <Skeleton className="h-6 w-64" />
+          <Skeleton className="h-6 w-32" />
+          <Skeleton className="h-10 w-28" />
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (error) {
+    return (
+      <Card className="mt-8">
+        <CardHeader>
+          <CardTitle>Payout Settings</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-red-600">{error}</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="mt-8">
+      <CardHeader>
+        <CardTitle>Payout Settings</CardTitle>
+        <CardDescription>
+          {data?.settings?.stripeConnectStatus === 'CONNECTED'
+            ? `Stripe account connected (${data.settings.stripeConnectAccountId})`
+            : 'Stripe account not connected.'}
+          {data?.settings?.bankAccountLinked === false && (
+            <span className="ml-2 text-yellow-600 font-medium">· Bank account not linked</span>
+          )}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {data?.stripeConnectSetupUrl && (
+          <div className="rounded-md bg-yellow-50 border border-yellow-200 p-4 text-sm text-yellow-800">
+            Your Stripe Connect account is not set up.{' '}
+            <a
+              href={data.stripeConnectSetupUrl}
+              className="font-medium underline hover:text-yellow-900"
+            >
+              Connect Stripe to receive payouts
+            </a>
+          </div>
+        )}
+
+        <div className="space-y-3">
+          <Label className="text-sm font-medium text-gray-900">Payout Schedule</Label>
+          <RadioGroup
+            value={selected}
+            onValueChange={(v) => setSelected(v as PayoutSchedule)}
+            className="space-y-2"
+          >
+            {SCHEDULE_OPTIONS.map((opt) => (
+              <div
+                key={opt.value}
+                className="flex items-center space-x-3 rounded-lg border border-gray-200 p-3 hover:bg-gray-50 transition-colors"
+              >
+                <RadioGroupItem value={opt.value} id={`schedule-${opt.value}`} />
+                <Label htmlFor={`schedule-${opt.value}`} className="flex-1 cursor-pointer">
+                  <span className="font-medium text-gray-900">{opt.label}</span>
+                  <span className="ml-2 text-sm text-gray-500">{opt.description}</span>
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
+        </div>
+
+        {data && (
+          <div className="text-sm text-gray-500">
+            Next estimated payout:{' '}
+            <span className="font-medium text-gray-900">
+              {new Date(data.nextPayoutDate).toLocaleDateString('en-AU', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+              })}
+            </span>
+          </div>
+        )}
+
+        <Button
+          onClick={handleSave}
+          disabled={saving}
+          className="bg-blue-600 hover:bg-blue-700 text-white"
+        >
+          {saving ? 'Saving…' : 'Save Settings'}
+        </Button>
+      </CardContent>
+    </Card>
+  );
 }
 
 export default function ContractorEarningsPage() {
@@ -239,7 +373,7 @@ export default function ContractorEarningsPage() {
         </div>
 
         {/* Earnings Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-white rounded-lg shadow overflow-hidden" id="earnings-table">
           {earnings.length === 0 ? (
             <div className="p-8 text-center">
               <p className="text-gray-400 mb-4">No earnings in this period</p>
@@ -321,6 +455,8 @@ export default function ContractorEarningsPage() {
             </table>
           )}
         </div>
+        {/* Payout Settings */}
+        <PayoutSettingsPanel />
       </div>
     </div>
   );

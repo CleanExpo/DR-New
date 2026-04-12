@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -12,7 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { 
+import { Skeleton } from '@/components/ui/skeleton';
+import {
   Plus,
   Search,
   Filter,
@@ -22,8 +23,275 @@ import {
   Globe,
   Building,
   Settings,
-  Loader2
+  Loader2,
+  CreditCard,
+  ExternalLink,
+  RefreshCw,
 } from 'lucide-react';
+import { toast } from 'sonner';
+
+// ---------------------------------------------------------------------------
+// Tenant Billing Types
+// ---------------------------------------------------------------------------
+
+interface BillingStatus {
+  tenant: {
+    id: string;
+    name: string;
+    tier: string;
+    status: string;
+    currentPeriodStart: string | null;
+    currentPeriodEnd: string | null;
+    trialEndsAt: string | null;
+  };
+  usage: {
+    users: { current: number; limit: number; percentage: number };
+    requests: { current: number; limit: number; percentage: number };
+  };
+  stripe: {
+    id: string;
+    cancelAtPeriodEnd: boolean;
+    canceledAt: string | null;
+  } | null;
+}
+
+type BillingTier = 'BASIC' | 'PRO' | 'ENTERPRISE';
+
+const TIER_LABELS: Record<string, string> = {
+  BASIC: 'Basic',
+  PRO: 'Pro',
+  ENTERPRISE: 'Enterprise',
+  TRIAL: 'Trial',
+};
+
+const STATUS_VARIANT: Record<string, 'default' | 'secondary' | 'destructive' | 'outline'> = {
+  ACTIVE: 'default',
+  TRIAL: 'secondary',
+  PAST_DUE: 'destructive',
+  CANCELED: 'outline',
+  INACTIVE: 'outline',
+};
+
+function formatBillingDate(dateStr: string | null): string {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-AU', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
+// ---------------------------------------------------------------------------
+// TenantBillingPanel — fetches current tenant billing status
+// ---------------------------------------------------------------------------
+
+function TenantBillingPanel() {
+  const [billingStatus, setBillingStatus] = useState<BillingStatus | null>(null);
+  const [loadingStatus, setLoadingStatus] = useState(true);
+  const [checkoutTier, setCheckoutTier] = useState<BillingTier>('BASIC');
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [portalLoading, setPortalLoading] = useState(false);
+
+  const fetchStatus = useCallback(async () => {
+    setLoadingStatus(true);
+    try {
+      const res = await fetch('/api/admin/tenant-billing/status');
+      if (!res.ok) throw new Error('Failed to load billing status');
+      const json: BillingStatus = await res.json();
+      setBillingStatus(json);
+    } catch {
+      toast.error('Failed to load billing status');
+    } finally {
+      setLoadingStatus(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchStatus();
+  }, [fetchStatus]);
+
+  const handleSetupBilling = async () => {
+    setCheckoutLoading(true);
+    try {
+      const res = await fetch('/api/admin/tenant-billing/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tier: checkoutTier }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.message ?? 'Checkout failed');
+      if (json.url) {
+        window.location.href = json.url;
+      } else {
+        toast.error('No Stripe URL returned');
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Checkout failed';
+      toast.error(message);
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
+
+  const handleBillingPortal = async () => {
+    setPortalLoading(true);
+    try {
+      const res = await fetch('/api/admin/tenant-billing/portal');
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.message ?? 'Portal unavailable');
+      if (json.url) {
+        window.open(json.url, '_blank', 'noopener,noreferrer');
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Portal unavailable';
+      toast.error(message);
+    } finally {
+      setPortalLoading(false);
+    }
+  };
+
+  return (
+    <Card className="border-indigo-100 bg-indigo-50/40">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <CreditCard className="h-5 w-5 text-indigo-600" />
+            <CardTitle className="text-base">Tenant Subscription</CardTitle>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={fetchStatus}
+            disabled={loadingStatus}
+            title="Refresh billing status"
+          >
+            <RefreshCw className={`h-4 w-4 ${loadingStatus ? 'animate-spin' : ''}`} />
+          </Button>
+        </div>
+        <CardDescription>
+          Manage your tenant&apos;s Stripe subscription and billing portal access.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {loadingStatus ? (
+          <div className="space-y-3">
+            <Skeleton className="h-5 w-40" />
+            <Skeleton className="h-4 w-64" />
+            <Skeleton className="h-9 w-36" />
+          </div>
+        ) : billingStatus ? (
+          <div className="space-y-4">
+            {/* Status row */}
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge variant={STATUS_VARIANT[billingStatus.tenant.status] ?? 'outline'}>
+                {billingStatus.tenant.status}
+              </Badge>
+              <span className="text-sm text-gray-600">
+                Plan:{' '}
+                <strong>{TIER_LABELS[billingStatus.tenant.tier] ?? billingStatus.tenant.tier}</strong>
+              </span>
+              {billingStatus.tenant.currentPeriodEnd && (
+                <span className="text-sm text-gray-500">
+                  Renews {formatBillingDate(billingStatus.tenant.currentPeriodEnd)}
+                </span>
+              )}
+              {billingStatus.tenant.trialEndsAt && (
+                <span className="text-sm text-amber-600">
+                  Trial ends {formatBillingDate(billingStatus.tenant.trialEndsAt)}
+                </span>
+              )}
+              {billingStatus.stripe?.cancelAtPeriodEnd && (
+                <Badge variant="outline" className="border-orange-400 text-orange-600">
+                  Cancels at period end
+                </Badge>
+              )}
+            </div>
+
+            {/* Usage */}
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p className="text-gray-500 mb-1">Users</p>
+                <p className="font-medium">
+                  {billingStatus.usage.users.current} / {billingStatus.usage.users.limit || '∞'}
+                </p>
+              </div>
+              <div>
+                <p className="text-gray-500 mb-1">Monthly Requests</p>
+                <p className="font-medium">
+                  {billingStatus.usage.requests.current} / {billingStatus.usage.requests.limit || '∞'}
+                </p>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              {/* Show portal if subscription exists, else show setup */}
+              {billingStatus.stripe ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleBillingPortal}
+                  disabled={portalLoading}
+                >
+                  {portalLoading ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : (
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                  )}
+                  Billing Portal
+                </Button>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Select
+                    value={checkoutTier}
+                    onValueChange={(v) => setCheckoutTier(v as BillingTier)}
+                  >
+                    <SelectTrigger className="w-36 h-9">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="BASIC">Basic</SelectItem>
+                      <SelectItem value="PRO">Pro</SelectItem>
+                      <SelectItem value="ENTERPRISE">Enterprise</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    size="sm"
+                    onClick={handleSetupBilling}
+                    disabled={checkoutLoading}
+                  >
+                    {checkoutLoading ? (
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    ) : (
+                      <CreditCard className="mr-2 h-4 w-4" />
+                    )}
+                    Setup Billing
+                  </Button>
+                </div>
+              )}
+              {/* Always show portal button if they have a customer (even if stripe sub details missing) */}
+              {billingStatus.stripe && (
+                <Button
+                  size="sm"
+                  onClick={handleSetupBilling}
+                  disabled={checkoutLoading}
+                  variant="secondary"
+                >
+                  {checkoutLoading ? (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  ) : null}
+                  Change Plan
+                </Button>
+              )}
+            </div>
+          </div>
+        ) : (
+          <p className="text-sm text-gray-500">Billing information unavailable.</p>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
 interface Tenant {
   id: string;
@@ -312,6 +580,9 @@ export default function TenantsPage() {
           </DialogContent>
         </Dialog>
       </div>
+
+      {/* Billing Panel */}
+      <TenantBillingPanel />
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
