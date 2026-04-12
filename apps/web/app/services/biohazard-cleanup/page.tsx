@@ -47,7 +47,6 @@ export default function BiohazardCleanupPillarPage() {
   description: 'Professional biohazard cleanup services across Australia. Crime scene, trauma, meth lab decontamination, sewage, hoarding cleanup. Certified and discreet.',
   keywords: [],
   slug: 'biohazard-cleanup',
-  faqs: aeoFaqs,
   categoryName: 'Biohazard Cleanup',
   faqs: [
     {
