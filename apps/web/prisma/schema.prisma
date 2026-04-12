@@ -3592,3 +3592,46 @@ model NRPGCertScore {
   @@index([totalPoints])
   @@map("nrpg_cert_scores")
 }
+
+// ---------------------------------------------------------------------------
+// DR-191 — 30-Day Onboarding Milestone Tracking
+// ---------------------------------------------------------------------------
+
+model OnboardingMilestone {
+  id             String    @id @default(cuid())
+  contractorId   String
+  milestoneKey   String
+  week           Int
+  title          String
+  description    String
+  status         String    @default("NOT_STARTED")
+  dueDate        DateTime
+  completedAt    DateTime?
+  reminderSent   Boolean   @default(false)
+  flaggedToPhill Boolean   @default(false)
+  flaggedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  checkIns OnboardingCheckIn[]
+
+  @@unique([contractorId, milestoneKey])
+  @@index([contractorId])
+  @@index([status])
+  @@index([dueDate])
+  @@map("onboarding_milestones")
+}
+
+model OnboardingCheckIn {
+  id          String   @id @default(cuid())
+  milestoneId String
+  performedBy String
+  notes       String?
+  outcome     String
+  createdAt   DateTime @default(now())
+
+  milestone OnboardingMilestone @relation(fields: [milestoneId], references: [id], onDelete: Cascade)
+
+  @@index([milestoneId])
+  @@map("onboarding_check_ins")
+}
