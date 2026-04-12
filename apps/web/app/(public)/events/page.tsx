@@ -1,61 +1,245 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import eventsData from '@/data/events.json'
-import { Calendar, MapPin, Tag, Users, Filter, ChevronRight, Clock, Award } from 'lucide-react'
+import { Calendar, MapPin, Clock, Award, Search, Filter, ArrowRight, ChevronDown, Plus } from 'lucide-react'
 
-type EventCategory = 'all' | 'iicrc-training' | 'conference' | 'trade-show' | 'networking' | 'seminar' | 'supplier-day' | 'standards' | 'webinar'
-type EventType = 'all' | 'in-person' | 'virtual' | 'hybrid'
+// ── Types ─────────────────────────────────────────────────────────────────────
 
-const CATEGORY_LABELS: Record<string, string> = {
+type EventCategory = 'iicrc-training' | 'conference' | 'trade-show' | 'networking' | 'seminar' | 'supplier-day' | 'webinar'
+type EventFormat = 'in-person' | 'online' | 'hybrid'
+
+interface CalendarEvent {
+  id: string
+  title: string
+  organiser: string
+  category: EventCategory
+  format: EventFormat
+  startDate: string
+  endDate: string
+  location: string
+  state: string
+  country: 'AU' | 'NZ' | 'JP'
+  iicrcCert?: string
+  cecCredits?: number
+  price: string
+  featured: boolean
+  description: string
+}
+
+// ── Seed events ───────────────────────────────────────────────────────────────
+
+const events: CalendarEvent[] = [
+  {
+    id: 'wrt-asd-bris-may25',
+    title: 'IICRC WRT & ASD Combo — Brisbane',
+    organiser: 'Total Flood Restore',
+    category: 'iicrc-training',
+    format: 'in-person',
+    startDate: '2025-05-12',
+    endDate: '2025-05-16',
+    location: 'Brisbane, QLD',
+    state: 'QLD',
+    country: 'AU',
+    iicrcCert: 'WRT + ASD',
+    cecCredits: 14,
+    price: '$2,400',
+    featured: true,
+    description: '5-day combo covering Water Restoration Technician and Applied Structural Drying. IICRC-approved instructor. Max 14 students.',
+  },
+  {
+    id: 'amrt-syd-may25',
+    title: 'IICRC AMRT — Applied Microbial Remediation Technician',
+    organiser: 'CleanAir Training',
+    category: 'iicrc-training',
+    format: 'in-person',
+    startDate: '2025-05-19',
+    endDate: '2025-05-22',
+    location: 'Sydney, NSW',
+    state: 'NSW',
+    country: 'AU',
+    iicrcCert: 'AMRT',
+    cecCredits: 12,
+    price: '$1,950',
+    featured: true,
+    description: 'IICRC Applied Microbial Remediation Technician certification. Covers mould assessment, containment, and S520 protocols.',
+  },
+  {
+    id: 'mould-workshop-tokyo-may25',
+    title: 'Mould Remediation Workshop — Tokyo',
+    organiser: 'Japan Resto Pro',
+    category: 'iicrc-training',
+    format: 'in-person',
+    startDate: '2025-05-24',
+    endDate: '2025-05-25',
+    location: 'Tokyo',
+    state: 'Tokyo',
+    country: 'JP',
+    iicrcCert: 'AMRT',
+    cecCredits: 8,
+    price: '¥85,000',
+    featured: false,
+    description: 'Two-day AMRT preparation workshop with Japanese-language support. IICRC S520, mould sampling, containment, and remediation protocols.',
+  },
+  {
+    id: 'fsrt-mel-jun25',
+    title: 'IICRC FSRT — Fire & Smoke Restoration Technician',
+    organiser: 'ProRestore VIC',
+    category: 'iicrc-training',
+    format: 'in-person',
+    startDate: '2025-06-09',
+    endDate: '2025-06-11',
+    location: 'Melbourne, VIC',
+    state: 'VIC',
+    country: 'AU',
+    iicrcCert: 'FSRT',
+    cecCredits: 10,
+    price: '$1,750',
+    featured: false,
+    description: 'IICRC Fire & Smoke Restoration Technician certification. Covers soot types, deodorisation, contents pack-out, and IICRC FSRT standards.',
+  },
+  {
+    id: 'airc-forum-syd-jun25',
+    title: 'AU Restoration Industry Forum 2025',
+    organiser: 'AIRC',
+    category: 'conference',
+    format: 'in-person',
+    startDate: '2025-06-18',
+    endDate: '2025-06-19',
+    location: 'Sydney, NSW',
+    state: 'NSW',
+    country: 'AU',
+    price: '$750',
+    featured: true,
+    description: 'Annual industry conference for restoration professionals. Keynote speakers, insurer roundtables, technical workshops, and networking dinner.',
+  },
+  {
+    id: 'wrt-auckland-jul25',
+    title: 'IICRC WRT — Water Restoration Technician',
+    organiser: 'Restore NZ',
+    category: 'iicrc-training',
+    format: 'in-person',
+    startDate: '2025-07-07',
+    endDate: '2025-07-09',
+    location: 'Auckland',
+    state: 'Auckland',
+    country: 'NZ',
+    iicrcCert: 'WRT',
+    cecCredits: 10,
+    price: 'NZD $1,800',
+    featured: false,
+    description: 'IICRC Water Restoration Technician course in Auckland. Foundation certification for water damage professionals.',
+  },
+  {
+    id: 'insurance-claims-webinar-jul25',
+    title: 'Navigating Insurer Scopes: What Changed in 2025',
+    organiser: 'NRPG',
+    category: 'webinar',
+    format: 'online',
+    startDate: '2025-07-15',
+    endDate: '2025-07-15',
+    location: 'Online',
+    state: 'Online',
+    country: 'AU',
+    price: 'Free for NRPG members',
+    featured: false,
+    description: 'Live webinar covering the 2025 insurer documentation requirements, scope of works changes, and AFCA complaint trends. Q&A included.',
+  },
+  {
+    id: 'restoration-expo-mel-aug25',
+    title: 'Restoration & Cleaning Industry Expo — Melbourne',
+    organiser: 'Cleaning World',
+    category: 'trade-show',
+    format: 'in-person',
+    startDate: '2025-08-14',
+    endDate: '2025-08-15',
+    location: 'Melbourne Convention Centre, VIC',
+    state: 'VIC',
+    country: 'AU',
+    price: 'Free (registration required)',
+    featured: true,
+    description: 'Australia\'s largest restoration and cleaning industry trade show. Equipment demonstrations, supplier stands, and CE sessions.',
+  },
+  {
+    id: 'asd-bsrt-perth-aug25',
+    title: 'IICRC ASD & BSRT Combo — Perth',
+    organiser: 'WA Restore',
+    category: 'iicrc-training',
+    format: 'in-person',
+    startDate: '2025-08-18',
+    endDate: '2025-08-22',
+    location: 'Perth, WA',
+    state: 'WA',
+    country: 'AU',
+    iicrcCert: 'ASD + BSRT',
+    cecCredits: 14,
+    price: '$2,250',
+    featured: false,
+    description: 'Combined Applied Structural Drying and Building Science for the Restoration Technician course. Suitable for WRT holders.',
+  },
+  {
+    id: 'networking-bris-sep25',
+    title: 'QLD Restoration Professionals Networking Evening',
+    organiser: 'NRPG Queensland',
+    category: 'networking',
+    format: 'in-person',
+    startDate: '2025-09-11',
+    endDate: '2025-09-11',
+    location: 'Brisbane, QLD',
+    state: 'QLD',
+    country: 'AU',
+    price: '$45',
+    featured: false,
+    description: 'Informal networking evening for Queensland restoration contractors and industry suppliers. Drinks and canapés included.',
+  },
+]
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+
+const CATEGORY_LABELS: Record<EventCategory, string> = {
   'iicrc-training': 'IICRC Training',
   'conference': 'Conference',
   'trade-show': 'Trade Show',
   'networking': 'Networking',
   'seminar': 'Seminar',
   'supplier-day': 'Supplier Day',
-  'standards': 'Standards',
   'webinar': 'Webinar',
 }
 
-const CATEGORY_COLOURS: Record<string, string> = {
+const CATEGORY_COLOURS: Record<EventCategory, string> = {
   'iicrc-training': 'bg-blue-100 text-blue-800',
   'conference': 'bg-emerald-100 text-emerald-800',
   'trade-show': 'bg-purple-100 text-purple-800',
   'networking': 'bg-orange-100 text-orange-800',
   'seminar': 'bg-sky-100 text-sky-800',
   'supplier-day': 'bg-yellow-100 text-yellow-800',
-  'standards': 'bg-red-100 text-red-800',
   'webinar': 'bg-teal-100 text-teal-800',
 }
 
-const STATE_LABELS: Record<string, string> = {
-  'NAT': 'National / Online',
-  'NSW': 'New South Wales',
-  'VIC': 'Victoria',
-  'QLD': 'Queensland',
-  'SA': 'South Australia',
-  'WA': 'Western Australia',
-  'TAS': 'Tasmania',
-  'NT': 'Northern Territory',
-  'ACT': 'ACT',
+const COUNTRY_LABELS: Record<string, string> = {
+  'AU': 'Australia',
   'NZ': 'New Zealand',
+  'JP': 'Japan',
+}
+
+function formatDateRange(start: string, end: string): string {
+  const s = new Date(start)
+  const e = new Date(end)
+  const opts: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short' }
+  if (start === end) return s.toLocaleDateString('en-AU', { ...opts, year: 'numeric' })
+  if (s.getMonth() === e.getMonth()) {
+    return `${s.getDate()}–${e.toLocaleDateString('en-AU', { ...opts, year: 'numeric' })}`
+  }
+  return `${s.toLocaleDateString('en-AU', opts)} – ${e.toLocaleDateString('en-AU', { ...opts, year: 'numeric' })}`
 }
 
 const eventsSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: 'ANZ Restoration & Cleaning Industry Events Calendar',
-  description: 'Complete calendar of IICRC training, conferences, trade shows, and networking events for the Australian and New Zealand disaster recovery and restoration industry.',
+  name: 'Restoration Industry Events Calendar — Australia, New Zealand & Japan',
+  description: 'IICRC training courses, conferences, trade shows, and networking events for restoration professionals in Australia, New Zealand, and Japan.',
   url: 'https://disasterrecovery.com.au/events',
-  numberOfItems: eventsData.events.length,
-  itemListElement: eventsData.events.map((event, index) => ({
-    '@type': 'ListItem',
-    position: index + 1,
-    name: event.title,
-    url: `https://disasterrecovery.com.au/events/${event.slug}`,
-  })),
+  numberOfItems: events.length,
 }
 
 const breadcrumbSchema = {
@@ -63,313 +247,263 @@ const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://disasterrecovery.com.au' },
-    { '@type': 'ListItem', position: 2, name: 'Industry Events', item: 'https://disasterrecovery.com.au/events' },
+    { '@type': 'ListItem', position: 2, name: 'Industry Partners', item: 'https://disasterrecovery.com.au/industry-partners' },
+    { '@type': 'ListItem', position: 3, name: 'Events', item: 'https://disasterrecovery.com.au/events' },
   ],
 }
 
-function formatDateRange(startDate: string, endDate: string): string {
-  const start = new Date(startDate)
-  const end = new Date(endDate)
-  const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' }
-  if (startDate === endDate) return start.toLocaleDateString('en-AU', options)
-  if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
-    return `${start.getDate()}–${end.toLocaleDateString('en-AU', options)}`
-  }
-  return `${start.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' })} – ${end.toLocaleDateString('en-AU', options)}`
-}
-
-function getMonthLabel(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString('en-AU', { month: 'long', year: 'numeric' })
-}
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function EventsPage() {
-  const [categoryFilter, setCategoryFilter] = useState<EventCategory>('all')
-  const [typeFilter, setTypeFilter] = useState<EventType>('all')
-  const [stateFilter, setStateFilter] = useState<string>('all')
+  const [search, setSearch] = useState('')
+  const [filterCategory, setFilterCategory] = useState<EventCategory | 'all'>('all')
+  const [filterCountry, setFilterCountry] = useState<'all' | 'AU' | 'NZ' | 'JP'>('all')
+  const [filterFormat, setFilterFormat] = useState<EventFormat | 'all'>('all')
 
-  const today = new Date().toISOString().split('T')[0]
+  const filtered = useMemo(() => {
+    return events.filter(ev => {
+      const matchSearch = !search || ev.title.toLowerCase().includes(search.toLowerCase()) || ev.organiser.toLowerCase().includes(search.toLowerCase()) || ev.location.toLowerCase().includes(search.toLowerCase())
+      const matchCat = filterCategory === 'all' || ev.category === filterCategory
+      const matchCountry = filterCountry === 'all' || ev.country === filterCountry
+      const matchFormat = filterFormat === 'all' || ev.format === filterFormat
+      return matchSearch && matchCat && matchCountry && matchFormat
+    })
+  }, [search, filterCategory, filterCountry, filterFormat])
 
-  const filteredEvents = useMemo(() => {
-    return eventsData.events
-      .filter(event => event.startDate >= today)
-      .filter(event => categoryFilter === 'all' || event.category === categoryFilter)
-      .filter(event => typeFilter === 'all' || event.type === typeFilter)
-      .filter(event => stateFilter === 'all' || event.stateCode === stateFilter)
-      .sort((a, b) => a.startDate.localeCompare(b.startDate))
-  }, [categoryFilter, typeFilter, stateFilter, today])
-
-  const featuredEvents = eventsData.events
-    .filter(e => e.featured && e.startDate >= today)
-    .sort((a, b) => a.startDate.localeCompare(b.startDate))
-    .slice(0, 3)
-
-  const availableStates = useMemo(() => {
-    const codes = new Set(eventsData.events.map(e => e.stateCode))
-    return Array.from(codes).sort()
-  }, [])
-
-  // Group events by month for timeline view
-  const groupedByMonth = useMemo(() => {
-    const groups: Record<string, typeof filteredEvents> = {}
-    for (const event of filteredEvents) {
-      const month = getMonthLabel(event.startDate)
-      if (!groups[month]) groups[month] = []
-      groups[month].push(event)
-    }
-    return groups
-  }, [filteredEvents])
+  const featured = filtered.filter(e => e.featured)
+  const standard = filtered.filter(e => !e.featured)
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventsSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <div className="min-h-screen bg-slate-50">
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900 py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="flex items-center gap-2 text-emerald-400 text-sm font-medium mb-4">
-              <Calendar className="h-4 w-4" />
-              <span>ANZ Industry Calendar</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Restoration & Cleaning{' '}
-              <span className="text-emerald-400">Industry Events</span>
-            </h1>
-            <p className="text-xl text-slate-300 max-w-3xl mb-8">
-              IICRC training courses, industry conferences, trade shows, and networking events
-              for Australian and New Zealand disaster recovery professionals.
-            </p>
-            <div className="flex flex-wrap gap-4 text-sm">
-              <div className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 text-slate-200">
-                <Award className="h-4 w-4 text-emerald-400" />
-                <span>{eventsData.events.filter(e => e.category === 'iicrc-training').length} IICRC courses</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 text-slate-200">
-                <Users className="h-4 w-4 text-emerald-400" />
-                <span>{eventsData.events.length}+ events listed</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 text-slate-200">
-                <MapPin className="h-4 w-4 text-emerald-400" />
-                <span>AU &amp; NZ coverage</span>
-              </div>
-            </div>
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 py-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 border border-blue-500/40 rounded-full text-blue-400 text-sm font-medium mb-6">
+            <Calendar className="w-4 h-4" />
+            Industry Events Calendar
           </div>
-        </section>
-
-        <div className="container mx-auto px-6 max-w-6xl py-12">
-          {/* Featured Events */}
-          {featuredEvents.length > 0 && (
-            <section className="mb-14">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Featured Events</h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                {featuredEvents.map(event => (
-                  <Link
-                    key={event.id}
-                    href={`/events/${event.slug}`}
-                    className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all"
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${CATEGORY_COLOURS[event.category] ?? 'bg-slate-100 text-slate-700'}`}>
-                        {CATEGORY_LABELS[event.category] ?? event.category}
-                      </span>
-                      {event.type === 'virtual' && (
-                        <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Online</span>
-                      )}
-                    </div>
-                    <h3 className="font-semibold text-slate-900 group-hover:text-emerald-700 mb-2 leading-tight">
-                      {event.title}
-                    </h3>
-                    <div className="flex items-center gap-1.5 text-sm text-slate-500 mb-1">
-                      <Clock className="h-3.5 w-3.5" />
-                      <span>{formatDateRange(event.startDate, event.endDate)}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-sm text-slate-500">
-                      <MapPin className="h-3.5 w-3.5" />
-                      <span>{event.type === 'virtual' ? 'Online' : `${event.city}, ${event.stateCode}`}</span>
-                    </div>
-                    <div className="mt-4 flex items-center text-emerald-600 text-sm font-medium group-hover:gap-2 gap-1 transition-all">
-                      View details <ChevronRight className="h-4 w-4" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Filters */}
-          <section className="bg-white rounded-2xl p-6 border border-slate-200 mb-8">
-            <div className="flex items-center gap-2 text-slate-700 font-semibold mb-4">
-              <Filter className="h-4 w-4" />
-              <span>Filter Events</span>
-            </div>
-            <div className="grid md:grid-cols-3 gap-4">
-              {/* Category */}
-              <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1.5">Category</label>
-                <select
-                  value={categoryFilter}
-                  onChange={e => setCategoryFilter(e.target.value as EventCategory)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-sm focus:outline-none focus:border-emerald-400"
-                >
-                  <option value="all">All Categories</option>
-                  {Object.entries(CATEGORY_LABELS).map(([value, label]) => (
-                    <option key={value} value={value}>{label}</option>
-                  ))}
-                </select>
-              </div>
-              {/* Type */}
-              <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1.5">Format</label>
-                <select
-                  value={typeFilter}
-                  onChange={e => setTypeFilter(e.target.value as EventType)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-sm focus:outline-none focus:border-emerald-400"
-                >
-                  <option value="all">In-Person &amp; Online</option>
-                  <option value="in-person">In-Person Only</option>
-                  <option value="virtual">Online Only</option>
-                  <option value="hybrid">Hybrid</option>
-                </select>
-              </div>
-              {/* State */}
-              <div>
-                <label className="block text-xs font-medium text-slate-500 mb-1.5">State / Region</label>
-                <select
-                  value={stateFilter}
-                  onChange={e => setStateFilter(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-sm focus:outline-none focus:border-emerald-400"
-                >
-                  <option value="all">All States</option>
-                  {availableStates.map(code => (
-                    <option key={code} value={code}>{STATE_LABELS[code] ?? code}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-            {filteredEvents.length !== eventsData.events.length && (
-              <p className="mt-3 text-sm text-slate-500">
-                Showing {filteredEvents.length} of {eventsData.events.length} upcoming events
-                {' '}
-                <button
-                  onClick={() => { setCategoryFilter('all'); setTypeFilter('all'); setStateFilter('all') }}
-                  className="text-emerald-600 hover:text-emerald-800 font-medium underline"
-                >
-                  Clear filters
-                </button>
-              </p>
-            )}
-          </section>
-
-          {/* Events Timeline */}
-          {filteredEvents.length === 0 ? (
-            <div className="text-center py-16 text-slate-500">
-              <Calendar className="h-12 w-12 mx-auto mb-4 text-slate-300" />
-              <p className="text-lg font-medium mb-2">No upcoming events match your filters</p>
-              <p className="text-sm">Try adjusting the category, format, or state filters above.</p>
-            </div>
-          ) : (
-            <section>
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Upcoming Events</h2>
-              <div className="space-y-10">
-                {Object.entries(groupedByMonth).map(([month, monthEvents]) => (
-                  <div key={month}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <h3 className="text-sm font-bold text-emerald-700 uppercase tracking-wider">{month}</h3>
-                      <div className="flex-1 h-px bg-slate-200" />
-                    </div>
-                    <div className="space-y-3">
-                      {monthEvents.map(event => (
-                        <Link
-                          key={event.id}
-                          href={`/events/${event.slug}`}
-                          className="group flex flex-col sm:flex-row gap-4 bg-white rounded-xl p-5 border border-slate-200 hover:border-emerald-400 hover:shadow-sm transition-all"
-                        >
-                          {/* Date block */}
-                          <div className="sm:w-24 flex-shrink-0">
-                            <div className="text-center bg-slate-50 rounded-lg p-2.5 border border-slate-100">
-                              <div className="text-xs text-slate-500 font-medium">
-                                {new Date(event.startDate).toLocaleDateString('en-AU', { month: 'short' })}
-                              </div>
-                              <div className="text-2xl font-bold text-slate-900 leading-none my-0.5">
-                                {new Date(event.startDate).getDate()}
-                              </div>
-                              <div className="text-xs text-slate-400">
-                                {new Date(event.startDate).getFullYear()}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Content */}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-2 mb-2">
-                              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${CATEGORY_COLOURS[event.category] ?? 'bg-slate-100 text-slate-700'}`}>
-                                {CATEGORY_LABELS[event.category] ?? event.category}
-                              </span>
-                              {event.iicrcCredits > 0 && (
-                                <span className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-medium">
-                                  {event.iicrcCredits} IICRC CECs
-                                </span>
-                              )}
-                              {event.certificationOffered && (
-                                <span className="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full font-medium">
-                                  {event.certificationOffered} Certification
-                                </span>
-                              )}
-                            </div>
-                            <h3 className="font-semibold text-slate-900 group-hover:text-emerald-700 leading-tight mb-1.5">
-                              {event.title}
-                            </h3>
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
-                              <div className="flex items-center gap-1.5">
-                                <Clock className="h-3.5 w-3.5" />
-                                <span>{formatDateRange(event.startDate, event.endDate)}</span>
-                              </div>
-                              <div className="flex items-center gap-1.5">
-                                <MapPin className="h-3.5 w-3.5" />
-                                <span>
-                                  {event.type === 'virtual'
-                                    ? 'Online'
-                                    : event.venue
-                                      ? `${event.venue}, ${event.city}`
-                                      : `${event.city}, ${event.stateCode}`}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-1.5">
-                                <Tag className="h-3.5 w-3.5" />
-                                <span>{event.price}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Arrow */}
-                          <div className="hidden sm:flex items-center">
-                            <ChevronRight className="h-5 w-5 text-slate-300 group-hover:text-emerald-500 transition-colors" />
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* CTA Panel */}
-          <section className="mt-16 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-8 text-center text-white">
-            <h2 className="text-2xl font-bold mb-3">Want to list your event?</h2>
-            <p className="text-emerald-100 mb-6 max-w-xl mx-auto">
-              Running an IICRC course, industry conference, or supplier day? Get listed in front of thousands of ANZ restoration professionals.
-            </p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 text-balance">
+            Restoration Industry Events
+          </h1>
+          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+            IICRC training courses, conferences, trade shows, and networking events for restoration professionals across Australia, New Zealand, and Japan.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-emerald-700 hover:bg-emerald-50 font-semibold px-6 py-3 rounded-lg transition-colors"
+              href="/events/submit"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-xl transition-colors"
             >
-              Submit your event <ChevronRight className="h-4 w-4" />
+              <Plus className="w-4 h-4" />
+              Submit an Event
             </Link>
-          </section>
+            <a
+              href="#calendar"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/20 transition-colors"
+            >
+              <Calendar className="w-4 h-4" />
+              Browse Events
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Filters */}
+      <section className="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-10" id="calendar">
+        <div className="max-w-6xl mx-auto flex flex-wrap gap-3 items-center">
+          {/* Search */}
+          <div className="flex-1 min-w-48 relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Search events..."
+              className="w-full pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg bg-white focus:border-blue-400 focus:ring-1 focus:ring-blue-100 outline-none"
+            />
+          </div>
+
+          {/* Category filter */}
+          <div className="relative">
+            <select
+              value={filterCategory}
+              onChange={e => setFilterCategory(e.target.value as EventCategory | 'all')}
+              className="pl-8 pr-8 py-2 text-sm border border-slate-200 rounded-lg bg-white appearance-none focus:border-blue-400 outline-none"
+            >
+              <option value="all">All categories</option>
+              {(Object.entries(CATEGORY_LABELS) as [EventCategory, string][]).map(([k, v]) => (
+                <option key={k} value={k}>{v}</option>
+              ))}
+            </select>
+            <Filter className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+          </div>
+
+          {/* Country filter */}
+          <div className="relative">
+            <select
+              value={filterCountry}
+              onChange={e => setFilterCountry(e.target.value as 'all' | 'AU' | 'NZ' | 'JP')}
+              className="pl-8 pr-8 py-2 text-sm border border-slate-200 rounded-lg bg-white appearance-none focus:border-blue-400 outline-none"
+            >
+              <option value="all">All countries</option>
+              <option value="AU">Australia</option>
+              <option value="NZ">New Zealand</option>
+              <option value="JP">Japan</option>
+            </select>
+            <MapPin className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+          </div>
+
+          {/* Format filter */}
+          <div className="relative">
+            <select
+              value={filterFormat}
+              onChange={e => setFilterFormat(e.target.value as EventFormat | 'all')}
+              className="pl-8 pr-8 py-2 text-sm border border-slate-200 rounded-lg bg-white appearance-none focus:border-blue-400 outline-none"
+            >
+              <option value="all">All formats</option>
+              <option value="in-person">In-Person</option>
+              <option value="online">Online</option>
+              <option value="hybrid">Hybrid</option>
+            </select>
+            <Clock className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
+          </div>
+
+          <span className="text-xs text-slate-400 ml-auto">{filtered.length} event{filtered.length !== 1 ? 's' : ''}</span>
+        </div>
+      </section>
+
+      {/* Events list */}
+      <section className="bg-slate-50 py-12 px-6">
+        <div className="max-w-6xl mx-auto space-y-10">
+
+          {filtered.length === 0 && (
+            <div className="text-center py-16 text-slate-400">
+              <Calendar className="w-12 h-12 mx-auto mb-3 opacity-30" />
+              <p className="font-medium text-slate-500">No events match your filters.</p>
+              <button
+                onClick={() => { setSearch(''); setFilterCategory('all'); setFilterCountry('all'); setFilterFormat('all') }}
+                className="mt-3 text-sm text-blue-600 hover:underline"
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
+
+          {/* Featured events */}
+          {featured.length > 0 && (
+            <div>
+              <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">Featured Events</h2>
+              <div className="grid md:grid-cols-2 gap-5">
+                {featured.map(ev => (
+                  <EventCard key={ev.id} event={ev} featured />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Standard events */}
+          {standard.length > 0 && (
+            <div>
+              {featured.length > 0 && (
+                <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide mb-4">All Events</h2>
+              )}
+              <div className="space-y-3">
+                {standard.map(ev => (
+                  <EventCard key={ev.id} event={ev} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Submit CTA */}
+      <section className="bg-gradient-to-r from-blue-600 to-indigo-600 py-14 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl font-bold text-white mb-3">Running an Event?</h2>
+          <p className="text-blue-100 mb-8">
+            Submit your IICRC training course, industry conference, or networking event to appear on this calendar.
+            Events are reviewed within 48 hours and published free of charge.
+          </p>
+          <Link
+            href="/events/submit"
+            className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-blue-700 font-bold rounded-xl hover:bg-blue-50 transition-colors shadow-lg"
+          >
+            <Plus className="w-5 h-5" />
+            Submit an Event
+          </Link>
+        </div>
+      </section>
+    </>
+  )
+}
+
+// ── Event card component ───────────────────────────────────────────────────────
+
+function EventCard({ event, featured = false }: { event: CalendarEvent; featured?: boolean }) {
+  const catColour = CATEGORY_COLOURS[event.category]
+  const catLabel = CATEGORY_LABELS[event.category]
+
+  if (featured) {
+    return (
+      <div className="bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
+        <div className="flex items-start justify-between mb-3">
+          <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${catColour}`}>{catLabel}</span>
+          <span className="text-xs font-medium px-2 py-1 bg-amber-100 text-amber-700 rounded-full">Featured</span>
+        </div>
+        <h3 className="text-base font-bold text-slate-900 mb-1 leading-snug">{event.title}</h3>
+        <p className="text-xs text-slate-500 mb-3">{event.organiser}</p>
+        <p className="text-sm text-slate-600 leading-relaxed mb-4">{event.description}</p>
+        <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
+          <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{formatDateRange(event.startDate, event.endDate)}</span>
+          <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />{event.location}</span>
+          {event.iicrcCert && (
+            <span className="flex items-center gap-1 text-blue-600"><Award className="w-3.5 h-3.5" />{event.iicrcCert} · {event.cecCredits} CECs</span>
+          )}
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold text-slate-900">{event.price}</span>
+          <span className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-700">
+            View details <ArrowRight className="w-3.5 h-3.5" />
+          </span>
         </div>
       </div>
-    </>
+    )
+  }
+
+  return (
+    <div className="bg-white rounded-xl border border-slate-200 p-4 hover:shadow-sm transition-shadow">
+      <div className="flex items-start gap-4">
+        <div className="hidden sm:flex flex-col items-center justify-center w-14 h-14 bg-blue-50 rounded-xl border border-blue-100 flex-shrink-0 text-center">
+          <span className="text-xs font-bold text-blue-700 leading-none">
+            {new Date(event.startDate).toLocaleDateString('en-AU', { month: 'short' }).toUpperCase()}
+          </span>
+          <span className="text-xl font-bold text-blue-900 leading-tight">
+            {new Date(event.startDate).getDate()}
+          </span>
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-2 mb-1">
+            <h3 className="text-sm font-semibold text-slate-900 leading-snug">{event.title}</h3>
+            <span className={`flex-shrink-0 text-xs font-medium px-2 py-0.5 rounded-full ${catColour}`}>{catLabel}</span>
+          </div>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500">
+            <span className="flex items-center gap-1"><Calendar className="w-3 h-3" />{formatDateRange(event.startDate, event.endDate)}</span>
+            <span className="flex items-center gap-1"><MapPin className="w-3 h-3" />{event.location}</span>
+            {event.iicrcCert && (
+              <span className="flex items-center gap-1 text-blue-600 font-medium"><Award className="w-3 h-3" />{event.iicrcCert}</span>
+            )}
+          </div>
+        </div>
+        <div className="text-right flex-shrink-0">
+          <p className="text-sm font-semibold text-slate-900">{event.price}</p>
+          <p className="text-xs text-slate-400 mt-0.5">{event.country === 'AU' ? 'Australia' : event.country === 'NZ' ? 'New Zealand' : 'Japan'}</p>
+        </div>
+      </div>
+    </div>
   )
 }
