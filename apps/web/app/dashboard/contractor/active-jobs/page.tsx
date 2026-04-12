@@ -11,6 +11,10 @@ import {
   Briefcase,
   Loader,
   ChevronLeft,
+  MessageSquare,
+  XCircle,
+  CheckCircle,
+  ArrowLeftRight,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
@@ -23,6 +27,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
@@ -54,6 +59,29 @@ interface ActiveJob {
   serviceRequest: ServiceRequest | null;
 }
 
+// --- Claim Response types ---
+interface PendingClaim {
+  id: string;
+  claimId: string;
+  matchScore: number | null;
+  notificationStatus: string;
+  responseDeadline: string | null;
+  timeRemaining: number | null;
+  canRespond: boolean;
+  claim: {
+    clientName: string;
+    propertyAddress: string;
+    suburb: string;
+    postcode: string;
+    disasterType: string;
+    damageDescription: string;
+    priority: string;
+    hasInsurance: boolean;
+  } | null;
+}
+
+type ClaimResponseType = 'ACCEPTED' | 'DECLINED' | 'COUNTER_OFFER';
+
 export default function ActiveJobsPage() {
   const router = useRouter();
   const { isSubmitting, completeJob, reset } = useJobCompletion();
@@ -69,6 +97,19 @@ export default function ActiveJobsPage() {
   }>({ open: false, job: null });
   const [completionNotes, setCompletionNotes] = React.useState('');
 
+  // Pending claims state
+  const [claims, setClaims] = React.useState<PendingClaim[]>([]);
+  const [claimsLoading, setClaimsLoading] = React.useState(true);
+  const [claimDialog, setClaimDialog] = React.useState<{
+    open: boolean;
+    claim: PendingClaim | null;
+    type: ClaimResponseType | null;
+  }>({ open: false, claim: null, type: null });
+  const [claimMessage, setClaimMessage] = React.useState('');
+  const [proposedAmount, setProposedAmount] = React.useState('');
+  const [estimatedTimeframe, setEstimatedTimeframe] = React.useState('');
+  const [isRespondingToClaim, setIsRespondingToClaim] = React.useState(false);
+
   const fetchJobs = React.useCallback(async () => {
     try {
       setFetchError(null);
@@ -83,9 +124,94 @@ export default function ActiveJobsPage() {
     }
   }, []);
 
+  const fetchPendingClaims = React.useCallback(async () => {
+    try {
+      setClaimsLoading(true);
+      const res = await fetch('/api/contractor/claims?status=pending');
+      if (!res.ok) return; // non-critical — silently skip if not found
+      const data = await res.json();
+      const raw: Array<{
+        id: string;
+        claimId: string;
+        matchScore: number | null;
+        notificationStatus: string;
+        responseDeadline: string | null;
+        timeRemaining: number | null;
+        canRespond: boolean;
+        claim: PendingClaim['claim'];
+      }> = data.data || data.claims || [];
+      // Only surface claims the contractor can still respond to
+      setClaims(raw.filter((c) => c.canRespond));
+    } catch {
+      // non-critical
+    } finally {
+      setClaimsLoading(false);
+    }
+  }, []);
+
   React.useEffect(() => {
     fetchJobs();
-  }, [fetchJobs]);
+    fetchPendingClaims();
+  }, [fetchJobs, fetchPendingClaims]);
+
+  const openClaimDialog = (claim: PendingClaim, type: ClaimResponseType) => {
+    setClaimMessage('');
+    setProposedAmount('');
+    setEstimatedTimeframe('');
+    setClaimDialog({ open: true, claim, type });
+  };
+
+  const closeClaimDialog = () => {
+    setClaimDialog({ open: false, claim: null, type: null });
+  };
+
+  const handleClaimRespond = async () => {
+    const { claim, type } = claimDialog;
+    if (!claim || !type) return;
+
+    setIsRespondingToClaim(true);
+    try {
+      const body: Record<string, unknown> = { response: type };
+      if (claimMessage.trim()) body.message = claimMessage.trim();
+      if (type === 'COUNTER_OFFER') {
+        if (proposedAmount) body.proposedAmount = parseFloat(proposedAmount);
+        if (estimatedTimeframe.trim()) body.estimatedTimeframe = estimatedTimeframe.trim();
+      }
+
+      const res = await fetch(`/api/contractor/claims/${claim.claimId}/respond`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        const msg =
+          res.status === 409
+            ? `Already responded: ${data.existingResponse ?? 'unknown'}`
+            : res.status === 410
+            ? 'Response deadline has passed.'
+            : data.message || 'Failed to submit response.';
+        toast.error(msg);
+        return;
+      }
+
+      closeClaimDialog();
+      if (type === 'ACCEPTED') {
+        toast.success('Claim accepted — you have been assigned to this job.');
+      } else if (type === 'DECLINED') {
+        toast.info('Claim declined. The system will escalate to the next contractor.');
+      } else {
+        toast.success('Counter offer submitted.');
+      }
+      await fetchPendingClaims();
+    } catch {
+      toast.error('Network error. Please try again.');
+    } finally {
+      setIsRespondingToClaim(false);
+    }
+  };
 
   const openCompleteDialog = (job: ActiveJob) => {
     reset();
@@ -144,6 +270,7 @@ export default function ActiveJobsPage() {
   };
 
   const { job: activeJob } = completeDialog;
+  const { claim: activeClaim, type: activeClaimType } = claimDialog;
 
   return (
     <div className="space-y-6">
@@ -171,6 +298,102 @@ export default function ActiveJobsPage() {
           <AlertCircle className="h-5 w-5 text-red-600" />
           <AlertDescription className="text-red-800">{fetchError}</AlertDescription>
         </Alert>
+      )}
+
+      {/* Pending Claims — require contractor response */}
+      {!claimsLoading && claims.length > 0 && (
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <MessageSquare className="h-5 w-5 text-amber-600" />
+            <h2 className="text-lg font-semibold text-gray-900">Claims Awaiting Your Response</h2>
+            <Badge className="bg-amber-100 text-amber-800 border-amber-300">{claims.length}</Badge>
+          </div>
+          {claims.map((claim) => (
+            <div
+              key={claim.id}
+              className="bg-amber-50 rounded-lg border border-amber-200 overflow-hidden"
+            >
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <h3 className="text-base font-semibold text-gray-900 capitalize">
+                      {claim.claim?.disasterType?.replace(/_/g, ' ') ?? 'Claim'}
+                    </h3>
+                    <p className="text-sm text-gray-500 line-clamp-2 mt-0.5">
+                      {claim.claim?.damageDescription ?? 'No description'}
+                    </p>
+                  </div>
+                  {claim.claim?.priority && (
+                    <Badge variant="outline" className="ml-3 shrink-0 capitalize">
+                      {claim.claim.priority.toLowerCase()}
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm mb-4">
+                  {claim.claim?.suburb && (
+                    <div>
+                      <div className="flex items-center gap-1 text-gray-400 mb-0.5">
+                        <MapPin className="h-3 w-3" />
+                        <span className="text-xs font-medium uppercase">Location</span>
+                      </div>
+                      <p className="font-semibold text-gray-900">{claim.claim.suburb}</p>
+                      {claim.claim.postcode && (
+                        <p className="text-xs text-gray-400">{claim.claim.postcode}</p>
+                      )}
+                    </div>
+                  )}
+                  {claim.claim?.clientName && (
+                    <div>
+                      <p className="text-xs font-medium text-gray-400 uppercase mb-0.5">Client</p>
+                      <p className="font-semibold text-gray-900">{claim.claim.clientName}</p>
+                    </div>
+                  )}
+                  {claim.timeRemaining !== null && (
+                    <div>
+                      <div className="flex items-center gap-1 text-gray-400 mb-0.5">
+                        <Clock className="h-3 w-3" />
+                        <span className="text-xs font-medium uppercase">Time Remaining</span>
+                      </div>
+                      <p className={`font-semibold ${claim.timeRemaining < 30 ? 'text-red-600' : 'text-gray-900'}`}>
+                        {claim.timeRemaining} min
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-t border-amber-200 pt-3 flex flex-wrap gap-2">
+                  <Button
+                    size="sm"
+                    className="bg-green-600 hover:bg-green-700 text-white"
+                    onClick={() => openClaimDialog(claim, 'ACCEPTED')}
+                  >
+                    <CheckCircle className="h-4 w-4 mr-1.5" />
+                    Accept
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-amber-400 text-amber-700 hover:bg-amber-100"
+                    onClick={() => openClaimDialog(claim, 'COUNTER_OFFER')}
+                  >
+                    <ArrowLeftRight className="h-4 w-4 mr-1.5" />
+                    Counter Offer
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-red-300 text-red-600 hover:bg-red-50"
+                    onClick={() => openClaimDialog(claim, 'DECLINED')}
+                  >
+                    <XCircle className="h-4 w-4 mr-1.5" />
+                    Decline
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
 
       {/* Jobs list */}
@@ -333,6 +556,122 @@ export default function ActiveJobsPage() {
                 <CheckCircle2 className="h-4 w-4 mr-2" />
               )}
               {isSubmitting ? 'Completing...' : 'Confirm Complete'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Claim Response Dialog */}
+      <Dialog open={claimDialog.open} onOpenChange={(open) => !open && closeClaimDialog()}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>
+              {activeClaimType === 'ACCEPTED'
+                ? 'Accept Claim'
+                : activeClaimType === 'DECLINED'
+                ? 'Decline Claim'
+                : 'Submit Counter Offer'}
+            </DialogTitle>
+            <DialogDescription>
+              {activeClaim?.claim?.disasterType?.replace(/_/g, ' ') ?? 'Claim'} —{' '}
+              {activeClaim?.claim?.suburb ?? ''}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            {activeClaimType === 'ACCEPTED' && (
+              <Alert className="border-green-300 bg-green-50">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <AlertDescription className="text-green-800 text-sm">
+                  Accepting this claim will assign you to the job and notify the client. Other contractors will be
+                  notified it has been filled.
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {activeClaimType === 'DECLINED' && (
+              <div className="space-y-1">
+                <Label htmlFor="decline-message">Reason (optional)</Label>
+                <Textarea
+                  id="decline-message"
+                  placeholder="Let the system know why you're declining (capacity, location, etc.)..."
+                  rows={3}
+                  maxLength={500}
+                  value={claimMessage}
+                  onChange={(e) => setClaimMessage(e.target.value)}
+                />
+              </div>
+            )}
+
+            {activeClaimType === 'COUNTER_OFFER' && (
+              <div className="space-y-3">
+                <div className="space-y-1">
+                  <Label htmlFor="proposed-amount">Proposed Amount (AUD)</Label>
+                  <Input
+                    id="proposed-amount"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="e.g. 4500"
+                    value={proposedAmount}
+                    onChange={(e) => setProposedAmount(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="timeframe">Estimated Timeframe</Label>
+                  <Input
+                    id="timeframe"
+                    placeholder="e.g. 3–5 business days"
+                    value={estimatedTimeframe}
+                    onChange={(e) => setEstimatedTimeframe(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="counter-message">Message (optional)</Label>
+                  <Textarea
+                    id="counter-message"
+                    placeholder="Explain your counter offer terms..."
+                    rows={3}
+                    maxLength={500}
+                    value={claimMessage}
+                    onChange={(e) => setClaimMessage(e.target.value)}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button variant="outline" onClick={closeClaimDialog} disabled={isRespondingToClaim}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleClaimRespond}
+              disabled={isRespondingToClaim}
+              className={
+                activeClaimType === 'ACCEPTED'
+                  ? 'bg-green-600 hover:bg-green-700'
+                  : activeClaimType === 'DECLINED'
+                  ? 'bg-red-600 hover:bg-red-700'
+                  : 'bg-[#1C2E47] hover:bg-[#1C2E47]/90'
+              }
+            >
+              {isRespondingToClaim ? (
+                <Loader className="h-4 w-4 mr-2 animate-spin" />
+              ) : activeClaimType === 'ACCEPTED' ? (
+                <CheckCircle className="h-4 w-4 mr-2" />
+              ) : activeClaimType === 'DECLINED' ? (
+                <XCircle className="h-4 w-4 mr-2" />
+              ) : (
+                <ArrowLeftRight className="h-4 w-4 mr-2" />
+              )}
+              {isRespondingToClaim
+                ? 'Submitting...'
+                : activeClaimType === 'ACCEPTED'
+                ? 'Confirm Accept'
+                : activeClaimType === 'DECLINED'
+                ? 'Confirm Decline'
+                : 'Submit Counter Offer'}
             </Button>
           </DialogFooter>
         </DialogContent>

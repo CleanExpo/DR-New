@@ -351,39 +351,8 @@ export default function JobDetailPage() {
               </div>
             )}
 
-            {/* Documents */}
-            <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-              <h3 className="text-sm font-medium text-gray-400 mb-3 flex items-center gap-2">
-                <FileText className="h-4 w-4" /> Documents ({job.documents.length})
-              </h3>
-              {job.documents.length === 0 ? (
-                <p className="text-sm text-gray-400">No documents uploaded yet.</p>
-              ) : (
-                <div className="space-y-2">
-                  {job.documents.map((doc) => (
-                    <div
-                      key={doc.id}
-                      className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
-                    >
-                      <div>
-                        <p className="text-sm text-white">{doc.name}</p>
-                        <p className="text-xs text-gray-400">
-                          {doc.type} &middot; {(doc.size / 1024).toFixed(1)} KB
-                        </p>
-                      </div>
-                      <a
-                        href={doc.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-[#0d9488] hover:underline"
-                      >
-                        View
-                      </a>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            {/* Documents — CONN-027 */}
+            <JobDocumentsPanel jobId={job.id} initialDocuments={job.documents} />
 
             {/* Photos */}
             <div className="bg-white/5 border border-white/10 rounded-xl p-5">
@@ -505,6 +474,145 @@ export default function JobDetailPage() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+// ─── CONN-027: Job Documents Panel ────────────────────────────────────────────
+
+interface DocRecord {
+  id: string;
+  name: string;
+  url: string;
+  type: string;
+  size: number;
+}
+
+function JobDocumentsPanel({
+  jobId,
+  initialDocuments,
+}: {
+  jobId: string;
+  initialDocuments: DocRecord[];
+}) {
+  const [docs, setDocs] = useState<DocRecord[]>(initialDocuments);
+  const [uploading, setUploading] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ name: '', url: '', type: 'pdf', size: '0' });
+
+  const handleUpload = async () => {
+    if (!form.name || !form.url) return;
+    setUploading(true);
+    try {
+      const res = await fetch(`/api/jobs/${jobId}/documents`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, size: parseInt(form.size, 10) || 0 }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      setDocs((prev) => [...prev, data.data]);
+      setForm({ name: '', url: '', type: 'pdf', size: '0' });
+      setShowForm(false);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Upload failed');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-5">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-medium text-gray-400 flex items-center gap-2">
+          <FileText className="h-4 w-4" /> Documents ({docs.length})
+        </h3>
+        <button
+          onClick={() => setShowForm((v) => !v)}
+          className="text-xs text-[#0d9488] hover:underline"
+        >
+          {showForm ? 'Cancel' : '+ Add Document'}
+        </button>
+      </div>
+
+      {/* Upload form */}
+      {showForm && (
+        <div className="mb-4 bg-white/5 rounded-lg p-4 space-y-3">
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="text-xs text-gray-400 block mb-1">Document Name *</label>
+              <input
+                type="text"
+                placeholder="e.g. Moisture Report.pdf"
+                value={form.name}
+                onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                className="w-full bg-black/40 border border-white/10 rounded px-3 py-1.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#0d9488]"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-gray-400 block mb-1">File Type</label>
+              <select
+                value={form.type}
+                onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))}
+                className="w-full bg-black/40 border border-white/10 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-[#0d9488]"
+              >
+                <option value="pdf">PDF</option>
+                <option value="docx">Word (docx)</option>
+                <option value="xlsx">Excel (xlsx)</option>
+                <option value="jpg">Image (jpg)</option>
+                <option value="png">Image (png)</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label className="text-xs text-gray-400 block mb-1">File URL *</label>
+            <input
+              type="url"
+              placeholder="https://storage.example.com/file.pdf"
+              value={form.url}
+              onChange={(e) => setForm((f) => ({ ...f, url: e.target.value }))}
+              className="w-full bg-black/40 border border-white/10 rounded px-3 py-1.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#0d9488]"
+            />
+          </div>
+          <button
+            onClick={handleUpload}
+            disabled={uploading || !form.name || !form.url}
+            className="px-4 py-1.5 bg-[#0d9488] text-white text-sm rounded hover:bg-[#0d9488]/80 disabled:opacity-50"
+          >
+            {uploading ? 'Saving…' : 'Save Document'}
+          </button>
+        </div>
+      )}
+
+      {/* Document list */}
+      {docs.length === 0 ? (
+        <p className="text-sm text-gray-400">No documents uploaded yet.</p>
+      ) : (
+        <div className="space-y-2">
+          {docs.map((doc) => (
+            <div
+              key={doc.id}
+              className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
+            >
+              <div>
+                <p className="text-sm text-white">{doc.name}</p>
+                <p className="text-xs text-gray-400">
+                  {doc.type} &middot; {doc.size > 0 ? `${(doc.size / 1024).toFixed(1)} KB` : 'unknown size'}
+                </p>
+              </div>
+              <a
+                href={doc.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-[#0d9488] hover:underline"
+              >
+                View
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

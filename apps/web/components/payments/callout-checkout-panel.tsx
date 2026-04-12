@@ -1,23 +1,39 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { getNrpgCalloutSplit } from '@/lib/pricing/nrpg-callout';
 
 interface CalloutCheckoutPanelProps {
   requestId: string;
   status?: string;
   sessionId?: string;
+  /** If true, show the cancel/refund section (payment has been made and is within cancellation window) */
+  showCancelOption?: boolean;
 }
 
-export function CalloutCheckoutPanel({ requestId, status, sessionId }: CalloutCheckoutPanelProps) {
+export function CalloutCheckoutPanel({ requestId, status, sessionId, showCancelOption }: CalloutCheckoutPanelProps) {
   const split = useMemo(() => getNrpgCalloutSplit(), []);
   const [loading, setLoading] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [paid, setPaid] = useState<boolean | null>(null);
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+  const [releasing, setReleasing] = useState(false);
+  const [refundConfirmed, setRefundConfirmed] = useState(false);
 
   const startCheckout = async () => {
     try {
@@ -141,6 +157,64 @@ export function CalloutCheckoutPanel({ requestId, status, sessionId }: CalloutCh
             Back to dashboard
           </Button>
         </div>
+
+        {/* CONN-017: Admin cancel/release section */}
+        {showCancelOption && !refundConfirmed && (
+          <div className="rounded-md border border-destructive/40 bg-destructive/5 p-4 space-y-3">
+            <div className="font-medium text-sm text-destructive">Cancel Callout &amp; Release Funds</div>
+            <p className="text-xs text-muted-foreground">
+              Releasing funds will transfer the contractor entitlement via Stripe and mark this
+              callout as cancelled. This action cannot be undone.
+            </p>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm" disabled={releasing}>
+                  {releasing ? 'Processing…' : 'Cancel Callout &amp; Release'}
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Confirm Callout Release</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This will initiate a Stripe transfer to the assigned contractor for their
+                    entitlement (AU${split.contractorEntitlement.totalAUD.toLocaleString()}) and
+                    mark the callout as cancelled. The platform fee is retained.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Keep Callout</AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-destructive hover:bg-destructive/90"
+                    onClick={async () => {
+                      setReleasing(true);
+                      try {
+                        const res = await fetch(
+                          `/api/admin/service-requests/${requestId}/callout/release`,
+                          { method: 'POST' }
+                        );
+                        const data = await res.json();
+                        if (!res.ok) throw new Error(data?.error || 'Release failed');
+                        setRefundConfirmed(true);
+                      } catch (err) {
+                        alert(err instanceof Error ? err.message : 'Release failed');
+                      } finally {
+                        setReleasing(false);
+                      }
+                    }}
+                  >
+                    Yes, Release Funds
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
+        )}
+
+        {showCancelOption && refundConfirmed && (
+          <div className="rounded-md border border-green-200 bg-green-50 p-4 text-sm text-green-800">
+            ✅ Callout cancelled — contractor funds have been released via Stripe.
+          </div>
+        )}
       </CardContent>
     </Card>
   );

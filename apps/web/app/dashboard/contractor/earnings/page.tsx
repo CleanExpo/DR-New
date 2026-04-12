@@ -455,8 +455,143 @@ export default function ContractorEarningsPage() {
             </table>
           )}
         </div>
+        {/* CONN-011/023: Per-booking payout breakdown from /api/payments */}
+        <PaymentHistorySection formatCurrency={formatCurrency} formatDate={formatDate} />
+
         {/* Payout Settings */}
         <PayoutSettingsPanel />
+      </div>
+    </div>
+  );
+}
+
+// ─── CONN-011/023: Payment history section from /api/payments ─────────────────
+
+interface PaymentRecord {
+  id: string;
+  amountAUD: number;
+  status: string;
+  createdAt: string;
+  bookingType?: string;
+  bookingId?: string;
+  stripePaymentIntentId?: string;
+}
+
+function PaymentHistorySection({
+  formatCurrency,
+  formatDate,
+}: {
+  formatCurrency: (n: number) => string;
+  formatDate: (s: string | null) => string;
+}) {
+  const [payments, setPayments] = useState<PaymentRecord[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const PAGE_SIZE = 10;
+
+  const load = async (p: number) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/payments?limit=${PAGE_SIZE}&page=${p}`);
+      const data = await res.json();
+      if (res.ok) {
+        const items = data.data ?? data.payments ?? [];
+        setPayments(items);
+        setHasMore(items.length === PAGE_SIZE);
+      }
+    } catch {
+      // silent
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    load(page);
+  }, [page]);
+
+  if (loading) {
+    return (
+      <div className="bg-white rounded-lg shadow p-6 mt-8">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Payment History</h2>
+        <div className="animate-pulse space-y-3">
+          {[1, 2, 3].map((i) => <div key={i} className="h-10 bg-gray-100 rounded" />)}
+        </div>
+      </div>
+    );
+  }
+
+  if (payments.length === 0) return null;
+
+  return (
+    <div className="bg-white rounded-lg shadow overflow-hidden mt-8">
+      <div className="p-6 border-b border-gray-100">
+        <h2 className="text-lg font-semibold text-gray-900">Full Payment History</h2>
+        <p className="text-sm text-gray-400 mt-0.5">All payment records including pending and failed</p>
+      </div>
+      <table className="min-w-full divide-y divide-gray-100">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Date</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Type</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Amount</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Status</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Detail</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-50">
+          {payments.map((p) => (
+            <tr key={p.id} className="hover:bg-gray-50 text-sm">
+              <td className="px-6 py-3 text-gray-500">{formatDate(p.createdAt)}</td>
+              <td className="px-6 py-3 text-gray-700 capitalize">
+                {p.bookingType?.replace(/_/g, ' ') ?? 'Payment'}
+              </td>
+              <td className="px-6 py-3 font-medium text-gray-900">
+                {formatCurrency(Number(p.amountAUD))}
+              </td>
+              <td className="px-6 py-3">
+                <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-semibold ${
+                  p.status === 'COMPLETED'
+                    ? 'bg-green-100 text-green-800'
+                    : p.status === 'PENDING'
+                    ? 'bg-amber-100 text-amber-800'
+                    : p.status === 'FAILED'
+                    ? 'bg-red-100 text-red-800'
+                    : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {p.status}
+                </span>
+              </td>
+              <td className="px-6 py-3">
+                <Link
+                  href={`/dashboard/payments/${p.id}`}
+                  className="text-blue-600 hover:underline text-xs"
+                >
+                  View →
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* Pagination */}
+      <div className="flex items-center justify-between p-4 border-t border-gray-100">
+        <button
+          disabled={page === 1}
+          onClick={() => setPage((p) => p - 1)}
+          className="text-sm text-gray-500 disabled:opacity-40 hover:text-gray-800"
+        >
+          ← Previous
+        </button>
+        <span className="text-xs text-gray-400">Page {page}</span>
+        <button
+          disabled={!hasMore}
+          onClick={() => setPage((p) => p + 1)}
+          className="text-sm text-gray-500 disabled:opacity-40 hover:text-gray-800"
+        >
+          Next →
+        </button>
       </div>
     </div>
   );

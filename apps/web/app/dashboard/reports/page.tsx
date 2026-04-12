@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import {
   BarChart3,
   DollarSign,
@@ -12,6 +13,9 @@ import {
   Loader2,
   AlertCircle,
   TrendingUp,
+  FileDown,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import {
   BarChart,
@@ -104,6 +108,80 @@ export default function ReportsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [exporting, setExporting] = useState(false);
+  const [exportPanelOpen, setExportPanelOpen] = useState(false);
+  const [serverExporting, setServerExporting] = useState(false);
+
+  // Server-side export → CSV download
+  const handleServerExport = useCallback(async () => {
+    setServerExporting(true);
+    try {
+      const res = await fetch('/api/reports/export', { method: 'POST' });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        throw new Error(json.error ?? 'Export failed');
+      }
+      const json = await res.json();
+      const exportData = json.exportData;
+
+      // Build CSV from summary + contractorPerformance
+      const rows: string[][] = [];
+      rows.push(['NRPG Management Report Export', `Generated: ${json.generatedAt}`, `By: ${json.generatedBy}`]);
+      rows.push([]);
+      rows.push(['=== SUMMARY ===']);
+      rows.push(['Total Jobs', String(exportData?.summary?.totalJobs ?? '')]);
+      rows.push(['Avg Completion Days', String(exportData?.summary?.avgCompletionDays ?? '')]);
+      rows.push(['Total Revenue', String(exportData?.summary?.totalRevenue ?? '')]);
+      rows.push(['Outstanding Amount', String(exportData?.summary?.outstandingAmount ?? '')]);
+      rows.push([]);
+      rows.push(['=== JOBS BY STATUS ===']);
+      rows.push(['Status', 'Count']);
+      if (exportData?.jobsByStatus) {
+        for (const [status, count] of Object.entries(exportData.jobsByStatus)) {
+          rows.push([status, String(count)]);
+        }
+      }
+      rows.push([]);
+      rows.push(['=== REVENUE BY MONTH ===']);
+      rows.push(['Month', 'Revenue (AUD)']);
+      if (Array.isArray(exportData?.revenueByMonth)) {
+        for (const m of exportData.revenueByMonth) {
+          rows.push([m.month, String(m.revenue)]);
+        }
+      }
+      rows.push([]);
+      rows.push(['=== CONTRACTOR PERFORMANCE ===']);
+      rows.push(['Business Name', 'Jobs Completed', 'Avg Completion Days', 'Total Revenue', 'Avg Rating']);
+      if (Array.isArray(exportData?.contractorPerformance)) {
+        for (const c of exportData.contractorPerformance) {
+          rows.push([c.businessName, String(c.jobsCompleted), String(c.avgCompletionDays), String(c.totalRevenue), String(c.avgRating)]);
+        }
+      }
+      rows.push([]);
+      rows.push(['=== OUTSTANDING INVOICES ===']);
+      rows.push(['Job Number', 'Property', 'Amount (AUD)', 'Days Outstanding']);
+      if (Array.isArray(exportData?.outstandingInvoices)) {
+        for (const inv of exportData.outstandingInvoices) {
+          rows.push([inv.jobNumber, inv.property, String(inv.amount), String(inv.daysOutstanding)]);
+        }
+      }
+
+      const csvContent = rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `NRPG-Report-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      toast.success('Report exported as CSV');
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Export failed');
+    } finally {
+      setServerExporting(false);
+    }
+  }, []);
 
   const fetchReport = useCallback(async () => {
     try {
@@ -354,6 +432,41 @@ export default function ReportsPage() {
             )}
             Export PDF
           </button>
+        </div>
+
+        {/* Export Panel */}
+        <div className="mb-6 rounded-sm border border-gray-800" style={{ backgroundColor: '#0a0a0a' }}>
+          <button
+            onClick={() => setExportPanelOpen((v) => !v)}
+            className="flex w-full items-center justify-between px-5 py-3 text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <FileDown className="h-4 w-4" style={{ color: '#0d9488' }} />
+              Export Report Data
+            </div>
+            {exportPanelOpen ? <ChevronUp className="h-4 w-4 text-gray-500" /> : <ChevronDown className="h-4 w-4 text-gray-500" />}
+          </button>
+          {exportPanelOpen && (
+            <div className="border-t border-gray-800 px-5 py-4 flex flex-col gap-3 sm:flex-row sm:items-end">
+              <div className="flex-1">
+                <p className="text-xs text-gray-400 mb-1">Format</p>
+                <p className="text-sm text-white">CSV (all sections: summary, jobs, revenue, contractors, invoices)</p>
+              </div>
+              <button
+                onClick={handleServerExport}
+                disabled={serverExporting}
+                className="inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                style={{ backgroundColor: '#0d9488' }}
+              >
+                {serverExporting ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Download className="h-4 w-4" />
+                )}
+                {serverExporting ? 'Exporting…' : 'Download CSV'}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Summary Cards */}

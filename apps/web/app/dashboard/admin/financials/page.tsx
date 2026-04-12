@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'sonner';
 import XeroWidget from '@/components/dashboard/XeroWidget';
 
 interface FinancialData {
@@ -56,12 +57,48 @@ interface FinancialData {
   };
 }
 
+interface ReconciliationIssue {
+  type: 'MISSING_IN_STRIPE' | 'MISSING_IN_DB' | 'AMOUNT_MISMATCH' | 'STATUS_MISMATCH';
+  paymentId?: string;
+  stripeId?: string;
+  dbAmount?: number;
+  stripeAmount?: number;
+  dbStatus?: string;
+  stripeStatus?: string;
+  severity: 'LOW' | 'MEDIUM' | 'HIGH';
+  description: string;
+}
+
+interface ReconciliationReport {
+  generatedAt: string;
+  period: { startDate: string; endDate: string };
+  statistics: {
+    totalPaymentsInDB: number;
+    totalPaymentsInStripe: number;
+    totalAmountInDB: number;
+    totalAmountInStripe: number;
+    matchingPayments: number;
+    discrepancies: number;
+  };
+  issues: ReconciliationIssue[];
+  summary: { reconciliationRate: number; status: 'HEALTHY' | 'WARNING' | 'CRITICAL' };
+  issueCount: { total: number; critical: number; warning: number; info: number };
+}
+
 export default function AdminFinancialsPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [data, setData] = useState<FinancialData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // CONN-015: Reconciliation state
+  const today = new Date().toISOString().slice(0, 10);
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  const [reconcileStart, setReconcileStart] = useState(thirtyDaysAgo);
+  const [reconcileEnd, setReconcileEnd] = useState(today);
+  const [reconcileLoading, setReconcileLoading] = useState(false);
+  const [reconcileReport, setReconcileReport] = useState<ReconciliationReport | null>(null);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -97,6 +134,33 @@ export default function AdminFinancialsPage() {
       setLoading(false);
     }
   };
+
+  // CONN-015: run reconciliation
+  const runReconciliation = useCallback(async () => {
+    setReconcileLoading(true);
+    try {
+      const params = new URLSearchParams({ startDate: reconcileStart, endDate: reconcileEnd });
+      const res = await fetch(`/api/admin/payments/reconcile?${params.toString()}`);
+      const result = await res.json();
+      if (res.ok && result.success) {
+        setReconcileReport(result.report);
+        const count = result.report.issueCount.total;
+        if (count === 0) {
+          toast.success('Reconciliation complete', { description: 'No discrepancies found.' });
+        } else {
+          toast.warning(`${count} discrepanc${count === 1 ? 'y' : 'ies'} found`, {
+            description: `${result.report.issueCount.critical} HIGH severity`,
+          });
+        }
+      } else {
+        toast.error('Reconciliation failed', { description: result.error });
+      }
+    } catch {
+      toast.error('Reconciliation request failed');
+    } finally {
+      setReconcileLoading(false);
+    }
+  }, [reconcileStart, reconcileEnd]);
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-AU', {
@@ -326,6 +390,144 @@ export default function AdminFinancialsPage() {
         {/* Xero Accounting Integration */}
         <div className="mb-8">
           <XeroWidget />
+        </div>
+
+        {/* CONN-015: Payment Reconciliation Panel */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900">Payment Reconciliation</h2>
+              <p className="text-sm text-gray-400 mt-0.5">
+                Compare DB payments against Stripe to find discrepancies
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="date"
+                value={reconcileStart}
+                onChange={(e) => setReconcileStart(e.target.value)}
+                className="border rounded px-2 py-1 text-sm text-gray-700"
+              />
+              <span className="text-gray-400 text-sm">–</span>
+              <input
+                type="date"
+                value={reconcileEnd}
+                onChange={(e) => setReconcileEnd(e.target.value)}
+                className="border rounded px-2 py-1 text-sm text-gray-700"
+              />
+              <button
+                onClick={runReconciliation}
+                disabled={reconcileLoading}
+                className="px-4 py-1.5 bg-gray-900 text-white text-sm rounded hover:bg-gray-700 disabled:opacity-50 flex items-center gap-2"
+              >
+                {reconcileLoading ? (
+                  <span className="animate-spin h-3.5 w-3.5 border-2 border-white border-t-transparent rounded-full" />
+                ) : null}
+                Run Reconciliation
+              </button>
+            </div>
+          </div>
+
+          {reconcileReport && (
+            <div className="space-y-4">
+              {/* Summary */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-gray-50 rounded p-3 text-center">
+                  <p className="text-xs text-gray-400 uppercase font-medium">DB Payments</p>
+                  <p className="text-xl font-bold text-gray-900 mt-1">
+                    {reconcileReport.statistics.totalPaymentsInDB}
+                  </p>
+                </div>
+                <div className="bg-gray-50 rounded p-3 text-center">
+                  <p className="text-xs text-gray-400 uppercase font-medium">Stripe Payments</p>
+                  <p className="text-xl font-bold text-gray-900 mt-1">
+                    {reconcileReport.statistics.totalPaymentsInStripe}
+                  </p>
+                </div>
+                <div className="bg-gray-50 rounded p-3 text-center">
+                  <p className="text-xs text-gray-400 uppercase font-medium">Match Rate</p>
+                  <p className={`text-xl font-bold mt-1 ${
+                    reconcileReport.summary.reconciliationRate >= 0.98
+                      ? 'text-green-600'
+                      : reconcileReport.summary.reconciliationRate >= 0.95
+                      ? 'text-amber-600'
+                      : 'text-red-600'
+                  }`}>
+                    {(reconcileReport.summary.reconciliationRate * 100).toFixed(1)}%
+                  </p>
+                </div>
+                <div className={`rounded p-3 text-center ${
+                  reconcileReport.summary.status === 'HEALTHY'
+                    ? 'bg-green-50'
+                    : reconcileReport.summary.status === 'WARNING'
+                    ? 'bg-amber-50'
+                    : 'bg-red-50'
+                }`}>
+                  <p className="text-xs text-gray-400 uppercase font-medium">Status</p>
+                  <p className={`text-sm font-bold mt-1 ${
+                    reconcileReport.summary.status === 'HEALTHY'
+                      ? 'text-green-700'
+                      : reconcileReport.summary.status === 'WARNING'
+                      ? 'text-amber-700'
+                      : 'text-red-700'
+                  }`}>
+                    {reconcileReport.summary.status}
+                  </p>
+                </div>
+              </div>
+
+              {/* Issues */}
+              {reconcileReport.issues.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-semibold text-gray-700 mb-2">
+                    Discrepancies ({reconcileReport.issueCount.total})
+                  </h3>
+                  <div className="space-y-2 max-h-64 overflow-y-auto">
+                    {reconcileReport.issues.map((issue, idx) => (
+                      <div
+                        key={idx}
+                        className={`flex items-start gap-3 p-3 rounded border text-sm ${
+                          issue.severity === 'HIGH'
+                            ? 'border-red-200 bg-red-50'
+                            : issue.severity === 'MEDIUM'
+                            ? 'border-amber-200 bg-amber-50'
+                            : 'border-gray-100 bg-gray-50'
+                        }`}
+                      >
+                        <span className={`text-xs font-bold px-1.5 py-0.5 rounded flex-shrink-0 ${
+                          issue.severity === 'HIGH'
+                            ? 'bg-red-200 text-red-800'
+                            : issue.severity === 'MEDIUM'
+                            ? 'bg-amber-200 text-amber-800'
+                            : 'bg-gray-200 text-gray-600'
+                        }`}>
+                          {issue.severity}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-gray-900">
+                            {issue.type.replace(/_/g, ' ')}
+                          </p>
+                          <p className="text-gray-500 text-xs mt-0.5">{issue.description}</p>
+                          {issue.paymentId && (
+                            <p className="text-xs text-gray-400 mt-0.5 font-mono">
+                              {issue.paymentId}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {reconcileReport.issues.length === 0 && (
+                <div className="flex items-center gap-2 text-green-700 bg-green-50 rounded p-3">
+                  <span className="text-lg">✅</span>
+                  <p className="text-sm font-medium">All payments reconciled. No discrepancies found.</p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Quick Links */}
