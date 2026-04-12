@@ -39,6 +39,12 @@
     "dotenv": "^17.2.4",
     "turbo": "^2.3.0"
   },
+  "pnpm": {
+    "overrides": {
+      "handlebars": ">=4.7.9",
+      "fast-xml-parser": ">=5.3.5"
+    }
+  },
   "engines": {
     "node": ">=18.0.0"
   },
