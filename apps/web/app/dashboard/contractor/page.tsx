@@ -26,9 +26,10 @@ import ContractorOnboarding from '@/components/onboarding/contractor-onboarding'
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import { EligibilityBanner } from '@/components/contractor/eligibility-banner';
 import { RealtimeNotifications } from '@/components/realtime/RealtimeNotifications';
-import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle, Star } from 'lucide-react';
+import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle, Star, BarChart2 } from 'lucide-react';
 import { useContractorStats } from '@/hooks/useContractorStats';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface DashboardStats {
@@ -78,6 +79,8 @@ export default function ContractorDashboardPage() {
   const [availability, setAvailability] = useState<AvailabilityStatus | null>(null);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [workspaceUsage, setWorkspaceUsage] = useState<any>(null);
+  const [loadingUsage, setLoadingUsage] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -89,6 +92,7 @@ export default function ContractorDashboardPage() {
     } else if (user && user.userType === 'CONTRACTOR') {
       checkOnboardingStatus();
       fetchDashboardData();
+      fetchWorkspaceUsage();
     }
   }, [user, loading, router]);
 
@@ -211,6 +215,21 @@ export default function ContractorDashboardPage() {
       }
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
+    }
+  };
+
+  const fetchWorkspaceUsage = async () => {
+    try {
+      setLoadingUsage(true);
+      const res = await fetch('/api/workspace/usage', { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        setWorkspaceUsage(data);
+      }
+    } catch {
+      // non-critical — workspace usage is supplementary
+    } finally {
+      setLoadingUsage(false);
     }
   };
 
@@ -555,6 +574,107 @@ export default function ContractorDashboardPage() {
             nextSession="Dec 15, 2024"
             progress={82}
           />
+
+          {/* Workspace Usage Widget — CONN-030 */}
+          {loadingUsage ? (
+            <Card>
+              <CardContent className="pt-6 space-y-3">
+                <Skeleton className="h-4 w-32" />
+                <Skeleton className="h-3 w-full" />
+                <Skeleton className="h-3 w-full" />
+              </CardContent>
+            </Card>
+          ) : workspaceUsage ? (
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+                  <BarChart2 className="size-4 text-earth-primary" />
+                  Workspace Usage
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4 text-sm">
+                {/* Plan info */}
+                <div className="flex items-center justify-between text-xs text-portal-muted">
+                  <span className="uppercase tracking-wider font-bold">
+                    {workspaceUsage.workspace?.tier || 'Unknown'} Plan
+                  </span>
+                  <span className={
+                    workspaceUsage.workspace?.status === 'ACTIVE'
+                      ? 'text-portal-success font-medium'
+                      : 'text-red-500 font-medium'
+                  }>
+                    {workspaceUsage.workspace?.status || '—'}
+                  </span>
+                </div>
+
+                {/* Jobs this month */}
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-portal-muted text-xs">Jobs this month</span>
+                    <span className="font-semibold text-xs">
+                      {workspaceUsage.usage?.jobs?.current ?? 0}
+                      {' / '}
+                      {workspaceUsage.usage?.jobs?.limit ?? '—'}
+                    </span>
+                  </div>
+                  <Progress
+                    value={workspaceUsage.usage?.jobs?.usagePercent ?? 0}
+                    className="h-1.5"
+                  />
+                  {(workspaceUsage.usage?.jobs?.usagePercent ?? 0) >= 80 && (
+                    <p className="text-xs text-yellow-600 mt-1">
+                      Approaching job limit — consider upgrading
+                    </p>
+                  )}
+                </div>
+
+                {/* Team seats */}
+                <div>
+                  <div className="flex justify-between mb-1">
+                    <span className="text-portal-muted text-xs">Team seats</span>
+                    <span className="font-semibold text-xs">
+                      {workspaceUsage.usage?.seats?.current ?? 0}
+                      {' / '}
+                      {workspaceUsage.usage?.seats?.limit ?? '—'}
+                    </span>
+                  </div>
+                  <Progress
+                    value={workspaceUsage.usage?.seats?.usagePercent ?? 0}
+                    className="h-1.5"
+                  />
+                </div>
+
+                {/* Upgrade link */}
+                {(
+                  (workspaceUsage.usage?.jobs?.usagePercent ?? 0) >= 80 ||
+                  (workspaceUsage.usage?.seats?.usagePercent ?? 0) >= 80 ||
+                  workspaceUsage.recommendation
+                ) && (
+                  <a
+                    href="/dashboard/contractor/subscription"
+                    className="block w-full text-center text-xs font-semibold text-nrpg-teal hover:underline mt-1"
+                  >
+                    Upgrade Plan →
+                  </a>
+                )}
+
+                {/* Days remaining */}
+                {workspaceUsage.billing?.daysRemainingInPeriod != null && (
+                  <p className="text-xs text-portal-muted text-right">
+                    {workspaceUsage.billing.daysRemainingInPeriod} days left in billing period
+                  </p>
+                )}
+
+                {/* Team link */}
+                <a
+                  href="/dashboard/contractor/workspace/team"
+                  className="block w-full text-center text-xs text-portal-muted hover:text-earth-primary underline"
+                >
+                  Manage Team →
+                </a>
+              </CardContent>
+            </Card>
+          ) : null}
         </div>
       </div>
 

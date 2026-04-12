@@ -4,6 +4,40 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'sonner';
+import { Skeleton } from '@/components/ui/skeleton';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { FileText, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+
+interface Invoice {
+  id: string;
+  invoiceNumber: string;
+  dateIssued: string;
+  dateDue: string | null;
+  totalAUD: number;
+  isPaid: boolean;
+  paidDate: string | null;
+  client: { id: string; name: string; email: string } | null;
+  contractor: { id: string; businessName: string } | null;
+  payment: { id: string; status: string } | null;
+}
+
+interface InvoicePagination {
+  limit: number;
+  offset: number;
+  total: number;
+  hasMore: boolean;
+}
 
 interface Payment {
   id: string;
@@ -41,6 +75,14 @@ export default function ClientPaymentsPage() {
   const [loading, setLoading] = useState(true);
   const [selectedStatus, setSelectedStatus] = useState<string>('');
 
+  // Invoice state
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [invoicePagination, setInvoicePagination] = useState<InvoicePagination | null>(null);
+  const [invoiceLoading, setInvoiceLoading] = useState(true);
+  const [invoiceOffset, setInvoiceOffset] = useState(0);
+  const [invoiceStatusFilter, setInvoiceStatusFilter] = useState<string>('');
+  const INVOICE_LIMIT = 10;
+
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/auth/login');
@@ -52,6 +94,45 @@ export default function ClientPaymentsPage() {
       fetchPayments();
     }
   }, [status, selectedStatus]);
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      fetchInvoices();
+    }
+  }, [status, invoiceOffset, invoiceStatusFilter]);
+
+  const fetchInvoices = async () => {
+    try {
+      setInvoiceLoading(true);
+      const url = new URL('/api/invoices', window.location.origin);
+      url.searchParams.set('limit', String(INVOICE_LIMIT));
+      url.searchParams.set('offset', String(invoiceOffset));
+      if (invoiceStatusFilter) {
+        url.searchParams.set('isPaid', invoiceStatusFilter === 'PAID' ? 'true' : 'false');
+      }
+      const res = await fetch(url.toString());
+      const data = await res.json();
+      if (data.success) {
+        setInvoices(data.invoices);
+        setInvoicePagination(data.pagination);
+      } else {
+        toast.error('Failed to load invoices');
+      }
+    } catch {
+      toast.error('Failed to load invoices');
+    } finally {
+      setInvoiceLoading(false);
+    }
+  };
+
+  const formatInvoiceDate = (date: string | null) => {
+    if (!date) return 'N/A';
+    return new Date(date).toLocaleDateString('en-AU', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    });
+  };
 
   const fetchPayments = async () => {
     try {
@@ -280,6 +361,156 @@ export default function ClientPaymentsPage() {
               </tbody>
             </table>
           )}
+        </div>
+
+        {/* Invoice History */}
+        <div className="mt-10">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center justify-between flex-wrap gap-3">
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5" />
+                  Invoice History
+                </CardTitle>
+                <div className="flex gap-2 text-sm">
+                  {['', 'PAID', 'UNPAID'].map((f) => (
+                    <button
+                      key={f}
+                      onClick={() => {
+                        setInvoiceStatusFilter(f);
+                        setInvoiceOffset(0);
+                      }}
+                      className={`px-3 py-1 rounded-full font-medium transition border ${
+                        invoiceStatusFilter === f
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      {f === '' ? 'All' : f === 'PAID' ? 'Paid' : 'Unpaid'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="p-0">
+              {invoiceLoading ? (
+                <div className="p-6 space-y-3">
+                  {[...Array(4)].map((_, i) => (
+                    <Skeleton key={i} className="h-10 w-full" />
+                  ))}
+                </div>
+              ) : invoices.length === 0 ? (
+                <div className="p-8 text-center text-gray-500">
+                  <FileText className="mx-auto h-10 w-10 text-gray-300 mb-3" />
+                  <p>No invoices found</p>
+                </div>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Invoice #</TableHead>
+                      <TableHead>Date</TableHead>
+                      <TableHead>Amount (AUD)</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {invoices.map((inv) => (
+                      <TableRow key={inv.id}>
+                        <TableCell className="font-mono text-sm font-medium">
+                          {inv.invoiceNumber}
+                        </TableCell>
+                        <TableCell className="text-sm text-gray-500">
+                          {formatInvoiceDate(inv.dateIssued)}
+                        </TableCell>
+                        <TableCell className="text-sm font-medium">
+                          {new Intl.NumberFormat('en-AU', {
+                            style: 'currency',
+                            currency: 'AUD',
+                          }).format(inv.totalAUD)}
+                        </TableCell>
+                        <TableCell>
+                          <Badge
+                            className={
+                              inv.isPaid
+                                ? 'bg-green-100 text-green-800 hover:bg-green-100'
+                                : inv.dateDue && new Date(inv.dateDue) < new Date()
+                                ? 'bg-red-100 text-red-800 hover:bg-red-100'
+                                : 'bg-yellow-100 text-yellow-800 hover:bg-yellow-100'
+                            }
+                          >
+                            {inv.isPaid
+                              ? 'Paid'
+                              : inv.dateDue && new Date(inv.dateDue) < new Date()
+                              ? 'Overdue'
+                              : 'Unpaid'}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            {inv.payment && (
+                              <Link
+                                href={`/dashboard/payments/${inv.payment.id}`}
+                                className="text-blue-600 hover:text-blue-700 text-sm font-medium inline-flex items-center gap-1"
+                              >
+                                View Payment
+                                <ExternalLink className="h-3 w-3" />
+                              </Link>
+                            )}
+                            <Link
+                              href={`/api/invoices/${inv.id}/pdf`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-600 hover:text-gray-700 text-sm font-medium inline-flex items-center gap-1"
+                            >
+                              Download PDF
+                              <ExternalLink className="h-3 w-3" />
+                            </Link>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+
+              {/* Pagination */}
+              {invoicePagination && invoicePagination.total > INVOICE_LIMIT && (
+                <div className="flex items-center justify-between px-6 py-4 border-t">
+                  <p className="text-sm text-gray-500">
+                    Showing {invoiceOffset + 1}–
+                    {Math.min(invoiceOffset + INVOICE_LIMIT, invoicePagination.total)} of{' '}
+                    {invoicePagination.total}
+                  </p>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled={invoiceOffset === 0}
+                      onClick={() =>
+                        setInvoiceOffset((p) => Math.max(0, p - INVOICE_LIMIT))
+                      }
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      Prev
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled={!invoicePagination.hasMore}
+                      onClick={() =>
+                        setInvoiceOffset((p) => p + INVOICE_LIMIT)
+                      }
+                    >
+                      Next
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
 
         {/* Subscription Link */}

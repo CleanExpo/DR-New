@@ -107,6 +107,10 @@ export default function ClaimDetailPage() {
   const [successMessage, setSuccessMessage] = React.useState<string | null>(null);
   const [showRealtimeChat, setShowRealtimeChat] = React.useState(false);
 
+  // Contractor match rankings from service-requests API
+  const [matchDispatchMode, setMatchDispatchMode] = React.useState<string | null>(null);
+  const [matchesLoading, setMatchesLoading] = React.useState(true);
+
   // Load claim details
   React.useEffect(() => {
     const fetchClaim = async () => {
@@ -126,6 +130,28 @@ export default function ClaimDetailPage() {
 
     if (claimId) {
       fetchClaim();
+    }
+  }, [claimId]);
+
+  // Load contractor match status
+  React.useEffect(() => {
+    const fetchMatches = async () => {
+      try {
+        setMatchesLoading(true);
+        const response = await fetch(`/api/service-requests/${claimId}/matches`);
+        if (response.ok) {
+          const data = await response.json();
+          setMatchDispatchMode(data.dispatchMode ?? null);
+        }
+      } catch {
+        // Non-critical — silently ignore
+      } finally {
+        setMatchesLoading(false);
+      }
+    };
+
+    if (claimId) {
+      fetchMatches();
     }
   }, [claimId]);
 
@@ -532,6 +558,29 @@ export default function ClaimDetailPage() {
                   </Button>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Matched Contractors Status */}
+          {!matchesLoading && (
+            <div className="bg-white rounded-lg border border-gray-200 p-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <TrendingUp className="h-5 w-5 text-blue-600" />
+                Contractor Matching
+              </h2>
+              {matchDispatchMode === 'AUTO' ? (
+                <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 shrink-0" />
+                  <div>
+                    <p className="font-semibold text-blue-900">Automatic Dispatch Active</p>
+                    <p className="text-sm text-blue-700 mt-1">
+                      Our system automatically matches and dispatches the best-qualified contractor for your claim. You will be notified as soon as a contractor accepts.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500">Contractor matching information is not available for this claim.</p>
+              )}
             </div>
           )}
 
