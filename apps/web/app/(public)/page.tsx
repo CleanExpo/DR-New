@@ -66,7 +66,7 @@ export default function HomePage() {
       },
       {
         title: 'Rapid On-Site Response',
-        description: 'Your assigned contractor arrives within 60 minutes of dispatch.',
+        description: 'A verified contractor is dispatched to your location as a priority job. Response times vary by location and contractor availability.',
       },
       {
         title: 'Restoration & Insurance Coordination',
@@ -78,7 +78,7 @@ export default function HomePage() {
   const faqSchema = schemaGenerator.generateFAQSchema([
     {
       question: 'How quickly can you respond to a disaster emergency?',
-      answer: 'Our network of IICRC-certified contractors provides 60-minute emergency response across all major Australian cities, 24 hours a day, 7 days a week.',
+      answer: 'All emergency claims receive priority dispatch. A verified IICRC-certified contractor is assigned as quickly as possible, 24 hours a day, 7 days a week. Response times vary by location and contractor availability.',
     },
     {
       question: 'Which types of disaster damage do you cover?',
@@ -264,7 +264,7 @@ export default function HomePage() {
                 {
                   step: '3',
                   title: 'Rapid On-Site Response',
-                  description: 'Your assigned contractor arrives within 60 minutes of dispatch.',
+                  description: 'A verified contractor is dispatched to your location as a priority job. Response times vary by location and contractor availability.',
                 },
                 {
                   step: '4',
@@ -305,7 +305,7 @@ export default function HomePage() {
                 {[
                   {
                     question: 'How quickly can you respond to a disaster emergency?',
-                    answer: 'Our network of IICRC-certified contractors provides 60-minute emergency response across all major Australian cities, 24 hours a day, 7 days a week.',
+                    answer: 'All emergency claims receive priority dispatch. A verified IICRC-certified contractor is assigned as quickly as possible, 24 hours a day, 7 days a week. Response times vary by location and contractor availability.',
                   },
                   {
                     question: 'Which types of disaster damage do you cover?',

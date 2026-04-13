@@ -94,7 +94,7 @@ const FAQ_TEMPLATES: Record<string, FAQItem[]> = {
     },
     {
       question: "How quickly do professional storm assessments happen?",
-      answer: "NRPG provides emergency response within 60 minutes on average. Weather conditions may delay assessment, but we prioritise based on safety risks. Comprehensive assessments guide repair planning and insurance claims."
+      answer: "NRPG prioritises rapid response across all service areas. Weather conditions may delay assessment, but requests are triaged based on safety risk. Comprehensive assessments guide repair planning and insurance claims."
     },
     {
       question: "Does insurance cover storm damage?",

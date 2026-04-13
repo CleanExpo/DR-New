@@ -176,16 +176,22 @@ export async function registerContractor(
       };
     }
 
-    // Check if ABN already registered
-    const existingContractor = await prisma.contractor.findUnique({
-      where: { abnNumber: input.abnNumber },
-    });
+    // Check if ABN is already registered to a DIFFERENT user
+    if (input.abnNumber) {
+      const abnConflict = await prisma.contractor.findFirst({
+        where: {
+          abnNumber: input.abnNumber,
+          NOT: { userId },
+        },
+        select: { id: true },
+      });
 
-    if (existingContractor) {
-      return {
-        success: false,
-        message: 'ABN already registered in NRPG',
-      };
+      if (abnConflict) {
+        return {
+          success: false,
+          message: 'ABN already registered to another account in NRPG',
+        };
+      }
     }
 
     // Generate NRPG Member ID (format: NRPG-YYYY-XXXXXX)
@@ -195,10 +201,25 @@ export async function registerContractor(
       .padStart(6, '0');
     const nrpgMemberId = `NRPG-${year}-${randomId}`;
 
-    // Create contractor profile
-    const contractor = await prisma.contractor.create({
-      data: {
+    // Upsert contractor profile — handles the case where a minimal Contractor
+    // record was created by the onboarding/start flow (businessName only, no ABN).
+    const contractor = await prisma.contractor.upsert({
+      where: { userId },
+      create: {
         userId,
+        businessName: input.businessName,
+        abnNumber: input.abnNumber,
+        acnNumber: input.acnNumber,
+        primaryState: input.operatingStates[0],
+        operatingStates: input.operatingStates,
+        australianSpecialties: input.specialties,
+        nrpgMemberId,
+        nrpgVerificationLevel: 'PENDING',
+        publicLiabilityPolicyNumber: input.publicLiabilityPolicyNumber,
+        publicLiabilityExpiryDate: input.publicLiabilityExpiryDate,
+        publicLiabilityCertificateUrl: input.insuranceCertificateFile,
+      },
+      update: {
         businessName: input.businessName,
         abnNumber: input.abnNumber,
         acnNumber: input.acnNumber,

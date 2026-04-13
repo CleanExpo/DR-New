@@ -596,7 +596,7 @@ I'm reaching out on behalf of NRPG (National Restoration Professionals Group), A
 
 We understand that {{company_name}} values providing policyholders with reliable, qualified restoration services. Our network of 100% vetted contractors offers:
 
-- 24/7 emergency response (60-minute average response time)
+- 24/7 emergency response (priority dispatch to all service areas)
 - IICRC certified technicians across all specializations
 - Complete documentation for claims processing
 - Direct billing arrangements available

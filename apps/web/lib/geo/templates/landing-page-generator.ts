@@ -89,7 +89,7 @@ export const SERVICE_CONFIG: Record<
       {
         question: 'How quickly can you respond to water damage in {suburb}?',
         answer:
-          'Our {suburb} water damage team typically responds within 30-60 minutes for emergencies. We have IICRC-certified contractors available 24/7.',
+          'IICRC-certified contractors are available 24/7 and prioritise rapid response for emergencies in {suburb}. Aim is to arrive as quickly as possible (typically within 2 hours in metro areas).',
       },
       {
         question: 'Does insurance cover water damage restoration?',

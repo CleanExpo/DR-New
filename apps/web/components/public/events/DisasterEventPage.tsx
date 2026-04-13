@@ -114,7 +114,7 @@ function buildFAQSchema(props: DisasterEventPageProps) {
         name: `How quickly can a restoration contractor attend in ${props.state}?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `NRPG-network contractors aim to attend within 60 minutes in major urban areas of ${props.state}. Response times in regional and remote areas may vary — always call first to confirm availability for your location.`,
+          text: `NRPG-network contractors aim to arrive as quickly as possible in major urban areas of ${props.state} (typically within 2 hours). Response times in regional and remote areas may vary — always call first to confirm availability for your location.`,
         },
       },
       {
@@ -425,7 +425,7 @@ export default function DisasterEventPage(props: DisasterEventPageProps) {
               {[
                 {
                   q: `How quickly can a restoration contractor attend in ${state}?`,
-                  a: `NRPG-network contractors aim to attend within 60 minutes in major urban areas of ${state}. Response times in regional and remote areas may vary — always call first to confirm availability for your location.`,
+                  a: `NRPG-network contractors aim to arrive as quickly as possible in major urban areas of ${state} (typically within 2 hours). Response times in regional and remote areas may vary — always call first to confirm availability for your location.`,
                 },
                 {
                   q: `Will my insurance cover ${eventLabel.toLowerCase()} damage?`,

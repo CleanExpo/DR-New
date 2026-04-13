@@ -35,7 +35,7 @@ const features = [
 
 const faqs = [
   { question: "What should I do if a pipe bursts in my home?", answer: "Immediately turn off your main water supply at the meter. Switch off electricity at the mains if water is near electrical outlets. Then contact us for emergency response. Do not attempt to repair the pipe yourself." },
-  { question: "How quickly can you respond to a burst pipe?", answer: "We offer 24/7 emergency response with target arrival times under 60 minutes in major metropolitan areas. Our vehicles carry extraction equipment for immediate water removal upon arrival." },
+  { question: "How quickly can you respond to a burst pipe?", answer: "Priority dispatch applies to all emergency burst pipe requests. Contractors are available 24/7 and aim to arrive as quickly as possible in metro areas, with fully equipped vehicles ready for immediate water removal." },
   { question: "Will a burst pipe cause mould?", answer: "Yes, if not addressed promptly. Mould can begin growing within 24-48 hours of water exposure. Our rapid response and thorough drying programs are designed to prevent mould development." },
   { question: "Does insurance cover burst pipe damage?", answer: "Most Australian home insurance policies cover sudden and accidental burst pipe damage. We provide comprehensive documentation including moisture readings, photos, and detailed reports for your claim." },
   { question: "How long does burst pipe restoration take?", answer: "Emergency extraction typically takes a few hours. Structural drying requires 3-5 days of monitored dehumidification. Full restoration including wall and ceiling repairs may take 1-2 weeks depending on severity." },

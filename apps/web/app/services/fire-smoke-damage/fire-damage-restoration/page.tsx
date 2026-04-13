@@ -22,7 +22,7 @@ const processSteps = [
     step: 1,
     title: "Emergency Board-Up & Securing",
     description:
-      "Our team arrives within 60 minutes to secure the property with emergency board-up, tarping, and fencing. We prevent further damage from weather exposure, vandalism, and unauthorised access whilst preserving evidence for insurance.",
+      "IICRC-certified contractors target rapid on-site response (typically within 2 hours in metro areas) to secure the property with emergency board-up, tarping, and fencing. This prevents further damage from weather exposure, vandalism, and unauthorised access whilst preserving evidence for insurance.",
   },
   {
     step: 2,
@@ -81,7 +81,7 @@ const faqs = [
   {
     question: "When can fire damage cleanup begin?",
     answer:
-      "Cleanup can begin as soon as the fire brigade has cleared the property and deemed it safe to enter. Our emergency team can arrive within 60 minutes of clearance to begin board-up and securing. Full remediation typically commences within 24-48 hours once the structural assessment is complete.",
+      "Cleanup can begin as soon as the fire brigade has cleared the property and deemed it safe to enter. Contractors aim to arrive as quickly as possible (typically within 2 hours in metro areas) to begin board-up and securing. Full remediation typically commences within 24-48 hours once the structural assessment is complete.",
   },
   {
     question: "What should I do immediately after a fire?",

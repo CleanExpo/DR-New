@@ -84,7 +84,7 @@ export interface BrandGuidelines {
 // NRPG Brand Guidelines - Live Definition
 export const nrpgBrandGuidelines: BrandGuidelines = {
   name: 'NRPG (National Restoration Platform Group)',
-  mission: 'Transform disaster recovery by connecting Australia with elite IICRC-certified contractors in under 60 minutes.',
+  mission: 'Transform disaster recovery by connecting Australia with elite IICRC-certified contractors as quickly as possible in metro areas.',
   tagline: 'Professional Disaster Recovery. One Call Away.',
   description: 'National platform connecting emergency clients with vetted, insured disaster restoration contractors across Australia.',
 
@@ -110,10 +110,10 @@ export const nrpgBrandGuidelines: BrandGuidelines = {
   voiceByAudience: {
     emergency: {
       tone: 'Urgent, empathetic, action-oriented. "Help is coming." Reassuring but fast.',
-      keywords: ['immediate', 'now', 'certified', '60 minutes', 'help', 'professional', '24/7'],
+      keywords: ['immediate', 'now', 'certified', 'rapid response', 'help', 'professional', '24/7'],
       examples: [
-        'Your home is damaged. We get it. Professional help in 60 minutes.',
-        'Active disaster? Get IICRC-certified help in under an hour.',
+        'Your home is damaged. Professional help is on the way.',
+        'Active disaster? Get IICRC-certified help dispatched now.',
         'Water damage spreading? Stop the damage NOW with certified pros.',
       ],
     },
@@ -144,7 +144,7 @@ export const nrpgBrandGuidelines: BrandGuidelines = {
     paragraphMaxLength: 250,
     keyMessages: [
       'IICRC-certified professionals',
-      'Under 60-minute response time',
+      'Priority emergency response',
       '500+ vetted contractors nationwide',
       '24/7 emergency dispatch',
       'Pre-approved by major insurers',
