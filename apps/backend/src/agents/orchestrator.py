@@ -37,20 +37,21 @@ class JobStatus(str, Enum):
     CANCELLED = "CANCELLED"
 
 
+# Workflows that have real implementations (expand as each is built).
+_IMPLEMENTED_WORKFLOWS: set[str] = set()
+
+
 class AgentOrchestrator:
     """
     Orchestrates LangGraph workflows for AI agent execution.
 
-    This class is responsible for:
-    - Routing requests to appropriate workflows
-    - Managing workflow execution state
-    - Handling checkpoints for long-running workflows
-    - Tracking execution metrics
+    Jobs are currently held in-memory. Persistent job storage via the
+    shared Supabase PostgreSQL database is tracked in DR-NRPG Phase 4
+    (see docs/runbooks/platform-health-recovery.md).
     """
 
-    def __init__(self):
-        self._workflows: Dict[str, Any] = {}
-        self._jobs: Dict[str, Dict] = {}
+    def __init__(self) -> None:
+        self._jobs: Dict[str, Dict[str, Any]] = {}
         logger.info("AgentOrchestrator initialized")
 
     async def create_job(
@@ -61,16 +62,16 @@ class AgentOrchestrator:
         metadata: Optional[Dict[str, Any]] = None,
     ) -> str:
         """
-        Create a new agent job
+        Create a new agent job.
 
         Args:
-            workflow_type: Type of workflow to execute
+            workflow_type: Type of workflow to execute (WorkflowType enum value)
             user_id: ID of the user initiating the job
             input_data: Input data for the workflow
             metadata: Optional metadata
 
         Returns:
-            Job ID
+            Job ID (UUID string)
         """
         job_id = str(uuid.uuid4())
 
@@ -104,77 +105,102 @@ class AgentOrchestrator:
 
     async def execute_job(self, job_id: str) -> Dict[str, Any]:
         """
-        Execute a job
+        Execute a job by routing it to the appropriate workflow handler.
+
+        Raises ValueError for unimplemented workflow types so callers
+        receive an honest error rather than silently succeeding with mock data.
 
         Args:
             job_id: ID of the job to execute
 
         Returns:
-            Job result
+            Job result dict with keys: job_id, status, output
         """
         job = self._jobs.get(job_id)
         if not job:
             raise ValueError(f"Job {job_id} not found")
 
+        workflow_type: str = job["workflow_type"]
+
         try:
-            # Update status to processing
-            job["status"] = JobStatus.PROCESSING
+            job["status"] = JobStatus.ROUTING
             job["started_at"] = datetime.utcnow().isoformat()
 
-            logger.info("Starting job execution", job_id=job_id)
+            logger.info("Routing job", job_id=job_id, workflow_type=workflow_type)
 
-            # TODO: Implement actual LangGraph workflow execution
-            # This is where we would:
-            # 1. Route to the appropriate workflow
-            # 2. Create the LangGraph graph
-            # 3. Execute with checkpointing
-            # 4. Track metrics
+            if workflow_type not in _IMPLEMENTED_WORKFLOWS:
+                raise NotImplementedError(
+                    f"Workflow '{workflow_type}' is not yet implemented. "
+                    "See DR-NRPG Phase 4 in the platform health recovery plan."
+                )
 
-            # For now, simulate execution
-            import asyncio
+            # Route to implemented workflow handler.
+            result = await self._dispatch(workflow_type, job)
 
-            await asyncio.sleep(1)
-
-            # Mark as completed
             job["status"] = JobStatus.COMPLETED
             job["completed_at"] = datetime.utcnow().isoformat()
             job["progress"] = 100
-            job["output"] = {
-                "result": "Workflow completed",
-                "workflow_type": job["workflow_type"],
-            }
+            job["output"] = result
 
             logger.info("Job completed", job_id=job_id)
 
             return {
                 "job_id": job_id,
                 "status": job["status"].value,
-                "output": job["output"],
+                "output": result,
             }
 
-        except Exception as e:
+        except NotImplementedError as exc:
             job["status"] = JobStatus.FAILED
-            job["error"] = str(e)
+            job["error"] = str(exc)
             job["completed_at"] = datetime.utcnow().isoformat()
 
-            logger.error("Job failed", job_id=job_id, error=str(e))
+            logger.warning(
+                "Unimplemented workflow requested",
+                job_id=job_id,
+                workflow_type=workflow_type,
+                error=str(exc),
+            )
 
             return {
                 "job_id": job_id,
                 "status": job["status"].value,
-                "error": str(e),
+                "error": str(exc),
             }
 
-    async def get_job_status(self, job_id: str, user_id: str) -> Optional[Dict[str, Any]]:
+        except Exception as exc:
+            job["status"] = JobStatus.FAILED
+            job["error"] = str(exc)
+            job["completed_at"] = datetime.utcnow().isoformat()
+
+            logger.error("Job failed", job_id=job_id, error=str(exc))
+
+            return {
+                "job_id": job_id,
+                "status": job["status"].value,
+                "error": str(exc),
+            }
+
+    async def _dispatch(
+        self, workflow_type: str, job: Dict[str, Any]
+    ) -> Dict[str, Any]:
         """
-        Get the status of a job
+        Route to the appropriate workflow implementation.
 
-        Args:
-            job_id: ID of the job
-            user_id: ID of the user (for authorization)
+        Each workflow type listed in _IMPLEMENTED_WORKFLOWS must have
+        a corresponding branch here.
+        """
+        # No workflows implemented yet; this block will be extended as
+        # each workflow is built (Phase 4 of the health recovery plan).
+        raise NotImplementedError(f"No dispatch handler for '{workflow_type}'")
 
-        Returns:
-            Job status or None if not found
+    async def get_job_status(
+        self, job_id: str, user_id: str
+    ) -> Optional[Dict[str, Any]]:
+        """
+        Get the status of a job.
+
+        Returns None if the job does not exist or the user is not the owner.
         """
         job = self._jobs.get(job_id)
         if not job:
@@ -185,7 +211,11 @@ class AgentOrchestrator:
 
         return {
             "job_id": job["id"],
-            "status": job["status"].value if isinstance(job["status"], JobStatus) else job["status"],
+            "status": (
+                job["status"].value
+                if isinstance(job["status"], JobStatus)
+                else job["status"]
+            ),
             "workflow_type": job["workflow_type"],
             "current_node": job.get("current_node"),
             "progress": job.get("progress", 0),
@@ -197,20 +227,15 @@ class AgentOrchestrator:
 
     async def cancel_job(self, job_id: str, user_id: str) -> bool:
         """
-        Cancel a running job
+        Cancel a running job.
 
-        Args:
-            job_id: ID of the job
-            user_id: ID of the user (for authorization)
-
-        Returns:
-            True if cancelled, False otherwise
+        Returns True if cancelled, False if not found, not owned, or already terminal.
         """
         job = self._jobs.get(job_id)
         if not job or job["user_id"] != user_id:
             return False
 
-        if job["status"] in (JobStatus.COMPLETED, JobStatus.FAILED):
+        if job["status"] in (JobStatus.COMPLETED, JobStatus.FAILED, JobStatus.CANCELLED):
             return False
 
         job["status"] = JobStatus.CANCELLED
@@ -221,18 +246,12 @@ class AgentOrchestrator:
 
     async def resume_job(self, job_id: str, user_id: str) -> Dict[str, Any]:
         """
-        Resume a paused or failed job from last checkpoint
+        Resume a paused or failed job from last checkpoint.
 
-        Args:
-            job_id: ID of the job
-            user_id: ID of the user (for authorization)
-
-        Returns:
-            Job result
+        Until checkpointing is implemented this simply re-executes the job.
         """
         job = self._jobs.get(job_id)
         if not job or job["user_id"] != user_id:
-            raise ValueError(f"Job {job_id} not found or not authorized")
+            raise ValueError(f"Job {job_id} not found or not authorised")
 
-        # For now, just re-execute
         return await self.execute_job(job_id)
