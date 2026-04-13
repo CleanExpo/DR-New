@@ -37,8 +37,8 @@
   "devDependencies": {
     "@google/generative-ai": "^0.24.1",
     "@types/node": "20",
-    "dotenv": "^17.2.4",
-    "turbo": "^2.3.0"
+    "dotenv": "^17.4.2",
+    "turbo": "^2.9.6"
   },
   "pnpm": {
     "overrides": {
@@ -65,5 +65,5 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@9.15.9"
 }
