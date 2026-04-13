@@ -32,9 +32,9 @@ export const revalidate = 86400;
 export const dynamicParams = true;
 
 interface CityPageProps {
-  params: {
+  params: Promise<{
     city: string;
-  };
+  }>;
 }
 
 const SERVICE_SLUG_MAP: Record<string, string> = {
@@ -49,13 +49,14 @@ const SERVICE_SLUG_MAP: Record<string, string> = {
 };
 
 export async function generateMetadata({ params }: CityPageProps): Promise<Metadata> {
-  const city = getCityBySlug(params.city);
+  const { city: citySlug } = await params;
+  const city = getCityBySlug(citySlug);
 
   if (!city) {
     return { title: 'City Not Found' };
   }
 
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}/${params.city}`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}/${citySlug}`;
 
   return {
     title: `Disaster Recovery ${city.city}, ${city.state} | Emergency Restoration | NRPG`,
@@ -72,8 +73,9 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   };
 }
 
-export default function CityPage({ params }: CityPageProps) {
-  const city = getCityBySlug(params.city);
+export default async function CityPage({ params }: CityPageProps) {
+  const { city: citySlug } = await params;
+  const city = getCityBySlug(citySlug);
 
   if (!city) {
     notFound();
@@ -168,7 +170,7 @@ export default function CityPage({ params }: CityPageProps) {
                       return (
                         <Link
                           key={service.slug}
-                          href={`/${params.city}/${serviceSlug}`}
+                          href={`/${citySlug}/${serviceSlug}`}
                           className="bg-slate-50 hover:bg-white hover:shadow-xl border border-slate-200 hover:border-blue-300 rounded-lg p-6 transition-all group"
                         >
                           <h4 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 mb-2">

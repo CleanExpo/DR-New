@@ -23,10 +23,10 @@ import { internalLinking } from '@/lib/seo/internal-linking';
 import { generateCityServicePageData, getAllCityServiceCombinations } from '@/lib/seo/city-service-generator';
 
 interface CityServicePageProps {
-  params: {
+  params: Promise<{
     city: string;
     service: string;
-  };
+  }>;
 }
 
 // Hybrid Generation Strategy
@@ -77,7 +77,8 @@ export const dynamicParams = true;
 
 // Generate SEO metadata
 export async function generateMetadata({ params }: CityServicePageProps): Promise<Metadata> {
-  const pageData = generateCityServicePageData(params.city, params.service);
+  const { city: citySlug, service: serviceSlug } = await params;
+  const pageData = generateCityServicePageData(citySlug, serviceSlug);
 
   if (!pageData) {
     return {
@@ -85,7 +86,7 @@ export async function generateMetadata({ params }: CityServicePageProps): Promis
     };
   }
 
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}/${params.city}/${params.service}`;
+  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}/${citySlug}/${serviceSlug}`;
 
   return {
     title: pageData.metaTitle,
@@ -103,7 +104,7 @@ export async function generateMetadata({ params }: CityServicePageProps): Promis
       locale: 'en_AU',
       images: [
         {
-          url: `/images/og/${params.service}-${params.city}.jpg`,
+          url: `/images/og/${serviceSlug}-${citySlug}.jpg`,
           width: 1200,
           height: 630,
           alt: `${pageData.serviceTitle} in ${pageData.cityName}`,
@@ -114,7 +115,7 @@ export async function generateMetadata({ params }: CityServicePageProps): Promis
       card: 'summary_large_image',
       title: pageData.metaTitle,
       description: pageData.metaDescription,
-      images: [`/images/og/${params.service}-${params.city}.jpg`],
+      images: [`/images/og/${serviceSlug}-${citySlug}.jpg`],
     },
     robots: {
       index: true,
@@ -130,8 +131,9 @@ export async function generateMetadata({ params }: CityServicePageProps): Promis
   };
 }
 
-export default function CityServicePage({ params }: CityServicePageProps) {
-  const pageData = generateCityServicePageData(params.city, params.service);
+export default async function CityServicePage({ params }: CityServicePageProps) {
+  const { city: citySlug, service: serviceSlug } = await params;
+  const pageData = generateCityServicePageData(citySlug, serviceSlug);
 
   if (!pageData) {
     notFound();
@@ -140,8 +142,8 @@ export default function CityServicePage({ params }: CityServicePageProps) {
   // Generate breadcrumbs
   const breadcrumbs = [
     { name: 'Home', url: '/' },
-    { name: pageData.cityName, url: `/${params.city}` },
-    { name: pageData.serviceTitle, url: `/${params.city}/${params.service}` },
+    { name: pageData.cityName, url: `/${citySlug}` },
+    { name: pageData.serviceTitle, url: `/${citySlug}/${serviceSlug}` },
   ];
 
   // Generate schema markup
@@ -278,7 +280,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
                   Submit Emergency Claim
                 </Link>
                 <Link
-                  href={`/${params.city}/${params.service}/quote`}
+                  href={`/${citySlug}/${serviceSlug}/quote`}
                   className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-lg transition-all w-full sm:w-auto"
                 >
                   Get Free Quote
@@ -318,7 +320,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
                 <div className="relative h-64 md:h-96 rounded-xl overflow-hidden shadow-2xl">
                   <Suspense fallback={<div className="w-full h-full bg-slate-200 animate-pulse"></div>}>
                     <Image
-                      src={`/images/services/${params.service}-hero.jpg`}
+                      src={`/images/services/${serviceSlug}-hero.jpg`}
                       alt={`${pageData.serviceTitle} in ${pageData.cityName}`}
                       fill
                       className="object-cover"
@@ -372,7 +374,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
                 Submit Emergency Claim
               </Link>
               <Link
-                href={`/${params.city}/contractors`}
+                href={`/${citySlug}/contractors`}
                 className="inline-block bg-white/10 hover:bg-white/20 border-2 border-white/40 text-white font-semibold px-12 py-5 rounded-lg transition-all"
               >
                 View Local Contractors
@@ -437,7 +439,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
                 {pageData.relatedServices.map((service) => (
                   <Link
                     key={service.slug}
-                    href={`/${params.city}/${service.slug}`}
+                    href={`/${citySlug}/${service.slug}`}
                     className="bg-white hover:shadow-xl border border-slate-200 hover:border-blue-300 rounded-xl p-6 transition-all group"
                   >
                     <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 mb-2 transition-colors">
@@ -465,7 +467,7 @@ export default function CityServicePage({ params }: CityServicePageProps) {
                 {pageData.nearbyLocations.map((location) => (
                   <Link
                     key={location.slug}
-                    href={`/${location.slug}/${params.service}`}
+                    href={`/${location.slug}/${serviceSlug}`}
                     className="bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-lg p-4 text-center transition-all group"
                   >
                     <span className="text-slate-900 font-medium group-hover:text-blue-600 transition-colors">
