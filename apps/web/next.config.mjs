@@ -205,6 +205,9 @@ const nextConfig = {
       '/api/**/*': [
         './lib/training/sources/**/*',
         './lib/training/generated/**/*',
+        // NRPG-Onboarding-Framework — course JSON/markdown read at runtime by course-loader.ts
+        // Without this, fs.readdirSync and fs.readFileSync calls fall back to hardcoded data.
+        '../../NRPG-Onboarding-Framework/**/*',
       ],
     },
   },
