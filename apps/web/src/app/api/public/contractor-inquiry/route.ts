@@ -13,6 +13,7 @@ import { ContractorInquirySchema } from '@/lib/security/validation-schemas';
 import { verifyCaptchaMiddleware } from '@/lib/security/captcha';
 import { sanitizeObject } from '@/lib/security/sanitize';
 import { getClientIp } from '@/lib/security/rate-limit';
+import { prisma } from '@/lib/prisma';
 import { ZodError } from 'zod';
 
 /**
@@ -51,12 +52,22 @@ export async function POST(request: NextRequest) {
       stripWhitespace: true,
     });
 
-    // TODO: Process contractor inquiry (save to database, send notifications, etc.)
-    console.log('Contractor inquiry received:', {
-      ...sanitizedData,
-      captchaToken: '[REDACTED]',
-      ip: clientIp,
-      timestamp: new Date().toISOString(),
+    // Persist contractor inquiry to database
+    const application = await prisma.contractorApplication.create({
+      data: {
+        businessName: sanitizedData.companyName,
+        contactName: sanitizedData.contactName,
+        email: sanitizedData.email,
+        phone: sanitizedData.phone,
+        abn: sanitizedData.licenseNumber ?? null,
+        certifications: sanitizedData.serviceTypes,
+        serviceAreas: sanitizedData.serviceAreas,
+        yearsInBusiness: sanitizedData.yearsInBusiness,
+        notes: sanitizedData.message,
+        website: sanitizedData.website ?? null,
+        ipAddress: clientIp,
+        status: 'PENDING',
+      },
     });
 
     // Success response
@@ -65,6 +76,7 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'Thank you for your interest in joining our network. We will review your application and contact you within 2-3 business days.',
         data: {
+          applicationId: application.id,
           companyName: sanitizedData.companyName,
           email: sanitizedData.email,
           serviceTypes: sanitizedData.serviceTypes,
@@ -100,19 +112,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * OPTIONS handler for CORS preflight
- */
-export async function OPTIONS() {
-  return NextResponse.json(
-    {},
-    {
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      },
-    }
-  );
-}
