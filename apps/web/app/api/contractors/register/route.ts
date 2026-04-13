@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor Registration API Route
  * Handles NRPG contractor registration and onboarding
@@ -31,7 +30,7 @@ export async function POST(request: NextRequest) {
     const db = getTenantDb(authResult.context);
 
     // Check if user is contractor type
-    if (user.role !== 'CONTRACTOR') {
+    if (user.userType !== 'CONTRACTOR') {
       return NextResponse.json(
         { error: 'User must be registered as contractor' },
         { status: 400 }
