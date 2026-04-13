@@ -177,7 +177,8 @@ export function EmergencyHero() {
             variants={fadeInUp}
             className="text-lg sm:text-xl lg:text-2xl text-gray-400 mb-4 max-w-3xl leading-relaxed"
           >
-            Professional restoration services within <span className="font-semibold text-emerald-600">60 minutes</span>
+            Priority dispatch to verified restoration contractors,{' '}
+            <span className="font-semibold text-emerald-600">24/7 across Australia</span>
           </motion.p>
 
           <motion.p

@@ -487,7 +487,7 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
               Ready to Restore Your Property?
             </h2>
             <p className="text-xl text-slate-200 mb-8 max-w-2xl mx-auto">
-              Our {pageData.cityName} team is standing by 24/7. We aim for rapid response, typically within 60 minutes in metro areas.
+              Our {pageData.cityName} team is standing by 24/7. Contractors aim to arrive as quickly as possible (typically within 2 hours in metro areas).
             </p>
             <Link
               href="/claim/step-1?emergency=true"

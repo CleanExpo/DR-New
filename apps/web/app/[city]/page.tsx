@@ -199,7 +199,7 @@ export default async function CityPage({ params }: CityPageProps) {
               Need Emergency Help in {city.city}?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Our {city.city} dispatch center is open 24/7/365. We aim for rapid response, typically within 60 minutes in metro areas.
+              Our {city.city} dispatch center is open 24/7/365. Contractors aim to arrive as quickly as possible (typically within 2 hours in metro areas).
             </p>
             <Link
               href="/claim/step-1?emergency=true"

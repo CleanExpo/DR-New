@@ -791,7 +791,7 @@ export class GoogleBusinessProfileManager {
   }
 
   private generateLocationDescription(city: string, stateCode: AustralianStateCode): string {
-    return `NRPG Disaster Recovery provides 24/7 emergency restoration services in ${city} and surrounding ${stateCode} areas. Our IICRC-certified technicians specialize in water damage, fire damage, mould remediation, and biohazard cleanup. Fast 60-minute response time. All insurers accepted. Call ${GBP_CONFIG.phone} for immediate assistance.`;
+    return `NRPG Disaster Recovery provides 24/7 emergency restoration services in ${city} and surrounding ${stateCode} areas. Our IICRC-certified technicians specialize in water damage, fire damage, mould remediation, and biohazard cleanup. Priority emergency dispatch. All insurers accepted. Call ${GBP_CONFIG.phone} for immediate assistance.`;
   }
 
   private buildCreateLocationPayload(config: GBPLocationConfig): Record<string, unknown> {
@@ -867,12 +867,12 @@ export class GoogleBusinessProfileManager {
 
   private getPostTemplates(): string[] {
     return [
-      'Need emergency water damage restoration in {{city}}? Our IICRC-certified team responds within 60 minutes, 24/7. Call {{phone}} now for immediate assistance.',
+      'Need emergency water damage restoration in {{city}}? Our IICRC-certified team is on standby 24/7 for priority dispatch. Call {{phone}} now for immediate assistance.',
       '{{city}} residents: Experiencing flood damage? Dont wait - water damage worsens every hour. Our experts are standing by at {{phone}}.',
       'Fire or smoke damage in {{city}}? NRPG provides complete restoration including soot removal, odor elimination, and structural repairs. Call {{phone}}.',
       'Mould found in your {{city}} property? Our certified technicians safely remove all mould and prevent future growth. Free inspection: {{phone}}.',
       'Storm damage affecting your {{city}} home? Emergency tarping, water extraction, and complete restoration available 24/7. Call {{phone}}.',
-      'Trust {{city}}s leading disaster recovery team. NRPG: IICRC certified, all insurers accepted, 60-minute response. {{phone}}.',
+      'Trust {{city}}s leading disaster recovery team. NRPG: IICRC certified, all insurers accepted, priority response. {{phone}}.',
       'Recent flooding in {{city}}? Acting fast prevents mould! Our emergency team extracts water and dries structures completely. {{phone}}.',
       'Commercial property damage in {{city}}? NRPG minimizes business downtime with rapid-response restoration. Call {{phone}} now.',
     ];

@@ -312,7 +312,7 @@ export default function LocationPage({ params }: LocationPageProps) {
                 {[
                   {
                     title: 'Local Contractor Network',
-                    description: `Our ${pageData.city}-based contractors know the area, understand local building codes, and aim for rapid response typically within 60 minutes in metro areas.`,
+                    description: `Our ${pageData.city}-based contractors know the area, understand local building codes, and target rapid on-site response (typically within 2 hours in metro areas).`,
                     icon: '🏘️',
                   },
                   {
@@ -378,7 +378,7 @@ export default function LocationPage({ params }: LocationPageProps) {
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Our local {pageData.city} contractors are standing by 24/7 to respond to your
-              emergency. We aim for rapid response, typically under 60 minutes in metro areas.
+              emergency. Contractors aim to arrive as quickly as possible (typically within 2 hours in metro areas).
             </p>
             <Link
               href="/claim/step-1?emergency=true"
