@@ -232,12 +232,12 @@ curl "https://api.sendgrid.com/v3/api_keys/old-key-id" \
 ```bash
 # Deactivate old access key (don't delete immediately)
 aws iam update-access-key \
-  --access-key-id AKIAIOSFODNN7EXAMPLE \
+  --access-key-id YOUR_OLD_ACCESS_KEY_ID \
   --status Inactive
 
 # Wait 7 days to ensure no active connections
 # Then delete
-aws iam delete-access-key --access-key-id AKIAIOSFODNN7EXAMPLE
+aws iam delete-access-key --access-key-id YOUR_OLD_ACCESS_KEY_ID
 ```
 
 ---

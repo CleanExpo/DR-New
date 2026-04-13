@@ -101,8 +101,9 @@ prisma/dev.db
 *.backup
 *.bak
 
-# Archive
+# Archive — historical docs; excluded from scanner to prevent false-positive credential alerts
 _archive/
+docs/archive/
 
 # System files
 .env.*.backup*
@@ -133,3 +134,5 @@ __pycache__/
 *.pyc
 apps/web/tsconfig.check.json
 .claude/launch.json
+lighthouse-report.json
+lighthouse-*.json
