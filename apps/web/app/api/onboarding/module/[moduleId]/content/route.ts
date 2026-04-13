@@ -1,10 +1,10 @@
-// @ts-nocheck
 /**
  * NRPG Module Content API
  * GET: Retrieve module training content (markdown)
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { ModuleStatus, NRPGTrainingProgress } from '@prisma/client';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { getModuleById, parseModuleId } from '@/lib/nrpg/course-loader';
@@ -48,7 +48,7 @@ export async function GET(
       select: { id: true },
     });
 
-    let progress = null;
+    let progress: NRPGTrainingProgress | null = null;
     if (contractor) {
       progress = await db.nRPGTrainingProgress.findUnique({
         where: {
@@ -68,7 +68,7 @@ export async function GET(
             moduleId,
             moduleName: courseModule.info.title,
             moduleOrder: courseModule.info.moduleOrder,
-            status: 'IN_PROGRESS',
+            status: ModuleStatus.IN_PROGRESS,
             progress: 10, // Started
             startedAt: new Date(),
             contentViewedAt: new Date(),
@@ -81,7 +81,7 @@ export async function GET(
           where: { id: progress.id },
           data: {
             contentViewedAt: new Date(),
-            status: progress.status === 'NOT_STARTED' ? 'IN_PROGRESS' : progress.status,
+            status: progress.status === ModuleStatus.NOT_STARTED ? ModuleStatus.IN_PROGRESS : progress.status,
             progress: Math.max(progress.progress, 10),
           },
         });
@@ -141,7 +141,15 @@ export async function POST(
       return NextResponse.json({ success: false, error: 'Contractor not found' }, { status: 404 });
     }
 
-    const updateData: any = {};
+    interface ProgressUpdate {
+      actualMinutes?: number;
+      exercisesComplete?: boolean;
+      resourcesViewed?: boolean;
+      progress?: number;
+      status?: ModuleStatus;
+      completedAt?: Date;
+    }
+    const updateData: ProgressUpdate = {};
 
     // Update time spent
     if (body.timeSpentMinutes !== undefined) {
@@ -187,7 +195,7 @@ export async function POST(
 
         // Mark as completed if all done
         if (updateData.progress >= 100) {
-          updateData.status = 'COMPLETED';
+          updateData.status = ModuleStatus.COMPLETED;
           updateData.completedAt = new Date();
         }
       }
