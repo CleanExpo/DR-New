@@ -402,7 +402,7 @@ export default function ServiceLocationPage({ params }: ServiceLocationPageProps
             </h2>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Our local {pageData.city} contractors are available 24/7 for emergency response.
-              Average arrival time: under 60 minutes.
+              Priority dispatch applies to all emergency requests.
             </p>
             <Link
               href="/claim/step-1?emergency=true"

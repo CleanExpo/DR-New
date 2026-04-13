@@ -101,7 +101,7 @@ const SERVICE_PAGE_CONTENT: Record<ServiceType, ServicePageContent> = {
       {
         question: 'How quickly do you respond to water damage emergencies?',
         answer:
-          'Our contractors typically respond within 30-60 minutes for emergencies. Water damage worsens every hour, so rapid response is critical to minimise damage and costs.',
+          'Contractors prioritise rapid response across all service areas. Water damage worsens every hour, so prompt professional attendance is critical to minimise damage and costs.',
       },
       {
         question: 'Is water damage covered by insurance in Australia?',

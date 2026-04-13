@@ -9,7 +9,7 @@ import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/servi
 
 export const metadata = generateServiceMetadata({
   title: "Basement Flooding Services | Water Damage Restoration Australia",
-  description: "Professional basement flooding restoration across Australia. Submersible pump extraction, foundation waterproofing, and sewage contamination handling. IICRC S500 certified. 60-minute emergency response.",
+  description: "Professional basement flooding restoration across Australia. Submersible pump extraction, foundation waterproofing, and sewage contamination handling. IICRC S500 certified. Priority emergency response.",
   keywords: ['basement flooding', 'basement water damage', 'flooded basement', 'basement restoration', 'water extraction basement', 'sump pump', 'basement waterproofing', 'Australia'],
   slug: 'basement-flooding',
   parentSlug: 'water-damage',
@@ -34,7 +34,7 @@ const features = [
 ]
 
 const faqs = [
-  { question: "How quickly can you respond to basement flooding?", answer: "We target a 60-minute response time for emergency basement flooding across major Australian metropolitan areas. Our teams are on standby 24/7 with fully equipped vehicles ready to deploy." },
+  { question: "How quickly can you respond to basement flooding?", answer: "Priority dispatch applies to all emergency basement flooding requests. Contractors are on standby 24/7 with fully equipped vehicles and aim to arrive as quickly as possible (typically within 2 hours in major Australian metropolitan areas)." },
   { question: "Is basement flood water dangerous?", answer: "Yes. Standing water in basements can contain sewage, chemicals, and bacteria. It also poses electrical hazards and can compromise your foundation. Never enter a flooded basement until a professional has assessed electrical safety." },
   { question: "Will my insurance cover basement flooding?", answer: "Most Australian home insurance policies cover sudden and accidental water damage, including burst pipes and storm damage. We provide IICRC-standard documentation — scope of works, moisture reports, and photographic evidence — for you to submit to your insurer." },
   { question: "How long does basement flood restoration take?", answer: "Extraction typically takes 4-12 hours depending on volume. Full structural drying usually requires 3-5 days of monitored dehumidification. We provide daily moisture readings to track progress." },

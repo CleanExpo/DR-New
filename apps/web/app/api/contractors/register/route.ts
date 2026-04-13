@@ -37,14 +37,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if contractor profile already exists
+    // Check if contractor profile already exists with a full NRPG registration.
+    // A minimal Contractor record may exist from the onboarding/start flow
+    // (businessName only, no ABN). That is expected and we continue to fill it.
     const existingContractor = await db.contractor.findUnique({
       where: { userId: user.id },
+      select: { id: true, abnNumber: true },
     });
 
-    if (existingContractor) {
+    if (existingContractor?.abnNumber) {
       return NextResponse.json(
-        { error: 'Contractor profile already exists for this user' },
+        { error: 'Contractor profile already registered with NRPG' },
         { status: 400 }
       );
     }
