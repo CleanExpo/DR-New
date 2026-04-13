@@ -1,0 +1,153 @@
+/**
+ * Environment variable validation — server-side only.
+ *
+ * Validates required vars at startup via instrumentation.ts.
+ * Fails fast with a clear message rather than surfacing a cryptic
+ * runtime error deep in a request handler.
+ *
+ * Usage:
+ *   import { validateEnv, env } from '@/lib/env'   // in instrumentation.ts
+ *   import { env } from '@/lib/env'                 // anywhere else on server
+ */
+
+const REQUIRED: Record<string, string> = {
+  DATABASE_URL: 'PostgreSQL connection string (Supabase → Settings → Database → Connection string)',
+  NEXTAUTH_SECRET: 'Random secret for JWT signing — generate with: openssl rand -hex 32',
+  NEXTAUTH_URL: 'Full URL of the app (e.g. https://contractor.disasterrecovery.com.au)',
+};
+
+const RECOMMENDED: Record<string, string> = {
+  ANTHROPIC_API_KEY: 'Anthropic API key — required for AI claim triage and agent workflows',
+  RESEND_API_KEY: 'Resend API key — required for transactional email (registration, notifications)',
+  STRIPE_SECRET_KEY: 'Stripe secret key — required for contractor Stripe Connect payouts',
+  STRIPE_WEBHOOK_SECRET: 'Stripe webhook signing secret — required for payment event processing',
+  NEXT_PUBLIC_SUPABASE_URL: 'Supabase project URL — required for real-time features',
+  SUPABASE_SERVICE_ROLE_KEY: 'Supabase service role key — required for RLS bypass operations',
+};
+
+export interface EnvValidationResult {
+  valid: boolean;
+  missing: string[];
+  warnings: string[];
+}
+
+/**
+ * Validates environment variables at startup.
+ *
+ * Throws an error if any REQUIRED variable is absent.
+ * Logs warnings for missing RECOMMENDED variables.
+ *
+ * Call this from instrumentation.ts (runs once per server startup).
+ */
+export function validateEnv(): EnvValidationResult {
+  const missing: string[] = [];
+  const warnings: string[] = [];
+
+  for (const [key, description] of Object.entries(REQUIRED)) {
+    if (!process.env[key]) {
+      missing.push(`  ✗ ${key}\n    ${description}`);
+    }
+  }
+
+  for (const [key, description] of Object.entries(RECOMMENDED)) {
+    if (!process.env[key]) {
+      warnings.push(`  ⚠ ${key}\n    ${description}`);
+    }
+  }
+
+  if (missing.length > 0) {
+    const lines = [
+      '',
+      '┌─────────────────────────────────────────────────────┐',
+      '│  FATAL: Required environment variables are missing  │',
+      '└─────────────────────────────────────────────────────┘',
+      '',
+      ...missing,
+      '',
+      'Set these in your .env file (local) or Vercel project settings (production).',
+      'See apps/web/.env.example for a full template.',
+      '',
+    ];
+    throw new Error(lines.join('\n'));
+  }
+
+  if (warnings.length > 0 && process.env.NODE_ENV !== 'test') {
+    console.warn(
+      [
+        '',
+        '┌─────────────────────────────────────────────────────────┐',
+        '│  WARNING: Recommended environment variables are missing  │',
+        '└─────────────────────────────────────────────────────────┘',
+        '',
+        ...warnings,
+        '',
+        'Some platform features will be unavailable.',
+        '',
+      ].join('\n')
+    );
+  }
+
+  return { valid: true, missing: [], warnings: warnings.map(w => w.trim()) };
+}
+
+/**
+ * Typed, validated access to environment variables.
+ *
+ * All properties are server-side only unless prefixed with NEXT_PUBLIC_.
+ * Throws at access time if the variable is absent (belt + suspenders after
+ * startup validation).
+ */
+function required(key: string): string {
+  const value = process.env[key];
+  if (!value) throw new Error(`Missing environment variable: ${key}`);
+  return value;
+}
+
+function optional(key: string, fallback = ''): string {
+  return process.env[key] ?? fallback;
+}
+
+export const env = {
+  // Database
+  databaseUrl: () => required('DATABASE_URL'),
+  directUrl: () => optional('DIRECT_URL'),
+
+  // Auth
+  nextauthSecret: () => required('NEXTAUTH_SECRET'),
+  nextauthUrl: () => required('NEXTAUTH_URL'),
+
+  // AI
+  anthropicApiKey: () => optional('ANTHROPIC_API_KEY'),
+  openaiApiKey: () => optional('OPENAI_API_KEY'),
+
+  // Payments
+  stripeSecretKey: () => optional('STRIPE_SECRET_KEY'),
+  stripeWebhookSecret: () => optional('STRIPE_WEBHOOK_SECRET'),
+  stripePublishableKey: () => optional('STRIPE_PUBLISHABLE_KEY'),
+
+  // Email
+  resendApiKey: () => optional('RESEND_API_KEY'),
+  emailFrom: () => optional('EMAIL_FROM', 'noreply@disasterrecovery.com.au'),
+
+  // Supabase
+  supabaseUrl: () => optional('NEXT_PUBLIC_SUPABASE_URL'),
+  supabaseAnonKey: () => optional('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
+  supabaseServiceRoleKey: () => optional('SUPABASE_SERVICE_ROLE_KEY'),
+
+  // Storage
+  storageType: () => optional('STORAGE_TYPE', 's3'),
+  storageRegion: () => optional('STORAGE_REGION', 'ap-southeast-2'),
+  storageBucket: () => optional('STORAGE_BUCKET_NAME'),
+  storageAccessKeyId: () => optional('STORAGE_ACCESS_KEY_ID'),
+  storageSecretAccessKey: () => optional('STORAGE_SECRET_ACCESS_KEY'),
+
+  // Infrastructure
+  redisUrl: () => optional('REDIS_URL', 'redis://localhost:6379'),
+  cronSecret: () => optional('CRON_SECRET'),
+
+  // Feature flags
+  features: {
+    aiClaimTriage: () => process.env.FEATURE_AI_CLAIM_TRIAGE === 'true',
+    aiSemanticSearch: () => process.env.FEATURE_AI_SEMANTIC_SEARCH === 'true',
+  },
+} as const;

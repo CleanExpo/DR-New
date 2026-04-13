@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { ModuleStatus, NRPGTrainingProgress } from '@prisma/client';
+import { ModuleStatus } from '@prisma/client';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { getModuleById, parseModuleId } from '@/lib/nrpg/course-loader';
@@ -48,9 +48,12 @@ export async function GET(
       select: { id: true },
     });
 
-    let progress: NRPGTrainingProgress | null = null;
+    // Infer progress type from Prisma to avoid stale named-import issues
+    type ProgressRecord = NonNullable<Awaited<ReturnType<typeof db.nRPGTrainingProgress.findUnique>>>;
+    let progress: ProgressRecord | null = null;
+
     if (contractor) {
-      progress = await db.nRPGTrainingProgress.findUnique({
+      const existing = await db.nRPGTrainingProgress.findUnique({
         where: {
           contractorId_moduleId: {
             contractorId: contractor.id,
@@ -59,8 +62,8 @@ export async function GET(
         },
       });
 
-      // If no progress exists, create it and mark content as viewed
-      if (!progress) {
+      if (!existing) {
+        // No progress record — create one and mark content as viewed
         progress = await db.nRPGTrainingProgress.create({
           data: {
             contractorId: contractor.id,
@@ -69,22 +72,24 @@ export async function GET(
             moduleName: courseModule.info.title,
             moduleOrder: courseModule.info.moduleOrder,
             status: ModuleStatus.IN_PROGRESS,
-            progress: 10, // Started
+            progress: 10,
             startedAt: new Date(),
             contentViewedAt: new Date(),
             estimatedMinutes: courseModule.info.estimatedMinutes,
           },
         });
-      } else if (!progress.contentViewedAt) {
-        // Update content viewed timestamp
+      } else if (!existing.contentViewedAt) {
+        // Record exists but content not yet marked as viewed
         progress = await db.nRPGTrainingProgress.update({
-          where: { id: progress.id },
+          where: { id: existing.id },
           data: {
             contentViewedAt: new Date(),
-            status: progress.status === ModuleStatus.NOT_STARTED ? ModuleStatus.IN_PROGRESS : progress.status,
-            progress: Math.max(progress.progress, 10),
+            status: existing.status === ModuleStatus.NOT_STARTED ? ModuleStatus.IN_PROGRESS : existing.status,
+            progress: Math.max(existing.progress, 10),
           },
         });
+      } else {
+        progress = existing;
       }
     }
 

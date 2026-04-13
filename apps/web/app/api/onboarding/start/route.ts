@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { ModuleStatus, OnboardingStatus, Prisma } from '@prisma/client';
+import { ModuleStatus, OnboardingStatus } from '@prisma/client';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
           contractorId,
           specialization: input.specialization,
           assessmentScore: null,
-          recommendedModules: recommendedModules as unknown as Prisma.InputJsonValue,
+          recommendedModules: JSON.parse(JSON.stringify(recommendedModules)),
           startDate: new Date(),
           targetCompletionDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
           status: OnboardingStatus.IN_PROGRESS,
