@@ -9,7 +9,7 @@ import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/servi
 
 export const metadata = generateServiceMetadata({
   title: "Commercial Fire Damage Restoration | Fire & Smoke Damage Australia",
-  description: "Commercial fire damage restoration services across Australia. Large-scale fire remediation, server room recovery, regulatory compliance (AS/NZS, BCA), and business continuity planning. 60-minute emergency response.",
+  description: "Commercial fire damage restoration services across Australia. Large-scale fire remediation, server room recovery, regulatory compliance (AS/NZS, BCA), and business continuity planning. Priority emergency response.",
   keywords: ['commercial fire damage', 'business fire restoration', 'office fire damage', 'industrial fire cleanup', 'commercial fire recovery', 'Australia'],
   slug: 'commercial-fire-damage',
   parentSlug: 'fire-smoke-damage',
@@ -22,7 +22,7 @@ const processSteps = [
     step: 1,
     title: "Emergency Response & Securing",
     description:
-      "Our commercial team mobilises within 60 minutes to secure the premises with emergency board-up, structural shoring, and perimeter fencing. We coordinate with fire authorities, building management, and your insurance provider simultaneously.",
+      "Commercial teams mobilise promptly to secure the premises with emergency board-up, structural shoring, and perimeter fencing. Coordination with fire authorities, building management, and insurance providers begins immediately upon dispatch.",
   },
   {
     step: 2,
@@ -160,7 +160,7 @@ export default function CommercialFireDamagePage() {
                 Commercial Fire Damage <span className="text-[#00BFA6]">Restoration</span>
               </h1>
               <p className="text-xl text-[#9CA3AF] mb-8 max-w-3xl mx-auto">
-                Large-scale commercial fire restoration with 60-minute emergency response. Full regulatory
+                Large-scale commercial fire restoration with priority emergency response. Full regulatory
                 compliance, business continuity planning, and insurance coordination across Australia.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -334,7 +334,7 @@ export default function CommercialFireDamagePage() {
               Commercial Fire Emergency?
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              60-minute emergency response. Commercial-grade restoration with full regulatory compliance.
+              Priority emergency response. Commercial-grade restoration with full regulatory compliance.
             </p>
             <Button className="bg-white hover:bg-white/90 text-[#EF4444] font-bold text-xl px-12 py-4">
               Request Emergency Service

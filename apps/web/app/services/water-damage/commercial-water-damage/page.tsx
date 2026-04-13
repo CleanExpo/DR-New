@@ -9,7 +9,7 @@ import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/servi
 
 export const metadata = generateServiceMetadata({
   title: "Commercial Water Damage Restoration | Water Damage Restoration Australia",
-  description: "Professional commercial water damage restoration across Australia. Server room recovery, large-area extraction, business continuity planning, and commercial insurance claims. IICRC S500 certified. 60-minute response.",
+  description: "Professional commercial water damage restoration across Australia. Server room recovery, large-area extraction, business continuity planning, and commercial insurance claims. IICRC S500 certified. Priority response.",
   keywords: ['commercial water damage', 'office water damage', 'business flood damage', 'commercial restoration', 'industrial water damage', 'Australia'],
   slug: 'commercial-water-damage',
   parentSlug: 'water-damage',
@@ -34,7 +34,7 @@ const features = [
 ]
 
 const faqs = [
-  { question: "How quickly can you respond to commercial water damage?", answer: "We target a 60-minute response time for commercial emergencies across major Australian metropolitan areas. Our commercial teams are on standby 24/7 with industrial-grade equipment." },
+  { question: "How quickly can you respond to commercial water damage?", answer: "Priority dispatch applies to all commercial emergencies. Commercial teams are on standby 24/7 with industrial-grade equipment and aim to arrive as quickly as possible across major Australian metropolitan areas." },
   { question: "Can you work outside business hours?", answer: "Yes. We offer after-hours, weekend, and public holiday scheduling to minimise disruption to your business operations. We can also coordinate phased restoration during operating hours." },
   { question: "Do you handle commercial insurance claims?", answer: "Yes. We provide comprehensive IICRC-standard commercial insurance documentation including detailed scope of works, moisture readings, and loss assessments — everything you need to submit to your insurer or loss adjuster." },
   { question: "Can you recover water-damaged IT equipment?", answer: "We have specialised protocols for server rooms and IT infrastructure. While we manage the drying environment, we coordinate with data recovery specialists for equipment and data salvage." },
@@ -238,7 +238,7 @@ export default function CommercialWaterDamagePage() {
               Commercial Water Damage Emergency?
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Every minute of downtime costs your business. Request emergency service now for 60-minute commercial response.
+              Every minute of downtime costs your business. Request emergency service now for priority commercial response.
             </p>
             <Button className="bg-white hover:bg-white/90 text-[#EF4444] font-bold text-xl px-12 py-4">
               Request Emergency Service

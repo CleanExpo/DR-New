@@ -86,7 +86,7 @@ const faqs = [
   {
     question: "What should I do if sewage backs up into my property?",
     answer:
-      "Evacuate the affected area immediately. Do not walk through or touch contaminated water. Turn off HVAC systems to prevent airborne contamination. Contact us for 24/7 emergency response \u2014 our teams can typically arrive within 60 minutes in metro areas.",
+      "Evacuate the affected area immediately. Do not walk through or touch contaminated water. Turn off HVAC systems to prevent airborne contamination. Contact us for 24/7 emergency response — teams aim to arrive as quickly as possible (typically within 2 hours in metro areas).",
   },
   {
     question: "Can furniture and carpets be saved after sewage exposure?",

@@ -213,7 +213,7 @@ export class SchemaGenerator {
       "@id": `${BASE_URL}/locations/${stateSlug}/${citySlug}#business`,
       name: `NRPG Disaster Recovery - ${location.city}`,
       alternateName: `Disaster Recovery ${location.city}`,
-      description: `24/7 emergency disaster recovery in ${location.city}, ${location.state}. IICRC-certified water damage, fire damage, mould remediation. 60-minute response. All insurers accepted.`,
+      description: `24/7 emergency disaster recovery in ${location.city}, ${location.state}. IICRC-certified water damage, fire damage, mould remediation. Priority dispatch. All insurers accepted.`,
       url: `${BASE_URL}/locations/${stateSlug}/${citySlug}`,
 
       address: {
@@ -296,7 +296,7 @@ export class SchemaGenerator {
         { "@type": "PropertyValue", name: "24/7 Availability", value: "Yes" },
         { "@type": "PropertyValue", name: "IICRC Certified", value: "Yes" },
         { "@type": "PropertyValue", name: "Insurance Work Accepted", value: "Yes" },
-        { "@type": "PropertyValue", name: "Response Time", value: "60 minutes" },
+        { "@type": "PropertyValue", name: "Response Time", value: "Priority dispatch — times vary by location" },
       ],
 
       parentOrganization: { "@id": `${BASE_URL}/#organization` },

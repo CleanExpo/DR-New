@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * NRPG Onboarding Phases API
  * GET: Retrieve contractor's phase progress
@@ -6,9 +5,151 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
+import type { PrismaClient, NRPGOnboardingPhase } from '@prisma/client';
 
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
+import { handleUnexpectedError, handleValidationError } from '@/lib/api-errors';
+
+// ---------------------------------------------------------------------------
+// Validation schema
+// ---------------------------------------------------------------------------
+
+const patchSchema = z.object({
+  // Phase 1
+  applicationSubmitted: z.boolean().optional(),
+  eligibilityReviewed: z.boolean().optional(),
+  backgroundCheckInitiated: z.boolean().optional(),
+  // Phase 2
+  carsiOnboarded: z.boolean().optional(),
+  associationIntegrated: z.boolean().optional(),
+  competencyVerified: z.boolean().optional(),
+  // Phase 3
+  standardsTrainingComplete: z.boolean().optional(),
+  commitmentSigned: z.boolean().optional(),
+  platformActivated: z.boolean().optional(),
+  // Phase 4
+  performanceReviewScore: z.number().int().min(0).max(100).optional(),
+  fullCertificationGranted: z.boolean().optional(),
+});
+
+// ---------------------------------------------------------------------------
+// Helper functions
+// ---------------------------------------------------------------------------
+
+function getCurrentPhase(phases: NRPGOnboardingPhase): number {
+  if (phases.phase4Status === 'IN_PROGRESS') return 4;
+  if (phases.phase3Status === 'IN_PROGRESS' || phases.phase3Status === 'NOT_STARTED') return 3;
+  if (phases.phase2Status === 'IN_PROGRESS' || phases.phase2Status === 'NOT_STARTED') return 2;
+  return 1;
+}
+
+function calculateOverallProgress(phases: NRPGOnboardingPhase): number {
+  let completed = 0;
+  const total = 12; // 3 items per phase × 4 phases
+
+  if (phases.applicationSubmitted) completed++;
+  if (phases.eligibilityReviewed) completed++;
+  if (phases.backgroundCheckInitiated) completed++;
+  if (phases.carsiOnboarded) completed++;
+  if (phases.associationIntegrated) completed++;
+  if (phases.competencyVerified) completed++;
+  if (phases.standardsTrainingComplete) completed++;
+  if (phases.commitmentSigned) completed++;
+  if (phases.platformActivated) completed++;
+  if (phases.fullCertificationGranted) completed += 3;
+  else if (phases.phase4Status === 'IN_PROGRESS') completed += 1;
+
+  return Math.round((completed / total) * 100);
+}
+
+/**
+ * Auto-update phase transition statuses after a checklist item changes.
+ * db must be passed explicitly — it is NOT available at module scope.
+ */
+async function updatePhaseStatuses(
+  contractorId: string,
+  db: PrismaClient
+): Promise<void> {
+  const phases = await db.nRPGOnboardingPhase.findUnique({
+    where: { contractorId },
+  });
+
+  if (!phases) return;
+
+  const updates: Partial<NRPGOnboardingPhase> = {};
+  const now = new Date();
+
+  // Phase 1 → Phase 2 transition
+  const phase1Complete =
+    phases.applicationSubmitted &&
+    phases.eligibilityReviewed &&
+    phases.backgroundCheckInitiated;
+
+  if (phase1Complete && phases.phase1Status !== 'COMPLETED') {
+    updates.phase1Status = 'COMPLETED';
+    updates.phase1CompleteDate = now;
+    updates.phase2Status = 'IN_PROGRESS';
+    updates.phase2StartDate = now;
+  } else if (
+    !phase1Complete &&
+    (phases.applicationSubmitted || phases.eligibilityReviewed || phases.backgroundCheckInitiated) &&
+    phases.phase1Status === 'NOT_STARTED'
+  ) {
+    updates.phase1Status = 'IN_PROGRESS';
+    updates.phase1StartDate = now;
+  }
+
+  // Phase 2 → Phase 3 transition
+  const phase2Complete =
+    phases.carsiOnboarded && phases.associationIntegrated && phases.competencyVerified;
+
+  if (phase2Complete && phases.phase2Status !== 'COMPLETED') {
+    updates.phase2Status = 'COMPLETED';
+    updates.phase2CompleteDate = now;
+    updates.phase3Status = 'IN_PROGRESS';
+    updates.phase3StartDate = now;
+  }
+
+  // Phase 3 → Phase 4 transition
+  const phase3Complete =
+    phases.standardsTrainingComplete && phases.commitmentSigned && phases.platformActivated;
+
+  if (phase3Complete && phases.phase3Status !== 'COMPLETED') {
+    updates.phase3Status = 'COMPLETED';
+    updates.phase3CompleteDate = now;
+    updates.phase4Status = 'IN_PROGRESS';
+    updates.phase4StartDate = now;
+    // 90-day probation window
+    updates.probationEndDate = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
+  }
+
+  // Phase 4 completion
+  if (phases.fullCertificationGranted && phases.phase4Status !== 'COMPLETED') {
+    updates.phase4Status = 'COMPLETED';
+    updates.phase4CompleteDate = now;
+    updates.overallStatus = 'COMPLETED';
+  }
+
+  // Overall status
+  if (phase1Complete || phase2Complete || phase3Complete) {
+    if (updates.overallStatus !== 'COMPLETED') {
+      updates.overallStatus = 'IN_PROGRESS';
+    }
+  }
+
+  if (Object.keys(updates).length > 0) {
+    await db.nRPGOnboardingPhase.update({
+      where: { contractorId },
+      data: updates,
+    });
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Route handlers
+// ---------------------------------------------------------------------------
 
 export async function GET(request: NextRequest) {
   try {
@@ -47,7 +188,6 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Calculate phase summaries
     const phaseSummary = {
       phase1: {
         status: phases.phase1Status,
@@ -118,8 +258,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error fetching phases:', error);
-    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
+    return handleUnexpectedError(error);
   }
 }
 
@@ -134,6 +273,12 @@ export async function PATCH(request: NextRequest) {
     const db = getTenantDb(authResult.context);
 
     const body = await request.json();
+    const validation = patchSchema.safeParse(body);
+    if (!validation.success) {
+      return handleValidationError(validation.error);
+    }
+
+    const input = validation.data;
 
     const contractor = await db.contractor.findFirst({
       where: { userId: user.id },
@@ -144,41 +289,32 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ success: false, error: 'Contractor not found' }, { status: 404 });
     }
 
-    // Build update data from body
-    const updateData: any = {};
+    // Build update data from validated input
+    const updateData: Partial<NRPGOnboardingPhase> = {};
 
-    // Phase 1 checklist items
-    if (body.applicationSubmitted !== undefined) updateData.applicationSubmitted = body.applicationSubmitted;
-    if (body.eligibilityReviewed !== undefined) updateData.eligibilityReviewed = body.eligibilityReviewed;
-    if (body.backgroundCheckInitiated !== undefined) updateData.backgroundCheckInitiated = body.backgroundCheckInitiated;
-
-    // Phase 2 checklist items
-    if (body.carsiOnboarded !== undefined) updateData.carsiOnboarded = body.carsiOnboarded;
-    if (body.associationIntegrated !== undefined) updateData.associationIntegrated = body.associationIntegrated;
-    if (body.competencyVerified !== undefined) updateData.competencyVerified = body.competencyVerified;
-
-    // Phase 3 checklist items
-    if (body.standardsTrainingComplete !== undefined) updateData.standardsTrainingComplete = body.standardsTrainingComplete;
-    if (body.commitmentSigned !== undefined) {
-      updateData.commitmentSigned = body.commitmentSigned;
-      if (body.commitmentSigned) updateData.commitmentSignedAt = new Date();
+    if (input.applicationSubmitted !== undefined) updateData.applicationSubmitted = input.applicationSubmitted;
+    if (input.eligibilityReviewed !== undefined) updateData.eligibilityReviewed = input.eligibilityReviewed;
+    if (input.backgroundCheckInitiated !== undefined) updateData.backgroundCheckInitiated = input.backgroundCheckInitiated;
+    if (input.carsiOnboarded !== undefined) updateData.carsiOnboarded = input.carsiOnboarded;
+    if (input.associationIntegrated !== undefined) updateData.associationIntegrated = input.associationIntegrated;
+    if (input.competencyVerified !== undefined) updateData.competencyVerified = input.competencyVerified;
+    if (input.standardsTrainingComplete !== undefined) updateData.standardsTrainingComplete = input.standardsTrainingComplete;
+    if (input.commitmentSigned !== undefined) {
+      updateData.commitmentSigned = input.commitmentSigned;
+      if (input.commitmentSigned) updateData.commitmentSignedAt = new Date();
     }
-    if (body.platformActivated !== undefined) updateData.platformActivated = body.platformActivated;
+    if (input.platformActivated !== undefined) updateData.platformActivated = input.platformActivated;
+    if (input.performanceReviewScore !== undefined) updateData.performanceReviewScore = input.performanceReviewScore;
+    if (input.fullCertificationGranted !== undefined) updateData.fullCertificationGranted = input.fullCertificationGranted;
 
-    // Phase 4 items
-    if (body.performanceReviewScore !== undefined) updateData.performanceReviewScore = body.performanceReviewScore;
-    if (body.fullCertificationGranted !== undefined) updateData.fullCertificationGranted = body.fullCertificationGranted;
-
-    // Update phase
-    const phases = await db.nRPGOnboardingPhase.update({
+    await db.nRPGOnboardingPhase.update({
       where: { contractorId: contractor.id },
       data: updateData,
     });
 
-    // Auto-update phase statuses based on checklist completion
-    await updatePhaseStatuses(contractor.id);
+    // Auto-update phase transition statuses — pass db explicitly
+    await updatePhaseStatuses(contractor.id, db);
 
-    // Fetch updated record
     const updatedPhases = await db.nRPGOnboardingPhase.findUnique({
       where: { contractorId: contractor.id },
     });
@@ -188,104 +324,6 @@ export async function PATCH(request: NextRequest) {
       data: updatedPhases,
     });
   } catch (error) {
-    console.error('Error updating phases:', error);
-    return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });
-  }
-}
-
-// Helper functions
-function getCurrentPhase(phases: any): number {
-  if (phases.phase4Status === 'IN_PROGRESS') return 4;
-  if (phases.phase3Status === 'IN_PROGRESS' || phases.phase3Status === 'NOT_STARTED') return 3;
-  if (phases.phase2Status === 'IN_PROGRESS' || phases.phase2Status === 'NOT_STARTED') return 2;
-  return 1;
-}
-
-function calculateOverallProgress(phases: any): number {
-  let completed = 0;
-  const total = 12; // 3 items per phase × 4 phases
-
-  // Phase 1
-  if (phases.applicationSubmitted) completed++;
-  if (phases.eligibilityReviewed) completed++;
-  if (phases.backgroundCheckInitiated) completed++;
-
-  // Phase 2
-  if (phases.carsiOnboarded) completed++;
-  if (phases.associationIntegrated) completed++;
-  if (phases.competencyVerified) completed++;
-
-  // Phase 3
-  if (phases.standardsTrainingComplete) completed++;
-  if (phases.commitmentSigned) completed++;
-  if (phases.platformActivated) completed++;
-
-  // Phase 4 - special handling
-  if (phases.fullCertificationGranted) completed += 3;
-  else if (phases.phase4Status === 'IN_PROGRESS') completed += 1;
-
-  return Math.round((completed / total) * 100);
-}
-
-async function updatePhaseStatuses(contractorId: string) {
-  const phases = await db.nRPGOnboardingPhase.findUnique({
-    where: { contractorId },
-  });
-
-  if (!phases) return;
-
-  const updates: any = {};
-  const now = new Date();
-
-  // Phase 1 status
-  const phase1Complete = phases.applicationSubmitted && phases.eligibilityReviewed && phases.backgroundCheckInitiated;
-  if (phase1Complete && phases.phase1Status !== 'COMPLETED') {
-    updates.phase1Status = 'COMPLETED';
-    updates.phase1CompleteDate = now;
-    updates.phase2Status = 'IN_PROGRESS';
-    updates.phase2StartDate = now;
-  } else if (!phase1Complete && (phases.applicationSubmitted || phases.eligibilityReviewed || phases.backgroundCheckInitiated)) {
-    if (phases.phase1Status === 'NOT_STARTED') {
-      updates.phase1Status = 'IN_PROGRESS';
-      updates.phase1StartDate = now;
-    }
-  }
-
-  // Phase 2 status
-  const phase2Complete = phases.carsiOnboarded && phases.associationIntegrated && phases.competencyVerified;
-  if (phase2Complete && phases.phase2Status !== 'COMPLETED') {
-    updates.phase2Status = 'COMPLETED';
-    updates.phase2CompleteDate = now;
-    updates.phase3Status = 'IN_PROGRESS';
-    updates.phase3StartDate = now;
-  }
-
-  // Phase 3 status
-  const phase3Complete = phases.standardsTrainingComplete && phases.commitmentSigned && phases.platformActivated;
-  if (phase3Complete && phases.phase3Status !== 'COMPLETED') {
-    updates.phase3Status = 'COMPLETED';
-    updates.phase3CompleteDate = now;
-    updates.phase4Status = 'IN_PROGRESS';
-    updates.phase4StartDate = now;
-    updates.probationEndDate = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000); // 90 days from now
-  }
-
-  // Phase 4 status
-  if (phases.fullCertificationGranted && phases.phase4Status !== 'COMPLETED') {
-    updates.phase4Status = 'COMPLETED';
-    updates.phase4CompleteDate = now;
-    updates.overallStatus = 'COMPLETED';
-  }
-
-  // Update overall status
-  if (phase1Complete || phase2Complete || phase3Complete) {
-    updates.overallStatus = 'IN_PROGRESS';
-  }
-
-  if (Object.keys(updates).length > 0) {
-    await db.nRPGOnboardingPhase.update({
-      where: { contractorId },
-      data: updates,
-    });
+    return handleUnexpectedError(error);
   }
 }

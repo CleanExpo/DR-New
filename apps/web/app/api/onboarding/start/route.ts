@@ -129,6 +129,22 @@ export async function POST(request: NextRequest) {
         })),
       });
 
+      // Persist businessName to the Contractor record so it is available
+      // across the platform before the contractor completes full NRPG registration.
+      // We use upsert so this is safe to call even if a Contractor record already exists.
+      await tx.contractor.upsert({
+        where: { userId: contractorId },
+        create: {
+          userId: contractorId,
+          businessName: input.businessName,
+        },
+        update: {
+          // Only overwrite businessName if the record has no ABN yet
+          // (i.e. full NRPG registration has not been completed).
+          businessName: input.businessName,
+        },
+      });
+
       return created;
     });
 

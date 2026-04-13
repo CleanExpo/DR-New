@@ -10,7 +10,7 @@ import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/ser
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Water Damage Restoration Services | NRPG Australia",
-  description: "IICRC-certified water damage restoration across Australia. 60-minute emergency response, insurance-approved contractors, and forensic drying standards to protect your property.",
+  description: "IICRC-certified water damage restoration across Australia. Priority emergency response, insurance-approved contractors, and forensic drying standards to protect your property.",
   keywords: ['water damage restoration', 'water damage repair', 'flood damage', 'water extraction', 'structural drying', 'burst pipe', 'basement flooding', 'IICRC S500', 'Australia'],
   slug: 'water-damage',
   categoryName: 'Water Damage Restoration',
@@ -22,7 +22,7 @@ const waterDamageHowTo = {
   "name": "How Water Damage Restoration Works",
   "description": "NRPG's forensic water damage restoration process",
   "step": [
-    { "@type": "HowToStep", "position": 1, "name": "Emergency Assessment", "text": "IICRC-certified technician arrives within 60 minutes to assess moisture levels and damage extent." },
+    { "@type": "HowToStep", "position": 1, "name": "Emergency Assessment", "text": "IICRC-certified technician is dispatched with priority to assess moisture levels and damage extent." },
     { "@type": "HowToStep", "position": 2, "name": "Water Extraction", "text": "Industrial-grade extractors remove standing water and moisture from all affected surfaces." },
     { "@type": "HowToStep", "position": 3, "name": "Structural Drying", "text": "Commercial dehumidifiers and air movers create optimal drying conditions across affected areas." },
     { "@type": "HowToStep", "position": 4, "name": "Mould Prevention", "text": "Antimicrobial treatments applied to prevent secondary mould growth post-water damage." },

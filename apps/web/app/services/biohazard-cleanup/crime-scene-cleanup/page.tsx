@@ -81,7 +81,7 @@ const faqs = [
   {
     question: "How soon can you respond to a crime scene cleanup request?",
     answer:
-      "We offer 24/7 emergency response with a target arrival time of 60 minutes in metropolitan areas and 2-4 hours in regional locations. Our teams are on standby across all Australian states.",
+      "Teams are on standby 24/7 across all Australian states and prioritise rapid response across all service areas. Metro areas are typically reached within 2 hours; regional locations within 2-4 hours.",
   },
   {
     question: "Who is responsible for paying for crime scene cleanup?",

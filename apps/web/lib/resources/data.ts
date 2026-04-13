@@ -228,7 +228,7 @@ export const SAMPLE_PROCESS_RESOURCE: ProcessResource = {
       description: 'Immediate response within 1 hour of call',
       details: [
         'Answer emergency hotline 24/7',
-        'Dispatch technician within 60 minutes',
+        'Dispatch technician with priority response',
         'Provide initial phone guidance to minimize damage',
       ],
       estimatedTime: '1-2 hours',

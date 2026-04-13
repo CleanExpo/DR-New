@@ -9,7 +9,7 @@ import { generateCategoryMetadata, generateCategorySchemas } from "@/lib/seo/ser
 
 export const metadata: Metadata = generateCategoryMetadata({
   title: "Storm Damage Restoration Services | NRPG Australia",
-  description: "Emergency storm damage repair and restoration across Australia. NRPG-vetted contractors respond within 60 minutes, manage insurance claims, and restore your property to pre-loss condition.",
+  description: "Emergency storm damage repair and restoration across Australia. NRPG-vetted contractors prioritise rapid response across all service areas, manage insurance claims, and restore your property to pre-loss condition.",
   keywords: ['storm damage restoration', 'storm damage repair', 'roof damage', 'wind damage', 'hail damage', 'tree damage', 'emergency tarping', 'Australia'],
   slug: 'storm-damage',
   categoryName: 'Storm Damage Restoration',

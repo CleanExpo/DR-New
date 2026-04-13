@@ -604,7 +604,7 @@ export function generateRegionPage(input: RegionPageInput): RegionPageTemplate {
     },
     {
       question: `How quickly can you respond to emergencies in ${region.name}?`,
-      answer: `Our ${region.name} contractors typically respond within 30-60 minutes for emergencies. We have contractors strategically located across the region to ensure rapid response.`,
+      answer: `Contractors across ${region.name} prioritise rapid response for emergencies. The network is strategically distributed across the region to minimise travel time and get help on-site as quickly as possible.`,
     },
     {
       question: `Are your ${region.name} contractors certified?`,

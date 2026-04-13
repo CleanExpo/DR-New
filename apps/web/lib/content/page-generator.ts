@@ -179,7 +179,7 @@ export class PageGenerator {
   }
 
   private generateLocationDescription(city: any): string {
-    return `NRPG provides comprehensive emergency disaster recovery services throughout ${city.city} and the greater ${city.state} region. Our local contractor network responds to ${city.city}'s unique climate challenges, including ${city.localStats.avgAnnualStorms} annual storm events and ${city.localStats.avgAnnualFloods} flood incidents. With ${city.population.toLocaleString()} residents relying on rapid emergency response, our 24/7 dispatch center ensures technicians arrive within 60 minutes of your call. We serve residential, commercial, and industrial properties across all ${city.city} suburbs.`;
+    return `NRPG provides comprehensive emergency disaster recovery services throughout ${city.city} and the greater ${city.state} region. Our local contractor network responds to ${city.city}'s unique climate challenges, including ${city.localStats.avgAnnualStorms} annual storm events and ${city.localStats.avgAnnualFloods} flood incidents. With ${city.population.toLocaleString()} residents relying on rapid emergency response, our 24/7 dispatch center prioritises fast contractor connection across all ${city.city} suburbs and surrounding areas. We serve residential, commercial, and industrial properties.`;
   }
 
   private generateServiceLocationDescription(service: any, city: any): string {
@@ -203,7 +203,7 @@ export class PageGenerator {
     const locationFAQs = [
       {
         question: `How quickly can you respond to ${service.title.toLowerCase()} emergencies in ${city.city}?`,
-        answer: `Our ${city.city} contractor network provides 24/7 emergency response with rapid dispatch - we aim to connect you with technicians as quickly as possible, typically within 60 minutes in metro areas. We maintain local equipment and crews specifically for rapid deployment across ${city.city} suburbs.`,
+        answer: `Our ${city.city} contractor network provides 24/7 emergency response with rapid dispatch — technicians are deployed as quickly as possible (typically within 2 hours in metro areas). Local equipment and crews are maintained specifically for rapid deployment across ${city.city} suburbs.`,
       },
       {
         question: `Do you work with insurance companies in ${city.city}?`,
