@@ -3155,7 +3155,7 @@ model ContractorApplication {
   contactName       String
   email             String
   phone             String
-  abn               String
+  abn               String?
 
   // Certifications & Capabilities
   certifications    String[] // IICRC cert types: ["WATER_DAMAGE", "FIRE_SMOKE", "MOULD", "TRAUMA", etc.]
