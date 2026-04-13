@@ -60,7 +60,7 @@ STORAGE_PUBLIC_URL=https://disaster-recovery-prod.syd1.cdn.digitaloceanspaces.co
 ```bash
 STORAGE_TYPE=s3
 STORAGE_REGION=ap-southeast-2
-STORAGE_ACCESS_KEY_ID=AKIAXXXXXXXX
+STORAGE_ACCESS_KEY_ID=your-aws-access-key-id
 STORAGE_SECRET_ACCESS_KEY=XXXXXXXX
 STORAGE_BUCKET_NAME=disaster-recovery-prod
 ```
