@@ -1279,6 +1279,7 @@ model ContractorModuleProgress {
   onboarding   ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
   tenant       Tenant?              @relation(fields: [tenantId], references: [id])
 
+  @@unique([onboardingId, moduleId], map: "uq_module_progress_onboarding_module")
   @@index([onboardingId, status], map: "idx_module_progress")
   @@index([tenantId])
   @@map("contractor_module_progress")
