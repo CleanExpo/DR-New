@@ -2,7 +2,8 @@
  * Contractor Application Submission API
  *
  * POST /api/public/contractor/application
- * Handles contractor application submissions with file uploads
+ * Public endpoint — no auth required.
+ * Persists the application to ContractorApplication, then sends confirmation emails.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -12,6 +13,7 @@ import {
   adminNewApplication,
   sendTemplateEmail,
 } from '@/lib/email/templates';
+import { prisma } from '@/lib/prisma';
 
 // Validation schema
 const applicationSchema = z.object({
@@ -26,63 +28,104 @@ const applicationSchema = z.object({
   specializations: z.array(z.string()).min(1, 'At least one specialization is required'),
   certifications: z.array(z.string()).min(1, 'At least one certification is required'),
   selectedTier: z.enum(['basic', 'pro', 'enterprise']),
+  yearsInBusiness: z.number().int().min(0).default(0),
+  // UTM attribution (optional — captured from query params or body)
+  source: z.string().optional(),
+  utmSource: z.string().optional(),
+  utmMedium: z.string().optional(),
+  utmCampaign: z.string().optional(),
+  utmContent: z.string().optional(),
+  utmTerm: z.string().optional(),
 });
+
+type ApplicationInput = z.infer<typeof applicationSchema>;
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Validate request body
-    const validatedData = applicationSchema.parse(body);
-
-    // TODO: Implement actual application logic
-    // 1. Create contractor application record in database
-    // 2. Store application status as 'pending_review'
-    // 3. Send email notifications (to contractor and admin)
-    // 4. Upload files to cloud storage (if provided separately)
-    // 5. Schedule verification workflow
-
-    // Simulate database insertion
-    const applicationId = `APP-${Date.now()}`;
-
-    // TODO: Send email notifications
-    await sendApplicationEmails(validatedData, applicationId);
-
-    return NextResponse.json(
-      {
-        success: true,
-        applicationId,
-        message: 'Application submitted successfully. We will review it within 24-48 hours.',
-      },
-      { status: 201 }
-    );
-  } catch (error) {
-    if (error instanceof z.ZodError) {
+    const validation = applicationSchema.safeParse(body);
+    if (!validation.success) {
       return NextResponse.json(
-        {
-          success: false,
-          errors: error.errors,
-        },
+        { success: false, errors: validation.error.errors },
         { status: 400 }
       );
     }
 
-    console.error('Application submission error:', error);
+    const data = validation.data;
+
+    // Internal notes capture fields the model doesn't have dedicated columns for.
+    const internalNotes = [
+      `Business address: ${data.businessAddress}`,
+      `Specializations: ${data.specializations.join(', ')}`,
+      `Selected tier: ${data.selectedTier}`,
+      data.acn ? `ACN: ${data.acn}` : null,
+    ]
+      .filter(Boolean)
+      .join('\n');
+
+    // Persist the application to the database.
+    const application = await prisma.contractorApplication.create({
+      data: {
+        businessName: data.businessName,
+        contactName: data.primaryContactName,
+        email: data.primaryContactEmail,
+        phone: data.primaryContactPhone,
+        abn: data.abn,
+        certifications: data.certifications,
+        serviceAreas: data.serviceAreas,
+        yearsInBusiness: data.yearsInBusiness,
+        status: 'PENDING',
+        notes: internalNotes,
+        // UTM attribution
+        source: data.source ?? null,
+        utmSource: data.utmSource ?? null,
+        utmMedium: data.utmMedium ?? null,
+        utmCampaign: data.utmCampaign ?? null,
+        utmContent: data.utmContent ?? null,
+        utmTerm: data.utmTerm ?? null,
+      },
+    });
+
+    // Send confirmation emails and mark the record accordingly.
+    const emailSent = await sendApplicationEmails(data, application.id);
+
+    if (emailSent) {
+      await prisma.contractorApplication.update({
+        where: { id: application.id },
+        data: { emailSent: true },
+      });
+    }
+
     return NextResponse.json(
       {
-        success: false,
-        message: 'Failed to submit application. Please try again.',
+        success: true,
+        applicationId: application.id,
+        message:
+          'Application submitted successfully. The team will review it within 24–48 hours.',
       },
+      { status: 201 }
+    );
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Contractor application submission error:', message);
+    return NextResponse.json(
+      { success: false, message: 'Failed to submit application. Please try again.' },
       { status: 500 }
     );
   }
 }
 
 /**
- * Send application confirmation emails
+ * Send application confirmation emails to the contractor and admin.
+ * Returns true if both sends succeeded (best-effort — does not throw).
  */
-async function sendApplicationEmails(data: any, applicationId: string) {
-  // Email 1: Send confirmation to contractor
+async function sendApplicationEmails(
+  data: ApplicationInput,
+  applicationId: string
+): Promise<boolean> {
+  let allSent = true;
+
   const contractorTemplate = contractorApplicationReceived({
     businessName: data.businessName,
     contactName: data.primaryContactName,
@@ -98,10 +141,10 @@ async function sendApplicationEmails(data: any, applicationId: string) {
   });
 
   if (!contractorResult.success) {
-    console.warn('Failed to send contractor confirmation email:', contractorResult.error);
+    console.error('Failed to send contractor confirmation email:', contractorResult.error);
+    allSent = false;
   }
 
-  // Email 2: Send notification to admin
   const adminTemplate = adminNewApplication({
     businessName: data.businessName,
     abn: data.abn,
@@ -112,13 +155,16 @@ async function sendApplicationEmails(data: any, applicationId: string) {
   });
 
   const adminResult = await sendTemplateEmail({
-    to: process.env.ADMIN_EMAIL || 'applications@disasterrecovery.com.au',
+    to: process.env.ADMIN_EMAIL ?? 'applications@disasterrecovery.com.au',
     subject: adminTemplate.subject,
     htmlContent: adminTemplate.htmlContent,
     textContent: adminTemplate.textContent,
   });
 
   if (!adminResult.success) {
-    console.warn('Failed to send admin notification email:', adminResult.error);
+    console.error('Failed to send admin notification email:', adminResult.error);
+    allSent = false;
   }
+
+  return allSent;
 }
