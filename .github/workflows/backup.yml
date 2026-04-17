@@ -37,8 +37,10 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y postgresql-client-15 > /dev/null
 
-          # Install AWS CLI
-          sudo apt-get install -y awscli > /dev/null
+          # AWS CLI is pre-installed on ubuntu-latest runners at
+          # /usr/local/bin/aws — the apt `awscli` package was removed in
+          # Ubuntu 24.04 and installing it manually is no longer needed.
+          aws --version
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -108,7 +110,10 @@ jobs:
           . /etc/os-release
           sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
           sudo apt-get update -qq
-          sudo apt-get install -y postgresql-client-15 awscli > /dev/null
+          sudo apt-get install -y postgresql-client-15 > /dev/null
+          # AWS CLI pre-installed on ubuntu-latest; `awscli` apt package
+          # removed in Ubuntu 24.04.
+          aws --version
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
