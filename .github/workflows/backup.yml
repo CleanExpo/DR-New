@@ -48,7 +48,12 @@ jobs:
           sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
           sudo apt-get update -qq
           sudo apt-get install -y postgresql-client-17 > /dev/null
-          pg_dump --version
+          # The /usr/bin/pg_dump wrapper on Ubuntu runners resolves to 16.13
+          # even after 17 is installed (pre-installed postgresql-client-common
+          # keeps it pinned). Prepend 17's binaries to PATH so the right
+          # version wins every subsequent step.
+          echo "/usr/lib/postgresql/17/bin" >> "$GITHUB_PATH"
+          /usr/lib/postgresql/17/bin/pg_dump --version
 
       - name: Run pg_dump
         id: dump
