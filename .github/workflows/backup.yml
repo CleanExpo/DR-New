@@ -2,7 +2,7 @@ name: Automated Database Backup
 
 on:
   schedule:
-    # Run daily at 2 AM UTC (10 AM AEDT)
+    # Run daily at 2 AM UTC (~12 PM AEST)
     - cron: '0 2 * * *'
   workflow_dispatch: # Allow manual trigger
 
@@ -10,25 +10,37 @@ concurrency:
   group: backup
   cancel-in-progress: false
 
+# Why GitHub Actions artifact, not AWS S3
+# --------------------------------------
+# The previous version uploaded pg_dumps to AWS S3 using apt-installed
+# postgresql-client-15 + awscli. Three stacked failures kept every scheduled
+# run broken for weeks: postgresql-client-15 not in Ubuntu 24.04 apt, awscli
+# package removed from Ubuntu 24.04, and no AWS credentials configured on
+# this account (DR-NRPG infra is Supabase + Docker, not AWS).
+#
+# This version:
+#   - Uses the official PostgreSQL APT repo to get postgresql-client-15.
+#   - Runs pg_dump against DATABASE_URL_PROD.
+#   - Uploads the compressed dump as a GitHub Actions artifact (zero new
+#     credentials; 90-day retention by default; downloadable via UI or gh cli).
+#
+# Supabase also provides native daily backups + PITR on Pro plans. This
+# artifact is a redundant safety net the team controls directly.
+
+permissions:
+  contents: read
+
 jobs:
   backup:
     name: Backup Production Database
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
-    environment:
-      name: production
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up backup environment
+      - name: Install PostgreSQL 15 client
         run: |
-          # Install PostgreSQL 15 client from the official PostgreSQL APT repo.
-          # Ubuntu 24.04 runners don't ship postgresql-client-15 in default
-          # apt sources, which caused every backup run to fail at apt-get with
-          # exit 100 — silent data-safety incident (see git log for audit).
+          # Ubuntu 24.04 does not ship postgresql-client-15 in default apt
+          # sources. Add the official PostgreSQL APT repo with GPG verification.
           sudo install -d /usr/share/postgresql-common/pgdg
           sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
             -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
@@ -36,136 +48,48 @@ jobs:
           sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
           sudo apt-get update -qq
           sudo apt-get install -y postgresql-client-15 > /dev/null
+          pg_dump --version
 
-          # AWS CLI is pre-installed on ubuntu-latest runners at
-          # /usr/local/bin/aws — the apt `awscli` package was removed in
-          # Ubuntu 24.04 and installing it manually is no longer needed.
-          aws --version
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_BACKUP_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_BACKUP_SECRET_ACCESS_KEY }}
-          aws-region: ap-southeast-2
-
-      - name: Execute database backup
-        run: |
-          bash scripts/backup/backup-database.sh
+      - name: Run pg_dump
+        id: dump
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_BACKUP_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_BACKUP_SECRET_ACCESS_KEY }}
-          S3_BACKUP_BUCKET: ${{ secrets.S3_BACKUP_BUCKET }}
-          S3_BACKUP_PREFIX: database
-          BACKUP_RETENTION_DAYS: 30
-          AWS_REGION: ap-southeast-2
-
-      - name: Verify backup integrity
-        if: success()
         run: |
-          # List latest backups
-          echo "Latest backups in S3:"
-          aws s3 ls s3://${{ secrets.S3_BACKUP_BUCKET }}/database/ --region ap-southeast-2 | tail -5
-        continue-on-error: true
+          if [ -z "$DATABASE_URL" ]; then
+            echo "::error::DATABASE_URL_PROD secret is not set on this repo."
+            exit 1
+          fi
+          TIMESTAMP=$(date -u +%Y-%m-%dT%H-%M-%SZ)
+          FILE="dr-nrpg-db-${TIMESTAMP}.sql.gz"
+          # pg_dump pipes straight into gzip — no plaintext intermediate on disk.
+          # --no-owner / --no-privileges make the dump restorable to a different
+          # role/database without privilege errors.
+          pg_dump "$DATABASE_URL" --no-owner --no-privileges --format=plain \
+            | gzip -9 > "$FILE"
+          BYTES=$(stat -c %s "$FILE")
+          echo "file=$FILE" >> "$GITHUB_OUTPUT"
+          echo "bytes=$BYTES" >> "$GITHUB_OUTPUT"
+          echo "Backup complete: $FILE ($BYTES bytes)"
 
-      - name: Notify Slack on success
-        if: success()
-        uses: 8398a7/action-slack@v3
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
         with:
-          status: ${{ job.status }}
-          text: 'Database backup completed successfully'
-          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          fields: repo,message,commit
-        continue-on-error: true
+          name: dr-nrpg-db-${{ github.run_id }}
+          path: ${{ steps.dump.outputs.file }}
+          retention-days: 30
+          if-no-files-found: error
 
-      - name: Notify Slack on failure
-        if: failure()
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: 'Database backup FAILED - Immediate attention required'
-          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          fields: repo,message,commit
-        continue-on-error: true
-
-  verify:
-    name: Verify Latest Backup
-    runs-on: ubuntu-latest
-    needs: backup
-    timeout-minutes: 60
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up verification environment
+      - name: Print restore instructions
         run: |
-          # Install PostgreSQL 15 client from official PostgreSQL APT repo
-          # (same reason as the backup job — Ubuntu 24.04 runners don't ship
-          # postgresql-client-15 in default apt sources).
-          sudo install -d /usr/share/postgresql-common/pgdg
-          sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
-            -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
-          . /etc/os-release
-          sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
-          sudo apt-get update -qq
-          sudo apt-get install -y postgresql-client-15 > /dev/null
-          # AWS CLI pre-installed on ubuntu-latest; `awscli` apt package
-          # removed in Ubuntu 24.04.
-          aws --version
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_BACKUP_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_BACKUP_SECRET_ACCESS_KEY }}
-          aws-region: ap-southeast-2
-
-      - name: Get latest backup file
-        id: get-backup
-        run: |
-          LATEST_BACKUP=$(aws s3 ls s3://${{ secrets.S3_BACKUP_BUCKET }}/database/ --region ap-southeast-2 | tail -1 | awk '{print $4}')
-          echo "backup_file=$LATEST_BACKUP" >> $GITHUB_OUTPUT
-          echo "Latest backup: $LATEST_BACKUP"
-
-      - name: Verify backup integrity
-        run: |
-          S3_PATH="s3://${{ secrets.S3_BACKUP_BUCKET }}/database/${{ steps.get-backup.outputs.backup_file }}"
-          bash scripts/backup/verify-backup.sh "$S3_PATH"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_BACKUP_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_BACKUP_SECRET_ACCESS_KEY }}
-          S3_BACKUP_BUCKET: ${{ secrets.S3_BACKUP_BUCKET }}
-          AWS_REGION: ap-southeast-2
-          TEST_RESTORE: false
-
-      - name: Notify verification result
-        if: always()
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: 'Backup verification: ${{ job.status }}'
-          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          fields: repo,message
-        continue-on-error: true
-
-  cleanup:
-    name: Clean Up Old Backups
-    runs-on: ubuntu-latest
-    needs: verify
-    timeout-minutes: 10
-
-    steps:
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_BACKUP_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_BACKUP_SECRET_ACCESS_KEY }}
-          aws-region: ap-southeast-2
-
-      - name: Remove backups older than retention period
-        run: |
-          # This is handled by the backup script, but we can add additional cleanup here
-          echo "Cleanup job - S3 lifecycle policies will handle old backup removal"
-        continue-on-error: true
+          echo "## Backup complete" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "File: \`${{ steps.dump.outputs.file }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "Size: \`${{ steps.dump.outputs.bytes }}\` bytes" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### To restore" >> "$GITHUB_STEP_SUMMARY"
+          echo '```bash' >> "$GITHUB_STEP_SUMMARY"
+          echo 'gh run download ${{ github.run_id }} --repo CleanExpo/DR-NRPG --name dr-nrpg-db-${{ github.run_id }}' >> "$GITHUB_STEP_SUMMARY"
+          echo 'gunzip -c ${{ steps.dump.outputs.file }} | psql "$TARGET_DATABASE_URL"' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Artifact retained for 30 days." >> "$GITHUB_STEP_SUMMARY"
