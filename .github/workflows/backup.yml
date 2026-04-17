@@ -13,13 +13,13 @@ concurrency:
 # Why GitHub Actions artifact, not AWS S3
 # --------------------------------------
 # The previous version uploaded pg_dumps to AWS S3 using apt-installed
-# postgresql-client-15 + awscli. Three stacked failures kept every scheduled
-# run broken for weeks: postgresql-client-15 not in Ubuntu 24.04 apt, awscli
+# postgresql-client-17 + awscli. Three stacked failures kept every scheduled
+# run broken for weeks: postgresql-client-17 not in Ubuntu 24.04 apt, awscli
 # package removed from Ubuntu 24.04, and no AWS credentials configured on
 # this account (DR-NRPG infra is Supabase + Docker, not AWS).
 #
 # This version:
-#   - Uses the official PostgreSQL APT repo to get postgresql-client-15.
+#   - Uses the official PostgreSQL APT repo to get postgresql-client-17.
 #   - Runs pg_dump against DATABASE_URL_PROD.
 #   - Uploads the compressed dump as a GitHub Actions artifact (zero new
 #     credentials; 90-day retention by default; downloadable via UI or gh cli).
@@ -37,9 +37,9 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - name: Install PostgreSQL 15 client
+      - name: Install PostgreSQL 17 client
         run: |
-          # Ubuntu 24.04 does not ship postgresql-client-15 in default apt
+          # Ubuntu 24.04 does not ship postgresql-client-17 in default apt
           # sources. Add the official PostgreSQL APT repo with GPG verification.
           sudo install -d /usr/share/postgresql-common/pgdg
           sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
@@ -47,7 +47,7 @@ jobs:
           . /etc/os-release
           sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
           sudo apt-get update -qq
-          sudo apt-get install -y postgresql-client-15 > /dev/null
+          sudo apt-get install -y postgresql-client-17 > /dev/null
           pg_dump --version
 
       - name: Run pg_dump
