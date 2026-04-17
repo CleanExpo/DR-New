@@ -47,11 +47,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      # TruffleHog: do NOT pin base/head. The previous config made
+      # base == head == default-branch HEAD on push/schedule events,
+      # triggering "BASE and HEAD commits are the same" and failing every
+      # scheduled scan. Leaving both unset lets the action auto-detect the
+      # scan range per event (since-commit on push, base on pull_request,
+      # full repo on schedule).
       - uses: trufflesecurity/trufflehog@main
         with:
           path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
+          extra_args: --only-verified
 
   sast:
     name: SAST Analysis
