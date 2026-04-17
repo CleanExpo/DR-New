@@ -25,7 +25,15 @@ jobs:
 
       - name: Set up backup environment
         run: |
-          # Install PostgreSQL client tools
+          # Install PostgreSQL 15 client from the official PostgreSQL APT repo.
+          # Ubuntu 24.04 runners don't ship postgresql-client-15 in default
+          # apt sources, which caused every backup run to fail at apt-get with
+          # exit 100 — silent data-safety incident (see git log for audit).
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+            -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
+          . /etc/os-release
+          sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
           sudo apt-get update -qq
           sudo apt-get install -y postgresql-client-15 > /dev/null
 
@@ -91,6 +99,14 @@ jobs:
 
       - name: Set up verification environment
         run: |
+          # Install PostgreSQL 15 client from official PostgreSQL APT repo
+          # (same reason as the backup job — Ubuntu 24.04 runners don't ship
+          # postgresql-client-15 in default apt sources).
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+            -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc
+          . /etc/os-release
+          sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt ${VERSION_CODENAME}-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
           sudo apt-get update -qq
           sudo apt-get install -y postgresql-client-15 awscli > /dev/null
 
