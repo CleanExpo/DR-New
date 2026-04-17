@@ -54,22 +54,51 @@ jobs:
         id: dump
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
+        # pipefail is mandatory: `pg_dump | gzip` will otherwise report success
+        # even when pg_dump fails (the 1st backup run on this workflow produced
+        # a 20-byte empty-gzip artifact and reported green — classic silent-
+        # success trap, see RA-1109). pg_dump is now run standalone, then
+        # gzipped separately so errors surface at the right step.
+        shell: bash
         run: |
-          if [ -z "$DATABASE_URL" ]; then
+          set -euo pipefail
+          if [ -z "${DATABASE_URL:-}" ]; then
             echo "::error::DATABASE_URL_PROD secret is not set on this repo."
             exit 1
           fi
+
           TIMESTAMP=$(date -u +%Y-%m-%dT%H-%M-%SZ)
-          FILE="dr-nrpg-db-${TIMESTAMP}.sql.gz"
-          # pg_dump pipes straight into gzip — no plaintext intermediate on disk.
-          # --no-owner / --no-privileges make the dump restorable to a different
-          # role/database without privilege errors.
-          pg_dump "$DATABASE_URL" --no-owner --no-privileges --format=plain \
-            | gzip -9 > "$FILE"
-          BYTES=$(stat -c %s "$FILE")
+          PLAIN="dr-nrpg-db-${TIMESTAMP}.sql"
+          FILE="${PLAIN}.gz"
+
+          # Run pg_dump standalone — exit non-zero on any failure.
+          # --no-owner/--no-privileges make the dump restorable to a different role.
+          echo "Running pg_dump…"
+          pg_dump "$DATABASE_URL" \
+            --no-owner --no-privileges --format=plain \
+            --file="$PLAIN"
+
+          PLAIN_BYTES=$(stat -c %s "$PLAIN")
+          echo "pg_dump produced $PLAIN_BYTES bytes"
+
+          # Sanity gate: a real DR-NRPG dump should be substantially larger
+          # than any conceivable empty-schema output. 1 KB is a conservative
+          # floor — the dump header alone normally runs > 200 lines of SQL.
+          if [ "$PLAIN_BYTES" -lt 1024 ]; then
+            echo "::error::pg_dump output suspiciously small ($PLAIN_BYTES bytes). Aborting to prevent uploading a silent-success empty backup."
+            echo "--- first 20 lines of dump ---"
+            head -20 "$PLAIN" || true
+            exit 1
+          fi
+
+          # Compress the verified dump
+          gzip -9 "$PLAIN"
+          COMPRESSED_BYTES=$(stat -c %s "$FILE")
+          echo "Compressed: $COMPRESSED_BYTES bytes"
+
           echo "file=$FILE" >> "$GITHUB_OUTPUT"
-          echo "bytes=$BYTES" >> "$GITHUB_OUTPUT"
-          echo "Backup complete: $FILE ($BYTES bytes)"
+          echo "bytes=$COMPRESSED_BYTES" >> "$GITHUB_OUTPUT"
+          echo "plain_bytes=$PLAIN_BYTES" >> "$GITHUB_OUTPUT"
 
       - name: Upload backup artifact
         uses: actions/upload-artifact@v4
