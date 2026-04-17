@@ -53,7 +53,12 @@ jobs:
       - name: Run pg_dump
         id: dump
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
+          # Supabase-specific: DATABASE_URL_PROD goes through pgbouncer
+          # (connection pooler) and includes `?pgbouncer=true` — pg_dump does
+          # not understand this query parameter. DIRECT_URL_PRODUCTION is the
+          # Supabase-provided direct-connection string that pg_dump can use.
+          # Fall back to DATABASE_URL_PROD if the direct URL isn't set.
+          DATABASE_URL: ${{ secrets.DIRECT_URL_PRODUCTION || secrets.DATABASE_URL_PROD }}
         # pipefail is mandatory: `pg_dump | gzip` will otherwise report success
         # even when pg_dump fails (the 1st backup run on this workflow produced
         # a 20-byte empty-gzip artifact and reported green — classic silent-
