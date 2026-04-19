@@ -337,7 +337,8 @@ STRIPE_TENANT_WEBHOOK_SECRET="whsec_live_xxxxxxxxxxxxx"
 NEXT_PUBLIC_BASE_URL="https://disasterrecovery.com.au"
 
 # Production Database
-DATABASE_URL="postgresql://prod_user:pass@prod-host:5432/dr_nrpg_prod?sslmode=require"
+# ⚠️  Template only — replace with real values from your secrets manager (Vault, AWS SSM, Vercel env vars, etc.)
+DATABASE_URL="postgresql://user:xxxxxxxxxxxxx@host:5432/dr_nrpg_prod?sslmode=require"
 
 # Production Email
 RESEND_API_KEY="re_live_xxxxxxxxxxxxx"
