@@ -464,7 +464,7 @@ npm run start
 ### Environment Variables
 ```env
 # Database
-DATABASE_URL="postgresql://user:password@localhost:5432/nrpg"
+DATABASE_URL="[REDACTED]"
 
 # APIs
 SEMRUSH_API_KEY="your-semrush-key"
