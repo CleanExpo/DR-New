@@ -60,7 +60,7 @@ Content-Type: application/json
 Include the access token in the `Authorization` header:
 
 ```http
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Authorization: Bearer {token}
 ```
 
 ---
