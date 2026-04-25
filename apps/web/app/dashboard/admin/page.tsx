@@ -394,7 +394,9 @@ export default function AdminDashboard() {
       }
     } else if (user && user.userType === 'ADMIN') {
       // Run both in parallel — no sequential dependency between them
-      Promise.all([fetchAdminData(), fetchAdminKpis()]);
+      Promise.all([fetchAdminData(), fetchAdminKpis()]).catch((err) =>
+        console.error('Admin data fetch failed:', err),
+      );
     }
   }, [user, loading, router, fetchAdminData]);
 
@@ -452,7 +454,9 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (user && user.userType === 'ADMIN') {
       // Fire all four independent fetches concurrently
-      Promise.all([fetchContractors(), fetchClients(), fetchClientServices(), fetchWhiteLabelStats()]);
+      Promise.all([fetchContractors(), fetchClients(), fetchClientServices(), fetchWhiteLabelStats()]).catch(
+        (err) => console.error('Admin secondary fetch failed:', err),
+      );
     }
   }, [user, contractorStatusFilter, contractorSearchTerm, fetchContractors]);
 
