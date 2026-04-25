@@ -8,6 +8,8 @@ import { AdminJobTable } from '@/components/admin/AdminJobTable'
 import { ReassignJobModal } from '@/components/admin/ReassignJobModal'
 import { RealtimeMetricsPanel } from '@/components/admin/RealtimeMetricsPanel'
 import { ConnectionIndicator } from '@/components/realtime/ConnectionIndicator'
+import { Skeleton } from '@/components/ui/skeleton'
+import { EmptyState } from '@/components/ui/empty-state'
 
 const STATUS_OPTIONS = [
   { value: 'PENDING', label: 'Pending' },
@@ -269,11 +271,32 @@ export default function AdminLiveJobsPage() {
               </span>
             )}
           </div>
-          <AdminJobTable
-            jobs={filteredJobs}
-            isLoading={isLoading}
-            onReassign={handleOpenReassign}
-          />
+          {/* DR-752: skeleton grid during WebSocket connection phase */}
+          {isLoading ? (
+            <div className="space-y-2" aria-busy="true" aria-label="Loading live jobs">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="flex items-center gap-4 rounded-lg bg-white p-4 shadow-sm">
+                  <Skeleton className="h-4 w-24" />
+                  <Skeleton className="h-4 w-32 flex-1" />
+                  <Skeleton className="h-5 w-20 rounded-full" />
+                  <Skeleton className="h-4 w-28" />
+                  <Skeleton className="h-4 w-16" />
+                </div>
+              ))}
+            </div>
+          ) : filteredJobs.length === 0 ? (
+            /* DR-753: empty state after WebSocket connects with no data */
+            <EmptyState
+              title="No active jobs"
+              description="New jobs will appear here once they are created and matched."
+            />
+          ) : (
+            <AdminJobTable
+              jobs={filteredJobs}
+              isLoading={false}
+              onReassign={handleOpenReassign}
+            />
+          )}
         </div>
       </div>
 

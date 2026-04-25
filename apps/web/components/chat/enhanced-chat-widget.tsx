@@ -84,6 +84,8 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
   const [newMessage, setNewMessage] = useState('');
   const [sendingMessage, setSendingMessage] = useState(false);
   const [loading, setLoading] = useState(false);
+  // DR-754: track message fetch loading separately so messages area shows feedback
+  const [loadingMessages, setLoadingMessages] = useState(false);
   const [isSocketConnected, setIsSocketConnected] = useState(false);
   const [typingUsers, setTypingUsers] = useState<Map<string, TypingIndicator>>(new Map());
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -176,6 +178,8 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
   }, [isClientUser]);
 
   const fetchMessages = useCallback(async (connectionId: string) => {
+    // DR-754: show loading feedback while messages initialise
+    setLoadingMessages(true);
     try {
       const response = await fetch(`/api/chat/connections/${connectionId}/messages`, { cache: 'no-store' });
 
@@ -185,6 +189,8 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
       }
     } catch (error) {
       console.error('Failed to fetch messages:', error);
+    } finally {
+      setLoadingMessages(false);
     }
   }, []);
 
@@ -495,7 +501,13 @@ export default function EnhancedChatWidget({ user }: EnhancedChatWidgetProps) {
 
                 {/* Messages */}
                 <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                  {messages.length === 0 ? (
+                  {/* DR-754: visible spinner while chat initialises */}
+                  {loadingMessages ? (
+                    <div className="flex flex-col items-center justify-center py-12 gap-3">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#00BFA6]" />
+                      <p className="text-sm text-gray-400">Connecting...</p>
+                    </div>
+                  ) : messages.length === 0 ? (
                     <div className="text-center py-8">
                       <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                       <p className="text-gray-400">No messages yet</p>
