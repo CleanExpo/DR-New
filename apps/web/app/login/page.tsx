@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
@@ -9,21 +9,21 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, Eye, EyeOff, CheckCircle, X } from 'lucide-react';
+import { Loader2, Eye, EyeOff, CheckCircle, AlertCircle, X } from 'lucide-react';
 
-export default function LoginPage() {
+function LoginForm() {
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [showExpiredBanner, setShowExpiredBanner] = useState(
+    searchParams.get('reason') === 'session_expired',
+  );
 
   const router = useRouter();
-  // DR-756: read reason param to show contextual feedback banner
-  const searchParams = useSearchParams();
-  const reason = searchParams.get('reason');
-  const [bannerDismissed, setBannerDismissed] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,19 +90,19 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
      
-        {/* DR-756: session-expired banner — safety-orange accent, dismissible */}
-        {reason === 'session_expired' && !bannerDismissed && (
+        {/* DR-756: Session-expired dismissible banner */}
+        {showExpiredBanner && (
           <div
+            className="mb-4 flex items-start gap-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-amber-300"
             role="alert"
-            className="mb-6 flex items-start gap-3 rounded-lg border border-orange-400/30 bg-orange-500/10 px-4 py-3 text-sm text-orange-200"
+            aria-live="assertive"
           >
-            <span className="mt-0.5 shrink-0">⚠</span>
-            <span className="flex-1">Your session expired — please sign in again.</span>
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+            <p className="flex-1 text-sm">Your session expired — please sign in again.</p>
             <button
-              type="button"
-              onClick={() => setBannerDismissed(true)}
+              onClick={() => setShowExpiredBanner(false)}
               aria-label="Dismiss"
-              className="ml-auto shrink-0 opacity-70 hover:opacity-100 transition-opacity"
+              className="shrink-0 text-amber-300 hover:text-amber-100 transition-colours"
             >
               <X className="h-4 w-4" />
             </button>
@@ -238,5 +238,19 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-[#00BFA6]" />
+        </div>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   );
 }

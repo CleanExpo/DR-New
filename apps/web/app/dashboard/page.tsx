@@ -11,7 +11,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!loading && !user) {
-      // DR-756: pass reason so login page can show contextual feedback
+      // DR-756: pass reason so login page can show a dismissible explanation
       router.push('/login?reason=session_expired');
     }
   }, [user, loading, router]);

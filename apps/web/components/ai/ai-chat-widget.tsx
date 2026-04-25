@@ -377,8 +377,17 @@ export default function AIChatWidget({
                         : 'bg-gray-800 text-gray-100 rounded-bl-md border border-gray-700'
                     )}
                   >
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                    {message.isStreaming && (
+                    {message.isStreaming && !message.content ? (
+                      /* DR-754: visible typing indicator before streamed content arrives */
+                      <span className="flex items-center gap-1 py-0.5" aria-label="AI is thinking">
+                        <span className="h-1.5 w-1.5 rounded-full bg-gray-400 animate-bounce [animation-delay:-0.3s]" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-gray-400 animate-bounce [animation-delay:-0.15s]" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-gray-400 animate-bounce" />
+                      </span>
+                    ) : (
+                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                    )}
+                    {message.isStreaming && message.content && (
                       <span className="inline-block w-2 h-4 bg-current animate-pulse ml-1" />
                     )}
                     <p
