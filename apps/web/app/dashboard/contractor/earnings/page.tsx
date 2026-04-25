@@ -68,9 +68,11 @@ export default function ContractorEarningsPage() {
       url.searchParams.set('period', period);
 
       const response = await fetch(url);
+
       if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: Failed to load earnings`);
+        throw new Error(`Server error: ${response.status}`);
       }
+
       const data = await response.json();
 
       if (data.success) {

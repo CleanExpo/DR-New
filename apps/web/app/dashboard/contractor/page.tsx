@@ -210,7 +210,6 @@ export default function ContractorDashboardPage() {
     }
   };
 
-  // DR-760: accept optional AbortSignal so polling can be cancelled on unmount
   const fetchAvailability = async (signal?: AbortSignal) => {
     try {
       const response = await fetch('/api/contractor/availability', {
@@ -286,12 +285,15 @@ export default function ContractorDashboardPage() {
     }
   };
 
-  // Auto-refresh availability every 60 seconds (DR-760: AbortController prevents stale setState on unmount)
+  // Auto-refresh availability every 60 seconds
   useEffect(() => {
     if (user && user.userType === 'CONTRACTOR') {
       const controller = new AbortController();
       fetchAvailability(controller.signal);
-      const interval = setInterval(() => fetchAvailability(controller.signal), 60000);
+      const interval = setInterval(() => {
+        const c = new AbortController();
+        fetchAvailability(c.signal);
+      }, 60000);
       return () => {
         controller.abort();
         clearInterval(interval);
@@ -430,7 +432,7 @@ export default function ContractorDashboardPage() {
               <button
                 onClick={handleToggleAvailability}
                 disabled={loadingAvailability || availability.status === 'suspended' || availability.status === 'inactive'}
-                className={`relative inline-flex h-11 w-[3.25rem] items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-nrpg-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`relative inline-flex h-11 w-16 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-nrpg-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
                   availability.status === 'available'
                     ? 'bg-portal-success'
                     : 'bg-gray-300'
@@ -438,8 +440,8 @@ export default function ContractorDashboardPage() {
               >
                 <span className="sr-only">Toggle availability</span>
                 <span
-                  className={`inline-block h-8 w-8 transform rounded-full bg-white shadow-lg transition-transform ${
-                    availability.status === 'available' ? 'translate-x-[1.375rem]' : 'translate-x-1'
+                  className={`inline-block h-7 w-7 transform rounded-full bg-white shadow-lg transition-transform ${
+                    availability.status === 'available' ? 'translate-x-8' : 'translate-x-1'
                   }`}
                 />
               </button>
