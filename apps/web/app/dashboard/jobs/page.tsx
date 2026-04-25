@@ -11,12 +11,12 @@ import {
   Clock,
   DollarSign,
   Filter,
-  Loader2,
   MapPin,
   Plus,
   Search,
   User,
 } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const JOB_STATUS_CONFIG: Record<string, { label: string; colour: string; bgColour: string }> = {
   PENDING: { label: 'Pending', colour: '#FFB800', bgColour: 'rgba(255, 184, 0, 0.15)' },
@@ -188,18 +188,36 @@ export default function JobsListPage() {
       {/* Job List */}
       <div className="px-4 sm:px-6 lg:px-8 py-6">
         {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <Loader2 className="h-8 w-8 animate-spin text-[#0d9488]" />
+          /* DR-752: Skeleton rows preserve table layout during load */
+          <div className="space-y-3">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="flex items-center gap-4 px-4 py-3 border-b border-white/5">
+                <Skeleton className="h-4 w-20 bg-white/10" />
+                <Skeleton className="h-4 w-32 bg-white/10" />
+                <Skeleton className="h-5 w-20 rounded-full bg-white/10" />
+                <Skeleton className="h-4 w-40 bg-white/10 hidden md:block" />
+                <Skeleton className="h-4 w-28 bg-white/10 hidden md:block" />
+                <Skeleton className="h-4 w-24 bg-white/10 hidden md:block" />
+                <Skeleton className="h-4 w-24 bg-white/10 hidden md:block" />
+              </div>
+            ))}
           </div>
         ) : jobs.length === 0 ? (
-          <div className="text-center py-20">
-            <Briefcase className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-400">No jobs found</h3>
-            <p className="text-sm text-gray-400 mt-1">Create a new job to get started.</p>
+          /* DR-753: Improved empty state with clear CTA */
+          <div className="flex flex-col items-center justify-center py-20 text-center" role="status">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0d9488]/10">
+              <Briefcase className="h-8 w-8 text-[#0d9488]" aria-hidden="true" />
+            </div>
+            <h3 className="text-base font-semibold text-gray-200">No jobs found</h3>
+            <p className="mt-1 max-w-sm text-sm text-gray-400">
+              {/* Contextual hint based on any active filters */}
+              Create your first job or adjust your filters to see existing jobs.
+            </p>
             <button
               onClick={() => router.push('/dashboard/jobs/new')}
-              className="mt-4 px-4 py-2 bg-[#0d9488] hover:bg-[#0d9488]/80 text-white rounded-lg text-sm font-medium transition-colours"
+              className="mt-5 flex items-center gap-2 px-4 py-2 bg-[#0d9488] hover:bg-[#0d9488]/80 text-white rounded-lg text-sm font-medium transition-colours"
             >
+              <Plus className="h-4 w-4" />
               Create Job
             </button>
           </div>
