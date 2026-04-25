@@ -1,6 +1,7 @@
 // @ts-nocheck
 'use client';
 
+import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -278,7 +279,7 @@ export default function AdminDashboard() {
 
   const handleCreateCategory = async () => {
     if (!newCategory.name.trim()) {
-      alert('Category name is required');
+      toast.warning('Category name is required');
       return;
     }
 
@@ -295,15 +296,16 @@ export default function AdminDashboard() {
       if (response.ok) {
         setShowAddCategoryModal(false);
         setNewCategory({ name: '', description: '', icon: '', theme: '', sortOrder: 0 });
-        // Refresh the page or update the categories list
-        window.location.reload();
+        toast.success('Category created successfully');
+        // DR-763: refresh state without full page reload
+        await fetchAdminData();
       } else {
         const error = await response.json();
-        alert(`Error creating category: ${error.message || 'Unknown error'}`);
+        toast.error(`Error creating category: ${error.message || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Error creating category:', error);
-      alert('Failed to create category. Please try again.');
+      toast.error('Failed to create category. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -311,7 +313,7 @@ export default function AdminDashboard() {
 
   const handleCreateTheme = async () => {
     if (!newTheme.name.trim() || !newTheme.identifier.trim()) {
-      alert('Theme name and identifier are required');
+      toast.warning('Theme name and identifier are required');
       return;
     }
 
@@ -336,15 +338,16 @@ export default function AdminDashboard() {
           backgroundColor: '#1F2937',
           textColor: '#F9FAFB'
         });
-        // Refresh the page or update the themes list
-        window.location.reload();
+        toast.success('Theme created successfully');
+        // DR-763: refresh state without full page reload
+        await fetchAdminData();
       } else {
         const error = await response.json();
-        alert(`Error creating theme: ${error.message || 'Unknown error'}`);
+        toast.error(`Error creating theme: ${error.message || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Error creating theme:', error);
-      alert('Failed to create theme. Please try again.');
+      toast.error('Failed to create theme. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -352,7 +355,7 @@ export default function AdminDashboard() {
 
   const handleCreateService = async () => {
     if (!newService.name.trim() || !newService.categoryId) {
-      alert('Service name and category are required');
+      toast.warning('Service name and category are required');
       return;
     }
 
@@ -369,15 +372,16 @@ export default function AdminDashboard() {
       if (response.ok) {
         setShowAddServiceModal(false);
         setNewService({ categoryId: '', name: '', description: '', icon: '', theme: '', sortOrder: 0 });
-        // Refresh the page or update the services list
-        window.location.reload();
+        toast.success('Service created successfully');
+        // DR-763: refresh state without full page reload
+        await fetchAdminData();
       } else {
         const error = await response.json();
-        alert(`Error creating service: ${error.message || 'Unknown error'}`);
+        toast.error(`Error creating service: ${error.message || 'Unknown error'}`);
       }
     } catch (error) {
       console.error('Error creating service:', error);
-      alert('Failed to create service. Please try again.');
+      toast.error('Failed to create service. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -394,9 +398,11 @@ export default function AdminDashboard() {
       }
     } else if (user && user.userType === 'ADMIN') {
       // Run both in parallel — no sequential dependency between them
-      Promise.all([fetchAdminData(), fetchAdminKpis()]).catch((err) =>
-        console.error('Admin data fetch failed:', err),
-      );
+      // DR-758: .catch() prevents swallowed rejections that would leave loading state hung
+      Promise.all([fetchAdminData(), fetchAdminKpis()]).catch((err) => {
+        console.error('Admin dashboard load failed:', err);
+        toast.error('Failed to load dashboard data. Please refresh.');
+      });
     }
   }, [user, loading, router, fetchAdminData]);
 
@@ -454,9 +460,11 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (user && user.userType === 'ADMIN') {
       // Fire all four independent fetches concurrently
-      Promise.all([fetchContractors(), fetchClients(), fetchClientServices(), fetchWhiteLabelStats()]).catch(
-        (err) => console.error('Admin secondary fetch failed:', err),
-      );
+      // DR-758: .catch() prevents swallowed rejections that would leave loading state hung
+      Promise.all([fetchContractors(), fetchClients(), fetchClientServices(), fetchWhiteLabelStats()]).catch((err) => {
+        console.error('Admin contractor/client data load failed:', err);
+        toast.error('Failed to load contractor data. Please refresh.');
+      });
     }
   }, [user, contractorStatusFilter, contractorSearchTerm, fetchContractors]);
 
