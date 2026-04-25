@@ -21,6 +21,7 @@ import {
   Flame,
   Droplets,
   Wind,
+  Briefcase,
 } from 'lucide-react';
 
 interface Opportunity {
@@ -287,17 +288,52 @@ export default function OpportunitiesPage() {
           );
         })}
 
-        {filteredOpportunities.length === 0 && (
-          <div className="bg-portal-card rounded-xl border border-portal-border p-12 text-center">
-            <Filter className="size-12 text-portal-muted mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-portal-text font-heading mb-2">
-              No opportunities found
-            </h3>
-            <p className="text-portal-muted font-body">
-              Try adjusting your filters or check back later for new opportunities.
-            </p>
-          </div>
-        )}
+        {/* DR-766: distinguish filter-empty from genuinely-empty */}
+        {filteredOpportunities.length === 0 && (() => {
+          const hasActiveFilters =
+            searchQuery !== '' ||
+            selectedCategory !== 'all' ||
+            selectedPriority !== 'all';
+
+          if (hasActiveFilters) {
+            // Filters are on but no results — actionable: reset filters
+            return (
+              <div className="bg-portal-card rounded-xl border border-portal-border p-12 text-center">
+                <Filter className="size-12 text-portal-muted mx-auto mb-4" />
+                <h3 className="text-lg font-bold text-portal-text font-heading mb-2">
+                  No matching opportunities
+                </h3>
+                <p className="text-portal-muted font-body mb-4">
+                  Your current filters aren&apos;t matching any opportunities.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('all');
+                    setSelectedPriority('all');
+                  }}
+                  className="px-4 py-2 bg-nrpg-teal text-white rounded-lg text-sm font-medium hover:bg-nrpg-teal/90 transition-colors"
+                >
+                  Reset filters
+                </button>
+              </div>
+            );
+          }
+
+          // No filters active — contractor genuinely has no opportunities
+          return (
+            <div className="bg-portal-card rounded-xl border border-portal-border p-12 text-center">
+              <Briefcase className="size-12 text-portal-muted mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-portal-text font-heading mb-2">
+                No opportunities yet
+              </h3>
+              <p className="text-portal-muted font-body">
+                Update your profile and service areas to start receiving matched opportunities.
+              </p>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );
