@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, Eye, EyeOff, CheckCircle } from 'lucide-react';
+import { Loader2, Eye, EyeOff, CheckCircle, X } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -20,6 +20,10 @@ export default function LoginPage() {
   const [success, setSuccess] = useState(false);
 
   const router = useRouter();
+  // DR-756: read reason param to show contextual feedback banner
+  const searchParams = useSearchParams();
+  const reason = searchParams.get('reason');
+  const [bannerDismissed, setBannerDismissed] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,6 +90,25 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
      
+        {/* DR-756: session-expired banner — safety-orange accent, dismissible */}
+        {reason === 'session_expired' && !bannerDismissed && (
+          <div
+            role="alert"
+            className="mb-6 flex items-start gap-3 rounded-lg border border-orange-400/30 bg-orange-500/10 px-4 py-3 text-sm text-orange-200"
+          >
+            <span className="mt-0.5 shrink-0">⚠</span>
+            <span className="flex-1">Your session expired — please sign in again.</span>
+            <button
+              type="button"
+              onClick={() => setBannerDismissed(true)}
+              aria-label="Dismiss"
+              className="ml-auto shrink-0 opacity-70 hover:opacity-100 transition-opacity"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        )}
+
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#00BFA6] to-[#2196F3] rounded-2xl mb-4">
