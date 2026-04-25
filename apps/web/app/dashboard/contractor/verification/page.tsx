@@ -84,6 +84,8 @@ export default function ContractorVerificationProfile() {
     acnNumber: '',
   });
   const [saving, setSaving] = useState(false);
+  // DR-767: track per-field validation errors
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (!loading && !user) {
@@ -137,8 +139,30 @@ export default function ContractorVerificationProfile() {
     }));
   };
 
+  // DR-767: client-side validation — returns false and scrolls to first error if invalid
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+    if (!formData.abnNumber.trim()) errors.abnNumber = 'ABN is required';
+    if (!formData.companyDescription.trim()) errors.companyDescription = 'Company description is required';
+    if (!formData.serviceRadius.trim()) errors.serviceRadius = 'Service radius is required';
+
+    setFormErrors(errors);
+
+    const firstErrorKey = Object.keys(errors)[0];
+    if (firstErrorKey) {
+      const el = document.getElementById(firstErrorKey);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.focus();
+      }
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setSaving(true);
 
     try {
@@ -341,7 +365,14 @@ export default function ContractorVerificationProfile() {
                         className="mt-1 bg-gray-700 border-gray-600 text-white"
                         placeholder="12 345 678 901"
                         required
+                        aria-invalid={!!formErrors.abnNumber}
+                        aria-describedby={formErrors.abnNumber ? 'abnNumber-error' : undefined}
                       />
+                      {formErrors.abnNumber && (
+                        <p id="abnNumber-error" role="alert" className="mt-1 text-xs text-red-400">
+                          {formErrors.abnNumber}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <Label htmlFor="acnNumber" className="text-gray-300">
@@ -370,7 +401,14 @@ export default function ContractorVerificationProfile() {
                       placeholder="Tell clients about your company, expertise, and what sets you apart..."
                       rows={6}
                       required
+                      aria-invalid={!!formErrors.companyDescription}
+                      aria-describedby={formErrors.companyDescription ? 'companyDescription-error' : undefined}
                     />
+                    {formErrors.companyDescription && (
+                      <p id="companyDescription-error" role="alert" className="mt-1 text-xs text-red-400">
+                        {formErrors.companyDescription}
+                      </p>
+                    )}
                   </div>
 
                   {/* Business Details */}
@@ -416,7 +454,14 @@ export default function ContractorVerificationProfile() {
                         placeholder="25"
                         min="1"
                         required
+                        aria-invalid={!!formErrors.serviceRadius}
+                        aria-describedby={formErrors.serviceRadius ? 'serviceRadius-error' : undefined}
                       />
+                      {formErrors.serviceRadius && (
+                        <p id="serviceRadius-error" role="alert" className="mt-1 text-xs text-red-400">
+                          {formErrors.serviceRadius}
+                        </p>
+                      )}
                     </div>
                   </div>
 

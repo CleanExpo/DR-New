@@ -13,7 +13,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import {
@@ -74,6 +74,8 @@ export default function ContractorDashboardPage() {
   const [availability, setAvailability] = useState<AvailabilityStatus | null>(null);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  // DR-765: store ref to trigger so focus can be restored when dialog closes
+  const confirmTriggerRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -236,10 +238,20 @@ export default function ContractorDashboardPage() {
     const willBeUnavailable = availability?.status === 'available';
 
     if (willBeUnavailable) {
+      // DR-765: capture the triggering element so focus can be restored on close
+      if (document.activeElement instanceof HTMLButtonElement) {
+        confirmTriggerRef.current = document.activeElement;
+      }
       setShowConfirmDialog(true);
     } else {
       await performToggle(true);
     }
+  };
+
+  // DR-765: close dialog and restore focus to the trigger
+  const closeConfirmDialog = () => {
+    setShowConfirmDialog(false);
+    setTimeout(() => confirmTriggerRef.current?.focus(), 0);
   };
 
   const performToggle = async (available: boolean) => {
@@ -449,15 +461,21 @@ export default function ContractorDashboardPage() {
       )}
 
       {/* Confirmation Dialog */}
+      {/* DR-764: role="dialog" + aria-modal prevent focus escaping to background */}
       {showConfirmDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="confirm-dialog-title"
+            className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6"
+          >
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-yellow-500/10 rounded-full">
                 <AlertCircle className="size-6 text-yellow-600" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-portal-text font-heading">
+                <h3 id="confirm-dialog-title" className="text-lg font-bold text-portal-text font-heading">
                   Pause Job Notifications?
                 </h3>
                 <p className="text-portal-muted text-sm mt-2">
@@ -471,8 +489,9 @@ export default function ContractorDashboardPage() {
                   >
                     Confirm
                   </button>
+                  {/* DR-765: use closeConfirmDialog so focus is restored to trigger */}
                   <button
-                    onClick={() => setShowConfirmDialog(false)}
+                    onClick={closeConfirmDialog}
                     disabled={loadingAvailability}
                     className="flex-1 px-4 py-2 bg-gray-100 text-portal-text rounded-lg hover:bg-gray-200 font-medium disabled:opacity-50"
                   >
