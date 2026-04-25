@@ -210,10 +210,11 @@ export default function ContractorDashboardPage() {
     }
   };
 
-  const fetchAvailability = async () => {
+  const fetchAvailability = async (signal?: AbortSignal) => {
     try {
       const response = await fetch('/api/contractor/availability', {
         cache: 'no-store',
+        signal,
       });
 
       if (response.ok) {
@@ -221,6 +222,7 @@ export default function ContractorDashboardPage() {
         setAvailability(data.availability);
       }
     } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') return;
       console.error('Error fetching availability:', error);
     }
   };
@@ -286,9 +288,16 @@ export default function ContractorDashboardPage() {
   // Auto-refresh availability every 60 seconds
   useEffect(() => {
     if (user && user.userType === 'CONTRACTOR') {
-      fetchAvailability();
-      const interval = setInterval(fetchAvailability, 60000);
-      return () => clearInterval(interval);
+      const controller = new AbortController();
+      fetchAvailability(controller.signal);
+      const interval = setInterval(() => {
+        const c = new AbortController();
+        fetchAvailability(c.signal);
+      }, 60000);
+      return () => {
+        controller.abort();
+        clearInterval(interval);
+      };
     }
   }, [user]);
 
@@ -423,7 +432,7 @@ export default function ContractorDashboardPage() {
               <button
                 onClick={handleToggleAvailability}
                 disabled={loadingAvailability || availability.status === 'suspended' || availability.status === 'inactive'}
-                className={`relative inline-flex h-8 w-16 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-nrpg-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
+                className={`relative inline-flex h-11 w-16 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-nrpg-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
                   availability.status === 'available'
                     ? 'bg-portal-success'
                     : 'bg-gray-300'
@@ -431,8 +440,8 @@ export default function ContractorDashboardPage() {
               >
                 <span className="sr-only">Toggle availability</span>
                 <span
-                  className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-lg transition-transform ${
-                    availability.status === 'available' ? 'translate-x-9' : 'translate-x-1'
+                  className={`inline-block h-7 w-7 transform rounded-full bg-white shadow-lg transition-transform ${
+                    availability.status === 'available' ? 'translate-x-8' : 'translate-x-1'
                   }`}
                 />
               </button>
