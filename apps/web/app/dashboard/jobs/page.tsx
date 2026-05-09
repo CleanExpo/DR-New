@@ -11,6 +11,7 @@ import {
   Clock,
   DollarSign,
   Filter,
+  Loader2,
   MapPin,
   Plus,
   Search,
