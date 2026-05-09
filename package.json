@@ -61,7 +61,7 @@
       "vite": ">=7.3.2",
       "storybook": ">=10.2.10",
       "@tootallnate/once": ">=3.0.1",
-      "ajv": ">=8.18.0",
+      "ajv": "^6.12.6",
       "bn.js": ">=5.2.3",
       "brace-expansion": ">=5.0.5",
       "diff": ">=7.0.0",
