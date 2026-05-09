@@ -55,18 +55,18 @@ async function verifyModule(
 
     // Test loading through API function
     try {
-      const module = await getTrainingModuleHtmlById(moduleId);
+      const moduleContent = await getTrainingModuleHtmlById(moduleId);
       result.loadable = true;
 
       // Verify HTML content has minimum expected structure
-      if (!module.html.includes('<html') || !module.html.includes('</html>')) {
+      if (!moduleContent.html.includes('<html') || !module.html.includes('</html>')) {
         result.errors.push('HTML structure incomplete - missing html tags');
       }
-      if (!module.html.includes('<title>')) {
+      if (!moduleContent.html.includes('<title>')) {
         result.errors.push('HTML structure incomplete - missing title tag');
       }
       if (module.html.length < 10000) {
-        result.errors.push(`HTML content too short: ${module.html.length} bytes (expected >10KB)`);
+        result.errors.push(`HTML content too short: ${moduleContent.html.length} bytes (expected >10KB)`);
       }
     } catch (loadError) {
       result.errors.push(`Failed to load: ${loadError instanceof Error ? loadError.message : 'Unknown error'}`);
@@ -98,9 +98,9 @@ async function main() {
     let passed = 0;
     let failed = 0;
 
-    for (const module of index.modules) {
-      process.stdout.write(`  Testing ${module.moduleId}...`);
-      const result = await verifyModule(module.moduleId, module.sourcePath, module.sourceSha256);
+    for (const mod of index.modules) {
+      process.stdout.write(`  Testing ${mod.moduleId}...`);
+      const result = await verifyModule(mod.moduleId, mod.sourcePath, mod.sourceSha256);
       results.push(result);
 
       if (result.exists && result.hashMatch && result.loadable && result.errors.length === 0) {

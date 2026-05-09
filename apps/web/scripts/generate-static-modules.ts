@@ -24,12 +24,12 @@ async function generateStaticModules() {
   let failCount = 0;
 
   // Generate static JSON for each module
-  for (const module of index.modules) {
+  for (const mod of index.modules) {
     try {
-      console.log(`  Processing ${module.moduleId}...`);
+      console.log(`  Processing ${mod.moduleId}...`);
 
       // Load the module content
-      const moduleData = await getTrainingModuleHtmlById(module.moduleId);
+      const moduleData = await getTrainingModuleHtmlById(mod.moduleId);
 
       // Create the static JSON file
       const staticData = {
