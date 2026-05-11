@@ -92,7 +92,7 @@
     "@vercel/analytics": "^1.6.1",
     "algoliasearch": "^5.50.1",
     "autoprefixer": "^10.4.20",
-    "axios": "^1.15.0",
+    "axios": "^1.15.2",
     "bcryptjs": "^3.0.3",
     "bull": "^4.16.5",
     "class-variance-authority": "^0.7.1",
