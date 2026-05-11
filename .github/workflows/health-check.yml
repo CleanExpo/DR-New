@@ -41,6 +41,11 @@ jobs:
     if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up pnpm  # RA-3004 2026-05-12
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
       
       - name: Wait for deployment
         run: sleep 30
