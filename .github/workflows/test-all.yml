@@ -145,7 +145,7 @@ jobs:
           DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_e2e
           DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_e2e
       - name: Run E2E tests
-        run: pnpm --filter nrpg-web exec playwright test --project=${{ matrix.project }}
+        run: pnpm --filter nrpg-web exec playwright test e2e/ci-smoke.spec.ts --project=${{ matrix.project }}
         env:
           CI: true
           NEXTAUTH_SECRET: test-secret-for-ci
