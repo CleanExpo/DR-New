@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "installCommand": "cd ../.. && pnpm install",
-  "buildCommand": "cd ../.. && pnpm --filter nrpg-web run build",
+  "buildCommand": "cd ../.. && pnpm --filter nrpg-web run build && rm -rf apps/web/.next/cache",
   "outputDirectory": ".next",
   "regions": ["syd1"],
   "headers": [

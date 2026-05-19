@@ -8,11 +8,9 @@
  * (defaults to http://localhost:3000 for local/CI).
  */
 
-// Restore real fetch — the global test setup mocks it, but smoke tests need real HTTP
+// Smoke tests need real HTTP. Prefer Node's native fetch on CI; only fall back to
+// Undici when running on an older runtime without fetch.
 beforeAll(() => {
-  // @ts-expect-error -- restoring native fetch
-  delete global.fetch;
-  // Node 18+ has native fetch via undici
   if (!global.fetch) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const undici = require('undici');

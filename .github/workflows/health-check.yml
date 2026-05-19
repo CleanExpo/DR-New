@@ -41,35 +41,39 @@ jobs:
     if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: Set up pnpm  # RA-3004 2026-05-12
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Wait for deployment
         run: sleep 30
-      
+
       - name: Check API health
         run: |
           max_attempts=10
           attempt=1
           while [ $attempt -le $max_attempts ]; do
             echo "Health check attempt $attempt/$max_attempts"
-            response=$(curl -s -w "
-%{http_code}" https://disasterrecovery.com.au/api/health)
+            response=$(curl -s -w "\n%{http_code}" https://disasterrecovery.com.au/api/health)
             http_code=$(echo "$response" | tail -n1)
             body=$(echo "$response" | sed '$d')
-            
+
             echo "HTTP Status: $http_code"
             echo "Response: $body"
-            
+
             if [ "$http_code" = "200" ] || [ "$http_code" = "503" ]; then
               echo "API is responding"
               break
             fi
-            
+
             attempt=$((attempt + 1))
             if [ $attempt -le $max_attempts ]; then
               sleep 10
             fi
           done
-          
+
           if [ "$http_code" != "200" ] && [ "$http_code" != "503" ]; then
             echo "Health check failed"
             exit 1
@@ -99,7 +103,7 @@ jobs:
         run: |
           response_time=$(curl -s -w '%{time_total}' -o /dev/null https://disasterrecovery.com.au/api/health)
           echo "API response time: $response_time seconds"
-          
+
           if (( $(echo "$response_time > 5" | bc -l) )); then
             echo "Warning: Response time is slow"
           fi

@@ -1,31 +1,55 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware'
 import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcryptjs'
 
-// Demo credentials - password: demo2026
-// Hash generated and verified: bcrypt.compareSync('demo2026', hash) === true
-const DEMO_PASSWORD_HASH = '$2b$10$w6cxN1L12RYhmBtCKNK0t.C3A/GRvcBO8HUnbhJmDeZ1EreGZdlOm'
+// RA-3009 2026-05-12: replaced public query-param guard with DB-verified ADMIN auth.
+// Previous implementation: `?key=seed-demo-2026` literal in the public repo wrote
+// real auth accounts to prod DB. See RA-1282 (pre-fix) + RA-3009 (this fix).
+//
+// Also gated behind NODE_ENV !== 'production' — seed endpoints should never be
+// reachable on prod regardless of caller identity.
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  // Step 1: refuse on production — seed routes are dev/staging only
+  if (process.env.NODE_ENV === 'production' && process.env.ALLOW_SEED_ON_PROD !== 'true') {
+    return NextResponse.json(
+      { error: 'Seed endpoints are disabled on production. Set ALLOW_SEED_ON_PROD=true to override.' },
+      { status: 404 }
+    )
+  }
+
+  // Step 2: require ADMIN authentication (same pattern as app/api/admin/users/route.ts)
+  const authResult = await authenticateRequest(request)
+  if (!authResult.success) {
+    return authResult.response
+  }
+  const { user } = authResult.context
+  if (!requireRole(user, ['ADMIN'])) {
+    return unauthorizedRoleResponse(['ADMIN'])
+  }
+
+  // Step 3: read demo password from env (no committed default)
+  const demoPlaintext = process.env.SEED_DEMO_PASSWORD
+  if (!demoPlaintext) {
+    return NextResponse.json(
+      { error: 'SEED_DEMO_PASSWORD env var must be set to seed demo accounts.' },
+      { status: 503 }
+    )
+  }
+  const demoHash = bcrypt.hashSync(demoPlaintext, 10)
+
   try {
-    // Simple auth check - require a secret key
-    const { searchParams } = new URL(request.url)
-    const key = searchParams.get('key')
-
-    if (key !== 'seed-demo-2026') {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
     const results: string[] = []
 
-    // 1. Create Demo Client
+    // 1. Demo Client
     const demoClient = await prisma.user.upsert({
       where: { email: 'demo.client@disasterrecovery.com.au' },
-      update: { password: DEMO_PASSWORD_HASH },
+      update: { password: demoHash },
       create: {
         email: 'demo.client@disasterrecovery.com.au',
         name: 'Demo Client - RIA 2026',
-        password: DEMO_PASSWORD_HASH,
+        password: demoHash,
         userType: 'CLIENT',
         australianState: 'VIC',
         australianPostcode: '3000',
@@ -37,14 +61,14 @@ export async function POST(request: Request) {
     })
     results.push(`Client: ${demoClient.email}`)
 
-    // 2. Create Demo Contractor User
+    // 2. Demo Contractor
     const demoContractorUser = await prisma.user.upsert({
       where: { email: 'demo.contractor@disasterrecovery.com.au' },
-      update: { password: DEMO_PASSWORD_HASH },
+      update: { password: demoHash },
       create: {
         email: 'demo.contractor@disasterrecovery.com.au',
         name: 'Rapid Response Restoration',
-        password: DEMO_PASSWORD_HASH,
+        password: demoHash,
         userType: 'CONTRACTOR',
         australianState: 'VIC',
         australianPostcode: '3000',
@@ -56,14 +80,14 @@ export async function POST(request: Request) {
     })
     results.push(`Contractor: ${demoContractorUser.email}`)
 
-    // 3. Create Demo Admin
+    // 3. Demo Admin
     const demoAdmin = await prisma.user.upsert({
       where: { email: 'demo.admin@disasterrecovery.com.au' },
-      update: { password: DEMO_PASSWORD_HASH },
+      update: { password: demoHash },
       create: {
         email: 'demo.admin@disasterrecovery.com.au',
         name: 'Demo Admin',
-        password: DEMO_PASSWORD_HASH,
+        password: demoHash,
         userType: 'ADMIN',
         australianState: 'VIC',
         australianPostcode: '3000',
@@ -77,16 +101,15 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Demo accounts seeded successfully',
+      message: 'Demo accounts seeded successfully.',
       accounts: results,
-      password: 'demo2026'
+      // Password is NOT echoed back — caller already knows it (they set the env var)
     })
-
   } catch (error) {
-    console.error('Seed error:', error)
-    return NextResponse.json({
-      error: 'Failed to seed demo accounts',
-      details: 'See server logs for details'
-    }, { status: 500 })
+    console.error('[seed-demo] error:', error)
+    return NextResponse.json(
+      { error: 'Failed to seed demo accounts. See server logs.' },
+      { status: 500 }
+    )
   }
 }
