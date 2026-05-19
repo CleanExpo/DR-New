@@ -53,7 +53,7 @@ Complete this checklist for each contractor audited. Mark each item **Pass**, **
 
 | # | Check | Standard | Pass / Fail / N/A | Notes |
 |---|---|---|---|---|
-| B1 | Phone number present and active | A current, active phone number must be listed. Spot-check by calling if uncertain. | | |
+| B1 | Contractor-owned contact path present and active | A current contractor-owned contact path must be listed where appropriate for that contractor's GBP. Do not add phone-number CTAs to DR/NRPG pages or components; the platform remains online-form first. | | |
 | B2 | Website URL present and correct | Must link to the contractor's own website or an NRPG-hosted contractor profile page. Must use HTTPS. | | |
 | B3 | Service area defined | SAB contractors must have a defined service area — no street address should be publicly displayed for SAB operators | | |
 | B4 | Business hours accurate | If the contractor offers 24/7 emergency response, hours must reflect this. If hours are limited, they must match actual availability. | | |
@@ -137,7 +137,7 @@ For contractors who score below standard (Fair or Poor):
 
 | Priority | Items | Timeline |
 |---|---|---|
-| Critical | A1 (business name), A2 (NRPG language), B1 (phone), B2 (website) | Must be corrected within 14 days |
+| Critical | A1 (business name), A2 (NRPG language), B1 (contractor-owned contact path), B2 (website) | Must be corrected within 14 days |
 | High | A3 (IICRC), A4 (photo), B3 (service area), B4 (hours), C1 (primary category) | Must be corrected within 30 days |
 | Standard | C2 (secondary categories), C3 (services listed), D1 (posts), D2 (review responses) | Must be corrected within 60 days |
 
