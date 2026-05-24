@@ -8,7 +8,7 @@ name: Health - Post-Deployment Checks
 # the main-branch run red on a 5-minute cadence. Override via repo variable
 # if/when DR-NRPG attaches a custom production domain.
 env:
-  HEALTH_CHECK_URL: ${{ vars.HEALTH_CHECK_URL || 'https://disaster-recovery-nrpg.vercel.app' }}
+  HEALTH_CHECK_URL: ${{ vars.HEALTH_CHECK_URL || 'https://dr-nrpg-platform.vercel.app' }}
 
 on:
   workflow_run:
