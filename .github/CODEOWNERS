@@ -1,8 +1,3 @@
-# Default owner for all files
+# CODEOWNERS — sole owner is the CleanExpo account (solo founder workflow)
+# Self-review is acceptable for this single-owner setup.
 * @CleanExpo
-
-# Critical paths — explicit review required
-apps/web/prisma/            @CleanExpo
-apps/web/middleware.ts      @CleanExpo
-.github/workflows/          @CleanExpo
-.claude/                    @CleanExpo
