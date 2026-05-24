@@ -1,9 +1,11 @@
 name: Deploy Preview
 
 on:
-  pull_request:
-    branches: [main, develop]
-    types: [opened, synchronize, reopened]
+  # Gated to workflow_dispatch only on 2026-05-25 because GitHub was
+  # creating empty-jobs failure runs on every main-branch push despite
+  # the `pull_request` trigger only matching PR events. Until that
+  # anomaly is understood, keep the workflow callable manually.
+  workflow_dispatch:
 
 env:
   NODE_VERSION: '20'

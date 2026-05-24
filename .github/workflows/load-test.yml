@@ -1,6 +1,11 @@
 name: Load Testing
 
 on:
+  # schedule + pull_request triggers removed on 2026-05-25 because
+  # GitHub was creating empty-jobs failure runs on every main-branch
+  # push event despite neither trigger matching push. Keep workflow
+  # dispatch (with inputs) for manual k6 runs; restore the cron/PR
+  # triggers once the anomaly is understood.
   workflow_dispatch:
     inputs:
       environment:
@@ -28,16 +33,7 @@ on:
         required: false
         default: '10m'
 
-  schedule:
-    # Run smoke tests daily at 2 AM AEST (4 PM UTC previous day)
-    - cron: '0 16 * * *'
 
-  pull_request:
-    branches: [main, develop]
-    paths:
-      - 'apps/web/app/api/**'
-      - 'apps/web/lib/**'
-      - 'apps/backend/**'
 
 env:
   K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}

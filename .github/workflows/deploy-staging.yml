@@ -1,8 +1,11 @@
 name: Deploy Staging
 
 on:
-  push:
-    branches: [develop]
+  # Gated to workflow_dispatch only on 2026-05-25 because GitHub was
+  # creating empty-jobs failure runs on every main-branch push despite
+  # `push.branches=[develop]` filter. Until that anomaly is understood,
+  # keep the workflow callable manually but not on every commit.
+  workflow_dispatch:
 
 env:
   NODE_VERSION: '20'
