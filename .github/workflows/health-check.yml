@@ -1,13 +1,29 @@
 name: Health - Post-Deployment Checks
 
+# HEALTH_CHECK_URL (repo variable) is the deployed origin this workflow probes.
+# Default is DR-NRPG's own Vercel production URL (per deploy-production.yml's
+# environment.url). The previous default — https://disasterrecovery.com.au —
+# pointed at a domain owned by the separate `Disaster-Recovery` repo, which
+# does not expose /api/health, so every scheduled ping returned 404 and turned
+# the main-branch run red on a 5-minute cadence. Override via repo variable
+# if/when DR-NRPG attaches a custom production domain.
+env:
+  HEALTH_CHECK_URL: ${{ vars.HEALTH_CHECK_URL || 'https://disaster-recovery-nrpg.vercel.app' }}
+
 on:
   workflow_run:
     workflows: [ "Deploy Production" ]
     types: [ completed ]
 
-  schedule:
-    # Ping /api/health every 5 minutes
-    - cron: '*/5 * * * *'
+  # Scheduled ping is gated on a successful production deploy existing.
+  # Re-enable by uncommenting once Deploy Production is green and the
+  # HEALTH_CHECK_URL env above points at a live origin. Until then a 5-min
+  # cron against a non-existent deployment turns the main-branch run red
+  # 288 times a day with no actionable signal.
+  # schedule:
+  #   - cron: '*/5 * * * *'
+
+  workflow_dispatch:
 
 jobs:
   scheduled-ping:
@@ -18,7 +34,7 @@ jobs:
       - name: Ping /api/health
         id: ping
         run: |
-          response=$(curl -s -w "\n%{http_code}" https://disasterrecovery.com.au/api/health)
+          response=$(curl -s -w "\n%{http_code}" "$HEALTH_CHECK_URL/api/health")
           http_code=$(echo "$response" | tail -n1)
           body=$(echo "$response" | sed '$d')
 
@@ -56,7 +72,7 @@ jobs:
           attempt=1
           while [ $attempt -le $max_attempts ]; do
             echo "Health check attempt $attempt/$max_attempts"
-            response=$(curl -s -w "\n%{http_code}" https://disasterrecovery.com.au/api/health)
+            response=$(curl -s -w "\n%{http_code}" "$HEALTH_CHECK_URL/api/health")
             http_code=$(echo "$response" | tail -n1)
             body=$(echo "$response" | sed '$d')
 
@@ -81,7 +97,7 @@ jobs:
 
       - name: Check database connectivity
         run: |
-          curl -s https://disasterrecovery.com.au/api/health | grep -q '"database"'
+          curl -s "$HEALTH_CHECK_URL/api/health" | grep -q '"database"'
           if [ $? -eq 0 ]; then
             echo "Database connectivity verified"
           else
@@ -91,7 +107,7 @@ jobs:
 
       - name: Check metrics endpoint
         run: |
-          curl -s https://disasterrecovery.com.au/api/metrics | head -20
+          curl -s "$HEALTH_CHECK_URL/api/metrics" | head -20
           if [ $? -eq 0 ]; then
             echo "Metrics endpoint is responding"
           else
@@ -101,7 +117,7 @@ jobs:
 
       - name: Performance baseline check
         run: |
-          response_time=$(curl -s -w '%{time_total}' -o /dev/null https://disasterrecovery.com.au/api/health)
+          response_time=$(curl -s -w '%{time_total}' -o /dev/null "$HEALTH_CHECK_URL/api/health")
           echo "API response time: $response_time seconds"
 
           if (( $(echo "$response_time > 5" | bc -l) )); then
