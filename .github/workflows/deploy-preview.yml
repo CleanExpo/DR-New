@@ -25,9 +25,7 @@ jobs:
 
       - name: Set up pnpm  # RA-3004 2026-05-12
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
+        # version is read from package.json#packageManager (pnpm@9.15.9) — single SSOT
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
