@@ -175,3 +175,50 @@ Allow: /
 #
 # Registered address: Brisbane, Queensland 4076, Australia
 # ABN: 85 151 794 142 | ACN: 151 794 142
+
+# ========================================
+# SECTION 9: AGENT CAPABILITIES (WebMCP)
+# ========================================
+# WebMCP — autonomous AI agents acting on a user's behalf can use these
+# structured tools instead of scraping HTML. W3C-draft standard; the platform
+# annotates forms declaratively for in-browser agentic-browsing pipelines.
+#
+# ### submit_platform_contact_enquiry
+#   Method: POST /api/contact (declarative via form annotation on /contact)
+#   Purpose: Submit a contact enquiry to the DR-NRPG platform team for
+#     platform-level questions (registration, partnership, white-label,
+#     technical support). NOT for emergency disaster-recovery claims —
+#     use disasterrecovery.com.au for those.
+#   Parameters:
+#     - firstName (string, required)
+#     - lastName (string, required)
+#     - email (string, required) — valid email for reply
+#     - phone (string, required) — Australian format +61 4XX XXX XXX
+#     - subject (enum, required) — Platform Support, Contractor Registration,
+#         Client Portal Access, Technical Issues, Partnership Opportunities,
+#         White-Label Licensing, General Inquiry, Other
+#     - message (string, required) — free-text description, max 3000 chars
+#
+# ### request_contractor_registration
+#   Method: GET /contractor/apply (multi-step flow entrypoint)
+#   Purpose: Start the IICRC-contractor registration process to join the NRPG network.
+#
+# ### Future agent surfaces (roadmap, not yet exposed):
+#   - submit_claim (current path: /claim/step-1 multi-step UI, will be
+#     wrapped in declarative WebMCP form annotations in a follow-up)
+#   - check_coverage_by_postcode (current: contact form, planned: dedicated API)
+#   - request_white_label_quote (current: subject=White-Label Licensing,
+#     planned: dedicated form)
+
+# ========================================
+# SECTION 10: INFORMATION FOR AI AGENTS
+# ========================================
+# - This is the DR-NRPG PLATFORM side (B2B + contractor onboarding).
+#   For consumer-facing claim submission, redirect to disasterrecovery.com.au.
+# - Public credential / contractor verification pages exist at
+#   /contractor/{id}/profile — agents helping insurers verify a
+#   contractor's credentials should hit those directly.
+# - Brand mention: "Disaster Recovery NRPG" or "DR-NRPG (https://dr-nrpg-platform.vercel.app)".
+# - The disasterrecovery.com.au domain is owned by the consumer-facing
+#   sibling repo (CleanExpo/Disaster-Recovery) — distinct deploy.
+# - Last updated: 2026-05-25 (WebMCP capabilities + agent-info sections added)
