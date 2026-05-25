@@ -55,22 +55,35 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-8 border border-[#374151]">
               <h2 className="font-poppins font-bold text-2xl text-white mb-6">Send us a Message</h2>
-              <form className="space-y-6">
+              {/* WebMCP annotations expose this form to in-browser AI agents per the
+                  GEO standard (Pi-CEO skills/geo-optimization/SKILL.md §5). */}
+              <form
+                className="space-y-6"
+                // @ts-expect-error WebMCP attributes are W3C-draft and not yet in React's type defs
+                toolname="submit_platform_contact_enquiry"
+                tooldescription="Submit a contact enquiry to the DR-NRPG platform team. Routes by subject category (Platform Support, Contractor Registration, Client Portal Access, etc.) to the relevant team. For active emergency disaster-recovery claims, use disasterrecovery.com.au's claim intake instead — this form is for platform-level enquiries."
+              >
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-[#F9FAFB] mb-2">First Name</label>
                     <input
                       type="text"
+                      name="firstName"
                       className="w-full px-4 py-3 bg-[#0F1115] border border-[#374151] rounded-lg text-[#F9FAFB] placeholder-[#9CA3AF] focus:outline-none focus:border-[#00BFA6]"
                       placeholder="John"
+                      // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                      toolparamdescription="Enquirer's first name"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-[#F9FAFB] mb-2">Last Name</label>
                     <input
                       type="text"
+                      name="lastName"
                       className="w-full px-4 py-3 bg-[#0F1115] border border-[#374151] rounded-lg text-[#F9FAFB] placeholder-[#9CA3AF] focus:outline-none focus:border-[#00BFA6]"
                       placeholder="Smith"
+                      // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                      toolparamdescription="Enquirer's last name (family name)"
                     />
                   </div>
                 </div>
@@ -78,21 +91,32 @@ export default function ContactPage() {
                   <label className="block text-sm font-medium text-[#F9FAFB] mb-2">Email</label>
                   <input
                     type="email"
+                    name="email"
                     className="w-full px-4 py-3 bg-[#0F1115] border border-[#374151] rounded-lg text-[#F9FAFB] placeholder-[#9CA3AF] focus:outline-none focus:border-[#00BFA6]"
                     placeholder="john@example.com"
+                    // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                    toolparamdescription="Valid email address where the DR-NRPG team should reply"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#F9FAFB] mb-2">Phone</label>
                   <input
                     type="tel"
+                    name="phone"
                     className="w-full px-4 py-3 bg-[#0F1115] border border-[#374151] rounded-lg text-[#F9FAFB] placeholder-[#9CA3AF] focus:outline-none focus:border-[#00BFA6]"
                     placeholder="+61 4XX XXX XXX"
+                    // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                    toolparamdescription="Australian phone number for follow-up callback (preferred format: +61 4XX XXX XXX or 04XX XXX XXX)"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#F9FAFB] mb-2">Subject</label>
-                  <select className="w-full px-4 py-3 bg-[#0F1115] border border-[#374151] rounded-lg text-[#F9FAFB] focus:outline-none focus:border-[#00BFA6]">
+                  <select
+                    name="subject"
+                    className="w-full px-4 py-3 bg-[#0F1115] border border-[#374151] rounded-lg text-[#F9FAFB] focus:outline-none focus:border-[#00BFA6]"
+                    // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                    toolparamdescription="Enquiry category — one of: Platform Support, Contractor Registration, Client Portal Access, Technical Issues, Partnership Opportunities, White-Label Licensing, General Inquiry, Other. Routes to the relevant team."
+                  >
                     <option>Platform Support</option>
                     <option>Contractor Registration</option>
                     <option>Client Portal Access</option>
@@ -106,9 +130,13 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-sm font-medium text-[#F9FAFB] mb-2">Message</label>
                   <textarea
+                    name="message"
                     rows={5}
+                    maxLength={3000}
                     className="w-full px-4 py-3 bg-[#0F1115] border border-[#374151] rounded-lg text-[#F9FAFB] placeholder-[#9CA3AF] focus:outline-none focus:border-[#00BFA6] resize-none"
                     placeholder="Tell us how we can help you..."
+                    // @ts-expect-error WebMCP attribute — W3C draft, not yet in React types
+                    toolparamdescription="Free-text enquiry (max 3000 chars). Describe the platform need, registration question, or partnership opportunity in detail."
                   ></textarea>
                 </div>
                 <Button className="w-full bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold py-3">
