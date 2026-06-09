@@ -6,6 +6,26 @@ import { withSentryConfig } from '@sentry/nextjs'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+// next-auth (next-auth/react) reads `process.env.NEXTAUTH_URL ?? process.env.VERCEL_URL`
+// at module-load time and feeds it straight into `new URL(...)`. On real Vercel
+// VERCEL_URL is a non-empty host, but during static prerendering (local `next build`
+// or a pulled preview env) VERCEL_URL can be an empty string. Because `??` does not
+// catch empty strings, next-auth ends up calling `new URL('')`, which throws
+// `Invalid URL` and aborts the export of every page that mounts the shared
+// SessionProvider (e.g. /store/nrpg-lanyard, /_not-found, all city/service pages).
+//
+// next.config is loaded by every build/export worker, so normalising here guarantees
+// a valid NEXTAUTH_URL is present before next-auth is imported. This is a no-op when
+// NEXTAUTH_URL is already set.
+if (process.env.VERCEL_URL === '') {
+  delete process.env.VERCEL_URL
+}
+if (!process.env.NEXTAUTH_URL) {
+  process.env.NEXTAUTH_URL = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://disasterrecovery.com.au'
+}
+
 const nextConfig = {
   // Performance: Enable React strict mode for better development practices
   reactStrictMode: true,

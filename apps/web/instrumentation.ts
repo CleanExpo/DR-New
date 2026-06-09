@@ -8,6 +8,8 @@
  *  - One-time server-side initialisation (logging, tracing, etc.)
  */
 
+import * as Sentry from '@sentry/nextjs';
+
 export async function register() {
   // Only validate on the Node.js runtime (not Edge).
   if (process.env.NEXT_RUNTIME === 'nodejs') {
@@ -15,3 +17,8 @@ export async function register() {
     validateEnv();
   }
 }
+
+// Capture errors thrown in nested React Server Components and route handlers.
+// Required by the current @sentry/nextjs API; without it Next.js logs a warning
+// about a missing onRequestError hook during build.
+export const onRequestError = Sentry.captureRequestError;
