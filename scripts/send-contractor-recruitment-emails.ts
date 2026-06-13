@@ -11,7 +11,33 @@
  */
 
 import https from 'https';
-import prisma from '../lib/prisma';
+// Prisma import is guarded so dry-run mode (and any mode where the old
+// ../lib/prisma path doesn't exist) gracefully falls back to a no-op stub
+// instead of crashing at module load. In real (non-dry-run) mode the import
+// MUST succeed — if it doesn't, we abort with a clear error.
+//   Patched 2026-06-13 — DR-NRPG restructured to apps/web + apps/backend
+//   workspaces; the old ../lib/prisma path no longer exists.
+//   Uses createRequire for CJS compatibility (the script's package.json has
+//   no "type": "module", so top-level await / dynamic import() don't work).
+import { createRequire } from 'module';
+const require_ = createRequire(import.meta.url);
+const isDryRun = process.argv.includes('--dry-run');
+let prisma: any;
+try {
+  prisma = require_('../lib/prisma').default;
+} catch (err) {
+  if (isDryRun) {
+    // Mock-data dry-run: provide a no-op stub. The dry-run path doesn't call prisma.
+    prisma = new Proxy({}, { get: () => () => Promise.resolve([]) });
+  } else {
+    console.error('[send-contractor-recruitment-emails] Failed to import prisma.');
+    console.error('  The script expects ../lib/prisma which no longer exists after the apps/* workspace restructure.');
+    console.error('  Fix: move this script to apps/backend/scripts/ and update the import to the correct path,');
+    console.error('  OR run with --dry-run to use mock data (no DB needed).');
+    console.error('  Original error:', (err as Error).message);
+    process.exit(1);
+  }
+}
 
 interface ContractorRecipient {
   id: string;
