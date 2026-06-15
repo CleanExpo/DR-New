@@ -5,8 +5,12 @@ const createJestConfig = nextJest({
 })
 
 const config = {
-  // Use jsdom for all tests - component tests need DOM, API tests work fine with it
-  testEnvironment: 'jsdom',
+  // Use the patched jsdom environment that no-ops the canvas module
+  // (see apps/web/jest.environment.js + apps/web/__mocks__/canvas.js).
+  // Per UNI-2066 verify-audit §3.1, pnpm test was blocked on a missing
+  // canvas.node native module. The patched env returns an empty mock
+  // for any `require('canvas')` call, so component tests can start.
+  testEnvironment: '<rootDir>/jest.environment.js',
   testMatch: [
     '<rootDir>/src/__tests__/**/*.test.ts',
     '<rootDir>/src/__tests__/**/*.test.tsx',
