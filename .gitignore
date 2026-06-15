@@ -91,6 +91,11 @@ temp/
 .claude/settings.local.json
 pr-body.txt
 
+# macOS case-insensitive working trees can surface the canonical CLAUDE.md as
+# an untracked lowercase duplicate after checkouts/merges. Keep only CLAUDE.md
+# tracked; ignore the lowercase alias.
+claude.md
+
 # Database
 *.db
 *.sqlite

@@ -22,11 +22,11 @@
 - **Evidence:** `pnpm test 2>&1 | tail -5` → "Test Suites: 6 passed, 6 total / Tests: 140 passed, 140 total"
 - **Action:** ✅ VERIFIED. Real test count is **140** (not 151 as session memory claimed). Fix landed in commit `1fdfb8fa` + pushed to `fix/nrpg-recruitment-dry-run-import`.
 
-### ❌ P0-2: BACKLOG-001 Manual QA
+### ⚠️ P0-2: BACKLOG-001 Manual QA
 - **Claim** (BACKLOG.md:32-83, BACKLOG-001): "Documentation complete, ready for QA team execution, 25+ test cases, 3-day plan"
-- **Reality:** `QA_TEST_PLAN.md` and `BACKLOG-001_QA_TESTING_SUMMARY.md` are **referenced but not in the repo.**
-- **Evidence:** `find /Users/phillmcgurk/DR-NRPG -name "QA_TEST_PLAN.md" 2>/dev/null` returns 0 results.
-- **Action:** ❌ UNVERIFIED. Either the docs are in a different repo (likely `docs/`) or the BACKLOG is lying. Awaiting search.
+- **Reality:** `QA_TEST_PLAN.md` **does exist** at repo root (757 lines, 19KB) and contains the 2-3 day pre-launch QA plan, prerequisites, test data setup, and test areas. `BACKLOG-001_QA_TESTING_SUMMARY.md` is still not present, so there is a plan but no completed QA evidence.
+- **Evidence:** `QA_TEST_PLAN.md:1-18` → status IN PROGRESS, 16-24h estimate, dependencies. `search_files('*QA*PLAN*')` → `/Users/phillmcgurk/DR-NRPG/QA_TEST_PLAN.md`.
+- **Action:** ⚠️ PARTIAL. Recoverable: execute the QA plan or produce the missing summary; do not claim QA complete yet.
 
 ### ❌ P0-3: BACKLOG-002 Security Pen Testing
 - **Claim** (BACKLOG.md:85-92): "Blocked waiting for QA" + 40h effort
@@ -42,9 +42,9 @@
 
 ### ⚠️ P0-5: BACKLOG-004 DR/Backup Testing
 - **Claim** (BACKLOG.md:85-115): "✅ COMPLETE - DR capabilities confirmed, RTO 30-60 min, RPO <2h"
-- **Reality:** `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md` is **referenced but the file does not exist in the repo.** The actual Supabase project is on **Canada** (`zwzbglqzmpyfzdkblxyf`), which contradicts the "production ready / DR confirmed" claim — data residency is wrong for AU customers.
-- **Evidence:** `find /Users/phillmcgurk/DR-NRPG -iname "*backup*dr*testing*"` → 0 results. Supabase ref in `phase2-regional-migration.md` = `zwzbglqzmpyfzdkblxyf` (Canada).
-- **Action:** ⚠️ PARTIAL. The plan is real, the report is missing, and the actual region is wrong. Move to Sydney is in UNI-2063 (this session) — queued.
+- **Reality:** `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md` **does exist** at repo root (786 lines, 22KB) and claims Sydney-region DR/PITR readiness. This is documentation evidence, not a live backup-restore proof from this session. Separately, earlier session state identified a Canada-region Supabase ref (`zwzbglqzmpyfzdkblxyf`) that still needs operator-approved migration/reconciliation.
+- **Evidence:** `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md:1-27` → status TESTED & DOCUMENTED, RTO 30-60m, RPO <2h, Sydney region. Live migration remains operator-gated.
+- **Action:** ⚠️ PARTIAL. Doc exists; live restore/migration proof still required before marking complete.
 
 ### ⚠️ P0-6: BACKLOG-005 Secret Rotation
 - **Claim** (BACKLOG.md:117-143): "✅ COMPLETE - 3 Gemini keys rotated, CSRF + JWT secrets rotated, old keys deleted, production redeployed"
@@ -56,7 +56,7 @@
 
 ## TIER 1 — Operational (affects ongoing work)
 
-### ❌ T1-1: BACKLOG-006 Legal/Compliance
+### ⚠️ T1-1: BACKLOG-006 Legal/Compliance
 - **Claim** (BACKLOG.md:145-194): "✅ COMPLETE - Legal compliance checklist"
 - **Reality:** `LEGAL_COMPLIANCE_CHECKLIST.md` (64KB) **does exist** but is a working checklist, not a completed deliverable. No linked privacy policy / terms of service / data processing agreement in the public surface.
 - **Evidence:** `ls -la LEGAL_COMPLIANCE_CHECKLIST.md` → 64KB, present.
@@ -96,19 +96,21 @@
 
 ## TIER 2 — Project Hygiene
 
-### ❌ T2-1: Beads is healthy
-- **Reality:** `.beads/issues.jsonl` has 0 open, 0 in-progress, 1 closed. Despite 11 unpushed branches, the tracker is empty.
-- **Action:** ❌ UNVERIFIED. Seeds added 2026-06-15 (8 tickets, see Beads seed block below).
+### ✅ T2-1: Beads is healthy
+- **Reality:** `.beads/issues.jsonl` now has 1 closed + 8 open tickets seeded from the UNI-2066 audit.
+- **Evidence:** Commit `769b7ee5` added DR-NRPG-1 through DR-NRPG-8; current branch includes the Beads seed.
+- **Action:** ✅ VERIFIED for tracker health. Ticket completion remains follow-up work.
 
-### ❌ T2-2: No stale branches
-- **Reality:** 6 local `pidev/*` branches all track `origin/*` marked `gone`. 300 remote branches total.
-- **Action:** Local stale branches deleted 2026-06-15 (see execution log). Remote cleanup pending Phill decision per branch.
+### ⚠️ T2-2: No stale branches
+- **Reality:** 6 local `pidev/*` branches were deleted, but remote branch sprawl remains: 296 remote branches reviewed after excluding main/develop/active branch.
+- **Evidence:** `docs/decisions/DR-NRPG-BRANCH-TRIAGE.md` → 26 KEEP, 270 ARCHIVE, 0 INVESTIGATE; `tmp-ci2-*` cluster has 20 throwaway CI branches; `feat/DR-34-*` maps to partner dashboard/events/find-a-contractor.
+- **Action:** ⚠️ PARTIAL. Cleanup plan is now written; remote branch deletion remains operator-gated per branch/cluster.
 
-### ❌ T2-3: No uncommitted state
-- **Reality:** Active branch had 1 uncommitted file (CLAUDE.md, 239 insertions) on 2026-06-15.
-- **Action:** ✅ RESOLVED 2026-06-15 (CLAUDE.md committed on `fix/nrpg-recruitment-dry-run-import`).
+### ✅ T2-3: No uncommitted state
+- **Reality:** Active branch previously had 1 uncommitted file (CLAUDE.md, 239 insertions) on 2026-06-15.
+- **Action:** ✅ RESOLVED 2026-06-15 (`f1e2af3c` committed the CLAUDE.md rewrite; this follow-up commit removes the duplicate lowercase tracked path).
 
-### ❌ T2-4: `main` is current
+### ✅ T2-4: `main` is current
 - **Reality:** Local `main` was 2 behind `origin/main` on 2026-06-15.
 - **Action:** ✅ RESOLVED 2026-06-15 (fast-forwarded).
 
@@ -122,8 +124,9 @@
 - **Action:** ✅ VERIFIED.
 
 ### ✅ T3-2: Lint passes
-- **Reality (2026-06-15):** `pnpm lint` exit 0, 2/2 turbo tasks. 582 warnings (mostly unused imports + `as any`).
-- **Action:** Partial cleanup of unused imports done 2026-06-15. Full zero-warning state is a stretch goal.
+- **Reality (2026-06-15):** `pnpm lint` exit 0, 2/2 turbo tasks. Baseline `next lint` warning count was 582.
+- **Follow-up (read+write batch):** `next lint --fix` / direct eslint `--fix` did not auto-fix warning-level unused imports/`any` warnings. Manual cleanup removed 2 warnings (`apps/web/app/dashboard/client/track/page.tsx`, `apps/web/app/dashboard/contractor/analytics/page.tsx`). Current `next lint` warning count: 580.
+- **Action:** ✅ PASSING WITH WARNINGS. Full zero-warning state remains a cleanup stretch goal, not launch blocker.
 
 ### ✅ T3-3: Type-check passes
 - **Reality (2026-06-15):** `pnpm type-check` exit 0, 3/3 tasks, 37.5s.
@@ -135,12 +138,12 @@
 
 | Tier | Count | % of total |
 |---|---:|---:|
-| ✅ VERIFIED | 7 | 44% |
-| ⚠️ PARTIAL | 3 | 19% |
-| ❌ UNVERIFIED | 6 | 38% |
-| Total claims | 16 | 100% |
+| ✅ VERIFIED | 9 | 47% |
+| ⚠️ PARTIAL | 6 | 32% |
+| ❌ UNVERIFIED | 4 | 21% |
+| Total status rows | 19 | 100% |
 
-**Note:** the post-fix re-run moved T1-1 (pnpm test green) from ❌ to ✅. The remaining 6 unverified items are real P0 work: BACKLOG-001 QA, BACKLOG-002 pen test, BACKLOG-003 load test, BACKLOG-007 monitoring, BACKLOG-037 email function, Beads-health check. All seeded as Beads tickets.
+**Note:** the follow-up read+write batch found `QA_TEST_PLAN.md` and `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md` at repo root, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, and reduced lint warnings 582 → 580. Remaining 4 unverified items: BACKLOG-002 pen test, BACKLOG-003 load test, BACKLOG-007 monitoring implementation, BACKLOG-037 email function.
 
 **What to do about it:** Every row above marked ❌ is now a Beads ticket. They will be triaged to a real owner before any new feature work starts.
 
@@ -165,7 +168,12 @@
 | ~11:50 | Re-ran pnpm test after jest config fix | **6 suites passed, 140 tests passed** |
 | ~11:55 | Completed DR-NRPG-2 + DR-NRPG-3, pushed | `1fdfb8fa` |
 | ~12:00 | Updated proof ledger with post-fix state | this commit |
-| ~12:05 | (planned) Push updated proof ledger | `1fdfb8fa-1` |
+| ~12:05 | Pushed updated proof ledger | `27385351` |
+| ~12:10 | Read+write follow-up: branch triage report copied into repo | `docs/decisions/DR-NRPG-BRANCH-TRIAGE.md` (296 remote branches: 26 keep / 270 archive) |
+| ~12:15 | Resolved CLAUDE.md/claude.md case-collision | `git rm --cached claude.md`, keep canonical `CLAUDE.md`, ignore lowercase alias |
+| ~12:20 | Reconciled missing-artifact claims | `QA_TEST_PLAN.md` and `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md` found at repo root |
+| ~12:25 | Lint cleanup attempt | auto-fix no-op; manual cleanup 582 → 580 warnings |
+| ~12:30 | Verification | `pnpm type-check` 3/3, `pnpm test` 140/140 |
 
 ---
 

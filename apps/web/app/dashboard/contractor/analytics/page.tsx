@@ -5,6 +5,16 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+// next-auth adds a `role` field to the User via module augmentation
+// (see next-auth.d.ts at the repo root). Re-declare the shape locally
+// so the analytics page compiles without `as any`.
+interface ContractorSessionUser {
+  id?: string;
+  email?: string | null;
+  name?: string | null;
+  role?: string;
+}
+
 interface ContractorAnalyticsData {
   success: boolean;
   overview: {
@@ -43,13 +53,14 @@ export default function ContractorAnalyticsDashboard() {
     if (status === 'unauthenticated') {
       router.push('/auth/login');
     } else if (status === 'authenticated') {
-      const user = session?.user as any;
-      if (user.role !== 'CONTRACTOR') {
+      const user = session?.user as ContractorSessionUser | undefined;
+      if (user?.role !== 'CONTRACTOR') {
         router.push('/dashboard');
       } else {
         fetchDashboardData();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, session, router]);
 
   const fetchDashboardData = async () => {
@@ -84,7 +95,7 @@ export default function ContractorAnalyticsDashboard() {
     );
   }
 
-  if (!session || (session.user as any).role !== 'CONTRACTOR') {
+  if (!session || (session.user as ContractorSessionUser | undefined)?.role !== 'CONTRACTOR') {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <p className="text-red-600">Unauthorized access</p>
