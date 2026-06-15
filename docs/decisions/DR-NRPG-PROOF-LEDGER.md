@@ -68,11 +68,11 @@
 - **Evidence:** `grep -E "sentry|datadog|newrelic" apps/web/package.json` → no monitoring deps.
 - **Action:** ❌ UNVERIFIED. Plan exists, implementation absent.
 
-### ❌ T1-3: BACKLOG-037 Email Notification Bug
+### ✅ T1-3: BACKLOG-037 Email Notification Bug
 - **Claim** (BACKLOG.md:24-28): "✅ COMPLETE - sendClaimContractorAssignedEmail function created"
-- **Reality:** `find /Users/phillmcgurk/DR-NRPG -name "*.ts" | xargs grep -l "sendClaimContractorAssignedEmail" 2>/dev/null` → 0 results.
-- **Evidence:** Function not in codebase.
-- **Action:** ❌ UNVERIFIED. The BACKLOG claim is wrong — this function does not exist.
+- **Reality:** The function exists and is imported by the contractor claim response route. Follow-up regression coverage added because the earlier proof ledger search missed the large file tail.
+- **Evidence:** `apps/web/lib/email/client-notifications.ts:1027` exports `sendClaimContractorAssignedEmail`; `apps/web/app/api/contractor/claims/[claimId]/respond/route.ts:15,217-225` imports and calls it; `apps/web/__tests__/email/client-notifications.test.ts` passes 2/2.
+- **Action:** ✅ VERIFIED. Claim is real; ledger row corrected.
 
 ### ✅ T1-4: Pricing tiers wired + buffer enforced
 - **Claim** (AGENTS.md:16-21): 5 tiers, 10% buffer
@@ -138,12 +138,12 @@
 
 | Tier | Count | % of total |
 |---|---:|---:|
-| ✅ VERIFIED | 9 | 47% |
+| ✅ VERIFIED | 10 | 53% |
 | ⚠️ PARTIAL | 6 | 32% |
-| ❌ UNVERIFIED | 4 | 21% |
+| ❌ UNVERIFIED | 3 | 16% |
 | Total status rows | 19 | 100% |
 
-**Note:** the follow-up read+write batch found `QA_TEST_PLAN.md` and `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md` at repo root, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, and reduced lint warnings 582 → 580. Remaining 4 unverified items: BACKLOG-002 pen test, BACKLOG-003 load test, BACKLOG-007 monitoring implementation, BACKLOG-037 email function.
+**Note:** the follow-up read+write batches found `QA_TEST_PLAN.md`, `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md`, and `sendClaimContractorAssignedEmail` at repo paths the first audit missed, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, and reduced lint warnings 582 → 580. Remaining 3 unverified items: BACKLOG-002 pen test, BACKLOG-003 load test, BACKLOG-007 monitoring implementation.
 
 **What to do about it:** Every row above marked ❌ is now a Beads ticket. They will be triaged to a real owner before any new feature work starts.
 
