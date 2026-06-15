@@ -9,9 +9,20 @@
  */
 
 export async function register() {
-  // Only validate on the Node.js runtime (not Edge).
+  // Register Sentry first so startup/runtime errors are captured.
   if (process.env.NEXT_RUNTIME === 'nodejs') {
+    await import('./sentry.server.config');
+
     const { validateEnv } = await import('@/lib/env');
     validateEnv();
+    return;
+  }
+
+  if (process.env.NEXT_RUNTIME === 'edge') {
+    await import('./sentry.edge.config');
   }
 }
+
+export const onRequestError = (...args: Parameters<typeof import('@sentry/nextjs').captureRequestError>) => {
+  return import('@sentry/nextjs').then((Sentry) => Sentry.captureRequestError(...args));
+};

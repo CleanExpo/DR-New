@@ -62,11 +62,11 @@
 - **Evidence:** `ls -la LEGAL_COMPLIANCE_CHECKLIST.md` → 64KB, present.
 - **Action:** ⚠️ PARTIAL. Doc exists; finalisation unclear.
 
-### ❌ T1-2: BACKLOG-007 Monitoring
-- **Claim** (BACKLOG.md:196-261): "✅ COMPLETE - Monitoring setup"
-- **Reality:** `BACKLOG-007_MONITORING_SETUP.md` (24KB) exists. Workflows in `.github/workflows/health-check.yml` exist. But no evidence of Sentry/Datadog wiring in the running app, no Sentry project ID in `package.json`, no observability dashboard.
-- **Evidence:** `grep -E "sentry|datadog|newrelic" apps/web/package.json` → no monitoring deps.
-- **Action:** ❌ UNVERIFIED. Plan exists, implementation absent.
+### ✅ T1-2: BACKLOG-007 Error Monitoring
+- **Claim** (BACKLOG.md:119-170): "✅ COMPLETE - Sentry & logging implemented"
+- **Reality:** Sentry package/config already existed (`@sentry/nextjs`, `next.config.mjs`, `sentry.*.config.ts`). Follow-up batch wired missing startup registration via `instrumentation.ts`, added `onRequestError`, and exposed Sentry wiring status in `/api/health`.
+- **Evidence:** `apps/web/instrumentation.ts` imports server/edge Sentry configs and exports `onRequestError`; `apps/web/app/api/health/route.ts` now reports `checks.monitoring`; `apps/web/__tests__/api/health.test.ts` passes 2/2; full `pnpm test` passes 8 suites / 144 tests.
+- **Action:** ✅ VERIFIED locally. Production DSN/env remains operator/deploy config, not repo work.
 
 ### ✅ T1-3: BACKLOG-037 Email Notification Bug
 - **Claim** (BACKLOG.md:24-28): "✅ COMPLETE - sendClaimContractorAssignedEmail function created"
@@ -138,12 +138,12 @@
 
 | Tier | Count | % of total |
 |---|---:|---:|
-| ✅ VERIFIED | 10 | 53% |
+| ✅ VERIFIED | 11 | 58% |
 | ⚠️ PARTIAL | 6 | 32% |
-| ❌ UNVERIFIED | 3 | 16% |
+| ❌ UNVERIFIED | 2 | 11% |
 | Total status rows | 19 | 100% |
 
-**Note:** the follow-up read+write batches found `QA_TEST_PLAN.md`, `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md`, and `sendClaimContractorAssignedEmail` at repo paths the first audit missed, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, and reduced lint warnings 582 → 580. Remaining 3 unverified items: BACKLOG-002 pen test, BACKLOG-003 load test, BACKLOG-007 monitoring implementation.
+**Note:** the follow-up read+write batches found `QA_TEST_PLAN.md`, `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md`, and `sendClaimContractorAssignedEmail` at repo paths the first audit missed, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, reduced lint warnings 582 → 580, and completed/verified Sentry monitoring wiring. Remaining 2 unverified items: BACKLOG-002 pen test and BACKLOG-003 load test.
 
 **What to do about it:** Every row above marked ❌ is now a Beads ticket. They will be triaged to a real owner before any new feature work starts.
 
