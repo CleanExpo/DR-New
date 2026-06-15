@@ -1,0 +1,83 @@
+{
+  "startedAt": "2026-06-15T03:20:27.132Z",
+  "finishedAt": "2026-06-15T03:20:31.883Z",
+  "baseUrl": "http://localhost:3000",
+  "concurrency": 5,
+  "iterations": 5,
+  "totalRequests": 75,
+  "passed": true,
+  "endpoints": [
+    {
+      "name": "health",
+      "path": "/api/health",
+      "requests": 25,
+      "failures": 0,
+      "failureRate": 0,
+      "latencyMs": {
+        "avg": 119.49415659999998,
+        "p50": 115.12474999999995,
+        "p95": 143.493291,
+        "p99": 143.49704199999996,
+        "max": 143.49704199999996
+      },
+      "threshold": {
+        "maxP95Ms": 500,
+        "p95Ok": true,
+        "noFailures": true
+      },
+      "statuses": {
+        "200": 25
+      },
+      "sampleErrors": [],
+      "passed": true
+    },
+    {
+      "name": "home",
+      "path": "/",
+      "requests": 25,
+      "failures": 0,
+      "failureRate": 0,
+      "latencyMs": {
+        "avg": 533.6037700799999,
+        "p50": 600.4692500000001,
+        "p95": 682.9876250000002,
+        "p99": 684.0225420000002,
+        "max": 684.0225420000002
+      },
+      "threshold": {
+        "maxP95Ms": 2500,
+        "p95Ok": true,
+        "noFailures": true
+      },
+      "statuses": {
+        "200": 25
+      },
+      "sampleErrors": [],
+      "passed": true
+    },
+    {
+      "name": "claim",
+      "path": "/claim",
+      "requests": 25,
+      "failures": 0,
+      "failureRate": 0,
+      "latencyMs": {
+        "avg": 284.04858672,
+        "p50": 291.4254169999999,
+        "p95": 309.31166600000006,
+        "p99": 309.60066700000016,
+        "max": 309.60066700000016
+      },
+      "threshold": {
+        "maxP95Ms": 2500,
+        "p95Ok": true,
+        "noFailures": true
+      },
+      "statuses": {
+        "200": 25
+      },
+      "sampleErrors": [],
+      "passed": true
+    }
+  ]
+}

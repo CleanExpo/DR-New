@@ -12,7 +12,8 @@
     "auth": "k6 run scenarios/authentication.js",
     "payments": "k6 run scenarios/payment-stripe.js",
     "database": "k6 run stress/database-pooling.js",
-    "redis": "k6 run stress/redis-cache.js"
+    "redis": "k6 run stress/redis-cache.js",
+    "local:smoke": "node scripts/local-performance-smoke.mjs"
   },
   "keywords": ["k6", "load-testing", "stress-testing", "performance"],
   "author": "Disaster Recovery Team",

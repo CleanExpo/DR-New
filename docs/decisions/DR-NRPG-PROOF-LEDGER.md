@@ -34,11 +34,11 @@
 - **Evidence:** `find /Users/phillmcgurk/DR-NRPG -iname "*pentest*"` → 0 results.
 - **Action:** ❌ UNVERIFIED. Pen testing has not been performed.
 
-### ❌ P0-4: BACKLOG-003 Load Testing
+### ⚠️ P0-4: BACKLOG-003 Load Testing
 - **Claim** (BACKLOG.md:94-100): "Blocked waiting for QA + Pen"
-- **Reality:** `load-tests/` directory exists (per `ls`). `lighthouserc.js` exists. But no completed load test report.
-- **Evidence:** `load-tests/` dir present; no `LOAD_TEST_REPORT.md`.
-- **Action:** ❌ UNVERIFIED. Load tests scaffolded, not executed.
+- **Reality:** `load-tests/` k6 scaffold exists, but `k6` is not installed locally and installing new CLIs is operator-gated. Follow-up batch added a reproducible Node-based local performance smoke runner and captured actual local results.
+- **Evidence:** `load-tests/scripts/local-performance-smoke.mjs`; `load-tests/package.json` script `local:smoke`; PASS artifact `load-tests/reports/local-performance-smoke-2026-06-15-baseline.json` (75 requests, 0 failures, p95 health 143.49ms, home 682.99ms, claim 309.31ms); report `docs/decisions/BACKLOG-003-PERFORMANCE-VERIFICATION.md`.
+- **Action:** ⚠️ PARTIAL. Local critical-surface performance is verified; full k6/staging load test remains a gated follow-up.
 
 ### ⚠️ P0-5: BACKLOG-004 DR/Backup Testing
 - **Claim** (BACKLOG.md:85-115): "✅ COMPLETE - DR capabilities confirmed, RTO 30-60 min, RPO <2h"
@@ -139,11 +139,11 @@
 | Tier | Count | % of total |
 |---|---:|---:|
 | ✅ VERIFIED | 11 | 58% |
-| ⚠️ PARTIAL | 6 | 32% |
-| ❌ UNVERIFIED | 2 | 11% |
+| ⚠️ PARTIAL | 7 | 37% |
+| ❌ UNVERIFIED | 1 | 5% |
 | Total status rows | 19 | 100% |
 
-**Note:** the follow-up read+write batches found `QA_TEST_PLAN.md`, `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md`, and `sendClaimContractorAssignedEmail` at repo paths the first audit missed, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, reduced lint warnings 582 → 580, and completed/verified Sentry monitoring wiring. Remaining 2 unverified items: BACKLOG-002 pen test and BACKLOG-003 load test.
+**Note:** the follow-up read+write batches found `QA_TEST_PLAN.md`, `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md`, and `sendClaimContractorAssignedEmail` at repo paths the first audit missed, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, reduced lint warnings 582 → 580, completed/verified Sentry monitoring wiring, and added local performance smoke evidence for BACKLOG-003. Remaining 1 unverified item: BACKLOG-002 pen-test proof.
 
 **What to do about it:** Every row above marked ❌ is now a Beads ticket. They will be triaged to a real owner before any new feature work starts.
 
