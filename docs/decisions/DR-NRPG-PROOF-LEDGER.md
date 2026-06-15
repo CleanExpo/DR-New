@@ -28,11 +28,11 @@
 - **Evidence:** `QA_TEST_PLAN.md:1-18` → status IN PROGRESS, 16-24h estimate, dependencies. `search_files('*QA*PLAN*')` → `/Users/phillmcgurk/DR-NRPG/QA_TEST_PLAN.md`.
 - **Action:** ⚠️ PARTIAL. Recoverable: execute the QA plan or produce the missing summary; do not claim QA complete yet.
 
-### ❌ P0-3: BACKLOG-002 Security Pen Testing
+### ⚠️ P0-3: BACKLOG-002 Security Pen Testing
 - **Claim** (BACKLOG.md:85-92): "Blocked waiting for QA" + 40h effort
-- **Reality:** No pen test report in repo. No `SECURITY_PENTEST_*.md` file. The `SECURITY-AUDIT.md` and `SECURITY.md` exist but are 5KB/2KB, far below a 40h-deliverable.
-- **Evidence:** `find /Users/phillmcgurk/DR-NRPG -iname "*pentest*"` → 0 results.
-- **Action:** ❌ UNVERIFIED. Pen testing has not been performed.
+- **Reality:** No completed external/staging penetration-test report is present, so the original pen-test completion claim is still not verified. Follow-up local security verification now exists and proves repository-visible controls are present, but dependency audit is not green.
+- **Evidence:** `docs/decisions/BACKLOG-002-SECURITY-VERIFICATION.md`; `apps/web/middleware.ts` has security headers, API rate limiting, cron auth, and CORS handling; `apps/web/lib/services/csrf.service.ts` has expiring single-use CSRF tokens; `pnpm audit --prod --audit-level moderate` exits 1 with 37 prod vulnerabilities (4 low / 17 moderate / 16 high).
+- **Action:** ⚠️ PARTIAL. Local control verification is documented; full pen-test proof remains gated on dependency remediation/risk acceptance plus staging-safe dynamic testing.
 
 ### ⚠️ P0-4: BACKLOG-003 Load Testing
 - **Claim** (BACKLOG.md:94-100): "Blocked waiting for QA + Pen"
@@ -139,11 +139,11 @@
 | Tier | Count | % of total |
 |---|---:|---:|
 | ✅ VERIFIED | 11 | 58% |
-| ⚠️ PARTIAL | 7 | 37% |
-| ❌ UNVERIFIED | 1 | 5% |
+| ⚠️ PARTIAL | 8 | 42% |
+| ❌ UNVERIFIED | 0 | 0% |
 | Total status rows | 19 | 100% |
 
-**Note:** the follow-up read+write batches found `QA_TEST_PLAN.md`, `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md`, and `sendClaimContractorAssignedEmail` at repo paths the first audit missed, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, reduced lint warnings 582 → 580, completed/verified Sentry monitoring wiring, and added local performance smoke evidence for BACKLOG-003. Remaining 1 unverified item: BACKLOG-002 pen-test proof.
+**Note:** the follow-up read+write batches found `QA_TEST_PLAN.md`, `SUPABASE_BACKUP_AND_DR_TESTING_REPORT.md`, and `sendClaimContractorAssignedEmail` at repo paths the first audit missed, wrote the branch-sprawl triage, resolved the CLAUDE.md/claude.md tracking collision, reduced lint warnings 582 → 580, completed/verified Sentry monitoring wiring, added local performance smoke evidence for BACKLOG-003, and added local security-control verification for BACKLOG-002. Remaining 0 unverified items; remaining partial items require real-world/operator-gated evidence such as QA execution, staging load testing, dependency-audit remediation/risk acceptance, live DR/secret verification, and legal finalisation.
 
 **What to do about it:** Every row above marked ❌ is now a Beads ticket. They will be triaged to a real owner before any new feature work starts.
 
