@@ -45,11 +45,11 @@ jobs:
   trigger-guard:
     name: Trigger Guard
     runs-on: ubuntu-latest
-    if: github.event_name != 'workflow_dispatch'
     steps:
       - name: Explain manual-only load testing
         run: |
-          echo "Load tests are manual-only. This guard prevents empty-jobs workflow failures on branch pushes."
+          echo "Guard job present so ruleset-triggered runs never fail with zero jobs."
+          echo "Actual k6 load tests run only when their scenario conditions match."
 
   smoke-test:
     name: Smoke Test
