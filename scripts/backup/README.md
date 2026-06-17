@@ -194,56 +194,50 @@ Backups are automatically scheduled via GitHub Actions:
 **Schedule**: Daily at 2 AM UTC (10 AM AEDT)
 
 **Jobs**:
-1. **backup** - Create and upload backup (30 min)
-2. **verify** - Verify backup integrity (20 min)
-3. **cleanup** - Remove old backups (5 min)
+1. **backup** - Create a plain `pg_dump`, sanity-check it, gzip it, and upload it as a GitHub Actions artifact (30 min)
 
 **Required Secrets** (GitHub):
 ```
-AWS_BACKUP_ACCESS_KEY_ID
-AWS_BACKUP_SECRET_ACCESS_KEY
-DATABASE_URL_PROD
-S3_BACKUP_BUCKET
-SLACK_WEBHOOK_URL (optional)
+DIRECT_URL_PRODUCTION
 ```
+
+`DIRECT_URL_PRODUCTION` must be a Supabase Postgres connection string that uses the current database password. Use the Direct connection string from Supabase Database > Connect, or the Session pooler on port 5432 if the GitHub runner cannot reach IPv6. Do not use `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, a transaction-pooler URL on port 6543, or a URL containing `pgbouncer=true`.
 
 ## Storage & Retention
 
-### Local Storage
-- **Location**: `scripts/backup/backups/`
-- **Retention**: 7 days
-- **Cleanup**: Automatic, daily at backup time
-
-### S3 Storage
-- **Bucket**: `dr-platform-backups`
-- **Path**: `s3://dr-platform-backups/database/`
-- **Retention**: 30 days (configured)
-- **Storage class**: STANDARD_IA (cost-optimized after 7 days)
-- **Replication**: Cross-region replication to standby region
-
-### Cost Estimates
-- 30 backups × 1.2 GB = ~$0.50/month
-- Cross-region replication = ~$1.50/month
-- **Total**: ~$2-3/month for 30 days retention
+### GitHub Actions Artifact Storage
+- **Location**: `Automated Database Backup` workflow run artifact named `dr-nrpg-db-<run_id>`
+- **Retention**: 30 days
+- **Restore**: Download with `gh run download <run_id> --repo CleanExpo/DR-NRPG --name dr-nrpg-db-<run_id>`
 
 ## Troubleshooting
+
+### Backup Fails: "password authentication failed"
+**Cause**: `DIRECT_URL_PRODUCTION` has the wrong database password or the wrong kind of Supabase credential.
+
+**Fix**:
+1. In Supabase, open Database > Connect and copy the Postgres connection string.
+2. Use the current database password, not the anon key or service-role key.
+3. Store it as the GitHub Actions secret `DIRECT_URL_PRODUCTION`.
+4. Use Direct connection, or Session pooler port 5432 for IPv4-only runners.
+5. Do not use transaction pooler port 6543 or `?pgbouncer=true`.
 
 ### Backup Fails: "Connection refused"
 **Cause**: Database host not accessible
 
 **Fix**:
-1. Verify DATABASE_URL is correct
+1. Verify `DIRECT_URL_PRODUCTION` is correct
 2. Check network connectivity to database
 3. Verify database is running
 4. Check firewall rules
 
 ### Backup Fails: "Permission denied"
-**Cause**: Insufficient database or AWS permissions
+**Cause**: Insufficient database permissions
 
 **Fix**:
 1. Verify database user has backup permissions
-2. Verify AWS credentials are valid
-3. Verify S3 bucket access permissions
+2. Verify the secret is a Postgres database connection string
+3. Rotate/update the Supabase database password if the stored secret is stale
 
 ### Restore Fails: "Database still has connections"
 **Cause**: Other processes connected to database

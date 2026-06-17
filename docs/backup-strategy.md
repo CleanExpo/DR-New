@@ -125,21 +125,18 @@ s3://dr-platform-backups/
 **Process**:
 1. **Snapshot** - pg_dump creates logical backup
 2. **Compress** - gzip compression (~80% size reduction)
-3. **Upload** - S3 with STANDARD_IA storage class
-4. **Verify** - Integrity check with gzip -t
-5. **Metadata** - Store backup metadata (timestamp, size, tables)
-6. **Cleanup** - Remove backups older than 30 days
-7. **Notify** - Slack notification with status
+3. **Validate** - Fail if the dump is suspiciously small
+4. **Upload** - GitHub Actions artifact with 30-day retention
 
-**Script**: `scripts/backup/backup-database.sh`
+**Workflow**: `.github/workflows/backup.yml`
+
+**Required GitHub secret**: `DIRECT_URL_PRODUCTION`
+
+`DIRECT_URL_PRODUCTION` must be a Supabase Postgres connection string using the current database password. For `pg_dump`, use the Direct connection string from Supabase Database > Connect, or the Session pooler on port 5432 if the runner cannot reach IPv6. Do not use the anon key, service-role key, a transaction-pooler URL on port 6543, or a URL containing `pgbouncer=true`.
 
 ```bash
-# Manual execution
-DATABASE_URL="postgresql://..." \
-AWS_ACCESS_KEY_ID="..." \
-AWS_SECRET_ACCESS_KEY="..." \
-S3_BACKUP_BUCKET="dr-platform-backups" \
-bash scripts/backup/backup-database.sh
+# Manual workflow execution
+gh workflow run backup.yml --repo CleanExpo/DR-NRPG
 ```
 
 **Timing**:
@@ -516,14 +513,14 @@ psql staging_db -f scripts/backup/integrity-checks.sql
 
 **Diagnosis**:
 1. Check workflow logs for error message
-2. Verify DATABASE_URL is set correctly
-3. Verify AWS credentials are valid
-4. Check database size hasn't exceeded limits
+2. Verify `DIRECT_URL_PRODUCTION` exists
+3. Verify `DIRECT_URL_PRODUCTION` uses the current Supabase database password
+4. Verify it is a Direct connection string, or Session pooler port 5432 for IPv4-only runners
 
 **Resolution**:
-- Manual backup from command line
-- Check database performance
-- Increase timeout if needed
+- Update the GitHub Actions secret without printing it in logs
+- Re-run the `Automated Database Backup` workflow manually
+- If password authentication failed, reset/copy the Supabase database password into `DIRECT_URL_PRODUCTION`; do not use Supabase API keys
 
 ### Restore Takes Too Long
 
