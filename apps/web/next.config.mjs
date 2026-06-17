@@ -10,9 +10,6 @@ const nextConfig = {
   // Performance: Enable React strict mode for better development practices
   reactStrictMode: true,
 
-  // Performance: Enable SWC minification (faster than Terser)
-  swcMinify: true,
-
   // Build optimization
   // NOTE: TypeScript/ESLint checking disabled during build due to memory constraints
   // TypeScript errors are tracked and being resolved - see .planning/ROADMAP.md Phase 1
@@ -199,17 +196,16 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
 
-    // Include training sources in Vercel deployment
-    // CRITICAL: Ensures both HTML sources and index files are bundled in serverless functions
-    outputFileTracingIncludes: {
-      '/api/**/*': [
-        './lib/training/sources/**/*',
-        './lib/training/generated/**/*',
-        // NRPG-Onboarding-Framework — course JSON/markdown read at runtime by course-loader.ts
-        // Without this, fs.readdirSync and fs.readFileSync calls fall back to hardcoded data.
-        '../../NRPG-Onboarding-Framework/**/*',
-      ],
-    },
+  },
+
+  // Include training sources in Vercel deployment.
+  outputFileTracingIncludes: {
+    '/api/**/*': [
+      './lib/training/sources/**/*',
+      './lib/training/generated/**/*',
+      // NRPG-Onboarding-Framework course JSON/markdown is read at runtime.
+      '../../NRPG-Onboarding-Framework/**/*',
+    ],
   },
 
   // Webpack optimization
@@ -309,11 +305,6 @@ const sentryWebpackPluginOptions = {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
 
-  // Automatically annotate React components to show their full name in breadcrumbs and session replay
-  reactComponentAnnotation: {
-    enabled: true,
-  },
-
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the Sentry DSN is configured in the Sentry initialization config.
@@ -322,14 +313,15 @@ const sentryWebpackPluginOptions = {
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true,
+  webpack: {
+    reactComponentAnnotation: {
+      enabled: true,
+    },
+    treeshake: {
+      removeDebugLogging: true,
+    },
+    automaticVercelMonitors: true,
+  },
 };
 
 // Make sure adding Sentry options is the last code to run before exporting
