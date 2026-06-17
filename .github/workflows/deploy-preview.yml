@@ -4,7 +4,9 @@ on:
   # Gated to workflow_dispatch only on 2026-05-25 because GitHub was
   # creating empty-jobs failure runs on every main-branch push despite
   # the `pull_request` trigger only matching PR events. Until that
-  # anomaly is understood, keep the workflow callable manually.
+  # anomaly is understood, keep branch pushes attached to a guard job
+  # and keep actual preview deployment callable manually.
+  push:
   workflow_dispatch:
 
 env:
@@ -13,6 +15,15 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
+  trigger-guard:
+    name: Trigger Guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain manual-only preview deployment
+        run: |
+          echo "Guard job present so ruleset-triggered runs never fail with zero jobs."
+          echo "Actual preview deployment runs only when deployment secrets and job conditions match."
+
   deploy-preview:
     name: Deploy to Vercel Preview
     runs-on: ubuntu-latest

@@ -4,7 +4,9 @@ on:
   # Gated to workflow_dispatch only on 2026-05-25 because GitHub was
   # creating empty-jobs failure runs on every main-branch push despite
   # `push.branches=[develop]` filter. Until that anomaly is understood,
-  # keep the workflow callable manually but not on every commit.
+  # keep branch pushes attached to a guard job and keep actual staging
+  # deployment callable manually.
+  push:
   workflow_dispatch:
 
 env:
@@ -13,6 +15,15 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
+  trigger-guard:
+    name: Trigger Guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain manual-only staging deployment
+        run: |
+          echo "Guard job present so ruleset-triggered runs never fail with zero jobs."
+          echo "Actual staging deployment runs only when deployment secrets and job conditions match."
+
   deploy-staging:
     name: Deploy to Vercel Staging
     runs-on: ubuntu-latest

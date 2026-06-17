@@ -3,9 +3,10 @@ name: Load Testing
 on:
   # schedule + pull_request triggers removed on 2026-05-25 because
   # GitHub was creating empty-jobs failure runs on every main-branch
-  # push event despite neither trigger matching push. Keep workflow
-  # dispatch (with inputs) for manual k6 runs; restore the cron/PR
-  # triggers once the anomaly is understood.
+  # push event despite neither trigger matching push. Keep branch pushes
+  # attached to a guard job so required checks do not fail with zero jobs;
+  # keep actual k6 runs manual-only.
+  push:
   workflow_dispatch:
     inputs:
       environment:
@@ -41,6 +42,15 @@ env:
   BASE_URL_PRODUCTION: https://disaster-recovery-seven.vercel.app
 
 jobs:
+  trigger-guard:
+    name: Trigger Guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain manual-only load testing
+        run: |
+          echo "Guard job present so ruleset-triggered runs never fail with zero jobs."
+          echo "Actual k6 load tests run only when their scenario conditions match."
+
   smoke-test:
     name: Smoke Test
     runs-on: ubuntu-latest
