@@ -19,11 +19,26 @@
     "dynamicSeoGeneration": true
   },
   "tierPricing": {
-    "rural": { "maxPopulation": 50000, "price": 395 },
-    "semiRural": { "maxPopulation": 200000, "price": 595 },
-    "tier1": { "maxPopulation": 400000, "price": 795 },
-    "tier2": { "maxPopulation": 1000000, "price": 995 },
-    "tier3": { "maxPopulation": null, "price": 1095 }
+    "rural": {
+      "maxPopulation": 50000,
+      "price": 395
+    },
+    "semiRural": {
+      "maxPopulation": 200000,
+      "price": 595
+    },
+    "tier1": {
+      "maxPopulation": 400000,
+      "price": 795
+    },
+    "tier2": {
+      "maxPopulation": 1000000,
+      "price": 995
+    },
+    "tier3": {
+      "maxPopulation": null,
+      "price": 1095
+    }
   },
   "bufferPercentage": 10,
   "hooks": {
@@ -50,5 +65,8 @@
         ]
       }
     ]
+  },
+  "attribution": {
+    "sessionUrl": false
   }
 }
