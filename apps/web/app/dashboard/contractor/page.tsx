@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor Dashboard - NRPG Growth Portal
  *
