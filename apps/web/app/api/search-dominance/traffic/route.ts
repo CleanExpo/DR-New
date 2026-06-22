@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Search Dominance Traffic API
  *
@@ -57,7 +56,7 @@ export async function GET(request: NextRequest) {
     if (landingPage) where.landingPage = landingPage;
 
     // Get traffic records
-    const records = await db.trafficRecord.findMany({
+    const records = await (db as any).trafficRecord.findMany({
       where,
       orderBy: {
         timestamp: 'asc',

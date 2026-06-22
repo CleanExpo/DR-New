@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor Bid Response API
  *
@@ -85,7 +84,7 @@ export async function POST(
       data.response === 'ACCEPTED'
         ? 'ACCEPTED'
         : data.response === 'DECLINED'
-          ? 'DECLINED'
+          ? 'REJECTED'
           : 'PENDING'; // COUNTER_OFFER stays in PENDING until client reviews
 
     // Update the match record
@@ -119,7 +118,7 @@ export async function POST(
           contractor.id,
           user.name || contractor.businessName,
           contractor.businessName,
-          data.counterAmount ?? null,
+          data.counterAmount ?? 0,
           null,
           data.message ?? null,
           booking.clientId

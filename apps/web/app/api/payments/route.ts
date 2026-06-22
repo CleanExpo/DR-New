@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
@@ -27,7 +26,7 @@ export async function GET(request: NextRequest) {
     // Build where clause based on user role
     const where: any = {};
 
-    if (user.userType === 'USER') {
+    if (user.userType === 'CLIENT') {
       where.clientId = user.id;
     } else if (user.userType === 'CONTRACTOR') {
       where.contractorId = user.id;
@@ -163,7 +162,7 @@ export async function POST(request: NextRequest) {
         platformFee: fees.platformFee,
         netAmount: fees.netAmount,
         refundedAmount: 0,
-      },
+      } as any,
     });
 
     // Create Stripe payment intent if card payment
@@ -171,7 +170,7 @@ export async function POST(request: NextRequest) {
       const paymentIntent = await createPaymentIntent({
         amount,
         currency: 'usd',
-        customerId: booking.client?.stripeCustomerId,
+        customerId: (booking as any).client?.stripeCustomerId,
         metadata: {
           paymentId: payment.id,
           bookingId,

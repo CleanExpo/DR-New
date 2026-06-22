@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Super-Orchestrator API
  *
@@ -241,7 +240,7 @@ export async function POST(request: NextRequest) {
 
           case 'self-improvement':
             const periodDays = (options?.periodDays as number) || 7;
-            result = await orchestrator.runSelfImprovement(periodDays);
+            result = await orchestrator.runSelfImprovement(periodDays) as unknown as Record<string, unknown>;
             break;
 
           default:

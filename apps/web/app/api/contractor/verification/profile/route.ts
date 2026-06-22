@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server';
 
 // Force dynamic rendering for this route
@@ -139,7 +138,7 @@ export async function PUT(request: NextRequest) {
       data: {
         ...validatedData,
         updatedAt: new Date(),
-      },
+      } as any,
     });
 
     // Check if profile is now complete
@@ -208,7 +207,7 @@ export async function PUT(request: NextRequest) {
           contractorName: user.name || 'Contractor',
           businessName: updatedContractor.businessName,
           email: user.email,
-          phone: user.phone || undefined,
+          phone: user.australianPhoneNumber || undefined,
           serviceAreas: serviceAreasList,
           abnNumber: updatedContractor.abnNumber || undefined,
           contractorId: updatedContractor.id,

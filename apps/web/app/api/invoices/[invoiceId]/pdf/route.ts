@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Invoice PDF Download API
  *
@@ -86,7 +85,7 @@ export async function GET(
     const pdfBuffer = await generateInvoicePDF(pdfData);
 
     // Return PDF file
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(pdfBuffer as unknown as BodyInit, {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',

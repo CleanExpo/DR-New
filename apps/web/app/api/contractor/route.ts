@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
@@ -181,7 +180,7 @@ export async function POST(request: NextRequest) {
       });
 
       // Create application notification for admins
-      await tx.notification.create({
+      await (tx as any).notification?.create({
         data: {
           type: 'CONTRACTOR_APPLICATION',
           title: 'New Contractor Application',

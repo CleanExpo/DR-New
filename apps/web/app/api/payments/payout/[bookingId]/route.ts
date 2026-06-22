@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Booking Payout API
  *
@@ -144,7 +143,7 @@ export async function GET(
     }
 
     // Get contractor earnings if contractor viewing
-    let earnings = null;
+    let earnings: Awaited<ReturnType<typeof getContractorEarnings>> | null = null;
     if (booking.contractorId === user.id || user.userType === 'ADMIN') {
       earnings = await getContractorEarnings(booking.contractorId!);
     }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor Earnings API
  *
@@ -145,7 +144,7 @@ export async function GET(request: NextRequest) {
           payoutAmount: netAmount,
           status: payment.status,
           processedAt: payment.processedAt,
-          completedAt: payment.completedAt,
+          completedAt: payment.booking?.completedAt ?? null,
           booking: payment.booking
             ? {
                 id: payment.booking.id,

@@ -86,7 +86,7 @@ const EstimatePage = () => {
   const [jobType, setJobType] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<{ items: Array<{ name: string; quantity: number; unit_rate: number; subtotal: number }>; subtotal_ex_gst: number; gst: number; total_inc_gst: number } | null>(null);
 
   const handleSelectJobType = (type) => {
     setJobType(type);
@@ -108,7 +108,7 @@ const EstimatePage = () => {
       setResult(data);
       setStep(3);
     } catch (err) {
-      setError(err.message);
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }

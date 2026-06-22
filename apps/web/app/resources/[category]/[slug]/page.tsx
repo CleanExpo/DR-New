@@ -134,22 +134,24 @@ export default function ResourcePage({ params }: ResourcePageProps) {
     notFound();
   }
 
+  const res = resource as Resource;
   const category = RESOURCE_CATEGORIES[params.category];
-  const ContentTypeIcon = CONTENT_TYPE_ICONS[resource.contentType];
+  const ContentTypeIcon = CONTENT_TYPE_ICONS[res.contentType] as React.ComponentType<{ className?: string }>;
 
   // Get related resources
   const relatedResources = SAMPLE_RESOURCES.filter(
     (r) =>
-      r.id !== resource.id &&
-      (r.category === resource.category ||
-        r.tags.some((tag) => resource.tags?.includes(tag)))
+      r.id !== res.id &&
+      (r.category === res.category ||
+        r.tags.some((tag) => res.tags?.includes(tag)))
   ).slice(0, 3);
 
+  const resAny = res as any;
   // Check if resource has process timeline
-  const isProcessResource = 'steps' in resource && resource.steps;
+  const isProcessResource = 'steps' in resAny && resAny.steps;
 
   // Check if resource has case study
-  const isCaseStudy = 'caseStudy' in resource && resource.caseStudy;
+  const isCaseStudy = 'caseStudy' in resAny && resAny.caseStudy;
 
 
   return (
@@ -170,7 +172,7 @@ export default function ResourcePage({ params }: ResourcePageProps) {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbPage>{resource.title}</BreadcrumbPage>
+                <BreadcrumbPage>{res.title}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
@@ -189,52 +191,52 @@ export default function ResourcePage({ params }: ResourcePageProps) {
                 </Badge>
                 <Badge variant="secondary" className="gap-1">
                   <ContentTypeIcon className="h-3 w-3" />
-                  {CONTENT_TYPE_LABELS[resource.contentType]}
+                  {CONTENT_TYPE_LABELS[res.contentType]}
                 </Badge>
-                {resource.difficulty && (
-                  <Badge variant="outline">{resource.difficulty}</Badge>
+                {res.difficulty && (
+                  <Badge variant="outline">{res.difficulty}</Badge>
                 )}
               </div>
 
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                {resource.title}
+                {res.title}
               </h1>
 
               <p className="text-xl text-muted-foreground mb-6">
-                {resource.description}
+                {res.description}
               </p>
 
               {/* Meta information */}
               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                {resource.author && (
+                {res.author && (
                   <div className="flex items-center gap-2">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={resource.author.avatarUrl} alt={resource.author.name} />
-                      <AvatarFallback>{resource.author.name.charAt(0)}</AvatarFallback>
+                      <AvatarImage src={res.author.avatarUrl} alt={res.author.name} />
+                      <AvatarFallback>{res.author.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <span className="font-medium text-gray-900">
-                      {resource.author.name}
+                      {res.author.name}
                     </span>
                   </div>
                 )}
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  {resource.publishedAt.toLocaleDateString('en-US', {
+                  {res.publishedAt.toLocaleDateString('en-AU', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
                   })}
                 </span>
-                {resource.readingTime && (
+                {res.readingTime && (
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
-                    {resource.readingTime} min read
+                    {res.readingTime} min read
                   </span>
                 )}
-                {resource.viewCount && (
+                {res.viewCount && (
                   <span className="flex items-center gap-1">
                     <Eye className="h-4 w-4" />
-                    {resource.viewCount.toLocaleString()} views
+                    {res.viewCount.toLocaleString()} views
                   </span>
                 )}
               </div>
@@ -243,11 +245,11 @@ export default function ResourcePage({ params }: ResourcePageProps) {
             <Separator />
 
             {/* Featured Image */}
-            {resource.featuredImageUrl && (
+            {res.featuredImageUrl && (
               <div className="rounded-lg overflow-hidden">
                 <img
-                  src={resource.featuredImageUrl}
-                  alt={resource.title}
+                  src={res.featuredImageUrl}
+                  alt={res.title}
                   className="w-full h-auto"
                 />
               </div>
@@ -255,11 +257,11 @@ export default function ResourcePage({ params }: ResourcePageProps) {
 
             {/* Main Content */}
             <div className="prose prose-lg max-w-none">
-              {resource.content ? (
-                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(resource.content) }} />
+              {res.content ? (
+                <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(res.content) }} />
               ) : (
                 <div>
-                  <p>{resource.description}</p>
+                  <p>{res.description}</p>
                   <p className="mt-4">
                     This is a sample resource. In production, content would be fetched from
                     a headless CMS like Contentful or Sanity.
@@ -269,48 +271,48 @@ export default function ResourcePage({ params }: ResourcePageProps) {
             </div>
 
             {/* Process Timeline (if applicable) */}
-            {isProcessResource && resource.steps && (
+            {isProcessResource && resAny.steps && (
               <div className="mt-12">
                 <h2 className="text-3xl font-bold mb-6">Step-by-Step Process</h2>
-                <Timeline steps={resource.steps} mode="timeline" animated={true} />
+                <Timeline steps={resAny.steps} mode="timeline" animated={true} />
               </div>
             )}
 
             {/* Case Study (if applicable) */}
-            {isCaseStudy && resource.caseStudy && (
+            {isCaseStudy && resAny.caseStudy && (
               <div className="mt-12 space-y-8">
                 <div>
                   <h2 className="text-3xl font-bold mb-6">Case Study Details</h2>
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div>
                       <p className="text-sm text-muted-foreground">Property Type</p>
-                      <p className="font-semibold">{resource.caseStudy.propertyType}</p>
+                      <p className="font-semibold">{resAny.caseStudy.propertyType}</p>
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">Project Duration</p>
-                      <p className="font-semibold">{resource.caseStudy.projectDuration}</p>
+                      <p className="font-semibold">{resAny.caseStudy.projectDuration}</p>
                     </div>
                   </div>
                 </div>
 
-                {resource.caseStudy.beforeImages.length > 0 && (
+                {resAny.caseStudy.beforeImages.length > 0 && (
                   <BeforeAfterComparison
                     title="Restoration Results"
                     description="Professional restoration following IICRC standards"
-                    beforeImage={resource.caseStudy.beforeImages[0]}
-                    afterImage={resource.caseStudy.afterImages[0]}
-                    explanation={resource.caseStudy.outcome}
-                    lesson={resource.caseStudy.challenges.join('. ')}
+                    beforeImage={resAny.caseStudy.beforeImages[0]}
+                    afterImage={resAny.caseStudy.afterImages[0]}
+                    explanation={resAny.caseStudy.outcome}
+                    lesson={resAny.caseStudy.challenges.join('. ')}
                   />
                 )}
               </div>
             )}
 
             {/* Tags */}
-            {resource.tags && resource.tags.length > 0 && (
+            {res.tags && res.tags.length > 0 && (
               <div className="flex items-center gap-2 flex-wrap pt-8 border-t">
                 <Tag className="h-4 w-4 text-muted-foreground" />
-                {resource.tags.map((tag) => (
+                {res.tags.map((tag) => (
                   <Badge key={tag} variant="secondary">
                     {tag}
                   </Badge>
@@ -319,7 +321,7 @@ export default function ResourcePage({ params }: ResourcePageProps) {
             )}
 
             {/* Author Bio */}
-            {resource.author && (
+            {res.author && (
               <Card className="mt-8">
                 <CardHeader>
                   <CardTitle>About the Author</CardTitle>
@@ -327,27 +329,27 @@ export default function ResourcePage({ params }: ResourcePageProps) {
                 <CardContent>
                   <div className="flex items-start gap-4">
                     <Avatar className="h-16 w-16">
-                      <AvatarImage src={resource.author.avatarUrl} alt={resource.author.name} />
-                      <AvatarFallback>{resource.author.name.charAt(0)}</AvatarFallback>
+                      <AvatarImage src={res.author.avatarUrl} alt={res.author.name} />
+                      <AvatarFallback>{res.author.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-lg">{resource.author.name}</h4>
-                      {resource.author.title && (
+                      <h4 className="font-semibold text-lg">{res.author.name}</h4>
+                      {res.author.title && (
                         <p className="text-sm text-muted-foreground mb-2">
-                          {resource.author.title}
+                          {res.author.title}
                         </p>
                       )}
-                      {resource.author.credentials && resource.author.credentials.length > 0 && (
+                      {res.author.credentials && res.author.credentials.length > 0 && (
                         <div className="flex gap-2 mb-2">
-                          {resource.author.credentials.map((cred) => (
+                          {res.author.credentials.map((cred) => (
                             <Badge key={cred} variant="outline" className="text-xs">
                               {cred}
                             </Badge>
                           ))}
                         </div>
                       )}
-                      {resource.author.bio && (
-                        <p className="text-sm text-muted-foreground">{resource.author.bio}</p>
+                      {res.author.bio && (
+                        <p className="text-sm text-muted-foreground">{res.author.bio}</p>
                       )}
                     </div>
                   </div>
@@ -361,11 +363,11 @@ export default function ResourcePage({ params }: ResourcePageProps) {
             {/* Action Buttons */}
             <Card>
               <CardContent className="pt-6 space-y-3">
-                {resource.downloadable && resource.downloadUrl && (
+                {res.downloadable && res.downloadUrl && (
                   <DownloadButton
-                    downloadUrl={resource.downloadUrl}
-                    resourceId={resource.id}
-                    downloadFormat={resource.downloadFormat}
+                    downloadUrl={res.downloadUrl}
+                    resourceId={res.id}
+                    downloadFormat={res.downloadFormat}
                   />
                 )}
 

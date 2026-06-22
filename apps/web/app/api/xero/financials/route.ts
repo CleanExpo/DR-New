@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Xero Financial Summary
  *
@@ -41,7 +40,7 @@ export async function GET(request: NextRequest) {
     const fromDate = startOfMonth.toISOString().split('T')[0];
     const toDate = now.toISOString().split('T')[0];
 
-    let profitAndLoss = null;
+    let profitAndLoss: { totalIncome: number; totalExpenses: number; netProfit: number; period: { from: string; to: string } } | null = null;
     try {
       const plResponse = await xero.accountingApi.getReportProfitAndLoss(
         xeroTenantId,
@@ -80,7 +79,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Fetch bank account balances for cash flow indication
-    let cashFlow = null;
+    let cashFlow: { bankAccounts: { name: any; code: any; type: any }[]; totalBankBalance: number } | null = null;
     try {
       const accountsResponse = await xero.accountingApi.getAccounts(
         xeroTenantId,
@@ -106,12 +105,12 @@ export async function GET(request: NextRequest) {
         const assetsSection = bsReport.rows.find(
           (r: any) => r.rowType === 'Section' && r.title === 'Assets'
         );
-        if (assetsSection?.rows) {
-          const bankRow = assetsSection.rows.find(
+        if ((assetsSection as any)?.rows) {
+          const bankRow = (assetsSection as any).rows.find(
             (r: any) => r.rowType === 'Section' && r.title === 'Bank'
           );
-          if (bankRow?.rows) {
-            const summaryRow = bankRow.rows.find((r: any) => r.rowType === 'SummaryRow');
+          if ((bankRow as any)?.rows) {
+            const summaryRow = (bankRow as any).rows.find((r: any) => r.rowType === 'SummaryRow');
             bankBalance = summaryRow?.cells?.[1]?.value
               ? parseFloat(summaryRow.cells[1].value)
               : 0;

@@ -56,7 +56,7 @@ interface CategoryPageProps {
   };
 }
 
-const CATEGORY_ICONS: Record<DisasterCategory, React.ElementType> = {
+const CATEGORY_ICONS: Record<DisasterCategory, React.ComponentType<{ className?: string }>> = {
   'water-damage': Droplet,
   'fire-damage': Flame,
   'mold-remediation': Shield,
@@ -65,7 +65,7 @@ const CATEGORY_ICONS: Record<DisasterCategory, React.ElementType> = {
   'biohazard-cleanup': Biohazard,
 };
 
-const CONTENT_TYPE_ICONS: Record<ContentType, React.ElementType> = {
+const CONTENT_TYPE_ICONS: Record<ContentType, React.ComponentType<{ className?: string }>> = {
   article: FileText,
   guide: FileText,
   video: Video,

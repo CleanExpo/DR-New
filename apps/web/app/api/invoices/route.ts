@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Invoices List API
  *
@@ -34,10 +33,10 @@ export async function GET(request: NextRequest) {
     // Build where clause based on user role
     const where: any = {};
 
-    if (user.role === 'USER') {
+    if (user.userType === 'CLIENT') {
       // Clients can see invoices they're on
       where.clientId = user.id;
-    } else if (user.role === 'CONTRACTOR') {
+    } else if (user.userType === 'CONTRACTOR') {
       // Contractors can see invoices they're on
       where.contractorId = user.id;
     }

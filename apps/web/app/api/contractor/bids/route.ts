@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor API: Submit and Manage Bids
  *
@@ -125,7 +124,7 @@ export async function POST(request: NextRequest) {
     // 8. Get booking and contractor info in parallel for event emission
     const [contractorInfo, booking] = await Promise.all([
       db.contractor.findUnique({ where: { id: contractor.id }, select: { businessName: true } }),
-      db.booking.findUnique({ where: { id: updatedMatch.serviceRequest.id }, select: { clientId: true } }),
+      db.booking.findUnique({ where: { id: updatedMatch.serviceRequest!.id }, select: { clientId: true } }),
     ]);
 
     // 9. Emit bid submitted event
@@ -133,7 +132,7 @@ export async function POST(request: NextRequest) {
       try {
         const { emitBidSubmitted } = await import('@/lib/realtime/emit-handlers');
         await emitBidSubmitted(
-          updatedMatch.serviceRequest.id,
+          updatedMatch.serviceRequest!.id,
           validatedData.matchId,
           contractor.id,
           user.name || 'Contractor',
@@ -226,10 +225,10 @@ export async function GET(request: NextRequest) {
     // 4. Format response
     const formattedBids = bids.map((bid) => ({
       bidId: bid.id,
-      requestId: bid.serviceRequest.id,
-      disasterType: bid.serviceRequest.australianServiceType,
-      location: bid.serviceRequest.serviceSuburb,
-      clientBudget: Number(bid.serviceRequest.estimatedCostAUD),
+      requestId: bid.serviceRequest!.id,
+      disasterType: bid.serviceRequest!.australianServiceType,
+      location: bid.serviceRequest!.serviceSuburb,
+      clientBudget: Number(bid.serviceRequest!.estimatedCostAUD),
       proposedBudget: bid.budget ? Number(bid.budget) : null,
       estimatedHours: bid.estimatedHours ? Number(bid.estimatedHours) : null,
       startDate: bid.startDate,

@@ -138,7 +138,7 @@ export default function ContractorAvailableRequestsPage() {
           All ({requests.length})
         </Button>
         <Button
-          variant={filter === 'critical' ? 'primary' : 'outline'}
+          variant={filter === 'urgent' ? 'primary' : 'outline'}
           size="sm"
           onClick={() => setFilter('urgent')}
         >

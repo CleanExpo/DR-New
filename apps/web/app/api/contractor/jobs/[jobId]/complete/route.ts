@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor Job Completion API
  *
@@ -137,8 +136,8 @@ export async function POST(
     }
 
     // Check if job is in valid state to complete
-    const validStatuses = [BookingStatus.IN_PROGRESS, BookingStatus.CONFIRMED];
-    if (!validStatuses.includes(booking.status as BookingStatus)) {
+    const validStatuses: string[] = [BookingStatus.IN_PROGRESS, BookingStatus.CONFIRMED];
+    if (!validStatuses.includes(booking.status)) {
       return NextResponse.json(
         {
           success: false,
@@ -189,7 +188,7 @@ export async function POST(
     // Trigger payout (this is async and may take time)
     // We don't wait for it to complete to avoid timeout
     let payoutTriggered = false;
-    let payoutError = null;
+    let payoutError: boolean | null = null;
 
     try {
       await triggerPayoutForBooking(jobId);
@@ -228,7 +227,7 @@ export async function POST(
       },
       payout: {
         triggered: payoutTriggered,
-        ...(payoutError && {
+        ...(payoutError === true && {
           warning: 'Payout will be processed manually by admin',
         }),
       },

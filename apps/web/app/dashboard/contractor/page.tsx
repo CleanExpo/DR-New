@@ -489,29 +489,25 @@ export default function ContractorDashboardPage() {
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard
-          label="Active Opportunities"
+          title="Active Opportunities"
           value={stats.activeOpportunities.toString()}
-          trend={{ value: 12, direction: 'up' }}
-          icon={<Briefcase className="size-5 text-earth-primary" />}
+          trend={{ value: '+12%', direction: 'up' }}
         />
         <StatsCard
-          label="Pending Bids"
+          title="Pending Bids"
           value={stats.pendingBids.toString()}
-          trend={{ value: 3, direction: 'up' }}
-          icon={<TrendingUp className="size-5 text-nrpg-teal" />}
+          trend={{ value: '+3', direction: 'up' }}
         />
         <StatsCard
-          label="Projects Completed"
+          title="Projects Completed"
           value={stats.completedProjects.toString()}
-          sublabel="This quarter"
-          icon={<Users className="size-5 text-earth-secondary" />}
+          subtitle="This quarter"
         />
         <StatsCard
-          label="Total Earnings"
+          title="Total Earnings"
           value={`$${stats.totalEarnings.toLocaleString()}`}
-          trend={{ value: 8, direction: 'up' }}
-          sublabel="YTD"
-          icon={<DollarSign className="size-5 text-portal-success" />}
+          trend={{ value: '+8%', direction: 'up' }}
+          subtitle="YTD"
         />
       </div>
 

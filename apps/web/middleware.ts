@@ -204,7 +204,7 @@ export function middleware(request: NextRequest) {
 
     if (isOriginAllowed(origin ?? undefined)) {
       // Origin is allowed - apply CORS headers
-      const corsHeaders = getCORSHeaders(origin);
+      const corsHeaders = getCORSHeaders(origin ?? undefined);
       Object.entries(corsHeaders).forEach(([key, value]) => {
         response.headers.set(key, value);
       });
