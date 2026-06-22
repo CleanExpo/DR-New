@@ -15,15 +15,35 @@ jobs:
       - name: Install psql
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
 
+      - name: Resolve database URL
+        id: db
+        env:
+          DIRECT_URL_PRODUCTION: ${{ secrets.DIRECT_URL_PRODUCTION }}
+          DATABASE_URL_PRODUCTION: ${{ secrets.DATABASE_URL_PRODUCTION }}
+          DATABASE_URL_PROD: ${{ secrets.DATABASE_URL_PROD }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          # Try each secret in priority order
+          for var in DIRECT_URL_PRODUCTION DATABASE_URL_PRODUCTION DATABASE_URL_PROD DATABASE_URL; do
+            val="${!var:-}"
+            if [ -n "$val" ] && [[ "$val" =~ ^postgres(ql)?:// ]]; then
+              echo "Using $var"
+              echo "url=$val" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          done
+          echo "::error::No valid PostgreSQL connection string found in any secret"
+          exit 1
+
       - name: Run fix SQL
         env:
-          DATABASE_URL: ${{ secrets.DIRECT_URL_PRODUCTION }}
+          DATABASE_URL: ${{ steps.db.outputs.url }}
         run: |
           psql "$DATABASE_URL" -f scripts/fix-prisma-migrations.sql
 
       - name: Verify all 14 migrations present
         env:
-          DATABASE_URL: ${{ secrets.DIRECT_URL_PRODUCTION }}
+          DATABASE_URL: ${{ steps.db.outputs.url }}
         run: |
           COUNT=$(psql "$DATABASE_URL" -t -c "SELECT COUNT(*) FROM _prisma_migrations;")
           echo "Migration count: $COUNT"
