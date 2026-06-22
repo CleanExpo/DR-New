@@ -81,11 +81,12 @@ export async function POST(
     const isLate = match.responseDeadline && match.responseDeadline < new Date();
 
     // Determine match status based on response
+    // Note: contractor UX uses 'DECLINED' but MatchStatus enum uses 'REJECTED'
     const matchStatus =
       data.response === 'ACCEPTED'
         ? 'ACCEPTED'
         : data.response === 'DECLINED'
-          ? 'DECLINED'
+          ? 'REJECTED'
           : 'PENDING'; // COUNTER_OFFER stays in PENDING until client reviews
 
     // Update the match record

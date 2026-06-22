@@ -74,7 +74,7 @@ export async function POST(
       data: {
         senderId: user.id,
         receiverId: offer.contractor.userId,
-        content: `Great news! Your bid for "${offer.serviceRequest!.serviceTitle}" has been accepted. The client is looking forward to working with you.`,
+        content: `Great news! Your bid for "${offer.serviceRequest?.serviceTitle ?? 'your service request'}" has been accepted. The client is looking forward to working with you.`,
         messageType: 'BID_ACCEPTED',
         requestId: offer.serviceRequestId,
       },

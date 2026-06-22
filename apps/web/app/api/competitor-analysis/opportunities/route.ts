@@ -21,7 +21,7 @@ export async function GET() {
     const prisma = new PrismaClient();
 
     const opportunities = await prisma.keywordOpportunity.findMany({
-      orderBy: { opportunityScore: 'desc' },
+      orderBy: { gapScore: 'desc' },
       take: 100,
     });
 
@@ -35,11 +35,11 @@ export async function GET() {
       difficulty: opp.difficulty,
       cpc: opp.cpc,
       intent: opp.intent,
-      opportunityScore: opp.opportunityScore,
+      opportunityScore: opp.gapScore,
       difficultyTier: opp.difficultyTier as 'easy' | 'medium' | 'hard',
       competitorCount: opp.competitorCount,
       averagePosition: opp.averagePosition,
-      topCompetitor: opp.topCompetitor,
+      topCompetitor: (Array.isArray(opp.competitors) ? (opp.competitors as string[])[0] : null) ?? null,
     }));
 
     return NextResponse.json(formattedOpportunities);
