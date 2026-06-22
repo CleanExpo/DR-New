@@ -113,7 +113,7 @@ export default function WaterDamagePillarPage() {
                   Basement Flooding
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized basement flooding services with IICRC-certified professionals.
+                  Below-ground water extraction, sump pump coordination, and structural drying for basement flooding events. Category 1–3 classification on site determines protocol and material disposal requirements.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -130,7 +130,7 @@ export default function WaterDamagePillarPage() {
                   Burst Pipe Repair
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized burst pipe repair services with IICRC-certified professionals.
+                  Emergency response to burst pipes including water extraction, structural drying, and coordinated plumbing repairs. IICRC S500 documentation produced for insurance claims from day one.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -147,7 +147,7 @@ export default function WaterDamagePillarPage() {
                   Flood Restoration
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized flood restoration services with IICRC-certified professionals.
+                  Category 3 floodwater extraction, full porous material removal, antimicrobial decontamination, and IICRC S500 structural drying. Covers river flooding, stormwater, and overland flow events.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -164,7 +164,7 @@ export default function WaterDamagePillarPage() {
                   Ceiling Water Damage
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized ceiling water damage services with IICRC-certified professionals.
+                  Ceiling cavity moisture mapping, controlled opening of water-laden plasterboard, and structural drying to prevent mould growth. Includes scope documentation for insurance and strata claims.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -181,7 +181,7 @@ export default function WaterDamagePillarPage() {
                   Carpet Water Damage
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized carpet water damage services with IICRC-certified professionals.
+                  Carpet extraction, delamination assessment, and in-situ drying or removal based on water category and contact time. Salvage decisions documented for contents claims.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -198,7 +198,7 @@ export default function WaterDamagePillarPage() {
                   Commercial Water Damage
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized commercial water damage services with IICRC-certified professionals.
+                  Large-scale water damage restoration for commercial, office, retail, and industrial properties. Business continuity planning, expedited drying, and multi-site coordination available.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -215,7 +215,7 @@ export default function WaterDamagePillarPage() {
                   Structural Drying
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized structural drying services with IICRC-certified professionals.
+                  Psychrometric-monitored drying using LGR dehumidifiers and high-velocity air movers. Drying logs produced every 24 hours to IICRC S500 standard — required for insurance sign-off on completed works.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More

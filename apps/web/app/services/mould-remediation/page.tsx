@@ -94,7 +94,7 @@ export default function MouldRemediationPillarPage() {
                   Black Mould Removal
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized black mould removal services with IICRC-certified professionals.
+                  Containment, HEPA removal, and antimicrobial treatment of Stachybotrys (black mould) by IICRC S520-certified contractors. Air quality testing confirms clearance before containment is lifted.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -111,7 +111,7 @@ export default function MouldRemediationPillarPage() {
                   Mould Inspection
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized mould inspection services with IICRC-certified professionals.
+                  Surface sampling, air quality testing, and moisture mapping to identify mould species, contamination extent, and moisture source. Written report produced for insurance and strata purposes.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -128,7 +128,7 @@ export default function MouldRemediationPillarPage() {
                   Mould Testing
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized mould testing services with IICRC-certified professionals.
+                  Laboratory-grade air and surface sampling to identify mould species and spore concentrations. Required for insurance disputes, property transactions, and tenancy health complaints.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -145,7 +145,7 @@ export default function MouldRemediationPillarPage() {
                   Mould Prevention
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized mould prevention services with IICRC-certified professionals.
+                  Moisture source identification, ventilation assessment, and antimicrobial preventative treatment to maintain humidity below 60%. Particularly relevant for properties in tropical and coastal Queensland.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -162,7 +162,7 @@ export default function MouldRemediationPillarPage() {
                   Commercial Mould Remediation
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized commercial mould remediation services with IICRC-certified professionals.
+                  IICRC S520-compliant mould remediation for commercial, retail, hospitality, and strata properties. Negative air pressure containment and business continuity planning included for occupied buildings.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More

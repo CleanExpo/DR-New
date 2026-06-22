@@ -94,7 +94,7 @@ export default function FireSmokeDamagePillarPage() {
                   Fire Damage Restoration
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized fire damage restoration services with IICRC-certified professionals.
+                  Structural fire damage remediation, soot removal, and smoke odour elimination by IICRC FSRT-certified contractors. Includes emergency board-up and insurance documentation.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -111,7 +111,7 @@ export default function FireSmokeDamagePillarPage() {
                   Smoke Damage Restoration
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized smoke damage restoration services with IICRC-certified professionals.
+                  Full smoke penetration assessment, residue classification, hydroxyl and ozone treatment by IICRC FSRT-certified contractors. Covers HVAC decontamination and odour clearance.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -128,7 +128,7 @@ export default function FireSmokeDamagePillarPage() {
                   Soot Removal
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized soot removal services with IICRC-certified professionals.
+                  HEPA vacuuming, dry chemical sponging, and wet cleaning of soot residue from all surfaces. Residue type classified before cleaning — dry, wet, protein, and fuel oil soot each require different chemistry.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -142,10 +142,10 @@ export default function FireSmokeDamagePillarPage() {
               <div className="bg-gradient-to-br from-[#1F2937] to-[#0F1115] rounded-2xl p-6 border border-[#374151] hover:border-[#00BFA6] transition-colors cursor-pointer">
                 <FireSmoke size="lg" gradient="fire" className="text-[#F97316] mb-4" aria-hidden="true" />
                 <h3 className="font-poppins font-semibold text-lg text-white mb-3">
-                  Smoke Odor Removal
+                  Smoke Odour Removal
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized smoke odor removal services with IICRC-certified professionals.
+                  Persistent smoke odour eliminated through hydroxyl generation, thermal fogging, ozone treatment, and encapsulation. Effective for embedded VOCs in timber, plasterboard, and soft furnishings.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -162,7 +162,7 @@ export default function FireSmokeDamagePillarPage() {
                   Commercial Fire Damage
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized commercial fire damage services with IICRC-certified professionals.
+                  Large-scale fire damage restoration for commercial, industrial, and strata properties. Business continuity planning, expedited scoping, and insurance-grade documentation for commercial claims.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
