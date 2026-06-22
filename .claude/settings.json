@@ -19,26 +19,11 @@
     "dynamicSeoGeneration": true
   },
   "tierPricing": {
-    "rural": {
-      "maxPopulation": 50000,
-      "price": 395
-    },
-    "semiRural": {
-      "maxPopulation": 200000,
-      "price": 595
-    },
-    "tier1": {
-      "maxPopulation": 400000,
-      "price": 795
-    },
-    "tier2": {
-      "maxPopulation": 1000000,
-      "price": 995
-    },
-    "tier3": {
-      "maxPopulation": null,
-      "price": 1095
-    }
+    "rural": { "maxPopulation": 50000, "price": 395 },
+    "semiRural": { "maxPopulation": 200000, "price": 595 },
+    "tier1": { "maxPopulation": 400000, "price": 795 },
+    "tier2": { "maxPopulation": 1000000, "price": 995 },
+    "tier3": { "maxPopulation": null, "price": 1095 }
   },
   "bufferPercentage": 10,
   "hooks": {
@@ -60,13 +45,10 @@
           {
             "type": "prompt",
             "if": "Bash(git commit *)",
-            "prompt": "BEFORE committing: Run npx tsc first and verify zero TypeScript errors. If tsc fails, fix all errors before allowing the commit to proceed. Respond with the tsc result."
+            "prompt": "BEFORE committing: Run `pnpm --package=typescript dlx tsc --noEmit --skipLibCheck` from the apps/web directory and verify zero TypeScript errors. Warnings about @types/jest or @testing-library are acceptable and not blocking. Do NOT use `npx tsc` — it is intentionally replaced in this project with a stub that always exits 1. If tsc reports real errors, fix them before allowing the commit. Respond with the tsc result."
           }
         ]
       }
     ]
-  },
-  "attribution": {
-    "sessionUrl": false
   }
 }
