@@ -1,7 +1,7 @@
-// @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
+import { PaymentStatus } from '@prisma/client';
 
 interface RouteParams {
   params: { id: string };
@@ -35,14 +35,17 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             contractor: {
               select: {
                 id: true,
-                name: true,
-                email: true,
                 businessName: true,
+                user: {
+                  select: {
+                    name: true,
+                    email: true,
+                  },
+                },
               },
             },
           },
         },
-        refunds: true,
       },
     });
 
@@ -111,13 +114,11 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       );
     }
 
-    const allowedFields = ['status', 'notes', 'metadata'];
-    const updateData: any = {};
+    const updateData: { status?: PaymentStatus } = {};
 
-    for (const field of allowedFields) {
-      if (body[field] !== undefined) {
-        updateData[field] = body[field];
-      }
+    // Only status is an updatable field on Payment model
+    if (body.status !== undefined && Object.values(PaymentStatus).includes(body.status as PaymentStatus)) {
+      updateData.status = body.status as PaymentStatus;
     }
 
     const updatedPayment = await db.payment.update({
