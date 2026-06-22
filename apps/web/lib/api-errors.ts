@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nextjs';
 import { NextResponse } from 'next/server';
 import { ZodError } from 'zod';
 
@@ -78,6 +79,9 @@ export function handleValidationError(error: ZodError): NextResponse {
  * Handles unexpected errors safely without leaking sensitive info
  */
 export function handleUnexpectedError(error: unknown): NextResponse {
+  // Capture in Sentry for production monitoring
+  Sentry.captureException(error);
+
   // Log full error for debugging
   console.error('[API_ERROR]', {
     error,
@@ -101,6 +105,7 @@ export function handleUnexpectedError(error: unknown): NextResponse {
  * Database error handler
  */
 export function handleDatabaseError(error: unknown): NextResponse {
+  Sentry.captureException(error, { tags: { type: 'database' } });
   console.error('[DATABASE_ERROR]', error);
 
   return createErrorResponse(
