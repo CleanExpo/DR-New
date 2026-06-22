@@ -71,6 +71,7 @@ export default function SecuritySettingsPage() {
   // Disable states
   const [showDisableConfirm, setShowDisableConfirm] = useState(false);
   const [disableLoading, setDisableLoading] = useState(false);
+  const [disableCode, setDisableCode] = useState('');
 
   // Backup codes display
   const [showBackupCodes, setShowBackupCodes] = useState(false);
@@ -152,12 +153,8 @@ export default function SecuritySettingsPage() {
       const response = await fetch('/api/auth/2fa/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: session?.user?.email,
-          secret: setupData.secret,
-          code: verificationCode,
-          backupCodes: setupData.backupCodes,
-        }),
+        // API reads secret from DB — only send the TOTP token
+        body: JSON.stringify({ token: verificationCode }),
       });
 
       if (!response.ok) {
@@ -165,8 +162,8 @@ export default function SecuritySettingsPage() {
         throw new Error(error.error || 'Verification failed');
       }
 
-      // Success - show backup codes
-      setSetupStep('verify');
+      // Success - close setup wizard and show backup codes
+      setShowSetupWizard(false);
       setShowBackupCodes(true);
       setTwoFactorStatus({ twoFactorEnabled: true, twoFactorSetupAt: new Date().toISOString() });
     } catch (error) {
@@ -179,12 +176,14 @@ export default function SecuritySettingsPage() {
 
   // Disable 2FA
   const handleDisable = async () => {
+    if (!disableCode.trim()) return;
     setDisableLoading(true);
 
     try {
       const response = await fetch('/api/auth/2fa/verify', {
         method: 'DELETE',
-        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: disableCode }),
       });
 
       if (response.ok) {
@@ -442,10 +441,22 @@ export default function SecuritySettingsPage() {
             </DialogHeader>
 
             <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="disableCode">Authenticator Code</Label>
+                <Input
+                  id="disableCode"
+                  placeholder="000000"
+                  value={disableCode}
+                  onChange={(e) => setDisableCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  maxLength={6}
+                  disabled={disableLoading}
+                />
+              </div>
+
               <Button
                 variant="emergency"
                 onClick={handleDisable}
-                disabled={disableLoading}
+                disabled={disableLoading || disableCode.length < 6}
                 className="w-full"
               >
                 {disableLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -454,7 +465,7 @@ export default function SecuritySettingsPage() {
 
               <Button
                 variant="outline"
-                onClick={() => setShowDisableConfirm(false)}
+                onClick={() => { setShowDisableConfirm(false); setDisableCode(''); }}
                 className="w-full"
               >
                 Cancel
