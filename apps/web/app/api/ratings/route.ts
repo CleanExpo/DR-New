@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { createRatingSchema, queryRatingSchema } from '@/lib/validation/rating';
-import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,7 +39,14 @@ export async function POST(request: NextRequest) {
 
     // 3. Parse and validate request body
     const body = await request.json();
-    const validated = createRatingSchema.parse(body);
+    const parseResult = createRatingSchema.safeParse(body);
+    if (!parseResult.success) {
+      return NextResponse.json(
+        { error: 'Validation failed', details: parseResult.error.flatten().fieldErrors },
+        { status: 400 }
+      );
+    }
+    const validated = parseResult.data;
 
     // 4. Fetch booking with authorization check
     const booking = await db.booking.findUnique({
@@ -185,16 +191,6 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    if (error instanceof ZodError) {
-      return NextResponse.json(
-        {
-          error: 'Validation failed',
-          details: error.errors,
-        },
-        { status: 400 }
-      );
-    }
-
     console.error('Error creating rating:', error);
     return NextResponse.json(
       {
@@ -231,13 +227,20 @@ export async function GET(request: NextRequest) {
 
     // 2. Parse and validate query params
     const searchParams = request.nextUrl.searchParams;
-    const query = queryRatingSchema.parse({
+    const queryParseResult = queryRatingSchema.safeParse({
       contractorId: searchParams.get('contractorId') || undefined,
       clientId: searchParams.get('clientId') || undefined,
       bookingId: searchParams.get('bookingId') || undefined,
       page: searchParams.get('page') ? parseInt(searchParams.get('page')!) : 1,
       limit: searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : 10,
     });
+    if (!queryParseResult.success) {
+      return NextResponse.json(
+        { error: 'Invalid query parameters', details: queryParseResult.error.flatten().fieldErrors },
+        { status: 400 }
+      );
+    }
+    const query = queryParseResult.data;
 
     // 3. Build where clause with authorization
     const where: any = {};
@@ -318,16 +321,6 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    if (error instanceof ZodError) {
-      return NextResponse.json(
-        {
-          error: 'Invalid query parameters',
-          details: error.errors,
-        },
-        { status: 400 }
-      );
-    }
-
     console.error('Error fetching ratings:', error);
     return NextResponse.json(
       {

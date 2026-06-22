@@ -12,8 +12,15 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
+
+const invoicesQuerySchema = z.object({
+  limit: z.coerce.number().int().positive().max(100).default(20),
+  offset: z.coerce.number().int().min(0).default(0),
+  isPaid: z.enum(['true', 'false']).optional(),
+});
 
 export async function GET(request: NextRequest) {
   try {
@@ -27,9 +34,18 @@ export async function GET(request: NextRequest) {
     const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get('limit') || '20');
-    const offset = parseInt(searchParams.get('offset') || '0');
-    const isPaid = searchParams.get('isPaid');
+    const queryResult = invoicesQuerySchema.safeParse({
+      limit: searchParams.get('limit'),
+      offset: searchParams.get('offset'),
+      isPaid: searchParams.get('isPaid') || undefined,
+    });
+    if (!queryResult.success) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid query parameters', details: queryResult.error.flatten().fieldErrors },
+        { status: 400 }
+      );
+    }
+    const { limit, offset, isPaid } = queryResult.data;
 
     // Build where clause based on user role
     const where: any = {};
@@ -43,7 +59,7 @@ export async function GET(request: NextRequest) {
     }
     // Admins can see all invoices
 
-    if (isPaid !== null) {
+    if (isPaid !== undefined) {
       where.isPaid = isPaid === 'true';
     }
 
