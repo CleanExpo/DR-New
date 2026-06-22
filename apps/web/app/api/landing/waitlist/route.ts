@@ -18,6 +18,7 @@ import { basePrisma } from '@/lib/prisma';
 import { Resend } from 'resend';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
+import * as Sentry from '@sentry/nextjs';
 
 // Initialize Resend client (only in runtime, not during build)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -315,7 +316,15 @@ async function trackWaitlistConversion(submission: any): Promise<void> {
     utmCampaign: submission.utmCampaign,
   });
 
-  // TODO: Send to Google Analytics, Sentry breadcrumb, or custom analytics
-  // Example:
-  // await fetch('https://www.google-analytics.com/mp/collect', { ... });
+  Sentry.addBreadcrumb({
+    message: 'Waitlist conversion tracked',
+    category: 'analytics',
+    level: 'info',
+    data: {
+      id: submission.id,
+      userType: submission.userType,
+      source: submission.source,
+      utmCampaign: submission.utmCampaign,
+    },
+  });
 }

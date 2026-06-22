@@ -19,6 +19,7 @@ import { basePrisma } from '@/lib/prisma';
 import { Resend } from 'resend';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
+import * as Sentry from '@sentry/nextjs';
 
 // Initialize Resend client (only in runtime, not during build)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -363,6 +364,16 @@ async function trackContractorApplicationConversion(application: any): Promise<v
     utmCampaign: application.utmCampaign,
   });
 
-  // TODO: Send to Google Analytics, Sentry breadcrumb, or custom analytics
-  // This is a high-value conversion ($500)
+  Sentry.addBreadcrumb({
+    message: 'Contractor application conversion tracked',
+    category: 'analytics',
+    level: 'info',
+    data: {
+      id: application.id,
+      certifications: application.certifications,
+      serviceAreas: application.serviceAreas,
+      source: application.source,
+      utmCampaign: application.utmCampaign,
+    },
+  });
 }
