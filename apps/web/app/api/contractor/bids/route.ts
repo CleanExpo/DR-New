@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor API: Submit and Manage Bids
  *
@@ -41,13 +40,13 @@ export async function POST(request: NextRequest) {
     // 2. Get tenant-scoped database client
     const db = getTenantDb(authResult.context);
 
-    // 3. Get contractor record - automatically tenant-scoped
-    const contractor = await db.contractor.findUnique({
+    // 3. Get ContractorProfile record — ContractorMatch.contractorId references ContractorProfile.id
+    const contractorProfile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
       select: { id: true },
     });
 
-    if (!contractor) {
+    if (!contractorProfile) {
       return NextResponse.json(
         { error: 'Contractor profile not found' },
         { status: 404 }
@@ -63,17 +62,14 @@ export async function POST(request: NextRequest) {
     } catch (error) {
       if (error instanceof z.ZodError) {
         return NextResponse.json(
-          {
-            error: 'Invalid bid data',
-            details: error.errors,
-          },
+          { error: 'Invalid bid data', details: error.errors },
           { status: 400 }
         );
       }
       throw error;
     }
 
-    // 5. Get the ContractorMatch record - automatically tenant-scoped
+    // 5. Get the ContractorMatch record
     const match = await db.contractorMatch.findUnique({
       where: { id: validatedData.matchId },
       include: {
@@ -90,19 +86,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 6. Verify contractor owns this match
-    if (match.contractorId !== contractor.id) {
+    // 6. Verify contractor owns this match (ContractorMatch.contractorId = ContractorProfile.id)
+    if (match.contractorId !== contractorProfile.id) {
       return NextResponse.json(
         { error: 'Unauthorized - You do not own this match' },
         { status: 403 }
       );
     }
 
-    // 7. Update ContractorMatch with bid details - automatically tenant-scoped
+    // 7. Update ContractorMatch with bid details
     const updatedMatch = await db.contractorMatch.update({
       where: { id: validatedData.matchId },
       data: {
-        status: 'ACCEPTED', // Mark as bid submitted
+        status: 'ACCEPTED',
         budget: validatedData.proposedBudget.toString(),
         estimatedHours: validatedData.estimatedHours?.toString(),
         startDate: validatedData.startDate,
@@ -117,35 +113,41 @@ export async function POST(request: NextRequest) {
     });
 
     console.log('=== BID SUBMITTED ===');
-    console.log('Contractor:', contractor.id);
+    console.log('ContractorProfile:', contractorProfile.id);
     console.log('Match ID:', validatedData.matchId);
     console.log('Budget:', validatedData.proposedBudget);
-    console.log('Hours:', validatedData.estimatedHours);
 
-    // 8. Get booking and contractor info in parallel for event emission
-    const [contractorInfo, booking] = await Promise.all([
-      db.contractor.findUnique({ where: { id: contractor.id }, select: { businessName: true } }),
-      db.booking.findUnique({ where: { id: updatedMatch.serviceRequest.id }, select: { clientId: true } }),
+    // 8. Get contractor info and service request client for event emission
+    const [profileInfo, serviceReq] = await Promise.all([
+      db.contractorProfile.findUnique({
+        where: { id: contractorProfile.id },
+        select: { businessName: true },
+      }),
+      updatedMatch.serviceRequest
+        ? db.serviceRequest.findUnique({
+            where: { id: updatedMatch.serviceRequest.id },
+            select: { userId: true },
+          })
+        : Promise.resolve(null),
     ]);
 
     // 9. Emit bid submitted event
-    if (contractorInfo && booking) {
+    if (profileInfo && serviceReq && updatedMatch.serviceRequest) {
       try {
         const { emitBidSubmitted } = await import('@/lib/realtime/emit-handlers');
         await emitBidSubmitted(
           updatedMatch.serviceRequest.id,
           validatedData.matchId,
-          contractor.id,
+          contractorProfile.id,
           user.name || 'Contractor',
-          contractorInfo.businessName,
+          profileInfo.businessName,
           validatedData.proposedBudget,
           validatedData.estimatedHours || null,
           validatedData.message || null,
-          booking.clientId
+          serviceReq.userId
         );
       } catch (eventError) {
         console.error('Failed to emit bid submitted event:', eventError);
-        // Don't fail the request
       }
     }
 
@@ -168,9 +170,7 @@ export async function POST(request: NextRequest) {
     console.error('Bid submission error:', error);
 
     return NextResponse.json(
-      {
-        error: 'Failed to submit bid',
-      },
+      { error: 'Failed to submit bid' },
       { status: 500 }
     );
   }
@@ -179,43 +179,39 @@ export async function POST(request: NextRequest) {
 // GET: Get contractor's submitted bids
 export async function GET(request: NextRequest) {
   try {
-    // 1. Authenticate and get tenant context
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
       return authResult.response;
     }
 
     const { user } = authResult.context;
-
-    // 2. Get tenant-scoped database client
     const db = getTenantDb(authResult.context);
 
-    // 3. Get contractor record - automatically tenant-scoped
-    const contractor = await db.contractor.findUnique({
+    // ContractorMatch.contractorId references ContractorProfile.id
+    const contractorProfile = await db.contractorProfile.findUnique({
       where: { userId: user.id },
       select: { id: true },
     });
 
-    if (!contractor) {
+    if (!contractorProfile) {
       return NextResponse.json(
         { error: 'Contractor profile not found' },
         { status: 404 }
       );
     }
 
-    // 4. Get contractor's bids (submitted matches) - automatically tenant-scoped
     const bids = await db.contractorMatch.findMany({
       where: {
-        contractorId: contractor.id,
-        status: 'ACCEPTED', // Only submitted bids
+        contractorId: contractorProfile.id,
+        status: 'ACCEPTED',
       },
       include: {
         serviceRequest: {
           select: {
             id: true,
-            australianServiceType: true,
-            serviceSuburb: true,
-            estimatedCostAUD: true,
+            serviceCategory: true, // ServiceRequest uses serviceCategory, not australianServiceType
+            location: true,        // ServiceRequest uses location, not serviceSuburb
+            budget: true,          // ServiceRequest.budget is String?, not estimatedCostAUD Decimal
             createdAt: true,
           },
         },
@@ -223,13 +219,12 @@ export async function GET(request: NextRequest) {
       orderBy: { updatedAt: 'desc' },
     });
 
-    // 4. Format response
     const formattedBids = bids.map((bid) => ({
       bidId: bid.id,
-      requestId: bid.serviceRequest.id,
-      disasterType: bid.serviceRequest.australianServiceType,
-      location: bid.serviceRequest.serviceSuburb,
-      clientBudget: Number(bid.serviceRequest.estimatedCostAUD),
+      requestId: bid.serviceRequest?.id ?? null,
+      disasterType: bid.serviceRequest?.serviceCategory ?? null,
+      location: bid.serviceRequest?.location ?? null,
+      clientBudget: bid.serviceRequest?.budget ? parseFloat(bid.serviceRequest.budget) || null : null,
       proposedBudget: bid.budget ? Number(bid.budget) : null,
       estimatedHours: bid.estimatedHours ? Number(bid.estimatedHours) : null,
       startDate: bid.startDate,
