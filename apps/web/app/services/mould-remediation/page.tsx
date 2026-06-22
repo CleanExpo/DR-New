@@ -45,7 +45,7 @@ export default function MouldRemediationPillarPage() {
               How Is Mould Safely Removed <span className="text-[#00BFA6]">from Your Property?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
-              Professional mould removal and remediation. IICRC-certified professionals. 24/7 emergency response across major Australian cities.
+              Mould remediation services across Australia, delivered by IICRC S520-certified contractors. Covers residential and commercial properties, with air quality clearance testing included in every engagement.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">

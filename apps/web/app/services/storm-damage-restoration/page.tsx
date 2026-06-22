@@ -397,7 +397,7 @@ export default function StormDamageRestorationPage() {
                 {
                   step: '05',
                   title: 'Disputes via AFCA',
-                  desc: 'If the insurer disputes the scope, denies the claim, or disputes the cause of damage, property owners have the right to escalate to the Australian Financial Complaints Authority (AFCA). AFCA is the external dispute resolution body for Australian financial services complaints and provides free, binding determinations. The ICA&apos;s industry code also establishes obligations on insurers during declared catastrophe events.',
+                  desc: "If the insurer disputes the scope, denies the claim, or disputes the cause of damage, property owners have the right to escalate to the Australian Financial Complaints Authority (AFCA). AFCA is the external dispute resolution body for Australian financial services complaints and provides free, binding determinations. The ICA's industry code also establishes obligations on insurers during declared catastrophe events.",
                 },
               ].map(({ step, title, desc }) => (
                 <div key={step} className="flex gap-6 bg-[#050505] border border-white/[0.06] rounded-sm p-6">

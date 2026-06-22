@@ -45,7 +45,7 @@ export default function BiohazardCleanupPillarPage() {
               What Does Professional Biohazard <span className="text-[#00BFA6]">Cleanup Involve?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
-              Certified biohazard and trauma scene cleanup. IICRC-certified professionals. 24/7 emergency response across major Australian cities.
+              Biohazard cleanup services across Australia, including crime scene decontamination, trauma cleanup, meth lab remediation, and sewage events. EPA-compliant disposal and IICRC-certified contractors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
