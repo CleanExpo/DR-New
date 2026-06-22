@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -146,9 +145,8 @@ export default function ContractorPreferencesPage() {
         </CardHeader>
         <CardContent>
           <PreferenceSelector
-            initialPreferences={preferences || undefined}
-            onComplete={handleSavePreferences}
-            isLoading={saving}
+            onComplete={handleSavePreferences as any}
+            onSkip={() => router.push('/dashboard')}
           />
         </CardContent>
       </Card>

@@ -867,27 +867,26 @@ export class GoogleBusinessProfileManager {
 
   private getPostTemplates(): string[] {
     return [
-      'Need emergency water damage restoration in {{city}}? Our IICRC-certified team is on standby 24/7 for priority dispatch. Call {{phone}} now for immediate assistance.',
-      '{{city}} residents: Experiencing flood damage? Dont wait - water damage worsens every hour. Our experts are standing by at {{phone}}.',
-      'Fire or smoke damage in {{city}}? NRPG provides complete restoration including soot removal, odor elimination, and structural repairs. Call {{phone}}.',
-      'Mould found in your {{city}} property? Our certified technicians safely remove all mould and prevent future growth. Free inspection: {{phone}}.',
-      'Storm damage affecting your {{city}} home? Emergency tarping, water extraction, and complete restoration available 24/7. Call {{phone}}.',
-      'Trust {{city}}s leading disaster recovery team. NRPG: IICRC certified, all insurers accepted, priority response. {{phone}}.',
-      'Recent flooding in {{city}}? Acting fast prevents mould! Our emergency team extracts water and dries structures completely. {{phone}}.',
-      'Commercial property damage in {{city}}? NRPG minimizes business downtime with rapid-response restoration. Call {{phone}} now.',
+      'Need emergency water damage restoration in {{city}}? Our IICRC-certified team is on standby 24/7 for priority dispatch. Request service at disasterrecovery.com.au for immediate assistance.',
+      '{{city}} residents: Experiencing flood damage? Don\'t wait — water damage worsens every hour. Submit a request at disasterrecovery.com.au and our experts will respond immediately.',
+      'Fire or smoke damage in {{city}}? NRPG provides complete restoration including soot removal, odour elimination, and structural repairs. Get started at disasterrecovery.com.au.',
+      'Mould found in your {{city}} property? Our certified technicians safely remove all mould and prevent future growth. Free inspection — request via disasterrecovery.com.au.',
+      'Storm damage affecting your {{city}} home? Emergency tarping, water extraction, and complete restoration available 24/7. Request service at disasterrecovery.com.au.',
+      'Trust {{city}}\'s leading disaster recovery team. NRPG: IICRC certified, all insurers accepted, priority response. disasterrecovery.com.au.',
+      'Recent flooding in {{city}}? Acting fast prevents mould! Our emergency team extracts water and dries structures completely. Request urgent help at disasterrecovery.com.au.',
+      'Commercial property damage in {{city}}? NRPG minimises business downtime with rapid-response restoration. Submit a priority request at disasterrecovery.com.au.',
     ];
   }
 
   private localizePostContent(template: string, location: GBPLocationConfig): string {
     return template
       .replace(/\{\{city\}\}/g, location.city)
-      .replace(/\{\{phone\}\}/g, GBP_CONFIG.phone)
       .replace(/\{\{state\}\}/g, location.stateCode);
   }
 
   private getPositiveReviewResponse(name: string, location: string): string {
     const responses = [
-      `Thank you so much, ${name}! Were thrilled we could help restore your property in ${location}. Your recommendation means everything to our team. If you ever need us again, were just a call away at ${GBP_CONFIG.phone}.`,
+      `Thank you so much, ${name}! We're thrilled we could help restore your property in ${location}. Your recommendation means everything to our team. If you ever need us again, simply request service at disasterrecovery.com.au.`,
       `We truly appreciate your kind words, ${name}! Its our mission to provide ${location} with the best disaster recovery services, and reviews like yours motivate our entire team. Thank you for trusting NRPG.`,
       `${name}, thank you for this wonderful review! Nothing makes us happier than knowing we could help during a stressful time. The entire ${location} team sends their gratitude.`,
     ];
@@ -895,11 +894,11 @@ export class GoogleBusinessProfileManager {
   }
 
   private getNeutralReviewResponse(name: string, location: string): string {
-    return `Thank you for your feedback, ${name}. We appreciate you taking the time to share your experience with NRPG ${location}. We're always looking to improve our services. Please don't hesitate to contact us at ${GBP_CONFIG.phone} if there's anything we can do to better meet your expectations.`;
+    return `Thank you for your feedback, ${name}. We appreciate you taking the time to share your experience with NRPG ${location}. We're always looking to improve our services. Please don't hesitate to reach out via disasterrecovery.com.au/contact if there's anything we can do to better meet your expectations.`;
   }
 
   private getNegativeReviewResponse(name: string, location: string): string {
-    return `${name}, we're truly sorry to hear about your experience. This is not the level of service we strive to provide in ${location}. We take all feedback seriously and would like to address your concerns personally. Please contact our customer care team at ${GBP_CONFIG.phone} so we can make things right.`;
+    return `${name}, we're truly sorry to hear about your experience. This is not the level of service we strive to provide in ${location}. We take all feedback seriously and would like to address your concerns personally. Please contact our customer care team via disasterrecovery.com.au/contact so we can make things right.`;
   }
 
   private parseReviewsResponse(data: any, locationId: string): GBPReview[] {

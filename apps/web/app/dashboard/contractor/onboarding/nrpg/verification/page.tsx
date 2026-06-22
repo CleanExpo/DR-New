@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
@@ -401,7 +400,7 @@ export default function VerificationPage() {
                           </p>
                         )}
                         {checkData.status === 'FAIL' && (
-                          <Alert variant="destructive\" className="mt-2 bg-red-500/10 border-red-500/20">
+                          <Alert variant="destructive" className="mt-2 bg-red-500/10 border-red-500/20">
                             <AlertCircle className="h-4 w-4" />
                             <AlertDescription>
                               This check did not pass. Please contact support for assistance.

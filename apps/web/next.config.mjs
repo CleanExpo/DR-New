@@ -249,51 +249,9 @@ const nextConfig = {
     }
 
     // Production optimizations
-    if (!dev && !isServer) {
-      // Code splitting optimization
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: 'deterministic',
-        runtimeChunk: 'single',
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            // Vendor chunk
-            vendor: {
-              name: 'vendor',
-              chunks: 'all',
-              test: /node_modules/,
-              priority: 20,
-            },
-            // Common chunk
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'async',
-              priority: 10,
-              reuseExistingChunk: true,
-              enforce: true,
-            },
-            // UI components chunk
-            ui: {
-              name: 'ui',
-              test: /[\\/]src[\\/](components|ui)[\\/]/,
-              chunks: 'all',
-              priority: 15,
-            },
-            // Lib chunk
-            lib: {
-              name: 'lib',
-              test: /[\\/]src[\\/]lib[\\/]/,
-              chunks: 'all',
-              priority: 12,
-            },
-          },
-        },
-      }
-    }
+    // NOTE: Custom splitChunks removed — it forced ALL node_modules into a single
+    // 1.45 MB vendor chunk, defeating Next.js's built-in granular code splitting.
+    // Next.js 14 handles chunk splitting, tree shaking, and lazy loading automatically.
 
     return config
   },
@@ -329,11 +287,6 @@ const sentryWebpackPluginOptions = {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
 
-  // Automatically annotate React components to show their full name in breadcrumbs and session replay
-  reactComponentAnnotation: {
-    enabled: true,
-  },
-
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the Sentry DSN is configured in the Sentry initialization config.
@@ -342,14 +295,22 @@ const sentryWebpackPluginOptions = {
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
 
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
+  // Webpack-specific Sentry options (migrated from deprecated top-level keys)
+  webpack: {
+    // Automatically annotate React components to show their full name in breadcrumbs and session replay
+    reactComponentAnnotation: {
+      enabled: true,
+    },
 
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true,
+    // Automatically tree-shake Sentry logger statements to reduce bundle size
+    treeshake: {
+      removeDebugLogging: true,
+    },
+
+    // Enables automatic instrumentation of Vercel Cron Monitors.
+    // See: https://docs.sentry.io/product/crons/
+    automaticVercelMonitors: true,
+  },
 };
 
 // Make sure adding Sentry options is the last code to run before exporting

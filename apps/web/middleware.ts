@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getCORSHeaders, handleCORSPreflight, logCORSViolation, isOriginAllowed } from '@/lib/config/cors.config';
@@ -205,7 +204,7 @@ export function middleware(request: NextRequest) {
 
     if (isOriginAllowed(origin ?? undefined)) {
       // Origin is allowed - apply CORS headers
-      const corsHeaders = getCORSHeaders(origin);
+      const corsHeaders = getCORSHeaders(origin ?? undefined);
       Object.entries(corsHeaders).forEach(([key, value]) => {
         response.headers.set(key, value);
       });

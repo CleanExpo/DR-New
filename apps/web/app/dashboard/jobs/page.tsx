@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
@@ -256,7 +255,7 @@ export default function JobsListPage() {
                         <td className="py-3 px-4">
                           <span
                             className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
-                            style={{ colour: statusCfg.colour, backgroundColor: statusCfg.bgColour, color: statusCfg.colour }}
+                            style={{ backgroundColor: statusCfg.bgColour, color: statusCfg.colour }}
                           >
                             {statusCfg.label}
                           </span>

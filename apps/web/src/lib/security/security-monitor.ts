@@ -33,8 +33,11 @@ export interface SecurityEvent {
   userAgent?: string;
   details: Record<string, any>;
   resolved: boolean;
+  acknowledged: boolean;
   createdAt: Date;
   resolvedAt?: Date;
+  acknowledgedAt?: Date;
+  acknowledgedBy?: string;
 }
 
 export interface AccountLockout {
@@ -182,6 +185,7 @@ class SecurityMonitor {
         lockoutDurationMinutes: this.lockoutDurationMinutes,
       },
       resolved: false,
+      acknowledged: false,
       createdAt: now,
     };
 
@@ -270,6 +274,7 @@ class SecurityMonitor {
             ipCount: recentLogins.length,
           },
           resolved: false,
+      acknowledged: false,
           createdAt: new Date(),
         };
 
@@ -314,6 +319,7 @@ class SecurityMonitor {
         reason,
       },
       resolved: false,
+      acknowledged: false,
       createdAt: new Date(),
     };
 
@@ -349,6 +355,7 @@ class SecurityMonitor {
       userId,
       details,
       resolved: false,
+      acknowledged: false,
       createdAt: new Date(),
     };
 
@@ -393,6 +400,18 @@ class SecurityMonitor {
     if (event) {
       event.resolved = true;
       event.resolvedAt = new Date();
+    }
+  }
+
+  /**
+   * Acknowledge security event (seen by operator, not yet resolved)
+   */
+  acknowledgeEvent(eventId: string, acknowledgedBy: string): void {
+    const event = this.securityEvents.find((e) => e.id === eventId);
+    if (event) {
+      event.acknowledged = true;
+      event.acknowledgedAt = new Date();
+      event.acknowledgedBy = acknowledgedBy;
     }
   }
 

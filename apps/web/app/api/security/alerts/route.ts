@@ -208,7 +208,7 @@ export async function PUT(request: NextRequest) {
         break;
 
       case 'acknowledge':
-        // TODO: Add acknowledgment tracking
+        securityMonitor.acknowledgeEvent(eventId, user.id);
         logInfo('Security event acknowledged', {
           eventId,
           acknowledgedBy: user.id,

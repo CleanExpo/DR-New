@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 
 /**
@@ -282,7 +281,7 @@ function SingleIndexView({
             </div>
 
             {/* Results */}
-            <SearchResults resultType={indexType} />
+            <SearchResults resultType={indexType === 'locations' ? 'location' : indexType === 'contractors' ? 'contractor' : 'content'} />
 
             {/* Pagination */}
             <div className="flex justify-center mt-8">

@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * User Security Settings Page
  *
@@ -264,7 +263,7 @@ export default function SecuritySettingsPage() {
                     )}
 
                     <Button
-                      variant="destructive"
+                      variant="emergency"
                       onClick={() => setShowDisableConfirm(true)}
                     >
                       Disable 2FA
@@ -444,7 +443,7 @@ export default function SecuritySettingsPage() {
 
             <div className="space-y-4">
               <Button
-                variant="destructive"
+                variant="emergency"
                 onClick={handleDisable}
                 disabled={disableLoading}
                 className="w-full"

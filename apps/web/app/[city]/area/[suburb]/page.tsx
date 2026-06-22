@@ -68,17 +68,23 @@ async function getSuburbData(
 
   if (!city) return null;
 
-  // TODO: Connect to suburb database or geo module
-  // For now, create suburb from slug
+  // Derive suburb name from URL slug
   const suburbName = suburbSlug
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
+  // Look up postcode from citiesData suburbs array if available
+  type SuburbEntry = { slug: string; postcode: string };
+  type CityWithSuburbs = { slug: string; suburbs?: SuburbEntry[] };
+  const cityWithSuburbs = (citiesData.cities as CityWithSuburbs[]).find((c) => c.slug === citySlug);
+  const postcodeEntry = cityWithSuburbs?.suburbs?.find((s) => s.slug === suburbSlug);
+  const postcode = postcodeEntry?.postcode ?? '';
+
   const suburb: Suburb = {
     slug: suburbSlug,
     name: suburbName,
-    postcode: '0000', // TODO: Lookup from geo data
+    postcode,
     city: city.city,
     state: city.state,
     latitude: city.latitude,

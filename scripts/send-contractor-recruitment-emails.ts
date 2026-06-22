@@ -11,7 +11,23 @@
  */
 
 import https from 'https';
-import prisma from '../lib/prisma';
+import { createRequire } from 'module';
+
+// Guard prisma import: after workspace restructure (apps/web + apps/backend),
+// ../lib/prisma no longer exists. Dry-run mode uses a no-op Proxy; real-send
+// mode requires a valid DB connection.
+const _require = createRequire(__filename);
+let prisma: any;
+try {
+  prisma = _require('../apps/web/lib/prisma').default ?? _require('../apps/web/lib/prisma');
+} catch {
+  if (!process.argv.includes('--dry-run')) {
+    console.error('ERROR: Cannot load Prisma client. Run from repo root with the web workspace built.');
+    process.exit(1);
+  }
+  // Dry-run: return empty arrays for any DB query
+  prisma = new Proxy({}, { get: () => () => Promise.resolve([]) });
+}
 
 interface ContractorRecipient {
   id: string;

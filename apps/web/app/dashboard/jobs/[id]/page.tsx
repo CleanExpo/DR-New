@@ -1,9 +1,8 @@
-// @ts-nocheck
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, useParams } from 'next/navigation';
-import { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   ArrowLeft,
   Calendar,
@@ -272,7 +271,7 @@ export default function JobDetailPage() {
                           ? 'ring-2 ring-offset-2 ring-offset-[#050505]'
                           : 'bg-white/5 text-gray-400'
                       }`}
-                      style={isCurrent ? { backgroundColor: sCfg.bgColour, color: sCfg.colour, ringColor: sCfg.colour } : {}}
+                      style={isCurrent ? { backgroundColor: sCfg.bgColour, color: sCfg.colour } as React.CSSProperties : {}}
                     >
                       {isCompleted ? '✓' : idx + 1}
                     </div>
