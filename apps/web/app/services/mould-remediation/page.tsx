@@ -83,7 +83,7 @@ export default function MouldRemediationPillarPage() {
         {/* Sub-Services (Sub-Pillar Links) */}
         <section className="container mx-auto px-6 mb-16">
           <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">
-            Mould Remediation Services Services
+            Mould Remediation Services
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             

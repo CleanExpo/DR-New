@@ -64,7 +64,7 @@ export default function WaterDamagePillarPage() {
               What Should You Do After <span className="text-[#00BFA6]">Water Damage?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
-              Complete guide to water damage restoration services across Australia. IICRC-certified professionals. 24/7 emergency response across major Australian cities.
+              Water damage restoration services across Australia, delivered by IICRC S500-certified contractors. Residential and commercial jobs covered, with direct insurance documentation included.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">

@@ -221,7 +221,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                   Professional {pageData.title} Services
                 </h2>
                 <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                  {pageData.description}
+                  NRPG connects property owners with IICRC {pageData.protocol}-certified contractors across all Australian states and territories. Contractors respond to {pageData.title.toLowerCase()} emergencies 24 hours a day, with direct insurance claim support and real-time job tracking included in every engagement.
                 </p>
 
                 {/* How It Works Section */}
