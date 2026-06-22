@@ -40,12 +40,12 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash(git commit *)",
         "hooks": [
           {
-            "type": "prompt",
-            "if": "Bash(git commit *)",
-            "prompt": "BEFORE committing: Run `pnpm --package=typescript dlx tsc --noEmit --skipLibCheck` from the apps/web directory and verify zero TypeScript errors. Warnings about @types/jest or @testing-library are acceptable and not blocking. Do NOT use `npx tsc` — it is intentionally replaced in this project with a stub that always exits 1. If tsc reports real errors, fix them before allowing the commit. Respond with the tsc result."
+            "type": "command",
+            "command": "cd apps/web && pnpm --package=typescript dlx tsc --noEmit --skipLibCheck 2>&1 | grep -v 'TS2688' | grep -qE 'error TS' && exit 1 || exit 0",
+            "timeout": 120
           }
         ]
       }
