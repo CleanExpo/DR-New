@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
       // Client: Get their own requests
       jobs = await db.serviceRequest.findMany({
         where: {
-          clientId: user.id,
+          userId: user.id,
         },
         orderBy: { createdAt: 'desc' },
         take: 20,

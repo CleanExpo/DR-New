@@ -50,29 +50,37 @@ async function checkTierAccess(db: PrismaClient | ReturnType<typeof getTenantDb>
       tier = subscription.tier
     }
   } else {
-    // Client - check contractor's tier via booking
-    const booking = await db.booking.findFirst({
+    // Client - check contractor's tier via ContractorMatch (ServiceRequest → ContractorProfile → User → Contractor)
+    const match = await db.contractorMatch.findFirst({
       where: {
         serviceRequestId: jobId,
-        status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
+        status: 'ACCEPTED',
       },
-      select: { contractorId: true },
+      select: {
+        contractor: { select: { userId: true } },
+      },
     })
 
-    if (booking) {
-      const subscription = await db.realtimeSubscription.findUnique({
-        where: { contractorId: booking.contractorId },
-        select: { tier: true, status: true, trialEndsAt: true },
+    if (match) {
+      const matchedContractor = await db.contractor.findUnique({
+        where: { userId: match.contractor.userId },
+        select: { id: true },
       })
+      if (matchedContractor) {
+        const subscription = await db.realtimeSubscription.findUnique({
+          where: { contractorId: matchedContractor.id },
+          select: { tier: true, status: true, trialEndsAt: true },
+        })
 
-      if (
-        subscription &&
-        (subscription.status === 'ACTIVE' ||
-          (subscription.status === 'TRIAL' &&
-            subscription.trialEndsAt &&
-            subscription.trialEndsAt > new Date()))
-      ) {
-        tier = subscription.tier
+        if (
+          subscription &&
+          (subscription.status === 'ACTIVE' ||
+            (subscription.status === 'TRIAL' &&
+              subscription.trialEndsAt &&
+              subscription.trialEndsAt > new Date()))
+        ) {
+          tier = subscription.tier
+        }
       }
     }
   }
@@ -150,21 +158,19 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
-        clientId: authUser.id,
+        userId: authUser.id,
       },
-      select: { id: true, clientId: true },
+      select: { id: true, userId: true },
     })
 
-    const booking = await db.booking.findFirst({
+    // Check if user is the contractor via ContractorMatch
+    const contractorMatch = await db.contractorMatch.findFirst({
       where: {
         serviceRequestId: jobId,
         contractor: { userId: authUser.id },
+        status: 'ACCEPTED',
       },
-      select: {
-        contractorId: true,
-        contractor: { select: { userId: true } },
-        serviceRequest: { select: { clientId: true } },
-      },
+      select: { id: true },
     })
 
     let initiatorType: 'client' | 'contractor'
@@ -173,32 +179,38 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     let receiverType: 'client' | 'contractor'
 
     if (job) {
-      // User is the client
+      // User is the client — find accepted contractor via ContractorMatch
       initiatorType = 'client'
       initiatorId = authUser.id
 
-      // Find contractor via booking
-      const activeBooking = await db.booking.findFirst({
+      const activeMatch = await db.contractorMatch.findFirst({
         where: {
           serviceRequestId: jobId,
-          status: { in: ['CONFIRMED', 'IN_PROGRESS'] },
+          status: 'ACCEPTED',
         },
         select: {
           contractor: { select: { userId: true } },
         },
       })
 
-      if (!activeBooking) {
+      if (!activeMatch) {
         return NextResponse.json({ error: 'No contractor assigned to this job' }, { status: 400 })
       }
 
-      receiverId = activeBooking.contractor.userId
+      receiverId = activeMatch.contractor.userId
       receiverType = 'contractor'
-    } else if (booking) {
-      // User is the contractor
+    } else if (contractorMatch) {
+      // User is the contractor — get the client (serviceRequest.userId)
+      const sr = await db.serviceRequest.findUnique({
+        where: { id: jobId },
+        select: { userId: true },
+      })
+      if (!sr) {
+        return NextResponse.json({ error: 'Job not found' }, { status: 404 })
+      }
       initiatorType = 'contractor'
       initiatorId = authUser.id
-      receiverId = booking.serviceRequest.clientId
+      receiverId = sr.userId
       receiverType = 'client'
     } else {
       return NextResponse.json({ error: 'Access denied' }, { status: 403 })
