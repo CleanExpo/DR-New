@@ -249,51 +249,9 @@ const nextConfig = {
     }
 
     // Production optimizations
-    if (!dev && !isServer) {
-      // Code splitting optimization
-      config.optimization = {
-        ...config.optimization,
-        moduleIds: 'deterministic',
-        runtimeChunk: 'single',
-        splitChunks: {
-          chunks: 'all',
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            // Vendor chunk
-            vendor: {
-              name: 'vendor',
-              chunks: 'all',
-              test: /node_modules/,
-              priority: 20,
-            },
-            // Common chunk
-            common: {
-              name: 'common',
-              minChunks: 2,
-              chunks: 'async',
-              priority: 10,
-              reuseExistingChunk: true,
-              enforce: true,
-            },
-            // UI components chunk
-            ui: {
-              name: 'ui',
-              test: /[\\/]src[\\/](components|ui)[\\/]/,
-              chunks: 'all',
-              priority: 15,
-            },
-            // Lib chunk
-            lib: {
-              name: 'lib',
-              test: /[\\/]src[\\/]lib[\\/]/,
-              chunks: 'all',
-              priority: 12,
-            },
-          },
-        },
-      }
-    }
+    // NOTE: Custom splitChunks removed — it forced ALL node_modules into a single
+    // 1.45 MB vendor chunk, defeating Next.js's built-in granular code splitting.
+    // Next.js 14 handles chunk splitting, tree shaking, and lazy loading automatically.
 
     return config
   },
