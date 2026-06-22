@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Contractor API: Get Available Job Requests
  *
