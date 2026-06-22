@@ -386,7 +386,7 @@ export default function FireDamageRestorationPage() {
             <div className="bg-[#050505] border border-[#0d9488]/20 rounded-sm p-6">
               <p className="text-[#9CA3AF] text-sm">
                 The platform facilitates contractor matching and does not act as an insurance claim advocate or control claim outcomes. For independent claims assistance, property owners may engage a public loss assessor. For insurer disputes, AFCA provides free external resolution services at{' '}
-                <span className="text-white">afca.org.au</span>.
+                <a href="https://afca.org.au" target="_blank" rel="noopener noreferrer" className="text-[#0d9488] underline underline-offset-4">afca.org.au</a>.
               </p>
             </div>
           </div>
