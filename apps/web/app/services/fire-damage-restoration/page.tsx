@@ -3,16 +3,15 @@ import Footer from "@/components/footer"
 import { CheckCircle, ArrowRight, AlertTriangle, Shield, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { generateServiceMetadata, generateServiceSchemas } from "@/lib/seo/service-page-seo"
+import { generateCategoryMetadata } from "@/lib/seo/service-page-seo"
+import { schemaGenerator } from "@/lib/seo/schema-generator"
 
-export const metadata = generateServiceMetadata({
+export const metadata = generateCategoryMetadata({
   title: 'Fire Damage Restoration Services Australia | NRPG',
   description: 'Professional fire damage restoration & smoke cleanup across Australia. IICRC-certified contractors. 24/7 emergency response. Forensic results, zero compromise.',
   keywords: ['fire damage restoration', 'fire restoration services', 'smoke damage cleanup', 'fire restoration Australia', 'IICRC certified fire restoration'],
   slug: 'fire-damage-restoration',
-  parentSlug: 'fire-damage-restoration',
-  parentName: 'Fire Damage Restoration',
-  serviceName: 'Fire Damage Restoration',
+  categoryName: 'Fire Damage Restoration',
 })
 
 const faqs = [
@@ -51,18 +50,8 @@ const faqs = [
 ]
 
 export default function FireDamageRestorationPage() {
-  const schemas = generateServiceSchemas({
-    title: 'Fire Damage Restoration Services Australia | NRPG',
-    description: 'Professional fire damage restoration & smoke cleanup across Australia. IICRC-certified contractors. 24/7 emergency response. Forensic results, zero compromise.',
-    keywords: ['fire damage restoration', 'fire restoration services', 'smoke damage cleanup', 'fire restoration Australia', 'IICRC certified fire restoration'],
-    slug: 'fire-damage-restoration',
-    parentSlug: 'fire-damage-restoration',
-    parentName: 'Fire Damage Restoration',
-    serviceName: 'Fire Damage Restoration',
-    faqs,
-  })
+  const BASE_URL = 'https://disasterrecovery.com.au'
 
-  // Add EmergencyService type to primary Service schema
   const emergencyServiceSchema = {
     "@context": "https://schema.org",
     "@type": ["Service", "EmergencyService"],
@@ -76,15 +65,23 @@ export default function FireDamageRestorationPage() {
     "provider": {
       "@type": "Organization",
       "name": "NRPG - National Restoration Platform",
-      "url": "https://disasterrecovery.com.au",
+      "url": BASE_URL,
     },
     "availableChannel": {
       "@type": "ServiceChannel",
-      "serviceUrl": "https://disasterrecovery.com.au/contact",
+      "serviceUrl": `${BASE_URL}/contact`,
       "availabilityStarts": "00:00",
       "availabilityEnds": "23:59",
     },
   }
+
+  const breadcrumbSchema = schemaGenerator.generateBreadcrumbSchema([
+    { name: 'Home', url: BASE_URL },
+    { name: 'Services', url: `${BASE_URL}/services` },
+    { name: 'Fire Damage Restoration', url: `${BASE_URL}/services/fire-damage-restoration` },
+  ])
+
+  const faqSchema = schemaGenerator.generateFAQSchema(faqs)
 
   return (
     <div className="min-h-screen bg-[#0F1115] text-[#F9FAFB]">
@@ -93,11 +90,15 @@ export default function FireDamageRestorationPage() {
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(emergencyServiceSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(emergencyServiceSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <main className="py-24">
