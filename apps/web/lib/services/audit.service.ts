@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Audit Logging Service
  * Logs security events for compliance, forensics, and security monitoring
@@ -325,7 +324,7 @@ export async function getSuspiciousActivity(hoursAgo: number = 24): Promise<
     });
 
     // Get details for each IP
-    const suspicious = [];
+    const suspicious: Array<{ ipAddress: string; failedAttempts: number; users: string[]; lastAttempt: Date }> = [];
     for (const record of result) {
       if ((record._count.id || 0) >= 5) {
         // 5+ failed attempts from same IP
@@ -339,7 +338,7 @@ export async function getSuspiciousActivity(hoursAgo: number = 24): Promise<
           orderBy: { createdAt: 'desc' },
         });
 
-        const users = [...new Set(logs.map((l) => l.userId))];
+        const users = [...new Set(logs.map((l) => l.userId).filter(Boolean))] as string[];
 
         suspicious.push({
           ipAddress: record.ipAddress,

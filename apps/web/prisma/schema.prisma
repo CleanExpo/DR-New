@@ -161,6 +161,7 @@ model User {
   ownedWorkspaces              Workspace[]                    @relation("WorkspaceOwner")
   batchJobsInitiated           AIBatchProcessingJob[]         @relation("BatchJobInitiator")
   backgroundJobsInitiated      BackgroundJob[]                @relation("BackgroundJobInitiator")
+  auditLogs                    AuditLog[]
 
   @@index([email])
   @@index([userType])
@@ -260,6 +261,7 @@ model AuditLog {
   tenantId     String?
   createdAt    DateTime @default(now())
   tenant       Tenant?  @relation(fields: [tenantId], references: [id])
+  user         User?    @relation(fields: [userId], references: [id])
 
   @@index([createdAt])
   @@index([entityId])
@@ -269,6 +271,7 @@ model AuditLog {
   @@index([workspaceId])
   @@index([action])
   @@index([tenantId])
+  @@map("audit_logs")
 }
 
 model Contractor {

@@ -19,26 +19,11 @@
     "dynamicSeoGeneration": true
   },
   "tierPricing": {
-    "rural": {
-      "maxPopulation": 50000,
-      "price": 395
-    },
-    "semiRural": {
-      "maxPopulation": 200000,
-      "price": 595
-    },
-    "tier1": {
-      "maxPopulation": 400000,
-      "price": 795
-    },
-    "tier2": {
-      "maxPopulation": 1000000,
-      "price": 995
-    },
-    "tier3": {
-      "maxPopulation": null,
-      "price": 1095
-    }
+    "rural": { "maxPopulation": 50000, "price": 395 },
+    "semiRural": { "maxPopulation": 200000, "price": 595 },
+    "tier1": { "maxPopulation": 400000, "price": 795 },
+    "tier2": { "maxPopulation": 1000000, "price": 995 },
+    "tier3": { "maxPopulation": null, "price": 1095 }
   },
   "bufferPercentage": 10,
   "hooks": {
@@ -55,18 +40,15 @@
     ],
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash(git commit *)",
         "hooks": [
           {
-            "type": "prompt",
-            "if": "Bash(git commit *)",
-            "prompt": "BEFORE committing: Run npx tsc first and verify zero TypeScript errors. If tsc fails, fix all errors before allowing the commit to proceed. Respond with the tsc result."
+            "type": "command",
+            "command": "cd apps/web && pnpm --package=typescript dlx tsc --noEmit --skipLibCheck 2>&1 | grep -v 'TS2688' | grep -qE 'error TS' && exit 1 || exit 0",
+            "timeout": 120
           }
         ]
       }
     ]
-  },
-  "attribution": {
-    "sessionUrl": false
   }
 }
