@@ -90,7 +90,7 @@ export default function StormDamagePillarPage() {
                   Roof Storm Damage
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized roof storm damage services with IICRC-certified professionals.
+                  Emergency assessment of storm-damaged roofs, temporary tarping to prevent water ingress, and coordination of permanent roofing repairs. Documentation produced for insurance claim scope.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -107,7 +107,7 @@ export default function StormDamagePillarPage() {
                   Wind Damage Restoration
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized wind damage restoration services with IICRC-certified professionals.
+                  Structural assessment and restoration for cyclone and severe wind events. Covers wall racking, roof lifting, window failure, and secondary water ingress. IICRC S500 protocols applied where water damage has occurred.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -124,7 +124,7 @@ export default function StormDamagePillarPage() {
                   Hail Damage Repair
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized hail damage repair services with IICRC-certified professionals.
+                  Hail damage inspection and documentation for roofing, skylights, gutters, and cladding. Evidence photography taken before any temporary repairs to preserve insurance claim scope.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -141,7 +141,7 @@ export default function StormDamagePillarPage() {
                   Tree Damage Cleanup
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized tree damage cleanup services with IICRC-certified professionals.
+                  Storm-fallen tree removal, structural damage assessment where trees have impacted the building, and coordinated repair of penetrations in roofing, walls, and windows.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -158,7 +158,7 @@ export default function StormDamagePillarPage() {
                   Emergency Roof Tarping
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized emergency roof tarping services with IICRC-certified professionals.
+                  24/7 emergency heavy-duty roof tarping to prevent ongoing water ingress after storm damage. Temporary fencing and board-up for broken windows and structural breaches where required.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More

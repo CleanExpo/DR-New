@@ -45,7 +45,7 @@ export default function BiohazardCleanupPillarPage() {
               What Does Professional Biohazard <span className="text-[#00BFA6]">Cleanup Involve?</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8">
-              Certified biohazard and trauma scene cleanup. IICRC-certified professionals. 24/7 emergency response across major Australian cities.
+              Biohazard cleanup services across Australia, including crime scene decontamination, trauma cleanup, meth lab remediation, and sewage events. EPA-compliant disposal and IICRC-certified contractors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-[#00BFA6] hover:bg-[#00A693] text-[#0F1115] font-semibold px-8 py-3 text-lg">
@@ -83,7 +83,7 @@ export default function BiohazardCleanupPillarPage() {
         {/* Sub-Services (Sub-Pillar Links) */}
         <section className="container mx-auto px-6 mb-16">
           <h2 className="font-poppins font-semibold text-3xl text-center text-white mb-12">
-            Biohazard Cleanup Services Services
+            Biohazard Cleanup Services
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             
@@ -94,7 +94,7 @@ export default function BiohazardCleanupPillarPage() {
                   Crime Scene Cleanup
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized crime scene cleanup services with IICRC-certified professionals.
+                  Discreet, trauma-informed crime scene decontamination and biohazard removal. Compliant with state EPA biohazard disposal regulations. Documentation available for police and insurance purposes.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -111,7 +111,7 @@ export default function BiohazardCleanupPillarPage() {
                   Trauma Cleanup
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized trauma cleanup services with IICRC-certified professionals.
+                  Compassionate unattended death, suicide, and serious accident cleanup by trained biohazard specialists. Bloodborne pathogen protocols, full containment, and EPA-compliant disposal.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -128,7 +128,7 @@ export default function BiohazardCleanupPillarPage() {
                   Meth Lab Decontamination
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized meth lab decontamination services with IICRC-certified professionals.
+                  Clandestine drug laboratory decontamination to NIOSH and Australian state guidelines. Chemical residue testing, specialist PPE, EPA waste disposal, and clearance certificate for property re-occupation.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -145,7 +145,7 @@ export default function BiohazardCleanupPillarPage() {
                   Sewage Cleanup
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized sewage cleanup services with IICRC-certified professionals.
+                  Category 3 sewage backup extraction, porous material removal, and EPA-registered biocide decontamination. IICRC S500-compliant documentation for insurance and property management purposes.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
@@ -162,7 +162,7 @@ export default function BiohazardCleanupPillarPage() {
                   Hoarding Cleanup
                 </h3>
                 <p className="text-[#9CA3AF] text-sm mb-4">
-                  Specialized hoarding cleanup services with IICRC-certified professionals.
+                  Sensitive, dignified hoarding property clearance with biohazard decontamination where required. Coordination with social services, estate managers, and property owners available.
                 </p>
                 <div className="text-[#00BFA6] text-sm font-medium flex items-center">
                   Learn More
