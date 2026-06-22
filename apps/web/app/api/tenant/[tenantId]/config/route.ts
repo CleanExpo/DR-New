@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 
 // Force dynamic rendering for this route (uses request.headers)
 export const dynamic = 'force-dynamic';
 
 import { TenantService } from '@/lib/tenant-service';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
-import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { handleUnexpectedError } from '@/lib/api-errors';
+
+const configSchema = z.object({
+  key: z.string().min(1).max(100).regex(/^[A-Z_]+$/, 'Key must be uppercase letters and underscores only'),
+  value: z.union([z.string(), z.number(), z.boolean(), z.record(z.unknown())]),
+});
 
 export async function POST(
   request: NextRequest,
@@ -24,16 +30,16 @@ export async function POST(
     }
 
     const { tenantId } = params;
-    const { key, value } = await request.json();
-
-    if (!key || value === undefined) {
-      return createErrorResponse(
-        ErrorCode.MISSING_FIELDS,
-        'Key and value are required',
-        400
+    const body = await request.json();
+    const result = configSchema.safeParse(body);
+    if (!result.success) {
+      return NextResponse.json(
+        { success: false, error: 'Validation failed', details: result.error.flatten().fieldErrors },
+        { status: 400 }
       );
     }
 
+    const { key, value } = result.data;
     await TenantService.updateTenantConfig(tenantId, key, value);
 
     return NextResponse.json({ success: true });

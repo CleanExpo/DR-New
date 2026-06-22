@@ -2,8 +2,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
+import { z } from 'zod';
 import { createPaymentSchema, validateRequest, formatZodErrors, adminSearchSchema } from '@/lib/validation';
 import { createPaymentIntent } from '@/lib/stripe';
+import { PaymentStatus } from '@prisma/client';
+
+const paymentsQuerySchema = z.object({
+  page: z.coerce.number().int().positive().default(1),
+  limit: z.coerce.number().int().positive().max(100).default(20),
+  status: z.nativeEnum(PaymentStatus).optional(),
+  bookingId: z.string().min(1).optional(),
+});
 
 // Get payments (with filtering for different user types)
 export async function GET(request: NextRequest) {
@@ -17,11 +26,19 @@ export async function GET(request: NextRequest) {
     const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '20');
-    const status = searchParams.get('status');
-    const bookingId = searchParams.get('bookingId');
-
+    const queryResult = paymentsQuerySchema.safeParse({
+      page: searchParams.get('page'),
+      limit: searchParams.get('limit'),
+      status: searchParams.get('status') || undefined,
+      bookingId: searchParams.get('bookingId') || undefined,
+    });
+    if (!queryResult.success) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid query parameters', details: queryResult.error.flatten().fieldErrors },
+        { status: 400 }
+      );
+    }
+    const { page, limit, status, bookingId } = queryResult.data;
     const skip = (page - 1) * limit;
 
     // Build where clause based on user role
