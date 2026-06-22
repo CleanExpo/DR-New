@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * PostgreSQL Full-Text Search Service

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Process List Component

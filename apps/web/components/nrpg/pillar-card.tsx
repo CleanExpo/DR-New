@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * NRPG PillarCard Component

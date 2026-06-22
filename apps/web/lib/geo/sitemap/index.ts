@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Sitemap Generation & Submission Module

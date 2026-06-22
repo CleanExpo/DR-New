@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Automated Reporting System

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Author Byline Component

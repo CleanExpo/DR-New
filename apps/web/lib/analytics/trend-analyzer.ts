@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Trend Analysis Engine

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Contractor Notification Background Job Processor

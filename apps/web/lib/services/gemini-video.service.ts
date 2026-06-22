@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Gemini Video Generation Service

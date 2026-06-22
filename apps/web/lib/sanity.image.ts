@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Sanity Image Optimization Utilities

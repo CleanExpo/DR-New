@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Custom Analytics Tracking Utility

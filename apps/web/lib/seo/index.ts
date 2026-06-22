@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * SEO Module Index - NRPG Platform

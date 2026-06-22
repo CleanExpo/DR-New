@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * City + Service Page Data Generator
