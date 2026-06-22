@@ -42,7 +42,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
-        clientId: authUser.id,
+        userId: authUser.id,
       },
       select: {
         id: true,
@@ -126,7 +126,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       },
       select: {
         id: true,
-        clientId: true,
+        userId: true,
         status: true,
       },
     })
@@ -174,7 +174,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       type: 'LOCATION_UPDATE',
       jobId,
       contractorId: contractor.id,
-      clientId: job.clientId,
+      clientId: job.userId,
       location: {
         latitude,
         longitude,
@@ -188,7 +188,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     // Broadcast to client channel
     await getSupabase().channel('jobs:client').send({
       type: 'broadcast',
-      event: `client:${job.clientId}`,
+      event: `client:${job.userId}`,
       payload: locationEvent,
     })
 
