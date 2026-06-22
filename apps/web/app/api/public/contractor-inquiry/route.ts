@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Public API: Contractor Inquiry Endpoint
  * Handles NRPG contractor application submissions from the marketing site

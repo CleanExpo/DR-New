@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * XSS Sanitization Utilities
  *

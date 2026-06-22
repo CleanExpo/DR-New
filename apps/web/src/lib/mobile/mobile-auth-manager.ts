@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Mobile Auth Manager - Secure Authentication for Mobile Platforms
  *

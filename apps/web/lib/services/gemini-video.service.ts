@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Gemini Video Generation Service
  * Uses Veo 3.1 for high-quality video generation

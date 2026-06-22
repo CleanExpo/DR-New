@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Job Completion API Route
  * POST /api/jobs/[id]/complete - Mark a job as completed with hours, materials, cost

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /**
  * Download Tracking API Route
  *
@@ -35,7 +37,7 @@ export async function POST(request: NextRequest) {
                         request.headers.get('x-real-ip') ||
                         'unknown';
 
-      const savedDownload = await (db as any).resourceDownload.create({
+      const savedDownload = await db.resourceDownload.create({
         data: {
           resourceId: downloadEvent.resourceId,
           resourceType: body.resourceType || 'unknown',

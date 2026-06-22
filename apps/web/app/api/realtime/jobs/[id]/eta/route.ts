@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { NextRequest, NextResponse } from 'next/server'
 
 import { authenticateRequest } from '@/lib/auth-middleware';
@@ -48,17 +48,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const job = await db.serviceRequest.findFirst({
       where: {
         id: jobId,
-        OR: [
-          { clientId: authUser.id },
-          // Add contractor check when available
-        ],
+        userId: authUser.id,
       },
       select: {
         id: true,
-        clientId: true,
-        address: true,
-        latitude: true,
-        longitude: true,
+        userId: true,
+        location: true,
       },
     })
 
@@ -90,13 +85,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     let destLat: number | undefined
     let destLng: number | undefined
 
-    // Check if job has coordinates
-    if (job.latitude && job.longitude) {
-      destLat = job.latitude
-      destLng = job.longitude
-    } else if (job.address) {
-      // Geocode the address using Google Geocoding API
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(job.address)}&key=${process.env.GOOGLE_MAPS_SERVER_KEY}`
+    // Geocode the location string using Google Geocoding API
+    if (job.location) {
+      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(job.location)}&key=${process.env.GOOGLE_MAPS_SERVER_KEY}`
       const geocodeRes = await fetch(geocodeUrl)
       const geocodeData = await geocodeRes.json()
 

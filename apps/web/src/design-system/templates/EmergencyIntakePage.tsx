@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * DesignOS Emergency Intake Page Template
  *

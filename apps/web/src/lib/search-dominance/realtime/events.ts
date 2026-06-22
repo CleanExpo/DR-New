@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Search Dominance Real-Time Events
  *

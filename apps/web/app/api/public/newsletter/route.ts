@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Public API: Newsletter Subscription Endpoint
  * Handles newsletter email signups from the marketing site

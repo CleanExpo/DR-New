@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import { NextRequest, NextResponse } from 'next/server'
 import { authenticateRequest } from '@/lib/auth-middleware'
 import { getTenantDb } from '@/lib/get-tenant-db'
@@ -63,7 +64,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     const serviceRequest = await db.serviceRequest.findUnique({
       where: { id: jobId },
       include: {
-        client: true,
+        user: true,
       },
     })
 
@@ -91,7 +92,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       type: 'STATUS_CHANGED',
       jobId,
       contractorId: user.contractor.id,
-      clientId: serviceRequest.clientId,
+      clientId: serviceRequest.userId,
       status,
       eta,
       message,
@@ -108,7 +109,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     // Send direct notification to client
     await supabase.channel(`jobs:client`).send({
       type: 'broadcast',
-      event: `client:${serviceRequest.clientId}`,
+      event: `client:${serviceRequest.userId}`,
       payload: event,
     })
 

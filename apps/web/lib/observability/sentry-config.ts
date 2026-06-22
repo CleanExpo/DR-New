@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Enhanced Sentry Configuration
  * Implements comprehensive application performance monitoring and error tracking

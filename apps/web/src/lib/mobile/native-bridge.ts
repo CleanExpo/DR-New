@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Native Bridge - iOS/Android Interoperability Layer
  *

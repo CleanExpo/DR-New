@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import { prisma } from './prisma';
 import { generateEmbeddings } from './gemma-service';
 

@@ -1,9 +1,18 @@
-// @ts-nocheck
+
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
+import { z } from 'zod';
 import { createPaymentSchema, validateRequest, formatZodErrors, adminSearchSchema } from '@/lib/validation';
-import { createPaymentIntent, calculateFees } from '@/lib/stripe';
+import { createPaymentIntent } from '@/lib/stripe';
+import { PaymentStatus } from '@prisma/client';
+
+const paymentsQuerySchema = z.object({
+  page: z.coerce.number().int().positive().default(1),
+  limit: z.coerce.number().int().positive().max(100).default(20),
+  status: z.nativeEnum(PaymentStatus).optional(),
+  bookingId: z.string().min(1).optional(),
+});
 
 // Get payments (with filtering for different user types)
 export async function GET(request: NextRequest) {
@@ -17,11 +26,19 @@ export async function GET(request: NextRequest) {
     const db = getTenantDb(authResult.context);
 
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '20');
-    const status = searchParams.get('status');
-    const bookingId = searchParams.get('bookingId');
-
+    const queryResult = paymentsQuerySchema.safeParse({
+      page: searchParams.get('page'),
+      limit: searchParams.get('limit'),
+      status: searchParams.get('status') || undefined,
+      bookingId: searchParams.get('bookingId') || undefined,
+    });
+    if (!queryResult.success) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid query parameters', details: queryResult.error.flatten().fieldErrors },
+        { status: 400 }
+      );
+    }
+    const { page, limit, status, bookingId } = queryResult.data;
     const skip = (page - 1) * limit;
 
     // Build where clause based on user role
@@ -49,8 +66,8 @@ export async function GET(request: NextRequest) {
           booking: {
             select: {
               id: true,
-              serviceType: true,
-              address: true,
+              australianServiceType: true,
+              streetAddress: true,
             },
           },
           client: {
@@ -63,8 +80,13 @@ export async function GET(request: NextRequest) {
           contractor: {
             select: {
               id: true,
-              name: true,
-              email: true,
+              businessName: true,
+              user: {
+                select: {
+                  name: true,
+                  email: true,
+                },
+              },
             },
           },
         },
@@ -120,14 +142,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { bookingId, amount, paymentMethod, description } = validation.data;
+    const { bookingId, amount, paymentMethod } = validation.data;
 
     // Get booking
     const booking = await db.booking.findUnique({
       where: { id: bookingId },
-      include: {
-        contractor: true,
-      },
     });
 
     if (!booking) {
@@ -145,33 +164,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Calculate fees
-    const fees = calculateFees(amount);
+    // Calculate AU fees: 15% platform fee + 10% GST on platform fee
+    const platformFeeAUD = amount * 0.15;
+    const gstAUD = platformFeeAUD * 0.10;
+    const netAmountAUD = amount - platformFeeAUD - gstAUD;
 
     // Create payment record
     const payment = await db.payment.create({
       data: {
         bookingId,
         clientId: booking.clientId,
-        contractorId: booking.contractorId!,
-        amount,
-        currency: 'usd',
+        contractorId: booking.contractorId ?? undefined,
+        amountAUD: amount,
+        platformFeeAUD,
+        platformFeePercentage: 15,
+        gstAUD,
+        netAmountAUD,
         status: 'PENDING',
         paymentMethod,
-        description: description || `Payment for booking ${bookingId}`,
-        processingFee: fees.processingFee,
-        platformFee: fees.platformFee,
-        netAmount: fees.netAmount,
-        refundedAmount: 0,
-      } as any,
+      },
     });
 
     // Create Stripe payment intent if card payment
     if (paymentMethod === 'CARD') {
       const paymentIntent = await createPaymentIntent({
-        amount,
-        currency: 'usd',
-        customerId: (booking as any).client?.stripeCustomerId,
+        amount: Math.round(amount * 100), // Stripe expects cents
+        currency: 'aud',
         metadata: {
           paymentId: payment.id,
           bookingId,

@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Advanced Logging Service
  *

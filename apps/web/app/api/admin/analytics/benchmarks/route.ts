@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * GET /api/admin/analytics/benchmarks
  *

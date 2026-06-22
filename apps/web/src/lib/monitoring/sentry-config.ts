@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import * as Sentry from '@sentry/nextjs';
 
 interface SentryConfig {

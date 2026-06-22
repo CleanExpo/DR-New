@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Contractor Job Completion API
  *
@@ -54,28 +53,30 @@ export async function POST(
     const body = await request.json();
     const validatedData = completeJobSchema.parse(body);
 
-    // Get contractor profile
+    // Get contractor (Contractor model — Booking.contractorId references Contractor.id)
     const contractor = await db.contractor.findUnique({
       where: { userId: user.id },
       select: {
         id: true,
         businessName: true,
-        stripeConnectAccountId: true,
       },
     });
 
     if (!contractor) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Contractor profile not found'
-        },
+        { success: false, error: 'Contractor profile not found' },
         { status: 404 }
       );
     }
 
-    // Verify contractor has Stripe Connect setup
-    if (!contractor.stripeConnectAccountId) {
+    // Get ContractorProfile to check Stripe Connect setup
+    // stripeConnectAccountId lives on ContractorProfile (contractor_profiles), not Contractor
+    const contractorProfile = await db.contractorProfile.findUnique({
+      where: { userId: user.id },
+      select: { stripeConnectAccountId: true },
+    });
+
+    if (!contractorProfile?.stripeConnectAccountId) {
       return NextResponse.json(
         {
           success: false,
@@ -106,10 +107,7 @@ export async function POST(
 
     if (!booking) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Booking not found'
-        },
+        { success: false, error: 'Booking not found' },
         { status: 404 }
       );
     }
@@ -117,10 +115,7 @@ export async function POST(
     // Verify contractor owns this job
     if (booking.contractorId !== contractor.id) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'You are not assigned to this job'
-        },
+        { success: false, error: 'You are not assigned to this job' },
         { status: 403 }
       );
     }
@@ -128,10 +123,7 @@ export async function POST(
     // Check if already completed
     if (booking.status === BookingStatus.COMPLETED) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'This job is already marked as completed'
-        },
+        { success: false, error: 'This job is already marked as completed' },
         { status: 400 }
       );
     }
@@ -142,30 +134,30 @@ export async function POST(
       return NextResponse.json(
         {
           success: false,
-          error: `Job must be IN_PROGRESS or CONFIRMED to complete. Current status: ${booking.status}`
+          error: `Job must be IN_PROGRESS or CONFIRMED to complete. Current status: ${booking.status}`,
         },
         { status: 400 }
       );
     }
 
     // Update booking in transaction
-    const updatedBooking = await db.$transaction(async (tx: any) => {
+    const updatedBooking = await db.$transaction(async (tx) => {
       // Mark booking as completed
       const completed = await tx.booking.update({
         where: { id: jobId },
         data: {
           status: BookingStatus.COMPLETED,
           completedAt: new Date(),
-          contractorNotes: validatedData.completionNotes || null,
+          // Store completion notes in internalNotes (Booking has no contractorNotes field)
+          internalNotes: validatedData.completionNotes || null,
         },
       });
 
-      // Update contractor stats
+      // Update contractor stats (Contractor model has completedJobs only)
       await tx.contractor.update({
         where: { id: contractor.id },
         data: {
           completedJobs: { increment: 1 },
-          totalJobs: { increment: 1 },
         },
       });
 
@@ -179,15 +171,14 @@ export async function POST(
           newValues: {
             status: BookingStatus.COMPLETED,
             completedAt: new Date(),
-          } as any,
+          } as object,
         },
       });
 
       return completed;
     });
 
-    // Trigger payout (this is async and may take time)
-    // We don't wait for it to complete to avoid timeout
+    // Trigger payout (async, don't block response on failure)
     let payoutTriggered = false;
     let payoutError: boolean | null = null;
 
@@ -197,8 +188,7 @@ export async function POST(
     } catch (error) {
       console.error('Payout trigger failed:', error);
       payoutError = true;
-      // Don't fail the request - job is still completed
-      // Admin can manually trigger payout if needed
+      // Job is still completed — admin can manually trigger payout
     }
 
     // Send completion notification to client
@@ -214,7 +204,6 @@ export async function POST(
         });
       } catch (emailError) {
         console.error('Failed to send completion email:', emailError);
-        // Don't fail the request
       }
     }
 
@@ -238,11 +227,7 @@ export async function POST(
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        {
-          success: false,
-          error: 'Invalid request data',
-          details: error.errors
-        },
+        { success: false, error: 'Invalid request data', details: error.errors },
         { status: 400 }
       );
     }

@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * File Upload Security Scanner
  *

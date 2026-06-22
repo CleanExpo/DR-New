@@ -3,7 +3,6 @@ import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { messageSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
-import { ZodError } from 'zod';
 
 export const dynamic = 'force-dynamic';
 
@@ -39,21 +38,21 @@ export async function POST(request: NextRequest) {
     const db = getTenantDb(authResult.context);
 
     const body = await request.json();
-    const validatedData = messageSchema.parse(body);
+    const result = messageSchema.safeParse(body);
+    if (!result.success) {
+      return handleValidationError(result.error);
+    }
 
     const message = await db.message.create({
       data: {
         senderId: user.id,
-        receiverId: validatedData.receiverId,
-        content: validatedData.content,
+        receiverId: result.data.receiverId,
+        content: result.data.content,
       },
     });
 
     return NextResponse.json({ success: true, data: message }, { status: 201 });
   } catch (error) {
-    if (error instanceof ZodError) {
-      return handleValidationError(error);
-    }
     return handleUnexpectedError(error);
   }
 }

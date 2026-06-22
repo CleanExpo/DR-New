@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { NextRequest, NextResponse } from 'next/server';
 
 // Force dynamic rendering for this route (uses request.headers)
@@ -68,7 +68,7 @@ export async function POST(
       data: {
         senderId: user.id,
         receiverId: offer.contractor.userId,
-        content: `Thank you for your interest in "${offer.serviceRequest.serviceTitle}". Unfortunately, we've decided to go with another contractor for this project. We'll keep your information for future opportunities.`,
+        content: `Thank you for your interest in "${offer.serviceRequest?.serviceTitle ?? 'your service request'}". Unfortunately, we've decided to go with another contractor for this project. We'll keep your information for future opportunities.`,
         messageType: 'BID_REJECTED',
         requestId: offer.serviceRequestId,
       },

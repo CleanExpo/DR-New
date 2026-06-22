@@ -11,6 +11,10 @@ on:
 env:
   NODE_VERSION: '20'
 
+# Baseline migrations list — all migrations that existed before Prisma migration tracking
+# was introduced. These are marked as "already applied" via `migrate resolve` so that
+# `migrate deploy` does not attempt to re-run DDL that the Supabase-native migration
+# system already applied. Add new migrations below this list (do NOT add them here).
 jobs:
   migrate-staging:
     name: Run Migrations - Staging
@@ -25,14 +29,46 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
+      - name: Baseline — mark pre-existing migrations as applied
+        # The DB schema was bootstrapped via Supabase-native migrations, not Prisma.
+        # Running `migrate resolve --applied` is a no-op if a migration is already
+        # tracked; it inserts a _prisma_migrations record (without running SQL) if not.
+        # This prevents migrate deploy from re-applying DDL that already exists.
+        run: |
+          cd apps/web
+          BASELINES=(
+            "20250127200000_add_rls_policies"
+            "20250203000000_add_course_types"
+            "20250916043401_initalize_schema"
+            "20250921080802_add_admin_user_type"
+            "20250928045119_add_tenant_system"
+            "20250928111331_add_user_preferences"
+            "20250928113202_add_admin_preferences_and_theming"
+            "20251231180000_fix_contractor_onboarding_contractor_id"
+            "20251231190000_add_callout_payment"
+            "20260202000000_complete_rls_policies"
+            "20260305000000_add_job_module_xero_notifications"
+            "20260406000000_dr322_path_b_job_outcome_log"
+            "20260414000000_add_module_progress_unique_constraint"
+            "20260622000000_add_audit_logs_table"
+          )
+          for migration in "${BASELINES[@]}"; do
+            echo "Resolving baseline: $migration"
+            pnpm exec prisma migrate resolve --applied "$migration" || true
+          done
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL_STAGING }}
       - name: Run Prisma migration
         run: pnpm --filter nrpg-web exec prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL_STAGING }}
       - name: Generate Prisma client
         run: pnpm --filter nrpg-web exec prisma generate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL_STAGING }}
 
   migrate-production:
     name: Run Migrations - Production
@@ -50,6 +86,32 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
+      - name: Baseline — mark pre-existing migrations as applied
+        run: |
+          cd apps/web
+          BASELINES=(
+            "20250127200000_add_rls_policies"
+            "20250203000000_add_course_types"
+            "20250916043401_initalize_schema"
+            "20250921080802_add_admin_user_type"
+            "20250928045119_add_tenant_system"
+            "20250928111331_add_user_preferences"
+            "20250928113202_add_admin_preferences_and_theming"
+            "20251231180000_fix_contractor_onboarding_contractor_id"
+            "20251231190000_add_callout_payment"
+            "20260202000000_complete_rls_policies"
+            "20260305000000_add_job_module_xero_notifications"
+            "20260406000000_dr322_path_b_job_outcome_log"
+            "20260414000000_add_module_progress_unique_constraint"
+            "20260622000000_add_audit_logs_table"
+          )
+          for migration in "${BASELINES[@]}"; do
+            echo "Resolving baseline: $migration"
+            pnpm exec prisma migrate resolve --applied "$migration" || true
+          done
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL_PRODUCTION }}
       - name: Run Prisma migration
         run: pnpm --filter nrpg-web exec prisma migrate deploy
         env:

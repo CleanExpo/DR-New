@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Job Assignment API Route
  * POST /api/jobs/[id]/assign - Assign a verified contractor to a job

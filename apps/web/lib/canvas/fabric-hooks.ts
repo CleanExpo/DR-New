@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 /**
  * Fabric.js Canvas Hooks
  *
