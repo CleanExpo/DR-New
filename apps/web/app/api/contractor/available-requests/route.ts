@@ -58,17 +58,18 @@ export async function GET(request: NextRequest) {
     // Get tenant-scoped database client
     const db = getTenantDb(authResult.context);
 
-    // Get contractor profile - automatically tenant-scoped
-    const contractorProfile = await db.contractorProfile.findUnique({
-      where: { userId: user.id },
-      select: {
-        id: true,
-        businessName: true,
-        rating: true,
-        totalJobs: true,
-        primaryPostcode: true,
-      },
-    });
+    // Get contractor profile and main contractor record in parallel
+    // ContractorProfile has rating/totalJobs; Contractor has primaryPostcode
+    const [contractorProfile, contractor] = await Promise.all([
+      db.contractorProfile.findUnique({
+        where: { userId: user.id },
+        select: { id: true, businessName: true, rating: true, totalJobs: true },
+      }),
+      db.contractor.findUnique({
+        where: { userId: user.id },
+        select: { primaryPostcode: true },
+      }),
+    ]);
 
     if (!contractorProfile) {
       // Return sample data if no contractor profile exists
@@ -122,7 +123,7 @@ export async function GET(request: NextRequest) {
         description: request.description,
         priority: priorityMap[request.urgency] || 'Standard',
         location: request.location,
-        distance: computeDistance(contractorProfile.primaryPostcode ?? null, request.location ?? '') ?? 'Distance varies',
+        distance: computeDistance(contractor?.primaryPostcode ?? null, request.location ?? '') ?? 'Distance varies',
         potentialValue: request.budget || 'Quote Required',
         urgency: request.urgency,
         insurance: request.insurance,
