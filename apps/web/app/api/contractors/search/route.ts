@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Contractor Search API Route

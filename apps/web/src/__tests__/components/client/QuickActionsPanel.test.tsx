@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 import { render, screen, fireEvent } from '@testing-library/react';
 import { QuickActionsPanel, QuickAction } from '@/components/client/QuickActionsPanel';

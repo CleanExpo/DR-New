@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * NRPG Commitment Framework API

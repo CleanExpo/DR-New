@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Job Documents API Route

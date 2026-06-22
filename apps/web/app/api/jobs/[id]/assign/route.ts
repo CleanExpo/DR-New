@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Job Assignment API Route

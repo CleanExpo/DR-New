@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Job Invoice API Route

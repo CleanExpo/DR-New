@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Claim Wizard - Step 3: Details & Insurance

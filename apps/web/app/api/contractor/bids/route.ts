@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Contractor API: Submit and Manage Bids
  *

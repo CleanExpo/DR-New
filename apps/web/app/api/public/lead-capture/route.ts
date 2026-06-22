@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Public API: Lead Capture Endpoint

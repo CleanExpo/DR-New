@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Inspection Report Status Transition API

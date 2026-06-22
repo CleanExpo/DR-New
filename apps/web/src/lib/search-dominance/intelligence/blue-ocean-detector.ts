@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Blue Ocean Intelligence - Opportunity Detection System

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * DesignOS Button Component

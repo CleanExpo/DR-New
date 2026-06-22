@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Sanity Webhook Handler

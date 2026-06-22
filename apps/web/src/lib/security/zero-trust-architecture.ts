@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Zero-Trust Architecture

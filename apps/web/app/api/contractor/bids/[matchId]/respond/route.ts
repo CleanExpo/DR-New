@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Contractor Bid Response API

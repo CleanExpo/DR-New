@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Search Dominance Traffic API

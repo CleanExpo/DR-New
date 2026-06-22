@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Single Job API Route

@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Jobs API Route

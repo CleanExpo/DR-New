@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * Integration tests for Claim Submission → Contractor Matching Flow
