@@ -11,7 +11,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { citationManager, CITATION_DIRECTORIES } from '@/lib/seo/citation-manager';
 import { DirectoryCategory, AustralianStateCode } from '@/lib/seo/local-seo-types';
-import { EMERGENCY_PHONE } from '@/lib/design-tokens';
+// EMERGENCY_PHONE removed — platform operates without a phone number (online-only model)
 import citiesData from '@/data/australian-cities.json';
 
 export const dynamic = 'force-dynamic';
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
       const canonicalNAP = {
         name: 'NRPG - National Restoration Professionals Group',
         address: 'Australia',
-        phone: EMERGENCY_PHONE.number,
+        phone: '',
         website: 'https://disasterrecovery.com.au',
         addressParts: {
           street: '',
@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
           postcode: '',
           country: 'Australia',
         },
-        phone: phone || EMERGENCY_PHONE.number,
+        phone: phone || '',
         website: website || 'https://disasterrecovery.com.au',
       };
 
