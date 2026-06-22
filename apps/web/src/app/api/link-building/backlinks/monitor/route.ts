@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Backlink Monitoring API Route
  *

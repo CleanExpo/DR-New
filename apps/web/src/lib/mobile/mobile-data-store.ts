@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Mobile Data Store - Local SQLite Database Management
  *

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Public API: Contractor Service Areas
  * Returns geographic service area data for displaying on contractor profiles.

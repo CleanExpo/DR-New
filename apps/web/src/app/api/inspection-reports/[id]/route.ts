@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Inspection Report Details API Routes
  *

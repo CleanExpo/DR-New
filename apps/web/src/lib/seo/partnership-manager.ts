@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Partnership Manager
  *

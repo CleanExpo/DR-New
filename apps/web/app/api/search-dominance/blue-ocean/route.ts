@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Search Dominance Blue Ocean API
  *

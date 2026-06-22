@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Search Dominance Alerts API
  *

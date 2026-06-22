@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { captureException, captureMessage, setContext, setTag } from './sentry-config';
 import { updateMetrics, recordMetric } from '@/lib/metrics/prometheus';
 import { logError, logInfo } from '@/lib/logger/helpers';

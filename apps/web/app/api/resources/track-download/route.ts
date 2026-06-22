@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Download Tracking API Route
  *

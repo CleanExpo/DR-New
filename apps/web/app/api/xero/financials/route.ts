@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Xero Financial Summary
  *

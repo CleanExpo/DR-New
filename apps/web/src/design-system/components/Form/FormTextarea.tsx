@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * DesignOS Form Textarea Component
  *

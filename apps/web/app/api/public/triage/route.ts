@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Public API: Triage Endpoint
  * Handles damage assessment tool submissions from the marketing site

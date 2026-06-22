@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import { prisma } from '@/lib/prisma';
 import { SocketServer } from '@/lib/websocket/socket-server';
 import { SocketEvent } from '@/lib/websocket/events';

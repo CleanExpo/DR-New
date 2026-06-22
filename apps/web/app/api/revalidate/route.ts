@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Sanity Revalidation API Route
  *

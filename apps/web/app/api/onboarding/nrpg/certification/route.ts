@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * NRPG Certification Points API
  * GET: Retrieve contractor's certification points

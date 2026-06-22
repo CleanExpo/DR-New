@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Mobile Performance Monitor - Real-time Performance Analytics
  *

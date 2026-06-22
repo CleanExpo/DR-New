@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Jobs API Route
  * GET  /api/jobs - List jobs with filters (status, type, contractorId, dateFrom, dateTo)

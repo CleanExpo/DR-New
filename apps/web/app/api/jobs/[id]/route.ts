@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Single Job API Route
  * GET   /api/jobs/[id] - Get job detail with all relations

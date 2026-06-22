@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Job Documents API Route
  * POST /api/jobs/[id]/documents - Upload a document reference for a job

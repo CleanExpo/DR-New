@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Contractor Search API Route
  * Handles contractor search and matching based on postcode, state, and specialties

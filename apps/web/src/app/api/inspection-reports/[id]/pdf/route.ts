@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Inspection Report PDF Generation API
  *
