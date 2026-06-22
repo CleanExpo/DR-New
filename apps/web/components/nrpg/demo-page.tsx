@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * NRPG Components Demo Page
  *

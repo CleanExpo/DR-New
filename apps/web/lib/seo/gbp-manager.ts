@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Google Business Profile Manager - NRPG Platform
  *

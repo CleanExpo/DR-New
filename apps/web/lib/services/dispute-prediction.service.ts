@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Predictive Dispute Prevention Service
  *

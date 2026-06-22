@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Payment Real-time Events
  *

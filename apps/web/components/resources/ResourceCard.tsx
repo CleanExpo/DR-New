@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * ResourceCard Component
  *

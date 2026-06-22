@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Claim Wizard - Step 2: Location & Contact
  *

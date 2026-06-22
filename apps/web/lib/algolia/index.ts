@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Algolia Search - Main Export
  *

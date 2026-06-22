@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Landing Page Generator
  * Disaster Recovery - NRPG Platform

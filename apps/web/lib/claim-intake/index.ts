@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Claim Intake Pipeline
  *

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Contractor Payout Automation
  *

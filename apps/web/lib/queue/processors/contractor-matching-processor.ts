@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Contractor Matching Background Job Processor - STRICT ROTATION
  *

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * PostgreSQL Full-Text Search Service
  * Replaces Algolia with native PostgreSQL tsvector search

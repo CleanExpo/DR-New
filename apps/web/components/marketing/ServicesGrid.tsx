@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Services Grid - Visual Grid of Disaster Types
  *

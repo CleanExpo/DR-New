@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 // import Bull, { Queue } from 'bull';
 import { getT5GemmaService } from './t5gemma.service';
 import { prisma } from '@/lib/prisma';

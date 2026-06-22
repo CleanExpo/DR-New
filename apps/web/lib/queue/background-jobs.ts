@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Background Job Queue Service
  *

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Xero Payment Sync
  *

@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 /**
  * Real-time Event Emitter
  *
