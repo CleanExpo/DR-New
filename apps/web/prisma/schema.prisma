@@ -123,6 +123,10 @@ model User {
   isBlocked                    Boolean                        @default(false)
   lastLoginAt                  DateTime?
   tenantId                     String?
+  twoFactorEnabled             Boolean                        @default(false)
+  twoFactorSecret              String?
+  twoFactorSetupAt             DateTime?
+  twoFactorBackupCodes         String[]                       @default([])
   createdAt                    DateTime                       @default(now())
   updatedAt                    DateTime                       @updatedAt
   bookings                     Booking[]                      @relation("ClientBookings")
