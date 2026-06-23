@@ -115,25 +115,3 @@ export function validateSecrets(): void {
     console.info('✅ All required secrets validated successfully');
   }
 }
-
-/**
- * Validate specific environment variable
- */
-export function validateSecret(
-  name: string,
-  value: string | undefined,
-  required: boolean = false
-): boolean {
-  if (!value) {
-    if (required) {
-      throw new Error(`Missing required secret: ${name}`);
-    }
-    return false;
-  }
-
-  if (value.length < 8) {
-    console.warn(`⚠️  Secret ${name} appears too short (${value.length} chars)`);
-  }
-
-  return true;
-}

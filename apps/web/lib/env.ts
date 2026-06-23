@@ -17,6 +17,7 @@ const REQUIRED: Record<string, string> = {
 };
 
 const RECOMMENDED: Record<string, string> = {
+  JWT_SECRET: 'JWT token signing secret — falls back to NEXTAUTH_SECRET if unset (lib/auth)',
   ANTHROPIC_API_KEY: 'Anthropic API key — required for AI claim triage and agent workflows',
   RESEND_API_KEY: 'Resend API key — required for transactional email (registration, notifications)',
   STRIPE_SECRET_KEY: 'Stripe secret key — required for contractor Stripe Connect payouts',

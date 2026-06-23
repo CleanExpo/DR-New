@@ -7,56 +7,27 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { NewsletterSubscription } from '@/lib/resources/types';
+import { sendNewsletterConfirmationEmail } from '@/lib/email';
 
 /**
- * Email Service Provider Integration
- * Configure your preferred ESP (SendGrid, Mailchimp, ConvertKit, etc.)
+ * Send the double-opt-in confirmation email via Resend.
+ * Failures are non-fatal — the subscription is already persisted, so we
+ * log and continue (matching the repo's fire-and-forget notification pattern).
  */
 async function subscribeToEmailService(subscription: NewsletterSubscription): Promise<void> {
-  // TODO: Replace with actual ESP integration
+  if (!subscription.confirmationToken) {
+    return;
+  }
 
-  // Example: SendGrid
-  // const sgMail = require('@sendgrid/mail');
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  // await sgMail.send({
-  //   to: subscription.email,
-  //   from: 'newsletter@disasterrecovery.com',
-  //   templateId: 'd-xxxxxxxxxxxxx',
-  //   dynamicTemplateData: {
-  //     firstName: subscription.firstName,
-  //     confirmationUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/newsletter/confirm?token=${subscription.confirmationToken}`,
-  //   },
-  // });
+  const result = await sendNewsletterConfirmationEmail(
+    subscription.email,
+    subscription.confirmationToken,
+    subscription.firstName
+  );
 
-  // Example: Mailchimp
-  // const mailchimp = require('@mailchimp/mailchimp_marketing');
-  // mailchimp.setConfig({
-  //   apiKey: process.env.MAILCHIMP_API_KEY,
-  //   server: process.env.MAILCHIMP_SERVER_PREFIX,
-  // });
-  // await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID, {
-  //   email_address: subscription.email,
-  //   status: 'pending',
-  //   merge_fields: {
-  //     FNAME: subscription.firstName,
-  //     LNAME: subscription.lastName,
-  //   },
-  //   tags: subscription.interests,
-  // });
-
-  // Example: ConvertKit
-  // const response = await fetch('https://api.convertkit.com/v3/forms/{form_id}/subscribe', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({
-  //     api_key: process.env.CONVERTKIT_API_KEY,
-  //     email: subscription.email,
-  //     first_name: subscription.firstName,
-  //     tags: subscription.interests,
-  //   }),
-  // });
-
-  console.log('Newsletter subscription created:', subscription);
+  if (!result.success) {
+    console.error('Failed to send newsletter confirmation email:', result.error);
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -142,11 +113,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Subscribe to email service provider
+    // Send the double-opt-in confirmation email (non-fatal on failure)
     await subscribeToEmailService(subscription);
-
-    // TODO: Send confirmation email
-    // await sendConfirmationEmail(subscription);
 
     return NextResponse.json(
       {

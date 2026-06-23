@@ -3288,6 +3288,11 @@ model NewsletterSubscription {
   // Consent
   marketingConsent   Boolean   @default(false)
 
+  // Double opt-in
+  confirmed          Boolean   @default(false)
+  confirmedAt        DateTime?
+  confirmationToken  String?   @unique
+
   // Status
   isActive           Boolean   @default(true)
   subscribedAt       DateTime  @default(now())

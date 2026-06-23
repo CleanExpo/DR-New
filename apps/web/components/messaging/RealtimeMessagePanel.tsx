@@ -49,10 +49,13 @@ export function RealtimeMessagePanel({
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState<string | null>(null);
   const [isConnected, setIsConnected] = useState(false);
+  const [pendingAttachments, setPendingAttachments] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const realtimeManagerRef = useRef<SupabaseRealtimeManager | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Initialize realtime manager
   useEffect(() => {
@@ -157,9 +160,46 @@ export function RealtimeMessagePanel({
     }, 3000);
   };
 
+  // Upload a selected file via the existing upload API (Supabase Storage)
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    // Reset the input so the same file can be re-selected after removal
+    e.target.value = '';
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('bucket', 'documents');
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success || !data.url) {
+        throw new Error(data.message || 'Upload failed');
+      }
+
+      setPendingAttachments((prev) => [...prev, data.url]);
+    } catch (error) {
+      console.error('Error uploading attachment:', error);
+      alert('Failed to upload attachment. Please try again.');
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  // Remove a pending (not-yet-sent) attachment
+  const removePendingAttachment = (url: string) => {
+    setPendingAttachments((prev) => prev.filter((u) => u !== url));
+  };
+
   // Send message
   const handleSendMessage = async () => {
-    if (!messageText.trim() || isSending) return;
+    if ((!messageText.trim() && pendingAttachments.length === 0) || isSending) return;
 
     const manager = realtimeManagerRef.current;
     if (!manager) return;
@@ -177,6 +217,7 @@ export function RealtimeMessagePanel({
         message: messageText.trim(),
         timestamp: new Date().toISOString(),
         read: false,
+        ...(pendingAttachments.length > 0 ? { attachments: pendingAttachments } : {}),
       };
 
       // Save to database
@@ -200,6 +241,7 @@ export function RealtimeMessagePanel({
 
       // Clear input
       setMessageText('');
+      setPendingAttachments([]);
 
       // Stop typing indicator
       manager.sendTypingIndicator(jobId, {
@@ -328,7 +370,39 @@ export function RealtimeMessagePanel({
                             {message.senderName}
                           </p>
                         )}
-                        <p className="text-sm whitespace-pre-wrap break-words">{message.message}</p>
+                        {message.message && (
+                          <p className="text-sm whitespace-pre-wrap break-words">{message.message}</p>
+                        )}
+                        {message.attachments && message.attachments.length > 0 && (
+                          <div className="mt-2 space-y-2">
+                            {message.attachments.map((url) => {
+                              const isImage = /\.(png|jpe?g|gif|webp|heic|heif)$/i.test(url);
+                              return isImage ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <a key={url} href={url} target="_blank" rel="noopener noreferrer">
+                                  <img
+                                    src={url}
+                                    alt="Attachment"
+                                    className="max-h-48 rounded-md border border-portal-border object-cover"
+                                  />
+                                </a>
+                              ) : (
+                                <a
+                                  key={url}
+                                  href={url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={`flex items-center gap-2 text-xs underline ${
+                                    isOwnMessage ? 'text-white' : 'text-semantic-contractor'
+                                  }`}
+                                >
+                                  <Paperclip className="h-3 w-3" />
+                                  {decodeURIComponent(url.split('/').pop() || 'attachment')}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        )}
                         <div className="flex items-center justify-end gap-2 mt-2">
                           <span
                             className={`text-xs ${
@@ -357,7 +431,30 @@ export function RealtimeMessagePanel({
           </CardContent>
 
           {/* Message Input */}
-          <CardFooter className="border-t border-portal-border p-4">
+          <CardFooter className="border-t border-portal-border p-4 flex-col items-stretch">
+            {pendingAttachments.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-2">
+                {pendingAttachments.map((url) => (
+                  <div
+                    key={url}
+                    className="flex items-center gap-1 rounded-md bg-portal-hover border border-portal-border px-2 py-1 text-xs text-gray-900"
+                  >
+                    <Paperclip className="h-3 w-3 text-portal-muted" />
+                    <span className="max-w-[140px] truncate">
+                      {decodeURIComponent(url.split('/').pop() || 'attachment')}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => removePendingAttachment(url)}
+                      aria-label="Remove attachment"
+                      className="text-portal-muted hover:text-gray-900"
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="flex gap-2 w-full">
               <Textarea
                 value={messageText}
@@ -375,7 +472,11 @@ export function RealtimeMessagePanel({
               <div className="flex flex-col gap-2">
                 <Button
                   onClick={handleSendMessage}
-                  disabled={!messageText.trim() || isSending || !isConnected}
+                  disabled={
+                    (!messageText.trim() && pendingAttachments.length === 0) ||
+                    isSending ||
+                    !isConnected
+                  }
                   className="bg-semantic-contractor hover:bg-semantic-contractor/90 text-white"
                   size="icon"
                 >
@@ -385,14 +486,27 @@ export function RealtimeMessagePanel({
                     <Send className="h-4 w-4" />
                   )}
                 </Button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="application/pdf,image/jpeg,image/jpg,image/png"
+                  className="hidden"
+                  onChange={handleFileSelect}
+                />
                 <Button
                   variant="ghost"
                   size="icon"
                   className="border border-portal-border"
-                  disabled
-                  title="File attachments coming soon"
+                  disabled={!isConnected || isUploading}
+                  onClick={() => fileInputRef.current?.click()}
+                  title="Attach a file"
+                  aria-label="Attach a file"
                 >
-                  <Paperclip className="h-4 w-4" />
+                  {isUploading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Paperclip className="h-4 w-4" />
+                  )}
                 </Button>
               </div>
             </div>
