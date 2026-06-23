@@ -289,10 +289,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [smoke-test, load-test, stress-test, matching-test, auth-test]
     if: always()
+    # Secrets cannot be referenced in `if:` conditionals; map to a job-level
+    # env var and gate the step on env instead.
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
     steps:
       - name: Post to Slack
-        if: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: ${{ env.SLACK_WEBHOOK_URL != '' }}
         uses: slackapi/slack-github-action@v1.24.0
         with:
           payload: |
