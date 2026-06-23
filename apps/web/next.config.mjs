@@ -270,6 +270,14 @@ const nextConfig = {
   },
 }
 
+// Source-map upload only works when a Sentry auth token is present. On Vercel builds
+// without SENTRY_AUTH_TOKEN the plugin still *generates* the (widened) source maps and
+// then discards them ("No auth token provided. Will not upload source maps"), which
+// exhausts the build container's RAM and OOM-kills the build. Per Sentry's docs, the
+// documented fix for build OOM is to disable source-map generation. Gate the heavy
+// work on the token so release builds still get full source maps.
+const hasSentryAuthToken = Boolean(process.env.SENTRY_AUTH_TOKEN)
+
 // Sentry configuration options
 const sentryWebpackPluginOptions = {
   // For all available options, see:
@@ -277,6 +285,7 @@ const sentryWebpackPluginOptions = {
 
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
@@ -284,8 +293,14 @@ const sentryWebpackPluginOptions = {
   // For all available options, see:
   // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
+  // Skip source-map generation entirely when we can't upload — prevents build OOM.
+  sourcemaps: {
+    disable: !hasSentryAuthToken,
+  },
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time
+  // and memory) — only worth it when we actually have a token to upload them.
+  widenClientFileUpload: hasSentryAuthToken,
 
   // Route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
