@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
   try {
     const { prisma } = await import('@/lib/prisma');
 
-    const subscriber = await prisma.newsletterSubscriber.findFirst({
+    const subscriber = await prisma.newsletterSubscription.findFirst({
       where: { confirmationToken: token },
     });
 
@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    await prisma.newsletterSubscriber.update({
+    await prisma.newsletterSubscription.update({
       where: { id: subscriber.id },
       data: {
         confirmed: true,
