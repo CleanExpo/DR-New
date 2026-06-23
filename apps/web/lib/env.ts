@@ -23,6 +23,14 @@ const RECOMMENDED: Record<string, string> = {
   STRIPE_WEBHOOK_SECRET: 'Stripe webhook signing secret — required for payment event processing',
   NEXT_PUBLIC_SUPABASE_URL: 'Supabase project URL — required for real-time features',
   SUPABASE_SERVICE_ROLE_KEY: 'Supabase service role key — required for RLS bypass operations',
+  GOOGLE_CLIENT_ID: 'Google OAuth client ID — required for Google sign-in (lib/auth)',
+  GOOGLE_CLIENT_SECRET: 'Google OAuth client secret — required for Google sign-in (lib/auth)',
+  GOOGLE_MAPS_API_KEY: 'Google Maps API key — required for geo matching and location services',
+  XERO_CLIENT_ID: 'Xero client ID — required for invoice sync (lib/xero)',
+  XERO_CLIENT_SECRET: 'Xero client secret — required for invoice sync (lib/xero)',
+  UPSTASH_REDIS_REST_URL: 'Upstash Redis URL — required for distributed rate limiting (falls back to in-memory)',
+  UPSTASH_REDIS_REST_TOKEN: 'Upstash Redis token — required for distributed rate limiting',
+  CRON_SECRET: 'Cron authentication secret — required to authorise scheduled cron routes',
 };
 
 export interface EnvValidationResult {
