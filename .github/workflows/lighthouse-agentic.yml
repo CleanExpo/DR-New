@@ -40,12 +40,15 @@ jobs:
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
+          # head_ref is attacker-controllable (PR branch name); pass via env and
+          # reference the shell variable to avoid script injection [actionlint:expression]
+          HEAD_REF: ${{ github.head_ref }}
         run: |
           set +e
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             URL=""
             for i in {1..15}; do
-              URL=$(gh api "repos/${{ github.repository }}/deployments?ref=${{ github.head_ref }}&per_page=5" \
+              URL=$(gh api "repos/${{ github.repository }}/deployments?ref=${HEAD_REF}&per_page=5" \
                 --jq '.[0].payload.web_url // empty' 2>/dev/null || true)
               if [ -n "$URL" ]; then echo "Found: $URL"; break; fi
               sleep 20
