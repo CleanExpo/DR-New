@@ -24,11 +24,32 @@ jobs:
           echo "Guard job present so ruleset-triggered runs never fail with zero jobs."
           echo "Actual staging deployment runs only when deployment secrets and job conditions match."
 
+  # Secrets cannot be referenced in job-level `if:` conditionals, so we read
+  # the token inside a step (where the secrets context is available) and expose
+  # a boolean output that downstream jobs gate on via `needs`.
+  check-secrets:
+    name: Check Deploy Secrets
+    runs-on: ubuntu-latest
+    outputs:
+      has_vercel: ${{ steps.check.outputs.has_vercel }}
+    steps:
+      - id: check
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -n "$VERCEL_TOKEN" ]; then
+            echo "has_vercel=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_vercel=false" >> "$GITHUB_OUTPUT"
+          fi
+
   deploy-staging:
     name: Deploy to Vercel Staging
     runs-on: ubuntu-latest
-    # Skip entirely when Vercel secrets are not configured in this repo
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    # Manual-only: on push, only trigger-guard/check-secrets run (Vercel's native
+    # git integration handles push deploys). Actual CLI deploy runs on dispatch.
+    needs: check-secrets
+    if: needs.check-secrets.outputs.has_vercel == 'true' && github.event_name == 'workflow_dispatch'
     environment:
       name: staging
       url: ${{ steps.deploy.outputs.staging-url }}
@@ -69,8 +90,8 @@ jobs:
   smoke-tests:
     name: Staging Smoke Tests
     runs-on: ubuntu-latest
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
-    needs: deploy-staging
+    needs: [check-secrets, deploy-staging]
+    if: needs.check-secrets.outputs.has_vercel == 'true' && github.event_name == 'workflow_dispatch'
     steps:
       - name: Wait for deployment
         run: sleep 30

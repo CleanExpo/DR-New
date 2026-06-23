@@ -24,14 +24,37 @@ jobs:
           echo "Guard job present so ruleset-triggered runs never fail with zero jobs."
           echo "Actual preview deployment runs only when deployment secrets and job conditions match."
 
+  # Secrets cannot be referenced in job-level `if:` conditionals, so we read
+  # the token inside a step (where the secrets context is available) and expose
+  # a boolean output that downstream jobs gate on via `needs`.
+  check-secrets:
+    name: Check Deploy Secrets
+    runs-on: ubuntu-latest
+    outputs:
+      has_vercel: ${{ steps.check.outputs.has_vercel }}
+    steps:
+      - id: check
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -n "$VERCEL_TOKEN" ]; then
+            echo "has_vercel=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_vercel=false" >> "$GITHUB_OUTPUT"
+          fi
+
   deploy-preview:
     name: Deploy to Vercel Preview
     runs-on: ubuntu-latest
-    # Skip entirely when Vercel secrets are not configured in this repo
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    # Manual-only: on push, only trigger-guard/check-secrets run (Vercel's native
+    # git integration handles push deploys). Actual CLI deploy runs on dispatch.
+    needs: check-secrets
+    if: needs.check-secrets.outputs.has_vercel == 'true' && github.event_name == 'workflow_dispatch'
     environment:
       name: preview
       url: ${{ steps.deploy.outputs.preview-url }}
+    outputs:
+      preview-url: ${{ steps.deploy.outputs.preview-url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -85,8 +108,8 @@ jobs:
   lighthouse-preview:
     name: Lighthouse Audit on Preview
     runs-on: ubuntu-latest
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
-    needs: deploy-preview
+    needs: [check-secrets, deploy-preview]
+    if: needs.check-secrets.outputs.has_vercel == 'true' && github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -160,8 +183,8 @@ jobs:
   smoke-tests:
     name: Smoke Tests on Preview
     runs-on: ubuntu-latest
-    if: ${{ secrets.VERCEL_TOKEN != '' }}
-    needs: deploy-preview
+    needs: [check-secrets, deploy-preview]
+    if: needs.check-secrets.outputs.has_vercel == 'true' && github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

@@ -285,9 +285,31 @@ class CSRFProtection {
 }
 
 /**
- * Export singleton instance
+ * Export singleton instance.
+ *
+ * Instantiation is deferred behind a lazy proxy so that importing this module
+ * does not read CSRF_SECRET/JWT_SECRET at module-load time. Next.js imports
+ * route modules while "collecting page data" during the build, where those
+ * secrets are intentionally absent — eager construction would throw and fail
+ * the build. The real instance is created on first property access at request
+ * time, when the secrets are present.
  */
-export const csrfProtection = new CSRFProtection();
+let csrfProtectionInstance: CSRFProtection | null = null;
+
+function getCsrfProtection(): CSRFProtection {
+  if (!csrfProtectionInstance) {
+    csrfProtectionInstance = new CSRFProtection();
+  }
+  return csrfProtectionInstance;
+}
+
+export const csrfProtection = new Proxy({} as CSRFProtection, {
+  get(_target, prop, receiver) {
+    const instance = getCsrfProtection();
+    const value = Reflect.get(instance, prop, receiver);
+    return typeof value === 'function' ? value.bind(instance) : value;
+  },
+});
 
 /**
  * Export class for testing
