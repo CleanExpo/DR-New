@@ -231,6 +231,8 @@ jobs:
         env:
           CI: true
           SKIP_ENV_VALIDATION: true
+          CSRF_SECRET: test-csrf-secret-for-ci-minimum-32-chars
+          JWT_SECRET: test-jwt-secret-for-ci-minimum-32-chars
 
   test-summary:
     name: Test Summary
