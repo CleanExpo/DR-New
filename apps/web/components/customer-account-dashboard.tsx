@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { AlertCircle, Calendar, MapPin, Phone, Mail, DollarSign, Clock, CheckCircle, FileText, Settings, LogOut } from 'lucide-react';
+import { AlertCircle, Calendar, MapPin, DollarSign, Clock, CheckCircle, FileText, Settings, LogOut } from 'lucide-react';
 
 interface Booking {
   id: string;
@@ -382,7 +382,7 @@ export default function CustomerAccountDashboard() {
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <p className="font-semibold">{booking.serviceType.replace(/_/g, ' ')}</p>
-                        <p className="text-sm text-gray-400">{booking.address}, {booking.suburb} {booking.postcode}</p>
+                        <p className="text-sm text-gray-400">{booking.suburb} {booking.postcode}</p>
                       </div>
                       <Badge className={getStatusColor(booking.status)}>
                         {booking.status}
@@ -453,7 +453,6 @@ export default function CustomerAccountDashboard() {
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <p className="font-semibold text-lg">{booking.serviceType.replace(/_/g, ' ')}</p>
-                        <p className="text-sm text-gray-400">{booking.address}</p>
                         <p className="text-sm text-gray-400">{booking.suburb}, {booking.postcode} {booking.state}</p>
                       </div>
                       <div className="text-right">
@@ -481,7 +480,7 @@ export default function CustomerAccountDashboard() {
                       <div className="p-3 bg-gray-50 rounded mb-3">
                         <p className="font-semibold text-sm">Assigned Contractor</p>
                         <p className="text-sm">{booking.contractor.name} - {booking.contractor.company}</p>
-                        <p className="text-sm text-gray-400">⭐ {booking.contractor.rating} | {booking.contractor.phone}</p>
+                        <p className="text-sm text-gray-400">⭐ {booking.contractor.rating}</p>
                       </div>
                     )}
 
@@ -587,14 +586,6 @@ export default function CustomerAccountDashboard() {
                   <p className="text-lg font-medium mt-1">{profile.name}</p>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-gray-400">Email Address</label>
-                  <p className="text-lg font-medium mt-1">{profile.email}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-gray-400">Phone Number</label>
-                  <p className="text-lg font-medium mt-1">{profile.phone}</p>
-                </div>
-                <div>
                   <label className="text-sm font-medium text-gray-400">Member Since</label>
                   <p className="text-lg font-medium mt-1">{new Date(profile.joinedDate).toLocaleDateString()}</p>
                 </div>
@@ -603,10 +594,6 @@ export default function CustomerAccountDashboard() {
               <div className="border-t pt-4">
                 <h3 className="font-semibold mb-4">Address</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-400">Street Address</label>
-                    <p className="text-lg font-medium mt-1">{profile.address}</p>
-                  </div>
                   <div>
                     <label className="text-sm font-medium text-gray-400">Suburb</label>
                     <p className="text-lg font-medium mt-1">{profile.suburb}</p>
