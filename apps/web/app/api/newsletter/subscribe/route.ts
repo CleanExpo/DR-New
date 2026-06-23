@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       const { prisma } = await import('@/lib/prisma');
 
       // Check for existing subscription
-      const existingSubscriber = await prisma.newsletterSubscriber.findUnique({
+      const existingSubscriber = await prisma.newsletterSubscription.findUnique({
         where: { email: subscription.email },
       });
 
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Create or update subscription
-      const savedSubscription = await prisma.newsletterSubscriber.upsert({
+      const savedSubscription = await prisma.newsletterSubscription.upsert({
         where: { email: subscription.email },
         update: {
           isActive: true,
