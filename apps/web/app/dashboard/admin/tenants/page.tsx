@@ -71,57 +71,22 @@ export default function TenantsPage() {
     }
   }, [user, loading, router]);
 
+  const [fetchError, setFetchError] = useState<string | null>(null);
+
   const fetchTenants = async () => {
     try {
       setLoadingTenants(true);
-      // Mock data for now - replace with actual API call
-      const mockTenants: Tenant[] = [
-        {
-          id: '1',
-          name: 'Restoration Pro',
-          domain: 'restorationpro.com',
-          subdomain: 'restorationpro',
-          logo: '/placeholder-logo.png',
-          primaryColor: '#00BFA6',
-          secondaryColor: '#7C4DFF',
-          industry: 'restoration',
-          isActive: true,
-          createdAt: '2024-01-15',
-          userCount: 150,
-          requestCount: 89
-        },
-        {
-          id: '2',
-          name: 'HealthConnect',
-          domain: 'healthconnect.com.au',
-          subdomain: 'healthconnect',
-          logo: '/placeholder-logo.png',
-          primaryColor: '#EF4444',
-          secondaryColor: '#F59E0B',
-          industry: 'healthcare',
-          isActive: true,
-          createdAt: '2024-02-01',
-          userCount: 75,
-          requestCount: 45
-        },
-        {
-          id: '3',
-          name: 'LegalMatch',
-          domain: 'legalmatch.com.au',
-          subdomain: 'legalmatch',
-          logo: '/placeholder-logo.png',
-          primaryColor: '#3B82F6',
-          secondaryColor: '#1E40AF',
-          industry: 'legal',
-          isActive: false,
-          createdAt: '2024-01-20',
-          userCount: 25,
-          requestCount: 12
-        }
-      ];
-      setTenants(mockTenants);
+      setFetchError(null);
+      const response = await fetch('/api/admin/tenants');
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+      const data = await response.json();
+      setTenants((data.tenants ?? []) as Tenant[]);
     } catch (error) {
       console.error('Failed to fetch tenants:', error);
+      setFetchError('Failed to load tenants. Please try again.');
+      setTenants([]);
     } finally {
       setLoadingTenants(false);
     }
@@ -349,6 +314,13 @@ export default function TenantsPage() {
           </SelectContent>
         </Select>
       </div>
+
+      {/* Error state */}
+      {fetchError && !loadingTenants && (
+        <div className="text-center py-4 text-sm text-red-500" role="alert">
+          {fetchError}
+        </div>
+      )}
 
       {/* Tenants Grid */}
       {loadingTenants ? (

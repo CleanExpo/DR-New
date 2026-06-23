@@ -5,6 +5,7 @@ export const dynamic = 'force-dynamic';
 
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
+import { prisma } from '@/lib/prisma';
 import { z, ZodError } from 'zod';
 
 const tenantActionSchema = z.object({
@@ -26,122 +27,56 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['ADMIN']);
     }
 
-    // Mock tenant data
-    const tenants = [
-      {
-        id: 'tenant-1',
-        name: 'Restoration Pro Inc',
-        domain: 'restorationpro.marketplace.com',
-        industry: 'Water Damage Restoration',
-        plan: 'Professional',
-        status: 'active',
-        createdAt: '2024-01-15',
-        users: 45,
-        requests: 234,
-        revenue: 125000,
-        customBranding: {
-          primaryColor: '#00BFA6',
-          secondaryColor: '#00A693',
-          logo: '/logos/restoration-pro.png',
-          favicon: '/favicons/restoration-pro.ico'
+    const records = await prisma.tenant.findMany({
+      orderBy: { createdAt: 'desc' },
+      select: {
+        id: true,
+        name: true,
+        domain: true,
+        subdomain: true,
+        logo: true,
+        primaryColor: true,
+        secondaryColor: true,
+        industry: true,
+        isActive: true,
+        createdAt: true,
+        _count: {
+          select: {
+            users: true,
+            serviceRequests: true,
+          },
         },
-        features: {
-          leadScoring: true,
-          advancedAnalytics: true,
-          customDomain: true,
-          whiteLabel: true,
-          apiAccess: true
-        },
-        settings: {
-          allowDirectContact: true,
-          requireApproval: false,
-          autoMatching: true,
-          customFields: ['insurance_claim', 'property_type']
-        }
       },
-      {
-        id: 'tenant-2',
-        name: 'Elite Construction Services',
-        domain: 'elite.marketplace.com',
-        industry: 'Construction & Trades',
-        plan: 'Enterprise',
-        status: 'active',
-        createdAt: '2024-02-20',
-        users: 78,
-        requests: 456,
-        revenue: 289000,
-        customBranding: {
-          primaryColor: '#2563EB',
-          secondaryColor: '#1D4ED8',
-          logo: '/logos/elite-construction.png',
-          favicon: '/favicons/elite-construction.ico'
-        },
-        features: {
-          leadScoring: true,
-          advancedAnalytics: true,
-          customDomain: true,
-          whiteLabel: true,
-          apiAccess: true,
-          customIntegrations: true
-        },
-        settings: {
-          allowDirectContact: false,
-          requireApproval: true,
-          autoMatching: true,
-          customFields: ['project_budget', 'timeline', 'permits_required']
-        }
-      },
-      {
-        id: 'tenant-3',
-        name: 'Home Services Hub',
-        domain: 'homeservices.marketplace.com',
-        industry: 'Home Services',
-        plan: 'Starter',
-        status: 'trial',
-        createdAt: '2024-03-10',
-        users: 12,
-        requests: 34,
-        revenue: 8500,
-        customBranding: {
-          primaryColor: '#7C3AED',
-          secondaryColor: '#6D28D9',
-          logo: '/logos/home-services.png',
-          favicon: '/favicons/home-services.ico'
-        },
-        features: {
-          leadScoring: true,
-          advancedAnalytics: false,
-          customDomain: false,
-          whiteLabel: false,
-          apiAccess: false
-        },
-        settings: {
-          allowDirectContact: true,
-          requireApproval: false,
-          autoMatching: true,
-          customFields: []
-        }
-      }
-    ];
+    });
+
+    const tenants = records.map((t) => ({
+      id: t.id,
+      name: t.name,
+      domain: t.domain ?? undefined,
+      subdomain: t.subdomain ?? undefined,
+      logo: t.logo ?? undefined,
+      primaryColor: t.primaryColor ?? undefined,
+      secondaryColor: t.secondaryColor ?? undefined,
+      industry: t.industry ?? undefined,
+      isActive: t.isActive,
+      createdAt: t.createdAt.toISOString(),
+      userCount: t._count.users,
+      requestCount: t._count.serviceRequests,
+    }));
 
     // Single pass for all tenant stats
-    let activeTenants = 0, trialTenants = 0, totalUsers = 0, totalRequests = 0, totalRevenue = 0;
+    let activeTenants = 0, totalUsers = 0, totalRequests = 0;
     for (const t of tenants) {
-      if (t.status === 'active') activeTenants++;
-      else if (t.status === 'trial') trialTenants++;
-      totalUsers += t.users;
-      totalRequests += t.requests;
-      totalRevenue += t.revenue;
+      if (t.isActive) activeTenants++;
+      totalUsers += t.userCount;
+      totalRequests += t.requestCount;
     }
     const tenantStats = {
       totalTenants: tenants.length,
       activeTenants,
-      trialTenants,
       totalUsers,
       totalRequests,
-      totalRevenue,
       averageUsersPerTenant: tenants.length > 0 ? Math.round(totalUsers / tenants.length) : 0,
-      averageRevenuePerTenant: tenants.length > 0 ? Math.round(totalRevenue / tenants.length) : 0,
     };
 
     return NextResponse.json({

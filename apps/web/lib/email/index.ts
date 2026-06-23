@@ -11,6 +11,7 @@ export {
   sendVerificationEmail,
   sendWelcomeEmail,
   sendLeadConfirmationEmail,
+  sendNewsletterConfirmationEmail,
   sendNewsletterWelcomeEmail,
   getResendClient,
 } from './resend';

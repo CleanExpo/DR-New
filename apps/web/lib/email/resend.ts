@@ -546,6 +546,91 @@ Australia's #1 Disaster Recovery Platform
 }
 
 /**
+ * Send newsletter double-opt-in confirmation email
+ */
+export async function sendNewsletterConfirmationEmail(
+  email: string,
+  confirmationToken: string,
+  firstName?: string
+): Promise<{ success: boolean; error?: string }> {
+  const confirmUrl = `${EMAIL_CONFIG.baseUrl}/api/newsletter/confirm?token=${confirmationToken}`;
+  const displayName = firstName || 'there';
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0; }
+    .header h1 { margin: 0; font-size: 24px; }
+    .content { background: #f9fafb; padding: 30px; border-radius: 0 0 8px 8px; }
+    .button { display: inline-block; background: #059669; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: 600; }
+    .button:hover { background: #047857; }
+    .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+    .link-text { word-break: break-all; font-size: 12px; color: #666; background: #f3f4f6; padding: 10px; border-radius: 4px; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>✅ Confirm Your Subscription</h1>
+    </div>
+    <div class="content">
+      <p>Hi ${displayName},</p>
+
+      <p>Thanks for signing up to the Disaster Recovery Australia newsletter. Please confirm your email address to start receiving our updates.</p>
+
+      <p style="text-align: center;">
+        <a href="${confirmUrl}" class="button">Confirm Subscription</a>
+      </p>
+
+      <p class="link-text">
+        <strong>Can't click the button?</strong> Copy and paste this link into your browser:<br>
+        ${confirmUrl}
+      </p>
+
+      <p>If you didn't request this, you can safely ignore this email and you won't be subscribed.</p>
+    </div>
+    <div class="footer">
+      <p>Disaster Recovery Australia<br>
+      Australia's #1 Disaster Recovery Platform</p>
+      <p>This email was sent to ${email}</p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+
+  const text = `
+Confirm Your Subscription
+
+Hi ${displayName},
+
+Thanks for signing up to the Disaster Recovery Australia newsletter. Please confirm your email address to start receiving our updates.
+
+Confirm your subscription:
+${confirmUrl}
+
+If you didn't request this, you can safely ignore this email and you won't be subscribed.
+
+---
+Disaster Recovery Australia
+Australia's #1 Disaster Recovery Platform
+  `;
+
+  return sendEmail({
+    to: email,
+    subject: 'Confirm Your Newsletter Subscription - Disaster Recovery Australia',
+    html,
+    text,
+  });
+}
+
+/**
  * Send newsletter welcome email
  */
 export async function sendNewsletterWelcomeEmail(
