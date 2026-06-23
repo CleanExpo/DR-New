@@ -105,6 +105,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        # lhci autorun inspects package.json#packageManager (pnpm@9.15.9) and
+        # shells out to pnpm; without this the step fails with `pnpm: not found`.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli@0.13.x
 
