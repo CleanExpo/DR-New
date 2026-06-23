@@ -227,12 +227,13 @@ jobs:
       - name: Type check
         run: pnpm run type-check
       - name: Build application
+        # Intentionally NO runtime secrets (CSRF_SECRET/JWT_SECRET/etc): this job
+        # is the guard that the app builds without them. Modules must not read
+        # secrets at import/build time — defer to request time (see csrf.ts).
         run: pnpm run build
         env:
           CI: true
           SKIP_ENV_VALIDATION: true
-          CSRF_SECRET: test-csrf-secret-for-ci-minimum-32-chars
-          JWT_SECRET: test-jwt-secret-for-ci-minimum-32-chars
 
   test-summary:
     name: Test Summary

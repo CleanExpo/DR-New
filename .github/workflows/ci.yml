@@ -10,6 +10,18 @@ env:
   NODE_VERSION: '20'
 
 jobs:
+  # Catches GitHub Actions errors (e.g. `secrets` used in `if:`, bad expressions,
+  # invalid refs) at PR time so they can never reach main as startup_failure runs.
+  workflows-lint:
+    name: Workflow Lint (actionlint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install actionlint (pinned)
+        run: bash <(curl -sSf https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+      - name: Lint all workflows
+        run: ./actionlint -shellcheck= -color
+
   lint:
     name: Lint Code
     runs-on: ubuntu-latest
