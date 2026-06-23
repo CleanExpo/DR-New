@@ -5,6 +5,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Cancel a superseded in-flight production deploy when a newer commit lands on
+# main. Without this, a burst of pushes stacks N full `vercel build`+upload runs,
+# which on 2026-06-23 drained Vercel's 40k upload quota (code: api-upload-paid)
+# and 24h-throttled all production deploys. One deploy in flight at a time.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
 env:
   NODE_VERSION: '20'
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
