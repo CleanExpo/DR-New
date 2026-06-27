@@ -31,56 +31,14 @@ interface Testimonial {
   date: string;
 }
 
-const SAMPLE_TESTIMONIALS: Testimonial[] = [
-  {
-    id: '1',
-    customerName: 'Sarah M.',
-    location: 'Strathmore, VIC',
-    serviceType: 'Water Damage',
-    rating: 5,
-    quote: 'NRPG arrived within 45 minutes of my emergency call. They assessed the damage professionally and got our family back in our home within 3 days. Absolutely outstanding service.',
-    responseTime: '45 mins',
-    verified: true,
-    date: '2025-11-15',
-  },
-  {
-    id: '2',
-    customerName: 'David T.',
-    location: 'Alexandria, NSW',
-    serviceType: 'Fire Restoration',
-    rating: 5,
-    quote: 'After the kitchen fire, NRPG handled everything - from emergency extraction to final restoration. The contractor was certified, professional, and our insurer was completely satisfied.',
-    responseTime: '38 mins',
-    verified: true,
-    date: '2025-11-20',
-  },
-  {
-    id: '3',
-    customerName: 'Michelle L.',
-    location: 'South Brisbane, QLD',
-    serviceType: 'Mould Remediation',
-    rating: 5,
-    quote: 'The detailed before/after documentation from NRPG made our insurance claim straightforward. No disputes, no delays. That was worth its weight in gold during a stressful time.',
-    responseTime: '52 mins',
-    verified: true,
-    date: '2025-10-30',
-  },
-  {
-    id: '4',
-    customerName: 'Robert K.',
-    location: 'Perth City, WA',
-    serviceType: 'Storm Damage',
-    rating: 4.9,
-    quote: 'Professional team, quality work, fair pricing. They understood the urgency and delivered results. Our house was restored perfectly.',
-    responseTime: '41 mins',
-    verified: true,
-    date: '2025-10-15',
-  },
-];
+// Testimonials must come from the real /api/testimonials source only. Do NOT add
+// hardcoded sample testimonials here — displaying invented reviews as "verified"
+// is misleading conduct (ACCC). When there are no real testimonials, the carousel
+// renders nothing.
 
 export function ClientTestimonialCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(SAMPLE_TESTIMONIALS);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch real testimonials from database
@@ -90,11 +48,11 @@ export function ClientTestimonialCarousel() {
         const response = await fetch('/api/testimonials?limit=6');
         if (response.ok) {
           const data = await response.json();
-          setTestimonials(data.testimonials || SAMPLE_TESTIMONIALS);
+          setTestimonials(Array.isArray(data.testimonials) ? data.testimonials : []);
         }
         setIsLoading(false);
       } catch (err) {
-        // Fallback to sample data
+        // No fabricated fallback — leave the list empty so nothing misleading renders.
         console.warn('Failed to fetch testimonials:', err);
         setIsLoading(false);
       }
@@ -113,8 +71,13 @@ export function ClientTestimonialCarousel() {
 
   const current = testimonials[currentIndex];
 
-  if (isLoading || !current) {
+  if (isLoading) {
     return <div className="h-96 bg-slate-100 rounded-3xl animate-pulse" />;
+  }
+
+  // No fabricated fallback: if there are no real testimonials, render nothing.
+  if (!current) {
+    return null;
   }
 
   return (
@@ -221,7 +184,7 @@ export function ClientTestimonialCarousel() {
             </p>
             <ul className="space-y-2 text-sm text-slate-700">
               <li>✓ IICRC-certified contractors</li>
-              <li>✓ Average 42-minute response time</li>
+              <li>✓ Priority emergency dispatch</li>
               <li>✓ Professional documentation for insurance</li>
               <li>✓ Transparent $2,750 emergency pricing</li>
               <li>✓ 24/7 availability, all states</li>
@@ -232,7 +195,7 @@ export function ClientTestimonialCarousel() {
 
       {/* Counter */}
       <div className="bg-blue-600 text-white px-8 py-3 text-center text-sm font-semibold">
-        {currentIndex + 1} / {testimonials.length} verified customer stories
+        {currentIndex + 1} / {testimonials.length} client stories
       </div>
     </div>
   );
