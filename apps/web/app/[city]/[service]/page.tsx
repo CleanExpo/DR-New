@@ -118,10 +118,13 @@ export async function generateMetadata({ params }: CityServicePageProps): Promis
       images: [`/images/og/${serviceSlug}-${citySlug}.jpg`],
     },
     robots: {
-      index: true,
+      // Suburb-level pages are near-duplicate (default stats / templated copy);
+      // keep them out of the index to avoid scaled-content bloat. Capital-city
+      // pages carry unique data and stay indexable.
+      index: !pageData.isSuburb,
       follow: true,
       googleBot: {
-        index: true,
+        index: !pageData.isSuburb,
         follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
