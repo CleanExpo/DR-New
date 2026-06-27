@@ -106,7 +106,16 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // TODO: Trigger contractor matching workflow
+    // Bridge into the CRM: open an Opportunity from this ServiceRequest so it
+    // enters the customer-lifecycle pipeline. Best-effort — never block the
+    // response on CRM failure.
+    try {
+      const { opportunityService } = await import('@/lib/crm/opportunity.service')
+      await opportunityService.createFromServiceRequest(serviceRequest.id)
+    } catch (crmError) {
+      console.error('[service-requests] failed to bridge to CRM:', crmError)
+    }
+
     // TODO: Send confirmation email to client
 
     return NextResponse.json({

@@ -12,6 +12,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { basePrisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/services/email.service';
+import { bridgeLeadToCrm } from '@/lib/crm/lead-bridge';
 
 const SUBJECTS = [
   'Platform Support',
@@ -80,6 +81,15 @@ export async function POST(request: NextRequest) {
         userAgent,
         status: 'NEW',
       },
+    });
+
+    // Bridge into the CRM so the enquirer is visible as a customer (no postcode,
+    // so this seeds a lifecycle without opening an opportunity). Best-effort.
+    void bridgeLeadToCrm({
+      email: data.email,
+      name: `${data.firstName} ${data.lastName}`.trim(),
+      phone: data.phone || null,
+      source: 'contact_form',
     });
 
     // Best-effort notifications. sendEmail never throws (returns false on failure
