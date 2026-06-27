@@ -3538,3 +3538,32 @@ model NotificationLog {
   @@index([sentAt])
   @@map("notification_logs")
 }
+
+/// Platform-level contact enquiries submitted from /contact.
+/// Distinct from LeadCapture (damage claims) and ContractorInquiry (applications).
+model ContactEnquiry {
+  id          String    @id @default(cuid())
+
+  firstName   String
+  lastName    String
+  email       String
+  phone       String?
+  subject     String    @default("General Inquiry")
+  message     String    @db.Text
+
+  // Attribution / metadata
+  source      String?
+  referrer    String?
+  ipAddress   String?
+  userAgent   String?
+  submittedAt DateTime  @default(now())
+
+  // Ops tracking
+  status      String    @default("NEW") // NEW | CONTACTED | RESOLVED | CLOSED
+  assignedTo  String?
+  respondedAt DateTime?
+
+  @@index([status])
+  @@index([submittedAt])
+  @@map("contact_enquiries")
+}
