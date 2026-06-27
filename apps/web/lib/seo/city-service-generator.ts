@@ -177,8 +177,6 @@ interface CityServicePageData {
   faqs: Array<{ question: string; answer: string }>;
   relatedServices: Array<{ title: string; slug: string; description: string }>;
   nearbyLocations: Array<{ name: string; slug: string }>;
-  reviewCount: number;
-  averageRating: number;
 }
 
 /**
@@ -453,8 +451,6 @@ export function generateCityServicePageData(
     faqs,
     relatedServices,
     nearbyLocations,
-    reviewCount: Math.floor(Math.random() * 500) + 200,
-    averageRating: 4.8 + Math.random() * 0.2,
   };
 }
 

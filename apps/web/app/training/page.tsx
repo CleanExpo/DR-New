@@ -376,7 +376,7 @@ export default function TrainingPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-green-300 mt-0.5 flex-shrink-0" />
-                  <span>100% pass guarantee or money back</span>
+                  <span>Structured exam preparation and study support</span>
                 </li>
               </ul>
             </div>

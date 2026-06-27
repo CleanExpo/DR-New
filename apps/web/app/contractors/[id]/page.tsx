@@ -301,7 +301,7 @@ export default async function PublicContractorProfilePage({ params }: Props) {
                   {/* Public Liability Insurance */}
                   {contractor.publicLiabilityPolicyNumber && (
                     <InsuranceVerificationBadge
-                      coverageAmount={contractor.publicLiabilityCoverageAmount || '$10M'}
+                      coverageAmount={contractor.publicLiabilityCoverageAmount || ''}
                       expiryDate={contractor.publicLiabilityExpiryDate}
                       policyNumber={contractor.publicLiabilityPolicyNumber}
                       insuranceType="public_liability"

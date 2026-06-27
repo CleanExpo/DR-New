@@ -118,10 +118,13 @@ export async function generateMetadata({ params }: CityServicePageProps): Promis
       images: [`/images/og/${serviceSlug}-${citySlug}.jpg`],
     },
     robots: {
-      index: true,
+      // Suburb-level pages are near-duplicate (default stats / templated copy);
+      // keep them out of the index to avoid scaled-content bloat. Capital-city
+      // pages carry unique data and stay indexable.
+      index: !pageData.isSuburb,
       follow: true,
       googleBot: {
-        index: true,
+        index: !pageData.isSuburb,
         follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
@@ -154,8 +157,6 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
       latitude: pageData.latitude,
       longitude: pageData.longitude,
       serviceRadius: 50,
-      reviewCount: pageData.reviewCount,
-      averageRating: pageData.averageRating,
     }),
     schemaGenerator.generateServiceSchema({
       name: `${pageData.serviceTitle} - ${pageData.cityName}`,
@@ -258,9 +259,9 @@ export default async function CityServicePage({ params }: CityServicePageProps) 
               {/* Trust Signals Row */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                 {[
-                  { icon: '⚡', text: '60-Min Response', subtext: 'Metro Areas' },
+                  { icon: '⚡', text: 'Priority Dispatch', subtext: 'Emergency Response' },
                   { icon: '✓', text: 'IICRC Certified', subtext: 'Technicians' },
-                  { icon: '🏆', text: `${pageData.averageRating}/5 Rating`, subtext: `${pageData.reviewCount}+ Reviews` },
+                  { icon: '🛡️', text: 'Insurance Work', subtext: 'Welcome' },
                   { icon: '📞', text: '24/7 Available', subtext: 'All Year Round' },
                 ].map((item, idx) => (
                   <div key={idx} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 text-center">

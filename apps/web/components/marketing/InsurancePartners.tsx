@@ -1,109 +1,53 @@
 /**
- * Insurance Partners Logo Section Component
+ * Insurance Documentation Trust Band
  *
- * Displays logos of major Australian insurers that trust NRPG
- * - NRMA Insurance
- * - RACV
- * - AAMI
- * - Suncorp
- * - Allianz Australia
+ * Communicates a TRUTHFUL trust signal: NRPG contractors produce IICRC-standard
+ * scope-of-works and estimates that major Australian insurers accept for
+ * restoration claims.
  *
- * These partnerships establish institutional trust
- * Insurance partnerships = "vetted by financial institutions"
- * Critical E.E.A.T signal for property damage claims
+ * IMPORTANT: This component must NOT display insurer logos, names, or links, and
+ * must NOT claim partnership/endorsement by any insurer. Doing so implies a
+ * commercial relationship that does not exist (false affiliation) and uses
+ * third-party trademarks without authorisation. Keep claims to what NRPG itself
+ * does — produce documentation insurers accept.
  */
 
-'use client';
-
-import { useState } from 'react';
-import Image from 'next/image';
-
-interface InsurancePartner {
-  name: string;
-  logo: string;
-  url: string;
-  description: string;
-}
-
-const INSURANCE_PARTNERS: InsurancePartner[] = [
+const DOCUMENTATION_POINTS: { title: string; body: string }[] = [
   {
-    name: 'NRMA Insurance',
-    logo: '/logos/nrma-insurance.svg',
-    url: 'https://nrma.com.au',
-    description: 'Major Australian insurer — IICRC-standard documentation accepted for restoration claims',
+    title: 'IICRC-standard scope of works',
+    body: 'A professional, standards-based scope and estimate prepared the way insurers expect to receive it.',
   },
   {
-    name: 'RACV',
-    logo: '/logos/racv.svg',
-    url: 'https://racv.com.au',
-    description: 'Victorian insurer for home and business — IICRC documentation accepted',
+    title: 'Clear claim documentation',
+    body: 'Moisture readings, photos, and drying logs that support your claim with your own insurer.',
   },
   {
-    name: 'AAMI',
-    logo: '/logos/aami.svg',
-    url: 'https://aami.com.au',
-    description: 'Home and car insurance — IICRC-standard scope of works accepted',
-  },
-  {
-    name: 'Suncorp',
-    logo: '/logos/suncorp.svg',
-    url: 'https://suncorp.com.au',
-    description: 'Home insurance across all states — IICRC documentation accepted',
-  },
-  {
-    name: 'Allianz',
-    logo: '/logos/allianz.svg',
-    url: 'https://allianz.com.au',
-    description: 'Comprehensive coverage — IICRC-standard scope and estimate supplied for all claims',
+    title: 'You stay in control',
+    body: 'NRPG does not determine claim outcomes or act as your insurer — you deal directly with your insurer.',
   },
 ];
 
 export function InsurancePartners() {
-  const [hoveredPartner, setHoveredPartner] = useState<string | null>(null);
-
   return (
     <div className="w-full bg-gradient-to-r from-slate-50 to-blue-50 rounded-3xl p-8 md:p-12">
       {/* Header */}
       <div className="text-center mb-12">
         <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
-          Trusted by Major Australian Insurers
+          Documentation Your Insurer Accepts
         </h3>
         <p className="text-slate-600 max-w-2xl mx-auto">
-          NRPG contractors produce IICRC-standard documentation recognised by all major Australian insurers — a professional scope of works and estimate your insurer accepts.
+          NRPG contractors produce IICRC-standard documentation recognised by major Australian
+          insurers — a professional scope of works and estimate you can submit with your claim.
         </p>
       </div>
 
-      {/* Partners Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8">
-        {INSURANCE_PARTNERS.map(partner => (
-          <a
-            key={partner.name}
-            href={partner.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-[transform,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.19,1,0.22,1)] cursor-pointer hover:-translate-y-1"
-            onMouseEnter={() => setHoveredPartner(partner.name)}
-            onMouseLeave={() => setHoveredPartner(null)}
-          >
-            {/* Logo Placeholder - In production, use Next.js Image */}
-            <div className="w-24 h-16 mb-3 flex items-center justify-center bg-slate-100 rounded-lg group-hover:bg-blue-100 transition-colors">
-              <span className="text-center text-xs font-bold text-slate-600 group-hover:text-blue-600 transition-colors px-2">
-                {partner.name}
-              </span>
-            </div>
-
-            {/* Partner Name */}
-            <p className="font-bold text-slate-900 text-center text-sm mb-1">
-              {partner.name}
-            </p>
-
-            {/* Hover Description */}
-            {hoveredPartner === partner.name && (
-              <p className="text-xs text-slate-600 text-center absolute bg-white rounded-lg p-2 w-32 z-10 shadow-md">
-                {partner.description}
-              </p>
-            )}
-          </a>
+      {/* What we provide */}
+      <div className="grid md:grid-cols-3 gap-6">
+        {DOCUMENTATION_POINTS.map(point => (
+          <div key={point.title} className="bg-white rounded-2xl shadow-sm p-6 text-center">
+            <p className="font-bold text-slate-900 mb-2">{point.title}</p>
+            <p className="text-sm text-slate-600">{point.body}</p>
+          </div>
         ))}
       </div>
 
@@ -111,7 +55,7 @@ export function InsurancePartners() {
       <div className="mt-12 pt-8 border-t border-slate-200">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="text-center">
-            <div className="text-2xl font-black text-blue-600 mb-1">AU+NZ</div>
+            <div className="text-2xl font-black text-blue-600 mb-1">AU + NZ</div>
             <p className="text-sm text-slate-600">Network coverage across Australia and New Zealand</p>
           </div>
           <div className="text-center">
@@ -119,8 +63,8 @@ export function InsurancePartners() {
             <p className="text-sm text-slate-600">Emergency claims processing support</p>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-black text-blue-600 mb-1">100%</div>
-            <p className="text-sm text-slate-600">IICRC-certified contractors</p>
+            <div className="text-2xl font-black text-blue-600 mb-1">IICRC</div>
+            <p className="text-sm text-slate-600">Certified contractors on every job</p>
           </div>
         </div>
       </div>

@@ -96,9 +96,9 @@ export default function ContractorDirectoryPage() {
               <span className="text-[#00BFA6]">Contractor</span>
             </h1>
             <p className="text-xl text-[#9CA3AF] mb-8 max-w-2xl mx-auto">
-              Search our network of IICRC-certified disaster recovery
-              professionals across Australia. Every contractor is verified,
-              insured, and vetted by the NRPG network.
+              Search our network of disaster recovery professionals across
+              Australia. Every contractor in this directory is NRPG-verified and
+              holds current IICRC certification.
             </p>
           </div>
         </section>
@@ -113,7 +113,7 @@ export default function ContractorDirectoryPage() {
                   NRPG Verified
                 </div>
                 <div className="text-xs text-[#6B7280]">
-                  Background checked
+                  Credentials reviewed
                 </div>
               </div>
             </div>
@@ -132,9 +132,9 @@ export default function ContractorDirectoryPage() {
               <CheckCircle className="h-8 w-8 text-[#7C4DFF] flex-shrink-0" />
               <div>
                 <div className="text-sm font-semibold text-[#F9FAFB]">
-                  Fully Insured
+                  Insurance Required
                 </div>
-                <div className="text-xs text-[#6B7280]">$10M+ liability</div>
+                <div className="text-xs text-[#6B7280]">Contractors hold their own cover</div>
               </div>
             </div>
             <div className="flex items-center gap-3 bg-[#1F2937]/50 rounded-xl p-4 border border-[#374151]">

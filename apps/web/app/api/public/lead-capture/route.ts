@@ -30,6 +30,7 @@ import {
   APIError,
 } from '@/lib/api/error-handler';
 import { sendLeadConfirmationEmail } from '@/lib/email/resend';
+import { bridgeLeadToCrm } from '@/lib/crm/lead-bridge';
 
 export const dynamic = 'force-dynamic';
 
@@ -141,6 +142,19 @@ async function handleLeadCapture(req: NextRequest) {
     });
 
     logger.info('Lead created successfully', { leadId: lead.id });
+
+    // Bridge the lead into the CRM (customer lifecycle + opportunity). Best-effort:
+    // the lead is already persisted, so a CRM failure must not affect the response.
+    void bridgeLeadToCrm({
+      email: data.email,
+      name: `${data.firstName} ${data.lastName}`.trim(),
+      phone: data.phone,
+      source: data.source || 'lead_capture',
+      state: data.state,
+      postcode: data.postcode,
+      suburb: data.suburb,
+      serviceType: data.damageType,
+    });
 
     // 8. Send confirmation email to customer
     const emailResult = await sendLeadConfirmationEmail(data.email, {

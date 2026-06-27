@@ -28,9 +28,8 @@ export class SchemaGenerator {
       alternateName: "Disaster Recovery Australia",
       legalName: "Disaster Recovery Pty Ltd",
       taxID: "urn:abn:85151794142",
-      description: "Australia's leading disaster recovery and emergency restoration network. 100% vetted contractors providing forensic restoration standards for flood, fire, storm, and water damage across all states and territories.",
+      description: "Australian disaster recovery and emergency restoration network connecting property owners with independent IICRC-certified restoration contractors for flood, fire, storm, and water damage across all states and territories.",
       url: BASE_URL,
-      foundingDate: "2010",
 
       address: {
         "@type": "PostalAddress",
@@ -51,20 +50,7 @@ export class SchemaGenerator {
         "https://www.instagram.com/nrpgaustralia",
       ],
 
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "1247",
-        bestRating: "5",
-        worstRating: "1",
-      },
-
-      numberOfEmployees: {
-        "@type": "QuantitativeValue",
-        value: "50+",
-      },
-
-      slogan: "One Number. Forensic Results. Zero Compromise.",
+      slogan: "One call connects you with trusted restoration professionals.",
 
       knowsAbout: [
         "Emergency Restoration",
@@ -75,17 +61,6 @@ export class SchemaGenerator {
         "Biohazard Cleanup",
         "Forensic Cleaning",
         "IICRC Standards",
-      ],
-
-      memberOf: [
-        {
-          "@type": "Organization",
-          name: "IICRC - Institute of Inspection Cleaning and Restoration Certification",
-        },
-        {
-          "@type": "Organization",
-          name: "Restoration Industry Association",
-        },
       ],
 
       hasOfferCatalog: {
@@ -213,7 +188,7 @@ export class SchemaGenerator {
       "@id": `${BASE_URL}/locations/${stateSlug}/${citySlug}#business`,
       name: `NRPG Disaster Recovery - ${location.city}`,
       alternateName: `Disaster Recovery ${location.city}`,
-      description: `24/7 emergency disaster recovery in ${location.city}, ${location.state}. IICRC-certified water damage, fire damage, mould remediation. Priority dispatch. All insurers accepted.`,
+      description: `24/7 emergency disaster recovery in ${location.city}, ${location.state}. IICRC-certified water damage, fire damage, mould remediation. Priority dispatch.`,
       url: `${BASE_URL}/locations/${stateSlug}/${citySlug}`,
 
       address: {
@@ -264,16 +239,9 @@ export class SchemaGenerator {
       paymentAccepted: "Cash, Credit Card, Insurance Direct Billing",
       currenciesAccepted: "AUD",
 
-      // Aggregate rating for star display
-      ...(location.reviewCount && location.averageRating && {
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: location.averageRating.toString(),
-          reviewCount: location.reviewCount.toString(),
-          bestRating: "5",
-          worstRating: "1",
-        },
-      }),
+      // NOTE: aggregateRating intentionally omitted — star ratings must reflect a
+      // real, auditable review source, not generated values. Re-add only when wired
+      // to verified review data (see verified-claims.json).
 
       hasOfferCatalog: {
         "@type": "OfferCatalog",
