@@ -184,7 +184,7 @@ export async function generateContractorCertificate(data: CertificateData): Prom
 
     // Add QR code for verification
     const qrCodeBuffer = await QRCode.toBuffer(
-      `https://nrpg.com.au/verify/${data.contractorId}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'}/verify/${data.contractorId}`,
       {
         errorCorrectionLevel: 'H',
         type: 'image/png',

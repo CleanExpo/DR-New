@@ -24,7 +24,7 @@ export interface QRCodeOptions {
  * Generate QR code for job tracking
  * Returns PNG buffer for embedding in PDFs or images
  */
-export async function generateJobQRCode(jobId: string, baseUrl: string = 'https://nrpg.com.au'): Promise<Buffer> {
+export async function generateJobQRCode(jobId: string, baseUrl: string = (process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au')): Promise<Buffer> {
   try {
     const url = `${baseUrl}/jobs/${jobId}/track`;
 
@@ -48,7 +48,7 @@ export async function generateJobQRCode(jobId: string, baseUrl: string = 'https:
  */
 export async function generateCertificateQRCode(
   contractorId: string,
-  baseUrl: string = 'https://nrpg.com.au'
+  baseUrl: string = (process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au')
 ): Promise<Buffer> {
   try {
     const url = `${baseUrl}/verify/contractor/${contractorId}`;
@@ -70,7 +70,7 @@ export async function generateCertificateQRCode(
 /**
  * Generate QR code for insurance claim verification
  */
-export async function generateClaimQRCode(claimId: string, baseUrl: string = 'https://nrpg.com.au'): Promise<Buffer> {
+export async function generateClaimQRCode(claimId: string, baseUrl: string = (process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au')): Promise<Buffer> {
   try {
     const url = `${baseUrl}/claims/${claimId}/verify`;
 
@@ -93,7 +93,7 @@ export async function generateClaimQRCode(claimId: string, baseUrl: string = 'ht
  */
 export async function generateContractorPortfolioQRCode(
   contractorId: string,
-  baseUrl: string = 'https://nrpg.com.au'
+  baseUrl: string = (process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au')
 ): Promise<Buffer> {
   try {
     const url = `${baseUrl}/contractors/${contractorId}`;

@@ -690,5 +690,5 @@ export const seoHealthMonitor = new SeoHealthMonitor({
     client_email: process.env.GSC_CLIENT_EMAIL,
     private_key: process.env.GSC_PRIVATE_KEY,
   },
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://nrpg.com',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://disasterrecovery.com.au',
 });
