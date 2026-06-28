@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getCORSHeaders, handleCORSPreflight, logCORSViolation, isOriginAllowed } from '@/lib/config/cors.config';
+import { getToken } from 'next-auth/jwt';
 
 // ============================================================================
 // Rate Limiting (In-Memory, Per-IP, 100 req/min for API routes)
@@ -51,7 +52,7 @@ function isRateLimited(ip: string): { limited: boolean; remaining: number; reset
   return { limited: false, remaining: RATE_LIMIT_MAX - entry.count, resetAt: entry.resetAt };
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Extract hostname for tenant resolution in API routes
@@ -148,6 +149,25 @@ export function middleware(request: NextRequest) {
     response.headers.set('X-RateLimit-Limit', String(RATE_LIMIT_MAX));
     response.headers.set('X-RateLimit-Remaining', String(remaining));
     response.headers.set('X-RateLimit-Reset', String(Math.ceil(resetAt / 1000)));
+  }
+
+  // ============================================================================
+  // Centralized RBAC: only ADMIN / SUPER_ADMIN may reach admin surfaces.
+  // Defense-in-depth — route handlers still enforce requireRole() with a fresh
+  // DB read (authoritative); this ensures no /api/admin/* route can be left ungated.
+  // ============================================================================
+  if (pathname.startsWith('/api/admin') || pathname.startsWith('/dashboard/admin')) {
+    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+    const role = (token as { userType?: string } | null)?.userType;
+    if (role !== 'ADMIN' && role !== 'SUPER_ADMIN') {
+      if (isApi) {
+        return NextResponse.json(
+          { error: 'FORBIDDEN', message: 'Admin access required' },
+          { status: 403 }
+        );
+      }
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
   }
 
   if (!isStatic) {
