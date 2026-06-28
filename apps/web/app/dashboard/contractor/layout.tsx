@@ -22,7 +22,7 @@ export default async function ContractorDashboardLayout({ children }: Contractor
 
   const user = await prisma.user.findUnique({
     where: sessionUserId ? { id: sessionUserId } : { email: sessionUserEmail! },
-    select: { id: true, userType: true, name: true },
+    select: { id: true, userType: true, name: true, isEmailVerified: true },
   });
 
   if (!user) {
@@ -32,6 +32,12 @@ export default async function ContractorDashboardLayout({ children }: Contractor
   const allowed = user.userType === 'CONTRACTOR' || user.userType === 'ADMIN' || user.userType === 'SUPER_ADMIN';
   if (!allowed) {
     redirect('/dashboard');
+  }
+
+  // Contractors must verify their email before the contractor portal renders.
+  // Staff roles (ADMIN/SUPER_ADMIN) are exempt — they are provisioned out of band.
+  if (user.userType === 'CONTRACTOR' && !user.isEmailVerified) {
+    redirect('/auth/verify-email');
   }
 
   // Get contractor firm name (use user name or default)
