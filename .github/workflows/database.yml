@@ -57,6 +57,21 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
           DIRECT_URL: ${{ secrets.DIRECT_URL_PRODUCTION }}
+      # Incident recovery (2026-06-28): the 2026-06-28 08:21 UTC deploy of
+      # 20260628030000 committed its CREATE TABLE/indexes transaction but a racing
+      # concurrent deploy then hit "relation already exists" (42P07), leaving the
+      # migration recorded as FAILED → P3009 blocked all later migrations. Because
+      # Prisma runs each migration in a single Postgres transaction, the table and
+      # both indexes (incl. the contractorId+version unique guard) are fully present,
+      # so marking it applied is correct and non-destructive. Idempotent (|| true);
+      # safe to leave in place.
+      - name: Recover failed migration 20260628030000 (P3009)
+        run: |
+          cd apps/web
+          pnpm exec prisma migrate resolve --applied "20260628030000_add_contractor_agreement_acceptance" || true
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PRODUCTION }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL_PRODUCTION }}
       - name: Run Prisma migration
         run: pnpm --filter nrpg-web exec prisma migrate deploy
         env:
