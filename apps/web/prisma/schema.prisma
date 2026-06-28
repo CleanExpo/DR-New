@@ -1433,6 +1433,32 @@ model NRPGCommitment {
   @@map("nrpg_commitments")
 }
 
+/// Append-only record of a contractor accepting a versioned ICA (DR-884).
+/// contractorId == User.id (Option B, DR-879) — same convention as the rest of
+/// the contractor lifecycle; resolve via lib/contractor-identity.ts. A re-sign
+/// (new version) inserts a NEW row; the prior row is marked supersededAt rather
+/// than mutated. Unique on (contractorId, version) guards double-submit.
+model ContractorAgreementAcceptance {
+  id             String    @id @default(cuid())
+  contractorId   String
+  version        String
+  documentHash   String
+  signedName     String    @db.VarChar(255)
+  signatureType  String    @default("typed") @db.VarChar(20)
+  acceptedAt     DateTime  @default(now())
+  ipAddress      String?   @db.VarChar(45)
+  userAgent      String?
+  signedPdfUrl   String?   @db.VarChar(500)
+  signedPdfHash  String?
+  pdfGeneratedAt DateTime?
+  supersededAt   DateTime?
+  createdAt      DateTime  @default(now())
+
+  @@unique([contractorId, version])
+  @@index([contractorId])
+  @@map("contractor_agreement_acceptances")
+}
+
 model Competitor {
   id              String               @id @default(cuid())
   domain          String               @unique
