@@ -48,12 +48,18 @@ export async function POST(request: NextRequest) {
     // Uses the User.emailVerificationToken field — the same mechanism the GET
     // /api/auth/verify-email link validates against.
     const verificationToken = randomBytes(32).toString('hex');
+
+    // Never honour a client-supplied privileged role: public self-registration
+    // may only create CLIENT or CONTRACTOR accounts. ADMIN/SUPER_ADMIN are
+    // provisioned out of band, so anything other than CONTRACTOR collapses to CLIENT.
+    const safeUserType = validatedData.userType === 'CONTRACTOR' ? 'CONTRACTOR' : 'CLIENT';
+
     const user = await prisma.user.create({
       data: {
         email: validatedData.email,
         password: hashedPassword,
         name: validatedData.name,
-        userType: validatedData.userType,
+        userType: safeUserType,
         emailVerificationToken: verificationToken,
         emailVerificationTokenExpiry: new Date(Date.now() + 24 * 60 * 60 * 1000),
       },
