@@ -11,6 +11,7 @@
  */
 
 import { prisma } from '@/lib/prisma';
+import { filterDispatchEligible } from '@/lib/services/dispatch-eligibility';
 
 // ============================================================================
 // TYPES
@@ -67,6 +68,7 @@ export async function findAvailableContractors(
       workspace: {
         select: {
           id: true,
+          ownerId: true,
           businessName: true,
           currentMonthJobs: true,
           monthlyJobLimit: true,
@@ -82,8 +84,9 @@ export async function findAvailableContractors(
   });
 
   // Calculate distances (simplified - in production use PostGIS)
-  const available = contractors
+  const withinRadius = contractors
     .map((c) => ({
+      ownerId: c.workspace.ownerId,
       workspaceId: c.workspace.id,
       businessName: c.workspace.businessName,
       distanceKm: calculateDistance(criteria.latitude, criteria.longitude, c.postcode),
@@ -94,6 +97,25 @@ export async function findAvailableContractors(
       averageRating: Number(c.workspace.averageRating),
     }))
     .filter((c) => c.distanceKm <= c.serviceRadiusKm); // Within radius
+
+  // DR-889: exclude contractors without a current, non-superseded ICA acceptance.
+  // The contractor's lifecycle key is the workspace OWNER's User.id (Option B).
+  const eligibleOwnerIds = await filterDispatchEligible(
+    withinRadius.map((c) => c.ownerId)
+  );
+
+  const available: AvailableContractor[] = withinRadius
+    .filter((c) => eligibleOwnerIds.has(c.ownerId))
+    .map((c) => ({
+      workspaceId: c.workspaceId,
+      businessName: c.businessName,
+      distanceKm: c.distanceKm,
+      lastJobReceivedAt: c.lastJobReceivedAt,
+      serviceRadiusKm: c.serviceRadiusKm,
+      availabilityStatus: c.availabilityStatus,
+      completionRate: c.completionRate,
+      averageRating: c.averageRating,
+    }));
 
   return available;
 }
