@@ -109,6 +109,10 @@ export async function checkContractorEligibility(userId: string): Promise<Eligib
   });
 
   // 4. Check Training Completion
+  // NOTE (DR-879, Option B): lifecycle tables key `contractorId` on User.id, not
+  // Contractor.id. Querying by `userId` here is CORRECT — do not "fix" it to resolve
+  // Contractor.id (that mismatch was the regression reverted in #159).
+  // See lib/contractor-identity.ts for the convention.
   const onboarding = await prisma.contractorOnboarding.findUnique({
     where: { contractorId: userId },
     include: {
