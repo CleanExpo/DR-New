@@ -10,81 +10,79 @@ datasource db {
 }
 
 model Tenant {
-  id                   String                   @id @default(cuid())
-  name                 String
-  domain               String?                  @unique
-  subdomain            String?                  @unique
-  logo                 String?
-  primaryColor         String?
-  secondaryColor       String?
-  customCss            String?
-  industry             String?
-  isActive             Boolean                  @default(true)
-  createdAt            DateTime                 @default(now())
-  updatedAt            DateTime                 @updatedAt
-  // Stripe subscription fields
-  stripeCustomerId     String?                  @unique
-  stripeSubscriptionId String?                  @unique
-  subscriptionTier     SubscriptionTier         @default(BASIC)
-  subscriptionStatus   SubscriptionStatus       @default(TRIAL)
-  currentPeriodStart   DateTime?
-  currentPeriodEnd     DateTime?
-  trialEndsAt          DateTime?
-  seatLimit            Int                      @default(5)
-  monthlyRequestLimit  Int                      @default(50)
-  // Relations
-  contractorProfiles   ContractorProfile[]
-  messages             Message[]
-  serviceRequests      ServiceRequest[]
-  configurations       TenantConfiguration[]
-  users                User[]
-  bookings             Booking[]
-  payments             Payment[]
-  invoices             InvoiceAU[]
-  activities           Activity[]
-  tasks                Task[]
-  contractors          Contractor[]
-  clientProfiles       ClientProfile[]
-  clientProperties     ClientProperty[]
-  clientInsurance      ClientInsurance[]
-  clientPayments       ClientPayment[]
-  clientOnboarding     ClientOnboarding[]
-  contractorMatches    ContractorMatch[]
-  auditLogs            AuditLog[]
-  ratings              Rating[]
-  inspectionReports    InspectionReport[]
-  damageAreas          DamageArea[]
-  inspectionPhotos     InspectionPhoto[]
-  moistureReadings     MoistureReading[]
-  costEstimates        CostEstimate[]
-  laborLineItems       LaborLineItem[]
-  materialLineItems    MaterialLineItem[]
-  equipmentLineItems   EquipmentLineItem[]
-  complianceChecks     ComplianceCheck[]
-  reportRevisions      ReportRevision[]
-  opportunities        Opportunity[]
-  customerLifecycles   CustomerLifecycle[]
-  blogPosts            BlogPost[]
-  faqs                 FAQ[]
-  caseStudies          CaseStudy[]
-  insuranceClaims      InsuranceClaimAU[]
-  insuranceProviders   InsuranceProvider[]
-  betaPrograms         BetaProgram[]
-  betaEnrollments      BetaEnrollment[]
-  betaFeedback         BetaFeedback[]
-  betaNpsSurveys       BetaNPSSurvey[]
-  publicClaims         PublicClaim[]
-  triageAssessments    TriageAssessment[]
-  loginAttempts        LoginAttempt[]
-  verificationTokens   VerificationToken[]
-  contractorOnboarding ContractorOnboarding[]
-  contractorAssessments ContractorAssessment[]
-  contractorModuleProgress ContractorModuleProgress[]
+  id                       String                     @id @default(cuid())
+  name                     String
+  domain                   String?                    @unique
+  subdomain                String?                    @unique
+  logo                     String?
+  primaryColor             String?
+  secondaryColor           String?
+  customCss                String?
+  industry                 String?
+  isActive                 Boolean                    @default(true)
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  currentPeriodEnd         DateTime?
+  currentPeriodStart       DateTime?
+  monthlyRequestLimit      Int                        @default(50)
+  seatLimit                Int                        @default(5)
+  stripeCustomerId         String?                    @unique
+  stripeSubscriptionId     String?                    @unique
+  subscriptionStatus       SubscriptionStatus         @default(TRIAL)
+  subscriptionTier         SubscriptionTier           @default(BASIC)
+  trialEndsAt              DateTime?
+  AuditLogEntry            AuditLogEntry[]
+  bookings                 Booking[]
+  contractors              Contractor[]
+  insuranceClaims          InsuranceClaimAU[]
+  insuranceProviders       InsuranceProvider[]
+  invoices                 InvoiceAU[]
+  loginAttempts            LoginAttempt[]
+  payments                 Payment[]
+  ratings                  Rating[]
+  verificationTokens       VerificationToken[]
+  activities               Activity[]
+  aiBatchProcessingJobs    AIBatchProcessingJob[]
+  aiEnhancementLogs        AIImageEnhancementLog[]
+  auditLogs                AuditLog[]
+  backgroundJobs           BackgroundJob[]
+  betaEnrollments          BetaEnrollment[]
+  betaFeedback             BetaFeedback[]
+  betaNpsSurveys           BetaNPSSurvey[]
+  betaPrograms             BetaProgram[]
+  blogPosts                BlogPost[]
+  caseStudies              CaseStudy[]
+  clientInsurance          ClientInsurance[]
+  clientOnboarding         ClientOnboarding[]
+  clientPayments           ClientPayment[]
+  clientProfiles           ClientProfile[]
+  clientProperties         ClientProperty[]
+  complianceChecks         ComplianceCheck[]
+  contractorAssessments    ContractorAssessment[]
   contractorCertifications ContractorCertification[]
-  aiEnhancementLogs    AIImageEnhancementLog[]
-  aiBatchProcessingJobs AIBatchProcessingJob[]
-  backgroundJobs       BackgroundJob[]
-  jobs                 Job[]
+  contractorMatches        ContractorMatch[]
+  contractorModuleProgress ContractorModuleProgress[]
+  contractorOnboarding     ContractorOnboarding[]
+  contractorProfiles       ContractorProfile[]
+  costEstimates            CostEstimate[]
+  customerLifecycles       CustomerLifecycle[]
+  damageAreas              DamageArea[]
+  equipmentLineItems       EquipmentLineItem[]
+  faqs                     FAQ[]
+  inspectionPhotos         InspectionPhoto[]
+  inspectionReports        InspectionReport[]
+  laborLineItems           LaborLineItem[]
+  materialLineItems        MaterialLineItem[]
+  messages                 Message[]
+  moistureReadings         MoistureReading[]
+  opportunities            Opportunity[]
+  publicClaims             PublicClaim[]
+  reportRevisions          ReportRevision[]
+  serviceRequests          ServiceRequest[]
+  tasks                    Task[]
+  configurations           TenantConfiguration[]
+  triageAssessments        TriageAssessment[]
+  users                    User[]
 
   @@map("tenants")
 }
@@ -104,6 +102,12 @@ model TenantConfiguration {
 }
 
 model User {
+  twoFactorBackupCodes         String[]                       @default([])
+  twoFactorEnabled             Boolean                        @default(false)
+  twoFactorSecret              String?
+  twoFactorSetupAt             DateTime?
+  lockedUntil                  DateTime?
+  failedLoginAttempts          Int                            @default(0)
   id                           String                         @id @default(cuid())
   email                        String                         @unique
   name                         String?
@@ -123,10 +127,6 @@ model User {
   isBlocked                    Boolean                        @default(false)
   lastLoginAt                  DateTime?
   tenantId                     String?
-  twoFactorEnabled             Boolean                        @default(false)
-  twoFactorSecret              String?
-  twoFactorSetupAt             DateTime?
-  twoFactorBackupCodes         String[]                       @default([])
   createdAt                    DateTime                       @default(now())
   updatedAt                    DateTime                       @updatedAt
   bookings                     Booking[]                      @relation("ClientBookings")
@@ -139,6 +139,9 @@ model User {
   verificationTokens           VerificationToken[]
   activitiesAsCustomer         Activity[]                     @relation("ActivityCustomer")
   activitiesPerformed          Activity[]                     @relation("ActivityPerformer")
+  batchJobsInitiated           AIBatchProcessingJob[]         @relation("BatchJobInitiator")
+  auditLogs                    AuditLog[]
+  backgroundJobsInitiated      BackgroundJob[]                @relation("BackgroundJobInitiator")
   businessRules                BusinessRule[]                 @relation("BusinessRuleOwner")
   ClientProfile                ClientProfile?
   connectionLogs               ConnectionLog[]                @relation("UserConnectionLogs")
@@ -163,9 +166,6 @@ model User {
   invitedMembers               WorkspaceMember[]              @relation("MemberInviter")
   workspaceMemberships         WorkspaceMember[]
   ownedWorkspaces              Workspace[]                    @relation("WorkspaceOwner")
-  batchJobsInitiated           AIBatchProcessingJob[]         @relation("BatchJobInitiator")
-  backgroundJobsInitiated      BackgroundJob[]                @relation("BackgroundJobInitiator")
-  auditLogs                    AuditLog[]
 
   @@index([email])
   @@index([userType])
@@ -201,10 +201,10 @@ model LoginAttempt {
   ipAddress   String
   userAgent   String
   success     Boolean
-  tenantId    String?
   attemptedAt DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenantId    String?
   tenant      Tenant?  @relation(fields: [tenantId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([ipAddress])
@@ -219,10 +219,10 @@ model VerificationToken {
   type      String
   expiresAt DateTime
   usedAt    DateTime?
-  tenantId  String?
   createdAt DateTime  @default(now())
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenantId  String?
   tenant    Tenant?   @relation(fields: [tenantId], references: [id])
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([token])
@@ -231,17 +231,13 @@ model VerificationToken {
 }
 
 model AuditLog {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   action       String
-
-  // Entity fields (inspection reports, bookings, claims pattern)
   entityType   String?
   entityId     String?
   performedBy  String?
   oldValues    Json?
   newValues    Json?
-
-  // Resource fields (audit.service.ts, enhanced-audit-logging.ts pattern)
   userId       String?
   userEmail    String?
   resourceType String?
@@ -250,22 +246,16 @@ model AuditLog {
   details      String?
   errorMessage String?
   severity     String?
-
-  // Workspace/subscription fields
   workspaceId  String?
   metadata     Json?
-
-  // Realtime status change fields
   changes      Json?
   timestamp    DateTime?
-
-  // Request context
   ipAddress    String?
   userAgent    String?
   tenantId     String?
-  createdAt    DateTime @default(now())
-  tenant       Tenant?  @relation(fields: [tenantId], references: [id])
-  user         User?    @relation(fields: [userId], references: [id])
+  createdAt    DateTime  @default(now())
+  tenant       Tenant?   @relation(fields: [tenantId], references: [id])
+  user         User?     @relation(fields: [userId], references: [id])
 
   @@index([createdAt])
   @@index([entityId])
@@ -279,16 +269,18 @@ model AuditLog {
 }
 
 model Contractor {
-  id                            String                   @id @default(cuid())
-  userId                        String                   @unique
+  licenseStatus                 String                          @default("unverified")
+  licenseType                   String?
+  id                            String                          @id @default(cuid())
+  userId                        String                          @unique
   businessName                  String
-  abnNumber                     String?                  @unique
-  acnNumber                     String?                  @unique
+  abnNumber                     String?                         @unique
+  acnNumber                     String?                         @unique
   businessRegistrationDate      DateTime?
   primaryPostcode               String?
   primaryState                  AustralianState?
   operatingStates               AustralianState[]
-  nrpgMemberId                  String?                  @unique
+  nrpgMemberId                  String?                         @unique
   nrpgVerifiedAt                DateTime?
   nrpgVerificationLevel         String?
   australianSpecialties         AustralianServiceType[]
@@ -298,77 +290,70 @@ model Contractor {
   publicLiabilityCertificateUrl String?
   workCoverNumber               String?
   workCoverExpiryDate           DateTime?
-  completedJobs                 Int                      @default(0)
-  averageRating                 Decimal                  @default(0.00)
-  averageResponseTimeMinutes    Int                      @default(0)
-  isVerified                    Boolean                  @default(false)
+  completedJobs                 Int                             @default(0)
+  averageRating                 Decimal                         @default(0.00)
+  averageResponseTimeMinutes    Int                             @default(0)
+  isVerified                    Boolean                         @default(false)
   verificationDate              DateTime?
   lastBackgroundCheckDate       DateTime?
   backgroundCheckStatus         String?
-  isActive                      Boolean                  @default(true)
-  isSuspended                   Boolean                  @default(false)
+  isActive                      Boolean                         @default(true)
+  isSuspended                   Boolean                         @default(false)
   suspensionReason              String?
-  unavailableUntil              DateTime?
+  createdAt                     DateTime                        @default(now())
+  updatedAt                     DateTime                        @updatedAt
   tenantId                      String?
-  createdAt                     DateTime                 @default(now())
-  updatedAt                     DateTime                 @updatedAt
-
-  // Licence Information
+  companyDescription            String?
+  companyLogoUrl                String?
+  directBookingRequests         Int                             @default(0)
+  emergencyAvailable            Boolean                         @default(false)
+  emergencyResponseTime         Int?
+  lastProfileViewReset          DateTime?
+  licenseDocumentFileName       String?
+  licenseDocumentUrl            String?
+  licenseExpiry                 DateTime?
   licenseNumber                 String?
   licenseState                  AustralianState?
-  licenseType                   String?              // builder|electrician|plumber|asbestos|demolition|gasfitter|painter|roofer
-  licenseExpiry                 DateTime?
-  licenseDocumentUrl            String?
-  licenseDocumentFileName       String?
   licenseVerifiedAt             DateTime?
   licenseVerifiedBy             String?
-  licenseStatus                 String               @default("unverified") // unverified|verified|expired|suspended
-
-  // Enhanced Verification
-  verificationStatus            ContractorVerificationStatus @default(PENDING)
-  submittedForVerificationAt    DateTime?
+  profileViews                  Int                             @default(0)
+  profileViewsThisMonth         Int                             @default(0)
+  quoteAcceptanceRate           Decimal                         @default(0.00)
+  quoteRequestCount             Int                             @default(0)
+  rejectionReason               String?
+  resubmissionCount             Int                             @default(0)
   reviewedAt                    DateTime?
   reviewedBy                    String?
-  rejectionReason               String?
-  resubmissionCount             Int                          @default(0)
-  verificationNotes             String?
-
-  // Profile Analytics
-  profileViews                  Int                          @default(0)
-  profileViewsThisMonth         Int                          @default(0)
-  lastProfileViewReset          DateTime?
-  directBookingRequests         Int                          @default(0)
-  quoteRequestCount             Int                          @default(0)
-  quoteAcceptanceRate           Decimal                      @default(0.00)
-
-  // Company Profile
-  companyLogoUrl                String?
-  companyDescription            String?
-  yearsInBusiness               Int?
+  serviceRadius                 Int                             @default(25)
+  submittedForVerificationAt    DateTime?
   teamSize                      Int?
-  serviceRadius                 Int                          @default(25)
-  emergencyAvailable            Boolean                      @default(false)
-  emergencyResponseTime         Int?
-
-  // Relations
-  bookings                      Booking[]                @relation("ContractorBookings")
-  user                          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tenant                        Tenant?                  @relation(fields: [tenantId], references: [id])
-  serviceAreas                  ContractorServiceArea[]  @relation("ServiceAreas")
-  iicrcCertifications           IICRCCertification[]     @relation("ContractorCertifications")
-  auInvoices                    InvoiceAU[]              @relation("ContractorInvoices")
-  payments                      Payment[]                @relation("ContractorPayments")
-  ratings                       Rating[]
-  activities                    Activity[]               @relation("ActivityContractor")
-  betaEnrollments               BetaEnrollment[]         @relation("ContractorBetaEnrollments")
-  betaFeedback                  BetaFeedback[]           @relation("ContractorBetaFeedback")
-  betaNpsSurveys                BetaNPSSurvey[]          @relation("ContractorBetaNPSSurveys")
-  notificationPreference        NotificationPreference?  @relation("ContractorNotificationPreference")
-  opportunities                 Opportunity[]            @relation("OpportunityContractor")
-  realtimeSubscription          RealtimeSubscription?    @relation("ContractorRealtimeSubscription")
-  documents                     ContractorDocument[]         @relation("ContractorDocuments")
+  verificationNotes             String?
+  verificationStatus            ContractorVerificationStatus    @default(PENDING)
+  yearsInBusiness               Int?
+  unavailableUntil              DateTime?
+  bookings                      Booking[]                       @relation("ContractorBookings")
+  tenant                        Tenant?                         @relation(fields: [tenantId], references: [id])
+  user                          User                            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents                     ContractorDocument[]            @relation("ContractorDocuments")
+  ContractorNotification        ContractorNotification[]
+  serviceAreas                  ContractorServiceArea[]         @relation("ServiceAreas")
+  ContractorSubscription        ContractorSubscription?
   verificationHistory           ContractorVerificationHistory[] @relation("VerificationHistory")
-  jobs                          Job[]                        @relation("ContractorJobs")
+  iicrcCertifications           IICRCCertification[]            @relation("ContractorCertifications")
+  auInvoices                    InvoiceAU[]                     @relation("ContractorInvoices")
+  JobOffer                      JobOffer[]
+  payments                      Payment[]                       @relation("ContractorPayments")
+  ProofOfWork                   ProofOfWork[]
+  ratings                       Rating[]
+  activities                    Activity[]                      @relation("ActivityContractor")
+  betaEnrollments               BetaEnrollment[]                @relation("ContractorBetaEnrollments")
+  betaFeedback                  BetaFeedback[]                  @relation("ContractorBetaFeedback")
+  betaNpsSurveys                BetaNPSSurvey[]                 @relation("ContractorBetaNPSSurveys")
+  field_service_jobs            field_service_jobs[]
+  jobs                          Job[]                           @relation("ContractorJobs")
+  notificationPreference        NotificationPreference?         @relation("ContractorNotificationPreference")
+  opportunities                 Opportunity[]                   @relation("OpportunityContractor")
+  realtimeSubscription          RealtimeSubscription?           @relation("ContractorRealtimeSubscription")
 
   @@index([businessName])
   @@index([primaryState])
@@ -379,7 +364,6 @@ model Contractor {
   @@index([tenantId])
   @@index([verificationStatus])
   @@index([licenseExpiry])
-  @@index([licenseStatus])
   @@index([isVerified, isActive, verificationStatus])
 }
 
@@ -407,28 +391,23 @@ model IICRCCertification {
 }
 
 model ContractorServiceArea {
-  id                  String          @id @default(cuid())
+  id                  String               @id @default(cuid())
   contractorId        String
   postcode            String
   state               AustralianState
-  isActive            Boolean         @default(true)
+  isActive            Boolean              @default(true)
   responseTimeMinutes Int
-  createdAt           DateTime        @default(now())
-  updatedAt           DateTime        @updatedAt
-
-  // Geographic Enhancements
-  suburb              String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
   city                String?
-  radiusKm            Int                          @default(25)
+  coverageLevel       ServiceCoverageLevel @default(STANDARD)
+  isPrimaryArea       Boolean              @default(true)
   latitude            Decimal?
   longitude           Decimal?
-
-  // Coverage Classification
-  isPrimaryArea       Boolean                      @default(true)
-  coverageLevel       ServiceCoverageLevel         @default(STANDARD)
-  priorityLevel       Int                          @default(1)
-
-  contractor          Contractor      @relation("ServiceAreas", fields: [contractorId], references: [id], onDelete: Cascade)
+  priorityLevel       Int                  @default(1)
+  radiusKm            Int                  @default(25)
+  suburb              String?
+  contractor          Contractor           @relation("ServiceAreas", fields: [contractorId], references: [id], onDelete: Cascade)
 
   @@unique([contractorId, postcode])
   @@index([postcode])
@@ -546,6 +525,7 @@ model ServiceRequestCalloutPayment {
 }
 
 model ContractorProfile {
+  stripeConnectAccountId       String?
   id                           String                         @id @default(cuid())
   userId                       String                         @unique
   businessName                 String?
@@ -566,10 +546,17 @@ model ContractorProfile {
   bio                          String?
   availability                 AvailabilityStatus             @default(AVAILABLE)
   isVerified                   Boolean                        @default(false)
-  stripeConnectAccountId       String?                        @unique
   createdAt                    DateTime                       @default(now())
   updatedAt                    DateTime                       @updatedAt
   tenantId                     String?
+  CompetencyTestResult         CompetencyTestResult[]
+  ContractorAuditLog           ContractorAuditLog[]
+  ContractorCompany            ContractorCompany?
+  ContractorInsurance          ContractorInsurance[]
+  ContractorKPI                ContractorKPI[]
+  ContractorTerritory          ContractorTerritory[]
+  SubContractor                SubContractor[]
+  SubContractorEngagement      SubContractorEngagement[]
   matches                      ContractorMatch[]
   tenant                       Tenant?                        @relation(fields: [tenantId], references: [id])
   user                         User                           @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -579,39 +566,32 @@ model ContractorProfile {
 }
 
 model ContractorMatch {
-  id                String            @id @default(cuid())
-  contractorId      String
-
-  // Support both ServiceRequest and PublicClaim
-  serviceRequestId  String?
-  claimId           String?
-
-  matchScore        Float
-  status            MatchStatus       @default(PENDING)
-  contractorMessage String?
-  clientMessage     String?
-  budget            String?
-  timeline          String?
-  startDate         String?
-  estimatedHours    String?
-
-  // New fields for automated matching workflow
-  matchReason       String[]          @default([])
-  notificationStatus String?          // PENDING, SENT, FAILED, RESPONDED, DECLINED
-  notificationSentAt DateTime?
-  responseDeadline  DateTime?
+  id                    String            @id @default(cuid())
+  contractorId          String
+  serviceRequestId      String?
+  matchScore            Float
+  status                MatchStatus       @default(PENDING)
+  contractorMessage     String?
+  clientMessage         String?
+  budget                String?
+  timeline              String?
+  startDate             String?
+  estimatedHours        String?
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  tenantId              String?
+  claimId               String?
   contractorRespondedAt DateTime?
-  contractorResponse String?          // ACCEPTED, DECLINED, COUNTER_OFFER
-  isBackup          Boolean           @default(false)
-
-  tenantId          String?
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-
-  contractor        ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-  serviceRequest    ServiceRequest?   @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
-  claim             PublicClaim?      @relation(fields: [claimId], references: [id], onDelete: Cascade)
-  tenant            Tenant?           @relation(fields: [tenantId], references: [id])
+  contractorResponse    String?
+  isBackup              Boolean           @default(false)
+  matchReason           String[]          @default([])
+  notificationSentAt    DateTime?
+  notificationStatus    String?
+  responseDeadline      DateTime?
+  claim                 PublicClaim?      @relation(fields: [claimId], references: [id], onDelete: Cascade)
+  contractor            ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  serviceRequest        ServiceRequest?   @relation(fields: [serviceRequestId], references: [id], onDelete: Cascade)
+  tenant                Tenant?           @relation(fields: [tenantId], references: [id])
 
   @@index([tenantId])
   @@index([claimId, notificationStatus])
@@ -661,15 +641,15 @@ model ClientProfile {
   riskAssessmentCompleted Boolean                  @default(false)
   flaggedForReview        Boolean                  @default(false)
   flagReason              String?
-  tenantId                String?
   createdAt               DateTime                 @default(now())
   updatedAt               DateTime                 @updatedAt
+  tenantId                String?
   emergencyContacts       ClientEmergencyContact[]
   insurance               ClientInsurance?
   onboarding              ClientOnboarding?
   payment                 ClientPayment?
-  user                    User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tenant                  Tenant?                  @relation(fields: [tenantId], references: [id])
+  user                    User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
   properties              ClientProperty[]
 
   @@index([tier])
@@ -700,12 +680,11 @@ model ClientProperty {
   petDetails          String?
   recommendedServices String[]
   isPrimary           Boolean         @default(false)
-  tenantId            String?
   createdAt           DateTime        @default(now())
   updatedAt           DateTime        @updatedAt
+  tenantId            String?
   clientProfile       ClientProfile   @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
   tenant              Tenant?         @relation(fields: [tenantId], references: [id])
-  jobs                Job[]
 
   @@index([clientProfileId])
   @@index([postcode])
@@ -730,9 +709,9 @@ model ClientInsurance {
   lastClaimDate         DateTime?
   preferredContractors  String[]
   restrictedContractors String[]
-  tenantId              String?
   createdAt             DateTime      @default(now())
   updatedAt             DateTime      @updatedAt
+  tenantId              String?
   clientProfile         ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
   tenant                Tenant?       @relation(fields: [tenantId], references: [id])
 
@@ -760,9 +739,9 @@ model ClientPayment {
   invoiceDeliveryMethod String           @default("email")
   taxInvoiceRecipient   String?
   abnNumber             String?
-  tenantId              String?
   createdAt             DateTime         @default(now())
   updatedAt             DateTime         @updatedAt
+  tenantId              String?
   clientProfile         ClientProfile    @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
   tenant                Tenant?          @relation(fields: [tenantId], references: [id])
 
@@ -813,9 +792,9 @@ model ClientOnboarding {
   abandonedAt           DateTime?
   abandonedPhase        String?
   reminderSentAt        DateTime?
-  tenantId              String?
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
+  tenantId              String?
   moduleProgress        ClientModuleProgress[]
   clientProfile         ClientProfile          @relation(fields: [clientId], references: [userId], onDelete: Cascade)
   tenant                Tenant?                @relation(fields: [tenantId], references: [id])
@@ -920,12 +899,12 @@ model ContractorRotation {
   lastJobReceivedAt  DateTime?
   totalJobsReceived  Int       @default(0)
   totalJobsDeclined  Int       @default(0)
-  totalJobsOffered   Int       @default(0)
   declineRate        Decimal   @default(0)
   availabilityStatus String    @default("available")
-  unavailableUntil   DateTime?
   serviceRadiusKm    Int       @default(25)
   updatedAt          DateTime  @updatedAt
+  totalJobsOffered   Int       @default(0)
+  unavailableUntil   DateTime?
   workspace          Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
 
   @@unique([workspaceId, postcode])
@@ -979,9 +958,9 @@ model Booking {
   internalNotes              String?
   clientNotes                String?
   damagePhotos               String[]
-  tenantId                   String?
   createdAt                  DateTime               @default(now())
   updatedAt                  DateTime               @updatedAt
+  tenantId                   String?
   client                     User                   @relation("ClientBookings", fields: [clientId], references: [id], onDelete: Cascade)
   contractor                 Contractor?            @relation("ContractorBookings", fields: [contractorId], references: [id])
   tenant                     Tenant?                @relation(fields: [tenantId], references: [id])
@@ -1019,9 +998,14 @@ model Payment {
   failureReason         String?
   receiptUrl            String?
   invoiceNumber         String?       @unique
-  tenantId              String?
   createdAt             DateTime      @default(now())
   updatedAt             DateTime      @updatedAt
+  tenantId              String?
+  refundAmountAUD       Float?
+  refundReason          String?
+  refundedAt            DateTime?
+  description           String?
+  metadata              Json?
   auInvoice             InvoiceAU?
   booking               Booking       @relation("BookingPayments", fields: [bookingId], references: [id], onDelete: Cascade)
   client                User          @relation(fields: [clientId], references: [id], onDelete: Cascade)
@@ -1050,9 +1034,9 @@ model InvoiceAU {
   isPaid        Boolean    @default(false)
   paidDate      DateTime?
   description   String
-  tenantId      String?
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
+  tenantId      String?
   client        User       @relation("ClientInvoices", fields: [clientId], references: [id], onDelete: Cascade)
   contractor    Contractor @relation("ContractorInvoices", fields: [contractorId], references: [id], onDelete: Cascade)
   payment       Payment    @relation(fields: [paymentId], references: [id], onDelete: Cascade)
@@ -1079,9 +1063,9 @@ model InsuranceProvider {
   isActive          Boolean               @default(true)
   isVerified        Boolean               @default(false)
   verificationNotes String?
-  tenantId          String?
   createdAt         DateTime              @default(now())
   updatedAt         DateTime              @updatedAt
+  tenantId          String?
   claims            InsuranceClaimAU[]
   tenant            Tenant?               @relation(fields: [tenantId], references: [id])
 
@@ -1113,9 +1097,9 @@ model InsuranceClaimAU {
   paidAt              DateTime?
   denialReason        String?
   deniedAt            DateTime?
-  tenantId            String?
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
+  tenantId            String?
   booking             Booking              @relation("BookingClaims", fields: [bookingId], references: [id], onDelete: Cascade)
   client              User                 @relation("ClientClaims", fields: [clientId], references: [id], onDelete: Cascade)
   insuranceProvider   InsuranceProvider    @relation(fields: [insuranceProviderId], references: [id])
@@ -1133,57 +1117,44 @@ model InsuranceClaimAU {
 }
 
 model Rating {
-  id             String     @id @default(cuid())
-  bookingId      String
-  contractorId   String
-  clientId       String
-  rating         Int
-  comment        String?
-  wouldRecommend Boolean    @default(true)
-  tenantId       String?
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
-
-  // Detailed Attribute Ratings
-  title               String?
-  professionalism     Int?
-  qualityOfWork       Int?
-  timeliness          Int?
-  communication       Int?
-  valueForMoney       Int?
-
-  // Review Media
-  photoUrls           String[]
-  videoUrl            String?
-
-  // Contractor Engagement
-  contractorReply     String?
-  repliedAt           DateTime?
-  replyEditedAt       DateTime?
-
-  // Moderation & Visibility
-  isPublished         Boolean                      @default(true)
-  isPinned            Boolean                      @default(false)
-  isVerified          Boolean                      @default(true)
-  isEdited            Boolean                      @default(false)
-  editedAt            DateTime?
-
-  // Community Engagement
-  helpfulVotes        Int                          @default(0)
-  unhelpfulVotes      Int                          @default(0)
-
-  // Moderation
-  isFlagged           Boolean                      @default(false)
-  flagReason          String?
-  flaggedBy           String?
-  flaggedAt           DateTime?
-  moderatedBy         String?
-  moderatedAt         DateTime?
-
-  booking        Booking    @relation(fields: [bookingId], references: [id], onDelete: Cascade)
-  client         User       @relation(fields: [clientId], references: [id])
-  contractor     Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
-  tenant         Tenant?    @relation(fields: [tenantId], references: [id])
+  id              String     @id @default(cuid())
+  bookingId       String
+  contractorId    String
+  clientId        String
+  rating          Int
+  comment         String?
+  wouldRecommend  Boolean    @default(true)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  tenantId        String?
+  communication   Int?
+  contractorReply String?
+  editedAt        DateTime?
+  flagReason      String?
+  flaggedAt       DateTime?
+  flaggedBy       String?
+  helpfulVotes    Int        @default(0)
+  isEdited        Boolean    @default(false)
+  isFlagged       Boolean    @default(false)
+  isPinned        Boolean    @default(false)
+  isPublished     Boolean    @default(true)
+  isVerified      Boolean    @default(true)
+  moderatedAt     DateTime?
+  moderatedBy     String?
+  photoUrls       String[]
+  professionalism Int?
+  qualityOfWork   Int?
+  repliedAt       DateTime?
+  replyEditedAt   DateTime?
+  timeliness      Int?
+  title           String?
+  unhelpfulVotes  Int        @default(0)
+  valueForMoney   Int?
+  videoUrl        String?
+  booking         Booking    @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  client          User       @relation(fields: [clientId], references: [id])
+  contractor      Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  tenant          Tenant?    @relation(fields: [tenantId], references: [id])
 
   @@unique([bookingId, contractorId])
   @@index([contractorId])
@@ -1257,9 +1228,9 @@ model ContractorOnboarding {
   targetCompletionDate DateTime?
   actualCompletionDate DateTime?
   status               OnboardingStatus           @default(PENDING_START)
-  tenantId             String?
   createdAt            DateTime                   @default(now())
   updatedAt            DateTime                   @updatedAt
+  tenantId             String?
   assessments          ContractorAssessment[]
   moduleProgress       ContractorModuleProgress[]
   tenant               Tenant?                    @relation(fields: [tenantId], references: [id])
@@ -1281,12 +1252,11 @@ model ContractorModuleProgress {
   completed    Boolean              @default(false)
   status       ModuleStatus         @default(NOT_STARTED)
   progress     Int                  @default(0)
-  tenantId     String?
   createdAt    DateTime             @default(now())
+  tenantId     String?
   onboarding   ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
   tenant       Tenant?              @relation(fields: [tenantId], references: [id])
 
-  @@unique([onboardingId, moduleId], map: "uq_module_progress_onboarding_module")
   @@index([onboardingId, status], map: "idx_module_progress")
   @@index([tenantId])
   @@map("contractor_module_progress")
@@ -1301,8 +1271,8 @@ model ContractorAssessment {
   maxScore       Int                  @default(100)
   completedAt    DateTime?
   feedback       String?
-  tenantId       String?
   createdAt      DateTime             @default(now())
+  tenantId       String?
   onboarding     ContractorOnboarding @relation(fields: [onboardingId], references: [id], onDelete: Cascade)
   tenant         Tenant?              @relation(fields: [tenantId], references: [id])
 
@@ -1319,8 +1289,8 @@ model ContractorCertification {
   expiryDate         DateTime?
   specializations    String[]
   verified           Boolean   @default(false)
-  tenantId           String?
   createdAt          DateTime  @default(now())
+  tenantId           String?
   tenant             Tenant?   @relation(fields: [tenantId], references: [id])
 
   @@index([contractorId], map: "idx_contractor_id_cert")
@@ -1629,9 +1599,9 @@ model BlogPost {
   shareCount      Int          @default(0)
   isFeatured      Boolean      @default(false)
   featuredImage   String?
-  tenantId        String?
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
+  tenantId        String?
   faqs            BlogFAQ[]
   tenant          Tenant?      @relation(fields: [tenantId], references: [id])
 
@@ -1670,9 +1640,9 @@ model FAQ {
   notHelpful   Int         @default(0)
   order        Int         @default(0)
   isPublished  Boolean     @default(true)
-  tenantId     String?
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
+  tenantId     String?
   tenant       Tenant?     @relation(fields: [tenantId], references: [id])
 
   @@index([category])
@@ -1706,9 +1676,9 @@ model CaseStudy {
   metaDescription String?
   isPublished     Boolean   @default(false)
   publishedAt     DateTime?
-  tenantId        String?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  tenantId        String?
   tenant          Tenant?   @relation(fields: [tenantId], references: [id])
 
   @@index([slug])
@@ -1737,12 +1707,12 @@ model CustomerLifecycle {
   atRiskReasons        String[]
   assignedCSMId        String?
   nextTouchpointDate   DateTime?
-  tenantId             String?
   createdAt            DateTime                @default(now())
   updatedAt            DateTime                @updatedAt
+  tenantId             String?
   activities           Activity[]
-  user                 User                    @relation("CustomerLifecycle", fields: [userId], references: [id], onDelete: Cascade)
   tenant               Tenant?                 @relation(fields: [tenantId], references: [id])
+  user                 User                    @relation("CustomerLifecycle", fields: [userId], references: [id], onDelete: Cascade)
   opportunities        Opportunity[]
   tasks                Task[]
 
@@ -1774,9 +1744,9 @@ model Opportunity {
   closeReason           String?
   competitorChosen      String?
   forecastCategory      String?
-  tenantId              String?
   createdAt             DateTime               @default(now())
   updatedAt             DateTime               @updatedAt
+  tenantId              String?
   activities            Activity[]
   assignedContractor    Contractor?            @relation("OpportunityContractor", fields: [assignedContractorId], references: [id])
   booking               Booking?               @relation("OpportunityBooking", fields: [bookingId], references: [id])
@@ -1815,9 +1785,9 @@ model Activity {
   requiresFollowUp    Boolean            @default(false)
   followUpDate        DateTime?
   followUpTaskId      String?
-  tenantId            String?
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @updatedAt
+  tenantId            String?
   booking             Booking?           @relation("ActivityBooking", fields: [bookingId], references: [id])
   insuranceClaim      InsuranceClaimAU?  @relation("ActivityClaim", fields: [claimId], references: [id])
   contractor          Contractor?        @relation("ActivityContractor", fields: [contractorId], references: [id])
@@ -1853,9 +1823,9 @@ model Task {
   isOverdue           Boolean            @default(false)
   relatedEntityType   String?
   relatedEntityId     String?
-  tenantId            String?
   createdAt           DateTime           @default(now())
   updatedAt           DateTime           @updatedAt
+  tenantId            String?
   assignedTo          User               @relation("TaskAssignee", fields: [assignedToId], references: [id], onDelete: Cascade)
   createdBy           User               @relation("TaskCreator", fields: [createdById], references: [id])
   customerLifecycle   CustomerLifecycle? @relation(fields: [customerLifecycleId], references: [id], onDelete: Cascade)
@@ -1914,8 +1884,8 @@ model BusinessRuleViolation {
 }
 
 model InspectionReport {
-  id                   String            @id @default(cuid())
-  reportNumber         String            @unique
+  id                   String                  @id @default(cuid())
+  reportNumber         String                  @unique
   bookingId            String
   insuranceClaimId     String?
   inspectionDate       DateTime
@@ -1923,9 +1893,9 @@ model InspectionReport {
   jurisdiction         AustralianState
   applicableCodes      String[]
   iicrcStandards       IICRCStandard[]
-  status               InspectionStatus  @default(SCHEDULED)
-  version              Int               @default(1)
-  isDraft              Boolean           @default(true)
+  status               InspectionStatus        @default(SCHEDULED)
+  version              Int                     @default(1)
+  isDraft              Boolean                 @default(true)
   technicalReviewerId  String?
   technicalReviewDate  DateTime?
   technicalReviewNotes String?
@@ -1941,27 +1911,27 @@ model InspectionReport {
   limitations          String?
   pdfUrl               String?
   pdfGeneratedAt       DateTime?
-  pdfVersion           Int               @default(0)
+  pdfVersion           Int                     @default(0)
   complianceStatus     String?
-  tenantId             String?
-  createdAt            DateTime          @default(now())
-  updatedAt            DateTime          @updatedAt
+  createdAt            DateTime                @default(now())
+  updatedAt            DateTime                @updatedAt
   createdBy            String
+  tenantId             String?
+  enhancementLogs      AIImageEnhancementLog[]
   complianceChecks     ComplianceCheck[]
   costEstimate         CostEstimate?
   damageAreas          DamageArea[]
   photos               InspectionPhoto[]
-  booking              Booking           @relation("InspectionReportBooking", fields: [bookingId], references: [id])
-  creator              User              @relation("CreatedReports", fields: [createdBy], references: [id])
-  finalApprover        User?             @relation("FinalApprovals", fields: [finalApproverId], references: [id])
-  inspector            User              @relation("InspectorReports", fields: [inspectorId], references: [id])
-  insuranceClaim       InsuranceClaimAU? @relation("InspectionReportClaim", fields: [insuranceClaimId], references: [id])
-  managerReviewer      User?             @relation("ManagerReviews", fields: [managerReviewerId], references: [id])
-  technicalReviewer    User?             @relation("TechnicalReviews", fields: [technicalReviewerId], references: [id])
-  tenant               Tenant?                   @relation(fields: [tenantId], references: [id])
+  booking              Booking                 @relation("InspectionReportBooking", fields: [bookingId], references: [id])
+  creator              User                    @relation("CreatedReports", fields: [createdBy], references: [id])
+  finalApprover        User?                   @relation("FinalApprovals", fields: [finalApproverId], references: [id])
+  inspector            User                    @relation("InspectorReports", fields: [inspectorId], references: [id])
+  insuranceClaim       InsuranceClaimAU?       @relation("InspectionReportClaim", fields: [insuranceClaimId], references: [id])
+  managerReviewer      User?                   @relation("ManagerReviews", fields: [managerReviewerId], references: [id])
+  technicalReviewer    User?                   @relation("TechnicalReviews", fields: [technicalReviewerId], references: [id])
+  tenant               Tenant?                 @relation(fields: [tenantId], references: [id])
   moistureReadings     MoistureReading[]
   revisions            ReportRevision[]
-  enhancementLogs      AIImageEnhancementLog[]
 
   @@index([bookingId])
   @@index([status])
@@ -1989,9 +1959,9 @@ model DamageArea {
   equipmentNeeded      String[]
   estimatedDryingTime  Int?
   estimatedCost        Float?
-  tenantId             String?
   createdAt            DateTime          @default(now())
   updatedAt            DateTime          @updatedAt
+  tenantId             String?
   report               InspectionReport  @relation(fields: [reportId], references: [id], onDelete: Cascade)
   tenant               Tenant?           @relation(fields: [tenantId], references: [id])
   photos               InspectionPhoto[] @relation("AreaPhotos")
@@ -2015,8 +1985,8 @@ model MoistureReading {
   latitude           Float?
   longitude          Float?
   notes              String?
-  tenantId           String?
   createdAt          DateTime         @default(now())
+  tenantId           String?
   report             InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
   tenant             Tenant?          @relation(fields: [tenantId], references: [id])
 
@@ -2043,18 +2013,15 @@ model InspectionPhoto {
   gpsLongitude    Float?
   deviceModel     String?
   sortOrder       Int                     @default(0)
-  tenantId        String?
   createdAt       DateTime                @default(now())
-
-  // AI Enhancement fields
+  tenantId        String?
   aiEnhanced      Boolean                 @default(false)
   aiEnhancedAt    DateTime?
   aiModel         String?
-
+  enhancementLogs AIImageEnhancementLog[]
   damageArea      DamageArea?             @relation("AreaPhotos", fields: [damageAreaId], references: [id])
   report          InspectionReport        @relation(fields: [reportId], references: [id], onDelete: Cascade)
   tenant          Tenant?                 @relation(fields: [tenantId], references: [id])
-  enhancementLogs AIImageEnhancementLog[]
 
   @@index([reportId])
   @@index([damageAreaId])
@@ -2082,9 +2049,9 @@ model CostEstimate {
   assumptions        String?
   exclusions         String?
   validityPeriod     Int                 @default(30)
-  tenantId           String?
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
+  tenantId           String?
   report             InspectionReport    @relation(fields: [reportId], references: [id], onDelete: Cascade)
   tenant             Tenant?             @relation(fields: [tenantId], references: [id])
   equipmentLineItems EquipmentLineItem[]
@@ -2107,8 +2074,8 @@ model LaborLineItem {
   subtotal          Float
   jurisdiction      AustralianState
   rateEffectiveDate DateTime
-  tenantId          String?
   createdAt         DateTime        @default(now())
+  tenantId          String?
   costEstimate      CostEstimate    @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
   tenant            Tenant?         @relation(fields: [tenantId], references: [id])
 
@@ -2130,8 +2097,8 @@ model MaterialLineItem {
   subtotal           Float
   jurisdiction       AustralianState
   priceEffectiveDate DateTime
-  tenantId           String?
   createdAt          DateTime        @default(now())
+  tenantId           String?
   costEstimate       CostEstimate    @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
   tenant             Tenant?         @relation(fields: [tenantId], references: [id])
 
@@ -2151,8 +2118,8 @@ model EquipmentLineItem {
   subtotal          Float
   jurisdiction      AustralianState
   rateEffectiveDate DateTime
-  tenantId          String?
   createdAt         DateTime        @default(now())
+  tenantId          String?
   costEstimate      CostEstimate    @relation(fields: [costEstimateId], references: [id], onDelete: Cascade)
   tenant            Tenant?         @relation(fields: [tenantId], references: [id])
 
@@ -2173,8 +2140,8 @@ model ComplianceCheck {
   referenceSection String?
   validatedBy      String?
   validatedAt      DateTime?
-  tenantId         String?
   createdAt        DateTime         @default(now())
+  tenantId         String?
   report           InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
   tenant           Tenant?          @relation(fields: [tenantId], references: [id])
 
@@ -2192,8 +2159,8 @@ model ReportRevision {
   changedBy      String
   snapshotData   Json
   pdfUrl         String?
-  tenantId       String?
   createdAt      DateTime         @default(now())
+  tenantId       String?
   changedByUser  User             @relation("ReportRevisions", fields: [changedBy], references: [id])
   report         InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
   tenant         Tenant?          @relation(fields: [tenantId], references: [id])
@@ -2309,9 +2276,9 @@ model BetaProgram {
   endDate         DateTime
   isActive        Boolean          @default(true)
   maxParticipants Int              @default(10)
-  tenantId        String?
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
+  tenantId        String?
   enrollments     BetaEnrollment[]
   feedback        BetaFeedback[]
   npsSurveys      BetaNPSSurvey[]
@@ -2336,9 +2303,9 @@ model BetaEnrollment {
   withdrawnAt    DateTime?
   withdrawReason String?
   adminNotes     String?
-  tenantId       String?
   createdAt      DateTime             @default(now())
   updatedAt      DateTime             @updatedAt
+  tenantId       String?
   contractor     Contractor           @relation("ContractorBetaEnrollments", fields: [contractorId], references: [id], onDelete: Cascade)
   program        BetaProgram          @relation(fields: [programId], references: [id], onDelete: Cascade)
   tenant         Tenant?              @relation(fields: [tenantId], references: [id])
@@ -2368,9 +2335,9 @@ model BetaFeedback {
   adminResponse String?
   priority      String?
   status        String               @default("new")
-  tenantId      String?
   createdAt     DateTime             @default(now())
   updatedAt     DateTime             @updatedAt
+  tenantId      String?
   contractor    Contractor           @relation("ContractorBetaFeedback", fields: [contractorId], references: [id], onDelete: Cascade)
   program       BetaProgram          @relation(fields: [programId], references: [id], onDelete: Cascade)
   tenant        Tenant?              @relation(fields: [tenantId], references: [id])
@@ -2391,8 +2358,8 @@ model BetaNPSSurvey {
   followUpAnswer String?
   surveyTrigger  String?
   featureContext String?
-  tenantId       String?
   createdAt      DateTime    @default(now())
+  tenantId       String?
   contractor     Contractor  @relation("ContractorBetaNPSSurveys", fields: [contractorId], references: [id], onDelete: Cascade)
   program        BetaProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
   tenant         Tenant?     @relation(fields: [tenantId], references: [id])
@@ -2404,36 +2371,32 @@ model BetaNPSSurvey {
   @@map("beta_nps_surveys")
 }
 
-// ─── Public Claim Intake (pre-authentication) ───────────────────────────────
-// Created by /api/public/claims/submit for property owners before they have an account.
 model PublicClaim {
-  id               String   @id @default(cuid())
-  clientName       String
-  clientEmail      String
-  clientPhone      String
-  propertyAddress  String
-  suburb           String
-  postcode         String
-  disasterType     String
+  id                 String                    @id @default(cuid())
+  clientName         String
+  clientEmail        String
+  clientPhone        String
+  propertyAddress    String
+  suburb             String
+  postcode           String
+  disasterType       String
+  incidentDate       DateTime
+  isOngoing          Boolean                   @default(false)
+  isEmergency        Boolean                   @default(false)
+  damageDescription  String
+  hasInsurance       Boolean                   @default(false)
+  insuranceProvider  String?
+  policyNumber       String?
+  priority           String                    @default("Medium")
+  status             String                    @default("PENDING")
+  tenantId           String?
+  createdAt          DateTime                  @default(now())
+  updatedAt          DateTime                  @updatedAt
+  notes              String?
   requiredIICRCCerts IICRCCertificationLevel[]
-  incidentDate     DateTime
-  isOngoing        Boolean  @default(false)
-  isEmergency      Boolean  @default(false)
-  damageDescription String
-  hasInsurance     Boolean  @default(false)
-  insuranceProvider String?
-  policyNumber     String?
-  priority         String   @default("Medium")
-  status           String   @default("PENDING")
-  notes            String?
-  tenantId         String?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-
-  // Relations
-  tenant           Tenant?           @relation(fields: [tenantId], references: [id])
-  backgroundJobs   BackgroundJob[]
-  contractorMatches ContractorMatch[]
+  backgroundJobs     BackgroundJob[]
+  contractorMatches  ContractorMatch[]
+  tenant             Tenant?                   @relation(fields: [tenantId], references: [id])
 
   @@index([status])
   @@index([postcode])
@@ -2444,8 +2407,6 @@ model PublicClaim {
   @@map("public_claims")
 }
 
-// ─── Triage Assessment ───────────────────────────────────────────────────────
-// Created by /api/public/triage when a property owner completes the triage questionnaire.
 model TriageAssessment {
   id               String   @id @default(cuid())
   email            String
@@ -2473,6 +2434,1344 @@ model TriageAssessment {
   @@index([createdAt])
   @@index([tenantId])
   @@map("triage_assessments")
+}
+
+model ContractorDocument {
+  id               String                 @id @default(cuid())
+  contractorId     String
+  documentType     ContractorDocumentType
+  fileName         String
+  fileUrl          String
+  fileSize         Int
+  mimeType         String
+  status           DocumentStatus         @default(PENDING)
+  uploadedAt       DateTime               @default(now())
+  verifiedAt       DateTime?
+  verifiedBy       String?
+  rejectionReason  String?
+  expiryDate       DateTime?
+  issuedDate       DateTime?
+  documentNumber   String?
+  issuingAuthority String?
+  stateIssued      AustralianState?
+  viewCount        Int                    @default(0)
+  lastViewedAt     DateTime?
+  lastViewedBy     String?
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
+  contractor       Contractor             @relation("ContractorDocuments", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([contractorId, documentType])
+  @@index([status])
+  @@index([expiryDate])
+  @@index([documentType, status])
+}
+
+model ContractorVerificationHistory {
+  id              String                        @id @default(cuid())
+  contractorId    String
+  action          VerificationAction
+  previousStatus  ContractorVerificationStatus?
+  newStatus       ContractorVerificationStatus
+  reason          String?
+  notes           String?
+  performedBy     String
+  performedByName String?
+  isSystemAction  Boolean                       @default(false)
+  ipAddress       String?
+  userAgent       String?
+  metadata        Json?
+  createdAt       DateTime                      @default(now())
+  contractor      Contractor                    @relation("VerificationHistory", fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([contractorId, createdAt])
+  @@index([action])
+  @@index([createdAt])
+}
+
+model AIImageEnhancementLog {
+  id           String           @id @default(cuid())
+  photoId      String
+  reportId     String
+  prompt       String
+  originalDesc String?
+  enhancedDesc String
+  model        String
+  tokensUsed   Int
+  costUSD      Decimal          @db.Decimal(10, 4)
+  processingMs Int
+  success      Boolean          @default(true)
+  error        String?
+  tenantId     String?
+  createdAt    DateTime         @default(now())
+  photo        InspectionPhoto  @relation(fields: [photoId], references: [id], onDelete: Cascade)
+  report       InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  tenant       Tenant?          @relation(fields: [tenantId], references: [id])
+
+  @@index([photoId])
+  @@index([reportId])
+  @@index([createdAt])
+  @@index([tenantId])
+  @@map("ai_image_enhancement_logs")
+}
+
+model AIBatchProcessingJob {
+  id              String    @id @default(cuid())
+  jobType         String
+  status          String
+  totalImages     Int
+  processedImages Int       @default(0)
+  successCount    Int       @default(0)
+  failureCount    Int       @default(0)
+  totalCostUSD    Decimal   @default(0) @db.Decimal(10, 2)
+  startedAt       DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  initiatedBy     String
+  tenantId        String?
+  metadata        Json?
+  initiator       User      @relation("BatchJobInitiator", fields: [initiatedBy], references: [id])
+  tenant          Tenant?   @relation(fields: [tenantId], references: [id])
+
+  @@index([status])
+  @@index([jobType])
+  @@index([createdAt])
+  @@index([tenantId])
+  @@map("ai_batch_processing_jobs")
+}
+
+model BackgroundJob {
+  id           String       @id @default(cuid())
+  jobType      String
+  status       String       @default("PENDING")
+  priority     Int          @default(5)
+  input        Json
+  output       Json?
+  attemptCount Int          @default(0)
+  maxAttempts  Int          @default(3)
+  lastError    String?
+  errorStack   String?
+  scheduledFor DateTime     @default(now())
+  startedAt    DateTime?
+  completedAt  DateTime?
+  nextRetryAt  DateTime?
+  claimId      String?
+  tenantId     String?
+  initiatedBy  String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  claim        PublicClaim? @relation(fields: [claimId], references: [id])
+  initiator    User?        @relation("BackgroundJobInitiator", fields: [initiatedBy], references: [id])
+  tenant       Tenant?      @relation(fields: [tenantId], references: [id])
+
+  @@index([status, scheduledFor])
+  @@index([jobType, status])
+  @@index([claimId])
+  @@index([priority, scheduledFor])
+  @@index([tenantId])
+  @@index([createdAt])
+  @@map("background_jobs")
+}
+
+model WaitlistSubmission {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  fullName       String
+  userType       String
+  source         String?
+  utmSource      String?
+  utmMedium      String?
+  utmCampaign    String?
+  utmContent     String?
+  utmTerm        String?
+  consentEmail   Boolean  @default(false)
+  emailSent      Boolean  @default(false)
+  notifiedLaunch Boolean  @default(false)
+  convertedUser  String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([email])
+  @@index([userType])
+  @@index([createdAt])
+  @@index([source])
+  @@index([utmSource])
+  @@index([utmCampaign])
+  @@map("waitlist_submissions")
+}
+
+model XeroToken {
+  id           String   @id @default(cuid())
+  tenantId     String   @unique
+  accessToken  String
+  refreshToken String
+  expiresAt    DateTime
+  scopes       String[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
+
+  @@map("xero_tokens")
+}
+
+model ContractorApplication {
+  id                  String    @id @default(cuid())
+  businessName        String
+  contactName         String
+  email               String
+  phone               String
+  abn                 String
+  certifications      String[]
+  serviceAreas        String[]
+  yearsInBusiness     Int
+  status              String    @default("PENDING")
+  reviewedBy          String?
+  reviewedAt          DateTime?
+  rejectionReason     String?
+  notes               String?
+  source              String?
+  utmSource           String?
+  utmMedium           String?
+  utmCampaign         String?
+  utmContent          String?
+  utmTerm             String?
+  emailSent           Boolean   @default(false)
+  contacted           Boolean   @default(false)
+  contactedAt         DateTime?
+  convertedContractor String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  insuranceData       Json?
+  experienceData      Json?
+  equipmentData       Json?
+  healthSafetyData    Json?
+  bankingData         Json?
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@index([source])
+  @@index([utmCampaign])
+  @@index([abn])
+  @@map("contractor_applications")
+}
+
+model LeadCapture {
+  id                     String    @id @default(cuid())
+  firstName              String
+  lastName               String
+  email                  String
+  phone                  String
+  propertyAddress        String
+  suburb                 String
+  state                  String
+  postcode               String
+  damageType             String
+  damageDescription      String
+  hasInsurance           Boolean   @default(false)
+  insuranceProvider      String?
+  claimNumber            String?
+  urgency                String    @default("STANDARD")
+  preferredContactMethod String?   @default("EMAIL")
+  marketingConsent       Boolean   @default(false)
+  source                 String?
+  referrer               String?
+  submittedAt            DateTime  @default(now())
+  ipAddress              String?
+  userAgent              String?
+  status                 String    @default("NEW")
+  assignedTo             String?
+  contactedAt            DateTime?
+  convertedToClientAt    DateTime?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @default(now()) @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@map("lead_captures")
+}
+
+model NewsletterSubscription {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  firstName         String?
+  lastName          String?
+  interests         String[]
+  state             String?
+  postcode          String?
+  marketingConsent  Boolean   @default(false)
+  isActive          Boolean   @default(true)
+  subscribedAt      DateTime  @default(now())
+  unsubscribedAt    DateTime?
+  resubscribedAt    DateTime?
+  unsubscribeToken  String?
+  source            String?
+  referrer          String?
+  ipAddress         String?
+  userAgent         String?
+  emailsSent        Int       @default(0)
+  emailsOpened      Int       @default(0)
+  emailsClicked     Int       @default(0)
+  lastEmailSentAt   DateTime?
+  lastEmailOpenedAt DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @default(now()) @updatedAt
+  confirmed         Boolean   @default(false)
+  confirmedAt       DateTime?
+  confirmationToken String?   @unique
+
+  @@map("newsletter_subscriptions")
+}
+
+model ContractorInquiry {
+  approvalReason         String?
+  ipAddress              String?
+  referrer               String?
+  reviewNotes            String?
+  source                 String?
+  userAgent              String?
+  id                     String    @id @default(cuid())
+  businessName           String
+  abn                    String
+  businessType           String
+  contactFirstName       String
+  contactLastName        String
+  contactEmail           String
+  contactPhone           String
+  businessAddress        String
+  suburb                 String
+  state                  String
+  postcode               String
+  servicesOffered        String[]
+  serviceAreas           String[]
+  certifications         Json?
+  yearsInBusiness        Int       @default(0)
+  numberOfEmployees      Int       @default(0)
+  hasPublicLiability     Boolean   @default(false)
+  publicLiabilityAmount  Decimal?  @db.Decimal(12, 2)
+  hasWorkersCompensation Boolean   @default(false)
+  additionalInfo         String?
+  website                String?
+  availability24x7       Boolean   @default(false)
+  emergencyResponseTime  String?
+  termsAccepted          Boolean   @default(false)
+  backgroundCheckConsent Boolean   @default(false)
+  applicationScore       Int       @default(0)
+  status                 String    @default("PENDING")
+  reviewedBy             String?
+  reviewedAt             DateTime?
+  rejectionReason        String?
+  notes                  String?
+  submittedAt            DateTime  @default(now())
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @default(now()) @updatedAt
+
+  @@index([status])
+  @@index([contactEmail])
+  @@map("contractor_inquiries")
+}
+
+model Job {
+  id               String          @id @default(cuid())
+  jobNumber        String          @unique
+  type             String
+  status           JobStatus       @default(PENDING)
+  propertyId       String
+  contractorId     String?
+  clientId         String?
+  estimatedCost    Decimal?        @db.Decimal(12, 2)
+  actualCost       Decimal?        @db.Decimal(12, 2)
+  scheduledDate    DateTime?
+  completedDate    DateTime?
+  notes            String?
+  insuranceClaimId String?
+  hoursWorked      Decimal?        @db.Decimal(8, 2)
+  materialsUsed    String?
+  tenantId         String?
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @default(now()) @updatedAt
+  documents        JobDocument[]
+  outcomeLogs      JobOutcomeLog[]
+  photos           JobPhoto[]
+  contractor       Contractor?     @relation("ContractorJobs", fields: [contractorId], references: [id])
+
+  @@index([status])
+  @@index([contractorId])
+  @@index([propertyId])
+  @@index([tenantId])
+  @@map("jobs")
+}
+
+model JobDocument {
+  id        String   @id @default(cuid())
+  jobId     String
+  name      String
+  url       String
+  type      String
+  size      Int      @default(0)
+  createdAt DateTime @default(now())
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+  @@map("job_documents")
+}
+
+model JobPhoto {
+  id      String   @id @default(cuid())
+  jobId   String
+  url     String
+  caption String?
+  takenAt DateTime @default(now())
+  job     Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([jobId])
+  @@map("job_photos")
+}
+
+model JobOutcomeLog {
+  id               String     @id @default(cuid())
+  jobId            String
+  outcome          JobOutcome
+  jobType          String
+  contractorId     String?
+  clientId         String?
+  insuranceClaimId String?
+  actualCost       Decimal?   @db.Decimal(10, 2)
+  hoursWorked      Decimal?   @db.Decimal(6, 2)
+  loggedAt         DateTime   @default(now())
+  loggedByUserId   String
+  tenantId         String?
+  metadata         Json?
+  state            String?
+  suburb           String?
+  postcode         String?
+  urgency          String?
+  insuranceClaim   Boolean    @default(false)
+  insurerName      String?
+  responseMinutes  Int?
+  durationMinutes  Int?
+  totalMinutes     Int?
+  job              Job        @relation(fields: [jobId], references: [id])
+
+  @@index([jobId])
+  @@index([outcome])
+  @@index([jobType])
+  @@index([loggedAt])
+  @@index([tenantId])
+  @@index([contractorId])
+  @@index([state, jobType, loggedAt])
+  @@map("job_outcome_logs")
+}
+
+model NotificationLog {
+  id           String   @id @default(cuid())
+  type         String
+  channel      String
+  recipientId  String?
+  recipient    String
+  jobId        String?
+  jobNumber    String?
+  subject      String?
+  status       String   @default("sent")
+  errorMessage String?
+  sentAt       DateTime @default(now())
+  createdAt    DateTime @default(now())
+
+  @@index([jobId])
+  @@index([recipientId])
+  @@index([channel])
+  @@index([sentAt])
+  @@map("notification_logs")
+}
+
+/// Platform-level contact enquiries submitted from /contact.
+/// Distinct from LeadCapture (damage claims) and ContractorInquiry (applications).
+model ContactEnquiry {
+  id          String    @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String
+  phone       String?
+  subject     String    @default("General Inquiry")
+  message     String
+  source      String?
+  referrer    String?
+  ipAddress   String?
+  userAgent   String?
+  submittedAt DateTime  @default(now())
+  status      String    @default("NEW")
+  assignedTo  String?
+  respondedAt DateTime?
+
+  @@index([status])
+  @@index([submittedAt])
+  @@map("contact_enquiries")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model AuditLogEntry {
+
+  id           String    @id
+  action       String
+  entityType   String?
+  entityId     String?
+  performedBy  String?
+  oldValues    Json?
+  newValues    Json?
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime  @default(now())
+  tenantId     String?
+  changes      Json?
+  details      String?
+  errorMessage String?
+  metadata     Json?
+  resourceId   String?
+  resourceType String?
+  severity     String?
+  status       String?
+  timestamp    DateTime?
+  userEmail    String?
+  userId       String?
+  workspaceId  String?
+  tenants      Tenant?   @relation(fields: [tenantId], references: [id])
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([entityId])
+  @@index([entityType])
+  @@index([performedBy])
+  @@index([tenantId])
+  @@index([userId])
+  @@index([workspaceId])
+  @@map("AuditLog")
+}
+
+model BotConversation {
+  id                 String              @id
+  sessionId          String              @unique
+  channel            String
+  userType           String
+  jobId              String?
+  contractorId       String?
+  messages           Json[]
+  context            Json?
+  status             String              @default("active")
+  startedAt          DateTime            @default(now())
+  endedAt            DateTime?
+  lastMessageAt      DateTime            @default(now())
+  field_service_jobs field_service_jobs? @relation(fields: [jobId], references: [id])
+
+  @@index([status, userType])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model CallTranscript {
+  id                 String    @id
+  voiceCallId        String
+  redactedText       String
+  language           String?
+  wordCount          Int?
+  redactionApplied   Boolean   @default(true)
+  retentionExpiresAt DateTime
+  createdAt          DateTime  @default(now())
+  VoiceCall          VoiceCall @relation(fields: [voiceCallId], references: [id], onDelete: Cascade)
+
+  @@index([retentionExpiresAt])
+  @@index([voiceCallId])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ClaimNotification {
+  id        String   @id
+  claimId   String
+  status    String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([claimId, createdAt])
+  @@index([claimId, read])
+}
+
+model ClaimPhotoAttachment {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  claimId      String
+  objectKey    String
+  platform     String
+  capturedAt   DateTime
+  geoLat       Float?
+  geoLng       Float?
+  geoAccuracyM Float?
+  sizeBytes    Int
+  mimeType     String
+  createdAt    DateTime @default(now())
+
+  @@index([claimId])
+  @@index([createdAt])
+}
+
+model CompetencyTestResult {
+  id                  String            @id
+  contractorId        String
+  category            String
+  attemptNumber       Int               @default(1)
+  score               Int
+  totalPossible       Int
+  percentage          Float
+  passed              Boolean
+  startedAt           DateTime
+  completedAt         DateTime?
+  timeTakenSeconds    Int?
+  certificateNumber   String?
+  certificateExpiry   DateTime?
+  reassessmentDueDate DateTime?
+  createdAt           DateTime          @default(now())
+  contractor_profiles ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([category])
+  @@index([contractorId])
+  @@index([passed])
+}
+
+model ContractorAuditLog {
+  id                  String            @id
+  contractorId        String
+  action              String
+  category            String
+  details             String?
+  ipAddress           String?
+  userAgent           String?
+  performedBy         String
+  performedByType     String
+  createdAt           DateTime          @default(now())
+  contractor_profiles ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([action, createdAt])
+  @@index([category, createdAt])
+}
+
+model ContractorCompany {
+  id                  String            @id
+  contractorId        String            @unique
+  companyName         String
+  tradingName         String?
+  abn                 String
+  acn                 String?
+  companyStructure    String
+  registeredAddress   String
+  registeredCity      String
+  registeredState     String
+  registeredPostcode  String
+  mailingAddress      String?
+  mailingCity         String?
+  mailingState        String?
+  mailingPostcode     String?
+  officePhone         String?
+  officeFax           String?
+  website             String?
+  companyEmail        String?
+  directors           String
+  companyLogo         String?
+  brandColors         String?
+  abnVerified         Boolean           @default(false)
+  abnVerifiedAt       DateTime?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime
+  contractor_profiles ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+}
+
+model ContractorInsurance {
+  id                  String            @id
+  contractorId        String
+  insuranceType       String
+  insurer             String
+  policyNumber        String
+  coverageAmount      Float
+  excess              Float?
+  effectiveDate       DateTime
+  expiryDate          DateTime
+  certificateUrl      String
+  verified            Boolean           @default(false)
+  verifiedAt          DateTime?
+  verifiedBy          String?
+  status              String            @default("PENDING")
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime
+  contractor_profiles ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([contractorId])
+  @@index([expiryDate])
+}
+
+model ContractorKPI {
+  id                    String            @id
+  contractorId          String
+  periodType            String
+  periodStart           DateTime
+  periodEnd             DateTime
+  totalJobs             Int               @default(0)
+  completedJobs         Int               @default(0)
+  averageResponseTime   Float?
+  averageCompletionTime Float?
+  customerSatisfaction  Float?
+  qualityScore          Float?
+  complianceScore       Float?
+  cleanClaimsScore      Float?
+  carsiCompliance       Float?
+  totalRevenue          Float?
+  averageJobValue       Float?
+  complaints            Int               @default(0)
+  violations            Int               @default(0)
+  calculatedAt          DateTime          @default(now())
+  contractor_profiles   ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@unique([contractorId, periodType, periodStart])
+  @@index([periodType, periodStart])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ContractorNotification {
+  id             String     @id
+  contractorId   String
+  type           String
+  priority       String     @default("NORMAL")
+  subject        String
+  message        String
+  actionRequired Boolean    @default(false)
+  actionUrl      String?
+  actionDeadline DateTime?
+  read           Boolean    @default(false)
+  readAt         DateTime?
+  dismissed      Boolean    @default(false)
+  dismissedAt    DateTime?
+  emailSent      Boolean    @default(false)
+  smsSent        Boolean    @default(false)
+  createdAt      DateTime   @default(now())
+  Contractor     Contractor @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([type, read, priority])
+}
+
+model ContractorPayment {
+  id                     String                 @id
+  subscriptionId         String
+  amount                 Float
+  type                   String
+  status                 String                 @default("PENDING")
+  paymentMethod          String
+  transactionId          String?
+  failureReason          String?
+  dueDate                DateTime
+  paidAt                 DateTime?
+  createdAt              DateTime               @default(now())
+  updatedAt              DateTime
+  ContractorSubscription ContractorSubscription @relation(fields: [subscriptionId], references: [id])
+
+  @@index([status, dueDate])
+  @@index([subscriptionId])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ContractorSubscription {
+  id                   String              @id
+  contractorId         String              @unique
+  stripeCustomerId     String?
+  stripeSubscriptionId String?
+  stripePriceId        String?
+  tier                 String
+  status               String              @default("INACTIVE")
+  amount               Float
+  currency             String              @default("aud")
+  billingCycle         String              @default("monthly")
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean             @default(false)
+  canceledAt           DateTime?
+  trialEnd             DateTime?
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime
+  lastPaymentAt        DateTime?
+  lastPaymentStatus    String?
+  ContractorPayment    ContractorPayment[]
+  Contractor           Contractor          @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+}
+
+model ContractorTerritory {
+  id                  String            @id
+  contractorId        String
+  type                String
+  name                String
+  centerLat           Float?
+  centerLng           Float?
+  radiusKm            Float?
+  postcodes           String?
+  suburbs             String?
+  emergencyResponse   Boolean           @default(true)
+  afterHours          Boolean           @default(false)
+  weekendService      Boolean           @default(true)
+  maxJobsPerDay       Int               @default(5)
+  currentActiveJobs   Int               @default(0)
+  active              Boolean           @default(true)
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime
+  contractor_profiles ContractorProfile @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+
+  @@index([type, active])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Enquiry {
+  id        String   @id
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  source    String?
+  clientId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ErrorLog {
+  id        String   @id
+  level     String
+  message   String
+  stack     String?
+  metadata  String?
+  source    String?
+  userId    String?
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([level])
+  @@index([userId])
+}
+
+model FinanceReferral {
+  id                        String                 @id
+  createdAt                 DateTime               @default(now())
+  country                   String
+  customerType              String
+  fundingBand               String
+  disasterCategory          String
+  source                    String
+  disclosureVersion         String
+  privacyNoticeVersion      String
+  consentShareEquipped      Boolean
+  consentReferralDisclosure Boolean
+  consentMarketing          Boolean                @default(false)
+  payloadHash               String
+  ip                        String?
+  userAgent                 String?
+  receiver                  String
+  handoffAck                Boolean                @default(false)
+  statusWebhookLastStatus   String?
+  statusWebhookLastAt       DateTime?
+  updatedAt                 DateTime               @default(now())
+  equippedReferralId        String?                @unique
+  entityIdentifierHash      String?
+  stage                     String?
+  lastStatus                String?
+  consentVersion            String?
+  smsSent                   Boolean                @default(false)
+  metadata                  Json?
+  FinanceReferralEvent      FinanceReferralEvent[]
+
+  @@index([country, customerType])
+  @@index([createdAt])
+  @@index([receiver, createdAt])
+  @@index([stage, updatedAt])
+}
+
+model FinanceReferralEvent {
+  id               String          @id
+  receivedAt       DateTime        @default(now())
+  referralId       String
+  eventKey         String          @unique
+  webhookTimestamp String
+  stage            String
+  status           String
+  unknownStage     Boolean         @default(false)
+  payload          Json?
+  FinanceReferral  FinanceReferral @relation(fields: [referralId], references: [id], onDelete: SetNull)
+
+  @@index([receivedAt])
+  @@index([referralId, receivedAt])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model JobOffer {
+  id                      String             @id
+  jobId                   String
+  contractorId            String
+  status                  String             @default("pending")
+  offeredAt               DateTime           @default(now())
+  expiresAt               DateTime
+  requiresLiabilityAck    Boolean            @default(false)
+  liabilityAcknowledgedAt DateTime?
+  pool                    String
+  createdAt               DateTime           @default(now())
+  updatedAt               DateTime
+  Contractor              Contractor         @relation(fields: [contractorId], references: [id], onDelete: NoAction)
+  field_service_jobs      field_service_jobs @relation(fields: [jobId], references: [id], onDelete: NoAction)
+
+  @@index([contractorId, status])
+  @@index([expiresAt])
+  @@index([jobId, status])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model OnboardingPayment {
+  id                    String    @id
+  contractorId          String
+  stripeSessionId       String?
+  stripePaymentIntentId String?
+  amount                Int
+  currency              String    @default("aud")
+  status                String    @default("pending")
+  paidAt                DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime
+
+  @@index([contractorId])
+  @@index([status])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Partner {
+  id             String           @id
+  name           String
+  businessName   String
+  abn            String?
+  email          String           @unique
+  phone          String?
+  website        String?
+  address        String?
+  city           String?
+  state          String?
+  postcode       String?
+  type           String
+  tier           String           @default("STANDARD")
+  status         String           @default("ACTIVE")
+  commissionRate Float            @default(0)
+  creditLimit    Float            @default(5000)
+  paymentTerms   Int              @default(7)
+  totalReferrals Int              @default(0)
+  totalRevenue   Float            @default(0)
+  lastReferralAt DateTime?
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime
+  PartnerBilling PartnerBilling[]
+  leads          leads[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model PartnerBilling {
+  id            String    @id
+  partnerId     String
+  leadId        String
+  amount        Float
+  status        String    @default("PENDING")
+  dueDate       DateTime
+  paidAt        DateTime?
+  paymentMethod String?
+  transactionId String?
+  invoiceNumber String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime
+  leads         leads     @relation(fields: [leadId], references: [id], onDelete: NoAction)
+  Partner       Partner   @relation(fields: [partnerId], references: [id], onDelete: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model ProofOfWork {
+  id                 String     @id
+  contractorId       String
+  workType           String
+  projectName        String
+  clientName         String
+  clientContact      String
+  projectAddress     String?
+  completionDate     DateTime
+  projectValue       Float
+  projectDescription String?
+  damageType         String[]   @default([])
+  propertyType       String
+  emergencyResponse  Boolean    @default(false)
+  insuranceClaim     Boolean    @default(false)
+  insuranceCompany   String?
+  evidence           String     @default("[]")
+  verificationStatus String     @default("PENDING")
+  verifiedBy         String?
+  verifiedAt         DateTime?
+  rejectionReason    String?
+  submittedAt        DateTime   @default(now())
+  updatedAt          DateTime
+  Contractor         Contractor @relation(fields: [contractorId], references: [id], onDelete: NoAction)
+
+  @@index([contractorId])
+  @@index([verificationStatus])
+  @@index([workType])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model PushToken {
+  id        String   @id
+  claimId   String
+  token     String
+  platform  String   @default("web")
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  @@index([claimId])
+}
+
+model RedditContentPillar {
+  id          String       @id @default(dbgenerated("(gen_random_uuid())::text"))
+  code        String       @unique
+  name        String
+  description String?
+  categories  String[]
+  lastUsedAt  DateTime     @default(now())
+  usageCount  Int          @default(0)
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now())
+  RedditPost  RedditPost[]
+}
+
+model RedditOrchestratorRun {
+  id              String       @id @default(dbgenerated("(gen_random_uuid())::text"))
+  triggerType     String
+  command         String?
+  status          String       @default("RUNNING")
+  postsGenerated  Int          @default(0)
+  postsValidated  Int          @default(0)
+  postsPosted     Int          @default(0)
+  postsFailed     Int          @default(0)
+  totalTokensUsed Int          @default(0)
+  totalDurationMs Int          @default(0)
+  errorMessage    String?
+  startedAt       DateTime     @default(now())
+  completedAt     DateTime?
+  RedditPost      RedditPost[]
+}
+
+model RedditPerformanceLog {
+  id           String     @id @default(dbgenerated("(gen_random_uuid())::text"))
+  upvotes      Int
+  downvotes    Int
+  commentCount Int
+  upvoteRatio  Float
+  isRemoved    Boolean    @default(false)
+  sampledAt    DateTime   @default(now())
+  postId       String
+  RedditPost   RedditPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model RedditPost {
+  id                    String                 @id @default(dbgenerated("(gen_random_uuid())::text"))
+  title                 String
+  body                  String
+  tldr                  String?
+  category              String
+  brands                String
+  geoSignals            String
+  subreddit             String                 @default("Disaster_Recovery_Qld")
+  aiModel               String?
+  aiPromptVersion       String?
+  generationTokens      Int?
+  safetyStatus          String                 @default("PENDING")
+  safetyGateResults     String?
+  geoCompliant          Boolean                @default(false)
+  geoIssues             String?
+  imageGenerated        Boolean                @default(false)
+  imageUrl              String?
+  imagePrompt           String?
+  imageFormat           String?
+  status                String                 @default("SCHEDULED")
+  scheduledFor          DateTime?
+  generatedAt           DateTime?
+  validatedAt           DateTime?
+  postedAt              DateTime?
+  failedAt              DateTime?
+  failureReason         String?
+  redditId              String?
+  redditUrl             String?
+  upvotes               Int                    @default(0)
+  downvotes             Int                    @default(0)
+  commentCount          Int                    @default(0)
+  upvoteRatio           Float                  @default(0)
+  isRemoved             Boolean                @default(false)
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @default(now())
+  contentPillarId       String?
+  orchestratorRunId     String?
+  RedditPerformanceLog  RedditPerformanceLog[]
+  RedditContentPillar   RedditContentPillar?   @relation(fields: [contentPillarId], references: [id])
+  RedditOrchestratorRun RedditOrchestratorRun? @relation(fields: [orchestratorRunId], references: [id])
+  RedditSafetyAudit     RedditSafetyAudit[]
+}
+
+model RedditSafetyAudit {
+  id         String     @id @default(dbgenerated("(gen_random_uuid())::text"))
+  gateName   String
+  gateModel  String
+  passed     Boolean
+  confidence Float
+  findings   String
+  tokensUsed Int?
+  durationMs Int?
+  createdAt  DateTime   @default(now())
+  postId     String
+  RedditPost RedditPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model RedditSystemPrompt {
+  id         String   @id @default(dbgenerated("(gen_random_uuid())::text"))
+  version    String   @unique
+  promptText String
+  isActive   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+}
+
+model SubContractor {
+  id                       String                    @id
+  abn                      String                    @unique
+  businessName             String
+  tradingName              String?
+  contactName              String
+  contactEmail             String
+  contactPhone             String
+  tradeType                String
+  licenceNumber            String
+  licenceState             String
+  licenceExpiry            DateTime
+  publicLiabilityCoverage  Float
+  publicLiabilityInsurer   String
+  publicLiabilityExpiry    DateTime
+  onboardingStatus         String                    @default("NOT_STARTED")
+  status                   String                    @default("PENDING")
+  agreementSignedAt        DateTime?
+  agreementSignedBy        String?
+  registeredByContractorId String
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime
+  contractor_profiles      ContractorProfile         @relation(fields: [registeredByContractorId], references: [id])
+  SubContractorEngagement  SubContractorEngagement[]
+
+  @@index([registeredByContractorId])
+}
+
+model SubContractorEngagement {
+  id                        String             @id
+  jobId                     String
+  subContractorId           String
+  primaryContractorId       String
+  tradeType                 String
+  workScope                 String
+  subInvoiceAmount          Float
+  markupPercent             Float
+  customerChargeAmount      Float
+  gstAmount                 Float
+  customerChargeTotalIncGst Float
+  status                    String             @default("QUOTED")
+  authorisedAt              DateTime?
+  completedAt               DateTime?
+  invoicedAt                DateTime?
+  notes                     String?
+  createdAt                 DateTime           @default(now())
+  updatedAt                 DateTime
+  field_service_jobs        field_service_jobs @relation(fields: [jobId], references: [id])
+  contractor_profiles       ContractorProfile  @relation(fields: [primaryContractorId], references: [id])
+  SubContractor             SubContractor      @relation(fields: [subContractorId], references: [id])
+
+  @@index([jobId])
+  @@index([primaryContractorId])
+  @@index([subContractorId])
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model VoiceCall {
+  id                     String           @id
+  agentId                String
+  agentRole              String
+  conversationId         String           @unique
+  channel                String
+  surface                String           @default("web_widget")
+  consentGivenAt         DateTime?
+  consentVersion         String?
+  consentMethod          String?
+  startedAt              DateTime
+  endedAt                DateTime?
+  durationSeconds        Int?
+  outcome                String?
+  redactedSummary        String?
+  correlationClaimId     String?
+  correlationApplicantId String?
+  metadata               Json?
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime
+  CallTranscript         CallTranscript[]
+
+  @@index([agentId, startedAt])
+  @@index([conversationId])
+  @@index([correlationClaimId])
+}
+
+model WebhookDelivery {
+  id          String   @id
+  eventId     String   @unique
+  eventType   String
+  provider    String   @default("stripe")
+  livemode    Boolean?
+  payloadHash String?
+  processedAt DateTime @default(now())
+
+  @@index([eventType, processedAt])
+  @@index([provider, processedAt])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model contractor_training_modules {
+  id           String    @id
+  contractorId String
+  moduleName   String
+  completed    Boolean   @default(false)
+  score        Float?
+  attempts     Int       @default(0)
+  startedAt    DateTime  @default(now())
+  completedAt  DateTime?
+
+  @@unique([contractorId, moduleName])
+  @@index([contractorId])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model contractor_training_progress {
+  id           String    @id
+  contractorId String    @unique
+  currentStep  Int       @default(1)
+  totalSteps   Int       @default(14)
+  completed    Boolean   @default(false)
+  startedAt    DateTime  @default(now())
+  completedAt  DateTime?
+  metadata     String?
+
+  @@index([contractorId])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model field_service_jobs {
+  id                      String                    @id
+  leadId                  String?
+  contractorId            String?
+  serviceType             String
+  urgency                 String
+  status                  String
+  address                 String
+  suburb                  String
+  state                   String
+  postcode                String
+  coordinates             Json?
+  customerName            String
+  customerPhone           String
+  customerEmail           String?
+  insuranceClaim          Boolean                   @default(false)
+  insurerName             String?
+  claimNumber             String?
+  policyNumber            String?
+  assignedAt              DateTime?
+  acceptedAt              DateTime?
+  startedAt               DateTime?
+  completedAt             DateTime?
+  description             String
+  internalNotes           String?
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime
+  BotConversation         BotConversation[]
+  JobOffer                JobOffer[]
+  SubContractorEngagement SubContractorEngagement[]
+  Contractor              Contractor?               @relation(fields: [contractorId], references: [id], onDelete: NoAction)
+
+  @@index([contractorId, status])
+  @@index([status, urgency])
+  @@index([suburb, state])
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model lead_notes {
+  id        String   @id
+  leadId    String
+  note      String
+  type      String
+  author    String
+  createdAt DateTime @default(now())
+  leads     leads    @relation(fields: [leadId], references: [id], onDelete: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model lead_tracking {
+  id        String   @id
+  leadId    String
+  event     String
+  metadata  String?
+  createdAt DateTime @default(now())
+  leads     leads    @relation(fields: [leadId], references: [id], onDelete: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model leads {
+  id                    String           @id
+  fullName              String
+  phone                 String
+  email                 String
+  propertyType          String
+  propertyAddress       String
+  suburb                String
+  state                 String
+  postcode              String
+  damageType            String
+  damageDate            DateTime
+  damageDescription     String
+  estimatedAreaAffected String
+  hasInsurance          Boolean
+  insuranceCompany      String?
+  claimNumber           String?
+  excessAmount          String?
+  urgencyLevel          String
+  propertyValue         String
+  isBusinessProperty    Boolean
+  requiresAccommodation Boolean
+  leadScore             Int
+  leadValue             Float
+  hasPhotos             Boolean
+  readyToStart          String
+  budget                String?
+  decisionMaker         Boolean
+  qualityStatus         String
+  source                String?
+  ipAddress             String?
+  userAgent             String?
+  status                String           @default("NEW")
+  partnerId             String?
+  assignedAt            DateTime?
+  acceptedAt            DateTime?
+  rejectedAt            DateTime?
+  completedAt           DateTime?
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime
+  PartnerBilling        PartnerBilling[]
+  lead_notes            lead_notes[]
+  lead_tracking         lead_tracking[]
+  Partner               Partner?         @relation(fields: [partnerId], references: [id], onDelete: NoAction)
 }
 
 enum UserType {
@@ -2835,27 +4134,23 @@ enum BetaFeedbackCategory {
   GENERAL_FEEDBACK
 }
 
-// ============================================
-// Contractor Verification Enums
-// ============================================
-
 enum ContractorVerificationStatus {
-  PENDING                // Initial state when contractor signs up
-  INCOMPLETE            // Missing required fields
-  SUBMITTED             // All fields complete, ready for review
-  UNDER_REVIEW          // Admin is reviewing
-  APPROVED              // Verified and live
-  REJECTED              // Application denied
-  RESUBMISSION_REQUIRED // Needs corrections
-  SUSPENDED             // Suspended after approval
-  EXPIRED               // License expired
+  PENDING
+  INCOMPLETE
+  SUBMITTED
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  RESUBMISSION_REQUIRED
+  SUSPENDED
+  EXPIRED
 }
 
 enum ServiceCoverageLevel {
-  STANDARD       // Normal service
-  PRIORITY       // Fast response
-  EMERGENCY_ONLY // Only urgent calls
-  LIMITED        // Conditional availability
+  STANDARD
+  PRIORITY
+  EMERGENCY_ONLY
+  LIMITED
 }
 
 enum ContractorDocumentType {
@@ -2873,12 +4168,12 @@ enum ContractorDocumentType {
 }
 
 enum DocumentStatus {
-  PENDING        // Uploaded, awaiting review
-  UNDER_REVIEW   // Admin reviewing
-  APPROVED       // Verified
-  REJECTED       // Not accepted
-  EXPIRED        // Past expiry date
-  REQUIRES_RENEWAL // Expiring soon
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  EXPIRED
+  REQUIRES_RENEWAL
 }
 
 enum VerificationAction {
@@ -2898,547 +4193,6 @@ enum VerificationAction {
   STATUS_CHANGED
 }
 
-// ============================================
-// Contractor Verification Models
-// ============================================
-
-model ContractorDocument {
-  id                  String                     @id @default(cuid())
-  contractorId        String
-  contractor          Contractor                 @relation("ContractorDocuments", fields: [contractorId], references: [id], onDelete: Cascade)
-
-  // Document Metadata
-  documentType        ContractorDocumentType
-  fileName            String
-  fileUrl             String
-  fileSize            Int                        // Bytes
-  mimeType            String
-
-  // Verification
-  status              DocumentStatus             @default(PENDING)
-  uploadedAt          DateTime                   @default(now())
-  verifiedAt          DateTime?
-  verifiedBy          String?                    // Admin user ID
-  rejectionReason     String?
-  expiryDate          DateTime?
-  issuedDate          DateTime?
-
-  // Document Details
-  documentNumber      String?
-  issuingAuthority    String?
-  stateIssued         AustralianState?
-
-  // Security & Audit
-  viewCount           Int                        @default(0)
-  lastViewedAt        DateTime?
-  lastViewedBy        String?
-
-  createdAt           DateTime                   @default(now())
-  updatedAt           DateTime                   @updatedAt
-
-  @@index([contractorId, documentType])
-  @@index([status])
-  @@index([expiryDate])
-  @@index([documentType, status])
-}
-
-model ContractorVerificationHistory {
-  id                  String                        @id @default(cuid())
-  contractorId        String
-  contractor          Contractor                    @relation("VerificationHistory", fields: [contractorId], references: [id], onDelete: Cascade)
-
-  // Action Details
-  action              VerificationAction
-  previousStatus      ContractorVerificationStatus?
-  newStatus           ContractorVerificationStatus
-  reason              String?
-  notes               String?
-
-  // Actor
-  performedBy         String                        // User ID
-  performedByName     String?
-  isSystemAction      Boolean                       @default(false)
-
-  // Metadata
-  ipAddress           String?
-  userAgent           String?
-  metadata            Json?
-
-  createdAt           DateTime                      @default(now())
-
-  @@index([contractorId, createdAt])
-  @@index([action])
-  @@index([createdAt])
-}
-
-// ============================================
-// AI Image Enhancement Models
-// ============================================
-
-model AIImageEnhancementLog {
-  id           String   @id @default(cuid())
-  photoId      String
-  reportId     String
-
-  // Prompt & Response
-  prompt       String   @db.Text
-  originalDesc String?  @db.Text
-  enhancedDesc String   @db.Text
-
-  // API Metadata
-  model        String
-  tokensUsed   Int
-  costUSD      Decimal  @db.Decimal(10, 4)
-  processingMs Int
-  success      Boolean  @default(true)
-  error        String?
-
-  // Multi-tenant
-  tenantId     String?
-  createdAt    DateTime @default(now())
-
-  // Relationships
-  photo        InspectionPhoto  @relation(fields: [photoId], references: [id], onDelete: Cascade)
-  report       InspectionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
-  tenant       Tenant?          @relation(fields: [tenantId], references: [id])
-
-  @@index([photoId])
-  @@index([reportId])
-  @@index([createdAt])
-  @@index([tenantId])
-  @@map("ai_image_enhancement_logs")
-}
-
-model AIBatchProcessingJob {
-  id              String   @id @default(cuid())
-  jobType         String
-  status          String
-
-  // Progress Tracking
-  totalImages     Int
-  processedImages Int      @default(0)
-  successCount    Int      @default(0)
-  failureCount    Int      @default(0)
-  totalCostUSD    Decimal  @db.Decimal(10, 2) @default(0)
-
-  // Timestamps
-  startedAt       DateTime?
-  completedAt     DateTime?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  // Ownership
-  initiatedBy     String
-  tenantId        String?
-  metadata        Json?
-
-  // Relationships
-  initiator       User    @relation("BatchJobInitiator", fields: [initiatedBy], references: [id])
-  tenant          Tenant? @relation(fields: [tenantId], references: [id])
-
-  @@index([status])
-  @@index([jobType])
-  @@index([createdAt])
-  @@index([tenantId])
-  @@map("ai_batch_processing_jobs")
-}
-
-// ============================================
-// Background Job Queue Models
-// ============================================
-
-model BackgroundJob {
-  id              String   @id @default(cuid())
-
-  // Job Classification
-  jobType         String   // "CONTRACTOR_MATCHING", "CONTRACTOR_NOTIFICATION", etc.
-  status          String   @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED, RETRY
-  priority        Int      @default(5) // 1=critical, 5=normal, 10=low
-
-  // Payload
-  input           Json
-  output          Json?
-
-  // Error Tracking
-  attemptCount    Int      @default(0)
-  maxAttempts     Int      @default(3)
-  lastError       String?  @db.Text
-  errorStack      String?  @db.Text
-
-  // Scheduling
-  scheduledFor    DateTime @default(now())
-  startedAt       DateTime?
-  completedAt     DateTime?
-  nextRetryAt     DateTime?
-
-  // Relations
-  claimId         String?
-  tenantId        String?
-  initiatedBy     String?
-
-  // Timestamps
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  // Relationships
-  claim           PublicClaim? @relation(fields: [claimId], references: [id], onDelete: SetNull)
-  tenant          Tenant?      @relation(fields: [tenantId], references: [id], onDelete: SetNull)
-  initiator       User?        @relation("BackgroundJobInitiator", fields: [initiatedBy], references: [id], onDelete: SetNull)
-
-  @@index([status, scheduledFor])
-  @@index([jobType, status])
-  @@index([claimId])
-  @@index([priority, scheduledFor])
-  @@index([tenantId])
-  @@index([createdAt])
-  @@map("background_jobs")
-}
-
-// ============================================
-// Marketing Landing Pages Models
-// ============================================
-
-// Pre-Launch Waitlist Submissions
-// Captures emails from /launch landing page for launch notifications
-model WaitlistSubmission {
-  id            String   @id @default(cuid())
-
-  // User Information
-  email         String   @unique
-  fullName      String
-  userType      String   // "PROPERTY_OWNER" | "CONTRACTOR"
-
-  // Marketing Attribution
-  source        String?  // Landing page source (waitlist, contractor-join, emergency, etc.)
-  utmSource     String?  // Campaign source (google, facebook, linkedin, email, organic)
-  utmMedium     String?  // Campaign medium (cpc, social, email, organic)
-  utmCampaign   String?  // Campaign name (storm-season-2026, contractor-recruitment-q1, etc.)
-  utmContent    String?  // Ad content variant (headline-a, cta-orange, form-short, etc.)
-  utmTerm       String?  // Search term (water damage sydney, flood restoration melbourne, etc.)
-
-  // Consent & Privacy
-  consentEmail  Boolean  @default(false) // Consent to receive marketing emails
-
-  // Status Tracking
-  emailSent     Boolean  @default(false) // Confirmation email sent
-  notifiedLaunch Boolean @default(false) // Notified when platform launched
-  convertedUser  String?  // User ID if they signed up after launch
-
-  // Timestamps
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  @@index([email])
-  @@index([userType])
-  @@index([createdAt])
-  @@index([source])
-  @@index([utmSource])
-  @@index([utmCampaign])
-  @@map("waitlist_submissions")
-}
-
-// Xero OAuth2 Token Storage
-// Stores Xero API credentials for accounting integration
-model XeroToken {
-  id           String   @id @default(cuid())
-  tenantId     String   // Xero organisation tenant ID
-  accessToken  String   @db.Text
-  refreshToken String   @db.Text
-  expiresAt    DateTime
-  scopes       String[] // OAuth2 scopes granted
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  @@index([tenantId])
-  @@map("xero_tokens")
-}
-
-// Contractor Application Forms
-// Captures contractor interest from /contractors/join landing page
-model ContractorApplication {
-  id                String   @id @default(cuid())
-
-  // Business Information
-  businessName      String
-  contactName       String
-  email             String
-  phone             String
-  abn               String?
-
-  // Certifications & Capabilities
-  certifications    String[] // IICRC cert types: ["WATER_DAMAGE", "FIRE_SMOKE", "MOULD", "TRAUMA", etc.]
-  serviceAreas      String[] // Postcodes or states they service
-  yearsInBusiness   Int
-
-  // Application Status
-  status            String   @default("PENDING") // PENDING | UNDER_REVIEW | APPROVED | REJECTED | CONTACTED
-  reviewedBy        String?  // User ID of admin who reviewed
-  reviewedAt        DateTime?
-  rejectionReason   String?  @db.Text
-  notes             String?  @db.Text // Internal admin notes
-
-  // Marketing Attribution
-  source            String?  // Landing page variant
-  utmSource         String?
-  utmMedium         String?
-  utmCampaign       String?
-  utmContent        String?
-  utmTerm           String?
-
-  // Follow-up Tracking
-  emailSent         Boolean  @default(false) // Application received email sent
-  contacted         Boolean  @default(false) // Contacted by sales/onboarding team
-  contactedAt       DateTime?
-  convertedContractor String? // Contractor ID if they completed onboarding
-
-  // Timestamps
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-
-  @@index([email])
-  @@index([status])
-  @@index([createdAt])
-  @@index([source])
-  @@index([utmCampaign])
-  @@index([abn])
-  @@map("contractor_applications")
-}
-
-// ============================================
-// Public API Models
-// ============================================
-
-// Lead Capture
-// Captures property owner enquiries from public landing pages
-model LeadCapture {
-  id                     String    @id @default(cuid())
-
-  // Personal Information
-  firstName              String
-  lastName               String
-  email                  String
-  phone                  String
-
-  // Property Information
-  propertyAddress        String
-  suburb                 String
-  state                  String
-  postcode               String
-
-  // Damage Information
-  damageType             String
-  damageDescription      String    @db.Text
-
-  // Insurance Information
-  hasInsurance           Boolean   @default(false)
-  insuranceProvider      String?
-  claimNumber            String?
-
-  // Urgency
-  urgency                String    @default("STANDARD") // URGENT | HIGH | STANDARD | SCHEDULED
-
-  // Marketing
-  preferredContactMethod String?   @default("EMAIL")
-  marketingConsent       Boolean   @default(false)
-
-  // Attribution
-  source                 String?
-  referrer               String?
-
-  // Metadata
-  submittedAt            DateTime  @default(now())
-  ipAddress              String?
-  userAgent              String?
-
-  // Status Tracking
-  status                 String    @default("NEW") // NEW | CONTACTED | QUALIFIED | CONVERTED | CLOSED
-  assignedTo             String?
-  contactedAt            DateTime?
-  convertedToClientAt    DateTime?
-
-  // Timestamps
-  createdAt              DateTime  @default(now())
-  updatedAt              DateTime  @updatedAt
-
-  @@index([email])
-  @@index([phone])
-  @@index([status])
-  @@index([submittedAt])
-  @@index([urgency])
-  @@map("lead_captures")
-}
-
-// Newsletter Subscription
-// Manages email newsletter opt-ins from the public site
-model NewsletterSubscription {
-  id                 String    @id @default(cuid())
-
-  // Contact Information
-  email              String    @unique
-  firstName          String?
-  lastName           String?
-
-  // Preferences
-  interests          String[]
-
-  // Location
-  state              String?
-  postcode           String?
-
-  // Consent
-  marketingConsent   Boolean   @default(false)
-
-  // Double opt-in
-  confirmed          Boolean   @default(false)
-  confirmedAt        DateTime?
-  confirmationToken  String?   @unique
-
-  // Status
-  isActive           Boolean   @default(true)
-  subscribedAt       DateTime  @default(now())
-  unsubscribedAt     DateTime?
-  resubscribedAt     DateTime?
-
-  // Unsubscribe Token
-  unsubscribeToken   String?   @unique
-
-  // Attribution
-  source             String?
-  referrer           String?
-  ipAddress          String?
-  userAgent          String?
-
-  // Email Engagement
-  emailsSent         Int       @default(0)
-  emailsOpened       Int       @default(0)
-  emailsClicked      Int       @default(0)
-  lastEmailSentAt    DateTime?
-  lastEmailOpenedAt  DateTime?
-
-  // Timestamps
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-
-  @@index([isActive])
-  @@index([subscribedAt])
-  @@index([state])
-  @@map("newsletter_subscriptions")
-}
-
-// Contractor Inquiry
-// Captures contractor partnership enquiries from the public /contractors page
-model ContractorInquiry {
-  id                       String    @id @default(cuid())
-
-  // Business Information
-  businessName             String
-  abn                      String    @unique
-  businessType             String
-
-  // Contact Information
-  contactFirstName         String
-  contactLastName          String
-  contactEmail             String
-  contactPhone             String
-
-  // Business Address
-  businessAddress          String
-  suburb                   String
-  state                    String
-  postcode                 String
-
-  // Services & Experience
-  servicesOffered          String[]
-  serviceAreas             String[]
-  certifications           Json?
-  yearsInBusiness          Int
-  numberOfEmployees        Int
-
-  // Insurance
-  hasPublicLiability       Boolean
-  publicLiabilityAmount    Decimal?  @db.Decimal(12, 2)
-  hasWorkersCompensation   Boolean
-
-  // Additional Information
-  additionalInfo           String?   @db.Text
-  website                  String?
-  availability24x7         Boolean   @default(false)
-  emergencyResponseTime    String?
-
-  // Consent
-  termsAccepted            Boolean
-  backgroundCheckConsent   Boolean
-
-  // Application Scoring
-  applicationScore         Int       @default(0)
-  status                   String    @default("PENDING") // PENDING | UNDER_REVIEW | APPROVED | REJECTED | CONTACTED
-
-  // Review Process
-  reviewedBy               String?
-  reviewedAt               DateTime?
-  reviewNotes              String?   @db.Text
-  approvalReason           String?   @db.Text
-  rejectionReason          String?   @db.Text
-
-  // Attribution
-  source                   String?
-  referrer                 String?
-  submittedAt              DateTime  @default(now())
-  ipAddress                String?
-  userAgent                String?
-
-  // Timestamps
-  createdAt                DateTime  @default(now())
-  updatedAt                DateTime  @updatedAt
-
-  @@index([status])
-  @@index([submittedAt])
-  @@index([applicationScore])
-  @@index([contactEmail])
-  @@index([state])
-  @@map("contractor_inquiries")
-}
-
-// ============================================
-// Job Management Models
-// ============================================
-
-model Job {
-  id               String        @id @default(cuid())
-  jobNumber        String        @unique // NRP-2026-XXXXX format
-  type             String        // water | fire | mould | storm | asbestos
-  status           JobStatus     @default(PENDING)
-  propertyId       String
-  contractorId     String?
-  clientId         String?
-  estimatedCost    Decimal?
-  actualCost       Decimal?
-  scheduledDate    DateTime?
-  completedDate    DateTime?
-  notes            String?
-  insuranceClaimId String?
-  hoursWorked      Decimal?
-  materialsUsed    String?
-  tenantId         String?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-  property         ClientProperty @relation(fields: [propertyId], references: [id])
-  contractor       Contractor?   @relation("ContractorJobs", fields: [contractorId], references: [id])
-  tenant           Tenant?       @relation(fields: [tenantId], references: [id])
-  documents        JobDocument[]
-  photos           JobPhoto[]
-  outcomeLogs      JobOutcomeLog[]
-
-  @@index([jobNumber])
-  @@index([status])
-  @@index([type])
-  @@index([contractorId])
-  @@index([propertyId])
-  @@index([tenantId])
-  @@index([scheduledDate])
-  @@map("jobs")
-}
-
 enum JobStatus {
   PENDING
   ASSIGNED
@@ -3448,122 +4202,10 @@ enum JobStatus {
   PAID
 }
 
-model JobDocument {
-  id        String   @id @default(cuid())
-  jobId     String
-  name      String
-  url       String
-  type      String
-  size      Int
-  createdAt DateTime @default(now())
-  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
-
-  @@index([jobId])
-  @@map("job_documents")
-}
-
-model JobPhoto {
-  id        String   @id @default(cuid())
-  jobId     String
-  url       String
-  caption   String?
-  takenAt   DateTime @default(now())
-  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
-
-  @@index([jobId])
-  @@map("job_photos")
-}
-
-// ============================================
-// Job Outcome Log — DR-322 Path B
-// Structured outcome collection for BI/analytics.
-// Captures terminal-state transitions so data collection
-// begins now, independent of Path A (publish decision).
-// ============================================
-
 enum JobOutcome {
   COMPLETED
   CANCELLED
   REJECTED_BY_CLIENT
   REJECTED_BY_CONTRACTOR
   TIMED_OUT
-}
-
-model JobOutcomeLog {
-  id               String     @id @default(cuid())
-  jobId            String
-  outcome          JobOutcome
-  jobType          String     // water | fire | mould | storm | asbestos
-  contractorId     String?
-  clientId         String?
-  insuranceClaimId String?
-  actualCost       Decimal?   @db.Decimal(10, 2)
-  hoursWorked      Decimal?   @db.Decimal(6, 2)
-  loggedAt         DateTime   @default(now())
-  loggedByUserId   String
-  tenantId         String?
-  metadata         Json?      // flexible extra context (state, postcode, etc.)
-  job              Job        @relation(fields: [jobId], references: [id])
-
-  @@index([jobId])
-  @@index([outcome])
-  @@index([jobType])
-  @@index([loggedAt])
-  @@index([tenantId])
-  @@index([contractorId])
-  @@map("job_outcome_logs")
-}
-
-// ============================================
-// Notification Log
-// ============================================
-
-model NotificationLog {
-  id          String   @id @default(cuid())
-  type        String   // email | sms
-  channel     String   // job_created | contractor_assigned | work_started | job_completed | invoice_generated
-  recipientId String?
-  recipient   String   // email address or phone number
-  jobId       String?
-  jobNumber   String?
-  subject     String?
-  status      String   @default("sent") // sent | failed | bounced
-  errorMessage String?
-  sentAt      DateTime @default(now())
-  createdAt   DateTime @default(now())
-
-  @@index([jobId])
-  @@index([recipientId])
-  @@index([channel])
-  @@index([sentAt])
-  @@map("notification_logs")
-}
-
-/// Platform-level contact enquiries submitted from /contact.
-/// Distinct from LeadCapture (damage claims) and ContractorInquiry (applications).
-model ContactEnquiry {
-  id          String    @id @default(cuid())
-
-  firstName   String
-  lastName    String
-  email       String
-  phone       String?
-  subject     String    @default("General Inquiry")
-  message     String    @db.Text
-
-  // Attribution / metadata
-  source      String?
-  referrer    String?
-  ipAddress   String?
-  userAgent   String?
-  submittedAt DateTime  @default(now())
-
-  // Ops tracking
-  status      String    @default("NEW") // NEW | CONTACTED | RESOLVED | CLOSED
-  assignedTo  String?
-  respondedAt DateTime?
-
-  @@index([status])
-  @@index([submittedAt])
-  @@map("contact_enquiries")
 }
