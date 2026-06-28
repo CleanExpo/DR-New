@@ -54,7 +54,8 @@ function SignupPageContent() {
   const [registeredUser, setRegisteredUser] = useState<any>(null);
   const [contractorPreferences, setContractorPreferences] = useState<any>(null);
   const [clientPreferences, setClientPreferences] = useState<any>(null);
-  
+  const [consentAccepted, setConsentAccepted] = useState(false);
+
   const { register } = useAuth();
   const router = useRouter();
 
@@ -87,6 +88,10 @@ function SignupPageContent() {
       setError('Passwords do not match');
       return false;
     }
+    if (!consentAccepted) {
+      setError('You must accept the Terms of Service and Privacy Policy to continue');
+      return false;
+    }
     return true;
   };
 
@@ -99,7 +104,7 @@ function SignupPageContent() {
     setLoading(true);
 
     try {
-      const user = await register(formData.email, formData.password, formData.name, formData.userType);
+      const user = await register(formData.email, formData.password, formData.name, formData.userType, consentAccepted);
       setRegisteredUser(user);
       setSuccess(true);
       
@@ -441,6 +446,11 @@ function SignupPageContent() {
                   id="terms"
                   type="checkbox"
                   required
+                  checked={consentAccepted}
+                  onChange={(e) => {
+                    setConsentAccepted(e.target.checked);
+                    if (error) setError('');
+                  }}
                   className="h-4 w-4 text-[#00BFA6] focus:ring-[#00BFA6] border-gray-300 rounded mt-1"
                 />
                 <Label htmlFor="terms" className="text-sm text-gray-400 leading-relaxed">
