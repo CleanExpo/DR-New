@@ -23,8 +23,18 @@ export async function GET(
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN']);
     }
 
-    if (user.userType === 'CONTRACTOR' && params.contractorId !== user.id) {
-      return createErrorResponse(ErrorCode.FORBIDDEN, 'Unauthorized onboarding access', 403);
+    // Ownership scoping: a contractor may only read their OWN onboarding.
+    // Resolve their Contractor record via Contractor.userId — Contractor.id is NOT
+    // the same as User.id, so the previous `params.contractorId !== user.id` check
+    // was wrong (it blocked contractors from their own data and never scoped by owner).
+    if (user.userType === 'CONTRACTOR') {
+      const ownContractor = await db.contractor.findUnique({
+        where: { userId: user.id },
+        select: { id: true },
+      });
+      if (!ownContractor || ownContractor.id !== params.contractorId) {
+        return createErrorResponse(ErrorCode.FORBIDDEN, 'Unauthorized onboarding access', 403);
+      }
     }
 
     const onboarding = await db.contractorOnboarding.findUnique({
