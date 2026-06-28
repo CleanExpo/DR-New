@@ -199,24 +199,24 @@ function SignupPageContent() {
       if (profileResponse.ok) {
         setContractorPreferences(preferences);
         setShowContractorOnboarding(false);
-        router.push('/dashboard');
+        router.push('/dashboard/contractor');
       } else {
         console.error('Failed to create contractor profile');
-        // Still redirect to dashboard, user can complete profile later
+        // Still redirect to the contractor dashboard; profile can be completed later
         setShowContractorOnboarding(false);
-        router.push('/dashboard');
+        router.push('/dashboard/contractor');
       }
     } catch (error) {
       console.error('Error saving contractor data:', error);
-      // Still redirect to dashboard, user can complete profile later
+      // Still redirect to the contractor dashboard; profile can be completed later
       setShowContractorOnboarding(false);
-      router.push('/dashboard');
+      router.push('/dashboard/contractor');
     }
   };
 
   const handleContractorOnboardingSkip = () => {
     setShowContractorOnboarding(false);
-    router.push('/dashboard');
+    router.push('/dashboard/contractor');
   };
 
   const handleClientOnboardingComplete = async (preferences: any) => {

@@ -54,15 +54,40 @@ export async function POST(request: NextRequest) {
     // provisioned out of band, so anything other than CONTRACTOR collapses to CLIENT.
     const safeUserType = validatedData.userType === 'CONTRACTOR' ? 'CONTRACTOR' : 'CLIENT';
 
-    const user = await prisma.user.create({
-      data: {
-        email: validatedData.email,
-        password: hashedPassword,
-        name: validatedData.name,
-        userType: safeUserType,
-        emailVerificationToken: verificationToken,
-        emailVerificationTokenExpiry: new Date(Date.now() + 24 * 60 * 60 * 1000),
-      },
+    // Create the account. For contractors, atomically create the Contractor +
+    // ContractorOnboarding (step 0) so the lifecycle exists from signup onward.
+    // Lifecycle rows key contractorId on User.id (DR-879, Option B).
+    const user = await prisma.$transaction(async (tx) => {
+      const createdUser = await tx.user.create({
+        data: {
+          email: validatedData.email,
+          password: hashedPassword,
+          name: validatedData.name,
+          userType: safeUserType,
+          emailVerificationToken: verificationToken,
+          emailVerificationTokenExpiry: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        },
+      });
+
+      if (safeUserType === 'CONTRACTOR') {
+        await tx.contractor.create({
+          data: {
+            userId: createdUser.id,
+            businessName: `${validatedData.name}'s Business`,
+          },
+        });
+        // Step-0 onboarding placeholder (status defaults to PENDING_START).
+        // specialization + training modules are filled in when the contractor
+        // starts training: POST /api/onboarding/start populates this PENDING_START row.
+        await tx.contractorOnboarding.create({
+          data: {
+            contractorId: createdUser.id,
+            specialization: 'PENDING',
+          },
+        });
+      }
+
+      return createdUser;
     });
 
     // Send the verification email. A send failure must NOT fail registration —

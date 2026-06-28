@@ -96,7 +96,11 @@ export async function POST(request: NextRequest) {
       where: { contractorId },
     });
 
-    if (existing) {
+    // An already-started onboarding is returned as-is (idempotent). A step-0
+    // placeholder (status PENDING_START, created at signup in DR-877) is populated
+    // below rather than short-circuited — otherwise the contractor would never get
+    // training modules.
+    if (existing && existing.status !== OnboardingStatus.PENDING_START) {
       return NextResponse.json({ success: true, onboarding: existing });
     }
 
@@ -106,8 +110,10 @@ export async function POST(request: NextRequest) {
     }
 
     const onboarding = await db.$transaction(async (tx) => {
-      const created = await tx.contractorOnboarding.create({
-        data: {
+      // Create the onboarding, or populate the signup placeholder.
+      const created = await tx.contractorOnboarding.upsert({
+        where: { contractorId },
+        create: {
           contractorId,
           specialization: input.specialization,
           assessmentScore: null,
@@ -116,18 +122,31 @@ export async function POST(request: NextRequest) {
           targetCompletionDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
           status: OnboardingStatus.IN_PROGRESS,
         },
+        update: {
+          specialization: input.specialization,
+          recommendedModules: JSON.parse(JSON.stringify(recommendedModules)),
+          startDate: new Date(),
+          targetCompletionDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+          status: OnboardingStatus.IN_PROGRESS,
+        },
       });
 
-      await tx.contractorModuleProgress.createMany({
-        data: recommendedModules.map((module) => ({
-          onboardingId: created.id,
-          moduleId: module.moduleId,
-          courseName: module.courseName,
-          status: ModuleStatus.NOT_STARTED,
-          progress: 0,
-          completed: false,
-        })),
+      // Seed module progress only if none exist yet (the placeholder has none).
+      const moduleCount = await tx.contractorModuleProgress.count({
+        where: { onboardingId: created.id },
       });
+      if (moduleCount === 0) {
+        await tx.contractorModuleProgress.createMany({
+          data: recommendedModules.map((module) => ({
+            onboardingId: created.id,
+            moduleId: module.moduleId,
+            courseName: module.courseName,
+            status: ModuleStatus.NOT_STARTED,
+            progress: 0,
+            completed: false,
+          })),
+        });
+      }
 
       // Persist businessName to the Contractor record so it is available
       // across the platform before the contractor completes full NRPG registration.
