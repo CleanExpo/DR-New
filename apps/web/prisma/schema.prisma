@@ -108,6 +108,7 @@ model User {
   twoFactorSetupAt             DateTime?
   lockedUntil                  DateTime?
   failedLoginAttempts          Int                            @default(0)
+  lastFailedLoginAt            DateTime?
   id                           String                         @id @default(cuid())
   email                        String                         @unique
   name                         String?
@@ -2910,7 +2911,6 @@ model ContactEnquiry {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model AuditLogEntry {
-
   id           String    @id
   action       String
   entityType   String?
