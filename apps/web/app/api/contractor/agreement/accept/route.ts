@@ -6,6 +6,8 @@ import { contractorKey } from '@/lib/contractor-identity';
 import { getClientIp } from '@/lib/net/client-ip';
 import { ICA_VERSION } from '@/lib/legal/ica';
 import { getIcaDocumentHash } from '@/lib/legal/ica-hash';
+import { generateIcaPdf } from '@/lib/legal/ica-pdf';
+import { uploadFile } from '@/lib/storage/cloud-storage';
 import { handleValidationError, handleUnexpectedError } from '@/lib/api-errors';
 
 const acceptSchema = z.object({
@@ -124,23 +126,51 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Insert the new acceptance and supersede any prior-version acceptances in one
-    // transaction. Re-signing a newer version yields a NEW row (the @@unique is on
-    // contractorId+version, so different versions coexist).
-    const acceptance = await prisma.$transaction(async (tx) => {
-      const created = await tx.contractorAgreementAcceptance.create({
+    // Insert the new acceptance row. Re-signing a newer version yields a NEW row
+    // (the @@unique is on contractorId+version, so different versions coexist).
+    const created = await prisma.contractorAgreementAcceptance.create({
+      data: {
+        contractorId,
+        version: ICA_VERSION,
+        documentHash,
+        signedName: data.signedName.trim(),
+        signatureType: 'typed',
+        ipAddress,
+        userAgent,
+      },
+    });
+
+    // Generate + store the tamper-evident signed PDF atomically with the row:
+    // if PDF generation or upload fails, the acceptance must NOT persist, so we
+    // delete the just-created row and fail the request. (Storage I/O can't live
+    // inside a prisma transaction, hence the manual compensating delete.)
+    let acceptance;
+    try {
+      const { bytes, pdfHash } = await generateIcaPdf({
+        version: ICA_VERSION,
+        documentHash,
+        signedName: created.signedName,
+        acceptedAt: created.acceptedAt,
+        ipAddress,
+      });
+
+      const storageKey = `ica-agreements/${contractorId}/${created.id}-${ICA_VERSION}.pdf`;
+      await uploadFile(storageKey, bytes, {
+        contentType: 'application/pdf',
+        acl: 'private',
+      });
+
+      acceptance = await prisma.contractorAgreementAcceptance.update({
+        where: { id: created.id },
         data: {
-          contractorId,
-          version: ICA_VERSION,
-          documentHash,
-          signedName: data.signedName.trim(),
-          signatureType: 'typed',
-          ipAddress,
-          userAgent,
+          signedPdfUrl: storageKey,
+          signedPdfHash: pdfHash,
+          pdfGeneratedAt: new Date(),
         },
       });
 
-      await tx.contractorAgreementAcceptance.updateMany({
+      // Only after the executed PDF exists do we supersede prior-version rows.
+      await prisma.contractorAgreementAcceptance.updateMany({
         where: {
           contractorId,
           version: { not: ICA_VERSION },
@@ -148,9 +178,17 @@ export async function POST(request: NextRequest) {
         },
         data: { supersededAt: new Date() },
       });
-
-      return created;
-    });
+    } catch (pdfError) {
+      // Roll back: the acceptance is only valid with its executed PDF.
+      await prisma.contractorAgreementAcceptance
+        .delete({ where: { id: created.id } })
+        .catch(() => undefined);
+      console.error('[agreement/accept] PDF generation/upload failed:', pdfError);
+      return NextResponse.json(
+        { success: false, error: 'Could not finalise the signed agreement. Please try again.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       {
