@@ -1462,6 +1462,31 @@ model ContractorAgreementAcceptance {
   @@map("contractor_agreement_acceptances")
 }
 
+/// Append-only payout ledger (DR-858 N-02). One row per payout attempt. The
+/// deterministic `idempotencyKey` (e.g. `payout:<paymentId>`) + the unique
+/// `stripeTransferId` together guarantee no double-pay under replay/concurrency.
+/// Source of truth for "total paid out" (replaces the removed ContractorProfile
+/// ghost fields). contractorId here is Contractor.id (matches Payment.contractor).
+model ContractorPayout {
+  id               String   @id @default(cuid())
+  contractorId     String?
+  bookingId        String?
+  paymentId        String?
+  connectedAccount String?
+  idempotencyKey   String   @unique
+  stripeTransferId String?  @unique
+  amountAUD        Decimal  @db.Decimal(10, 2)
+  platformFeeAUD   Decimal  @db.Decimal(10, 2)
+  status           String   @default("PENDING")
+  failureReason    String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([contractorId])
+  @@index([paymentId])
+  @@map("contractor_payouts")
+}
+
 model Competitor {
   id              String               @id @default(cuid())
   domain          String               @unique
