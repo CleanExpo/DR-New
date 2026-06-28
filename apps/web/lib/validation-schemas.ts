@@ -14,7 +14,13 @@ export const loginSchema = z.object({
 
 export const registerSchema = z.object({
   email: z.string().email('Invalid email format'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
+  password: z
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .regex(
+      /(?=.*[A-Za-z])(?=.*\d)/,
+      'Password must include at least one letter and one number'
+    ),
   name: z.string().min(2, 'Name must be at least 2 characters'),
   userType: z.enum(['CLIENT', 'CONTRACTOR', 'ADMIN']),
 });
