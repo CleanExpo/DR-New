@@ -215,8 +215,8 @@ export default function ContractorTermsPage() {
                   </p>
                   <ul className="space-y-2 text-[#9CA3AF] text-sm">
                     {[
-                      'AS/NZS IICRC S500:2025 — Standard for Professional Water Damage Restoration',
-                      'AS/NZS IICRC S520:2025 — Standard for Professional Mould Remediation',
+                      'AS/NZS IICRC S500 — Standard for Professional Water Damage Restoration',
+                      'AS/NZS IICRC S520 — Standard for Professional Mould Remediation',
                       'IICRC S770 — Standard for Professional Fire and Smoke Damage Restoration',
                       'IICRC S100 — Standard for Professional Biohazard Remediation (where applicable)',
                     ].map((std) => (

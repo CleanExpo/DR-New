@@ -97,7 +97,7 @@ const faqSchema = {
       name: 'What restoration services does NRPG provide after storm or flood damage in Tasmania?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'NRPG provides IICRC-certified storm and flood restoration including structural assessment, water extraction, structural drying, mould prevention, and full restoration. All work is documented to AS/NZS IICRC S500:2025 standards to support your insurance submission.',
+        text: 'NRPG provides IICRC-certified storm and flood restoration including structural assessment, water extraction, structural drying, mould prevention, and full restoration. All work is documented to AS/NZS IICRC S500 standards to support your insurance submission.',
       },
     },
   ],
@@ -112,7 +112,7 @@ const TAS_SERVICES = [
   },
   {
     title: 'Flood Damage Restoration',
-    description: 'Water extraction and structural drying for Tasmanian flood events — including riverine flooding in the Derwent and Tamar valleys. AS/NZS IICRC S500:2025 standards applied.',
+    description: 'Water extraction and structural drying for Tasmanian flood events — including riverine flooding in the Derwent and Tamar valleys. AS/NZS IICRC S500 standards applied.',
     href: '/services/water-damage',
     icon: '🌊',
   },
@@ -130,7 +130,7 @@ const TAS_SERVICES = [
   },
   {
     title: 'Mould Remediation',
-    description: 'Post-flood and post-storm mould assessment and remediation across Tasmania. AS/NZS IICRC S520:2025 certified technicians.',
+    description: 'Post-flood and post-storm mould assessment and remediation across Tasmania. AS/NZS IICRC S520 certified technicians.',
     href: '/services/mould-remediation',
     icon: '🔬',
   },
