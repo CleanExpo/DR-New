@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { verifyToken, generateVerificationToken } from '@/lib/auth';
-import { prisma, findUserByEmail } from '@/lib/db';
+import { randomBytes } from 'crypto';
+import { prisma } from '@/lib/db';
 import { validateRequest, formatZodErrors } from '@/lib/validation';
 import { authRateLimiter } from '@/lib/api/redis-rate-limit';
 import { sendVerificationEmail } from '@/lib/email/resend';
@@ -120,41 +120,43 @@ export async function POST(request: NextRequest) {
 
     const { token } = validation.data;
 
-    // Verify token
-    const decoded = verifyToken(token);
-    if (!decoded || decoded.type !== 'email-verification') {
-      return NextResponse.json(
-        { success: false, error: 'Invalid or expired token' },
-        { status: 400 }
-      );
-    }
-
-    // Check if token exists in DB
-    const storedToken = await prisma.verificationToken.findFirst({
-      where: {
-        token,
-        userId: decoded.userId,
-        expiresAt: { gt: new Date() },
-      },
+    // Unified mechanism: tokens live on User.emailVerificationToken — the same field
+    // the GET link and the register/resend flows use.
+    const user = await prisma.user.findFirst({
+      where: { emailVerificationToken: token },
+      select: { id: true, isEmailVerified: true, emailVerificationTokenExpiry: true },
     });
 
-    if (!storedToken) {
+    if (!user) {
       return NextResponse.json(
         { success: false, error: 'Invalid or expired token' },
         { status: 400 }
       );
     }
 
-    // Update user and delete token
-    await prisma.$transaction([
-      prisma.user.update({
-        where: { id: decoded.userId },
-        data: { emailVerified: new Date() },
-      }),
-      prisma.verificationToken.delete({
-        where: { id: storedToken.id },
-      }),
-    ]);
+    if (user.isEmailVerified) {
+      return NextResponse.json({
+        success: true,
+        alreadyVerified: true,
+        message: 'Email already verified',
+      });
+    }
+
+    if (user.emailVerificationTokenExpiry && user.emailVerificationTokenExpiry < new Date()) {
+      return NextResponse.json(
+        { success: false, error: 'Verification token has expired' },
+        { status: 400 }
+      );
+    }
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        isEmailVerified: true,
+        emailVerificationToken: null,
+        emailVerificationTokenExpiry: null,
+      },
+    });
 
     return NextResponse.json({
       success: true,
@@ -192,44 +194,34 @@ export async function PUT(request: NextRequest) {
 
     const { email } = validation.data;
 
-    const user = await findUserByEmail(email);
-    if (!user) {
-      // Return success for security
+    const user = await prisma.user.findUnique({
+      where: { email: email.toLowerCase().trim() },
+      select: { id: true, email: true, name: true, isEmailVerified: true },
+    });
+
+    // Non-enumerating: identical generic response whether or not the account exists
+    // (or is already verified), so the endpoint can't be used to probe emails.
+    if (!user || user.isEmailVerified) {
       return NextResponse.json({
         success: true,
         message: 'If the email exists, a verification email has been sent',
       });
     }
 
-    if (user.emailVerified) {
-      return NextResponse.json(
-        { success: false, error: 'Email already verified' },
-        { status: 400 }
-      );
-    }
-
-    // Delete existing tokens
-    await prisma.verificationToken.deleteMany({
-      where: { userId: user.id },
-    });
-
-    // Generate new token
-    const verificationToken = generateVerificationToken(user.id);
-
-    // Store token
-    await prisma.verificationToken.create({
+    // Issue a fresh token on the User record — the same field the GET link validates.
+    const verificationToken = randomBytes(32).toString('hex');
+    await prisma.user.update({
+      where: { id: user.id },
       data: {
-        userId: user.id,
-        token: verificationToken,
-        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
+        emailVerificationToken: verificationToken,
+        emailVerificationTokenExpiry: new Date(Date.now() + 24 * 60 * 60 * 1000),
       },
     });
 
-    // Send verification email
     const emailResult = await sendVerificationEmail(user.email, verificationToken, user.name || undefined);
     if (!emailResult.success) {
       console.warn('Verification email could not be sent:', emailResult.error);
-      // Still return success to avoid revealing if email exists
+      // Still return the generic success to avoid revealing whether the email exists.
     }
 
     return NextResponse.json({
