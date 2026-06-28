@@ -259,8 +259,32 @@ export default function ContractorOnboardingChecklistPage() {
 
   const allComplete = steps.every((s) => s.complete);
 
+  // Resume point (DR-883): the first incomplete step. Each step has its own URL, so the
+  // "Continue" CTA deep-links the returning contractor straight to where they left off.
+  const firstIncompleteIndex = steps.findIndex((s) => !s.complete);
+  const nextStep = firstIncompleteIndex >= 0 ? steps[firstIncompleteIndex] : null;
+  const currentStepNumber = firstIncompleteIndex >= 0 ? firstIncompleteIndex + 1 : steps.length;
+
   return (
     <div className="container mx-auto py-8 max-w-4xl space-y-4">
+      {nextStep && (
+        <Card className="border-emerald-500/40 bg-emerald-50/60">
+          <CardContent className="flex items-center justify-between gap-4 py-4">
+            <div>
+              <p className="text-sm font-semibold text-emerald-700">
+                Continue — Step {currentStepNumber} of {steps.length}
+              </p>
+              <p className="text-sm text-muted-foreground">{nextStep.title}</p>
+            </div>
+            <Button asChild className="flex-shrink-0">
+              <Link href={nextStep.href}>
+                {nextStep.action}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      )}
       <Card>
         <CardHeader>
           <div className="flex items-start justify-between gap-3">
