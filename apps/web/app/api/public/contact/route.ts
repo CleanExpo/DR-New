@@ -13,6 +13,7 @@ import { z } from 'zod';
 import { basePrisma } from '@/lib/prisma';
 import { sendEmail } from '@/lib/services/email.service';
 import { bridgeLeadToCrm } from '@/lib/crm/lead-bridge';
+import { CURRENT_CONSENT_VERSION } from '@/lib/consent';
 
 const SUBJECTS = [
   'Platform Support',
@@ -80,6 +81,10 @@ export async function POST(request: NextRequest) {
         ipAddress,
         userAgent,
         status: 'NEW',
+        // Consent is captured at submission (the form presents the privacy
+        // notice); the server stamps when + which version (DR-858 N-09).
+        consentGivenAt: new Date(),
+        consentVersion: CURRENT_CONSENT_VERSION,
       },
     });
 
