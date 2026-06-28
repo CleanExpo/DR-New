@@ -8,6 +8,13 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# Serialize production migration runs. Concurrent runs caused the 2026-06-28
+# P3009 "relation already exists" incident; cancel-in-progress:false lets an
+# in-flight migration finish rather than being killed mid-DDL.
+concurrency:
+  group: migrate-production
+  cancel-in-progress: false
+
 env:
   NODE_VERSION: '20'
 
