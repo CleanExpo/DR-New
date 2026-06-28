@@ -25,6 +25,22 @@ export interface AuthenticateRequestOptions {
 }
 
 /**
+ * Account status is re-evaluated from the freshly-read DB user on every request,
+ * so block/suspend/deactivate take effect within a single request — not only at
+ * next login or session expiry.
+ */
+function isAccountDisabled(user: User): boolean {
+  return user.isActive === false || user.isBlocked === true;
+}
+
+function accountDisabledResponse(): NextResponse {
+  return NextResponse.json(
+    { error: ErrorCode.FORBIDDEN, message: 'Account is suspended or inactive' },
+    { status: 403 }
+  );
+}
+
+/**
  * Centralized authentication middleware following Anthropic best practices
  * Extracts and verifies JWT token, fetches user from database
  */
@@ -46,6 +62,10 @@ export async function authenticateRequest(
       });
 
       if (user) {
+        if (isAccountDisabled(user)) {
+          return { success: false, response: accountDisabledResponse() };
+        }
+
         // Resolve tenantId from hostname if user doesn't have one assigned
         let resolvedTenantId = user.tenantId;
         if (!resolvedTenantId) {
@@ -137,6 +157,10 @@ export async function authenticateRequest(
           { status: 404 }
         ),
       };
+    }
+
+    if (isAccountDisabled(user)) {
+      return { success: false, response: accountDisabledResponse() };
     }
 
     // Resolve tenantId with fallback chain: user.tenantId > decoded.tenantId > hostname resolution
