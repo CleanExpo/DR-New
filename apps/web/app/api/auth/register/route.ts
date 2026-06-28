@@ -5,6 +5,8 @@ import { registerSchema } from '@/lib/validation-schemas';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { ZodError } from 'zod';
 import { authRateLimiter } from '@/lib/api/redis-rate-limit';
+import { randomBytes } from 'crypto';
+import { sendVerificationEmail } from '@/lib/email/resend';
 
 /**
  * POST /api/auth/register
@@ -42,15 +44,28 @@ export async function POST(request: NextRequest) {
     // Hash password with bcrypt (12 rounds for security)
     const hashedPassword = await bcrypt.hash(validatedData.password, 12);
 
-    // Create user account
+    // Create user account with a single-use email-verification token (24h expiry).
+    // Uses the User.emailVerificationToken field — the same mechanism the GET
+    // /api/auth/verify-email link validates against.
+    const verificationToken = randomBytes(32).toString('hex');
     const user = await prisma.user.create({
       data: {
         email: validatedData.email,
         password: hashedPassword,
         name: validatedData.name,
         userType: validatedData.userType,
+        emailVerificationToken: verificationToken,
+        emailVerificationTokenExpiry: new Date(Date.now() + 24 * 60 * 60 * 1000),
       },
     });
+
+    // Send the verification email. A send failure must NOT fail registration —
+    // the user can re-request via the resend flow.
+    try {
+      await sendVerificationEmail(user.email, verificationToken, user.name ?? undefined);
+    } catch (emailError) {
+      console.error('[register] verification email send failed:', emailError);
+    }
 
     // Return success with user data (excluding password)
     return NextResponse.json(
