@@ -1,37 +1,36 @@
 /**
- * Dispatch eligibility — the single ICA gate (DR-889).
+ * Dispatch eligibility — the single dispatch gate (DR-889 + DR-858 N-04).
  *
- * A contractor may be dispatched only if they have a CURRENT, non-superseded
- * acceptance of the live ICA version. Because eligibility is checked against
- * `ICA_VERSION`, bumping the version auto-re-gates everyone (old acceptances stop
- * qualifying) until they re-sign — and a re-sign inserts a new row (the model's
- * unique is on contractorId+version, so versions coexist).
- *
- * Scope: this module is the ICA gate only. Other criteria (insurance/cert
- * currency, suspension) can be AND-ed into these helpers later without changing
- * call sites.
+ * A contractor may be dispatched only if ALL hold:
+ *   1. CURRENT, non-superseded acceptance of the live ICA version (`ICA_VERSION`).
+ *      Bumping the version auto-re-gates everyone until they re-sign.
+ *   2. Active, non-suspended Contractor record.
+ *   3. Public liability insurance not expired.
+ *   4. At least one active IICRC certification not expired.
+ *   5. Active, non-blocked User account.
  *
  * contractorId == User.id (Option B). Callers must pass the contractor's User.id.
  */
 import { prisma } from '@/lib/prisma';
 import { ICA_VERSION } from '@/lib/legal/ica';
 
-/** True iff `userId` has a current-version, non-superseded ICA acceptance. */
+/** True iff `userId` passes every dispatch-eligibility check. */
 export async function isDispatchEligible(userId: string): Promise<boolean> {
-  const acceptance = await prisma.contractorAgreementAcceptance.findFirst({
-    where: { contractorId: userId, version: ICA_VERSION, supersededAt: null },
-    select: { id: true },
-  });
-  return acceptance !== null;
+  const eligible = await filterDispatchEligible([userId]);
+  return eligible.has(userId);
 }
 
 /**
  * Batch variant: given contractor User.ids, return the subset that is currently
- * dispatch-eligible. One query rather than N.
+ * dispatch-eligible. Two queries regardless of N (ICA acceptances, then
+ * contractor/insurance/cert/account status).
  */
 export async function filterDispatchEligible(userIds: string[]): Promise<Set<string>> {
   if (userIds.length === 0) return new Set();
-  const rows = await prisma.contractorAgreementAcceptance.findMany({
+  const now = new Date();
+
+  // 1. ICA: current-version, non-superseded acceptances.
+  const accepted = await prisma.contractorAgreementAcceptance.findMany({
     where: {
       contractorId: { in: userIds },
       version: ICA_VERSION,
@@ -39,5 +38,22 @@ export async function filterDispatchEligible(userIds: string[]): Promise<Set<str
     },
     select: { contractorId: true },
   });
-  return new Set(rows.map((r) => r.contractorId));
+  const icaUserIds = [...new Set(accepted.map((r) => r.contractorId))];
+  if (icaUserIds.length === 0) return new Set();
+
+  // 2. Contractor record active + insurance current + >=1 current IICRC cert
+  //    + owning User active & not blocked. All AND-ed in one query.
+  const contractors = await prisma.contractor.findMany({
+    where: {
+      userId: { in: icaUserIds },
+      isActive: true,
+      isSuspended: false,
+      publicLiabilityExpiryDate: { gt: now },
+      user: { isActive: true, isBlocked: false },
+      iicrcCertifications: { some: { isActive: true, expiryDate: { gt: now } } },
+    },
+    select: { userId: true },
+  });
+
+  return new Set(contractors.map((c) => c.userId));
 }
