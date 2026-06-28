@@ -10,6 +10,7 @@ import {
   ICA_SECTIONS,
   type IcaBlock,
 } from '@/lib/legal/ica'
+import { AgreementAcceptance } from './AgreementAcceptance'
 
 /**
  * Independent Contractor Agreement — display page (DR-885).
@@ -109,6 +110,9 @@ export default function ContractorAgreementPage() {
                 </p>
               </div>
             </div>
+
+            {/* Acceptance form (scroll-gate + typed signature) */}
+            <AgreementAcceptance version={ICA_VERSION} />
           </div>
         </div>
       </section>
