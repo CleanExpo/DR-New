@@ -1,16 +1,33 @@
-// @ts-nocheck
-
 /**
  * NRPG Commitment Framework API
  * GET: Retrieve contractor's commitment status
  * POST: Sign the commitment framework
+ *
+ * Reconciled to the actual NRPGCommitment schema (DR-890): writes only existing
+ * columns, keys contractorId on User.id (Option B, see lib/contractor-identity),
+ * removes @ts-nocheck, and records signing provenance (signedName, version,
+ * signedIpAddress) via the shared client-IP helper.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-
+import { z } from 'zod';
 import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
-import { z } from 'zod';
+import { contractorKey } from '@/lib/contractor-identity';
+
+/** Version of the commitment framework currently presented for signing. */
+const COMMITMENT_VERSION = '2026-03-05';
+
+/** Client IP from the trusted proxy chain (first x-forwarded-for entry). */
+function getClientIp(request: NextRequest): string {
+  return (
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    request.headers.get('x-real-ip') ??
+    'unknown'
+  );
+}
+
+const RENEWAL_MS = 365 * 24 * 60 * 60 * 1000;
 
 const commitmentSchema = z.object({
   fullName: z.string().min(2),
@@ -31,19 +48,10 @@ export async function GET(request: NextRequest) {
 
     const { user } = authResult.context;
     const db = getTenantDb(authResult.context);
+    const contractorId = contractorKey(user);
 
-    const contractor = await db.contractor.findFirst({
-      where: { userId: user.id },
-      select: { id: true },
-    });
-
-    if (!contractor) {
-      return NextResponse.json({ success: false, error: 'Contractor not found' }, { status: 404 });
-    }
-
-    // Get commitment record
     const commitment = await db.nRPGCommitment.findUnique({
-      where: { contractorId: contractor.id },
+      where: { contractorId },
     });
 
     if (!commitment) {
@@ -58,17 +66,17 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    // Calculate renewal date (annual renewal)
     const renewalDue = commitment.signedAt
-      ? new Date(commitment.signedAt.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString()
+      ? new Date(commitment.signedAt.getTime() + RENEWAL_MS).toISOString()
       : null;
 
     return NextResponse.json({
       success: true,
       data: {
         signed: true,
-        signedAt: commitment.signedAt?.toISOString() || null,
+        signedAt: commitment.signedAt?.toISOString() ?? null,
         signedName: commitment.signedName,
+        version: commitment.version,
         renewalDue,
       },
     });
@@ -88,10 +96,10 @@ export async function POST(request: NextRequest) {
 
     const { user } = authResult.context;
     const db = getTenantDb(authResult.context);
+    const contractorId = contractorKey(user);
 
     const body = await request.json();
 
-    // Validate input
     const parsed = commitmentSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
@@ -100,20 +108,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const contractor = await db.contractor.findFirst({
+    // Require an existing contractor profile before signing.
+    const contractor = await db.contractor.findUnique({
       where: { userId: user.id },
       select: { id: true },
     });
-
     if (!contractor) {
       return NextResponse.json({ success: false, error: 'Contractor not found' }, { status: 404 });
     }
 
-    // Check if already signed
+    // Idempotent guard: one signed commitment per contractor.
     const existing = await db.nRPGCommitment.findUnique({
-      where: { contractorId: contractor.id },
+      where: { contractorId },
+      select: { id: true },
     });
-
     if (existing) {
       return NextResponse.json(
         { success: false, error: 'Commitment framework already signed' },
@@ -123,32 +131,36 @@ export async function POST(request: NextRequest) {
 
     const now = new Date();
 
-    // Create commitment record
+    // The form requires all four agreements to be true, so signing affirms the
+    // full commitment framework — record all standards as committed.
     const commitment = await db.nRPGCommitment.create({
       data: {
-        contractorId: contractor.id,
+        contractorId,
+        professionalStandards: true,
+        codeOfConduct: parsed.data.agreedToEthics,
+        qualityAssurance: parsed.data.agreedToQuality,
+        clientProtection: parsed.data.agreedToCustomer,
+        continuingEducation: parsed.data.agreedToContinuousImprovement,
+        industryContribution: true,
         signedName: parsed.data.fullName,
+        signatureData: parsed.data.signature,
+        signatureType: 'typed',
+        version: COMMITMENT_VERSION,
         signedAt: now,
-        agreedToEthics: parsed.data.agreedToEthics,
-        agreedToQuality: parsed.data.agreedToQuality,
-        agreedToCustomer: parsed.data.agreedToCustomer,
-        agreedToContinuousImprovement: parsed.data.agreedToContinuousImprovement,
-        ipAddress: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown',
-        userAgent: request.headers.get('user-agent') || 'unknown',
+        signedIpAddress: getClientIp(request),
       },
     });
 
-    // Update phase record to mark commitment as signed
+    // Mark the onboarding phase commitment as signed (keyed on User.id, Option B).
     await db.nRPGOnboardingPhase.updateMany({
-      where: { contractorId: contractor.id },
+      where: { contractorId },
       data: {
         commitmentSigned: true,
         commitmentSignedAt: now,
       },
     });
 
-    // Calculate renewal date
-    const renewalDue = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000).toISOString();
+    const renewalDue = new Date(now.getTime() + RENEWAL_MS).toISOString();
 
     return NextResponse.json({
       success: true,
@@ -156,6 +168,7 @@ export async function POST(request: NextRequest) {
         signed: true,
         signedAt: commitment.signedAt?.toISOString(),
         signedName: commitment.signedName,
+        version: commitment.version,
         renewalDue,
       },
     });

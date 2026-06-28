@@ -1421,6 +1421,9 @@ model NRPGCommitment {
   industryContribution  Boolean   @default(false)
   signatureData         String?
   signatureType         String?   @db.VarChar(20)
+  signedName            String?   @db.VarChar(255)
+  version               String?   @db.VarChar(50)
+  documentHash          String?
   signedAt              DateTime?
   signedIpAddress       String?   @db.VarChar(45)
   witnessName           String?   @db.VarChar(255)
