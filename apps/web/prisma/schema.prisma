@@ -2934,9 +2934,13 @@ model ContactEnquiry {
   status      String    @default("NEW")
   assignedTo  String?
   respondedAt DateTime?
+  consentGivenAt DateTime?
+  consentVersion String?
+  piiPurgedAt    DateTime?
 
   @@index([status])
   @@index([submittedAt])
+  @@index([piiPurgedAt])
   @@map("contact_enquiries")
 }
 
