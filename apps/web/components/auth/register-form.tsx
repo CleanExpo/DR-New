@@ -19,6 +19,7 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [userType, setUserType] = useState<'CONTRACTOR' | 'CLIENT'>('CLIENT');
+  const [consentAccepted, setConsentAccepted] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
@@ -28,8 +29,14 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
     setError('');
     setLoading(true);
 
+    if (!consentAccepted) {
+      setError('You must accept the Terms of Service and Privacy Policy to continue');
+      setLoading(false);
+      return;
+    }
+
     try {
-      await register(email, password, name, userType);
+      await register(email, password, name, userType, consentAccepted);
       onSuccess?.();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Registration failed');
@@ -93,6 +100,20 @@ export function RegisterForm({ onSuccess }: RegisterFormProps) {
                 <SelectItem value="CONTRACTOR">Contractor</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+          <div className="flex items-start space-x-2">
+            <input
+              id="register-form-terms"
+              type="checkbox"
+              required
+              checked={consentAccepted}
+              onChange={(e) => setConsentAccepted(e.target.checked)}
+              disabled={loading}
+              className="mt-1"
+            />
+            <Label htmlFor="register-form-terms" className="text-sm font-normal leading-relaxed">
+              I agree to the Terms of Service and Privacy Policy
+            </Label>
           </div>
           {error && (
             <Alert variant="destructive">

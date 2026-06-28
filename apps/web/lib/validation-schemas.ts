@@ -23,6 +23,13 @@ export const registerSchema = z.object({
     ),
   name: z.string().min(2, 'Name must be at least 2 characters'),
   userType: z.enum(['CLIENT', 'CONTRACTOR', 'ADMIN']),
+  // Terms of Service + Privacy Policy acceptance is mandatory at signup (DR-881).
+  // The server stamps the timestamp + version; the client must explicitly opt in.
+  consentAccepted: z.literal(true, {
+    errorMap: () => ({
+      message: 'You must accept the Terms of Service and Privacy Policy to register',
+    }),
+  }),
 });
 
 // ============ SERVICE REQUEST SCHEMAS ============

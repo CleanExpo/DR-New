@@ -23,7 +23,8 @@ interface AuthContextType {
     email: string,
     password: string,
     name: string,
-    userType: 'CLIENT' | 'CONTRACTOR'
+    userType: 'CLIENT' | 'CONTRACTOR',
+    consentAccepted: boolean
   ) => Promise<User>
 }
 
@@ -32,6 +33,7 @@ interface RegisterData {
   email: string
   password: string
   userType: 'CLIENT' | 'CONTRACTOR'
+  consentAccepted: boolean
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -119,9 +121,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       email: string,
       password: string,
       name: string,
-      userType: 'CLIENT' | 'CONTRACTOR'
+      userType: 'CLIENT' | 'CONTRACTOR',
+      consentAccepted: boolean
     ): Promise<User> => {
-      const userData: RegisterData = { email, password, name, userType }
+      const userData: RegisterData = { email, password, name, userType, consentAccepted }
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: {

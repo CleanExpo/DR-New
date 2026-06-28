@@ -7,6 +7,7 @@ import { ZodError } from 'zod';
 import { authRateLimiter } from '@/lib/api/redis-rate-limit';
 import { randomBytes } from 'crypto';
 import { sendVerificationEmail } from '@/lib/email/resend';
+import { CURRENT_CONSENT_VERSION } from '@/lib/consent';
 
 /**
  * POST /api/auth/register
@@ -54,6 +55,11 @@ export async function POST(request: NextRequest) {
     // provisioned out of band, so anything other than CONTRACTOR collapses to CLIENT.
     const safeUserType = validatedData.userType === 'CONTRACTOR' ? 'CONTRACTOR' : 'CLIENT';
 
+    // Consent is server-authoritative: the schema already guarantees the client
+    // ticked the box (consentAccepted === true); we stamp WHEN and WHICH version
+    // of the terms they accepted (DR-881).
+    const consentAcceptedAt = new Date();
+
     // Create the account. For contractors, atomically create the Contractor +
     // ContractorOnboarding (step 0) so the lifecycle exists from signup onward.
     // Lifecycle rows key contractorId on User.id (DR-879, Option B).
@@ -66,6 +72,8 @@ export async function POST(request: NextRequest) {
           userType: safeUserType,
           emailVerificationToken: verificationToken,
           emailVerificationTokenExpiry: new Date(Date.now() + 24 * 60 * 60 * 1000),
+          consentAcceptedAt,
+          consentVersion: CURRENT_CONSENT_VERSION,
         },
       });
 
