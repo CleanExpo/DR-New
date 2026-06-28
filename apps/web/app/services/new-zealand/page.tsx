@@ -73,7 +73,7 @@ const PLANNED_SERVICES = [
   },
   {
     title: 'Mould Remediation',
-    description: 'Post-flood and post-storm mould assessment and remediation. AS/NZS IICRC S520:2025 standards.',
+    description: 'Post-flood and post-storm mould assessment and remediation. AS/NZS IICRC S520 standards.',
     icon: '🔬',
   },
   {

@@ -17,8 +17,8 @@
  * G5 ✅ Phase: recovery (fires commenced 7 January 2026, recovery underway April 2026).
  *
  * IICRC Standards for bushfire recovery:
- * - Water damage from suppression: S500:2025
- * - Smoke/soot remediation: IICRC S520:2025 (Mould) + FSRT (Fire/Smoke)
+ * - Water damage from suppression: S500
+ * - Smoke/soot remediation: IICRC S520 (Mould) + FSRT (Fire/Smoke)
  * - Contents cleaning: IICRC S100 (Cleaning) + S700 (Odour Control)
  *
  * ACL s18 compliant — no unverified statistics.

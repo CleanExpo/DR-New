@@ -134,7 +134,7 @@ const SAMPLE_CASE_STUDY: CaseStudyDetail = {
   ],
   beforePhotos: ['/images/case-studies/fire-before-1.jpg', '/images/case-studies/fire-before-2.jpg'],
   afterPhotos: ['/images/case-studies/fire-after-1.jpg', '/images/case-studies/fire-after-2.jpg'],
-  iicrcStandards: ['AS-IICRC S500:2025 — Water Damage Restoration', 'FSRT - Fire & Smoke Restoration'],
+  iicrcStandards: ['AS-IICRC S500 — Water Damage Restoration', 'FSRT - Fire & Smoke Restoration'],
   slug: 'hawthorn-kitchen-fire-restoration',
   published: '2025-11-15',
   contractorName: 'Michael Chen, NRPG Certified Contractor',

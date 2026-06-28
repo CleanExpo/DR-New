@@ -115,7 +115,7 @@ const VIC_SERVICES = [
   },
   {
     title: 'Flood Damage Restoration',
-    description: 'Water extraction, structural drying, and mould prevention for Victorian flood events. AS/NZS IICRC S500:2025 standards across all affected areas.',
+    description: 'Water extraction, structural drying, and mould prevention for Victorian flood events. AS/NZS IICRC S500 standards across all affected areas.',
     href: '/services/water-damage',
     icon: '🌊',
   },
@@ -127,7 +127,7 @@ const VIC_SERVICES = [
   },
   {
     title: 'Mould Remediation',
-    description: 'Post-flood and post-bushfire mould assessment and remediation. AS/NZS IICRC S520:2025 certified technicians across Victoria.',
+    description: 'Post-flood and post-bushfire mould assessment and remediation. AS/NZS IICRC S520 certified technicians across Victoria.',
     href: '/services/mould-remediation',
     icon: '🔬',
   },

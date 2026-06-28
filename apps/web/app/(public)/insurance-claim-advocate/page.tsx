@@ -99,7 +99,7 @@ const faqSchema = {
       name: 'What standards do NRPG contractors work to?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'All NRPG contractors hold current IICRC certification and perform works to the relevant IICRC standards: S500:2025 for water damage, S520:2025 for mould, FSRT for fire and smoke. All work is conducted in accordance with applicable Australian regulations and guidelines.',
+        text: 'All NRPG contractors hold current IICRC certification and perform works to the relevant IICRC standards: S500 for water damage, S520 for mould, FSRT for fire and smoke. All work is conducted in accordance with applicable Australian regulations and guidelines.',
       },
     },
     {
@@ -149,8 +149,8 @@ const WHAT_WE_PROVIDE = [
 ]
 
 const IICRC_STANDARDS = [
-  { code: 'S500:2025', description: 'Water Damage Restoration', href: '/services/water-damage' },
-  { code: 'S520:2025', description: 'Mould Remediation', href: '/services/mould-remediation' },
+  { code: 'S500', description: 'Water Damage Restoration', href: '/services/water-damage' },
+  { code: 'S520', description: 'Mould Remediation', href: '/services/mould-remediation' },
   { code: 'FSRT', description: 'Fire & Smoke Restoration', href: '/services/fire-smoke-damage' },
   { code: 'S100', description: 'Contents Cleaning', href: '/services/water-damage' },
 ]
