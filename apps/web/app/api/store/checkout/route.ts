@@ -1,16 +1,23 @@
 /**
  * POST /api/store/checkout
  *
- * Validates cart items against the local catalogue, then submits
- * a fulfilment order to Printful. Returns the Printful order ID,
- * estimated delivery window, and total in AUD.
+ * Validates cart items against the local catalogue, then creates a Stripe
+ * Checkout Session. Returns the Stripe-hosted checkout URL so the frontend
+ * can redirect the customer. The Printful fulfilment order is created only
+ * AFTER payment is captured (checkout.session.completed webhook).
+ *
+ * Previously this route called Printful directly without taking payment,
+ * meaning orders were fulfilled for free. DR-219 fixes that critical bug.
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import Stripe from 'stripe'
+import stripe from '@/lib/stripe'
 import { getProductById, type StoreProduct } from '@/lib/printful/products'
-import { createPrintfulOrder } from '@/lib/printful/sync'
 
 export const dynamic = 'force-dynamic'
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://disasterrecovery.com.au'
 
 // ---------------------------------------------------------------------------
 // Request / Response shapes
@@ -75,6 +82,13 @@ function validatePayload(body: unknown): { data?: CheckoutRequest; error?: strin
 // ---------------------------------------------------------------------------
 
 export async function POST(request: NextRequest) {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return NextResponse.json(
+      { error: 'Payment processing is not configured. Contact support@disasterrecovery.com.au' },
+      { status: 503 }
+    )
+  }
+
   let body: unknown
   try {
     body = await request.json()
@@ -92,6 +106,7 @@ export async function POST(request: NextRequest) {
     product: StoreProduct
     variantId: string
     quantity: number
+    unitPrice: number
     lineTotal: number
   }
 
@@ -125,6 +140,7 @@ export async function POST(request: NextRequest) {
         product,
         variantId: item.variantId,
         quantity: item.quantity,
+        unitPrice,
         lineTotal: unitPrice * item.quantity,
       }
     })
@@ -135,44 +151,50 @@ export async function POST(request: NextRequest) {
   if (firstError) return firstError
 
   const resolvedItems = resolvedOrErrors as ResolvedItem[]
-  const subtotalAUD = resolvedItems.reduce((sum, i) => sum + i.lineTotal, 0)
-
-  // Build Printful order
   const externalId = `NRPG-${Date.now()}`
 
-  try {
-    const printfulOrder = await createPrintfulOrder({
-      externalId,
-      recipient: {
-        name: data.recipient.name,
-        address1: data.recipient.address,
-        address2: data.recipient.address2,
-        city: data.recipient.city,
-        state_code: data.recipient.state,
-        country_code: data.recipient.country,
-        zip: data.recipient.postcode,
-        email: data.recipient.email,
+  // Build Stripe line items (amounts in cents, AUD)
+  const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = resolvedItems.map((i) => ({
+    quantity: i.quantity,
+    price_data: {
+      currency: 'aud',
+      unit_amount: Math.round(i.unitPrice * 100),
+      product_data: {
+        name: `${i.product.name} (${i.variantId})`,
+        description: i.product.description.slice(0, 500),
+        images: i.product.mockupImage ? [`${BASE_URL}${i.product.mockupImage}`] : [],
       },
-      items: resolvedItems
-        .filter((i) => i.product.printfulProductId)
-        .map((i) => ({
-          external_variant_id: `${i.product.id}-${i.variantId}`,
-          quantity: i.quantity,
-        })),
-      confirm: false,
+    },
+  }))
+
+  // Serialise order details into metadata so the webhook can fulfil after
+  // payment. Stripe metadata values are capped at 500 chars — keep compact.
+  const itemsJson = JSON.stringify(
+    resolvedItems.map((i) => ({ pid: i.product.id, vid: i.variantId, qty: i.quantity }))
+  )
+  const recipientJson = JSON.stringify(data.recipient)
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      customer_email: data.recipient.email,
+      success_url: `${BASE_URL}/store/order-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${BASE_URL}/store/cart`,
+      metadata: {
+        type: 'NRPG_STORE_ORDER',
+        externalId,
+        itemsJson,
+        recipientJson,
+      },
     })
 
-    // Shannon: return only what the client needs — it already holds cart state locally
-    return NextResponse.json({
-      orderId: printfulOrder.id,
-      externalId,
-      estimatedDelivery: '7-14 business days',
-      totalAUD: subtotalAUD,
-    })
+    return NextResponse.json({ url: session.url, externalId })
   } catch (err) {
-    console.error('[store:checkout] Printful order failed:', err)
+    console.error('[store:checkout] Stripe session creation failed:', err)
     return NextResponse.json(
-      { error: 'Failed to create fulfilment order. Please try again or contact support@disasterrecovery.com.au' },
+      { error: 'Failed to initiate payment. Please try again or contact support@disasterrecovery.com.au' },
       { status: 502 }
     )
   }

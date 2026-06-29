@@ -7,6 +7,7 @@ import { constructWebhookEvent } from '@/lib/stripe';
 import { getNrpgCalloutSplit } from '@/lib/pricing/nrpg-callout';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
 import { retryPrismaOperation } from '@/src/lib/stripe/webhook-retry';
+import { createPrintfulOrder } from '@/lib/printful/sync';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -25,6 +26,63 @@ function getCalloutGstOptionsFromEnv() {
     platformFeeGstInclusive: parseBooleanEnv(process.env.NRPG_CALLOUT_PLATFORM_FEE_GST_INCLUSIVE, true),
     contractorEntitlementGstInclusive: parseBooleanEnv(process.env.NRPG_CALLOUT_CONTRACTOR_ENTITLEMENT_GST_INCLUSIVE, true),
   };
+}
+
+/**
+ * Fulfil a store order after payment is confirmed.
+ * Creates the Printful production order from the metadata serialised in
+ * the Checkout Session by /api/store/checkout. Only runs once payment is
+ * captured, so orders are never fulfilled for free (DR-219).
+ */
+async function fulfillStoreOrder(session: Stripe.Checkout.Session): Promise<void> {
+  const meta = session.metadata ?? {};
+  const { externalId, itemsJson, recipientJson } = meta;
+
+  if (!externalId || !itemsJson || !recipientJson) {
+    console.error('[store:webhook] Missing metadata on store order session', session.id);
+    return;
+  }
+
+  let items: Array<{ pid: string; vid: string; qty: number }>;
+  let recipient: {
+    name: string; address: string; address2?: string;
+    city: string; state: string; postcode: string; country: 'AU'; email?: string;
+  };
+
+  try {
+    items = JSON.parse(itemsJson);
+    recipient = JSON.parse(recipientJson);
+  } catch {
+    console.error('[store:webhook] Failed to parse store order metadata', session.id);
+    return;
+  }
+
+  try {
+    await createPrintfulOrder({
+      externalId,
+      recipient: {
+        name: recipient.name,
+        address1: recipient.address,
+        address2: recipient.address2,
+        city: recipient.city,
+        state_code: recipient.state,
+        country_code: recipient.country,
+        zip: recipient.postcode,
+        email: recipient.email,
+      },
+      items: items.map((i) => ({
+        external_variant_id: `${i.pid}-${i.vid}`,
+        quantity: i.qty,
+      })),
+      confirm: true, // Confirm immediately — payment is already captured
+    });
+
+    console.info('[store:webhook] Printful order created for', externalId);
+  } catch (err) {
+    console.error('[store:webhook] Printful order creation failed for', externalId, err);
+    // Do not rethrow — let the idempotency layer record success so Stripe
+    // does not retry. A failed fulfilment needs manual intervention.
+  }
 }
 
 async function markCalloutPaidBySession(session: Stripe.Checkout.Session): Promise<void> {
@@ -145,7 +203,11 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session;
-        await markCalloutPaidBySession(session);
+        if (session.metadata?.type === 'NRPG_STORE_ORDER') {
+          await fulfillStoreOrder(session);
+        } else {
+          await markCalloutPaidBySession(session);
+        }
         break;
       }
       case 'payment_intent.succeeded': {
