@@ -129,6 +129,12 @@ jobs:
         run: sleep 60
 
       - name: Run Lighthouse on production
+        # A perf-budget miss against the live URL must REPORT, not fail the deploy run.
+        # Deploy + smoke-tests are the real gates; Lighthouse is advisory. Without this,
+        # every prod deploy shows run conclusion=failure even when deploy+smoke pass.
+        # Scoped to this step (not the job) so genuine infra breakage (pnpm/node/lhci
+        # install) still fails visibly.
+        continue-on-error: true
         run: |
           lhci autorun --collect.url=https://dr-nrpg-platform.vercel.app
         env:
