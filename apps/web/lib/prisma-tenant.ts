@@ -342,8 +342,11 @@ export async function withTenantContext<T>(
 
   // Use Prisma interactive transaction to set session variable
   return prisma.$transaction(async (tx) => {
-    // Set PostgreSQL session variable for RLS
-    await tx.$executeRawUnsafe(`SET LOCAL app.current_tenant_id = '${tenantId}'`);
+    // Set PostgreSQL session variable for RLS.
+    // Parameterised via set_config() to prevent SQL injection — never interpolate
+    // tenantId into raw SQL. `SET LOCAL` cannot take bind parameters, but
+    // set_config(name, value, is_local=true) is its parameterisable equivalent.
+    await tx.$executeRaw`SELECT set_config('app.current_tenant_id', ${tenantId}, true)`;
 
     // Execute operation with tenant context
     return operation(tx as unknown as PrismaClient);

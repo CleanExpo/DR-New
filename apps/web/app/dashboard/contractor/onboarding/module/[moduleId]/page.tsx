@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { marked } from 'marked';
+import { sanitizeHtml, preloadSanitizer } from '@/lib/sanitize';
 import {
   AlertCircle,
   ArrowLeft,
@@ -159,6 +160,12 @@ export default function ModuleLessonPlayer() {
     }
   }, [authLoading, user, router]);
 
+  // Eagerly load DOMPurify so sanitizeHtml() is effective synchronously when
+  // rendering the training markdown below (mirrors the client education module).
+  useEffect(() => {
+    void preloadSanitizer();
+  }, []);
+
   // ── Render markdown ────────────────────────────────────────────────────────
 
   const htmlContent = useMemo(() => {
@@ -297,7 +304,7 @@ export default function ModuleLessonPlayer() {
               prose-code:text-nrpg-teal prose-code:bg-nrpg-teal/10 prose-code:px-1 prose-code:rounded
               prose-blockquote:border-l-nrpg-teal prose-blockquote:text-portal-muted
               prose-hr:border-portal-border"
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(htmlContent) }}
           />
         </div>
       ) : (
