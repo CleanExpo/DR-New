@@ -8,6 +8,7 @@ import { getNrpgCalloutSplit } from '@/lib/pricing/nrpg-callout';
 import { isEventProcessed, recordWebhookEvent } from '@/src/lib/stripe/webhook-idempotency';
 import { retryPrismaOperation } from '@/src/lib/stripe/webhook-retry';
 import { createPrintfulOrder } from '@/lib/printful/sync';
+import { getProductById } from '@/lib/printful/products';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -57,6 +58,34 @@ async function fulfillStoreOrder(session: Stripe.Checkout.Session): Promise<void
     return;
   }
 
+  // Only items mapped to a Printful catalogue product can be auto-fulfilled.
+  // Items without a printfulProductId (e.g. bundles, certification packs,
+  // lanyard, hard hat) are still PAID for but require manual fulfilment, so
+  // route them to a warning rather than letting them break the Printful order.
+  const printfulItems: Array<{ external_variant_id: string; quantity: number }> = [];
+  const manualItems: string[] = [];
+  for (const i of items) {
+    const product = getProductById(i.pid);
+    if (product?.printfulProductId) {
+      printfulItems.push({ external_variant_id: `${i.pid}-${i.vid}`, quantity: i.qty });
+    } else {
+      manualItems.push(`${i.pid}/${i.vid} x${i.qty}`);
+    }
+  }
+
+  if (manualItems.length > 0) {
+    console.warn(
+      `[store:webhook] Order ${externalId} contains ${manualItems.length} item(s) without a Printful mapping — MANUAL FULFILMENT REQUIRED: ${manualItems.join(', ')}`
+    );
+  }
+
+  if (printfulItems.length === 0) {
+    console.info(
+      `[store:webhook] Order ${externalId} has no Printful-fulfillable items; skipping Printful order (manual fulfilment only).`
+    );
+    return;
+  }
+
   try {
     await createPrintfulOrder({
       externalId,
@@ -70,10 +99,7 @@ async function fulfillStoreOrder(session: Stripe.Checkout.Session): Promise<void
         zip: recipient.postcode,
         email: recipient.email,
       },
-      items: items.map((i) => ({
-        external_variant_id: `${i.pid}-${i.vid}`,
-        quantity: i.qty,
-      })),
+      items: printfulItems,
       confirm: true, // Confirm immediately — payment is already captured
     });
 
