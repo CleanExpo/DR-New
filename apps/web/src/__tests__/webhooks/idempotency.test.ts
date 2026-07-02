@@ -1,4 +1,6 @@
 /**
+ * @jest-environment node
+ *
  * Webhook Idempotency Tests
  *
  * Tests the webhook event tracking system that prevents duplicate processing:

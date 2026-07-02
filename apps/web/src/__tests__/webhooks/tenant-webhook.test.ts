@@ -1,4 +1,6 @@
 /**
+ * @jest-environment node
+ *
  * Tenant Webhook Handler Tests
  *
  * Tests comprehensive webhook functionality:

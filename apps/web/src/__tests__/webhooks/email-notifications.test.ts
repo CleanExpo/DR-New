@@ -1,4 +1,6 @@
 /**
+ * @jest-environment node
+ *
  * Email Notification Tests
  *
  * Tests billing email notifications:

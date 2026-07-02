@@ -1,4 +1,6 @@
 /**
+ * @jest-environment node
+ *
  * Workspace Subscription Webhook Handler Tests
  *
  * Tests comprehensive webhook functionality for workspace-level subscriptions:
@@ -60,7 +62,7 @@ jest.mock('@/lib/prisma', () => ({
       findUnique: jest.fn(),
       create: jest.fn(),
     },
-    auditLog: {
+    workspaceAuditLog: {
       create: jest.fn(),
     },
   },
@@ -365,7 +367,7 @@ describe('Workspace Subscription Webhook Handler', () => {
         subscriptionStatus: 'PAST_DUE',
       });
 
-      (prisma.auditLog.create as jest.Mock).mockResolvedValue({
+      (prisma.workspaceAuditLog.create as jest.Mock).mockResolvedValue({
         id: 'audit_123',
       });
 
