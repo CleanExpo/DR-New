@@ -14,18 +14,10 @@
  *      fragments (only the match-path-specific isVerified + availability).
  */
 
-// claim-intake imports enum VALUES from @prisma/client; the generated client
-// is absent on CI, so a virtual mock keeps module load off that path.
-jest.mock(
-  '@prisma/client',
-  () => ({
-    AustralianServiceType: { WATER_DAMAGE_RESTORATION: 'WATER_DAMAGE_RESTORATION' },
-    AustralianState: { QLD: 'QLD' },
-    BookingStatus: { PENDING: 'PENDING' },
-    EmergencyResponseLevel: { URGENT: 'URGENT' },
-  }),
-  { virtual: true }
-);
+// NOTE: no jest.mock of '@prisma/client' here — the moduleNameMapper resolves
+// that specifier BEFORE the mock registry (even virtual mocks), which fails on
+// CI where the generated client doesn't exist. claim-intake now imports it
+// type-only, so nothing in this suite's chain resolves it at runtime.
 
 const mockPrisma = {
   booking: { findUnique: jest.fn() },

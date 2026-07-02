@@ -15,7 +15,9 @@
 
 import { prisma } from '@/lib/prisma';
 import { filterDispatchEligible } from '@/lib/services/dispatch-eligibility';
-import { AustralianServiceType, AustralianState, BookingStatus, EmergencyResponseLevel } from '@prisma/client';
+// Type-only import: runtime VALUES from @prisma/client break jest on CI
+// (moduleNameMapper resolves to the generated client, absent there — PR #204).
+import type { AustralianServiceType, AustralianState, EmergencyResponseLevel } from '@prisma/client';
 import {
   sendContractorMatchNotificationEmail,
   sendBackupContractorNotificationEmail,
@@ -111,7 +113,7 @@ export async function convertPublicClaimToBooking(publicClaimId: string): Promis
       serviceState: mapPostcodeToState(publicClaim.postcode, publicClaim.suburb),
       serviceSuburb: publicClaim.suburb,
       streetAddress: publicClaim.propertyAddress,
-      status: BookingStatus.PENDING,
+      status: 'PENDING' as const, // BookingStatus.PENDING — literal keeps @prisma/client type-only (CI jest trap)
       emergencyResponseLevel: emergencyLevel,
       estimatedCostAUD: estimateCostFromPriority(publicClaim.priority),
       notes: `Converted from PublicClaim ${publicClaimId}\nInsurance: ${publicClaim.hasInsurance ? publicClaim.insuranceProvider : 'None'}`,
