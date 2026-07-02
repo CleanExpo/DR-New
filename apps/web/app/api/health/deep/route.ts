@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { getSupabaseServerEnv } from '@/lib/supabase/server-env';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -77,17 +78,17 @@ async function checkRedis(): Promise<HealthCheck> {
 }
 
 async function checkSupabase(): Promise<HealthCheck> {
-  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  // Non-inlined env reads — see lib/supabase/server-env.ts (NEXT_PUBLIC_* is
+  // inlined at build time and prod prebuilt builds can't see sensitive values).
+  const { url: supabaseUrl, serviceRoleKey } = getSupabaseServerEnv();
+  if (!supabaseUrl || !serviceRoleKey) {
     return { status: 'ok', error: 'Supabase not configured (optional)' };
   }
 
   const start = Date.now();
   try {
     const { createClient } = await import('@supabase/supabase-js');
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.SUPABASE_SERVICE_ROLE_KEY
-    );
+    const supabase = createClient(supabaseUrl, serviceRoleKey);
 
     // Simple query to check connectivity
     const { error } = await supabase.from('_prisma_migrations').select('id').limit(1);
