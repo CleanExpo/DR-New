@@ -207,7 +207,7 @@ export default function NrpgRegistrationPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <CheckCircle2 className="h-6 w-6 text-green-600" />
+              <CheckCircle2 className="h-6 w-6 text-green-400" />
               Registration submitted
             </CardTitle>
             <CardDescription>

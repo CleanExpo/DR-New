@@ -45,10 +45,10 @@ const categoryIcons = {
 };
 
 const priorityColors: Record<string, string> = {
-  Elite: 'bg-amber-100 text-amber-800 border-amber-300',
+  Elite: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
   Strategic: 'bg-nrpg-teal/10 text-nrpg-teal border-nrpg-teal/30',
-  'New Market': 'bg-purple-100 text-purple-800 border-purple-300',
-  Standard: 'bg-gray-100 text-gray-800 border-gray-300',
+  'New Market': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+  Standard: 'bg-white/5 text-gray-400 border-white/10',
 };
 
 const sampleOpportunities: Opportunity[] = [

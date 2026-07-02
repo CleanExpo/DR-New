@@ -105,9 +105,9 @@ export default function ContractorEarningsPage() {
 
   if (status === 'loading' || loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen bg-[#050505]">
         <div className="text-center">
-          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-300 border-t-blue-600" />
+          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-blue-500/20 border-t-blue-500" />
           <p className="text-gray-400">Loading earnings...</p>
         </div>
       </div>
@@ -115,12 +115,12 @@ export default function ContractorEarningsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-[#050505] py-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8 flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Your Earnings</h1>
+            <h1 className="text-3xl font-bold text-white">Your Earnings</h1>
             <p className="mt-2 text-gray-400">Track your income and payouts</p>
           </div>
           <Link
@@ -134,36 +134,36 @@ export default function ContractorEarningsPage() {
         {/* Summary Cards */}
         {summary && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
               <p className="text-gray-400 text-sm font-medium">Total Earnings</p>
-              <p className="mt-2 text-3xl font-bold text-gray-900">
+              <p className="mt-2 text-3xl font-bold text-white">
                 {formatCurrency(summary.totalEarnings)}
               </p>
               <p className="mt-1 text-xs text-gray-400">
                 {summary.paymentCount} jobs
               </p>
             </div>
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
               <p className="text-gray-400 text-sm font-medium">Total Paid Out</p>
-              <p className="mt-2 text-3xl font-bold text-green-600">
+              <p className="mt-2 text-3xl font-bold text-green-400">
                 {formatCurrency(summary.totalPaidOut)}
               </p>
               <p className="mt-1 text-xs text-gray-400">
                 {summary.contractorPayoutPercentage}% of earnings
               </p>
             </div>
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
               <p className="text-gray-400 text-sm font-medium">Pending Payout</p>
-              <p className="mt-2 text-3xl font-bold text-yellow-600">
+              <p className="mt-2 text-3xl font-bold text-yellow-400">
                 {formatCurrency(summary.pendingPayout)}
               </p>
               <p className="mt-1 text-xs text-gray-400">
                 After {summary.platformFeePercentage}% platform fee
               </p>
             </div>
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
               <p className="text-gray-400 text-sm font-medium">Last Payment</p>
-              <p className="mt-2 text-lg font-bold text-gray-900">
+              <p className="mt-2 text-lg font-bold text-white">
                 {summary.lastPayment ? formatDate(summary.lastPayment) : 'N/A'}
               </p>
             </div>
@@ -172,8 +172,8 @@ export default function ContractorEarningsPage() {
 
         {/* Period Summary */}
         {periodEarnings && (
-          <div className="bg-white rounded-lg shadow p-6 mb-8">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6 mb-8">
+            <h2 className="text-lg font-semibold text-white mb-4">
               {periodEarnings.period === 'all_time'
                 ? 'All-Time Summary'
                 : periodEarnings.period === 'current_month'
@@ -183,25 +183,25 @@ export default function ContractorEarningsPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div>
                 <p className="text-gray-400 text-sm">Total Amount</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-white">
                   {formatCurrency(periodEarnings.totalAmount)}
                 </p>
               </div>
               <div>
                 <p className="text-gray-400 text-sm">Your Payout</p>
-                <p className="text-2xl font-bold text-green-600">
+                <p className="text-2xl font-bold text-green-400">
                   {formatCurrency(periodEarnings.totalPayout)}
                 </p>
               </div>
               <div>
                 <p className="text-gray-400 text-sm">Job Count</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-white">
                   {periodEarnings.jobCount}
                 </p>
               </div>
               <div>
                 <p className="text-gray-400 text-sm">Average Job Value</p>
-                <p className="text-2xl font-bold text-gray-900">
+                <p className="text-2xl font-bold text-white">
                   {formatCurrency(periodEarnings.averageJobValue)}
                 </p>
               </div>
@@ -216,7 +216,7 @@ export default function ContractorEarningsPage() {
             className={`px-4 py-2 rounded-lg font-medium transition ${
               period === 'all_time'
                 ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                : 'bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10'
             }`}
           >
             All Time
@@ -226,7 +226,7 @@ export default function ContractorEarningsPage() {
             className={`px-4 py-2 rounded-lg font-medium transition ${
               period === 'current_year'
                 ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                : 'bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10'
             }`}
           >
             This Year
@@ -236,7 +236,7 @@ export default function ContractorEarningsPage() {
             className={`px-4 py-2 rounded-lg font-medium transition ${
               period === 'current_month'
                 ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                : 'bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10'
             }`}
           >
             This Month
@@ -244,20 +244,20 @@ export default function ContractorEarningsPage() {
         </div>
 
         {/* Earnings Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg overflow-hidden">
           {earnings.length === 0 ? (
             <div className="p-8 text-center">
               <p className="text-gray-400 mb-4">No earnings in this period</p>
               <Link
                 href="/dashboard/contractor"
-                className="text-blue-600 hover:text-blue-700 font-medium"
+                className="text-blue-400 hover:text-blue-300 font-medium"
               >
                 View available jobs →
               </Link>
             </div>
           ) : (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+            <table className="min-w-full divide-y divide-white/[0.06]">
+              <thead className="bg-white/[0.03]">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                     Job
@@ -279,11 +279,11 @@ export default function ContractorEarningsPage() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="divide-y divide-white/[0.06]">
                 {earnings.map((earning) => (
-                  <tr key={earning.id} className="hover:bg-gray-50">
+                  <tr key={earning.id} className="hover:bg-white/5">
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-white">
                         {earning.booking?.serviceType.replace(/_/g, ' ')}
                       </p>
                       <p className="text-gray-400 text-xs">
@@ -297,7 +297,7 @@ export default function ContractorEarningsPage() {
                       {formatDate(earning.processedAt || earning.completedAt)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">
+                      <div className="text-sm font-medium text-white">
                         {formatCurrency(earning.totalAmount)}
                       </div>
                       <div className="text-xs text-gray-400">
@@ -305,7 +305,7 @@ export default function ContractorEarningsPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-green-600">
+                      <div className="text-sm font-medium text-green-400">
                         {formatCurrency(earning.payoutAmount)}
                       </div>
                     </td>
@@ -313,8 +313,8 @@ export default function ContractorEarningsPage() {
                       <span
                         className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
                           earning.status === 'COMPLETED'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-gray-100 text-gray-800'
+                            ? 'bg-green-500/10 text-green-400 border border-green-500/20'
+                            : 'bg-white/5 text-gray-400 border border-white/10'
                         }`}
                       >
                         {earning.status}
