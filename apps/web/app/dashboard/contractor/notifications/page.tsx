@@ -71,11 +71,11 @@ export default function ContractorNotificationsPage() {
       </div>
 
       {/* Subscription Status Banner */}
-      <Card className="mb-6 bg-gradient-to-r from-teal-50 to-blue-50 border-teal-200">
+      <Card className="mb-6 bg-gradient-to-r from-teal-500/10 to-blue-500/10 border-teal-500/20">
         <CardContent className="py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-teal-100 flex items-center justify-center">
+              <div className="h-10 w-10 rounded-full bg-teal-500/10 flex items-center justify-center">
                 <span className="text-xl">🎉</span>
               </div>
               <div>
@@ -156,7 +156,7 @@ export default function ContractorNotificationsPage() {
                   {notifications.map((event) => (
                     <div
                       key={`${event.jobId}-${event.timestamp}`}
-                      className="flex items-start gap-3 p-3 rounded-lg bg-gray-50"
+                      className="flex items-start gap-3 p-3 rounded-lg bg-white/5"
                     >
                       <span className="text-xl">
                         {event.type === 'NEW_JOB' && '🆕'}
