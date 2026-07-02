@@ -375,14 +375,14 @@ export default function ContractorDashboardPage() {
                   ? 'bg-portal-success/10'
                   : availability.status === 'suspended'
                   ? 'bg-red-500/10'
-                  : 'bg-gray-500/10'
+                  : 'bg-portal-muted/10'
               }`}>
                 <Power className={`size-6 ${
                   availability.status === 'available'
                     ? 'text-portal-success'
                     : availability.status === 'suspended'
                     ? 'text-red-500'
-                    : 'text-gray-400'
+                    : 'text-portal-muted'
                 }`} />
               </div>
               <div>
@@ -395,7 +395,7 @@ export default function ContractorDashboardPage() {
                       ? 'bg-portal-success/10 text-portal-success'
                       : availability.status === 'suspended'
                       ? 'bg-red-500/10 text-red-500'
-                      : 'bg-gray-500/10 text-gray-400'
+                      : 'bg-portal-muted/10 text-portal-muted'
                   }`}>
                     {availability.status}
                   </span>
@@ -434,7 +434,7 @@ export default function ContractorDashboardPage() {
                 className={`relative inline-flex h-11 w-16 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-nrpg-teal focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ${
                   availability.status === 'available'
                     ? 'bg-portal-success'
-                    : 'bg-gray-300'
+                    : 'bg-portal-muted/40'
                 }`}
               >
                 <span className="sr-only">Toggle availability</span>
@@ -455,7 +455,7 @@ export default function ContractorDashboardPage() {
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 p-6">
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-yellow-500/10 rounded-full">
-                <AlertCircle className="size-6 text-yellow-600" />
+                <AlertCircle className="size-6 text-yellow-500" />
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-bold text-portal-text font-heading">
@@ -475,7 +475,7 @@ export default function ContractorDashboardPage() {
                   <button
                     onClick={() => setShowConfirmDialog(false)}
                     disabled={loadingAvailability}
-                    className="flex-1 px-4 py-2 bg-gray-100 text-portal-text rounded-lg hover:bg-gray-200 font-medium disabled:opacity-50"
+                    className="flex-1 px-4 py-2 bg-portal-hover text-portal-text rounded-lg hover:bg-portal-border font-medium disabled:opacity-50"
                   >
                     Cancel
                   </button>

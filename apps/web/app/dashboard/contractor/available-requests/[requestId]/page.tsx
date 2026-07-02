@@ -164,7 +164,7 @@ export default function JobDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen bg-[#050505]">
         <Loader className="h-8 w-8 animate-spin text-gray-400" />
       </div>
     );
@@ -172,28 +172,28 @@ export default function JobDetailPage() {
 
   if (!job) {
     return (
-      <div className="space-y-6">
+      <div className="min-h-screen bg-[#050505] text-white px-4 sm:px-6 py-6 sm:py-8 space-y-6">
         <Button variant="outline" onClick={() => router.back()}>
           <ChevronLeft className="h-4 w-4" />
           Back
         </Button>
-        <Alert className="border-red-600 bg-red-50">
-          <AlertCircle className="h-5 w-5 text-red-600" />
-          <AlertDescription className="text-red-900">Job not found</AlertDescription>
+        <Alert className="border-red-500/20 bg-red-500/10">
+          <AlertCircle className="h-5 w-5 text-red-400" />
+          <AlertDescription className="text-red-400">Job not found</AlertDescription>
         </Alert>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-[#050505] text-white px-4 sm:px-6 py-6 sm:py-8 space-y-6">
       {/* Header */}
       <div>
         <Button variant="outline" size="sm" onClick={() => router.back()}>
           <ChevronLeft className="h-4 w-4" />
           Back
         </Button>
-        <h1 className="text-3xl font-bold text-gray-900 mt-4 capitalize">
+        <h1 className="text-3xl font-bold text-white mt-4 capitalize">
           {job.disasterType.replace('_', ' ')} Job
         </h1>
         <p className="text-gray-400 mt-2">{job.location.suburb}, {job.location.postcode}</p>
@@ -201,9 +201,9 @@ export default function JobDetailPage() {
 
       {/* Success Alert */}
       {success && (
-        <Alert className="border-green-600 bg-green-50">
-          <CheckCircle className="h-5 w-5 text-green-600" />
-          <AlertDescription className="text-green-900">
+        <Alert className="border-green-500/20 bg-green-500/10">
+          <CheckCircle className="h-5 w-5 text-green-400" />
+          <AlertDescription className="text-green-400">
             Bid submitted successfully! Redirecting to your bids...
           </AlertDescription>
         </Alert>
@@ -211,9 +211,9 @@ export default function JobDetailPage() {
 
       {/* Error Alert */}
       {error && (
-        <Alert className="border-red-600 bg-red-50">
-          <AlertCircle className="h-5 w-5 text-red-600" />
-          <AlertDescription className="text-red-900">{error}</AlertDescription>
+        <Alert className="border-red-500/20 bg-red-500/10">
+          <AlertCircle className="h-5 w-5 text-red-400" />
+          <AlertDescription className="text-red-400">{error}</AlertDescription>
         </Alert>
       )}
 
@@ -221,10 +221,10 @@ export default function JobDetailPage() {
         {/* Main Content */}
         <div className="col-span-2 space-y-6">
           {/* Job Overview */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white/[0.03] rounded-lg border border-white/[0.06] p-6">
             <div className="flex items-start justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">Job Details</h2>
-              <span className="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-semibold rounded-full flex items-center gap-1">
+              <h2 className="text-lg font-semibold text-white">Job Details</h2>
+              <span className="px-3 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold rounded-full flex items-center gap-1">
                 {job.matchScore} match score
               </span>
             </div>
@@ -232,36 +232,36 @@ export default function JobDetailPage() {
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-400 uppercase font-medium mb-2">Description</p>
-                <p className="text-gray-700 leading-relaxed">{job.description}</p>
+                <p className="text-gray-300 leading-relaxed">{job.description}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/[0.06]">
                 <div>
                   <p className="text-sm text-gray-400 uppercase font-medium mb-2">Estimated Budget</p>
-                  <p className="text-2xl font-bold text-gray-900">{formatCurrency(job.estimatedBudget)}</p>
+                  <p className="text-2xl font-bold text-white">{formatCurrency(job.estimatedBudget)}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400 uppercase font-medium mb-2">Emergency Level</p>
-                  <p className="text-lg font-semibold text-gray-900">{job.emergencyLevel}</p>
+                  <p className="text-lg font-semibold text-white">{job.emergencyLevel}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200">
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/[0.06]">
                 <div>
                   <div className="flex items-center gap-1 text-gray-400 mb-2">
                     <MapPin className="h-4 w-4" />
                     <span className="text-sm font-medium uppercase">Location</span>
                   </div>
-                  <p className="text-gray-900 font-semibold">{job.location.suburb}</p>
+                  <p className="text-white font-semibold">{job.location.suburb}</p>
                   <p className="text-xs text-gray-400">{job.location.postcode}, {job.location.state}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400 uppercase font-medium mb-2">Posted</p>
-                  <p className="text-gray-900 font-semibold">{formatDate(job.postedAt)}</p>
+                  <p className="text-white font-semibold">{formatDate(job.postedAt)}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400 uppercase font-medium mb-2">Client</p>
-                  <p className="text-gray-900 font-semibold">{job.clientName}</p>
+                  <p className="text-white font-semibold">{job.clientName}</p>
                 </div>
               </div>
             </div>
@@ -269,8 +269,8 @@ export default function JobDetailPage() {
 
           {/* Bid Form */}
           {!success && (
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white/[0.03] rounded-lg border border-white/[0.06] p-6">
+              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
                 <Send className="h-5 w-5" />
                 Submit Your Bid
               </h2>
@@ -330,8 +330,8 @@ export default function JobDetailPage() {
 
                 {/* Hourly Rate Calculation */}
                 {proposedBudget && estimatedHours && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <p className="text-sm text-blue-900">
+                  <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                    <p className="text-sm text-blue-300">
                       <strong>Effective Hourly Rate:</strong>{' '}
                       {formatCurrency(proposedBudget / estimatedHours)} / hour
                     </p>
@@ -353,7 +353,7 @@ export default function JobDetailPage() {
                 </Button>
               </form>
 
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-4 pt-4 border-t border-white/[0.06]">
                 <p className="text-xs text-gray-400">
                   ℹ️ By submitting a bid, you agree to the terms of service and confirm your
                   availability for this job.
@@ -366,12 +366,12 @@ export default function JobDetailPage() {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Quick Info */}
-          <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
-            <h3 className="font-semibold text-gray-900 mb-4">Quick Info</h3>
+          <div className="bg-white/[0.03] rounded-lg border border-white/[0.06] p-6">
+            <h3 className="font-semibold text-white mb-4">Quick Info</h3>
             <div className="space-y-3">
               <div>
                 <p className="text-xs text-gray-400 uppercase font-medium">Match Score</p>
-                <p className="text-2xl font-bold text-amber-600 mt-1">{job.matchScore}</p>
+                <p className="text-2xl font-bold text-amber-400 mt-1">{job.matchScore}</p>
                 <p className="text-xs text-gray-400 mt-1">
                   {job.matchScore >= 80
                     ? 'Excellent fit for your expertise'
@@ -384,9 +384,9 @@ export default function JobDetailPage() {
           </div>
 
           {/* Tips */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-            <h3 className="font-semibold text-blue-900 mb-3">Bid Tips</h3>
-            <ul className="text-xs text-blue-900 space-y-2">
+          <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-6">
+            <h3 className="font-semibold text-blue-300 mb-3">Bid Tips</h3>
+            <ul className="text-xs text-blue-300 space-y-2">
               <li>✓ Be competitive but fair with your pricing</li>
               <li>✓ Highlight your relevant experience</li>
               <li>✓ Mention any special certifications</li>
@@ -397,10 +397,10 @@ export default function JobDetailPage() {
 
           {/* Success Message */}
           {success && (
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-              <CheckCircle className="h-8 w-8 text-green-600 mb-2" />
-              <h3 className="font-semibold text-green-900">Bid Submitted!</h3>
-              <p className="text-sm text-green-800 mt-2">
+            <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-6">
+              <CheckCircle className="h-8 w-8 text-green-400 mb-2" />
+              <h3 className="font-semibold text-green-300">Bid Submitted!</h3>
+              <p className="text-sm text-green-400 mt-2">
                 The client will review your bid and get back to you soon.
               </p>
             </div>
