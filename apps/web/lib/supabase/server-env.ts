@@ -29,8 +29,27 @@ export interface SupabaseServerEnv {
   serviceRoleKey: string | undefined;
 }
 
+/**
+ * Reads process.env by scanning Object.keys() rather than a literal
+ * `process.env.NEXT_PUBLIC_X` (or even a bracket-access alias) member
+ * expression. Even the aliased-object bracket-access technique proved
+ * insufficient here — /api/health kept reporting the URL absent at
+ * runtime despite the var being set (type "sensitive", target
+ * production) — so this avoids the literal inlined-name pattern
+ * entirely rather than relying on which AST shapes a given bundler's
+ * env-inlining pass does or doesn't match.
+ */
+function findEnvValue(...candidateNames: string[]): string | undefined {
+  const keys = Object.keys(runtimeEnv);
+  for (const name of candidateNames) {
+    const key = keys.find((k) => k === name);
+    if (key && runtimeEnv[key]) return runtimeEnv[key];
+  }
+  return undefined;
+}
+
 export function getSupabaseServerEnv(): SupabaseServerEnv {
-  const url = runtimeEnv['SUPABASE_URL'] || runtimeEnv['NEXT_PUBLIC_SUPABASE_URL'] || undefined;
-  const serviceRoleKey = runtimeEnv['SUPABASE_SERVICE_ROLE_KEY'] || undefined;
+  const url = findEnvValue('SUPABASE_URL', ['NEXT', 'PUBLIC', 'SUPABASE', 'URL'].join('_'));
+  const serviceRoleKey = findEnvValue('SUPABASE_SERVICE_ROLE_KEY');
   return { url, serviceRoleKey };
 }
