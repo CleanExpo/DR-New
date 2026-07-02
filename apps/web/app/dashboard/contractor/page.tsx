@@ -25,7 +25,15 @@ import ContractorOnboarding from '@/components/onboarding/contractor-onboarding'
 import FloatingChatWidget from '@/components/floating-chat-widget';
 import { EligibilityBanner } from '@/components/contractor/eligibility-banner';
 import { RealtimeNotifications } from '@/components/realtime/RealtimeNotifications';
-import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle } from 'lucide-react';
+import { TrendingUp, DollarSign, Briefcase, Users, Power, Clock, AlertCircle, RefreshCw } from 'lucide-react';
+
+// DR-918: fetch with a hard timeout so a hung endpoint renders the error state instead of spinning forever.
+const FETCH_TIMEOUT_MS = 10_000;
+const fetchWithTimeout = (url: string) => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  return fetch(url, { cache: 'no-store', signal: controller.signal }).finally(() => clearTimeout(timer));
+};
 
 interface DashboardStats {
   activeOpportunities: number;
@@ -70,6 +78,9 @@ export default function ContractorDashboardPage() {
     avgProjectValue: 0,
   });
   const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
+  // DR-918: distinguish "the opportunities API failed" from "there are genuinely no jobs".
+  const [opportunitiesError, setOpportunitiesError] = useState(false);
+  const [retryingOpportunities, setRetryingOpportunities] = useState(false);
   const [availability, setAvailability] = useState<AvailabilityStatus | null>(null);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -114,14 +125,56 @@ export default function ContractorDashboardPage() {
     }
   };
 
-  const fetchDashboardData = async () => {
+  // DR-918: opportunities load has its own error handling so an API failure renders a visible
+  // error state (with retry) instead of silently falling back to sample data.
+  const fetchOpportunities = async () => {
+    setRetryingOpportunities(true);
+    setOpportunitiesError(false);
     try {
-      // Fetch contractor stats and available opportunities
-      const [statsResponse, projectsResponse, opportunitiesResponse, analyticsResponse] = await Promise.all([
-        fetch('/api/contractor/profile', { cache: 'no-store' }),
-        fetch('/api/contractor/active-projects', { cache: 'no-store' }),
-        fetch('/api/contractor/available-requests', { cache: 'no-store' }),
-        fetch('/api/contractor/analytics', { cache: 'no-store' }),
+      const opportunitiesResponse = await fetchWithTimeout('/api/contractor/available-requests');
+      if (!opportunitiesResponse.ok) {
+        throw new Error(`Opportunities request failed with status ${opportunitiesResponse.status}`);
+      }
+
+      const data = await opportunitiesResponse.json();
+      const availableRequests = data.data || [];
+
+      // Map API response to opportunity format
+      const mappedOpportunities: Opportunity[] = availableRequests.slice(0, 10).map((req: any) => ({
+        id: req.id,
+        type: req.type || req.serviceTitle || 'Service Request',
+        priority: req.priority || 'Standard',
+        location: req.location || 'Location not specified',
+        distance: req.distance || 'Distance unknown',
+        potentialValue: req.potentialValue || 'Quote Required',
+        imageUrl: undefined,
+      }));
+
+      // An empty list is a genuine empty state — render "no jobs available", never sample data.
+      setOpportunities(mappedOpportunities);
+      if (mappedOpportunities.length > 0) {
+        setStats((prev) => ({
+          ...prev,
+          activeOpportunities: mappedOpportunities.length,
+        }));
+      }
+    } catch (error) {
+      console.error('Error fetching opportunities:', error);
+      setOpportunities([]);
+      setOpportunitiesError(true);
+    } finally {
+      setRetryingOpportunities(false);
+    }
+  };
+
+  const fetchDashboardData = async () => {
+    void fetchOpportunities();
+    try {
+      // Fetch contractor stats
+      const [statsResponse, projectsResponse, analyticsResponse] = await Promise.all([
+        fetchWithTimeout('/api/contractor/profile'),
+        fetchWithTimeout('/api/contractor/active-projects'),
+        fetchWithTimeout('/api/contractor/analytics'),
       ]);
 
       if (statsResponse.ok) {
@@ -160,50 +213,6 @@ export default function ContractorDashboardPage() {
         }
       }
 
-      // Fetch real opportunities from API
-      if (opportunitiesResponse.ok) {
-        const data = await opportunitiesResponse.json();
-        const availableRequests = data.data || [];
-
-        // Map API response to opportunity format
-        const mappedOpportunities: Opportunity[] = availableRequests.slice(0, 10).map((req: any) => ({
-          id: req.id,
-          type: req.type || req.serviceTitle || 'Service Request',
-          priority: req.priority || 'Standard',
-          location: req.location || 'Location not specified',
-          distance: req.distance || 'Distance unknown',
-          potentialValue: req.potentialValue || 'Quote Required',
-          imageUrl: undefined,
-        }));
-
-        if (mappedOpportunities.length > 0) {
-          setOpportunities(mappedOpportunities);
-          setStats((prev) => ({
-            ...prev,
-            activeOpportunities: mappedOpportunities.length,
-          }));
-        } else {
-          // Fallback to sample data if no real opportunities exist
-          setOpportunities([
-            {
-              id: '1',
-              type: 'Commercial Water Damage',
-              priority: 'Elite',
-              location: 'Sydney CBD, NSW',
-              distance: '12 km away',
-              potentialValue: '$45,000 - $65,000',
-            },
-            {
-              id: '2',
-              type: 'Residential Mould Remediation',
-              priority: 'Strategic',
-              location: 'Parramatta, NSW',
-              distance: '8 km away',
-              potentialValue: '$12,000 - $18,000',
-            },
-          ]);
-        }
-      }
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     }
@@ -516,11 +525,39 @@ export default function ContractorDashboardPage() {
         {/* Left Column - 2/3 width */}
         <div className="lg:col-span-2 space-y-8">
           {/* Partnership Opportunities */}
-          <OpportunityTable
-            opportunities={opportunities}
-            title="Partnership Opportunities"
-            viewAllHref="/dashboard/contractor/opportunities"
-          />
+          {opportunitiesError ? (
+            /* DR-918: API failure is visibly different from an empty job list, and retryable */
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-portal-text flex items-center gap-2 font-heading">
+                Partnership Opportunities
+              </h3>
+              <div className="bg-white border border-red-500/20 rounded-xl shadow-lg p-12 text-center">
+                <div className="mx-auto w-fit p-3 bg-red-500/10 rounded-full">
+                  <AlertCircle className="size-6 text-red-500" />
+                </div>
+                <p className="text-portal-text font-bold font-heading mt-4">
+                  We couldn&apos;t load opportunities
+                </p>
+                <p className="text-portal-muted text-sm font-body mt-1">
+                  The request failed or timed out — this doesn&apos;t mean there are no jobs available.
+                </p>
+                <button
+                  onClick={() => void fetchOpportunities()}
+                  disabled={retryingOpportunities}
+                  className="mt-4 inline-flex items-center px-4 py-2 bg-nrpg-teal hover:bg-nrpg-teal/90 text-white text-sm font-bold font-heading rounded-lg disabled:opacity-50"
+                >
+                  <RefreshCw className={`size-4 mr-2 ${retryingOpportunities ? 'animate-spin' : ''}`} />
+                  {retryingOpportunities ? 'Retrying…' : 'Retry'}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <OpportunityTable
+              opportunities={opportunities}
+              title="Partnership Opportunities"
+              viewAllHref="/dashboard/contractor/opportunities"
+            />
+          )}
         </div>
 
         {/* Right Column - 1/3 width */}

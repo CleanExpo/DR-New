@@ -364,7 +364,7 @@ export default function VerificationPage() {
                       </div>
 
                       {/* Actions */}
-                      <div className="mt-4 flex items-center gap-3">
+                      <div className="mt-4 flex flex-wrap items-center gap-3">
                         {canInitiate && (
                           <Button
                             onClick={() => initiateCheck(key)}
@@ -376,6 +376,11 @@ export default function VerificationPage() {
                                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                                 Initiating...
                               </>
+                            ) : checkData.status === 'EXPIRED' ? (
+                              <>
+                                <RefreshCw className="h-4 w-4 mr-2" />
+                                Renew Now
+                              </>
                             ) : (
                               <>
                                 <ExternalLink className="h-4 w-4 mr-2" />
@@ -383,6 +388,12 @@ export default function VerificationPage() {
                               </>
                             )}
                           </Button>
+                        )}
+                        {/* DR-918: expired check — explain why renewal matters, next to the Renew Now CTA */}
+                        {checkData.status === 'EXPIRED' && (
+                          <p className="text-sm text-orange-400">
+                            This check has expired and must be renewed before you can keep receiving jobs.
+                          </p>
                         )}
                         {checkData.status === 'PASS' && (
                           <Button
@@ -399,13 +410,49 @@ export default function VerificationPage() {
                             This check is being processed. You will be notified when complete.
                           </p>
                         )}
+                        {/* DR-918: failed check — real recovery path (re-check + support), not a dead end */}
                         {checkData.status === 'FAIL' && (
-                          <Alert variant="destructive" className="mt-2 bg-red-500/10 border-red-500/20">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertDescription>
-                              This check did not pass. Please contact support for assistance.
-                            </AlertDescription>
-                          </Alert>
+                          <div className="mt-2 w-full rounded-lg border border-red-500/20 bg-red-500/10 p-4">
+                            <div className="flex items-start gap-2">
+                              <XCircle className="h-4 w-4 text-red-400 mt-0.5 flex-shrink-0" />
+                              <div>
+                                <p className="text-sm font-semibold text-red-400">This check did not pass</p>
+                                <p className="text-sm text-red-400/80 mt-1">
+                                  If your circumstances have changed or you believe this result is
+                                  incorrect, you can request a re-check. Our support team can also
+                                  review the result with you.
+                                </p>
+                              </div>
+                            </div>
+                            <div className="mt-3 flex flex-wrap items-center gap-3">
+                              <Button
+                                size="sm"
+                                onClick={() => initiateCheck(key)}
+                                disabled={initiating === key}
+                                className="bg-[#00BFA6] hover:bg-[#00A693]"
+                              >
+                                {initiating === key ? (
+                                  <>
+                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                    Requesting...
+                                  </>
+                                ) : (
+                                  <>
+                                    <RefreshCw className="h-4 w-4 mr-2" />
+                                    Request Re-check
+                                  </>
+                                )}
+                              </Button>
+                              <Button
+                                asChild
+                                variant="outline"
+                                size="sm"
+                                className="border-gray-600 text-gray-300"
+                              >
+                                <Link href="/contact">Contact Support</Link>
+                              </Button>
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>

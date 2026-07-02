@@ -1,12 +1,20 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, CheckCircle2, Circle, ArrowRight, Award, FileText, Shield, BookOpen, FileSignature } from 'lucide-react';
+import { Loader2, CheckCircle2, Circle, ArrowRight, Award, FileText, Shield, BookOpen, FileSignature, AlertCircle, RefreshCw } from 'lucide-react';
+
+// DR-918: fetch with a hard timeout so a hung endpoint can't spin the checklist forever.
+const FETCH_TIMEOUT_MS = 10_000;
+const fetchWithTimeout = (url: string) => {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  return fetch(url, { cache: 'no-store', signal: controller.signal }).finally(() => clearTimeout(timer));
+};
 
 interface ChecklistStatus {
   preferencesComplete: boolean;
@@ -19,6 +27,7 @@ interface ChecklistStatus {
   completionPercentage?: number;
   stripeAccountId?: string;
   nrpgStatus?: 'pending' | 'approved' | 'rejected';
+  nrpgRejectionReason?: string | null;
   // NRPG Certification status
   nrpgBackgroundComplete: boolean;
   nrpgCommitmentSigned: boolean;
@@ -31,21 +40,22 @@ export default function ContractorOnboardingChecklistPage() {
   const userId = useMemo(() => (session?.user as any)?.id as string | undefined, [session]);
 
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [checklist, setChecklist] = useState<ChecklistStatus | null>(null);
 
-  useEffect(() => {
-    const load = async () => {
+  const load = useCallback(async () => {
       if (!userId) return;
       setLoading(true);
+      setLoadError(false);
       try {
         const [preferencesRes, profileRes, nrpgRes, onboardingRes, stripeRes, nrpgCertRes, nrpgPhasesRes] = await Promise.all([
-          fetch('/api/contractor/preferences', { cache: 'no-store' }),
-          fetch('/api/contractor/profile', { cache: 'no-store' }),
-          fetch('/api/contractors/me', { cache: 'no-store' }),
-          fetch(`/api/onboarding/progress/${userId}`, { cache: 'no-store' }),
-          fetch('/api/contractor/stripe/connect/status', { cache: 'no-store' }),
-          fetch('/api/onboarding/nrpg/certification', { cache: 'no-store' }),
-          fetch('/api/onboarding/nrpg/phases', { cache: 'no-store' }),
+          fetchWithTimeout('/api/contractor/preferences'),
+          fetchWithTimeout('/api/contractor/profile'),
+          fetchWithTimeout('/api/contractors/me'),
+          fetchWithTimeout(`/api/onboarding/progress/${userId}`),
+          fetchWithTimeout('/api/contractor/stripe/connect/status'),
+          fetchWithTimeout('/api/onboarding/nrpg/certification'),
+          fetchWithTimeout('/api/onboarding/nrpg/phases'),
         ]);
 
         const preferences = await preferencesRes.json().catch(() => null);
@@ -67,7 +77,29 @@ export default function ContractorOnboardingChecklistPage() {
         // Extract detailed data for deep linking
         const currentModuleId = onboardingPayload?.progress?.currentModule?.moduleId;
         const stripeAccountId = stripePayload?.stripeConnectAccountId;
-        const nrpgStatus = nrpgPayload?.contractor?.verificationStatus?.toLowerCase();
+
+        // DR-918: /api/contractors/me exposes the NRPG review outcome as nrpgVerificationLevel
+        // (REJECTED / PENDING_INFO / VERIFIED). Also honour verificationStatus if present.
+        const rawNrpgLevel = String(
+          nrpgPayload?.contractor?.verificationStatus ?? nrpgPayload?.contractor?.nrpgVerificationLevel ?? ''
+        ).toLowerCase();
+        const nrpgStatus: ChecklistStatus['nrpgStatus'] =
+          rawNrpgLevel === 'rejected'
+            ? 'rejected'
+            : rawNrpgLevel === 'verified' || rawNrpgLevel === 'approved'
+              ? 'approved'
+              : nrpgRegistrationComplete
+                ? 'pending'
+                : undefined;
+
+        // DR-918: if rejected, best-effort fetch of the reviewer's rejection reason.
+        let nrpgRejectionReason: string | null = null;
+        if (nrpgStatus === 'rejected') {
+          const verificationPayload = await fetchWithTimeout('/api/contractor/verification/profile')
+            .then((res) => (res.ok ? res.json() : null))
+            .catch(() => null);
+          nrpgRejectionReason = verificationPayload?.contractor?.rejectionReason ?? null;
+        }
 
         // NRPG Certification data
         const nrpgBackgroundComplete = Boolean(nrpgPhasesPayload?.data?.summary?.backgroundChecks?.allPass);
@@ -86,20 +118,27 @@ export default function ContractorOnboardingChecklistPage() {
           completionPercentage,
           stripeAccountId,
           nrpgStatus,
+          nrpgRejectionReason,
           nrpgBackgroundComplete,
           nrpgCommitmentSigned,
           nrpgCertificationPoints,
           nrpgPartnershipLevel,
         });
+      } catch (err) {
+        // DR-918: a failed or timed-out fetch renders a visible error state, not an endless spinner.
+        console.error('Error loading onboarding checklist:', err);
+        setChecklist(null);
+        setLoadError(true);
       } finally {
         setLoading(false);
       }
-    };
+  }, [userId]);
 
+  useEffect(() => {
     if (status === 'authenticated') {
       void load();
     }
-  }, [status, userId]);
+  }, [status, load]);
 
   if (status === 'loading') {
     return (
@@ -124,6 +163,34 @@ export default function ContractorOnboardingChecklistPage() {
           <CardContent>
             <Button onClick={() => void signIn()} className="w-full" size="lg">
               Sign In
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // DR-918: distinct error state (with retry) — not the same as loading, not a silent dead end.
+  if (!loading && loadError) {
+    return (
+      <div className="container mx-auto py-8 max-w-3xl">
+        <Card className="border-red-500/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-red-500" />
+              We couldn&apos;t load your onboarding status
+            </CardTitle>
+            <CardDescription>
+              The request failed or timed out. Your progress is safe — try again, or contact support if this keeps happening.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-3">
+            <Button onClick={() => void load()}>
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Retry
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/contact">Contact support</Link>
             </Button>
           </CardContent>
         </Card>
@@ -166,6 +233,9 @@ export default function ContractorOnboardingChecklistPage() {
   };
 
   const getNRPGAction = () => {
+    if (checklist.nrpgStatus === 'rejected') {
+      return 'Fix and resubmit';
+    }
     if (checklist.nrpgRegistrationComplete) {
       return checklist.nrpgStatus === 'pending' ? 'View status (pending)' : 'View registration';
     }
@@ -205,10 +275,22 @@ export default function ContractorOnboardingChecklistPage() {
       key: 'nrpg',
       title: 'NRPG registration',
       description: 'Submit ABN/IICRC/insurance details for NRPG verification.',
-      complete: checklist.nrpgRegistrationComplete,
+      // A rejected registration is not complete — it needs to be fixed and resubmitted.
+      complete: checklist.nrpgRegistrationComplete && checklist.nrpgStatus !== 'rejected',
       href: '/dashboard/contractor/onboarding/nrpg-registration',
       action: getNRPGAction(),
-      statusBadge: checklist.nrpgStatus === 'pending' ? 'Under review' : undefined,
+      statusBadge:
+        checklist.nrpgStatus === 'rejected'
+          ? 'Rejected'
+          : checklist.nrpgStatus === 'pending'
+            ? 'Under review'
+            : undefined,
+      statusBadgeTone: checklist.nrpgStatus === 'rejected' ? ('error' as const) : ('warning' as const),
+      errorContext:
+        checklist.nrpgStatus === 'rejected'
+          ? checklist.nrpgRejectionReason ||
+            'Your registration was reviewed and could not be approved. Check the email we sent you for the reviewer’s notes, update your ABN, IICRC and insurance details, then resubmit.'
+          : undefined,
       icon: null,
     },
     {
@@ -319,12 +401,35 @@ export default function ContractorOnboardingChecklistPage() {
                       </Badge>
                     )}
                     {'statusBadge' in step && step.statusBadge && (
-                      <Badge variant="outline" className="text-amber-600 border-amber-600">
+                      <Badge
+                        variant="outline"
+                        className={
+                          'statusBadgeTone' in step && step.statusBadgeTone === 'error'
+                            ? 'bg-red-500/10 text-red-500 border-red-500/20'
+                            : 'text-amber-600 border-amber-600'
+                        }
+                      >
                         {step.statusBadge}
                       </Badge>
                     )}
                   </div>
                   <p className="text-sm text-muted-foreground mt-0.5">{step.description}</p>
+                  {/* DR-918: rejected registration renders its error context + recovery guidance */}
+                  {'errorContext' in step && step.errorContext && (
+                    <div className="mt-2 rounded-md border border-red-500/20 bg-red-500/10 p-3">
+                      <p className="text-sm font-semibold text-red-500 flex items-center gap-1.5">
+                        <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                        Registration rejected
+                      </p>
+                      <p className="text-sm text-red-500/90 mt-1">{step.errorContext}</p>
+                      <p className="text-xs text-muted-foreground mt-2">
+                        Need help?{' '}
+                        <Link href="/contact" className="underline text-red-500">
+                          Contact our support team
+                        </Link>
+                      </p>
+                    </div>
+                  )}
                   {'progressText' in step && step.progressText && (
                     <p className="text-xs text-blue-600 mt-1 font-medium">{step.progressText}</p>
                   )}
