@@ -65,13 +65,13 @@ export default function ContractorAvailableRequestsPage() {
   const getUrgencyColor = (level: string) => {
     switch (level.toUpperCase()) {
       case 'CRITICAL':
-        return 'bg-red-100 text-red-800 border-red-300';
+        return 'bg-red-500/10 text-red-400 border-red-500/20';
       case 'URGENT':
-        return 'bg-orange-100 text-orange-800 border-orange-300';
+        return 'bg-orange-500/10 text-orange-400 border-orange-500/20';
       case 'STANDARD':
-        return 'bg-blue-100 text-blue-800 border-blue-300';
+        return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-300';
+        return 'bg-white/5 text-gray-400 border-white/10';
     }
   };
 
@@ -107,24 +107,24 @@ export default function ContractorAvailableRequestsPage() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-[#050505] text-white px-4 sm:px-6 py-6 sm:py-8 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Available Requests</h1>
+          <h1 className="text-3xl font-bold text-white">Available Requests</h1>
           <p className="text-gray-400 mt-2">Jobs matched specifically for your expertise and location</p>
         </div>
         <div className="text-right">
-          <p className="text-3xl font-bold text-gray-900">{filteredRequests.length}</p>
+          <p className="text-3xl font-bold text-white">{filteredRequests.length}</p>
           <p className="text-sm text-gray-400">jobs available</p>
         </div>
       </div>
 
       {/* Error Alert */}
       {error && (
-        <Alert className="border-red-600 bg-red-50">
-          <AlertCircle className="h-5 w-5 text-red-600" />
-          <AlertDescription className="text-red-900">{error}</AlertDescription>
+        <Alert className="border-red-500/20 bg-red-500/10">
+          <AlertCircle className="h-5 w-5 text-red-400" />
+          <AlertDescription className="text-red-400">{error}</AlertDescription>
         </Alert>
       )}
 
@@ -168,7 +168,7 @@ export default function ContractorAvailableRequestsPage() {
             <Loader className="h-8 w-8 animate-spin text-gray-400" />
           </div>
         ) : filteredRequests.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+          <div className="text-center py-12 bg-white/[0.03] rounded-lg border border-white/[0.06]">
             <Clock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
             <p className="text-gray-400 font-medium">No requests available</p>
             <p className="text-gray-400 mt-2">
@@ -181,14 +181,14 @@ export default function ContractorAvailableRequestsPage() {
           filteredRequests.map((request) => (
             <div
               key={request.matchId}
-              className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-white/[0.03] rounded-lg border border-white/[0.06] overflow-hidden hover:border-white/20 transition-colors"
             >
               <div className="p-6">
                 {/* Header Row */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-lg font-semibold text-gray-900 capitalize">
+                      <h3 className="text-lg font-semibold text-white capitalize">
                         {request.disasterType.replace('_', ' ')}
                       </h3>
                       <span
@@ -199,7 +199,7 @@ export default function ContractorAvailableRequestsPage() {
                         {getUrgencyIcon(request.emergencyLevel)}
                         {request.emergencyLevel}
                       </span>
-                      <span className="flex items-center gap-1 text-amber-600 bg-amber-50 px-3 py-1 rounded-full text-xs font-semibold">
+                      <span className="flex items-center gap-1 text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full text-xs font-semibold">
                         <TrendingUp className="h-4 w-4" />
                         {request.matchScore} match
                       </span>
@@ -212,13 +212,13 @@ export default function ContractorAvailableRequestsPage() {
                 </div>
 
                 {/* Details Row */}
-                <div className="grid grid-cols-5 gap-4 pb-4 border-b border-gray-200">
+                <div className="grid grid-cols-5 gap-4 pb-4 border-b border-white/[0.06]">
                   <div>
                     <div className="flex items-center gap-1 text-gray-400 mb-1">
                       <MapPin className="h-4 w-4" />
                       <span className="text-xs font-medium uppercase">Location</span>
                     </div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       {request.location.suburb}
                     </p>
                     <p className="text-xs text-gray-400">{request.location.postcode}</p>
@@ -229,26 +229,26 @@ export default function ContractorAvailableRequestsPage() {
                       <DollarSign className="h-4 w-4" />
                       <span className="text-xs font-medium uppercase">Budget</span>
                     </div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       {formatCurrency(request.estimatedBudget)}
                     </p>
                   </div>
 
                   <div>
                     <p className="text-xs font-medium text-gray-400 uppercase mb-1">Client</p>
-                    <p className="text-sm font-semibold text-gray-900">{request.clientName}</p>
+                    <p className="text-sm font-semibold text-white">{request.clientName}</p>
                   </div>
 
                   <div>
                     <p className="text-xs font-medium text-gray-400 uppercase mb-1">Posted</p>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       {request.hoursPosted < 1 ? 'Just now' : `${request.hoursPosted}h ago`}
                     </p>
                   </div>
 
                   <div className="text-right">
                     <p className="text-xs font-medium text-gray-400 uppercase mb-1">Status</p>
-                    <p className="text-sm font-semibold text-blue-600">Available</p>
+                    <p className="text-sm font-semibold text-blue-400">Available</p>
                   </div>
                 </div>
 
@@ -272,8 +272,8 @@ export default function ContractorAvailableRequestsPage() {
 
       {/* Info Section */}
       {requests.length > 0 && (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <p className="text-sm text-blue-900">
+        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+          <p className="text-sm text-blue-300">
             <strong>Pro Tip:</strong> Your match score shows how well this job aligns with your
             location, expertise, and availability. Higher scores mean better opportunities for you.
           </p>
