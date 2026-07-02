@@ -5,6 +5,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import { NRPG_QUIZ_PASSING_SCORE } from '@/lib/training/training-policy';
 
 // ============================================================================
 // TYPES
@@ -120,7 +121,9 @@ export function getCourseInfo(courseId: 'CSE' | 'WRT'): CourseInfo | null {
       description: `Professional ${course.name} training programme`,
       totalModules: courseId === 'CSE' ? 10 : 12,
       totalHours: course.totalHours,
-      passingScore: 80,
+      // DR-893: the displayed passing score must equal the enforced one —
+      // single-sourced from training-policy, never a per-file literal.
+      passingScore: NRPG_QUIZ_PASSING_SCORE,
       prerequisites: [],
       modules: getModulesList(courseId),
     };
@@ -132,7 +135,8 @@ export function getCourseInfo(courseId: 'CSE' | 'WRT'): CourseInfo | null {
     description: info.description || '',
     totalModules: info.totalModules || (courseId === 'CSE' ? 10 : 12),
     totalHours: info.totalHours || course.totalHours,
-    passingScore: info.passingScore || 80,
+    // DR-893: ignore any per-course JSON threshold — one policy source only.
+    passingScore: NRPG_QUIZ_PASSING_SCORE,
     prerequisites: info.prerequisites || [],
     modules: getModulesList(courseId),
   };
@@ -176,7 +180,8 @@ export function getModulesList(courseId: 'CSE' | 'WRT'): ModuleInfo[] {
       description: moduleInfo?.description || '',
       duration: moduleInfo?.duration || (courseId === 'CSE' ? '60 min' : '120 min'),
       estimatedMinutes: parseInt(moduleInfo?.duration) || (courseId === 'CSE' ? 60 : 120),
-      passingScore: moduleInfo?.passingScore || 80,
+      // DR-893: displayed == enforced; single policy source, no literal.
+      passingScore: NRPG_QUIZ_PASSING_SCORE,
       prerequisites: moduleInfo?.prerequisites || (i > 1 ? [`${course.modulePrefix}-${(i - 1).toString().padStart(2, '0')}`] : []),
       learningObjectives: moduleInfo?.learningObjectives || [],
       hasAssessment,

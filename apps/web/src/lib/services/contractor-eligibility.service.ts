@@ -13,6 +13,11 @@
 
 import { prisma } from '@/lib/prisma';
 import Stripe from 'stripe';
+import {
+  NRPG_CANONICAL_MODULE_COUNT,
+  countNrpgCanonicalModulesPassed,
+  isNrpgTrainingSetComplete,
+} from '@/lib/training/training-policy';
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' as any })
@@ -121,12 +126,16 @@ export async function checkContractorEligibility(userId: string): Promise<Eligib
     },
   });
 
+  // DR-893: completion is set-equality against the canonical NRP-001..024
+  // module set (single-sourced in training-policy) — never a count of seeded
+  // rows, which a short-seeded onboarding (e.g. 5/5) or duplicate ids would fool.
   const totalModules = onboarding?.moduleProgress.length || 0;
-  const completedModules = onboarding?.moduleProgress.filter(
-    (m: { status: string }) => m.status === 'COMPLETED'
-  ).length || 0;
-  const trainingCompletionPercentage = totalModules > 0 ? (completedModules / totalModules) * 100 : 0;
-  const trainingComplete = trainingCompletionPercentage >= 100;
+  const completedModuleIds =
+    onboarding?.moduleProgress
+      .filter((m: { status: string }) => m.status === 'COMPLETED')
+      .map((m: { moduleId: string }) => m.moduleId) || [];
+  const completedCanonicalModules = countNrpgCanonicalModulesPassed(completedModuleIds);
+  const trainingComplete = isNrpgTrainingSetComplete(completedModuleIds);
 
   checks.push({
     requirement: 'training',
@@ -134,7 +143,7 @@ export async function checkContractorEligibility(userId: string): Promise<Eligib
     label: 'Training Complete',
     description: trainingComplete
       ? 'All required modules passed'
-      : `${Math.round(trainingCompletionPercentage)}% complete (${completedModules}/${totalModules} modules)`,
+      : `${completedCanonicalModules}/${NRPG_CANONICAL_MODULE_COUNT} modules passed`,
     actionUrl: '/dashboard/contractor/onboarding',
     actionText: trainingComplete ? 'View certificate' : 'Continue training',
   });

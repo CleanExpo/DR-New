@@ -8,6 +8,11 @@ import {
   parseNrpgModuleNumber,
   gradeNrpgQuizSubmission,
 } from '@/lib/training/nrp-training';
+import {
+  NRPG_CERTIFICATION_NAME,
+  getNrpgCertificationExpiryDate,
+  isNrpgTrainingSetComplete,
+} from '@/lib/training/training-policy';
 
 export const dynamic = 'force-dynamic';
 
@@ -122,10 +127,16 @@ export async function POST(request: NextRequest) {
 
       const refreshed = await tx.contractorModuleProgress.findMany({
         where: { onboardingId: onboarding.id },
-        select: { status: true },
+        select: { moduleId: true, status: true },
       });
 
-      const allComplete = refreshed.length > 0 && refreshed.every(m => m.status === 'COMPLETED');
+      // DR-893: completion is SET-EQUALITY against the canonical NRP-001..024
+      // module set — a count-based check is forgeable with duplicate rows and
+      // passes short-seeded onboardings (e.g. 5/5).
+      const passedModuleIds = refreshed
+        .filter((m) => m.status === 'COMPLETED')
+        .map((m) => m.moduleId);
+      const allComplete = isNrpgTrainingSetComplete(passedModuleIds);
 
       await tx.contractorOnboarding.update({
         where: { id: onboarding.id },
@@ -135,28 +146,31 @@ export async function POST(request: NextRequest) {
       });
 
       if (allComplete) {
+        // DR-893: auto-issue the certification on genuine completion. Idempotent —
+        // scoped to a LIVE cert so re-completion never duplicates a row, while a
+        // renewal after expiry issues a fresh row (audit history preserved).
+        const issueDate = new Date();
         const existingCert = await tx.contractorCertification.findFirst({
           where: {
             contractorId: effectiveContractorId,
-            certificationName: 'NRP Contractor Certification',
+            certificationName: NRPG_CERTIFICATION_NAME,
+            expiryDate: { gt: issueDate },
           },
           select: { id: true },
         });
 
         if (!existingCert) {
-          const issueDate = new Date();
-          const expiryDate = new Date(issueDate.getTime());
-          expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-
           await tx.contractorCertification.create({
             data: {
               contractorId: effectiveContractorId,
-              certificationName: 'NRP Contractor Certification',
+              certificationName: NRPG_CERTIFICATION_NAME,
               certificationLevel: 1,
               issueDate,
-              expiryDate,
+              // Validity comes from the single policy source.
+              expiryDate: getNrpgCertificationExpiryDate(issueDate),
               specializations: onboarding.specialization ? [onboarding.specialization] : [],
-              verified: false,
+              // Server-side grading of all 24 modules IS the verification.
+              verified: true,
             },
           });
         }

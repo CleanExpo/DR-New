@@ -110,7 +110,12 @@ function makeDb(opts: { refreshedStatuses?: string[] } = {}) {
     contractorModuleProgress: {
       update: jest.fn().mockResolvedValue({}),
       findMany: jest.fn().mockResolvedValue(
-        (opts.refreshedStatuses ?? ['FAILED']).map((status) => ({ status }))
+        // Real rows always carry a moduleId (non-null column); DR-893's
+        // set-equality check reads it.
+        (opts.refreshedStatuses ?? ['FAILED']).map((status, i) => ({
+          moduleId: `NRP-${String(i + 1).padStart(3, '0')}`,
+          status,
+        }))
       ),
     },
     contractorOnboarding: { update: jest.fn().mockResolvedValue({}) },

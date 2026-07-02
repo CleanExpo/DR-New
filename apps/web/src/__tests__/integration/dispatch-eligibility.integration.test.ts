@@ -26,6 +26,7 @@
 // import whose types tsc resolves stale in this monorepo.
 import { prisma } from '@/lib/prisma';
 import { ICA_VERSION } from '@/lib/legal/ica';
+import { NRPG_CERTIFICATION_NAME } from '@/lib/training/training-policy';
 import { filterDispatchEligible, isDispatchEligible } from '@/lib/services/dispatch-eligibility';
 
 const ENABLED = process.env.RUN_DB_INTEGRATION === '1';
@@ -62,6 +63,8 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
       userActive?: boolean;
       stripePayoutsEnabled?: boolean;
       stripeChargesEnabled?: boolean;
+      trainingCertExpiry?: Date | null; // null => no NRP training cert (DR-893)
+      trainingCertVerified?: boolean;
     } = {}
   ) {
     const {
@@ -73,6 +76,8 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
       userActive = true,
       stripePayoutsEnabled = true,
       stripeChargesEnabled = true,
+      trainingCertExpiry = future,
+      trainingCertVerified = true,
     } = opts;
 
     const user = await prisma.user.create({
@@ -130,6 +135,22 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
         },
       });
     }
+
+    // DR-893: verified NRP training certification, keyed on User.id.
+    if (trainingCertExpiry !== null) {
+      await prisma.contractorCertification.create({
+        data: {
+          contractorId: user.id,
+          certificationName: NRPG_CERTIFICATION_NAME,
+          certificationLevel: 1,
+          issueDate: past,
+          expiryDate: trainingCertExpiry,
+          specializations: ['water'],
+          verified: trainingCertVerified,
+          tenantId,
+        },
+      });
+    }
   }
 
   beforeAll(async () => {
@@ -145,12 +166,18 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
     await seedContractor('suspended', { isSuspended: true });
     await seedContractor('inactiveUser', { userActive: false });
     await seedContractor('payoutsDisabled', { stripePayoutsEnabled: false });
+    await seedContractor('noTrainingCert', { trainingCertExpiry: null });
+    await seedContractor('expiredTrainingCert', { trainingCertExpiry: past });
+    await seedContractor('unverifiedTrainingCert', { trainingCertVerified: false });
   });
 
   afterAll(async () => {
     const uids = Object.values(userIds);
     await prisma.iICRCCertification.deleteMany({
       where: { contractor: { userId: { in: uids } } },
+    });
+    await prisma.contractorCertification.deleteMany({
+      where: { contractorId: { in: uids } },
     });
     await prisma.contractorAgreementAcceptance.deleteMany({
       where: { contractorId: { in: uids } },
@@ -177,6 +204,9 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
     ['suspended', 'suspended contractor'],
     ['inactiveUser', 'inactive owning user'],
     ['payoutsDisabled', 'Stripe payouts capability disabled (DR-898)'],
+    ['noTrainingCert', 'no NRP training certification (DR-893)'],
+    ['expiredTrainingCert', 'expired NRP training certification (DR-893)'],
+    ['unverifiedTrainingCert', 'unverified NRP training certification (DR-893)'],
   ])('excludes %s (%s)', async (label) => {
     await expect(isDispatchEligible(userIds[label])).resolves.toBe(false);
   });

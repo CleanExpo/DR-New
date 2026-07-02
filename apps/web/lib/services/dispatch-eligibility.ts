@@ -11,11 +11,16 @@
  *   6. Stripe Connect payouts AND charges enabled (DR-898). The flags are
  *      persisted on ContractorProfile by the account.updated webhook, so a
  *      capability revoked at Stripe re-gates the contractor automatically.
+ *   7. Verified, unexpired NRP Contractor Certification (DR-893) — auto-issued
+ *      when all 24 canonical training modules are passed server-side. Name and
+ *      validity come from the single training-policy config source, so an
+ *      expired or unverified training cert re-gates the contractor.
  *
  * contractorId == User.id (Option B). Callers must pass the contractor's User.id.
  */
 import { prisma } from '@/lib/prisma';
 import { ICA_VERSION } from '@/lib/legal/ica';
+import { NRPG_CERTIFICATION_NAME } from '@/lib/training/training-policy';
 
 /** True iff `userId` passes every dispatch-eligibility check. */
 export async function isDispatchEligible(userId: string): Promise<boolean> {
@@ -25,8 +30,8 @@ export async function isDispatchEligible(userId: string): Promise<boolean> {
 
 /**
  * Batch variant: given contractor User.ids, return the subset that is currently
- * dispatch-eligible. Two queries regardless of N (ICA acceptances, then
- * contractor/insurance/cert/account status).
+ * dispatch-eligible. Three queries regardless of N (ICA acceptances, then
+ * contractor/insurance/cert/account status, then NRP training certification).
  */
 export async function filterDispatchEligible(userIds: string[]): Promise<Set<string>> {
   if (userIds.length === 0) return new Set();
@@ -65,6 +70,22 @@ export async function filterDispatchEligible(userIds: string[]): Promise<Set<str
     },
     select: { userId: true },
   });
+  const contractorUserIds = contractors.map((c) => c.userId);
+  if (contractorUserIds.length === 0) return new Set();
 
-  return new Set(contractors.map((c) => c.userId));
+  // 3. Training gate (DR-893): a verified, unexpired NRP Contractor
+  //    Certification, keyed on User.id like the other lifecycle tables.
+  //    The certification name (and its validity, at issuance) come from the
+  //    single training-policy source — never a literal.
+  const trainingCerts = await prisma.contractorCertification.findMany({
+    where: {
+      contractorId: { in: contractorUserIds },
+      certificationName: NRPG_CERTIFICATION_NAME,
+      verified: true,
+      expiryDate: { gt: now },
+    },
+    select: { contractorId: true },
+  });
+
+  return new Set(trainingCerts.map((c) => c.contractorId));
 }
