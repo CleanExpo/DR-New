@@ -17,6 +17,7 @@
 import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { createClient } from '@supabase/supabase-js';
+import { getSupabaseServerEnv } from '@/lib/supabase/server-env';
 
 export interface StorageConfig {
   type: 'supabase' | 's3' | 'spaces';
@@ -46,10 +47,13 @@ export interface UploadResult {
 // ─── Supabase Storage helpers ─────────────────────────────────────────────────
 
 function getSupabaseClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  // Non-inlined env reads — see lib/supabase/server-env.ts. Reading
+  // process.env.NEXT_PUBLIC_SUPABASE_URL directly gets inlined as undefined in
+  // GitHub-Actions-prebuilt production bundles (sensitive Vercel env values are
+  // not pullable at build time), breaking every storage operation at runtime.
+  const { url, serviceRoleKey: key } = getSupabaseServerEnv();
   if (!url || !key) {
-    throw new Error('Supabase storage requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY');
+    throw new Error('Supabase storage requires NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY');
   }
   return createClient(url, key, { auth: { persistSession: false } });
 }

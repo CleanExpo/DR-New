@@ -1,6 +1,12 @@
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  provider = "prisma-client-js"
+  // "native" covers local dev (Windows/macOS) and CI (ubuntu = debian-openssl-3.0.x).
+  // "rhel-openssl-3.0.x" is REQUIRED for the Vercel serverless runtime (Amazon Linux):
+  // production deploys are prebuilt in GitHub Actions (`vercel build` on ubuntu), so
+  // without it the deployed client only ships the debian engine and every runtime
+  // query fails with "Prisma Client could not locate the Query Engine for runtime
+  // rhel-openssl-3.0.x" (P0 credentials-login outage, 2026-07-02).
+  binaryTargets = ["native", "debian-openssl-3.0.x", "rhel-openssl-3.0.x"]
 }
 
 datasource db {

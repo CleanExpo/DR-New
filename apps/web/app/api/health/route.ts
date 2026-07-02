@@ -26,6 +26,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import type Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
 import { classifyDeployedPriceIds } from '@/lib/monitoring/env-parity';
+import { getSupabaseServerEnv } from '@/lib/supabase/server-env';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -109,10 +110,21 @@ async function checkStorage(): Promise<SubsystemCheck> {
   const bucket = process.env.STORAGE_BUCKET_NAME || 'nrpg-uploads';
 
   if (backend === 'supabase') {
-    const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    // Read via getSupabaseServerEnv() — NOT `process.env.NEXT_PUBLIC_SUPABASE_URL`,
+    // which Next.js inlines at build time. Prod builds run in GitHub Actions where
+    // sensitive Vercel values can't be pulled, so the inlined value is undefined
+    // even though the runtime env has it (see lib/supabase/server-env.ts).
+    const { url, serviceRoleKey: serviceKey } = getSupabaseServerEnv();
     if (!url || !serviceKey) {
-      return { status: 'unhealthy', backend, reason: 'not_configured' };
+      return {
+        status: 'unhealthy',
+        backend,
+        reason: 'not_configured',
+        // Which piece is missing (booleans only — never values). Lets a probe
+        // against a preview/prod deployment distinguish "URL invisible to the
+        // bundle" (the inlining bug) from "key genuinely absent in this env".
+        configured: { url: Boolean(url), serviceRoleKey: Boolean(serviceKey) },
+      };
     }
     try {
       const { createClient } = await import('@supabase/supabase-js');
