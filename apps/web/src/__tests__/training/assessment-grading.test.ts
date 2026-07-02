@@ -129,6 +129,8 @@ function makeDb(opts: { refreshedStatuses?: string[] } = {}) {
     contractorOnboarding: {
       findUnique: jest.fn().mockResolvedValue(onboarding),
     },
+    // DR-894: the route reads prior attempts for the retake policy; none here.
+    contractorAssessment: { findMany: jest.fn().mockResolvedValue([]) },
     contractorModuleProgress: { update: jest.fn().mockResolvedValue({}) },
     $transaction: jest.fn(async (fn: (t: typeof tx) => Promise<unknown>) => fn(tx)),
   };

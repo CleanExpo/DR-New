@@ -23,6 +23,9 @@ export enum ErrorCode {
   USER_NOT_FOUND = 'USER_NOT_FOUND',
   RESOURCE_NOT_FOUND = 'RESOURCE_NOT_FOUND',
 
+  // Rate limiting (429)
+  RATE_LIMITED = 'RATE_LIMITED',
+
   // Server errors (500)
   INTERNAL_ERROR = 'INTERNAL_ERROR',
   DATABASE_ERROR = 'DATABASE_ERROR',
