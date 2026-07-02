@@ -529,6 +529,10 @@ model ServiceRequestCalloutPayment {
 
 model ContractorProfile {
   stripeConnectAccountId       String?
+  stripePayoutsEnabled         Boolean                        @default(false)
+  stripeChargesEnabled         Boolean                        @default(false)
+  stripeRequirementsDue        Json?
+  stripeCapabilitiesSyncedAt   DateTime?
   id                           String                         @id @default(cuid())
   userId                       String                         @unique
   businessName                 String?
