@@ -9,12 +9,13 @@
  * `Request`/`Response` (NextRequest/NextResponse) APIs, absent in jsdom.
  *
  * What it proves:
- *   1. GET never ships the answer key (`correct`/`explanation` stripped).
+ *   1. GET never ships the answer key (`correct`/`explanation` stripped) to
+ *      non-admin callers; ADMIN/SUPER_ADMIN receive the full key (DR-892).
  *   2. POST grades against the SERVER answer key — correct answers pass.
  *   3. A forged `score`/`passed` in the request body is ignored: wrong answers
  *      fail even when the client claims a perfect score (the N-05 attack).
  *   4. The 70% pass threshold is enforced from the server-computed score.
- *   5. POST is auth-gated.
+ *   5. GET and POST are both auth-gated and role-gated (DR-892).
  */
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -22,11 +23,24 @@ import { NextRequest, NextResponse } from 'next/server';
 // resolvable under test; it only calls captureException.
 jest.mock('@sentry/nextjs', () => ({ captureException: jest.fn() }), { virtual: true });
 
-jest.mock('@/lib/auth-middleware', () => ({
-  authenticateRequest: jest.fn(),
-}));
+jest.mock('@/lib/auth-middleware', () => {
+  const { NextResponse: MockNextResponse } = jest.requireActual('next/server');
+  return {
+    authenticateRequest: jest.fn(),
+    // Real role semantics, minus the prisma/next-auth import chain.
+    requireRole: (user: { userType?: string }, roles: string[]) =>
+      roles.includes(user?.userType as string),
+    unauthorizedRoleResponse: (roles: string[]) =>
+      MockNextResponse.json(
+        { error: 'FORBIDDEN', message: `Access denied. Required roles: ${roles.join(', ')}` },
+        { status: 403 }
+      ),
+  };
+});
 
+// Grading/projection helpers stay REAL; only the quiz-bank file loaders are mocked.
 jest.mock('@/lib/training/nrp-training', () => ({
+  ...jest.requireActual('@/lib/training/nrp-training'),
   getNrpgQuizModule: jest.fn(),
   verifyTrainingSourcesPresent: jest.fn().mockResolvedValue(undefined),
 }));
@@ -65,19 +79,43 @@ function postReq(body: unknown) {
   });
 }
 
+const CONTRACTOR = { id: 'user_1', userType: 'CONTRACTOR' };
+const ADMIN = { id: 'admin_1', userType: 'ADMIN' };
+const CLIENT = { id: 'client_1', userType: 'CLIENT' };
+
+const UNAUTHENTICATED = {
+  success: false,
+  response: NextResponse.json({ error: 'unauthorized' }, { status: 401 }),
+};
+
+function getReq() {
+  return new NextRequest('http://localhost/api/training/nrp/quiz/1');
+}
+
 beforeEach(() => {
   mockAuth.mockReset();
   mockGetModule.mockReset();
   mockGetModule.mockResolvedValue(QUIZ_MODULE);
-  mockAuth.mockResolvedValue({ success: true, context: { userId: 'user_1' } });
+  mockAuth.mockResolvedValue({ success: true, context: { user: CONTRACTOR } });
 });
 
 describe('GET — quiz delivery', () => {
-  it('never ships the answer key', async () => {
-    const res = await GET(
-      new NextRequest('http://localhost/api/training/nrp/quiz/1'),
-      params
-    );
+  it('rejects unauthenticated requests with 401', async () => {
+    mockAuth.mockResolvedValue(UNAUTHENTICATED);
+
+    const res = await GET(getReq(), params);
+    expect(res.status).toBe(401);
+  });
+
+  it('rejects roles outside CONTRACTOR/ADMIN/SUPER_ADMIN with 403', async () => {
+    mockAuth.mockResolvedValue({ success: true, context: { user: CLIENT } });
+
+    const res = await GET(getReq(), params);
+    expect(res.status).toBe(403);
+  });
+
+  it('never ships the answer key to a contractor', async () => {
+    const res = await GET(getReq(), params);
     const body = await res.json();
 
     expect(res.status).toBe(200);
@@ -85,6 +123,22 @@ describe('GET — quiz delivery', () => {
     for (const q of body.quiz.questions) {
       expect(q).not.toHaveProperty('correct');
       expect(q).not.toHaveProperty('explanation');
+      // The client still gets what it needs to render and submit.
+      expect(q).toHaveProperty('id');
+      expect(q).toHaveProperty('options');
+    }
+  });
+
+  it('returns the full answer key only to ADMIN', async () => {
+    mockAuth.mockResolvedValue({ success: true, context: { user: ADMIN } });
+
+    const res = await GET(getReq(), params);
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    for (const q of body.quiz.questions) {
+      expect(q).toHaveProperty('correct');
+      expect(q).toHaveProperty('explanation');
     }
   });
 });
@@ -125,12 +179,16 @@ describe('POST — server-side grading', () => {
   });
 
   it('rejects unauthenticated submissions', async () => {
-    mockAuth.mockResolvedValue({
-      success: false,
-      response: NextResponse.json({ error: 'unauthorized' }, { status: 401 }),
-    });
+    mockAuth.mockResolvedValue(UNAUTHENTICATED);
 
     const res = await POST(postReq({ answers: ALL_CORRECT }), params);
     expect(res.status).toBe(401);
+  });
+
+  it('rejects submissions from roles outside CONTRACTOR/ADMIN/SUPER_ADMIN', async () => {
+    mockAuth.mockResolvedValue({ success: true, context: { user: CLIENT } });
+
+    const res = await POST(postReq({ answers: ALL_CORRECT }), params);
+    expect(res.status).toBe(403);
   });
 });

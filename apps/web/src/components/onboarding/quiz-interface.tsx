@@ -18,12 +18,28 @@ import {
   X
 } from 'lucide-react';
 
+// DR-892: the quiz payload is SEALED — questions carry no `correct` or
+// `explanation`. Grading happens server-side in /api/onboarding/assessment;
+// this component submits answers only and renders the server-graded result.
 interface Question {
+  id: string;
   question: string;
   options: string[];
-  correct: number;
-  explanation: string;
   reference?: string;
+}
+
+interface QuestionResult {
+  questionId: string;
+  correct: boolean;
+  correctAnswer: number;
+  explanation: string;
+}
+
+interface GradedResult {
+  passed: boolean;
+  score: number;
+  passingScore: number;
+  results: QuestionResult[];
 }
 
 interface QuizInterfaceProps {
@@ -38,10 +54,10 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
   const [loading, setLoading] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [score, setScore] = useState(0);
+  const [graded, setGraded] = useState<GradedResult | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [timeRemaining, setTimeRemaining] = useState(1800); // 30 minutes
-  const [submittingResult, setSubmittingResult] = useState(false);
 
   const fetchQuiz = useCallback(async () => {
     try {
@@ -70,14 +86,14 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
   }, [fetchQuiz]);
 
   useEffect(() => {
-    if (!submitted && timeRemaining > 0) {
+    if (!graded && timeRemaining > 0) {
       const timer = setInterval(() => {
         setTimeRemaining(prev => Math.max(0, prev - 1));
       }, 1000);
 
       return () => clearInterval(timer);
     }
-  }, [submitted, timeRemaining]);
+  }, [graded, timeRemaining]);
 
   const handleAnswerSelect = (answerIndex: string) => {
     const parsed = Number.parseInt(answerIndex, 10);
@@ -97,39 +113,49 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
     }
   };
 
-  const handleSubmit = () => {
-    // Calculate score
-    let correctCount = 0;
+  // Submit ANSWERS to the server for grading — the client never computes or
+  // sends a score (DR-892).
+  const handleSubmit = useCallback(async () => {
+    if (!quiz || submitting) return;
+
+    const answersById: Record<string, number> = {};
     quiz.questions.forEach((q: Question, index: number) => {
-      if (answers[index] === q.correct) {
-        correctCount++;
+      if (typeof answers[index] === 'number') {
+        answersById[q.id] = answers[index];
       }
     });
 
-    const percentage = Math.round((correctCount / quiz.questions.length) * 100);
-    setScore(percentage);
-    setSubmitted(true);
-  };
-
-  const submitResult = useCallback(async () => {
-    if (!quiz) return;
     try {
-      setSubmittingResult(true);
-      await fetch('/api/onboarding/assessment', {
+      setSubmitting(true);
+      setSubmitError(null);
+      const response = await fetch('/api/onboarding/assessment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contractorId,
           moduleId,
-          score,
+          answers: answersById,
         }),
       });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Failed to submit quiz');
+      }
+
+      setGraded({
+        passed: data.passed,
+        score: data.score,
+        passingScore: data.passingScore,
+        results: data.result?.results ?? [],
+      });
     } catch (error) {
-      console.error('Failed to submit assessment result:', error);
+      console.error('Failed to submit quiz:', error);
+      setSubmitError('Failed to submit your quiz. Please try again.');
     } finally {
-      setSubmittingResult(false);
+      setSubmitting(false);
     }
-  }, [contractorId, moduleId, quiz, score]);
+  }, [quiz, answers, contractorId, moduleId, submitting]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -169,8 +195,10 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
     );
   }
 
-  if (submitted) {
-    const passed = score >= quiz.passingScore;
+  if (graded) {
+    const { passed, score, passingScore } = graded;
+    const resultByQuestionId = new Map(graded.results.map((r) => [r.questionId, r]));
+    const correctCount = graded.results.filter((r) => r.correct).length;
 
     return (
       <div className="container mx-auto py-8">
@@ -206,7 +234,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
               <p className="text-muted-foreground">
                 {passed
                   ? `Congratulations! You've passed with a score of ${score}%.`
-                  : `You scored ${score}%. You need ${quiz.passingScore}% to pass. Keep learning!`}
+                  : `You scored ${score}%. You need ${passingScore}% to pass. Keep learning!`}
               </p>
             </div>
 
@@ -214,7 +242,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
               <Card>
                 <CardContent className="pt-6 text-center">
                   <p className="text-3xl font-bold text-green-600">
-                    {quiz.questions.filter((q: Question, i: number) => answers[i] === q.correct).length}
+                    {correctCount}
                   </p>
                   <p className="text-sm text-muted-foreground">Correct Answers</p>
                 </CardContent>
@@ -223,7 +251,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
               <Card>
                 <CardContent className="pt-6 text-center">
                   <p className="text-3xl font-bold text-red-600">
-                    {quiz.questions.filter((q: Question, i: number) => answers[i] !== q.correct).length}
+                    {quiz.questions.length - correctCount}
                   </p>
                   <p className="text-sm text-muted-foreground">Incorrect Answers</p>
                 </CardContent>
@@ -237,18 +265,20 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
               </Card>
             </div>
 
-            {/* Review Answers */}
+            {/* Review Answers — key material comes from the server's graded result */}
             <div className="space-y-4">
               <h4 className="font-semibold text-lg">Review Your Answers</h4>
               {quiz.questions.map((q: Question, index: number) => {
+                const result = resultByQuestionId.get(q.id);
                 const userAnswer = answers[index];
-                const isCorrect = userAnswer === q.correct;
+                const isCorrect = result?.correct ?? false;
                 const userAnswerText =
                   typeof userAnswer === 'number' ? (q.options[userAnswer] ?? '') : '';
-                const correctAnswerText = q.options[q.correct] ?? '';
+                const correctAnswerText =
+                  result ? (q.options[result.correctAnswer] ?? '') : '';
 
                 return (
-                  <Card key={index} className={isCorrect ? 'border-green-500' : 'border-red-500'}>
+                  <Card key={q.id} className={isCorrect ? 'border-green-500' : 'border-red-500'}>
                     <CardContent className="pt-6 space-y-3">
                       <div className="flex items-start gap-2">
                         {isCorrect ? (
@@ -266,7 +296,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
                               {userAnswerText || 'Not answered'}
                             </span>
                           </p>
-                          {!isCorrect && (
+                          {!isCorrect && correctAnswerText && (
                             <p className="text-sm mt-1">
                               <span className="text-muted-foreground">Correct answer: </span>
                               <span className="text-green-600">{correctAnswerText}</span>
@@ -275,9 +305,11 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
                           {q.reference && (
                             <p className="text-xs text-muted-foreground mt-1">Reference: {q.reference}</p>
                           )}
-                          <p className="text-sm text-muted-foreground mt-2 italic">
-                            {q.explanation}
-                          </p>
+                          {result?.explanation && (
+                            <p className="text-sm text-muted-foreground mt-2 italic">
+                              {result.explanation}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </CardContent>
@@ -293,14 +325,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
                 Retake Quiz
               </Button>
             )}
-            <Button
-              onClick={async () => {
-                await submitResult();
-                onComplete();
-              }}
-              className="flex-1"
-              disabled={submittingResult}
-            >
+            <Button onClick={onComplete} className="flex-1">
               {passed ? 'Continue to Next Module' : 'Return to Dashboard'}
             </Button>
           </CardFooter>
@@ -364,6 +389,10 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
             </RadioGroup>
           </div>
 
+          {submitError && (
+            <p className="text-sm text-red-600">{submitError}</p>
+          )}
+
           <div className="flex items-center justify-between pt-4 border-t">
             <div className="text-sm text-muted-foreground">
               {Object.keys(answers).length} of {quiz.questions.length} answered
@@ -398,10 +427,10 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
           {currentQuestion === quiz.questions.length - 1 ? (
             <Button
               onClick={handleSubmit}
-              disabled={!allAnswered}
+              disabled={!allAnswered || submitting}
               className="bg-green-600 hover:bg-green-700"
             >
-              Submit Quiz
+              {submitting ? 'Submitting...' : 'Submit Quiz'}
               <CheckCircle2 className="h-4 w-4 ml-2" />
             </Button>
           ) : (
