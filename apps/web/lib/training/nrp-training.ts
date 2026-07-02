@@ -92,6 +92,81 @@ export async function getNrpgQuizModule(moduleNumber: number): Promise<NrpgQuizM
   return quizModule ?? null;
 }
 
+/**
+ * Client-safe quiz question projection (DR-892).
+ * Strips the answer key — `correct` and `explanation` must never reach a
+ * non-admin caller before grading.
+ */
+export interface NrpgClientSafeQuizQuestion {
+  id: string;
+  type: string;
+  question: string;
+  options: string[];
+  reference?: string;
+}
+
+export function toClientSafeQuizQuestions(
+  questions: NrpgQuizQuestion[]
+): NrpgClientSafeQuizQuestion[] {
+  return questions.map((q) => ({
+    id: q.id,
+    type: q.type,
+    question: q.question,
+    options: q.options,
+    reference: q.reference,
+  }));
+}
+
+/** Single passing-score threshold for NRPG quiz grading. */
+export const NRPG_QUIZ_PASSING_SCORE = 70;
+
+export interface NrpgQuizQuestionResult {
+  questionId: string;
+  correct: boolean;
+  /** Revealed only AFTER a graded submission. */
+  correctAnswer: number;
+  explanation: string;
+}
+
+export interface NrpgQuizGrade {
+  total: number;
+  correctCount: number;
+  score: number;
+  passingScore: number;
+  passed: boolean;
+  results: NrpgQuizQuestionResult[];
+}
+
+/**
+ * Server-authoritative quiz grading (DR-892).
+ * The score is computed here from the sealed answer key — any score a client
+ * asserts is ignored by construction because it is never an input.
+ */
+export function gradeNrpgQuizSubmission(
+  quizModule: NrpgQuizModule,
+  answers: Record<string, number>
+): NrpgQuizGrade {
+  const results: NrpgQuizQuestionResult[] = quizModule.questions.map((q) => ({
+    questionId: q.id,
+    correct: answers[q.id] === q.correct,
+    correctAnswer: q.correct,
+    explanation: q.explanation,
+  }));
+
+  const total = quizModule.questions.length;
+  const correctCount = results.filter((r) => r.correct).length;
+  const score = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+  return {
+    total,
+    correctCount,
+    score,
+    passingScore: NRPG_QUIZ_PASSING_SCORE,
+    passed: score >= NRPG_QUIZ_PASSING_SCORE,
+    results,
+  };
+}
+
 export function parseNrpgModuleNumber(moduleId: string): number | null {
   const match = moduleId.match(/^NRP-(\d{3})$/i);
   if (!match) return null;

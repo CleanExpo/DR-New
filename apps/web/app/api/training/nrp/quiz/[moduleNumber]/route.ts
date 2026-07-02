@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
-import { getNrpgQuizModule, verifyTrainingSourcesPresent } from '@/lib/training/nrp-training';
-import { authenticateRequest } from '@/lib/auth-middleware';
+import {
+  getNrpgQuizModule,
+  verifyTrainingSourcesPresent,
+  toClientSafeQuizQuestions,
+  gradeNrpgQuizSubmission,
+  NRPG_QUIZ_PASSING_SCORE,
+} from '@/lib/training/nrp-training';
+import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 
 export const dynamic = 'force-dynamic';
 
-const PASSING_SCORE = 70;
+const ALLOWED_ROLES: Array<'CONTRACTOR' | 'ADMIN' | 'SUPER_ADMIN'> = ['CONTRACTOR', 'ADMIN', 'SUPER_ADMIN'];
+
 const TIME_LIMIT_MINUTES = 30;
 
 const paramsSchema = z.object({
@@ -14,11 +21,20 @@ const paramsSchema = z.object({
 });
 
 /**
- * GET — deliver the quiz WITHOUT the answer key (DR-858 N-05).
- * `correct` and `explanation` are stripped; grading is server-side only.
+ * GET — deliver the quiz WITHOUT the answer key (DR-858 N-05, DR-892).
+ * Auth required; `correct`/`explanation` are stripped for everyone except
+ * ADMIN/SUPER_ADMIN. Grading is server-side only.
  */
-export async function GET(_request: NextRequest, context: { params: { moduleNumber: string } }) {
+export async function GET(request: NextRequest, context: { params: { moduleNumber: string } }) {
   try {
+    const auth = await authenticateRequest(request);
+    if (!auth.success) return auth.response;
+
+    const { user } = auth.context;
+    if (!requireRole(user, ALLOWED_ROLES)) {
+      return unauthorizedRoleResponse(ALLOWED_ROLES);
+    }
+
     await verifyTrainingSourcesPresent();
 
     const validation = paramsSchema.safeParse(context.params);
@@ -33,14 +49,11 @@ export async function GET(_request: NextRequest, context: { params: { moduleNumb
       return createErrorResponse(ErrorCode.RESOURCE_NOT_FOUND, 'Quiz module not found', 404);
     }
 
-    // Client-safe projection — never ship `correct`/`explanation`.
-    const questions = quizModule.questions.map((q) => ({
-      id: q.id,
-      type: q.type,
-      question: q.question,
-      options: q.options,
-      reference: q.reference,
-    }));
+    // Full answer key only for ADMIN/SUPER_ADMIN; client-safe projection otherwise.
+    const isAdmin = requireRole(user, ['ADMIN', 'SUPER_ADMIN']);
+    const questions = isAdmin
+      ? quizModule.questions
+      : toClientSafeQuizQuestions(quizModule.questions);
 
     return NextResponse.json({
       success: true,
@@ -49,7 +62,7 @@ export async function GET(_request: NextRequest, context: { params: { moduleNumb
         name: quizModule.name,
         description: quizModule.description,
         timeLimitMinutes: TIME_LIMIT_MINUTES,
-        passingScore: PASSING_SCORE,
+        passingScore: NRPG_QUIZ_PASSING_SCORE,
         questions,
       },
     });
@@ -64,13 +77,20 @@ const submitSchema = z.object({
 });
 
 /**
- * POST — grade a submission server-side against the real answer key (DR-858 N-05).
- * The client submits only selected answers; the server computes the score.
+ * POST — grade a submission server-side against the real answer key
+ * (DR-858 N-05, DR-892). The client submits only selected answers; the
+ * server computes the score. Client-supplied `score`/`passed` fields are
+ * never read.
  */
 export async function POST(request: NextRequest, context: { params: { moduleNumber: string } }) {
   try {
     const auth = await authenticateRequest(request);
     if (!auth.success) return auth.response;
+
+    const { user } = auth.context;
+    if (!requireRole(user, ALLOWED_ROLES)) {
+      return unauthorizedRoleResponse(ALLOWED_ROLES);
+    }
 
     await verifyTrainingSourcesPresent();
 
@@ -91,35 +111,24 @@ export async function POST(request: NextRequest, context: { params: { moduleNumb
       return createErrorResponse(ErrorCode.RESOURCE_NOT_FOUND, 'Quiz module not found', 404);
     }
 
-    const { answers } = parsed.data;
-    const total = quizModule.questions.length;
-
-    const results = quizModule.questions.map((q) => {
-      const selected = answers[q.id];
-      const isCorrect = selected === q.correct;
-      return {
-        questionId: q.id,
-        correct: isCorrect,
-        // Revealed only AFTER a graded submission.
-        correctAnswer: q.correct,
-        explanation: q.explanation,
-      };
-    });
-
-    const correctCount = results.filter((r) => r.correct).length;
-    const score = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-    const passed = score >= PASSING_SCORE;
+    const grade = gradeNrpgQuizSubmission(quizModule, parsed.data.answers);
 
     return NextResponse.json({
       success: true,
       result: {
         moduleNumber,
-        total,
-        correctCount,
-        score,
-        passingScore: PASSING_SCORE,
-        passed,
-        results,
+        total: grade.total,
+        correctCount: grade.correctCount,
+        score: grade.score,
+        passingScore: grade.passingScore,
+        passed: grade.passed,
+        results: grade.results.map((r) => ({
+          questionId: r.questionId,
+          correct: r.correct,
+          // Revealed only AFTER a graded submission.
+          correctAnswer: r.correctAnswer,
+          explanation: r.explanation,
+        })),
       },
     });
   } catch (error) {

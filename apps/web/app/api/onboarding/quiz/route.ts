@@ -3,7 +3,12 @@ import { z } from 'zod';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
-import { getNrpgQuizModule, parseNrpgModuleNumber } from '@/lib/training/nrp-training';
+import {
+  getNrpgQuizModule,
+  parseNrpgModuleNumber,
+  toClientSafeQuizQuestions,
+  NRPG_QUIZ_PASSING_SCORE,
+} from '@/lib/training/nrp-training';
 
 export const dynamic = 'force-dynamic';
 
@@ -70,13 +75,21 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Seal the answer key (DR-892): `correct`/`explanation` are stripped for
+    // everyone except ADMIN/SUPER_ADMIN. Grading happens server-side in
+    // /api/onboarding/assessment.
+    const isAdmin = requireRole(user, ['ADMIN', 'SUPER_ADMIN']);
+    const questions = isAdmin
+      ? quizModule.questions
+      : toClientSafeQuizQuestions(quizModule.questions);
+
     return NextResponse.json({
       success: true,
       quiz: {
         moduleId,
         timeLimit: 30,
-        passingScore: 70,
-        questions: quizModule.questions,
+        passingScore: NRPG_QUIZ_PASSING_SCORE,
+        questions,
       },
     });
   } catch (error) {

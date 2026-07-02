@@ -3,13 +3,24 @@ import { z } from 'zod';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { handleUnexpectedError, handleValidationError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import {
+  getNrpgQuizModule,
+  parseNrpgModuleNumber,
+  gradeNrpgQuizSubmission,
+} from '@/lib/training/nrp-training';
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * DR-892: the client submits ANSWERS, never a score. Any extra fields (e.g. a
+ * forged `score`/`passed`) are dropped by the schema and never read — the
+ * stored score is always recomputed server-side from the sealed answer key.
+ */
 const assessmentSchema = z.object({
   contractorId: z.string().min(1),
   moduleId: z.string().min(1),
-  score: z.number().int().min(0).max(100),
+  // Map of questionId -> selected option index.
+  answers: z.record(z.string(), z.number().int().min(0)),
 });
 
 export async function POST(request: NextRequest) {
@@ -33,12 +44,25 @@ export async function POST(request: NextRequest) {
       return handleValidationError(validation.error);
     }
 
-    const { contractorId, moduleId, score } = validation.data;
+    const { contractorId, moduleId, answers } = validation.data;
     const effectiveContractorId = user.userType === 'CONTRACTOR' ? user.id : contractorId;
 
     if (user.userType === 'CONTRACTOR' && contractorId !== user.id) {
       return createErrorResponse(ErrorCode.FORBIDDEN, 'Unauthorized assessment submission', 403);
     }
+
+    // Server-side grading against the sealed answer key (DR-892).
+    const moduleNumber = parseNrpgModuleNumber(moduleId);
+    if (!moduleNumber) {
+      return createErrorResponse(ErrorCode.INVALID_INPUT, 'Unsupported moduleId for assessment', 400, { moduleId });
+    }
+
+    const quizModule = await getNrpgQuizModule(moduleNumber);
+    if (!quizModule) {
+      return createErrorResponse(ErrorCode.RESOURCE_NOT_FOUND, 'Quiz module not found', 404, { moduleId });
+    }
+
+    const grade = gradeNrpgQuizSubmission(quizModule, answers);
 
     const onboarding = await db.contractorOnboarding.findUnique({
       where: { contractorId: effectiveContractorId },
@@ -70,8 +94,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const passingScore = 70;
-    const passed = score >= passingScore;
+    const { score, passingScore, passed } = grade;
 
     await db.$transaction(async (tx) => {
       await tx.contractorAssessment.create({
@@ -143,7 +166,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       passed,
+      score,
       passingScore,
+      result: {
+        total: grade.total,
+        correctCount: grade.correctCount,
+        // Per-question key material is revealed only AFTER a graded submission.
+        results: grade.results,
+      },
     });
   } catch (error) {
     return handleUnexpectedError(error);
