@@ -1,5 +1,6 @@
 import React from 'react'
-import { FileText } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowLeft, FileText } from 'lucide-react'
 import {
   ICA_TITLE,
   ICA_SUBTITLE,
@@ -57,6 +58,13 @@ export default function ContractorAgreementPage() {
       {/* Hero Section */}
       <section className="relative py-16 lg:py-24 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 border-b border-blue-900/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/portal"
+            className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-teal-400 transition-colors mb-6"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to contractor portal
+          </Link>
           <div className="flex items-center gap-3 mb-6">
             <div className="bg-teal-500/20 rounded-lg p-3">
               <FileText className="h-8 w-8 text-teal-400" />
