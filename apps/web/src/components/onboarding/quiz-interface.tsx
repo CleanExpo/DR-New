@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
+import { RetakeCountdown } from './retake-countdown';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -35,11 +37,29 @@ interface QuestionResult {
   explanation: string;
 }
 
+// DR-894/DR-919: the server's retake policy state, returned with every graded
+// submission (`retake`) and on 403 ATTEMPT_CAP / 429 RATE_LIMITED rejections.
+interface RetakeState {
+  maxAttempts: number;
+  attemptsUsed: number;
+  attemptsRemaining: number;
+  locked: boolean;
+  cooldownUntil: string | null;
+}
+
+interface SubmissionBlocked {
+  reason: 'ATTEMPT_CAP' | 'COOLDOWN';
+  retryAt: string | null;
+  attemptsUsed?: number;
+  maxAttempts?: number;
+}
+
 interface GradedResult {
   passed: boolean;
   score: number;
   passingScore: number;
   results: QuestionResult[];
+  retake: RetakeState | null;
 }
 
 interface QuizInterfaceProps {
@@ -57,6 +77,9 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
   const [graded, setGraded] = useState<GradedResult | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  // DR-919: submission rejected by the DR-894 retake policy (attempt cap /
+  // cooldown) BEFORE grading — rendered distinctly from a transport failure.
+  const [blocked, setBlocked] = useState<SubmissionBlocked | null>(null);
   const [timeRemaining, setTimeRemaining] = useState(1800); // 30 minutes
 
   const fetchQuiz = useCallback(async () => {
@@ -128,6 +151,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
     try {
       setSubmitting(true);
       setSubmitError(null);
+      setBlocked(null);
       const response = await fetch('/api/onboarding/assessment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -140,6 +164,18 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
 
       const data = await response.json();
       if (!response.ok || !data.success) {
+        // DR-894 policy rejections (403 ATTEMPT_CAP / 429 RATE_LIMITED) carry
+        // structured details — render them as a policy state, not a raw error.
+        const details = data?.details;
+        if (details?.reason === 'ATTEMPT_CAP' || details?.reason === 'COOLDOWN') {
+          setBlocked({
+            reason: details.reason,
+            retryAt: typeof details.retryAt === 'string' ? details.retryAt : null,
+            attemptsUsed: typeof details.attemptsUsed === 'number' ? details.attemptsUsed : undefined,
+            maxAttempts: typeof details.maxAttempts === 'number' ? details.maxAttempts : undefined,
+          });
+          return;
+        }
         throw new Error(data.message || 'Failed to submit quiz');
       }
 
@@ -148,6 +184,7 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
         score: data.score,
         passingScore: data.passingScore,
         results: data.result?.results ?? [],
+        retake: data.retake ?? null,
       });
     } catch (error) {
       console.error('Failed to submit quiz:', error);
@@ -238,6 +275,43 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
               </p>
             </div>
 
+            {/* DR-919: surface the DR-894 retake policy state after a failed submission */}
+            {!passed && graded.retake && (
+              <div
+                className={`rounded-md border p-4 ${
+                  graded.retake.locked
+                    ? 'border-red-500/20 bg-red-500/10'
+                    : 'border-yellow-500/20 bg-yellow-500/10'
+                }`}
+              >
+                <p className={`text-sm font-semibold flex items-center gap-1.5 ${graded.retake.locked ? 'text-red-500' : 'text-yellow-600'}`}>
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                  {graded.retake.locked
+                    ? 'No attempts remaining — module locked'
+                    : `${graded.retake.attemptsRemaining} of ${graded.retake.maxAttempts} attempts remaining`}
+                </p>
+                {graded.retake.locked ? (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    You&apos;ve used all {graded.retake.maxAttempts} attempts for this module. It&apos;s
+                    locked pending admin review —{' '}
+                    <Link href="/contact" className="underline text-red-500">
+                      contact our support team
+                    </Link>{' '}
+                    to request a reset.
+                  </p>
+                ) : graded.retake.cooldownUntil ? (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    You can retake this quiz in <RetakeCountdown until={graded.retake.cooldownUntil} />.
+                    Use the time to review the module content.
+                  </p>
+                ) : (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Review the module content, then retake the quiz when you&apos;re ready.
+                  </p>
+                )}
+              </div>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card>
                 <CardContent className="pt-6 text-center">
@@ -320,9 +394,16 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
           </CardContent>
 
           <CardFooter className="flex gap-2">
-            {!passed && (
+            {/* DR-919: the retake CTA only renders when the DR-894 policy allows a
+                retake — never while locked or inside the cooldown window. */}
+            {!passed && !graded.retake?.locked && !graded.retake?.cooldownUntil && (
               <Button onClick={() => window.location.reload()} variant="outline" className="flex-1">
                 Retake Quiz
+              </Button>
+            )}
+            {!passed && graded.retake?.locked && (
+              <Button asChild variant="outline" className="flex-1">
+                <Link href="/contact">Contact Support</Link>
               </Button>
             )}
             <Button onClick={onComplete} className="flex-1">
@@ -391,6 +472,40 @@ export function QuizInterface({ moduleId, contractorId, onComplete, onCancel }: 
 
           {submitError && (
             <p className="text-sm text-red-600">{submitError}</p>
+          )}
+
+          {/* DR-919: DR-894 policy rejections (403 attempt cap / 429 cooldown) */}
+          {blocked && (
+            <div
+              className={`rounded-md border p-4 ${
+                blocked.reason === 'ATTEMPT_CAP'
+                  ? 'border-red-500/20 bg-red-500/10'
+                  : 'border-yellow-500/20 bg-yellow-500/10'
+              }`}
+            >
+              {blocked.reason === 'ATTEMPT_CAP' ? (
+                <p className="text-sm text-red-600 flex items-start gap-1.5">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                  <span>
+                    Maximum attempts reached
+                    {typeof blocked.maxAttempts === 'number' ? ` (${blocked.maxAttempts})` : ''} — this
+                    module is locked pending admin review.{' '}
+                    <Link href="/contact" className="underline">
+                      Contact our support team
+                    </Link>{' '}
+                    to request a reset.
+                  </span>
+                </p>
+              ) : (
+                <p className="text-sm text-yellow-700 flex items-start gap-1.5">
+                  <Clock className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                  <span>
+                    Retake cooldown is still active — you can submit again in{' '}
+                    {blocked.retryAt ? <RetakeCountdown until={blocked.retryAt} /> : 'a little while'}.
+                  </span>
+                </p>
+              )}
+            </div>
           )}
 
           <div className="flex items-center justify-between pt-4 border-t">

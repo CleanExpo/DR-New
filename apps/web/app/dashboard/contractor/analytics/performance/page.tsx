@@ -186,7 +186,7 @@ export default function ContractorPerformanceAnalytics() {
 
   if (status === 'loading' || loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen bg-[#050505]">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-400">Loading performance analytics...</p>
@@ -197,33 +197,33 @@ export default function ContractorPerformanceAnalytics() {
 
   if (!session || (session.user as any).role !== 'CONTRACTOR') {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-red-600">Unauthorized access</p>
+      <div className="flex items-center justify-center min-h-screen bg-[#050505]">
+        <p className="text-red-400">Unauthorized access</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#050505] py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header with Back Button */}
         <div className="mb-8">
           <Link
             href="/dashboard/contractor/analytics"
-            className="text-blue-600 hover:text-blue-800 font-medium mb-4 inline-block"
+            className="text-blue-400 hover:text-blue-300 font-medium mb-4 inline-block"
           >
             ← Back to Analytics Dashboard
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Detailed Performance Analysis</h1>
+          <h1 className="text-3xl font-bold text-white">Detailed Performance Analysis</h1>
           <p className="text-gray-400 mt-2">Comprehensive view of your performance metrics and trends</p>
         </div>
 
         {/* Date Range Filter */}
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Date Range Filter</h2>
+        <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6 mb-8">
+          <h2 className="text-lg font-bold text-white mb-4">Date Range Filter</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="startDate" className="block text-sm font-medium text-gray-300 mb-2">
                 Start Date
               </label>
               <input
@@ -231,11 +231,11 @@ export default function ContractorPerformanceAnalytics() {
                 id="startDate"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 bg-white/5 border border-white/10 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="endDate" className="block text-sm font-medium text-gray-300 mb-2">
                 End Date
               </label>
               <input
@@ -243,7 +243,7 @@ export default function ContractorPerformanceAnalytics() {
                 id="endDate"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 bg-white/5 border border-white/10 text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div className="flex items-end">
@@ -259,7 +259,7 @@ export default function ContractorPerformanceAnalytics() {
 
         {/* Error Alert */}
         {error && (
-          <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
+          <div className="mb-6 bg-red-500/10 border border-red-500/20 rounded-lg p-4 text-red-400">
             <p className="font-medium">Error</p>
             <p className="text-sm">{error}</p>
           </div>
@@ -270,14 +270,14 @@ export default function ContractorPerformanceAnalytics() {
             {/* Performance Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               {/* Total Jobs */}
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
                 <p className="text-gray-400 text-sm font-medium">Total Jobs</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">{data.summary.totalJobs}</p>
+                <p className="text-3xl font-bold text-white mt-2">{data.summary.totalJobs}</p>
                 <p className="text-xs text-gray-400 mt-1">{data.summary.completedJobs} completed</p>
               </div>
 
               {/* Average Rating */}
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
                 <p className="text-gray-400 text-sm font-medium">Average Rating</p>
                 <p className="text-3xl font-bold text-yellow-500 mt-2">
                   {data.summary.averageRating.toFixed(1)}
@@ -287,7 +287,7 @@ export default function ContractorPerformanceAnalytics() {
                     <svg
                       key={i}
                       className={`w-4 h-4 ${
-                        i < Math.round(data.summary.averageRating) ? 'text-yellow-400' : 'text-gray-300'
+                        i < Math.round(data.summary.averageRating) ? 'text-yellow-400' : 'text-white/20'
                       }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
@@ -299,9 +299,9 @@ export default function ContractorPerformanceAnalytics() {
               </div>
 
               {/* Total Earnings */}
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
                 <p className="text-gray-400 text-sm font-medium">Total Earnings</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">
+                <p className="text-3xl font-bold text-white mt-2">
                   ${data.summary.totalEarnings.toLocaleString('en-AU', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
@@ -311,12 +311,12 @@ export default function ContractorPerformanceAnalytics() {
               </div>
 
               {/* Acceptance Rate */}
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
                 <p className="text-gray-400 text-sm font-medium">Acceptance Rate</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">
+                <p className="text-3xl font-bold text-white mt-2">
                   {data.summary.acceptanceRate.toFixed(1)}%
                 </p>
-                <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                <div className="w-full bg-white/10 rounded-full h-2 mt-2">
                   <div
                     className="bg-green-600 h-2 rounded-full"
                     style={{ width: `${data.summary.acceptanceRate}%` }}
@@ -327,27 +327,27 @@ export default function ContractorPerformanceAnalytics() {
 
             {/* Additional Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
                 <p className="text-gray-400 text-sm font-medium">Avg Completion Time</p>
-                <p className="text-2xl font-bold text-gray-900 mt-2">
+                <p className="text-2xl font-bold text-white mt-2">
                   {data.summary.averageCompletionTime.toFixed(1)} days
                 </p>
               </div>
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
                 <p className="text-gray-400 text-sm font-medium">Disputes</p>
-                <p className="text-2xl font-bold text-gray-900 mt-2">{data.summary.disputes}</p>
+                <p className="text-2xl font-bold text-white mt-2">{data.summary.disputes}</p>
               </div>
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
                 <p className="text-gray-400 text-sm font-medium">Refunds</p>
-                <p className="text-2xl font-bold text-gray-900 mt-2">{data.summary.refunds}</p>
+                <p className="text-2xl font-bold text-white mt-2">{data.summary.refunds}</p>
               </div>
             </div>
 
             {/* Rating Distribution & Monthly Earnings */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
               {/* Rating Distribution */}
-              <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4">Rating Distribution</h2>
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
+                <h2 className="text-lg font-bold text-white mb-4">Rating Distribution</h2>
                 <div className="space-y-4">
                   {data.performance.ratingDistribution
                     .sort((a, b) => b.stars - a.stars)
@@ -361,20 +361,20 @@ export default function ContractorPerformanceAnalytics() {
                       return (
                         <div key={rating.stars} className="flex items-center gap-3">
                           <div className="flex items-center gap-1 w-20">
-                            <span className="text-sm font-medium text-gray-900">{rating.stars}</span>
+                            <span className="text-sm font-medium text-white">{rating.stars}</span>
                             <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                             </svg>
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center gap-2">
-                              <div className="flex-1 bg-gray-200 rounded-full h-4">
+                              <div className="flex-1 bg-white/10 rounded-full h-4">
                                 <div
                                   className="bg-yellow-400 h-4 rounded-full"
                                   style={{ width: `${percentage}%` }}
                                 ></div>
                               </div>
-                              <span className="text-sm font-medium text-gray-900 w-16 text-right">
+                              <span className="text-sm font-medium text-white w-16 text-right">
                                 {rating.count} ({percentage.toFixed(0)}%)
                               </span>
                             </div>
@@ -386,17 +386,17 @@ export default function ContractorPerformanceAnalytics() {
               </div>
 
               {/* Monthly Completion Rate */}
-              <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-lg font-bold text-gray-900 mb-4">Completion Metrics</h2>
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6">
+                <h2 className="text-lg font-bold text-white mb-4">Completion Metrics</h2>
                 <div className="space-y-6">
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-gray-400 font-medium">Monthly Completion Rate</span>
-                      <span className="text-2xl font-bold text-gray-900">
+                      <span className="text-2xl font-bold text-white">
                         {data.performance.monthlyCompletionRate.toFixed(1)}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div className="w-full bg-white/10 rounded-full h-3">
                       <div
                         className="bg-blue-600 h-3 rounded-full"
                         style={{ width: `${data.performance.monthlyCompletionRate}%` }}
@@ -408,15 +408,15 @@ export default function ContractorPerformanceAnalytics() {
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-400">Completed</span>
-                        <span className="font-medium text-gray-900">{data.summary.completedJobs}</span>
+                        <span className="font-medium text-white">{data.summary.completedJobs}</span>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-400">Total</span>
-                        <span className="font-medium text-gray-900">{data.summary.totalJobs}</span>
+                        <span className="font-medium text-white">{data.summary.totalJobs}</span>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-400">Success Rate</span>
-                        <span className="font-medium text-green-600">
+                        <span className="font-medium text-green-400">
                           {data.summary.totalJobs > 0
                             ? ((data.summary.completedJobs / data.summary.totalJobs) * 100).toFixed(1)
                             : 0}
@@ -430,8 +430,8 @@ export default function ContractorPerformanceAnalytics() {
             </div>
 
             {/* Monthly Earnings Trend */}
-            <div className="bg-white rounded-lg shadow p-6 mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Monthly Earnings Trend</h2>
+            <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6 mb-8">
+              <h2 className="text-lg font-bold text-white mb-4">Monthly Earnings Trend</h2>
               {data.earnings.monthlyTrend.length > 0 ? (
                 <div className="space-y-3">
                   {data.earnings.monthlyTrend.map((item, idx) => {
@@ -442,7 +442,7 @@ export default function ContractorPerformanceAnalytics() {
                       <div key={idx} className="border-b pb-3 last:border-b-0">
                         <div className="flex justify-between items-center mb-2">
                           <div>
-                            <p className="text-sm font-medium text-gray-900">
+                            <p className="text-sm font-medium text-white">
                               {new Date(item.month).toLocaleDateString('en-AU', {
                                 year: 'numeric',
                                 month: 'long',
@@ -450,14 +450,14 @@ export default function ContractorPerformanceAnalytics() {
                             </p>
                             <p className="text-xs text-gray-400">{item.jobCount} jobs</p>
                           </div>
-                          <span className="font-bold text-gray-900">
+                          <span className="font-bold text-white">
                             ${item.amount.toLocaleString('en-AU', {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
                             })}
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="w-full bg-white/10 rounded-full h-2">
                           <div
                             className="bg-green-600 h-2 rounded-full"
                             style={{ width: `${barWidth}%` }}
@@ -473,12 +473,12 @@ export default function ContractorPerformanceAnalytics() {
             </div>
 
             {/* Service Type Breakdown */}
-            <div className="bg-white rounded-lg shadow p-6 mb-8">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">Performance by Service Type</h2>
+            <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-6 mb-8">
+              <h2 className="text-lg font-bold text-white mb-4">Performance by Service Type</h2>
               {data.services.byType.length > 0 ? (
                 <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                  <table className="min-w-full divide-y divide-white/[0.06]">
+                    <thead className="bg-white/[0.03]">
                       <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                           Service Type
@@ -494,10 +494,10 @@ export default function ContractorPerformanceAnalytics() {
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="divide-y divide-white/[0.06]">
                       {data.services.byType.map((service, idx) => (
                         <tr key={idx}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
                             {service.serviceType}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
@@ -505,7 +505,7 @@ export default function ContractorPerformanceAnalytics() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center gap-1">
-                              <span className="text-sm font-medium text-gray-900">
+                              <span className="text-sm font-medium text-white">
                                 {service.averageRating.toFixed(1)}
                               </span>
                               <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -513,7 +513,7 @@ export default function ContractorPerformanceAnalytics() {
                               </svg>
                             </div>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
                             ${service.totalEarnings.toLocaleString('en-AU', {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,

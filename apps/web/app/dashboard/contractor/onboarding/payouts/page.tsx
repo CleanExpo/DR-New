@@ -335,25 +335,25 @@ function PayoutPageContent() {
                   <div className="grid grid-cols-3 gap-2">
                     <div className="flex items-center gap-2 text-sm">
                       {statusData.capabilities.chargesEnabled ? (
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        <CheckCircle2 className="h-4 w-4 text-green-400" />
                       ) : (
-                        <XCircle className="h-4 w-4 text-red-600" />
+                        <XCircle className="h-4 w-4 text-red-400" />
                       )}
                       <span>Charges</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       {statusData.capabilities.payoutsEnabled ? (
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        <CheckCircle2 className="h-4 w-4 text-green-400" />
                       ) : (
-                        <XCircle className="h-4 w-4 text-red-600" />
+                        <XCircle className="h-4 w-4 text-red-400" />
                       )}
                       <span>Payouts</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       {statusData.capabilities.detailsSubmitted ? (
-                        <CheckCircle2 className="h-4 w-4 text-green-600" />
+                        <CheckCircle2 className="h-4 w-4 text-green-400" />
                       ) : (
-                        <XCircle className="h-4 w-4 text-red-600" />
+                        <XCircle className="h-4 w-4 text-red-400" />
                       )}
                       <span>Details</span>
                     </div>
