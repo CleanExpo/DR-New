@@ -22,7 +22,14 @@ import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/li
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { DISPUTE_WINDOW_DAYS } from '@/lib/payments/contractor-payout';
 import { sendBookingCompletedEmail } from '@/lib/email/client-notifications';
-import { BookingStatus } from '@prisma/client';
+// Status values are the BookingStatus enum literals. Importing the enum as a
+// RUNTIME value from @prisma/client breaks jest suites on CI (the generated
+// client is absent there and jest's moduleNameMapper resolves before mocks).
+const BookingStatus = {
+  CONFIRMED: 'CONFIRMED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+} as const;
 import { z } from 'zod';
 
 // Validation schema
