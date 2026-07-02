@@ -41,7 +41,10 @@ const config = {
     // '@/lib/stripe' resolves to src/lib/stripe/index.ts at build time (the
     // lib/stripe directory has no index), so mirror that here (DR-897 tests).
     '^@/lib/stripe$': '<rootDir>/src/lib/stripe',
-    '^@/(.*)$': '<rootDir>/$1',
+    // Mirror the tsconfig fallback ('@/*' -> './*' THEN './src/*') so modules
+    // that live only under src/ (email.service, contractor-eligibility.service,
+    // lib/db, ...) resolve under jest exactly like they do at build time (DR-906).
+    '^@/(.*)$': ['<rootDir>/$1', '<rootDir>/src/$1'],
     '^uuid$': require.resolve('uuid'),
     // Resolve Prisma client to the generated client in root node_modules
     '^@prisma/client$': '<rootDir>/../../node_modules/.prisma/client',

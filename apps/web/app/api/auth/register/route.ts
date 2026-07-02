@@ -63,7 +63,15 @@ export async function POST(request: NextRequest) {
     // Create the account. For contractors, atomically create the Contractor +
     // ContractorOnboarding (step 0) so the lifecycle exists from signup onward.
     // Lifecycle rows key contractorId on User.id (DR-879, Option B).
-    const user = await prisma.$transaction(async (tx) => {
+    //
+    // DR-906: the duplicate check above is check-then-create, so two CONCURRENT
+    // signups for the same email can both pass it. The unique constraint on
+    // User.email decides the winner inside the transaction; the loser's P2002
+    // must surface as the same 400 as the sequential duplicate path — never a
+    // 500 — so exactly one account exists and the race is a client error.
+    let user;
+    try {
+      user = await prisma.$transaction(async (tx) => {
       const createdUser = await tx.user.create({
         data: {
           email: validatedData.email,
@@ -95,8 +103,20 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      return createdUser;
-    });
+        return createdUser;
+      });
+    } catch (txError) {
+      // Duck-typed Prisma unique-constraint violation (avoids a runtime
+      // @prisma/client value import in test-loaded code).
+      if ((txError as { code?: string })?.code === 'P2002') {
+        return createErrorResponse(
+          ErrorCode.INVALID_INPUT,
+          'An account with this email already exists',
+          400
+        );
+      }
+      throw txError;
+    }
 
     // Send the verification email. A send failure must NOT fail registration —
     // the user can re-request via the resend flow.
