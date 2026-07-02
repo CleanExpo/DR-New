@@ -149,12 +149,20 @@ export async function POST(request: NextRequest) {
         // DR-893: auto-issue the certification on genuine completion. Idempotent —
         // scoped to a LIVE cert so re-completion never duplicates a row, while a
         // renewal after expiry issues a fresh row (audit history preserved).
+        // The schema has no unique key for the live cert, so serialize issuance
+        // per contractor with a transaction-scoped advisory lock — concurrent
+        // final submissions cannot both pass the findFirst gate.
+        await tx.$queryRaw`SELECT pg_advisory_xact_lock(hashtext(${`cert:${effectiveContractorId}`}))`;
         const issueDate = new Date();
         const existingCert = await tx.contractorCertification.findFirst({
           where: {
             contractorId: effectiveContractorId,
             certificationName: NRPG_CERTIFICATION_NAME,
             expiryDate: { gt: issueDate },
+            // Legacy rows predating DR-893 are unverified; they must not block
+            // a genuine re-completion from issuing the verified cert that
+            // dispatch eligibility requires.
+            verified: true,
           },
           select: { id: true },
         });

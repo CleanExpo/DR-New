@@ -112,6 +112,8 @@ function makeDb(opts: {
       findFirst: jest.fn().mockResolvedValue(opts.existingCert ?? null),
       create: jest.fn().mockResolvedValue({ id: 'cert_1' }),
     },
+    // Advisory lock serializing issuance per contractor (no unique key in schema).
+    $queryRaw: jest.fn().mockResolvedValue([]),
   };
 
   const db = {
@@ -256,15 +258,37 @@ describe('POST /api/onboarding/assessment — auto-issued certification (DR-893)
     );
     // ...but no second certification row is created.
     expect(tx.contractorCertification.create).not.toHaveBeenCalled();
-    // And the duplicate check is scoped to a LIVE (unexpired) cert of this name.
+    // And the duplicate check is scoped to a LIVE (unexpired) VERIFIED cert of
+    // this name — a legacy verified:false row must not block re-issuance.
     expect(tx.contractorCertification.findFirst).toHaveBeenCalledWith(
       expect.objectContaining({
         where: expect.objectContaining({
           contractorId: 'contractor_1',
           certificationName: NRPG_CERTIFICATION_NAME,
           expiryDate: expect.objectContaining({ gt: expect.any(Date) }),
+          verified: true,
         }),
       })
+    );
+  });
+
+  it('serializes issuance with a per-contractor advisory lock BEFORE the duplicate check', async () => {
+    const rows = NRPG_CANONICAL_MODULE_IDS.map(completed);
+    const { db, tx } = makeDb({ refreshedModules: rows });
+    mockGetTenantDb.mockReturnValue(db);
+
+    const res = await submitPassingNrp024();
+    expect(res.status).toBe(200);
+
+    // The lock is taken inside the transaction (findFirst -> create has no
+    // unique-key backstop in the schema, so the lock IS the race protection)...
+    expect(tx.$queryRaw).toHaveBeenCalledTimes(1);
+    const lockSql = (tx.$queryRaw.mock.calls[0][0] as TemplateStringsArray).join('?');
+    expect(lockSql).toContain('pg_advisory_xact_lock');
+    expect(tx.$queryRaw.mock.calls[0][1]).toBe('cert:contractor_1');
+    // ...and strictly before the duplicate-check read.
+    expect(tx.$queryRaw.mock.invocationCallOrder[0]).toBeLessThan(
+      tx.contractorCertification.findFirst.mock.invocationCallOrder[0]
     );
   });
 });
