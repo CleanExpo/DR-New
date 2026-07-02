@@ -84,6 +84,23 @@ jobs:
     name: Smoke Tests (DR-217)
     runs-on: ubuntu-latest
     needs: [build]
+    # Real Postgres so the deep /api/health (DR-907) database probe is
+    # GENUINELY healthy — the smoke suite asserts checks.database.status
+    # === 'healthy', not just "some HTTP response".
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: smoke
+          POSTGRES_PASSWORD: smoke
+          POSTGRES_DB: smoke_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -93,6 +110,11 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - run: pnpm run db:generate
+      - name: Push database schema
+        run: pnpm --filter nrpg-web exec prisma db push --skip-generate
+        env:
+          DATABASE_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
+          DIRECT_URL: postgresql://smoke:smoke@localhost:5432/smoke_test
       - uses: actions/download-artifact@v4
         with:
           name: build-artifacts
@@ -125,3 +147,12 @@ jobs:
           STRIPE_SECRET_KEY: sk_test_dummy_for_ci_smoke_tests
           CSRF_SECRET: test-csrf-secret-for-ci-minimum-32-chars
           JWT_SECRET: test-jwt-secret-for-ci-minimum-32-chars
+          # DR-907 deep /api/health gates on database+stripe+storage. CI can
+          # provision a real Postgres (database is asserted healthy above) but
+          # has NO real Stripe or Supabase credentials (owner-gated secrets) —
+          # the dummy STRIPE_SECRET_KEY exists only so stripe-importing routes
+          # don't crash at module load. Declare exactly those two subsystems
+          # as unprovisionable here; the smoke suite still requires database
+          # healthy + status-code/body consistency, and deployed environments
+          # (where this variable is unset) still require full health / 200.
+          SMOKE_ALLOW_UNHEALTHY_SUBSYSTEMS: stripe,storage

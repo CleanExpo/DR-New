@@ -99,10 +99,32 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // Get IP and user agent for audit logging
-        const forwarded = req?.headers?.get('x-forwarded-for');
-        const ip = forwarded ? forwarded.split(',')[0] : 'unknown';
-        const userAgent = req?.headers?.get('user-agent') || 'unknown';
+        // Get IP and user agent for audit logging.
+        //
+        // IMPORTANT: next-auth v4 does NOT pass a Fetch `Headers` instance here.
+        // In the App Router path (next-auth/next NextAuthRouteHandler) it passes
+        // `Object.fromEntries(await headers())` — a plain lowercase-keyed object —
+        // and in the Pages Router path it passes Node's IncomingHttpHeaders.
+        // Calling `.get()` on either throws `req?.headers?.get is not a function`,
+        // which next-auth surfaces as a 401 — breaking EVERY credentials sign-in
+        // (caught live by the DR-905 go-live gate on run 28592431904). Read
+        // defensively across all three shapes.
+        const headerValue = (name: string): string | undefined => {
+          const h = req?.headers as
+            | Headers
+            | Record<string, string | string[] | undefined>
+            | undefined;
+          if (!h) return undefined;
+          if (typeof (h as Headers).get === 'function') {
+            return (h as Headers).get(name) ?? undefined;
+          }
+          const record = h as Record<string, string | string[] | undefined>;
+          const value = record[name] ?? record[name.toLowerCase()];
+          return Array.isArray(value) ? value[0] : value;
+        };
+        const forwarded = headerValue('x-forwarded-for');
+        const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown';
+        const userAgent = headerValue('user-agent') || 'unknown';
 
         const user = await prisma.user.findUnique({
           where: { email },
