@@ -15,6 +15,7 @@
 
 import { prisma } from '@/lib/prisma';
 import { filterDispatchEligible } from '@/lib/services/dispatch-eligibility';
+import { isGoLiveEnabled } from '@/lib/feature-flags/nrpg-go-live';
 // Type-only import: runtime VALUES from @prisma/client break jest on CI
 // (moduleNameMapper resolves to the generated client, absent there — PR #204).
 import type { AustralianServiceType, AustralianState, EmergencyResponseLevel } from '@prisma/client';
@@ -154,6 +155,14 @@ export async function convertPublicClaimToBooking(publicClaimId: string): Promis
  * - Certifications
  */
 export async function matchContractorsToBooking(bookingId: string): Promise<ContractorMatchResult[]> {
+  // DR-929: kill switch — claim intake itself (PublicClaim -> Booking) keeps
+  // functioning when the program is killed; only contractor matching/
+  // notification is skipped, so no NEW contractor is matched or notified.
+  // No booking lookup, no candidate query, no ContractorMatch rows created.
+  if (!isGoLiveEnabled()) {
+    return [];
+  }
+
   // 1. Get booking details
   const booking = await prisma.booking.findUnique({
     where: { id: bookingId },
