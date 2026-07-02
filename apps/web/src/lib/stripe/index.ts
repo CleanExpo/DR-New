@@ -161,14 +161,20 @@ export async function createTransfer(
   amount: number,
   destination: string,
   transferGroup?: string,
-  currency: string = 'aud'
+  currency: string = 'aud',
+  idempotencyKey?: string
 ) {
-  return stripe.transfers.create({
-    amount: Math.round(amount * 100),
-    currency,
-    destination,
-    transfer_group: transferGroup,
-  });
+  return stripe.transfers.create(
+    {
+      amount: Math.round(amount * 100),
+      currency,
+      destination,
+      transfer_group: transferGroup,
+    },
+    // A deterministic key makes the call safe to retry: Stripe returns the
+    // SAME transfer for a repeated key (DR-897 — no double pay).
+    idempotencyKey ? { idempotencyKey } : undefined
+  );
 }
 
 // Webhook signature verification
