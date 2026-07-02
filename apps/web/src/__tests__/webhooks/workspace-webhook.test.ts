@@ -1,4 +1,6 @@
 /**
+ * @jest-environment node
+ *
  * Workspace Subscription Webhook Handler Tests
  *
  * Tests comprehensive webhook functionality for workspace-level subscriptions:
@@ -38,7 +40,6 @@ jest.mock('stripe', () => {
 
 import { NextRequest } from 'next/server';
 import Stripe from 'stripe';
-import { POST } from '@/app/api/webhooks/stripe/subscription/route';
 import { prisma } from '@/lib/prisma';
 import * as webhookIdempotency from '@/src/lib/stripe/webhook-idempotency';
 import * as webhookRetry from '@/src/lib/stripe/webhook-retry';
@@ -60,7 +61,7 @@ jest.mock('@/lib/prisma', () => ({
       findUnique: jest.fn(),
       create: jest.fn(),
     },
-    auditLog: {
+    workspaceAuditLog: {
       create: jest.fn(),
     },
   },
@@ -76,9 +77,14 @@ const mockEnv = {
   STRIPE_WEBHOOK_SECRET: 'whsec_test_workspace_secret',
 };
 
+// The route module instantiates Stripe at load time from process.env, so it
+// must be required AFTER mockEnv is applied (CI has no ambient Stripe env).
+let POST: typeof import('@/app/api/webhooks/stripe/subscription/route').POST;
+
 describe('Workspace Subscription Webhook Handler', () => {
   beforeAll(() => {
     Object.assign(process.env, mockEnv);
+    ({ POST } = require('@/app/api/webhooks/stripe/subscription/route'));
   });
 
   beforeEach(() => {
@@ -365,7 +371,7 @@ describe('Workspace Subscription Webhook Handler', () => {
         subscriptionStatus: 'PAST_DUE',
       });
 
-      (prisma.auditLog.create as jest.Mock).mockResolvedValue({
+      (prisma.workspaceAuditLog.create as jest.Mock).mockResolvedValue({
         id: 'audit_123',
       });
 

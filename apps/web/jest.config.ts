@@ -27,8 +27,6 @@ const config = {
     'src/__tests__/realtime/',
     // Unit tests that require Next.js server APIs (Request not available in jsdom)
     'src/__tests__/unit/resilience',
-    // Webhook tests require Next.js server APIs (Request not available in jsdom)
-    '__tests__/webhooks/',
   ],
   transformIgnorePatterns: [
     'node_modules/(?!(uuid|svix|resend)/)',
