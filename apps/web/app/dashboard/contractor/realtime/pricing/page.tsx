@@ -46,9 +46,9 @@ export default function RealtimePricingPage() {
   const tiers: RealtimeTier[] = ['BASIC', 'PRO', 'ENTERPRISE']
 
   return (
-    <div className="min-h-screen bg-grey-50">
+    <div className="min-h-screen bg-[#050505]">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-white/[0.03] border-b border-white/[0.06]">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div>
@@ -72,7 +72,7 @@ export default function RealtimePricingPage() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Success/Error Messages */}
         {successMessage && (
-          <div className="mb-6 rounded-lg bg-green-50 p-4">
+          <div className="mb-6 rounded-lg bg-green-500/10 border border-green-500/20 p-4">
             <div className="flex">
               <svg
                 className="h-5 w-5 text-green-400"
@@ -85,12 +85,12 @@ export default function RealtimePricingPage() {
                   clipRule="evenodd"
                 />
               </svg>
-              <p className="ml-3 text-sm font-medium text-green-800">
+              <p className="ml-3 text-sm font-medium text-green-400">
                 {successMessage}
               </p>
               <button
                 onClick={() => setSuccessMessage(null)}
-                className="ml-auto text-green-500 hover:text-green-600"
+                className="ml-auto text-green-500 hover:text-green-400"
               >
                 <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path
@@ -105,7 +105,7 @@ export default function RealtimePricingPage() {
         )}
 
         {errorMessage && (
-          <div className="mb-6 rounded-lg bg-red-50 p-4">
+          <div className="mb-6 rounded-lg bg-red-500/10 border border-red-500/20 p-4">
             <div className="flex">
               <svg
                 className="h-5 w-5 text-red-400"
@@ -118,10 +118,10 @@ export default function RealtimePricingPage() {
                   clipRule="evenodd"
                 />
               </svg>
-              <p className="ml-3 text-sm font-medium text-red-800">{errorMessage}</p>
+              <p className="ml-3 text-sm font-medium text-red-400">{errorMessage}</p>
               <button
                 onClick={() => setErrorMessage(null)}
-                className="ml-auto text-red-500 hover:text-red-600"
+                className="ml-auto text-red-500 hover:text-red-400"
               >
                 <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                   <path
@@ -184,16 +184,16 @@ export default function RealtimePricingPage() {
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="animate-pulse rounded-2xl border border-grey-200 bg-white p-6"
+                  className="animate-pulse rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6"
                 >
-                  <div className="h-6 w-20 rounded bg-grey-200" />
-                  <div className="mt-4 h-10 w-24 rounded bg-grey-200" />
+                  <div className="h-6 w-20 rounded bg-white/10" />
+                  <div className="mt-4 h-10 w-24 rounded bg-white/10" />
                   <div className="mt-6 space-y-3">
                     {[1, 2, 3, 4].map((j) => (
-                      <div key={j} className="h-4 rounded bg-grey-200" />
+                      <div key={j} className="h-4 rounded bg-white/10" />
                     ))}
                   </div>
-                  <div className="mt-6 h-12 rounded bg-grey-200" />
+                  <div className="mt-6 h-12 rounded bg-white/10" />
                 </div>
               ))}
             </div>
@@ -220,7 +220,7 @@ export default function RealtimePricingPage() {
 
           {/* Trial notice */}
           {!hasActiveSubscription && (
-            <div className="mt-8 rounded-lg bg-blue-50 p-4 text-center">
+            <div className="mt-8 rounded-lg bg-blue-500/10 border border-blue-500/20 p-4 text-center">
               <div className="flex items-center justify-center">
                 <svg
                   className="h-5 w-5 text-blue-400"
@@ -233,7 +233,7 @@ export default function RealtimePricingPage() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <p className="ml-2 text-sm font-medium text-blue-700">
+                <p className="ml-2 text-sm font-medium text-blue-400">
                   All plans include a 90-day free trial. Cancel anytime.
                 </p>
               </div>
@@ -246,9 +246,9 @@ export default function RealtimePricingPage() {
           <h2 className="mb-6 text-center text-xl font-semibold text-grey-900">
             Compare Features
           </h2>
-          <div className="overflow-hidden rounded-lg border border-grey-200 bg-white">
-            <table className="min-w-full divide-y divide-grey-200">
-              <thead className="bg-grey-50">
+          <div className="overflow-hidden rounded-lg border border-white/[0.06] bg-white/[0.03]">
+            <table className="min-w-full divide-y divide-white/[0.06]">
+              <thead className="bg-white/[0.03]">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-grey-500">
                     Feature
@@ -263,7 +263,7 @@ export default function RealtimePricingPage() {
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-grey-200 bg-white">
+              <tbody className="divide-y divide-white/[0.06]">
                 {[
                   { name: 'Real-time status updates', basic: true, pro: true, enterprise: true },
                   { name: 'Push notifications', basic: true, pro: true, enterprise: true },
@@ -392,7 +392,7 @@ export default function RealtimePricingPage() {
                 a: 'We accept all major credit cards (Visa, Mastercard, American Express) through our secure Stripe payment processor.',
               },
             ].map((faq, index) => (
-              <div key={index} className="rounded-lg border border-grey-200 bg-white p-4">
+              <div key={index} className="rounded-lg border border-white/[0.06] bg-white/[0.03] p-4">
                 <h3 className="font-medium text-grey-900">{faq.q}</h3>
                 <p className="mt-2 text-sm text-grey-600">{faq.a}</p>
               </div>
@@ -406,7 +406,7 @@ export default function RealtimePricingPage() {
             Have questions? Contact us at{' '}
             <a
               href="/contact"
-              className="font-medium text-blue-600 hover:text-blue-700"
+              className="font-medium text-blue-400 hover:text-blue-300"
             >
               our support team online
             </a>

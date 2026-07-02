@@ -442,7 +442,7 @@ export default function CommitmentPage() {
                 <p
                   aria-live="polite"
                   className={`font-serif italic text-3xl leading-tight break-words ${
-                    signatureValue ? 'text-white' : 'text-gray-600'
+                    signatureValue ? 'text-white' : 'text-gray-500'
                   }`}
                 >
                   {signatureValue || 'Your signature will appear here'}

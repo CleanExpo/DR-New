@@ -166,9 +166,9 @@ export default function SubscriptionPage() {
       {subscription && (
         <Card className={cn(
           'mb-8',
-          subscription.status === 'TRIAL' && 'bg-teal-50 border-teal-200',
-          subscription.status === 'ACTIVE' && 'bg-blue-50 border-blue-200',
-          subscription.status === 'CANCELLED' && 'bg-gray-50 border-gray-200'
+          subscription.status === 'TRIAL' && 'bg-teal-500/10 border-teal-500/20',
+          subscription.status === 'ACTIVE' && 'bg-blue-500/10 border-blue-500/20',
+          subscription.status === 'CANCELLED' && 'bg-white/5 border-white/10'
         )}>
           <CardContent className="py-4">
             <div className="flex items-center justify-between">
