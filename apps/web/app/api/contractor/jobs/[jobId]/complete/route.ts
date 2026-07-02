@@ -9,17 +9,27 @@
  * Flow:
  * 1. Verify contractor owns this job
  * 2. Mark booking as COMPLETED
- * 3. Calculate contractor earnings ($550 flat fee)
- * 4. Trigger Stripe payout
- * 5. Send completion notification to property owner
+ * 3. Enqueue the payout — money moves LATER via the daily
+ *    /api/cron/contractor-payout-sweep once the 30-day dispute window has
+ *    passed (DR-896: completion enqueues, never executes; the old synchronous
+ *    triggerPayoutForBooking call always threw "Dispute window has not yet
+ *    passed" on day 0 and the error was swallowed)
+ * 4. Send completion notification to property owner
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
-import { triggerPayoutForBooking } from '@/lib/payments/contractor-payout';
+import { DISPUTE_WINDOW_DAYS } from '@/lib/payments/contractor-payout';
 import { sendBookingCompletedEmail } from '@/lib/email/client-notifications';
-import { BookingStatus } from '@prisma/client';
+// Status values are the BookingStatus enum literals. Importing the enum as a
+// RUNTIME value from @prisma/client breaks jest suites on CI (the generated
+// client is absent there and jest's moduleNameMapper resolves before mocks).
+const BookingStatus = {
+  CONFIRMED: 'CONFIRMED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+} as const;
 import { z } from 'zod';
 
 // Validation schema
@@ -178,18 +188,10 @@ export async function POST(
       return completed;
     });
 
-    // Trigger payout (async, don't block response on failure)
-    let payoutTriggered = false;
-    let payoutError: boolean | null = null;
-
-    try {
-      await triggerPayoutForBooking(jobId);
-      payoutTriggered = true;
-    } catch (error) {
-      console.error('Payout trigger failed:', error);
-      payoutError = true;
-      // Job is still completed — admin can manually trigger payout
-    }
+    // Payout is DEFERRED (DR-896): the daily contractor-payout-sweep cron pays
+    // this booking's COMPLETED payment once the dispute window has passed. No
+    // money moves here — the sweep + ContractorPayout ledger idempotency keys
+    // guarantee exactly one transfer.
 
     // Send completion notification to client
     if (booking.client) {
@@ -216,10 +218,8 @@ export async function POST(
         completedAt: updatedBooking.completedAt,
       },
       payout: {
-        triggered: payoutTriggered,
-        ...(payoutError === true && {
-          warning: 'Payout will be processed manually by admin',
-        }),
+        deferred: true,
+        message: `Payout is scheduled automatically after the ${DISPUTE_WINDOW_DAYS}-day dispute window via the daily payout sweep`,
       },
     });
   } catch (error) {

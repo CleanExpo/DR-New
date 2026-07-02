@@ -157,12 +157,23 @@ export async function createLoginLink(accountId: string) {
 }
 
 // Transfer operations
+//
+// DR-896: this is the SINGLE canonical money-movement helper for paying
+// contractors. All platform->connected-account moves MUST go through it
+// (never `stripe.payouts.create`, which pays out of the connected account's
+// own balance, and never an ad-hoc `stripe.transfers.create`).
+export interface TransferOptions {
+  description?: string;
+  metadata?: Record<string, string>;
+}
+
 export async function createTransfer(
   amount: number,
   destination: string,
   transferGroup?: string,
   currency: string = 'aud',
-  idempotencyKey?: string
+  idempotencyKey?: string,
+  options?: TransferOptions
 ) {
   return stripe.transfers.create(
     {
@@ -170,11 +181,17 @@ export async function createTransfer(
       currency,
       destination,
       transfer_group: transferGroup,
+      description: options?.description,
+      metadata: options?.metadata,
     },
     // A deterministic key makes the call safe to retry: Stripe returns the
     // SAME transfer for a repeated key (DR-897 — no double pay).
     idempotencyKey ? { idempotencyKey } : undefined
   );
+}
+
+export async function getTransfer(transferId: string) {
+  return stripe.transfers.retrieve(transferId);
 }
 
 // Webhook signature verification

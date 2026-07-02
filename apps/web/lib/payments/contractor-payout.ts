@@ -18,14 +18,8 @@
 
 import { prisma } from '@/lib/prisma';
 import { randomUUID } from 'crypto';
-import Stripe from 'stripe';
+import { createTransfer, getTransfer } from '@/lib/stripe';
 import { emitPayoutInitiated } from '@/lib/realtime/payment-events';
-
-const stripe = process.env.STRIPE_SECRET_KEY
-  ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: '2024-12-18.acacia' as Stripe.LatestApiVersion,
-    })
-  : null;
 
 export const PLATFORM_FEE_PERCENTAGE = 20; // 20% platform fee
 export const CONTRACTOR_PAYOUT_PERCENTAGE = 100 - PLATFORM_FEE_PERCENTAGE; // 80%
@@ -68,20 +62,52 @@ export async function getPayoutAmount(bookingId: string) {
   };
 }
 
-async function validateContractorStripeAccount(contractorId: string): Promise<string> {
-  const contractorProfile = await prisma.contractorProfile.findFirst({
-    where: { contractorId },
-    select: { stripeConnectAccountId: true },
-  });
-
-  if (!contractorProfile?.stripeConnectAccountId) {
-    throw new Error(`Contractor ${contractorId} does not have Stripe Connect account`);
-  }
-  return contractorProfile.stripeConnectAccountId;
+export interface ContractorPayoutProfile {
+  stripeConnectAccountId: string | null;
+  stripePayoutsEnabled: boolean;
+  stripeChargesEnabled: boolean;
 }
 
 /**
- * Move funds from the platform balance to a connected account.
+ * Canonical payout-profile lookup for a Contractor.id.
+ *
+ * ContractorProfile has NO `contractorId` column — the only correct mapping is
+ * Contractor.id -> Contractor.userId -> ContractorProfile.userId (the previous
+ * `findFirst({ where: { contractorId } })` was a Prisma validation error on the
+ * real path). Returns null when the contractor or profile does not exist.
+ */
+export async function getContractorPayoutProfile(
+  contractorId: string
+): Promise<ContractorPayoutProfile | null> {
+  const contractor = await prisma.contractor.findUnique({
+    where: { id: contractorId },
+    select: { userId: true },
+  });
+  if (!contractor) return null;
+
+  return prisma.contractorProfile.findUnique({
+    where: { userId: contractor.userId },
+    select: {
+      stripeConnectAccountId: true,
+      stripePayoutsEnabled: true,
+      stripeChargesEnabled: true,
+    },
+  });
+}
+
+async function validateContractorStripeAccount(contractorId: string): Promise<string> {
+  const profile = await getContractorPayoutProfile(contractorId);
+
+  if (!profile?.stripeConnectAccountId) {
+    throw new Error(`Contractor ${contractorId} does not have Stripe Connect account`);
+  }
+  return profile.stripeConnectAccountId;
+}
+
+/**
+ * Move funds from the platform balance to a connected account via the SINGLE
+ * canonical `createTransfer` helper (`@/lib/stripe`) — never an ad-hoc Stripe
+ * client, never `payouts.create` (DR-896).
  * `idempotencyKey` makes the call safe to retry: Stripe returns the SAME
  * transfer for a repeated key (within its idempotency window).
  */
@@ -92,19 +118,13 @@ async function createStripeTransfer(
   idempotencyKey: string,
   metadata: Record<string, string> = {}
 ): Promise<string> {
-  if (!stripe) throw new Error('Stripe is not configured');
-
-  const amountInCents = Math.round(amountAUD * 100);
-
-  const transfer = await stripe.transfers.create(
-    {
-      amount: amountInCents,
-      currency: 'aud',
-      destination: connectedAccountId,
-      description,
-      metadata,
-    },
-    { idempotencyKey }
+  const transfer = await createTransfer(
+    amountAUD,
+    connectedAccountId,
+    undefined,
+    'aud',
+    idempotencyKey,
+    { description, metadata }
   );
 
   return transfer.id;
@@ -198,7 +218,7 @@ export async function triggerPayoutForBooking(bookingId: string): Promise<Payout
       payoutInfo.netAmount,
       `Payout for booking ${bookingId}`,
       idempotencyKey,
-      { bookingId, paymentId: payoutInfo.paymentId ?? '' }
+      { bookingId, paymentId: payoutInfo.paymentId ?? '', contractorId: booking.contractorId }
     );
   } catch (error) {
     await prisma.contractorPayout.update({
@@ -244,8 +264,6 @@ export async function manualPayoutToContractor(
   amountAUD: number,
   description: string
 ): Promise<PayoutResult> {
-  if (!stripe) throw new Error('Stripe is not configured');
-
   const stripeConnectId = await validateContractorStripeAccount(contractorId);
   const idempotencyKey = `payout:manual:${randomUUID()}`;
 
@@ -291,9 +309,7 @@ export async function manualPayoutToContractor(
 
 /** Retrieve a transfer's reversal state from Stripe (platform account). */
 export async function getPayoutStatus(transferId: string) {
-  if (!stripe) throw new Error('Stripe is not configured');
-
-  const transfer = await stripe.transfers.retrieve(transferId);
+  const transfer = await getTransfer(transferId);
   return {
     id: transfer.id,
     amount: transfer.amount / 100,

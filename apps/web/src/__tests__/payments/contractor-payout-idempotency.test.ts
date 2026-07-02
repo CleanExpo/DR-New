@@ -25,7 +25,8 @@ export {}; // mark as a module so block-scoped test vars don't leak to global sc
 const mockPrisma = {
   booking: { findUnique: jest.fn() },
   payment: { findFirst: jest.fn() },
-  contractorProfile: { findFirst: jest.fn() },
+  contractor: { findUnique: jest.fn() },
+  contractorProfile: { findUnique: jest.fn() },
   contractorPayout: {
     findUnique: jest.fn(),
     create: jest.fn(),
@@ -33,16 +34,17 @@ const mockPrisma = {
   },
 };
 
-const mockTransfersCreate = jest.fn();
+const mockCreateTransfer = jest.fn();
 const mockEmitPayoutInitiated = jest.fn();
 
 jest.mock('@/lib/prisma', () => ({ prisma: mockPrisma }));
 
-jest.mock('stripe', () =>
-  jest.fn().mockImplementation(() => ({
-    transfers: { create: mockTransfersCreate, retrieve: jest.fn() },
-  }))
-);
+// DR-896: the payout module must move money ONLY through the canonical
+// `createTransfer` helper in `@/lib/stripe` — no ad-hoc Stripe client.
+jest.mock('@/lib/stripe', () => ({
+  createTransfer: (...args: unknown[]) => mockCreateTransfer(...args),
+  getTransfer: jest.fn(),
+}));
 
 jest.mock('@/lib/realtime/payment-events', () => ({
   emitPayoutInitiated: (...args: unknown[]) => mockEmitPayoutInitiated(...args),
@@ -54,13 +56,12 @@ const CONTRACTOR_ID = 'contractor_1';
 const EXPECTED_KEY = `payout:${PAYMENT_ID}`;
 const FORTY_DAYS_AGO = new Date(Date.now() - 40 * 24 * 60 * 60 * 1000);
 
-// The module reads STRIPE_SECRET_KEY at import time to decide whether `stripe`
-// is configured, so set it before the dynamic import below.
+// The canonical `@/lib/stripe` module is mocked above, so the payout module
+// never constructs a real Stripe client under test.
 type PayoutModule = typeof import('@/lib/payments/contractor-payout');
 let mod: PayoutModule;
 
 beforeAll(async () => {
-  process.env.STRIPE_SECRET_KEY = 'sk_test_dummy';
   mod = await import('@/lib/payments/contractor-payout');
 });
 
@@ -78,13 +79,18 @@ beforeEach(() => {
     contractorId: CONTRACTOR_ID,
     booking: { id: BOOKING_ID, contractorId: CONTRACTOR_ID },
   });
-  mockPrisma.contractorProfile.findFirst.mockResolvedValue({
+  // Canonical profile mapping: Contractor.id -> Contractor.userId ->
+  // ContractorProfile.userId (ContractorProfile has NO contractorId column).
+  mockPrisma.contractor.findUnique.mockResolvedValue({ userId: 'user_1' });
+  mockPrisma.contractorProfile.findUnique.mockResolvedValue({
     stripeConnectAccountId: 'acct_123',
+    stripePayoutsEnabled: true,
+    stripeChargesEnabled: true,
   });
   mockPrisma.contractorPayout.findUnique.mockResolvedValue(null);
   mockPrisma.contractorPayout.create.mockResolvedValue({ id: 'ledger_1', amountAUD: 800 });
   mockPrisma.contractorPayout.update.mockResolvedValue({});
-  mockTransfersCreate.mockResolvedValue({ id: 'tr_new' });
+  mockCreateTransfer.mockResolvedValue({ id: 'tr_new' });
   mockEmitPayoutInitiated.mockResolvedValue(undefined);
 });
 
@@ -112,15 +118,31 @@ describe('triggerPayoutForBooking — idempotency & concurrency', () => {
     expect(result.payoutId).toBe('tr_new');
     expect(result.amount).toBe(800);
 
-    expect(mockTransfersCreate).toHaveBeenCalledTimes(1);
-    // Second arg carries the deterministic idempotency key.
-    expect(mockTransfersCreate.mock.calls[0][1]).toEqual({ idempotencyKey: EXPECTED_KEY });
-    // First arg: 800 AUD => 80000 cents, to the connected account.
-    expect(mockTransfersCreate.mock.calls[0][0]).toMatchObject({
-      amount: 80000,
-      currency: 'aud',
-      destination: 'acct_123',
-    });
+    // Exactly one call to the CANONICAL helper (DR-896), carrying the
+    // deterministic idempotency key and correlatable metadata.
+    expect(mockCreateTransfer).toHaveBeenCalledTimes(1);
+    expect(mockCreateTransfer).toHaveBeenCalledWith(
+      800,
+      'acct_123',
+      undefined,
+      'aud',
+      EXPECTED_KEY,
+      expect.objectContaining({
+        metadata: expect.objectContaining({
+          bookingId: BOOKING_ID,
+          paymentId: PAYMENT_ID,
+          contractorId: CONTRACTOR_ID,
+        }),
+      })
+    );
+    // Correct id mapping: the payout profile is joined via Contractor.userId,
+    // never a (nonexistent) ContractorProfile.contractorId filter.
+    expect(mockPrisma.contractor.findUnique).toHaveBeenCalledWith(
+      expect.objectContaining({ where: { id: CONTRACTOR_ID } })
+    );
+    expect(mockPrisma.contractorProfile.findUnique).toHaveBeenCalledWith(
+      expect.objectContaining({ where: { userId: 'user_1' } })
+    );
     // Ledger advanced to TRANSFERRED with the transfer id.
     expect(mockPrisma.contractorPayout.update).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -141,7 +163,7 @@ describe('triggerPayoutForBooking — idempotency & concurrency', () => {
 
     expect(result.status).toBe('ALREADY_PAID');
     expect(result.payoutId).toBe('tr_existing');
-    expect(mockTransfersCreate).not.toHaveBeenCalled();
+    expect(mockCreateTransfer).not.toHaveBeenCalled();
     expect(mockPrisma.contractorPayout.create).not.toHaveBeenCalled();
   });
 
@@ -164,11 +186,11 @@ describe('triggerPayoutForBooking — idempotency & concurrency', () => {
 
     expect(result.status).toBe('ALREADY_PAID');
     expect(result.payoutId).toBe('tr_winner');
-    expect(mockTransfersCreate).not.toHaveBeenCalled();
+    expect(mockCreateTransfer).not.toHaveBeenCalled();
   });
 
   it('stripe failure: marks the ledger FAILED and throws', async () => {
-    mockTransfersCreate.mockRejectedValue(new Error('insufficient funds'));
+    mockCreateTransfer.mockRejectedValue(new Error('insufficient funds'));
 
     await expect(mod.triggerPayoutForBooking(BOOKING_ID)).rejects.toThrow(
       /Failed to create Stripe transfer/
@@ -194,6 +216,62 @@ describe('triggerPayoutForBooking — idempotency & concurrency', () => {
     await expect(mod.triggerPayoutForBooking(BOOKING_ID)).rejects.toThrow(
       /Dispute window has not yet passed/
     );
-    expect(mockTransfersCreate).not.toHaveBeenCalled();
+    expect(mockCreateTransfer).not.toHaveBeenCalled();
+  });
+});
+
+describe('manualPayoutToContractor — canonical helper + ledger (DR-896)', () => {
+  it('moves money only through createTransfer, with a ledgered payout: key', async () => {
+    const result = await mod.manualPayoutToContractor(CONTRACTOR_ID, 150, 'Goodwill adjustment');
+
+    expect(result.status).toBe('TRANSFERRED');
+    expect(result.payoutId).toBe('tr_new');
+
+    // Exactly one canonical-helper call carrying the ledgered idempotency key.
+    expect(mockCreateTransfer).toHaveBeenCalledTimes(1);
+    const [amount, destination, transferGroup, currency, idempotencyKey] =
+      mockCreateTransfer.mock.calls[0];
+    expect(amount).toBe(150);
+    expect(destination).toBe('acct_123');
+    expect(transferGroup).toBeUndefined();
+    expect(currency).toBe('aud');
+    expect(idempotencyKey).toMatch(/^payout:manual:/);
+
+    // The ledger row is claimed BEFORE the Stripe call with the SAME key.
+    expect(mockPrisma.contractorPayout.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        idempotencyKey,
+        contractorId: CONTRACTOR_ID,
+        connectedAccount: 'acct_123',
+        amountAUD: 150,
+        status: 'PENDING',
+      }),
+    });
+    const createOrder = mockPrisma.contractorPayout.create.mock.invocationCallOrder[0];
+    const transferOrder = mockCreateTransfer.mock.invocationCallOrder[0];
+    expect(createOrder).toBeLessThan(transferOrder);
+
+    expect(mockPrisma.contractorPayout.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({ status: 'TRANSFERRED', stripeTransferId: 'tr_new' }),
+      })
+    );
+  });
+
+  it('stripe failure: ledger marked FAILED, error surfaced', async () => {
+    mockCreateTransfer.mockRejectedValue(new Error('balance_insufficient'));
+
+    await expect(
+      mod.manualPayoutToContractor(CONTRACTOR_ID, 150, 'Goodwill adjustment')
+    ).rejects.toThrow(/Failed to create manual transfer/);
+
+    expect(mockPrisma.contractorPayout.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          status: 'FAILED',
+          failureReason: 'balance_insufficient',
+        }),
+      })
+    );
   });
 });
