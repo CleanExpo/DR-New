@@ -35,7 +35,6 @@ jest.mock('stripe', () => {
 
 import { NextRequest } from 'next/server';
 import Stripe from 'stripe';
-import { POST } from '@/app/api/webhooks/stripe/tenant/route';
 import { prisma } from '@/lib/prisma';
 import * as webhookIdempotency from '@/src/lib/stripe/webhook-idempotency';
 import * as emailModule from '@/lib/email';
@@ -67,10 +66,15 @@ const mockEnv = {
   STRIPE_TENANT_WEBHOOK_SECRET: 'whsec_test_mock_secret',
 };
 
+// The route module instantiates Stripe at load time from process.env, so it
+// must be required AFTER mockEnv is applied (CI has no ambient Stripe env).
+let POST: typeof import('@/app/api/webhooks/stripe/tenant/route').POST;
+
 describe('Tenant Webhook Handler', () => {
   beforeAll(() => {
     // Set mock environment variables
     Object.assign(process.env, mockEnv);
+    ({ POST } = require('@/app/api/webhooks/stripe/tenant/route'));
   });
 
   beforeEach(() => {
