@@ -19,9 +19,72 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
+  # DR-905: the contractor go-live e2e proof gates production promotion.
+  # Same infra as the PR-blocking `go-live-proof` job in test-all.yml
+  # (ephemeral Postgres service + local `next dev` webServer) — no new
+  # secrets or environments. If this gate fails, deploy-production never runs.
+  go-live-gate:
+    name: Go-Live E2E Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: e2e
+          POSTGRES_PASSWORD: e2e
+          POSTGRES_DB: nrpg_golive
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Install Playwright Browsers
+        run: pnpm --filter nrpg-web exec playwright install --with-deps chromium
+      - name: Generate Prisma Client
+        run: pnpm run db:generate
+      - name: Push database schema
+        run: pnpm --filter nrpg-web exec prisma db push --skip-generate
+        env:
+          DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+          DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+      - name: Run go-live proof (blocking, retries=0, zero-residual teardown)
+        run: pnpm --filter nrpg-web exec playwright test --project=golive-proof
+        env:
+          CI: true
+          NEXTAUTH_SECRET: test-secret-for-ci
+          NEXTAUTH_URL: http://localhost:3000
+          DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+          DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+          STRIPE_SECRET_KEY: sk_test_dummy_for_ci_e2e
+      - name: Upload go-live gate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golive-gate-results
+          path: |
+            apps/web/playwright-report/
+            apps/web/test-results/
+          retention-days: 30
+
   deploy-production:
     name: Deploy to Vercel Production
     runs-on: ubuntu-latest
+    # DR-905: production deploy is blocked unless the go-live e2e gate passes.
+    needs: go-live-gate
     environment:
       name: production
       url: https://dr-nrpg-platform.vercel.app

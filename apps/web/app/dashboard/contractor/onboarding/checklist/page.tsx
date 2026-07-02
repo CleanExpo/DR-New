@@ -7,6 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Loader2, CheckCircle2, Circle, ArrowRight, Award, FileText, Shield, BookOpen, FileSignature, AlertCircle, RefreshCw } from 'lucide-react';
+import { evaluateNrpgRetakePolicy } from '@/lib/training/training-policy';
+import { formatTrainingModuleLabel } from '@/lib/training/module-names';
+import { RetakeCountdown } from '@/src/components/onboarding/retake-countdown';
 
 // DR-918: fetch with a hard timeout so a hung endpoint can't spin the checklist forever.
 const FETCH_TIMEOUT_MS = 10_000;
@@ -16,12 +19,24 @@ const fetchWithTimeout = (url: string) => {
   return fetch(url, { cache: 'no-store', signal: controller.signal }).finally(() => clearTimeout(timer));
 };
 
+// DR-919: retake state for a FAILED module quiz, mirrored from the DR-894
+// server policy (`retake` payload / evaluateNrpgRetakePolicy).
+interface QuizRetakeState {
+  maxAttempts: number;
+  attemptsUsed: number;
+  attemptsRemaining: number;
+  locked: boolean;
+  cooldownUntil: string | null;
+}
+
 interface ChecklistStatus {
   preferencesComplete: boolean;
   profileComplete: boolean;
   nrpgRegistrationComplete: boolean;
   trainingInProgress: boolean;
   trainingComplete: boolean;
+  quizFailed: boolean;
+  quizRetake?: QuizRetakeState;
   payoutsConfigured: boolean;
   currentModuleId?: string;
   completionPercentage?: number;
@@ -75,8 +90,37 @@ export default function ContractorOnboardingChecklistPage() {
         const payoutsConfigured = Boolean(stripePayload?.success && stripePayload?.payoutsConfigured);
 
         // Extract detailed data for deep linking
-        const currentModuleId = onboardingPayload?.progress?.currentModule?.moduleId;
+        const currentModule = onboardingPayload?.progress?.currentModule ?? null;
+        const currentModuleId = currentModule?.moduleId;
         const stripeAccountId = stripePayload?.stripeConnectAccountId;
+
+        // DR-919: a FAILED current module means the contractor failed its quiz.
+        // Mirror the DR-894 retake policy off the persisted attempt history the
+        // progress API already exposes, so the checklist can show retake /
+        // cooldown / locked states. The server stays authoritative — an admin
+        // reset flips the module back to IN_PROGRESS, which clears this state.
+        const quizFailed = currentModule?.status === 'FAILED';
+        let quizRetake: QuizRetakeState | undefined;
+        if (quizFailed && currentModuleId) {
+          type AssessmentScore = { moduleId?: string; score?: number; completedAt?: string };
+          const attempts = ((onboardingPayload?.progress?.assessmentScores ?? []) as AssessmentScore[])
+            .filter((a) => a?.moduleId === currentModuleId)
+            .map((a) => ({
+              score: typeof a?.score === 'number' ? a.score : null,
+              completedAt: a?.completedAt ? new Date(a.completedAt) : null,
+              createdAt: a?.completedAt ? new Date(a.completedAt) : new Date(0),
+              feedback: null,
+            }));
+          const decision = evaluateNrpgRetakePolicy(attempts);
+          quizRetake = {
+            maxAttempts: decision.maxAttempts,
+            attemptsUsed: decision.attemptsUsed,
+            attemptsRemaining: decision.attemptsRemaining,
+            locked: decision.reason === 'ATTEMPT_CAP',
+            cooldownUntil:
+              decision.reason === 'COOLDOWN' && decision.retryAt ? decision.retryAt.toISOString() : null,
+          };
+        }
 
         // DR-918: /api/contractors/me exposes the NRPG review outcome as nrpgVerificationLevel
         // (REJECTED / PENDING_INFO / VERIFIED). Also honour verificationStatus if present.
@@ -113,6 +157,8 @@ export default function ContractorOnboardingChecklistPage() {
           nrpgRegistrationComplete,
           trainingInProgress,
           trainingComplete,
+          quizFailed,
+          quizRetake,
           payoutsConfigured,
           currentModuleId,
           completionPercentage,
@@ -211,8 +257,18 @@ export default function ContractorOnboardingChecklistPage() {
     );
   }
 
+  // DR-919: never show a contractor a raw internal module id ("cse-001").
+  const currentModuleName = checklist.currentModuleId
+    ? formatTrainingModuleLabel(checklist.currentModuleId)
+    : undefined;
+
   // Generate smart deep links based on current state
   const getTrainingHref = () => {
+    // DR-919: attempts exhausted — the module is locked pending admin review,
+    // so the only useful destination is support.
+    if (checklist.quizFailed && checklist.quizRetake?.locked) {
+      return '/contact';
+    }
     if (checklist.currentModuleId) {
       return `/dashboard/contractor/onboarding/module/${checklist.currentModuleId}`;
     }
@@ -223,8 +279,18 @@ export default function ContractorOnboardingChecklistPage() {
     if (checklist.trainingComplete) {
       return 'Review training';
     }
-    if (checklist.trainingInProgress && checklist.currentModuleId) {
-      return `Continue: ${checklist.currentModuleId}`;
+    // DR-919: failed quiz gets a distinct retake CTA per the DR-894 policy.
+    if (checklist.quizFailed) {
+      if (checklist.quizRetake?.locked) {
+        return 'Contact support';
+      }
+      if (checklist.quizRetake?.cooldownUntil) {
+        return 'Review module';
+      }
+      return `Retake: ${currentModuleName ?? 'module'}`;
+    }
+    if (checklist.trainingInProgress && currentModuleName) {
+      return `Continue: ${currentModuleName}`;
     }
     if (checklist.trainingInProgress) {
       return `Resume training (${Math.round(checklist.completionPercentage || 0)}%)`;
@@ -251,6 +317,34 @@ export default function ContractorOnboardingChecklistPage() {
     }
     return 'Set up payouts';
   };
+
+  // DR-919: failed-quiz messaging per the DR-894 retake policy — retake CTA,
+  // cooldown countdown, or attempts-exhausted (locked) pointing to support.
+  const retake = checklist.quizRetake;
+  const trainingErrorTitle = checklist.quizFailed
+    ? retake?.locked
+      ? 'Attempts exhausted — contact support'
+      : `Failed — retake module ${currentModuleName ?? ''}`.trim()
+    : undefined;
+  const trainingErrorContext = checklist.quizFailed ? (
+    retake?.locked ? (
+      <>
+        You&apos;ve used all {retake.maxAttempts} attempts for {currentModuleName ?? 'this module'}. The
+        quiz is locked pending admin review — contact our support team to request a reset.
+      </>
+    ) : retake?.cooldownUntil ? (
+      <>
+        You didn&apos;t pass this time. You can retake the quiz in{' '}
+        <RetakeCountdown until={retake.cooldownUntil} /> — {retake.attemptsRemaining} of{' '}
+        {retake.maxAttempts} attempts remaining. Use the time to review the module content.
+      </>
+    ) : (
+      <>
+        You didn&apos;t pass this time. Review the module content, then retake the quiz
+        {retake ? <> — {retake.attemptsRemaining} of {retake.maxAttempts} attempts remaining</> : null}.
+      </>
+    )
+  ) : undefined;
 
   const steps = [
     {
@@ -286,6 +380,7 @@ export default function ContractorOnboardingChecklistPage() {
             ? 'Under review'
             : undefined,
       statusBadgeTone: checklist.nrpgStatus === 'rejected' ? ('error' as const) : ('warning' as const),
+      errorTitle: 'Registration rejected',
       errorContext:
         checklist.nrpgStatus === 'rejected'
           ? checklist.nrpgRejectionReason ||
@@ -318,9 +413,18 @@ export default function ContractorOnboardingChecklistPage() {
       title: 'Complete training',
       description: 'Finish required modules and pass assessments (70%+).',
       complete: checklist.trainingComplete,
-      inProgress: checklist.trainingInProgress,
+      // DR-919: a failed quiz is a distinct state, not generic "in progress".
+      inProgress: checklist.trainingInProgress && !checklist.quizFailed,
       href: getTrainingHref(),
       action: getTrainingAction(),
+      statusBadge: checklist.quizFailed
+        ? retake?.locked
+          ? 'Locked'
+          : 'Quiz failed'
+        : undefined,
+      statusBadgeTone: 'error' as const,
+      errorTitle: trainingErrorTitle,
+      errorContext: trainingErrorContext,
       progressText: checklist.trainingInProgress && checklist.completionPercentage
         ? `${Math.round(checklist.completionPercentage)}% complete`
         : undefined,
@@ -414,12 +518,13 @@ export default function ContractorOnboardingChecklistPage() {
                     )}
                   </div>
                   <p className="text-sm text-muted-foreground mt-0.5">{step.description}</p>
-                  {/* DR-918: rejected registration renders its error context + recovery guidance */}
+                  {/* DR-918/DR-919: failure states (rejected registration, failed quiz)
+                      render their error context + recovery guidance */}
                   {'errorContext' in step && step.errorContext && (
                     <div className="mt-2 rounded-md border border-red-500/20 bg-red-500/10 p-3">
                       <p className="text-sm font-semibold text-red-500 flex items-center gap-1.5">
                         <AlertCircle className="h-4 w-4 flex-shrink-0" />
-                        Registration rejected
+                        {('errorTitle' in step && step.errorTitle) || 'Action required'}
                       </p>
                       <p className="text-sm text-red-500/90 mt-1">{step.errorContext}</p>
                       <p className="text-xs text-muted-foreground mt-2">

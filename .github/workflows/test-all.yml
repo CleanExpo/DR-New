@@ -104,8 +104,7 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    # E2E failures are informational — don't block the workflow
-    continue-on-error: true
+    # DR-905: e2e is a required blocking check — no continue-on-error.
     strategy:
       fail-fast: false
       matrix:
@@ -158,6 +157,80 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-results-${{ matrix.project }}
+          path: |
+            apps/web/playwright-report/
+            apps/web/test-results/
+          retention-days: 30
+
+  # DR-905: Contractor go-live proof — a required, blocking CI check.
+  # Runs the dedicated `golive-proof` Playwright project (retries: 0, DB-truth
+  # assertions) plus its `golive-cleanup` teardown project, which deletes all
+  # namespaced test rows and asserts zero residual rows.
+  go-live-proof:
+    name: Go-Live E2E Proof
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: e2e
+          POSTGRES_PASSWORD: e2e
+          POSTGRES_DB: nrpg_golive
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: Vacuous-assertion guard (go-live specs)
+        # Bans patterns that let a spec pass without proving anything:
+        # waitForTimeout, expect(true), swallowed redirects, accept-any-status.
+        run: |
+          if grep -nE 'waitForTimeout|expect\(true\)|\.catch\(\(\) *=> *\{\}\)|toBeLessThan\(500\)|toContain\(response\.status\(\)\)' \
+            apps/web/e2e/contractor-go-live.spec.ts \
+            apps/web/e2e/contractor-flow.spec.ts \
+            apps/web/e2e/golive.cleanup.spec.ts \
+            apps/web/e2e/helpers/golive.ts; then
+            echo "::error::Vacuous assertion pattern found in go-live specs (see matches above)"
+            exit 1
+          fi
+          echo "Go-live specs are free of banned vacuous patterns."
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Install Playwright Browsers
+        run: pnpm --filter nrpg-web exec playwright install --with-deps chromium
+      - name: Generate Prisma Client
+        run: pnpm run db:generate
+      - name: Push database schema
+        run: pnpm --filter nrpg-web exec prisma db push --skip-generate
+        env:
+          DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+          DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+      - name: Run go-live proof (blocking, retries=0, zero-residual teardown)
+        run: pnpm --filter nrpg-web exec playwright test --project=golive-proof
+        env:
+          CI: true
+          NEXTAUTH_SECRET: test-secret-for-ci
+          NEXTAUTH_URL: http://localhost:3000
+          DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+          DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+          STRIPE_SECRET_KEY: sk_test_dummy_for_ci_e2e
+      - name: Upload go-live proof evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golive-proof-results
           path: |
             apps/web/playwright-report/
             apps/web/test-results/
@@ -238,7 +311,7 @@ jobs:
   test-summary:
     name: Test Summary
     if: always()
-    needs: [unit-tests, integration-tests, e2e-tests, security-tests, performance-tests, build-check]
+    needs: [unit-tests, integration-tests, e2e-tests, go-live-proof, security-tests, performance-tests, build-check]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -251,13 +324,18 @@ jobs:
           echo "- Unit Tests: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Integration Tests: ${{ needs.integration-tests.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- E2E Tests: ${{ needs.e2e-tests.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Go-Live E2E Proof: ${{ needs.go-live-proof.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Security Tests: ${{ needs.security-tests.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Performance Tests: ${{ needs.performance-tests.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Build Check: ${{ needs.build-check.result }}" >> $GITHUB_STEP_SUMMARY
       - name: Check if all tests passed
+        # DR-905: e2e-tests and go-live-proof are blocking — the summary fails
+        # when they are anything other than success.
         if: |
           needs.unit-tests.result != 'success' ||
           needs.integration-tests.result != 'success' ||
+          needs.e2e-tests.result != 'success' ||
+          needs.go-live-proof.result != 'success' ||
           needs.build-check.result != 'success'
         run: |
           echo "Some tests failed. Check the summary above."
