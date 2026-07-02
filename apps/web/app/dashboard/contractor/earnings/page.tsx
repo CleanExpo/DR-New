@@ -124,7 +124,7 @@ export default function ContractorEarningsPage() {
             <p className="mt-2 text-gray-400">Track your income and payouts</p>
           </div>
           <Link
-            href="/dashboard/contractor/payout-settings"
+            href="/dashboard/contractor/onboarding/payouts"
             className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition"
           >
             Payout Settings

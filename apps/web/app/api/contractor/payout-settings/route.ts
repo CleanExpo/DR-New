@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 /**
  * Contractor Payout Settings API
  *
@@ -23,7 +21,7 @@ const updatePayoutSettingsSchema = z.object({
 
 type UpdatePayoutSettingsData = z.infer<typeof updatePayoutSettingsSchema>;
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<NextResponse> {
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -33,7 +31,7 @@ export async function GET(request: NextRequest) {
     const { user } = authResult.context;
     const db = getTenantDb(authResult.context);
 
-    // Get contractor profile
+    // Get contractor record (lifecycle keyed on User.id — DR-879 Option B)
     const contractor = await db.contractor.findUnique({
       where: { userId: user.id },
       select: {
@@ -49,66 +47,66 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Get payout settings
-    const contractorProfile = await db.contractorProfile.findFirst({
-      where: { contractorId: contractor.id },
-      select: {
-        stripeConnectAccountId: true,
-        bankAccountLinked: true,
-        totalEarnings: true,
-        totalPaidOut: true,
-      },
+    // Stripe Connect account lives on ContractorProfile, keyed by userId.
+    // A missing profile means "not connected yet", not an error.
+    const contractorProfile = await db.contractorProfile.findUnique({
+      where: { userId: user.id },
+      select: { stripeConnectAccountId: true },
     });
+    const stripeConnectAccountId =
+      contractorProfile?.stripeConnectAccountId ?? null;
 
-    if (!contractorProfile) {
-      return NextResponse.json(
-        { error: 'Contractor profile settings not found' },
-        { status: 404 }
-      );
-    }
-
-    // Get recent payouts
-    const recentPayouts = await db.payment.findMany({
-      where: {
-        contractorId: contractor.id,
-        status: 'COMPLETED',
-      },
-      select: {
-        id: true,
-        amountAUD: true,
-        processedAt: true,
-      },
-      orderBy: { processedAt: 'desc' },
-      take: 5,
-    });
+    // Earnings = completed inbound job payments; payouts = transferred ledger
+    // rows; pending = ledger rows not yet transferred (DR-858 N-01/N-02 ledger).
+    const [earnings, paidOut, pending, recentPayouts] = await Promise.all([
+      db.payment.aggregate({
+        _sum: { amountAUD: true },
+        where: { contractorId: contractor.id, status: 'COMPLETED' },
+      }),
+      db.contractorPayout.aggregate({
+        _sum: { amountAUD: true },
+        where: { contractorId: contractor.id, status: 'TRANSFERRED' },
+      }),
+      db.contractorPayout.aggregate({
+        _sum: { amountAUD: true },
+        where: { contractorId: contractor.id, status: 'PENDING' },
+      }),
+      db.contractorPayout.findMany({
+        where: { contractorId: contractor.id, status: 'TRANSFERRED' },
+        select: {
+          id: true,
+          amountAUD: true,
+          updatedAt: true,
+        },
+        orderBy: { updatedAt: 'desc' },
+        take: 5,
+      }),
+    ]);
 
     return NextResponse.json({
       success: true,
       settings: {
         contractorName: contractor.businessName,
-        stripeConnectStatus: contractorProfile.stripeConnectAccountId
+        stripeConnectStatus: stripeConnectAccountId
           ? 'CONNECTED'
           : 'NOT_CONNECTED',
-        stripeConnectAccountId: contractorProfile.stripeConnectAccountId
-          ? `${contractorProfile.stripeConnectAccountId.substring(0, 6)}...`
+        stripeConnectAccountId: stripeConnectAccountId
+          ? `${stripeConnectAccountId.substring(0, 6)}...`
           : null,
-        bankAccountLinked: contractorProfile.bankAccountLinked,
-        totalEarnings: parseFloat(contractorProfile.totalEarnings.toString()),
-        totalPaidOut: parseFloat(contractorProfile.totalPaidOut.toString()),
-        pendingPayout:
-          parseFloat(contractorProfile.totalEarnings.toString()) -
-          parseFloat(contractorProfile.totalPaidOut.toString()),
+        bankAccountLinked: Boolean(stripeConnectAccountId),
+        totalEarnings: Number(earnings._sum.amountAUD ?? 0),
+        totalPaidOut: Number(paidOut._sum.amountAUD ?? 0),
+        pendingPayout: Number(pending._sum.amountAUD ?? 0),
         payoutSchedule: 'WEEKLY', // Default - can be expanded
       },
-      stripeConnectSetupUrl: contractorProfile.stripeConnectAccountId
+      stripeConnectSetupUrl: stripeConnectAccountId
         ? null
-        : `${process.env.NEXT_PUBLIC_BASE_URL}/auth/stripe-connect`, // Placeholder
+        : '/dashboard/contractor/onboarding/payouts',
       recentPayouts: recentPayouts.map((p) => ({
         id: p.id,
-        amount: parseFloat(p.amountAUD.toString()),
-        date: p.processedAt,
+        amount: Number(p.amountAUD),
+        date: p.updatedAt,
       })),
-      nextPayoutDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Next week
     });
   } catch (error) {
     console.error('Get payout settings error:', error);
@@ -120,7 +118,7 @@ export async function GET(request: NextRequest) {
   }
 }
 
-export async function PUT(request: NextRequest) {
+export async function PUT(request: NextRequest): Promise<NextResponse> {
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -130,7 +128,7 @@ export async function PUT(request: NextRequest) {
     const { user } = authResult.context;
     const db = getTenantDb(authResult.context);
 
-    // Get contractor profile
+    // Get contractor record (lifecycle keyed on User.id — DR-879 Option B)
     const contractor = await db.contractor.findUnique({
       where: { userId: user.id },
       select: { id: true },
@@ -162,9 +160,9 @@ export async function PUT(request: NextRequest) {
       throw error;
     }
 
-    // Update contractor profile
+    // ContractorProfile is keyed by userId (no contractorId column exists)
     const updatedProfile = await db.contractorProfile.updateMany({
-      where: { contractorId: contractor.id },
+      where: { userId: user.id },
       data: {
         updatedAt: new Date(),
       },
