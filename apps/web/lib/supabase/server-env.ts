@@ -1,26 +1,39 @@
 /**
  * Server-side Supabase env reads that survive Next.js build-time inlining.
  *
- * WHY THIS EXISTS (P0, 2026-07-02): Next.js replaces `process.env.NEXT_PUBLIC_*`
- * member expressions with their BUILD-TIME values in both client AND server
- * bundles. Production deploys are prebuilt in GitHub Actions via
- * `vercel pull && vercel build && vercel deploy --prebuilt`, and the Supabase
- * vars in the Vercel project are type "sensitive" — `vercel pull` cannot read
- * sensitive values, so at build time `NEXT_PUBLIC_SUPABASE_URL` is undefined
- * and gets inlined as undefined into the server bundle, even though the value
- * IS injected into the serverless runtime env. Result: server code that reads
- * `process.env.NEXT_PUBLIC_SUPABASE_URL` sees nothing in production
+ * WHY THIS EXISTS (P0, 2026-07-02): Next.js replaces static
+ * `process.env.NEXT_PUBLIC_*` reads with their BUILD-TIME values in both
+ * client AND server bundles. Production deploys are prebuilt in GitHub
+ * Actions via `vercel pull && vercel build && vercel deploy --prebuilt`, and
+ * the Supabase vars in the Vercel project are type "sensitive" — `vercel pull`
+ * cannot read sensitive values, so at build time `NEXT_PUBLIC_SUPABASE_URL`
+ * is absent and gets baked into the server bundle as undefined, even though
+ * the value IS injected into the serverless runtime env. Result: server code
+ * reading `process.env.NEXT_PUBLIC_SUPABASE_URL` sees nothing in production
  * (/api/health reported storage `not_configured` despite the var being set).
  *
- * Reading through an aliased env object defeats the compile-time replacement
- * (per Next.js docs, only static `process.env.NEXT_PUBLIC_X` member
- * expressions are inlined), so the genuine runtime value is used.
+ * IMPORTANT — the read below MUST go through a dynamic (parameter) key.
+ * Deployment-bundle inspection (dpl_9nbi3Kve..., 2026-07-02) proved the
+ * toolchain folds away even `env['NEXT_PUBLIC_SUPABASE_URL']` on a
+ * module-level `const env = process.env` alias: the compiled output became
+ * `url: d.SUPABASE_URL || void 0`. Only a lookup whose key is a runtime
+ * value (function parameter, per the Next.js docs' "dynamic lookups are not
+ * inlined" rule) survives. Do not "simplify" this back to a direct read.
  *
  * SERVER ONLY — never import from client components (the service-role key
  * must not reach the browser, and browsers have no runtime env anyway).
  */
 
-const runtimeEnv = process.env as Record<string, string | undefined>;
+/** Dynamic-key runtime env read — the key is a parameter, so no build-time
+ * define/inline pass can substitute the value. Empty strings normalise to
+ * undefined (Vercel can hold empty placeholders). */
+function readRuntimeEnv(name: string): string | undefined {
+  const value = (process.env as Record<string, string | undefined>)[name];
+  return value || undefined;
+}
+
+/** Candidate names for the Supabase project URL, in priority order. */
+const SUPABASE_URL_KEYS = ['SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_URL'];
 
 export interface SupabaseServerEnv {
   /** Supabase project URL (SUPABASE_URL, falling back to NEXT_PUBLIC_SUPABASE_URL). */
@@ -30,7 +43,11 @@ export interface SupabaseServerEnv {
 }
 
 export function getSupabaseServerEnv(): SupabaseServerEnv {
-  const url = runtimeEnv['SUPABASE_URL'] || runtimeEnv['NEXT_PUBLIC_SUPABASE_URL'] || undefined;
-  const serviceRoleKey = runtimeEnv['SUPABASE_SERVICE_ROLE_KEY'] || undefined;
+  let url: string | undefined;
+  for (const key of SUPABASE_URL_KEYS) {
+    url = readRuntimeEnv(key);
+    if (url) break;
+  }
+  const serviceRoleKey = readRuntimeEnv('SUPABASE_SERVICE_ROLE_KEY');
   return { url, serviceRoleKey };
 }
