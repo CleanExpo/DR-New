@@ -34,10 +34,28 @@ test.describe('Contractor go-live proof (DR-905)', () => {
 
     await page.goto('/signup?type=contractor');
 
-    // The ?type=contractor param preselects the CONTRACTOR account type
-    // (app/signup/page.tsx), so no combobox interaction is required.
+    // First-visit cookie banner overlays the lower form — dismiss it if shown.
+    try {
+      await page.getByRole('button', { name: 'Accept All' }).click({ timeout: 5_000 });
+    } catch {
+      // Banner not rendered in this context — nothing to dismiss.
+    }
+
     await page.fill('#name', namespace);
     await page.fill('#email', email);
+
+    // Select the account type explicitly, as a real user does. The
+    // ?type=contractor preselect is NOT trusted: the page's Radix Select
+    // resets its controlled value to '' when the value cannot resolve to a
+    // mounted item, so relying on the param submits userType '' and the API
+    // rejects it (observed live on CI run 28590168764 — reported app bug).
+    // .first(): Radix renders a visually-hidden native <select> alongside the
+    // trigger; the trigger comes first in the DOM.
+    const accountType = page.getByRole('combobox').first();
+    await accountType.click();
+    await page.getByRole('option', { name: 'Contractor' }).click();
+    await expect(accountType).toContainText('Contractor');
+
     await page.fill('#password', GOLIVE_PASSWORD);
     await page.fill('#confirmPassword', GOLIVE_PASSWORD);
     await page.check('#terms');
