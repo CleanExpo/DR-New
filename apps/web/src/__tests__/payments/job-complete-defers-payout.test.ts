@@ -57,6 +57,20 @@ jest.mock('@/lib/payments/contractor-payout', () => ({
   manualPayoutToContractor: (...args: unknown[]) => mockManualPayout(...args),
 }));
 
+// The route imports the BookingStatus enum (a RUNTIME value) from
+// @prisma/client, which jest maps to the generated client — absent on CI
+// runners. Stub just the enum so the suite doesn't require generation.
+jest.mock('@prisma/client', () => ({
+  BookingStatus: {
+    PENDING: 'PENDING',
+    CONFIRMED: 'CONFIRMED',
+    IN_PROGRESS: 'IN_PROGRESS',
+    COMPLETED: 'COMPLETED',
+    CANCELLED: 'CANCELLED',
+    DISPUTED: 'DISPUTED',
+  },
+}));
+
 import { POST } from '@/app/api/contractor/jobs/[jobId]/complete/route';
 import { authenticateRequest } from '@/lib/auth-middleware';
 
