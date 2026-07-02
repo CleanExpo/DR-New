@@ -48,6 +48,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
+      - run: pnpm run db:generate
       - run: pnpm run test
         env:
           NEXTAUTH_SECRET: test-secret-for-ci
