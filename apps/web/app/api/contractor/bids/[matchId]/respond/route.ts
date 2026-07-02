@@ -17,6 +17,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { escalateToNextContractor } from '@/lib/claim-intake';
+import { createErrorResponse, ErrorCode } from '@/lib/api-errors';
+import { isDispatchEligible } from '@/lib/services/dispatch-eligibility';
+import { DISPATCH_INELIGIBLE_ERROR } from '@/lib/services/dispatch-eligibility-error';
 import { z } from 'zod';
 
 const respondSchema = z.object({
@@ -75,6 +78,19 @@ export async function POST(
       return NextResponse.json(
         { error: `Already responded: ${match.contractorResponse}` },
         { status: 409 }
+      );
+    }
+
+    // DR-925: canonical dispatch-eligibility gate (single code path, spec N-04).
+    // ACCEPTED and COUNTER_OFFER take on work, so an ineligible contractor is
+    // refused with 403. DECLINED is deliberately exempt: declining grants
+    // nothing and frees the job for escalation to the next contractor.
+    if (data.response !== 'DECLINED' && !(await isDispatchEligible(user.id))) {
+      return createErrorResponse(
+        ErrorCode.FORBIDDEN,
+        DISPATCH_INELIGIBLE_ERROR.message,
+        403,
+        { reason: DISPATCH_INELIGIBLE_ERROR.reason, link: DISPATCH_INELIGIBLE_ERROR.link }
       );
     }
 
