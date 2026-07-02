@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, ArrowLeft, BookOpen, Award, Clock, CheckCircle2, Trophy, ArrowRight } from 'lucide-react';
+import { Loader2, ArrowLeft, BookOpen, Award, Clock, CheckCircle2, Trophy, ArrowRight, AlertCircle, RefreshCw } from 'lucide-react';
 import { CourseCard } from '@/src/components/onboarding/CourseCard';
 
 interface CourseProgress {
@@ -150,14 +150,43 @@ export default function TrainingPage() {
         </div>
       </div>
 
-      {error && (
-        <Card className="bg-red-500/10 border-red-500/20 mb-6">
-          <CardContent className="py-4">
-            <p className="text-red-400">{error}</p>
+      {/* DR-919: fetch failure renders a distinct error state WITH a retry
+          affordance (DR-918 pattern) — never a dead end, and not the same as
+          "no courses yet". */}
+      {error ? (
+        <Card className="bg-gray-800 border-red-500/20">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-white">
+              <AlertCircle className="h-5 w-5 text-red-400" />
+              We couldn&apos;t load your training courses
+            </CardTitle>
+            <CardDescription className="text-gray-400">
+              {error}. Your progress is safe — try again, or contact support if this keeps happening.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-3">
+            <Button onClick={() => void fetchCourses()} className="bg-[#00BFA6] hover:bg-[#00A693]">
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Retry
+            </Button>
+            <Button asChild variant="outline" className="border-gray-600 text-gray-300 hover:text-white">
+              <Link href="/contact">Contact support</Link>
+            </Button>
           </CardContent>
         </Card>
-      )}
-
+      ) : courses.length === 0 ? (
+        /* DR-919: empty state — the fetch succeeded but no courses exist yet. */
+        <Card className="bg-gray-800 border-gray-700">
+          <CardContent className="py-12 text-center">
+            <BookOpen className="h-10 w-10 text-gray-500 mx-auto mb-3" />
+            <p className="text-gray-300 font-medium">No training courses available yet</p>
+            <p className="text-sm text-gray-400 mt-1">
+              Your courses will appear here once they&apos;re assigned. Check back soon.
+            </p>
+          </CardContent>
+        </Card>
+      ) : (
+      <>
       {/* Overall Progress Stats */}
       <Card className="bg-gray-800 border-gray-700 mb-6">
         <CardContent className="py-6">
@@ -324,6 +353,8 @@ export default function TrainingPage() {
             </div>
           </div>
         </motion.div>
+      )}
+      </>
       )}
     </div>
   );
