@@ -400,7 +400,7 @@ export default function TrainingPage() {
             </button>
           </div>
           <p className="text-sm text-gray-400 mt-8">
-            Questions? <a href="mailto:training@disasterrecovery.com.au" className="text-blue-600 font-bold hover:underline">
+            Questions? <a href="/contact" className="text-blue-600 font-bold hover:underline">
               Contact our training team
             </a>
           </p>

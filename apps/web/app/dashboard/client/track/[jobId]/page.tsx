@@ -1,6 +1,7 @@
 'use client'
 
 import { use } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { ClientJobTracker } from '@/components/realtime/ClientJobTracker'
@@ -73,9 +74,9 @@ export default function JobTrackingPage({ params }: PageProps) {
         </p>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" asChild>
-            <a href="mailto:support@disasterrecovery.com.au">
-              ✉️ Email Support
-            </a>
+            <Link href="/contact">
+              💬 Contact Support
+            </Link>
           </Button>
         </div>
       </div>

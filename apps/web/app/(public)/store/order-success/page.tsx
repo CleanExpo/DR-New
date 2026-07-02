@@ -72,10 +72,10 @@ export default function OrderSuccessPage() {
         </div>
 
         <p className="mt-8 text-xs text-white/30">
-          Questions? Email{' '}
-          <a href="mailto:support@disasterrecovery.com.au" className="text-teal-400 hover:underline">
-            support@disasterrecovery.com.au
-          </a>
+          Questions?{' '}
+          <Link href="/contact" className="text-teal-400 hover:underline">
+            Contact support
+          </Link>
         </p>
       </div>
     </div>
