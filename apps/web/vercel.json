@@ -61,6 +61,10 @@
     {
       "path": "/api/cron/job-alerts",
       "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/contractor-payout-sweep",
+      "schedule": "30 2 * * *"
     }
   ]
 }

@@ -66,6 +66,10 @@
       "schedule": "0 * * * *"
     },
     {
+      "path": "/api/cron/contractor-payout-sweep",
+      "schedule": "30 2 * * *"
+    },
+    {
       "path": "/api/webhooks/cron/health-check",
       "schedule": "*/5 * * * *"
     },
