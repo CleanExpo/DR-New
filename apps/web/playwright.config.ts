@@ -1,6 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
 
 /**
+ * Go-live proof specs (DR-905) run ONLY under the dedicated `golive-proof`
+ * project (retries: 0 — a retried pass never counts as GREEN) with the
+ * `golive-cleanup` teardown project asserting zero residual test rows.
+ * They are excluded from the general browser matrix so the repo-wide
+ * `retries: CI ? 2 : 0` policy can never apply to them.
+ */
+const GOLIVE_SPECS = [
+  '**/contractor-go-live.spec.ts',
+  '**/contractor-flow.spec.ts',
+  '**/golive.cleanup.spec.ts',
+];
+
+/**
  * Playwright E2E Testing Configuration
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -43,38 +56,68 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    /*
+     * Go-live proof gate (DR-905): required blocking CI check.
+     * retries: 0 overrides the repo-wide `CI ? 2 : 0` — any first-attempt
+     * failure fails the gate. `teardown` runs golive-cleanup after the proof
+     * finishes (pass or fail) to delete namespaced rows and assert zero residual.
+     */
+    {
+      name: 'golive-proof',
+      testMatch: ['**/contractor-go-live.spec.ts', '**/contractor-flow.spec.ts'],
+      retries: 0,
+      timeout: 120_000,
+      teardown: 'golive-cleanup',
+      // retries: 0 means 'on-first-retry' would never trace — keep evidence on failure.
+      use: { ...devices['Desktop Chrome'], trace: 'retain-on-failure' },
+    },
+    {
+      name: 'golive-cleanup',
+      testMatch: ['**/golive.cleanup.spec.ts'],
+      retries: 0,
+      timeout: 120_000,
+      use: { ...devices['Desktop Chrome'] },
+    },
+
     {
       name: 'chromium',
+      testIgnore: GOLIVE_SPECS,
       use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
+      testIgnore: GOLIVE_SPECS,
       use: { ...devices['Desktop Firefox'] },
     },
 
     {
       name: 'webkit',
+      testIgnore: GOLIVE_SPECS,
       use: { ...devices['Desktop Safari'] },
     },
 
     /* Test against mobile viewports */
     {
       name: 'Mobile Chrome',
+      testIgnore: GOLIVE_SPECS,
       use: { ...devices['Pixel 5'] },
     },
     {
       name: 'Mobile Safari',
+      testIgnore: GOLIVE_SPECS,
       use: { ...devices['iPhone 12'] },
     },
 
     /* Test against branded browsers */
     {
       name: 'Microsoft Edge',
+      testIgnore: GOLIVE_SPECS,
       use: { ...devices['Desktop Edge'], channel: 'msedge' },
     },
     {
       name: 'Google Chrome',
+      testIgnore: GOLIVE_SPECS,
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
   ],
