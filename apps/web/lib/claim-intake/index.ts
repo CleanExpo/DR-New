@@ -14,6 +14,7 @@
  */
 
 import { prisma } from '@/lib/prisma';
+import { filterDispatchEligible } from '@/lib/services/dispatch-eligibility';
 import { AustralianServiceType, AustralianState, BookingStatus, EmergencyResponseLevel } from '@prisma/client';
 import {
   sendContractorMatchNotificationEmail,
@@ -166,12 +167,18 @@ export async function matchContractorsToBooking(bookingId: string): Promise<Cont
     throw new Error(`Booking not found: ${bookingId}`);
   }
 
-  // 2. Find all active, available contractors
+  // 2. Find candidate contractors.
+  //    DR-925: eligibility is delegated to the canonical dispatch gate below
+  //    (filterDispatchEligible — the single code path per spec N-04), which
+  //    covers isActive/isSuspended and the rest of the lifecycle gates. Only
+  //    two match-path-specific filters stay inline:
+  //      - isVerified: admin verification is NOT part of the canonical gate
+  //        (adding it there is a pending owner decision) — kept to preserve
+  //        existing match behaviour.
+  //      - unavailableUntil: availability, not eligibility.
   const now = new Date();
-  const contractors = await prisma.contractor.findMany({
+  const candidates = await prisma.contractor.findMany({
     where: {
-      isActive: true,
-      isSuspended: false,
       isVerified: true,
       OR: [
         { unavailableUntil: null },
@@ -194,6 +201,14 @@ export async function matchContractorsToBooking(bookingId: string): Promise<Cont
       },
     },
   });
+
+  // 2b. DR-925: canonical dispatch-eligibility gate (contractor lifecycle is
+  //     keyed on the owning User.id — Option B). Replaces the previous inline
+  //     partial gate so this path can never drift from the pool's gating.
+  const eligibleUserIds = await filterDispatchEligible(
+    candidates.map((c) => c.user.id)
+  );
+  const contractors = candidates.filter((c) => eligibleUserIds.has(c.user.id));
 
   // 3. Calculate match scores
   const matches: ContractorMatchResult[] = [];

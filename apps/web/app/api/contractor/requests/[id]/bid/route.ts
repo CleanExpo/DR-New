@@ -10,6 +10,8 @@ import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleValidationError, handleUnexpectedError, createErrorResponse, ErrorCode, ConflictError } from '@/lib/api-errors';
 import { applyRateLimit } from '@/src/lib/security/rate-limit';
 import { bidValidationSchema } from '@/src/lib/validation/bid-validation';
+import { isDispatchEligible } from '@/lib/services/dispatch-eligibility';
+import { DISPATCH_INELIGIBLE_ERROR } from '@/lib/services/dispatch-eligibility-error';
 import { ZodError } from 'zod';
 
 export async function POST(
@@ -60,6 +62,18 @@ export async function POST(
         ErrorCode.RESOURCE_NOT_FOUND,
         'Contractor profile not found',
         404
+      );
+    }
+
+    // DR-925: canonical dispatch-eligibility gate (single code path, spec N-04).
+    // An ineligible contractor must not be able to bid, regardless of which
+    // surface they reach — the pool is gated, and now this direct route is too.
+    if (!(await isDispatchEligible(user.id))) {
+      return createErrorResponse(
+        ErrorCode.FORBIDDEN,
+        DISPATCH_INELIGIBLE_ERROR.message,
+        403,
+        { reason: DISPATCH_INELIGIBLE_ERROR.reason, link: DISPATCH_INELIGIBLE_ERROR.link }
       );
     }
 
