@@ -100,6 +100,10 @@
     {
       "path": "/api/cron/cert-expiry-sweep",
       "schedule": "30 5 * * *"
+    },
+    {
+      "path": "/api/cron/pii-retention-sweep",
+      "schedule": "15 4 * * *"
     }
   ],
   "regions": ["syd1"]
