@@ -40,15 +40,59 @@ async function smokeFetch(path: string, options?: RequestInit & { timeout?: numb
 
 describe('Smoke Tests (DR-217)', () => {
   // =========================================================================
-  // Test 1: Health endpoint returns 200
+  // Test 1: Health endpoint — deep health (DR-907) with env-honest gating
+  //
+  // /api/health is a DEEP check since DR-907: HTTP 200 only when
+  // database + stripe + storage are ALL genuinely healthy, 503 otherwise.
+  // That semantic is spec-correct for deployed environments and must NOT be
+  // weakened here. But the CI smoke job cannot honestly reach full health:
+  // it has no real Stripe or Supabase credentials (owner-gated secrets).
+  //
+  // Contract enforced here, everywhere this suite runs:
+  //   - the HTTP status and body.status must be CONSISTENT with the
+  //     subsystem results (no lying in either direction);
+  //   - the database must be GENUINELY healthy (CI provisions a real
+  //     Postgres service; deployed envs have the real DB);
+  //   - every gated subsystem must be healthy UNLESS it is explicitly
+  //     declared unprovisionable for this environment via
+  //     SMOKE_ALLOW_UNHEALTHY_SUBSYSTEMS (comma-separated). That variable is
+  //     set ONLY in the CI smoke job (stripe,storage) — when this suite runs
+  //     against a deployed environment it is unset, so full health (200) is
+  //     required there, exactly as before.
   // =========================================================================
-  it('Test 1: Health endpoint returns 200 with status', async () => {
+  it('Test 1: Health endpoint — deep health is consistent and DB is genuinely healthy', async () => {
     const res = await smokeFetch('/api/health');
-    expect(res.status).toBe(200);
-
     const body = await res.json();
-    expect(body.status).toBe('healthy');
     expect(body.timestamp).toBeDefined();
+
+    const gatedSubsystems = ['database', 'stripe', 'storage'] as const;
+    for (const name of gatedSubsystems) {
+      expect(body.checks?.[name]?.status).toBeDefined();
+    }
+
+    // Status code and body.status must both follow the DR-907 contract.
+    const allHealthy = gatedSubsystems.every(
+      (name) => body.checks[name].status === 'healthy'
+    );
+    expect(res.status).toBe(allHealthy ? 200 : 503);
+    expect(body.status).toBe(allHealthy ? 'healthy' : 'unhealthy');
+
+    // The database is never allowed to be unhealthy in ANY smoke environment.
+    expect(body.checks.database.status).toBe('healthy');
+
+    // Any subsystem not explicitly declared unprovisionable must be healthy.
+    const allowedUnhealthy = new Set(
+      (process.env.SMOKE_ALLOW_UNHEALTHY_SUBSYSTEMS ?? '')
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+    );
+    expect(allowedUnhealthy.has('database')).toBe(false);
+    for (const name of gatedSubsystems) {
+      if (!allowedUnhealthy.has(name)) {
+        expect(body.checks[name].status).toBe('healthy');
+      }
+    }
   });
 
   // =========================================================================

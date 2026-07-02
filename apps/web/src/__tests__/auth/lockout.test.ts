@@ -82,10 +82,18 @@ function getAuthorize(): (credentials: Record<string, string>, req: unknown) => 
   return authorize;
 }
 
+// REAL runtime shape: next-auth v4 passes `req.headers` to authorize as a
+// PLAIN lowercase-keyed object (`Object.fromEntries(await headers())` in the
+// App Router path; IncomingHttpHeaders in the Pages Router path) — never a
+// Fetch `Headers` instance. A previous version of this mock provided a
+// `.get()` method, which masked a production-breaking
+// `req?.headers?.get is not a function` TypeError in authorize (every
+// credentials sign-in returned 401; caught by the DR-905 go-live gate).
+// Do NOT "upgrade" this mock to a Headers instance.
 const fakeReq = {
   headers: {
-    get: (name: string) =>
-      name === 'x-forwarded-for' ? '203.0.113.10' : name === 'user-agent' ? 'jest-dr906' : null,
+    'x-forwarded-for': '203.0.113.10',
+    'user-agent': 'jest-dr906',
   },
 };
 
