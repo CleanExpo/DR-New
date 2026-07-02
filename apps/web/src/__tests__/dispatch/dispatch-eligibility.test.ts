@@ -15,6 +15,10 @@
  *      status). Removing any gate fails this test.
  *   4. Passing ICA alone is insufficient — the result is the contractor-query
  *      intersection, not the ICA set.
+ *   5. DR-893: the NRP training-certification gate is CONSTRUCTED from the
+ *      single training-policy source (certification name; verified=true;
+ *      unexpired) — no literal — and a contractor without a live verified cert
+ *      is excluded.
  *
  * The behavioural proof (seed an expired-insurance contractor against real
  * Postgres and confirm exclusion) lives in
@@ -26,6 +30,7 @@ export {}; // mark as a module so block-scoped test vars don't leak to global sc
 const mockPrisma = {
   contractorAgreementAcceptance: { findMany: jest.fn() },
   contractor: { findMany: jest.fn() },
+  contractorCertification: { findMany: jest.fn() },
 };
 
 jest.mock('@/lib/prisma', () => ({ prisma: mockPrisma }));
@@ -33,11 +38,13 @@ jest.mock('@/lib/prisma', () => ({ prisma: mockPrisma }));
 // Imported dynamically in beforeAll so the @/lib/prisma mock factory runs after
 // `mockPrisma` is initialized (a static import is hoisted above it -> TDZ).
 let ICA_VERSION: string;
+let NRPG_CERTIFICATION_NAME: string;
 let filterDispatchEligible: typeof import('@/lib/services/dispatch-eligibility').filterDispatchEligible;
 let isDispatchEligible: typeof import('@/lib/services/dispatch-eligibility').isDispatchEligible;
 
 beforeAll(async () => {
   ({ ICA_VERSION } = await import('@/lib/legal/ica'));
+  ({ NRPG_CERTIFICATION_NAME } = await import('@/lib/training/training-policy'));
   ({ filterDispatchEligible, isDispatchEligible } = await import(
     '@/lib/services/dispatch-eligibility'
   ));
@@ -46,6 +53,13 @@ beforeAll(async () => {
 beforeEach(() => {
   mockPrisma.contractorAgreementAcceptance.findMany.mockReset();
   mockPrisma.contractor.findMany.mockReset();
+  mockPrisma.contractorCertification.findMany.mockReset();
+  // Default: the queried users hold a live verified NRP training cert. Tests
+  // that exercise the DR-893 gate override this per-case.
+  mockPrisma.contractorCertification.findMany.mockImplementation(
+    async (args: { where: { contractorId: { in: string[] } } }) =>
+      args.where.contractorId.in.map((contractorId: string) => ({ contractorId }))
+  );
 });
 
 describe('filterDispatchEligible', () => {
@@ -116,6 +130,59 @@ describe('filterDispatchEligible', () => {
         }),
       })
     );
+  });
+
+  it('constructs the training-cert gate from the single policy source (DR-893)', async () => {
+    mockPrisma.contractorAgreementAcceptance.findMany.mockResolvedValue([
+      { contractorId: 'user_1' },
+    ]);
+    mockPrisma.contractor.findMany.mockResolvedValue([{ userId: 'user_1' }]);
+
+    await filterDispatchEligible(['user_1']);
+
+    expect(mockPrisma.contractorCertification.findMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({
+          contractorId: { in: ['user_1'] },
+          certificationName: NRPG_CERTIFICATION_NAME,
+          verified: true,
+          expiryDate: expect.objectContaining({ gt: expect.any(Date) }),
+        }),
+      })
+    );
+  });
+
+  it('excludes a contractor with no live verified NRP training cert (DR-893)', async () => {
+    mockPrisma.contractorAgreementAcceptance.findMany.mockResolvedValue([
+      { contractorId: 'user_1' },
+      { contractorId: 'user_2' },
+    ]);
+    mockPrisma.contractor.findMany.mockResolvedValue([
+      { userId: 'user_1' },
+      { userId: 'user_2' },
+    ]);
+    // Only user_1 holds a verified, unexpired NRP Contractor Certification.
+    mockPrisma.contractorCertification.findMany.mockResolvedValue([
+      { contractorId: 'user_1' },
+    ]);
+
+    const result = await filterDispatchEligible(['user_1', 'user_2']);
+
+    expect(result.has('user_1')).toBe(true);
+    expect(result.has('user_2')).toBe(false);
+    expect(result.size).toBe(1);
+  });
+
+  it('skips the cert query when the contractor query already excluded everyone', async () => {
+    mockPrisma.contractorAgreementAcceptance.findMany.mockResolvedValue([
+      { contractorId: 'user_1' },
+    ]);
+    mockPrisma.contractor.findMany.mockResolvedValue([]);
+
+    const result = await filterDispatchEligible(['user_1']);
+
+    expect(result.size).toBe(0);
+    expect(mockPrisma.contractorCertification.findMany).not.toHaveBeenCalled();
   });
 
   it('passing ICA alone is not enough: result is the contractor-query intersection', async () => {

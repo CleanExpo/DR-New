@@ -117,8 +117,10 @@ export function toClientSafeQuizQuestions(
   }));
 }
 
-/** Single passing-score threshold for NRPG quiz grading. */
-export const NRPG_QUIZ_PASSING_SCORE = 70;
+// Single-sourced training policy (DR-893). The threshold moved into
+// training-policy.ts; re-exported here so existing consumers keep working.
+import { NRPG_QUIZ_PASSING_SCORE } from './training-policy';
+export { NRPG_QUIZ_PASSING_SCORE } from './training-policy';
 
 export interface NrpgQuizQuestionResult {
   questionId: string;

@@ -10,6 +10,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+// DR-893: the generated index must carry the SAME threshold grading enforces.
+import { NRPG_QUIZ_PASSING_SCORE } from '../lib/training/training-policy';
 
 // ============================================================================
 // CONFIGURATION
@@ -209,7 +211,7 @@ class TrainingIndexGenerator {
       description: moduleInfo.description,
       duration: moduleInfo.duration,
       durationMinutes,
-      passingScore: 80,
+      passingScore: NRPG_QUIZ_PASSING_SCORE,
       cecCredits: moduleInfo.cecCredits,
       prerequisites,
       certificationLevel,
@@ -254,7 +256,7 @@ class TrainingIndexGenerator {
                    'Technical water damage restoration',
       totalModules: moduleCount,
       totalHours: Math.round(totalHours),
-      passingScore: 80,
+      passingScore: NRPG_QUIZ_PASSING_SCORE,
       modules,
     };
   }
