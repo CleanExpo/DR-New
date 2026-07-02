@@ -131,6 +131,8 @@ export default function CommitmentPage() {
     },
   });
 
+  const signatureValue = form.watch('signature');
+
   const fetchCommitment = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -414,25 +416,44 @@ export default function CommitmentPage() {
                 name="signature"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white">Digital Signature</FormLabel>
+                    <FormLabel className="text-white">Electronic Signature</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Type your name as signature"
-                        className="bg-gray-900 border-gray-700 text-white font-signature italic"
+                        placeholder="Type your full legal name to sign"
+                        className="bg-gray-900 border-gray-700 text-white font-serif italic"
                         {...field}
                       />
                     </FormControl>
                     <FormDescription className="text-gray-400">
-                      By typing your name, you confirm this serves as your electronic signature
+                      Typing your full legal name here constitutes your electronic
+                      signature on the NRPG Professional Commitment Framework, with
+                      the same effect as a handwritten signature.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <div className="flex items-center gap-2 text-sm text-gray-400 pt-2">
-                <Calendar className="h-4 w-4" />
-                <span>Date: {new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              {/* Signature-styled preview of the typed name (DR-922) */}
+              <div className="rounded-lg border border-gray-700 bg-gray-900 px-5 py-4">
+                <p className="text-xs uppercase tracking-wider text-gray-500 mb-3">
+                  Signature preview
+                </p>
+                <p
+                  aria-live="polite"
+                  className={`font-serif italic text-3xl leading-tight break-words ${
+                    signatureValue ? 'text-white' : 'text-gray-600'
+                  }`}
+                >
+                  {signatureValue || 'Your signature will appear here'}
+                </p>
+                <div className="mt-3 border-t border-gray-700 pt-2 flex items-center justify-between text-xs text-gray-500">
+                  <span>Signed electronically</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5" />
+                    {new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </span>
+                </div>
               </div>
             </CardContent>
           </Card>
