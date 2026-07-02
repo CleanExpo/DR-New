@@ -60,6 +60,8 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
       certActive?: boolean;
       isSuspended?: boolean;
       userActive?: boolean;
+      stripePayoutsEnabled?: boolean;
+      stripeChargesEnabled?: boolean;
     } = {}
   ) {
     const {
@@ -69,6 +71,8 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
       certActive = true,
       isSuspended = false,
       userActive = true,
+      stripePayoutsEnabled = true,
+      stripeChargesEnabled = true,
     } = opts;
 
     const user = await prisma.user.create({
@@ -104,6 +108,18 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
       },
     });
 
+    // Stripe capability flags live on ContractorProfile (webhook-synced, DR-898)
+    await prisma.contractorProfile.create({
+      data: {
+        userId: user.id,
+        businessName: `Dispatch ${label} Co ${TEST_ID}`,
+        tenantId,
+        stripeConnectAccountId: `acct_${label}_${TEST_ID}`,
+        stripePayoutsEnabled,
+        stripeChargesEnabled,
+      },
+    });
+
     if (acceptIca) {
       await prisma.contractorAgreementAcceptance.create({
         data: {
@@ -128,6 +144,7 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
     await seedContractor('expiredCert', { certExpiry: past });
     await seedContractor('suspended', { isSuspended: true });
     await seedContractor('inactiveUser', { userActive: false });
+    await seedContractor('payoutsDisabled', { stripePayoutsEnabled: false });
   });
 
   afterAll(async () => {
@@ -138,6 +155,7 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
     await prisma.contractorAgreementAcceptance.deleteMany({
       where: { contractorId: { in: uids } },
     });
+    await prisma.contractorProfile.deleteMany({ where: { userId: { in: uids } } });
     await prisma.contractor.deleteMany({ where: { userId: { in: uids } } });
     await prisma.user.deleteMany({ where: { tenantId } });
     await prisma.tenant.delete({ where: { id: tenantId } });
@@ -158,6 +176,7 @@ describeDb('filterDispatchEligible — DB exclusion invariants', () => {
     ['expiredCert', 'expired IICRC certification'],
     ['suspended', 'suspended contractor'],
     ['inactiveUser', 'inactive owning user'],
+    ['payoutsDisabled', 'Stripe payouts capability disabled (DR-898)'],
   ])('excludes %s (%s)', async (label) => {
     await expect(isDispatchEligible(userIds[label])).resolves.toBe(false);
   });

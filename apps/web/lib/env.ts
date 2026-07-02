@@ -132,6 +132,7 @@ export const env = {
   // Payments
   stripeSecretKey: () => optional('STRIPE_SECRET_KEY'),
   stripeWebhookSecret: () => optional('STRIPE_WEBHOOK_SECRET'),
+  stripeConnectWebhookSecret: () => optional('STRIPE_CONNECT_WEBHOOK_SECRET'),
   stripePublishableKey: () => optional('STRIPE_PUBLISHABLE_KEY'),
 
   // Email

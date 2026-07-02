@@ -8,6 +8,9 @@
  *   3. Public liability insurance not expired.
  *   4. At least one active IICRC certification not expired.
  *   5. Active, non-blocked User account.
+ *   6. Stripe Connect payouts AND charges enabled (DR-898). The flags are
+ *      persisted on ContractorProfile by the account.updated webhook, so a
+ *      capability revoked at Stripe re-gates the contractor automatically.
  *
  * contractorId == User.id (Option B). Callers must pass the contractor's User.id.
  */
@@ -42,14 +45,22 @@ export async function filterDispatchEligible(userIds: string[]): Promise<Set<str
   if (icaUserIds.length === 0) return new Set();
 
   // 2. Contractor record active + insurance current + >=1 current IICRC cert
-  //    + owning User active & not blocked. All AND-ed in one query.
+  //    + owning User active & not blocked + Stripe payouts/charges enabled
+  //    (webhook-synced on ContractorProfile). All AND-ed in one query.
   const contractors = await prisma.contractor.findMany({
     where: {
       userId: { in: icaUserIds },
       isActive: true,
       isSuspended: false,
       publicLiabilityExpiryDate: { gt: now },
-      user: { isActive: true, isBlocked: false },
+      user: {
+        isActive: true,
+        isBlocked: false,
+        contractorProfile: {
+          stripePayoutsEnabled: true,
+          stripeChargesEnabled: true,
+        },
+      },
       iicrcCertifications: { some: { isActive: true, expiryDate: { gt: now } } },
     },
     select: { userId: true },

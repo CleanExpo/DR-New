@@ -99,7 +99,14 @@ describe('filterDispatchEligible', () => {
           isActive: true,
           isSuspended: false,
           publicLiabilityExpiryDate: expect.objectContaining({ gt: expect.any(Date) }),
-          user: { isActive: true, isBlocked: false },
+          user: {
+            isActive: true,
+            isBlocked: false,
+            contractorProfile: {
+              stripePayoutsEnabled: true,
+              stripeChargesEnabled: true,
+            },
+          },
           iicrcCertifications: {
             some: expect.objectContaining({
               isActive: true,
