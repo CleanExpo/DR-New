@@ -56,12 +56,36 @@ export async function POST(request: NextRequest) {
         businessType: 'company',
         country: 'AU',
       });
-      connectAccountId = account.id;
 
-      await db.contractorProfile.update({
-        where: { id: contractorProfile.id },
-        data: { stripeConnectAccountId: connectAccountId },
+      // DR-897: atomic claim — only persist our account if no concurrent
+      // request claimed one since our read. Guards double-click/retry races
+      // that would otherwise mint duplicate connected accounts.
+      const claimed = await db.contractorProfile.updateMany({
+        where: { id: contractorProfile.id, stripeConnectAccountId: null },
+        data: { stripeConnectAccountId: account.id },
       });
+
+      if (claimed.count === 1) {
+        connectAccountId = account.id;
+      } else {
+        // A concurrent request won the claim — reuse its account and discard
+        // ours (never activated, inert on Stripe).
+        const winner = await db.contractorProfile.findUnique({
+          where: { id: contractorProfile.id },
+          select: { stripeConnectAccountId: true },
+        });
+        if (!winner?.stripeConnectAccountId) {
+          return createErrorResponse(
+            ErrorCode.INTERNAL_ERROR,
+            'Failed to persist Stripe Connect account',
+            500
+          );
+        }
+        connectAccountId = winner.stripeConnectAccountId;
+        console.warn(
+          `[Connect Onboard] Discarded duplicate connected account ${account.id} for profile ${contractorProfile.id}; reusing ${connectAccountId}`
+        );
+      }
     }
 
     const link = await createAccountLink(connectAccountId, returnUrl, refreshUrl);

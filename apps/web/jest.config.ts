@@ -37,6 +37,10 @@ const config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
+    // tsconfig maps '@/*' to './*' THEN './src/*'; jest only maps the first.
+    // '@/lib/stripe' resolves to src/lib/stripe/index.ts at build time (the
+    // lib/stripe directory has no index), so mirror that here (DR-897 tests).
+    '^@/lib/stripe$': '<rootDir>/src/lib/stripe',
     '^@/(.*)$': '<rootDir>/$1',
     '^uuid$': require.resolve('uuid'),
     // Resolve Prisma client to the generated client in root node_modules
