@@ -12,6 +12,7 @@ import {
   NRPG_CERTIFICATION_NAME,
   getNrpgCertificationExpiryDate,
   isNrpgTrainingSetComplete,
+  evaluateNrpgRetakePolicy,
 } from '@/lib/training/training-policy';
 
 export const dynamic = 'force-dynamic';
@@ -97,6 +98,52 @@ export async function POST(request: NextRequest) {
         400,
         { currentModuleId: current?.moduleId ?? null }
       );
+    }
+
+    // DR-894: server-side retake policy — attempt cap + cooldown, evaluated
+    // off the persisted ContractorAssessment rows for this module (voided rows
+    // from an admin reset never count). Rejected BEFORE anything persists.
+    const submittedAt = new Date();
+    const priorAttempts = await db.contractorAssessment.findMany({
+      where: { onboardingId: onboarding.id, moduleId },
+      select: { score: true, completedAt: true, createdAt: true, feedback: true },
+    });
+    const retakeDecision = evaluateNrpgRetakePolicy(priorAttempts, submittedAt);
+
+    if (!retakeDecision.allowed) {
+      if (retakeDecision.reason === 'ATTEMPT_CAP') {
+        return createErrorResponse(
+          ErrorCode.FORBIDDEN,
+          'Maximum attempts reached for this module — locked pending admin review',
+          403,
+          {
+            reason: 'ATTEMPT_CAP',
+            attemptsUsed: retakeDecision.attemptsUsed,
+            attemptsRemaining: 0,
+            maxAttempts: retakeDecision.maxAttempts,
+            retryAt: null,
+          }
+        );
+      }
+
+      const retryAt = retakeDecision.retryAt as Date;
+      const response = createErrorResponse(
+        ErrorCode.RATE_LIMITED,
+        'Retake cooldown is still active for this module',
+        429,
+        {
+          reason: 'COOLDOWN',
+          attemptsUsed: retakeDecision.attemptsUsed,
+          attemptsRemaining: retakeDecision.attemptsRemaining,
+          maxAttempts: retakeDecision.maxAttempts,
+          retryAt: retryAt.toISOString(),
+        }
+      );
+      response.headers.set(
+        'Retry-After',
+        String(Math.max(1, Math.ceil((retryAt.getTime() - submittedAt.getTime()) / 1000)))
+      );
+      return response;
     }
 
     const { score, passingScore, passed } = grade;
@@ -185,11 +232,30 @@ export async function POST(request: NextRequest) {
       }
     });
 
+    // DR-894: recompute the retake state INCLUDING this submission so the UI
+    // (DR-919) can render attempts remaining / lockout / cooldown countdown.
+    const postDecision = evaluateNrpgRetakePolicy(
+      [
+        ...priorAttempts,
+        { score, completedAt: submittedAt, createdAt: submittedAt, feedback: passed ? 'Passed' : 'Needs review' },
+      ],
+      submittedAt
+    );
+    const locked = postDecision.reason === 'ATTEMPT_CAP';
+
     return NextResponse.json({
       success: true,
       passed,
       score,
       passingScore,
+      retake: {
+        maxAttempts: postDecision.maxAttempts,
+        attemptsUsed: postDecision.attemptsUsed,
+        attemptsRemaining: postDecision.attemptsRemaining,
+        locked,
+        cooldownUntil:
+          !passed && !locked && postDecision.retryAt ? postDecision.retryAt.toISOString() : null,
+      },
       result: {
         total: grade.total,
         correctCount: grade.correctCount,
