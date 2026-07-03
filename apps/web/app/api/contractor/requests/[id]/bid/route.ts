@@ -12,6 +12,7 @@ import { applyRateLimit } from '@/src/lib/security/rate-limit';
 import { bidValidationSchema } from '@/src/lib/validation/bid-validation';
 import { isDispatchEligible } from '@/lib/services/dispatch-eligibility';
 import { DISPATCH_INELIGIBLE_ERROR } from '@/lib/services/dispatch-eligibility-error';
+import { isGoLiveEnabled, GO_LIVE_KILLED_MESSAGE } from '@/lib/feature-flags/nrpg-go-live';
 import { ZodError } from 'zod';
 
 export async function POST(
@@ -30,6 +31,17 @@ export async function POST(
     // Check role
     if (!requireRole(user, ['CONTRACTOR', 'ADMIN'])) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
+    }
+
+    // DR-929: kill switch — stops NEW bid submissions. Checked before rate
+    // limiting so a killed program doesn't burn a contractor's rate-limit
+    // budget on requests that can never succeed.
+    if (!isGoLiveEnabled()) {
+      return createErrorResponse(
+        ErrorCode.SERVICE_UNAVAILABLE,
+        GO_LIVE_KILLED_MESSAGE,
+        503
+      );
     }
 
     const db = getTenantDb(authResult.context);

@@ -20,6 +20,7 @@ import { escalateToNextContractor } from '@/lib/claim-intake';
 import { createErrorResponse, ErrorCode } from '@/lib/api-errors';
 import { isDispatchEligible } from '@/lib/services/dispatch-eligibility';
 import { DISPATCH_INELIGIBLE_ERROR } from '@/lib/services/dispatch-eligibility-error';
+import { isGoLiveEnabled, GO_LIVE_KILLED_MESSAGE } from '@/lib/feature-flags/nrpg-go-live';
 import { z } from 'zod';
 
 const respondSchema = z.object({
@@ -48,6 +49,18 @@ export async function POST(
     // Validate body
     const body = await request.json();
     const data = respondSchema.parse(body);
+
+    // DR-929: kill switch — ACCEPTED and COUNTER_OFFER take on NEW work, so
+    // they're refused while the program is killed. DECLINED is deliberately
+    // exempt (mirrors the DR-925 eligibility carve-out above): declining
+    // grants nothing and frees the job — it is not new go-live activity.
+    if (data.response !== 'DECLINED' && !isGoLiveEnabled()) {
+      return createErrorResponse(
+        ErrorCode.SERVICE_UNAVAILABLE,
+        GO_LIVE_KILLED_MESSAGE,
+        503
+      );
+    }
 
     // Get contractor record
     const contractor = await db.contractor.findUnique({

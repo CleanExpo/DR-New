@@ -8,6 +8,7 @@ import { authRateLimiter } from '@/lib/api/redis-rate-limit';
 import { randomBytes } from 'crypto';
 import { sendVerificationEmail } from '@/lib/email/resend';
 import { CURRENT_CONSENT_VERSION } from '@/lib/consent';
+import { isGoLiveEnabled, GO_LIVE_KILLED_MESSAGE } from '@/lib/feature-flags/nrpg-go-live';
 
 /**
  * POST /api/auth/register
@@ -28,6 +29,17 @@ export async function POST(request: NextRequest) {
     // Parse and validate request body
     const body = await request.json();
     const validatedData = registerSchema.parse(body);
+
+    // DR-929: kill switch — new CONTRACTOR registrations only. CLIENT signups
+    // (and existing contractor logins, elsewhere) are never gated by this
+    // flag; this stops NEW contractor go-live activity, not existing users.
+    if (validatedData.userType === 'CONTRACTOR' && !isGoLiveEnabled()) {
+      return createErrorResponse(
+        ErrorCode.SERVICE_UNAVAILABLE,
+        GO_LIVE_KILLED_MESSAGE,
+        503
+      );
+    }
 
     // Check for existing user
     const existingUser = await prisma.user.findUnique({
