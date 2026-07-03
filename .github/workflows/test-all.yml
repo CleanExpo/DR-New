@@ -212,8 +212,22 @@ jobs:
         run: pnpm --filter nrpg-web exec playwright install --with-deps chromium
       - name: Generate Prisma Client
         run: pnpm run db:generate
-      - name: Push database schema
-        run: pnpm --filter nrpg-web exec prisma db push --skip-generate
+      # DR-930: go-live-proof is the blocking gate DR-905 wired to CI — it must
+      # prove the real migration chain deploys clean from an empty DB, not just
+      # that `db push` can force the current schema.prisma onto one.
+      - name: Deploy migrations (migrate deploy, not db push)
+        run: pnpm --filter nrpg-web exec prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+          DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
+      - name: Schema drift check (migrations vs schema.prisma)
+        # Fails the build if schema.prisma and prisma/migrations have diverged,
+        # i.e. someone edited the schema without generating a migration for it.
+        run: |
+          pnpm --filter nrpg-web exec prisma migrate diff \
+            --from-migrations ./prisma/migrations \
+            --to-schema-datamodel ./prisma/schema.prisma \
+            --exit-code
         env:
           DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
           DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
