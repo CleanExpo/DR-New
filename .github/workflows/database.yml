@@ -41,21 +41,14 @@ jobs:
       - name: Baseline — mark pre-existing migrations as applied
         run: |
           cd apps/web
+          # The 24 pre-squash migrations were archived to prisma/migrations-archive/
+          # (they only ever built 26 of 142 tables; prod's full schema came from
+          # `db push`). They remain recorded in prod's _prisma_migrations from prior
+          # deploys — harmless history. The squashed baseline below reproduces the
+          # entire schema; resolving it --applied stops prod's migrate deploy from
+          # trying to recreate the 142 already-present tables.
           BASELINES=(
-            "20250127200000_add_rls_policies"
-            "20250203000000_add_course_types"
-            "20250916043401_initalize_schema"
-            "20250921080802_add_admin_user_type"
-            "20250928045119_add_tenant_system"
-            "20250928111331_add_user_preferences"
-            "20250928113202_add_admin_preferences_and_theming"
-            "20251231180000_fix_contractor_onboarding_contractor_id"
-            "20251231190000_add_callout_payment"
-            "20260202000000_complete_rls_policies"
-            "20260305000000_add_job_module_xero_notifications"
-            "20260406000000_dr322_path_b_job_outcome_log"
-            "20260414000000_add_module_progress_unique_constraint"
-            "20260622000000_add_audit_logs_table"
+            "00000000000000_init_baseline"
           )
           for migration in "${BASELINES[@]}"; do
             echo "Resolving baseline: $migration"
