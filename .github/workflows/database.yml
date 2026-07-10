@@ -47,8 +47,13 @@ jobs:
           # deploys — harmless history. The squashed baseline below reproduces the
           # entire schema; resolving it --applied stops prod's migrate deploy from
           # trying to recreate the 142 already-present tables.
+          # 20260710000002_reinstate_tenant_rls (DR-936) re-adds tenant RLS to the
+          # migration chain for fresh builds. Prod already has RLS (applied by the
+          # archived add_rls_policies/complete_rls_policies), so resolve it --applied
+          # too — it must never re-run against prod.
           BASELINES=(
             "00000000000000_init_baseline"
+            "20260710000002_reinstate_tenant_rls"
           )
           for migration in "${BASELINES[@]}"; do
             echo "Resolving baseline: $migration"
