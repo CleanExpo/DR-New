@@ -22,7 +22,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 
-const GUARD_VERSION = '1.0.0';
+const GUARD_VERSION = '1.0.1';
 const CONFIG = '.au-english.json';
 
 if (!existsSync(CONFIG)) {
