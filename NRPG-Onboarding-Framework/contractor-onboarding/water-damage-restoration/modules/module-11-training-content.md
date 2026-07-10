@@ -128,7 +128,7 @@ Ensuring consistent quality through regular monitoring and immediate correction 
 - **Technical Standards:** All work meeting professional specifications and industry standards
 - **Material Handling:** Proper handling and protection of client property and belongings
 - **Damage Prevention:** No additional damage or contamination from restoration activities
-- **Professional Behavior:** Team conduct meeting professional standards and client expectations
+- **Professional Behaviour:** Team conduct meeting professional standards and client expectations
 - **Problem Identification:** Early detection and resolution of any quality concerns
 
 **Client Communication Quality:**
@@ -245,7 +245,7 @@ Ensuring healthy indoor environment and successful contamination removal.
 - **Volatile Organic Compounds (VOCs):** Testing for chemical contamination and off-gassing
 - **Formaldehyde Levels:** Assessment of chemical emissions from materials and products
 - **Cleaning Chemical Residues:** Verification of chemical cleaning product removal
-- **Odor Assessment:** Professional evaluation of remaining odors and sources
+- **Odour Assessment:** Professional evaluation of remaining odours and sources
 
 **Physical Air Quality:**
 - **Particulate Matter:** Dust and particle concentration measurement

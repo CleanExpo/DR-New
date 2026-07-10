@@ -314,7 +314,7 @@ Preparation for industry leadership and positive community impact.
 
 **Industry Leadership Demonstration:**
 - **Technical Excellence:** Demonstrate highest level technical competency and innovation
-- **Professional Standards:** Model professional behavior and ethical practice
+- **Professional Standards:** Model professional behaviour and ethical practice
 - **Continuous Learning:** Show commitment to ongoing education and improvement
 - **Community Contribution:** Demonstrate positive industry and community contribution
 
@@ -342,7 +342,7 @@ Preparation for industry leadership and positive community impact.
 
 **Comprehensive Competency Assessment:**
 - **Technical Proficiency:** Evaluate advanced technical skills and application
-- **Professional Standards:** Assess professional behavior and client service excellence
+- **Professional Standards:** Assess professional behaviour and client service excellence
 - **Leadership Potential:** Identify future industry leaders and development opportunities
 - **specialisation Readiness:** Evaluate readiness for heritage, contamination, or premium service specialisation
 

@@ -183,7 +183,7 @@ Storage: Cloud backup with immediate customer sharing capability
 Photography Standards:
 Image Quality Requirements:
 • Resolution: Minimum 12MP for professional presentation
-• Lighting: Well-lit images showing true colors and detail
+• Lighting: Well-lit images showing true colours and detail
 • Focus: Sharp images with clear detail for customer understanding
 • Composition: Professional framing showing damage and context clearly
 • File Format: JPEG for sharing, RAW for archival if available

@@ -33,7 +33,7 @@ By the end of this module, participants will be able to:
 - **Presentation Area:** Clear sightlines to screen from all seats
 
 ### Facilitator Mindset
-- **Model the Behavior:** Demonstrate empathy, active listening, and cultural sensitivity
+- **Model the Behaviour:** Demonstrate empathy, active listening, and cultural sensitivity
 - **Create Safety:** Establish an environment where participants feel comfortable sharing experiences
 - **Be Flexible:** Adapt timing and activities based on group engagement and understanding
 
@@ -75,7 +75,7 @@ By the end of this module, participants will be able to:
 3. **Your communication must adapt to their phase**
 
 **Interactive Element:** As you describe each phase, ask:
-- "What behaviors might you see in this phase?"
+- "What behaviours might you see in this phase?"
 - "How should you adjust your communication?"
 
 #### Common Emotional Reactions (3 minutes)
@@ -136,7 +136,7 @@ By the end of this module, participants will be able to:
 
 #### Debrief (3 minutes)
 **Questions:**
-- "What did you notice about your customer's behavior?"
+- "What did you notice about your customer's behaviour?"
 - "How did you adapt your communication?"
 - "Observers, what strategies worked best?"
 

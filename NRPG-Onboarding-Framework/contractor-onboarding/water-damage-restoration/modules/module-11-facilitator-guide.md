@@ -178,7 +178,7 @@ Advanced training in technical testing and verification ensuring objective quali
 **Comprehensive Moisture Testing:**
 - **Equipment Mastery:** Advanced use of pin-type, non-invasive, and specialty moisture detection equipment
 - **Testing Protocols:** Systematic testing procedures ensuring accuracy and comprehensive coverage
-- **Environmental Integration:** Understanding environmental factors affecting moisture behavior and testing
+- **Environmental Integration:** Understanding environmental factors affecting moisture behaviour and testing
 - **Documentation Excellence:** Professional recording and interpretation of testing results
 
 **Hands-On Testing Workshop:**

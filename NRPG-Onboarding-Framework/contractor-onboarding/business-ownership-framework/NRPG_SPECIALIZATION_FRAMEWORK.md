@@ -43,7 +43,7 @@
 ### **specialisation Areas Supported**
 - **Water Damage Restoration:** Flood, burst pipes, storm damage, structural drying
 - **Mould Remediation:** All mould species, containment, air quality restoration
-- **Fire and Smoke Damage:** Fire restoration, smoke damage, odor removal
+- **Fire and Smoke Damage:** Fire restoration, smoke damage, odour removal
 - **Trauma and Biohazard:** Crime scene, trauma, infectious disease cleanup
 - **Contents Cleaning:** Document restoration, textile cleaning, electronics restoration
 - **Specialty Services:** Heritage restoration, asbestos removal, chemical cleanup

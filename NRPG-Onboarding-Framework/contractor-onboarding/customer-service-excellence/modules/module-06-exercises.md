@@ -225,7 +225,7 @@ Develop skills in professional advocacy and dispute resolution when insurance co
 #### Scenario A: Gradual vs. Sudden Damage Dispute (6 minutes)
 **Dispute Details:**
 - Customer claims sudden pipe burst caused bathroom damage
-- Adjuster suspects gradual leak based on mold presence
+- Adjuster suspects gradual leak based on mould presence
 - Coverage denial impacts entire restoration project
 
 **Professional Response Practice:**
@@ -313,7 +313,7 @@ Master comprehensive documentation techniques that support insurance claims whil
 **Assessment Documentation:**
 1. **Weather Event Documentation:** Bureau of Meteorology reports, timing correlation
 2. **Damage Causation:** Tree impact and resulting structural damage
-3. **Secondary Damage:** Water intrusion and potential mold concerns
+3. **Secondary Damage:** Water intrusion and potential mould concerns
 4. **Emergency Mitigation:** Immediate protection measures and ongoing monitoring
 
 ### Documentation Quality Standards:

@@ -73,7 +73,7 @@ Explain the documentation requirements for extraction progress, including measur
 
 **Materials Affected:**
 - Spotted Gum hardwood flooring (moisture content 22%)
-- Carpet and rubber backing pad (synthetic fiber)
+- Carpet and rubber backing pad (synthetic fibre)
 - Gypsum plasterboard walls (moisture content 2.3%)
 - Bulk insulation in wall cavities
 
@@ -265,7 +265,7 @@ b) **Progress Documentation (3 points):**
 
 a) **Salvageability Determination (6 points):**
 - **Spotted Gum Hardwood (22% MC):** SALVAGEABLE - Above normal but below saturation, excellent species for drying
-- **Carpet and Rubber Pad:** ASSESS FIBER TYPE - Synthetic carpet potentially salvageable, rubber pad likely replacement
+- **Carpet and Rubber Pad:** ASSESS FIBRE TYPE - Synthetic carpet potentially salvageable, rubber pad likely replacement
 - **Gypsum Plasterboard (2.3% MC):** SALVAGEABLE - Above dry standard but below saturation threshold
 - **Bulk Insulation:** LIKELY REPLACEMENT - High contamination risk and difficult drying
 

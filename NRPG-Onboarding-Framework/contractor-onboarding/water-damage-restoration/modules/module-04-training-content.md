@@ -48,7 +48,7 @@ By the completion of this module, participants will be able to:
 
 ### 1.1 Extraction Principles and Physics
 
-#### Water Behavior in Building Materials
+#### Water Behaviour in Building Materials
 
 **Understanding Water Migration Patterns:**
 Water extraction effectiveness depends on understanding how water behaves in different Australian building materials and construction systems:
@@ -198,7 +198,7 @@ Determining whether materials can be successfully restored or must be removed re
 
 **Australian Building Material Considerations:**
 - **Hardwood Flooring:** Species-specific restoration potential and procedures
-- **Carpet and Padding:** Fiber type and backing material affecting restorability
+- **Carpet and Padding:** Fibre type and backing material affecting restorability
 - **Particleboard and MDF:** High moisture sensitivity requiring careful evaluation
 - **Concrete and Masonry:** Slow drying characteristics and efflorescence potential
 
@@ -220,7 +220,7 @@ Clean water damage allows for maximum material salvage potential:
 - **Metal Components:** Corrosion prevention through rapid drying and treatment
 
 **Moderate Salvage Materials:**
-- **Carpet and Padding:** Dependent on fiber type, backing, and response time
+- **Carpet and Padding:** Dependent on fibre type, backing, and response time
 - **Drywall:** Salvageable if moisture content remains below saturation
 - **Insulation:** May require replacement depending on material type and exposure
 

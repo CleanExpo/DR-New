@@ -205,7 +205,7 @@ Participants pair up to practice explaining complex assessment decisions to prop
 
 **Communication Scenarios:**
 - **Scenario A:** Explaining why expensive heritage flooring should be restored despite high cost
-- **Scenario B:** Recommending replacement of customer's favorite carpet due to contamination
+- **Scenario B:** Recommending replacement of customer's favourite carpet due to contamination
 - **Scenario C:** Discussing timeline delays due to specialist heritage techniques required
 
 **Communication Skills Focus:**

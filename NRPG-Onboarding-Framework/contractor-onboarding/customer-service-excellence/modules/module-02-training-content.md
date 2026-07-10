@@ -44,7 +44,7 @@ The first contact with a disaster-affected customer often determines the success
 - "Is anyone injured or in immediate danger?"
 - "Is the electricity still on in the affected area?"
 - "Is there any structural damage you can see?"
-- "Do you smell gas or any chemical odors?"
+- "Do you smell gas or any chemical odours?"
 - "Is the water still flowing/leaking?"
 
 **Safety Priority Script:**

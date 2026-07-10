@@ -583,9 +583,9 @@ Australian mould remediation follows a risk-based approach categorizing contamin
 **Porous Materials:**
 
 **Carpet and Padding:**
-- **Assessment:** Fiber type, backing material, contamination extent
+- **Assessment:** Fibre type, backing material, contamination extent
 - **Synthetic Carpets:** Professional cleaning may be successful for surface contamination
-- **Natural Fiber Carpets:** Often require replacement due to high organic content
+- **Natural Fibre Carpets:** Often require replacement due to high organic content
 - **Padding:** Nearly always requires replacement due to porosity
 - **Removal Technique:** Contained removal with HEPA vacuuming
 - **Disposal:** Proper disposal as contaminated waste
@@ -599,7 +599,7 @@ Australian mould remediation follows a risk-based approach categorizing contamin
 
 **Textiles and Upholstery:**
 - **Assessment:** Fabric type, value, sentimental significance
-- **Natural Fibers:** High risk for continued contamination, replacement often recommended
+- **Natural Fibres:** High risk for continued contamination, replacement often recommended
 - **Synthetic Materials:** Professional cleaning may be successful
 - **Leather and Vinyl:** Can often be successfully cleaned and treated
 - **Decision Factors:** Cost of cleaning vs. replacement, health risk tolerance

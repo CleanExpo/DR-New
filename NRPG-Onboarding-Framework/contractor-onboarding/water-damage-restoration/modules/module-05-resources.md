@@ -709,7 +709,7 @@ Contact Information: ________________________________________
 
 **Calibration and Service:**
 - **NATA Accredited Laboratories:** Equipment calibration services
-- **Manufacturer Service Centers:** Authorized repair and maintenance
+- **Manufacturer Service Centres:** Authorized repair and maintenance
 - **Mobile Calibration Services:** On-site equipment verification
 - **Emergency Repair Services:** 24/7 equipment service support
 

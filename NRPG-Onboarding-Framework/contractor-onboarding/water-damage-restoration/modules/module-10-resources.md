@@ -451,7 +451,7 @@ Insurance Adjuster Feedback: ____________________
 - **Direct Communication:** Clear, honest, and straightforward communication preferred
 - **Egalitarian Values:** Respectful communication across social and professional levels
 - **Practical Focus:** Solution-oriented approach and practical problem-solving
-- **Reliability:** Emphasis on follow-through and consistent professional behavior
+- **Reliability:** Emphasis on follow-through and consistent professional behaviour
 - **Fair Dealing:** Honest, transparent, and ethical business practices
 
 **Regional and Cultural Variations:**

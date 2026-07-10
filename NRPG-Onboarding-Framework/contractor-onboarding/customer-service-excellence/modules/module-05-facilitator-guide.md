@@ -310,7 +310,7 @@ Practice documenting conflict interactions using professional templates while ma
 
 **Blame-Focused Responses:**
 - Redirect from blame to professional response options
-- Focus on what they can control rather than customer behavior
+- Focus on what they can control rather than customer behaviour
 - Emphasize solution-focused rather than problem-focused thinking
 - Model non-defensive language consistently
 

@@ -37,7 +37,7 @@ This module represents the culmination of technical water damage restoration tra
 **Australian Material Collection:**
 - [ ] Prepare hardwood samples: Ironbark, Spotted Gum, Hoop Pine with various finishes
 - [ ] Collect masonry samples: Heritage brick, modern brick, concrete with different contamination
-- [ ] Organize metal samples: Cast iron, steel, aluminum with corrosion simulation
+- [ ] Organize metal samples: Cast iron, steel, aluminium with corrosion simulation
 - [ ] Prepare composite samples: Gypsum board, particle board, engineered materials
 - [ ] Create textile samples: Various carpet and upholstery materials
 
@@ -422,7 +422,7 @@ For each participant, evaluate and provide feedback on:
 ### Safety Culture Development
 
 **Safety Leadership:**
-- **Model Behavior:** Demonstrate consistent safety practices throughout session
+- **Model Behaviour:** Demonstrate consistent safety practices throughout session
 - **Positive Reinforcement:** Immediately praise safety-conscious actions
 - **Error Correction:** Address safety lapses immediately and constructively
 - **Systems Thinking:** Show how safety integrates with quality and efficiency

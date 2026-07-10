@@ -79,7 +79,7 @@ Professional material assessment requires systematic evaluation considering rest
 - **Laminate Flooring:** Surface damage often requires replacement
 - **Composite Materials:** Variable success based on bonding agents
 - **Concrete Products:** Surface restoration usually successful
-- **Textile-Based Carpets:** Depends on fiber type and contamination level
+- **Textile-Based Carpets:** Depends on fibre type and contamination level
 
 **Category C: Low Restoration Success Rate**
 - **Particle Board:** High water absorption, structural compromise common
@@ -242,7 +242,7 @@ Black water requires comprehensive decontamination protocols treating materials 
 **Intensive Category 3 Protocol:**
 1. **Hazmat Procedures:** Full PPE including powered air-purifying respirators
 2. **Work Area Isolation:** Complete containment with negative air pressure
-3. **Material Assessment:** Conservative approach favoring replacement
+3. **Material Assessment:** Conservative approach favouring replacement
 4. **Decontamination Sequence:** Systematic treatment from least to most contaminated
 5. **Multiple Disinfection Cycles:** Repeated application of hospital-grade disinfectants
 6. **specialised Equipment:** Use dedicated equipment to prevent cross-contamination

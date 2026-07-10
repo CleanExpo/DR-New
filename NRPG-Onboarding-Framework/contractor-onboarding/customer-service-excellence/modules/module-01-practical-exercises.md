@@ -25,7 +25,7 @@ It's been 5 days since storm damage affected your home. You're frustrated and st
 
 ### Debrief Questions
 1. Which emotional phase was your customer in?
-2. What specific behaviors indicated this phase?
+2. What specific behaviours indicated this phase?
 3. How did you adjust your communication approach?
 4. What worked well? What would you do differently?
 
@@ -34,7 +34,7 @@ It's been 5 days since storm damage affected your home. You're frustrated and st
 ## Exercise 2: Stress Response Recognition and Intervention (12 minutes)
 
 ### Part A: Stress Response Identification (5 minutes)
-**Instructions:** Read each customer behavior description and identify whether it represents Fight, Flight, or Freeze response.
+**Instructions:** Read each customer behaviour description and identify whether it represents Fight, Flight, or Freeze response.
 
 **Scenario 1:** Customer keeps interrupting you, questioning your qualifications, and demanding to speak to your supervisor.
 *Response Type:* _______________
@@ -166,7 +166,7 @@ For the next week, keep a brief journal of customer interactions:
 
 **Daily Entries Should Include:**
 1. **Emotional Phase Observed:** Which disaster response phase was the customer in?
-2. **Stress Response:** Did you observe fight, flight, or freeze behaviors?
+2. **Stress Response:** Did you observe fight, flight, or freeze behaviours?
 3. **Cultural Considerations:** Were there any cultural factors that influenced the interaction?
 4. **Trust-Building:** What did you do to build trust? What was the customer's response?
 5. **Reflection:** What would you do differently next time?

@@ -168,7 +168,7 @@ D) Post-completion documentation is adequate
 What is the best practice for documentation during disputes?
 A) Stop documenting to avoid creating evidence
 B) Continue professional, objective documentation throughout ✓
-C) Document only favorable information
+C) Document only favourable information
 D) Transfer documentation responsibility to legal counsel
 
 **Explanation:** Consistent professional documentation supports dispute resolution and demonstrates integrity.

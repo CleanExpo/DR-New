@@ -173,7 +173,7 @@ Teams perform systematic moisture testing using various equipment and techniques
    - Multiple building materials requiring different testing approaches
    - Hidden structural elements and inaccessible area assessment
    - Interface zones between different materials and construction systems
-   - Environmental condition variations affecting moisture behavior
+   - Environmental condition variations affecting moisture behaviour
 
 **Testing Procedures and Techniques:**
 - **Equipment Selection:** Appropriate meter selection for material types and testing requirements
@@ -198,7 +198,7 @@ Teams perform comprehensive air quality testing and environmental verification u
    - Volatile organic compound (VOC) assessment and measurement
    - Cleaning chemical residue detection and verification of removal
    - Formaldehyde and off-gassing assessment from materials and products
-   - Odor assessment and source identification procedures
+   - Odour assessment and source identification procedures
 
 3. **Physical Environmental Assessment:**
    - Temperature and humidity optimisation and control verification
