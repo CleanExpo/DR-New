@@ -284,8 +284,8 @@ Customer service excellence masters contribute to improving professional standar
 **Community and Industry Service:**
 - **Professional Volunteer Service:** Contributing professional expertise for community benefit and social responsibility
 - **Consumer Protection Advocacy:** Professional involvement in consumer protection and customer advocacy
-- **Industry Reputation Enhancement:** Professional behavior and service excellence that improves industry reputation
-- **Professional Ethics Leadership:** Modeling and promoting ethical professional behavior and customer service standards
+- **Industry Reputation Enhancement:** Professional behaviour and service excellence that improves industry reputation
+- **Professional Ethics Leadership:** Modeling and promoting ethical professional behaviour and customer service standards
 - **Next Generation Development:** Mentoring new professionals in customer service excellence and industry standards
 
 ---
@@ -346,7 +346,7 @@ Customer service excellence mastery within Australian disaster recovery industry
 **Cultural and Community Integration:**
 - **Multicultural Competence:** Advanced skills serving Australia's diverse communities with cultural sensitivity and professional excellence
 - **Community Contribution:** Professional service and contribution supporting Australian communities and social responsibility
-- **Industry Reputation Enhancement:** Professional behavior and service excellence improving Australian disaster recovery industry reputation
+- **Industry Reputation Enhancement:** Professional behaviour and service excellence improving Australian disaster recovery industry reputation
 - **Professional Mentoring:** Development of next generation Australian professionals in customer service excellence
 - **National Professional Recognition:** Achievement of national recognition for customer service excellence and industry contribution
 

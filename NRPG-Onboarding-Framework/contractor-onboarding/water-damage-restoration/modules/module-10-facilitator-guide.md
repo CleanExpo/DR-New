@@ -97,7 +97,7 @@ Begin with comprehensive understanding of Australian business culture and profes
 - **Egalitarian Values:** Respectful communication across social and economic levels
 - **Practical Focus:** Solution-oriented approach and outcome-focused communication
 - **Cultural Diversity:** Respectful acknowledgment of multicultural communities
-- **Professional Standards:** Reliability, competence, and ethical behavior expectations
+- **Professional Standards:** Reliability, competence, and ethical behaviour expectations
 
 **Teaching Approach:**
 - **Interactive Discussion:** Participant experiences and cultural observations

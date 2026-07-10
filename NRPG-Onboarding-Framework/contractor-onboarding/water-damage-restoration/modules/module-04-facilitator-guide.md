@@ -323,7 +323,7 @@ Participants may worry about efficiency vs. quality.
 - Ensure everyone gets adequate practice time
 
 **Safety-First Culture Development:**
-- Model safety behavior consistently
+- Model safety behaviour consistently
 - Praise safety-conscious actions immediately
 - Address safety violations immediately and privately
 - Create environment where safety questions are encouraged

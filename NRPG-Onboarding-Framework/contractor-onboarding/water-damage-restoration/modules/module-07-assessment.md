@@ -181,7 +181,7 @@ Outline the key components of a SWMS for the mould remediation project including
 - Horsehair plaster on timber lath with lead-based paint
 - Sandstone foundation walls with lime mortar
 - Modern gypsum board additions in kitchen renovation
-- Oriental wool carpets with natural fiber padding
+- Oriental wool carpets with natural fibre padding
 
 **a) Remediation Strategy Development (6 points)**
 For each material type, develop appropriate remediation strategies considering:

@@ -32,7 +32,7 @@
 | Steel | Excellent | Good | Moderate | Corrosion protection essential |
 | Aluminium | Excellent | Excellent | Excellent | Minimal corrosion issues |
 | **Textiles** | | | | |
-| Wool Carpet | Good | Poor | Replace | Natural fiber, professional cleaning |
+| Wool Carpet | Good | Poor | Replace | Natural fibre, professional cleaning |
 | Synthetic Carpet | Moderate | Poor | Replace | Backing adhesive failure common |
 | Upholstery | Variable | Poor | Replace | Depends on construction and filling |
 
@@ -494,27 +494,27 @@ Fire Rating: Non-flammable water-based formula
 
 **Professional Deodorizers:**
 
-**Odor Star Liquid Deodorizer:**
+**Odour Star Liquid Deodorizer:**
 ```
 Product Specifications:
 pH Range: 6.5-7.5
 Active Ingredients: Essential oils, bacterial cultures, enzymes
-Dilution: 1:32 to 1:128 depending on odor severity
+Dilution: 1:32 to 1:128 depending on odour severity
 Application: Spray, fog, or additive to cleaning solutions
-Coverage: Variable based on odor source and application method
+Coverage: Variable based on odour source and application method
 
-Odor Control Mechanism:
-Primary Action: Enzymatic breakdown of odor-causing compounds
-Secondary Action: Beneficial bacteria consume organic odor sources
+Odour Control Mechanism:
+Primary Action: Enzymatic breakdown of odour-causing compounds
+Secondary Action: Beneficial bacteria consume organic odour sources
 Tertiary Action: Natural essential oils provide pleasant scent
 Duration: Continues working for 24-48 hours after application
-Effectiveness: Most effective on organic odor sources
+Effectiveness: Most effective on organic odour sources
 
 Application Guidelines:
-Surface Application: Direct spray on odor sources
+Surface Application: Direct spray on odour sources
 Air Treatment: Thermal fogging or ULV application
 Additive Use: Add to cleaning solutions for enhanced deodorization
-Contact Time: Allow product to remain in contact with odor source
+Contact Time: Allow product to remain in contact with odour source
 Moisture: Requires moisture for bacterial and enzyme activity
 
 Safety and Environmental:
@@ -528,7 +528,7 @@ Australian Regulatory:
 Classification: Not classified as hazardous substance
 Environmental: Approved for drain disposal at use concentrations
 Workplace: No special workplace controls required
-Efficacy: Laboratory tested against common odor compounds
+Efficacy: Laboratory tested against common odour compounds
 Quality: Manufactured under ISO 9001 quality systems
 ```
 
@@ -765,7 +765,7 @@ Sample Collection Protocol:
 Laboratory Analysis:
 Total Viable Count: General microbial population assessment
 Bacterial Identification: Specific bacterial species identification
-Fungal Identification: Mold and yeast species identification
+Fungal Identification: Mould and yeast species identification
 Pathogen Testing: Specific pathogen detection when indicated
 Antibiotic Resistance: Testing for resistant organisms when relevant
 
@@ -1008,7 +1008,7 @@ Water Category Treated: ________________________
 
 Pre-Cleaning Assessment:
 Visual Contamination Level: _____________________
-Odor Assessment: _______________________________
+Odour Assessment: _______________________________
 Moisture Content: ______________________________
 Previous Treatment: ____________________________
 
@@ -1024,7 +1024,7 @@ Multiple Applications Required: ☐ Yes ☐ No
 
 Quality Verification:
 Visual Cleanliness: ___________________________
-Odor Elimination: _____________________________
+Odour Elimination: _____________________________
 pH Testing Result: ___________________________
 Moisture Content Post-Cleaning: _________________
 
@@ -1066,7 +1066,7 @@ Temperature: __________________________________
 Relative Humidity: ___________________________
 Particle Count: ______________________________
 VOC Levels: __________________________________
-Odor Assessment: ______________________________
+Odour Assessment: ______________________________
 
 Chemical Safety Documentation:
 Safety Data Sheets Provided: ☐ Yes ☐ No

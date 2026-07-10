@@ -7,7 +7,7 @@
 - "Is anyone injured or in immediate danger?"
 - "Is the electricity still on in affected areas?"
 - "Are there any structural concerns you can see?"
-- "Do you smell gas or any unusual chemical odors?"
+- "Do you smell gas or any unusual chemical odours?"
 - "Is water still actively flowing or leaking?"
 
 **Safety Action Items:**
@@ -38,7 +38,7 @@
 - How long has damage been present?
 
 **Timeline Impact:**
-- Affects mold risk assessment
+- Affects mould risk assessment
 - Determines mitigation urgency
 - Influences restoration approach
 - Important for insurance documentation
@@ -144,7 +144,7 @@ to keep you updated on our progress."
 | Standing water | Medium | Urgent | 6-8 hours |
 | Fire/smoke damage | High | Emergency | 2-4 hours |
 | Storm damage with structural issues | High | Emergency | 2-4 hours |
-| Mold discovery | Low-Medium | Standard | 24 hours |
+| Mould discovery | Low-Medium | Standard | 24 hours |
 | Contents damage only | Low | Standard | 24-48 hours |
 
 ### Commitment Language Templates
@@ -236,7 +236,7 @@ SAFETY ASSESSMENT:
 Injuries: Y/N Details: _____
 Electrical Hazards: Y/N
 Structural Concerns: Y/N
-Gas/Chemical Odors: Y/N
+Gas/Chemical Odours: Y/N
 Current Safety Status: _____
 
 PROPERTY INFORMATION:

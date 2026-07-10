@@ -85,7 +85,7 @@ Participants practice explaining complex technical concepts to various client ty
 
 **Technical Translation Challenges:**
 1. **Water Damage Science Explanation:**
-   - Moisture behavior in building materials
+   - Moisture behaviour in building materials
    - Secondary damage prevention and timeline requirements
    - Equipment function and necessity
    - Health and safety considerations

@@ -437,7 +437,7 @@ Professional Standards:
 - **Consistent Example:** Demonstrate unwavering commitment to safety protocols
 - **Safety Communication:** Clear, direct communication about safety requirements
 - **Zero Tolerance:** Immediate correction of any safety violations or shortcuts
-- **Positive Reinforcement:** Recognition and praise for safety-conscious behavior
+- **Positive Reinforcement:** Recognition and praise for safety-conscious behaviour
 
 **Risk Awareness Building:**
 - **Real Consequences:** Share industry examples of mould exposure consequences

@@ -19,7 +19,7 @@
 | **Stachybotrys chartarum** | Dark green to black, slimy when wet | Cellulose (gypsum board, paper) | Mycotoxin production | Less common, severe water damage | Level 3 containment, aggressive removal |
 | **Aspergillus flavus** | Yellow-green spores | Grains, nuts, organic matter | Aflatoxin production | Agricultural areas, food storage | Enhanced safety protocols |
 | **Aspergillus niger** | Black spores, white/yellow mycelia | Wide substrate range | Allergic reactions | Very common in buildings | Standard protocols effective |
-| **Penicillium marneffei** | Variable colors | Organic matter | Systemic infection (immunocompromised) | Tropical regions, rare | Maximum containment required |
+| **Penicillium marneffei** | Variable colours | Organic matter | Systemic infection (immunocompromised) | Tropical regions, rare | Maximum containment required |
 
 **Common Building-Associated Species:**
 
@@ -170,7 +170,7 @@ Cost Factor: 4-6x baseline cost
 
 | Material | Assessment Criteria | Cleaning Method | Success Rate | Special Considerations |
 |----------|-------------------|-----------------|-------------|----------------------|
-| **Metal (Steel, Aluminum)** | Surface contamination only | HEPA vacuum + antimicrobial cleaning | 95%+ | Corrosion protection required |
+| **Metal (Steel, Aluminium)** | Surface contamination only | HEPA vacuum + antimicrobial cleaning | 95%+ | Corrosion protection required |
 | **Glass/Ceramic** | No penetration into material | Standard cleaning + disinfection | 98%+ | Seal replacement around fixtures |
 | **Sealed Concrete** | Surface coating intact | Pressure washing + antimicrobial | 90%+ | Sealer reapplication needed |
 | **Plastic/Vinyl** | Material integrity maintained | Compatible cleaners only | 85%+ | Test chemical compatibility |
@@ -187,7 +187,7 @@ Cost Factor: 4-6x baseline cost
 
 | Material | Salvage Possibility | Replacement Threshold | Disposal Requirements | Cost Considerations |
 |----------|-------------------|---------------------|---------------------|-------------------|
-| **Gypsum Board** | Paper face only affected | Any core contamination | Standard construction waste | Low cost favors replacement |
+| **Gypsum Board** | Paper face only affected | Any core contamination | Standard construction waste | Low cost favours replacement |
 | **Carpet/Padding** | Synthetic, surface only | Any padding involvement | Contaminated waste | Professional cleaning vs. replacement |
 | **Insulation** | None (moisture sensitive) | Any contamination | Potentially hazardous waste | Always replace when contaminated |
 | **Textiles** | High value items only | Synthetic materials preferred | Standard waste disposal | Consider sentimental value |

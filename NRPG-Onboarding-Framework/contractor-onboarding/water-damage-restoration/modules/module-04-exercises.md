@@ -317,7 +317,7 @@ Moisture Content: ______________________________
 Contamination Level: ___________________________
 
 Assessment Criteria:
-□ Carpet fiber type suitable for restoration
+□ Carpet fibre type suitable for restoration
 □ Backing material condition and type
 □ Padding moisture retention and contamination
 □ Economic feasibility of cleaning vs replacement
@@ -387,7 +387,7 @@ Assessment Quality:
 
 Assessor Competency:
 □ Demonstrates professional assessment capability
-□ Understands material behavior and restoration potential
+□ Understands material behaviour and restoration potential
 □ Applies economic and safety decision-making
 □ Documents assessment professionally
 

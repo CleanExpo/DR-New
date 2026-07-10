@@ -36,6 +36,7 @@ jobs:
       - run: pnpm run db:generate
       - run: pnpm run lint
       - run: pnpm run type-check
+      - run: pnpm run check:au-english
 
   test:
     name: Run Tests

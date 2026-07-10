@@ -174,7 +174,7 @@ Professional certification provides formal recognition of competence, demonstrat
 
 **specialised Industry Certifications:**
 - **Trauma Scene Waste Management Practitioner (TSWMP):** specialised biohazard and trauma cleaning
-- **Odor Control Technician (OCT):** specialised odor detection and elimination
+- **Odor Control Technician (OCT):** specialised odour detection and elimination
 - **Upholstery and Fabric Cleaning Technician (UFT):** Advanced textile restoration
 - **Health and Safety Technician (HST):** specialised safety and risk management
 - **Lead-Based Paint Activities and Renovation (EPA RRP):** specialised lead safety

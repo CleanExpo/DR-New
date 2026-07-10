@@ -229,7 +229,7 @@ Professional monitoring systems utilize sophisticated wireless networks for real
 #### Comprehensive Atmospheric Analysis
 
 **Professional Environmental Monitoring:**
-Effective restoration requires continuous monitoring of environmental conditions affecting drying rates and material behavior:
+Effective restoration requires continuous monitoring of environmental conditions affecting drying rates and material behaviour:
 
 **Critical Environmental Parameters:**
 - **Temperature Monitoring:** Continuous tracking of ambient and surface temperatures
@@ -338,7 +338,7 @@ Professional restoration utilizes sophisticated psychrometric calculations for s
 
 ### 3.2 Material-Environment Interaction Analysis
 
-#### Material-Specific Moisture Behavior
+#### Material-Specific Moisture Behaviour
 
 **Scientific Material Analysis:**
 Professional restoration requires understanding complex interactions between materials and environmental conditions:
@@ -347,12 +347,12 @@ Professional restoration requires understanding complex interactions between mat
 - **Jarrah Moisture Dynamics:** Dense hardwood requiring extended drying periods
 - **Spotted Gum Stability Analysis:** Low movement timber with predictable drying patterns
 - **Radiata Pine Characteristics:** Rapid moisture absorption and release patterns
-- **Engineered Product Behavior:** LVL, particleboard, and MDF moisture sensitivity analysis
+- **Engineered Product Behaviour:** LVL, particleboard, and MDF moisture sensitivity analysis
 
 **Masonry and Concrete Analysis:**
 - **Double Brick Construction:** Complex moisture migration and drying patterns
 - **Concrete Slab Dynamics:** Slow moisture release requiring extended monitoring
-- **Rendered Surface Behavior:** Surface treatments affecting moisture migration
+- **Rendered Surface Behaviour:** Surface treatments affecting moisture migration
 - **Heritage Material Considerations:** Traditional materials requiring specialised analysis
 
 #### Environmental optimisation Strategies
@@ -370,7 +370,7 @@ Advanced psychrometric analysis enables precise environmental control for optima
 - **Seasonal optimisation:** Adaptation to Australia's seasonal climate variations
 - **Regional Climate Considerations:** Customization for tropical, temperate, and arid climates
 - **Weather Pattern Integration:** Adjustment for rainfall, humidity, and temperature cycles
-- **Indoor-Outdoor Relationship:** Utilizing favorable external conditions when available
+- **Indoor-Outdoor Relationship:** Utilizing favourable external conditions when available
 
 ### 3.3 Advanced Atmospheric Analysis
 

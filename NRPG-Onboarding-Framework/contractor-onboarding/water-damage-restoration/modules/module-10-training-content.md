@@ -96,7 +96,7 @@ Essential skill for building client confidence and informed decision-making.
 - **Documentation:** Provide written summaries and reference materials
 
 **Client Education Topics:**
-- **Water Damage Science:** Moisture behavior, drying principles, secondary damage prevention
+- **Water Damage Science:** Moisture behaviour, drying principles, secondary damage prevention
 - **Equipment Function:** Purpose and operation of restoration equipment
 - **Timeline Expectations:** Realistic project duration and factors affecting progress
 - **Health and Safety:** Indoor air quality, safety precautions, occupancy considerations
@@ -366,7 +366,7 @@ Preventing conflicts through professional communication and relationship managem
 - **Clear Communication:** Transparent information and expectation management
 - **Regular Updates:** Consistent communication and progress reporting
 - **Quality Control:** Systematic quality assurance and client involvement
-- **Professional Standards:** Consistent professional behavior and service delivery
+- **Professional Standards:** Consistent professional behaviour and service delivery
 - **Problem Identification:** Early identification and proactive resolution
 
 **Relationship Recovery:**

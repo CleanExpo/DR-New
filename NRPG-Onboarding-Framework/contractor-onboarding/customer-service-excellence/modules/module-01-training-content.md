@@ -84,7 +84,7 @@ When disaster strikes, customers typically experience a predictable emotional jo
 When people experience stress, their brain activates the "fight, flight, or freeze" response:
 
 **Fight Response:**
-- Manifests as: Argumentative behavior, challenging your expertise
+- Manifests as: Argumentative behaviour, challenging your expertise
 - Impact on decisions: May make hasty decisions or refuse recommendations
 - Your approach: Stay calm, provide evidence, give them control where possible
 
@@ -262,7 +262,7 @@ When people experience stress, their brain activates the "fight, flight, or free
 
 **Common Mistakes to Avoid:**
 - Making assumptions based on appearance or names
-- Using overly familiar language or behavior
+- Using overly familiar language or behaviour
 - Ignoring family dynamics and decision-making processes
 - Dismissing concerns that seem cultural rather than practical
 
@@ -293,7 +293,7 @@ If you make a cultural mistake:
 
 **Ongoing Development:**
 - Study cultural demographics in your service area
-- Build relationships with community cultural centers
+- Build relationships with community cultural centres
 - Seek feedback on communication effectiveness from customers
 
 ### Preparation for Next Module

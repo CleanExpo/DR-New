@@ -502,7 +502,7 @@ System Stability Confirmed: ☐ Yes ☐ No
 **Scenario:** Clean mould contamination from various non-porous surfaces in controlled environment.
 
 **Material Samples:**
-- Metal surfaces (steel, aluminum) with surface mould growth
+- Metal surfaces (steel, aluminium) with surface mould growth
 - Glass and ceramic tiles with mould contamination
 - Sealed concrete surfaces with mould staining
 - Plastic and vinyl materials with surface growth

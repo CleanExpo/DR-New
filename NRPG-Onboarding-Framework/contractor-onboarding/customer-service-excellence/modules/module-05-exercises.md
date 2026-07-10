@@ -44,7 +44,7 @@ Develop ability to identify potential conflicts before escalation and implement 
 
 **Round 2: Non-Verbal Warning Signs (3 minutes)**
 **Scenario:** Customer showing physical signs of stress during assessment
-**Observable Behaviors:** Arms crossed, avoiding eye contact, short responses, impatient body language
+**Observable Behaviours:** Arms crossed, avoiding eye contact, short responses, impatient body language
 
 **Recognition Exercise:**
 - Document observed non-verbal indicators

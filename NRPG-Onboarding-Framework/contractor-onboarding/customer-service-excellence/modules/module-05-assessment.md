@@ -322,7 +322,7 @@ I'm committed to your success, Marcus, but I want to achieve it in a way that pr
 
 **Assessment Criteria:**
 - Quality standards clarification (1 point)
-- Professional standard defense (1 point)
+- Professional standard defence (1 point)
 - Customer satisfaction approach (2 points)
 - Reasonable resolution development (1 point)
 

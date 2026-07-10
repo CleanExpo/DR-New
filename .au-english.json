@@ -1,0 +1,4 @@
+{
+  "include": ["NRPG-Onboarding-Framework/**/*.md", "NRPG-Onboarding-Framework/**/*.mdx"],
+  "exclude": ["**/README.md"]
+}

@@ -75,9 +75,9 @@ Electrical Incident Response:
 MATERIAL ASSESSMENT QUICK REFERENCE
 
 CARPET AND FLOORING MATERIALS
-Carpet Fiber Types:
+Carpet Fibre Types:
 - Nylon: Good restoration potential, durable, responds well to cleaning
-- Polyester: Moderate restoration potential, may retain odors
+- Polyester: Moderate restoration potential, may retain odours
 - Wool: Good restoration potential if treated quickly, expensive replacement
 - Polypropylene: Excellent restoration potential, resistant to staining
 
@@ -869,7 +869,7 @@ Certification: Manufacturer-specific operation certificates
 Frequency: Quarterly workshops, annual conferences
 
 Prochem Australia Training:
-Location: National training centers
+Location: National training centres
 Contact: 1800 PRO-CHEM
 Services: Professional cleaning and extraction equipment
 Certification: Professional operator certification

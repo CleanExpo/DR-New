@@ -3,7 +3,7 @@
 ## Quick Reference Guide: Disaster Response Phases
 
 ### Phase 1: Shock and Disbelief (0-24 hours)
-**Customer Behaviors:**
+**Customer Behaviours:**
 - Numbness, confusion
 - Difficulty processing information
 - Repetitive questioning
@@ -23,7 +23,7 @@
 - "I'll leave you my written contact information."
 
 ### Phase 2: Acute Stress Response (24-72 hours)
-**Customer Behaviors:**
+**Customer Behaviours:**
 - Rapid speech, jumping topics
 - Difficulty focusing
 - Emotional volatility
@@ -42,7 +42,7 @@
 - "I'll help you prioritize what needs to happen now."
 
 ### Phase 3: Reality Setting In (3-7 days)
-**Customer Behaviors:**
+**Customer Behaviours:**
 - Questions about timeline and costs
 - Frustration with the situation
 - Concern about insurance coverage
@@ -61,7 +61,7 @@
 - "I'll update you every Tuesday and Friday."
 
 ### Phase 4: Adjustment Phase (1-4 weeks)
-**Customer Behaviors:**
+**Customer Behaviours:**
 - More rational decision-making
 - Detailed questions about options
 - Focus on future planning
@@ -85,7 +85,7 @@
 
 ### Fight Response Interventions
 
-**Behaviors You'll See:**
+**Behaviours You'll See:**
 - Argumentative, challenging your expertise
 - Demanding immediate action
 - Blaming contractors, insurance, or adjusters
@@ -112,7 +112,7 @@
 
 ### Flight Response Interventions
 
-**Behaviors You'll See:**
+**Behaviours You'll See:**
 - Avoiding appointments or phone calls
 - Wanting to leave the property
 - Delaying decisions
@@ -139,7 +139,7 @@
 
 ### Freeze Response Interventions
 
-**Behaviors You'll See:**
+**Behaviours You'll See:**
 - Unable to make decisions
 - Agreeing to everything without questions
 - Appearing overwhelmed or shut down
