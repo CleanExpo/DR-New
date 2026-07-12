@@ -136,3 +136,7 @@ apps/web/tsconfig.check.json
 .claude/launch.json
 lighthouse-report.json
 lighthouse-*.json
+
+# fleet hygiene 2026-07-12: local scratch / generated artifacts
+.playwright-mcp/
+*.backup.jpg
