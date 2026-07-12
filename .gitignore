@@ -136,3 +136,6 @@ apps/web/tsconfig.check.json
 .claude/launch.json
 lighthouse-report.json
 lighthouse-*.json
+
+# Git secrets temporary files
+.git-secrets-tmp/
