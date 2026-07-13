@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { AppProviders } from "@/components/providers/AppProviders"
 import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider"
+import { ConvaiWidget } from "@/components/support/ConvaiWidget"
 import "./globals.css"
 
 const jakarta = Plus_Jakarta_Sans({
@@ -185,6 +186,7 @@ export default function RootLayout({
           <AppProviders>
             <Suspense fallback={null}>{children}</Suspense>
             <Analytics />
+            <ConvaiWidget />
           </AppProviders>
         </AnalyticsProvider>
       </body>
