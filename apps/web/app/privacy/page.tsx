@@ -347,7 +347,7 @@ export default function PrivacyPage() {
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#2196F3] rounded-full mt-2 mr-3 flex-shrink-0"></span>
                       <strong className="text-white">United States</strong> — Cloud hosting (Vercel), payment processing (Stripe),
-                      analytics (Google)
+                      analytics (Google), voice assistant processing (ElevenLabs — see Section 1)
                     </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#2196F3] rounded-full mt-2 mr-3 flex-shrink-0"></span>
