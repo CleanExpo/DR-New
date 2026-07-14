@@ -258,3 +258,14 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+
+## Sub-agent doctrine (persistent specialists)
+
+Multi-round agent work follows the global `persistent-subagents` skill: keep ONE warm,
+named specialist per domain per session and feed follow-ups via SendMessage resume —
+never re-spawn for a second task in the same domain. The main thread coordinates only;
+noisy collection (grep sweeps, web fan-outs, bulk reads) goes to throwaway children,
+which return distilled verdicts. Standing specialist domains for this repo:
+`frontend-nrpg-platform`, `payments-stripe-nrpg`, `ci-infra-nrpg`. Name = `<type>-<durable-mission>`, frozen at spawn, must still be true on
+resume #8. Retire a specialist near ~300k context with a written handoff; domain
+change = fresh agent, always.
