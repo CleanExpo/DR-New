@@ -89,7 +89,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
         rel="preload"
         as="image"
         href="/images/marketing/emergency-response.jpg"
-        fetchpriority="high"
+        fetchPriority="high"
       />
       
       {/* Header - Fixed navigation with emerald branding */}
