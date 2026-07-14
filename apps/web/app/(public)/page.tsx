@@ -30,7 +30,7 @@
 import React from 'react'
 import { EmergencyHero } from '@/components/public/sections/EmergencyHero'
 import { EmergencyCTA } from '@/src/design-system'
-import {
+import { 
   QuickTriageTool,
   ServicesGrid,
   ResourcesHub,
@@ -40,6 +40,33 @@ import {
 import { schemaGenerator } from '@/lib/seo/schema-generator'
 import { PageTransition } from '@/src/design-system/components/Layout/PageTransition'
 import { ScrollReveal } from '@/src/design-system/components/Layout/ScrollReveal'
+import dynamic from 'next/dynamic'
+
+// Dynamically import below-fold sections for code splitting
+const QuickTriageToolDynamic = dynamic(
+  () => import('@/components/marketing').then(m => ({ default: m.QuickTriageTool })),
+  { ssr: true, loading: () => <div className="h-[600px]" /> }
+)
+
+const ServicesGridDynamic = dynamic(
+  () => import('@/components/marketing').then(m => ({ default: m.ServicesGrid })),
+  { ssr: true, loading: () => <div className="h-[800px]" /> }
+)
+
+const ResourcesHubDynamic = dynamic(
+  () => import('@/components/marketing').then(m => ({ default: m.ResourcesHub })),
+  { ssr: true, loading: () => <div className="h-[600px]" /> }
+)
+
+const JoinNRPGSectionDynamic = dynamic(
+  () => import('@/components/marketing').then(m => ({ default: m.JoinNRPGSection })),
+  { ssr: true, loading: () => <div className="h-[400px]" /> }
+)
+
+const InsurancePartnersDynamic = dynamic(
+  () => import('@/components/marketing').then(m => ({ default: m.InsurancePartners })),
+  { ssr: true, loading: () => <div className="h-[200px]" /> }
+)
 
 /**
  * Public Homepage Component
@@ -137,7 +164,7 @@ export default function HomePage() {
         <ScrollReveal>
           <section className="bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900 py-12 md:py-16" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 400px' }}>
             <div className="container mx-auto px-6">
-              <InsurancePartners />
+              <InsurancePartnersDynamic />
             </div>
           </section>
         </ScrollReveal>
@@ -145,7 +172,7 @@ export default function HomePage() {
         {/* 3. QUICK TRIAGE TOOL - Interactive Assessment */}
         <ScrollReveal>
           <section className="container mx-auto px-6 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
-            <QuickTriageTool />
+            <QuickTriageToolDynamic />
           </section>
         </ScrollReveal>
 
@@ -153,7 +180,7 @@ export default function HomePage() {
         <ScrollReveal>
           <section className="bg-slate-50 dark:bg-slate-900 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 800px' }}>
             <div className="container mx-auto px-6">
-              <ServicesGrid
+              <ServicesGridDynamic
                 title="Complete Disaster Recovery Services"
                 subtitle="IICRC-certified restoration for every emergency scenario"
                 columns={4}
@@ -166,7 +193,7 @@ export default function HomePage() {
         {/* 5. RESOURCES HUB - Featured Content */}
         <ScrollReveal>
           <section className="container mx-auto px-6 py-16 md:py-24" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
-            <ResourcesHub
+            <ResourcesHubDynamic
               title="Knowledge Center"
               subtitle="Expert guides and resources to help you navigate disaster recovery"
               maxItems={6}
@@ -344,7 +371,7 @@ export default function HomePage() {
         {/* 9. JOIN NRPG SECTION - Contractor Recruitment */}
         <ScrollReveal>
           <section className="container mx-auto px-6 py-16 md:py-24">
-            <JoinNRPGSection variant="default" />
+            <JoinNRPGSectionDynamic variant="default" />
           </section>
         </ScrollReveal>
 

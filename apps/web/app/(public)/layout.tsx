@@ -84,6 +84,14 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
         }
       `}</style>
 
+      {/* Preload hero image for faster LCP */}
+      <link
+        rel="preload"
+        as="image"
+        href="/images/marketing/emergency-response.jpg"
+        fetchPriority="high"
+      />
+      
       {/* Header - Fixed navigation with emerald branding */}
       <PublicHeader />
 

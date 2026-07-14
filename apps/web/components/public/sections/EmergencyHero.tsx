@@ -24,6 +24,7 @@ import { Button } from '@/src/design-system'
 import { AlertCircle, MapPin, Calculator, Award, Clock, Shield, Phone, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 /**
  * Animation variants for scroll-reveal effects
@@ -287,6 +288,20 @@ export function EmergencyHero() {
             </div>
           </motion.div>
         </motion.div>
+      </div>
+
+      {/* Hero Image - Using next/image with priority */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Image
+          src="/images/marketing/emergency-response.jpg"
+          alt="24/7 Emergency Disaster Recovery Australia"
+          width={1200}
+          height={630}
+          priority
+          sizes="100vw"
+          quality={85}
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Bottom Gradient Fade */}
