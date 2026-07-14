@@ -139,3 +139,6 @@ lighthouse-*.json
 
 # Git secrets temporary files
 .git-secrets-tmp/
+# fleet hygiene 2026-07-12: local scratch / generated artifacts
+.playwright-mcp/
+*.backup.jpg

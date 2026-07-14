@@ -159,6 +159,18 @@ export default function PrivacyPage() {
                   we will obtain your explicit consent prior to collection and handle it in accordance with APP 3.3 / IPP 4.
                 </p>
               </div>
+
+              <div className="mt-6">
+                <h3 className="font-poppins font-semibold text-xl text-white mb-4">Voice Assistant Interactions (APP 5)</h3>
+                <p className="text-[#9CA3AF] text-sm leading-relaxed">
+                  If you choose to use the voice assistant on this site, your voice is recorded and transcribed so we can
+                  respond to your support and contractor onboarding enquiries. Voice recordings and transcripts are
+                  processed on our behalf by ElevenLabs, whose infrastructure is located overseas, so this involves a
+                  cross-border disclosure of your personal information (see Section 4). In line with Australian Privacy
+                  Principle 5, we notify you of this collection at the point you start a voice conversation. Using the
+                  voice assistant is optional — you can contact us by phone, email or web form instead.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -335,7 +347,7 @@ export default function PrivacyPage() {
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#2196F3] rounded-full mt-2 mr-3 flex-shrink-0"></span>
                       <strong className="text-white">United States</strong> — Cloud hosting (Vercel), payment processing (Stripe),
-                      analytics (Google)
+                      analytics (Google), voice assistant processing (ElevenLabs — see Section 1)
                     </li>
                     <li className="flex items-start">
                       <span className="w-2 h-2 bg-[#2196F3] rounded-full mt-2 mr-3 flex-shrink-0"></span>
