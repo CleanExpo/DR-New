@@ -253,6 +253,46 @@ describe('env-parity helpers (lib/monitoring/env-parity)', () => {
     expect(helpers.classifyStripePriceId('price_1QaBcDeFgHiJkLmNoPqR')).toBe('set');
   });
 
+  it('classifies every known price-ID env var over an injected environment', () => {
+    // The env-parity gate + /api/health report classification for the WHOLE
+    // STRIPE_PRICE_ID_ENV_VARS set. Prove the batch classifier keys on exactly
+    // those vars, maps each independently, and never echoes a raw value.
+    const env: Record<string, string | undefined> = {
+      STRIPE_BASIC_PRICE_ID: undefined, // missing
+      STRIPE_PRO_PRICE_ID: 'prod_ABC123', // invalid (not a price_ id)
+      STRIPE_ENTERPRISE_PRICE_ID: 'price_enterprise_monthly', // placeholder (placeholder words)
+      STRIPE_TENANT_BASIC_PRICE_ID: '', // missing (empty)
+      STRIPE_TENANT_PRO_PRICE_ID: 'price_1QaBcDeFgHiJkLmNoPqR', // set (real shape)
+      STRIPE_TENANT_ENTERPRISE_PRICE_ID: 'price_tenant_enterprise_xxx', // placeholder
+    };
+
+    const result = helpers.classifyDeployedPriceIds(env);
+
+    expect(Object.keys(result).sort()).toEqual([...helpers.STRIPE_PRICE_ID_ENV_VARS].sort());
+    expect(result).toEqual({
+      STRIPE_BASIC_PRICE_ID: 'missing',
+      STRIPE_PRO_PRICE_ID: 'invalid',
+      STRIPE_ENTERPRISE_PRICE_ID: 'placeholder',
+      STRIPE_TENANT_BASIC_PRICE_ID: 'missing',
+      STRIPE_TENANT_PRO_PRICE_ID: 'set',
+      STRIPE_TENANT_ENTERPRISE_PRICE_ID: 'placeholder',
+    });
+    // No raw value leaks into the classification map.
+    expect(JSON.stringify(result)).not.toContain('price_1QaBcDeFgHiJkLmNoPqR');
+  });
+
+  it('defaults classifyDeployedPriceIds to process.env when no environment is passed', () => {
+    const prev = process.env.STRIPE_TENANT_PRO_PRICE_ID;
+    process.env.STRIPE_TENANT_PRO_PRICE_ID = 'price_1QaBcDeFgHiJkLmNoPqR';
+    try {
+      const result = helpers.classifyDeployedPriceIds();
+      expect(result.STRIPE_TENANT_PRO_PRICE_ID).toBe('set');
+    } finally {
+      if (prev === undefined) delete process.env.STRIPE_TENANT_PRO_PRICE_ID;
+      else process.env.STRIPE_TENANT_PRO_PRICE_ID = prev;
+    }
+  });
+
   it('validates auth URLs against the canonical origin', () => {
     const origin = 'https://nrpg.business';
     expect(helpers.urlResolvesToOrigin('https://nrpg.business/api/auth/callback/credentials', origin))
