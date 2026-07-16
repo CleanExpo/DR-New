@@ -66,9 +66,13 @@ jobs:
         # Install from Grafana's official apt repo instead of grafana/setup-k6-action@v1,
         # which downloads the k6 binary from the GitHub releases API and intermittently
         # fails the whole check on a 503 (unrelated to the script being validated).
+        # Fetch the signing key over HTTPS and dearmor it locally rather than via a
+        # keyserver: the runner has no dirmngr, so `gpg --recv-keys` fails with
+        # "can't connect to the dirmngr". `curl | gpg --dearmor` needs neither a
+        # keyserver nor dirmngr and is retried for network resilience.
         run: |
-          sudo gpg --no-default-keyring --keyring /usr/share/keyrings/k6-archive-keyring.gpg \
-            --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          curl -fsSL --retry 3 --retry-delay 2 https://dl.k6.io/key.gpg \
+            | sudo gpg --dearmor -o /usr/share/keyrings/k6-archive-keyring.gpg
           echo "deb [signed-by=/usr/share/keyrings/k6-archive-keyring.gpg] https://dl.k6.io/deb stable main" \
             | sudo tee /etc/apt/sources.list.d/k6.list
           sudo apt-get update
