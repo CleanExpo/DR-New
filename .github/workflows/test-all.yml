@@ -200,6 +200,7 @@ jobs:
           if grep -nE 'waitForTimeout|expect\(true\)|\.catch\(\(\) *=> *\{\}\)|toBeLessThan\(500\)|toContain\(response\.status\(\)\)' \
             apps/web/e2e/contractor-go-live.spec.ts \
             apps/web/e2e/contractor-flow.spec.ts \
+            apps/web/e2e/contractor-dispatch-eligibility.spec.ts \
             apps/web/e2e/golive.cleanup.spec.ts \
             apps/web/e2e/helpers/golive.ts; then
             echo "::error::Vacuous assertion pattern found in go-live specs (see matches above)"
