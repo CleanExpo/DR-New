@@ -87,7 +87,7 @@ export function PublicFooter() {
   }
 
   return (
-    <footer className="bg-gradient-to-br from-emerald-900 via-slate-900 to-gray-900 text-white">
+    <footer aria-label="Site footer" className="bg-gradient-to-br from-emerald-900 via-slate-900 to-gray-900 text-white">
       {/* Emergency Banner */}
       <div className="bg-red-600 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
