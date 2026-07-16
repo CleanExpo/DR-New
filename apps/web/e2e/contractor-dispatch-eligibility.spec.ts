@@ -79,6 +79,14 @@ test.describe('Full journey — signup to isDispatchEligible=true (DR-928)', () 
     const email = goLiveEmail(namespace, 'dispatch');
 
     // ---- STEP 1: SIGNUP (real UI) -----------------------------------------
+    // This spec sorts first alphabetically in the golive-proof project, so it
+    // is the FIRST to touch the NextAuth catch-all (/api/auth/[...nextauth]) on
+    // a cold `next dev` server. The client-side signIn that signup triggers
+    // would otherwise pay that route's on-demand compilation inside the session
+    // poll below and time out. Warm the route now so it compiles during the UI
+    // steps, not during the assertion (sibling specs pass only because they run
+    // after this route is already warm).
+    await page.request.get('/api/auth/session');
     await page.goto('/signup?type=contractor');
 
     // First-visit cookie banner overlays the lower form — dismiss if shown.
@@ -132,7 +140,7 @@ test.describe('Full journey — signup to isDispatchEligible=true (DR-928)', () 
           const body = (await res.json()) as { user?: { email?: string } } | null;
           return body?.user?.email ?? 'no-session';
         },
-        { timeout: 30_000, message: 'post-signup session never became active' }
+        { timeout: 60_000, message: 'post-signup session never became active' }
       )
       .toBe(email);
 
@@ -231,7 +239,10 @@ test.describe('Full journey — signup to isDispatchEligible=true (DR-928)', () 
         userId: user.id,
         businessName: `${namespace}'s Business`,
         tenantId: user.tenantId,
-        stripeConnectAccountId: `acct_${namespace}`,
+        // Dummy account id derived from the DB-generated user id (a cuid), not
+        // the Math.random-seeded namespace, so it stays unique without routing
+        // insecure randomness into a Stripe-account-id sink (CodeQL).
+        stripeConnectAccountId: `acct_${user.id}`,
         stripePayoutsEnabled: true,
         stripeChargesEnabled: true,
       },
