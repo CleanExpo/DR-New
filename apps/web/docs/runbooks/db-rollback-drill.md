@@ -86,5 +86,15 @@ npx prisma migrate diff \
    `pnpm --filter nrpg-web test:smoke`.
 4. Record the measured RTO/RPO against the DR objectives and file the result.
 
-**Status:** BLOCKED pending Supabase project-owner credentials + go-ahead.
-Do not attempt against production without owner sign-off.
+**Status:** DONE 2026-07-17 (project owner). Restored production PITR to a new
+project at a chosen timestamp (never in place), pointed a staging deploy at it,
+and ran `pnpm --filter nrpg-web test:smoke`.
+
+- **RTO measured: 4 min** (restore-triggered → restored project healthy).
+- **RPO measured: 8 min** — within the ≤ 15 min DR objective.
+- **Smoke: PASS** against the restored database.
+- Throwaway restored project deleted after the drill (held a full copy of
+  production PII).
+
+All three rollback dimensions — flag-off (§1), migration down-path (§2), and
+PITR (§3) — are now proven.
