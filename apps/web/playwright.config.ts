@@ -10,6 +10,7 @@ import { defineConfig, devices } from '@playwright/test';
 const GOLIVE_SPECS = [
   '**/contractor-go-live.spec.ts',
   '**/contractor-flow.spec.ts',
+  '**/contractor-dispatch-eligibility.spec.ts',
   '**/golive.cleanup.spec.ts',
 ];
 
@@ -64,7 +65,11 @@ export default defineConfig({
      */
     {
       name: 'golive-proof',
-      testMatch: ['**/contractor-go-live.spec.ts', '**/contractor-flow.spec.ts'],
+      testMatch: [
+        '**/contractor-go-live.spec.ts',
+        '**/contractor-flow.spec.ts',
+        '**/contractor-dispatch-eligibility.spec.ts',
+      ],
       retries: 0,
       timeout: 120_000,
       teardown: 'golive-cleanup',
