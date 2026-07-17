@@ -160,13 +160,37 @@ jobs:
           fi
           echo "✅ Homepage: $HTTP_CODE"
 
-          # Test API health endpoint
-          HTTP_CODE=$(curl -f -s -o /dev/null -w "%{http_code}" $PRODUCTION_URL/api/health)
-          if [ "$HTTP_CODE" != "200" ]; then
-            echo "❌ Health endpoint test failed with code: $HTTP_CODE"
-            exit 1
+          # Test API health endpoint.
+          # Stripe is owner-gated (DR-901: live price IDs not yet set), so
+          # /api/health returns 503 with checks.stripe.status=unhealthy
+          # (reason=not_configured) BY DESIGN. A blanket `!= 200` check therefore
+          # red-flagged every production deploy even though the site and every
+          # core subsystem were healthy. Fail only when a NON-owner-gated
+          # subsystem (database / storage / api) is unhealthy or the endpoint is
+          # unreachable; treat a stripe-only 503 as a WARN. Remove this tolerance
+          # once DR-901 configures Stripe and /api/health returns 200.
+          HEALTH_JSON=$(curl -s "$PRODUCTION_URL/api/health")
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "$PRODUCTION_URL/api/health")
+          echo "Health endpoint: $HTTP_CODE"
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "✅ Health endpoint: 200"
+          else
+            DB=$(echo "$HEALTH_JSON" | jq -r '.checks.database.status // "unknown"')
+            STORAGE=$(echo "$HEALTH_JSON" | jq -r '.checks.storage.status // "unknown"')
+            API=$(echo "$HEALTH_JSON" | jq -r '.checks.api.status // "unknown"')
+            STRIPE=$(echo "$HEALTH_JSON" | jq -r '.checks.stripe.status // "unknown"')
+            STRIPE_REASON=$(echo "$HEALTH_JSON" | jq -r '.checks.stripe.reason // ""')
+            if [ "$DB" = "healthy" ] && [ "$STORAGE" = "healthy" ] && [ "$API" = "healthy" ] \
+               && [ "$STRIPE" = "unhealthy" ] && [ "$STRIPE_REASON" = "not_configured" ]; then
+              echo "⚠️  Health is $HTTP_CODE, but the only unhealthy subsystem is stripe=not_configured"
+              echo "    (owner-gated, DR-901). Core subsystems healthy (db/$DB storage/$STORAGE api/$API)."
+              echo "    Treating as WARN, not a deploy failure."
+            else
+              echo "❌ Health endpoint failed ($HTTP_CODE) with a non-owner-gated subsystem unhealthy:"
+              echo "    database=$DB storage=$STORAGE api=$API stripe=$STRIPE/$STRIPE_REASON"
+              exit 1
+            fi
           fi
-          echo "✅ Health endpoint: $HTTP_CODE"
 
           # Test critical pages
           for page in "/about" "/pricing" "/contact"; do
