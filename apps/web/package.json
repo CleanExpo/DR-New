@@ -28,7 +28,8 @@
     "clean": "rm -rf .next node_modules",
     "test-enhancement": "tsx scripts/test-ai-enhancement.ts",
     "test-local-image": "tsx scripts/test-with-local-image.ts",
-    "demo-ai": "tsx scripts/demo-ai-enhancement.ts"
+    "demo-ai": "tsx scripts/demo-ai-enhancement.ts",
+    "env-parity": "tsx scripts/env-parity-gate.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",

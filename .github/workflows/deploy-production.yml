@@ -176,6 +176,60 @@ jobs:
 
           echo "✅ All smoke tests passed!"
 
+  env-parity:
+    name: Env-Parity Gate (report-only)
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    # DR-860 / DR-907: verify the DEPLOYED production env resolves correctly —
+    # /api/health subsystems, NEXTAUTH_URL origin, auth provider URLs, csrf —
+    # from OUTSIDE via public GETs (no secrets). Probes the canonical origin
+    # https://nrpg.business (that is where NEXTAUTH_URL resolves; the vercel
+    # alias would false-fail the auth-origin check).
+    #
+    # REPORT-ONLY (continue-on-error) for now: the Stripe subsystem is
+    # owner-gated (DR-901 — live price IDs not yet set), so /api/health returns
+    # 503 and the gate exits non-zero by design. A hard gate today would red
+    # every prod deploy over a known owner-gated condition. Positive control
+    # 2026-07-17 against https://nrpg.business: 7 PASS / 6 WARN / 2 FAIL, and
+    # BOTH fails are the Stripe cascade — every env/auth-origin/csrf check
+    # passes. Flip to blocking (remove continue-on-error on the run step) once
+    # DR-901 lands the Stripe price IDs.
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Wait for deployment to stabilize
+        run: sleep 60
+      - name: Run env-parity gate (report-only until DR-901)
+        continue-on-error: true
+        run: |
+          pnpm --filter nrpg-web run env-parity https://nrpg.business --json \
+            | tee env-parity-prod.json
+      - name: Publish env-parity summary
+        if: always()
+        run: |
+          {
+            echo "## Env-Parity Gate — production (report-only)"
+            echo '```'
+            cat env-parity-prod.json 2>/dev/null || echo "(no output captured)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload env-parity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: env-parity-production
+          path: env-parity-prod.json
+          retention-days: 90
+
   performance-check:
     name: Performance Validation
     runs-on: ubuntu-latest
