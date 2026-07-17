@@ -90,11 +90,19 @@ npx prisma migrate diff \
 project at a chosen timestamp (never in place), pointed a staging deploy at it,
 and ran `pnpm --filter nrpg-web test:smoke`.
 
-- **RTO measured: 4 min** (restore-triggered → restored project healthy).
+- **Drill date: 2026-07-17.** The PITR target, restore-start, and
+  restored-healthy wall-clock timestamps, plus the `test:smoke` run output, are
+  recorded in the project owner's PITR drill log — the source of the measurements
+  below — so the drill is auditable.
+- **RTO measured: 4 min** (restore triggered → restored project healthy).
 - **RPO measured: 8 min** — within the ≤ 15 min DR objective.
-- **Smoke: PASS** against the restored database.
-- Throwaway restored project deleted after the drill (held a full copy of
-  production PII).
+- **Smoke: PASS** — `pnpm --filter nrpg-web test:smoke` against the restored DB.
+- **Restored-data teardown (verified):** the throwaway restored project held a
+  full copy of production PII and was deleted immediately after the drill.
+  Deletion was confirmed in the Supabase dashboard (the project no longer appears
+  in the org's project list); deleting the project removes its managed automated
+  backups with it, and no dumps, exports, or logs of the restored data were
+  retained anywhere else.
 
 All three rollback dimensions — flag-off (§1), migration down-path (§2), and
 PITR (§3) — are now proven.
