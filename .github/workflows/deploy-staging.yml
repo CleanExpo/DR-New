@@ -112,3 +112,53 @@ jobs:
           echo "Health endpoint: $HTTP_CODE"
 
           echo "Staging smoke tests passed!"
+
+  env-parity:
+    name: Env-Parity Gate (report-only)
+    runs-on: ubuntu-latest
+    needs: [check-secrets, deploy-staging]
+    if: needs.check-secrets.outputs.has_vercel == 'true' && github.event_name == 'workflow_dispatch'
+    # DR-860 / DR-907: verify the DEPLOYED staging env resolves correctly from
+    # OUTSIDE via public GETs (no secrets). Probes the canonical staging origin
+    # https://staging.disasterrecovery.com.au (where NEXTAUTH_URL resolves; the
+    # ephemeral vercel alias would false-fail the auth-origin check).
+    #
+    # REPORT-ONLY (continue-on-error) — mirrors the production wiring. As of
+    # 2026-07-17 the canonical staging domain is not yet a reachable deploy
+    # (DR-860 owner-ask item 1), so this job is wired-but-inert until staging is
+    # stood up. Flip to blocking once staging is live and Stripe is configured.
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Wait for deployment to stabilize
+        run: sleep 30
+      - name: Run env-parity gate (report-only)
+        continue-on-error: true
+        run: |
+          pnpm --filter nrpg-web run env-parity https://staging.disasterrecovery.com.au --json \
+            | tee env-parity-staging.json
+      - name: Publish env-parity summary
+        if: always()
+        run: |
+          {
+            echo "## Env-Parity Gate — staging (report-only)"
+            echo '```'
+            cat env-parity-staging.json 2>/dev/null || echo "(no output captured)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload env-parity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: env-parity-staging
+          path: env-parity-staging.json
+          retention-days: 90
