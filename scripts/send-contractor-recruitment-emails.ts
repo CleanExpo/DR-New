@@ -189,6 +189,9 @@ async function fetchActiveContractors(limit?: number, useMockData: boolean = fal
       { id: '19', businessName: 'Western Restoration Co', email: 'help@westernrestore.com.au', primaryContact: 'Lauren Scott', phone: '0412345696', createdAt: new Date(), address: 'Perth WA' },
       { id: '20', businessName: 'Adelaide Emergency Services', email: 'dispatch@adelaideem.com.au', primaryContact: 'Ryan Harris', phone: '0412345697', createdAt: new Date(), address: 'Adelaide SA' },
     ];
+    if (limit) {
+      contractors = contractors.slice(0, limit);
+    }
     console.log(`✅ Using ${contractors.length} mock contractors`);
   } else {
     contractors = await prisma.contractorProfile.findMany({
