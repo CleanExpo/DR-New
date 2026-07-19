@@ -6,15 +6,6 @@ Write-Host "  Supabase Setup & Verification Tool  " -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Fail closed before the first Supabase CLI/network operation. The key is read
-# only from secure operator-provided environment input and is never printed.
-$supabaseAnonKey = [Environment]::GetEnvironmentVariable("NEXT_PUBLIC_SUPABASE_ANON_KEY")
-$supabaseJwtPattern = '^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$'
-if ([string]::IsNullOrWhiteSpace($supabaseAnonKey) -or $supabaseAnonKey -notmatch $supabaseJwtPattern) {
-    [Console]::Error.WriteLine("Invalid or missing Supabase anon key; set NEXT_PUBLIC_SUPABASE_ANON_KEY securely before running this script.")
-    exit 1
-}
-
 # Step 1: Check if Supabase CLI is installed
 Write-Host "[1/8] Checking Supabase CLI..." -ForegroundColor Yellow
 $supabaseInstalled = Get-Command supabase -ErrorAction SilentlyContinue
