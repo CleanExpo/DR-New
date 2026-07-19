@@ -434,16 +434,31 @@ Non-executable documentation placeholder: `<64-hex-secret>`. No generation, depl
 4. **Test git-secrets with an ephemeral positive fixture:**
    ```bash
    set -eu
+   if ! command -v git-secrets >/dev/null 2>&1; then
+     echo "git-secrets is not installed" >&2
+     exit 1
+   fi
+   if ! git secrets --list | grep -F 'AIza' >/dev/null; then
+     echo "Google API-key detection is not configured" >&2
+     exit 1
+   fi
    fixture=$(mktemp)
    trap 'rm -f "$fixture"' EXIT
    suffix=$(openssl rand -base64 48 | tr -dc 'A-Za-z0-9_-' | cut -c1-35)
    test "${#suffix}" -eq 35
    printf 'GEMINI_API_KEY=AIza%s\n' "$suffix" > "$fixture"
-   if git secrets --scan "$fixture" >/dev/null 2>&1; then
+   if scan_output=$(git secrets --scan "$fixture" 2>&1); then
      echo "git-secrets failed to reject the synthetic fixture" >&2
      exit 1
    fi
-   echo "git-secrets rejected the ephemeral synthetic fixture"
+   case "$scan_output" in
+     *"$fixture:1:"*) ;;
+     *)
+       echo "git-secrets failed without identifying the synthetic fixture" >&2
+       exit 1
+       ;;
+   esac
+   echo "git-secrets explicitly identified the ephemeral synthetic fixture"
    ```
 
 5. **Scan existing repository** (optional - already done):
@@ -549,9 +564,11 @@ if [ -z "${OLD_GEMINI_API_KEY:-}" ] || [ -z "${NEW_GEMINI_API_KEY:-}" ]; then
 fi
 
 old_status=$(curl -sS -o /dev/null -w '%{http_code}' \
-  "https://generativelanguage.googleapis.com/v1beta/models?key=${OLD_GEMINI_API_KEY}")
+  -H "x-goog-api-key: ${OLD_GEMINI_API_KEY}" \
+  "https://generativelanguage.googleapis.com/v1beta/models")
 new_status=$(curl -sS -o /dev/null -w '%{http_code}' \
-  "https://generativelanguage.googleapis.com/v1beta/models?key=${NEW_GEMINI_API_KEY}")
+  -H "x-goog-api-key: ${NEW_GEMINI_API_KEY}" \
+  "https://generativelanguage.googleapis.com/v1beta/models")
 
 if [ "$old_status" != "403" ] || [ "$new_status" != "200" ]; then
   echo "Gemini revocation/replacement verification failed" >&2
@@ -706,10 +723,12 @@ echo "Gemini revocation/replacement status verified without printing credentials
 
 1. **Create secure notes in 1Password/LastPass:**
    ```
+   The placeholders below are labels only. Never store these literal values as credentials.
+
    Title: DR-NRPG Production Secrets - 2026-02-03
 
    GEMINI_API_KEY: AIzaSy[new-key-here]
-   CSRF_SECRET: example
+   CSRF_SECRET: <set-via-secure-operator-input>
    SUPABASE_JWT_SECRET: [new-secret-from-supabase]
 
    Rotation Date: 2026-02-03

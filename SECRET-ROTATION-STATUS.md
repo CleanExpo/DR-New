@@ -41,9 +41,11 @@ if [ -z "${OLD_GEMINI_API_KEY:-}" ] || [ -z "${NEW_GEMINI_API_KEY:-}" ]; then
 fi
 
 old_status=$(curl -sS -o /dev/null -w '%{http_code}' \
-  "https://generativelanguage.googleapis.com/v1beta/models?key=${OLD_GEMINI_API_KEY}")
+  -H "x-goog-api-key: ${OLD_GEMINI_API_KEY}" \
+  "https://generativelanguage.googleapis.com/v1beta/models")
 new_status=$(curl -sS -o /dev/null -w '%{http_code}' \
-  "https://generativelanguage.googleapis.com/v1beta/models?key=${NEW_GEMINI_API_KEY}")
+  -H "x-goog-api-key: ${NEW_GEMINI_API_KEY}" \
+  "https://generativelanguage.googleapis.com/v1beta/models")
 
 if [ "$old_status" != "403" ] || [ "$new_status" != "200" ]; then
   echo "Gemini revocation/replacement verification failed" >&2

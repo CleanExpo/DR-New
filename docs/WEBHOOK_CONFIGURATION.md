@@ -542,11 +542,12 @@ WHERE "stripeEventId" = 'evt_xxxxxxxxxxxxx';
 
 **Check 1:** Verify Resend API key
 ```bash
+export RESEND_API_KEY="${RESEND_API_KEY:?Supply RESEND_API_KEY from the secure credential store}"
 curl -X POST https://api.resend.com/emails \
-  -H "Authorization: Bearer ${API_TOKEN}" \
+  -H "Authorization: Bearer ${RESEND_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "from": "test@yourdom ain.com",
+    "from": "test@yourdomain.com",
     "to": "test@example.com",
     "subject": "Test",
     "text": "Test email"
