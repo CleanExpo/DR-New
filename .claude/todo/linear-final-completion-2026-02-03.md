@@ -299,7 +299,7 @@ docs/WEBHOOK_MONITORING_DASHBOARD.md
 
 1. **Switch to Live Stripe Keys**
    ```env
-   STRIPE_SECRET_KEY="sk_live_xxxxxxxxxxxxx"
+   STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY}"
    STRIPE_PUBLISHABLE_KEY="pk_live_xxxxxxxxxxxxx"
    ```
 

@@ -65,9 +65,9 @@ Git secrets audit (BACKLOG-005) discovered **3 API keys and 2 critical secrets**
 
 **Exposed Keys (DO NOT USE):**
 ```
-Key 1: AIzaSyCSwhrmX2T6oUNmU12j6BsTwlQ0H7TxLwU
-Key 2: AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM
-Key 3: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
+Key 1: [REDACTED_REVOKED_GCP_KEY]
+Key 2: [REDACTED_REVOKED_GCP_KEY]
+Key 3: [REDACTED_REVOKED_GCP_KEY]
 ```
 
 **Rotation Steps:**
@@ -181,21 +181,21 @@ Key 3: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
    openssl rand -hex 32
 
    # Example output:
-   # a3f5d9e2c1b8a4f6d3e7c9b1a5f8d2e6c4b9a7f3d8e1c5b2a9f6d4e8c3b7a1f5
+   # example
 
    # Copy this value
    ```
 
 2. **Test format** (should be 64 hex characters):
    ```bash
-   echo "a3f5d9e2c1b8a4f6d3e7c9b1a5f8d2e6c4b9a7f3d8e1c5b2a9f6d4e8c3b7a1f5" | wc -c
+   echo "example" | wc -c
    # Should output: 65 (64 chars + newline)
    ```
 
 3. **Update local environment:**
    ```bash
    # .env.local
-   CSRF_SECRET=a3f5d9e2c1b8a4f6d3e7c9b1a5f8d2e6c4b9a7f3d8e1c5b2a9f6d4e8c3b7a1f5
+   CSRF_SECRET=example
    ```
 
 4. **Update production environment:**
@@ -470,14 +470,14 @@ Key 3: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
 4. **Test git-secrets:**
    ```bash
    # Create test file with fake secret
-   echo "GEMINI_API_KEY=AIzaSyTestKey1234567890123456789012" > test-secret.txt
+   echo "GEMINI_API_KEY=example" > test-secret.txt
 
    # Try to commit (should be BLOCKED)
    git add test-secret.txt
    git commit -m "test: verify git-secrets works"
 
    # Expected output:
-   # test-secret.txt:1:GEMINI_API_KEY=AIzaSyTestKey1234567890123456789012
+   # test-secret.txt:1:GEMINI_API_KEY=example
    # [ERROR] Matched one or more prohibited patterns
 
    # Clean up
@@ -586,14 +586,14 @@ Key 3: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
    ```bash
    # All old secrets should be DELETED/REVOKED
 
-   ❌ OLD Gemini Key 1: AIzaSyCSwhrmX2T6oUNmU12j6BsTwlQ0H7TxLwU → DELETED
-   ❌ OLD Gemini Key 2: AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM → DELETED
-   ❌ OLD Gemini Key 3: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo → DELETED
-   ❌ OLD CSRF Secret: 52647752c113d62bcbbb23bc407df764... → REPLACED
+   ❌ OLD Gemini Key 1: [REDACTED_REVOKED_GCP_KEY] → DELETED
+   ❌ OLD Gemini Key 2: [REDACTED_REVOKED_GCP_KEY] → DELETED
+   ❌ OLD Gemini Key 3: [REDACTED_REVOKED_GCP_KEY] → DELETED
+   ❌ OLD CSRF Secret: example → REPLACED
    ❌ OLD Supabase JWT: +8pd8r9XpGDliEWDrXjQc+6IawZVBdVt4D... → ROTATED
 
    ✅ NEW Gemini Key: AIzaSy[new-key] → ACTIVE
-   ✅ NEW CSRF Secret: a3f5d9e2c1b8a4f6... → ACTIVE
+   ✅ NEW CSRF Secret: example → ACTIVE
    ✅ NEW Supabase JWT: [new-secret] → ACTIVE
    ```
 
@@ -601,7 +601,7 @@ Key 3: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
    ```bash
    # Test OLD Gemini key (should FAIL)
    curl -X POST \
-     "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCSwhrmX2T6oUNmU12j6BsTwlQ0H7TxLwU" \
+     "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=[REDACTED_REVOKED_GCP_KEY]" \
      -H "Content-Type: application/json" \
      -d '{"contents":[{"parts":[{"text":"test"}]}]}'
 
@@ -780,7 +780,7 @@ Key 3: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
    Title: DR-NRPG Production Secrets - 2026-02-03
 
    GEMINI_API_KEY: AIzaSy[new-key-here]
-   CSRF_SECRET: a3f5d9e2c1b8a4f6d3e7c9b1a5f8d2e6...
+   CSRF_SECRET: example
    SUPABASE_JWT_SECRET: [new-secret-from-supabase]
 
    Rotation Date: 2026-02-03

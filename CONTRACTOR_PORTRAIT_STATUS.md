@@ -14,7 +14,7 @@ When attempting to generate contractor portraits via Gemini API, the key in `.en
 Error: API key rejected (403). The key may be compromised or invalid.
 ```
 
-**Root Cause**: The API key `AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo` has been flagged by Google's safety systems as potentially leaked/compromised (likely from being exposed in documentation or conversation history).
+**Root Cause**: The API key `[REDACTED_REVOKED_GCP_KEY]` has been flagged by Google's safety systems as potentially leaked/compromised (likely from being exposed in documentation or conversation history).
 
 **Impact**: Cannot generate Gemini-based contractor portraits until a fresh API key is provided.
 

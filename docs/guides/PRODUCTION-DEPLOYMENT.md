@@ -65,8 +65,8 @@ Dashboard → Settings → API
 
 Save these (you'll need them soon):
 - Project URL: https://xxxxx.supabase.co
-- Anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-- Service role key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+- Anon key: example
+- Service role key: example
 ```
 
 ### Step 1.4: Update RLS Policies (Important!)
@@ -118,8 +118,8 @@ git push origin main
 ```bash
 # Supabase (from Step 1.3)
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=example
+SUPABASE_SERVICE_ROLE_KEY=example
 
 # Environment
 ENVIRONMENT=production
@@ -202,7 +202,7 @@ NEXT_PUBLIC_API_URL=https://your-app.up.railway.app
 
 # Supabase (same as backend)
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=example
 ```
 
 ### Step 3.4: Deploy

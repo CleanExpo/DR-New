@@ -328,7 +328,7 @@ Update your production environment (Vercel, AWS, etc.) with:
 
 ```env
 # Production Stripe Keys
-STRIPE_SECRET_KEY="sk_live_xxxxxxxxxxxxx"
+STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY}"
 STRIPE_PUBLISHABLE_KEY="pk_live_xxxxxxxxxxxxx"
 STRIPE_WEBHOOK_SECRET="whsec_live_xxxxxxxxxxxxx"
 STRIPE_TENANT_WEBHOOK_SECRET="whsec_live_xxxxxxxxxxxxx"
@@ -384,10 +384,10 @@ EMAIL_FROM="Disaster Recovery Australia <noreply@disasterrecovery.com.au>"
 
 ```bash
 # Test production webhooks
-stripe listen --api-key sk_live_xxxxxxxxxxxxx \
+stripe listen --api-key ${STRIPE_SECRET_KEY} \
   --forward-to https://disasterrecovery.com.au/api/webhooks/stripe/tenant
 
-stripe trigger invoice.payment_succeeded --api-key sk_live_xxxxxxxxxxxxx
+stripe trigger invoice.payment_succeeded --api-key ${STRIPE_SECRET_KEY}
 ```
 
 ---
@@ -542,7 +542,7 @@ WHERE "stripeEventId" = 'evt_xxxxxxxxxxxxx';
 **Check 1:** Verify Resend API key
 ```bash
 curl -X POST https://api.resend.com/emails \
-  -H "Authorization: Bearer YOUR_RESEND_API_KEY" \
+  -H "Authorization: Bearer ${API_TOKEN}" \
   -H "Content-Type: application/json" \
   -d '{
     "from": "test@yourdom ain.com",

@@ -177,13 +177,13 @@ Professional icon generation is **BLOCKED** due to a **critical security issue**
 **API Security Status** ⚠️ **URGENT**:
 - **Model Name**: `gemini-3-pro-image-preview` (correct model for January 2026)
 - **Current Status**: 403 Forbidden - API key reported as leaked
-- **API Key**: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM` (from .env.local, line 19) - **DISABLED BY GOOGLE**
+- **API Key**: `[REDACTED_REVOKED_GCP_KEY]` (from .env.local, line 19) - **DISABLED BY GOOGLE**
 - **Error Message**: "Your API key was reported as leaked. Please use another API key."
 
 **IMMEDIATE ACTION REQUIRED**:
 1. **Regenerate API Key** (URGENT)
    - Go to: Google Cloud Console → APIs & Services → Credentials
-   - Delete compromised key: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM`
+   - Delete compromised key: `[REDACTED_REVOKED_GCP_KEY]`
    - Create new API key with Gemini API access
 
 2. **Update .env.local**

@@ -6,7 +6,13 @@
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = 'https://lccqasmurmsisnnjqqmr.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxjY3Fhc211cm1zaXNubmpxcW1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgwNzI1MjUsImV4cCI6MjA3MzY0ODUyNX0.7W4kXBxyRZRFMawE0xNGkB-9lW0V-cjTnr6xUkOLlag'
+function requireEnvironmentVariable(name) {
+  const value = process.env[name]
+  if (!value) throw new Error(`${name} is required`)
+  return value
+}
+
+const supabaseAnonKey = requireEnvironmentVariable('NEXT_PUBLIC_SUPABASE_ANON_KEY')
 
 async function testRealtimeConnection() {
   console.log('🔌 Testing Supabase Realtime Connection...\n')

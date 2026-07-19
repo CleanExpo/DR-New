@@ -141,7 +141,7 @@ if (Test-Path $envFile) {
     Write-Host ""
     Write-Host "Then add your Supabase credentials:" -ForegroundColor White
     Write-Host "  NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co" -ForegroundColor Gray
-    Write-Host "  NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." -ForegroundColor Gray
+    Write-Host "  NEXT_PUBLIC_SUPABASE_ANON_KEY=example" -ForegroundColor Gray
 }
 
 Write-Host ""

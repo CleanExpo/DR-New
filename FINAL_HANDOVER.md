@@ -380,7 +380,7 @@ VALUES (gen_random_uuid(), 'admin@example.com', 'ADMIN', true, 'Admin User');
 ```bash
 # Trigger matching job manually
 curl -X POST https://your-domain.com/api/admin/matching/trigger \
-  -H "Authorization: Bearer YOUR_ADMIN_TOKEN" \
+  -H "Authorization: Bearer ${API_TOKEN}" \
   -d '{"claimId": "claim-id-here"}'
 ```
 

@@ -152,9 +152,9 @@ Security Contact: admin@disasterrecovery.com.au or accounts@disasterrecovery.com
 **Count:** 3 different API keys found in git history
 **Risk:** Unauthorized AI API access, cost abuse, data leakage
 **Keys Found:**
-- `AIzaSyCSwhrmX2T6oUNmU12j6BsTwlQ0H7TxLwU`
-- `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM`
-- `AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo`
+- `[REDACTED_REVOKED_GCP_KEY]`
+- `[REDACTED_REVOKED_GCP_KEY]`
+- `[REDACTED_REVOKED_GCP_KEY]`
 
 **IMMEDIATE ACTIONS REQUIRED:**
 1. Rotate all Gemini API keys at https://makersuite.google.com/app/apikey

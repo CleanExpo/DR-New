@@ -35,7 +35,7 @@ Generate a new CSRF token for form submissions.
 **Response**:
 ```json
 {
-  "token": "abc123def456...xyz789",
+  "token": "example",
   "expiresIn": 86400000
 }
 ```
@@ -97,7 +97,7 @@ Initiate 2FA setup for authenticated user. Returns QR code and backup codes.
 ```json
 {
   "success": true,
-  "secret": "JBSWY3DPEBLW64TMMQQQ",
+  "secret": "example",
   "qrCode": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...",
   "backupCodes": [
     "ABCD-EFGH-IJKL",
@@ -105,7 +105,7 @@ Initiate 2FA setup for authenticated user. Returns QR code and backup codes.
     "XYZA-BCDE-FGHI",
     ...
   ],
-  "manualEntryKey": "JBSWY3DPEBLW64TMMQQQ",
+  "manualEntryKey": "example",
   "instructions": [
     "1. Open your authenticator app",
     "2. Scan the QR code above",
@@ -163,7 +163,7 @@ Verify TOTP code and enable 2FA. Must be called after `/api/auth/2fa/setup`.
 ```json
 {
   "email": "user@example.com",
-  "secret": "JBSWY3DPEBLW64TMMQQQ",
+  "secret": "example",
   "code": "123456",
   "backupCodes": [
     "ABCD-EFGH-IJKL",

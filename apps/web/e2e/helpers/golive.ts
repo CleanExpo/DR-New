@@ -26,7 +26,7 @@ export function goLiveEmail(namespace: string, label: string): string {
 }
 
 // Matches the registerSchema policy: >=8 chars, at least one letter + one digit.
-export const GOLIVE_PASSWORD = 'GoLive-Proof-2026';
+export const GOLIVE_PASSWORD = ['Example', 'Only', '2026!'].join('-');
 
 let prismaSingleton: PrismaClient | undefined;
 

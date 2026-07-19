@@ -11,7 +11,7 @@
 
 ### 1. New CSRF Secret Generated ✓
 ```
-d4be1cfe220f9bb2138e8cb435930efee89b8e6226051859177f04a54b2a8ca3
+example
 ```
 - ✅ Generated using `openssl rand -hex 32`
 - ✅ 64 hex characters (correct format)
@@ -99,9 +99,9 @@ d4be1cfe220f9bb2138e8cb435930efee89b8e6226051859177f04a54b2a8ca3
 
 **Exposed keys to DELETE (after new key is working):**
 ```
-AIzaSyCSwhrmX2T6oUNmU12j6BsTwlQ0H7TxLwU
-AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM
-AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
+[REDACTED_REVOKED_GCP_KEY]
+[REDACTED_REVOKED_GCP_KEY]
+[REDACTED_REVOKED_GCP_KEY]
 ```
 
 ---
@@ -159,7 +159,7 @@ vercel env add GEMINI_API_KEY production
 
 # Add new CSRF secret
 vercel env add CSRF_SECRET production
-# Paste: d4be1cfe220f9bb2138e8cb435930efee89b8e6226051859177f04a54b2a8ca3
+# Paste: example
 ```
 
 **Method 2: Using Vercel Dashboard**
@@ -170,7 +170,7 @@ vercel env add CSRF_SECRET production
    - Click "Save"
 3. Find `CSRF_SECRET`:
    - Click "Edit"
-   - Replace value with: `d4be1cfe220f9bb2138e8cb435930efee89b8e6226051859177f04a54b2a8ca3`
+   - Replace value with: `example`
    - Click "Save"
 
 **When complete, confirm:**
@@ -269,7 +269,7 @@ vercel --prod
 3. **Verify deletion:**
    - Try to use old key in API call (should return 403)
    ```bash
-   curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCSwhrmX2T6oUNmU12j6BsTwlQ0H7TxLwU"
+   curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=[REDACTED_REVOKED_GCP_KEY]"
    # Expected: Error 403 - API key not valid
    ```
 
@@ -391,7 +391,7 @@ Check for unauthorized usage and report back.
 - Verified working in production
 
 **2. CSRF_SECRET** ✅
-- New secret generated: `d4be1cfe220f9bb2138e8cb435930efee89b8e6226051859177f04a54b2a8ca3`
+- New secret generated: `example`
 - Deployed to Vercel production
 - Verified working (no CSRF errors)
 

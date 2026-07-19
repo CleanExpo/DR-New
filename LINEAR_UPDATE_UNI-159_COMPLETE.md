@@ -27,8 +27,8 @@ Successfully configured Stripe tenant billing system for multi-tenant SaaS subsc
 ## Configuration Details
 
 ### API Keys (Test Mode)
-- ✅ Secret Key: `sk_test_51Sw9pa...` (configured in .env)
-- ✅ Publishable Key: `pk_test_51Sw9pa...` (configured in .env)
+- ✅ Secret Key: `example` (configured in .env)
+- ✅ Publishable Key: `example` (configured in .env)
 - ✅ API Connection: **WORKING** (verified via Stripe API)
 
 **Location:** `apps/web/.env` (gitignored, secure)

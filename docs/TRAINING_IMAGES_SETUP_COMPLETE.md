@@ -66,10 +66,10 @@ Reason: API_KEY_INVALID
 
 ### Current API Key (EXPIRED)
 **Location:** `.env.local` (root directory)
-**Value:** `AIzaSyCJXYo-UtC_US2befMYIHnRxkoETTmZu2Y`
+**Value:** `[REDACTED_REVOKED_GCP_KEY]`
 
 ### Alternative API Keys Found
-**Production:** `.env.production.example` contains `AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo`
+**Production:** `.env.production.example` contains `[REDACTED_REVOKED_GCP_KEY]`
 
 ---
 

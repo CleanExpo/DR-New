@@ -152,7 +152,7 @@ pnpm dev
 
 # Terminal 2: Call cron endpoint with authorization
 curl http://localhost:3000/api/cron/health-check \
-  -H "Authorization: Bearer your-cron-secret"
+  -H "Authorization: Bearer ${API_TOKEN}"
 ```
 
 Or use a tool like [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/).
@@ -293,7 +293,7 @@ jobs:
 crontab -e
 
 # Add line:
-0 9 * * * curl https://your-app.com/api/cron/daily-report -H "Authorization: Bearer your-secret"
+0 9 * * * curl https://your-app.com/api/cron/daily-report -H "Authorization: Bearer ${API_TOKEN}"
 ```
 
 ## Best Practices

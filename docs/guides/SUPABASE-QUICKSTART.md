@@ -165,8 +165,8 @@ Open `apps/backend/.env.local` in your editor and add your credentials:
 ```bash
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=example
+SUPABASE_SERVICE_ROLE_KEY=example
 
 # Environment
 ENVIRONMENT=development

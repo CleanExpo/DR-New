@@ -101,10 +101,10 @@ Response:
 ```json
 {
   "success": true,
-  "secret": "JBSWY3DPEBLW64TMMQQ",
+  "secret": "example",
   "qrCode": "data:image/png;base64,...",
   "backupCodes": ["XXXX-XXXX-XXXX", ...],
-  "manualEntryKey": "JBSWY3DPEBLW64TMMQQ"
+  "manualEntryKey": "example"
 }
 ```
 
@@ -113,7 +113,7 @@ Verify TOTP code and enable 2FA
 ```json
 {
   "email": "user@example.com",
-  "secret": "JBSWY3DPEBLW64TMMQQ",
+  "secret": "example",
   "code": "123456",
   "backupCodes": ["XXXX-XXXX-XXXX", ...]
 }

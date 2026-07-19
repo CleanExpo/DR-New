@@ -211,7 +211,7 @@ The claim assist API (`/api/ai/claim-assist`) will automatically use Vertex AI i
 # Test claim analysis endpoint
 curl -X POST http://localhost:3000/api/ai/claim-assist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_TEST_TOKEN" \
+  -H "Authorization: Bearer ${API_TOKEN}" \
   -d '{
     "action": "analyze_description",
     "data": {

@@ -155,7 +155,7 @@ your preferred testing time!
 # Create SendGrid email list
 curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
-  --header 'Authorization: Bearer YOUR_SENDGRID_API_KEY' \
+  --header 'Authorization: Bearer ${API_TOKEN}' \
   --header 'Content-Type: application/json' \
   --data '{
     "personalizations": [

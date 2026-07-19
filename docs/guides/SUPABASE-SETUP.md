@@ -152,8 +152,8 @@ Edit `apps/backend/.env.local`:
 ```bash
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=example
+SUPABASE_SERVICE_ROLE_KEY=example
 
 # Environment
 ENVIRONMENT=development
@@ -418,8 +418,8 @@ Set these in your hosting platform (Vercel, Railway, etc.):
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=example
+SUPABASE_SERVICE_ROLE_KEY=example
 ENVIRONMENT=production
 DEBUG=false
 ```

@@ -32,7 +32,7 @@ this.model = this.client.getGenerativeModel({ model: 'gemini-3-pro' });
 ## API Key Status
 
 **Fresh API Key**: ✅ VALIDATED
-- Key: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM`
+- Key: `[REDACTED_REVOKED_GCP_KEY]`
 - Status: 200 OK (verified in earlier session)
 - Location: `.env.local` (Line 19)
 - Validation: ✅ Confirmed working
