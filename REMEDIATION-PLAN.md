@@ -232,7 +232,7 @@ Non-executable documentation placeholder: `<64-hex-secret>`. No generation, depl
 
 **Exposed Secret (DO NOT USE):**
 ```
-+8pd8r9XpGDliEWDrXjQc+6IawZVBdVt4DfSEPicw1cgH2c8oSd09/yV4gUmzsG1z5lXggpBklFCuMjPrN/ptg==
+<SUPABASE-ANON-JWT-REDACTED>
 ```
 
 **Rotation Steps:**
