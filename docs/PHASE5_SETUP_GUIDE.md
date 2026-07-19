@@ -31,7 +31,7 @@ The following **MUST** be set for Phase 5 to work:
 ```bash
 # CSRF Protection (CRITICAL)
 vercel env add CSRF_SECRET production
-# Then paste: 52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434
+# Then paste a newly generated value from the approved secret manager.
 
 # Security Alert Email
 vercel env add SECURITY_ALERT_EMAIL production
@@ -104,7 +104,7 @@ git push origin main
 **Critical Variables:**
 | Name | Value | Notes |
 |------|-------|-------|
-| `CSRF_SECRET` | `52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434` | Required for CSRF protection |
+| `CSRF_SECRET` | Generate a new unique value and store it in the secret manager | Required for CSRF protection |
 | `SECURITY_ALERT_EMAIL` | `security@disasterrecovery.com.au` | Required for alerts |
 | `FAILED_LOGIN_THRESHOLD` | `5` | Failed attempts before lockout |
 | `FAILED_LOGIN_WINDOW` | `15` | Time window in minutes |
@@ -180,7 +180,7 @@ vercel env list production | grep CSRF_SECRET
 
 # If missing, set it:
 vercel env add CSRF_SECRET production
-# Paste: 52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434
+# Paste a newly generated value from the approved secret manager.
 
 # Redeploy:
 git push origin main

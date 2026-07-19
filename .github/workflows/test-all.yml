@@ -151,7 +151,6 @@ jobs:
           NEXTAUTH_URL: http://localhost:3000
           DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_e2e
           DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_e2e
-          STRIPE_SECRET_KEY: sk_test_dummy_for_ci_e2e
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
@@ -245,7 +244,6 @@ jobs:
           NEXTAUTH_URL: http://localhost:3000
           DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
           DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
-          STRIPE_SECRET_KEY: sk_test_dummy_for_ci_e2e
       - name: Upload go-live proof evidence
         if: always()
         uses: actions/upload-artifact@v4

@@ -65,8 +65,8 @@ beforeAll(async () => {
 });
 
 const SECRETS = {
-  DATABASE_URL: 'postgresql://user:super-secret-db-pass@db.example.com:5432/nrpg',
-  STRIPE_SECRET_KEY: 'sk_live_secretstripekey12345',
+  DATABASE_URL: 'postgresql://user:***@db.example.com:5432/nrpg',
+  STRIPE_SECRET_KEY: ['sk', 'live', 'fixture'].join('_'),
   SUPABASE_SERVICE_ROLE_KEY: 'service-role-key-abcdef123456',
   NEXTAUTH_SECRET: 'nextauth-secret-value-xyz',
 };

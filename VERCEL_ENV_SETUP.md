@@ -15,7 +15,7 @@ Click **Add New Variable** for each:
 
 | # | Name | Value | Environment |
 |---|------|-------|-------------|
-| 1 | `CSRF_SECRET` | `52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434` | Production |
+| 1 | `CSRF_SECRET` | Generate a new unique value and store it in the secret manager | Production |
 | 2 | `SECURITY_ALERT_EMAIL` | `security@disasterrecovery.com.au` | Production |
 | 3 | `FAILED_LOGIN_THRESHOLD` | `5` | Production |
 | 4 | `FAILED_LOGIN_WINDOW` | `15` | Production |

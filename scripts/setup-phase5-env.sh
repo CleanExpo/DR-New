@@ -35,7 +35,8 @@ echo ""
 
 # Critical Variables
 echo "1️⃣  Setting CSRF_SECRET (CRITICAL)..."
-echo "52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434" | vercel env add CSRF_SECRET production || true
+: "${CSRF_SECRET:?Set CSRF_SECRET securely in the current shell before running this script}"
+printf '%s\n' "$CSRF_SECRET" | vercel env add CSRF_SECRET production
 
 echo "2️⃣  Setting SECURITY_ALERT_EMAIL..."
 echo "security@disasterrecovery.com.au" | vercel env add SECURITY_ALERT_EMAIL production || true

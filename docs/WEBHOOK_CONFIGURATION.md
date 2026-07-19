@@ -328,7 +328,7 @@ Update your production environment (Vercel, AWS, etc.) with:
 
 ```env
 # Production Stripe Keys
-STRIPE_SECRET_KEY="sk_live_xxxxxxxxxxxxx"
+STRIPE_SECRET_KEY="<set-in-secret-manager>"
 STRIPE_PUBLISHABLE_KEY="pk_live_xxxxxxxxxxxxx"
 STRIPE_WEBHOOK_SECRET="whsec_live_xxxxxxxxxxxxx"
 STRIPE_TENANT_WEBHOOK_SECRET="whsec_live_xxxxxxxxxxxxx"
@@ -340,8 +340,9 @@ NEXT_PUBLIC_BASE_URL="https://disasterrecovery.com.au"
 # ⚠️  Template only — replace with real values from your secrets manager (Vault, AWS SSM, Vercel env vars, etc.)
 DATABASE_URL="postgresql://user:xxxxxxxxxxxxx@host:5432/dr_nrpg_prod?sslmode=require"
 
-# Production Email
-RESEND_API_KEY="re_live_xxxxxxxxxxxxx"
+# Production Email — export the value from a secure shell before CLI-based setup.
+: "${RESEND_API_KEY:?RESEND_API_KEY must be set}"
+export RESEND_API_KEY
 EMAIL_FROM="Disaster Recovery Australia <noreply@disasterrecovery.com.au>"
 ```
 
@@ -384,10 +385,10 @@ EMAIL_FROM="Disaster Recovery Australia <noreply@disasterrecovery.com.au>"
 
 ```bash
 # Test production webhooks
-stripe listen --api-key sk_live_xxxxxxxxxxxxx \
+stripe listen --api-key ${STRIPE_SECRET_KEY} \
   --forward-to https://disasterrecovery.com.au/api/webhooks/stripe/tenant
 
-stripe trigger invoice.payment_succeeded --api-key sk_live_xxxxxxxxxxxxx
+stripe trigger invoice.payment_succeeded --api-key ${STRIPE_SECRET_KEY}
 ```
 
 ---
@@ -541,11 +542,12 @@ WHERE "stripeEventId" = 'evt_xxxxxxxxxxxxx';
 
 **Check 1:** Verify Resend API key
 ```bash
+export RESEND_API_KEY="${RESEND_API_KEY:?Supply RESEND_API_KEY from the secure credential store}"
 curl -X POST https://api.resend.com/emails \
-  -H "Authorization: Bearer YOUR_RESEND_API_KEY" \
+  -H "Authorization: Bearer ${RESEND_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "from": "test@yourdom ain.com",
+    "from": "test@yourdomain.com",
     "to": "test@example.com",
     "subject": "Test",
     "text": "Test email"

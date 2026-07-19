@@ -42,8 +42,8 @@ Content-Type: application/json
 {
   "success": true,
   "data": {
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "accessToken": "example",
+    "refreshToken": "example",
     "expiresIn": 3600,
     "user": {
       "id": "user_123",

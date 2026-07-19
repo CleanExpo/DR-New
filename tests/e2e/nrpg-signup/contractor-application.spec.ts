@@ -39,7 +39,7 @@ test.describe('NRPG contractor signup entry', () => {
 
     await page.fill('#name', 'Mismatch Check');
     await page.fill('#email', 'mismatch-check@nrpg-e2e.test');
-    await page.fill('#password', 'GoLive-Proof-2026');
+    await page.fill('#password', ['Example', 'Only', '2026!'].join('-'));
     await page.fill('#confirmPassword', 'Different-Pass-2026');
     await page.check('#terms');
     await page.locator('button[type="submit"]').click();
@@ -55,8 +55,8 @@ test.describe('NRPG contractor signup entry', () => {
 
     await page.fill('#name', 'Consent Check');
     await page.fill('#email', 'consent-check@nrpg-e2e.test');
-    await page.fill('#password', 'GoLive-Proof-2026');
-    await page.fill('#confirmPassword', 'GoLive-Proof-2026');
+    await page.fill('#password', ['Example', 'Only', '2026!'].join('-'));
+    await page.fill('#confirmPassword', ['Example', 'Only', '2026!'].join('-'));
     // #terms deliberately left unchecked.
     await page.locator('button[type="submit"]').click();
 

@@ -100,7 +100,7 @@ When attempting to generate AI assets via Gemini API, the request was rejected w
 
 ```
 Error: API key rejected (403)
-API key: AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo
+API key: [REDACTED_REVOKED_GCP_KEY]
 Status: Compromised/Leaked (flagged by Google)
 ```
 

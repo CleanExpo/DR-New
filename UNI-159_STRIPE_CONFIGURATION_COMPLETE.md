@@ -20,8 +20,8 @@ Successfully configured Stripe tenant-level billing integration for the multi-te
 ### 1. API Keys ✅
 
 **Test Mode Keys:**
-- ✅ Secret Key: `sk_test_51Sw9pa...` (configured)
-- ✅ Publishable Key: `pk_test_51Sw9pa...` (configured)
+- Secret Key: `<redacted:stripe-secret-key>` (actual value omitted)
+- Publishable Key: `<redacted:stripe-publishable-key>` (actual value omitted)
 - ✅ API Connection: **WORKING** (verified via Stripe API)
 
 **Location:** `apps/web/.env`
@@ -88,8 +88,8 @@ Successfully configured Stripe tenant-level billing integration for the multi-te
 
 ```bash
 # Stripe API Keys (Test Mode)
-STRIPE_SECRET_KEY="sk_test_51Sw9paH5vtkInhYU..."
-STRIPE_PUBLISHABLE_KEY="pk_test_51Sw9paH5vtkInhYU..."
+STRIPE_SECRET_KEY="<set-in-secret-manager>"
+STRIPE_PUBLISHABLE_KEY="<set-in-secret-manager>"
 
 # Stripe Tenant Subscription Price IDs
 STRIPE_TENANT_BASIC_PRICE_ID="price_1SwAZFH5vtkInhYUKyXIapfz"

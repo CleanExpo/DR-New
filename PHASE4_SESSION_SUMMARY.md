@@ -224,7 +224,7 @@ this.model = this.client.getGenerativeModel({ model: 'gemini-3-pro' });
 - Well under budget: <$50/month
 
 **API Status**:
-- ✅ Fresh key validated: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM`
+- ✅ Fresh key validated: `[REDACTED_REVOKED_GCP_KEY]`
 - ✅ 200 OK response confirmed
 - ✅ Ready for image generation calls
 

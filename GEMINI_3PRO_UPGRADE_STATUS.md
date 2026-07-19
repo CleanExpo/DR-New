@@ -31,11 +31,7 @@ this.model = this.client.getGenerativeModel({ model: 'gemini-3-pro' });
 
 ## API Key Status
 
-**Fresh API Key**: ✅ VALIDATED
-- Key: `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM`
-- Status: 200 OK (verified in earlier session)
-- Location: `.env.local` (Line 19)
-- Validation: ✅ Confirmed working
+Credential values are intentionally omitted. Any key validation or provider status must be verified out of band against the current operator-managed credential; this document does not establish that a key is configured or working.
 
 ---
 

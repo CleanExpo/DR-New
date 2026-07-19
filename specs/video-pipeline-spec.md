@@ -270,7 +270,7 @@ GEMINI_API_KEY=
 
 # ElevenLabs
 ELEVENLABS_API_KEY=
-ELEVENLABS_VOICE_ID=  # Australian male voice
+ELEVENLABS_VOICE_ID=<voice-id>  # Non-runnable placeholder; choose an approved Australian voice
 
 # YouTube Data API
 YOUTUBE_CLIENT_ID=

@@ -152,9 +152,9 @@ Security Contact: admin@disasterrecovery.com.au or accounts@disasterrecovery.com
 **Count:** 3 different API keys found in git history
 **Risk:** Unauthorized AI API access, cost abuse, data leakage
 **Keys Found:**
-- `AIzaSyCSwhrmX2T6oUNmU12j6BsTwlQ0H7TxLwU`
-- `AIzaSyDruLQXB-vtHNUbbFNEjr3wI0sA3OqdFKM`
-- `AIzaSyAkzCSDVO0nVHei26kwPvkatwU_gSJeLYo`
+- `[REDACTED_REVOKED_GCP_KEY]`
+- `[REDACTED_REVOKED_GCP_KEY]`
+- `[REDACTED_REVOKED_GCP_KEY]`
 
 **IMMEDIATE ACTIONS REQUIRED:**
 1. Rotate all Gemini API keys at https://makersuite.google.com/app/apikey
@@ -163,7 +163,7 @@ Security Contact: admin@disasterrecovery.com.au or accounts@disasterrecovery.com
 4. Monitor for suspicious AI API calls
 
 ### Finding 2: CSRF Secret Exposed ⚠️ HIGH
-**Value:** `52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434`
+**Value:** `<redacted:csrf-secret>`
 **Risk:** CSRF attacks can bypass security if secret is known
 
 **IMMEDIATE ACTIONS REQUIRED:**
@@ -173,7 +173,7 @@ Security Contact: admin@disasterrecovery.com.au or accounts@disasterrecovery.com
 4. Monitor for CSRF attack attempts
 
 ### Finding 3: Supabase JWT Secret Exposed ⚠️ CRITICAL
-**Value:** `+8pd8r9XpGDliEWDrXjQc+6IawZVBdVt4DfSEPicw1cgH2c8oSd09/yV4gUmzsG1z5lXggpBklFCuMjPrN/ptg==`
+**Value:** `<redacted:supabase-jwt-secret>`
 **Risk:** Ability to forge JWT tokens and bypass authentication entirely
 
 **IMMEDIATE ACTIONS REQUIRED:**

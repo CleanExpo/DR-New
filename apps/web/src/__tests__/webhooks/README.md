@@ -361,8 +361,9 @@ STRIPE_PUBLISHABLE_KEY="pk_test_xxxxxxxxxxxxx"
 STRIPE_WEBHOOK_SECRET="whsec_test_xxxxxxxxxxxxx"
 STRIPE_TENANT_WEBHOOK_SECRET="whsec_test_tenant_xxxxxxxxx"
 
-# Email (optional - mocked in tests)
-RESEND_API_KEY="re_test_xxxxxxxxxxxxx"
+# Email (optional - mocked in tests). Supply it from the secure shell environment.
+: "${RESEND_API_KEY:?RESEND_API_KEY must be set when exercising email delivery}"
+export RESEND_API_KEY
 ```
 
 ### Test Database Setup
@@ -515,7 +516,8 @@ stripe listen --forward-to localhost:3000/api/webhooks/stripe/tenant
 **Solution:**
 ```bash
 # Check Resend API key is valid
-curl -H "Authorization: Bearer YOUR_API_KEY" https://api.resend.com/domains
+export RESEND_API_KEY="${RESEND_API_KEY:?Supply RESEND_API_KEY from the secure credential store}"
+curl -H "Authorization: Bearer ${RESEND_API_KEY}" https://api.resend.com/domains
 
 # Check email logs in webhook handler console output
 # Emails are non-blocking, so check for error logs
