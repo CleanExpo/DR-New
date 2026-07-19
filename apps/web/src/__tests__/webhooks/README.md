@@ -361,8 +361,9 @@ STRIPE_PUBLISHABLE_KEY="pk_test_xxxxxxxxxxxxx"
 STRIPE_WEBHOOK_SECRET="whsec_test_xxxxxxxxxxxxx"
 STRIPE_TENANT_WEBHOOK_SECRET="whsec_test_tenant_xxxxxxxxx"
 
-# Email (optional - mocked in tests)
-RESEND_API_KEY="re_test_xxxxxxxxxxxxx"
+# Email (optional - mocked in tests). Supply it from the secure shell environment.
+: "${RESEND_API_KEY:?RESEND_API_KEY must be set when exercising email delivery}"
+export RESEND_API_KEY
 ```
 
 ### Test Database Setup

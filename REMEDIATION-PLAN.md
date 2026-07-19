@@ -163,61 +163,25 @@ Key 3: [REDACTED_REVOKED_GCP_KEY]
 
 ## Step 2: CSRF Secret Rotation
 
-### 2.1 Generate New CSRF Secret
+### 2.1 Validate Operator-Supplied CSRF Secret
 
-**Time:** 5 minutes
-**Priority:** HIGH
+Do not generate, store, or display a credential in this document. Supply it from secure operator input, then validate its shape before any provider or network action:
 
-**Exposed Secret (DO NOT USE):**
+```bash
+if [ -z "${CSRF_SECRET:-}" ]; then
+  echo "CSRF_SECRET must be supplied through secure operator input" >&2
+  exit 1
+fi
+if ! [[ "${CSRF_SECRET}" =~ ^[a-fA-F0-9]{64}$ ]]; then
+  echo "CSRF_SECRET must contain exactly 64 hexadecimal characters" >&2
+  exit 1
+fi
+export CSRF_SECRET
+# The deployment platform prompts securely; do not place the value on the command line.
+vercel env add CSRF_SECRET production
 ```
-52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434
-```
 
-**Rotation Steps:**
-
-1. **Generate new secret:**
-   ```bash
-   # Generate 32-byte hex string (64 characters)
-   openssl rand -hex 32
-
-   # Example output:
-   # example
-
-   # Copy this value
-   ```
-
-2. **Test format** (should be 64 hex characters):
-   ```bash
-   echo "example" | wc -c
-   # Should output: 65 (64 chars + newline)
-   ```
-
-3. **Update local environment:**
-   ```bash
-   # .env.local
-   CSRF_SECRET=example
-   ```
-
-4. **Update production environment:**
-   ```bash
-   vercel env add CSRF_SECRET production
-   # Paste new secret when prompted
-   ```
-
-5. **Redeploy production:**
-   ```bash
-   vercel --prod
-   ```
-
-**Checkboxes:**
-- [ ] New CSRF secret generated (64 hex characters)
-- [ ] Format verified (openssl rand -hex 32)
-- [ ] Updated local .env.local
-- [ ] Updated Vercel production environment
-- [ ] Production redeployed
-- [ ] New secret stored in password manager
-
----
+Non-executable documentation placeholder: `<64-hex-secret>`. No generation, deployment, or verification is established by this plan.
 
 ### 2.2 Invalidate Existing CSRF Tokens
 
@@ -467,22 +431,19 @@ Key 3: [REDACTED_REVOKED_GCP_KEY]
    git secrets --add --allowed 'password|secret|token|api_key|private_key'
    ```
 
-4. **Test git-secrets:**
+4. **Test git-secrets with an ephemeral positive fixture:**
    ```bash
-   # Create test file with fake secret
-   echo "GEMINI_API_KEY=example" > test-secret.txt
-
-   # Try to commit (should be BLOCKED)
-   git add test-secret.txt
-   git commit -m "test: verify git-secrets works"
-
-   # Expected output:
-   # test-secret.txt:1:GEMINI_API_KEY=example
-   # [ERROR] Matched one or more prohibited patterns
-
-   # Clean up
-   git reset HEAD test-secret.txt
-   rm test-secret.txt
+   set -eu
+   fixture=$(mktemp)
+   trap 'rm -f "$fixture"' EXIT
+   suffix=$(openssl rand -base64 48 | tr -dc 'A-Za-z0-9_-' | cut -c1-35)
+   test "${#suffix}" -eq 35
+   printf 'GEMINI_API_KEY=AIza%s\n' "$suffix" > "$fixture"
+   if git secrets --scan "$fixture" >/dev/null 2>&1; then
+     echo "git-secrets failed to reject the synthetic fixture" >&2
+     exit 1
+   fi
+   echo "git-secrets rejected the ephemeral synthetic fixture"
    ```
 
 5. **Scan existing repository** (optional - already done):
@@ -577,64 +538,32 @@ Key 3: [REDACTED_REVOKED_GCP_KEY]
 
 ## Step 5: Verification & Testing
 
-### 5.1 Verify All Secrets Rotated
+### 5.1 Verify Revocation and Replacement Without Exposing Values
 
-**Time:** 15 minutes
-**Priority:** CRITICAL
+Require both credentials from secure operator input and fail before any network request when either is absent:
 
-1. **Create verification checklist:**
-   ```bash
-   # All old secrets should be DELETED/REVOKED
+```bash
+if [ -z "${OLD_GEMINI_API_KEY:-}" ] || [ -z "${NEW_GEMINI_API_KEY:-}" ]; then
+  echo "Both OLD_GEMINI_API_KEY and NEW_GEMINI_API_KEY must be set" >&2
+  exit 1
+fi
 
-   ❌ OLD Gemini Key 1: [REDACTED_REVOKED_GCP_KEY] → DELETED
-   ❌ OLD Gemini Key 2: [REDACTED_REVOKED_GCP_KEY] → DELETED
-   ❌ OLD Gemini Key 3: [REDACTED_REVOKED_GCP_KEY] → DELETED
-   ❌ OLD CSRF Secret: example → REPLACED
-   ❌ OLD Supabase JWT: +8pd8r9XpGDliEWDrXjQc+6IawZVBdVt4D... → ROTATED
+old_status=$(curl -sS -o /dev/null -w '%{http_code}' \
+  "https://generativelanguage.googleapis.com/v1beta/models?key=${OLD_GEMINI_API_KEY}")
+new_status=$(curl -sS -o /dev/null -w '%{http_code}' \
+  "https://generativelanguage.googleapis.com/v1beta/models?key=${NEW_GEMINI_API_KEY}")
 
-   ✅ NEW Gemini Key: AIzaSy[new-key] → ACTIVE
-   ✅ NEW CSRF Secret: example → ACTIVE
-   ✅ NEW Supabase JWT: [new-secret] → ACTIVE
-   ```
+if [ "$old_status" != "403" ] || [ "$new_status" != "200" ]; then
+  echo "Gemini revocation/replacement verification failed" >&2
+  exit 1
+fi
+echo "Gemini revocation/replacement status verified without printing credentials"
+```
 
-2. **Test old secrets are revoked:**
-   ```bash
-   # Test OLD Gemini key (should FAIL)
-   curl -X POST \
-     "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=[REDACTED_REVOKED_GCP_KEY]" \
-     -H "Content-Type: application/json" \
-     -d '{"contents":[{"parts":[{"text":"test"}]}]}'
-
-   # Expected: Error 403 - API key not valid
-
-   # Test NEW Gemini key (should SUCCEED)
-   curl -X POST \
-     "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=[NEW_KEY]" \
-     -H "Content-Type: application/json" \
-     -d '{"contents":[{"parts":[{"text":"test"}]}]}'
-
-   # Expected: Valid response with generated text
-   ```
-
-3. **Verify production environment:**
-   ```bash
-   # Check Vercel environment variables
-   vercel env ls production
-
-   # Should show:
-   # GEMINI_API_KEY         (Updated 2026-02-03)
-   # CSRF_SECRET            (Updated 2026-02-03)
-   # SUPABASE_JWT_SECRET    (Updated 2026-02-03)
-   ```
-
-**Checkboxes:**
-- [ ] All old secrets confirmed DELETED/REVOKED
-- [ ] Old Gemini key returns 403 error (revoked)
-- [ ] New Gemini key returns valid response (active)
-- [ ] Production environment variables verified (all updated)
-- [ ] No references to old secrets in codebase (grep check)
-
----
+- [ ] Secure operator supplied both values
+- [ ] Old credential returned the expected revoked status
+- [ ] New credential returned the expected active status
+- [ ] Neither credential was printed, committed, or written to a file
 
 ### 5.2 End-to-End Production Testing
 

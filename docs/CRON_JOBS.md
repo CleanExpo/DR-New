@@ -151,8 +151,9 @@ Cron jobs don't run locally. Test them manually:
 pnpm dev
 
 # Terminal 2: Call cron endpoint with authorization
+: "${CRON_SECRET:?CRON_SECRET must be set}"
 curl http://localhost:3000/api/cron/health-check \
-  -H "Authorization: Bearer ${API_TOKEN}"
+  -H "Authorization: Bearer ${CRON_SECRET}"
 ```
 
 Or use a tool like [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/).
@@ -281,9 +282,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger daily report
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
+          : "${CRON_SECRET:?CRON_SECRET must be set}"
           curl https://your-app.vercel.app/api/cron/daily-report \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
+            -H "Authorization: Bearer ${CRON_SECRET}"
 ```
 
 ### Option 2: Self-Hosted Cron
@@ -293,7 +297,7 @@ jobs:
 crontab -e
 
 # Add line:
-0 9 * * * curl https://your-app.com/api/cron/daily-report -H "Authorization: Bearer ${API_TOKEN}"
+0 9 * * * test -n "$CRON_SECRET" && curl https://your-app.com/api/cron/daily-report -H "Authorization: Bearer ${CRON_SECRET}"
 ```
 
 ## Best Practices

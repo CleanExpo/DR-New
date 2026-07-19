@@ -69,7 +69,6 @@ jobs:
           NEXTAUTH_URL: http://localhost:3000
           DATABASE_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
           DIRECT_URL: postgresql://e2e:e2e@localhost:5432/nrpg_golive
-          STRIPE_SECRET_KEY: test
       - name: Upload go-live gate evidence
         if: always()
         uses: actions/upload-artifact@v4

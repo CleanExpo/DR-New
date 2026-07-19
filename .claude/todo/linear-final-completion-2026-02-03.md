@@ -299,9 +299,11 @@ docs/WEBHOOK_MONITORING_DASHBOARD.md
 
 1. **Switch to Live Stripe Keys**
    ```env
-   STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY}"
+   STRIPE_SECRET_KEY="<set-in-secret-manager>"
    STRIPE_PUBLISHABLE_KEY="pk_live_xxxxxxxxxxxxx"
    ```
+
+   The real value must be supplied directly by the deployment platform's secret manager; `.env` files do not interpolate shell variables.
 
 2. **Create Production Webhooks in Stripe**
    - Endpoint 1: `https://disasterrecovery.com.au/api/webhooks/stripe/tenant`

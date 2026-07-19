@@ -163,7 +163,7 @@ Security Contact: admin@disasterrecovery.com.au or accounts@disasterrecovery.com
 4. Monitor for suspicious AI API calls
 
 ### Finding 2: CSRF Secret Exposed ⚠️ HIGH
-**Value:** `52647752c113d62bcbbb23bc407df764f4f9104e4454363e60e1ea51413fc434`
+**Value:** `<redacted:csrf-secret>`
 **Risk:** CSRF attacks can bypass security if secret is known
 
 **IMMEDIATE ACTIONS REQUIRED:**
@@ -173,7 +173,7 @@ Security Contact: admin@disasterrecovery.com.au or accounts@disasterrecovery.com
 4. Monitor for CSRF attack attempts
 
 ### Finding 3: Supabase JWT Secret Exposed ⚠️ CRITICAL
-**Value:** `+8pd8r9XpGDliEWDrXjQc+6IawZVBdVt4DfSEPicw1cgH2c8oSd09/yV4gUmzsG1z5lXggpBklFCuMjPrN/ptg==`
+**Value:** `<redacted:supabase-jwt-secret>`
 **Risk:** Ability to forge JWT tokens and bypass authentication entirely
 
 **IMMEDIATE ACTIONS REQUIRED:**
