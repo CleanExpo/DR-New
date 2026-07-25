@@ -55,6 +55,28 @@ export async function GET(request: NextRequest) {
       return unauthorizedRoleResponse(['CONTRACTOR', 'ADMIN']);
     }
 
+    // Resolve the caller's tenant from the SERVER-TRUSTED authenticated user
+    // record (user.tenantId), NOT from authResult.context.tenantId. The auth
+    // middleware falls back to the client-supplied `x-tenant-id` header when a
+    // user has no own tenant (see lib/auth-middleware.ts), so context.tenantId
+    // is attacker-controllable for a tenantless contractor and must not be
+    // trusted for this cross-tenant read. ServiceRequest is not in the scoped
+    // client's TENANT_MODELS set, so we apply the tenant predicate explicitly
+    // below to prevent cross-tenant reads.
+    const callerTenantId = user.tenantId;
+
+    // Fail closed: a contractor whose own user record has no tenant gets zero
+    // rows rather than every tenant's — or a header-chosen tenant's — requests.
+    if (!callerTenantId) {
+      return NextResponse.json({
+        success: true,
+        data: [],
+        total: 0,
+        contractor: null,
+        message: 'No tenant context resolved for this account',
+      });
+    }
+
     // Get tenant-scoped database client
     const db = getTenantDb(authResult.context);
 
@@ -86,6 +108,7 @@ export async function GET(request: NextRequest) {
     // In production, this would be filtered by contractor's service areas and specialisations
     const availableRequests = await db.serviceRequest.findMany({
       where: {
+        tenantId: callerTenantId,
         status: { in: ['PENDING', 'MATCHED'] },
       },
       include: {
