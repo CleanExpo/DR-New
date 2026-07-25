@@ -42,7 +42,7 @@ jobs:
           name: unit-tests-coverage
 
   integration-tests:
-    name: Integration Tests
+    name: PostgreSQL RLS Acceptance
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -78,20 +78,28 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-      - name: Setup test database
+      - name: Deploy test database migrations
         run: |
           pnpm run db:generate
-          pnpm run db:push
+          pnpm --filter nrpg-web exec prisma migrate deploy
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
           DIRECT_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
-      - name: Run integration tests
-        run: pnpm --filter nrpg-web run test:integration
+      - name: Run PostgreSQL RLS acceptance tests
+        run: pnpm --filter nrpg-web run test:integration --ci --json --outputFile=integration-results.json
         env:
           CI: true
+          RUN_DB_INTEGRATION: 1
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
           DIRECT_URL: postgresql://postgres:postgres@localhost:5432/nrpg_test
           REDIS_URL: redis://localhost:6379
+      - name: Publish non-vacuous integration evidence
+        run: >-
+          node -e "const fs=require('fs');const r=require('./apps/web/integration-results.json');
+          if(r.numTotalTests<1)throw new Error('Integration acceptance discovered zero tests');
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+          '## PostgreSQL RLS acceptance evidence\\n- Test suites: '+r.numPassedTestSuites+'/'+r.numTotalTestSuites+
+          ' passed\\n- Tests: '+r.numPassedTests+'/'+r.numTotalTests+' passed\\n- Zero-test guard: passed\\n');"
       - name: Upload coverage
         uses: codecov/codecov-action@v4
         if: always()
@@ -340,7 +348,7 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## Job Results" >> $GITHUB_STEP_SUMMARY
           echo "- Unit Tests: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Integration Tests: ${{ needs.integration-tests.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- PostgreSQL RLS Acceptance: ${{ needs.integration-tests.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- E2E Tests: ${{ needs.e2e-tests.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Go-Live E2E Proof: ${{ needs.go-live-proof.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Security Tests: ${{ needs.security-tests.result }}" >> $GITHUB_STEP_SUMMARY
