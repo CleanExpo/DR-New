@@ -1,6 +1,7 @@
 'use client';
 
 import * as Sentry from '@sentry/nextjs';
+import Link from 'next/link';
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { AlertTriangle, RefreshCcw, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -151,12 +152,12 @@ export class ErrorBoundary extends Component<Props, State> {
             {/* Additional help */}
             <p className="mt-6 text-xs text-center text-gray-400 dark:text-gray-400">
               If this problem persists, please{' '}
-              <a
-                href="mailto:support@disasterrecovery.com.au"
+              <Link
+                href="/contact"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >
                 contact support
-              </a>
+              </Link>
             </p>
           </div>
         </div>

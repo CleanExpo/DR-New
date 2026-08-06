@@ -356,12 +356,12 @@ export function ContractorFooter() {
               </div>
               <div>
                 <div className="text-sm font-semibold text-slate-200 mb-1">Contractor Support</div>
-                <a
-                  href="mailto:support@disasterrecovery.com.au"
+                <Link
+                  href="/contact"
                   className="text-teal-400 hover:text-teal-300 transition-colors duration-200"
                 >
-                  support@disasterrecovery.com.au
-                </a>
+                  Contact support
+                </Link>
                 <div className="text-xs text-slate-400 mt-1">24/7 Support</div>
               </div>
             </div>
@@ -372,12 +372,12 @@ export function ContractorFooter() {
               </div>
               <div>
                 <div className="text-sm font-semibold text-slate-200 mb-1">Email Support</div>
-                <a
-                  href="mailto:contractors@nrpg.com.au"
+                <Link
+                  href="/contact"
                   className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
                 >
-                  contractors@nrpg.com.au
-                </a>
+                  Contact the contractor team
+                </Link>
                 <div className="text-xs text-slate-400 mt-1">Response within 2 hours</div>
               </div>
             </div>

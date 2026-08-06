@@ -226,7 +226,7 @@ export const designTokens = {
 // Emergency Contact - Email First (NEW)
 export const EMERGENCY_CONTACT = {
   email: 'support@disasterrecovery.com.au',
-  href: 'mailto:support@disasterrecovery.com.au',
+  href: '/contact',
   display: 'Email Support',
   labels: {
     primary: 'Emergency Support',
