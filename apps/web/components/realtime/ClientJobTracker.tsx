@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
+import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -548,9 +549,9 @@ export function ClientJobTracker({
       <div className="text-center text-sm text-muted-foreground">
         <p>
           Need help?{' '}
-          <a href="mailto:support@disasterrecovery.com.au" className="text-teal-600 hover:underline">
+          <Link href="/contact" className="text-teal-600 hover:underline">
             Contact support
-          </a>
+          </Link>
         </p>
       </div>
 
