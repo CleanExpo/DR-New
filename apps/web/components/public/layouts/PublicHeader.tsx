@@ -20,31 +20,26 @@ const servicesMenu: NavSection = {
   title: 'Services',
   items: [
     { label: 'Water Damage Restoration', href: '/services/water-damage', description: 'Emergency water extraction and drying' },
-    { label: 'Fire Damage Restoration', href: '/services/fire-damage', description: 'Smoke and soot removal' },
+    { label: 'Fire Damage Restoration', href: '/services/fire-smoke-damage', description: 'Smoke and soot removal' },
     { label: 'Storm Damage Repair', href: '/services/storm-damage', description: 'Roof and structural repairs' },
-    { label: 'Mould Remediation', href: '/services/mould', description: 'Safe mould removal and prevention' },
-    { label: 'Emergency Services', href: '/services/emergency', description: '24/7 rapid response' }
+    { label: 'Mould Remediation', href: '/services/mould-remediation', description: 'Safe mould removal and prevention' },
+    { label: 'All Services', href: '/services', description: 'Browse every restoration service' }
   ]
 }
 
-const sectorsMenu: NavSection = {
-  title: 'Sectors',
-  items: [
-    { label: 'Residential', href: '/sectors/residential', description: 'Home restoration services' },
-    { label: 'Commercial', href: '/sectors/commercial', description: 'Business property recovery' },
-    { label: 'Industrial', href: '/sectors/industrial', description: 'Large-scale restoration' },
-    { label: 'Strata & Body Corporate', href: '/sectors/strata', description: 'Multi-unit property management' }
-  ]
-}
+// The Sectors dropdown was removed: no app/sectors routes exist, so all four items 404'd.
+// To restore it, create app/sectors/{residential,commercial,industrial,strata}/page.tsx, then
+// re-add a NavSection here plus its <DropdownMenu> in the desktop nav and its block in the
+// mobile menu. The closest existing page today is /property-owners (residential).
 
 const locationsMenu: NavSection = {
   title: 'Locations',
   items: [
-    { label: 'Sydney', href: '/locations/sydney', description: 'Greater Sydney metro area' },
-    { label: 'Melbourne', href: '/locations/melbourne', description: 'Victoria and surrounds' },
-    { label: 'Brisbane', href: '/locations/brisbane', description: 'South-East Queensland' },
-    { label: 'Perth', href: '/locations/perth', description: 'Western Australia' },
-    { label: 'Adelaide', href: '/locations/adelaide', description: 'South Australia' },
+    { label: 'Sydney', href: '/sydney', description: 'Greater Sydney metro area' },
+    { label: 'Melbourne', href: '/melbourne', description: 'Victoria and surrounds' },
+    { label: 'Brisbane', href: '/brisbane', description: 'South-East Queensland' },
+    { label: 'Perth', href: '/perth', description: 'Western Australia' },
+    { label: 'Adelaide', href: '/adelaide', description: 'South Australia' },
     { label: 'Other Regions', href: '/locations', description: 'View all service areas' }
   ]
 }
@@ -136,12 +131,6 @@ export function PublicHeader() {
               onClose={closeAllDropdowns}
             />
             <DropdownMenu
-              section={sectorsMenu}
-              isOpen={activeDropdown === 'sectors'}
-              onToggle={() => toggleDropdown('sectors')}
-              onClose={closeAllDropdowns}
-            />
-            <DropdownMenu
               section={locationsMenu}
               isOpen={activeDropdown === 'locations'}
               onToggle={() => toggleDropdown('locations')}
@@ -164,13 +153,13 @@ export function PublicHeader() {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link
-              href="/sign-in"
+              href="/login"
               className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
             >
               Sign In
             </Link>
             <Link
-              href="/claim"
+              href="/claim/step-1"
               className="flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold text-sm shadow-md hover:shadow-lg transition-[background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.4,0,0.2,1)]"
             >
               <AlertCircle className="w-4 h-4" />
@@ -202,21 +191,6 @@ export function PublicHeader() {
             <div className="space-y-1">
               <div className="font-semibold text-gray-900 px-3 py-2 text-sm">{servicesMenu.title}</div>
               {servicesMenu.items.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  className="block px-6 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-
-            {/* Mobile Sectors */}
-            <div className="space-y-1 pt-2 border-t border-gray-200">
-              <div className="font-semibold text-gray-900 px-3 py-2 text-sm">{sectorsMenu.title}</div>
-              {sectorsMenu.items.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -264,7 +238,7 @@ export function PublicHeader() {
             {/* Mobile Actions */}
             <div className="pt-4 border-t border-gray-200 space-y-2">
               <Link
-                href="/claim"
+                href="/claim/step-1"
                 onClick={closeMobileMenu}
                 className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold text-sm shadow-md transition-colors"
               >
@@ -272,7 +246,7 @@ export function PublicHeader() {
                 Report Claim
               </Link>
               <Link
-                href="/sign-in"
+                href="/login"
                 onClick={closeMobileMenu}
                 className="block w-full px-5 py-3 text-center text-sm font-medium text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
               >
