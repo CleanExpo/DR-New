@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense} from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { useRealtimeSubscription, RealtimeTier } from '@/hooks/useRealtimeSubscription'
 import { PricingCard, TIER_FEATURES, SubscriptionManager } from '@/components/realtime'
 
-export default function RealtimePricingPage() {
+function RealtimePricing() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const {
@@ -414,5 +414,17 @@ export default function RealtimePricingPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+// useSearchParams() opts this subtree into client-side rendering, which Next only
+// allows to prerender beneath a Suspense boundary. This used to be satisfied by an
+// app-wide boundary in the root layout; that was removed because a boundary above
+// every route flushes the response head and turns notFound() into a soft 200.
+export default function RealtimePricingPage() {
+  return (
+    <Suspense fallback={null}>
+      <RealtimePricing />
+    </Suspense>
   )
 }

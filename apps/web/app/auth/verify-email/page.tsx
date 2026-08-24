@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense} from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,7 @@ import Link from 'next/link';
  * Automatically verifies the user's email when they click the verification link.
  * Shows success/error states and provides option to resend verification email.
  */
-export default function VerifyEmailPage() {
+function VerifyEmailContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [status, setStatus] = useState<'verifying' | 'success' | 'error' | 'already_verified'>('verifying');
@@ -227,4 +227,16 @@ export default function VerifyEmailPage() {
       </Card>
     </div>
   );
+}
+
+// useSearchParams() opts this subtree into client-side rendering, which Next only
+// allows to prerender beneath a Suspense boundary. This used to be satisfied by an
+// app-wide boundary in the root layout; that was removed because a boundary above
+// every route flushes the response head and turns notFound() into a soft 200.
+export default function VerifyEmailPage() {
+  return (
+    <Suspense fallback={null}>
+      <VerifyEmailContent />
+    </Suspense>
+  )
 }

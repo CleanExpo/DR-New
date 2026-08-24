@@ -7,7 +7,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,7 +17,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, AlertCircle, HelpCircle } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-export default function TwoFactorPage() {
+function TwoFactorForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
@@ -190,5 +190,18 @@ export default function TwoFactorPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+// useSearchParams() opts the subtree into client-side rendering, so Next requires
+// a Suspense boundary above it or the static prerender fails. fallback={null}
+// reproduces exactly what the old root-layout boundary rendered — that one was
+// removed because an app-wide boundary flushes the response head and turns every
+// notFound() into a soft 200.
+export default function TwoFactorPage() {
+  return (
+    <Suspense fallback={null}>
+      <TwoFactorForm />
+    </Suspense>
   );
 }

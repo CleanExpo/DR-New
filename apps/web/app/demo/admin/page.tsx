@@ -7,7 +7,7 @@
  * using demo data for tradeshow demonstrations.
  */
 
-import { useEffect } from 'react'
+import { useEffect, Suspense} from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -27,7 +27,7 @@ import {
   RefreshCw,
 } from 'lucide-react'
 
-export default function AdminDemoPage() {
+function AdminDemo() {
   const searchParams = useSearchParams()
   const scenario = searchParams.get('scenario') as DemoScenario | null
   const { state, controls } = useDemo()
@@ -337,5 +337,17 @@ export default function AdminDemoPage() {
         </div>
       </main>
     </div>
+  )
+}
+
+// useSearchParams() opts this subtree into client-side rendering, which Next only
+// allows to prerender beneath a Suspense boundary. This used to be satisfied by an
+// app-wide boundary in the root layout; that was removed because a boundary above
+// every route flushes the response head and turns notFound() into a soft 200.
+export default function AdminDemoPage() {
+  return (
+    <Suspense fallback={null}>
+      <AdminDemo />
+    </Suspense>
   )
 }
