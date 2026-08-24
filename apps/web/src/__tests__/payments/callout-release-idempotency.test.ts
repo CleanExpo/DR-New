@@ -70,7 +70,7 @@ const mockAuth = authenticateRequest as jest.Mock;
 
 const SR_ID = 'sr_1';
 const KEY = `nrpg_callout_${SR_ID}`;
-const routeParams = { params: { id: SR_ID } };
+const routeParams = { params: Promise.resolve({ id: SR_ID }) };
 const ADMIN = { id: 'admin_1', userType: 'ADMIN' };
 
 const PAID_CALLOUT = {

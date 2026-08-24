@@ -202,7 +202,7 @@ describe('RBAC — contractor surface', () => {
 });
 
 describe('IDOR — cross-owner agreement PDF', () => {
-  const params = { params: { acceptanceId: 'acc_of_contractor_b' } };
+  const params = { params: Promise.resolve({ acceptanceId: 'acc_of_contractor_b' }) };
 
   it("contractor A requesting B's executed ICA -> 403 and the signed URL is never minted", async () => {
     asUser(CONTRACTOR_A);
@@ -233,7 +233,7 @@ describe('IDOR — cross-owner agreement PDF', () => {
     mockPrisma.contractorAgreementAcceptance.findUnique.mockResolvedValue(null);
 
     const res = await agreementPdfGET(req('/api/contractor/agreement/pdf/acc_missing'), {
-      params: { acceptanceId: 'acc_missing' },
+      params: Promise.resolve({ acceptanceId: 'acc_missing' }),
     });
 
     expect(res.status).toBe(404);

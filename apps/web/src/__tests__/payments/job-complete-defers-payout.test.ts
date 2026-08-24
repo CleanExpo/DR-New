@@ -63,7 +63,7 @@ import { authenticateRequest } from '@/lib/auth-middleware';
 const mockAuth = authenticateRequest as jest.Mock;
 
 const JOB_ID = 'booking_1';
-const routeParams = { params: { jobId: JOB_ID } };
+const routeParams = { params: Promise.resolve({ jobId: JOB_ID }) };
 
 function completeReq(body: Record<string, unknown> = {}) {
   return new NextRequest(`http://localhost/api/contractor/jobs/${JOB_ID}/complete`, {
