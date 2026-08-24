@@ -13,10 +13,8 @@ import { getPresignedDownloadUrl } from '@/lib/storage/cloud-storage';
  */
 const SIGNED_URL_TTL_SECONDS = 300;
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { acceptanceId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ acceptanceId: string }> }) {
+  const params = await props.params;
   const auth = await authenticateRequest(request);
   if (!auth.success) return auth.response;
 

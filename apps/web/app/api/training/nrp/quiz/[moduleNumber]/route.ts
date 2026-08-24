@@ -25,7 +25,7 @@ const paramsSchema = z.object({
  * Auth required; `correct`/`explanation` are stripped for everyone except
  * ADMIN/SUPER_ADMIN. Grading is server-side only.
  */
-export async function GET(request: NextRequest, context: { params: { moduleNumber: string } }) {
+export async function GET(request: NextRequest, context: { params: Promise<{ moduleNumber: string }> }) {
   try {
     const auth = await authenticateRequest(request);
     if (!auth.success) return auth.response;
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest, context: { params: { moduleNumbe
 
     await verifyTrainingSourcesPresent();
 
-    const validation = paramsSchema.safeParse(context.params);
+    const validation = paramsSchema.safeParse((await context.params));
     if (!validation.success) {
       return handleValidationError(validation.error);
     }
@@ -82,7 +82,7 @@ const submitSchema = z.object({
  * server computes the score. Client-supplied `score`/`passed` fields are
  * never read.
  */
-export async function POST(request: NextRequest, context: { params: { moduleNumber: string } }) {
+export async function POST(request: NextRequest, context: { params: Promise<{ moduleNumber: string }> }) {
   try {
     const auth = await authenticateRequest(request);
     if (!auth.success) return auth.response;
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest, context: { params: { moduleNumb
 
     await verifyTrainingSourcesPresent();
 
-    const validation = paramsSchema.safeParse(context.params);
+    const validation = paramsSchema.safeParse((await context.params));
     if (!validation.success) {
       return handleValidationError(validation.error);
     }
