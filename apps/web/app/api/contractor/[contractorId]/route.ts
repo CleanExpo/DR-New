@@ -3,10 +3,8 @@ import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api-errors';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { contractorId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ contractorId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -63,10 +61,8 @@ export async function GET(
   }
 }
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { contractorId: string } }
-) {
+export async function PATCH(request: NextRequest, props: { params: Promise<{ contractorId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

@@ -24,11 +24,12 @@ export async function generateStaticParams() {
 // Dynamic SEO metadata
 // ---------------------------------------------------------------------------
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const product = getProductBySlug(params.slug)
 
   if (!product) {
@@ -106,7 +107,8 @@ function generateProductBreadcrumbJsonLd(product: NonNullable<ReturnType<typeof 
 // Page
 // ---------------------------------------------------------------------------
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const product = getProductBySlug(params.slug)
 
   if (!product) notFound()

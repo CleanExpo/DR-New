@@ -8,9 +8,9 @@ import {
 import { verifyLicence } from '@/lib/contractor-verification';
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 /**
@@ -22,7 +22,8 @@ interface RouteParams {
  * Returns the verification result including current licence status,
  * expiry information, and whether the licence was successfully verified.
  */
-export async function POST(request: NextRequest, { params }: RouteParams) {
+export async function POST(request: NextRequest, props: RouteParams) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

@@ -16,10 +16,10 @@ import { internalLinking, getBreadcrumbsForPage } from '@/lib/seo/internal-linki
 import { schemaGenerator } from '@/lib/seo/schema-generator';
 
 interface LocationPageProps {
-  params: {
+  params: Promise<{
     state: string;
     city: string;
-  };
+  }>;
 }
 
 // Generate static params for all locations
@@ -28,7 +28,8 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: LocationPageProps): Promise<Metadata> {
+export async function generateMetadata(props: LocationPageProps): Promise<Metadata> {
+  const params = await props.params;
   const city = getCityBySlug(params.city);
 
   if (!city) {
@@ -81,7 +82,8 @@ export async function generateMetadata({ params }: LocationPageProps): Promise<M
   };
 }
 
-export default function LocationPage({ params }: LocationPageProps) {
+export default async function LocationPage(props: LocationPageProps) {
+  const params = await props.params;
   const city = getCityBySlug(params.city);
 
   if (!city) {

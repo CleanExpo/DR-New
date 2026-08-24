@@ -12,10 +12,8 @@ import { getTenantDb } from '@/lib/get-tenant-db';
 // GET /api/claims/[id]/documents - List claim documents
 // ============================================================================
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -104,10 +102,8 @@ export async function GET(
 // POST /api/claims/[id]/documents - Add document to claim
 // ============================================================================
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

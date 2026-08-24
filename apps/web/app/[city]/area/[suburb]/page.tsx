@@ -36,7 +36,7 @@ interface Suburb {
 }
 
 interface Props {
-  params: { city: string; suburb: string };
+  params: Promise<{ city: string; suburb: string }>;
 }
 
 // ISR Configuration
@@ -98,7 +98,8 @@ async function getSuburbData(
 /**
  * Generate metadata for suburb page
  */
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const data = await getSuburbData(params.city, params.suburb);
 
   if (!data) {
@@ -131,7 +132,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /**
  * Suburb Landing Page Component
  */
-export default async function SuburbPage({ params }: Props) {
+export default async function SuburbPage(props: Props) {
+  const params = await props.params;
   const data = await getSuburbData(params.city, params.suburb);
 
   if (!data) {

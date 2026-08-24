@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 }
 
 interface Props {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-export default function QuotePage({ searchParams }: Props) {
+export default async function QuotePage(props: Props) {
+  const searchParams = await props.searchParams;
   const params = new URLSearchParams()
   for (const [key, value] of Object.entries(searchParams)) {
     if (typeof value === 'string') {

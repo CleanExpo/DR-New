@@ -17,10 +17,8 @@ import { handleDatabaseError } from '@/lib/api-errors';
  * - profileViews (total lifetime views)
  * - profileViewsThisMonth (resets monthly)
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { contractorId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ contractorId: string }> }) {
+  const params = await props.params;
   try {
     const { contractorId } = params;
 

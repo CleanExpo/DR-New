@@ -15,10 +15,8 @@ import { getTenantDb } from '@/lib/get-tenant-db';
 import { CustomerLifecycleService } from '@/lib/crm/customer-lifecycle.service';
 import { AdvancedLogger } from '@/lib/logger/advanced-logging';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { userId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
+  const params = await props.params;
   const correlationId = AdvancedLogger.setCorrelationId();
 
   try {
@@ -78,10 +76,8 @@ export async function GET(
  * Update customer lifecycle manually
  * POST /api/crm/customers/[userId]/360
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { userId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

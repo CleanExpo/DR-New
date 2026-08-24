@@ -4,11 +4,12 @@ import { getTenantDb } from '@/lib/get-tenant-db';
 import { PaymentStatus } from '@prisma/client';
 
 interface RouteParams {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 // Get single payment
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(request: NextRequest, props: RouteParams) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -82,7 +83,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 }
 
 // Update payment (admin only for certain fields)
-export async function PATCH(request: NextRequest, { params }: RouteParams) {
+export async function PATCH(request: NextRequest, props: RouteParams) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

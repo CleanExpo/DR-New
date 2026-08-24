@@ -39,10 +39,8 @@ const completeJobSchema = z.object({
   requestReview: z.boolean().optional().default(true),
 });
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { jobId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ jobId: string }> }) {
+  const params = await props.params;
   try {
     // Authenticate contractor
     const authResult = await authenticateRequest(request);

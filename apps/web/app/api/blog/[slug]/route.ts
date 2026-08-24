@@ -23,10 +23,8 @@ const updateSchema = z.object({
  * GET /api/blog/[slug]
  * Get a single blog post by slug
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   try {
     const post = await basePrisma.blogPost.findUnique({
       where: { slug: params.slug },
@@ -55,10 +53,8 @@ export async function GET(
  * PUT /api/blog/[slug]
  * Update a blog post (admin only)
  */
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+export async function PUT(request: NextRequest, props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -110,10 +106,8 @@ export async function PUT(
  * DELETE /api/blog/[slug]
  * Delete a blog post (admin only)
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

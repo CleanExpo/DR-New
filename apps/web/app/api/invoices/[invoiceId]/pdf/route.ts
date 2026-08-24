@@ -15,10 +15,8 @@ import { getTenantDb } from '@/lib/get-tenant-db';
 import { getInvoiceDetails, downloadInvoice } from '@/lib/invoicing/generate-invoice';
 import { generateInvoicePDF } from '@/lib/invoicing/pdf-generator';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { invoiceId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ invoiceId: string }> }) {
+  const params = await props.params;
   try {
     // Verify authentication
     const authResult = await authenticateRequest(request);

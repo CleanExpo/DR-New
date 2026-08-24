@@ -13,10 +13,8 @@ import { triggerAnalysis, getJobStatus } from '@/lib/competitor-analysis/jobs/an
 /**
  * POST - Trigger analysis for specific competitor
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -75,10 +73,8 @@ export async function POST(
 /**
  * GET - Get analysis status for competitor
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

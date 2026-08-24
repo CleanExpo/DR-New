@@ -17,9 +17,9 @@ import { internalLinking, getBreadcrumbsForPage } from '@/lib/seo/internal-linki
 import { schemaGenerator } from '@/lib/seo/schema-generator';
 
 interface ServicePageProps {
-  params: {
+  params: Promise<{
     'service-slug': string;
-  };
+  }>;
 }
 
 // Generate static params for all services
@@ -28,7 +28,8 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+export async function generateMetadata(props: ServicePageProps): Promise<Metadata> {
+  const params = await props.params;
   const service = getServiceBySlug(params['service-slug']);
 
   if (!service) {
@@ -79,7 +80,8 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   };
 }
 
-export default function ServicePage({ params }: ServicePageProps) {
+export default async function ServicePage(props: ServicePageProps) {
+  const params = await props.params;
   const service = getServiceBySlug(params['service-slug']);
 
   if (!service) {

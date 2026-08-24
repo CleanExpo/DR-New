@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -10,7 +10,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, ArrowLeft, CheckCircle2, BookOpen, Award, Info } from 'lucide-react';
 import { sanitizeHtml, preloadSanitizer } from '@/lib/sanitize';
 
-export default function ClientModuleViewerPage({ params }: { params: { moduleId: string } }) {
+export default function ClientModuleViewerPage(props: { params: Promise<{ moduleId: string }> }) {
+  const params = use(props.params);
   const router = useRouter();
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true);

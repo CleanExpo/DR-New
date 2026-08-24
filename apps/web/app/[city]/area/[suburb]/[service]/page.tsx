@@ -33,7 +33,7 @@ interface Service {
 }
 
 interface Props {
-  params: { city: string; suburb: string; service: string };
+  params: Promise<{ city: string; suburb: string; service: string }>;
 }
 
 // ISR Configuration
@@ -71,7 +71,8 @@ async function getPageData(citySlug: string, suburbSlug: string, serviceSlug: st
 /**
  * Generate metadata
  */
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const data = await getPageData(params.city, params.suburb, params.service);
 
   if (!data) {
@@ -147,7 +148,8 @@ function getProcessSteps(serviceSlug: string) {
 /**
  * Suburb + Service Page Component
  */
-export default async function SuburbServicePage({ params }: Props) {
+export default async function SuburbServicePage(props: Props) {
+  const params = await props.params;
   const data = await getPageData(params.city, params.suburb, params.service);
 
   if (!data) {

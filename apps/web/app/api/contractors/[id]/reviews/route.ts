@@ -34,10 +34,8 @@ const reviewSubmissionSchema = z.object({
  * GET /api/contractors/[id]/reviews
  * Fetch all reviews for a contractor
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const contractorId = params.id;
     const { searchParams } = new URL(request.url);
@@ -172,10 +170,8 @@ export async function GET(
  * POST /api/contractors/[id]/reviews
  * Submit a new review (requires authentication)
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const contractorId = params.id;
 

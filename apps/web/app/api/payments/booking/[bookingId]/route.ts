@@ -12,10 +12,8 @@ import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { chargeForCompletedBooking, getPaymentDetails } from '@/lib/payments/booking-payment';
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { bookingId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ bookingId: string }> }) {
+  const params = await props.params;
   try {
     // Verify authentication
     const authResult = await authenticateRequest(request);
@@ -100,10 +98,8 @@ export async function POST(
  * GET /api/payments/booking/[bookingId]
  * Get payment details for a booking
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { bookingId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ bookingId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

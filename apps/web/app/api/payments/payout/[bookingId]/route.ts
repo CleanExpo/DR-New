@@ -14,10 +14,8 @@ import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/li
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { triggerPayoutForBooking, getContractorEarnings } from '@/lib/payments/contractor-payout';
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { bookingId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ bookingId: string }> }) {
+  const params = await props.params;
   try {
     // Verify admin authentication
     const authResult = await authenticateRequest(request);
@@ -82,10 +80,8 @@ export async function POST(
  * GET /api/payments/payout/[bookingId]
  * Get payout status for a booking
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { bookingId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ bookingId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

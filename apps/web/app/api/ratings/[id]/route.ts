@@ -15,10 +15,8 @@ export const dynamic = 'force-dynamic';
  * Authorization: Any authenticated user
  * @returns Review with full details including client, contractor, and booking info
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -86,10 +84,8 @@ export async function GET(
  * Transaction: Updates rating + recalculates contractor averageRating if rating changed
  * @returns Updated review data
  */
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -226,10 +222,8 @@ export async function PATCH(
  * Transaction: Deletes rating + recalculates contractor averageRating
  * @returns Success message
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

@@ -29,7 +29,7 @@ const BASE_URL =
   process.env.NEXT_PUBLIC_BASE_URL || "https://disasterrecovery.com.au"
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 async function getContractor(id: string) {
@@ -90,7 +90,8 @@ async function getContractor(id: string) {
   return contractor
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const contractor = await getContractor(params.id)
   if (!contractor) {
     return { title: "Contractor Not Found" }
@@ -125,10 +126,11 @@ function formatServiceType(type: string): string {
   return type
     .replace(/_/g, " ")
     .toLowerCase()
-    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-export default async function PublicContractorProfilePage({ params }: Props) {
+export default async function PublicContractorProfilePage(props: Props) {
+  const params = await props.params;
   const contractor = await getContractor(params.id)
 
   if (!contractor) {

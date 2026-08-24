@@ -5,11 +5,13 @@ import { prisma } from '@/lib/prisma';
 import { CalloutCheckoutPanel } from '@/components/payments/callout-checkout-panel';
 
 interface CalloutPageProps {
-  params: { requestId: string };
-  searchParams?: { status?: string; session_id?: string };
+  params: Promise<{ requestId: string }>;
+  searchParams?: Promise<{ status?: string; session_id?: string }>;
 }
 
-export default async function CalloutPage({ params, searchParams }: CalloutPageProps) {
+export default async function CalloutPage(props: CalloutPageProps) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const session = await getServerSession(authOptions);
   const sessionUser = session?.user as unknown as { id?: string; email?: string | null; userType?: string } | undefined;
 

@@ -25,10 +25,8 @@ const verificationActionSchema = z.object({
  * POST /api/admin/contractors/verification/[contractorId]
  * Approve or reject contractor verification (admin only)
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { contractorId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ contractorId: string }> }) {
+  const params = await props.params;
   try {
     const { contractorId } = params;
 
@@ -208,10 +206,8 @@ export async function POST(
  * GET /api/admin/contractors/verification/[contractorId]
  * Get detailed contractor verification information (admin only)
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { contractorId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ contractorId: string }> }) {
+  const params = await props.params;
   try {
     const { contractorId } = params;
 

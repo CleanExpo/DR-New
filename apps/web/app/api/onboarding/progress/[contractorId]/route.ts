@@ -5,10 +5,8 @@ import { handleUnexpectedError, createErrorResponse, ErrorCode } from '@/lib/api
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { contractorId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ contractorId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

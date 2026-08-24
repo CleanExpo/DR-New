@@ -9,10 +9,8 @@ import { authenticateRequest } from '@/lib/auth-middleware';
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { getModuleById, parseModuleId } from '@/lib/nrpg/course-loader';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { moduleId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ moduleId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -113,10 +111,8 @@ export async function GET(
 }
 
 // POST: Update progress (mark sections as complete, record time spent)
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { moduleId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ moduleId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
