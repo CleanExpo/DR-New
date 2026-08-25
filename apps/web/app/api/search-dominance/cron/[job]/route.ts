@@ -49,10 +49,8 @@ function verifyCronRequest(request: Request): boolean {
   return true;
 }
 
-export async function GET(
-  request: Request,
-  { params }: { params: { job: string } }
-) {
+export async function GET(request: Request, props: { params: Promise<{ job: string }> }) {
+  const params = await props.params;
   try {
     const { job } = params;
 

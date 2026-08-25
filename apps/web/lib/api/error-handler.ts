@@ -381,19 +381,32 @@ export function trackMetrics(metrics: APIMetrics): void {
 /**
  * Wrap API route handler with error handling
  *
+ * Any arguments Next passes after the request - notably the route context holding
+ * `params` on a dynamic route - are forwarded to the handler untouched. Typing the
+ * wrapper as `(req) => ...` instead silently dropped that second argument, so every
+ * wrapped handler on a dynamic route received `undefined` and threw before running.
+ *
  * @example
  * ```ts
  * export const POST = withErrorHandler(async (req) => {
  *   // Your handler code
  *   return successResponse({ message: 'OK' });
  * });
+ *
+ * // Dynamic route - the context argument reaches the handler:
+ * export const GET = withErrorHandler(
+ *   async (req: Request, { params }: { params: Promise<{ id: string }> }) => {
+ *     const { id } = await params;
+ *     return successResponse({ id });
+ *   }
+ * );
  * ```
  */
-export function withErrorHandler(
-  handler: (req: Request) => Promise<NextResponse>,
+export function withErrorHandler<TArgs extends unknown[]>(
+  handler: (req: Request, ...args: TArgs) => Promise<NextResponse>,
   context?: LogContext
 ) {
-  return async (req: Request): Promise<NextResponse> => {
+  return async (req: Request, ...args: TArgs): Promise<NextResponse> => {
     const requestId = generateRequestId();
     const startTime = Date.now();
 
@@ -407,7 +420,7 @@ export function withErrorHandler(
     try {
       logger.info('Request received');
 
-      const response = await handler(req);
+      const response = await handler(req, ...args);
 
       const responseTime = Date.now() - startTime;
 

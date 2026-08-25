@@ -16,10 +16,8 @@ import { sendReviewRequestEmail } from '@/lib/email/client-notifications';
 // GET /api/bookings/[id] - Get booking details
 // ============================================================================
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -97,10 +95,8 @@ export async function GET(
 // PATCH /api/bookings/[id] - Update booking
 // ============================================================================
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -214,10 +210,8 @@ export async function PATCH(
 // DELETE /api/bookings/[id] - Cancel booking
 // ============================================================================
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

@@ -35,7 +35,7 @@ const serviceAreasRateLimit = rateLimit({
  */
 async function handleGetServiceAreas(
   req: NextRequest,
-  { params }: { params: { contractorId: string } }
+  { params }: { params: Promise<{ contractorId: string }> }
 ) {
   const logger = new Logger({
     endpoint: `/api/public/contractors/[contractorId]/service-areas`,
@@ -49,7 +49,7 @@ async function handleGetServiceAreas(
     return rateLimitResult;
   }
 
-  const { contractorId } = params;
+  const { contractorId } = await params;
 
   if (!contractorId) {
     throw new ValidationError('Contractor ID is required');

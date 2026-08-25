@@ -15,10 +15,8 @@ import { DISPATCH_INELIGIBLE_ERROR } from '@/lib/services/dispatch-eligibility-e
 import { isGoLiveEnabled, GO_LIVE_KILLED_MESSAGE } from '@/lib/feature-flags/nrpg-go-live';
 import { ZodError } from 'zod';
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     // Authenticate request
     const authResult = await authenticateRequest(request);

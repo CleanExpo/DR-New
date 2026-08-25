@@ -8,10 +8,8 @@ import { prisma } from '@/lib/prisma';
  * POST /api/admin/ai-enhancement/images/[photoId]
  * Enhance a single image by ID
  */
-export async function POST(
-  req: NextRequest,
-  { params }: { params: { photoId: string } }
-) {
+export async function POST(req: NextRequest, props: { params: Promise<{ photoId: string }> }) {
+  const params = await props.params;
   try {
     // 1. Authenticate and authorize
     const session = await getServerSession(authOptions);

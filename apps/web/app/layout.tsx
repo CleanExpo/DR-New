@@ -2,7 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
 import { AppProviders } from "@/components/providers/AppProviders"
 import { AnalyticsProvider } from "@/components/analytics/AnalyticsProvider"
 import { ConvaiWidget } from "@/components/support/ConvaiWidget"
@@ -184,7 +183,7 @@ export default function RootLayout({
           debug={process.env.NODE_ENV === 'development'}
         >
           <AppProviders>
-            <Suspense fallback={null}>{children}</Suspense>
+            {children}
             <Analytics />
             <ConvaiWidget />
           </AppProviders>

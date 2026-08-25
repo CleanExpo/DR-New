@@ -44,10 +44,8 @@ interface ComplianceValidationResult {
  * POST /api/inspection-reports/[id]/compliance
  * Run comprehensive compliance validation
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const { id } = params;
 
@@ -160,10 +158,8 @@ export async function POST(
  * GET /api/inspection-reports/[id]/compliance
  * Get latest compliance validation results
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const { id } = params;
 

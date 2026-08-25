@@ -7,7 +7,7 @@ import { logUserManagement } from '@/lib/services/audit.service';
 import { sendAccountStatusChangeEmail } from '@/lib/email/client-notifications';
 
 interface RouteParams {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const updateUserSchema = z.object({
@@ -23,7 +23,8 @@ function isSuperAdmin(userType: string): boolean {
 }
 
 // Get single user
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(request: NextRequest, props: RouteParams) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -92,7 +93,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 }
 
 // Update user
-export async function PATCH(request: NextRequest, { params }: RouteParams) {
+export async function PATCH(request: NextRequest, props: RouteParams) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -212,7 +214,8 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 }
 
 // Delete user (soft delete)
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE(request: NextRequest, props: RouteParams) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

@@ -18,27 +18,28 @@ import { test, expect } from '@playwright/test';
 // ─────────────────────────────────────────────────────────────────────────────
 
 test.describe('Error Handling — 404 Not Found', () => {
-  test('navigating to /nonexistent renders a 404 page', async ({ page }) => {
-    const response = await page.goto('/nonexistent-route-that-does-not-exist');
+  // A missing page must answer with a real HTTP 404, not a 200 carrying not-found
+  // markup. Serving 200 lets Google index every mistyped URL as a real page (a
+  // "soft 404"). This previously regressed because a <Suspense> boundary around
+  // {children} in app/layout.tsx flushed the response head before notFound() ran,
+  // so the status was already committed as 200. Assert the status itself — an
+  // assertion that also accepts 200 cannot catch that.
+  const MISSING_ROUTES = [
+    '/nonexistent-route-that-does-not-exist',  // no route matches at all
+    '/not-a-real-city',                        // matches app/[city], then notFound()
+    '/services/not-a-real-service',            // matches app/services/[service-slug]
+  ];
 
-    // Next.js returns either a 404 HTTP status or renders a custom not-found component
-    const status = response?.status() ?? 200;
+  for (const route of MISSING_ROUTES) {
+    test(`${route} responds 404 at the HTTP level`, async ({ page }) => {
+      const response = await page.goto(route);
 
-    if (status === 404) {
-      // Good — HTTP-level 404
-      expect(status).toBe(404);
-    } else {
-      // Next.js client-side 404 — page may return 200 but render not-found content
+      expect(response?.status()).toBe(404);
+
       const bodyText = (await page.textContent('body')) ?? '';
-      const shows404 =
-        bodyText.toLowerCase().includes('not found') ||
-        bodyText.toLowerCase().includes('page not found') ||
-        bodyText.toLowerCase().includes('404') ||
-        bodyText.toLowerCase().includes('doesn\'t exist');
-
-      expect(shows404).toBeTruthy();
-    }
-  });
+      expect(bodyText.toLowerCase()).toContain('not found');
+    });
+  }
 
   test('404 page does not show a server error (no 500)', async ({ page }) => {
     const response = await page.goto('/this-page-definitely-does-not-exist-abc123');

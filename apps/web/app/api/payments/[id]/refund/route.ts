@@ -7,11 +7,12 @@ import { refundPaymentSchema, validateRequest, formatZodErrors } from '@/lib/val
 import { createRefund } from '@/lib/stripe';
 
 interface RouteParams {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 // Create refund for a payment
-export async function POST(request: NextRequest, { params }: RouteParams) {
+export async function POST(request: NextRequest, props: RouteParams) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

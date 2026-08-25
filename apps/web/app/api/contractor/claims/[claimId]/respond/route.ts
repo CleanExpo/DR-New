@@ -26,10 +26,8 @@ const responseSchema = z.object({
  * POST /api/contractor/claims/[claimId]/respond
  * Submit response to a claim match
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { claimId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ claimId: string }> }) {
+  const params = await props.params;
   try {
     // 1. Authenticate request (contractor only)
     const authResult = await authenticateRequest(request);
@@ -341,10 +339,8 @@ export async function POST(
  * GET /api/contractor/claims/[claimId]/respond
  * Get current match status and deadline info
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { claimId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ claimId: string }> }) {
+  const params = await props.params;
   try {
     // Authenticate request
     const authResult = await authenticateRequest(request);

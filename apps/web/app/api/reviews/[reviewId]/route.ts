@@ -25,10 +25,8 @@ const flagSchema = z.object({
  * POST /api/reviews/[reviewId]/reply
  * Contractor replies to a review
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { reviewId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ reviewId: string }> }) {
+  const params = await props.params;
   try {
     const { reviewId } = params;
     const { searchParams } = new URL(request.url);
@@ -66,10 +64,8 @@ export async function POST(
  * PUT /api/reviews/[reviewId]
  * Update a review (client edits their review)
  */
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { reviewId: string } }
-) {
+export async function PUT(request: NextRequest, props: { params: Promise<{ reviewId: string }> }) {
+  const params = await props.params;
   try {
     const { reviewId } = params;
 
@@ -138,10 +134,8 @@ export async function PUT(
  * DELETE /api/reviews/[reviewId]
  * Delete a review (admin only or client within 24 hours)
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { reviewId: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ reviewId: string }> }) {
+  const params = await props.params;
   try {
     const { reviewId } = params;
 

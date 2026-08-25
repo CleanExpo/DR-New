@@ -6,13 +6,16 @@ import { prisma } from '@/lib/prisma'
 
 interface ContractorProfileLayoutProps {
   children: React.ReactNode
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
-export default async function ContractorProfileLayout({
-  children,
-  params,
-}: ContractorProfileLayoutProps) {
+export default async function ContractorProfileLayout(props: ContractorProfileLayoutProps) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const [session, contractor] = await Promise.all([
     getServerSession(authOptions),
     prisma.contractorProfile.findUnique({

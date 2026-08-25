@@ -4,10 +4,8 @@ import { getTenantDb } from '@/lib/get-tenant-db'
 import { z } from 'zod'
 
 // GET - Get program details with enrollments
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request)
     if (!authResult.success) {
@@ -122,10 +120,8 @@ const updateProgramSchema = z.object({
 })
 
 // PATCH - Update program settings
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request)
     if (!authResult.success) {
@@ -186,10 +182,8 @@ export async function PATCH(
 }
 
 // DELETE - Archive/delete program
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request)
     if (!authResult.success) {

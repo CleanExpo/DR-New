@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function OnboardingSuccessPage({
   searchParams,
 }: {
-  searchParams: { tenant?: string };
+  searchParams: Promise<{ tenant?: string }>;
 }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20 flex items-center justify-center p-6">

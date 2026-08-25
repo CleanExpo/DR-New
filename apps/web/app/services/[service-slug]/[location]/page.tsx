@@ -22,10 +22,10 @@ import { internalLinking, getBreadcrumbsForPage } from '@/lib/seo/internal-linki
 import { schemaGenerator } from '@/lib/seo/schema-generator';
 
 interface ServiceLocationPageProps {
-  params: {
+  params: Promise<{
     'service-slug': string;
     location: string;
-  };
+  }>;
 }
 
 // Generate static params for all service+location combinations
@@ -34,9 +34,8 @@ export async function generateStaticParams() {
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({
-  params,
-}: ServiceLocationPageProps): Promise<Metadata> {
+export async function generateMetadata(props: ServiceLocationPageProps): Promise<Metadata> {
+  const params = await props.params;
   const service = getServiceBySlug(params['service-slug']);
   const city = getCityBySlug(params.location);
 
@@ -92,7 +91,8 @@ export async function generateMetadata({
   };
 }
 
-export default function ServiceLocationPage({ params }: ServiceLocationPageProps) {
+export default async function ServiceLocationPage(props: ServiceLocationPageProps) {
+  const params = await props.params;
   const service = getServiceBySlug(params['service-slug']);
   const city = getCityBySlug(params.location);
 

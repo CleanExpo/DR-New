@@ -30,10 +30,8 @@ const respondSchema = z.object({
   message: z.string().max(1000).optional(),
 });
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { matchId: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ matchId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) return authResult.response;

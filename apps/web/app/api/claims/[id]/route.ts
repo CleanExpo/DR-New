@@ -13,10 +13,8 @@ import { getClaimStatus, updateClaimStatus } from '@/lib/services/insurance.serv
 // GET /api/claims/[id] - Get claim details
 // ============================================================================
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -95,10 +93,8 @@ export async function GET(
 // PATCH /api/claims/[id] - Update claim (admin only)
 // ============================================================================
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PATCH(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

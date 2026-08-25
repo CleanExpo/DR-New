@@ -36,10 +36,8 @@ interface PDFGenerationRequest {
  * POST /api/inspection-reports/[id]/pdf
  * Generate PDF report
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const { id } = params;
     const body: PDFGenerationRequest = await request.json();
@@ -251,10 +249,8 @@ export async function POST(
  * GET /api/inspection-reports/[id]/pdf
  * Get PDF generation status and URL
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const { id } = params;
 

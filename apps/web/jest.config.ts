@@ -46,10 +46,11 @@ const config = {
     // lib/db, ...) resolve under jest exactly like they do at build time (DR-906).
     '^@/(.*)$': ['<rootDir>/$1', '<rootDir>/src/$1'],
     '^uuid$': require.resolve('uuid'),
-    // Resolve Prisma client to the generated client in root node_modules
-    '^@prisma/client$': '<rootDir>/../../node_modules/.prisma/client',
-    '^\\.prisma/client$': '<rootDir>/../../node_modules/.prisma/client',
-    '^\\.prisma/client/(.*)$': '<rootDir>/../../node_modules/.prisma/client/$1',
+    // Prisma resolves through the workspace's own symlink into the pnpm store. The
+    // previous mapping pointed at <repo>/node_modules/.prisma/client, a path that
+    // does not exist under pnpm, so any test importing Prisma failed to resolve
+    // before it could run.
+    '^@prisma/client$': '<rootDir>/node_modules/@prisma/client',
   },
   clearMocks: true,
   restoreMocks: true,

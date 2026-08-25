@@ -12,10 +12,8 @@ import { authenticateRequest, requireRole, unauthorizedRoleResponse } from '@/li
 import { getTenantDb } from '@/lib/get-tenant-db';
 import { getInvoiceDetails, markInvoiceAsViewed } from '@/lib/invoicing/generate-invoice';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { invoiceId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ invoiceId: string }> }) {
+  const params = await props.params;
   try {
     // Verify authentication
     const authResult = await authenticateRequest(request);
@@ -102,10 +100,8 @@ export async function GET(
  * Soft delete invoice (mark as cancelled)
  * Only admins can delete
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { invoiceId: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ invoiceId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

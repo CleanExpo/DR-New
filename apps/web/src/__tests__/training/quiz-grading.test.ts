@@ -69,7 +69,7 @@ const ALL_WRONG = { m1q1: 0, m1q2: 0, m1q3: 1, m1q4: 0, m1q5: 0 };
 const FOUR_CORRECT = { m1q1: 1, m1q2: 2, m1q3: 0, m1q4: 3, m1q5: 0 }; // 4/5 = 80%
 const THREE_CORRECT = { m1q1: 1, m1q2: 2, m1q3: 0, m1q4: 0, m1q5: 0 }; // 3/5 = 60%
 
-const params = { params: { moduleNumber: '1' } };
+const params = { params: Promise.resolve({ moduleNumber: '1' }) };
 
 function postReq(body: unknown) {
   return new NextRequest('http://localhost/api/training/nrp/quiz/1', {

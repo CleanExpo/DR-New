@@ -115,14 +115,14 @@ function submit() {
       timeline: '2 weeks',
       message: 'We can start immediately with full WRT capability.',
     }),
-    { params: { id: 'sr_1' } }
+    { params: Promise.resolve({ id: 'sr_1' }) }
   );
 }
 
 function respond(response: 'ACCEPTED' | 'DECLINED' | 'COUNTER_OFFER', extra: object = {}) {
   return respondToMatch(
     jsonReq('http://localhost/api/contractor/bids/match_1/respond', { response, ...extra }),
-    { params: { matchId: 'match_1' } }
+    { params: Promise.resolve({ matchId: 'match_1' }) }
   );
 }
 

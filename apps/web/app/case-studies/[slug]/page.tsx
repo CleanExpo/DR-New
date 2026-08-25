@@ -148,7 +148,8 @@ async function getCaseStudy(slug: string): Promise<CaseStudyDetail | null> {
   return null;
 }
 
-export default async function CaseStudyPage({ params }: { params: { slug: string } }) {
+export default async function CaseStudyPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const caseStudy = await getCaseStudy(params.slug);
 
   if (!caseStudy) {

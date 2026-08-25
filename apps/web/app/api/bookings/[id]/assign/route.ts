@@ -15,10 +15,8 @@ import { sendBookingConfirmationEmail } from '@/lib/email/client-notifications';
 // POST /api/bookings/[id]/assign - Assign contractor to booking
 // ============================================================================
 
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {
@@ -181,10 +179,8 @@ export async function POST(
 // DELETE /api/bookings/[id]/assign - Unassign contractor
 // ============================================================================
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

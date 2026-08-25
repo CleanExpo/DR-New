@@ -14,10 +14,8 @@ const updateConfigSchema = z.object({
   type: z.enum(['string', 'boolean', 'number', 'json']).optional()
 });
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { tenantId: string } }
-) {
+export async function PUT(request: NextRequest, props: { params: Promise<{ tenantId: string }> }) {
+  const params = await props.params;
   try {
     // Authenticate request
     const authResult = await authenticateRequest(request);
@@ -44,10 +42,8 @@ export async function PUT(
   }
 }
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { tenantId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ tenantId: string }> }) {
+  const params = await props.params;
   try {
     // Authenticate request
     const authResult = await authenticateRequest(request);

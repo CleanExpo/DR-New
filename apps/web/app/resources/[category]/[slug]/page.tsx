@@ -60,10 +60,10 @@ import { DisasterCategory, ContentType, Resource } from '@/lib/resources/types';
 import { sanitizeHtml } from '@/lib/sanitize';
 
 interface ResourcePageProps {
-  params: {
+  params: Promise<{
     category: DisasterCategory;
     slug: string;
-  };
+  }>;
 }
 
 const CONTENT_TYPE_ICONS: Record<ContentType, React.ElementType> = {
@@ -105,9 +105,8 @@ function getResourceBySlug(category: DisasterCategory, slug: string): Resource |
   return null;
 }
 
-export async function generateMetadata({
-  params,
-}: ResourcePageProps): Promise<Metadata> {
+export async function generateMetadata(props: ResourcePageProps): Promise<Metadata> {
+  const params = await props.params;
   const resource = getResourceBySlug(params.category, params.slug);
 
   if (!resource) {
@@ -127,7 +126,8 @@ export async function generateMetadata({
   };
 }
 
-export default function ResourcePage({ params }: ResourcePageProps) {
+export default async function ResourcePage(props: ResourcePageProps) {
+  const params = await props.params;
   const resource = getResourceBySlug(params.category, params.slug);
 
   if (!resource) {

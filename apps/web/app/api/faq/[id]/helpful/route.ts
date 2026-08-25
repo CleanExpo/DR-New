@@ -10,10 +10,8 @@ const helpfulSchema = z.object({
  * POST /api/faq/[id]/helpful
  * Mark FAQ as helpful or not helpful
  */
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
   try {
     const body = await request.json();
     const { helpful } = helpfulSchema.parse(body);

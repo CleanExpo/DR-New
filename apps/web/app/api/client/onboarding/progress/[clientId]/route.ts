@@ -11,10 +11,8 @@ export const dynamic = 'force-dynamic';
  * Get client onboarding progress
  * Returns completion percentage, current phase, next steps, and tier info
  */
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { clientId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ clientId: string }> }) {
+  const params = await props.params;
   try {
     // Authenticate
     const authResult = await authenticateRequest(request);

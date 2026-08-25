@@ -5,10 +5,8 @@ import { getCourseInfo, calculateCourseProgress } from '@/lib/nrpg/course-loader
 
 // GET /api/onboarding/courses/[courseId]
 // Returns detailed course info with modules and user progress
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { courseId: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ courseId: string }> }) {
+  const params = await props.params;
   try {
     const authResult = await authenticateRequest(request);
     if (!authResult.success) {

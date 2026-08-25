@@ -13,7 +13,7 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -40,7 +40,7 @@ interface EmailCaptureFormProps {
   className?: string;
 }
 
-export function EmailCaptureForm({ source = 'waitlist', onSuccess, className }: EmailCaptureFormProps) {
+function EmailCaptureFormInner({ source = 'waitlist', onSuccess, className }: EmailCaptureFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const router = useRouter();
@@ -329,5 +329,18 @@ export function EmailCaptureForm({ source = 'waitlist', onSuccess, className }: 
         </p>
       </form>
     </div>
+  );
+}
+
+// This component reads useSearchParams(), so every page that renders it needs a
+// Suspense boundary to prerender. Keeping the boundary here rather than in each
+// consumer means a new consumer cannot forget it. (It used to be covered by an
+// app-wide boundary in the root layout, removed because a boundary above every
+// route flushes the response head and turns notFound() into a soft 200.)
+export function EmailCaptureForm(props: EmailCaptureFormProps) {
+  return (
+    <Suspense fallback={null}>
+      <EmailCaptureFormInner {...props} />
+    </Suspense>
   );
 }
